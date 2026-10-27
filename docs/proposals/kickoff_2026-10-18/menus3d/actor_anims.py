@@ -41,14 +41,16 @@ CAND = {
 
 # ---- the shipped round (BU = Blender metres; make_main3d converts to MOHAA units).  Papers / coffee are SEATED anims: not used.
 SEATED = {"papers", "coffee"}
-HUB = {"bu": (-2.7, 3.6), "idle": "idleA01|idle", "walk": "alertwalk|boredwalk", "speed": 70.0}
-BREAK = {"anims": "idleA02|idleA01", "tmin": 2.0, "tmax": 4.0}
+HUB = {"bu": (-2.7, 3.6), "idle": "idleA01|idle", "walk": "alertwalk|boredwalk", "speed": 95.0}
+BREAK = {"anims": "idleA02|idleA01", "tmin": 1.0, "tmax": 2.0}
 # name, yaw (MOHAA), stay min/max s, floor path BU (hub -> stand point), anim sequence ('~' loops, 'a|b' alternatives)
+# map + radio stand on the OPEN floor in front of the radio table (table front y=5.73, chair seat (-0.92,3.47) x[-1.18,-0.66] y[3.24,3.7], desk end x=-0.33)
 STATIONS = [
-    ("map", 0, 9, 13, [(-2.0, 4.2), (-1.15, 4.9), (-1.1, 5.6), (-1.0, 6.15)], "wcPoint1,wcExcite2,wcPoint1~"),
-    ("desk", -90, 8, 11, [(-1.8, 3.0), (-1.5, 2.6), (-0.65, 2.4)], "toLean,lean01~"),
-    ("phone", -90, 7, 10, [(-1.8, 4.4), (-0.65, 4.4)], "talkBrit1,talkBrit2~"),
-    ("radio", 90, 8, 11, [(-2.0, 4.6), (-1.35, 5.95)], "commRadio,commIdle~"),
-    ("window", 0, 7, 10, [(-3.4, 4.5), (-3.95, 5.2), (-4.05, 5.9)], "axislook,lookat~"),
-    ("cabinet", 0, 7, 10, [(-3.6, 4.5), (-4.3, 5.0), (-4.7, 5.6)], "crPick2,crPut2,crPick2~"),
+    # the map: he walks up to its RIGHT side, an arm's length from the wall (map surface y=6.74), body yaw 40 = three-quarter to the camera while the arms still aim at the map.  Camera ray to the spot clears the chair (x -1.27..-0.57 at y 3.1..3.8) and the desk end (x=-0.33)
+    ("map", 40, 7, 9, [(-2.0, 4.3), (-1.6, 5.0), (-1.2, 5.6), (-0.95, 6.15)], "wcPoint1,wcExcite2,wcPoint1~"),
+    ("desk", -90, 5, 8, [(-1.9, 3.1), (-1.5, 2.5), (-0.75, 2.4)], "toLean,lean01~"),
+    ("phone", -90, 5, 8, [(-1.9, 4.4), (-0.85, 4.4)], "talkBrit1,talkBrit2~"),
+    ("radio", 0, 5, 8, [(-3.1, 4.4), (-3.2, 5.0)], "commRadio,commIdle~"),
+    ("window", 0, 5, 8, [(-3.4, 4.5), (-3.95, 5.2), (-4.05, 5.9)], "axislook,lookat~"),
+    ("clipboard", -135, 5, 8, [(-2.5, 3.3), (-2.4, 2.8)], "clipStart,clip~"),   # reads a document on the lit open floor (the filing cabinet station was dropped: far left edge, dark)
 ]

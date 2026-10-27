@@ -94,7 +94,12 @@ _dir = ['actorhub %.1f %.1f %.1f "%s" "%s" %.1f' % (_h[0], _h[1], -152.0, AA.HUB
 for _n, _yaw, _a, _b, _pth, _seq in AA.STATIONS:
     _pp = ",".join("%.1f %.1f" % tuple(conv((x, y, 0.0))[:2]) for x, y in _pth)
     _dir.append('actorstation "%s" %d %.1f %.1f "%s" "%s"' % (_n, _yaw, _a, _b, _pp, _seq))
-blk += scene_lines + _dir + hots + ["}"]
+_dir.append('scenelight %.1f %.1f %.1f 260 0.55 0.48 0.36' % tuple(conv((-2.3, 4.2, 1.8))))
+# door hit boxes (px at 1080 screen height: centre offset from the projected sphere centre, half w, half h), traced on the visible door outlines; the two doors split their gap at one edge
+_BOX = {"mp": (0.5, -34.0, 47.5, 147.0), "brief": (12.0, 5.0, 45.0, 157.0)}
+_boxes = ['scenehotbox "%s" %.1f %.1f %.1f %.1f' % ((k,) + v) for k, v in _BOX.items()]
+_dir.append('scenelight %.1f %.1f %.1f 200 0.5 0.44 0.32' % tuple(conv((-0.9, 5.4, 1.7))))
+blk += scene_lines + _dir + hots + _boxes + ["}"]
 for n, idx, cmd in btns:
     blk += ["resource", "Button", "{", 'name "%s"' % n, "rect 0 0 8 8", "fgcolor 0 0 0 0", "bgcolor 0 0 0 0", 'borderstyle "NONE"', 'clicksound "sound/menu/apply.wav"', 'stuffcommand "%s"' % cmd,
             'hovercommand "set ui_scene_hot %d"' % idx, 'mouseawaycommand "set ui_scene_hot 0"', GATE, "}"]

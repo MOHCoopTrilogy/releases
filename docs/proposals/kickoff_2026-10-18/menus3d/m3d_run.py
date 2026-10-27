@@ -9,7 +9,7 @@ sys.path.insert(0, r"C:\mohaa-coop-dev\docs\proposals\kickoff_2026-10-18\e5")
 import e5_run as E  # noqa: E402
 
 PK3 = r"G:\mohaa-hudfeed3\menus3d\ship\zzzzzzzzzzzzzz_hzm_menus3d.pk3"
-STAGE = os.environ.get("M3D_STAGE", r"G:\mohaa-hudfeed3\menus3d\stage4k")
+STAGE = os.environ.get("M3D_STAGE", r"G:\mohaa-hudfeed3\menus3d\stage_w6")
 E.RUNS = r"G:\mohaa-hudfeed3\menus3d\runs"
 
 
@@ -548,6 +548,177 @@ def life(res="1080", secs=45.0, slow=3.0):
     return E.launch("m3d_life_%s%s" % (res, os.environ.get("M3D_TAG", "")), w, h, L, ["+set", "ui_menuCenter", str(center), "+set", "ui_menuRoom", "1", "+set", "ui_atticMain", "1", "+set", "in_padTestScript", sp.replace(chr(92), "/")])
 
 
+def lifefly(res="1080", slow=3.0):
+    """pause/resume check: record the life loop, fly to the MP hotspot and open its flat menu, BACK, record on.  frames in runs/m3d_lifefly_<res>/"""
+    import re
+    w, h, center, lay = E.RES[res]
+    P = json.load(open(os.path.join(STAGE, "poses.json")))
+    home = (P["home"][0], P["home"][1], P["home"][2])
+    mu = open(r"C:\mohaa-coop-dev\hzm-mod-e5zoom\ui\main.urc", encoding="utf-8").read()
+    hot = {m.group(1): (float(m.group(2)), float(m.group(3)), float(m.group(4))) for m in re.finditer(r'(?m)^scenehot "(\w+)" (\S+) (\S+) (\S+) (\S+) "', mu)}
+    S = ["@hold", "@attach 0"]
+    t = [1500]
+    beat = int(round(1000.0 / 30.0 * slow))
+    n = [0]
+
+    def cmd(c, dt=60):
+        S.append("@cmd %d %s" % (t[0], c)); t[0] += dt
+
+    def state(b):
+        S.append("%d 0 0 0 0 0 0 %d" % (t[0], b))
+
+    def rec(sec):
+        for _ in range(int(round(sec * 30))):
+            t[0] += beat
+            cmd("screenshotJPEG t%05d" % n[0], 0)
+            n[0] += 1
+    cmd("echo ^~^~^ LIFEFLY start", 3500)
+    rec(14.0)
+    S.append("@cursor %d %d %d" % ((t[0],) + tuple(proj(home, hot["mp"], w, h)))); t[0] += 80
+    rec(0.5)
+    state(0x1); t[0] += 120; state(0)
+    rec(5.0)
+    state(0x2); t[0] += 120; state(0)
+    rec(8.0)
+    cmd("echo ^~^~^ MR done", 800)
+    cmd("quit", 0)
+    sp = os.path.join(E.RUNS, "m3d_lifefly_%s.txt" % res)
+    open(sp, "w", newline=chr(10)).write(chr(10).join(S) + chr(10))
+    L = ["set developer 0", "set ui_menuRoom 1", "set ui_atticMain 1", "set ui_menuCenter %d" % center, "set ui_camslow %g" % slow, "set cl_maxfps 60", "wait 9000", "echo ^~^~^ MR start", "set in_padTestGo 1"]
+    return E.launch("m3d_lifefly_%s" % res, w, h, L, ["+set", "ui_menuCenter", str(center), "+set", "ui_menuRoom", "1", "+set", "ui_atticMain", "1", "+set", "in_padTestScript", sp.replace(chr(92), "/")])
+
+
+def doors(res="43", slow=3.0):
+    """click test: five points over each door (centre + four inner corners of its hit box), pad A at the cursor, screenshot, BACK.  frames dc_<res>_<door>_<n>.jpg"""
+    import re
+    w, h, center, lay = E.RES[res]
+    P = json.load(open(os.path.join(STAGE, "poses.json")))
+    home = (P["home"][0], P["home"][1], P["home"][2])
+    mu = open(r"C:\mohaa-coop-dev\hzm-mod-e5zoom\ui\main.urc", encoding="utf-8").read()
+    hot = {m.group(1): (float(m.group(2)), float(m.group(3)), float(m.group(4))) for m in re.finditer(r'(?m)^scenehot "(\w+)" (\S+) (\S+) (\S+) (\S+) "', mu)}
+    box = {m.group(1): tuple(float(m.group(i)) for i in (2, 3, 4, 5)) for m in re.finditer(r'(?m)^scenehotbox "(\w+)" (\S+) (\S+) (\S+) (\S+)', mu)}
+    k = h / 1080.0
+    S = ["@hold", "@attach 0"]
+    t = [1500]
+
+    def cmd(c, dt=60):
+        S.append("@cmd %d %s" % (t[0], c)); t[0] += dt
+
+    def state(b):
+        S.append("%d 0 0 0 0 0 0 %d" % (t[0], b))
+    cmd("echo ^~^~^ DOORS start", 3500)
+    mult = slow / 3.0
+    for door in ("mp", "brief"):
+        sx, sy = proj(home, hot[door], w, h)
+        ox, oy, hw, hh = box[door]
+        cx, cy = sx + ox * k, sy + oy * k
+        pts = [(0, 0), (-0.85, -0.9), (0.85, -0.9), (-0.85, 0.9), (0.85, 0.9)]
+        for n, (fx, fy) in enumerate(pts):
+            S.append("@cursor %d %d %d" % (t[0], int(cx + fx * hw * k), int(cy + fy * hh * k))); t[0] += 700
+            state(0x1); t[0] += 150; state(0)
+            t[0] += int(2600 * mult)
+            cmd("screenshot dc_%s_%s_%d" % (res, door, n), 500)
+            state(0x2); t[0] += 150; state(0)
+            t[0] += int(3800 * mult)
+    cmd("echo ^~^~^ MR done", 800)
+    cmd("quit", 0)
+    sp = os.path.join(E.RUNS, "m3d_doors_%s.txt" % res)
+    os.makedirs(E.RUNS, exist_ok=True)
+    open(sp, "w", newline=chr(10)).write(chr(10).join(S) + chr(10))
+    L = ["set developer 0", "set ui_menuRoom 1", "set ui_atticMain 1", "set ui_menuCenter %d" % center, "set ui_camslow %g" % slow, "set in_padDebug 1", "wait 9000", "echo ^~^~^ MR start", "set in_padTestGo 1"]
+    return E.launch("m3d_doors_%s" % res, w, h, L, ["+set", "ui_menuCenter", str(center), "+set", "ui_menuRoom", "1", "+set", "ui_atticMain", "1", "+set", "in_padTestScript", sp.replace(chr(92), "/")])
+
+
+def startmap(res="43", mapname="m1l1"):
+    """console `set ui_dmmap <map>; ui_startdmmap 2` typed (script @cmd = the console path) while the attic main menu is up.  Log + screenshots tell whether the map loads."""
+    w, h, center, lay = E.RES[res]
+    S = ["@hold", "@attach 0"]
+    t = [1500]
+
+    def cmd(c, dt=60):
+        S.append("@cmd %d %s" % (t[0], c)); t[0] += dt
+    cmd("echo ^~^~^ STARTMAP start", 3000)
+    cmd("screenshot sm_%s_00home" % res, 800)
+    cmd("set ui_dmmap %s" % mapname, 200)
+    cmd("ui_startdmmap 2", 1500)
+    cmd("screenshot sm_%s_01after" % res, 1000)
+    for i in range(6):
+        t[0] += 5000
+        cmd("screenshot sm_%s_%02d_t%d" % (res, 2 + i, 5 * (i + 1)), 100)
+    cmd("echo ^~^~^ MR done", 800)
+    cmd("quit", 0)
+    sp = os.path.join(E.RUNS, "m3d_startmap_%s.txt" % res)
+    open(sp, "w", newline=chr(10)).write(chr(10).join(S) + chr(10))
+    L = ["set developer 0", "set ui_menuRoom 1", "set ui_atticMain 1", "set ui_menuCenter %d" % center, "wait 9000", "echo ^~^~^ MR start", "set in_padTestGo 1"]
+    return E.launch("m3d_startmap_%s" % res, w, h, L, ["+set", "ui_menuCenter", str(center), "+set", "ui_menuRoom", "1", "+set", "ui_atticMain", "1", "+set", "in_padTestScript", sp.replace(chr(92), "/")])
+
+
+def mpflow(res="43", steps="940,125;1180,316"):
+    """normal user path: Multiplayer door, then pad-A clicks at the given flat-menu pixels (x,y;x,y;...), a screenshot after each.  mf_<res>_<n>.tga"""
+    import re
+    w, h, center, lay = E.RES[res]
+    P = json.load(open(os.path.join(STAGE, "poses.json")))
+    home = (P["home"][0], P["home"][1], P["home"][2])
+    mu = open(r"C:\mohaa-coop-dev\hzm-mod-e5zoom\ui\main.urc", encoding="utf-8").read()
+    hot = {m.group(1): (float(m.group(2)), float(m.group(3)), float(m.group(4))) for m in re.finditer(r'(?m)^scenehot "(\w+)" (\S+) (\S+) (\S+) (\S+) "', mu)}
+    box = {m.group(1): tuple(float(m.group(i)) for i in (2, 3, 4, 5)) for m in re.finditer(r'(?m)^scenehotbox "(\w+)" (\S+) (\S+) (\S+) (\S+)', mu)}
+    k = h / 1080.0
+    S = ["@hold", "@attach 0"]
+    t = [1500]
+
+    def cmd(c, dt=60):
+        S.append("@cmd %d %s" % (t[0], c)); t[0] += dt
+
+    def state(b):
+        S.append("%d 0 0 0 0 0 0 %d" % (t[0], b))
+
+    def click(x, y, wait):
+        S.append("@cursor %d %d %d" % (t[0], int(x), int(y))); t[0] += 700
+        state(0x1); t[0] += 150; state(0)
+        t[0] += wait
+    cmd("echo ^~^~^ MPFLOW start", 3500)
+    sx, sy = proj(home, hot["mp"], w, h)
+    ox, oy, hw, hh = box["mp"]
+    click(sx + ox * k, sy + oy * k, 3500)
+    cmd("screenshot mf_%s_00door" % res, 500)
+    for n, st in enumerate(steps.split(";")):
+        x, y = st.split(",")
+        click(float(x), float(y), 3500)
+        cmd("screenshot mf_%s_%02d" % (res, n + 1), 500)
+    for i in range(4):
+        t[0] += 6000
+        cmd("screenshot mf_%s_z%d" % (res, i), 100)
+    cmd("echo ^~^~^ MR done", 800)
+    cmd("quit", 0)
+    sp = os.path.join(E.RUNS, "m3d_mpflow_%s.txt" % res)
+    open(sp, "w", newline=chr(10)).write(chr(10).join(S) + chr(10))
+    L = ["set developer 0", "set ui_menuRoom 1", "set ui_atticMain 1", "set ui_menuCenter %d" % center, "set in_padDebug 1", "wait 9000", "echo ^~^~^ MR start", "set in_padTestGo 1"]
+    return E.launch("m3d_mpflow_%s" % res, w, h, L, ["+set", "ui_menuCenter", str(center), "+set", "ui_menuRoom", "1", "+set", "ui_atticMain", "1", "+set", "in_padTestScript", sp.replace(chr(92), "/")])
+
+
+def cmdtest(res="43", cmds="vid_restart"):
+    """type console commands (';'-separated) at the attic home view, screenshot before and 4 / 10 / 16 s after.  ct_<res>_<n>.tga"""
+    w, h, center, lay = E.RES[res]
+    S = ["@hold", "@attach 0"]
+    t = [1500]
+
+    def cmd(c, dt=60):
+        S.append("@cmd %d %s" % (t[0], c)); t[0] += dt
+    cmd("echo ^~^~^ CMDTEST start", 3000)
+    cmd("screenshot ct_%s_00" % res, 800)
+    for c in cmds.split(";"):
+        cmd(c.strip(), 500)
+    for i in range(3):
+        t[0] += (4000 if i == 0 else 6000)
+        cmd("screenshot ct_%s_%02d" % (res, i + 1), 100)
+    cmd("echo ^~^~^ MR done", 800)
+    cmd("quit", 0)
+    sp = os.path.join(E.RUNS, "m3d_cmdtest_%s.txt" % res)
+    open(sp, "w", newline=chr(10)).write(chr(10).join(S) + chr(10))
+    L = ["set developer 0", "set ui_menuRoom 1", "set ui_atticMain 1", "set ui_menuCenter %d" % center, "wait 9000", "echo ^~^~^ MR start", "set in_padTestGo 1"]
+    return E.launch("m3d_cmdtest_%s" % res, w, h, L, ["+set", "ui_menuCenter", str(center), "+set", "ui_menuRoom", "1", "+set", "ui_atticMain", "1", "+set", "in_padTestScript", sp.replace(chr(92), "/")])
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if a[0] == "setup":
@@ -560,6 +731,16 @@ if __name__ == "__main__":
         perf(a[1])
     elif a[0] == "atticpad":
         atticpad(a[1] if len(a) > 1 else "43")
+    elif a[0] == "lifefly":
+        lifefly(a[1] if len(a) > 1 else "1080", float(a[2]) if len(a) > 2 else 3.0)
+    elif a[0] == "doors":
+        doors(a[1] if len(a) > 1 else "43")
+    elif a[0] == "startmap":
+        startmap(a[1] if len(a) > 1 else "43", a[2] if len(a) > 2 else "m1l1")
+    elif a[0] == "mpflow":
+        mpflow(a[1] if len(a) > 1 else "43", a[2] if len(a) > 2 else "940,125;1180,316")
+    elif a[0] == "cmdtest":
+        cmdtest(a[1] if len(a) > 1 else "43", a[2] if len(a) > 2 else "vid_restart")
     elif a[0] == "life":
         life(a[1] if len(a) > 1 else "1080", float(a[2]) if len(a) > 2 else 45.0, float(a[3]) if len(a) > 3 else 3.0)
     elif a[0] == "tour":
