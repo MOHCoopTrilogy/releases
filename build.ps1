@@ -246,6 +246,15 @@ if (-not $mpiOk) {
 # Override for a deliberate tex pak release: build.ps1 -AllowTexPakChange or $env:HZM_ALLOW_TEX_PAK_CHANGE = '1', then
 # `python docs/tools/check_tex_pak_baseline.py --write-baseline` once it is published. Same throw / exit-code recipe as
 # the MP-isolation gate above.
+# [v1.10.44] HZM_SPLIT_TEX=1: the generators above (gen_service_record and friends) can write new/changed art into textures/ AFTER
+# a pre-build split, so split here, right before the gate: every added/changed tex file goes to the assets_tey side pak (copied
+# into the mod root, which the out-of-band deploy loop ships) and the tree gets the released bytes back.
+if ($env:HZM_SPLIT_TEX -eq '1') {
+    & python -I "H:\hzm_work\rel1037\split_tex.py"
+    if ($LASTEXITCODE -ne 0) { throw "BUILD BLOCKED: split_tex failed" }
+    Copy-Item -LiteralPath "H:\hzm_work\rel1038\paks\zzzzzz_co-op_hzm_mod_assets_tey.pk3" -Destination (Join-Path $srcDir "zzzzzz_co-op_hzm_mod_assets_tey.pk3") -Force
+    Write-Host "  split_tex: generator output moved to the assets_tey side pak" -ForegroundColor DarkGray
+}
 $texGate = "C:\mohaa-coop-dev\docs\tools\check_tex_pak_baseline.py"
 if (-not (Test-Path -LiteralPath $texGate -PathType Leaf)) {
     Write-Host "BUILD BLOCKED: $texGate is missing - the tex pak baseline cannot be checked." -ForegroundColor Red
@@ -556,7 +565,7 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
     # [v1.10.37] out-of-band paks assembled in the test copies (fixes2 = bolts/shells/grips superset of the fixes pak,
     # fx = fire/explosion flipbooks, music = Frontline music, stress = stress reloads, late = merged weapon tiks,
     # hzm_menus3d = the 3D OPTIONS attic). Copied verbatim; listed in publish_release.ps1's staging in the same change.
-    foreach ($xp in @('zzzzzz_co-op_hzm_mod_assets_tey.pk3', 'zzzzzzzzzzzz_coop_fixes2.pk3', 'zzzzzzzzzzzzz_coop_fx.pk3', 'zzzzzzzzzzzzz_coop_music.pk3',
+    foreach ($xp in @('zzzzzz_co-op_hzm_mod_assets_tey.pk3', 'zzzzzzzzzz_coop_maps.pk3', 'zzzzzzzzzzzzz_coop_snd.pk3', 'zzzzzzzzzzzzzzz_coop_scopeglass.pk3', 'zzzzzzzzzzzz_coop_fixes2.pk3', 'zzzzzzzzzzzzz_coop_fx.pk3', 'zzzzzzzzzzzzz_coop_music.pk3',
                       'zzzzzzzzzzzzz_coop_stress.pk3', 'zzzzzzzzzzzzzz_coop_late.pk3', 'zzzzzzzzzzzzzz_hzm_menus3d.pk3')) {
         $xpPath = Join-Path $srcDir $xp
         if (Test-Path $xpPath) {
