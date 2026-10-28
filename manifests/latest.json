@@ -1,13 +1,13 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.41",
-    "created":  "2026-10-28T17:07:38Z",
+    "version":  "1.10.42",
+    "created":  "2026-10-28T17:35:14Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
                       "size":  2170880,
-                      "sha256":  "e4dbc8abcabbf16d9505174d695f8be36af8cb78867587099c298c2cc7c4f25f",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.40/openmohaa.exe"
+                      "sha256":  "732183a3d3c9fa765b99d891d937bfc99e1366cccf0e6831d1be93849ff84621",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.42/openmohaa.exe"
                   },
                   {
                       "path":  "cgame.dll",
@@ -95,9 +95,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  30231329,
-                      "sha256":  "a54c6362189b460f1411d444cd628f2da32b7ed0aa0a0da418cb1dfda24e36f1",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.41/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  30233989,
+                      "sha256":  "e79449340462e247a9bc5219aa2b0f734a2de45664a5de9d0702d1313444ca4a",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.42/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzz_coop_terrain.pk3",
