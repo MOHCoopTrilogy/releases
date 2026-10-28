@@ -22,8 +22,7 @@ SLIDERS = [
     ("Acceleration ramp time", "joy_accelTime", 0.1, 2.0, 0.1, 0.6, "in_padV_accelTime"),
     ("Acceleration top speed", "joy_accelMax", 1.0, 3.0, 0.1, 1.5, "in_padV_accelMax"),
 ]
-TOGGLES = [("Invert Y (push up = look down)", "joy_invertY", 0), ("Look acceleration", "joy_accel", 1),
-           ("ADS stick = Peek (lean / rise / duck); off = Move", "joy_adsPeek", 1)]
+TOGGLES = [("Invert Y (push up = look down)", "joy_invertY", 0), ("Look acceleration", "joy_accel", 1)]
 CURVES = [("LINEAR", 0), ("EXPONENTIAL", 1), ("DYNAMIC", 2)]
 
 out = []
@@ -72,10 +71,26 @@ for lab, cv, df in TOGGLES:
       % (cv, y - 8, cv))
     y += 26
 
+PEEKS = [("OFF", 0), ("HOLD PEEK BUTTON", 1), ("WHILE AIMING", 2)]
+label("capPeek", "STICK PEEK (lean / rise / duck)", 40, y, 250)
+label("peekNow", "", 300, y, 240, fg="0.45 0.80 0.45 1.00", extra='\tlinkcvar "in_padPeekLabel"\n')
+y += 20
+x = 40
+for nm, v in PEEKS:
+    button("btnPeek%d" % v, nm, x, y, 170, "seta joy_stickPeek %d" % v)
+    x += 180
+y += 22
+label("peekHint", "WHILE AIMING: hold ADS, left stick peeks. HOLD PEEK BUTTON: hold the button bound to Peek.", 40, y, 580)
+y += 14
+label("peekHelp1", "Handhelds: map a back button (e.g. ROG Ally M1) to a key or button in your device software,", 40, y, 580)
+y += 14
+label("peekHelp2", "bind it to Peek, and choose Hold peek button.", 40, y, 580)
+
 defaults = " ; ".join("seta %s %s" % (s_[1], s_[5]) for s_ in SLIDERS)
-defaults += " ; seta joy_curve 1 ; seta joy_invertY 0 ; seta joy_accel 1 ; seta joy_adsPeek 1"
-button("btnDefaults", "RESET TO DEFAULTS", 40, 440, 200, defaults)
-button("btnBack", "BACK", 470, 440, 120, "popmenu 0", "back")
+defaults += " ; seta joy_curve 1 ; seta joy_invertY 0 ; seta joy_accel 1 ; seta joy_stickPeek 2"
+button("btnDefaults", "RESET TO DEFAULTS", 40, 458, 200, defaults)
+button("btnLayout", "CONTROLLER LAYOUT", 250, 458, 200, "ui_padbinds ; pushmenu coop_padlayout")   # [v1.10.46] the rebind page (gen_menu_padlayout.py)
+button("btnBack", "BACK", 470, 458, 120, "popmenu 0", "back")
 w("end.")
 
 os.makedirs(os.path.join(MOD, "ui"), exist_ok=True)
