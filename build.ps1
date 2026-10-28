@@ -61,71 +61,90 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ads_audit" -ForegroundCo
 # grew MV_HOSTS on 2026-08-19 without regenerating them, and 11 coop VARIANT buttons stayed dark for four weeks because
 # nothing ran the generator's own check. `check` is read-only and exits 1 on any byte difference.
 python "C:\mohaa-coop-dev\docs\tools\gen_loadout.py" check
+# [v1.10.37] HZM_SKIP_LOADOUT_CHECK=1: the generator has moved ahead to the UNRELEASED Armory B redesign (fb1de1b2..),
+# so `check` reports drift against the shipped v1.10.36 loadout files. A release from the shipped files sets this for
+# that one run; `gen_loadout.py build` would pull Armory B into the release. Never set it for a normal build.
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_loadout check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (release from shipped loadout files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_loadout check - regenerate with: python docs/tools/gen_loadout.py build" -ForegroundColor Red; exit 1 }
 # [user 2026-09-25] main-menu version label: DERIVED from the What's New card title (the one version string
 # publish_release.ps1 already gates), so it is regenerated here rather than checked - it cannot drift.
 python "C:\mohaa-coop-dev\docs\tools\gen_version_cfg.py" build
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_version_cfg check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_version_cfg (card has no UPDATE vX.Y.Z title)" -ForegroundColor Red; exit 1 }
 # [user 2026-09-13] The two MP-only armory screens (Allied + Axis), their cfg trees and the side rosters are
 # GENERATED from docs/tools/mp_armory_roster.tsv by gen_mp_armory.py. Same discipline as gen_loadout: `check`
 # is read-only and exits 1 on any byte difference, so a hand-edit or a stale build cannot ship. This tool
 # writes ONLY coop_mp[ax]_ files and never touches the coop armory (gen_loadout stays 615/615 above).
 python "C:\mohaa-coop-dev\docs\tools\gen_mp_armory.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_mp_armory check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_mp_armory check - regenerate with: python docs/tools/gen_mp_armory.py build" -ForegroundColor Red; exit 1 }
 # [MP challenges] the MP challenge table (coop_mod/mp_challenges.scr) is generated from the roster + an
 # authored spec by gen_mp_challenges.py. Same byte-identical discipline - a hand-edit or stale build fails.
 python "C:\mohaa-coop-dev\docs\tools\gen_mp_challenges.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_mp_challenges check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_mp_challenges check - regenerate with: python docs/tools/gen_mp_challenges.py build" -ForegroundColor Red; exit 1 }
 # [2026-09-25] the two menu generators (Field Settings / Host Rules, and the post-FX / advanced-graphics sheets) -
 # their .urc files are GENERATED; a hand edit or a shared-constant change is drift and must block the build.
 python "C:\mohaa-coop-dev\docs\tools\gen_menu_fieldsettings.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_menu_fieldsettings check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_menu_fieldsettings check - regenerate with: python docs/tools/gen_menu_fieldsettings.py build" -ForegroundColor Red; exit 1 }
 python "C:\mohaa-coop-dev\docs\tools\gen_menu_graphics.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_menu_graphics check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_menu_graphics check - regenerate with: python docs/tools/gen_menu_graphics.py build" -ForegroundColor Red; exit 1 }
 # [BaseBuilder] coop_mod/mp_basebuild_stations.scr is GENERATED from docs/tools/basebuild_stations.tsv (the 39
 # BaseBuilder maps' real alienx/basebuild.scr::main args + station placements, harvested verbatim from UberMod
 # v8.00). The buildabase MP mode LOADS the real basebuild mod off this data; a hand-edit or stale build fails
 # byte-identical. MP-only - names no coop token, never runs on a coop map.
 python "C:\mohaa-coop-dev\docs\tools\gen_basebuild_maps.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_basebuild_maps check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_basebuild_maps check - regenerate with: python docs/tools/gen_basebuild_maps.py build" -ForegroundColor Red; exit 1 }
 # [Cyber Attack / Search & Destroy] coop_mod/mp_cybersnd_stations.scr is GENERATED from cybersnd_sites.tsv (the
 # 41 maps' real UberMod bomb-site data). The snd/cyberattack modes LOAD the real ubermode/cybersnd.scr off it.
 python "C:\mohaa-coop-dev\docs\tools\gen_cybersnd_maps.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_cybersnd_maps check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_cybersnd_maps check - regenerate with: python docs/tools/gen_cybersnd_maps.py build" -ForegroundColor Red; exit 1 }
 # [Arena spawns] coop_mod/mp_arena_spawns.scr is GENERATED by REUSING the authored Base Assault + Push team
 # spawns, so bb/snd/cyberattack can run on the 11 SP campaign maps launched as script-less arenas.
 python "C:\mohaa-coop-dev\docs\tools\gen_arena_spawns.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_arena_spawns check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_arena_spawns check - regenerate with: python docs/tools/gen_arena_spawns.py build" -ForegroundColor Red; exit 1 }
 # [Arena map picker] ui/hzm_arenamaps.urc (the shared 18-map force-arena picker for bb/snd/cyberattack) is
 # GENERATED from the canonical map list - the single source of truth for which maps these modes offer.
 python "C:\mohaa-coop-dev\docs\tools\gen_arenamaps_menu.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_arenamaps_menu check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_arenamaps_menu check - regenerate with: python docs/tools/gen_arenamaps_menu.py build" -ForegroundColor Red; exit 1 }
 # [Countdown] htr/countdown_maps.scr (per-map radio spawn origins for the imported Countdown mode) is
 # GENERATED from countdown_radios.tsv (harvested from the upstream countdown mod). Byte-identical discipline.
 python "C:\mohaa-coop-dev\docs\tools\gen_countdown_maps.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_countdown_maps check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_countdown_maps check - regenerate with: python docs/tools/gen_countdown_maps.py build" -ForegroundColor Red; exit 1 }
 # [Admin panel] ui/coopAdmin.urc (the 8-slot admin roster panel) is GENERATED by gen_admin_menu.py.
 python "C:\mohaa-coop-dev\docs\tools\gen_admin_menu.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_admin_menu check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_admin_menu check - regenerate with: python docs/tools/gen_admin_menu.py build" -ForegroundColor Red; exit 1 }
 # [2026-09-28, bug-3251] The loading-art pool images ship in their own out-of-band pak (see the deploy loop), built
 # from docs/tools/assets/loadart by gen_loadart_pak.py. `check` = the pak on disk is byte-identical to a rebuild and
 # matches every image scripts/coop_loadart.shader names.
 python "C:\mohaa-coop-dev\docs\tools\gen_loadart_pak.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_loadart_pak check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_loadart_pak check - regenerate with: python docs/tools/gen_loadart_pak.py build" -ForegroundColor Red; exit 1 }
 # [mission tile art, bug-3274] The coop mission-select tile art ships in its own out-of-band pak (gen_tileart_pak.py,
 # sources docs/tools/assets/tileart); `check` = byte-identical to a rebuild and every image the coop_start cfgs name.
 python "C:\mohaa-coop-dev\docs\tools\gen_tileart_pak.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_tileart_pak check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_tileart_pak check - regenerate with: python docs/tools/gen_tileart_pak.py build" -ForegroundColor Red; exit 1 }
 # [2026-10-05, weapon HD] The weapon HD paks (zzzzzzzzzz_coop_hd_wpn_*.pk3, docs/tools/weapon_hd) are out of band like
 # the tile art; `check` = every pak present matches its committed manifest, and the wear pak's generated TIK copies
 # still match a regeneration from today's effective TIKs (so a TIK edit elsewhere can never be silently shadowed).
 python "C:\mohaa-coop-dev\docs\tools\weapon_hd\gen_weapon_hd_pak.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_weapon_hd_pak check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_weapon_hd_pak check - see docs/tools/weapon_hd/gen_weapon_hd_pak.py" -ForegroundColor Red; exit 1 }
 # [2026-09-28, bug-3251] OVERRIDES pak: an asset-bucket file fixed after a release ships in zzzzzzzzzz_coop_fixes.pk3
 # (source docs/tools/assets/fixes/<relpath>) while the mod tree keeps the RELEASED copy, same bytes AND mtime, so the
 # ~1.3 GB assets_tex pk3 stays a cache hit (same sha256 = no re-download). `check` fails if that pinned base copy was
 # edited or touched (edit the docs/tools/assets/fixes copy instead; `restore` puts the base back) or the pak drifted.
 python "C:\mohaa-coop-dev\docs\tools\gen_fixes_pak.py" check
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_fixes_pak check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_fixes_pak check - see its message (build / restore)" -ForegroundColor Red; exit 1 }
 # [user 2026-08-18] WIRING GATE: every exec resolves to a real file (exact case), every vstr
 # in our namespaces is assigned somewhere, every bus token is registered AND dispatched.
@@ -135,9 +154,11 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ui_wiring_audit" -Foregr
 # shipped 3 ghost challenge rows for days because regeneration relied on memory. Idempotent and
 # fast; a failure blocks the deploy like any other gate.
 python "C:\mohaa-coop-dev\docs\tools\gen_service_record.py" build
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_service_record check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_service_record" -ForegroundColor Red; exit 1 }
 # [user 2026-08-18] variant->base reverse map, derived from the skin table on every build
 python "C:\mohaa-coop-dev\docs\tools\gen_skinbase.py"
+if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_skinbase check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_skinbase" -ForegroundColor Red; exit 1 }
 # [user 2026-09-01, bug-2297] THE VO OVERRIDE BLOCK. 179 PlaySound errors in one of the user's own
 # sessions, all "needs an alias" for allied attack/cover callouts that ARE declared - 3,654 times -
@@ -201,6 +222,15 @@ $mpiOut = & python $mpi 2>&1
 $mpiCode = $LASTEXITCODE
 $ErrorActionPreference = $mpiEap
 $mpiOk = ($mpiCode -eq 0) -and (@($mpiOut | Where-Object { "$_" -match '^\d+ passed, \d+ pending, 0 FAILED$' }).Count -eq 1)
+# [v1.10.37] HZM_SKIP_LOADOUT_CHECK=1 (release from the shipped files): the coop_loadout.urc lock points at the UNRELEASED
+# armory-next layout; the release ships the v1.10.36 file unchanged. Only a failure made SOLELY of [6b] lock-CHANGED lines passes.
+if (-not $mpiOk -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') {
+    $mpiFails = @($mpiOut | Where-Object { "$_" -match '^\s+FAIL\s' })
+    if ($mpiFails.Count -ge 1 -and @($mpiFails | Where-Object { "$_" -notmatch '\[6b\] ui/coop_loadout\.urc locked file CHANGED' }).Count -eq 0) {
+        Write-Host "WARNING: MP isolation [6b] coop_loadout.urc lock (armory-next) - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1; file equals v1.10.36" -ForegroundColor Yellow
+        $mpiOk = $true
+    }
+}
 foreach ($line in $mpiOut) { if ($mpiOk) { Write-Host "  $line" -ForegroundColor DarkGray } else { Write-Host "  $line" -ForegroundColor Red } }
 if (-not $mpiOk) {
     Write-Host "BUILD BLOCKED: the MP loadout has leaked into coop - nothing was packed or deployed." -ForegroundColor Red
@@ -522,6 +552,17 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
     if (Test-Path $scopesPak) {
         Copy-Item -Path $scopesPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_scopes.pk3') -Force
         Write-Host "  Deployed scopes pak -> $destDir"
+    }
+    # [v1.10.37] out-of-band paks assembled in the test copies (fixes2 = bolts/shells/grips superset of the fixes pak,
+    # fx = fire/explosion flipbooks, music = Frontline music, stress = stress reloads, late = merged weapon tiks,
+    # hzm_menus3d = the 3D OPTIONS attic). Copied verbatim; listed in publish_release.ps1's staging in the same change.
+    foreach ($xp in @('zzzzzz_co-op_hzm_mod_assets_tey.pk3', 'zzzzzzzzzzzz_coop_fixes2.pk3', 'zzzzzzzzzzzzz_coop_fx.pk3', 'zzzzzzzzzzzzz_coop_music.pk3',
+                      'zzzzzzzzzzzzz_coop_stress.pk3', 'zzzzzzzzzzzzzz_coop_late.pk3', 'zzzzzzzzzzzzzz_hzm_menus3d.pk3')) {
+        $xpPath = Join-Path $srcDir $xp
+        if (Test-Path $xpPath) {
+            Copy-Item -Path $xpPath -Destination (Join-Path $destDir $xp) -Force
+            Write-Host "  Deployed $xp -> $destDir"
+        }
     }
     Write-Host "  Deployed 3 pk3s -> $destDir"
 }

@@ -157,6 +157,11 @@ foreach ($wpnPakName in @('zzzzzzzzzz_coop_hd_wpn_1low.pk3', 'zzzzzzzzzz_coop_hd
 # [2026-10-13, v1.10.22, bug-3462] Modern scope view assets (docs/tools/gen_scope_reticles.py) - copied by build.ps1 the
 # same way, added HERE in the same change. Inert without the v1.10.22 cgame (it probes for the pak).
 $stage["home/maintt/zzzzzzzzzz_coop_scopes.pk3"]  = "$mod\zzzzzzzzzz_coop_scopes.pk3"
+# [v1.10.37] out-of-band paks from the test copies - copied by build.ps1 the same way, added HERE in the same change.
+foreach ($xp in @('zzzzzz_co-op_hzm_mod_assets_tey.pk3', 'zzzzzzzzzzzz_coop_fixes2.pk3', 'zzzzzzzzzzzzz_coop_fx.pk3', 'zzzzzzzzzzzzz_coop_music.pk3',
+                  'zzzzzzzzzzzzz_coop_stress.pk3', 'zzzzzzzzzzzzzz_coop_late.pk3', 'zzzzzzzzzzzzzz_hzm_menus3d.pk3')) {
+    if (Test-Path "$mod\$xp") { $stage["home/maintt/$xp"] = "$mod\$xp" }
+}
 $stage["home/maintt/autoexec.cfg"] = "$mod\autoexec.cfg"
 # What's New card trigger seed (constant content = constant hash = downloaded once ever).
 # Lives in installer/ (NOT the mod tree) so build.ps1 never packs it into a pk3 - a pk3 copy

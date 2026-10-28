@@ -57,8 +57,10 @@ for p in glob.glob(os.path.join(cl, "**", "*.c*"), recursive=True):
     if "ui/" in t:
         for m in exec_rx.finditer(t):
             refs.setdefault(m.group(1), set()).add("engine:" + os.path.basename(p))
+# cfgs shipped inside an out-of-band pak, not the mod tree (v1.10.37: the 3D menu pak zzzzzzzzzzzzzz_hzm_menus3d.pk3)
+PAK_PROVIDED = {"ui/hzm_attic_enter.cfg"}
 for tgt, srcs in sorted(refs.items()):
-    if tgt in real:
+    if tgt in real or tgt in PAK_PROVIDED:
         continue
     hit = real_lower.get(tgt.lower())
     if hit:
