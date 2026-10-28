@@ -49,18 +49,19 @@ w('resource\nLabel\n{\n\tordernumber 50\n\tname "bg"\n\trect 0 0 640 480\n\tfgco
 label("title", "CONTROLLER LAYOUT", 220, 10, 200, fg="0.88 0.83 0.66 1.00")
 label("hint", "Select a button and press A (or click) to change what it does. < steps back.", 40, 26, 560, fg="0.60 0.58 0.52 1.00")
 # the pad picture, 2:1, one per family
-for fam in ("xbox", "ps", "generic"):
-    pic("pad_" + fam, "textures/hud/coop_pad_%s" % fam, 180, 42, 280, 140, "ui_padPic==%s" % fam)
+# enabledcvar compares numbers only, so the engine also writes ui_padPicN: 0 xbox, 1 ps, 2 generic
+for n, fam in enumerate(("xbox", "ps", "generic")):
+    pic("pad_" + fam, "textures/hud/coop_pad_%s" % fam, 180, 42, 280, 140, "ui_padPicN==%d" % n)
 
 
 def rows(lst, x0, col):
     y = 194
     for i, (btn, cell, xn, pn) in enumerate(lst):
         if cell >= 0:
-            pic("ic%s_x" % btn, "textures/hud/coop_pg_x_%02d" % cell, x0, y - 1, 16, 16, "ui_padPic!=ps")
-            pic("ic%s_p" % btn, "textures/hud/coop_pg_p_%02d" % cell, x0, y - 1, 16, 16, "ui_padPic==ps")
-        label("nm%s_x" % btn, xn, x0 + 20, y, 70, extra='\tenabledcvar "ui_padPic!=ps"\n')
-        label("nm%s_p" % btn, pn, x0 + 20, y, 70, extra='\tenabledcvar "ui_padPic==ps"\n')
+            pic("ic%s_x" % btn, "textures/hud/coop_pg_x_%02d" % cell, x0, y - 1, 16, 16, "ui_padPicN!=1")
+            pic("ic%s_p" % btn, "textures/hud/coop_pg_p_%02d" % cell, x0, y - 1, 16, 16, "ui_padPicN==1")
+        label("nm%s_x" % btn, xn, x0 + 20, y, 70, extra='\tenabledcvar "ui_padPicN!=1"\n')
+        label("nm%s_p" % btn, pn, x0 + 20, y, 70, extra='\tenabledcvar "ui_padPicN==1"\n')
         button("bk%s" % btn, "<", x0 + 94, y - 2, 16, "padbind_cycle %s -1" % btn)
         # the action: a Label showing the current bind under a transparent Button that steps it forward
         label("act%s" % btn, "", x0 + 114, y, 170, fg="0.45 0.80 0.45 1.00", extra='\tlinkcvar "ui_padb_%s"\n' % btn)
