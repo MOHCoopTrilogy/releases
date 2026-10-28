@@ -50,7 +50,7 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
-### v1.10.38 - v1.10.42 - Two new finales and a 3D attic menu
+### v1.10.38 - v1.10.43 - Two new finales and a 3D attic menu
 
 - **U-boat pens finale (early access)** - destroy two U-boats by defending crane drops, then hold the radio room while reinforcements push in
 - **Norway station finale (early access)** - grab the demolition charges (and the weapons in the storage room), rig the comms gear and fuel tanks, kill the station commander, then hold the station through a building blizzard until the train arrives - with snipers and MG42 nests on the rooftops
@@ -58,6 +58,12 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 - **Officer reinforcements and enemy voice lines work again** (broken since v1.10.38), and the menu cursor no longer sticks in the lobby
 - **Fixes** - Spearhead's parachute cut in the barn, Omaha's beach crowd no longer drowns the mix, New Objective cards match the objective list, dropped MG42s can be picked up again
 - **Scopes (work in progress)** - coated glass on the lens from the hip, the live view when you aim
+
+<img src="docs/screenshots/v11043-attic-cast.gif" width="100%" alt="The attic main menu: General Weathers leans over a table with his hands on two clipboards while Manon works at the map">
+<sub>The attic main menu: General Weathers at his table, Manon at the map.</sub>
+
+<img src="docs/screenshots/v11043-attic-chalkboard.jpg" width="100%" alt="The chalkboard under Medal of Honor showing Options, Multiplayer, New Game, Briefing and Records as each spot is pointed at">
+<sub>Point at a door or the radio shelf and the chalkboard names it.</sub>
 
 ### v1.10.23 - v1.10.37
 
