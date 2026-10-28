@@ -9,7 +9,7 @@
 <p align="center">
 <a href="https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe"><img src="https://img.shields.io/badge/Download%20%26%20Install-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Download and install"></a>
 &nbsp;
-<a href="https://discord.gg/cVjMYPBFZ"><img src="https://img.shields.io/badge/Join%20the%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join the Discord"></a>
+<a href="https://discord.gg/ukumnzBAhK"><img src="https://img.shields.io/badge/Join%20the%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join the Discord"></a>
 &nbsp;
 <a href="#install"><img src="https://img.shields.io/badge/How%20to%20install-24292f?style=for-the-badge" alt="How to install"></a>
 </p>
@@ -19,7 +19,7 @@
 > ### 🎖️ Testers wanted - solo players and whole squads
 > This is an **early alpha**, and we need people to play it. Grab some friends (or come find a squad), play
 > through missions, and tell us what breaks, what feels off and what you love.
-> **[Join the Discord](https://discord.gg/cVjMYPBFZ)** to find games and send feedback. If something breaks, Start menu →
+> **[Join the Discord](https://discord.gg/ukumnzBAhK)** to find games and send feedback. If something breaks, Start menu →
 > **MOH Trilogy Coop - Report a Problem** sends us your logs in one click.
 
 Play the complete **Allied Assault**, **Spearhead** and **Breakthrough** campaigns in co-op, **built for 4** (multiplayer modes scale to 16). Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) and a custom fork of the [OpenMOHAA](https://github.com/openmoh/openmohaa) engine, then heavily extended: weighty guns, aimed reloads, ragdolls, an unlockable Armory, smarter enemies, a full audio overhaul and HD visuals. Updates install themselves at every launch, and your original game is never touched.
@@ -50,7 +50,26 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
-**v1.10.23 hotfix:** your **XP, rank, challenges and unlocks now follow you to any server** - your own, a friend's, or our public ones - and everything you earn there comes home to your PC.
+### v1.10.38 - v1.10.42 - Two new finales and a 3D attic menu
+
+- **U-boat pens finale (early access)** - destroy two U-boats by defending crane drops, then hold the radio room while reinforcements push in
+- **Norway station finale (early access)** - grab the demolition charges (and the weapons in the storage room), rig the comms gear and fuel tanks, kill the station commander, then hold the station through a building blizzard until the train arrives - with snipers and MG42 nests on the rooftops
+- **The 3D attic is the main menu** - fly to the doors, the map, the desk or the radio shelf; the chalkboard names what you point at, and Manon and General Weathers work the room. MENU STYLE > Classic brings the flat menu back
+- **Officer reinforcements and enemy voice lines work again** (broken since v1.10.38), and the menu cursor no longer sticks in the lobby
+- **Fixes** - Spearhead's parachute cut in the barn, Omaha's beach crowd no longer drowns the mix, New Objective cards match the objective list, dropped MG42s can be picked up again
+- **Scopes (work in progress)** - coated glass on the lens from the hip, the live view when you aim
+
+### v1.10.23 - v1.10.37
+
+- **v1.10.37** - 3D Options attic with a radio shelf, soldiers react to blasts, burning wrecks and scorch marks, bolts that cycle, realistic shell ejection, stress reloads, soft-lock fixes on m4l1-m4l3, m5l1a and m5l2b
+- **v1.10.36** - a WW2 radio room for the settings, full HD loading movies, real gamepad button icons, an alarm switch-off
+- **v1.10.35** - a new 3D main menu (the Breakthrough attic), keyboard-driven menus, alarm snipers on eight maps
+- **v1.10.34** - bolts and cocking handles that move on every shot, hand-on-bolt reloads, new gun finishes
+- **v1.10.32 - 33** - a squad lobby before every mission, the Showroom Armory, a busier battlefield, cutscenes without crosshairs, text sized right on every screen
+- **v1.10.29 - 31** - smarter Germans (squad tactics, alarms they run for, counter-attacks after the main objective), a cleaner HUD, a better Armory
+- **v1.10.23 - 28** - your XP, rank, challenges and unlocks follow you to any server; smooth joins and play on dedicated servers at any frame rate; briefing and lobby fixes
+
+**Public co-op servers:** **MOH Coop Trilogy #1, #2 and #3** run the whole trilogy back to back - find them in Multiplayer > Join Game.
 
 ### v1.10.22 - Eyes on Target
 
@@ -225,7 +244,7 @@ Full generated reference: **[Features](docs/public/FEATURES.md)** · **[Maps](do
 <details>
 <summary>Read before reporting</summary>
 
-**Newest and least settled:** the multiplayer modes and bots (little human playtesting yet), ragdolls, take cover, the free camera, the jeep and tank machine-gun seats, and squad AI behaviour.
+**Newest and least settled:** the U-boat pens and Norway finales (early access), the 3D attic main menu, the scopes, the multiplayer modes and bots (little human playtesting yet), ragdolls, take cover, the free camera, the jeep and tank machine-gun seats, and squad AI behaviour.
 
 **Open bugs:**
 - e3l4: a jeep passenger can fail the first supply run (failsafes still complete the mission)
@@ -244,7 +263,7 @@ Found something else? Use **Report a Problem**, post on Discord, or open an [iss
 
 No dates promised: online play without port forwarding, skill trees (Ranger, Corpsman, Pathfinder), a carryable MG42, new player animations, a wave-survival mode, and in-game update notices.
 
-**Want to help?** We're looking for animators, mappers and artists (new weapons and skins, aimed animations, map ports). It's a passion project and nobody is paid, including me. Say hi on **[Discord](https://discord.gg/cVjMYPBFZ)**.
+**Want to help?** We're looking for animators, mappers and artists (new weapons and skins, aimed animations, map ports). It's a passion project and nobody is paid, including me. Say hi on **[Discord](https://discord.gg/ukumnzBAhK)**.
 
 ## Credits
 
