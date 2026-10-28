@@ -1,7 +1,7 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.40",
-    "created":  "2026-10-28T16:26:58Z",
+    "version":  "1.10.41",
+    "created":  "2026-10-28T17:07:38Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
@@ -12,8 +12,8 @@
                   {
                       "path":  "cgame.dll",
                       "size":  1112064,
-                      "sha256":  "34c57e339d472d073707c4d9ec4c3410270354357a32ddc6da3b2302ac97210c",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.38/cgame.dll"
+                      "sha256":  "2cb36af46f5153d559c870d521e8ceea6f6a79b8ee071794822ce98a1dcbfa19",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.41/cgame.dll"
                   },
                   {
                       "path":  "game.dll",
@@ -95,9 +95,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  30229059,
-                      "sha256":  "6487bff34f2d08f52373b0aa73c7aeb872732215d29b495feb95c184dec37e82",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.40/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  30231329,
+                      "sha256":  "a54c6362189b460f1411d444cd628f2da32b7ed0aa0a0da418cb1dfda24e36f1",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.41/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzz_coop_terrain.pk3",
@@ -209,9 +209,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzzzzz_coop_stress.pk3",
-                      "size":  9335516,
-                      "sha256":  "dbd53ceebf38f12240eb3a4a89cab9269a3bd8d60ca170321b89d59750ef6039",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.37/zzzzzzzzzzzzz_coop_stress.pk3"
+                      "size":  9335691,
+                      "sha256":  "fa8f4fd5805e492178bc794e70317077efdb327d3c537cae4d4628c774700133",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.41/zzzzzzzzzzzzz_coop_stress.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzzzzzz_coop_late.pk3",
@@ -227,9 +227,9 @@
                   },
                   {
                       "path":  "home/maintt/autoexec.cfg",
-                      "size":  148250,
-                      "sha256":  "60b36d0949e3934cad9eebebfffc3e22426e36bc1daa513259b668ff583f48a4",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.37/autoexec.cfg"
+                      "size":  148389,
+                      "sha256":  "04003e25b304ad287650197ca733ad204ca0a6b30d1567d095150621323ca5e1",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.41/autoexec.cfg"
                   },
                   {
                       "path":  "home/maintt/whatsnew_pending.cfg",
