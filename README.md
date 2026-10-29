@@ -50,11 +50,22 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.44 - v1.10.47 - Weapon wheel, controllers and the Norway holdout
+
+- **Norway holdout** - secure the defensive line before the prep countdown; the Axis push into the line and on to the train platform (blizzard or not), a second MG halftrack through the east roadblock, respawns behind cover, a shorter storm, storage-room guns picked up with F
+- **Controller feel** - round deadzone sized for your pad, exponential look curve, a light aim-assist slowdown over enemies; in cover L3 goes to the sights and R3 swaps shoulders
+
+- **Weapon wheel** - hold Tab (or Y on a controller) and point at a slot: every slot shows the exact gun you carry, with its ammo; carry two of a kind and the mouse wheel or D-pad picks which. Right-click or LB / RB flips to the abilities wheel - ammo box, sandbags, medkit, airstrike, paradrop - with how many you have
+- **New keys** (set once, rebind any time) - scoreboard on B, 8 medkit, 9 sandbags, 0 ammo box
+- **Controllers** - PlayStation, Xbox and generic pads are recognised automatically and show their own buttons; a Controller Layout page (Options > Controls > AIM / SENSITIVITY) shows your pad and lets you rebind every button; the touchpad / Share button opens the objectives
+- **U-boat missions** - radio the Assault team from the pens and the U-boat, and a hidden way onto the U-boat: the Seaside Stowaway challenge
+- **Holding your breath** through a scope now costs stamina
+
 ### v1.10.38 - v1.10.43 - Two new finales and a 3D attic menu
 
 - **U-boat pens finale (early access)** - destroy two U-boats by defending crane drops, then hold the radio room while reinforcements push in
 - **Norway station finale (early access)** - grab the demolition charges (and the weapons in the storage room), rig the comms gear and fuel tanks, kill the station commander, then hold the station through a building blizzard until the train arrives - with snipers and MG42 nests on the rooftops
-- **The 3D attic is the main menu** - fly to the doors, the map, the desk or the radio shelf; the chalkboard names what you point at, and Manon and General Weathers work the room. MENU STYLE > Classic brings the flat menu back
+- **The 3D attic is the main menu** - fly to the doors, the map, the desk or the radio shelf; the chalkboard names what you point at, and Manon and General Weathers work the room
 - **Officer reinforcements and enemy voice lines work again** (broken since v1.10.38), and the menu cursor no longer sticks in the lobby
 - **Fixes** - Spearhead's parachute cut in the barn, Omaha's beach crowd no longer drowns the mix, New Objective cards match the objective list, dropped MG42s can be picked up again
 - **Scopes (work in progress)** - coated glass on the lens from the hip, the live view when you aim
