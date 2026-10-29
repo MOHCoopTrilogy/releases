@@ -16,13 +16,15 @@ SLIDERS = [
     ("Horizontal look speed", "joy_lookX", 0.2, 3.0, 0.1, 1.0, "in_padV_lookX"),
     ("Vertical look speed", "joy_lookY", 0.2, 3.0, 0.1, 0.8, "in_padV_lookY"),
     ("Aim-down-sights sensitivity", "joy_adsScale", 0.2, 1.5, 0.05, 0.6, "in_padV_adsScale"),
-    ("Inner deadzone (ignore small stick)", "joy_threshold", 0.0, 0.4, 0.01, 0.15, "in_padV_inner"),
+    ("Inner deadzone (when Auto is off)", "joy_threshold", 0.0, 0.4, 0.01, 0.15, "in_padV_inner"),
     ("Outer deadzone (rim margin)", "joy_outerThreshold", 0.0, 0.3, 0.01, 0.05, "in_padV_outer"),
     ("Curve strength (Exponential)", "joy_response", 1.0, 3.0, 0.1, 1.5, "in_padV_response"),
     ("Acceleration ramp time", "joy_accelTime", 0.1, 2.0, 0.1, 0.6, "in_padV_accelTime"),
     ("Acceleration top speed", "joy_accelMax", 1.0, 3.0, 0.1, 1.5, "in_padV_accelMax"),
 ]
-TOGGLES = [("Invert Y (push up = look down)", "joy_invertY", 0), ("Look acceleration", "joy_accel", 1)]
+# [v1.10.47] two columns: aim assist (cl_input.cpp aim friction) and the per-pad dead zone (sdl_input.c IN_PadDeadzone) joined them
+TOGGLES = [("Invert Y (push up = look down)", "joy_invertY", 0), ("Look acceleration", "joy_accel", 1),
+           ("Aim assist (slows over enemies)", "joy_aimAssist", 1), ("Auto deadzone for your pad", "joy_autoDeadzone", 1)]
 CURVES = [("LINEAR", 0), ("EXPONENTIAL", 1), ("DYNAMIC", 2)]
 
 out = []
@@ -65,11 +67,13 @@ for nm, v in CURVES:
     button("btnCurve%d" % v, nm, x, y, 130, "seta joy_curve %d" % v)
     x += 140
 y += 30
-for lab, cv, df in TOGGLES:
-    label("lab_" + cv, lab, 80, y, 300)
-    w('resource\nCheckBox\n{\n\tname "cb_%s"\n\trect 40 %d 192 34\n\tfgcolor 1.00 1.00 1.00 1.00\n\tbgcolor 0.50 0.50 0.50 0.00\n\tborderstyle "NONE"\n\tlinkcvar "%s"\n\tchecked_shader "textures/menu/checkbox_checked"\n\tunchecked_shader "textures/menu/checkbox_unchecked"\n}'
-      % (cv, y - 8, cv))
-    y += 26
+for ti, (lab, cv, df) in enumerate(TOGGLES):
+    tx = 40 if ti % 2 == 0 else 330
+    label("lab_" + cv, lab, tx + 40, y, 240)
+    w('resource\nCheckBox\n{\n\tname "cb_%s"\n\trect %d %d 192 34\n\tfgcolor 1.00 1.00 1.00 1.00\n\tbgcolor 0.50 0.50 0.50 0.00\n\tborderstyle "NONE"\n\tlinkcvar "%s"\n\tchecked_shader "textures/menu/checkbox_checked"\n\tunchecked_shader "textures/menu/checkbox_unchecked"\n}'
+      % (cv, tx, y - 8, cv))
+    if ti % 2 == 1 or ti == len(TOGGLES) - 1:
+        y += 26
 
 PEEKS = [("OFF", 0), ("HOLD PEEK BUTTON", 1), ("WHILE AIMING", 2)]
 label("capPeek", "STICK PEEK (lean / rise / duck)", 40, y, 250)
@@ -87,7 +91,7 @@ y += 14
 label("peekHelp2", "bind it to Peek, and choose Hold peek button.", 40, y, 580)
 
 defaults = " ; ".join("seta %s %s" % (s_[1], s_[5]) for s_ in SLIDERS)
-defaults += " ; seta joy_curve 1 ; seta joy_invertY 0 ; seta joy_accel 1 ; seta joy_stickPeek 2"
+defaults += " ; seta joy_curve 1 ; seta joy_invertY 0 ; seta joy_accel 1 ; seta joy_stickPeek 2 ; seta joy_aimAssist 1 ; seta joy_autoDeadzone 1"
 button("btnDefaults", "RESET TO DEFAULTS", 40, 458, 200, defaults)
 button("btnLayout", "CONTROLLER LAYOUT", 250, 458, 200, "ui_padbinds ; pushmenu coop_padlayout")   # [v1.10.46] the rebind page (gen_menu_padlayout.py)
 button("btnBack", "BACK", 470, 458, 120, "popmenu 0", "back")
