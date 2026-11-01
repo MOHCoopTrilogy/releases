@@ -50,6 +50,34 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.48 - v1.10.52 - Demo editor, Norway rebuilt
+
+- **Demo editor** (v1.10.52) - play back any demo and step out of the soldier's eyes: a free camera you fly with WASD and the mouse, a YouTube-style timeline you can click and drag, smooth camera paths, a clean HUD and film filters. When you host, F9 records the whole map - every player, soldier and effect - so the camera can go anywhere. Full guide: [Demo Editor field manual](docs/demo-editor/DEMO_EDITOR.md)
+- **Norway station finale rebuilt** - fuel tanks, charges and the explosives pickup laid out by hand; the storage room is now the armory, with its own objective to plant charges; no invisible walls round the fuel tanks
+- **The Axis really push the Norway holdout** - waves from both roadblocks and the facility door, out of sight, through the blizzard; snipers and MG nests on the grey facility
+- **MG nests** - walk straight into the sandbag semicircle; the bags block where the bags are, not as one big invisible box
+- **Carried MG42 and .30 cal** - braced on the bipod they barely kick, and they overheat like the mounted MG42s
+- **Fixes** - no soldiers spawning inside props, freed POWs leave the map instead of standing there, no suppression from bullets behind a wall
+
+<table>
+<tr>
+<td width="50%"><img src="docs/demo-editor/media/timeline-scrub.gif" width="100%" alt="Demo editor: drag the timeline to any moment"></td>
+<td width="50%"><img src="docs/demo-editor/media/path.gif" width="100%" alt="Demo editor: a smooth camera path through a recorded fight"></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/demo-editor/media/freecam-body.jpg" width="100%" alt="Free camera on a recorded soldier"></td>
+<td width="50%"><img src="docs/demo-editor/media/filters.jpg" width="100%" alt="Film filters: newsreel, sepia, noir, Technicolor and more"></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v11050-mg-nest-walk-in.gif" width="100%" alt="Walk straight into an MG nest's sandbag semicircle"></td>
+<td width="50%"><img src="docs/screenshots/v11051-armory-explosives.jpg" width="100%" alt="Norway: the explosives waiting in the armory"></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v11051-fuel-tanks.jpg" width="100%" alt="Norway: the fuel tanks you rig to blow"></td>
+<td width="50%"></td>
+</tr>
+</table>
+
 ### v1.10.44 - v1.10.47 - Weapon wheel, controllers and the Norway holdout
 
 - **Norway holdout** - secure the defensive line before the prep countdown; the Axis push into the line and on to the train platform (blizzard or not), a second MG halftrack through the east roadblock, respawns behind cover, a shorter storm, storage-room guns picked up with F
