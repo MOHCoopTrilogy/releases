@@ -1,7 +1,7 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.52",
-    "created":  "2026-11-01T20:15:34Z",
+    "version":  "1.10.53",
+    "created":  "2026-11-01T22:39:50Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
@@ -95,9 +95,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  30268729,
-                      "sha256":  "87d5b6cd5e8bfcb555a9456fdc631ecb711c36c58ac535f4ad55f06ddec0c57e",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.52/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  30269280,
+                      "sha256":  "e6bed166f1f06897f4e33b26fa2a3b1ac6634bb9b4c1d521c43d5783ac87c993",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.53/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzz_coop_terrain.pk3",
@@ -167,9 +167,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_assets_tey.pk3",
-                      "size":  5885400,
-                      "sha256":  "03f45dce1ee4228d8491b9f3087f40b51e06869a22113a10d75cf466e466dc51",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.52/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+                      "size":  6263541,
+                      "sha256":  "b1e9f849a445c0e26bb4fbabad41362df2746db7335305a18c6fc828a595f2ae",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.53/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzz_coop_maps.pk3",
@@ -227,9 +227,9 @@
                   },
                   {
                       "path":  "home/maintt/autoexec.cfg",
-                      "size":  149228,
-                      "sha256":  "69e2079655f442fe5fab59188123a9a0e80712352af599767887b99121e24afd",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.52/autoexec.cfg"
+                      "size":  149603,
+                      "sha256":  "4218bb26e731d6fd62e5489608214289efae0c1fe35b9109edecf05e9564a50a",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.53/autoexec.cfg"
                   },
                   {
                       "path":  "home/maintt/whatsnew_pending.cfg",
