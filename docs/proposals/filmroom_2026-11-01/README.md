@@ -81,11 +81,14 @@ home for them in the menu. Not released.
   turned into log garbage). Format into locals.
 - **Heredoc escapes**: `\n` and `'\\'` got mangled in shell heredocs twice more. Write patch scripts
   with the Write tool.
+- **The ghost scope at the end of a demo was a negative frame time** (bug-10323). A paused seek past
+  the end parks the clock 1 ms before the last snapshot, and the time reset kept `oldServerTime` on
+  the snapshot, so cgame got `frametime -1` on every held frame. Every `x -= frametime * k` fade ran
+  backwards: the retail scope overlay (stale Springfield shader) faded in and the gun rose. Fixed in
+  `CL_CGameRendering` (a demo frame never gets negative time). When an effect "freezes" on a held
+  frame, print `cg.frametime` per frame first. 0 and -1 look the same in a screenshot.
 
 ## Open
 
-- **A faded scope frozen on screen when seeking past the end of a demo** (seen on a Garand,
-  which has no scope). The scope fade runs on the game clock, which stops while the editor holds the
-  last frame. What starts a scope fade there is not found yet. Demo editor / scope code, not the recorder.
 - The classic (flat) room's projector hover still shows no sign. There is no "film room" chalk art
   for the flat room.
