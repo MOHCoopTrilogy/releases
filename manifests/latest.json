@@ -1,43 +1,43 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.53",
-    "created":  "2026-11-01T22:39:50Z",
+    "version":  "1.10.54",
+    "created":  "2026-11-01T23:42:10Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
-                      "size":  2244608,
-                      "sha256":  "613c5a4badd27f73f97bacc1c86c0e14cb5a99e04dac320e33244764754b19d9",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.52/openmohaa.exe"
+                      "size":  2289152,
+                      "sha256":  "0fb708bb0a127d19a088b27c5be8eea68f176530e548bc0741f0eceff4f2d69a",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.54/openmohaa.exe"
                   },
                   {
                       "path":  "cgame.dll",
-                      "size":  1134592,
-                      "sha256":  "f9c6265967c63a4e52aa6c9cf693d6fbbc078bab4a16ca19d39f1743d7a4e880",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.52/cgame.dll"
+                      "size":  1144832,
+                      "sha256":  "915c985bfd97eb5ec15fd4951a9a75b66700a76e034769a9fb551da2321e4bda",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.54/cgame.dll"
                   },
                   {
                       "path":  "game.dll",
                       "size":  3605504,
-                      "sha256":  "b45742f7124ba90468476cb5b9678e5ea204571179dd964d808771fd5ad19795",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.52/game.dll"
+                      "sha256":  "b9b5ff5d63e64a16cc8e8430227c1200d064eded5fc64e63d87d2100ccc7ebfb",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.54/game.dll"
                   },
                   {
                       "path":  "renderer_opengl1.dll",
-                      "size":  860160,
-                      "sha256":  "3f481653d483e42da9b7b9180d2720d0656eb6487f854a97c6a51adb46ef283e",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.52/renderer_opengl1.dll"
+                      "size":  860672,
+                      "sha256":  "af0a47ee5ec476b27b3d4523d61c71385cacdf347f1261db37e265b6061d654f",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.54/renderer_opengl1.dll"
                   },
                   {
                       "path":  "renderer_opengl2.dll",
-                      "size":  1678848,
-                      "sha256":  "09f55a90af4fedaa94b7d7b6540fa85ffbed08f7dc3e273ec30bb51e2598cd6b",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.52/renderer_opengl2.dll"
+                      "size":  1680384,
+                      "sha256":  "45b0c9935a76b625efa3139d1d4ce453eeb28624f010e9f28f1220e3064a22ec",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.54/renderer_opengl2.dll"
                   },
                   {
                       "path":  "omohaaded.exe",
-                      "size":  688128,
-                      "sha256":  "784beb5279233454da5e509206f3c0bdeeedb8304dc9fcb9b6d1c3d45874eea7",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.52/omohaaded.exe"
+                      "size":  697856,
+                      "sha256":  "8c855e3ea1f46028e5e78190f867efa957b00756f2da5e0cb54f491a90fd4a55",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.54/omohaaded.exe"
                   },
                   {
                       "path":  "SDL2.dll",
@@ -95,9 +95,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  30269280,
-                      "sha256":  "e6bed166f1f06897f4e33b26fa2a3b1ac6634bb9b4c1d521c43d5783ac87c993",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.53/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  30280718,
+                      "sha256":  "ab1fb6972e3349c466f91ba5ee35831f9093c5629840cbe90d9e539b1d82c09f",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.54/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzz_coop_terrain.pk3",
@@ -167,9 +167,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_assets_tey.pk3",
-                      "size":  6263541,
-                      "sha256":  "b1e9f849a445c0e26bb4fbabad41362df2746db7335305a18c6fc828a595f2ae",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.53/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+                      "size":  32810757,
+                      "sha256":  "60def8596e3c4737aedcf1c8a9d94bf0fc3c2dea3819c41c2e692544ae86319d",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.54/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzz_coop_maps.pk3",
@@ -227,9 +227,9 @@
                   },
                   {
                       "path":  "home/maintt/autoexec.cfg",
-                      "size":  149603,
-                      "sha256":  "4218bb26e731d6fd62e5489608214289efae0c1fe35b9109edecf05e9564a50a",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.53/autoexec.cfg"
+                      "size":  149961,
+                      "sha256":  "6a03b5ecebb05b738eab0b386280eee1b57ccea00295ec136f7889d3f4a0a894",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.54/autoexec.cfg"
                   },
                   {
                       "path":  "home/maintt/whatsnew_pending.cfg",
