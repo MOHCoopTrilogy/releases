@@ -1,7 +1,7 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.50",
-    "created":  "2026-11-01T17:22:53Z",
+    "version":  "1.10.51",
+    "created":  "2026-11-01T19:22:43Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
@@ -11,15 +11,15 @@
                   },
                   {
                       "path":  "cgame.dll",
-                      "size":  1125376,
-                      "sha256":  "30d6ee670d3be226b03dd8a78455051aa5817047fb1ae93ea24b126749cc0ad4",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.47/cgame.dll"
+                      "size":  1125888,
+                      "sha256":  "fdffb6d18a9768fe67192a696134cdcdafa6cb5f4108063ef7f6ecf0b93bbd10",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.51/cgame.dll"
                   },
                   {
                       "path":  "game.dll",
-                      "size":  3604480,
-                      "sha256":  "d07687520d876b8a8476082a5619f5781325286ef21c84286664db2527004ea7",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.49/game.dll"
+                      "size":  3605504,
+                      "sha256":  "1b8cfa9965790e7e5f2d0400d42d86785bc61db5e1ff6be8849db3960489a5b7",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.51/game.dll"
                   },
                   {
                       "path":  "renderer_opengl1.dll",
@@ -95,9 +95,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  30263504,
-                      "sha256":  "065df710291c156448ccae3f4f032aac0c9d49596945067be4e7757706e3ff52",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.50/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  30268552,
+                      "sha256":  "1e5179d2d0723aac6443a4ec4a0256f735ceefe19682ee1b73e5dc295612566e",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.51/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzz_coop_terrain.pk3",
@@ -168,8 +168,8 @@
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_assets_tey.pk3",
                       "size":  5885809,
-                      "sha256":  "cebb0c5ed26f41131624b1a32f53049ee51b0441a2e59776c2911d18aa5a5ebc",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.50/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+                      "sha256":  "d8f97c7d6d8927fdf5ded0152cbaa919aa50d54f913619769596d552168eb702",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.51/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzz_coop_maps.pk3",
