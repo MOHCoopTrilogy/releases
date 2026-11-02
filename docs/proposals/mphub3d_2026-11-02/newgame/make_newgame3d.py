@@ -184,7 +184,7 @@ for l in blk.split("\r\n"):
     if not m:
         continue
     g, k = m.groups()
-    if g in ("atc_nook", "atc_radio", "atc_chalk", "atc_fan"):      # the shelf, the hanging chalk sign, the wall fan: not in the map view
+    if g in ("atc_nook", "atc_radio", "atc_chalk", "atc_fan", "atc_projector"):      # the shelf, the hanging chalk sign, the wall fan: not in the map view
         continue
     if g in ("atc_bg", "atc_chrome"):
         continue
@@ -205,6 +205,13 @@ for key, name, sub, menu, cv in CAMPAIGNS:
     pin = map_bu(MJ[key]["uv"])
     c = pin.copy()
     c[2] -= TAG_H / 2 - 0.012           # the tag hangs from its pin
+    # QA gate: no tag may cover a printed name on the map (uv rect of the tag vs every label box from gen_theatremap.py)
+    WW, HH = WM_HI[0] - WM_LO[0], WM_HI[2] - WM_LO[2]
+    tu0, tu1 = (c[0] - TAG_W / 2 - WM_LO[0]) / WW, (c[0] + TAG_W / 2 - WM_LO[0]) / WW
+    tv0, tv1 = (c[2] - TAG_H / 2 - WM_LO[2]) / HH, (c[2] + TAG_H / 2 + 0.02 - WM_LO[2]) / HH
+    hit = [n for n, (u0, v0, u1, v1) in json.load(open(MAPJ))["labels"].items() if u0 < tu1 and u1 > tu0 and v0 < tv1 and v1 > tv0]
+    assert not hit, (key, "tag covers", hit)
+    assert 0 <= tu0 and tu1 <= 1 and 0 <= tv0 and tv1 <= 1, (key, "tag off the sheet")
     ce = conv(c)
     capc = conv(c - np.array([0, 0, TAG_H / 2 + 0.07]))
     hw, hh = TAG_W / 2 / DIST * FPX, TAG_H / 2 / DIST * FPX

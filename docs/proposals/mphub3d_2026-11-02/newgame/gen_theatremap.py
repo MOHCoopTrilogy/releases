@@ -80,12 +80,12 @@ TOWNS = [("TUNIS", 10.18, 36.80, "r"), ("BIZERTE", 9.87, 37.27, "l"), ("SOUSSE",
          ("NAPLES", 14.25, 40.84, "l"), ("SALERNO", 14.76, 40.68, "r"), ("ROME", 12.50, 41.90, "r"), ("ANZIO", 12.63, 41.45, "l"),
          ("CASSINO", 13.83, 41.49, "r"), ("FOGGIA", 15.55, 41.46, "r"), ("BARI", 16.87, 41.13, "l"), ("TARANTO", 17.24, 40.47, "l"),
          ("REGGIO", 15.65, 38.11, "r"), ("CAGLIARI", 9.11, 39.21, "r")]
-REGIONS = [("TUNISIA", 8.85, 35.95, -100), ("SICILY", 13.40, 37.75, 110), ("ITALY", 16.70, 40.75, 120),
-           ("SARDINIA", 8.95, 40.10, 90), ("CORSICA", 9.05, 41.92, 64), ("MALTA", 14.43, 35.70, 60),
+# TUNISIA / SICILY / ITALY are named by the campaign tags (make_newgame3d.py): not printed twice; CORSICA did not fit the sheet
+REGIONS = [("SARDINIA", 9.00, 40.10, 90), ("MALTA", 14.43, 35.70, 60),
            ("TYRRHENIAN  SEA", 12.30, 39.60, 104), ("MEDITERRANEAN  SEA", 12.60, 35.30, 104), ("IONIAN  SEA", 17.60, 37.55, 104),
-           ("ADRIATIC  SEA", 17.75, 41.85, 84)]
+           ("ADRIATIC  SEA", 17.55, 41.85, 84)]
 # campaign markers (make_newgame3d.py): the stock briefing room's three campaigns
-MARKERS = {"tunisia": (9.15, 36.40), "sicily": (14.45, 37.35), "italy": (14.95, 41.20)}
+MARKERS = {"tunisia": (8.95, 36.35), "sicily": (14.10, 37.85), "italy": (16.20, 40.05)}      # pin points: each tag hangs below its pin, clear of every printed name (asserted in make_newgame3d.py)
 
 
 def coast(poly, seed_, closed_off=False):
@@ -123,7 +123,7 @@ ld = ImageDraw.Draw(landm)
 for k_, poly in enumerate((ITALY, SICILY, SARDINIA, CORSICA, AFRICA)):
     ld.polygon(coast(poly, 7 + k_), fill=255)
 ri = random.Random(4)
-for k_, (lo, la, rx, ry) in enumerate(ISLANDS):
+for k_, (lo, la, rx, ry) in enumerate([i_ for i_ in ISLANDS if i_[2] >= 0.035]):      # smaller ones read as stray dots
     poly = [(lo + rx * math.cos(a_) * ri.uniform(0.8, 1.15), la + ry * math.sin(a_) * ri.uniform(0.8, 1.15)) for a_ in [2 * math.pi * q / 10 for q in range(10)]]
     ld.polygon(coast(poly, 20 + k_), fill=255)
 landm = landm.filter(ImageFilter.GaussianBlur(3)).point(lambda v: 255 if v > 128 else 0)
@@ -177,6 +177,7 @@ for lo, la in ((15.12, 36.70), (15.14, 36.90), (15.28, 37.05)):
 for lo, la in ((14.88, 40.52), (14.98, 40.40)):
     arrow(lo, la, -230, 150, (40, 60, 130, 210))
 arrow(12.65, 41.43, -230, 150, (40, 60, 130, 210))
+LABELS = []
 ft = font("arialbd.ttf", 62)
 for n, lo, la, side in TOWNS:
     x, y = P(lo, la)
@@ -189,11 +190,13 @@ for n, lo, la, side in TOWNS:
     d.ellipse([x - 14, y - 14, x + 14, y + 14], fill=(40, 30, 20, 235))
     tw_ = d.textlength(n, font=ft)
     if side == "l":
-        d.text((x - 24 - tw_, y - 34), n, font=ft, fill=(40, 30, 20, 225))
+        tx, ty = x - 24 - tw_, y - 34
     elif side == "b":
-        d.text((x - tw_ / 2, y + 20), n, font=ft, fill=(40, 30, 20, 225))
+        tx, ty = x - tw_ / 2, y + 20
     else:
-        d.text((x + 24, y - 34), n, font=ft, fill=(40, 30, 20, 225))
+        tx, ty = x + 24, y - 34
+    d.text((tx, ty), n, font=ft, fill=(40, 30, 20, 225))
+    LABELS.append((n, min(tx, x - 14), ty, max(tx + tw_, x + 14), ty + 70))
 for n, lo, la, px in REGIONS:
     x, y = P(lo, la)
     f = font("georgiab.ttf", abs(px))
@@ -202,6 +205,7 @@ for n, lo, la, px in REGIONS:
     tw_ = d.textlength(sp, font=f)
     sea_ = "SEA" in n
     d.text((x - tw_ / 2, y - px / 2), sp, font=f, fill=(52, 66, 78, 170) if sea_ else (78, 52, 30, 170))
+    LABELS.append((n, x - tw_ / 2, y - px / 2, x + tw_ / 2, y + px * 0.75))
 v = np.asarray(im, np.float32)
 vig = 1 - 0.30 * (((xx - W / 2) / (W / 2)) ** 2 + ((yy - H / 2) / (H / 2)) ** 2)
 v *= np.clip(vig, 0.55, 1)[..., None]
@@ -210,5 +214,8 @@ mk = {k: {"lonlat": v_, "uv": [P(*v_)[0] / W, 1.0 - P(*v_)[1] / H]} for k, v_ in
 for k, m in mk.items():
     x, y = P(*m["lonlat"])
     assert land_np[int(y), int(x)], k + " marker in the sea"
-json.dump({"lon": [LON0, LON1], "lat": [LAT0, LAT1], "markers": mk}, open(os.path.splitext(OUT)[0] + "_markers.json", "w"), indent=1)
+for n_, x0, y0, x1, y1 in LABELS:
+    assert x0 >= 40 and x1 <= W - 40 and y0 >= 40 and y1 <= H - 40, ("label leaves the sheet", n_, x0, y0, x1, y1)
+json.dump({"lon": [LON0, LON1], "lat": [LAT0, LAT1], "markers": mk,
+           "labels": {n_: [x0 / W, 1 - y1 / H, x1 / W, 1 - y0 / H] for n_, x0, y0, x1, y1 in LABELS}}, open(os.path.splitext(OUT)[0] + "_markers.json", "w"), indent=1)
 print("theatre map", OUT, "lon %.2f-%.2f lat %.2f-%.2f" % (LON0, LON1, LAT0, LAT1))

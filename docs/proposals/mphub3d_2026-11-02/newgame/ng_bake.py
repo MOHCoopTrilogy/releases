@@ -24,10 +24,22 @@ import json, re
 OCC = json.load(open(argv[argv.index("--occ") + 1])) if "--occ" in argv else {}
 gone = 0
 for o in list(bpy.data.objects):
-    if o.name.startswith(("keylamp2", "radiotable", "radio_", "ammo_box", "cord_r", "outlet_box")) or re.match(r"pin\d+$", o.name) or (o.name in OCC and not o.name.startswith("beam")):
+    if o.name.startswith(("keylamp2", "radiotable", "radio_", "ammo_box", "cord_r", "outlet_box")) or re.match(r"pin(head)?\d+$", o.name) or (o.name in OCC and not o.name.startswith("beam")):
         bpy.data.objects.remove(o, do_unlink=True)
         gone += 1
 print("NG cleared", gone, "objects in front of the map")
+# the wallmap material's procedural wear (noise, bump, AO, curvature mixes) baked as dark specks over the sea: the map's own image
+# (which already carries its paper tone) drives the base colour directly, no bump
+wm = bpy.data.objects["wallmap"].material_slots[0].material
+nt = wm.node_tree
+bsdf = [n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED'][0]
+tex = [n for n in nt.nodes if n.type == 'TEX_IMAGE' and n.image and os.path.basename(n.image.filepath.replace("\\", "/")) == os.path.basename(MAP)][0]
+for inp in ("Base Color", "Normal", "Roughness"):
+    for l in list(bsdf.inputs[inp].links):
+        nt.links.remove(l)
+nt.links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
+bsdf.inputs["Roughness"].default_value = 0.85
+print("NG wallmap material: image -> base colour, no wear/bump")
 if "--groups" not in sys.argv:
     sys.argv += ["--groups", "wallmap"]
 SRC = os.path.join(r"C:\mohaa-coop-dev\docs\proposals\kickoff_2026-10-18\menus3d", "attic_bake3.py")
