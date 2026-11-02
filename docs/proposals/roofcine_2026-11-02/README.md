@@ -153,3 +153,41 @@ game sound in the file; the plain `video` command does not exist in this build's
 Known / not changed: the hole flames are the stock `cfx_flame` sprite, which reads as a bright white-cored tongue at 4000-5000 u
 (engine sprite, cannot be tinted from script); the music swell uses `tmvolume` on whatever track the client plays; s_sfxduck and
 tmvolume are stufftext, so they act in live play - the demo render showed the beat because the sounds themselves stop.
+
+---
+
+# Part 3 - map v10: the collapse, the door climax, breakable windows, new flames, no idle actors (2026-11-02)
+
+## Map v10 (`tools/mk_v10spec.py` + `tools/v7/make_chunks5.py` + `make_pclip` + `v7b_ents` + `tools/make_windows.py`)
+| what | how | names |
+|---|---|---|
+| THE door hole (the climax) | breach 28 at the foot of the wall around the door, x -880..-60, z -512..300 (the facade's lower cuts moved to -890 so it stays in one chunk), ~5 m ragged hole, no fake room: the burning hangar is behind it | `breach_28_*` |
+| the long pieces | the protruding ledge band (brush 4563) and the tiers above it (3393 cornice + 1993 top tier) are separate structures, each cut in six spans at x -3175 -1980 -780 -275 410 - the only x values where no breach box sits, so every hole stays whole in its piece | `crumble_ledge_1..6`, `crumble_upper_1..6` |
+| grey hut (the yard's south wall) | four ragged holes 29-32 below the windows (brush 1088 added to `yardwall_s`), burning rooms behind | `breach_29..32_*` |
+| breakable windows | all 8 lit panes (`jh_rustwin1lit`) become stock `func_window` (250 hp, MOD_EXPLOSION x10, engine glass-shatter debris + sound); the broken state is a smashed dark pane (`textures/hzm/window_broken.tga`, generated) | `fin_win_1..8` (+`_broken`) |
+| lamps | **none is in the one-shot frame**: every lamp in the map (`static/lightbulb_caged.tik`, 40+) is a static model inside the facility, behind the facade, and their light is baked into the lightmaps (no light entity survives compile). A static model cannot take damage and baked light cannot go dark; doing it would mean converting them to entities with switchable dlights - not done (no visible payoff from the cine camera). The "lights" the camera sees are the lit windows, and they go dark when they break | - |
+v10 `maps/m2l3.bsp` 15,510,044 B md5 `736349801168d05f51352e9cc55f0011`; `.pth` unchanged (v7b, loads with no "Pathnodes have changed"); 0 BSP / CM errors in the capture log.
+Map pak (only `maps/m2l3.bsp` replaced + `scripts/hzm_window.shader` + `textures/hzm/window_broken.tga` added):
+`H:\hzm_work\roofcine\v10\zzzzzzzzzz_coop_maps.pk3` md5 `492468868d338e785834b300c43e6788`.
+
+## Script (v10)
+* **Climax at the door** (`cin_doorblast`): breach 28 swap, the largest fireball of the ending (9 s, scale 9), five explosion emitters, the
+  longest flash (held 0.32 s, 1.7 s fall-off), the biggest shake, the boom; the men staged around the door take the biggest throws.
+* **Collapse** (`cin_collapse`, `cin_topple`): from the door outward - span 4, then 5 and 3, 6 and 2, then 1. Each ledge piece breaks off and
+  drops forward, the tiers above tip over (roll 80-84 deg) and fall; every piece comes to rest on the 4th-highest of 15 traces under where
+  it lies (a thin wall top does not hold a 1000 u slab up; a hut roof or a crate stack does), so nothing hangs. The breach panels, their
+  fires and every long-lived effect sitting on a piece ride it down (rotated with it); room interiors behind are hidden as it goes.
+  The left hut's roof pieces are hidden as the span-2 pieces come down through them (`cin_crash`: dust, debris, fire inside).
+* **Grey hut** (`cin_greyhut`): every window is hit by a small radius damage 40 u in front of the pane when the blast front reaches it
+  (from the pane plane itself the engine's sight trace starts in the wall and the pane took nothing), then holes 29-32 open.
+* **Lean-to** (`cin_leanto`): three eruptions along its roof, its front wall (`collapse_shed_front`) blown out, fire inside, and the
+  span-6 pieces land on it. Its roof is one sloped world surface, so it is not holed - the builder only cuts axial panels.
+* **Flames** (`scripts/coop_fin_fire.shader`, `models/emitters/coop_fin_fire_{big,m,s}.tik`): nothing downloaded - the in-house flame
+  flipbook (coop_fx pak) re-used vertex-tinted orange-red with alpha-weighted additive blending (overlaps build orange instead of white),
+  a second phase of red tongues, dark smoke, embers, the fork's `firelight`. Big fires in the big holes / roof bites, smaller in small.
+* **Idle actors** (`cin_actors_sweep`, `cin_census`): in the black before the fade-in every living actor is accounted for - an axis
+  soldier in the camera's frame joins the payoff (reacts, runs, is thrown/burns), any other axis soldier is removed, allies in frame away
+  from the train are removed. The standing "guard" was one of the map's own scripted German actors (the run lists `oenemy`, `irunaway1`,
+  `irunaway2` among others) the cine never knew about. `CENSUS` lines (entnum, model, targetname, team, thinkstate, victim) at the
+  fade-in, the chain, boom +2 s and the fade: the last census reads `total=0`.
+* Not done: crates / lamp poles / fences are world brushes - they cannot be smashed (pieces that land on crates rest on them).
