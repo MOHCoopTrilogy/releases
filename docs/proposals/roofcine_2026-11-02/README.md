@@ -73,3 +73,84 @@ Script and map are independent in both directions: new script + v7b map = no not
 hidden; old script + v9 map = the v7 ending without the slabs (notch sites stay intact).
 Model numbers moved (append order: the new sites sit in their chunks' sequence); nothing in the mod references m2l3 `*N` numbers and
 there is no `cmpatch/m2l3*.txt`.
+
+---
+
+# Part 2 - the payoff (2026-11-02, same branch): fires in every hole, the rolling chain, the climax, the victims, sound
+
+Users asks (via the coordinator): fires burning inside every blast hole to the end; explosion sound effects; a rolling "doppler"
+chain of detonations from the roof eruptions through the facility to the fuel-tank room; "make it an epic payoff, do all of it";
+enemies thrown / set on fire.
+
+## Sound audit (the big finding)
+The ending was **silent**. Its recipe came from `maps/m2l2b.scr` and kept that map's aliases: `explode_tank`, `explode_bridge`,
+`m2l2_alarm2` are scoped to maps `"m2l2b"`, `explode_kfive1` to `e2l*`, `explode_hallway1` to `m6l3*`, `E3L4_Tunnel_Explo1` is
+`null.wav` on e3l4 only. On m2l3 every one logged "needs an alias" (~230 lines a run) and played nothing; only `stonecrash01/02`
+(maps `"m t"`) was heard. Fixed (bug-10412): blasts use the coop_ex_* pool (maps `"m e t ..."`), and
+`ubersound/coop_finale_m2l3.scr` adds m2l3-scoped `explode_bridge` / `explode_tank` (fired by the emitter tiks). The alarm bed (`m2l2_alarm2`, also silent) is replaced by `coop_fin_siren` in the v1.10.61 working copy - keep that line of `cin_beds` when merging.
+After: 0 "needs an alias" lines.
+
+## New sounds: nothing downloaded
+Everything is DERIVED from the mod's own shipped explosion pool (`sound/coop_explosions/coop_ex_*.wav`, already licensed and
+shipped in `zzzzzz_co-op_hzm_mod_assets_snd.pk3`) plus a procedurally synthesised whoosh (numpy). No third-party file was
+fetched, so there is no new licence to record. Generator: `tools/gen_fin_sounds.py <coop_explosions dir> <out sound/coop_fin>`.
+
+| file / alias | built from | treatment |
+|---|---|---|
+| `fin_chain01..08` / `coop_fin_chain01..08` | large_08, bomb_02, large_06, bomb_04, large_09, bomb_05, large_05, bomb_03 | 0.45 s pre-roar (noise, cutoff sweeping 3400 -> 260 Hz: the doppler "rushing past and away") into the hit; per step deeper: low-pass 5200 -> 650 Hz, pitch 1.00 -> 0.84, bass +2..+7 dB, echo tail 90/210 -> 230/570 ms, -0.6 dB/step; loudness -16.5 LUFS at step 1 (= coop_ex_large_08); every file CUT so all end together 0.65 s after the last trigger (the silence beat) |
+| `fin_tankboom` / `coop_fin_tankboom` | bomb_01 + large_08 (+0.12 s) + sub_01 x2 | low-pass 3.8 kHz, double echo 260/620 ms, 9 s, 2.5 s fade |
+| reused | `coop_ex_sub_01` (sub-bass layer), `coop_tinnitus_ring` (ear ring), `coop_snd_fire_large` (= retail Amb_FireLoop_02, the fire roar bed), `fire_med` (each hole) | as shipped |
+
+Ship note: `*.wav` are git-ignored in the mod. The nine files must be generated into the release checkout's
+`hzm-mohaa-coop-mod\sound\coop_fin\` (build.ps1 packs `sound/` into the assets_snd pak) - run the generator there.
+
+## What plays when (capture av4, game time; t0 = the one-shot cut, START + 1.6 s)
+| t (s) | event | emitter position | sound |
+|---|---|---|---|
+| 1.5 | roof eruption, notch 24 | roofline x -1150 | coop_ex large+bomb+sub+debris (cin_snd 3) |
+| 2.3 / 3.05 / 3.75 | notches 26 / 23 / 27 | x 1115 / -2325 / -3432 | same pool, random picks; fire roar bed starts (0.45) |
+| 4.25 | chain 1 | (-2325 3400 800) | coop_fin_chain01 |
+| 4.95 | chain 2 | (-1700 3600 620) | coop_fin_chain02 |
+| 5.55 | chain 3 | (-1150 3800 450) | coop_fin_chain03 |
+| 6.05 | chain 4 | (-600 3700 300) | coop_fin_chain04 |
+| 6.47 | chain 5 | (-150 3950 150) | coop_fin_chain05 |
+| 6.83 | chain 6 | (150 4200 0) | coop_fin_chain06 |
+| 7.13 | chain 7 | (300 4350 -200) | coop_fin_chain07 |
+| 7.39 | chain 8 (deepest) | (420 4150 -400) | coop_fin_chain08 |
+| 8.04 | SILENCE: everything ducks (s_sfxduck 0.03, tmvolume 0.15, fire bed 0.04, fireballs stop feeding) | - | - |
+| 8.54 | FLASH (warm white), sky/fog orange | - | duck released |
+| 8.94 | BOOM: tank room + notch 25 + mushroom + shockwave + debris rain + victims | players / tank (436 4092) | coop_fin_tankboom + coop_ex_sub_01 + coop_ex_bomb_06 |
+| 9.3 | ear ring, music swells 0.3 -> 1.6 over 3 s, fire bed to 1.0 | players | coop_tinnitus_ring |
+| 10.5 ->| facade volleys, small buildings, secondaries | facade | cin_snd per blast |
+| ~19 | fade on the burning building; tmvolume 1, s_sfxduck 1 restored | | |
+
+## The payoff items
+| # | item | how | status |
+|---|---|---|---|
+| - | fire in every hole to the end | `cin_holefire`: two uneven tongues off the bottom of the opening, smoky fire inside, lip smoke/flame, 1/3 a smoke column; random size/start/mix; a flickering orange dynamic light per hole (`light`/`lightRadius`, one flicker thread). OWN fire pool (life >= 200, cap 360) - debris/bursts can never starve it | landed |
+| - | roof plumes not identical | per-notch fireball height/length/size + column count, staggered gaps | landed |
+| - | rolling chain | `cin_chain` + baked variants, emitters pan left -> right toward the tank room; dust + a dull pop behind the parapet + a jolt per hit | landed |
+| 1 | silence beat | chain files all cut at the same instant; rumble bed off from the first chain hit; the four roof eruptions use short-tailed layers and their hidden deep blasts stay quiet; fire bed 0.04, tmvolume 0.15 and s_sfxduck 0.03 for the 0.5 s. Measured in the render (av5): ~-10 dBFS RMS before, -22..-31 in the beat, boom right after | landed |
+| 2 | flash then boom | flash, boom 0.4 s later | landed |
+| 3 | mushroom | `cin_mushroom`: 24 rising fireballs z 1250 -> 2450, then a dark cap (norbigstacksmoke + tehao_thicksmoke) that hangs to the end | landed |
+| 4 | slow-mo + push-in | **timescale not used**: it is server-global, would slow every client's music/sound and the cutscene's own waits, and the fade/music timing would drift. Faked: an fov zoom 52 -> 41 over 1.5 s, hold 1 s, ease back (a camera dolly drove the lens through the yard's crate stacks in capture av2, so it is a zoom) | fallback |
+| 5 | light | flash; fog colour (1.0 .58 .30) with the fog plane at 9000, both stepped back to (.6 .6 .7) / 26000 over 10 s; hole dlights. The sky shader itself cannot be tinted from script | landed (fog/sky haze) |
+| 6 | shockwave | existing ground ring (cin_shock) + snow blown off the hut roofs (mortar_snow_cloud + snowdrift at the roofs, found by camera-ray traces) | landed |
+| 7 | camera shake per blast | notch quakes scale with blast size; chain jolts grow per hit; tank 0.45 s x 3.2 then 2 s x 1.0 (kept moderate: user 2026-10-27 "way too much shaking") | landed |
+| 8 | burning debris rain | 12 pieces from above the tank room over the facade into the yard, each carrying a fire+smoke that rides it and burns where it lands; removed after 22 s; never left hanging (no landing in 6 s = removed; landing on the concrete building = removed) | landed |
+| 9 | collateral | sparks off the power lines (generic_spark_big_pulse along the wires) + snow off roofs. **Hut windows / yard lights: not possible** - the lit windows are lightmapped texture on world brushes and the yard lamps are static models without targetnames, so script cannot break or switch them | partial |
+| 10 | audio | sub layer, ear ring, music swell (tmvolume), fire roar bed | landed |
+| 11 | final shot | the camera holds on the burning building under the orange haze as it cools; the train pulls out of frame | landed |
+| - | victims | `cin_victims_take` hands live hostiles in the yard to the cutscene before `def_clear`; `cin_victims_stage` stages extras in the black (camera-ray + ground trace, out of view until the fade-in). They run when the roof goes; at the climax 2 burn (coop_fire_s on `Bip01 Spine1`, run, fall, smoulder) and the rest are killed by MOD_EXPLOSION damage away from the tank room (the engine death impulse, capped 420 * g_corpseImpulse, + 260 u/s lift) into the client ragdoll | landed |
+
+## Evidence (capture av5: client G:\mohaa-roofcine-av = the rel59 binaries + this branch's scripts/map/sounds in an overlay pak)
+Recorded as a demo during the run, then rendered by the engine's own demo render (`set activeAction video; demo roofend`, 60 fps,
+game sound in the file; the plain `video` command does not exist in this build's console path).
+* **Video:** `G:\mohaa-roofcineunsv5\media
+orway_ending_payoff_1080p60.mp4` - 25 s, 1920x1080 60 fps, H.264 CRF 19 + AAC 192k, 37.8 MB, from the fade-in to the fade-out.
+* GIF of the climax: `G:\mohaa-roofcineunsv5\media\climax.gif`; stills `G:\mohaa-roofcineunsv5\media\still_*.jpg` (seconds into the raw render: 6.5 roof eruptions, 9.0 chain, 11.6 flash, 12.6 / 13.6 zoom, orange haze, burning men, bodies thrown, 14.6 the volleys, 16.5 / 22.0 every hole burning).
+* qconsole: 0 "needs an alias" for the ending's own sounds (the one left, `m2l2_alarm2`, is replaced by `coop_fin_siren` in v1.10.61), 0 script errors.
+
+Known / not changed: the hole flames are the stock `cfx_flame` sprite, which reads as a bright white-cored tongue at 4000-5000 u
+(engine sprite, cannot be tinted from script); the music swell uses `tmvolume` on whatever track the client plays; s_sfxduck and
+tmvolume are stufftext, so they act in live play - the demo render showed the beat because the sounds themselves stop.
