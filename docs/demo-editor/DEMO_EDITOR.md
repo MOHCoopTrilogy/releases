@@ -15,11 +15,32 @@ into the game: nothing to install, nothing external. Run it from the numeric key
    up, **Ctrl** goes down.
 4. **Press Del** to pause, **KP 4 / KP 6** to jump 5 seconds back or forward. At the end, the demo
    holds on its last frame instead of quitting.
+5. **Press F1** for the menu: every tool in one place.
+
+## The menu (F1)
+
+**F1** opens the demo editor's menu over the picture. Every tool is listed there by section -
+Camera, Path, Playback, Picture, Overlays, and the rest - each line with its shortcut key beside it:
+
+- **Switches** (ON / OFF): click to turn the tool on or off.
+- **Values** (zoom, tilt, speed, letterbox shape, filter strength ...): click **-** or **+**, or drag
+  the slider.
+- **Text** (captions): click the box, type, **Enter** to keep it, **Esc** to drop it.
+- **Buttons** (GO): run the action, like adding a waypoint or jumping to the next highlight.
+
+The mouse has its own cursor while the menu is open, and the shortcut keys keep working. The
+**mouse wheel** scrolls when the list is longer than the screen. **F1**, **Esc** or the **X** in
+the corner closes it. The menu is never in an F10 render.
+
+The menu and every demo key only exist while a demo plays. In a game, F1, G, 1 - 4 and the
+rest do exactly what you bound them to - your weapon slots, your grenade key, your vote key - and
+nothing in your config is changed.
 
 ## The keypad
 
 | Key | Does |
 |---|---|
+| F1 | The menu: every tool, switch and setting |
 | KP 0 | Free camera on / off |
 | KP 4 / KP 6 | Back / forward 5 seconds; hold to scrub, faster the longer you hold (2x up to 32x) |
 | KP 5 | Step one snapshot (pauses) |
@@ -34,6 +55,18 @@ into the game: nothing to install, nothing external. Run it from the numeric key
 | PgDn / PgUp | Next / previous highlight |
 | KP 8 | Build and play the highlight reel |
 | I / O | Corner view on / off, next player in it |
+| G | Auto-director on / off |
+| Z / X | Zoom in / out (free camera FOV; Shift for 1-degree steps) |
+| , / . | Tilt the free camera left / right (Shift for 1-degree steps) |
+| 1 / 2 / 3 / 4 | Kill feed / chat / compass / objectives on / off |
+| [ / ] | Mark a clip's start / end on the timeline |
+| \ | Save the marked clip as its own demo |
+| Y | Add a caption here (opens a text box) |
+| Del | With a clip bracket or caption selected: remove it (otherwise pause) |
+| M | Sound in renders on / off |
+| J / Shift+J | Depth of field on / off, stronger |
+| K / Shift+K | Motion blur on / off, stronger |
+| B | Outlines through walls: off, players, players + AI |
 | W A S D, Space, Ctrl | Fly the free camera (Shift 3x faster, Alt slower) |
 | Mouse | The timeline cursor; in the free camera, look around (works while paused) |
 | Right mouse (hold) | In the free camera: the timeline cursor instead of looking |
@@ -69,7 +102,41 @@ plays with the full HUD. It shows the time played and the demo's full length, ac
 - **F10 renders** play steady at 60 fps, however slow the PC renders, and stop by themselves at
   the demo's last frame. With [ffmpeg](https://ffmpeg.org) installed (on your PATH, or named by
   `cl_ffmpegPath`) the result is a small `videos/videoNNNN.mp4`; without it you get the AVI as
-  before. `cl_aviMp4 2` keeps both, `0` AVI only. The video has no sound.
+  before. `cl_aviMp4 2` keeps both, `0` AVI only. The video carries the game's sound (see
+  Render sound below).
+
+## Trim and save clips
+
+Mark a piece of the demo and keep it as its own demo.
+
+- **[** marks the clip's start at the playback time, **]** its end. They show on the timeline as green
+  brackets, with the range between them shaded.
+- **Click a bracket** to select it (it turns white and the picture jumps to that frame); **drag it** to
+  move it, and the picture follows while you drag. **Del** with a bracket selected clears it (the start
+  clears both).
+- **\\** saves the range as a new demo, `demos/<demo>_clipN.dm_17`, which the Film Room lists. If you
+  dragged a bracket, the editor first visits the start and end to mark them (the bar says SAVING
+  CLIP...) and then brings you back. Captions inside the range go with the clip.
+- **Render range only** (F1 menu, Timeline): with it on, a render of this demo (F10 or the Film Room's
+  render) records only the marked range and finishes the video at its end. It wins over a saved
+  highlight reel.
+- The points are kept per demo, in `demos/cameras/<demo>.clip`.
+
+## Titles and captions
+
+Put text on screen at a moment of the demo; it burns into renders.
+
+- **Y** opens a text box at the playback time (the picture holds still) - with the F1 menu open
+  too, or from the menu's **Add caption** (which closes the menu first). Type, **Enter** keeps it,
+  **Esc** drops it. Left / Right / Home / End / Backspace / Delete edit as usual.
+- A caption shows lower centre for **Caption length** seconds (F1 menu, Timeline; default 4), fading in
+  and out.
+- Each caption is a lilac tab under the timeline, with a band for how long it shows. **Click** it to
+  select it (the picture jumps there), **click again** or press **Enter** to edit it, **Del** removes it.
+  Emptying the text and pressing Enter removes it too. Changing Caption length while a caption is
+  selected changes that one.
+- Captions are kept per demo, in `demos/cameras/<demo>.cap`; deleting the demo in the Film Room removes
+  them.
 
 ## Highlight reel
 
@@ -136,6 +203,22 @@ waypoint's speed, and the status line shows the speed as it ramps.
 
 Speeds and the aim lock are saved with the path.
 
+**Zoom and tilt.** **Z** zooms the free camera in and **X** out; **,** and **.** tilt it left and
+right. Each press shows the new value for a moment (hold **Shift** for 1-degree steps). Set them
+before **KP Enter** and the waypoint keeps them: the path then eases the zoom and the tilt from one
+waypoint to the next, the same way it eases the speed. The menu has a slider for each.
+
+## The auto-director
+
+**G** hands the camera to the auto-director. It frames one player at a time - over the shoulder,
+side on, low from the front, high and wide - and cuts to a new shot every few seconds. Just before
+a highlight, a kill or a death it cuts to the player it is about: wide for explosions, vehicles and
+multi-kills, close for one man's kill. It pulls the camera in rather than look through a wall.
+
+It runs on the demo's own clock, so the highlight reel (KP 8) and an F10 render get the same cuts
+every time, and a jump on the timeline re-frames at once. **G** again, **KP 0** or playing a camera
+path hands the camera back.
+
 ## A clean picture, and filters
 
 **KP -** hides every HUD element - in play too, including while F9 records, and it stays hidden
@@ -160,6 +243,46 @@ scene. Through a scope the scope view stays. Press **H** again to get back what 
 `filter list` prints them, `filter sepia` or `filter 2` picks one, `filter off` clears it, and
 `r_ppFilterStrength 0.5` softens any of them. Cinematic adds 2.39:1 bars on screens narrower than
 that.
+
+## Film effects for renders
+
+**Depth of field (J)** blurs what is nearer or farther than the focus point, like a film camera.
+**Shift+J** makes it stronger one step at a time (0.1 to 1.0, then back round); stronger means a
+shallower sharp band. At **Focus distance** 0 (F1 menu) the focus is automatic: on the player or
+point a camera path's aim lock holds, otherwise the nearest thing around the centre of the screen.
+Set a distance to fix it there. The first-person gun always stays sharp.
+
+**Motion blur (K)** smears the picture along the camera's movement. **Shift+K** makes it stronger.
+Playback shows a quick preview; an F10 or Film Room render does the full effect by blending several
+in-between frames into each video frame (`demo_mblurFrames`, default 4), so the render takes that many
+times longer.
+
+**Outlines (B)** draw the players - or, one press later, the players and every AI soldier - as
+coloured outlines you can see through walls: blue for the Allies, red for the Axis, with a faint fill
+where a wall hides them. They go into renders while they are on, and only cover the soldiers the demo
+carries.
+
+All three need the gl2 renderer; in gl1 the switches do nothing. Their strengths and the focus
+distance have sliders in the F1 menu (Render, Players).
+
+## Render sound
+
+F10 and Film Room renders record the game's sound with the picture, and the MP4 gets it too.
+While a render runs the sound goes into the video file instead of your speakers, so you hear nothing
+until it finishes. Picture and sound stay in step however long the render, through jumps and map
+changes. A jump back into an earlier map in the middle of a render reloads the demo and carries on
+in the same video.
+
+- **M** (while a demo plays) turns render sound on or off; it is on to begin with.
+- Your game volume does not matter: a muted game still records full sound. **Render volume** in the
+  F1 menu (Render) sets the file's level, 0 to 2x.
+- Turned off during a render, the rest of that video is silent; turned on during a render that started
+  without sound, it applies from the next render.
+
+**Pick what stays on screen.** With the full HUD up, **1** turns the kill feed off and on, **2** the
+chat, **3** the compass and **4** the objective cards and panel - each on its own, so you can keep
+the compass and lose the chat. They stay as you leave them, for every demo; in a game they change
+nothing.
 
 ## Other players, map changes
 
@@ -207,6 +330,16 @@ The new name shows over his head, on the scoreboard and in the kill feed.
 | `demo_mark next` / `prev` | Jump to the next / previous highlight |
 | `demo_reel` | Build and play the highlight reel; `play`, `clear` |
 | `encodevideo <name>` | Encode `videos/<name>.avi` to MP4 |
+| `demo_zoom +` / `-` / `<fov>` | Zoom the free camera (Z / X) |
+| `demo_tilt +` / `-` / `<deg>` | Tilt the free camera (, / .) |
+| `demo_director` | Auto-director on / off (G); `on`, `off` |
+| `demo_overlay <killfeed\|chat\|compass\|objectives> [0\|1]` | One overlay on / off (1 - 4) |
+| `demo_clip in` / `out` / `save [name]` / `clear` | Trim and save a clip ([ ] \\) |
+| `demo_caption new` / `add <sec> <text>` / `edit` / `del` / `len <sec>` / `clear` / `list` | Captions (Y) |
+| `demo_audio [toggle\|0\|1]`, `demo_audioVolume <0-2>` | Sound in renders (M) |
+| `demo_dof [on\|off\|toggle\|step]`, `demo_dof strength <0.1-1>`, `demo_dof focus <units>` | Depth of field (J) |
+| `demo_mblur [on\|off\|toggle\|step]`, `demo_mblur strength <0.1-1>`, `demo_mblur frames <1-8>` | Motion blur (K) |
+| `demo_outline [next\|0\|1\|2]` | Outlines (B) |
 
 | Setting | Default | Meaning |
 |---|---|---|
@@ -217,6 +350,12 @@ The new name shows over his head, on the scoreboard and in the kill feed.
 | `demo_editor` | 1 | `0` plays demos the old way |
 | `demo_timeline` | 1 | `0` hides the timeline bar |
 | `demo_letterbox` | 0 | Letterbox aspect; 0 is off |
+| `demo_ovKillfeed`, `demo_ovChat`, `demo_ovCompass`, `demo_ovObjectives` | 1 | Overlays shown in demos (1 - 4) |
+| `demo_renderRange` | 0 | `1` renders only the marked clip |
+| `demo_captionLen` | 4 | Seconds a new caption shows |
+| `cl_aviAudio` | 1 | Sound in renders |
+| `cl_aviVolume` | 1 | The render's sound level, 0 to 2 |
+| `demo_mblurFrames` | 4 | In-between frames blended per video frame |
 | `cl_aviMp4` | 1 | `1` = MP4 only, `2` = MP4 and AVI, `0` = AVI only |
 | `cl_ffmpegPath` | | Full path to ffmpeg.exe when it is not on your PATH |
 

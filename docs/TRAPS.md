@@ -298,9 +298,10 @@ changes.
 | Shader **NAME** overrides lose the reverse-concat race | Whole-**FILE** overrides win (filesystem dedupes by filename; coop pak mounts last; bug-921/525) |
 | `zzzzzzzz_*` sorts after `zzzzzz_*` | bug-1190 |
 | `.tik` surface directives must match the `.skd`'s real surface names | else `TIKI_InitTiki` drops them (bug-1216) |
-| **A junction hides the loose half from your tools** | `G:\mohaa-gl2\{main,mainta,maintt}` -> GOG: `find -L`; pak-only scans miss loose files (bug-2336/2386). |
+| **A junction hides loose files from your tools** | `G:\mohaa-gl2\{main,mainta,maintt}` -> GOG: use `find -L` (bug-2336/2386). |
 | Dev-only content skews audits **both ways** | bugs 2020, 2952, 2991. **Scope by the SHIPPED set (`manifests/latest.json`), never the install or the tool's own pak.** |
 | **`newanim/<path>` beats `<path>` for every `.skc`** | tiki_files.cpp ~565 opens `newanim/`+path FIRST (Pak0 ships 2,415): a same-path clip override never loads (bug-3452). Ship a NEW `coop_` path, repoint the row. |
+| **A fresh engine configure bakes the renderer INTO the exe** | `USE_RENDERER_DLOPEN` defaults OFF: the exe (~2.9 MB vs ~2.3) ignores the shipped renderer DLLs and its own copy mangled the Norway crate `.dds` (bug-10367). Build in the release `.cmake` or pass `-DUSE_RENDERER_DLOPEN=ON`. |
 | Homepath `maintt/` beats basepath | **bug-1633:** stale cfgs in the live profile's `maintt/` shadowed every deploy (build.ps1 now deploys cfgs to all three targets); watch 0-byte decoys (bug-595). |
 
 **⭐ THE FINAL ANSWER when a name is contested** (bug-922, closing the 5-round black-pouch saga): **stop
@@ -315,19 +316,14 @@ shader file - a `zz_` prefix buys nothing. Define a name in exactly one coop fil
 file was packed at 23:38. **Compare the pk3 entry's timestamp (`zipfile.getinfo(name).date_time`) against
 the `InitGame` line**, and verify fixes by reading them back out of the deployed pk3.
 
-**⭐ Imported third-party skin packs are this trap with the blast radius reversed.** A 2002-era skin pk3
-routinely *redefines* stock shader names instead of minting its own, and the coop pak mounts last, so the
-import silently repaints every other model (one redefined all 15 `viewsleeves*` shaders for one pilot
-skin; another broke the holster on *every* skin; 39-pack sweep: `docs/proposals/skin_batch.md`). **Diff
-an external pack's shader block names against `scripts/*.shader` and the retail paks, and its
-`models/player/*.tik` basenames against the stock tiks** - a matching tik basename *replaces* the stock
-model. `map foo.tga` resolves extension-agnostically, so a shader naming `.tga` beside a shipped `.jpg`
+**⭐ Imported skin packs reverse the blast radius:** a 2002-era pk3 *redefines* stock shader names and the
+coop pak mounts last, so one import repaints other models (all 15 `viewsleeves*`; `docs/proposals/skin_batch.md`).
+**Diff its shader names against `scripts/*.shader` + retail paks, and its `models/player/*.tik` basenames
+against stock** - a matching basename *replaces* the stock model. `map foo.tga` resolves extension-agnostically, so a shader naming `.tga` beside a shipped `.jpg`
 is **not** missing.
 
-**Related generated-asset hazard:** ESRGAN upscales have shipped worm noise, an all-black
-`netgame_a/b` that blanked the server browser, and 29 overridden **vanilla** menu textures (bugs 1129,
-247, 157). **Brightness-check output before commit**; it is for photos and text, and corrupts 1-2px
-chrome.
+**Generated assets:** ESRGAN shipped worm noise, a black server browser and 29 clobbered vanilla menu
+textures (bugs 1129/247/157). Brightness-check output; never upscale 1-2px chrome.
 
 ---
 
@@ -564,8 +560,7 @@ it OUTSIDE the branch and print the deciding inputs. *(2) Reading back
 your own input* - `m_fCoopHeadYaw` tracked perfectly while the networked value was clobbered by a
 subsystem the probe never read (bug-2102). **Probe the FINAL consumed value**; prefer a **sentinel the
 other writer cannot produce** (head `11/22`).
-*(3) Never exercising the branch* - **force it**: `coop_boneDebug 2` runs the prone maths on a standing
-player, separating "the maths is wrong" from "prone never engaged".
+*(3) Never exercising the branch* - **force it** (`coop_boneDebug 2` runs prone maths standing).
 *(worked examples archived to `docs/archive/traps-t14-worked-examples.md`)*
 
 **THE TOOL LIED, NOT THE CODE - six species, all returning plausible results.**
@@ -574,24 +569,21 @@ player, separating "the maths is wrong" from "prone never engaged".
 pattern matches everything** (`grep -c $'\r'` = the line count, "proving" LF files CRLF): **count bytes.** *(c)* **A pass that cannot fail**: `x | head -5 && echo OK`
 is always OK (`head` exits 0); a `.ps1`'s `exit 1` is no error to a `&` caller, so a failed build
 published (bug-2579) - check `$LASTEXITCODE`. **Gate on the tool's exit code, not a pipe.**
-*(d)* **`check_map_compiles.py` is flaky against a LIVE dedicated server** (stop
-`omohaaded`/`openmohaa` first) **and only proves the map INITS** (bug-2530 broke 2 min in, passed).
+*(d)* **`check_map_compiles.py` is flaky against a LIVE server and only proves the map INITS** (bug-2530).
 *(e)* **The preprocessor dropped it**: the menu-theme picker passed build, audit and deploy from
 `snd_main_new.cpp`, never compiled here (bug-2572). **After an engine
 change, `grep -a -c` one of its string literals in the built binary.** *(g)* **GLSL lint + glslang never
 see C**: staged `tr_hzm_wet.c` used file-static `s_worldData` and passed both (bug-3150) -
 under a no-build rule, `cl /Zs` the touched files.
-*(f)* **PowerShell 5.1 re-splits embedded double quotes to a native exe** (an rcon
-`stufftext "..."` arrived as several args): send such payloads from python.
+*(f)* **PowerShell 5.1 re-splits embedded double quotes to a native exe** (rcon `stufftext "..."` split): use python.
 **Absence of a marker is not absence of behaviour** (`playsound` prints nothing): every new beat gets a `^~^~^`
 marker or a census reads it as missing.
 *(h)* **A rubric gates only what it measures**: water/wet passed every sparkle/seam gate; users saw ruled
-cut-offs at object edges (a 1-tap height map traces outlines). Add an object-edge view.
+cut-offs at object edges (a 1-tap height map traces outlines). 
 
 **Harness:** `ui_startdmmap` sets `cheats 0` (tele/face refused); a `map` restart to get cheats back lost the
 coop weather (bug-3174): move the camera by overlay script. **one frame = `wait 1; wait 1`** (bug-3314), **`cg_drawviewmodel 1` hides
-the arms**, **one frame keeps ONE `screenshot` name** (static fileName): give each shot its own frame (bug-3253). A client is in `status` before its Player exists (`Could not find entity *0`). **A test client boots SPECTATING**; `join_team` alone leaves it out - gfxrun `join()` sends
-`+attackprimary` from its console. Launch via `harness_window.py` (bug-3147). **A violation-planting self-test** writes only `zzselftest` names and
+the arms**, **one frame keeps ONE `screenshot` name** (static fileName): give each shot its own frame (bug-3253). A client is in `status` before its Player exists (`Could not find entity *0`). **A test client boots SPECTATING**; `join_team` alone leaves it out: send `primarydmweapon rifle` (smg is BANNED) then `+attackprimary`. spectator is FINE for filming (origin/viewangles stepping works): the 'interior never renders' was a MIRRORED Y in the cine abs rig (angles_toleft(0)=-Y; negate pose y), bug-4154. Launch via `harness_window.py` (bug-3147). **A violation-planting self-test** writes only `zzselftest` names and
 anchors in the checker's comment-stripped view (bug-2579).
 **`god` is a no-op - the cheat is `dog`** (`god` = a NULL forwarder; bare `god` in rkeep/vcl/lt_ab did
 nothing). Send `dog 1`/`notarget 1` and require `CHEAT: godmode ON`; add `g_ai 0`,
@@ -682,7 +674,7 @@ the caller still reports success. **Tell:** a feature that "does nothing" with n
 <a name="t20"></a>
 ## T20 — One flag, two states; and one-way latches
 
-Shapes where the symptom pointed away from the cause (m6l1c, 2026-08-11).
+Shapes where the symptom pointed away from the cause.
 
 - **A flag that answers two questions gets tested for the wrong one.** `is_disguised` is the engine's
   per-frame opinion (`player.cpp:5519-5545`); `has_disguise` is the mod's own grant. Testing the first
@@ -694,22 +686,24 @@ Shapes where the symptom pointed away from the cause (m6l1c, 2026-08-11).
   `Actor::ForceAttackPlayer`, cleared **only in the Actor constructor** (`actor.cpp:3092`), and while
   set `EnemyIsDisguised()` is false unconditionally - one call blinds that actor for the map.
   `attackentity <ent>` is the reversible form; four sites, three sweeps (bugs 1700, 1704, 1708).
-- **An absorbing state hides everything downstream.** `EnemyIsDisguised()` also returned false for any
-  actor in `THINKSTATE_ATTACK`, and it ratchets. Fixed by requiring real threat (bug-1707), as
-  `player.cpp:5541` already did. Blocked-aggro across one run: **1051 -> 0**.
-- **A flag two systems both own is a race, and it comes back.** `coop_clickablePapersEnabled` (set by
-  `enableClickablePapers`, cleared by `coop_bustArm`) re-armed mid-bash restarted the papers loop and
-  force-equipped papers into the hand holding the drawn pistol, so **the player could not shoot** -
-  five rounds to kill it (bugs 1709, 1726, 1732, 1735, 1736). **One writer per player; clear the flag
-  and yield a frame before threading a loop that sets it; split the latch from the state and clear it
-  on every exit. Moving a flag's assignment earlier rewrites every guard that reads it.**
-- **A one-shot guard is not an invariant.** Pinned challenges refused to ADD a finished one and dropped it
-  when it finished, so a later path that landed a done one kept it for good (bug-2544); actor weapons took four
-  fixes for one bad state (bugs 1957, 1971, 2009, 2546). **If a property must always hold, assert it in a routine
-  that already runs unprompted** (the 3 s pin publisher, `Actor::Think`): cheap, self-healing, names the producer.
+- **An absorbing state hides everything downstream.** `EnemyIsDisguised()` returned false for any actor in
+  `THINKSTATE_ATTACK` (a ratchet); real-threat gating took blocked aggro **1051 -> 0** (bug-1707).
+- **A flag two systems both own is a race, and it comes back.** `coop_clickablePapersEnabled` re-armed
+  mid-bash force-equipped papers into the pistol hand - five rounds to kill (bugs 1709-1736). **One writer
+  per player; split the latch from the state and clear it on every exit.**
+- **State the client PREDICTS must come from the playerstate, never a stuffed cvar.** Cover v2 stuffed
+  `coop_coverSide`; the lean predictor and the server read it under different conditions and the view
+  snapped every snapshot (bugs 2171, 10358). Cover v3 packs normal/type/side/edge into
+  `ps->camera_posofs` (free outside `PMF_CAMERA_VIEW`), **quantised to 1/4u so both sides read identical
+  numbers**, and runs the glide in shared pmove (constants only). Any hand-rolled clear must
+  also drop the pm flag + pack (`CoopCoverClear`, bug-10363).
+- **Harness cheats on a listen server:** `cheats` is LATCH - a later `set` only latches until the cvar is
+  re-registered, and `Entity::CheckEventFlags` zeroes it unless `thereisnomonkey 1`. Join, then
+  `vid_restart`, wait ~25 s, then `tele` (bug-10362).
+- **A one-shot guard is not an invariant** (bugs 2544, 1957-2546). **If a property must always hold, assert it in a
+  routine that already runs unprompted** (pin publisher, `Actor::Think`).
 - **`hide` on a player is a latch.** cgame never submits a hidden (RF_DONTDRAW) player, so everything attached
-  to it - view gun, dust veil - fails `R_GetRenderEntity` and vanishes (developer 2: `Could not find parent
-  entity`). m1l1 hid everyone before reading `intro`; only the ride's end showed them, so `intro 0` = no gun all
+  to it - view gun, dust veil - fails `R_GetRenderEntity` and vanishes. m1l1 hid everyone and only the ride's end showed them, so `intro 0` = no gun all
   map (bug-3323). **Show on every exit of a hide.**
 
 ---
@@ -739,23 +733,26 @@ Shapes where the symptom pointed away from the cause (m6l1c, 2026-08-11).
 
 **`<actor> say <alias>` IS AN ANIMATION CALL, NOT A SOUND CALL** - it drives the mouth and can block;
 a missing alias animates a silent mouth. **A bare animation alias DROPS THE NOTETRACKS that do the
-work**. Both are in `docs/reference/tiki_and_sound_aliases.md`.
+work**.
 
 **A sound alias's `maps` field is a LOAD FILTER**: off-list the alias does not exist and `playsound` is
 silent (bug-2248); with NEITHER `maps` nor `always` it registers nowhere - never strip
 `always` to hush a warning (bug-2728/3098). Grep **name AND maps**; tokens are PREFIXES (`m4` covers `m4l3`, `m3l1b` not
 `m3l1a`; bug-2394). A `loaded` alias's `maxDist` is a hard START gate; `streamed` ones go 2D (bug-2309).
-**playsound names are PREFIX pools** (`X1` draws `X10..19`). Voice letter `n` = Manon (female), MP `z` = SAS
-(UK); BT nation = speaker id `_AS/_BS/_RS` (bug-3385..3387).
+**playsound names are PREFIX pools** (`X1` draws `X10..19`). Voice letter `n` = Manon, MP `z` = SAS; BT nation = speaker id `_AS/_BS/_RS` (bug-3385..3387).
 
 **A `random` alias group registers under its digit-stripped STEM.** `crouch_beach_idle01..05 ...
 random` loads as ONE anim, `crouch_beach_idle`; `anim crouch_beach_idle02` is `unknown animation`
 (`tiki_files.cpp:1046`; bug-2214, 2498). Address the stem, never a member.
 
+**A demo stores anim NUMBERS: an alias's rank in its tiki** sorted by `Q_stricmp`
+(UPPER fold: `_` after letters), unloadable clips dropped (`tiki_anim.cpp:50`, `tiki_files.cpp:997`).
+One added alias renumbers all after it; old demos play wrong anims (bug-10330 has the decoder).
+
 **An animation pack is gated by a PREFIX match on the MAP NAME.** `new_generic_human.tik` wraps packs
 in `includes <tok...> { }` and `TIKI_ParseIncludes` (`tiki_parse.cpp:345`) makes a block live only if
 one token is a **prefix of the live map name** - so `includes test utils traf holodeck coop` does NOT
-match `m3l1a` (crate_carry/welding were unreachable on Omaha). Adding a pack is one `$include` line.
+match `m3l1a`. Adding a pack is one `$include` line.
 **`docs/tools/check_map_anims.py` fails the build** on any `anim`, `playsound` or model path that
 does not resolve on the map; facts in its docstring (SKC loop flag at offset **8**,
 a looping alias never fires ANIMDONE so a following `waittill animdone` parks forever, PREFIX GROUPS -
@@ -767,13 +764,12 @@ built there, else identity gear (radio, helmet). Use `coop_actorArm`; keep ident
 outside cases; `audit_actor_surfaces.py` checks both. Dying under `physics_off` skipped KILLED (bug-3324).
 
 **A TIKI's `init { server { ... } }` runs even when you `spawn script_model model "<path>"`.**
-`fx_tank_explosion.tik` carries `classname Explosion` / `radiusdamage 120` there, so a cosmetic set
-piece killed the player while the script held no `radiusdamage` at all and a script audit found
-nothing (bug-2244). **Read the TIKI, not just the script**; copy a retail effect under a `coop_` name
+`fx_tank_explosion.tik` carries `classname Explosion` / `radiusdamage 120` there: a cosmetic set
+piece killed the player and a script audit found nothing (bug-2244). **Read the TIKI, not just the script**; copy a retail effect under a `coop_` name
 minus those lines. Same fact decides how you spawn one: an `init { client { } }` block fires at the
 first **snapshot**, after the server set the origin, so *spawn, then position* is correct
 (`bh_water_hard`); a **server** block fires at spawn, so its origin must be inline or the effect
-bursts at the world origin. The two read identically in a script.
+bursts at the world origin.
 
 **A `script_model` carrier renders a tik's `originemitter` blocks and NOTHING ELSE** (bug-2477).
 `sfx` blocks are recorded only while `LoadEffects` holds `m_pCurrentSfx`, and an `originspawn` in
@@ -790,8 +786,8 @@ are 5x too dense here (2477, 2507).
 `LOOPSOUND_FLAG_NO_PAN`: 2D, centred, **no distance falloff** - and loopSound is broadcast, so every
 client emitted every *other* player's private body sounds until `CG_LoopSoundIsForeignLocal` (bug-2429).
 
-More in **`docs/reference/tiki_and_sound_aliases.md`** (incl. dialogue aliasing) - read before
-touching a `.tik` or adding an alias; `audit_weapons.py`/`audit_shaders.py` make those testable.
+More (incl. dialogue aliasing): **`docs/reference/tiki_and_sound_aliases.md`** - read before
+touching a `.tik`; `audit_weapons.py`/`audit_shaders.py` test it.
 
 ---
 

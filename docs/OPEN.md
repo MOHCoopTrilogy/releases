@@ -520,3 +520,12 @@ findings are in `docs/proposals/defect_sweep2_2026-09-28/`.
 ### Weapon view (iron sights shipped v1.10.4; close-out, pistol kick, hands: engine 26407b4b/fbd12315/6200b014, not deployed)
 Playtest: bolt/reload/lean/ride while aimed, pistols aimed (`cg_vmHandFix 0` / `cg_adsPistolKick 0` = old). Prone eye ease
 (bug-3317, cg_stanceEase) awaits playtest; Gewehrgranate + M1919 keep the old tune (bug-3316).
+
+### Cover v3 (engine `cover-seamless` 7acba2cc, mod 7b336a7b) - merge after v1.10.57, then playtest
+Harness-verified on m3l2/m6l2b (bug-10357). Still open: (1) right-jamb blind fire still plays the overhead
+crate spray (bug-310) - rounds are steered right, the pose is not; (2) the open side at the m3l2 house corner read
+"none" in some runs and "-1, edge 33" in others at the same spot - SUSPECTED an ally standing past the corner
+(unproven); (3) no true curved wall found on the AA maps tested - the normal-follow is proven
+on the m6l2b 28-degree convex bend only; (4) the 1P exit fly-in and two-client MP (two machines) not seen by
+the user; remote client with 120 ms cl_packetdelay passed on one PC. (5) stepping off a wall while looking straight out still
+shows 1-2 frames of a head close-up as the cover framing hands back to the stock chase collision (cv_k*_exit_02).

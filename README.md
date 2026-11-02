@@ -50,6 +50,14 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.57 - v1.10.58 - Seamless cover, the full demo studio
+
+- **Cover, rebuilt** (v1.10.58) - walk into a wall and you take cover; glide along it, stop at door jambs and corners, blind fire round the corner or over the top (never into the wall), aim out with RMB and settle back, all with a third-person camera that eases in and never clips the wall. Works with ping and on a controller
+- **Demo studio** (v1.10.58) - press **F1** in any demo for a menu with every tool: sound in renders, trim and save clips, captions, zoom and tilt on camera paths, an auto-director, depth of field, motion blur, see-through outlines, and kill feed / chat / compass / objectives toggles. [Demo Editor field manual](docs/demo-editor/DEMO_EDITOR.md)
+- **Fix** (v1.10.57) - demos with camera paths saved before v1.10.56 open again
+
+<p align="center"><img src="docs/screenshots/v11058-cover-doorway.gif" width="70%" alt="Cover: glide along the wall, stop at the door jamb, sprint across"></p>
+
 ### v1.10.53 - v1.10.56 - Demo studio, Film Room, a new Norway ending
 
 - **Demo studio** (v1.10.56) - slow-motion camera paths, a camera that follows a player, H for a clean shot and L for letterbox bars, highlights you jump between with PgDn / PgUp, an automatic highlight reel (KP 8), a corner view through another player's eyes (I / O) and F10 renders straight to MP4 when ffmpeg is installed. Hold KP 4 / KP 6 to scrub. [Demo Editor field manual](docs/demo-editor/DEMO_EDITOR.md)
