@@ -27,7 +27,7 @@ import hashlib, json, os, sys, zipfile
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 MOD = os.path.join(ROOT, "hzm-mohaa-coop-mod")
 HERE = os.path.dirname(os.path.abspath(__file__))
-BUILD = r"C:/mohaa-weaponhd/build/stage"
+BUILD = os.path.join(os.environ.get("WHD_BUILD", r"C:/mohaa-weaponhd/build"), "stage")   # same env as build_sheets.py
 OUTBOX = r"C:/mohaa-weaponhd/paks"     # built paks wait here until their class passes QA (coordinator rule, 2026-10-05)
 PAKS = {"1low": "cls1", "2hd": "cls2", "3var": "cls3", "4fin": "fin", "5wear": "wear"}
 STAMP = (2026, 10, 5, 0, 0, 0)

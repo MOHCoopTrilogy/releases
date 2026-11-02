@@ -11,7 +11,7 @@ is replaced. Output 1024 on the long side (the approved ~175 MB scope), DXT1 + f
 wins over today's .jpg (R_LoadImage probes .dds first). Base = the HD sheet WITH its seeded wear (row 0), so a bloody
 or camo gun keeps the same chips and scratches as the plain one.
 """
-import os, sys, io, re, json, argparse, hashlib
+import os, sys, io, re, json, math, argparse, hashlib
 import numpy as np
 from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -69,9 +69,13 @@ def main():
                 rep[t] = "no base found - left as today"; continue
             src = Image.open(io.BytesIO(vfs.read(vp))).convert("RGB"); how = "today " + vp
         W, H = src.size
-        s = 1024.0 / max(W, H)
-        if s < 1:
-            src = src.resize((max(4, int(round(W * s / 4)) * 4), max(4, int(round(H * s / 4)) * 4)), Image.LANCZOS)
+        s = min(1.0, 1024.0 / max(W, H))
+        # POWER-OF-TWO sides: encode_mipped box-halves every level, so a non-POT side (today's 640x480 / 800x600
+        # art, or a /4 rounding like 1024x768) crashed at an odd mip (2026-11-01 full run, 25x25 level)
+        pot = lambda n: 1 << max(2, int(round(math.log2(max(4.0, n)))))
+        nw, nh = min(1024, pot(W * s)), min(1024, pot(H * s))
+        if (nw, nh) != (W, H):
+            src = src.resize((nw, nh), Image.LANCZOS)
         # KEEP THE APPROVED CAMO SCALE: camo() lays width/(scale*6) pattern cells across the sheet, so baking at 1024
         # what was baked at 512 doubled the blob count (QA, mosin). Scale the cell size by new/old width instead.
         tvp, _w = vfs.resolve_image(t)
@@ -80,7 +84,7 @@ def main():
             arr = BAKED[key](src)
         else:
             pal, seed = CAMO[key]
-            arr = _ns["camo"](src, pal, scale=max(1, int(round(4.0 * src.size[0] / max(1, oldw)))), seed=seed)
+            arr = _ns.get("camo_cc0", _ns["camo"])(src, pal, scale=max(1, int(round(4.0 * src.size[0] / max(1, oldw)))), seed=seed)
         arr = np.clip(arr, 0, 255).astype(np.float64)
         dds = B.encode_mipped(arr)
         p = os.path.join(OUT, *(t + ".dds").split("/"))

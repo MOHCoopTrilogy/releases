@@ -16,7 +16,9 @@ Per sheet (the recipe proven by the 2026-10-05 pilot, docs/proposals/weapon_hd_2
    MATCH so ESRGAN cannot darken dark art (bug-3375). 4 MASKS from every mesh that paints from the sheet (skd.py):
    coverage, convex edges (authored-normal split, or a fold > 55 deg - smooth facets never count), concave grime.
  5 MATERIAL: restore the source's own band-passed metal detail (ESRGAN airbrushes it), then blued / parkerized /
-   painted grain; wood pores along the grain; bakelite untouched. 6 WEAR, seeded per sheet: chipped edge wear only
+   painted grain; wood pores along the grain; bakelite untouched. Grain and pores come from CC0 SCANS when
+   docs/tools/assets/weapon_detail_src exists (cc0_detail.py: band-passed, seamless, grain-aligned; plus real scuffs
+   at contact zones), else from Gaussian noise. WHD_CC0=0 forces the procedural recipe. 6 WEAR, seeded per sheet: chipped edge wear only
    where the ART also paints a highlight, grime only where it paints a crease (bug-3376: no wireframe tracing),
    scratches clustered at edges, wood dents. No text is ever generated.
  7 DDS: DXT1, or DXT5 when a shader reads alpha (alpha = Pillow's alpha blocks, colour = the project's mean-holding
@@ -37,10 +39,14 @@ import vfs, skd
 import gen_terrain_pak_v2 as V2
 import gen_terrain_pak_v3 as V3
 import gen_terrain_pak_v4 as V4
+import cc0_detail
 
 ESR = r"C:/mohaa-coop-dev/_tools/realesrgan/realesrgan-ncnn-vulkan.exe"
 BUILD = os.environ.get("WHD_BUILD", r"C:/mohaa-weaponhd/build")   # moved off G: 2026-10-05 (G: filled up)
-VERSION = "whd-3"          # whd-2: grain fades on bright paint, erase, same-art sources (QA round 1)           # bump when the recipe changes: finished sheets with another version are rebuilt
+# CC0 detail (cc0_detail.py): real scan detail in the material step instead of Gaussian grain. On when the masters
+# in docs/tools/assets/weapon_detail_src exist and WHD_CC0 is not "0" (WHD_CC0=0 rebuilds the procedural pilot).
+CC0 = cc0_detail.available() and os.environ.get("WHD_CC0", "1") != "0"
+VERSION = "whd-3" + ("+cc0" if CC0 else "")          # whd-2: grain fades on bright paint, erase, same-art sources (QA round 1)           # bump when the recipe changes: finished sheets with another version are rebuilt
 BELOW_NORMAL = 0x00004000
 
 
@@ -212,6 +218,17 @@ def material_masks(src_rgb, fin, W, H):
     brown = ndimage.gaussian_filter(brown.astype(np.float32), 2.0)
     brown = np.asarray(Image.fromarray((brown * 255).astype(np.uint8)).resize((W, H), Image.BILINEAR), np.float32) / 255
     z = np.zeros((H, W), np.float32)
+    if fin.get("brown") == "plastic" and CC0:
+        # whd-3+cc0: NEAR-BLACK plastic. The hue/sat test misses the dark grooves of moulded checkering (Colt grips
+        # took steel grain there, 2026-11-01 pilot QA). A dark texel enclosed by brown within a few px (a closing of
+        # the brown mask) is the same plastic part; a screw head inside a grip ring is far wider than the closing.
+        b0 = (((h < 0.13) | (h > 0.97)) & (s > 0.32) & (v > 0.10))
+        r = max(2, int(round(3 * src_rgb.size[0] / 1536)))
+        enc = ndimage.binary_closing(b0, structure=np.ones((3, 3), bool), iterations=r) & ~b0 & (v < 0.22)
+        enc = ndimage.binary_opening(enc, iterations=1) | (enc & ndimage.binary_dilation(b0, iterations=2))
+        extra = ndimage.gaussian_filter(enc.astype(np.float32), 2.0)
+        extra = np.asarray(Image.fromarray((np.clip(extra, 0, 1) * 255).astype(np.uint8)).resize((W, H), Image.BILINEAR), np.float32) / 255
+        brown = np.clip(brown + extra, 0, 1)
     wood, plastic = {"wood": (brown, z), "plastic": (z, brown), "none": (z, z)}[fin.get("brown", "wood")]
     # BRASS / bright yellow metal (FG42 parts, cartridges, sight blades): no steel grain, no bluing wear - it is
     # handled like plastic (left as painted). Steel grain on it read as sensor noise in QA.
@@ -285,12 +302,15 @@ def dents(rng, W, H, mask, count):
 
 
 STEEL = {   # micro grain (mult), additive matte floor, edge-wear strength, bare-metal colour
-    "blued":      dict(g=(0.028, 0.6, 0.012, 3.0), floor=1.8, amt=0.55, bare=(150, 150, 148), tint=(0.99, 0.995, 1.01)),
+    "blued":      dict(g=(0.028, 0.6, 0.012, 3.0), floor=1.8, amt=0.55, bare=(150, 150, 148), tint=(0.99, 0.995, 1.01), cc0=1.3),
     # parkerized was 0.085 / sigma 1.0 / floor 5 in the pilot: at 8x (512 -> 4096 sources) that read as digital sensor
     # noise in ADS (FG42 QA card); a coarser, weaker grain still reads as matte phosphate
-    "parkerized": dict(g=(0.050, 1.4, 0.025, 3.0), floor=3.0, amt=0.38, bare=(128, 128, 124), tint=(0.985, 1.0, 0.985)),
-    "painted":    dict(g=(0.030, 1.6, 0.020, 4.0), floor=2.0, amt=0.50, bare=(138, 136, 130), tint=(1.0, 1.0, 1.0)),
+    "parkerized": dict(g=(0.050, 1.4, 0.025, 3.0), floor=3.0, amt=0.38, bare=(128, 128, 124), tint=(0.985, 1.0, 0.985), cc0=1.7),
+    "painted":    dict(g=(0.030, 1.6, 0.020, 4.0), floor=2.0, amt=0.50, bare=(138, 136, 130), tint=(1.0, 1.0, 1.0), cc0=1.3),
 }
+# cc0: strength of the CC0 scan grain relative to the procedural one. Scan detail is sparse and structured (pits,
+# stipple, scuffs) rather than every-texel noise, so at equal RMS it read invisible on dark flats in the 2026-11-01
+# crops (Colt slide flatter than today); it can carry more strength before reading as sensor noise.
 
 
 # ------------------------------------------------------------------------------------------ build one
@@ -350,12 +370,24 @@ def build(job, variant=0, preview=False):
     # grain FADES on bright painted highlights: a matte phosphate grain over the artist's specular streak read as
     # digital sensor noise (QA round 1, s93_colt magazine); the dark finish keeps the full grain
     fade = np.clip(1.0 - 0.9 * (L / 255.0) ** 0.7, 0.15, 1.0)     # whd-3: stronger (s93_colt / colt45s2 highlights)
+    fl = grain(rng, H, W, 0.9 * S)
+    ws = oriented_streaks(rng, L, H, W) if wood.max() > 0 else None
+    if CC0:
+        # the same slots, filled from CC0 scans (cc0_detail.py). The procedural draws above are still made so the
+        # seeded WEAR below is identical to the procedural build (clean A/B); the scans have their own rng.
+        rc = np.random.default_rng(seed ^ 0xC0C0)
+        theta = cc0_detail.art_theta(L)
+        mult, flc, scr = cc0_detail.steel_fields(fin["steel"], H, W, S, rc, theta)
+        g = math.hypot(P["g"][0], P["g"][2]) * P.get("cc0", 1.0) * mult
+        fl = flc
+        if wood.max() > 0:
+            ws = cc0_detail.wood_field(H, W, S, rc, theta, fin.get("wood_scan", "walnut"))
     out *= (1 + g * steel * cover * fade)[..., None]
-    out += (grain(rng, H, W, 0.9 * S) * P["floor"] * steel * cover * fade)[..., None]
+    out += (fl * P["floor"] * (P.get("cc0", 1.0) if CC0 else 1.0) * steel * cover * fade)[..., None]
     tint = np.array(P["tint"], np.float32)
     out = out * (1 - steel[..., None] * cover[..., None] * 0.35) + out * tint * steel[..., None] * cover[..., None] * 0.35
-    if wood.max() > 0:
-        out *= (1 + 0.07 * oriented_streaks(rng, L, H, W) * wood * cover)[..., None]
+    if ws is not None:
+        out *= (1 + (0.085 if CC0 else 0.07) * ws * wood * cover)[..., None]
     # wear
     chip = grain(rng, H, W, 2.5 * S); chip2 = grain(rng, H, W, 1.6 * S)
     edge = ndimage.gaussian_filter(convex, 2.0 * S)
@@ -372,6 +404,8 @@ def build(job, variant=0, preview=False):
     area = W * H / 4096 ** 2 * 2
     sb, sd = scratches(rng, W, H, steel * cover, int(110 * k * area), 8, 55, sw)
     out += (sb * 20 * k)[..., None] - (sd * 7 * k)[..., None]
+    if CC0:     # real scuffs / fine scratches from a scan, strongest where the gun is handled (sw), never on plastic
+        out += (scr * 3.0 * k * sw * steel * cover * fade * (1 - np.clip(plastic * 3, 0, 1)))[..., None]
     wb, _ = scratches(rng, W, H, wood * cover, int(120 * k * area), 5, 35, sw)
     out += (wb * 16 * k)[..., None] * np.array([1.0, 0.85, 0.65], np.float32)
     out *= (1 - 0.22 * dents(rng, W, H, wood * cover, int(90 * k * area)) * k)[..., None]
@@ -406,7 +440,7 @@ def build(job, variant=0, preview=False):
 
     # ---- gates
     rep = dict(stem=stem, cls=job["cls"], target=[W, H], finish=fin, mesh=st, guard=round(guard, 4),
-               source=job["source"]["pak"] + ":" + job["source"]["name"], variant=variant, version=VERSION)
+               source=job["source"]["pak"] + ":" + job["source"]["name"], variant=variant, version=VERSION, cc0=CC0)
     if not np.isfinite(out).all():
         raise ValueError("NaN in output")
     ls, lo = luma(lz), luma(out)

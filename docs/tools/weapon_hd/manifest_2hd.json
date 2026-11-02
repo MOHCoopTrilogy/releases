@@ -1,103 +1,103 @@
 {
  "members": {
   "textures/coop_dp28/bipod.dds": {
-   "md5": "d0e18a0bb7b804e8cfa858923228b0b2",
+   "md5": "50571da23e3c5134a0b1da931b3d9272",
    "size": 11184952
   },
   "textures/coop_dp28/dp28.dds": {
-   "md5": "a9f5bef3f960e2fc690b7027d51dedd6",
+   "md5": "715c9171abaa5e5f6d1c406479b97d5a",
    "size": 11184952
   },
   "textures/models/weapons/arisaka/s93_model97.dds": {
-   "md5": "2f10b1f30ad0e7cbc276c76ab83ad374",
+   "md5": "8d3bc8c8e7830a83c441eb0ed95af268",
    "size": 11184952
   },
   "textures/models/weapons/bar/s93_bar.dds": {
-   "md5": "735c063c788958980677553932bbdadf",
+   "md5": "dd2b33f38a55d83aa38be0535333e630",
    "size": 11184952
   },
   "textures/models/weapons/bazooka/bazooka.dds": {
-   "md5": "7734de466b5b55461ddedc46cfe6fd1e",
+   "md5": "29f0a4955d36cfbbea356b5fe3250aa1",
    "size": 11184952
   },
   "textures/models/weapons/colt45/colt45.dds": {
-   "md5": "d6ad5b773e4ecd1f0a4f32e8ac113f16",
+   "md5": "e6a85b39585710e582d8d2e2c4fa464c",
    "size": 11184952
   },
   "textures/models/weapons/hi_standard/hi_standard.dds": {
-   "md5": "2b967d4aa60be430051990882a26ff30",
+   "md5": "b7784f5960cacdd960090e084064b214",
    "size": 11184952
   },
   "textures/models/weapons/k98/s93_k98sniper_stock.dds": {
-   "md5": "b1761aa8a21663dcb07a88866fc71a01",
+   "md5": "25ba5f6b8de100a5428df5b49482872e",
    "size": 11184952
   },
   "textures/models/weapons/kar98/kar98.dds": {
-   "md5": "0cf7c6c5447183841652797e5ae33173",
+   "md5": "bcfa3925565e588ffcdcf340dfa3688a",
    "size": 5592552
   },
   "textures/models/weapons/luger/p08.dds": {
-   "md5": "75b4518e5a8b8d6d313805d74b4559b8",
+   "md5": "0e1f4c5cbd00bfe62a1f3739181fe58e",
    "size": 11184952
   },
   "textures/models/weapons/m1garand/garand.dds": {
-   "md5": "8934f75a6c3b897ace48be7773eda640",
+   "md5": "f19b955dcd40ced502b979040e7a73a1",
    "size": 5592552
   },
   "textures/models/weapons/m1garand/s93_garand.dds": {
-   "md5": "b3c525065e4d91d1dea65a645b5c19d2",
+   "md5": "1f6b6ec33abf4bd1b7d86c1a485dbd93",
    "size": 22369776
   },
   "textures/models/weapons/mp40/mp40.dds": {
-   "md5": "5c897b81b98aa5cae1c437674695f8e2",
+   "md5": "26c2d30b17d4b51e44aa98e093ad2357",
    "size": 11184952
   },
   "textures/models/weapons/mp44/mp44.dds": {
-   "md5": "1d466e18795b3237b377a150f9ce01ca",
+   "md5": "f2335ff9e8ef83e63b0f9de371d137b0",
    "size": 11184952
   },
   "textures/models/weapons/mp44/mp44clip.dds": {
-   "md5": "bd9a2ae4ceb1cb5f33a967b8522aa4ae",
+   "md5": "061337c2954cf637d94b1161bec269c9",
    "size": 11184952
   },
   "textures/models/weapons/p38/p38.dds": {
-   "md5": "ec39ed46a4da844a6a91db246503693c",
+   "md5": "b0c47774ff17cd7988d648388dd9e06c",
    "size": 11184952
   },
   "textures/models/weapons/panzerschreck/pschreck.dds": {
-   "md5": "e3fbebfef1b9c354c4c7d1f3d349954b",
+   "md5": "02cb980597945706be14412b5e16a193",
    "size": 11184952
   },
   "textures/models/weapons/ppk/ppk_body.dds": {
-   "md5": "29925deb007de5632296557f2208dcae",
+   "md5": "6a83a781184e983c85625e7eff2adefb",
    "size": 11184952
   },
   "textures/models/weapons/ppk/ppk_slide.dds": {
-   "md5": "61311124d70213a05846b394cca0529b",
+   "md5": "65416b15ceb25d85e97ad93f9f6baa7e",
    "size": 11184952
   },
   "textures/models/weapons/springfield/springfield.dds": {
-   "md5": "1a485105324415b2185fd3c2defb41f0",
+   "md5": "d124e25e549c60d741e0cc69ea8860ab",
    "size": 11184952
   },
   "textures/models/weapons/thompson/s93_thompson.dds": {
-   "md5": "8eddaea1d30f233dcb35b47a5ebfed2d",
+   "md5": "a3ba8fa356ab12fbdc4bd830ff9423cd",
    "size": 11184952
   },
   "textures/models/weapons/thompsonsmg/thompsonsmg.dds": {
-   "md5": "b64b72389d538be5c60e0a21864d1ae9",
+   "md5": "ec85826c03c3a7801a660490fd8b2157",
    "size": 11184952
   },
   "textures/models/weapons/type100/type100.dds": {
-   "md5": "ae3ba2b674e1f0562f52f38549ee3f35",
+   "md5": "2b0a9f44e35845c8d5ede7fae3241b2a",
    "size": 11184952
   },
   "textures/models/weapons/winchester/winchester.dds": {
-   "md5": "9ee8f41ab0805ce19825292b0311da23",
+   "md5": "8297d7ec03846d2d4763be54f73ff8ae",
    "size": 11184952
   }
  },
  "pak": "zzzzzzzzzz_coop_hd_wpn_2hd.pk3",
- "pak_bytes": 143645261,
- "pak_sha256": "19c75e001fb3eb677d408397b40292095f967d9a99d4d1638747ab0a82403574"
+ "pak_bytes": 151169669,
+ "pak_sha256": "5dc6c820745f1371f01b36bb349829a0e8637599cb814685b93150f6abc8d2fd"
 }

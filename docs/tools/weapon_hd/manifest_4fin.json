@@ -1,0 +1,1751 @@
+{
+ "members": {
+  "textures/coop_skins/bar/barclip_bloody.dds": {
+   "md5": "7efe15bad97f830993e1ef2e932a3483",
+   "size": 43832
+  },
+  "textures/coop_skins/bar/barclip_camo_desert.dds": {
+   "md5": "47ddbd439888f4f508337618c9304cb6",
+   "size": 43832
+  },
+  "textures/coop_skins/bar/barclip_camo_winter.dds": {
+   "md5": "ab38da43584512a56cb923c683adee9b",
+   "size": 43832
+  },
+  "textures/coop_skins/bar/barclip_camo_woodland.dds": {
+   "md5": "f6e76595878f60229c3f0868939bbc14",
+   "size": 43832
+  },
+  "textures/coop_skins/bar/s93_bar-bipod_bloody.dds": {
+   "md5": "42a323cd4e4c00fc73f66f99cadb4505",
+   "size": 699192
+  },
+  "textures/coop_skins/bar/s93_bar-bipod_camo_desert.dds": {
+   "md5": "e4eaab420f74bc18fba47fadb7a18394",
+   "size": 699192
+  },
+  "textures/coop_skins/bar/s93_bar-bipod_camo_winter.dds": {
+   "md5": "14c26b76f72bd351edde88631de3cf2c",
+   "size": 699192
+  },
+  "textures/coop_skins/bar/s93_bar-bipod_camo_woodland.dds": {
+   "md5": "f55228eb907865298b5fc22c04a24be1",
+   "size": 699192
+  },
+  "textures/coop_skins/bar/s93_bar_bloody.dds": {
+   "md5": "de6af1f9131e1fdf51718c24968bc8ea",
+   "size": 699192
+  },
+  "textures/coop_skins/bar/s93_bar_camo_desert.dds": {
+   "md5": "d49640f4d66d4321f9aea3ac5fca22ed",
+   "size": 699192
+  },
+  "textures/coop_skins/bar/s93_bar_camo_winter.dds": {
+   "md5": "805f4fb5cd37dd57d2282a57d996e925",
+   "size": 699192
+  },
+  "textures/coop_skins/bar/s93_bar_camo_woodland.dds": {
+   "md5": "1a6965937765a2caf8aeb028c929de07",
+   "size": 699192
+  },
+  "textures/coop_skins/bazooka/bazooka_bloody.dds": {
+   "md5": "4c18b74443ceccfcb76ccb444f75e38d",
+   "size": 699192
+  },
+  "textures/coop_skins/bazooka/bazooka_camo_desert.dds": {
+   "md5": "7b6e9c87b6c6e7fd3e722572b6901b7f",
+   "size": 699192
+  },
+  "textures/coop_skins/bazooka/bazooka_camo_winter.dds": {
+   "md5": "00fdfe1ab99a390f426dd01243d01ec7",
+   "size": 699192
+  },
+  "textures/coop_skins/bazooka/bazooka_camo_woodland.dds": {
+   "md5": "52421e6b24573d04b20f46eddcd4928d",
+   "size": 699192
+  },
+  "textures/coop_skins/bazooka/bazookarim_bloody.dds": {
+   "md5": "2a9b5180304635882c171fe1c4b93d3f",
+   "size": 21992
+  },
+  "textures/coop_skins/bazooka/bazookarim_camo_desert.dds": {
+   "md5": "9e2f0bf49db37b339435d0b865fd28a2",
+   "size": 21992
+  },
+  "textures/coop_skins/bazooka/bazookarim_camo_winter.dds": {
+   "md5": "38ffabf14f4cce14b2b76b4a35aeb513",
+   "size": 21992
+  },
+  "textures/coop_skins/bazooka/bazookarim_camo_woodland.dds": {
+   "md5": "8431d79dfdb6c184103eca62c50a8f02",
+   "size": 21992
+  },
+  "textures/coop_skins/colt45/colt45_bloody.dds": {
+   "md5": "e5edbef3d6b0df185aac3755d7c28818",
+   "size": 174904
+  },
+  "textures/coop_skins/colt45/colt45_camo_desert.dds": {
+   "md5": "3efdeaf9f430d637f763f9b54c79daac",
+   "size": 174904
+  },
+  "textures/coop_skins/colt45/colt45_camo_winter.dds": {
+   "md5": "d0ed507e47ee7b48e33c901754d7204a",
+   "size": 174904
+  },
+  "textures/coop_skins/colt45/colt45_camo_woodland.dds": {
+   "md5": "9d893cedad5b634becd0cef66753f4fa",
+   "size": 174904
+  },
+  "textures/coop_skins/coop_binoculars/binoculars_bloody.dds": {
+   "md5": "b062e9c4717927884d19aae88ccab5c8",
+   "size": 699192
+  },
+  "textures/coop_skins/coop_binoculars/binoculars_camo_desert.dds": {
+   "md5": "761a76b9af8f5ea040b529964d73a1e2",
+   "size": 699192
+  },
+  "textures/coop_skins/coop_binoculars/binoculars_camo_winter.dds": {
+   "md5": "9431615f868eba0f38b690c767d13ba7",
+   "size": 699192
+  },
+  "textures/coop_skins/coop_binoculars/binoculars_camo_woodland.dds": {
+   "md5": "43478cd6c486a0f1a1fef88980bec10a",
+   "size": 699192
+  },
+  "textures/coop_skins/coop_smoke_grenade/m18_smoke_grenade_bloody.dds": {
+   "md5": "16f80a65e12fc690caf7eb98272bb105",
+   "size": 699192
+  },
+  "textures/coop_skins/coop_smoke_grenade/m18_smoke_grenade_camo_desert.dds": {
+   "md5": "20eb543d54f7a853aca195ed521c4332",
+   "size": 699192
+  },
+  "textures/coop_skins/coop_smoke_grenade/m18_smoke_grenade_camo_winter.dds": {
+   "md5": "6e29aa4da8fdf9c527c60d33315dd6c3",
+   "size": 699192
+  },
+  "textures/coop_skins/coop_smoke_grenade/m18_smoke_grenade_camo_woodland.dds": {
+   "md5": "763038836c8a51784fc311c178957a18",
+   "size": 699192
+  },
+  "textures/coop_skins/dbno_pistol/colt45_bloody.dds": {
+   "md5": "77a32df2b56b45d63d93a64e1cd3e7ef",
+   "size": 699192
+  },
+  "textures/coop_skins/dbno_pistol/colt45_camo_desert.dds": {
+   "md5": "e28c01d7c3387eebad054d1d97927982",
+   "size": 699192
+  },
+  "textures/coop_skins/dbno_pistol/colt45_camo_winter.dds": {
+   "md5": "2f7a5b966cf6e84eb0176308ef39757d",
+   "size": 699192
+  },
+  "textures/coop_skins/dbno_pistol/colt45_camo_woodland.dds": {
+   "md5": "c78bb25329dc5cb9747517584c3122eb",
+   "size": 699192
+  },
+  "textures/coop_skins/delisle/delisle_bloody.dds": {
+   "md5": "4a66f31b24f83e77f39cb10621d343c0",
+   "size": 699192
+  },
+  "textures/coop_skins/delisle/delisle_camo_desert.dds": {
+   "md5": "4ce55acfef535c461efc6ea045f1ee5d",
+   "size": 699192
+  },
+  "textures/coop_skins/delisle/delisle_camo_winter.dds": {
+   "md5": "f3262d0801aa631071a75941a9c8320f",
+   "size": 699192
+  },
+  "textures/coop_skins/delisle/delisle_camo_woodland.dds": {
+   "md5": "6a5cbb4ee9bf091528892ba344bed082",
+   "size": 699192
+  },
+  "textures/coop_skins/dp28/bipod_bloody.dds": {
+   "md5": "2b948443c31fbccb5e8cc3e8523de22c",
+   "size": 699192
+  },
+  "textures/coop_skins/dp28/bipod_camo_desert.dds": {
+   "md5": "2d25909eedbd14e60e2da64707302fb8",
+   "size": 699192
+  },
+  "textures/coop_skins/dp28/bipod_camo_winter.dds": {
+   "md5": "3de24122bdc1d2836cae729b51f0ff49",
+   "size": 699192
+  },
+  "textures/coop_skins/dp28/bipod_camo_woodland.dds": {
+   "md5": "e55bc677a7f5340bd73304fbe2b07ea4",
+   "size": 699192
+  },
+  "textures/coop_skins/dp28/dp28_bloody.dds": {
+   "md5": "0a8f20b45b1ce16d47867b28b3086d3e",
+   "size": 699192
+  },
+  "textures/coop_skins/dp28/dp28_camo_desert.dds": {
+   "md5": "1afede91107b6413f077d294565a3d48",
+   "size": 699192
+  },
+  "textures/coop_skins/dp28/dp28_camo_winter.dds": {
+   "md5": "25cfa8f3f7d4f567e837780abe3999f5",
+   "size": 699192
+  },
+  "textures/coop_skins/dp28/dp28_camo_woodland.dds": {
+   "md5": "132e1994224cbadebfc98f26d4cc4438",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield/enfield_bloody.dds": {
+   "md5": "a5973774e50fcf6c5adbbfc21912d61d",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield/enfield_camo_desert.dds": {
+   "md5": "803b16022123ef071aee2eb364bdbd24",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield/enfield_camo_winter.dds": {
+   "md5": "38ba2c101a73769d04546a4850fb5c52",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield/enfield_camo_woodland.dds": {
+   "md5": "6683683330c8e3539439ba3ef242f785",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield/m1clip_bloody.dds": {
+   "md5": "46b41130f3bfadb112fdd26a89370d82",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield/m1clip_camo_desert.dds": {
+   "md5": "312560f1d379fc98efbec7679f820925",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield/m1clip_camo_winter.dds": {
+   "md5": "a9b0e7bee40f86103bb21a1539221d64",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield/m1clip_camo_woodland.dds": {
+   "md5": "139ed58bd886c430ca701aeede28d47a",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield_lite/enfield_bloody.dds": {
+   "md5": "a5973774e50fcf6c5adbbfc21912d61d",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield_lite/enfield_camo_desert.dds": {
+   "md5": "803b16022123ef071aee2eb364bdbd24",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield_lite/enfield_camo_winter.dds": {
+   "md5": "38ba2c101a73769d04546a4850fb5c52",
+   "size": 699192
+  },
+  "textures/coop_skins/enfield_lite/enfield_camo_woodland.dds": {
+   "md5": "6683683330c8e3539439ba3ef242f785",
+   "size": 699192
+  },
+  "textures/coop_skins/fg42/fg42_bloody.dds": {
+   "md5": "f353a631a79599be1ee1f53d3676cfa3",
+   "size": 699192
+  },
+  "textures/coop_skins/fg42/fg42_camo_desert.dds": {
+   "md5": "3124f3957a67f5ab80cb7e60283f0e84",
+   "size": 699192
+  },
+  "textures/coop_skins/fg42/fg42_camo_winter.dds": {
+   "md5": "5eb78a665a80825e4250bf832089d6bf",
+   "size": 699192
+  },
+  "textures/coop_skins/fg42/fg42_camo_woodland.dds": {
+   "md5": "498bb9ee988352d6132a0d8ec2d9b657",
+   "size": 699192
+  },
+  "textures/coop_skins/g43/g43_bloody.dds": {
+   "md5": "9c44259352e6933cb6f5c7390c50e2f9",
+   "size": 699192
+  },
+  "textures/coop_skins/g43/g43_camo_desert.dds": {
+   "md5": "2ff265edd852cb0995ad5fb627c83396",
+   "size": 699192
+  },
+  "textures/coop_skins/g43/g43_camo_winter.dds": {
+   "md5": "243147da16b63e23830ea9e0925454e8",
+   "size": 699192
+  },
+  "textures/coop_skins/g43/g43_camo_woodland.dds": {
+   "md5": "214bbc432d9a75aee14e587523257114",
+   "size": 699192
+  },
+  "textures/coop_skins/g43sniper/gewehr43_bloody.dds": {
+   "md5": "3a74982b68238a3a778bd42db8a87768",
+   "size": 699192
+  },
+  "textures/coop_skins/g43sniper/gewehr43_camo_desert.dds": {
+   "md5": "938e091bfaf4266dbce39ac60557abf0",
+   "size": 699192
+  },
+  "textures/coop_skins/g43sniper/gewehr43_camo_winter.dds": {
+   "md5": "b21d8a305dc9e25336f45a3771a46c64",
+   "size": 699192
+  },
+  "textures/coop_skins/g43sniper/gewehr43_camo_woodland.dds": {
+   "md5": "51945bfd15918e4980f49779f9015d4b",
+   "size": 699192
+  },
+  "textures/coop_skins/gr_w_minedetector/gr_w_minedetector_bloody.dds": {
+   "md5": "cb7315fb6606ea32811d6dfd1d7bfe00",
+   "size": 349672
+  },
+  "textures/coop_skins/gr_w_minedetector/gr_w_minedetector_camo_desert.dds": {
+   "md5": "bcd1e9e4af350a8b820cdd5fa53effd3",
+   "size": 349672
+  },
+  "textures/coop_skins/gr_w_minedetector/gr_w_minedetector_camo_winter.dds": {
+   "md5": "00683e5e72ea58cc4682946a626ea8db",
+   "size": 349672
+  },
+  "textures/coop_skins/gr_w_minedetector/gr_w_minedetector_camo_woodland.dds": {
+   "md5": "38d488296c3100c2cb042ed8a85d0dbb",
+   "size": 349672
+  },
+  "textures/coop_skins/it_w_beretta/it_w_beretta_bloody.dds": {
+   "md5": "d38afe2e297e33864325c2b3bf890394",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_beretta/it_w_beretta_camo_desert.dds": {
+   "md5": "5100300c915f0cb267f3ce1dea820015",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_beretta/it_w_beretta_camo_winter.dds": {
+   "md5": "55e027fc99bbba8b17ca5749d9e816dc",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_beretta/it_w_beretta_camo_woodland.dds": {
+   "md5": "a21dfda294db9705312a8d3280581d08",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_breda/it_w_breda_bloody.dds": {
+   "md5": "80974be88400bd7163f780d147f0290f",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_breda/it_w_breda_camo_desert.dds": {
+   "md5": "e40a91c300960de8c95b1ade417dd5c8",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_breda/it_w_breda_camo_winter.dds": {
+   "md5": "6bc90fbf36660669fccd8dcad30b8e66",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_breda/it_w_breda_camo_woodland.dds": {
+   "md5": "0d3dbc989c5084bfb671c278ca29033b",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_carcano/it_w_carcano_bloody.dds": {
+   "md5": "bd558602463e265b0e11f8662a00ebac",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_carcano/it_w_carcano_camo_desert.dds": {
+   "md5": "069a6174fe289420b0e86825d26089b8",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_carcano/it_w_carcano_camo_winter.dds": {
+   "md5": "fc8c55b5be01c709b32cc07dffee156f",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_carcano/it_w_carcano_camo_woodland.dds": {
+   "md5": "c426852c36842c5f26b968172375323f",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_carcano/m1clip_bloody.dds": {
+   "md5": "e13dec1e0c9b57f181264ec4163c8b4f",
+   "size": 43832
+  },
+  "textures/coop_skins/it_w_carcano/m1clip_camo_desert.dds": {
+   "md5": "9858ccb5a378a4d470d9c670b85474c0",
+   "size": 43832
+  },
+  "textures/coop_skins/it_w_carcano/m1clip_camo_winter.dds": {
+   "md5": "a90c71da3a2e8ef74b294b41a49bae2e",
+   "size": 43832
+  },
+  "textures/coop_skins/it_w_carcano/m1clip_camo_woodland.dds": {
+   "md5": "097e294b02a945b371b759cc938a1c9a",
+   "size": 43832
+  },
+  "textures/coop_skins/it_w_carcano_lite/it_w_carcano_bloody.dds": {
+   "md5": "6f18da34954fe2f0bfe20ba14ed9ac5c",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_carcano_lite/it_w_carcano_camo_desert.dds": {
+   "md5": "a492c866aa3b144953d9e51425fe227b",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_carcano_lite/it_w_carcano_camo_winter.dds": {
+   "md5": "8c310a23bfc31ed63b965c5dc2c49555",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_carcano_lite/it_w_carcano_camo_woodland.dds": {
+   "md5": "b59283e7b25e9d191c940e7149dc9e7f",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_moschetto/it_w_moschetto_bloody.dds": {
+   "md5": "fecac11d0fee00141f0b10bdbb9f2cd5",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_moschetto/it_w_moschetto_camo_desert.dds": {
+   "md5": "27b0725eee43378dd46b6d9e51c07af2",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_moschetto/it_w_moschetto_camo_winter.dds": {
+   "md5": "1907bd9ffa2cc3e8bfc8b7126c83d846",
+   "size": 699192
+  },
+  "textures/coop_skins/it_w_moschetto/it_w_moschetto_camo_woodland.dds": {
+   "md5": "d718210b21d11d9baf7dccd0d008bce6",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_01_bloody.dds": {
+   "md5": "7b58271549af2c5e05967e764897c10f",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_01_camo_desert.dds": {
+   "md5": "041819c07ad172becd5669758bfcc6f3",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_01_camo_winter.dds": {
+   "md5": "faad0b87d0ae479d722f9047e8132224",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_01_camo_woodland.dds": {
+   "md5": "4a3e3033a43ae5d37fbe4e48cad0e6cb",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_02_bloody.dds": {
+   "md5": "66b26c89d2ae0c5240c1af87f6030831",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_02_camo_desert.dds": {
+   "md5": "e91ecb2fb82f1e0aaf9ab4bcbc9c844c",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_02_camo_winter.dds": {
+   "md5": "ca22f3c9a37f5b6118b8561ccce86bce",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_02_camo_woodland.dds": {
+   "md5": "c7b8649dd879ae3bb68fbd63d9cd352c",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_03_bloody.dds": {
+   "md5": "b89b69794881755f4b29a90adcc1dc19",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_03_camo_desert.dds": {
+   "md5": "e05cf934209b969b4234021ce0e97119",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_03_camo_winter.dds": {
+   "md5": "138dfe3885b00b436c8bc3f38a96ff81",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_03_camo_woodland.dds": {
+   "md5": "ae7d199fbede91f412d763f75a1f977a",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_04_bloody.dds": {
+   "md5": "a5e2b9ed820b4d536762850bc890ef8c",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_04_camo_desert.dds": {
+   "md5": "3c3b13e11736a861da5460e6ffd25c44",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_04_camo_winter.dds": {
+   "md5": "938fcc32a19d6af501da9afe8e3c322d",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_04_camo_woodland.dds": {
+   "md5": "4c34af475a8c9d5741f498b8ce7bbb8b",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_05_bloody.dds": {
+   "md5": "3dc7e5c7b0e7da939d3045cb4e4290f9",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_05_camo_desert.dds": {
+   "md5": "27d53efa2c9d3a21c1d2a21b0e9cea7b",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_05_camo_winter.dds": {
+   "md5": "b5b7cd567f339a9c13435e15c11ca531",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_05_camo_woodland.dds": {
+   "md5": "27821e2036c53e781b3e4635a77871d2",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_06_bloody.dds": {
+   "md5": "a33c51b1d6db0b00bea7a63989cd6e0d",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_06_camo_desert.dds": {
+   "md5": "56b6862bcb21537eef2f313bd3563251",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_06_camo_winter.dds": {
+   "md5": "61bad9044c430ec01a390f98f3300569",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_06_camo_woodland.dds": {
+   "md5": "9ec7b5d9ba60e0cbc4a7e3edcdc6c687",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_07_bloody.dds": {
+   "md5": "ed3f7b286ebafd45c676b2c024c4a608",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_07_camo_desert.dds": {
+   "md5": "b0d03e80e61b701201735b5f3770b5de",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_07_camo_winter.dds": {
+   "md5": "a5bf78a6c75224c55119d3873482b3ab",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_07_camo_woodland.dds": {
+   "md5": "b39de6abd43a8ea6dc93980931acdcd7",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_08_bloody.dds": {
+   "md5": "c04d364ec6d3d5fc44d454a616b8b1d8",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_08_camo_desert.dds": {
+   "md5": "107aecd4080ab31fa9d8628421db8cc6",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_08_camo_winter.dds": {
+   "md5": "2c045c8da62f436b810c04e434261222",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_08_camo_woodland.dds": {
+   "md5": "292baf44fe38a0fa9c705f0e0adfb7fa",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_09_bloody.dds": {
+   "md5": "01813304a9fcc2977521e4838fd249d5",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_09_camo_desert.dds": {
+   "md5": "9e83b8996db917388a35e05df49da8ba",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_09_camo_winter.dds": {
+   "md5": "ce211b0e5abd9b474f18198cbd199609",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_09_camo_woodland.dds": {
+   "md5": "9a0057bacb1e65aa1af9338973926f2d",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_10_bloody.dds": {
+   "md5": "7c1edc8b1a91cb8ef598bb4b4252f5b0",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_10_camo_desert.dds": {
+   "md5": "970c10d3f621cf1c849650ea33a8bc1f",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_10_camo_winter.dds": {
+   "md5": "f2327383e9f4b04ceec915db358ec1e6",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_10_camo_woodland.dds": {
+   "md5": "c14a1ca2988b2f1703079bc9a1b2d526",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_11_bloody.dds": {
+   "md5": "5c6028b5dc3634139418ffc86f28619d",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_11_camo_desert.dds": {
+   "md5": "c706aeecfa172d5dc1f0b50c32940f25",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_11_camo_winter.dds": {
+   "md5": "6bb4c38a6a1de5cc6a30001963c3ba25",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_11_camo_woodland.dds": {
+   "md5": "9f1a03cad3a110b39c5f3d14e08dfef4",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_12_bloody.dds": {
+   "md5": "0abfee847b028183e158b320e9c45732",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_12_camo_desert.dds": {
+   "md5": "71e4edaf437c10c3fff3e0024bd8fed3",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_12_camo_winter.dds": {
+   "md5": "b6af20981340bfc59c273bdfee1bb1b4",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_12_camo_woodland.dds": {
+   "md5": "25af6b4f5cd7d970f68bf0165901198e",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_13_bloody.dds": {
+   "md5": "b91d2a56ec6bf6672c93ab04208f8a2f",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_13_camo_desert.dds": {
+   "md5": "6ae03235689be8481a2ed6b8606bc5bb",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_13_camo_winter.dds": {
+   "md5": "57fd60a1e53ce1a1f8f9d8313e48d1fa",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_13_camo_woodland.dds": {
+   "md5": "e8ce7de194f216a8cff46de95ecdfa40",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_14_bloody.dds": {
+   "md5": "8c231030274f0070308b7f655dc12411",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_14_camo_desert.dds": {
+   "md5": "b1a4d90066f454853508b1c9f304c0db",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_14_camo_winter.dds": {
+   "md5": "b23ad4e8557dbc3147064dc31c0ce752",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_14_camo_woodland.dds": {
+   "md5": "a92c0cb6e4c17b6a73f9143685484f88",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_15_bloody.dds": {
+   "md5": "434431e366b2bdef58214b442a38a602",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_15_camo_desert.dds": {
+   "md5": "694b6c74962a4dd9e28104d96d60398f",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_15_camo_winter.dds": {
+   "md5": "0ab03e76b6da1ff9eaf75cb63aab62b7",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_15_camo_woodland.dds": {
+   "md5": "7c2cd2661841d6fa34de1b0a5288b7bf",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_16_bloody.dds": {
+   "md5": "f0a19d7b3182c1c6f5cf4b5461c87a19",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_16_camo_desert.dds": {
+   "md5": "1df5397ecce85ea959a0bb9800159770",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_16_camo_winter.dds": {
+   "md5": "6c301fc54075c5af4ed6e63aa968c3b0",
+   "size": 699192
+  },
+  "textures/coop_skins/johnson_m1941/johnson_16_camo_woodland.dds": {
+   "md5": "ee82dfd8798ac2eda914f4a28affd924",
+   "size": 699192
+  },
+  "textures/coop_skins/kar98/kar98_bloody.dds": {
+   "md5": "8468db3e7b5cf5ee1d14dc155da79c7d",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98/kar98_camo_desert.dds": {
+   "md5": "2a597d660ab32f67e0b82b10faf3fc9f",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98/kar98_camo_winter.dds": {
+   "md5": "465a71723cb30be8fdb24742ab3bb355",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98/kar98_camo_woodland.dds": {
+   "md5": "1e91a839ef760cb3125de9f51e91639d",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98/m1clip_bloody.dds": {
+   "md5": "46b41130f3bfadb112fdd26a89370d82",
+   "size": 699192
+  },
+  "textures/coop_skins/kar98/m1clip_camo_desert.dds": {
+   "md5": "312560f1d379fc98efbec7679f820925",
+   "size": 699192
+  },
+  "textures/coop_skins/kar98/m1clip_camo_winter.dds": {
+   "md5": "a9b0e7bee40f86103bb21a1539221d64",
+   "size": 699192
+  },
+  "textures/coop_skins/kar98/m1clip_camo_woodland.dds": {
+   "md5": "139ed58bd886c430ca701aeede28d47a",
+   "size": 699192
+  },
+  "textures/coop_skins/kar98/mauserammo_bloody.dds": {
+   "md5": "79f83aa1ee41597ab07936be13f54595",
+   "size": 174904
+  },
+  "textures/coop_skins/kar98/mauserammo_camo_desert.dds": {
+   "md5": "7706555e96d346bdadc0e081eb7afc0b",
+   "size": 174904
+  },
+  "textures/coop_skins/kar98/mauserammo_camo_winter.dds": {
+   "md5": "88e3992b1de86c38059c5ad56381906e",
+   "size": 174904
+  },
+  "textures/coop_skins/kar98/mauserammo_camo_woodland.dds": {
+   "md5": "1f0bde482dff7ed83230a03a58fff937",
+   "size": 174904
+  },
+  "textures/coop_skins/kar98_lite/kar98_bloody.dds": {
+   "md5": "bc8e6cb42e29889db4d1367468ad8ec0",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98_lite/kar98_camo_desert.dds": {
+   "md5": "2a682d3f521c2ca5ac61f9952c053ab5",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98_lite/kar98_camo_winter.dds": {
+   "md5": "e4f16ef75e4f2e3cb6f1f68501a12f4a",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98_lite/kar98_camo_woodland.dds": {
+   "md5": "7d4e385224f84d31574d8716e7a9f310",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98_lite/m1clip_bloody.dds": {
+   "md5": "46b41130f3bfadb112fdd26a89370d82",
+   "size": 699192
+  },
+  "textures/coop_skins/kar98_lite/m1clip_camo_desert.dds": {
+   "md5": "312560f1d379fc98efbec7679f820925",
+   "size": 699192
+  },
+  "textures/coop_skins/kar98_lite/m1clip_camo_winter.dds": {
+   "md5": "a9b0e7bee40f86103bb21a1539221d64",
+   "size": 699192
+  },
+  "textures/coop_skins/kar98_lite/m1clip_camo_woodland.dds": {
+   "md5": "139ed58bd886c430ca701aeede28d47a",
+   "size": 699192
+  },
+  "textures/coop_skins/kar98_mortar/grenlaunchcup_bloody.dds": {
+   "md5": "2518c98194831f588aa8878e11309aec",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/grenlaunchcup_camo_desert.dds": {
+   "md5": "c4eb0ded8ed7d463ccb3ecfac1a32ed2",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/grenlaunchcup_camo_winter.dds": {
+   "md5": "11f1d11421d92e713e5be1147bf4f1cd",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/grenlaunchcup_camo_woodland.dds": {
+   "md5": "234f5813866bc2ad8025e3d449377a3c",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/kar98gren_01_bloody.dds": {
+   "md5": "21264d294450cbdb2e51885de3d6cb49",
+   "size": 87528
+  },
+  "textures/coop_skins/kar98_mortar/kar98gren_01_camo_desert.dds": {
+   "md5": "6c6a516b7a8efed883237f26a0c0342b",
+   "size": 87528
+  },
+  "textures/coop_skins/kar98_mortar/kar98gren_01_camo_winter.dds": {
+   "md5": "2a31fec70e2c287c90d886c28ee91d01",
+   "size": 87528
+  },
+  "textures/coop_skins/kar98_mortar/kar98gren_01_camo_woodland.dds": {
+   "md5": "75fd5315044b7e9a46d2c8027293c85e",
+   "size": 87528
+  },
+  "textures/coop_skins/kar98_mortar/kar98sight_bloody.dds": {
+   "md5": "4323ad8ca2f72eb005097ff088660bcb",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/kar98sight_camo_desert.dds": {
+   "md5": "22f092d002d723cadd7a16e602961f40",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/kar98sight_camo_winter.dds": {
+   "md5": "c0ae28ae1ecbe580c090785e08cf2fd2",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/kar98sight_camo_woodland.dds": {
+   "md5": "e7947be06cc14869bab4f30d82b6f6e8",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/riflegrenade_01_bloody.dds": {
+   "md5": "2fdbed10d808c77e2c674955124f0199",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/riflegrenade_01_camo_desert.dds": {
+   "md5": "2de54bc799c26fed4dc629c0ea4f0818",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/riflegrenade_01_camo_winter.dds": {
+   "md5": "8b900a00a1a3dc88b3e2e51c50b10ec8",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/riflegrenade_01_camo_woodland.dds": {
+   "md5": "921fd28e749919f26618f262fd89186b",
+   "size": 21992
+  },
+  "textures/coop_skins/kar98_mortar/wrapping_06_bloody.dds": {
+   "md5": "bd56349d888695f5a5bd33a419830720",
+   "size": 43832
+  },
+  "textures/coop_skins/kar98_mortar/wrapping_06_camo_desert.dds": {
+   "md5": "35fe60fee13605d1f229a4b829acd390",
+   "size": 43832
+  },
+  "textures/coop_skins/kar98_mortar/wrapping_06_camo_winter.dds": {
+   "md5": "92948729a4bed6d79c51fb1dcfeb84bc",
+   "size": 43832
+  },
+  "textures/coop_skins/kar98_mortar/wrapping_06_camo_woodland.dds": {
+   "md5": "4a84bf41115edbd085ae3e7c23a4d065",
+   "size": 43832
+  },
+  "textures/coop_skins/kar98sniper/kar98scope_bloody.dds": {
+   "md5": "678799e0fbfb01589a5f00a15d16fca6",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98sniper/kar98scope_camo_desert.dds": {
+   "md5": "f340cd48e97119d5d93f17f646f5d08f",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98sniper/kar98scope_camo_winter.dds": {
+   "md5": "086fe82d407c42c277836f6bb9182fdf",
+   "size": 349672
+  },
+  "textures/coop_skins/kar98sniper/kar98scope_camo_woodland.dds": {
+   "md5": "5e9a08055abd961ca4d815c4c4d50565",
+   "size": 349672
+  },
+  "textures/coop_skins/m10_revolver/gun10_bloody.dds": {
+   "md5": "193ed10fd6ab74a81dd3dc08ab34a9bc",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun10_camo_desert.dds": {
+   "md5": "4402394888046fc82b42f51dae34d10d",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun10_camo_winter.dds": {
+   "md5": "585555bd46d018d52a6697b5e0cf59f4",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun10_camo_woodland.dds": {
+   "md5": "9225f7b95d5d3ffd2d902b19ea084108",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun11_bloody.dds": {
+   "md5": "0d617060086de21e8f7881e874e6b3b6",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun11_camo_desert.dds": {
+   "md5": "07fd098a3c6bd040950dc8f97357a30d",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun11_camo_winter.dds": {
+   "md5": "103e4b0182d20e69ab650cde09c8ce04",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun11_camo_woodland.dds": {
+   "md5": "20b7ac5b9c684341ed5d510a6811b244",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun12_bloody.dds": {
+   "md5": "ddd41d6ed8e3ddc8d70b8939109d9380",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun12_camo_desert.dds": {
+   "md5": "73a0f263712d99eaf6b00633588a6370",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun12_camo_winter.dds": {
+   "md5": "e6ece5ab1c55e8f1318302c1249d97ee",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun12_camo_woodland.dds": {
+   "md5": "9e175e2416915723650a07f95421d5c7",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun13_bloody.dds": {
+   "md5": "5e56d6e6555cddc712963535a7294f3f",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun13_camo_desert.dds": {
+   "md5": "8fc3611c06704fa4a4cc2d1ee16e0099",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun13_camo_winter.dds": {
+   "md5": "d497a76210d1e6c1f8f179a7ba00c8f2",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun13_camo_woodland.dds": {
+   "md5": "256c8a71817cfb5c7015f1a69fad285b",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun1_bloody.dds": {
+   "md5": "588081afa74656aef89b04041a85d7be",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun1_camo_desert.dds": {
+   "md5": "bc56547c060c2ada3aaad02b799df9a9",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun1_camo_winter.dds": {
+   "md5": "aa7d150476f6cdb86de0c3dc50dfad10",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun1_camo_woodland.dds": {
+   "md5": "1d7729c8dd9ece6ee1cc76f2ed1854e0",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun2_bloody.dds": {
+   "md5": "7256286f05a3b8b0b935fc72dd5325db",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun2_camo_desert.dds": {
+   "md5": "8f302330931be59ee44af36f8b74c75b",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun2_camo_winter.dds": {
+   "md5": "8cced547fee5f9ad5331f48327b01d1d",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun2_camo_woodland.dds": {
+   "md5": "9e9a1c7e1ce79af983e1b2452d16940a",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun3_bloody.dds": {
+   "md5": "abf367eddc1e756951ebf1e0b7a7cec1",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun3_camo_desert.dds": {
+   "md5": "1b0567bb3cb86d8ad0c0e234ff1df561",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun3_camo_winter.dds": {
+   "md5": "fc1af5202f7587de2fb7e7b7af3e1670",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun3_camo_woodland.dds": {
+   "md5": "3becf6ddde15518f453f7a47fecc09b7",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun4_bloody.dds": {
+   "md5": "a56fceb1bba6e6a632d066402d191563",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun4_camo_desert.dds": {
+   "md5": "e2093359e8945e60baebb4a81b271ab1",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun4_camo_winter.dds": {
+   "md5": "09f22df1774bb546bc7ef05fedb9ba14",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun4_camo_woodland.dds": {
+   "md5": "e104793156c98d3a143b9e93c1ad5f3b",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun5_bloody.dds": {
+   "md5": "fbf91975f0c27f529aa0a8a861b2dc4a",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun5_camo_desert.dds": {
+   "md5": "8417af38f6ef6edd1063cdcc317efd9b",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun5_camo_winter.dds": {
+   "md5": "6d7579128ca7c3bf0b87ca0383f32260",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun5_camo_woodland.dds": {
+   "md5": "b5d48e61563e7842fa98cd71e356c2f4",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun7_bloody.dds": {
+   "md5": "368bb50df5829a17844f1953fb68ed9b",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun7_camo_desert.dds": {
+   "md5": "4a64efdd9515f96dffa691f0430c4061",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun7_camo_winter.dds": {
+   "md5": "2c49b16a5fab976fb54fb38e7f330162",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun7_camo_woodland.dds": {
+   "md5": "f72ae6f0a9c085f7f3f5c86f852b87a6",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun8_bloody.dds": {
+   "md5": "b3d471e4d2d5a082dcb87e107f612296",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun8_camo_desert.dds": {
+   "md5": "9eec8111698af389d08a7727745537a4",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun8_camo_winter.dds": {
+   "md5": "8c28196b3c35601286f03aa1733b4cbc",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun8_camo_woodland.dds": {
+   "md5": "24583dab3730e60ccd8253ba8aa04205",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun9_bloody.dds": {
+   "md5": "a7b27ce15119ec919fe480f3cd8bca6e",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun9_camo_desert.dds": {
+   "md5": "ea48846676773bca42afc12eac0ed851",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun9_camo_winter.dds": {
+   "md5": "5a2b9aa6345cfd3af221667732b8f0cf",
+   "size": 699192
+  },
+  "textures/coop_skins/m10_revolver/gun9_camo_woodland.dds": {
+   "md5": "986ccc587eee50cf1741f937be1b7954",
+   "size": 699192
+  },
+  "textures/coop_skins/m1_garand/garand_bloody.dds": {
+   "md5": "c11c429e2cbc44704694a72851a2d53d",
+   "size": 699192
+  },
+  "textures/coop_skins/m1_garand/garand_camo_desert.dds": {
+   "md5": "9a5b74ea2c9b4c0ea50cb2ed323edef6",
+   "size": 699192
+  },
+  "textures/coop_skins/m1_garand/garand_camo_winter.dds": {
+   "md5": "23fd78a69c04a7008120ab859a0de338",
+   "size": 699192
+  },
+  "textures/coop_skins/m1_garand/garand_camo_woodland.dds": {
+   "md5": "48dc695e3377c7cea72bffdb10c5a586",
+   "size": 699192
+  },
+  "textures/coop_skins/m1_garand_lite/garand_bloody.dds": {
+   "md5": "85764cd58cc8382fe068f804519501b0",
+   "size": 349672
+  },
+  "textures/coop_skins/m1_garand_lite/garand_camo_desert.dds": {
+   "md5": "b04b6f9a10e97dbd8ea28295ca2dfac3",
+   "size": 349672
+  },
+  "textures/coop_skins/m1_garand_lite/garand_camo_winter.dds": {
+   "md5": "431c39510a31f5e29794367e910c42a7",
+   "size": 349672
+  },
+  "textures/coop_skins/m1_garand_lite/garand_camo_woodland.dds": {
+   "md5": "ff23cdf984f3cb74a820c0ec8e35d7c6",
+   "size": 349672
+  },
+  "textures/coop_skins/mauser_c96/aimfront_bloody.dds": {
+   "md5": "5b6deae246e16df039664d2c4138f4a4",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimfront_camo_desert.dds": {
+   "md5": "2094386b9651695bbbc95b06d85c0dbd",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimfront_camo_winter.dds": {
+   "md5": "5735d23ca0de07fc1c5a91a05d737f02",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimfront_camo_woodland.dds": {
+   "md5": "4168a724b7b11b118fbd5591fc03c91d",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimrearblade_bloody.dds": {
+   "md5": "6f4e08efdc0b9c8942211f8f10718381",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimrearblade_camo_desert.dds": {
+   "md5": "46cc64cc9740681399deab759bae6cb5",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimrearblade_camo_winter.dds": {
+   "md5": "b42aef6963897f78228de139651de85c",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimrearblade_camo_woodland.dds": {
+   "md5": "92c9c8df43a5d5eae9cd4b4c26548181",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimrearsup_bloody.dds": {
+   "md5": "7357eeb96c7d15dd0e8ff261e3353d1e",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimrearsup_camo_desert.dds": {
+   "md5": "2fe8c02451faec3c8f243df0fb00e357",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimrearsup_camo_winter.dds": {
+   "md5": "b759f2f800a9ae38f19f7953db58f005",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/aimrearsup_camo_woodland.dds": {
+   "md5": "3fa9c352fed491e021298381876019ff",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/barrel_bloody.dds": {
+   "md5": "2c5465f61216df403ac9b7c695b3b8f2",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/barrel_camo_desert.dds": {
+   "md5": "fbe8a82de707b8e5f76fecbe9c31b890",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/barrel_camo_winter.dds": {
+   "md5": "e8a7e1490430adeac21e2cfd77066a61",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/barrel_camo_woodland.dds": {
+   "md5": "4205c7824eadd330e22b4c315c9cdb44",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/body_bloody.dds": {
+   "md5": "94d8ca44c8bf56c04e645dbbde49fc19",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/body_camo_desert.dds": {
+   "md5": "e67af24d5237a631827c1cef90acde3b",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/body_camo_winter.dds": {
+   "md5": "97644f1c1ae980f28cb647a8fd2d9278",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/body_camo_woodland.dds": {
+   "md5": "6c9bcef505c17c3709bac650aba227d9",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/grip_bloody.dds": {
+   "md5": "91ce5ae26a3ae8a641e826d363ec3671",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/grip_camo_desert.dds": {
+   "md5": "f8480b81c946a0a7aa79285f3905fa87",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/grip_camo_winter.dds": {
+   "md5": "24c0edf83bfcd60fe682fc72a83c12c8",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/grip_camo_woodland.dds": {
+   "md5": "5cf6eb2ed89833a2d4ce86ea375e01cc",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammer2_bloody.dds": {
+   "md5": "619671f0860d2c0467ea558fcd1389f9",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammer2_camo_desert.dds": {
+   "md5": "8d6f861b49423474db7ae6f0f708eec4",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammer2_camo_winter.dds": {
+   "md5": "1f2ba90483f7268bc3ccab9fef44ea5d",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammer2_camo_woodland.dds": {
+   "md5": "18f3d7262c36ad0db4fb2c01e11ed65f",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammer_bloody.dds": {
+   "md5": "7898dc98f06bd062365c16a54978630e",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammer_camo_desert.dds": {
+   "md5": "37faf0b84db335bbe923a100dc34a149",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammer_camo_winter.dds": {
+   "md5": "1de712c1811ffb4df7e9dc3a0ba36aad",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammer_camo_woodland.dds": {
+   "md5": "b1ee4eeac4aead188f43a4b7697c692e",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammerhit_bloody.dds": {
+   "md5": "6a338d1bd3ea6beccc748f3cdb612fd0",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammerhit_camo_desert.dds": {
+   "md5": "a7b94a0e2077138735d8143f8614727c",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammerhit_camo_winter.dds": {
+   "md5": "1a647be2430082acea44e42e63e47882",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/hammerhit_camo_woodland.dds": {
+   "md5": "02a14f991288caa08661c349b4c6f225",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/switchblade_bloody.dds": {
+   "md5": "782289a2b5d1567d43009173d45ce34b",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/switchblade_camo_desert.dds": {
+   "md5": "f0662b3fb9e1dfb244b78fd31c5d44eb",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/switchblade_camo_winter.dds": {
+   "md5": "088e5a7b318c340a795ffdfd8bdeff0f",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/switchblade_camo_woodland.dds": {
+   "md5": "910620818831f36316695f7d67354adc",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/trigger_bloody.dds": {
+   "md5": "9728f6ed0964e3f6c0e68c09150cdd48",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/trigger_camo_desert.dds": {
+   "md5": "63461e39123899f6b95ec4fd0ae50e38",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/trigger_camo_winter.dds": {
+   "md5": "f754ab136a26794d6636aff00dfe4496",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/trigger_camo_woodland.dds": {
+   "md5": "bb4f1acd5d02ae6013273b6dd2cf2a8d",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/triguard_bloody.dds": {
+   "md5": "1d8d085d4ce5a347e710da37c0340451",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/triguard_camo_desert.dds": {
+   "md5": "1a6cdcb8d53c742af0bb955264653a7e",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/triguard_camo_winter.dds": {
+   "md5": "afdfdbcac40f404a4c3edbaee28bd7bf",
+   "size": 699192
+  },
+  "textures/coop_skins/mauser_c96/triguard_camo_woodland.dds": {
+   "md5": "286c74b3bc99d6bd7c08bc2232e2bb87",
+   "size": 699192
+  },
+  "textures/coop_skins/mosin_nagant_rifle/mosin_nagant_bloody.dds": {
+   "md5": "3626306c74873683e32ec824458e45c1",
+   "size": 699192
+  },
+  "textures/coop_skins/mosin_nagant_rifle/mosin_nagant_camo_desert.dds": {
+   "md5": "5d9c56190cbc428dad6ea6de5273b53c",
+   "size": 699192
+  },
+  "textures/coop_skins/mosin_nagant_rifle/mosin_nagant_camo_winter.dds": {
+   "md5": "a7e74530ec06d7d92278aaec5de2d373",
+   "size": 699192
+  },
+  "textures/coop_skins/mosin_nagant_rifle/mosin_nagant_camo_woodland.dds": {
+   "md5": "165044ebb593317f4744ecf13fd226d0",
+   "size": 699192
+  },
+  "textures/coop_skins/mosin_nagant_rifle_lite/mosin_nagant_bloody.dds": {
+   "md5": "3626306c74873683e32ec824458e45c1",
+   "size": 699192
+  },
+  "textures/coop_skins/mosin_nagant_rifle_lite/mosin_nagant_camo_desert.dds": {
+   "md5": "5d9c56190cbc428dad6ea6de5273b53c",
+   "size": 699192
+  },
+  "textures/coop_skins/mosin_nagant_rifle_lite/mosin_nagant_camo_winter.dds": {
+   "md5": "a7e74530ec06d7d92278aaec5de2d373",
+   "size": 699192
+  },
+  "textures/coop_skins/mosin_nagant_rifle_lite/mosin_nagant_camo_woodland.dds": {
+   "md5": "165044ebb593317f4744ecf13fd226d0",
+   "size": 699192
+  },
+  "textures/coop_skins/mp40/mp40_bloody.dds": {
+   "md5": "ef9317e5482a36b807595e06cdb32d1f",
+   "size": 174904
+  },
+  "textures/coop_skins/mp40/mp40_camo_desert.dds": {
+   "md5": "a67b7d77ae2c23fdcfd3548a8a690146",
+   "size": 174904
+  },
+  "textures/coop_skins/mp40/mp40_camo_winter.dds": {
+   "md5": "5f280b61d9f80db11e71cd2012fd1843",
+   "size": 174904
+  },
+  "textures/coop_skins/mp40/mp40_camo_woodland.dds": {
+   "md5": "ce713532fd0702fe1656ca2b1ff54bb0",
+   "size": 174904
+  },
+  "textures/coop_skins/mp44/mp44_bloody.dds": {
+   "md5": "ac7c2d078127596ee1ede47510bb361a",
+   "size": 699192
+  },
+  "textures/coop_skins/mp44/mp44_camo_desert.dds": {
+   "md5": "52662ed5020892b92ad92410992062a2",
+   "size": 699192
+  },
+  "textures/coop_skins/mp44/mp44_camo_winter.dds": {
+   "md5": "8faf2bcfbca647b1324728bc0c05ac14",
+   "size": 699192
+  },
+  "textures/coop_skins/mp44/mp44_camo_woodland.dds": {
+   "md5": "3749952227b07379381825f14630844c",
+   "size": 699192
+  },
+  "textures/coop_skins/mp44/mp44clip_bloody.dds": {
+   "md5": "cbe8286bc5d32cb4d661fdaaad255811",
+   "size": 174904
+  },
+  "textures/coop_skins/mp44/mp44clip_camo_desert.dds": {
+   "md5": "4e3ffd8df96e779d71dbccace5bd2618",
+   "size": 174904
+  },
+  "textures/coop_skins/mp44/mp44clip_camo_winter.dds": {
+   "md5": "1f31a996168d07f26514a89cb4277bae",
+   "size": 174904
+  },
+  "textures/coop_skins/mp44/mp44clip_camo_woodland.dds": {
+   "md5": "8f677c3b12cd9967781130e43ba6333f",
+   "size": 174904
+  },
+  "textures/coop_skins/nagant_revolver/nagentrevolver_bloody.dds": {
+   "md5": "b19d6c4d52ca2a7b88e122ccaf4089ae",
+   "size": 699192
+  },
+  "textures/coop_skins/nagant_revolver/nagentrevolver_camo_desert.dds": {
+   "md5": "c2a4976e2631f2e921fbf8e05957a933",
+   "size": 699192
+  },
+  "textures/coop_skins/nagant_revolver/nagentrevolver_camo_winter.dds": {
+   "md5": "551ef89529e93138043a55ad3d6e776d",
+   "size": 699192
+  },
+  "textures/coop_skins/nagant_revolver/nagentrevolver_camo_woodland.dds": {
+   "md5": "1bf8476ae6555686607c62f976049251",
+   "size": 699192
+  },
+  "textures/coop_skins/p38/p38_bloody.dds": {
+   "md5": "dcb61401a0ba3f6550b6ead4f394c4ef",
+   "size": 174904
+  },
+  "textures/coop_skins/p38/p38_camo_desert.dds": {
+   "md5": "7d60d1faae6d437660ed8f7e41c629c4",
+   "size": 174904
+  },
+  "textures/coop_skins/p38/p38_camo_winter.dds": {
+   "md5": "b7414a2533135c40ea365bb8cc3cc6af",
+   "size": 174904
+  },
+  "textures/coop_skins/p38/p38_camo_woodland.dds": {
+   "md5": "29a7ba0a9f84c3719e14ba243217f3ce",
+   "size": 174904
+  },
+  "textures/coop_skins/panzerschreck/pschreck_bloody.dds": {
+   "md5": "84e3d4e529dbd31ee0775f9125e80404",
+   "size": 699192
+  },
+  "textures/coop_skins/panzerschreck/pschreck_camo_desert.dds": {
+   "md5": "e186535f06764591a0587b2a8302b116",
+   "size": 699192
+  },
+  "textures/coop_skins/panzerschreck/pschreck_camo_winter.dds": {
+   "md5": "4fce5abbabf964774cf73fb28c86c9d7",
+   "size": 699192
+  },
+  "textures/coop_skins/panzerschreck/pschreck_camo_woodland.dds": {
+   "md5": "f8379b45a7c6cf50ce2e68b10f18275d",
+   "size": 699192
+  },
+  "textures/coop_skins/ppsh_smg/ppsh_smg_bloody.dds": {
+   "md5": "e69df9cc5accb7f8a9087156cbc07db3",
+   "size": 699192
+  },
+  "textures/coop_skins/ppsh_smg/ppsh_smg_camo_desert.dds": {
+   "md5": "6667e9d69aa26ae5b6006939849c0551",
+   "size": 699192
+  },
+  "textures/coop_skins/ppsh_smg/ppsh_smg_camo_winter.dds": {
+   "md5": "d72d7d6851ff6f0f9c1b3253b4167e57",
+   "size": 699192
+  },
+  "textures/coop_skins/ppsh_smg/ppsh_smg_camo_woodland.dds": {
+   "md5": "7207edb3b7d212dc01fab00cf1c1c73a",
+   "size": 699192
+  },
+  "textures/coop_skins/shotgun/winchester_bloody.dds": {
+   "md5": "5bf26e3ae2dcd4b4f2422f6539ae5d9a",
+   "size": 699192
+  },
+  "textures/coop_skins/shotgun/winchester_camo_desert.dds": {
+   "md5": "e345ef72b1bb69dc48fe81a050ec8ccc",
+   "size": 699192
+  },
+  "textures/coop_skins/shotgun/winchester_camo_winter.dds": {
+   "md5": "6185bb10f1d5642d61f7f78752ad9d2c",
+   "size": 699192
+  },
+  "textures/coop_skins/shotgun/winchester_camo_woodland.dds": {
+   "md5": "dc492ca21f741cc9159eed13d7aaccc3",
+   "size": 699192
+  },
+  "textures/coop_skins/silencedpistol/hi_standard_bloody.dds": {
+   "md5": "0af64c0bf6fab0d50abc9b797b5a401d",
+   "size": 699192
+  },
+  "textures/coop_skins/silencedpistol/hi_standard_camo_desert.dds": {
+   "md5": "2cddc043927540e2286bcc1407f902a3",
+   "size": 699192
+  },
+  "textures/coop_skins/silencedpistol/hi_standard_camo_winter.dds": {
+   "md5": "0c54361993a3c4443e7cf068ad1a728b",
+   "size": 699192
+  },
+  "textures/coop_skins/silencedpistol/hi_standard_camo_woodland.dds": {
+   "md5": "0ad4e42672fb64a12298421e3a2eb495",
+   "size": 699192
+  },
+  "textures/coop_skins/springfield/m1clip_bloody.dds": {
+   "md5": "46b41130f3bfadb112fdd26a89370d82",
+   "size": 699192
+  },
+  "textures/coop_skins/springfield/m1clip_camo_desert.dds": {
+   "md5": "312560f1d379fc98efbec7679f820925",
+   "size": 699192
+  },
+  "textures/coop_skins/springfield/m1clip_camo_winter.dds": {
+   "md5": "a9b0e7bee40f86103bb21a1539221d64",
+   "size": 699192
+  },
+  "textures/coop_skins/springfield/m1clip_camo_woodland.dds": {
+   "md5": "139ed58bd886c430ca701aeede28d47a",
+   "size": 699192
+  },
+  "textures/coop_skins/springfield/springfield_bloody.dds": {
+   "md5": "c19c3ad154c5527a3025cfe1e5e1e8a2",
+   "size": 699192
+  },
+  "textures/coop_skins/springfield/springfield_camo_desert.dds": {
+   "md5": "280544f1e73fabbd05b0bb0e34a4168a",
+   "size": 699192
+  },
+  "textures/coop_skins/springfield/springfield_camo_winter.dds": {
+   "md5": "4d151fe532e5c6d5118bf0de1627a133",
+   "size": 699192
+  },
+  "textures/coop_skins/springfield/springfield_camo_woodland.dds": {
+   "md5": "df712f06b542429978a51b0245a4bb9e",
+   "size": 699192
+  },
+  "textures/coop_skins/sten/sten_bloody.dds": {
+   "md5": "83ebb2381ee43eed24c0631d5146068f",
+   "size": 699192
+  },
+  "textures/coop_skins/sten/sten_camo_desert.dds": {
+   "md5": "6cb3254b54df596a71144951c59ea1fa",
+   "size": 699192
+  },
+  "textures/coop_skins/sten/sten_camo_winter.dds": {
+   "md5": "bc2ef140f885863d5f8349d835804932",
+   "size": 699192
+  },
+  "textures/coop_skins/sten/sten_camo_woodland.dds": {
+   "md5": "1859a5ebe35468cc18beb7cedc5428ec",
+   "size": 699192
+  },
+  "textures/coop_skins/svt_rifle/svt_bloody.dds": {
+   "md5": "7c5fff640d6034efea80ed9e7be8de23",
+   "size": 699192
+  },
+  "textures/coop_skins/svt_rifle/svt_camo_desert.dds": {
+   "md5": "ac57cd00f855f8b421d57a696b1ca0bc",
+   "size": 699192
+  },
+  "textures/coop_skins/svt_rifle/svt_camo_winter.dds": {
+   "md5": "bd4da50bea9b9dff9b6983ea06aaf676",
+   "size": 699192
+  },
+  "textures/coop_skins/svt_rifle/svt_camo_woodland.dds": {
+   "md5": "3d237ff1d43ad59bb78c6fd0c1c982a9",
+   "size": 699192
+  },
+  "textures/coop_skins/thompsonsmg/thompsonsmg_bloody.dds": {
+   "md5": "1583c7300ec76b4592ec2c47df6e6774",
+   "size": 699192
+  },
+  "textures/coop_skins/thompsonsmg/thompsonsmg_camo_desert.dds": {
+   "md5": "deb882df578a77b8ede43155ab672373",
+   "size": 699192
+  },
+  "textures/coop_skins/thompsonsmg/thompsonsmg_camo_winter.dds": {
+   "md5": "8a547923bfcff4934cb85271be848142",
+   "size": 699192
+  },
+  "textures/coop_skins/thompsonsmg/thompsonsmg_camo_woodland.dds": {
+   "md5": "46ddb05e4db04658d8028915d54539ea",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33/p38_bloody.dds": {
+   "md5": "e6830b75237fa946865b4b262bdfae08",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33/p38_camo_desert.dds": {
+   "md5": "e52ca6f64006b2bb8c71db960dd2aaf0",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33/p38_camo_winter.dds": {
+   "md5": "8cb597ae607acf4e848a643c90564fb3",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33/p38_camo_woodland.dds": {
+   "md5": "ce83be1c018834194e5a5846a3b259eb",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33/tokarev_bloody.dds": {
+   "md5": "8ddb234e8db56b8c675b843727698010",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33/tokarev_camo_desert.dds": {
+   "md5": "4bad536ef605617a1f2c06a5916ace7a",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33/tokarev_camo_winter.dds": {
+   "md5": "bc325f228f532f678dde87238cc4dde9",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33/tokarev_camo_woodland.dds": {
+   "md5": "de069087e057b09019ec359b00e55c42",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33silenced/ppk_silencer_bloody.dds": {
+   "md5": "7276ea989d17c6a91bb18d88b966fa31",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33silenced/ppk_silencer_camo_desert.dds": {
+   "md5": "f99b7480dbe78ed152319768f5dec93d",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33silenced/ppk_silencer_camo_winter.dds": {
+   "md5": "701616eea48911f2be97ddc47174e389",
+   "size": 699192
+  },
+  "textures/coop_skins/tt33silenced/ppk_silencer_camo_woodland.dds": {
+   "md5": "290c0d85d9eafebec034349fe2f5eb2a",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_l42a1/uk_w_l42a1_bloody.dds": {
+   "md5": "78069f85a3f03f716ea8d76dc4ffdf1d",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_l42a1/uk_w_l42a1_camo_desert.dds": {
+   "md5": "6049f8600b6d58bd413fa066696d6554",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_l42a1/uk_w_l42a1_camo_winter.dds": {
+   "md5": "f199a332741ac9afedac27e573b7fbc3",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_l42a1/uk_w_l42a1_camo_woodland.dds": {
+   "md5": "71fe47d2b6bc891381712e4bf6848da3",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_piat/uk_w_piat_bloody.dds": {
+   "md5": "58c2ff91311e602857b0c5f983ff086f",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_piat/uk_w_piat_camo_desert.dds": {
+   "md5": "1c3268c105fc60dc34323362587ed5b3",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_piat/uk_w_piat_camo_winter.dds": {
+   "md5": "a420a3253ca3f384522842a78e341d8b",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_piat/uk_w_piat_camo_woodland.dds": {
+   "md5": "b95ef601d1b41f02caeb794059a4e367",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_piat/uk_w_piatrocket_bloody.dds": {
+   "md5": "a215045a7c624fa8f3f9d801ece20947",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_piat/uk_w_piatrocket_camo_desert.dds": {
+   "md5": "cd87ed3330a7c6b74f96d55d64bde6e2",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_piat/uk_w_piatrocket_camo_winter.dds": {
+   "md5": "ac02b40f2cadf110a865c63fd8d3f3fb",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_piat/uk_w_piatrocket_camo_woodland.dds": {
+   "md5": "845f084b4d05ee15ce0c95f59523c2c0",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_vickers/uk_w_vickers_bloody.dds": {
+   "md5": "030d192fca4d721c80a6fa1ca7921866",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_vickers/uk_w_vickers_camo_desert.dds": {
+   "md5": "80ce1050ebe9a9cd116861eb9d800b06",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_vickers/uk_w_vickers_camo_winter.dds": {
+   "md5": "06c0a1073f70de69bd402331ffd0925f",
+   "size": 699192
+  },
+  "textures/coop_skins/uk_w_vickers/uk_w_vickers_camo_woodland.dds": {
+   "md5": "8e4f66cb3b8fc428cea5d8fe8499867b",
+   "size": 699192
+  },
+  "textures/coop_skins/us_w_minedetector/us_w_minedetector_bloody.dds": {
+   "md5": "0cc4c4ee5a34f6ca12e0a1b2488abc2a",
+   "size": 349672
+  },
+  "textures/coop_skins/us_w_minedetector/us_w_minedetector_camo_desert.dds": {
+   "md5": "9ac3abd02aadcdeab77f831add6085c2",
+   "size": 349672
+  },
+  "textures/coop_skins/us_w_minedetector/us_w_minedetector_camo_winter.dds": {
+   "md5": "b59e34c61994690dc8932b4820030718",
+   "size": 349672
+  },
+  "textures/coop_skins/us_w_minedetector/us_w_minedetector_camo_woodland.dds": {
+   "md5": "bae718f53cd7b3b6f0a10d385875c439",
+   "size": 349672
+  },
+  "textures/coop_skins/webley_revolver/shell_bloody.dds": {
+   "md5": "4a6022b716128b174ff0f6f19691d7ba",
+   "size": 174904
+  },
+  "textures/coop_skins/webley_revolver/shell_camo_desert.dds": {
+   "md5": "51dcaeffeadcb9d08635bfa21a3f0a98",
+   "size": 174904
+  },
+  "textures/coop_skins/webley_revolver/shell_camo_winter.dds": {
+   "md5": "0eac51babac6dc859a035a3a06b6c5e9",
+   "size": 174904
+  },
+  "textures/coop_skins/webley_revolver/shell_camo_woodland.dds": {
+   "md5": "bda5ae04bd44dc1ad8fdd3f1f54b5e73",
+   "size": 174904
+  },
+  "textures/coop_skins/webley_revolver/webley_bloody.dds": {
+   "md5": "724aabcb60a5fd51e5c9872caecbd91d",
+   "size": 699192
+  },
+  "textures/coop_skins/webley_revolver/webley_camo_desert.dds": {
+   "md5": "d7f9a8d80de1692b40bc6e0e0b382817",
+   "size": 699192
+  },
+  "textures/coop_skins/webley_revolver/webley_camo_winter.dds": {
+   "md5": "973cd3eaf00b1475939751467943155c",
+   "size": 699192
+  },
+  "textures/coop_skins/webley_revolver/webley_camo_woodland.dds": {
+   "md5": "af729df65dcd385a43c75964465d78f3",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/barrel_bloody.dds": {
+   "md5": "8671cd8f65149b0dca8a9bc82a57e813",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/barrel_camo_desert.dds": {
+   "md5": "ec03dc98d8e9a2e7e36c2c796ab8d17b",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/barrel_camo_winter.dds": {
+   "md5": "ef9a688176d6eed1d9aef750470726fa",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/barrel_camo_woodland.dds": {
+   "md5": "a7cc6bbe2adaeb837675cdf12f2acb63",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/bolt_bloody.dds": {
+   "md5": "0cfe5bdfddc6051cf001e49ffb8ab180",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/bolt_camo_desert.dds": {
+   "md5": "b1541a74f8c048f35cb1e1f5e750ef4c",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/bolt_camo_winter.dds": {
+   "md5": "78543c784e2caf5ee95cd03d3eef3256",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/bolt_camo_woodland.dds": {
+   "md5": "3839cf58c16f4b81296a2d18d3732d30",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/clip_bloody.dds": {
+   "md5": "576fb1d46adb09da88708996e15a8fb5",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/clip_camo_desert.dds": {
+   "md5": "07cb1d687729e6d78af80e0f31514f3c",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/clip_camo_winter.dds": {
+   "md5": "4bbb79001fe9a1543a2a17e879bc2d13",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/clip_camo_woodland.dds": {
+   "md5": "c9a4998467c43222ea2cabde33cc2512",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/misc_bloody.dds": {
+   "md5": "8b8d4d7c1101bc9e7bdcf37d7352e9b0",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/misc_camo_desert.dds": {
+   "md5": "17328d5e835a95278dd12f5d391aab47",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/misc_camo_winter.dds": {
+   "md5": "32a97e102ba563db91b3997ba4a38355",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/misc_camo_woodland.dds": {
+   "md5": "ae85882ff08a5ddd62b3ed6b09f177f0",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/rec_bloody.dds": {
+   "md5": "4e5e6b32d57b29fcd31810cee7d22628",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/rec_camo_desert.dds": {
+   "md5": "d5769fefa8146765558b4a74453c682f",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/rec_camo_winter.dds": {
+   "md5": "5c7b7aae4939cb889a69b2f7fd4e6aae",
+   "size": 699192
+  },
+  "textures/coop_skins/welrod/rec_camo_woodland.dds": {
+   "md5": "4bbf32a661bf50f2db4f9670a2aa137c",
+   "size": 699192
+  }
+ },
+ "pak": "zzzzzzzzzz_coop_hd_wpn_4fin.pk3",
+ "pak_bytes": 193706581,
+ "pak_sha256": "f41e05b7efe0ece0f79fa8532855643d3a7feacd1e1f0c9a1eb1873512187968"
+}
