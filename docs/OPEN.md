@@ -519,11 +519,15 @@ findings are in `docs/proposals/defect_sweep2_2026-09-28/`.
 Playtest: bolt/reload/lean/ride while aimed, pistols aimed (`cg_vmHandFix 0` / `cg_adsPistolKick 0` = old). Prone eye ease
 (bug-3317, cg_stanceEase) awaits playtest; Gewehrgranate + M1919 keep the old tune (bug-3316).
 
-### Cover v3 (engine `cover-seamless` 7acba2cc, mod 7b336a7b) - merge after v1.10.57, then playtest
-Harness-verified on m3l2/m6l2b (bug-10357). Still open: (1) right-jamb blind fire still plays the overhead
-crate spray (bug-310) - rounds are steered right, the pose is not; (2) the open side at the m3l2 house corner read
-"none" in some runs and "-1, edge 33" in others at the same spot - SUSPECTED an ally standing past the corner
-(unproven); (3) no true curved wall found on the AA maps tested - the normal-follow is proven
-on the m6l2b 28-degree convex bend only; (4) the 1P exit fly-in and two-client MP (two machines) not seen by
-the user; remote client with 120 ms cl_packetdelay passed on one PC. (5) stepping off a wall while looking straight out still
-shows 1-2 frames of a head close-up as the cover framing hands back to the stock chase collision (cv_k*_exit_02).
+### Cover v3 (shipped v1.10.58; follow-ups on `cover-seamless` 3caf42ed + mod a60f315f, not merged)
+Fixed in the follow-up: right-corner blind fire pose (left hand), the hand-back head close-up, actors read as
+cover (bugs 10372-10374). Still open: (1) no true curved wall on the AA maps tested - normal-follow proven on
+the m6l2b 28-degree convex bend only; (2) two-PC multiplayer not seen by the user (one PC, one remote client with
+120 ms cl_packetdelay passed); (3) bodies without tag_weapon_left still get the crate spray at right corners.
+
+### Norway ending roof blasts + "tables" fix (branch `roof-cine` mod 11f64347, map v9; not merged, bug-10397)
+The "tables" were the v7 top-tier breach interiors (6, 18-21) standing 95 u above the roofline. Map v9 caps them and adds
+five roof-edge notch sites (23-27); script fires a roof eruption + lingering fireball at each. Proposal + byte-exact rebuild:
+`docs/proposals/roofcine_2026-11-02/README.md`. To ship: the v9 `maps/m2l3.bsp` must go into `zzzzzzzzzz_coop_maps.pk3`
+(candidate `H:\hzm_work\roofcine\zzzzzzzzzz_coop_maps.pk3`) in the same release as the script. Awaiting the user's look
+in-game. Known, untouched: the facade breach holes read as flat brown patches from the one-shot distance.
