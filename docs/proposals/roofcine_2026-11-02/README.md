@@ -146,9 +146,8 @@ Ship note: `*.wav` are git-ignored in the mod. The nine files must be generated 
 ## Evidence (capture av5: client G:\mohaa-roofcine-av = the rel59 binaries + this branch's scripts/map/sounds in an overlay pak)
 Recorded as a demo during the run, then rendered by the engine's own demo render (`set activeAction video; demo roofend`, 60 fps,
 game sound in the file; the plain `video` command does not exist in this build's console path).
-* **Video:** `G:\mohaa-roofcineunsv5\media
-orway_ending_payoff_1080p60.mp4` - 25 s, 1920x1080 60 fps, H.264 CRF 19 + AAC 192k, 37.8 MB, from the fade-in to the fade-out.
-* GIF of the climax: `G:\mohaa-roofcineunsv5\media\climax.gif`; stills `G:\mohaa-roofcineunsv5\media\still_*.jpg` (seconds into the raw render: 6.5 roof eruptions, 9.0 chain, 11.6 flash, 12.6 / 13.6 zoom, orange haze, burning men, bodies thrown, 14.6 the volleys, 16.5 / 22.0 every hole burning).
+* **Video:** `G:\mohaa-roofcine\runs\av5\media\norway_ending_payoff_1080p60.mp4` - 25 s, 1920x1080 60 fps, H.264 CRF 19 + AAC 192k, 37.8 MB, from the fade-in to the fade-out.
+* GIF of the climax: `G:\mohaa-roofcine\runs\av5\media\climax.gif`; stills `G:\mohaa-roofcine\runs\av5\media\still_*.jpg` (seconds into the raw render: 6.5 roof eruptions, 9.0 chain, 11.6 flash, 12.6 / 13.6 zoom, orange haze, burning men, bodies thrown, 14.6 the volleys, 16.5 / 22.0 every hole burning).
 * qconsole: 0 "needs an alias" for the ending's own sounds (the one left, `m2l2_alarm2`, is replaced by `coop_fin_siren` in v1.10.61), 0 script errors.
 
 Known / not changed: the hole flames are the stock `cfx_flame` sprite, which reads as a bright white-cored tongue at 4000-5000 u
