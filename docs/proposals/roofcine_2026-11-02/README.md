@@ -191,3 +191,8 @@ Map pak (only `maps/m2l3.bsp` replaced + `scripts/hzm_window.shader` + `textures
   `irunaway2` among others) the cine never knew about. `CENSUS` lines (entnum, model, targetname, team, thinkstate, victim) at the
   fade-in, the chain, boom +2 s and the fade: the last census reads `total=0`.
 * Not done: crates / lamp poles / fences are world brushes - they cannot be smashed (pieces that land on crates rest on them).
+
+## Evidence (capture av7, map v10)
+* Video 1080p60: `G:/mohaa-roofcine/runs/av7/media/norway_ending_v10_1080p60.mp4` (25 s, 28.1 MB, H.264 + AAC); phone copy 720p30 `G:/mohaa-roofcine/runs/av7/media/norway_ending_v10_phone_720p.mp4` (15.9 MB).
+* Before/after per item: `G:/mohaa-roofcine/runs/av7/media/before_after_{1_grey_hut,2_leanto,3_door,4_facade,5_left_hut}.jpg`; full frames `full_*.jpg` (seconds into the raw render).
+* Silence beat measured in the render: about -10 dBFS RMS before, -42 to -51 in the beat. 0 script errors, 0 BSP/CM errors; CENSUS fade total=0.
