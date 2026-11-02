@@ -4,7 +4,7 @@
 
 > *The MOH Trilogy Coop Mod is a love letter to the early Medal of Honor franchise.*
 
-<p align="center"><img src="docs/screenshots/00-omaha-banner.jpg" width="100%" alt="Omaha Beach, played cooperatively"></p>
+<p align="center"><img src="docs/screenshots/00-norway-banner.jpg" width="100%" alt="Norway: the facility goes up as the train pulls out"></p>
 
 <p align="center">
 <a href="https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe"><img src="https://img.shields.io/badge/Download%20%26%20Install-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Download and install"></a>
@@ -49,6 +49,33 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 </details>
 
 ## What's new
+
+### v1.10.53 - v1.10.56 - Demo studio, Film Room, a new Norway ending
+
+- **Demo studio** (v1.10.56) - slow-motion camera paths, a camera that follows a player, H for a clean shot and L for letterbox bars, highlights you jump between with PgDn / PgUp, an automatic highlight reel (KP 8), a corner view through another player's eyes (I / O) and F10 renders straight to MP4 when ffmpeg is installed. Hold KP 4 / KP 6 to scrub. [Demo Editor field manual](docs/demo-editor/DEMO_EDITOR.md)
+- **Film Room** (v1.10.54) - open it from the projector in the attic menu: every demo you have recorded, with a picture and details; play, render, rename or delete. HOME saves an instant replay of the last moments
+- **New gun textures** (v1.10.56) - every base gun's wood and metal rebuilt from free CC0 scans, with the camo, blood and metal finishes re-baked to match
+- **Norway: a new ending in one unbroken shot** (v1.10.54) - giant roof blasts and fireballs that hang in the air, holes blown across the facade, the yard's small buildings burning and blowing apart, and a shockwave racing across the snow to the train
+- **Norway: the hold at the station** (v1.10.55 - v1.10.56) - the Axis push for the boarding platform and hit hardest as the train comes in; two halftracks every time; snipers on the near rooftops; the Allied help hangs back by the train instead of doing the work for you
+- **Braced MGs** (v1.10.54) - brace on any waist-high cover and the bipod sits on top of it; the carried MG42 and .30 cal show a heat meter
+- **Mission 1** (v1.10.53) - the extra North Africa objectives that could lock a mission's ending are gone
+
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/v11054-ending-roof-blasts.jpg" width="100%" alt="Norway ending: roof blasts and fireballs over the facility as the train pulls out"></td>
+<td width="50%"><img src="docs/screenshots/v11054-ending-facade.jpg" width="100%" alt="Norway ending: holes blown across the facade, fires inside"></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v11055-norway-boarding.jpg" width="100%" alt="Norway: holding the station until the train is boarded"></td>
+<td width="50%"><img src="docs/screenshots/v11056-demo-slowmo-path.gif" width="100%" alt="Demo editor: a slow-motion camera path that follows a soldier"></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v11056-demo-clean-letterbox.jpg" width="100%" alt="Demo editor: H clean shot with L letterbox bars"></td>
+<td width="50%"><img src="docs/screenshots/v11056-demo-pip-corner.jpg" width="100%" alt="Demo editor: the corner view through another player's eyes"></td>
+</tr>
+</table>
+
+<p align="center"><img src="docs/screenshots/v11056-guns-before-after.jpg" width="85%" alt="New gun textures: M1 Garand, Springfield, Gewehr 43 and trench gun, before and after"></p>
 
 ### v1.10.48 - v1.10.52 - Demo editor, Norway rebuilt
 

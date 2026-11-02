@@ -21,7 +21,7 @@ into the game: nothing to install, nothing external. Run it from the numeric key
 | Key | Does |
 |---|---|
 | KP 0 | Free camera on / off |
-| KP 4 / KP 6 | Back / forward 5 seconds |
+| KP 4 / KP 6 | Back / forward 5 seconds; hold to scrub, faster the longer you hold (2x up to 32x) |
 | KP 5 | Step one snapshot (pauses) |
 | Del or KP . | Pause / resume |
 | KP 1 / 2 / 3 / 7 / 9 | Speed 0.5x / 1x / 2x / 4x / 5x |
@@ -29,6 +29,11 @@ into the game: nothing to install, nothing external. Run it from the numeric key
 | KP + | Play / stop the camera path |
 | KP - | HUD: full, player names only, none |
 | KP * / KP / | Next / previous filter |
+| H | Clean shot: no HUD, crosshair, gun, arms or name tags |
+| L | Letterbox bars |
+| PgDn / PgUp | Next / previous highlight |
+| KP 8 | Build and play the highlight reel |
+| I / O | Corner view on / off, next player in it |
 | W A S D, Space, Ctrl | Fly the free camera (Shift 3x faster, Alt slower) |
 | Mouse | The timeline cursor; in the free camera, look around (works while paused) |
 | Right mouse (hold) | In the free camera: the timeline cursor instead of looking |
@@ -51,6 +56,8 @@ plays with the full HUD. It shows the time played and the demo's full length, ac
   allied deaths, a red flag is the recording player's own death, a gold square is an objective
   added or completed, and a blue tick below the bar is a camera waypoint. Hover a marker to see
   what happened; click it to jump to that moment.
+- **Highlights:** your kills, multi-kills, close explosions, wrecked vehicles and completed
+  objectives are marked too. **PgDn** jumps to the next one, **PgUp** to the one before.
 - **Long demos** scrub as fast as short ones: once a stretch has been played or jumped through,
   jumping back into it is instant.
 - **Map changes** split the bar (L1, L2 ...). The map that is loaded is lightly shaded. A drag
@@ -59,8 +66,15 @@ plays with the full HUD. It shows the time played and the demo's full length, ac
   cursor.
 - The bar is never in a clean picture: it hides with the KP - modes, and neither the bar nor the
   editor panel is in an F10 render. `demo_timeline 0` turns it off.
-- **F10 renders** write `videos/videoNNNN.avi` at a steady 60 fps, however slow the PC renders.
-  The video has no sound.
+- **F10 renders** play steady at 60 fps, however slow the PC renders, and stop by themselves at
+  the demo's last frame. With [ffmpeg](https://ffmpeg.org) installed (on your PATH, or named by
+  `cl_ffmpegPath`) the result is a small `videos/videoNNNN.mp4`; without it you get the AVI as
+  before. `cl_aviMp4 2` keeps both, `0` AVI only. The video has no sound.
+
+## Highlight reel
+
+**KP 8** builds a reel of about a minute from the demo's best highlights and plays it. Press
+**F10** while it plays to render just the reel. `demo_reel clear` goes back to the whole demo.
 
 ## Free camera
 
@@ -101,6 +115,27 @@ own time. Waypoints added at the same moment play as a fly-through instead
 | `demo_waypoint list` | Lists them |
 | `demo_camera_clear` | Deletes them all |
 
+**Slow motion.** Give a waypoint its own speed and the path slows into it and speeds back out:
+
+```
+demo_waypoint speed 2 0.25     // waypoint 2 plays at quarter speed
+demo_waypoint speed 0.5        // the waypoint nearest the camera, half speed
+```
+
+The change is eased from one waypoint to the next, so nothing jolts. `demo_waypoint list` shows each
+waypoint's speed, and the status line shows the speed as it ramps.
+
+**Keep someone in shot.** While the path flies the camera, it can keep aiming at a player or a spot:
+
+| Command | Does |
+|---|---|
+| `demo_path follow 1` | Keep player 1 centred (`demo_names` lists the slots) |
+| `demo_path lookat` | Keep aiming at whatever the centre of the view is on now |
+| `demo_path lookat 120 -340 64` | Keep aiming at that point |
+| `demo_path follow off` | Back to the waypoints' own aim (`lookat off` does the same) |
+
+Speeds and the aim lock are saved with the path.
+
 ## A clean picture, and filters
 
 **KP -** hides every HUD element - in play too, including while F9 records, and it stays hidden
@@ -116,6 +151,12 @@ moment, unless the HUD is hidden, so it never lands in a clean recording.
 
 ![The ten filters](media/filters.jpg)
 
+**H** is the clean shot: no HUD, crosshair, gun, arms, name tags or icons over heads, just the
+scene. Through a scope the scope view stays. Press **H** again to get back what you had.
+
+**L** adds black letterbox bars for a 2.39:1 picture. `demo_letterbox 1.85` picks another shape,
+`demo_letterbox 0` turns them off. Both stay on through an F10 render.
+
 `filter list` prints them, `filter sepia` or `filter 2` picks one, `filter off` clears it, and
 `r_ppFilterStrength 0.5` softens any of them. Cinematic adds 2.39:1 bars on screens narrower than
 that.
@@ -126,6 +167,9 @@ Every player in the demo, not only the one who recorded it, plays back with his 
 and guns. A demo that changes map part-way plays straight through: the clock runs on across the
 change, seeking works everywhere, and jumping back into an earlier map reloads the demo for you.
 You can start another demo with `demo name` while one is playing.
+
+**I** opens a corner view through another player's eyes while you watch; **O** switches it to the
+next player. It sits on top of letterbox bars and filters stop at its edge.
 
 ![An aimed reload, free camera](media/reload.gif)
 
@@ -156,6 +200,13 @@ The new name shows over his head, on the scoreboard and in the kill feed.
 | `filter ...` | Pick a filter |
 | `demo_names` | List the players by slot |
 | `demo_setname 3 "Name"` | Rename slot 3 (`-` restores) |
+| `demo_waypoint speed [n] <x>` | Playback speed at a waypoint, 0.05 to 16 |
+| `demo_path follow <slot>` / `lookat [x y z]` | Aim lock while the path plays (`off` clears) |
+| `demo_clean` | Clean shot on / off (H) |
+| `demo_letterbox_toggle` | Letterbox bars on / off (L) |
+| `demo_mark next` / `prev` | Jump to the next / previous highlight |
+| `demo_reel` | Build and play the highlight reel; `play`, `clear` |
+| `encodevideo <name>` | Encode `videos/<name>.avi` to MP4 |
 
 | Setting | Default | Meaning |
 |---|---|---|
@@ -165,6 +216,9 @@ The new name shows over his head, on the scoreboard and in the kill feed.
 | `r_ppFilterStrength` | 1 | How strongly the filter is applied |
 | `demo_editor` | 1 | `0` plays demos the old way |
 | `demo_timeline` | 1 | `0` hides the timeline bar |
+| `demo_letterbox` | 0 | Letterbox aspect; 0 is off |
+| `cl_aviMp4` | 1 | `1` = MP4 only, `2` = MP4 and AVI, `0` = AVI only |
+| `cl_ffmpegPath` | | Full path to ffmpeg.exe when it is not on your PATH |
 
 ## Recording everything
 
