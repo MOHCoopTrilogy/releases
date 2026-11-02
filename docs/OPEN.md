@@ -359,10 +359,8 @@ The full list is [FEATURES.md](FEATURES.md). These are the ones someone consciou
 <a name="planned"></a>
 ## Planned, not built
 
-### 3D Join Game: the attic's right-hand door (user 2026-11-01: v1.10.57, with the 8 demo tools + the seamless cover system)
-"The door on the right is join game just like in vanilla." The DOOR is Join Game - not the desk phone, not a separate MP room (user, twice; the FEASIBILITY.md MP_PHONE / HUB_A plan is
-superseded for this): a hotspot on the attic's right door in `docs/proposals/kickoff_2026-10-18/menus3d/make_main3d.py` that flies to
-the door and opens the server browser (`joininternetgame.urc`), lit while highlighted like the Film Room projector.
+### 3D Join Game door - CLOSED 2026-11-02
+User: the right-hand attic door (MULTIPLAYER, `scenehot "mp"`) "should go into the multiplayer menu" - which it already does (fly-in, then `pushmenu multiplayer`, where Join Game is). Nothing to build.
 
 ### v1.10.56 playtest list
 Norway hold last 45 s rush, two halftracks never stacked (east fallback + launch lock), pitched-roof perches 1-4 now allowed
