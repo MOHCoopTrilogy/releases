@@ -71,6 +71,10 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_loadout check - rege
 python "C:\mohaa-coop-dev\docs\tools\gen_version_cfg.py" build
 if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_version_cfg check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_version_cfg (card has no UPDATE vX.Y.Z title)" -ForegroundColor Red; exit 1 }
+# [bug-10394, v1.10.60] every animation the coop LEGS statemap names must exist in the anims_shared.txt that actually loads
+# (the last-sorting pak wins - coop_stress / coop_fixes2 carry whole-file copies). A missing legs anim state-loops and drops the player.
+python "C:\mohaa-coop-dev\docs	ools\check_anim_aliases.py"
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by check_anim_aliases (a statemap anim is missing from the winning anims_shared.txt)" -ForegroundColor Red; exit 1 }
 # [user 2026-09-13] The two MP-only armory screens (Allied + Axis), their cfg trees and the side rosters are
 # GENERATED from docs/tools/mp_armory_roster.tsv by gen_mp_armory.py. Same discipline as gen_loadout: `check`
 # is read-only and exits 1 on any byte difference, so a hand-edit or a stale build cannot ship. This tool
