@@ -443,7 +443,87 @@ def door(res="720", slow=2.0, fps=20):
     return launch("mpui_door_%s" % res, w, h, boot_lines(center, slow, ["set cl_maxfps 60"]), boot_args(center, sp))
 
 
+def exits(res="720", which="AB"):
+    """the room's way back on every path, door AND Esc, each followed by an Esc on the attic (must stay the attic) and a
+    re-entry (the stack must still work):
+      A  attic -> room -> door / Esc
+      B  attic -> room -> JOIN -> BACK -> room -> door / Esc
+      C  a map booted by ui_startdmmap (like the user's test launcher) -> the in-game DISCONNECT plate's own command
+         ("disconnect; pushmenu multiplayer") -> room -> door / Esc"""
+    w, h, center, lay = E.RES[res]
+    acam, ahot, abox = scene_info(urc("main.urc"), "atticscene")
+    hcam, hhot, hbox = scene_info(urc("multiplayer.urc"), "hubscene")
+    s = Script(w, h, 1.0)
+    shot = lambda n, wait=500: s.cmd("screenshot mx_%s_%s" % (res, n), wait)  # noqa: E731
+    attic_mp = hot_px(acam, ahot["mp"], abox.get("mp"), w, h)
+    door = hot_px(hcam, hhot["main"], hbox.get("main"), w, h)
+
+    def into_room():
+        s.at(attic_mp, 300)
+        s.press(0x1, 0)
+        s.t += 2300
+
+    def leave(tag, how):
+        s.mark("%s exit by %s" % (tag, how))
+        if how == "door":
+            s.at(door, 400)
+            s.press(0x1, 0)
+        else:
+            s.at((w // 2, int(h * 0.9)), 200)
+            s.press(0x2, 0)
+        s.t += 2500
+        shot("%s_%s_1after" % (tag, how), 300)
+        s.mark("%s Esc on the attic" % tag)
+        s.press(0x2, 0)                      # Esc on the attic: must stay the attic
+        s.t += 1500
+        shot("%s_%s_2esc_on_attic" % (tag, how), 300)
+        into_room()                         # and the attic -> room door still works
+        shot("%s_%s_3reentry" % (tag, how), 300)
+        s.press(0x2, 0)
+        s.t += 2500
+        shot("%s_%s_4back_again" % (tag, how), 300)
+
+    s.cmd("echo ^~^~^ MPUI exits start", 3500)
+    shot("00attic")
+    if "A" in which:
+        for how in ("door", "esc"):
+            into_room()
+            shot("A_%s_0room" % how, 300)
+            leave("A", how)
+    if "B" in which:
+        for how in ("door", "esc"):
+            into_room()
+            s.at(hot_px(hcam, hhot["join"], hbox.get("join"), w, h), 400)
+            s.press(0x1, 0)
+            s.t += 4500                          # the fly + the browser's fade-in (the menu is locked while it moves)
+            shot("B_%s_0browser" % how, 300)
+            s.at(vpx(rect_of("back", "joingame.urc"), w, h, center), 600)
+            s.press(0x1, 0)
+            s.t += 3000
+            shot("B_%s_0room" % how, 300)
+            leave("B", how)
+    if "C" in which:
+        for how in ("door", "esc"):
+            s.mark("C boot a map by ui_startdmmap")
+            for c in ("set ui_dmmap dm/mohdm1", "set g_gametype 2", "set ui_dedicated 0", "set ui_gamespy 0"):
+                s.cmd(c, 100)
+            s.cmd("ui_startdmmap 2", 24000)
+            shot("C_%s_0ingame" % how, 300)
+            s.mark("C disconnect plate")
+            s.cmd("disconnect", 1500)
+            s.cmd("pushmenu multiplayer", 4000)        # the DISCONNECT plate's stuffcommand "disconnect; pushmenu multiplayer"
+            shot("C_%s_0room" % how, 300)
+            leave("C", how)
+    s.cmd("echo ^~^~^ MR done", 800)
+    s.cmd("quit", 0)
+    sp = s.write("mpui_exits_%s_%s.txt" % (res, which))
+    return launch("mpui_exits_%s_%s" % (res, which), w, h, boot_lines(center, 1.0), boot_args(center, sp))
+
+
 if __name__ == "__main__":
+    if sys.argv[1] == "exits":
+        exits(sys.argv[2] if len(sys.argv) > 2 else "720", sys.argv[3] if len(sys.argv) > 3 else "ABC")
+        sys.exit(0)
     if sys.argv[1] == "door":
         door(sys.argv[2] if len(sys.argv) > 2 else "720")
         sys.exit(0)

@@ -40,7 +40,7 @@ def opt(n, d):
 
 
 MOD = opt("--mod", r"C:\mohaa-coop-dev\hzm-mod-mpui")
-BASE_PK3 = opt("--base-pk3", r"H:\hzm_work\mphub3d\ship\zzzzzzzzzzzzzz_hzm_menus3d.pk3")
+BASE_PK3 = opt("--base-pk3", r"H:\hzm_work\mpui\hub\ship\zzzzzzzzzzzzzz_hzm_menus3d.pk3")   # the room re-baked with the attic exit door (make_mphub3d.py)
 SHIP_PK3 = opt("--ship-pk3", r"H:\hzm_work\mpui\ship\zzzzzzzzzzzzzz_hzm_menus3d.pk3")
 STAGE = opt("--stage", r"H:\hzm_work\mpui\stage")
 UI = os.path.join(MOD, "ui")
@@ -217,6 +217,19 @@ for old, new in (("SERVER BROWSER", "JOIN GAME"), ("START GAME", "HOST GAME"), (
         mp = mp.replace(q, q.replace(old, new))
     assert mp.count(old) == 0 or old == "START GAME", (old, mp.count(old))
 # the exit door carries a physical MAIN MENU plaque (hub_prep.py section 2); its hover caption stays hover-only like the others
+#
+# [2026-11-03 user: "Going back to the main menu from the join game room doesn't seem to put you back into main menu"]
+# the exit (door hotspot + ESC) ended in `popmenu 1`, which only reveals whatever is UNDER the room: right when the attic
+# pushed it, wrong when the room was opened another way (the in-game DISCONNECT plate's "disconnect; pushmenu multiplayer",
+# a map booted from a cfg / console, a connect-fail return). Now: pop, then `forcemenu main` (MenuManager::ForceMenu pushes
+# main only when it is not already the head, so the attic path is unchanged and no duplicate main is stacked there), then lift
+# the black veil (the attic lifts it itself only when IT pushed the room - sceneleave; otherwise it stayed black). ESC in the
+# room runs the same exit (with its camera move) instead of a bare pop.
+EXIT_OLD = "uiafter 0.6 popmenu 1"
+EXIT_NEW = "uiafter 0.6 popmenu 1; uiafter 0.66 forcemenu main; uiafter 0.9 uiveil 0 0.3"
+if EXIT_NEW not in mp:
+    assert mp.count(EXIT_OLD) == 2, mp.count(EXIT_OLD)      # scenehot "main" + its proxy button hub_h1
+    mp = mp.replace(EXIT_OLD, EXIT_NEW)
 open(MP, "wb").write(mp.encode("latin-1"))
 LOC.update(["MAIN MENU", "SERVICE RECORD", "JOIN GAME", "HOST GAME", "No server selected", "Pick a row, then JOIN - or double-click it."])  # + the engine-set ui_sbSel* idle text
 
