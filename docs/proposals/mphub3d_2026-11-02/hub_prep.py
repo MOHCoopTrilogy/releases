@@ -152,18 +152,22 @@ else:
         SC.collection.objects.link(o)
         return o
     # the frosted light: in the attic it is not baked (glass) and the lit back room shows through it; against the hub's solid wall
-    # that read as a black hole, so here the pane is a pale, faintly lit frosted surface baked with the room (grp bg)
-    fm = bpy.data.materials.new("frosted_lit")
+    # that read as a black hole, so here the pane is a DIM frosted surface baked with the room (grp bg): no emission (a lit pane
+    # was the brightest thing in the room, coordinator QA 2026-11-03), a grey-buff close to the wall tone, darker than the lit wall,
+    # with a soft vertical gradient (lighter at the top, as if the corridor beyond were lit)
+    fm = bpy.data.materials.new("frosted_dim")
     fm.use_nodes = True
-    fb = [n for n in fm.node_tree.nodes if n.type == 'BSDF_PRINCIPLED'][0]
-    fb.inputs["Base Color"].default_value = (0.58, 0.61, 0.64, 1.0)
-    fb.inputs["Roughness"].default_value = 0.9
-    for k in ("Emission Color", "Emission"):
-        if k in fb.inputs:
-            fb.inputs[k].default_value = (0.62, 0.68, 0.74, 1.0)
-            break
-    if "Emission Strength" in fb.inputs:
-        fb.inputs["Emission Strength"].default_value = 0.12
+    nt = fm.node_tree
+    fb = [n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED'][0]
+    fb.inputs["Roughness"].default_value = 0.95
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    nt.links.new(tc.outputs["Generated"], sep.inputs[0])
+    nt.links.new(sep.outputs["Z"], ramp.inputs["Fac"])
+    ramp.color_ramp.elements[0].color = (0.085, 0.082, 0.075, 1.0)   # bottom of the pane (measured: lit at 0.17-0.30 it matched the wall, QA 2026-11-03)
+    ramp.color_ramp.elements[1].color = (0.15, 0.145, 0.13, 1.0)     # top
+    nt.links.new(ramp.outputs["Color"], fb.inputs["Base Color"])
     for o in ob:
         if o.name.startswith("wd_door_mp_glass"):
             o.data.materials.clear()
@@ -180,7 +184,7 @@ else:
         if o.name.startswith("wd_door_mp_gbar"):
             o.matrix_world = Matrix.Translation((0.026, 0, 0)) @ o.matrix_world      # the glazing bars in front of the pane, as seen in the attic
     # the MAIN MENU plaque over the casing top (z 2.60): a wood block + its lettered face (a "quad" group, like the SR plaque)
-    QW, QH, QD = 0.80, 0.125, 0.022
+    QW, QH, QD = 0.96, 0.15, 0.022      # [QA 2026-11-03] a little larger than the SR plaque (0.86 x 0.134): it hangs further from the camera
     zq = 2.60 + 0.03 + QH / 2
     bpy.ops.mesh.primitive_cube_add(size=1.0, location=(XW + QD / 2 + 0.001, DOOR_Y, zq))   # on the wall itself
     qb = bpy.context.active_object
