@@ -48,6 +48,9 @@ for S in s["structures"]:
     if S["name"] == "yardwall_s":
         S["brushes"] = S["brushes"] + [1088]
         S["breaches"] = S.get("breaches", []) + YARD
+# [v10b] the east wall (brush 2724, x 1472..1488, z -512..-296) cut at y 350 / 530: the middle piece is the EAST GATE the hidden east
+# halftrack start drives through (make_eastgate.py renames it coop_fin_eastgate2 and adds the player/AI clip behind it)
+new.append(dict(name="eastwall", axis=1, cuts=[350, 530], brushes=[2724], pivot="base"))
 s["structures"] += new
 json.dump(s, open(os.path.join(out, "v10_s3.json"), "w")); json.dump(t, open(os.path.join(out, "v10_s4.json"), "w"))
 print("specs ->", out)

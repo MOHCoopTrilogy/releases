@@ -196,3 +196,21 @@ Map pak (only `maps/m2l3.bsp` replaced + `scripts/hzm_window.shader` + `textures
 * Video 1080p60: `G:/mohaa-roofcine/runs/av7/media/norway_ending_v10_1080p60.mp4` (25 s, 28.1 MB, H.264 + AAC); phone copy 720p30 `G:/mohaa-roofcine/runs/av7/media/norway_ending_v10_phone_720p.mp4` (15.9 MB).
 * Before/after per item: `G:/mohaa-roofcine/runs/av7/media/before_after_{1_grey_hut,2_leanto,3_door,4_facade,5_left_hut}.jpg`; full frames `full_*.jpg` (seconds into the raw render).
 * Silence beat measured in the render: about -10 dBFS RMS before, -42 to -51 in the beat. 0 script errors, 0 BSP/CM errors; CENSUS fade total=0.
+
+## Map v10b: the hidden east halftrack start (east gate)
+Built after `make_windows.py`: `python tools/make_eastgate.py c6.bsp m2l3.bsp <assets>` (the `eastwall` structure is in `mk_v10spec.py`).
+* `coop_fin_eastgate2` - the east wall section x 1472..1488, y 350..530, z -512..-296 (216 x 180 u opening; halftrack ~260 x 130 x 130),
+  a script_object that looks and collides like the wall. Open/close: `coop_mod/finale_m2l3_eastgate.scr::eg_open` / `::eg_close`
+  (origin stepping: 24 u east, then 190 u north behind the wall; 1.3 s each; gate_iron_open1 / gate_iron_close). No-ops without the gate.
+* `coop_fin_eastgate2_clip` - permanent PLAYERCLIP|MONSTERCLIP brush in the opening: players and AI can never leave through it even
+  while the gate is open; vehicles pass (MASK_VEHICLE has neither bit). Proven: the test halftrack drove through it.
+* `coop_fin_eastramp` - a snow bank outside (the collision floor drops 64 u at x 1664, too high a step for the halftrack): 1:4 slope
+  x 1664..1920, solid, vertex-lit snow top (`scripts/hzm_eastgate.shader`).
+* Route (DrivableVehicle sdkfz + info_waypoint chain + `drive ... 160 100 40 128`, the alarmveh recipe), tested in capture eg2:
+  hidden start `( 2250 440 -528 )` -> `( 2000 440 -528 )` -> `( 1800 440 -498 )` -> `( 1650 440 -464 )` -> gate `( 1480 440 -464 )` ->
+  `( 1350 440 -464 )` -> joins fd_ht2_p at `( 1150 440 -464 )`. It arrived at x 1125 in 7.5 s; gate opened when the hull passed x 1950,
+  closed when it passed x 1250. Ground probes: -576 outside, the ramp, -512 inside.
+* Stills: `G:\mohaa-roofcine\runs\eg2\media\eastgate_A_defence_line_start_hidden.jpg` (zone centre, eye height, looking at the
+  start: nothing of it), `_B_gate_open_halftrack_coming.jpg`, `_C_through.jpg`, `_D_closed_behind.jpg`. 0 script errors, no
+  "Pathnodes have changed".
+* Known: seen through the open gate the outside reads as white snow under the fog (no void, but no detail at that range either).
