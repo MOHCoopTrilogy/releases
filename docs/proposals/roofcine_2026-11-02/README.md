@@ -214,3 +214,5 @@ Built after `make_windows.py`: `python tools/make_eastgate.py c6.bsp m2l3.bsp <a
   start: nothing of it), `_B_gate_open_halftrack_coming.jpg`, `_C_through.jpg`, `_D_closed_behind.jpg`. 0 script errors, no
   "Pathnodes have changed".
 * Known: seen through the open gate the outside reads as white snow under the fog (no void, but no detail at that range either).
+
+**Current map pak (v10 + v10b east gate):** `H:/hzm_work/roofcine/v10/zzzzzzzzzz_coop_maps.pk3` md5 `0809580addcb91bd7e6557ac790c1ae9` (4,720,817 B); `maps/m2l3.bsp` 15,518,640 B md5 `ccaeb9b5af15b91cb6426910f7a553d6`; adds `scripts/hzm_window.shader`, `scripts/hzm_eastgate.shader`, `textures/hzm/window_broken.tga`. (The v10-only md5s quoted above are superseded.)
