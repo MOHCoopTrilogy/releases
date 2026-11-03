@@ -123,18 +123,18 @@ def field(name, rect, cvar, font="verdana-14", extra=None, **kw):
              linkcvar=cvar, extra=extra, **kw)
 
 
-def toggle(name, rect, t, cvar):
+def toggle(name, rect, t, cvar, gate=""):
     """a filter toggle row built from proven parts (the coop_hostrules recipe): ON and OFF plates gated by the cvar, a lamp,
     and the click sets the cvar to the other value. Gated-off widgets are click-transparent (HZM FindResponder)."""
     x, y, w, h = rect
     out = []
     out += W("Button", name + "On", rect, title=t, fg=BEIGE, bg=PLATE, border="3D_BORDER", font="verdana-12", textalign="center",
-             hovershader=GLOW, clicksound="sound/menu/apply.wav", stuffcommand="set %s 0" % cvar, enabledcvar=cvar)
+             hovershader=GLOW, clicksound="sound/menu/apply.wav", stuffcommand="set %s 0" % cvar, enabledcvar=(cvar + " " + gate).strip())
     out += W("Button", name + "Off", rect, title=t, fg=(0.62, 0.57, 0.45, 1.0), bg=(0.22, 0.17, 0.11, 0.94), border="3D_BORDER",
              font="verdana-12", textalign="center", hovershader=GLOW, clicksound="sound/menu/apply.wav", stuffcommand="set %s 1" % cvar,
-             enabledcvar="!" + cvar)
-    out += label(name + "LampOn", (x + 6, y + (h - 8) // 2, 8, 8), bg=LAMP_ON, enabledcvar=cvar)
-    out += label(name + "LampOff", (x + 6, y + (h - 8) // 2, 8, 8), bg=LAMP_OFF, enabledcvar="!" + cvar)
+             enabledcvar=("!" + cvar + " " + gate).strip())
+    out += label(name + "LampOn", (x + 6, y + (h - 8) // 2, 8, 8), bg=LAMP_ON, enabledcvar=(cvar + " " + gate).strip())
+    out += label(name + "LampOff", (x + 6, y + (h - 8) // 2, 8, 8), bg=LAMP_OFF, enabledcvar=("!" + cvar + " " + gate).strip())
     LOC.add(t)
     return out
 
@@ -217,7 +217,7 @@ for old, new in (("SERVER BROWSER", "JOIN GAME"), ("START GAME", "HOST GAME"), (
         mp = mp.replace(q, q.replace(old, new))
     assert mp.count(old) == 0 or old == "START GAME", (old, mp.count(old))
 open(MP, "wb").write(mp.encode("latin-1"))
-LOC.update(["JOIN GAME", "HOST GAME", "No server selected", "Pick a row, then JOIN - or double-click it."])  # + the engine-set ui_sbSel* idle text
+LOC.update(["MAIN MENU", "SERVICE RECORD", "JOIN GAME", "HOST GAME", "No server selected", "Pick a row, then JOIN - or double-click it."])  # + the engine-set ui_sbSel* idle text
 
 # ---------------------------------------------------------------- 2. map display names
 names = {}
@@ -287,7 +287,7 @@ J += label("listRule", (34, 320, 572, 1), bg=RULE)
 J += W("Label", "statusLbl", (34, 322, 572, 14), fg=MUTED, font="verdana-12", textalign="left", linkcvar="ui_sbStatus")
 # selection strip
 J += label("selStrip", (34, 338, 572, 50), bg=STRIPE, border="INDENT_BORDER")
-J += W("Label", "selName", (42, 341, 420, 18), fg=INK, font="facfont-20", textalign="left", linkcvar="ui_sbSelName")
+J += W("Label", "selName", (42, 342, 430, 16), fg=INK, font="verdana-14", textalign="left", linkcvar="ui_sbSelName")
 J += W("Label", "selMap", (42, 359, 420, 14), fg=RUST, font="verdana-12", textalign="left", linkcvar="ui_sbSelMap")
 J += W("Label", "selInfo", (42, 372, 440, 14), fg=MUTED, font="verdana-12", textalign="left", linkcvar="ui_sbSelInfo")
 J += plate("favAdd", (478, 342, 122, 20), "FAVOURITE", "globalwidgetcommand hzmsrvlist hzmfav", font="verdana-12",
@@ -321,6 +321,11 @@ CAMPAIGNS = [("Training / Secret", "m0", None),
              ("4  Behind Enemy Lines", "m4", None), ("5  The Day of the Tiger", "m5", None), ("6  Return to Schmerzen", "m6", None),
              ("1  Tunisia", "e1", "BREAKTHROUGH"), ("2  Sicily", "e2", None), ("3  Italy", "e3", None),
              ("1  Normandy", "t1", "SPEARHEAD"), ("2  Bastogne", "t2", None), ("3  Berlin", "t3", None)]
+# each campaign's first tile (its cfg's first ui_dmmap): picking a campaign selects it, so MAP FILE never reads "nomap"
+FIRST = {}
+for cfg in [c[1] for c in CAMPAIGNS]:
+    m = re.search(r'set ui_dmmap ([^;"]+);seta coop_mapcmd map ([^;"]+)', open(os.path.join(UI, "coop_start", cfg + ".cfg"), encoding="latin-1").read())
+    FIRST[cfg] = "set ui_dmmap %s;seta coop_mapcmd map %s" % (m.group(1), m.group(2))
 HOSTBACK = "globalwidgetcommand mpui_scene_host scenefly 0.45 %s; uiafter 0.45 popmenu 0" % POSE["start"]
 C = header("coop_start", ['escapecommand "%s"' % HOSTBACK,
                           'showcommand "globalwidgetcommand mpui_scene_host scenecam %s; globalwidgetcommand mpui_scene_host scenereturn %s; '
@@ -346,29 +351,27 @@ for i, (t, cfg, grp) in enumerate(CAMPAIGNS):
     C += label("campLit%d" % (i + 1), (18, y, 156, 20), bg=(0.80, 0.70, 0.50, 1.0), enabledcvar="ui_coopCamp==%d" % (i + 1))
     C += label("campMark%d" % (i + 1), (18, y, 4, 20), bg=RUST, enabledcvar="ui_coopCamp==%d" % (i + 1))
     C += W("Button", "camp_" + cfg, (18, y, 156, 20), title=t, fg=INK, bg=CLEAR, border="NONE", font="verdana-12", textalign="left",
-           hovershader=GLOW_P, clicksound="sound/menu/apply.wav", stuffcommand="set ui_coopCamp %d;exec ui/coop_start/%s.cfg" % (i + 1, cfg))
+           hovershader=GLOW_P, clicksound="sound/menu/apply.wav", stuffcommand="set ui_coopCamp %d;exec ui/coop_start/%s.cfg;%s" % (i + 1, cfg, FIRST[cfg]))
     y += 21
 assert y <= 420, y
 C += ['include "ui/coop_maps.inc"']
 C += text("mapLbl", (182, 432, 66, 18), "MAP FILE", "verdana-12", RUST, "left")
 C += field("mapField", (250, 430, 204, 20), "ui_dmmap", font="verdana-12")
-# server column (hostRulesBtn keeps its rect: docs/tools/gen_menu_fieldsettings.py check pins it, and the HOST RULES sheet's
-# CLOSE (530 422 78 24) must not land on anything clickable here)
-C += W("Button", "hostRulesBtn", (490, 96, 142, 22), title="HOST RULES", fg=BEIGE, bg=PLATE, border="3D_BORDER", font="facfont-20",
-       hovershader=GLOW, clicksound="sound/menu/apply.wav", stuffcommand="pushmenu coop_hostrules")
-rows = [("Server name", "sv_hostname", 124, None), ("Password", "password", 160, None)]
+# server column. hostRulesBtn: inside the column (QA 2026-11-02; docs/tools/gen_menu_fieldsettings.py OPENER_RECT follows it);
+# the HOST RULES sheet's CLOSE (530 422 78 24) must not land on anything clickable here
+C += W("Button", "hostRulesBtn", (466, 92, 156, 22), title="HOST RULES", fg=BEIGE, bg=PLATE, border="3D_BORDER", font="facfont-20",
+       textalign="center", hovershader=GLOW, clicksound="sound/menu/apply.wav", stuffcommand="pushmenu coop_hostrules")
+rows = [("Server name", "sv_hostname", 120, None), ("Password", "password", 156, None)]
 for t, cv, yy, _ in rows:
     C += text("lbl_" + cv, (466, yy, 156, 13), t, "verdana-12", MUTED, "left")
     C += field("fld_" + cv, (466, yy + 13, 156, 20), cv, font="verdana-12")
-for t, cv, yy in (("Max players", "sv_maxclients", 198), ("Player health", "coop_health", 222), ("LMS lives", "coop_lmsLives", 246)):
-    C += text("lbl_" + cv, (466, yy + 3, 96, 14), t, "verdana-12", INK, "left")
+# Max players binds ui_maxclients: ui_startdmmap (UI_StartDMMap_f) sets sv_maxclients FROM it, so a field on sv_maxclients was
+# overwritten at launch; coop_dedStart reads it too (engine cl_dedicated.cpp [HZM mpui]). Defaults seeded in coop_defaults.cfg.
+for t, cv, yy in (("Max players", "ui_maxclients", 194), ("Player health", "coop_health", 218), ("LMS lives (0 = off)", "coop_lmsLives", 242)):
+    C += text("lbl_" + cv, (466, yy + 3, 100, 14), t, "verdana-12", INK, "left")
     C += field("fld_" + cv, (566, yy, 56, 20), cv, font="verdana-12")
-C += text("lbl_ded", (466, 273, 120, 14), "Dedicated server", "verdana-12", INK, "left")
-C += W("CheckBox", "dedBox", (598, 270, 20, 20), fg=WHITE, bg=CLEAR, linkcvar="ui_dedicated",
-       checked_shader="textures/menu/checkbox_checked", unchecked_shader="textures/menu/checkbox_unchecked")
-C += text("coop_dedKeepLbl", (476, 295, 120, 14), "Keep it running", "verdana-12", INK, "left", enabledcvar="ui_dedicated")
-C += W("CheckBox", "coop_dedKeepBox", (598, 292, 20, 20), fg=WHITE, bg=CLEAR, linkcvar="coop_dedKeep",
-       checked_shader="textures/menu/checkbox_checked", unchecked_shader="textures/menu/checkbox_unchecked", enabledcvar="ui_dedicated")
+C += toggle("dedTgl", (466, 268, 156, 20), "DEDICATED SERVER", "ui_dedicated")
+C += toggle("coop_dedKeep", (466, 292, 156, 20), "KEEP IT RUNNING", "coop_dedKeep", gate="ui_dedicated")
 C += plate("coop_serverNetConfigurationBtn", (466, 318, 156, 22), "NETWORK SETTINGS", "exec net_sv.cfg", font="verdana-12")
 C += plate("coop_beginCampaignBtn", (466, 346, 156, 22), "BEGIN FULL CAMPAIGN", "wait 250;exec coop_mod/cfg/campaign_start.cfg",
            font="verdana-12", enabledcvar="!ui_dedicated")
@@ -377,7 +380,7 @@ C += plate("coop_beginCampaignDedBtn", (466, 346, 156, 22), "BEGIN FULL CAMPAIGN
 C += plate("apply", (466, 374, 156, 34), "LAUNCH MISSION", "wait 250;exec coop_mod/cfg/mission_start.cfg", bg=REDPLATE,
            enabledcvar="!ui_dedicated")
 C += plate("applyDedicated", (466, 374, 156, 34), "LAUNCH MISSION", "wait 250;coop_dedStart", bg=REDPLATE, enabledcvar="ui_dedicated")
-C += W("Label", "coop_startPortInfo", (462, 412, 164, 44), title="To host, forward UDP ports\\n12203-12204 and\\n29253-29254", fg=MUTED,
+C += W("Label", "coop_startPortInfo", (462, 412, 164, 44), title="Hosting online? Forward\\nUDP 12203-12204 and\\n29253-29254", fg=MUTED,
        font="verdana-12", textalign="left", enabledcvar="!ui_dedicated")
 C += W("Label", "coop_dedStatusLbl", (462, 412, 164, 44), title="", fg=MUTED, font="verdana-12", textalign="left", linkcvar="coop_dedStatus",
        enabledcvar="ui_dedicated")
@@ -452,6 +455,9 @@ def restyle(m):
         return b[:-3] + 'enabledcvar "ui_atticActive!=1"\r\n}\r\n'
     if "\r\nButton\r\n" in b[:20]:
         primary = nm == "coopmodstart"
+        if primary:   # HOST A CO-OP GAME opens with campaign 1 picked (was: set ui_dmmap nomap)
+            b = b.replace('stuffcommand "set ui_dmmap nomap;pushmenu coop_start"',
+                          'stuffcommand "set ui_coopCamp 2;exec ui/coop_start/m1.cfg;%s;pushmenu coop_start"' % FIRST["m1"])
         b = re.sub(r'(?m)^(\s*)shader\s+"textures/mohmenu/weapon_sign"\r\n', "", b)
         b = re.sub(r'(?m)^(\s*)hovershader\s+"[^"]*"', r'\1hovershader "%s"' % GLOW, b)
         b = re.sub(r'(?m)^(\s*)fgcolor\s+[\d. ]+', r"\1fgcolor " + c4(BEIGE), b)

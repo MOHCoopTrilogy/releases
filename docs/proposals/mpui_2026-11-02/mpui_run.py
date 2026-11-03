@@ -72,6 +72,7 @@ def setup():
         for f in UIFILES + [x for x in os.listdir(os.path.join(MOD, "ui")) if x.startswith("hzm_mpui_scene_")]:
             z.write(os.path.join(MOD, "ui", f), "ui/" + f)
         z.write(os.path.join(MOD, "global", "localization_coop.txt"), "global/localization_coop.txt")
+    shutil.copyfile(os.path.join(MOD, "coop_defaults.cfg"), os.path.join(E.MAINTT, "coop_defaults.cfg"))   # loose, like build.ps1 deploys it
     print("setup:", os.listdir(E.MAINTT), os.path.getsize(E.EXE))
 
 
@@ -276,6 +277,11 @@ def tour(s, res, w, h, center, k, shot, deep=True, host=False):
         s.t += 4000
         shot("4Ain_game2", 500)
         return
+    btn("dedTglOff", "coop_start.urc", 300)
+    s.press(0x1, 600)
+    shot("46b_dedicated_on", 300)
+    btn("dedTglOn", "coop_start.urc", 300)
+    s.press(0x1, 600)
     btn("back", "coop_start.urc", 300)
     s.press(0x1, 0)
     s.t += int(250 * k)

@@ -153,7 +153,7 @@ HOST_NOTES = [
 ]
 
 # The HOST RULES opener on coop_start.urc (hand-edited file; verified here, not written).
-OPENER_NAME, OPENER_RECT, OPENER_CMD = "hostRulesBtn", (490, 96, 142, 22), "pushmenu coop_hostrules"
+OPENER_NAME, OPENER_RECT, OPENER_CMD = "hostRulesBtn", (466, 92, 156, 22), "pushmenu coop_hostrules"  # [mpui 2026-11-02] inside the SERVER column
 
 
 # ---------------------------------------------------------------- fonts (live metrics; mod @3x RitualFonts)
@@ -604,7 +604,7 @@ def gate_fallthrough(settings, host, problems, notes):
         if kind != "Button" or rect != OPENER_RECT or cmd != OPENER_CMD:
             problems.append("coop_start %s is %s %s %r, want Button %s %r" % (OPENER_NAME, kind, rect, cmd, OPENER_RECT, OPENER_CMD))
         for k2, n2, r2, c2 in st:
-            if n2 != OPENER_NAME and r2 and ov(rect, r2):
+            if n2 != OPENER_NAME and k2 in INTERACTIVE and r2 and ov(rect, r2):   # [mpui] the paper sheet + 3D room sit behind it by design
                 problems.append("coop_start %s overlaps %s %s %s" % (OPENER_NAME, k2, n2, r2))
         # advisory only: the opener's own second click landing on the sheet it opens
         for w in host:
