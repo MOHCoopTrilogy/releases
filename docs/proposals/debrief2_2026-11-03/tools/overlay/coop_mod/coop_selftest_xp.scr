@@ -1,0 +1,62 @@
+//=========================================================================
+// TEST-ONLY overlay (docs/proposals/debrief2_2026-11-03/tools/run_db2.py) - NEVER shipped.
+// Replaces coop_selftest_xp.scr inside the harness overlay pk3 only; main.scr starts st_xp_run when coop_st_xp 1.
+// db_go 1 on player 1: make him safe (nodamage), earn things through the REAL paths, then end the mission through the
+// REAL path (coop_mod/missioncomplete.scr::main -> xp.scr::xp_summary -> the debrief -> bsptransition):
+//   unlocks  challenges.scr::chal_add_unlock (finish, emote, headgear) and feed.scr::feed_chalList (a medal, a
+//            challenge); then xp.scr::xp_award 8200 XP, which crosses two ranks and grants their rank unlocks.
+//=========================================================================
+st_xp_run:{
+	local.last = "x"
+	while( 1 ){
+		wait 0.5
+		local.g = getcvar "db_go"
+		if( local.g != local.last ){
+			local.last = local.g
+			local.p = $player[1]
+			if( local.p != NULL && ( local.g == "1" || local.g == "2" ) ){
+				// wait for a real, spawned, identified player (the harness keeps clicking to join meanwhile)
+				local.w = 0
+				while( local.w < 180 && local.p != NULL && ( local.p.flags["coop_isActive"] != 1 || local.p.flags["coop_xp_id"] == NIL || local.p.dmteam == "spectator" ) ){
+					wait 0.5
+					local.w++
+				}
+				if( local.p == NULL ){ end }
+				println ( "^~^~^ DB2T active after " + local.w )
+				wait 3
+				local.p nodamage
+				// db_go 1 = a typical mission: a T/3 two thirds of the way up, one promotion with overflow
+				// db_go 2 = a fresh record: every rank from Private to T/3 in one mission (the compressed bar)
+				local.big = 0
+				if( local.g == "2" ){ local.big = 1 }
+				if( local.big == 0 ){
+					local.p.flags["coop_xp_total"] = 10200
+					local.p.flags["coop_xp_rank"] = 6
+					local.p.flags["coop_xp_rankmapstart"] = 6
+					local.p.flags["coop_xp_map"] = 0
+				}
+				println "^~^~^ DB2T stage"
+				waitthread coop_mod/challenges.scr::chal_add_unlock local.p "finish_gold"
+				waitthread coop_mod/challenges.scr::chal_add_unlock local.p "emote_wave"
+				waitthread coop_mod/feed.scr::feed_chalList local.p "MEDAL EARNED: Bronze Star Medal"
+				waitthread coop_mod/feed.scr::feed_chalList local.p "Lights Out"
+				waitthread coop_mod/challenges.scr::chal_add_unlock local.p "models/coop_helmets/coop_helmet_29th.tik"
+				if( local.big == 1 ){
+					waitthread coop_mod/xp.scr::xp_award local.p 4200 "kills" "Test"
+					waitthread coop_mod/xp.scr::xp_award local.p 2100 "valor" "Test"
+					waitthread coop_mod/xp.scr::xp_award local.p 1500 "objective" "Test"
+					waitthread coop_mod/xp.scr::xp_award local.p 400 "support" "Test"
+				} else {
+					waitthread coop_mod/xp.scr::xp_award local.p 840 "kills" "Test"
+					waitthread coop_mod/xp.scr::xp_award local.p 260 "valor" "Test"
+					waitthread coop_mod/xp.scr::xp_award local.p 400 "objective" "Test"
+					waitthread coop_mod/xp.scr::xp_award local.p 120 "support" "Test"
+					waitthread coop_mod/xp.scr::xp_award local.p 60 "revive" "Test"
+				}
+				wait 2
+				println ( "^~^~^ DB2T staged rank=" + local.p.flags["coop_xp_rank"] + " total=" + local.p.flags["coop_xp_total"] )
+				thread coop_mod/missioncomplete.scr::main "m1l2a" 0 0
+			}
+		}
+	}
+}end
