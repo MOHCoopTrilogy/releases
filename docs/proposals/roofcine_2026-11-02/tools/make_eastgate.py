@@ -5,7 +5,8 @@
 * coop_fin_eastgate2_clip: a permanent brush entity filling the opening (x 1460..1500, y 350..530, z -512..-296) whose brush contents are
   PLAYERCLIP | MONSTERCLIP. Players (MASK_PLAYERSOLID) and AI (MASK_MONSTERSOLID) are stopped by it even while the gate is open;
   vehicles (MASK_VEHICLE has neither bit, fgame/bg_public.h) drive through. Invisible (no surface).
-* coop_fin_eastramp: a snow bank outside the gate (the floor drops 64 u at x 1664: too high a step for the halftrack).
+* coop_fin_eastramp: a flat snow bank outside the gate, level with the compound floor (x 1664..2460, top z -512): the halftrack
+  starts on it (the floor out there is 64 u lower; a ramp stalled halftrack_winter.tik).
 A 3rd argument <assets dir> writes scripts/hzm_eastgate.shader (ship it in the map pak)."""
 import os, sys, struct, re
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "v7"))
@@ -33,44 +34,55 @@ bl.extend(struct.pack("<3i", s0, 6, SH))
 mi = len(mdl) // 40
 lo = [mn[k] - o[k] for k in range(3)]; hi = [mx[k] - o[k] for k in range(3)]
 mdl.extend(struct.pack("<6f4i", *lo, *hi, len(b.get("surfaces")) // 108, 0, b0, 1))
-# --- the ramp: outside the wall the floor drops 64 u at x 1664 (snowclip floor -512 -> ground -576); a halftrack cannot climb a 64 u
-# step, so a snow bank slopes it: x 1664..1920, y 330..550, top from z -512 down to -576 (1:4), solid, its top drawn in vertex-lit snow
+# --- the snow bank: outside the wall the collision floor drops 64 u at x 1664 (snowclip floor -512 -> ground -576). A 1:4 ramp (v10b
+# first cut) stalled halftrack_winter.tik at its foot (aslt16: the hull's box dug into the slope; sdkfz.tik had climbed it), so the
+# hidden start now sits on a FLAT bank level with the compound floor: x 1664..2460, y 320..560, top z -512, solid. Top and the three
+# outer sides are drawn in vertex-lit snow (the sides a little darker), so it reads as a snow-covered loading bank behind the wall.
 import math
 nm2 = "textures/hzm/eastramp_snow"
 if nm2 not in names:
     rec = bytearray(140); rec[:len(nm2)] = nm2.encode(); struct.pack_into("<3i", rec, 64, 0, 1, 0)
     shl.extend(rec); names.append(nm2)
 SR = names.index(nm2)
-ro = (1792.0, 440.0, -560.0)
-rmn = (1664.0, 330.0, -580.0); rmx = (1920.0, 550.0, -512.0)
+rmn = (1664.0, 320.0, -580.0); rmx = (2460.0, 560.0, -512.0)
+ro = tuple((rmn[k] + rmx[k]) / 2 for k in range(3))
 sl0 = len(sl) // 12
-sides = []
 for a_ in range(3):
     for sg, val in ((-1, rmn[a_]), (1, rmx[a_])):
-        if a_ == 2 and sg == 1:
-            continue                       # no flat top: the slope is the top
-        n = [0.0, 0.0, 0.0]; n[a_] = float(sg); sides.append((n, sg * val))
-L = math.hypot(256.0, 64.0); nx, nz = 64.0 / L, 256.0 / L      # slope normal (+x down-slope, up)
-sides.append(([nx, 0.0, nz], nx * 1664.0 + nz * -512.0))
-for n, d in sides:
-    pi = len(plL) // 16; plL.extend(struct.pack("<4f", n[0], n[1], n[2], d - (n[0] * ro[0] + n[1] * ro[1] + n[2] * ro[2])))
-    sl.extend(struct.pack("<3i", pi, SR, 0))
+        n = [0.0, 0.0, 0.0]; n[a_] = float(sg)
+        pi = len(plL) // 16; plL.extend(struct.pack("<4f", n[0], n[1], n[2], sg * val - sg * ro[a_]))
+        sl.extend(struct.pack("<3i", pi, SR, 0))
 rb0 = len(bl) // 12
-bl.extend(struct.pack("<3i", sl0, len(sides), SR))
+bl.extend(struct.pack("<3i", sl0, 6, SR))
 sfl, dvl, ixl = b.get("surfaces"), b.get("drawverts"), b.get("drawidx")
-P = [(1664.0, 330.0, -512.0), (1664.0, 550.0, -512.0), (1920.0, 550.0, -576.0), (1920.0, 330.0, -576.0)]
-fv = len(dvl) // 44
-for q in P:
-    dvl.extend(struct.pack("<3f2f2f3f4B", q[0] - ro[0], q[1] - ro[1], q[2] - ro[2], q[0] / 256.0, q[1] / 256.0, 0, 0, nx, 0, nz, 214, 216, 222, 255))
-fi = len(ixl) // 4
-ixl.extend(struct.pack("<6i", 0, 1, 2, 0, 2, 3))   # clockwise seen from above (bug-4430)
-rec = bytearray(108)
-struct.pack_into("<12i", rec, 0, SR, -1, 1, fv, 4, fi, 6, -1, 0, 0, 0, 0)
-struct.pack_into("<9f", rec, 60, 0, 0, 0, 0, 0, 0, nx, 0, nz)
 rs0 = len(sfl) // 108
-sfl.extend(rec)
+
+
+def quad(P, n, col):
+    v1 = [P[1][k] - P[0][k] for k in range(3)]; v2 = [P[2][k] - P[0][k] for k in range(3)]
+    cr = (v1[1] * v2[2] - v1[2] * v2[1], v1[2] * v2[0] - v1[0] * v2[2], v1[0] * v2[1] - v1[1] * v2[0])
+    if cr[0] * n[0] + cr[1] * n[1] + cr[2] * n[2] > 0:
+        P = P[::-1]                                    # clockwise seen from outside (bug-4430)
+    fv = len(dvl) // 44
+    for q in P:
+        su = (q[0] + q[1]) / 256.0 if abs(n[2]) < 0.5 else q[0] / 256.0
+        tv = q[2] / 256.0 if abs(n[2]) < 0.5 else q[1] / 256.0
+        dvl.extend(struct.pack("<3f2f2f3f4B", q[0] - ro[0], q[1] - ro[1], q[2] - ro[2], su, tv, 0, 0, n[0], n[1], n[2], col, col + 2, col + 8, 255))
+    fi = len(ixl) // 4
+    ixl.extend(struct.pack("<6i", 0, 1, 2, 0, 2, 3))
+    rec = bytearray(108)
+    struct.pack_into("<12i", rec, 0, SR, -1, 1, fv, 4, fi, 6, -1, 0, 0, 0, 0)
+    struct.pack_into("<9f", rec, 60, 0, 0, 0, 0, 0, 0, *n)
+    sfl.extend(rec)
+
+
+x0, x1, y0, y1, z0, z1 = rmn[0], rmx[0], rmn[1], rmx[1], -576.0, rmx[2]
+quad([(x0, y0, z1), (x1, y0, z1), (x1, y1, z1), (x0, y1, z1)], (0.0, 0.0, 1.0), 214)        # top
+quad([(x0, y1, z0), (x1, y1, z0), (x1, y1, z1), (x0, y1, z1)], (0.0, 1.0, 0.0), 168)        # north side
+quad([(x0, y0, z0), (x0, y0, z1), (x1, y0, z1), (x1, y0, z0)], (0.0, -1.0, 0.0), 168)       # south side
+quad([(x1, y0, z0), (x1, y0, z1), (x1, y1, z1), (x1, y1, z0)], (1.0, 0.0, 0.0), 160)        # east end
 mr = len(mdl) // 40
-mdl.extend(struct.pack("<6f4i", rmn[0] - ro[0], rmn[1] - ro[1], rmn[2] - ro[2], rmx[0] - ro[0], rmx[1] - ro[1], rmx[2] - ro[2], rs0, 1, rb0, 1))
+mdl.extend(struct.pack("<6f4i", rmn[0] - ro[0], rmn[1] - ro[1], rmn[2] - ro[2], rmx[0] - ro[0], rmx[1] - ro[1], rmx[2] - ro[2], rs0, 4, rb0, 1))
 t = bytes(b.get("ents")).split(b"\0")[0].decode("latin1")
 t += '{\n"classname" "script_object"\n"model" "*%d"\n"origin" "%g %g %g"\n"targetname" "coop_fin_eastramp"\n}\n' % (mr, *ro)
 n0 = t.count('"targetname" "crumble_eastwall_2"')
