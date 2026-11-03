@@ -400,7 +400,53 @@ def film(res="720", slow=2.0, fps=20, host=True):
     return launch("mpui_film_%s" % res, w, h, boot_lines(center, slow, extra), boot_args(center, sp))
 
 
+def door(res="720", slow=2.0, fps=20):
+    """short clip: attic -> the room (the exit door's permanent MAIN MENU plaque) -> hover the door -> click it -> attic;
+    then into the room again and ESC -> attic (both ways back must work). Dense frames d#####.jpg + a still at each stop."""
+    w, h, center, lay = E.RES[res]
+    acam, ahot, abox = scene_info(urc("main.urc"), "atticscene")
+    hcam, hhot, hbox = scene_info(urc("multiplayer.urc"), "hubscene")
+    s = Script(w, h, slow)
+    beat = int(round(1000.0 / fps * slow))
+    fr = [0]
+
+    def rec(sec):
+        for _ in range(int(round(sec * fps))):
+            s.t += beat
+            s.cmd("screenshotJPEG d%05d" % fr[0], 0)
+            fr[0] += 1
+    s.cmd("echo ^~^~^ MPUI door start", 3500)
+    rec(0.5)
+    s.at(hot_px(acam, ahot["mp"], abox.get("mp"), w, h), 80)
+    rec(0.5)
+    s.cmd("screenshot mp_door_%s_0attic_door_hover" % res, 300)
+    s.press(0x1, 0)
+    rec(2.2)
+    s.cmd("screenshot mp_door_%s_1room" % res, 300)
+    s.at(hot_px(hcam, hhot["main"], hbox.get("main"), w, h), 80)
+    rec(1.0)
+    s.cmd("screenshot mp_door_%s_2door_hover" % res, 300)
+    s.mark("click the exit door")
+    s.press(0x1, 0)
+    rec(2.4)
+    s.cmd("screenshot mp_door_%s_3attic" % res, 300)
+    s.at(hot_px(acam, ahot["mp"], abox.get("mp"), w, h), 80)
+    s.press(0x1, 0)
+    rec(2.2)
+    s.mark("ESC in the room")
+    s.press(0x2, 0)
+    rec(2.2)
+    s.cmd("screenshot mp_door_%s_4attic_after_esc" % res, 300)
+    s.cmd("echo ^~^~^ MR done", 800)
+    s.cmd("quit", 0)
+    sp = s.write("mpui_door_%s.txt" % res)
+    return launch("mpui_door_%s" % res, w, h, boot_lines(center, slow, ["set cl_maxfps 60"]), boot_args(center, sp))
+
+
 if __name__ == "__main__":
+    if sys.argv[1] == "door":
+        door(sys.argv[2] if len(sys.argv) > 2 else "720")
+        sys.exit(0)
     a = sys.argv[1:]
     if a[0] == "setup":
         setup()

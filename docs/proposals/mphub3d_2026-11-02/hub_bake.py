@@ -18,7 +18,7 @@ a = code.index("def group_of(o):")
 b = code.index("\nG = {}")
 HUB_GROUP_OF = '''def group_of(o):
     n = o.name
-    if n in ("gb_face", "nb_srface", "nb_plaque_face"):
+    if n in ("gb_face", "nb_srface", "nb_plaque_face", "wd_plaque_face"):
         return "quad"            # lettered boards: the source image itself + a separate lightmap (QUAD_POST below), never an atlas
     if o.get("grp"):
         return o["grp"]

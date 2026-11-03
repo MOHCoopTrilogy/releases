@@ -82,12 +82,113 @@ pf["grp"] = "srb"
 # only the two lettered faces are the srb group (its own 2048 atlas at full texel density); cork, frame and the plaque block bake in bg
 bpy.data.objects.remove(cork, do_unlink=True)       # hidden behind the face
 
-# ---- 2. the wooden double door: fully inside the room (it was half in the left wall)
-OLDC, NEWC, SX = -2.95, -2.75, 0.90
-Wm = Matrix.Translation((NEWC, 0, 0)) @ Matrix.Diagonal((SX, 1, 1, 1)) @ Matrix.Translation((-OLDC, 0, 0))
-for o in list(ob):
-    if o.name.startswith("wd_"):
-        o.matrix_world = Wm @ o.matrix_world
+# ---- 2. the way back to the attic.
+# [mpui 2026-11-03] user: "Why would it be a double door? The entrance to it in the main attic isn't a double door. Continuity
+# is important" + "Vanilla would have that door on the left wall to the camera". The back-wall double door (wd_*) is removed
+# (plain wall stays) and the ATTIC's own MULTIPLAYER door (attic_room.blend door_mp_*: leaf, frosted light, glazing bars,
+# mouldings, casings, brass knob + escutcheon - same models, materials and proportions) stands on the LEFT side wall, seen
+# from the room side: turned 180 degrees about Z (it faced -X into the attic, here +X into the room), knob and escutcheon
+# moved to the other edge (the far side of the same door), a cool backdrop behind the frosted light (the glass is not baked,
+# as in the attic, where the back room shows through it), and a MAIN MENU plaque over the casing (gen_srboard.py mmplaque.png).
+# --double-door keeps the earlier back-wall double door.
+if "--double-door" in argv:
+    OLDC, NEWC, SX = -2.95, -2.75, 0.90
+    Wm = Matrix.Translation((NEWC, 0, 0)) @ Matrix.Diagonal((SX, 1, 1, 1)) @ Matrix.Translation((-OLDC, 0, 0))
+    for o in list(ob):
+        if o.name.startswith("wd_"):
+            o.matrix_world = Wm @ o.matrix_world
+else:
+    ATTIC = arg("--attic", "H:/hzm_archive/menuattic/export/attic_room.blend")
+    DOOR_Y = float(arg("--door-y", "4.05"))            # BU centre of the door along the left wall (clear of the back-left corner)
+    for o in list(ob):
+        if o.name.startswith("wd_"):
+            bpy.data.objects.remove(o, do_unlink=True)
+    bpy.context.view_layer.update()
+    wl = ob["wall_left"]
+    XW = max((wl.matrix_world @ Vector(c)).x for c in wl.bound_box)       # the left wall's room-side face
+    with bpy.data.libraries.load(ATTIC, link=False) as (src, dst):
+        dst.objects = [n for n in src.objects if n.startswith("door_mp_")]
+        dst.materials = [n for n in src.materials if n == "backroom_cool"]
+    AX, AY = 3.0, 6.40                                  # attic: the door's wall plane x and its centre y
+    Rz = Matrix.Rotation(math.pi, 4, "Z")
+    # the attic leaf sits 0-4 cm BEHIND its casing plane, in an opening of the attic wall; the hub's left wall is solid, so the
+    # whole door stands PROUD of it by DOOR_OUT (leaf in front of the wall face and the dado rail, casings around it)
+    DOOR_OUT = 0.07
+    Dm = Matrix.Translation((XW + DOOR_OUT, DOOR_Y, 0)) @ Rz @ Matrix.Translation((-AX, -AY, 0))
+    for o in dst.objects:
+        SC.collection.objects.link(o)
+    # the leaf, glazing, mouldings, knob and escutcheon are children of an EMPTY hinge pivot: freeze every part's evaluated world
+    # matrix, drop the parenting, then move the parts (a fresh link has stale world matrices until the view layer updates)
+    bpy.context.view_layer.update()
+    WM = {o.name: o.matrix_world.copy() for o in dst.objects}
+    for o in dst.objects:
+        o.parent = None
+    for o in list(dst.objects):
+        if o.type == "EMPTY":
+            bpy.data.objects.remove(o, do_unlink=True)
+            continue
+        o.matrix_world = Dm @ WM[o.name]
+        if o.name.startswith(("door_mp_knob", "door_mp_escutch")):
+            # attic: knob 0.35 m to the viewer's left; the room side of the same door has it on the viewer's right (+Y here)
+            o.matrix_world = Matrix.Translation((0, 0.70, 0)) @ o.matrix_world
+        o.name = "wd_" + o.name
+    bpy.context.view_layer.update()
+    print("HUBPREP exit door: %d attic door parts on the left wall x=%.3f y=%.2f" % (len(dst.objects), XW, DOOR_Y))
+    # the backdrop behind the frosted light (attic glass y 6.07..6.73, z 1.07..2.02): a quad facing +X just inside the wall
+    bdm = dst.materials[0] if dst.materials else bpy.data.materials.new("backroom_cool")
+    def quad_x(name, x, cy, cz, w, h, mat):
+        """a plane facing +X (into the room from the left wall), u along +Y (the viewer's right when looking -X): never mirrored"""
+        me = bpy.data.meshes.new(name)
+        v = [(x, cy - w / 2, cz - h / 2), (x, cy + w / 2, cz - h / 2), (x, cy + w / 2, cz + h / 2), (x, cy - w / 2, cz + h / 2)]
+        me.from_pydata(v, [], [(0, 1, 2, 3)])        # (v1-v0) x (v2-v0) = (0,w,0) x (0,w,h) = (wh,0,0): normal +X
+        uv = me.uv_layers.new(name="UVMap")
+        for li, lp in enumerate(me.loops):
+            _, y, z = v[lp.vertex_index]
+            uv.data[li].uv = ((y - (cy - w / 2)) / w, (z - (cz - h / 2)) / h)
+        me.materials.append(mat)
+        me.update()
+        assert me.polygons[0].normal.x > 0.99, name
+        o = bpy.data.objects.new(name, me)
+        SC.collection.objects.link(o)
+        return o
+    # the frosted light: in the attic it is not baked (glass) and the lit back room shows through it; against the hub's solid wall
+    # that read as a black hole, so here the pane is a pale, faintly lit frosted surface baked with the room (grp bg)
+    fm = bpy.data.materials.new("frosted_lit")
+    fm.use_nodes = True
+    fb = [n for n in fm.node_tree.nodes if n.type == 'BSDF_PRINCIPLED'][0]
+    fb.inputs["Base Color"].default_value = (0.58, 0.61, 0.64, 1.0)
+    fb.inputs["Roughness"].default_value = 0.9
+    for k in ("Emission Color", "Emission"):
+        if k in fb.inputs:
+            fb.inputs[k].default_value = (0.62, 0.68, 0.74, 1.0)
+            break
+    if "Emission Strength" in fb.inputs:
+        fb.inputs["Emission Strength"].default_value = 0.12
+    for o in ob:
+        if o.name.startswith("wd_door_mp_glass"):
+            o.data.materials.clear()
+            o.data.materials.append(fm)
+            o["grp"] = "bg"
+            # the pane sits inside the leaf slab (attic x 3.01..3.03 in a 3.00..3.04 leaf): baked there it gets no light and
+            # reads black; bring it to the leaf's room-side face (+X here) so it bakes as lit frosted glass
+            c = o.matrix_world.translation.copy()
+            bb = [o.matrix_world @ Vector(v) for v in o.bound_box]
+            c = sum(bb, Vector()) / 8
+            # and fill the leaf's light opening (the attic pane is a little smaller than its cut-out, which showed as a black rim)
+            o.matrix_world = Matrix.Translation((0.022, 0, 0)) @ Matrix.Translation(c) @ Matrix.Diagonal((1.0, 1.10, 1.22, 1.0)) @ Matrix.Translation(-c) @ o.matrix_world
+    for o in ob:
+        if o.name.startswith("wd_door_mp_gbar"):
+            o.matrix_world = Matrix.Translation((0.026, 0, 0)) @ o.matrix_world      # the glazing bars in front of the pane, as seen in the attic
+    # the MAIN MENU plaque over the casing top (z 2.60): a wood block + its lettered face (a "quad" group, like the SR plaque)
+    QW, QH, QD = 0.80, 0.125, 0.022
+    zq = 2.60 + 0.03 + QH / 2
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=(XW + QD / 2 + 0.001, DOOR_Y, zq))   # on the wall itself
+    qb = bpy.context.active_object
+    qb.name = "wd_plaque"
+    qb.scale = (QD, QW, QH)
+    bpy.ops.object.transform_apply(scale=True)
+    qb.data.materials.append(bpy.data.materials["frame_wood"] if "frame_wood" in bpy.data.materials else bpy.data.materials[0])
+    quad_x("wd_plaque_face", XW + QD + 0.0015, DOOR_Y, zq, QW - 0.01, QH - 0.01, img_mat("mmplaque", os.path.join(TEX, "mmplaque.png"), 0.6))
 
 # ---- 3. side walls + trims run back to the floor edge (y -1.5): the home camera stands at y -1.35
 YMIN = -1.5
@@ -100,7 +201,7 @@ for n in ("wall_left", "wall_right", "dado_l", "dado_r", "rail_l", "rail_r", "sk
     o.matrix_world = Matrix.Translation((0, hi, 0)) @ Matrix.Diagonal((1, k, 1, 1)) @ Matrix.Translation((0, -hi, 0)) @ o.matrix_world
 
 # ---- 4. home camera (BU): see make_mphub3d.py HOME - keep the two in step
-HOME = {"org": (-0.30, -1.35, 1.65), "yaw_right": 7.0, "pitch_down": 4.0, "fovy": 54.0}
+HOME = {"org": (-0.30, -1.35, 1.65), "yaw_right": 3.0, "pitch_down": 4.0, "fovy": 58.0}   # [mpui 2026-11-03] was 7 / 54: the left-wall exit door in the 4:3 frame
 cd = bpy.data.cameras.new("HUB_HOME")
 cd.sensor_fit = 'VERTICAL'
 cd.sensor_height = 24.0

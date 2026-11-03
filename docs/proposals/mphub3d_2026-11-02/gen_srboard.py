@@ -208,4 +208,11 @@ p.rectangle((6, 6, pw - 7, ph - 7), outline=(150, 120, 70), width=5)
 f = font(STEN, 104)
 ctext(p, pw / 2, 20, "SERVICE RECORD", f, (226, 214, 180))
 pl.save(os.path.join(OUT, "srplaque.png"))
+
+# ---- the exit door's plaque (mpui 2026-11-03): same wood and stencil, MAIN MENU
+ml = Image.fromarray(np.uint8(np.clip(wood, 0, 255)))
+m = ImageDraw.Draw(ml)
+m.rectangle((6, 6, pw - 7, ph - 7), outline=(150, 120, 70), width=5)
+ctext(m, pw / 2, 20, "MAIN MENU", f, (226, 214, 180))
+ml.save(os.path.join(OUT, "mmplaque.png"))
 print("srboard", board.size, "srplaque", pl.size, "->", OUT)
