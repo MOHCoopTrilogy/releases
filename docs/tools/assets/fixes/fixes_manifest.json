@@ -2203,5 +2203,233 @@
   },
   "textures/hud/loot/coop_act_wheel.tga": {
     "new": "True"
+  },
+  "textures/hud/coop_db2/rank_00.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_01.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_02.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_03.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_04.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_05.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_06.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_07.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_08.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_09.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_10.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_11.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_12.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_13.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_14.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_15.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_16.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_17.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_18.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_19.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_20.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/rank_21.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/cat_helmet.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/cat_uniform.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/cat_gloves.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/cat_perk.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/cat_attach.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/cat_challenge.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/cat_emote.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/cat_prestige.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/fin_gold.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/fin_chrome.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/fin_blued.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/fin_bloody.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/fin_woodland.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/fin_winter.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/fin_desert.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/db2_paper.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/db2_fill.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/db2_track.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/db2_glow.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/db2_vignette.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/db2_shadow.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/db2_stamp_promoted.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/db2_pip.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_00.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_01.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_02.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_03.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_04.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_05.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_06.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_07.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_08.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_09.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_10.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "textures/hud/coop_db2/medal_11.tga": {
+    "new": true,
+    "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
   }
 }
