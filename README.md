@@ -50,6 +50,16 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.63 - Daily Orders, the weapon rack and a fully 3D attic
+
+- **Daily Orders** - five new orders every day, the same for everyone, built around what makes this mod different: revives, the ammo crate, officers, objectives, fighting while downed, cover, braced MGs and kicked grenades. Real XP toward your rank (400 / 750 / 1,250, +1,500 for clearing the day), a progress panel in every lobby, an ORDERS OF THE DAY page in the Service Record, and a pop-up when you finish one. Coop and multiplayer
+- **Weapon rack and viewer** - a lit rifle rack in the attic (move the mouse right, or use the RACK tab); click it to turn every gun, finish and skin in the mod in 3D, with its history, who made it and how to unlock it
+- **Records and briefing in 3D** - the vanilla medal box on the records desk, the briefing at the big wall map, and the camera flies to Field Report, Report a Bug and Records. The projector runs, and the gramophone has two more records
+- **Cover** - aim anywhere the cover allows on either side of the wall, hold the trigger to empty an automatic weapon, and grenades thrown from cover land where you aim
+- **Five more emotes**, a readable Survive card in the Norway blizzard, no more soldiers stuck behind the halftracks, and server demo recordings that are saved by map and date instead of overwriting each other
+
+<p align="center"><img src="docs/screenshots/v11063-weapon-rack.jpg" width="49%" alt="The attic's rifle rack under its picture lamp"> <img src="docs/screenshots/v11063-daily-orders.jpg" width="49%" alt="Orders of the Day in the Service Record"></p>
+
 ### v1.10.62 - Emotes, a new debrief, Demo Studio and a livelier attic
 
 - **Emotes** - a new EMOTES page on the Tab wheel (coop). Everyone starts with the salute; the rest unlock through rank and Service Record challenges, each with its own icon and a padlock until earned

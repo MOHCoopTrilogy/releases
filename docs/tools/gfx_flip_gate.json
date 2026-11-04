@@ -14,7 +14,8 @@
     "82fd21ca9936e28e6504f5911890edc0d7c5bf68cc19f0caa0693a103e4b248d",
     "7234f265180c5eee16308bc34ab0a7ecd3f7bb088945e76e280b908fee38e4d5",
     "31ceb7b6d2b6b76bf70a1d8ede0ae7485be163a570f00aa818f3a960223886fe",
-    "3edfcb8f0387f0e7ecd48f74b23e9f3357c9f354b506a1238a966985408cbe8f"
+    "3edfcb8f0387f0e7ecd48f74b23e9f3357c9f354b506a1238a966985408cbe8f",
+    "bd7c042066e8d8ac54b3a3bb56f3260cacb6680a6d9bffcc284d5150604b9f0e"
   ],
   "notes": {
     "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb": "v1.10.13 main-tree build of engine 68bb8881 (renderer source == bc2c3072, the flip that passed G1/G5/P6.3 boots+equal with A2C off on 2026-10-04); this exact DLL boot-smoked on m2l1+m5l3: MSAA path=new n=8, 0 script errors",
@@ -30,6 +31,7 @@
     "82fd21ca9936e28e6504f5911890edc0d7c5bf68cc19f0caa0693a103e4b248d": "v1.10.56 release build (H:/hzm_work/eng-hotfix13661, rel-1.10.38-engine @ 1692aade) = the v1.10.54 renderer + demo-pip (corner view render pass, letterbox-aware rect) + demo-cams clean shot / letterbox; flip defaults unchanged. Gates 2026-11-01: this exact DLL (sha unchanged from the 610428b8 candidate) passed the demo-editor gl2 regression on DISPLAY2 (all seven new tools, filters, free camera, seek, level change, rewind, 0 script errors) and booted m2l3 into the coop chain (0 script errors).",
     "7234f265180c5eee16308bc34ab0a7ecd3f7bb088945e76e280b908fee38e4d5": "v1.10.58 release build (H:/hzm_work/eng-hotfix13661, rel-1.10.38-engine @ 59c28f5d) = v1.10.56 renderer + demo-fx (DOF / motion blur / outlines pass) + cover v3 shared code; flip defaults unchanged. Gates 2026-11-02: this exact DLL passed the full demo-editor gl2 regression on DISPLAY2 (8 new tools + F1 menu, v1.10.56 tools, range render with sound+blur+caption to MP4, old .cam, play/pad binds), m2l3 boot 0 script errors, gl1 smoke, and the cover v3 'final' scenario suite (21 checkpoints, 0 script errors).",
     "31ceb7b6d2b6b76bf70a1d8ede0ae7485be163a570f00aa818f3a960223886fe": "v1.10.61 release build (H:/hzm_work/eng-hotfix13661, rel-1.10.38-engine @ 499c4c28) = v1.10.58 renderer + demo fix-61 + mpui-engine (room camera) + cover-seamless; flip defaults unchanged. Gates 2026-11-03: this exact DLL (with the same-tree exe/cgame/game) booted m2l3 on gl2 in the final regression (final161: call-in, siren, two Stuka passes, hidden west halftrack, storm hold + Survive; 0 script errors) on the non-primary monitor; the attic and MP-room menu walks ran on the same renderer source.",
-    "3edfcb8f0387f0e7ecd48f74b23e9f3357c9f354b506a1238a966985408cbe8f": "v1.10.62 build of eng-hotfix13661 (debrief2 + menu-clock + emotes + in-game 3D rooms merged); this exact DLL boot-smoked on m2l3 (final162 Norway hold, 640 s): gl2 loaded, 0 script errors"
+    "3edfcb8f0387f0e7ecd48f74b23e9f3357c9f354b506a1238a966985408cbe8f": "v1.10.62 build of eng-hotfix13661 (debrief2 + menu-clock + emotes + in-game 3D rooms merged); this exact DLL boot-smoked on m2l3 (final162 Norway hold, 640 s): gl2 loaded, 0 script errors",
+    "bd7c042066e8d8ac54b3a3bb56f3260cacb6680a6d9bffcc284d5150604b9f0e": "v1.10.63 build of eng-hotfix13661 (dailies, attic63 peek/projector, wpnviewer, demofix, coverlook merged); boot-smoked on m2l3 (final163 Norway hold, 640 s): gl2 loaded, 0 script errors"
   }
 }
