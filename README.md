@@ -50,6 +50,18 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.62 - Emotes, a new debrief, Demo Studio and a livelier attic
+
+- **Emotes** - a new EMOTES page on the Tab wheel (coop). Everyone starts with the salute; the rest unlock through rank and Service Record challenges, each with its own icon and a padlock until earned
+- **A new mission debrief** - a service-record sheet with a rank bar that fills as your XP counts up, a PROMOTED stamp, each unlock on its own card one at a time, and the challenges you completed that mission. Challenges now pay XP too (100 to 600, +250 for an Elite)
+- **Demo Studio: ten new tools** - bullet time, an auto highlight reel, newsreel looks with title cards, a music bed, split screen, a handheld camera, drawing on the picture, trails and heatmaps, a free camera that rides planes, and a Film Room of picture cards. [Demo Editor field manual](docs/demo-editor/DEMO_EDITOR.md)
+- **Cover** - the mouse or stick turns the view from cover, and blind fire goes where you look, with a marker for where the rounds land
+- **Norway** - rooftop snipers and MG42 nests placed where they can actually hit the defence by the tracks, MG teams that keep coming, snow kicking up under bullets and grenades, and placed guns that pick up and drop like a German's
+- **Sounds** - a real bullet-into-flesh hit and a heavier kill confirm (headshots still clank on top), artery hits with a wet impact and an audible bleed-out, and a pickup sound for every weapon off the ground
+- **The attic** - a wall clock on your PC's time, a turning fan, the gramophone's arm and record that move, a Field Report board on the wall and a Report-a-Bug toolbox on the desk, the multiplayer door matching on both sides, and Escape in a game now opens the 3D attic and multiplayer room
+
+<p align="center"><img src="docs/screenshots/v11062-attic-menu.jpg" width="49%" alt="The attic main menu: wall clock, fan, gramophone, Field Report board"> <img src="docs/screenshots/v11062-debrief.jpg" width="49%" alt="The new mission debrief: rank bar, PROMOTED stamp, citations"></p>
+
 ### v1.10.59 - v1.10.61 - The Norway finale, cover fixes, 3D multiplayer menus
 
 - **Norway: the train defence** (v1.10.61) - radio the train crew, call sign **Snowplow**, over a broken, static-filled line, then hold the station until the train comes. Partway through, a blizzard rolls in, the train stops and your objective changes to **Survive** while the Germans push in under the snow. Assault waves come in along real routes from cover, halftracks and MG teams arrive out of sight, Stukas strafe the yard (shoot them down with the new flak gun by the station entrance) and the facility's air-raid siren sounds over it all. Your two allies come in by the gates and hold the train platform
