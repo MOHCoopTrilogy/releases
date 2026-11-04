@@ -1,0 +1,133 @@
+# Weapon viewer histories - AUTHORED text (the one input of gen_weapon_viewer.py that is judgement, not data).
+# key: a roster id (loadoutroster.scr level.coop_loRosterId), "mv:<variant tik stem>" for a model variant that is a
+# different real weapon or needs a note, "fin:<fid>" for a finish (1 gold .. 7 desert). Text: 2-4 sentences, plain ASCII,
+# no double quotes / semicolons / braces / em dashes (it goes into cfg strings). Facts were checked; where the record is
+# thin the text says so instead of inventing a spec. gen_weapon_viewer.py fails the build when a roster gun has no row.
+01	Designed by John C. Garand at Springfield Armory and adopted in 1936, the M1 was the first semi-automatic rifle to become a nation's standard infantry arm. It loads an 8-round en-bloc clip that is thrown out with a sharp ping after the last shot. General Patton called it the greatest battle implement ever devised, and about 5.4 million were made.
+02	The M1 Carbine was adopted in 1941 as a light rifle for troops whose main job was not the rifle: officers, mortar and machine gun crews, drivers. It fires a short .30 Carbine round from a 15-round magazine. More than six million were built, more than any other US small arm of the war.
+03	The Karabiner 98 kurz, adopted in 1935, was a shortened Gewehr 98 and the German soldier's rifle for the whole war. Its controlled-feed Mauser bolt and 5-round stripper-clip magazine were copied around the world. More than 14 million were made.
+04	Walther's Gewehr 43 took the gas piston of the Soviet SVT-40, which German troops had met in 1941, and gave Germany a dependable semi-automatic rifle with a 10-round detachable magazine. About 400,000 were made from 1943, many fitted with the ZF4 scope.
+05	The No.4 Mk I, adopted in 1939 and made in Britain, Canada and the United States, was a simpler, sturdier Lee-Enfield with a heavier barrel and an aperture rear sight. Its cock-on-closing bolt and 10-round magazine made it one of the fastest bolt-action rifles ever fielded.
+06	The M1903, adopted in 1903, borrowed so much from the Mauser that the US government paid Mauser royalties. It was America's rifle in the First World War and still fought in 1942 and 1943 until the Garand replaced it, while the simplified M1903A3 stayed in production for the war.
+07	The Carcano family began in 1891. The short M38 was adopted in 1938 for a new 7.35 mm round, but production went back to the old 6.5 mm in 1940 to keep one cartridge in the army. It loads a 6-round clip that drops out of the magazine when empty.
+08	Fedor Tokarev's SVT-40, adopted in 1940, was a lightened SVT-38: gas-operated, with a 10-round magazine of 7.62x54R. About 1.6 million were made. It needed more care than a conscript army could give it, but marines and NCOs prized it, and so did the Germans who captured it.
+09	Sergei Mosin's rifle, with a magazine feed by the Belgian Leon Nagant, was adopted by Russia in 1891. The modernised M1891/30 was the standard Soviet rifle of the war: a 5-round bolt action in 7.62x54R, made in tens of millions.
+10	The Type 99 was adopted in 1939 to move the Japanese army from 6.5 mm to a heavier 7.7 mm round. Early rifles had a wire monopod and anti-aircraft lead arms on the sight. Late-war rifles were stripped down to the bare minimum as materials ran short.
+11	Suppressors existed in the war for pistols, the Sten and the De Lisle, but not for the Garand: its full-power supersonic .30-06 still cracks past any silencer. This suppressed M1 is the game's own build, on the rifle the US Army adopted in 1936.
+12	The M1903A4, adopted in 1943, was the US Army's standard sniper rifle of the war: a Remington-built 03A3 with a Weaver 330C scope (M73B1) and no iron sights. The Marines used Springfields with long Unertl target scopes.
+13	From 1939 Germany fitted accurate Kar98k rifles with telescopic sights on several kinds of mount, from the long eye relief ZF41 to 4x Zielvier scopes. They were the Wehrmacht's main sniper rifles through the war.
+14	The L42A1 is a post-war British conversion of the wartime No.4 (T) sniper rifle to the 7.62 mm NATO round, issued from 1970 and replaced by the L96A1 from the mid-1980s. It is an anachronism in a Second World War setting. The game's version keeps the .303 load.
+15	The M1C was adopted in 1944 and the M1D soon after: Garands with an M81 or M82 scope offset to the left so the clip could still be loaded from the top. They arrived too late for wide use in the war and served on into Korea.
+16	The G43's receiver has a rail for the ZF4 4x scope, so a scoped rifle was simply a G43 with the mount fitted. The ZF4 G43 gave German marksmen a semi-automatic sniper rifle with a 10-round magazine.
+17	The No.4 Mk I (T) was a hand-picked No.4 converted by Holland and Holland with a cheek rest and the 3.5x No.32 scope. From 1942 it was the standard sniper rifle of the British and Commonwealth armies, and many were later converted to the L42A1.
+18	Italy never adopted a standard sniper rifle in the war, and only small numbers of Carcanos were fitted with telescopic sights. This scoped Carcano stands for those few.
+19	Japan's snipers used the Type 97 (6.5 mm, 1937) and the Type 99 sniper rifle (7.7 mm), with a 2.5x or 4x scope offset to the left so the rifle could still be loaded from stripper clips. The low-smoke 6.5 mm round made them hard to locate in the jungle.
+20	Soviet sniper rifles were selected M91/30s with a bent-down bolt handle and a PE or, from 1942, the lighter PU 3.5x scope. Vasily Zaitsev fought at Stalingrad with a scoped Mosin.
+21	The Soviet BraMit device of the Mitin brothers was a real suppressor for the Mosin, used with subsonic ammunition by scouts and partisans. A suppressed scoped Mosin was rare, but it existed.
+22	Germany tested suppressors for the Kar98k with subsonic ammunition late in the war, but a suppressed scoped Kar98k like this one was never a standard issue weapon.
+23	William De Lisle built a quiet carbine on the Lee-Enfield action, chambered for .45 ACP and fed from M1911 magazines, for British Combined Operations. Only about 130 were made, and it is one of the quietest firearms ever built.
+24	John T. Thompson's submachine gun was designed in 1919 and made famous by gangsters before armies wanted it. The M1 of 1942 was a simplified wartime Thompson: a side cocking handle, a plain barrel and box magazines only. It fires .45 ACP.
+25	The 50-round drum belongs to the M1928A1 Thompson. The simplified wartime M1 and M1A1 could not take drums at all, and troops preferred the lighter, quieter 20 and 30-round boxes in any case.
+26	The MP40 was built by Erma from 1940, an MP38 redesigned for stamped steel and plastic. It fires 9 mm from a 32-round magazine, and about a million were made. Allied troops called it the Schmeisser, but Hugo Schmeisser had no part in its design.
+27	The MP40 had no standard suppressor. This suppressed version is the game's own.
+28	The Sten, named for its designers Shepherd and Turpin and the Enfield works, was a cheap stamped 9 mm submachine gun. The Mk II of 1941 was made in about two million copies and was dropped in large numbers to resistance groups across occupied Europe.
+29	Georgy Shpagin's PPSh-41 was designed for mass production in stampings, fired 7.62x25 mm at about 900 to 1000 rounds a minute and took a 71-round drum or a 35-round box. About six million were made, and whole Soviet units were armed with it.
+30	Alexei Sudayev's PPS-43 was the simplest submachine gun of the war, made of stamped steel with a folding stock, and was first built in besieged Leningrad. About two million were made. It had no standard suppressor, and this suppressed version is the game's own.
+31	The M3 Grease Gun, adopted in December 1942, was the US answer to the Sten: a stamped steel .45 ACP gun designed by George Hyde and Frederick Sampson of General Motors to replace the costly Thompson. Its name came from its shape, a mechanic's grease gun.
+32	The OSS received a small number of M3s with an integral suppressor developed by Bell Laboratories late in the war, so a quiet Grease Gun did exist, if only for special operations.
+33	The Moschetto Automatico Beretta 1938, designed by Tullio Marengoni, was a well-made 9 mm submachine gun with two triggers: the front one fires single shots, the rear one full auto. German troops used it too, and it was one of the best submachine guns of the war.
+34	The MAB 38A was the first production Moschetto Automatico Beretta, with a perforated barrel jacket and a compensator. The wartime 38/42 dropped the jacket to speed production. Both fire 9 mm with front and rear triggers for single shots and full auto.
+35	The Type 100 was the only Japanese submachine gun made in any number, adopted in 1940 for the 8 mm Nambu pistol round. Fewer than 30,000 were built, including a folding version for paratroopers.
+36	John Browning's Browning Automatic Rifle reached France in 1918. The M1918A2 of 1938 was the BAR of the Second World War, with a bipod and two automatic rates of fire. It fires .30-06 from a 20-round magazine and was the base of fire of the US rifle squad.
+37	The Sturmgewehr 44 grew from Haenel's MKb 42(H), designed by Hugo Schmeisser, through the MP 43 and MP 44. Its 7.92x33 mm Kurz round sat between pistol and rifle power, which made it the first assault rifle used in large numbers. About 425,000 were made.
+38	A few StG 44s carried optics: the ZF4 scope on a side mount and, late in the war, the Vampir infrared night sight.
+39	The Fallschirmjaegergewehr 42 was designed for German paratroopers by Louis Stange of Rheinmetall: a full-power 7.92 mm rifle firing single shots from a closed bolt and bursts from an open bolt, fed from a 20-round side magazine. Only around 7,000 were made.
+40	The Vickers-Berthier light machine gun, based on a French Berthier design and built by Vickers, was adopted by the Indian Army in the 1930s while the British Army chose the Bren. It served with Indian units in North Africa, Italy and Burma.
+41	The Breda Modello 30 was Italy's squad light machine gun, in 6.5 mm with a fixed 20-round magazine loaded from stripper clips and a built-in oil pump for the cartridges. Dust and sand made it unreliable in the desert.
+42	The Browning M1919A4 was the air-cooled belt-fed .30-06 machine gun of the US Army, mounted on a low tripod and carried by a crew. Hundreds of thousands were made, and it served from the Pacific islands to the Rhine.
+43	The MG42, designed by Werner Gruner, fired 7.92 mm at about 1,200 rounds a minute. Its tearing sound earned it the name Hitler's buzz saw. It was made largely of stampings, changed barrels in seconds and was made in more than 400,000 copies.
+44	American trench guns were Winchester pump-action shotguns, Models 1897 and 12, with a ventilated heat shield and a bayonet lug. They began in the trenches of 1918 and in the Second World War served the Marines in the Pacific and military police.
+45	The 2.36-inch rocket launcher was first used in North Africa in late 1942, and the M1A1 followed in 1943. Its nickname came from the comedian Bob Burns' homemade horn, the bazooka. Captured examples inspired the German Panzerschreck.
+46	The Panzerschreck, an 88 mm rocket launcher copied from captured bazookas, came into service in 1943. Its backblast and rocket exhaust were so fierce that the RPzB 54 added a blast shield. Troops called it the Ofenrohr, the stovepipe.
+47	The PIAT, Projector Infantry Anti Tank, was a British spring-powered spigot mortar issued from 1943. It had no backblast, so it could fire from inside a building, but the heavy spring was hard to cock. Its bomb could knock out most German tanks at close range.
+48	John Browning's M1911, adopted in 1911 and improved as the M1911A1 in 1924, fires .45 ACP from a 7-round magazine. It was the US service pistol for more than 70 years.
+49	The OSS's silent pistol was the High Standard HDM, not the M1911. This suppressed Colt is the game's own.
+50	The Walther P38 was adopted in 1938 to replace the costly Luger. It was a double-action 9 mm pistol with an 8-round magazine, cheaper to make, and was also built by Mauser and Spreewerk.
+51	The P38 had no standard suppressor. This suppressed version is the game's own.
+52	The High Standard HDM was a .22 pistol with an integral suppressor, made for the OSS in about 2,600 copies. It was quiet enough to be used in a room without being heard next door.
+53	The Webley Mk VI, adopted in 1915, was the last of the big British top-break .455 service revolvers. In the Second World War the .38 Enfield No.2 was the standard, but the Mk VI was still issued and carried.
+54	Leon Nagant's 7-shot revolver was adopted by Russia in 1895. Its gas-seal design pushes the cylinder forward against the barrel as it fires, which closes the gap a revolver usually leaks through and lets it be suppressed.
+55	The Beretta M1934 was the Italian army's standard pistol: a simple blowback design in 9 mm Corto (.380 ACP) with a 7-round magazine. It was made in very large numbers and was a favourite souvenir of Allied soldiers.
+56	The Beretta M1934 had no standard suppressor. This suppressed version is the game's own.
+57	Georg Luger's toggle-locked pistol was adopted by Germany in 1908 as the P08, and the 9 mm Parabellum round was created for it. The P38 replaced it from 1938, but Lugers were made until 1942 and served through the whole war.
+58	The Luger had no standard suppressor. This suppressed version is the game's own.
+59	Walther's PPK of 1931, a shorter Polizeipistole Kriminal, was a double-action 7.65 mm pocket pistol. In the war it was carried by police, Luftwaffe aircrew and staff officers.
+60	Fedor Tokarev's TT-33 was the Soviet service pistol: a Browning-type short-recoil 7.62x25 mm design with an 8-round magazine, simple to make and with no manual safety apart from its half-cock notch.
+61	The TT-33 had no standard suppressor. This suppressed version is the game's own.
+62	Kijiro Nambu's Type 14 pistol was adopted by Japan in 1925, in the Taisho era. It fires an 8 mm Nambu round from an 8-round magazine and was the common sidearm of Japanese officers and NCOs.
+63	The Welrod was designed at Station IX at Welwyn for the SOE: an integrally suppressed, single-shot bolt-action pistol whose magazine is also its grip. It was meant for close, silent work behind the lines, and was among the quietest pistols ever made.
+64	The Mk 2 fragmentation grenade, the pineapple, was the US Army's hand grenade of the war: a serrated cast-iron body around an explosive charge and a fuze of about four to five seconds. The serrations helped the grip more than the fragmentation.
+65	The Model 24 Stielhandgranate, the stick grenade, had a long wooden handle for a longer throw. Pulling a cord through the handle lit a friction igniter with about a 4.5 second delay. It killed mainly by blast, and a fragmentation sleeve could be added.
+66	William Mills' segmented cast-iron grenade, the Mills bomb, came into British service in 1915 and remained the standard British grenade through the Second World War, as the No.36.
+67	Italian army hand grenades such as the Breda Mod.35 were small, painted bright red and fitted with an impact fuze. British troops in North Africa called them red devils.
+68	The M18 smoke grenade was used to signal and to mark landing zones and targets. It burns for under a minute and comes in red, yellow, green and violet.
+69	The Nebelhandgranate 39 was the smoke version of the German stick grenade, marked with a white band and the word Nebel so it could be told apart from the explosive one.
+70	Melvin Johnson's M1941 was a recoil-operated .30-06 rifle with a 10-round rotary magazine that could be topped up with stripper clips. It lost to the Garand, but the Marine paratroopers and Raiders carried it, and the Dutch bought it for the East Indies.
+71	A gold Thompson: John T. Thompson's .45 submachine gun of 1919 in a gold reward finish. Service Thompsons were blued or parkerized.
+72	Vasily Degtyaryov's DP-28 was adopted in 1928 and fired 7.62x54R from a 47-round pan on top of the gun. Soviet soldiers nicknamed it the record player after the flat disc magazine.
+74	The Mauser C96, the Broomhandle, appeared in 1896 with its magazine in front of the trigger guard, loaded from 10-round stripper clips, and a wooden holster that doubled as a stock. Winston Churchill carried one at Omdurman in 1898.
+75	Smith and Wesson's Military and Police revolver of 1899 in .38 Special became the Model 10. In the war S and W made it as the Victory Model for the US forces and in .38/200 for Britain and the Commonwealth.
+78	Most Gewehr 43s were issued with iron sights. Only part of production carried the ZF4 scope, and the rest were rifles for the line.
+79	The FG 42 had iron sights as standard, with the ZFG42 scope as an option. It was designed for German paratroopers by Louis Stange of Rheinmetall, and only around 7,000 were made.
+80	Side-by-side double-barrel shotguns were civilian guns. In the war they turned up with partisans, home guards and resistance fighters rather than as issued weapons.
+fin:1	GOLD is a reward finish, not a wartime one. Service weapons were blued, parkerized or painted to resist rust and glare.
+fin:2	CHROME is a reward finish. Wartime guns were blued, parkerized or painted, because bright metal catches the light.
+fin:3	BLUED: bluing, a thin controlled oxide layer on the steel, was the standard pre-war gun finish and was used on many wartime weapons.
+fin:4	BLOODY is a battle-worn reward look, not a factory finish.
+fin:5	WOODLAND camo is a reward finish. In the war soldiers did sometimes paint or wrap their weapons in the field, but no factory issued this pattern.
+fin:6	WINTER camo is a reward finish. In the war soldiers whitewashed vehicles and sometimes wrapped weapons in white for snow, but no factory issued this pattern.
+fin:7	DESERT camo is a reward finish. Desert vehicles and some weapons were painted sand colours in the field, but no factory issued this pattern.
+mv:thompsonsmg_tommy28	The M1928A1 was the Thompson in production when the United States entered the war, with a finned barrel and a Cutts compensator, and it could still take the 50-round drum. Expensive to machine, it gave way to the simplified M1 and M1A1 from 1942.
+mv:thompsonsmg_tommy1928d	An M1928 Thompson with the 50-round drum: the gangster-era Tommy gun that served the Allies early in the war, before the simplified M1 replaced it.
+mv:thompsonsmg_tommy27a1	The Model 1927A1 is Auto-Ordnance's post-war semi-automatic Thompson for the civilian market. The Commando version has a horizontal foregrip and a 30-round box.
+mv:thompsonsmg_m1a1dk	The M1A1 Thompson, adopted in October 1942, simplified the M1 further with a firing pin machined into the bolt. It was the Thompson most GIs carried from 1943.
+mv:thompsonsmg_lv_famastommy	A fantasy remodel: there was no FAMAS Thompson. The FAMAS is a French rifle of the 1970s.
+mv:mp40_mp18	The Bergmann MP 18, designed by Hugo Schmeisser, was the first submachine gun used in large numbers in combat, issued to German assault troops in 1918. It fed 9 mm from a 32-round snail drum.
+mv:mp40_lv_mp75	MP 75 Ausf D is not a real wartime designation. This is a fantasy remodel of the MP40.
+mv:bar_pabar	The BAR as it appears in Medal of Honor: Pacific Assault, ported to this game.
+mv:bar_bar1918	The Lewis gun, designed by Isaac Newton Lewis before the First World War and built in Britain by BSA, fed .303 from a 47-round pan on top. The Bren replaced it at the front, but it still served in the Second World War on ships, on light mounts and with the Home Guard.
+mv:bar_bar1918a	The original M1918 BAR of 1918 had no bipod and could fire single shots or full automatic.
+mv:bar_bar1918a1	The M1918A1 of 1937 added a hinged butt plate and a light spiked bipod on the gas cylinder.
+mv:bar_bar1918a2	The M1918A2 of 1938 was the BAR of the Second World War, with its bipod at the muzzle and slow and fast automatic fire in place of single shots.
+mv:m1_garand_pagarand	The M1 Garand as it appears in Medal of Honor: Pacific Assault, ported to this game.
+mv:colt45_coltpa	The M1911A1 as it appears in Medal of Honor: Pacific Assault, ported to this game.
+mv:colt45_colt1911w	The Webley Mk VI, adopted in 1915, was the last of the big British top-break .455 service revolvers. In the Second World War the .38 Enfield No.2 was the standard, but the Mk VI was still issued and carried.
+mv:enfield_p14	The Pattern 1914 Enfield was designed in Britain and built in the United States by Winchester, Remington and Eddystone for the British Army in the First World War, and its .30-06 twin became the US M1917. In the Second World War P14s went to the Home Guard and to snipers.
+mv:kar98_g98	The Gewehr 98 was Germany's service rifle from 1898 through the First World War, the long Mauser whose action the Kar98k shortened. Many were still in second-line hands in 1945. Here it is hosted under the G43 but handles as the bolt-action it is.
+mv:kar98sniper_g98scope	Scoped Gewehr 98s were Germany's sniper rifles of the First World War.
+mv:springfield_smlescope	The Short Magazine Lee-Enfield No.1 Mk III was Britain's rifle of the First World War, and scoped SMLEs were its sniper rifles.
+mv:springfield_m1903	The M1903 Springfield as the American Expeditionary Forces carried it in the First World War, with iron sights.
+mv:springfield_dhspdigital	Digital camouflage is a modern pattern of the 2000s. This is a fantasy skin.
+mv:mauser_c96_c96trench	The C96 saw hard use in the trenches of the First World War, often with its wooden holster fitted as a shoulder stock.
+mv:panzerschreck_lv_ofenrohr	Ofenrohr, the stovepipe, was the soldiers' name for the Panzerschreck, above all for the first RPzB 43, which had no blast shield.
+mv:delisle_lv_wdelisle	A what-if skin: the De Lisle was a British weapon and never in German service.
+# credit:<roster id | variant stem>  lines separated by " | ". Sources: hzm-mohaa-coop-mod/hzm_credits.txt and docs/SKIN_CREDITS.md
+# (weapon variant authorship). A variant without a row is credited to the author its own name carries, "(AUTHOR)".
+credit:70	Model, animations, skin: East (matseast92)
+credit:74	Model: no12u (Sketchfab, CC BY 4.0) | Original C96 add-on: East (matseast92)
+credit:75	Model, animations, skin: East (matseast92)
+credit:72	Model, animations, skin: Lt. Pato (Patricio Mardones)
+credit:39	FG42 mesh and animations: RoempaZ / DaRKaNGeL (FG42 Add-On)
+credit:79	FG42 mesh and animations: RoempaZ / DaRKaNGeL (FG42 Add-On)
+credit:thompsonsmg_m1a1dk	Model: DaRKaNGeL | Skins: Apocalypse
+credit:thompsonsmg_tommy1928d	Model: Dr.Deleto | Reskin and animation swap: Static
+credit:thompsonsmg_tommy27a1	Model: FlakRider | Strap texture: Hobbs
+credit:thompsonsmg_tommy28	Skin / model: Static (author still being traced)
+credit:colt45_bloodyeic	Skin: Schutze (EIC series)
+credit:colt45_covert	Author not yet traced. If it is yours, tell us.
+credit:colt45_drbond	Author not yet traced (Dr. Bond?). If it is yours, tell us.
+credit:mp40_mp40r2	Author not yet traced. If it is yours, tell us.
+credit:shotgun_authwinch	Author not yet traced. If it is yours, tell us.
+credit:bar_pabar	A Medal of Honor: Pacific Assault port | Porter not certain, pack credit
+credit:m1_garand_pagarand	Pacific Assault port: acme313
+credit:colt45_coltpa	Pacific Assault port: acme313

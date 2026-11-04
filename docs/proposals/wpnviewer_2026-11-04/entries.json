@@ -1,0 +1,4070 @@
+[
+ {
+  "n": 1,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/m1_garand.tik",
+  "tab": 0
+ },
+ {
+  "n": 2,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/m1_garand_gold.tik",
+  "tab": 0
+ },
+ {
+  "n": 3,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/m1_garand_chrome.tik",
+  "tab": 0
+ },
+ {
+  "n": 4,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/m1_garand_blued.tik",
+  "tab": 0
+ },
+ {
+  "n": 5,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/m1_garand_bloody.tik",
+  "tab": 0
+ },
+ {
+  "n": 6,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/m1_garand_camo_woodland.tik",
+  "tab": 0
+ },
+ {
+  "n": 7,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/m1_garand_camo_winter.tik",
+  "tab": 0
+ },
+ {
+  "n": 8,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/m1_garand_camo_desert.tik",
+  "tab": 0
+ },
+ {
+  "n": 9,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "M1 GARAND (PACIFIC) (ACME313)",
+  "fid": 8,
+  "tik": "models/weapons/m1_garand_pagarand.tik",
+  "tab": 0
+ },
+ {
+  "n": 10,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "M1 GARAND (GUANSHIRE)",
+  "fid": 9,
+  "tik": "models/weapons/m1_garand_guangarand.tik",
+  "tab": 0
+ },
+ {
+  "n": 11,
+  "gid": "01",
+  "name": "M1 GARAND",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 10,
+  "tik": "models/weapons/m1_garand_lv_ttgarand.tik",
+  "tab": 0
+ },
+ {
+  "n": 12,
+  "gid": "02",
+  "name": "M1 CARBINE",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/carbine.tik",
+  "tab": 0
+ },
+ {
+  "n": 13,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/kar98.tik",
+  "tab": 0
+ },
+ {
+  "n": 14,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/kar98_gold.tik",
+  "tab": 0
+ },
+ {
+  "n": 15,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/kar98_chrome.tik",
+  "tab": 0
+ },
+ {
+  "n": 16,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/kar98_blued.tik",
+  "tab": 0
+ },
+ {
+  "n": 17,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/kar98_bloody.tik",
+  "tab": 0
+ },
+ {
+  "n": 18,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/kar98_camo_woodland.tik",
+  "tab": 0
+ },
+ {
+  "n": 19,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/kar98_camo_winter.tik",
+  "tab": 0
+ },
+ {
+  "n": 20,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/kar98_camo_desert.tik",
+  "tab": 0
+ },
+ {
+  "n": 21,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "WORN KAR 98K (HOBBS)",
+  "fid": 8,
+  "tik": "models/weapons/kar98_hobbskarworn.tik",
+  "tab": 0
+ },
+ {
+  "n": 22,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "WOODLAND KAR 98K (HOBBS)",
+  "fid": 9,
+  "tik": "models/weapons/kar98_hobbskarwood.tik",
+  "tab": 0
+ },
+ {
+  "n": 23,
+  "gid": "03",
+  "name": "KAR98K",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 10,
+  "tik": "models/weapons/kar98_lv_ttkar98.tik",
+  "tab": 0
+ },
+ {
+  "n": 24,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/g43.tik",
+  "tab": 0
+ },
+ {
+  "n": 25,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/g43_gold.tik",
+  "tab": 0
+ },
+ {
+  "n": 26,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/g43_chrome.tik",
+  "tab": 0
+ },
+ {
+  "n": 27,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/g43_blued.tik",
+  "tab": 0
+ },
+ {
+  "n": 28,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/g43_bloody.tik",
+  "tab": 0
+ },
+ {
+  "n": 29,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/g43_camo_woodland.tik",
+  "tab": 0
+ },
+ {
+  "n": 30,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/g43_camo_winter.tik",
+  "tab": 0
+ },
+ {
+  "n": 31,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/g43_camo_desert.tik",
+  "tab": 0
+ },
+ {
+  "n": 32,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "GEWEHR 98 (BOLT) (EAST)",
+  "fid": 8,
+  "tik": "models/weapons/kar98_g98.tik",
+  "tab": 0
+ },
+ {
+  "n": 33,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "FLECKTARN G43 (DIRTYHARRY)",
+  "fid": 9,
+  "tik": "models/weapons/G43_dhg43fleck.tik",
+  "tab": 0
+ },
+ {
+  "n": 34,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "WOODLAND G43 (HOBBS)",
+  "fid": 10,
+  "tik": "models/weapons/G43_hobbsg43wood.tik",
+  "tab": 0
+ },
+ {
+  "n": 35,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "URBAN G43 (HOBBS)",
+  "fid": 11,
+  "tik": "models/weapons/G43_hobbsg43urb.tik",
+  "tab": 0
+ },
+ {
+  "n": 36,
+  "gid": "04",
+  "name": "GEWEHR 43",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 12,
+  "tik": "models/weapons/G43_lv_ttg43.tik",
+  "tab": 0
+ },
+ {
+  "n": 37,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/enfield.tik",
+  "tab": 0
+ },
+ {
+  "n": 38,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/enfield_gold.tik",
+  "tab": 0
+ },
+ {
+  "n": 39,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/enfield_chrome.tik",
+  "tab": 0
+ },
+ {
+  "n": 40,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/enfield_blued.tik",
+  "tab": 0
+ },
+ {
+  "n": 41,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/enfield_bloody.tik",
+  "tab": 0
+ },
+ {
+  "n": 42,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/enfield_camo_woodland.tik",
+  "tab": 0
+ },
+ {
+  "n": 43,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/enfield_camo_winter.tik",
+  "tab": 0
+ },
+ {
+  "n": 44,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/enfield_camo_desert.tik",
+  "tab": 0
+ },
+ {
+  "n": 45,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "P14 ENFIELD (EAST)",
+  "fid": 8,
+  "tik": "models/weapons/enfield_p14.tik",
+  "tab": 0
+ },
+ {
+  "n": 46,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "URBAN ENFIELD (HOBBS)",
+  "fid": 9,
+  "tik": "models/weapons/enfield_hobbsenfurb.tik",
+  "tab": 0
+ },
+ {
+  "n": 47,
+  "gid": "05",
+  "name": "LEE-ENFIELD NO.4",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 10,
+  "tik": "models/weapons/enfield_lv_ttenfield.tik",
+  "tab": 0
+ },
+ {
+  "n": 48,
+  "gid": "06",
+  "name": "SPRINGFIELD M1903",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/springfield_unscoped.tik",
+  "tab": 0
+ },
+ {
+  "n": 49,
+  "gid": "07",
+  "name": "CARCANO M91/38",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/it_w_carcano.tik",
+  "tab": 0
+ },
+ {
+  "n": 50,
+  "gid": "07",
+  "name": "CARCANO M91/38",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/it_w_carcano_gold.tik",
+  "tab": 0
+ },
+ {
+  "n": 51,
+  "gid": "07",
+  "name": "CARCANO M91/38",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/it_w_carcano_chrome.tik",
+  "tab": 0
+ },
+ {
+  "n": 52,
+  "gid": "07",
+  "name": "CARCANO M91/38",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/it_w_carcano_blued.tik",
+  "tab": 0
+ },
+ {
+  "n": 53,
+  "gid": "07",
+  "name": "CARCANO M91/38",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/it_w_carcano_bloody.tik",
+  "tab": 0
+ },
+ {
+  "n": 54,
+  "gid": "07",
+  "name": "CARCANO M91/38",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/it_w_carcano_camo_woodland.tik",
+  "tab": 0
+ },
+ {
+  "n": 55,
+  "gid": "07",
+  "name": "CARCANO M91/38",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/it_w_carcano_camo_winter.tik",
+  "tab": 0
+ },
+ {
+  "n": 56,
+  "gid": "07",
+  "name": "CARCANO M91/38",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/it_w_carcano_camo_desert.tik",
+  "tab": 0
+ },
+ {
+  "n": 57,
+  "gid": "07",
+  "name": "CARCANO M91/38",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 8,
+  "tik": "models/weapons/it_w_carcano_lv_ttcarcano.tik",
+  "tab": 0
+ },
+ {
+  "n": 58,
+  "gid": "08",
+  "name": "SVT-40",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/svt_rifle.tik",
+  "tab": 0
+ },
+ {
+  "n": 59,
+  "gid": "08",
+  "name": "SVT-40",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/svt_rifle_gold.tik",
+  "tab": 0
+ },
+ {
+  "n": 60,
+  "gid": "08",
+  "name": "SVT-40",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/svt_rifle_chrome.tik",
+  "tab": 0
+ },
+ {
+  "n": 61,
+  "gid": "08",
+  "name": "SVT-40",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/svt_rifle_blued.tik",
+  "tab": 0
+ },
+ {
+  "n": 62,
+  "gid": "08",
+  "name": "SVT-40",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/svt_rifle_bloody.tik",
+  "tab": 0
+ },
+ {
+  "n": 63,
+  "gid": "08",
+  "name": "SVT-40",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/svt_rifle_camo_woodland.tik",
+  "tab": 0
+ },
+ {
+  "n": 64,
+  "gid": "08",
+  "name": "SVT-40",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/svt_rifle_camo_winter.tik",
+  "tab": 0
+ },
+ {
+  "n": 65,
+  "gid": "08",
+  "name": "SVT-40",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/svt_rifle_camo_desert.tik",
+  "tab": 0
+ },
+ {
+  "n": 66,
+  "gid": "08",
+  "name": "SVT-40",
+  "variant": "WOODLAND SVT-40 (HOBBS)",
+  "fid": 8,
+  "tik": "models/weapons/svt_rifle_hobbssvtwood.tik",
+  "tab": 0
+ },
+ {
+  "n": 67,
+  "gid": "09",
+  "name": "MOSIN-NAGANT",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/mosin_nagant_rifle.tik",
+  "tab": 0
+ },
+ {
+  "n": 68,
+  "gid": "09",
+  "name": "MOSIN-NAGANT",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/mosin_nagant_rifle_gold.tik",
+  "tab": 0
+ },
+ {
+  "n": 69,
+  "gid": "09",
+  "name": "MOSIN-NAGANT",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/mosin_nagant_rifle_chrome.tik",
+  "tab": 0
+ },
+ {
+  "n": 70,
+  "gid": "09",
+  "name": "MOSIN-NAGANT",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/mosin_nagant_rifle_blued.tik",
+  "tab": 0
+ },
+ {
+  "n": 71,
+  "gid": "09",
+  "name": "MOSIN-NAGANT",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/mosin_nagant_rifle_bloody.tik",
+  "tab": 0
+ },
+ {
+  "n": 72,
+  "gid": "09",
+  "name": "MOSIN-NAGANT",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/mosin_nagant_rifle_camo_woodland.tik",
+  "tab": 0
+ },
+ {
+  "n": 73,
+  "gid": "09",
+  "name": "MOSIN-NAGANT",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/mosin_nagant_rifle_camo_winter.tik",
+  "tab": 0
+ },
+ {
+  "n": 74,
+  "gid": "09",
+  "name": "MOSIN-NAGANT",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/mosin_nagant_rifle_camo_desert.tik",
+  "tab": 0
+ },
+ {
+  "n": 75,
+  "gid": "09",
+  "name": "MOSIN-NAGANT",
+  "variant": "URBAN MOSIN (HOBBS)",
+  "fid": 8,
+  "tik": "models/weapons/mosin_nagant_rifle_hobbsmosinur.tik",
+  "tab": 0
+ },
+ {
+  "n": 76,
+  "gid": "09",
+  "name": "MOSIN-NAGANT",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 9,
+  "tik": "models/weapons/mosin_nagant_rifle_lv_ttmosin.tik",
+  "tab": 0
+ },
+ {
+  "n": 77,
+  "gid": "10",
+  "name": "ARISAKA TYPE 99",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/arisaka.tik",
+  "tab": 0
+ },
+ {
+  "n": 78,
+  "gid": "11",
+  "name": "M1 GARAND SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/garand_silenced.tik",
+  "tab": 0
+ },
+ {
+  "n": 79,
+  "gid": "70",
+  "name": "JOHNSON M1941",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/johnson_m1941.tik",
+  "tab": 0
+ },
+ {
+  "n": 80,
+  "gid": "70",
+  "name": "JOHNSON M1941",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/johnson_m1941_gold.tik",
+  "tab": 0
+ },
+ {
+  "n": 81,
+  "gid": "70",
+  "name": "JOHNSON M1941",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/johnson_m1941_chrome.tik",
+  "tab": 0
+ },
+ {
+  "n": 82,
+  "gid": "70",
+  "name": "JOHNSON M1941",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/johnson_m1941_blued.tik",
+  "tab": 0
+ },
+ {
+  "n": 83,
+  "gid": "70",
+  "name": "JOHNSON M1941",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/johnson_m1941_bloody.tik",
+  "tab": 0
+ },
+ {
+  "n": 84,
+  "gid": "70",
+  "name": "JOHNSON M1941",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/johnson_m1941_camo_woodland.tik",
+  "tab": 0
+ },
+ {
+  "n": 85,
+  "gid": "70",
+  "name": "JOHNSON M1941",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/johnson_m1941_camo_winter.tik",
+  "tab": 0
+ },
+ {
+  "n": 86,
+  "gid": "70",
+  "name": "JOHNSON M1941",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/johnson_m1941_camo_desert.tik",
+  "tab": 0
+ },
+ {
+  "n": 87,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/coop_g43_irons.tik",
+  "tab": 0
+ },
+ {
+  "n": 88,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/coop_g43_irons_gold.tik",
+  "tab": 0
+ },
+ {
+  "n": 89,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/coop_g43_irons_chrome.tik",
+  "tab": 0
+ },
+ {
+  "n": 90,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/coop_g43_irons_blued.tik",
+  "tab": 0
+ },
+ {
+  "n": 91,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/coop_g43_irons_bloody.tik",
+  "tab": 0
+ },
+ {
+  "n": 92,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/coop_g43_irons_camo_woodland.tik",
+  "tab": 0
+ },
+ {
+  "n": 93,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/coop_g43_irons_camo_winter.tik",
+  "tab": 0
+ },
+ {
+  "n": 94,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/coop_g43_irons_camo_desert.tik",
+  "tab": 0
+ },
+ {
+  "n": 95,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "FLECKTARN G43 (DIRTYHARRY)",
+  "fid": 8,
+  "tik": "models/weapons/coop_g43_irons_dhg43fleck.tik",
+  "tab": 0
+ },
+ {
+  "n": 96,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "WOODLAND G43 (HOBBS)",
+  "fid": 9,
+  "tik": "models/weapons/coop_g43_irons_hobbsg43wood.tik",
+  "tab": 0
+ },
+ {
+  "n": 97,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "URBAN G43 (HOBBS)",
+  "fid": 10,
+  "tik": "models/weapons/coop_g43_irons_hobbsg43urb.tik",
+  "tab": 0
+ },
+ {
+  "n": 98,
+  "gid": "78",
+  "name": "GEWEHR 43 (IRON SIGHTS)",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 11,
+  "tik": "models/weapons/coop_g43_irons_lv_ttg43.tik",
+  "tab": 0
+ },
+ {
+  "n": 99,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/springfield.tik",
+  "tab": 1
+ },
+ {
+  "n": 100,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/springfield_gold.tik",
+  "tab": 1
+ },
+ {
+  "n": 101,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/springfield_chrome.tik",
+  "tab": 1
+ },
+ {
+  "n": 102,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/springfield_blued.tik",
+  "tab": 1
+ },
+ {
+  "n": 103,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/springfield_bloody.tik",
+  "tab": 1
+ },
+ {
+  "n": 104,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/springfield_camo_woodland.tik",
+  "tab": 1
+ },
+ {
+  "n": 105,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/springfield_camo_winter.tik",
+  "tab": 1
+ },
+ {
+  "n": 106,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/springfield_camo_desert.tik",
+  "tab": 1
+ },
+ {
+  "n": 107,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "SMLE SCOPED (EAST)",
+  "fid": 8,
+  "tik": "models/weapons/springfield_smlescope.tik",
+  "tab": 1
+ },
+ {
+  "n": 108,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "M1903 SPRINGFIELD (EAST)",
+  "fid": 9,
+  "tik": "models/weapons/springfield_m1903.tik",
+  "tab": 1
+ },
+ {
+  "n": 109,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "DESERT CAMO '03 (DIRTYHARRY)",
+  "fid": 10,
+  "tik": "models/weapons/springfield_dhspdesert.tik",
+  "tab": 1
+ },
+ {
+  "n": 110,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "DIGITAL CAMO '03 (DIRTYHARRY)",
+  "fid": 11,
+  "tik": "models/weapons/springfield_dhspdigital.tik",
+  "tab": 1
+ },
+ {
+  "n": 111,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "TIGER CAMO '03 (DIRTYHARRY)",
+  "fid": 12,
+  "tik": "models/weapons/springfield_dhsptiger.tik",
+  "tab": 1
+ },
+ {
+  "n": 112,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "WINTER CAMO '03 (DIRTYHARRY)",
+  "fid": 13,
+  "tik": "models/weapons/springfield_dhspwinter.tik",
+  "tab": 1
+ },
+ {
+  "n": 113,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "LIGHTWOOD '03 (GUANSHIRE)",
+  "fid": 14,
+  "tik": "models/weapons/springfield_guansplight.tik",
+  "tab": 1
+ },
+ {
+  "n": 114,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "SPRINGFIELD II (GUANSHIRE)",
+  "fid": 15,
+  "tik": "models/weapons/springfield_guansp2.tik",
+  "tab": 1
+ },
+ {
+  "n": 115,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "WOODLAND '03 (HOBBS)",
+  "fid": 16,
+  "tik": "models/weapons/springfield_hobbsspwood.tik",
+  "tab": 1
+ },
+ {
+  "n": 116,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "URBAN '03 (HOBBS)",
+  "fid": 17,
+  "tik": "models/weapons/springfield_hobbsspurban.tik",
+  "tab": 1
+ },
+ {
+  "n": 117,
+  "gid": "12",
+  "name": "SPRINGFIELD SNIPER",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 18,
+  "tik": "models/weapons/springfield_lv_ttspring.tik",
+  "tab": 1
+ },
+ {
+  "n": 118,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/kar98sniper.tik",
+  "tab": 1
+ },
+ {
+  "n": 119,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/kar98sniper_gold.tik",
+  "tab": 1
+ },
+ {
+  "n": 120,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/kar98sniper_chrome.tik",
+  "tab": 1
+ },
+ {
+  "n": 121,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/kar98sniper_blued.tik",
+  "tab": 1
+ },
+ {
+  "n": 122,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/kar98sniper_bloody.tik",
+  "tab": 1
+ },
+ {
+  "n": 123,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/kar98sniper_camo_woodland.tik",
+  "tab": 1
+ },
+ {
+  "n": 124,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/kar98sniper_camo_winter.tik",
+  "tab": 1
+ },
+ {
+  "n": 125,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/kar98sniper_camo_desert.tik",
+  "tab": 1
+ },
+ {
+  "n": 126,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "G98 SCOPED (EAST)",
+  "fid": 8,
+  "tik": "models/weapons/KAR98sniper_g98scope.tik",
+  "tab": 1
+ },
+ {
+  "n": 127,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 9,
+  "tik": "models/weapons/KAR98sniper_lv_ttkar98sn.tik",
+  "tab": 1
+ },
+ {
+  "n": 128,
+  "gid": "13",
+  "name": "KAR98K SNIPER",
+  "variant": "MAUSER 98 KS (LEON)",
+  "fid": 10,
+  "tik": "models/weapons/KAR98sniper_lv_98ks.tik",
+  "tab": 1
+ },
+ {
+  "n": 129,
+  "gid": "14",
+  "name": "ENFIELD L42A1",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/uk_w_l42a1.tik",
+  "tab": 1
+ },
+ {
+  "n": 130,
+  "gid": "14",
+  "name": "ENFIELD L42A1",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/uk_w_l42a1_gold.tik",
+  "tab": 1
+ },
+ {
+  "n": 131,
+  "gid": "14",
+  "name": "ENFIELD L42A1",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/uk_w_l42a1_chrome.tik",
+  "tab": 1
+ },
+ {
+  "n": 132,
+  "gid": "14",
+  "name": "ENFIELD L42A1",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/uk_w_l42a1_blued.tik",
+  "tab": 1
+ },
+ {
+  "n": 133,
+  "gid": "14",
+  "name": "ENFIELD L42A1",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/uk_w_l42a1_bloody.tik",
+  "tab": 1
+ },
+ {
+  "n": 134,
+  "gid": "14",
+  "name": "ENFIELD L42A1",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/uk_w_l42a1_camo_woodland.tik",
+  "tab": 1
+ },
+ {
+  "n": 135,
+  "gid": "14",
+  "name": "ENFIELD L42A1",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/uk_w_l42a1_camo_winter.tik",
+  "tab": 1
+ },
+ {
+  "n": 136,
+  "gid": "14",
+  "name": "ENFIELD L42A1",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/uk_w_l42a1_camo_desert.tik",
+  "tab": 1
+ },
+ {
+  "n": 137,
+  "gid": "14",
+  "name": "ENFIELD L42A1",
+  "variant": "CAMO L42A1 (DIRTYHARRY)",
+  "fid": 8,
+  "tik": "models/weapons/uk_w_l42a1_dhl42camo.tik",
+  "tab": 1
+ },
+ {
+  "n": 138,
+  "gid": "15",
+  "name": "M1 GARAND SCOPED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/garand_scoped.tik",
+  "tab": 1
+ },
+ {
+  "n": 139,
+  "gid": "16",
+  "name": "G43 SNIPER",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/g43sniper.tik",
+  "tab": 1
+ },
+ {
+  "n": 140,
+  "gid": "16",
+  "name": "G43 SNIPER",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/g43sniper_gold.tik",
+  "tab": 1
+ },
+ {
+  "n": 141,
+  "gid": "16",
+  "name": "G43 SNIPER",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/g43sniper_chrome.tik",
+  "tab": 1
+ },
+ {
+  "n": 142,
+  "gid": "16",
+  "name": "G43 SNIPER",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/g43sniper_blued.tik",
+  "tab": 1
+ },
+ {
+  "n": 143,
+  "gid": "16",
+  "name": "G43 SNIPER",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/g43sniper_bloody.tik",
+  "tab": 1
+ },
+ {
+  "n": 144,
+  "gid": "16",
+  "name": "G43 SNIPER",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/g43sniper_camo_woodland.tik",
+  "tab": 1
+ },
+ {
+  "n": 145,
+  "gid": "16",
+  "name": "G43 SNIPER",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/g43sniper_camo_winter.tik",
+  "tab": 1
+ },
+ {
+  "n": 146,
+  "gid": "16",
+  "name": "G43 SNIPER",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/g43sniper_camo_desert.tik",
+  "tab": 1
+ },
+ {
+  "n": 147,
+  "gid": "17",
+  "name": "LEE-ENFIELD SNIPER",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/enfieldsniper.tik",
+  "tab": 1
+ },
+ {
+  "n": 148,
+  "gid": "18",
+  "name": "CARCANO SNIPER",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/carcanosniper.tik",
+  "tab": 1
+ },
+ {
+  "n": 149,
+  "gid": "19",
+  "name": "ARISAKA SNIPER",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/arisakasniper.tik",
+  "tab": 1
+ },
+ {
+  "n": 150,
+  "gid": "20",
+  "name": "MOSIN SNIPER",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/nagant_sniper.tik",
+  "tab": 1
+ },
+ {
+  "n": 151,
+  "gid": "21",
+  "name": "MOSIN SNIPER SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/nagant_snipersilenced.tik",
+  "tab": 1
+ },
+ {
+  "n": 152,
+  "gid": "22",
+  "name": "KAR98K SNIPER SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/kar98snipersilenced.tik",
+  "tab": 1
+ },
+ {
+  "n": 153,
+  "gid": "23",
+  "name": "DE LISLE CARBINE",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/delisle.tik",
+  "tab": 1
+ },
+ {
+  "n": 154,
+  "gid": "23",
+  "name": "DE LISLE CARBINE",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/delisle_gold.tik",
+  "tab": 1
+ },
+ {
+  "n": 155,
+  "gid": "23",
+  "name": "DE LISLE CARBINE",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/delisle_chrome.tik",
+  "tab": 1
+ },
+ {
+  "n": 156,
+  "gid": "23",
+  "name": "DE LISLE CARBINE",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/delisle_blued.tik",
+  "tab": 1
+ },
+ {
+  "n": 157,
+  "gid": "23",
+  "name": "DE LISLE CARBINE",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/delisle_bloody.tik",
+  "tab": 1
+ },
+ {
+  "n": 158,
+  "gid": "23",
+  "name": "DE LISLE CARBINE",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/delisle_camo_woodland.tik",
+  "tab": 1
+ },
+ {
+  "n": 159,
+  "gid": "23",
+  "name": "DE LISLE CARBINE",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/delisle_camo_winter.tik",
+  "tab": 1
+ },
+ {
+  "n": 160,
+  "gid": "23",
+  "name": "DE LISLE CARBINE",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/delisle_camo_desert.tik",
+  "tab": 1
+ },
+ {
+  "n": 161,
+  "gid": "23",
+  "name": "DE LISLE CARBINE",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 8,
+  "tik": "models/weapons/delisle_lv_ttdelisle.tik",
+  "tab": 1
+ },
+ {
+  "n": 162,
+  "gid": "23",
+  "name": "DE LISLE CARBINE",
+  "variant": "WEHRMACHT DELISLE (LEON)",
+  "fid": 9,
+  "tik": "models/weapons/delisle_lv_wdelisle.tik",
+  "tab": 1
+ },
+ {
+  "n": 163,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/thompsonsmg.tik",
+  "tab": 2
+ },
+ {
+  "n": 164,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/thompsonsmg_gold.tik",
+  "tab": 2
+ },
+ {
+  "n": 165,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/thompsonsmg_chrome.tik",
+  "tab": 2
+ },
+ {
+  "n": 166,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/thompsonsmg_blued.tik",
+  "tab": 2
+ },
+ {
+  "n": 167,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/thompsonsmg_bloody.tik",
+  "tab": 2
+ },
+ {
+  "n": 168,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/thompsonsmg_camo_woodland.tik",
+  "tab": 2
+ },
+ {
+  "n": 169,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/thompsonsmg_camo_winter.tik",
+  "tab": 2
+ },
+ {
+  "n": 170,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/thompsonsmg_camo_desert.tik",
+  "tab": 2
+ },
+ {
+  "n": 171,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "THOMPSON (M1928) (STATIC)",
+  "fid": 8,
+  "tik": "models/weapons/thompsonsmg_tommy28.tik",
+  "tab": 2
+ },
+ {
+  "n": 172,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "THOMPSON (1928 TOMMY) (DR.DELETO)",
+  "fid": 9,
+  "tik": "models/weapons/thompsonsmg_tommy1928d.tik",
+  "tab": 2
+ },
+ {
+  "n": 173,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "THOMPSON (27A1 COMMANDO) (FLAKRIDER)",
+  "fid": 10,
+  "tik": "models/weapons/thompsonsmg_tommy27a1.tik",
+  "tab": 2
+ },
+ {
+  "n": 174,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "M1A1 REMODEL (DARKANGEL)",
+  "fid": 11,
+  "tik": "models/weapons/thompsonsmg_m1a1dk.tik",
+  "tab": 2
+ },
+ {
+  "n": 175,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "WORN THOMPSON (HOBBS)",
+  "fid": 12,
+  "tik": "models/weapons/thompsonsmg_hobbstomworn.tik",
+  "tab": 2
+ },
+ {
+  "n": 176,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "THOMPSON (GUANSHIRE)",
+  "fid": 13,
+  "tik": "models/weapons/thompsonsmg_guantommy.tik",
+  "tab": 2
+ },
+ {
+  "n": 177,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 14,
+  "tik": "models/weapons/thompsonsmg_lv_tttommy.tik",
+  "tab": 2
+ },
+ {
+  "n": 178,
+  "gid": "24",
+  "name": "THOMPSON M1",
+  "variant": "FAMAS THOMPSON II (LEON)",
+  "fid": 15,
+  "tik": "models/weapons/thompsonsmg_lv_famastommy.tik",
+  "tab": 2
+ },
+ {
+  "n": 179,
+  "gid": "25",
+  "name": "THOMPSON DRUM",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/thompson50.tik",
+  "tab": 2
+ },
+ {
+  "n": 180,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/mp40.tik",
+  "tab": 2
+ },
+ {
+  "n": 181,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/mp40_gold.tik",
+  "tab": 2
+ },
+ {
+  "n": 182,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/mp40_chrome.tik",
+  "tab": 2
+ },
+ {
+  "n": 183,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/mp40_blued.tik",
+  "tab": 2
+ },
+ {
+  "n": 184,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/mp40_bloody.tik",
+  "tab": 2
+ },
+ {
+  "n": 185,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/mp40_camo_woodland.tik",
+  "tab": 2
+ },
+ {
+  "n": 186,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/mp40_camo_winter.tik",
+  "tab": 2
+ },
+ {
+  "n": 187,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/mp40_camo_desert.tik",
+  "tab": 2
+ },
+ {
+  "n": 188,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "MP40 (REACTIVATED)",
+  "fid": 8,
+  "tik": "models/weapons/mp40_mp40r2.tik",
+  "tab": 2
+ },
+ {
+  "n": 189,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "MP18 (EAST)",
+  "fid": 9,
+  "tik": "models/weapons/mp40_mp18.tik",
+  "tab": 2
+ },
+ {
+  "n": 190,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "MP40 (GUANSHIRE)",
+  "fid": 10,
+  "tik": "models/weapons/mp40_guanmp40.tik",
+  "tab": 2
+ },
+ {
+  "n": 191,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "SILVER MP40 (GUANSHIRE)",
+  "fid": 11,
+  "tik": "models/weapons/mp40_guanmp40s.tik",
+  "tab": 2
+ },
+ {
+  "n": 192,
+  "gid": "26",
+  "name": "MP40",
+  "variant": "MP 75 AUSF D (LEON)",
+  "fid": 12,
+  "tik": "models/weapons/mp40_lv_mp75.tik",
+  "tab": 2
+ },
+ {
+  "n": 193,
+  "gid": "27",
+  "name": "MP40 SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/mp40silenced.tik",
+  "tab": 2
+ },
+ {
+  "n": 194,
+  "gid": "28",
+  "name": "STEN MK II",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/sten.tik",
+  "tab": 2
+ },
+ {
+  "n": 195,
+  "gid": "28",
+  "name": "STEN MK II",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/sten_gold.tik",
+  "tab": 2
+ },
+ {
+  "n": 196,
+  "gid": "28",
+  "name": "STEN MK II",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/sten_chrome.tik",
+  "tab": 2
+ },
+ {
+  "n": 197,
+  "gid": "28",
+  "name": "STEN MK II",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/sten_blued.tik",
+  "tab": 2
+ },
+ {
+  "n": 198,
+  "gid": "28",
+  "name": "STEN MK II",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/sten_bloody.tik",
+  "tab": 2
+ },
+ {
+  "n": 199,
+  "gid": "28",
+  "name": "STEN MK II",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/sten_camo_woodland.tik",
+  "tab": 2
+ },
+ {
+  "n": 200,
+  "gid": "28",
+  "name": "STEN MK II",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/sten_camo_winter.tik",
+  "tab": 2
+ },
+ {
+  "n": 201,
+  "gid": "28",
+  "name": "STEN MK II",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/sten_camo_desert.tik",
+  "tab": 2
+ },
+ {
+  "n": 202,
+  "gid": "29",
+  "name": "PPSH-41",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/ppsh_smg.tik",
+  "tab": 2
+ },
+ {
+  "n": 203,
+  "gid": "29",
+  "name": "PPSH-41",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/ppsh_smg_gold.tik",
+  "tab": 2
+ },
+ {
+  "n": 204,
+  "gid": "29",
+  "name": "PPSH-41",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/ppsh_smg_chrome.tik",
+  "tab": 2
+ },
+ {
+  "n": 205,
+  "gid": "29",
+  "name": "PPSH-41",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/ppsh_smg_blued.tik",
+  "tab": 2
+ },
+ {
+  "n": 206,
+  "gid": "29",
+  "name": "PPSH-41",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/ppsh_smg_bloody.tik",
+  "tab": 2
+ },
+ {
+  "n": 207,
+  "gid": "29",
+  "name": "PPSH-41",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/ppsh_smg_camo_woodland.tik",
+  "tab": 2
+ },
+ {
+  "n": 208,
+  "gid": "29",
+  "name": "PPSH-41",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/ppsh_smg_camo_winter.tik",
+  "tab": 2
+ },
+ {
+  "n": 209,
+  "gid": "29",
+  "name": "PPSH-41",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/ppsh_smg_camo_desert.tik",
+  "tab": 2
+ },
+ {
+  "n": 210,
+  "gid": "30",
+  "name": "PPS-43 SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/ppsh43silenced.tik",
+  "tab": 2
+ },
+ {
+  "n": 211,
+  "gid": "31",
+  "name": "M3 GREASE GUN",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/greasegun.tik",
+  "tab": 2
+ },
+ {
+  "n": 212,
+  "gid": "32",
+  "name": "M3 GREASE SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/greasegun_silenced.tik",
+  "tab": 2
+ },
+ {
+  "n": 213,
+  "gid": "33",
+  "name": "MOSCHETTO M38",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/it_w_moschetto.tik",
+  "tab": 2
+ },
+ {
+  "n": 214,
+  "gid": "33",
+  "name": "MOSCHETTO M38",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/it_w_moschetto_gold.tik",
+  "tab": 2
+ },
+ {
+  "n": 215,
+  "gid": "33",
+  "name": "MOSCHETTO M38",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/it_w_moschetto_chrome.tik",
+  "tab": 2
+ },
+ {
+  "n": 216,
+  "gid": "33",
+  "name": "MOSCHETTO M38",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/it_w_moschetto_blued.tik",
+  "tab": 2
+ },
+ {
+  "n": 217,
+  "gid": "33",
+  "name": "MOSCHETTO M38",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/it_w_moschetto_bloody.tik",
+  "tab": 2
+ },
+ {
+  "n": 218,
+  "gid": "33",
+  "name": "MOSCHETTO M38",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/it_w_moschetto_camo_woodland.tik",
+  "tab": 2
+ },
+ {
+  "n": 219,
+  "gid": "33",
+  "name": "MOSCHETTO M38",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/it_w_moschetto_camo_winter.tik",
+  "tab": 2
+ },
+ {
+  "n": 220,
+  "gid": "33",
+  "name": "MOSCHETTO M38",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/it_w_moschetto_camo_desert.tik",
+  "tab": 2
+ },
+ {
+  "n": 221,
+  "gid": "34",
+  "name": "BERETTA M38A",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/moschetto.tik",
+  "tab": 2
+ },
+ {
+  "n": 222,
+  "gid": "35",
+  "name": "TYPE 100 SMG",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/type100smg.tik",
+  "tab": 2
+ },
+ {
+  "n": 223,
+  "gid": "71",
+  "name": "THOMPSON (GOLD)",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/thompsonsmg_gold.tik",
+  "tab": 2
+ },
+ {
+  "n": 224,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/bar.tik",
+  "tab": 3
+ },
+ {
+  "n": 225,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/bar_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 226,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/bar_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 227,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/bar_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 228,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/bar_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 229,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/bar_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 230,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/bar_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 231,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/bar_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 232,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "BAR (PACIFIC) (MOH:PA)",
+  "fid": 8,
+  "tik": "models/weapons/bar_pabar.tik",
+  "tab": 3
+ },
+ {
+  "n": 233,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "LEWIS GUN (EAST)",
+  "fid": 9,
+  "tik": "models/weapons/bar_bar1918.tik",
+  "tab": 3
+ },
+ {
+  "n": 234,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "M1918 CLASSIC (STLKID)",
+  "fid": 10,
+  "tik": "models/weapons/bar_bar1918a.tik",
+  "tab": 3
+ },
+ {
+  "n": 235,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "M1918A1 (STLKID)",
+  "fid": 11,
+  "tik": "models/weapons/bar_bar1918a1.tik",
+  "tab": 3
+ },
+ {
+  "n": 236,
+  "gid": "36",
+  "name": "BAR M1918",
+  "variant": "M1918A2 (STLKID)",
+  "fid": 12,
+  "tik": "models/weapons/bar_bar1918a2.tik",
+  "tab": 3
+ },
+ {
+  "n": 237,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/mp44.tik",
+  "tab": 3
+ },
+ {
+  "n": 238,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/mp44_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 239,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/mp44_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 240,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/mp44_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 241,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/mp44_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 242,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/mp44_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 243,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/mp44_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 244,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/mp44_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 245,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "STG 44 (STRAPPED) (DARKANGEL)",
+  "fid": 8,
+  "tik": "models/weapons/mp44_mp44strap.tik",
+  "tab": 3
+ },
+ {
+  "n": 246,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "SS STG 44 (DIRTYHARRY)",
+  "fid": 9,
+  "tik": "models/weapons/mp44_dhstg44ss.tik",
+  "tab": 3
+ },
+ {
+  "n": 247,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "STG 44 (GUANSHIRE)",
+  "fid": 10,
+  "tik": "models/weapons/mp44_guanmp44.tik",
+  "tab": 3
+ },
+ {
+  "n": 248,
+  "gid": "37",
+  "name": "STG 44",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 11,
+  "tik": "models/weapons/mp44_lv_ttmp44.tik",
+  "tab": 3
+ },
+ {
+  "n": 249,
+  "gid": "38",
+  "name": "STG 44 SCOPED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/mp44scoped.tik",
+  "tab": 3
+ },
+ {
+  "n": 250,
+  "gid": "39",
+  "name": "FG 42",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/fg42.tik",
+  "tab": 3
+ },
+ {
+  "n": 251,
+  "gid": "39",
+  "name": "FG 42",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/fg42_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 252,
+  "gid": "39",
+  "name": "FG 42",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/fg42_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 253,
+  "gid": "39",
+  "name": "FG 42",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/fg42_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 254,
+  "gid": "39",
+  "name": "FG 42",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/fg42_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 255,
+  "gid": "39",
+  "name": "FG 42",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/fg42_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 256,
+  "gid": "39",
+  "name": "FG 42",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/fg42_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 257,
+  "gid": "39",
+  "name": "FG 42",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/fg42_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 258,
+  "gid": "40",
+  "name": "VICKERS-BERTHIER",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/uk_w_vickers.tik",
+  "tab": 3
+ },
+ {
+  "n": 259,
+  "gid": "40",
+  "name": "VICKERS-BERTHIER",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/uk_w_vickers_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 260,
+  "gid": "40",
+  "name": "VICKERS-BERTHIER",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/uk_w_vickers_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 261,
+  "gid": "40",
+  "name": "VICKERS-BERTHIER",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/uk_w_vickers_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 262,
+  "gid": "40",
+  "name": "VICKERS-BERTHIER",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/uk_w_vickers_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 263,
+  "gid": "40",
+  "name": "VICKERS-BERTHIER",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/uk_w_vickers_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 264,
+  "gid": "40",
+  "name": "VICKERS-BERTHIER",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/uk_w_vickers_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 265,
+  "gid": "40",
+  "name": "VICKERS-BERTHIER",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/uk_w_vickers_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 266,
+  "gid": "41",
+  "name": "BREDA M30",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/it_w_breda.tik",
+  "tab": 3
+ },
+ {
+  "n": 267,
+  "gid": "41",
+  "name": "BREDA M30",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/it_w_breda_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 268,
+  "gid": "41",
+  "name": "BREDA M30",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/it_w_breda_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 269,
+  "gid": "41",
+  "name": "BREDA M30",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/it_w_breda_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 270,
+  "gid": "41",
+  "name": "BREDA M30",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/it_w_breda_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 271,
+  "gid": "41",
+  "name": "BREDA M30",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/it_w_breda_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 272,
+  "gid": "41",
+  "name": "BREDA M30",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/it_w_breda_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 273,
+  "gid": "41",
+  "name": "BREDA M30",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/it_w_breda_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 274,
+  "gid": "42",
+  "name": "M1919 .30 CAL",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/30calportable.tik",
+  "tab": 3
+ },
+ {
+  "n": 275,
+  "gid": "43",
+  "name": "MG42",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/mg42portable.tik",
+  "tab": 3
+ },
+ {
+  "n": 276,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/shotgun.tik",
+  "tab": 3
+ },
+ {
+  "n": 277,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/shotgun_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 278,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/shotgun_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 279,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/shotgun_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 280,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/shotgun_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 281,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/shotgun_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 282,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/shotgun_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 283,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/shotgun_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 284,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "AUTHENTIC WOOD",
+  "fid": 8,
+  "tik": "models/weapons/shotgun_authwinch.tik",
+  "tab": 3
+ },
+ {
+  "n": 285,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "BLACK TACTICAL (DIRTYHARRY)",
+  "fid": 9,
+  "tik": "models/weapons/shotgun_dhshotblack.tik",
+  "tab": 3
+ },
+ {
+  "n": 286,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "CHROME TACTICAL (DIRTYHARRY)",
+  "fid": 10,
+  "tik": "models/weapons/shotgun_dhshotchrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 287,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "RECOIL SHOTTY (HOBBS & RECOIL)",
+  "fid": 11,
+  "tik": "models/weapons/shotgun_hobbsshotty.tik",
+  "tab": 3
+ },
+ {
+  "n": 288,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "SHOTGUN (GUANSHIRE)",
+  "fid": 12,
+  "tik": "models/weapons/shotgun_guanshotty.tik",
+  "tab": 3
+ },
+ {
+  "n": 289,
+  "gid": "44",
+  "name": "TRENCH GUN",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 13,
+  "tik": "models/weapons/shotgun_lv_ttshotgun.tik",
+  "tab": 3
+ },
+ {
+  "n": 290,
+  "gid": "45",
+  "name": "M1A1 BAZOOKA",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/bazooka.tik",
+  "tab": 3
+ },
+ {
+  "n": 291,
+  "gid": "45",
+  "name": "M1A1 BAZOOKA",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/bazooka_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 292,
+  "gid": "45",
+  "name": "M1A1 BAZOOKA",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/bazooka_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 293,
+  "gid": "45",
+  "name": "M1A1 BAZOOKA",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/bazooka_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 294,
+  "gid": "45",
+  "name": "M1A1 BAZOOKA",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/bazooka_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 295,
+  "gid": "45",
+  "name": "M1A1 BAZOOKA",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/bazooka_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 296,
+  "gid": "45",
+  "name": "M1A1 BAZOOKA",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/bazooka_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 297,
+  "gid": "45",
+  "name": "M1A1 BAZOOKA",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/bazooka_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 298,
+  "gid": "45",
+  "name": "M1A1 BAZOOKA",
+  "variant": "REALISTIC BAZOOKA (GUANSHIRE)",
+  "fid": 8,
+  "tik": "models/weapons/bazooka_guanbazooka.tik",
+  "tab": 3
+ },
+ {
+  "n": 299,
+  "gid": "46",
+  "name": "PANZERSCHRECK",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/panzerschreck.tik",
+  "tab": 3
+ },
+ {
+  "n": 300,
+  "gid": "46",
+  "name": "PANZERSCHRECK",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/panzerschreck_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 301,
+  "gid": "46",
+  "name": "PANZERSCHRECK",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/panzerschreck_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 302,
+  "gid": "46",
+  "name": "PANZERSCHRECK",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/panzerschreck_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 303,
+  "gid": "46",
+  "name": "PANZERSCHRECK",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/panzerschreck_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 304,
+  "gid": "46",
+  "name": "PANZERSCHRECK",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/panzerschreck_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 305,
+  "gid": "46",
+  "name": "PANZERSCHRECK",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/panzerschreck_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 306,
+  "gid": "46",
+  "name": "PANZERSCHRECK",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/panzerschreck_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 307,
+  "gid": "46",
+  "name": "PANZERSCHRECK",
+  "variant": "OFENROHR (LEON)",
+  "fid": 8,
+  "tik": "models/weapons/panzerschreck_lv_ofenrohr.tik",
+  "tab": 3
+ },
+ {
+  "n": 308,
+  "gid": "47",
+  "name": "PIAT",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/uk_w_piat.tik",
+  "tab": 3
+ },
+ {
+  "n": 309,
+  "gid": "47",
+  "name": "PIAT",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/uk_w_piat_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 310,
+  "gid": "47",
+  "name": "PIAT",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/uk_w_piat_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 311,
+  "gid": "47",
+  "name": "PIAT",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/uk_w_piat_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 312,
+  "gid": "47",
+  "name": "PIAT",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/uk_w_piat_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 313,
+  "gid": "47",
+  "name": "PIAT",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/uk_w_piat_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 314,
+  "gid": "47",
+  "name": "PIAT",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/uk_w_piat_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 315,
+  "gid": "47",
+  "name": "PIAT",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/uk_w_piat_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 316,
+  "gid": "72",
+  "name": "DP-28",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/dp28.tik",
+  "tab": 3
+ },
+ {
+  "n": 317,
+  "gid": "72",
+  "name": "DP-28",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/dp28_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 318,
+  "gid": "72",
+  "name": "DP-28",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/dp28_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 319,
+  "gid": "72",
+  "name": "DP-28",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/dp28_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 320,
+  "gid": "72",
+  "name": "DP-28",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/dp28_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 321,
+  "gid": "72",
+  "name": "DP-28",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/dp28_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 322,
+  "gid": "72",
+  "name": "DP-28",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/dp28_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 323,
+  "gid": "72",
+  "name": "DP-28",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/dp28_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 324,
+  "gid": "80",
+  "name": "DOUBLE BARREL",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/coop_dbshotgun.tik",
+  "tab": 3
+ },
+ {
+  "n": 325,
+  "gid": "80",
+  "name": "DOUBLE BARREL",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/coop_dbshotgun_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 326,
+  "gid": "80",
+  "name": "DOUBLE BARREL",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/coop_dbshotgun_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 327,
+  "gid": "80",
+  "name": "DOUBLE BARREL",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/coop_dbshotgun_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 328,
+  "gid": "80",
+  "name": "DOUBLE BARREL",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/coop_dbshotgun_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 329,
+  "gid": "80",
+  "name": "DOUBLE BARREL",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/coop_dbshotgun_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 330,
+  "gid": "80",
+  "name": "DOUBLE BARREL",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/coop_dbshotgun_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 331,
+  "gid": "80",
+  "name": "DOUBLE BARREL",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/coop_dbshotgun_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 332,
+  "gid": "79",
+  "name": "FG 42 (IRON SIGHTS)",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/coop_fg42_irons.tik",
+  "tab": 3
+ },
+ {
+  "n": 333,
+  "gid": "79",
+  "name": "FG 42 (IRON SIGHTS)",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/coop_fg42_irons_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 334,
+  "gid": "79",
+  "name": "FG 42 (IRON SIGHTS)",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/coop_fg42_irons_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 335,
+  "gid": "79",
+  "name": "FG 42 (IRON SIGHTS)",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/coop_fg42_irons_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 336,
+  "gid": "79",
+  "name": "FG 42 (IRON SIGHTS)",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/coop_fg42_irons_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 337,
+  "gid": "79",
+  "name": "FG 42 (IRON SIGHTS)",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/coop_fg42_irons_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 338,
+  "gid": "79",
+  "name": "FG 42 (IRON SIGHTS)",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/coop_fg42_irons_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 339,
+  "gid": "79",
+  "name": "FG 42 (IRON SIGHTS)",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/coop_fg42_irons_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 340,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/colt45.tik",
+  "tab": 4
+ },
+ {
+  "n": 341,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/colt45_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 342,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/colt45_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 343,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/colt45_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 344,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/colt45_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 345,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/colt45_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 346,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/colt45_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 347,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/colt45_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 348,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "COLT 45 (PACIFIC) (ACME313)",
+  "fid": 8,
+  "tik": "models/weapons/colt45_coltpa.tik",
+  "tab": 4
+ },
+ {
+  "n": 349,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "WEBLEY MK VI (EAST)",
+  "fid": 9,
+  "tik": "models/weapons/colt45_colt1911w.tik",
+  "tab": 4
+ },
+ {
+  "n": 350,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "M1911 COVERT",
+  "fid": 10,
+  "tik": "models/weapons/colt45_covert.tik",
+  "tab": 4
+ },
+ {
+  "n": 351,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "1911 CLASSIC",
+  "fid": 11,
+  "tik": "models/weapons/colt45_drbond.tik",
+  "tab": 4
+ },
+ {
+  "n": 352,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "M1911 BLOODY EIC (SCHUTZE)",
+  "fid": 12,
+  "tik": "models/weapons/colt45_bloodyeic.tik",
+  "tab": 4
+ },
+ {
+  "n": 353,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "COLT 1911 (GUANSHIRE)",
+  "fid": 13,
+  "tik": "models/weapons/colt45_guancolt.tik",
+  "tab": 4
+ },
+ {
+  "n": 354,
+  "gid": "48",
+  "name": "COLT M1911",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 14,
+  "tik": "models/weapons/colt45_lv_ttcolt.tik",
+  "tab": 4
+ },
+ {
+  "n": 355,
+  "gid": "49",
+  "name": "COLT M1911 SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/colt_silenced.tik",
+  "tab": 4
+ },
+ {
+  "n": 356,
+  "gid": "50",
+  "name": "WALTHER P38",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/p38.tik",
+  "tab": 4
+ },
+ {
+  "n": 357,
+  "gid": "50",
+  "name": "WALTHER P38",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/p38_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 358,
+  "gid": "50",
+  "name": "WALTHER P38",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/p38_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 359,
+  "gid": "50",
+  "name": "WALTHER P38",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/p38_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 360,
+  "gid": "50",
+  "name": "WALTHER P38",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/p38_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 361,
+  "gid": "50",
+  "name": "WALTHER P38",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/p38_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 362,
+  "gid": "50",
+  "name": "WALTHER P38",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/p38_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 363,
+  "gid": "50",
+  "name": "WALTHER P38",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/p38_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 364,
+  "gid": "50",
+  "name": "WALTHER P38",
+  "variant": "WALTHER P38 (GUANSHIRE)",
+  "fid": 8,
+  "tik": "models/weapons/p38_guanp38.tik",
+  "tab": 4
+ },
+ {
+  "n": 365,
+  "gid": "50",
+  "name": "WALTHER P38",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 9,
+  "tik": "models/weapons/p38_lv_ttp38.tik",
+  "tab": 4
+ },
+ {
+  "n": 366,
+  "gid": "51",
+  "name": "WALTHER P38 SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/p38silenced.tik",
+  "tab": 4
+ },
+ {
+  "n": 367,
+  "gid": "52",
+  "name": "HI-STANDARD HDM",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/silencedpistol.tik",
+  "tab": 4
+ },
+ {
+  "n": 368,
+  "gid": "52",
+  "name": "HI-STANDARD HDM",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/silencedpistol_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 369,
+  "gid": "52",
+  "name": "HI-STANDARD HDM",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/silencedpistol_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 370,
+  "gid": "52",
+  "name": "HI-STANDARD HDM",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/silencedpistol_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 371,
+  "gid": "52",
+  "name": "HI-STANDARD HDM",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/silencedpistol_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 372,
+  "gid": "52",
+  "name": "HI-STANDARD HDM",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/silencedpistol_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 373,
+  "gid": "52",
+  "name": "HI-STANDARD HDM",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/silencedpistol_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 374,
+  "gid": "52",
+  "name": "HI-STANDARD HDM",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/silencedpistol_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 375,
+  "gid": "53",
+  "name": "WEBLEY MK VI",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/webley_revolver.tik",
+  "tab": 4
+ },
+ {
+  "n": 376,
+  "gid": "53",
+  "name": "WEBLEY MK VI",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/webley_revolver_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 377,
+  "gid": "53",
+  "name": "WEBLEY MK VI",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/webley_revolver_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 378,
+  "gid": "53",
+  "name": "WEBLEY MK VI",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/webley_revolver_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 379,
+  "gid": "53",
+  "name": "WEBLEY MK VI",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/webley_revolver_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 380,
+  "gid": "53",
+  "name": "WEBLEY MK VI",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/webley_revolver_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 381,
+  "gid": "53",
+  "name": "WEBLEY MK VI",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/webley_revolver_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 382,
+  "gid": "53",
+  "name": "WEBLEY MK VI",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/webley_revolver_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 383,
+  "gid": "53",
+  "name": "WEBLEY MK VI",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 8,
+  "tik": "models/weapons/webley_revolver_lv_ttwebley.tik",
+  "tab": 4
+ },
+ {
+  "n": 384,
+  "gid": "54",
+  "name": "NAGANT M1895",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/nagant_revolver.tik",
+  "tab": 4
+ },
+ {
+  "n": 385,
+  "gid": "54",
+  "name": "NAGANT M1895",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/nagant_revolver_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 386,
+  "gid": "54",
+  "name": "NAGANT M1895",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/nagant_revolver_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 387,
+  "gid": "54",
+  "name": "NAGANT M1895",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/nagant_revolver_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 388,
+  "gid": "54",
+  "name": "NAGANT M1895",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/nagant_revolver_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 389,
+  "gid": "54",
+  "name": "NAGANT M1895",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/nagant_revolver_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 390,
+  "gid": "54",
+  "name": "NAGANT M1895",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/nagant_revolver_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 391,
+  "gid": "54",
+  "name": "NAGANT M1895",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/nagant_revolver_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 392,
+  "gid": "55",
+  "name": "BERETTA M1934",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/it_w_beretta.tik",
+  "tab": 4
+ },
+ {
+  "n": 393,
+  "gid": "55",
+  "name": "BERETTA M1934",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/it_w_beretta_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 394,
+  "gid": "55",
+  "name": "BERETTA M1934",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/it_w_beretta_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 395,
+  "gid": "55",
+  "name": "BERETTA M1934",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/it_w_beretta_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 396,
+  "gid": "55",
+  "name": "BERETTA M1934",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/it_w_beretta_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 397,
+  "gid": "55",
+  "name": "BERETTA M1934",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/it_w_beretta_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 398,
+  "gid": "55",
+  "name": "BERETTA M1934",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/it_w_beretta_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 399,
+  "gid": "55",
+  "name": "BERETTA M1934",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/it_w_beretta_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 400,
+  "gid": "55",
+  "name": "BERETTA M1934",
+  "variant": "TEAM TACTICS (LEON)",
+  "fid": 8,
+  "tik": "models/weapons/it_w_beretta_lv_ttberetta.tik",
+  "tab": 4
+ },
+ {
+  "n": 401,
+  "gid": "56",
+  "name": "BERETTA SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/berettasilenced.tik",
+  "tab": 4
+ },
+ {
+  "n": 402,
+  "gid": "57",
+  "name": "LUGER P08",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/lugerp08.tik",
+  "tab": 4
+ },
+ {
+  "n": 403,
+  "gid": "58",
+  "name": "LUGER P08 SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/lugerp08silenced.tik",
+  "tab": 4
+ },
+ {
+  "n": 404,
+  "gid": "59",
+  "name": "WALTHER PPK",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/ppk.tik",
+  "tab": 4
+ },
+ {
+  "n": 405,
+  "gid": "60",
+  "name": "TOKAREV TT-33",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/tt33.tik",
+  "tab": 4
+ },
+ {
+  "n": 406,
+  "gid": "60",
+  "name": "TOKAREV TT-33",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/tt33_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 407,
+  "gid": "60",
+  "name": "TOKAREV TT-33",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/tt33_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 408,
+  "gid": "60",
+  "name": "TOKAREV TT-33",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/tt33_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 409,
+  "gid": "60",
+  "name": "TOKAREV TT-33",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/tt33_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 410,
+  "gid": "60",
+  "name": "TOKAREV TT-33",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/tt33_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 411,
+  "gid": "60",
+  "name": "TOKAREV TT-33",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/tt33_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 412,
+  "gid": "60",
+  "name": "TOKAREV TT-33",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/tt33_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 413,
+  "gid": "61",
+  "name": "TT-33 SILENCED",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/tt33silenced.tik",
+  "tab": 4
+ },
+ {
+  "n": 414,
+  "gid": "61",
+  "name": "TT-33 SILENCED",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/tt33silenced_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 415,
+  "gid": "61",
+  "name": "TT-33 SILENCED",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/tt33silenced_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 416,
+  "gid": "61",
+  "name": "TT-33 SILENCED",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/tt33silenced_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 417,
+  "gid": "61",
+  "name": "TT-33 SILENCED",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/tt33silenced_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 418,
+  "gid": "61",
+  "name": "TT-33 SILENCED",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/tt33silenced_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 419,
+  "gid": "61",
+  "name": "TT-33 SILENCED",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/tt33silenced_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 420,
+  "gid": "61",
+  "name": "TT-33 SILENCED",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/tt33silenced_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 421,
+  "gid": "62",
+  "name": "NAMBU TYPE 14",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/nambu.tik",
+  "tab": 4
+ },
+ {
+  "n": 422,
+  "gid": "63",
+  "name": "WELROD MK II",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/welrod.tik",
+  "tab": 4
+ },
+ {
+  "n": 423,
+  "gid": "63",
+  "name": "WELROD MK II",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/welrod_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 424,
+  "gid": "63",
+  "name": "WELROD MK II",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/welrod_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 425,
+  "gid": "63",
+  "name": "WELROD MK II",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/welrod_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 426,
+  "gid": "63",
+  "name": "WELROD MK II",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/welrod_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 427,
+  "gid": "63",
+  "name": "WELROD MK II",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/welrod_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 428,
+  "gid": "63",
+  "name": "WELROD MK II",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/welrod_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 429,
+  "gid": "63",
+  "name": "WELROD MK II",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/welrod_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 430,
+  "gid": "74",
+  "name": "MAUSER C96",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/mauser_c96.tik",
+  "tab": 4
+ },
+ {
+  "n": 431,
+  "gid": "74",
+  "name": "MAUSER C96",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/mauser_c96_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 432,
+  "gid": "74",
+  "name": "MAUSER C96",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/mauser_c96_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 433,
+  "gid": "74",
+  "name": "MAUSER C96",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/mauser_c96_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 434,
+  "gid": "74",
+  "name": "MAUSER C96",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/mauser_c96_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 435,
+  "gid": "74",
+  "name": "MAUSER C96",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/mauser_c96_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 436,
+  "gid": "74",
+  "name": "MAUSER C96",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/mauser_c96_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 437,
+  "gid": "74",
+  "name": "MAUSER C96",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/mauser_c96_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 438,
+  "gid": "74",
+  "name": "MAUSER C96",
+  "variant": "C96 (TRENCH) (EAST)",
+  "fid": 8,
+  "tik": "models/weapons/mauser_c96_c96trench.tik",
+  "tab": 4
+ },
+ {
+  "n": 439,
+  "gid": "75",
+  "name": "S&W M10 .38",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/m10_revolver.tik",
+  "tab": 4
+ },
+ {
+  "n": 440,
+  "gid": "75",
+  "name": "S&W M10 .38",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/m10_revolver_gold.tik",
+  "tab": 4
+ },
+ {
+  "n": 441,
+  "gid": "75",
+  "name": "S&W M10 .38",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/m10_revolver_chrome.tik",
+  "tab": 4
+ },
+ {
+  "n": 442,
+  "gid": "75",
+  "name": "S&W M10 .38",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/m10_revolver_blued.tik",
+  "tab": 4
+ },
+ {
+  "n": 443,
+  "gid": "75",
+  "name": "S&W M10 .38",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/m10_revolver_bloody.tik",
+  "tab": 4
+ },
+ {
+  "n": 444,
+  "gid": "75",
+  "name": "S&W M10 .38",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/m10_revolver_camo_woodland.tik",
+  "tab": 4
+ },
+ {
+  "n": 445,
+  "gid": "75",
+  "name": "S&W M10 .38",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/m10_revolver_camo_winter.tik",
+  "tab": 4
+ },
+ {
+  "n": 446,
+  "gid": "75",
+  "name": "S&W M10 .38",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/m10_revolver_camo_desert.tik",
+  "tab": 4
+ },
+ {
+  "n": 447,
+  "gid": "64",
+  "name": "M2 FRAG",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/m2frag_grenade.tik",
+  "tab": 5
+ },
+ {
+  "n": 448,
+  "gid": "65",
+  "name": "STIELHANDGRANATE",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/steilhandgranate.tik",
+  "tab": 5
+ },
+ {
+  "n": 449,
+  "gid": "66",
+  "name": "MILLS BOMB",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/mills_grenade.tik",
+  "tab": 5
+ },
+ {
+  "n": 450,
+  "gid": "67",
+  "name": "BREDA MOD.35",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/it_w_bomba.tik",
+  "tab": 5
+ },
+ {
+  "n": 451,
+  "gid": "68",
+  "name": "M18 SMOKE",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/m18_smoke_grenade.tik",
+  "tab": 5
+ },
+ {
+  "n": 452,
+  "gid": "69",
+  "name": "NEBELHANDGRANATE",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/nebelhandgranate.tik",
+  "tab": 5
+ }
+]
