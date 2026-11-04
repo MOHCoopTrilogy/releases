@@ -31,7 +31,7 @@ name, brief history, credit if it's a skin someone made and how to unlock it ...
 ## Merge with the attic session's rack (settled 2026-11-04)
 The attic session (`attic_polish_2026-11-02/tools/make_attic_polish.py`, branch attic-63) owns the rack: hotspot `rack` (index 17),
 proxy `hot_rack`, caption `atticsign_rack`, the RACK > cue `hzm_rackcue`, hotbox 0 0 150 260, `scenepeek "rack"` + PEEK_POSE
-(engine scenepeek on menu-attic63), RACK_POSE `133.9 -63.0 81.9 -0.00 -90.00 0.00 50.00`, and a placeholder RACK_CMD.
+(engine scenepeek on menu-attic63), RACK_C_BU (2.90, 1.54, 1.56) = game 80.9 -152.2 81.9, RACK_POSE `80.9 -63.0 81.9 -0.00 -90.00 0.00 50.00` (moved 2026-11-04), and a placeholder RACK_CMD.
 `gen_weapon_viewer.py` replaces **only RACK_CMD**: every exact copy of the hotspot's command string (scenehot, hot_rack,
 hzm_rackcue - 3 copies on their tree). Peek, hover, gating and labels stay theirs.
 * **Rack position / fly pose follow theirs:** the pose is read from the first `scenefly 0.6 <pose>` in their rack command;

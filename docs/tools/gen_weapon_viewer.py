@@ -433,7 +433,7 @@ import scene_params as SP  # noqa: E402
 
 # the rack the attic session builds (attic_polish tools/make_attic_polish.py: RACK_C_BU / RACK_POSE, attic62_edit.py section 9):
 # right-hand wall right of the post. The same numbers here, so this step and theirs agree on where the camera goes.
-RACK_C_BU = (2.90, 2.55, 1.56)
+RACK_C_BU = (2.90, 1.54, 1.56)        # 2026-11-04 the attic session moved it 1.01 m along the wall (game 80.9 -152.2 81.9)
 RACK_DIST, RACK_FOV, RACK_DIR = 1.70, 50.0, (1.0, 0.0, 0.0)
 
 
@@ -460,12 +460,16 @@ _scene = re.search(r'name "atticscene"\n(.*?)\n\}\n', main_t, re.S).group(1)
 _POSE_RX = r"scenefly 0\.6 ((?:-?[\d.]+ ){6}-?[\d.]+)"
 _rack_hot = re.search(r'(?m)^scenehot "rack" (\S+) (\S+) (\S+) (\S+) "([^"]*)"', _scene)
 RACK_POSE = arg("--rack-pose")
-if not RACK_POSE and _rack_hot and re.search(_POSE_RX, _rack_hot.group(5)):
+# our own fallback rack (the [wpnviewer] block, on a tree without theirs) is NOT an authority: it is re-placed from RACK_C_BU
+_OURS_ONLY = "[wpnviewer] the rifle rack hotspot" in main_t and main_t.count('name "hot_rack"') == 1
+if not RACK_POSE and _rack_hot and not _OURS_ONLY and re.search(_POSE_RX, _rack_hot.group(5)):
     RACK_POSE = re.search(_POSE_RX, _rack_hot.group(5)).group(1)
 if not RACK_POSE:
     RACK_POSE = approach(RACK_C_BU, RACK_DIST, RACK_FOV, 0.0, RACK_DIR)
 assert len(RACK_POSE.split()) == 7, RACK_POSE
 RACK_CENTRE = arg("--rack-centre")
+if not RACK_CENTRE and _OURS_ONLY:
+    RACK_CENTRE = "%.1f %.1f %.1f" % tuple(SP.conv(np.array(RACK_C_BU, float), 52.5))
 RACK_CMD = ("set ui_scene_hot 0; exec ui/wpnview/open.cfg; globalwidgetcommand atticscene sceneleave 1; "
             "globalwidgetcommand atticscene scenefly 0.6 %s; uiafter 0.6 pushmenu hzm_wpnview" % RACK_POSE)
 ROOM = [l for l in _scene.splitlines() if l.startswith("scenemodel ") and "models/human/" not in l] + \
