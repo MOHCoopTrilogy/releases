@@ -1,0 +1,7 @@
+file 'C:/hzm-root-debrief2/docs/proposals/debrief2_2026-11-03/media/16x9_1280x720_a_bar_fill.jpg'
+file 'C:/hzm-root-debrief2/docs/proposals/debrief2_2026-11-03/media/16x9_1280x720_b_promotion.jpg'
+file 'C:/hzm-root-debrief2/docs/proposals/debrief2_2026-11-03/media/16x9_1280x720_c_citations.jpg'
+file 'C:/hzm-root-debrief2/docs/proposals/debrief2_2026-11-03/media/16x9_1280x720_d_card_finish.jpg'
+file 'C:/hzm-root-debrief2/docs/proposals/debrief2_2026-11-03/media/16x9_1280x720_e_card_medal.jpg'
+file 'C:/hzm-root-debrief2/docs/proposals/debrief2_2026-11-03/media/16x9_1280x720_f_card_weapon.jpg'
+file 'C:/hzm-root-debrief2/docs/proposals/debrief2_2026-11-03/media/16x9_1280x720_g_summary.jpg'

@@ -181,10 +181,12 @@ Archived 2026-11-01 to `docs/archive/open-awaiting-playtest-2026-08-17.md` (stal
 
 ### End-of-mission debrief, take two - branch `debrief2`, not merged (2026-11-03)
 cgame-drawn debrief (sheet, animated rank bar, 256 px vector insignia, one unlock card at a time with its picture,
-USE/JUMP skip): mod `debrief2`, engine `debrief2`, art + `gen_debrief2.py` on workspace `debrief2` (bugs 10479-10483).
+USE/JUMP skip): mod `debrief2`, engine `debrief2`, art + `gen_debrief2.py` on workspace `debrief2` (bugs 10479-10483, 10492-10495).
 Verified on the harness at 4:3, 16:9 and 21:9 and with skips; NOT yet: sound by ear (harness is muted), a remote client
 on a dedicated server, two players with different lengths (server holds `level.coop_db2Need`, cap 40 s). Ships as a SET:
 cgame.dll + code pak (shader, scripts) + fixes pak (`textures/hud/coop_db2`). `proposals/debrief2_2026-11-03/README.md`.
+Open beside it (bug-10495): `chal_add_unlock`'s dedup scans the whole unlock string; eight grants in one frame on a
+long record overran the script command budget (4.7 s hitch). Watch `chal_mission_complete` on veteran records.
 
 ### Aircraft call-ins - awaiting playtest (2026-10-05)
 Seen in engine: smooth flight, V of three, door exits (m2l1). Not yet seen: a Stuka shot down and crashing, Doppler by ear, fog see-through (e1l1), above-sky flight (m5l1a). `proposals/aircraft_2026-10-05`.

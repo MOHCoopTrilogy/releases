@@ -43,6 +43,11 @@ def bins():
     return d
 
 
+def audio_ini(d, wav):
+    """OpenAL Soft reads alsoft.ini next to the exe: route the client's mix to a .wav (no speaker output at all)"""
+    open(os.path.join(d, "alsoft.ini"), "w", newline="\n").write("[general]\ndrivers=wave\n\n[wave]\nfile=%s\n" % wav)
+
+
 def overlay_pak():
     p = os.path.join(SCR, "zzzzzzz_db2_overlay.pk3")
     with zipfile.ZipFile(p, "w", zipfile.ZIP_STORED) as z:
@@ -123,6 +128,11 @@ def main():
             "listen": False, "clprobe": False, "usercfg": False}
     code, rev = jf.fix_codepak()
     b = bins()
+    wav = os.path.join(SCR, "audio_%s.wav" % name)
+    if "--audio" in sys.argv:
+        audio_ini(b, wav)
+    elif os.path.isfile(os.path.join(b, "alsoft.ini")):
+        os.remove(os.path.join(b, "alsoft.ini"))
     ov = overlay_pak()
     shm, smt = jf.seed_server(opts, code)
     shutil.copyfile(ov, os.path.join(smt, os.path.basename(ov)))
@@ -148,6 +158,17 @@ def main():
             check("%s client entered the lobby" % tag, m)
             step(c, ["set ui_gmbox 1", "set coop_hudFadeTime 999", "set coop_debrief2Debug 1"])
             time.sleep(8)
+            if "--lobbytest" in sys.argv:
+                # sound levels on a quiet bed: the lobby, music off, the client-only db2_test sequence (same cgame code,
+                # same sounds) - 2 promotions, 4 cards, from rank 6, 3 challenge lines
+                step(c, ["set s_volume 0.9", "set s_musicvolume 0", "db2_test 2 4 6 3"])
+                time.sleep(30)
+                jf.stop_client(c)
+                c = None
+                if os.path.isfile(wav):
+                    shutil.move(wav, wav.replace(".wav", "_%s_lobby.wav" % tag))
+                jf.stop_server()
+                break
             cl0 = len(read(c["log"]))
             step(c, ["set rconPassword " + jf.RCON, "rcon map m1l1"])
             m = wait_for(c["log"], r"Server: m1l1", 150, cl0)
@@ -171,7 +192,9 @@ def main():
             # the staging takes a few seconds (real unlock + award paths), then xp_summary waits 0.5 s before the card
             m = wait_for(slog, r"DB2 sent[^\r\n]*" if "--old" not in sys.argv else r"DB2 capable[^\r\n]*", 90, st)
             check("%s debrief sent: %s" % (tag, m.group(0)[:200] if m else "-"), m)
-            if video and ri == 0:
+            if "--audio" in sys.argv:
+                step(c, ["set s_volume 0.9", "set s_musicvolume 0.35"])   # the user's defaults are near these
+            if video:
                 rec = Recorder(c, os.path.join(out, "frames_" + tag))
                 rec.start()
             if "--old" in sys.argv:
@@ -189,18 +212,20 @@ def main():
                     c["bg"].post_key(0x20 if nm == "SKIP_SPACE" else 0x46)   # SPACE = +moveup, F = +use (pristine binds)
                     log("posted", nm)
                     continue
-                if rec is not None:
+                if rec is not None and not nm.startswith("SKIP"):
                     continue    # the frame sequence covers it; engine screenshots would stall the recording
                 p = os.path.join(out, "%s_%s.jpg" % (tag, nm))
                 c["bg"].capture_png(p.replace(".jpg", ".png"))
                 log("still", p)
             if rec is not None:
-                time.sleep(max(0.0, 38.0 - (time.time() - t0)))
+                time.sleep(max(0.0, 43.0 - (time.time() - t0)))
                 rec.stop()
                 log("frames", rec.n)
             time.sleep(4)
             jf.stop_client(c)
             c = None
+            if "--audio" in sys.argv and os.path.isfile(wav):
+                shutil.move(wav, wav.replace(".wav", "_%s.wav" % tag))
             jf.stop_server()
             time.sleep(4)
         errs = re.findall(r"[^\r\n]*(?:Script Error|Couldn't compile|parse error)[^\r\n]*", read(slog))

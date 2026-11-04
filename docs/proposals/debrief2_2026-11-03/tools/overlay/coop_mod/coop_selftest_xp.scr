@@ -39,7 +39,16 @@ st_xp_run:{
 				waitthread coop_mod/challenges.scr::chal_add_unlock local.p "finish_gold"
 				waitthread coop_mod/challenges.scr::chal_add_unlock local.p "emote_wave"
 				waitthread coop_mod/feed.scr::feed_chalList local.p "MEDAL EARNED: Bronze Star Medal"
-				waitthread coop_mod/feed.scr::feed_chalList local.p "Lights Out"
+				// eight real challenges through the real completion call (challenges.scr::chal_grant: toast + unlock +
+				// the debrief's CHALLENGES COMPLETED list), spread over the table so the wording varies
+				local.ci = 3
+				while( local.ci < 80 ){
+					if( level.coop_chal_count != NIL && local.ci < level.coop_chal_count ){
+						waitthread coop_mod/challenges.scr::chal_grant local.p local.ci
+						wait 0.2		// one completion a frame, as in play (eight in one frame overran the script command budget on a big unlock set)
+					}
+					local.ci = local.ci + 10
+				}
 				waitthread coop_mod/challenges.scr::chal_add_unlock local.p "models/coop_helmets/coop_helmet_29th.tik"
 				if( local.big == 1 ){
 					waitthread coop_mod/xp.scr::xp_award local.p 4200 "kills" "Test"
