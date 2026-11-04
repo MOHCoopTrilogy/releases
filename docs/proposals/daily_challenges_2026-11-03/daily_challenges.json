@@ -1,0 +1,1652 @@
+{
+ "schema": "hzm.dailyorders.v2",
+ "reset": "10:00 UTC daily; day = floor((unix_time - 36000) / 86400)",
+ "xp": {
+  "Easy": 400,
+  "Medium": 750,
+  "Hard": 1250,
+  "all_five_bonus": 1500
+ },
+ "mix_per_day": "2 Easy + 2 Medium + 1 Hard; >=1 order completable in multiplayer; <=1 MP-only and never Hard; <=1 theatre; <=2 squad; <=1 dbno; <=2 per category; one order per stat family; no repeat within 14 days",
+ "hook_grammar": {
+  "chal:<stat>": "existing challenges.scr::chal_bump stat",
+  "class:<c>": "weapon class derived from the existing wpn_<wid> stat inside chal_bump",
+  "xp:<label>": "existing xp.scr::xp_award label",
+  "mp:<stat>": "existing mp_progression.scr::mp_bump stat",
+  "NEW Nn": "a new hook point, see new_hooks"
+ },
+ "new_hooks": {
+  "N1": {
+   "kind": "script",
+   "what": "challenges.scr::chal_ai_killed - one line passing victim, killer and wid to daily.scr::daily_onKill (distance, weather, victim faction, killer downed, per-life and per-map tallies, multikill window)"
+  },
+  "N2": {
+   "kind": "script",
+   "what": "ammobox.scr ~:254 (the owner-found branch) - one line passing box owner + the resupplied player to daily.scr::daily_onResupply; 'under fire' reuses xp.scr::xp_revive_underfire's test (2+ Germans within 700 u)"
+  },
+  "N3": {
+   "kind": "script",
+   "what": "dbno.scr ~:1054 (beside chal_revive / chal_revive_target) - one line passing reviver + downed + the downed man's bleed clock (flags coop_dbno_elapsed / coop_dbno_timer_actual) to daily.scr::daily_onRevive"
+  },
+  "N4": {
+   "kind": "script",
+   "what": "medkit.scr::dbno_selfrevive success point - one line to daily.scr::daily_onSelfRevive"
+  },
+  "N5": {
+   "kind": "script",
+   "what": "dbno.scr::dbno_enter + player.scr death path - one line each to daily.scr::daily_onDown (ends the current 'life' for per-life tallies)"
+  },
+  "N6": {
+   "kind": "script",
+   "what": "challenges.scr::chal_officer_killed - one line passing officer + killer (fact.location / meansofdeath already there) to daily.scr; plus level.coop_officerWavesCalled++ in officer.scr::coop_officer_reinforcements"
+  },
+  "N7": {
+   "kind": "script",
+   "what": "challenges.scr::chal_mission_complete - one line to daily.scr::daily_onMission (map prefix/list, skill, coop_hardcore, coop_lmsLives, $player.size, coop_wentDownMap, level.coop_chalAlarmEver, level.coop_chal_radioPaid, the existing coop_chalL_usedNonPistol / usedNonBolt flags and a new usedNonAxis flag set by N1)"
+  },
+  "N8": {
+   "kind": "engine",
+   "what": "player.cpp grenade kick (coop_grenadeKick block, ~:20533): count kicks on the player (script var coop_nadeKicks) and stamp the kicked projectile with its kicker so the kill path can credit 'killed by a kicked grenade'"
+  },
+  "N9": {
+   "kind": "engine",
+   "what": "gun bracing: expose the brace envelope (0..1) and the carried-MG heat/overheated latch (STAT_MGHEAT) as player vars read by N1"
+  },
+  "N10": {
+   "kind": "engine",
+   "what": "Player::EnterTurret / ExitTurret: expose the mounted TurretGun on the player (var coop_onTurret) so N1 can credit mounted-MG kills"
+  },
+  "N11": {
+   "kind": "script",
+   "what": "alarm.scr::alm_deactivate (has the player) - one line; alarmsnipers.scr spawn - tag the actor coop_asn = 1"
+  },
+  "N12": {
+   "kind": "script",
+   "what": "surrender.scr::convert local.actor local.player - one line"
+  },
+  "N13": {
+   "kind": "script",
+   "what": "emotes.scr::emote_play - one line (Tab-wheel emotes ship in v1.10.62)"
+  },
+  "N14": {
+   "kind": "script",
+   "what": "weaponstate.scr RAISE_WEAPON (already sets flags coop_activeWeapon) - also stamp level.time so N1 can see a kill within 2 s of a draw"
+  }
+ },
+ "tags": {
+  "squad": "needs 2 or more players",
+  "dbno": "needs coop_dbno 1",
+  "theatre": "only some maps can progress it"
+ },
+ "challenges": [
+  {
+   "id": "e_ammo8",
+   "title": "Ammo Run",
+   "description": "Squadmates draw 8 resupplies from ammo boxes you placed",
+   "target": 8,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:ammoboxuse",
+   "new_hooks": [],
+   "category": "Ammo crate",
+   "tags": [
+    "squad"
+   ],
+   "family": "chal:ammoboxuse"
+  },
+  {
+   "id": "e_sandbag4",
+   "title": "Sandbag Detail",
+   "description": "Squadmates fight from sandbags you deployed 4 times",
+   "target": 4,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "xp:Cover Used",
+   "new_hooks": [],
+   "category": "Ammo crate",
+   "tags": [
+    "squad"
+   ],
+   "family": "xp:Cover"
+  },
+  {
+   "id": "e_revive4",
+   "title": "Stretcher Bearer",
+   "description": "Revive 4 downed teammates",
+   "target": 4,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Any",
+   "hook": "chal:revive + mp:revive",
+   "new_hooks": [],
+   "category": "Revives",
+   "tags": [
+    "squad"
+   ],
+   "family": "chal:revive"
+  },
+  {
+   "id": "e_allyrevive3",
+   "title": "Leave No One Behind",
+   "description": "Revive 3 downed allied soldiers",
+   "target": 3,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:allyrevive",
+   "new_hooks": [],
+   "category": "Revives",
+   "tags": [],
+   "family": "chal:allyrevive"
+  },
+  {
+   "id": "e_patch5",
+   "title": "Field Dressing",
+   "description": "Heal squadmates 5 times with your medkit",
+   "target": 5,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "xp:Patched a Squadmate",
+   "new_hooks": [],
+   "category": "Revives",
+   "tags": [
+    "squad"
+   ],
+   "family": "xp:Patched"
+  },
+  {
+   "id": "e_fieldoff6",
+   "title": "Shoulder Boards",
+   "description": "Kill 6 German field officers",
+   "target": 6,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:fac_officer",
+   "new_hooks": [],
+   "category": "Officers",
+   "tags": [],
+   "family": "chal:fac_officer"
+  },
+  {
+   "id": "e_bodyguard4",
+   "title": "Through the Escort",
+   "description": "Kill 4 of an officer boss's bodyguards",
+   "target": 4,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "xp:Bodyguard",
+   "new_hooks": [],
+   "category": "Officers",
+   "tags": [],
+   "family": "xp:Bodyguard"
+  },
+  {
+   "id": "e_wave2",
+   "title": "Wave Breaker",
+   "description": "Kill the last soldier of 2 reinforcement waves",
+   "target": 2,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "xp:Wave Broken",
+   "new_hooks": [],
+   "category": "Officers",
+   "tags": [],
+   "family": "xp:Wave"
+  },
+  {
+   "id": "e_obj6",
+   "title": "Orders Received",
+   "description": "Complete 6 primary objectives",
+   "target": 6,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:objective (team)",
+   "new_hooks": [],
+   "category": "Objectives",
+   "tags": [],
+   "family": "chal:objective"
+  },
+  {
+   "id": "e_sideobj1",
+   "title": "Extra Mile",
+   "description": "Complete a side objective",
+   "target": 1,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:sideobj (team)",
+   "new_hooks": [],
+   "category": "Objectives",
+   "tags": [],
+   "family": "chal:sideobj"
+  },
+  {
+   "id": "e_missions2",
+   "title": "On the March",
+   "description": "Complete 2 missions",
+   "target": 2,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:missions (team)",
+   "new_hooks": [],
+   "category": "Objectives",
+   "tags": [],
+   "family": "chal:missions"
+  },
+  {
+   "id": "e_cover20",
+   "title": "Keep Your Head Down",
+   "description": "Get 20 kills from wall or low cover",
+   "target": 20,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:coverkill",
+   "new_hooks": [],
+   "category": "Cover",
+   "tags": [],
+   "family": "chal:coverkill"
+  },
+  {
+   "id": "e_blind6",
+   "title": "Spray and Pray",
+   "description": "Get 6 blind-fire kills from cover",
+   "target": 6,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:blindfire",
+   "new_hooks": [],
+   "category": "Cover",
+   "tags": [],
+   "family": "chal:blindfire"
+  },
+  {
+   "id": "e_mggunner4",
+   "title": "Silence the Gun",
+   "description": "Kill 4 enemy machine gunners",
+   "target": 4,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "xp:MG Gunner",
+   "new_hooks": [],
+   "category": "MGs",
+   "tags": [],
+   "family": "xp:MG"
+  },
+  {
+   "id": "e_mg30",
+   "title": "Base of Fire",
+   "description": "Get 30 kills with a BAR, MG42, .30 cal or other MG",
+   "target": 30,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Any",
+   "hook": "class:mg + mp:mg",
+   "new_hooks": [],
+   "category": "MGs",
+   "tags": [],
+   "family": "class:mg"
+  },
+  {
+   "id": "e_reinf25",
+   "title": "Thin the Ranks",
+   "description": "Kill 25 enemy reinforcements",
+   "target": 25,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:reinf",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "chal:reinf"
+  },
+  {
+   "id": "e_head20",
+   "title": "Between the Eyes",
+   "description": "Get 20 headshots",
+   "target": 20,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Any",
+   "hook": "chal:headshot + mp:headshot",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "chal:headshot"
+  },
+  {
+   "id": "e_melee4",
+   "title": "Butt Stroke",
+   "description": "Get 4 weapon-bash kills",
+   "target": 4,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Any",
+   "hook": "chal:melee + mp:melee",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "chal:melee"
+  },
+  {
+   "id": "e_nade6",
+   "title": "Pineapple Delivery",
+   "description": "Get 6 grenade kills",
+   "target": 6,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Any",
+   "hook": "chal:grenade + mp:grenade",
+   "new_hooks": [],
+   "category": "Explosives",
+   "tags": [],
+   "family": "chal:grenade"
+  },
+  {
+   "id": "e_launcher4",
+   "title": "Backblast Area",
+   "description": "Get 4 kills with the Bazooka, Panzerschreck or PIAT",
+   "target": 4,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Any",
+   "hook": "class:launcher + mp:rocketk",
+   "new_hooks": [],
+   "category": "Explosives",
+   "tags": [],
+   "family": "class:launcher"
+  },
+  {
+   "id": "e_rifle40",
+   "title": "Rifle Platoon",
+   "description": "Get 40 rifle kills",
+   "target": 40,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Any",
+   "hook": "class:rifle + mp:rifle",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "class:rifle"
+  },
+  {
+   "id": "e_smg50",
+   "title": "Room Sweeper",
+   "description": "Get 50 submachine gun kills",
+   "target": 50,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Any",
+   "hook": "class:smg + mp:smg",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "class:smg"
+  },
+  {
+   "id": "e_pistol15",
+   "title": "Sidearm Drill",
+   "description": "Get 15 pistol kills",
+   "target": 15,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Any",
+   "hook": "class:pistol + mp:pistol",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "class:pistol"
+  },
+  {
+   "id": "e_axis30",
+   "title": "Battlefield Pickup",
+   "description": "Get 30 kills with Axis weapons taken from the field",
+   "target": 30,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "class:axis",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "class:axis"
+  },
+  {
+   "id": "e_longshot8",
+   "title": "Long Range Patrol",
+   "description": "Get 8 kills from more than 50 m",
+   "target": 8,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:longshot",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "chal:longshot"
+  },
+  {
+   "id": "e_pointblank10",
+   "title": "Close Shave",
+   "description": "Get 10 kills from under 3 m",
+   "target": 10,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "NEW N1 (distance under 128 u)",
+   "new_hooks": [
+    "N1"
+   ],
+   "category": "Combat",
+   "tags": [],
+   "family": "new:e_pointblank10"
+  },
+  {
+   "id": "e_streak5x3",
+   "title": "Clean Hands",
+   "description": "Get a 5-kill streak without taking damage, 3 times",
+   "target": 3,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "xp:Killstreak x5",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "streak"
+  },
+  {
+   "id": "e_savior4",
+   "title": "Got Your Back",
+   "description": "Kill 4 enemies who were shooting at a teammate",
+   "target": 4,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:savior",
+   "new_hooks": [],
+   "category": "Revives",
+   "tags": [
+    "squad"
+   ],
+   "family": "chal:savior"
+  },
+  {
+   "id": "e_colonel1",
+   "title": "Top Brass",
+   "description": "Kill a German colonel or station commander",
+   "target": 1,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:fac_general",
+   "new_hooks": [],
+   "category": "Officers",
+   "tags": [
+    "theatre"
+   ],
+   "family": "chal:fac_general"
+  },
+  {
+   "id": "e_firstblood",
+   "title": "Opening Shot",
+   "description": "Get the first kill of a mission",
+   "target": 1,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "xp:First Blood",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "xp:First"
+  },
+  {
+   "id": "e_wallbang4",
+   "title": "Through the Plaster",
+   "description": "Get 4 kills through walls or cover",
+   "target": 4,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:wallbang",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "chal:wallbang"
+  },
+  {
+   "id": "e_sniper3",
+   "title": "Spot the Sniper",
+   "description": "Kill 3 enemy snipers",
+   "target": 3,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:fac_sniper",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "chal:fac_sniper"
+  },
+  {
+   "id": "e_call2",
+   "title": "Call It In",
+   "description": "Call in 2 air strikes or paratrooper drops",
+   "target": 2,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:airstrike + chal:reinforce",
+   "new_hooks": [],
+   "category": "Support",
+   "tags": [],
+   "family": "chal:airstrike"
+  },
+  {
+   "id": "e_searchlight2",
+   "title": "Blackout",
+   "description": "Shoot out 2 enemy searchlights",
+   "target": 2,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "xp:Searchlight Disabled",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [
+    "theatre"
+   ],
+   "family": "xp:Searchlight"
+  },
+  {
+   "id": "e_blueprint1",
+   "title": "Paper Chase",
+   "description": "Recover a hidden blueprint",
+   "target": 1,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "chal:blueprint",
+   "new_hooks": [],
+   "category": "Service Record",
+   "tags": [],
+   "family": "chal:blueprint"
+  },
+  {
+   "id": "e_challenge2",
+   "title": "Earn Your Stripes",
+   "description": "Complete 2 Service Record challenges",
+   "target": 2,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "xp:Challenge",
+   "new_hooks": [],
+   "category": "Service Record",
+   "tags": [],
+   "family": "xp:Challenge"
+  },
+  {
+   "id": "e_emote5",
+   "title": "Morale Boost",
+   "description": "Use 5 emotes from the Tab wheel during missions",
+   "target": 5,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "Coop",
+   "hook": "NEW N13",
+   "new_hooks": [
+    "N13"
+   ],
+   "category": "Squad",
+   "tags": [],
+   "family": "new:e_emote5"
+  },
+  {
+   "id": "e_plant2",
+   "title": "Charges Set",
+   "description": "Plant 2 bombs in Search and Destroy or Demolition",
+   "target": 2,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "MP",
+   "hook": "mp:plant",
+   "new_hooks": [],
+   "category": "Multiplayer",
+   "tags": [],
+   "family": "mp:plant"
+  },
+  {
+   "id": "e_clock4",
+   "title": "Clock In",
+   "description": "Play 4 multiplayer rounds to the end",
+   "target": 4,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "MP",
+   "hook": "mp:rounds",
+   "new_hooks": [],
+   "category": "Multiplayer",
+   "tags": [],
+   "family": "mp:rounds"
+  },
+  {
+   "id": "e_capture3",
+   "title": "Take the Ground",
+   "description": "Capture 3 objectives or flags in multiplayer",
+   "target": 3,
+   "difficulty": "Easy",
+   "xp": 400,
+   "mode": "MP",
+   "hook": "mp:capture",
+   "new_hooks": [],
+   "category": "Multiplayer",
+   "tags": [],
+   "family": "mp:capture"
+  },
+  {
+   "id": "m_crateFire",
+   "title": "Under the Gun",
+   "description": "Resupply squadmates 4 times while 2 or more enemies are close",
+   "target": 4,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N2 (under fire)",
+   "new_hooks": [
+    "N2"
+   ],
+   "category": "Ammo crate",
+   "tags": [
+    "squad"
+   ],
+   "family": "new:m_crateFire"
+  },
+  {
+   "id": "m_crateSpread",
+   "title": "Spread the Wealth",
+   "description": "Resupply 2 different squadmates from your ammo box in one mission",
+   "target": 2,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N2 (distinct receivers per map)",
+   "new_hooks": [
+    "N2"
+   ],
+   "category": "Ammo crate",
+   "tags": [
+    "squad"
+   ],
+   "family": "new:m_crateSpread"
+  },
+  {
+   "id": "m_reviveFire",
+   "title": "Corpsman Under Fire",
+   "description": "Revive 3 teammates while enemies are close",
+   "target": 3,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "xp:Revive Under Fire",
+   "new_hooks": [],
+   "category": "Revives",
+   "tags": [
+    "squad"
+   ],
+   "family": "xp:Revive"
+  },
+  {
+   "id": "m_reviveSame",
+   "title": "Not on My Watch",
+   "description": "Revive the same squadmate twice in one mission",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N3 (per-map reviver/target tally)",
+   "new_hooks": [
+    "N3"
+   ],
+   "category": "Revives",
+   "tags": [
+    "squad"
+   ],
+   "family": "new:m_reviveSame"
+  },
+  {
+   "id": "m_reviveLast",
+   "title": "Last Breath",
+   "description": "Revive a squadmate with under 5 seconds of bleed-out left",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N3 (bleed clock)",
+   "new_hooks": [
+    "N3"
+   ],
+   "category": "Revives",
+   "tags": [
+    "squad",
+    "dbno"
+   ],
+   "family": "new:m_reviveLast"
+  },
+  {
+   "id": "m_payback",
+   "title": "Payback",
+   "description": "Revive a squadmate, then get 3 kills within 15 seconds, twice",
+   "target": 2,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N3 + N1 (timestamp)",
+   "new_hooks": [
+    "N1",
+    "N3"
+   ],
+   "category": "Revives",
+   "tags": [
+    "squad"
+   ],
+   "family": "new:m_payback"
+  },
+  {
+   "id": "m_selfrevive",
+   "title": "Get Up, Soldier",
+   "description": "Revive yourself with a medkit while downed, twice",
+   "target": 2,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N4",
+   "new_hooks": [
+    "N4"
+   ],
+   "category": "DBNO",
+   "tags": [
+    "dbno"
+   ],
+   "family": "selfrev"
+  },
+  {
+   "id": "m_downed3",
+   "title": "Not Dead Yet",
+   "description": "Get 3 kills while downed",
+   "target": 3,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "chal:downedkill",
+   "new_hooks": [],
+   "category": "DBNO",
+   "tags": [
+    "dbno"
+   ],
+   "family": "chal:downedkill"
+  },
+  {
+   "id": "m_secondwind",
+   "title": "Second Wind",
+   "description": "After being revived, get 5 kills before you go down again, 3 times",
+   "target": 3,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N3 + N5 + N1 (per-life tally)",
+   "new_hooks": [
+    "N1",
+    "N3",
+    "N5"
+   ],
+   "category": "DBNO",
+   "tags": [
+    "dbno"
+   ],
+   "family": "new:m_secondwind"
+  },
+  {
+   "id": "m_hro2",
+   "title": "Brass Hunter",
+   "description": "Kill 2 officer bosses",
+   "target": 2,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "chal:officer",
+   "new_hooks": [],
+   "category": "Officers",
+   "tags": [],
+   "family": "chal:officer"
+  },
+  {
+   "id": "m_healdenied",
+   "title": "Last Drink",
+   "description": "Kill an officer boss before he finishes a heal retreat",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "xp:Heal Denied",
+   "new_hooks": [],
+   "category": "Officers",
+   "tags": [],
+   "family": "xp:Heal"
+  },
+  {
+   "id": "m_radio",
+   "title": "Cut the Wire",
+   "description": "Destroy an officer's radio and finish the mission",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N7 (level.coop_chal_radioPaid)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Officers",
+   "tags": [],
+   "family": "new:m_radio"
+  },
+  {
+   "id": "m_melee10",
+   "title": "Bayonet Drill",
+   "description": "Get 10 weapon-bash kills",
+   "target": 10,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Any",
+   "hook": "chal:melee + mp:melee",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "chal:melee"
+  },
+  {
+   "id": "m_alarmoff",
+   "title": "Kill the Siren",
+   "description": "Switch off a live alarm by holding USE on its switch",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N11",
+   "new_hooks": [
+    "N11"
+   ],
+   "category": "Objectives",
+   "tags": [],
+   "family": "alarm"
+  },
+  {
+   "id": "m_silent",
+   "title": "Silent Running",
+   "description": "Finish a mission that has alarms without the alarm ever sounding",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N7 (level.coop_chalAlarmEver + map has alarm switches)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Objectives",
+   "tags": [],
+   "family": "alarm"
+  },
+  {
+   "id": "m_nade15",
+   "title": "Grenadier",
+   "description": "Get 15 grenade kills",
+   "target": 15,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Any",
+   "hook": "chal:grenade + mp:grenade",
+   "new_hooks": [],
+   "category": "Explosives",
+   "tags": [],
+   "family": "chal:grenade"
+  },
+  {
+   "id": "m_braced25",
+   "title": "Steady Rest",
+   "description": "Get 25 kills with your weapon braced on cover",
+   "target": 25,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N9 + N1",
+   "new_hooks": [
+    "N1",
+    "N9"
+   ],
+   "category": "MGs",
+   "tags": [],
+   "family": "braced"
+  },
+  {
+   "id": "m_kick5",
+   "title": "Return to Sender",
+   "description": "Kick away 5 live enemy grenades",
+   "target": 5,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N8 (kick count)",
+   "new_hooks": [
+    "N8"
+   ],
+   "category": "Explosives",
+   "tags": [],
+   "family": "kick"
+  },
+  {
+   "id": "m_nest25",
+   "title": "Nest Gunner",
+   "description": "Get 25 kills on a mounted MG42 or .30 cal",
+   "target": 25,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N10 + N1",
+   "new_hooks": [
+    "N1",
+    "N10"
+   ],
+   "category": "MGs",
+   "tags": [],
+   "family": "turret"
+  },
+  {
+   "id": "m_turngun",
+   "title": "Turn the Gun",
+   "description": "Kill an MG gunner, then get 8 kills on a mounted MG in the same mission",
+   "target": 8,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N10 + N1 + xp:MG Gunner",
+   "new_hooks": [
+    "N1",
+    "N10"
+   ],
+   "category": "MGs",
+   "tags": [],
+   "family": "turret"
+  },
+  {
+   "id": "m_snipers4",
+   "title": "Steeple Sweep",
+   "description": "Headshot 4 enemy snipers, rooftop or alarm snipers included",
+   "target": 4,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N1 (headshot + sniper faction)",
+   "new_hooks": [
+    "N1"
+   ],
+   "category": "Combat",
+   "tags": [],
+   "family": "new:m_snipers4"
+  },
+  {
+   "id": "m_multi5",
+   "title": "Two for One",
+   "description": "Kill 2 enemies within 1.5 seconds, 5 times",
+   "target": 5,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N1 (multikill window)",
+   "new_hooks": [
+    "N1"
+   ],
+   "category": "Combat",
+   "tags": [],
+   "family": "new:m_multi5"
+  },
+  {
+   "id": "m_streak10",
+   "title": "Charmed Life",
+   "description": "Get a 10-kill streak without taking damage",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "xp:Killstreak x10",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "streak"
+  },
+  {
+   "id": "m_ironlives",
+   "title": "Iron Lives",
+   "description": "Get 15 kills without going down, 3 times",
+   "target": 3,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N5 + N1 (per-life tally)",
+   "new_hooks": [
+    "N1",
+    "N5"
+   ],
+   "category": "DBNO",
+   "tags": [],
+   "family": "new:m_ironlives"
+  },
+  {
+   "id": "m_quickdraw",
+   "title": "Quick Draw",
+   "description": "Get 8 pistol kills within 2 seconds of drawing your pistol",
+   "target": 8,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N14 + N1",
+   "new_hooks": [
+    "N1",
+    "N14"
+   ],
+   "category": "Combat",
+   "tags": [],
+   "family": "new:m_quickdraw"
+  },
+  {
+   "id": "m_turncoat",
+   "title": "Turncoat",
+   "description": "Recruit a German who surrendered to you",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N12",
+   "new_hooks": [
+    "N12"
+   ],
+   "category": "Combat",
+   "tags": [],
+   "family": "new:m_turncoat"
+  },
+  {
+   "id": "m_halftrack",
+   "title": "Halftrack Hunter",
+   "description": "Destroy an enemy halftrack or tank with a launcher or grenades",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "xp:Vehicle Destroyed + weapon class at the award",
+   "new_hooks": [],
+   "category": "Vehicles",
+   "tags": [
+    "theatre"
+   ],
+   "family": "vehicle"
+  },
+  {
+   "id": "m_airstrike6",
+   "title": "Danger Close",
+   "description": "Get 6 kills with air strikes you called",
+   "target": 6,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "xp:Air Strike Kill",
+   "new_hooks": [],
+   "category": "Support",
+   "tags": [],
+   "family": "xp:Air"
+  },
+  {
+   "id": "m_barrel2",
+   "title": "Powder Keg",
+   "description": "Kill 2 or more enemies with one exploding barrel, twice",
+   "target": 2,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "chal:scripted_havoc",
+   "new_hooks": [],
+   "category": "Explosives",
+   "tags": [
+    "theatre"
+   ],
+   "family": "chal:scripted_havoc"
+  },
+  {
+   "id": "m_weather25",
+   "title": "Blind Man's War",
+   "description": "Get 25 kills in rain, snow or a dust storm",
+   "target": 25,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N1 (level.coop_weatherTheme)",
+   "new_hooks": [
+    "N1"
+   ],
+   "category": "Theatres",
+   "tags": [
+    "theatre"
+   ],
+   "family": "new:m_weather25"
+  },
+  {
+   "id": "m_objHard",
+   "title": "Sharp End",
+   "description": "Complete 6 primary objectives on Hard difficulty",
+   "target": 6,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "chal:objective (team) + skill 2+ read in daily.scr",
+   "new_hooks": [],
+   "category": "Objectives",
+   "tags": [],
+   "family": "chal:objective"
+  },
+  {
+   "id": "m_objClean",
+   "title": "Clean Sheet",
+   "description": "Complete 4 primary objectives in a row with nobody in the squad going down",
+   "target": 4,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N5 (squad down resets a per-map run) + chal:objective",
+   "new_hooks": [
+    "N5"
+   ],
+   "category": "Objectives",
+   "tags": [],
+   "family": "chal:objective"
+  },
+  {
+   "id": "m_uboat",
+   "title": "Silent Service",
+   "description": "Finish a U-boat mission without the alarm sounding",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N7 (m2l2* + level.coop_chalAlarmEver)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Theatres",
+   "tags": [
+    "theatre"
+   ],
+   "family": "alarm"
+  },
+  {
+   "id": "m_bt",
+   "title": "Mediterranean Tour",
+   "description": "Finish a Tunisia, Sicily or Italy mission without going down",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N7 (e* map + coop_wentDownMap)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Theatres",
+   "tags": [],
+   "family": "new:m_bt"
+  },
+  {
+   "id": "m_sh",
+   "title": "Airborne All the Way",
+   "description": "Finish a Spearhead mission without going down",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N7 (t* map + coop_wentDownMap)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Theatres",
+   "tags": [],
+   "family": "new:m_sh"
+  },
+  {
+   "id": "m_fullsquad",
+   "title": "Full Squad",
+   "description": "Finish a mission with 4 players in the squad",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N7 ($player.size)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Squad",
+   "tags": [
+    "squad"
+   ],
+   "family": "new:m_fullsquad"
+  },
+  {
+   "id": "m_riflehead",
+   "title": "Sharpshooter",
+   "description": "Get 15 headshots with a rifle or scoped rifle",
+   "target": 15,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "Coop",
+   "hook": "NEW N1 (headshot + class)",
+   "new_hooks": [
+    "N1"
+   ],
+   "category": "Combat",
+   "tags": [],
+   "family": "new:m_riflehead"
+  },
+  {
+   "id": "m_push",
+   "title": "Push Through",
+   "description": "Win a Push round on a campaign map",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "MP",
+   "hook": "mp:win_push",
+   "new_hooks": [],
+   "category": "Multiplayer",
+   "tags": [],
+   "family": "mp:win_push"
+  },
+  {
+   "id": "m_baseassault",
+   "title": "Base Breaker",
+   "description": "Win a Base Assault round",
+   "target": 1,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "MP",
+   "hook": "mp:win_baseassault",
+   "new_hooks": [],
+   "category": "Multiplayer",
+   "tags": [],
+   "family": "mp:win_baseassault"
+  },
+  {
+   "id": "m_sapper",
+   "title": "Sapper",
+   "description": "Plant or defuse 3 bombs in multiplayer",
+   "target": 3,
+   "difficulty": "Medium",
+   "xp": 750,
+   "mode": "MP",
+   "hook": "mp:plant + mp:defuse",
+   "new_hooks": [],
+   "category": "Multiplayer",
+   "tags": [],
+   "family": "mp:plant"
+  },
+  {
+   "id": "h_supplyline",
+   "title": "Supply Line",
+   "description": "Resupply every squadmate (2 or more) from your ammo box in one mission, then finish it",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N2 + N7",
+   "new_hooks": [
+    "N2",
+    "N7"
+   ],
+   "category": "Ammo crate",
+   "tags": [
+    "squad"
+   ],
+   "family": "new:h_supplyline"
+  },
+  {
+   "id": "h_clutch",
+   "title": "Clutch",
+   "description": "Revive a squadmate while you are the last player standing",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N3 (no other player up)",
+   "new_hooks": [
+    "N3"
+   ],
+   "category": "Revives",
+   "tags": [
+    "squad"
+   ],
+   "family": "new:h_clutch"
+  },
+  {
+   "id": "h_angel",
+   "title": "Angel of Mercy",
+   "description": "Revive 12 downed teammates",
+   "target": 12,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Any",
+   "hook": "chal:revive + mp:revive",
+   "new_hooks": [],
+   "category": "Revives",
+   "tags": [
+    "squad"
+   ],
+   "family": "chal:revive"
+  },
+  {
+   "id": "h_brink",
+   "title": "Back from the Brink",
+   "description": "Revive yourself with a medkit, then get 5 kills before going down again, twice",
+   "target": 2,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N4 + N5 + N1",
+   "new_hooks": [
+    "N1",
+    "N4",
+    "N5"
+   ],
+   "category": "DBNO",
+   "tags": [
+    "dbno"
+   ],
+   "family": "selfrev"
+  },
+  {
+   "id": "h_laststand",
+   "title": "Last Stand",
+   "description": "Get 2 kills while downed and be revived in the same down, twice",
+   "target": 2,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N1 + N3 (kills this down)",
+   "new_hooks": [
+    "N1",
+    "N3"
+   ],
+   "category": "DBNO",
+   "tags": [
+    "dbno",
+    "squad"
+   ],
+   "family": "new:h_laststand"
+  },
+  {
+   "id": "h_firstwave",
+   "title": "Decapitate the Command",
+   "description": "Kill an officer boss before he calls a single reinforcement wave",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N6 (level.coop_officerWavesCalled == 0)",
+   "new_hooks": [
+    "N6"
+   ],
+   "category": "Officers",
+   "tags": [],
+   "family": "new:h_firstwave"
+  },
+  {
+   "id": "h_capbadge",
+   "title": "Cap Badge",
+   "description": "Kill an officer boss with a headshot",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N6 (fact.location head)",
+   "new_hooks": [
+    "N6"
+   ],
+   "category": "Officers",
+   "tags": [],
+   "family": "new:h_capbadge"
+  },
+  {
+   "id": "h_coldsteel",
+   "title": "Steel for the Colonel",
+   "description": "Kill an officer boss with a weapon bash",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N6 (meansofdeath MOD_BASH)",
+   "new_hooks": [
+    "N6"
+   ],
+   "category": "Officers",
+   "tags": [],
+   "family": "new:h_coldsteel"
+  },
+  {
+   "id": "h_hardmission",
+   "title": "Hard Charger",
+   "description": "Finish a mission on Hard without going down",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N7 (skill 2+ and coop_wentDownMap)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Objectives",
+   "tags": [],
+   "family": "new:h_hardmission"
+  },
+  {
+   "id": "h_hardcore",
+   "title": "Hardcore Veteran",
+   "description": "Finish a mission with the Hardcore host rule on",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N7 (coop_hardcore)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Objectives",
+   "tags": [],
+   "family": "new:h_hardcore"
+  },
+  {
+   "id": "h_nostepback",
+   "title": "Hold At All Costs",
+   "description": "Finish a hold or defend mission with nobody going down",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N7 (hold-map list + coop_wentDownMap for all)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Objectives",
+   "tags": [
+    "theatre",
+    "squad"
+   ],
+   "family": "new:h_nostepback"
+  },
+  {
+   "id": "h_omaha",
+   "title": "Bloody Omaha",
+   "description": "Finish the Omaha Beach landing without going down",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N7 (m3l1a / m3l1b)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Theatres",
+   "tags": [
+    "theatre"
+   ],
+   "family": "new:h_omaha"
+  },
+  {
+   "id": "h_snowplow",
+   "title": "Snowplow",
+   "description": "Hold the Norway station until the train leaves, without going down",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N7 (m2l3)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Theatres",
+   "tags": [
+    "theatre"
+   ],
+   "family": "new:h_snowplow"
+  },
+  {
+   "id": "h_pistolonly",
+   "title": "Sidearm Only",
+   "description": "Finish a mission with kills from pistols only",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N7 (existing coop_chalL_usedNonPistol flag)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Combat",
+   "tags": [],
+   "family": "new:h_pistolonly"
+  },
+  {
+   "id": "h_axisonly",
+   "title": "Their Own Guns",
+   "description": "Finish a mission with kills from Axis weapons only",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N1 + N7 (new coop_chalL_usedNonAxis flag)",
+   "new_hooks": [
+    "N1",
+    "N7"
+   ],
+   "category": "Combat",
+   "tags": [],
+   "family": "new:h_axisonly"
+  },
+  {
+   "id": "h_coolbarrel",
+   "title": "Cool Barrel",
+   "description": "Get 20 braced MG kills in one mission without overheating the gun",
+   "target": 20,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N9 + N1 (heat latch)",
+   "new_hooks": [
+    "N1",
+    "N9"
+   ],
+   "category": "MGs",
+   "tags": [],
+   "family": "braced"
+  },
+  {
+   "id": "h_special",
+   "title": "Special Delivery",
+   "description": "Kill 2 enemies with grenades you kicked back",
+   "target": 2,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N8 (kicked-projectile credit)",
+   "new_hooks": [
+    "N8"
+   ],
+   "category": "Explosives",
+   "tags": [],
+   "family": "kick"
+  },
+  {
+   "id": "h_ackack",
+   "title": "Ack-Ack",
+   "description": "Shoot down 2 enemy aircraft",
+   "target": 2,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "xp:Plane Shot Down",
+   "new_hooks": [],
+   "category": "Vehicles",
+   "tags": [
+    "theatre"
+   ],
+   "family": "xp:Plane"
+  },
+  {
+   "id": "h_head60",
+   "title": "Headhunter",
+   "description": "Get 60 headshots",
+   "target": 60,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Any",
+   "hook": "chal:headshot + mp:headshot",
+   "new_hooks": [],
+   "category": "Combat",
+   "tags": [],
+   "family": "chal:headshot"
+  },
+  {
+   "id": "h_band",
+   "title": "Band of Brothers",
+   "description": "Finish a mission with 3 or more players and nobody going down",
+   "target": 1,
+   "difficulty": "Hard",
+   "xp": 1250,
+   "mode": "Coop",
+   "hook": "NEW N7 ($player.size + coop_wentDownMap)",
+   "new_hooks": [
+    "N7"
+   ],
+   "category": "Squad",
+   "tags": [
+    "squad"
+   ],
+   "family": "new:h_band"
+  }
+ ]
+}

@@ -919,7 +919,7 @@ for _i,(_mid,_cat,_name,_desc) in enumerate(medals):
 # handles moving within a category without needing more tabs.
 NCAT=len(catGroups)
 TABX0=4; ROWY=[430,452]
-PERROW=math.ceil((NCAT+2)/2.0)          # NCAT category tabs + 1 MEDALS + 1 BACK, split across two rows
+PERROW=math.ceil((NCAT+3)/2.0)          # NCAT category tabs + MEDALS + DAILY ORDERS + BACK, split across two rows
 TABW=(640-2*TABX0)//PERROW
 # [user 2026-08-26] PAGE-SELECT CHAINS GO THROUGH CFG FILES, NOT INLINE STUFFCOMMANDS (bug-2116).
 # The old inline form - '; '.join('set coop_srP%d ...' for every page) - grows ~18 chars per page,
@@ -936,10 +936,14 @@ _PGNL = chr(10)
 for _pj in range(NT):
     open("ui/coop_sr_pg%d.cfg" % _pj, "w", encoding="latin-1", newline="").write(
         "".join("set coop_srP%d %d" % (_pk, 1 if _pk == _pj else 0) + _PGNL for _pk in range(NT))
-        + "set coop_srMedals 0" + _PGNL)
+        + "set coop_srMedals 0" + _PGNL + "set coop_srDaily 0" + _PGNL)
 open("ui/coop_sr_pgm.cfg", "w", encoding="latin-1", newline="").write(
     "".join("set coop_srP%d 0" % _pk + _PGNL for _pk in range(NT))
-    + "set coop_srMedals 1" + _PGNL)
+    + "set coop_srMedals 1" + _PGNL + "set coop_srDaily 0" + _PGNL)
+# [v1.10.63 dailies] the DAILY ORDERS view (coop_srDaily), same chain shape as the medals view
+open("ui/coop_sr_pgd.cfg", "w", encoding="latin-1", newline="").write(
+    "".join("set coop_srP%d 0" % _pk + _PGNL for _pk in range(NT))
+    + "set coop_srMedals 0" + _PGNL + "set coop_srDaily 1" + _PGNL)
 
 def catTabBtn(slotIdx,tl,bx,by,w,firstPageIdx):
     setcmd=pageSelCmd(firstPageIdx)
@@ -996,8 +1000,13 @@ medalsSetcmd=pageSelCmd(-1) + "; coop_srsync"
 L+=["resource","Button","{",'name "tabMedals"','title "MEDALS"',"rect %d %d %d 18"%(bx,by,TABW-2),
     "fgcolor 0.92 0.86 0.66 1.00","bgcolor 0.16 0.11 0.06 0.92","borderstyle \"3D_BORDER\"",
     "font \"verdana-12\"","clicksound \"sound/menu/apply.wav\"",'stuffcommand "%s"'%medalsSetcmd,"}",""]
-# BACK button occupies the slot right after MEDALS
+# [v1.10.63 dailies] DAILY ORDERS tab right after MEDALS
 bx,by=slotxy(NCAT+1)
+L+=["resource","Button","{",'name "tabDaily"','title "DAILY ORDERS"',"rect %d %d %d 18"%(bx,by,TABW-2),
+    "fgcolor 0.92 0.86 0.66 1.00","bgcolor 0.16 0.11 0.06 0.92","borderstyle \"3D_BORDER\"",
+    "font \"verdana-12\"","clicksound \"sound/menu/apply.wav\"",'stuffcommand "exec ui/coop_sr_pgd.cfg"',"}",""]
+# BACK button occupies the slot right after DAILY ORDERS
+bx,by=slotxy(NCAT+2)
 # [user 08-07] bug: "end." (the menu block's own terminator) used to be appended right here, which
 # silently dropped EVERYTHING declared after this point (bgMedals, the per-medal lock overlays, and
 # even the earlier pinSummary Label) outside the "coop_sr" menu block - the parser just stops reading
@@ -1051,6 +1060,66 @@ for i,(mid,cat,name,desc) in enumerate(medals):
         "fgcolor 1.00 1.00 1.00 1.00","bgcolor 0.00 0.00 0.00 0.00","borderstyle \"NONE\"",
         'enabledcvar "coop_uiM%d"'%i,'shader "textures/hud/coop_sr/medal%d.tga"'%i,"}",""]
 
+
+# ---- [v1.10.63 dailies] DAILY ORDERS ("Orders of the Day") page ------------------------------------------------------
+# The orders rotate, so nothing per order is baked here: each row is a Label showing the order's own baked strip
+# (textures/hud/coop_dly/o<i>, written by docs/tools/gen_daily_orders.py) through the SAME archived cvars the lobby panel
+# reads (coop_dlyI/B/N/K<k>, coop_dlyR, coop_dlyC - pushed by coop_mod/daily.scr::daily_export). Disconnected, it shows
+# the state of the last deployment, which the page says. Declared BEFORE pinSummary / bpSummary: a later-declared page
+# background draws over them (they vanished on this page when it came last).
+DY0, DRH = 88, 58                 # first row top, row pitch (urc)
+DSX, DSW, DSH = 120, 368, 46      # strip rect: 8:1 like the 1024x128 strips
+DBY = DY0 + 5 * DRH               # bonus row top (378)
+DFY = 410                         # footer line
+def _u2tx(u): return int(round((u - RX) * float(TW) / RW))
+def _u2ty(u): return int(round((u - RY) * float(TH) / RH))
+def daily_page_bg():
+    base = page_bg("ORDERS OF THE DAY", [], False, 84)
+    d = ImageDraw.Draw(base)
+    gold2 = (0x7a, 0x5c, 0x28)
+    for k in range(1, 5):
+        y = _u2ty(DY0 + k * DRH - 2)
+        d.line([(_u2tx(100), y), (_u2tx(DSX + DSW), y)], fill=(0x3a, 0x2a, 0x16), width=2)
+    # bar tracks under each row (the coop_bf<n> art is the FILL only; bf0 draws nothing)
+    for k in range(5):
+        ty = DY0 + k * DRH + 47
+        d.rectangle([_u2tx(DSX + 2) - 3, _u2ty(ty) - 3, _u2tx(DSX + 2 + 250) + 3, _u2ty(ty + 6) + 3], fill=(0x0e, 0x0a, 0x06), outline=gold2, width=3)
+    y = _u2ty(DBY - 3)
+    d.line([(_u2tx(100), y), (_u2tx(DSX + DSW), y)], fill=gold2, width=4)
+    ft, fx, fd = sans(56, True), sans(46, True), sans(40)
+    d.text((_u2tx(DSX + 2), _u2ty(DBY)), "Mentioned in Dispatches", font=ft, fill=(0xE8, 0xE0, 0xCA))
+    xs = "+1500 XP"
+    d.text((_u2tx(DSX + DSW) - d.textlength(xs, font=fx), _u2ty(DBY) + 8), xs, font=fx, fill=(0xE6, 0xBE, 0x58))
+    d.text((_u2tx(DSX + 3), _u2ty(DBY + 17)), "Clear every order you can do today", font=fd, fill=(0xC0, 0xB0, 0x92))
+    fc, fs = sans(36, True), sans(30)
+    d.text((_u2tx(101), _u2ty(DFY)), "ORDERS COMPLETED", font=fc, fill=(0xE8, 0xCb, 0x86))
+    cap = "as of your last deployment"
+    d.text((_u2tx(DSX + DSW) - d.textlength(cap, font=fs), _u2ty(DFY + 10)), cap, font=fs, fill=(0x9c, 0x8e, 0x72))
+    assert DFY + 10 + 8 < ROWY[0], "the daily footer would run into the tab row"
+    return base
+daily_page_bg().save("textures/mohmenu/coop_sr_daily.tga")
+_DG = 'enabledcvar "coop_srDaily"'
+def _dl(name, rect, extra, order=None):
+    r = ["resource", "Label", "{"]
+    if order is not None:
+        r.append("ordernumber %d" % order)
+    return r + ['name "%s"' % name, "rect %d %d %d %d" % rect, "fgcolor 1.00 1.00 1.00 1.00", "bgcolor 0.00 0.00 0.00 0.00",
+                'borderstyle "NONE"', _DG] + extra + ["}", ""]
+L += _dl("bgDaily", (RX, RY, RW, RH), ['shader "textures/mohmenu/coop_sr_daily.tga"'], 50)
+for _k in range(5):
+    _y = DY0 + _k * DRH
+    L += _dl("dlyK%d" % _k, (101, _y + 6, 14, 14), ['linkcvar "coop_dlyK%d"' % _k, "linkcvartoshader"], 20)
+    L += _dl("dlyI%d" % _k, (DSX, _y, DSW, DSH), ['linkcvar "coop_dlyI%d"' % _k, "linkcvartoshader"], 20)
+    L += _dl("dlyB%d" % _k, (DSX + 2, _y + 47, 250, 6), ['linkcvar "coop_dlyB%d"' % _k, "linkcvartoshader"], 20)
+    L += _dl("dlyN%d" % _k, (DSX + DSW - 108, _y + 44, 108, 12),
+             ['font "verdana-12"', "fgcolor 0.92 0.88 0.78 1.00", "textalign right", "dontlocalize", 'linkcvar "coop_dlyN%d"' % _k], 20)
+L += _dl("dlyK5", (101, DBY + 6, 14, 14), ['linkcvar "coop_dlyK5"', "linkcvartoshader"], 20)
+L += _dl("dlyN5", (DSX + DSW - 108, DBY + 20, 108, 12),
+         ['font "verdana-12"', "fgcolor 0.92 0.88 0.78 1.00", "textalign right", "dontlocalize", 'linkcvar "coop_dlyN5"'], 20)
+L += _dl("dlyC", (206, DFY - 1, 40, 12),
+         ['font "verdana-12"', "fgcolor 0.92 0.86 0.66 1.00", "textalign left", "dontlocalize", 'linkcvar "coop_dlyC"'], 20)
+L += _dl("dlyR", (250, DFY - 1, DSX + DSW - 250, 12),
+         ['font "verdana-12"', "fgcolor 0.92 0.86 0.66 1.00", "textalign right", "dontlocalize", 'linkcvar "coop_dlyR"'], 20)
 
 # [user 08-07] "PINNED n/5" live count. The word PINNED itself is baked into the page texture
 # (an unquoted stufftext value stops at the first space, so the cvar must stay a single token).
@@ -1136,7 +1205,7 @@ print("pin reset: ui/coop_sr_pinreset.cfg (%d markers)" % len(rows))
 print("pin markers: %d rows + ui/coop_sr_pinclear.cfg" % len(rows))
 print("medals: %d (textures/mohmenu/coop_sr_medals.tga)" % len(medals))
 print("DONE: %d pages, %d challenges"%(NT,len(rows)))
-print("view-state cvars: coop_srP0..coop_srP%d  (%d total) + coop_srMedals"%(NT-1,NT))
+print("view-state cvars: coop_srP0..coop_srP%d  (%d total) + coop_srMedals + coop_srDaily"%(NT-1,NT))
 print("page list (tab -> header -> rows -> rowh):")
 for i,p in enumerate(pages):
     print("  P%-2d  %-11s  %-18s  %2d rows  rowh=%d"%(i,p[0],p[1],len(p[2]),rowhs[i]))

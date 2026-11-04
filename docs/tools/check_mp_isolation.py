@@ -130,6 +130,9 @@ MP_COOP_ALLOW = {"main::containstext", "player::playercleanname", "player::coop_
                  # +XP this round, progress bar, PROMOTED banner). Reads coop rank tables + coop_xp_* flags
                  # only (shared store, not coop_mp* state); draws on MP-owned HUD slots 160-167; no-op outside MP.
                  "xp::xp_mp_roundcard",
+                 # [v1.10.63 dailies] SHARED DAILY ORDERS: mp_progression.scr::mp_bump feeds the day's orders (m:<stat>). daily.scr is
+                 # mode-neutral (player flags, the chal save file, xp_award_mp) and touches no coop gameplay state.
+                 "daily::daily_onmpstat",
                  # [user 2026-09-18] DYNAMIC WEATHER in MP: mp_weather.scr starts the SHARED coop weather
                  # renderer (fluid-random rain/snow/sand storms) on MP maps. This ONE entry point sets only
                  # weather/precip level vars + execs global/weather.scr; it touches no coop_mp*/coop_lo*/saved
@@ -154,7 +157,7 @@ MP_OWNED_MENUS = {"mpoptions"}
 # ONLY this file: the MP-facing menus are left unlocked on purpose - the user approved coop edits to them
 # (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
 LOCKS = {
-    "ui/coop_loadout.urc": {"sha256_lf": "dd2bed6af9fe678532d8db6f39acfe737a2a6261edf6e06b16ea806974be3c8d", "sha256_crlf": "d28c8d559a00c9a44ffc83d3e8f4d0db737e3e4249a5e04c564c7116f14a32e1", "lf_bytes": 176566, "blob": "93059a50410acfb65d1e354b01c007009c68c034", "prev": {"sha256_lf": "19a03b751d608c3fe044d3d0601d033d607b2f08ae9cb6d10f62f7a4f1101323", "sha256_crlf": "a6f277b5303a04312be5965554a567d522b43c11a61baff02691476da1f88f85"}, "eol": "lf", "commit": "armory-next", "locked": "pass 2: ledger bars under names"},
+    "ui/coop_loadout.urc": {"sha256_lf": "6267b319dac02fe44e32be8e3d82e483ae94f28df5365cae34c83f97bad148a4", "sha256_crlf": "7b161d603ff250f4cf81b101505ff87f0f4a97658e151212ae3ea24dd0d8cb6c", "lf_bytes": 176557, "blob": "f35d65f566396e93a093b814e48198711a98bc95", "eol": "crlf", "commit": "84b33abe", "locked": "2026-11-03 v1.10.61: the Armory 4:3 caption fit (84b33abe, menu-next via mpui-next) - deliberate coop change"},
 }
 
 # Clauses 4/5. Every saved coop cvar MP could plausibly touch [bug-2564]; each would follow the player into coop.
@@ -180,6 +183,10 @@ RX_MP_TOKEN = re.compile(r"(?<![A-Za-z0-9])coop_mp\w*", re.I)
 RX_MPX_TOKEN = re.compile(r"(?<![A-Za-z0-9])coop_mpx_\w*", re.I)
 RX_MPA_TOKEN = re.compile(r"(?<![A-Za-z0-9])coop_mpa_\w*", re.I)
 RX_UI_LOADOUT = re.compile(r"ui[/\\]+loadout[/\\]", re.I)
+# [v1.10.61] the ONE allowed MP-file mention of ui/loadout/: the 3D multiplayer room's locker screen, by the user's design
+# (mphub3d 2026-11-02: "The locker would be the new home for the Loadout, it should use the version that lets you edit your allied
+# axis and coop loadouts"). Main-menu navigation only - no game is running when this screen is open. Exact line text, nothing else.
+MP_UI_LOADOUT_ALLOW = {("ui/coop_mp_options.urc", 'stuffcommand "exec ui/loadout/open.cfg"')}
 RX_COMPASS = re.compile(r"(?<![A-Za-z0-9])(?:coop_isCoopSession\b|coop_compassBar\w*)", re.I)
 RX_SAVED_NAME = re.compile(r"(?<![A-Za-z0-9])(?:" + "|".join(re.escape(c) for c in SAVED_COOP_CVARS + ["coop_lockLoadout"])
                            + r")\b", re.I)
@@ -557,6 +564,13 @@ def run(mod_root, engine_root):
         for ln, tok in hits(texts, RX_COOP_LO):
             r.fail("12a", where(rel, ln), "MP file names the coop armory cvar %s" % tok)
         for ln, _tok in hits(texts, RX_UI_LOADOUT):
+            src_line = ""
+            try:
+                src_line = texts[0].split("\n")[ln - 1].strip()
+            except Exception:
+                pass
+            if (rel.replace("\\", "/"), src_line) in MP_UI_LOADOUT_ALLOW:
+                continue
             r.fail("12b", where(rel, ln), "MP file names the coop armory cfg tree ui/loadout/")
         built = set()
         for t, pos, joined, mode in literal_names(texts, ("coop", "ui")):

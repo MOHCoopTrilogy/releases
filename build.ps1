@@ -160,6 +160,11 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ui_wiring_audit" -Foregr
 python "C:\mohaa-coop-dev\docs\tools\gen_service_record.py" build
 if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_service_record check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_service_record" -ForegroundColor Red; exit 1 }
+# [v1.10.63 dailies] Daily Orders: coop_mod/daily_gen.scr (pool + 364-day schedule) and the baked order strips /
+# lobby panel art (textures/hud/coop_dly, *.tga is git-ignored, so the build regenerates them). Asserts every string
+# is wire- and parse-safe and the schedule rules hold; a failure blocks the deploy.
+python "C:\mohaa-coop-dev\docs\tools\gen_daily_orders.py"
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_daily_orders" -ForegroundColor Red; exit 1 }
 # [user 2026-08-18] variant->base reverse map, derived from the skin table on every build
 python "C:\mohaa-coop-dev\docs\tools\gen_skinbase.py"
 if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_skinbase check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
