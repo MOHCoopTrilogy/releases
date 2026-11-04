@@ -50,6 +50,15 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.59 - v1.10.61 - The Norway finale, cover fixes, 3D multiplayer menus
+
+- **Norway: the train defence** (v1.10.61) - radio the train crew, call sign **Snowplow**, over a broken, static-filled line, then hold the station until the train comes. Partway through, a blizzard rolls in, the train stops and your objective changes to **Survive** while the Germans push in under the snow. Assault waves come in along real routes from cover, halftracks and MG teams arrive out of sight, Stukas strafe the yard (shoot them down with the new flak gun by the station entrance) and the facility's air-raid siren sounds over it all. Your two allies come in by the gates and hold the train platform
+- **Norway: the ending** (v1.10.61) - the facility blows apart in a chain of explosions from the roof to the fuel store; windows and walls blow out, the tall structure comes down in chunks, and fires keep burning in every blast hole
+- **Norway: first mission** (v1.10.61) - after Grillo dies, report in to the extraction team from the radio in his guard tower; radio messages across the Norway missions now show in the text feed
+- **Cover** (v1.10.59 - v1.10.61) - the wall-cover camera looks out past the corner so you can see what you blind-fire at, low cover sits higher so you can see over it, a new low-cover blind-fire pose, a proper round-the-corner pose on right-hand corners, and **v1.10.60 fixed a crash** when taking cover with the open side to your right
+- **3D multiplayer menus** (v1.10.61) - the camera flies to Join Game, Host Game, Armory and Service Record in the multiplayer room; a server browser with internet, LAN and favourites plus a co-op-only filter; the room's exit is the same attic door you came in by. Click the attic gramophone to change the menu music
+- **Fixes** - placed guns on Norway pick up with Use, the flak gun and halftracks sound right, leaving a game no longer leaves the 3D menus empty, and a "Norway train finale" test start for testers
+
 ### v1.10.57 - v1.10.58 - Seamless cover, the full demo studio
 
 - **Cover, rebuilt** (v1.10.58) - walk into a wall and you take cover; glide along it, stop at door jambs and corners, blind fire round the corner or over the top (never into the wall), aim out with RMB and settle back, all with a third-person camera that eases in and never clips the wall. Works with ping and on a controller
