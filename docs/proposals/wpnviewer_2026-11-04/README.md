@@ -28,24 +28,27 @@ name, brief history, credit if it's a skin someone made and how to unlock it ...
   **Older exe:** the three commands are unknown and silently ignored; the widget is the Armory hero preview with yaw drag
   (`media/viewer_oldexe_720.jpg`, no log errors).
 
-## Merge with the attic session's rack
-The attic session (`attic_polish_2026-11-02/tools/make_attic_polish.py`, branch attic-63) builds the rack and already appends
-`scenehot "rack"` LAST with `RACK_C_BU (2.90, 2.55, 1.56)` / `RACK_POSE` and a placeholder fly-there-and-back command, plus its
-`hot_rack` proxy and `atticsign_rack` caption. `gen_weapon_viewer.py` uses the same constants and is idempotent:
-* run it **after** `make_attic_polish.py` (last step of the main.urc rebuild order): when the rack hotspot exists it only rewrites
-  the `scenehot "rack"` command and the `hot_rack` stuffcommand (`rewired`); on a tree without it (this branch's base) it adds
-  hotspot + box + caption + proxy itself (`added`), marked `// ---- [wpnviewer]`.
-* when merging the branches, take attic-63's `main.urc` and re-run `HZM_MOD=<tree> python docs/tools/gen_weapon_viewer.py build`;
-  `check` must then report 0 stale files. If the rack moves, change `RACK_C_BU` / `RACK_DIST` in both scripts.
-* The viewer's backdrop copies every non-actor `scenemodel` / `scenelight` of `atticscene`, so after the rebuild it shows their rack.
-* Open (attic side): the rack is on the x 3.00 wall, outside the 16:9 and 4:3 home frame - only 21:9 can click it; the hot_rack
-  proxy gives pad / keyboard access. A 4:3 / 16:9 way in (a twin plate like WHAT'S NEW 4:3) is the attic session's call.
+## Merge with the attic session's rack (settled 2026-11-04)
+The attic session (`attic_polish_2026-11-02/tools/make_attic_polish.py`, branch attic-63) owns the rack: hotspot `rack` (index 17),
+proxy `hot_rack`, caption `atticsign_rack`, the RACK > cue `hzm_rackcue`, hotbox 0 0 150 260, `scenepeek "rack"` + PEEK_POSE
+(engine scenepeek on menu-attic63), RACK_POSE `133.9 -63.0 81.9 -0.00 -90.00 0.00 50.00`, and a placeholder RACK_CMD.
+`gen_weapon_viewer.py` replaces **only RACK_CMD**: every exact copy of the hotspot's command string (scenehot, hot_rack,
+hzm_rackcue - 3 copies on their tree). Peek, hover, gating and labels stay theirs.
+* **Rack position / fly pose follow theirs:** the pose is read from the first `scenefly 0.6 <pose>` in their rack command;
+  `--rack-pose "x y z p y r fov"` / `--rack-centre "x y z"` override it; RACK_C_BU defaults only when no rack exists.
+* **Order:** main.urc rebuild = make_main3d -> make_mphub3d -> make_newgame3d -> make_attic_polish -> **gen_weapon_viewer build**.
+  Take attic-63's main.urc when merging and re-run; `check` then reports 0 stale.
+* **Rehearsed** on a copy of their current main.urc (`--main <copy>`): `rewired (3 copies of the rack command)`, `check` 0 stale,
+  diff vs theirs = exactly the 3 command lines. If a merge keeps both racks (this branch added its own `[wpnviewer]` block on a
+  base without one), the generator drops ours and the duplicate scene lines and keeps theirs (rehearsed with git merge-file).
+* The viewer's backdrop copies every non-actor `scenemodel` / `scenelight` of `atticscene`, so after the rebuild it shows their rack
+  (and their new props: the rehearsal re-wrote `hzm_wpnview.urc` with the medal lid / reel models - expected).
 
 ## QA (720 / 4:3 1440x1080 / 21:9 1920x804, GL2, private client)
 `media/contact_720_01..08.jpg` (every entry), `viewer_{720,43,219}[_tilt].jpg`, `attic_rack_hover_720.jpg`, run folders under
 `H:\hzm_work\wpnviewer\runs\`. Mouse drag (spin 108 / tilt 48 after a 180x80 px drag) and the right stick both measured via cvars.
 Defects found: bug-10526 (two invisible WW1 variants, fixed), 10527 (generator), 10528 (light rig, dropped), 10529 (East's
 lightingSpherical imports render dark in any world-less preview, OPEN), 10530 (TT-33 SILENCED finishes tint only the suppressor,
-OPEN). Mills bomb: black 3D model, shown as the Armory's 2D icon (gen_loadout.ICON2D).
+OPEN), 10530 -> fixed in 10532 (TT-33 SILENCED finishes now skin the body). Coordinator QA 2026-11-04: list names (10531, fixed: column 176 px, fit asserted), MOSIN SNIPER SILENCED's tan cylinder (10533: the model's own canvas wrap, authored so, not a viewer fault). Mills bomb: black 3D model, shown as the Armory's 2D icon (gen_loadout.ICON2D).
 Not in the viewer: items with finishes that are not Armory guns (mine detectors, binoculars, the DBNO pistol, the `_lite` AI
 copies, the Kar98 rifle grenade).

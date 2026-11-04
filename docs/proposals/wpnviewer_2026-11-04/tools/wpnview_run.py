@@ -37,7 +37,9 @@ def setup(exe=None):
     with zipfile.ZipFile(os.path.join(MAINTT, OVERLAY), "w", zipfile.ZIP_DEFLATED) as z:
         for f in ("main.urc", "hzm_wpnview.urc", "hzm_attic_go_rack.cfg"):
             z.write(os.path.join(ui, f), "ui/" + f)
-        for f in ("springfield_m1903.tik", "KAR98sniper_g98scope.tik"):        # the two variant tiks fixed on this branch
+        fixed = ["springfield_m1903.tik", "KAR98sniper_g98scope.tik"] + ["tt33silenced_%s.tik" % k for k in
+                 ("gold", "chrome", "blued", "bloody", "camo_woodland", "camo_winter", "camo_desert")]
+        for f in fixed:                                                       # the variant tiks fixed on this branch
             z.write(os.path.join(MOD, "models", "weapons", f), "models/weapons/" + f)
         z.write(os.path.join(MOD, "global", "localization_coop.txt"), "global/localization_coop.txt")
         for f in sorted(os.listdir(os.path.join(ui, "wpnview"))):

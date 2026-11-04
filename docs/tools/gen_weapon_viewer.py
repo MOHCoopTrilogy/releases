@@ -381,8 +381,8 @@ WHITE = (1.0, 1.0, 1.0, 1.0)
 GLOW = "textures/mohmenu/hzm_theme/mpui_glow"
 GLOW_P = "textures/mohmenu/hzm_theme/mpui_glow_paper"
 
-LIST = (34, 98, 130, 14)          # x y w row-h of the gun list
-VIEW = (172, 98, 290, 250)        # the orbit viewer
+LIST = (34, 98, 176, 14)          # x y w row-h of the gun list: wide enough for the longest roster name at every aspect (asserted)
+VIEW = (216, 98, 246, 250)        # the orbit viewer
 RIGHT = (470, 98, 136)            # the info column
 HIST_Y, HIST_W, HIST_N = 398, 566, 4
 # the @3x fonts the engine swaps in at high resolutions run up to ~10 % wider than the 1x metrics measured here (seen at 1440x1080):
@@ -447,15 +447,27 @@ def approach(look_bu, dist, fov, lift=0.0, dirbu=None):
     return "%.1f %.1f %.1f %.2f %.2f %.2f %.2f" % (o[0], o[1], o[2], math.degrees(-math.asin(f[2])), math.degrees(math.atan2(f[1], f[0])), 0.0, fov)
 
 
-RACK_POSE = approach(RACK_C_BU, RACK_DIST, RACK_FOV, 0.0, RACK_DIR)
-RACK_CMD = ("set ui_scene_hot 0; exec ui/wpnview/open.cfg; globalwidgetcommand atticscene sceneleave 1; "
-            "globalwidgetcommand atticscene scenefly 0.6 %s; uiafter 0.6 pushmenu hzm_wpnview" % RACK_POSE)
-
-MAIN = os.path.join(MOD, "ui", "main.urc")
+MAIN = arg("--main", os.path.join(MOD, "ui", "main.urc"))     # --main: a main.urc elsewhere (merge rehearsal), read and written there
 main_raw = io.open(MAIN, "rb").read().decode("latin-1")
 main_nl = "\r\n" if "\r\n" in main_raw else "\n"
 main_t = main_raw.replace("\r\n", "\n")
 _scene = re.search(r'name "atticscene"\n(.*?)\n\}\n', main_t, re.S).group(1)
+
+# WHERE THE RACK IS belongs to the attic session. Precedence: --rack-pose "x y z pitch yaw roll fov" (and --rack-centre "x y z",
+# game units) on the command line; else the pose their own `scenehot "rack"` already flies to (the first `scenefly 0.6 <pose>`
+# in its command - their placeholder, or ours from an earlier run); else the RACK_C_BU defaults above. When they move the rack,
+# the viewer (hotspot command, the viewer's own camera, the test cfg) follows on the next run with no edit here.
+_POSE_RX = r"scenefly 0\.6 ((?:-?[\d.]+ ){6}-?[\d.]+)"
+_rack_hot = re.search(r'(?m)^scenehot "rack" (\S+) (\S+) (\S+) (\S+) "([^"]*)"', _scene)
+RACK_POSE = arg("--rack-pose")
+if not RACK_POSE and _rack_hot and re.search(_POSE_RX, _rack_hot.group(5)):
+    RACK_POSE = re.search(_POSE_RX, _rack_hot.group(5)).group(1)
+if not RACK_POSE:
+    RACK_POSE = approach(RACK_C_BU, RACK_DIST, RACK_FOV, 0.0, RACK_DIR)
+assert len(RACK_POSE.split()) == 7, RACK_POSE
+RACK_CENTRE = arg("--rack-centre")
+RACK_CMD = ("set ui_scene_hot 0; exec ui/wpnview/open.cfg; globalwidgetcommand atticscene sceneleave 1; "
+            "globalwidgetcommand atticscene scenefly 0.6 %s; uiafter 0.6 pushmenu hzm_wpnview" % RACK_POSE)
 ROOM = [l for l in _scene.splitlines() if l.startswith("scenemodel ") and "models/human/" not in l] + \
        [l for l in _scene.splitlines() if l.startswith("scenelight ")]
 assert len(ROOM) > 10, "atticscene models not found in main.urc"
@@ -463,15 +475,29 @@ assert len(ROOM) > 10, "atticscene models not found in main.urc"
 
 def splice_main(t):
     """the rack hotspot: the attic session's (make_attic_polish.py) if present - only its command changes - else ours, LAST"""
+    # a merge of this branch into the attic session's main.urc carries BOTH racks: drop ours (the [wpnviewer] widget block and a
+    # second copy of the three rack scene lines - theirs come first, ours were appended last) and keep theirs
+    ours = re.search(r"// ---- \[wpnviewer\] the rifle rack hotspot.*?// ---- \[wpnviewer\] end\n", t, re.S)
+    if ours and len(re.findall(r'(?m)^resource\nButton\n\{\nname "hot_rack"$', t)) > 1:
+        t = t.replace(ours.group(0), "")
+        for pfx in ('scenehot "rack" ', 'scenehotbox "rack" ', 'scenelabel "atticsign_rack" '):
+            lines = [m.start() for m in re.finditer(r"(?m)^" + re.escape(pfx), t)]
+            for s in reversed(lines[1:]):
+                t = t[:s] + t[t.index("\n", s) + 1:]
     if re.search(r'(?m)^scenehot "rack" ', t):
-        t = re.sub(r'(?m)^(scenehot "rack" \S+ \S+ \S+ \S+ )"[^"]*"', lambda m: m.group(1) + '"%s"' % RACK_CMD, t, count=1)
-        b = re.search(r'resource\nButton\n\{\nname "hot_rack"\n.*?\n\}\n', t, re.S)
-        assert b, "scenehot rack without its hot_rack proxy"
-        nb = re.sub(r'(?m)^stuffcommand "[^"]*"$', 'stuffcommand "%s"' % RACK_CMD, b.group(0))
-        return t.replace(b.group(0), nb), "rewired"
+        # replace ONLY the rack command (RACK_CMD in make_attic_polish.py): every exact copy of it - the hotspot, its hot_rack proxy
+        # and their RACK > cue (hzm_rackcue). The peek (scenepeek "rack" / PEEK_POSE), hover and gating lines are theirs and untouched.
+        old = re.search(r'(?m)^scenehot "rack" \S+ \S+ \S+ \S+ "([^"]*)"', t).group(1)
+        n = t.count('"%s"' % old)
+        assert n >= 2, "rack command found %d times (hotspot + hot_rack proxy at least)" % n
+        t = t.replace('"%s"' % old, '"%s"' % RACK_CMD)
+        if RACK_CENTRE:
+            t = re.sub(r'(?m)^scenehot "rack" \S+ \S+ \S+ ', lambda m: 'scenehot "rack" %s ' % " ".join("%.1f" % float(v) for v in RACK_CENTRE.split()), t, count=1)
+        assert re.search(r'resource\nButton\n\{\nname "hot_rack"\n', t), "scenehot rack without its hot_rack proxy"
+        return t, "rewired (%d copies of the rack command%s)" % (n, ", our duplicate rack removed" if ours and ours.group(0) not in t else "")
     hots = re.findall(r'(?m)^scenehot "(\w+)"', _scene)
     idx = len(hots) + 1
-    c = SP.conv(np.array(RACK_C_BU, float), 52.5)
+    c = [float(v) for v in RACK_CENTRE.split()] if RACK_CENTRE else SP.conv(np.array(RACK_C_BU, float), 52.5)
     sg = re.search(r'(?m)^scenelabel "atticsign\d+" (\S+ \S+ \S+ \S+ \S+)$', _scene).group(1)
     add = ['scenehot "rack" %.1f %.1f %.1f %.1f "%s" "WEAPONS RACK" "hot_rack" 0' % (c[0], c[1], c[2], 34.0, RACK_CMD),
            'scenehotbox "rack" 0.0 0.0 150.0 260.0', 'scenelabel "atticsign_rack" %s' % sg]
@@ -603,8 +629,7 @@ for k in range(len(TABS)):
     assert len(tg) * LIST[3] <= VIEW[3] + 150, "tab %d list too long" % k
     for j, g in enumerate(tg):
         nm = g["name"]
-        while width(nm) > (LIST[2] - 4) * FIT:
-            nm = nm[:-2].rstrip() + "."
+        assert width(nm) <= (LIST[2] - 4) * FIT, "gun name %r does not fit the list column" % nm
         r = (LIST[0], LIST[1] + j * LIST[3], LIST[2], LIST[3])
         U += W("Label", "gSel%s" % g["gid"], r, bg=SEL, enabledcvar="ui_wvTab==%d ui_wvG==%d" % (k, int(g["gid"])))
         U += W("Button", "g%s" % g["gid"], r, title=nm, fg=INK, bg=CLEAR, border="NONE", font="verdana-12", textalign="left",
@@ -622,17 +647,21 @@ for gid in ICON2D:
            enabledcvar="ui_wvG==%d" % int(gid))
 U += text("wvHint", (vx, vy + vh - 16, vw, 13), "DRAG TO TURN  -  WHEEL TO ZOOM", "verdana-12", (0.62, 0.57, 0.45, 0.8), "center")
 by = vy + vh + 4
-U += plate("vPrev", (vx, by, 24, 20), "<", "vstr ui_wvPrevV", font="verdana-14")
-U += W("Label", "vPlate", (vx + 26, by, vw - 52, 20), bg=PLATE, border="3D_BORDER")
-U += cvl("vName", (vx + 30, by + 3, vw - 100, 14), "ui_wvVar", "verdana-12", BEIGE)
-U += cvl("vNum", (vx + vw - 76, by + 3, 46, 14), "ui_wvVarN", "verdana-12", BEIGE, "right")
-U += plate("vNext", (vx + vw - 24, by, 24, 20), ">", "vstr ui_wvNextV", font="verdana-14")
+bx0, bw0 = LIST[0], vx + vw - LIST[0]          # the variant bar and the buttons span the list and the viewer
+U += plate("vPrev", (bx0, by, 24, 20), "<", "vstr ui_wvPrevV", font="verdana-14")
+U += W("Label", "vPlate", (bx0 + 26, by, bw0 - 52, 20), bg=PLATE, border="3D_BORDER")
+VNAME_W = bw0 - 110
+U += cvl("vName", (bx0 + 30, by + 3, VNAME_W, 14), "ui_wvVar", "verdana-12", BEIGE)
+U += cvl("vNum", (bx0 + bw0 - 76, by + 3, 46, 14), "ui_wvVarN", "verdana-12", BEIGE, "right")
+U += plate("vNext", (bx0 + bw0 - 24, by, 24, 20), ">", "vstr ui_wvNextV", font="verdana-14")
+for e in entries:
+    assert width(e["vname"]) <= VNAME_W * FIT, "variant name %r does not fit" % e["vname"]
 cy = by + 24
-bw = (vw - 6) / 4.0
+bw = (bw0 - 6) / 4.0
 for k, (nm, t, cmd) in enumerate((("gPrev", "PREV GUN", "vstr ui_wvPrevG"), ("gNext", "NEXT GUN", "vstr ui_wvNextG"),
                                   ("wvZoomB", "ZOOM", "vstr ui_wvZoomNext"), ("wvReset", "RESET VIEW", "set ui_wvSpin 0; set ui_wvTilt 0; exec ui/wpnview/z0.cfg"))):
-    U += plate(nm, (vx + k * (bw + 2), cy, bw, 20), t, cmd)
-U += cvl("wvNum", (LIST[0], cy + 4, LIST[2], 14), "ui_wvNum", "verdana-12", MUTED)
+    U += plate(nm, (bx0 + k * (bw + 2), cy, bw, 20), t, cmd)
+U += cvl("wvNum", (RIGHT[0], cy + 4, RIGHT[2], 14), "ui_wvNum", "verdana-12", MUTED)
 # the info column
 rx, ry, rw = RIGHT
 y = ry
@@ -716,7 +745,7 @@ if cmd == "list":
     sys.exit(0)
 stale = []
 for rel, txt in sorted(OUT.items()):
-    p = os.path.join(MOD, rel)
+    p = MAIN if rel == "ui/main.urc" else os.path.join(MOD, rel)
     data = txt.encode("latin-1") if rel.endswith("localization_coop.txt") else txt.encode("latin-1")
     if not os.path.exists(p) or open(p, "rb").read() != data:
         stale.append(rel)
