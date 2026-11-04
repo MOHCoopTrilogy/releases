@@ -24,6 +24,8 @@ E.RUNS = r"G:\mohaa-dailies\runs"
 MOD = r"H:\hzm_work\dailies-mod"
 NEWDLL = r"H:\hzm_work\dailies-eng\.cmake\code\server\fgame\Release\game.dll"
 OLDDLL = os.path.join(CLIENT, "game_rel59_old.dll")
+NEWCG = r"H:\hzm_work\dailies-eng\.cmake\code\client\cgame\Release\cgame.dll"
+OLDCG = os.path.join(CLIENT, "cgame_rel59_old.dll")
 OVERLAY = "zzzzzzzzzzzzzzzzzz_dailies.pk3"
 SKIP_TOP = {"sound", "models", "gfx", "env", "_research", "docs", ".git", "music", "video", "textures"}
 SKIP_EXT = {".pk3", ".bsp", ".wav", ".mp3", ".ogg", ".dds", ".jpg", ".tga", ".png", ".skc", ".skd", ".roq", ".zip", ".psd", ".blend", ".py", ".md"}
@@ -54,6 +56,7 @@ def stage(which="new"):
     for c in ("autoexec.cfg", "coop_defaults.cfg"):
         shutil.copy2(os.path.join(MOD, c), os.path.join(E.MAINTT, c))
     shutil.copy2(NEWDLL if which == "new" else OLDDLL, os.path.join(CLIENT, "game.dll"))
+    shutil.copy2(NEWCG if which == "new" else OLDCG, os.path.join(CLIENT, "cgame.dll"))
     print("staged", len(files), "files,", os.path.getsize(pak) // 1024, "KB, game.dll =", which)
 
 
@@ -110,6 +113,34 @@ def mission(w=1280, h=720):
     boot("mission_%dx%d" % (w, h), w, h, cfg, sp)
 
 
+def mission3(w=1280, h=720):
+    def lines(cmd, at):
+        join(cmd, at, 40000)
+        at(52000)
+        for k in range(90):
+            cmd("screenshotJPEG k_%03d" % k, 1000)
+        at(230000)
+        cmd("quit", 0)
+    sp = pad(lines, "mission3")
+    cfg = ["set coop_dbno 0", "set coop_dlyForceDay 20807", "set coop_grenDebug 1", "seta coop_hudFade 0", "set coop_dailyDebug 1", "set coop_dlySelftest 3",
+           "set coop_dlySelftestLead 20", "set coop_dlyForceIds m_kick5,h_special,m_braced25,h_coolbarrel,m_nest25",
+           "set ui_dmmap m1l2a", "wait 600", "ui_startdmmap 2"]
+    boot("mission3_%dx%d" % (w, h), w, h, cfg, sp)
+
+
+def mp(w=960, h=540, secs=330, tag="mp_m2l1"):
+    def lines(cmd, at):
+        at(secs * 1000)
+        cmd("screenshotJPEG mp_a", 2000)
+        cmd("quit", 0)
+    sp = pad(lines, "mp")
+    cfg = ["set sv_mpForceArena 1", "set coop_mpMode push", "set coop_mpPushRotate 0", "set coop_mpPushTestPool 0",
+           "set sv_maxbots 8", "set sv_numbots 8", "set coop_mpBotFill 8", "set coop_xp_mpMatchCap 100",
+           "set coop_dlyForceDay 20810", "set coop_dailyDebug 1", "set coop_mpProgCreditBots 1", "set coop_dlyForceTgt 2",
+           "set coop_dlyForceIds e_head20,e_smg50,e_rifle40,m_push,e_clock4", "wait 300", "map m2l1"]
+    boot(tag, w, h, cfg, sp)
+
+
 def lobby(w, h, tag="lobby"):
     def lines(cmd, at):
         at(60000)
@@ -141,6 +172,10 @@ if __name__ == "__main__":
         stage(a[1] if len(a) > 1 else "new")
     elif a[0] == "mission":
         mission(*(int(x) for x in a[1:3])) if len(a) > 2 else mission()
+    elif a[0] == "mission3":
+        mission3(*(int(x) for x in a[1:3]))
+    elif a[0] == "mp":
+        mp(secs=int(a[1]), tag=a[2])
     elif a[0] == "lobby":
         lobby(int(a[1]), int(a[2]), *(a[3:4]))
     elif a[0] == "day":

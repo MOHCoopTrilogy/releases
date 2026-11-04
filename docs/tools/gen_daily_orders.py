@@ -21,7 +21,7 @@ import json, random, os, re, glob, sys, zlib
 from collections import Counter
 from PIL import Image, ImageDraw, ImageFont
 
-PHASE = 1
+PHASE = 2   # v1.10.63 ships the N8-N10 engine exports: all 100 orders are scheduled
 HERE = os.path.dirname(os.path.abspath(__file__))
 MOD = os.environ.get("HZM_MOD") or r"C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
 DOCS = os.path.join(HERE, "..", "proposals", "daily_challenges_2026-11-03")
@@ -155,6 +155,36 @@ H = [
  ("h_band", "Band of Brothers", "Finish a mission with 3 or more players and nobody going down", 1, "Coop", "NEW N7 ($player.size + coop_wentDownMap)", "Squad", ["squad"]),
 ]
 
+# ---- CALIBRATION (2026-11-04). No DAILYPACE data exists from real play yet (daily.scr prints it at every mission end from
+# v1.10.63 on). Measured instead from the user's own career record, G:\mohaa-gl2\home\maintt\coop_mod\save\chal_2496...dat
+# (27 missions, 28,837 XP, solo) - a lower bound wherever a challenge is capped: kills >= 62 a mission (per-gun counters),
+# headshots >= 9, objectives >= 1.9 (capped), officer bosses 0.74, field officers >= 1.9, snipers 1.2, grenade kills 1.3,
+# melee 0.5, blind fire 0.07, support calls 1.1, long shots >= 4.4, reinforcement kills >= 7.4, revives 0 (solo) - and the
+# two 2-player harness profiles in C:\mohaa-coop-dev\server_home (63 kills and 1.1 revives a mission). The qconsole logs
+# carry no per-kill markers (coverage sweeps only). Rule: Easy = one focused mission, Medium = a session (~3 missions),
+# Hard = a commitment. Only the orders the data moved are listed; the rest keep the design's targets.
+CAL = {
+ "e_nade6":       (5,  "Get 5 grenade kills"),
+ "m_nade15":      (12, "Get 12 grenade kills"),
+ "e_melee4":      (3,  "Get 3 weapon-bash kills"),
+ "m_melee10":     (8,  "Get 8 weapon-bash kills"),
+ "e_reinf25":     (20, "Kill 20 enemy reinforcements"),
+ "e_blind6":      (4,  "Get 4 blind-fire kills from cover"),
+ "e_sniper3":     (2,  "Kill 2 enemy snipers"),
+ "e_fieldoff6":   (4,  "Kill 4 German field officers"),
+ "e_obj6":        (5,  "Complete 5 primary objectives"),
+ "e_revive4":     (3,  "Revive 3 downed teammates"),
+ "h_angel":       (8,  "Revive 8 downed teammates"),
+ "m_reviveFire":  (2,  "Revive 2 teammates while enemies are close"),
+ "e_ammo8":       (6,  "Squadmates draw 6 resupplies from ammo boxes you placed"),
+ "e_patch5":      (4,  "Heal squadmates 4 times with your medkit"),
+ "e_allyrevive3": (2,  "Revive 2 downed allied soldiers"),
+ "e_savior4":     (3,  "Kill 3 enemies who were shooting at a teammate"),
+ "m_snipers4":    (3,  "Headshot 3 enemy snipers, rooftop or alarm snipers included"),
+ "m_nest25":      (20, "Get 20 kills on a mounted MG42 or .30 cal"),
+ "m_kick5":       (3,  "Kick away 3 live enemy grenades"),
+}
+
 def fam_of(p):
     if p.get("family"):
         return p["family"]
@@ -170,6 +200,10 @@ for tier, lst in (("Easy", E), ("Medium", M), ("Hard", H)):
                          new_hooks=news, category=cat, tags=tags, family=(row[8] if len(row) > 8 else "")))
 for p in pool:
     p["family"] = fam_of(p)
+    if p["id"] in CAL:
+        p["target"], p["description"] = CAL[p["id"]]
+        assert str(p["target"]) in p["description"], p["id"]
+assert set(CAL) <= {p["id"] for p in pool}
 assert len(E) == 40 and len(M) == 40 and len(H) == 20, (len(E), len(M), len(H))
 assert len({p["id"] for p in pool}) == 100 and len({p["title"] for p in pool}) == 100
 
@@ -313,8 +347,10 @@ n_existing = sum(1 for p in pool if not p["new_hooks"])
 n_phase1 = sum(1 for p in pool if p1(p))
 SHIP = phase1 if PHASE == 1 else full
 for p in pool:
-    if p1(p) or PHASE >= 2:
+    if p1(p):
         assert p["id"] in TRIG or set(p["new_hooks"]) - ENGINE, p["id"]
+    elif PHASE >= 2:
+        assert p["new_hooks"], p["id"]
 
 # ---------------------------------------------------------------------------------------------- mod outputs
 IDX = {p["id"]: i for i, p in enumerate(pool)}
