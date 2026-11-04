@@ -158,7 +158,7 @@ foreach ($wpnPakName in @('zzzzzzzzzz_coop_hd_wpn_1low.pk3', 'zzzzzzzzzz_coop_hd
 # same way, added HERE in the same change. Inert without the v1.10.22 cgame (it probes for the pak).
 $stage["home/maintt/zzzzzzzzzz_coop_scopes.pk3"]  = "$mod\zzzzzzzzzz_coop_scopes.pk3"
 # [v1.10.37] out-of-band paks from the test copies - copied by build.ps1 the same way, added HERE in the same change.
-foreach ($xp in @('zzzzzz_co-op_hzm_mod_assets_tey.pk3', 'zzzzzzzzzzzz_coop_fixes2.pk3', 'zzzzzzzzzzzzz_coop_fx.pk3', 'zzzzzzzzzzzzz_coop_music.pk3',
+foreach ($xp in @('zzzzzz_co-op_hzm_mod_assets_tey.pk3', 'zzzzzzzzzz_coop_maps.pk3', 'zzzzzzzzzzzzz_coop_snd.pk3', 'zzzzzzzzzzzzzzz_coop_scopeglass.pk3', 'zzzzzzzzzzzz_coop_fixes2.pk3', 'zzzzzzzzzzzzz_coop_fx.pk3', 'zzzzzzzzzzzzz_coop_music.pk3',
                   'zzzzzzzzzzzzz_coop_stress.pk3', 'zzzzzzzzzzzzzz_coop_late.pk3', 'zzzzzzzzzzzzzz_hzm_menus3d.pk3')) {
     if (Test-Path "$mod\$xp") { $stage["home/maintt/$xp"] = "$mod\$xp" }
 }
@@ -425,7 +425,7 @@ Check each part's SHA-256 against the release page first.
     $uploads["SHA256SUMS.txt"] = $sumPath
     $extraNotes = "`n`n### Which download?`n" + ($descr -join "`n") +
         "`n`nWindows blocked something? See [Windows security warnings and how to get past them](https://github.com/$repoSlug/blob/main/docs/public/WINDOWS_SECURITY.md).`n" +
-        "`n### SHA-256 checksums`nCheck a download with ``Get-FileHash .\<file> -Algorithm SHA256`` in PowerShell; it must match exactly.`n``````n" + ($sumLines -join "`n") + "`n``````n"
+        "`n### SHA-256 checksums`nCheck a download with ``Get-FileHash .\<file> -Algorithm SHA256`` in PowerShell; it must match exactly.`n```````n" + ($sumLines -join "`n") + "`n```````n"
 } catch {
     Write-Host "WARNING: alternative-download step failed: $_" -ForegroundColor Red
     throw
@@ -436,7 +436,9 @@ $ErrorActionPreference = "Continue"
 if ($NotesFile) {
     # straight through to gh - no PowerShell string round-trip, so nothing can mis-decode it
     if (-not (Test-Path $NotesFile)) { throw "-NotesFile not found: $NotesFile" }
-    $notesFile = $NotesFile
+    # [v1.10.62] resolve to a FULL path: Test-Path uses PowerShell's location, but .NET ReadAllText below uses the
+    # process cwd, which can differ (v1.10.62 published with EMPTY notes because the shell was last in public_servers)
+    $notesFile = (Resolve-Path $NotesFile).Path
     # decode properly for the Discord body further down (utf8 handles a BOM if one is present)
     $Notes = [System.IO.File]::ReadAllText($notesFile, [System.Text.Encoding]::UTF8).TrimStart([char]0xFEFF)
 } else {
