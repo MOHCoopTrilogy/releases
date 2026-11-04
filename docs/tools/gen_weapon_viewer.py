@@ -482,7 +482,8 @@ def splice_main(t):
     # a merge of this branch into the attic session's main.urc carries BOTH racks: drop ours (the [wpnviewer] widget block and a
     # second copy of the three rack scene lines - theirs come first, ours were appended last) and keep theirs
     ours = re.search(r"// ---- \[wpnviewer\] the rifle rack hotspot.*?// ---- \[wpnviewer\] end\n", t, re.S)
-    if ours and len(re.findall(r'(?m)^resource\nButton\n\{\nname "hot_rack"$', t)) > 1:
+    dropped = bool(ours) and len(re.findall(r'(?m)^resource\nButton\n\{\nname "hot_rack"$', t)) > 1
+    if dropped:
         t = t.replace(ours.group(0), "")
         for pfx in ('scenehot "rack" ', 'scenehotbox "rack" ', 'scenelabel "atticsign_rack" '):
             lines = [m.start() for m in re.finditer(r"(?m)^" + re.escape(pfx), t)]
@@ -498,7 +499,7 @@ def splice_main(t):
         if RACK_CENTRE:
             t = re.sub(r'(?m)^scenehot "rack" \S+ \S+ \S+ ', lambda m: 'scenehot "rack" %s ' % " ".join("%.1f" % float(v) for v in RACK_CENTRE.split()), t, count=1)
         assert re.search(r'resource\nButton\n\{\nname "hot_rack"\n', t), "scenehot rack without its hot_rack proxy"
-        return t, "rewired (%d copies of the rack command%s)" % (n, ", our duplicate rack removed" if ours and ours.group(0) not in t else "")
+        return t, "rewired (%d copies of the rack command%s)" % (n, ", our duplicate rack removed" if dropped else "")
     hots = re.findall(r'(?m)^scenehot "(\w+)"', _scene)
     idx = len(hots) + 1
     c = [float(v) for v in RACK_CENTRE.split()] if RACK_CENTRE else SP.conv(np.array(RACK_C_BU, float), 52.5)
