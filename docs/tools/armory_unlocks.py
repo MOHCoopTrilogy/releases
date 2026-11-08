@@ -114,6 +114,13 @@ def collect():
         src.setdefault(tok, []).append('Reach rank %s' % rank)
     for cid, title, desc, reward in chal_rewards(chal):
         src.setdefault(reward, []).append('%s - %s  [%s]' % (title, desc, cid))
+    # [v1.10.64 wpnfix2] a model-variant challenge (mvchal_gen.scr) whose reward is an Armory GUN unlocks that gun: the Lewis (81) is
+    # the BAR's retired variant 9 and wpn_bar_mv9 is its unlock. Without this the deny text read "Not currently obtainable". Only
+    # roster gives are taken, so the other variant rewards do not turn into audit orphans.
+    gives = {g for _n, g in guns}
+    for cid, title, desc, reward in chal_rewards(strip_comments(rd('mvchal_gen.scr'))):
+        if reward in gives:
+            src.setdefault(reward, []).append('%s - %s  [%s]' % (title, desc, cid))
 
     return helmets, skins, guns, gated, src, gloves
 

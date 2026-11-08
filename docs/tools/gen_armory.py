@@ -164,8 +164,8 @@ def fit_text(text, maxw):
 SHORT = {"02": "CARBINE", "05": "ENFIELD", "06": "SPRNGFLD", "07": "CARCANO", "09": "MOSIN", "10": "ARISAKA 99", "11": "M1 SIL.",
          "70": "JOHNSON", "78": "G43 IRON", "12": "M1903 SNP", "13": "KAR98K SN", "14": "L42A1", "15": "M1 SCOPE", "17": "ENFIELD SN",
          "18": "CARC. SNP", "19": "ARISAKA SN", "20": "MOSIN SN", "21": "MOSIN SIL.", "22": "KAR98K SIL.", "23": "DE LISLE",
-         "24": "THOMPSON", "25": "T. DRUM", "27": "MP40 SIL.", "30": "PPS-43 SIL.", "31": "M3 GREASE", "32": "GREASE SIL", "33": "MOSCHET.",
-         "34": "BERETTA 38", "35": "TYPE 100", "71": "T. GOLD", "38": "STG 44 SCP.", "40": "VICKERS", "42": "M1919 .30", "44": "TRENCH",
+         "24": "THOMPSON", "25": "T. DRUM", "27": "MP40 SIL.", "30": "PPS-43 SIL.", "31": "M3 GREASE", "32": "GREASE SIL", "33": "BERETTA 38",
+         "35": "TYPE 100", "71": "T. GOLD", "38": "STG 44 SCP.", "40": "VICKERS", "42": "M1919 .30", "44": "TRENCH",
          "45": "BAZOOKA", "46": "SCHRECK", "80": "DBL BARREL", "48": "COLT 1911", "49": "COLT SIL.", "50": "P38", "51": "P38 SIL.",
          "52": "HI-STD", "53": "WEBLEY", "54": "NAGANT", "55": "BERETTA 34", "56": "BERET. SIL.", "58": "LUGER SIL.", "59": "PPK",
          "60": "TOKAREV", "61": "TT-33 SIL.", "62": "NAMBU", "63": "WELROD", "74": "MAUSER", "75": "S&W M10", "65": "STIELHAND",
@@ -522,6 +522,9 @@ def progress_scr(rows, mod):
     import armory_unlocks as au
     import gen_loadout as gl
     xp, chal, lp = gl._script("xp.scr"), gl._script("challenges.scr"), gl._script("loadoutpick.scr")
+    # [v1.10.64 wpnfix2] + the model-variant challenges: one of them unlocks an Armory GUN (wpn_bar_mv9 -> the Lewis, 81), which had no
+    # progress source at all. Only roster gives are matched below, so the other variant rewards change nothing.
+    chal = chal + "\n" + gl._script("mvchal_gen.scr")
     free = {t.lower() for t in au.free_guns(lp)}
     rank = {}
     for r, tok in au.rank_grants(xp):

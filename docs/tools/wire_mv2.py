@@ -18,18 +18,37 @@ MOD = (_os.environ.get("HZM_MOD", "hzm-mohaa-coop-mod").replace("\\", "/").rstri
 FIXES = "docs/tools/assets/fixes/"
 
 
+WPNFIX = "docs/tools/assets/wpnfix/"
+# [v1.10.64 wpnfix2] retail tiks a variant may point at (shipped by the game's own paks, never by the mod)
+RETAIL = {"models/weapons/moschetto.tik"}
+
+
 def _tik_path(rel):
     import os
-    return MOD + rel if os.path.exists(MOD + rel) else FIXES + rel
+    for root in (WPNFIX, MOD, FIXES):
+        if os.path.exists(root + rel):
+            return root + rel
+    return FIXES + rel
 
 UI = MOD + "ui/loadout/"
 
 # per-gun ordered variant lists: (base stem, [(key, LABEL), ...]) -> fids 8, 9, 10...
 MV = [
-    ("thompsonsmg",  [("tommy28", "THOMPSON (M1928) (STATIC)"), ("tommy1928d", "THOMPSON (1928 TOMMY) (DR.DELETO)"),
+    # [v1.10.64 wpnfix2] fid 9, the 1928 Tommy, is RETIRED here: it is the only Thompson variant whose mesh carries the 50-round
+    # DRUM (checked on every variant's skd: the M1928 'tommy28' has a 30-round stick), and the wartime M1/M1A1 could not take a
+    # drum at all - so it moved to the Thompson Drum's ladder below (its fid 8), keeping its challenge wpn_thompson_mv9.
+    ("thompsonsmg",  [("tommy28", "THOMPSON (M1928) (STATIC)"), ("tommy1928d", None, ("25", 8)),
                       ("tommy27a1", "THOMPSON (27A1 COMMANDO) (FLAKRIDER)"), ("m1a1dk", "M1A1 REMODEL (DARKANGEL)"),
                       ("hobbstomworn", "WORN THOMPSON (HOBBS)"), ("guantommy", "THOMPSON (GUANSHIRE)"),
                       ("lv_tttommy", "TEAM TACTICS (LEON)"), ("lv_famastommy", "FAMAS THOMPSON II (LEON)")], "wpn_thompson_e"),
+    # [v1.10.64 wpnfix2] the Thompson Drum (Armory 25) hosts the drum-fed variants. Its kills already count as Thompson kills (wid
+    # "thompson"), so its finishes are the Thompson's finish ladder and its variant gates are the Thompson's challenges: the moved
+    # 1928 Tommy is gated by the SAME challenge it had as the M1's fid 9 (variant_challenges.py MOVED), no new challenge exists.
+    ("thompson50",   [("tommy1928d", "THOMPSON (1928 TOMMY) (DR.DELETO)", "models/weapons/thompsonsmg_tommy1928d.tik")], "wpn_thompson_e"),
+    # [v1.10.64 wpnfix2] ONE Beretta M38A: the stock Breakthrough model with the finishes (it_w_moschetto, Armory 33) is the gun, Soares93's Extra WW2 Weapons model
+    # (moschetto.tik, retail, was Armory 34) is its variant. Gated by the token the old gun 34 was unlocked by (rank 15,
+    # variant_challenges.py TOKEN), so everyone who had 34 keeps that model.
+    ("it_w_moschetto", [("orig", "BERETTA M38A (SOARES93)", "models/weapons/moschetto.tik")], "wpn_moschetto_e"),
     ("mp40",         [("mp40r2", "MP40 (REACTIVATED)"), ("mp18", "MP18 (EAST)"),
                       ("guanmp40", "MP40 (GUANSHIRE)"), ("guanmp40s", "SILVER MP40 (GUANSHIRE)"),
                       ("lv_mp75", "MP 75 AUSF D (LEON)")], "wpn_mp40_e"),
@@ -95,8 +114,26 @@ def rd(p):
     return raw.decode("latin-1"), ("\r\n" if b"\r\n" in raw else "\n")
 
 
+def _put(p, data):
+    """[v1.10.64 wpnfix2] write only when changed, with retries (a Windows indexer / AV lock answers EINVAL for a moment)"""
+    import time
+    try:
+        if io.open(p, "rb").read() == data:
+            return
+    except OSError:
+        pass
+    for _i in range(20):
+        try:
+            with io.open(p, "wb") as f:
+                f.write(data)
+            return
+        except OSError:
+            time.sleep(0.5)
+    raise SystemExit("could not write " + p)
+
+
 def wr(p, s):
-    io.open(p, "wb").write(s.encode("latin-1"))
+    _put(p, s.encode("latin-1"))
 
 
 # --- resolve gives (roster spelling), tile ids, base display names; assert everything ----------
@@ -105,8 +142,16 @@ chal = io.open(MOD + "coop_mod/challenges.scr", encoding="latin-1").read()
 roster = io.open(MOD + "coop_mod/loadoutroster.scr", encoding="latin-1").read()
 rgives = {g.lower(): g for g in re.findall(r'coop_loRosterGive\[\d+\] = "([^"]+)"', roster)}
 
+# [v1.10.64 wpnfix2] hosts whose variant is NOT gated by the host's elite challenge (variant_challenges.py MOVED / TOKEN): the
+# hover names the real gate
+_mvc = io.open(MOD + "coop_mod/mvchal_gen.scr", encoding="latin-1").read()
+_m9 = re.search(r'chal_def "wpn_thompson_mv9" "[^"]*" "[^"]*" "Get (\d+) kills', _mvc)
+assert _m9, "wpn_thompson_mv9 missing from mvchal_gen.scr"
+REQMV = {"models/weapons/thompson50.tik": "UNLOCK: Get %s kills with the Thompson" % _m9.group(1),
+         "models/weapons/it_w_moschetto.tik": "UNLOCK: Reach rank 15"}
 resolved = []   # (give, tile, elite, basename, [(fid, key, label, variantpath), ...])
 SHARE = {}   # give -> the give of the host it shares variant challenges with
+MOVED_TO = []   # [v1.10.64 wpnfix2] (give, retired fid, new roster id, fid there)
 for _ent in MV:
     stem, variants, elite = _ent[:3]
     give = rgives.get("models/weapons/%s.tik" % stem.lower())
@@ -121,10 +166,14 @@ for _ent in MV:
     for i, v in enumerate(variants):
         key, label = v[0], v[1]
         if label is None:
-            continue                       # RETIRED: the fid stays reserved, nothing is emitted for it
+            # RETIRED: the fid stays reserved, nothing is emitted for it - unless it MOVED to another gun's ladder (3rd value =
+            # (roster id, fid) there): then loadoutpick.scr::loadout_finish carries an archived pick of it across
+            if len(v) > 2:
+                MOVED_TO.append((give, 8 + i, v[2][0], v[2][1]))
+            continue
         vpath = v[2] if len(v) > 2 else "models/weapons/%s_%s.tik" % (stem, key)
         import os
-        assert os.path.exists(_tik_path(vpath)), "variant tik missing: " + vpath
+        assert vpath in RETAIL or os.path.exists(_tik_path(vpath)), "variant tik missing: " + vpath
         vlist.append((8 + i, key, label, vpath))
     resolved.append((give, tile, elite, base_name, vlist))
     if len(_ent) > 3:
@@ -153,8 +202,13 @@ for give, tile, elite, base_name, vlist in resolved:
     if give in SHARE:      # the elite id is the HOST's: its announce names stay the host's
         B.append('\tlevel.coop_skinMvShare["%s"] = "%s"' % (give, SHARE[give]))
         continue
+    if give in REQMV:
+        continue           # [v1.10.64 wpnfix2] not gated by this elite (MOVED / TOKEN): its completion must not announce these
     B.append('\tlevel.coop_skinMvByElite["%s"] = "%s MODEL VARIANTS"' % (elite, base_name.upper()))
     B.append('\tlevel.coop_skinMvPseudo["mv_%s"] = "%s MODEL VARIANTS"' % (elite, base_name.upper()))
+for give, fid, rid, nfid in MOVED_TO:
+    B.append('\tlevel.coop_skinMvMovedId["%s"][%d] = "%s"' % (give, fid, rid))
+    B.append('\tlevel.coop_skinMvMovedFid["%s"][%d] = %d' % (give, fid, nfid))
 txt = txt[:m.start()] + nl.join(B) + nl + txt[m.end():]
 wr(p, txt)
 print("loadoutskins.scr: MV v2 block - %d guns, %d variants"
@@ -173,13 +227,15 @@ old = re.search(r"MV_HOSTS = \([^)]*\)", s)
 assert old, "MV_HOSTS"
 tiles = ", ".join('"%s"' % t for _, t, _, _, _ in sorted(resolved, key=lambda r: r[1]))
 s = s[:old.start()] + "MV_HOSTS = (%s)" % tiles + s[old.end():]
-io.open(p, "w", encoding="utf-8", newline="\n").write(s)
+_put(p, s.replace("\r\n", "\n").encode("utf-8"))
 print("gen_loadout.py: MV_HOSTS = 12 hosts")
 
 N = "\r\n"
 for give, tile, elite, base_name, vlist in resolved:
     em = re.search(r'"%s"[^\r\n]*?"([^"]+)"\s+"([^"]+)"\s+"[^"]*"\s+\d+' % elite, chal)
     req = "UNLOCK: %s" % (em.group(2) if em else "this gun's Elite challenge")
+    if give in REQMV:
+        req = REQMV[give]
     labels = " / ".join(l for _, _, l, _ in vlist)
     wr(UI + "reqmv%s.cfg" % tile,
        'set coop_loReq "%s"' % labels[:120] + N + 'set coop_loReq2 "%s"' % req + N)
@@ -213,19 +269,27 @@ for give, tile, elite, base_name, vlist in resolved:
                     + 'seta coop_loFA%d "append name ,f%d%d"' % (sl, sl, fid) + N
                     + 'set coop_loMvPN_s%d "exec ui/loadout/mvp%s_%d_s%d.cfg"' % (sl, tile, nxt, sl) + N)
             wr(UI + "mvp%s_%d_s%d.cfg" % (tile, k, sl), body)
+# [v1.10.64 wpnfix2] a ladder that SHRANK (a retired fid) leaves its old last pages behind: delete every chain page past the end
+import glob as _glob
+for give, tile, elite, base_name, vlist in resolved:
+    for f in _glob.glob(UI + "mvp%s_*_s*.cfg" % tile):
+        mk = re.match(r"mvp%s_(\d+)_s\d\.cfg$" % tile, f.replace("\\", "/").split("/")[-1])
+        if mk and int(mk.group(1)) > len(vlist):
+            _os.remove(f)
 print("per-slot exact-fid chains: %d cfgs" % sum((len(v[4]) + 1) * 4 for v in resolved))
 
 # the table gains give->tile so the server can echo chain positions
 p2 = MOD + "coop_mod/loadoutskins.scr"
 t2, nl2 = rd(p2)
-if "coop_skinMvTile" not in t2:
-    add2 = ""
-    for give, tile, elite, base_name, vlist in resolved:
-        add2 += '	level.coop_skinMvTile["%s"] = "%s"' % (give, tile) + nl2
-    assert t2.rstrip().endswith("}end")
-    t2 = t2.rstrip()[:-4] + add2 + "}end" + nl2
-    wr(p2, t2)
-    print("loadoutskins: MvTile map")
+# [v1.10.64 wpnfix2] rewritten WHOLESALE every run: the old add-once guard meant a host added later never got its tile
+t2 = re.sub(r'(?m)^\tlevel\.coop_skinMvTile\[[^\r\n]*\r?\n', "", t2)
+add2 = ""
+for give, tile, elite, base_name, vlist in resolved:
+    add2 += '	level.coop_skinMvTile["%s"] = "%s"' % (give, tile) + nl2
+assert t2.rstrip().endswith("}end")
+t2 = t2.rstrip()[:-4] + add2 + "}end" + nl2
+wr(p2, t2)
+print("loadoutskins: MvTile map")
 
 # gen_loadout p-pages arm the four per-slot chain starts
 g = io.open("docs/tools/gen_loadout.py", encoding="utf-8").read()

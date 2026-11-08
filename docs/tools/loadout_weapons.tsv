@@ -46,8 +46,7 @@ id	tik	give	xfm	charanim	cls	tab	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	xfm
 30	models/weapons/ppsh43silenced.tik	models/weapons/ppsh43silenced.tik	0 -11.644 1.286 1.602 0 90 180	coop_hold_smg	smg	2	PPS-43 SILENCED	7.62MM / SUPPRESSED AUTO	2	9	9	8	35	35	ppsh43silenced	12	0 -11.644 1.286 1.602 0 90 180
 31	models/weapons/greasegun.tik	models/weapons/greasegun.tik	0 -3.931 6.442 1.181 0 90 180	coop_hold_smg	smg	2	M3 GREASE GUN	.45 ACP / FULL-AUTO	2	7	9	8	30	30	greasegun	12	0 -3.931 6.442 1.181 0 90 180
 32	models/weapons/greasegun_silenced.tik	models/weapons/greasegun_silenced.tik	0 15.509 6.111 1.784 0 270 180	coop_hold_smg	smg	2	M3 GREASE SILENCED	.45 ACP / SUPPRESSED AUTO	2	7	9	8	30	30	greasegun_silenced	12	0 15.509 6.111 1.784 0 270 180
-33	models/weapons/it_w_moschetto.tik	models/weapons/it_w_moschetto.tik	0 2.616 0.942 0.885 0 270 180	coop_hold_smg	smg	2	MOSCHETTO M38	9MM / FULL-AUTO	2	10	8	8	40	40	it_w_moschetto	12	0 2.616 0.942 0.885 0 270 180
-34	models/weapons/moschetto.tik	models/weapons/moschetto.tik	0 8.063 -1.27 1.699 0 270 180	coop_hold_smg	smg	2	BERETTA M38A	9MM / FULL-AUTO	2	9	9	8	40	40	moschetto	12	0 8.063 -1.27 1.699 0 270 180
+33	models/weapons/it_w_moschetto.tik	models/weapons/it_w_moschetto.tik	0 2.616 0.942 0.885 0 270 180	coop_hold_smg	smg	2	BERETTA M38A	9MM / FULL-AUTO	2	10	8	8	40	40	it_w_moschetto	12	0 2.616 0.942 0.885 0 270 180
 35	models/weapons/type100smg.tik	models/weapons/type100smg.tik	0 9.284 -7.585 1.038 0 270 180	coop_hold_smg	smg	2	TYPE 100 SMG	8MM / FULL-AUTO	2	8	9	9	30	30	type100smg	12	0 9.284 -7.585 1.038 0 270 180
 36	models/weapons/bar.tik	models/weapons/bar.tik	0 14.363 1.253 1.109 0 270 180	coop_hold_rifle	heavy	3	BAR M1918	.30-06 / AUTOMATIC RIFLE	3	7	8	6	20	20	bar	12	0 14.363 1.253 1.109 0 270 180
 37	models/weapons/mp44.tik	models/weapons/mp44.tik	0 7.339 3.172 1.116 0 270 180	coop_hold_rifle	heavy	3	STG 44	7.92MM KURZ / ASSAULT R..	3	7	8	6	30	30	mp44	12	0 7.339 3.172 1.116 0 270 180

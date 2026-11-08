@@ -13,8 +13,9 @@ Keys are lowercased because the consumer's input has been through makeWeaponStri
 import re, io, os, sys
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
-SRC  = os.path.join(ROOT, "hzm-mohaa-coop-mod", "coop_mod", "loadoutskins.scr")
-OUT  = os.path.join(ROOT, "hzm-mohaa-coop-mod", "coop_mod", "loadoutskins_base.scr")
+_MOD = os.environ.get("HZM_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod")     # [v1.10.64] HZM_MOD: a worktree
+SRC  = os.path.join(_MOD, "coop_mod", "loadoutskins.scr")
+OUT  = os.path.join(_MOD, "coop_mod", "loadoutskins_base.scr")
 
 src = io.open(SRC, encoding="latin-1").read()
 pairs = []

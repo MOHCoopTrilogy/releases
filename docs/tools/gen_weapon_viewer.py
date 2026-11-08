@@ -45,6 +45,7 @@ import armory_unlocks as au  # noqa: E402
 WHD = os.path.join(ROOT, "docs", "proposals", "weapon_hd_2026-10-05", "tools")
 M3D = os.path.join(ROOT, "docs", "proposals", "kickoff_2026-10-18", "menus3d")
 FIXES = os.path.join(ROOT, "docs", "tools", "assets", "fixes")
+WPNFIX = os.path.join(ROOT, "docs", "tools", "assets", "wpnfix")     # [v1.10.64 wpnfix2] new tiks ride the wpnfix pak
 HIST = os.path.join(HERE, "weapon_history.tsv")
 CRLF = "\r\n"
 
@@ -146,6 +147,7 @@ CHAL = {r[0]: r for r in SR_ROWS}
 for m in CHAL_RX.finditer(fin_src):
     CHAL[m.group(1)] = m.groups()
 MVCHAL = {(b.lower(), int(f)): c for b, f, c in re.findall(r'coop_skinMvChal\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', mv_src)}
+MVTOK = {(b.lower(), int(f)): t.lower() for b, f, t in re.findall(r'coop_skinMvTok\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', mv_src)}
 MVELITE = {b.lower(): c for b, c in re.findall(r'coop_skinMvElite\["([^"]+)"\]\s*=\s*"([^"]+)"', skins)}
 FINCID = {(w, int(f)): c for w, f, c in re.findall(r'coop_finCid\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', fin_src)}
 xp = scr("coop_mod/xp.scr")
@@ -346,6 +348,13 @@ def unlock(e):
                     ("text", "Progress: Armory finish chips, in a game."))
         return (["The old account-wide %s reward is retired, players who earned it keep it on mastered guns." % FINNAME[fid].lower()],
                 ("text", "Not obtainable for new players."))
+    tok = MVTOK.get((give, fid))
+    if tok:
+        # [v1.10.64 wpnfix2] a TOKEN-gated variant (coop_skinMvTok): open with that token, no mastery rule
+        if tok in RANK:
+            r = RANK[tok]
+            return ["Reach rank %d, %s." % (r, clean(RANKNAME.get(r, "")))], ("text", "Progress: your rank, in the Service Record.")
+        return ["Not currently obtainable."], ("text", "")
     cid = MVCHAL.get((give, fid)) or MVELITE.get(give)
     lines, sidx = [], None
     if cid and cid in CHAL:
@@ -767,7 +776,7 @@ print("weapon viewer: %d guns, %d entries (%d finishes, %d model variants); rack
     len(stale), "written" if cmd == "build" else "stale"))
 for c in clipped:
     print("  clipped:", c)
-missing = [e for e in entries if not (os.path.exists(os.path.join(MOD, e["tik"])) or os.path.exists(os.path.join(FIXES, e["tik"]))
+missing = [e for e in entries if not (os.path.exists(os.path.join(MOD, e["tik"])) or os.path.exists(os.path.join(FIXES, e["tik"])) or os.path.exists(os.path.join(WPNFIX, e["tik"]))
                                        or vfs().winner(e["tik"]))]
 for e in missing:
     print("  MISSING MODEL: %03d %s %s" % (e["n"], e["g"]["name"], e["tik"]))

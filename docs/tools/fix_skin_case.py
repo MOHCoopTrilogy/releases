@@ -20,7 +20,8 @@ import os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "docs", "tools", "weapon_hd"))
 import jobs, vfs
-FILES = [os.path.join(ROOT, "hzm-mohaa-coop-mod", "scripts", f) for f in ("coop_skins.shader", "coop_clip_skins.shader")]
+FILES = [os.path.join(os.environ.get("HZM_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod"), "scripts", f)   # [v1.10.64] HZM_MOD
+         for f in ("coop_skins.shader", "coop_clip_skins.shader")]
 
 
 def canonical():

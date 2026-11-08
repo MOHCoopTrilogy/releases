@@ -43,6 +43,31 @@
     "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
     "base_md5": "d1947806f35f4ce0fb135fce7f8cd2cc"
   },
+  "models/weapons/thompson50_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/thompson50_blued.tik": {
+    "new": true
+  },
+  "models/weapons/thompson50_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/thompson50_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/thompson50_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/thompson50_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/thompson50_gold.tik": {
+    "new": true
+  },
+  "models/weapons/thompsonsmg_tommy1928d.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "b4ea99ff8f90ede624ed4ac99f801785"
+  },
   "models/weapons/tt33silenced_bloody.tik": {
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
     "base_md5": "19b8b9c6d455d5bb592b4a6534a66342"
@@ -329,6 +354,30 @@
     "base": "mod tree",
     "base_md5": "8de4541d2fa57abb5e450645ab117ae9",
     "by": "gen_east_lift.py"
+  },
+  "textures/coop_skins/thompson50/clip50_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/thompson50/clip50_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/thompson50/clip50_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/thompson50/clip50_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/thompson50/s93_thompson_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/thompson50/s93_thompson_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/thompson50/s93_thompson_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/thompson50/s93_thompson_camo_woodland.jpg": {
+    "new": true
   },
   "textures/coop_smlescope/body.jpg": {
     "base": "mod tree",

@@ -31,7 +31,16 @@ OUT    = os.path.join(_MOD, "coop_mod", "mvchal_gen.scr")
 # place, with the same id, target and reward: it is the unlock of the weapon the variant became (the BAR's fid 9, the Lewis
 # gun, is Armory gun 81 now - same tik, so the challenge's reward token unlocks it), and removing a row would renumber every
 # later Service Record index and every later rung of the gun's curve.
-RETIRED = {("models/weapons/bar.tik", 9): ("models/weapons/bar_bar1918.tik", "LEWIS GUN (EAST)")}
+RETIRED = {("models/weapons/bar.tik", 9): ("models/weapons/bar_bar1918.tik", "LEWIS GUN (EAST)"),
+           # [v1.10.64 wpnfix2] the 1928 Tommy (the only drum-fed Thompson variant) moved to the Thompson Drum's ladder
+           ("models/weapons/thompsonsmg.tik", 9): ("models/weapons/thompsonsmg_tommy1928d.tik", "THOMPSON (1928 TOMMY) (DR.DELETO)")}
+# [v1.10.64 wpnfix2] a retired variant that lives on as ANOTHER gun's variant: that (gun, fid) is gated by the SAME challenge,
+# so whoever had it keeps it, and no new challenge is made for it (a new chal_def would renumber every later SR index)
+MOVED = {("models/weapons/thompsonsmg.tik", 9): ("models/weapons/thompson50.tik", 8)}
+# [v1.10.64 wpnfix2] a variant gated by an UNLOCK TOKEN instead of a challenge: the Extra WW2 Weapons Beretta M38A (moschetto.tik, Soares93)
+# was Armory gun 34, unlocked at rank 15 by that token (xp.scr). As the merged M38A's variant it keeps exactly that gate, and
+# skips the mastery rule (the old gun never needed it). loadoutpick.scr::loadout_mvUnlocked reads coop_skinMvTok.
+TOKEN = {("models/weapons/it_w_moschetto.tik", 8): "models/weapons/moschetto.tik"}
 
 
 def read(p):
@@ -57,6 +66,8 @@ def collect():
         fid = int(fid)
         if fid < 8:
             continue                      # 1-7 are FINISHES, gated separately and already per-gun
+        if (gun, fid) in TOKEN or (gun, fid) in MOVED.values():
+            continue                      # gated by a token / by the challenge of the variant it was (emit() writes the gate)
         ecid = elite.get(gun)
         if not ecid:
             continue
@@ -138,7 +149,13 @@ def emit(rows):
             L.append('\twaitthread coop_mod/challenges.scr::chal_def "%s" "%s" "%s" "%s" "%s" %d "%s"'
                      % (cid, r["cat"], title, desc, r["stat"], tgt, r["path"]))
             if r.get("retired"):
-                L.append('\t//retired from the cycle (wire_mv2.py): this challenge unlocks the gun the variant became')
+                dest = MOVED.get((gun, r["fid"]))
+                if dest:
+                    L.append('\t//moved to %s variant %d (wire_mv2.py): the same challenge gates it there'
+                             % (dest[0].replace("models/weapons/", ""), dest[1]))
+                    L.append('\tlevel.coop_skinMvChal["%s"][%d] = "%s"' % (dest[0], dest[1], cid))
+                else:
+                    L.append('\t//retired from the cycle (wire_mv2.py): this challenge unlocks the gun the variant became')
                 continue
             L.append('\tlevel.coop_skinMvChal["%s"][%d] = "%s"' % (gun, r["fid"], cid))
         L.append("")
@@ -151,6 +168,11 @@ def emit(rows):
             assert skey(r) in host, "no host variant for %s" % r["path"]
             h = host[skey(r)]
             L.append('\tlevel.coop_skinMvChal["%s"][%d] = "%s_mv%d"' % (gun, r["fid"], h["bcid"], h["fid"]))
+        L.append("")
+    for (gun, fid), tok in sorted(TOKEN.items()):
+        L.append("\t//---- %s variant %d : gated by the unlock token %s (no challenge, no mastery rule) ----"
+                 % (gun.replace("models/weapons/", ""), fid, tok.replace("models/weapons/", "")))
+        L.append('\tlevel.coop_skinMvTok["%s"][%d] = "%s"' % (gun, fid, tok))
         L.append("")
     L.append("}end")
     L.append("")

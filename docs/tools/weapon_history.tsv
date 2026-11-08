@@ -35,7 +35,7 @@
 30	Alexei Sudayev's PPS-43 was the simplest submachine gun of the war, made of stamped steel with a folding stock, and was first built in besieged Leningrad. About two million were made. It had no standard suppressor, and this suppressed version is the game's own.
 31	The M3 Grease Gun, adopted in December 1942, was the US answer to the Sten: a stamped steel .45 ACP gun designed by George Hyde and Frederick Sampson of General Motors to replace the costly Thompson. Its name came from its shape, a mechanic's grease gun.
 32	The OSS received a small number of M3s with an integral suppressor developed by Bell Laboratories late in the war, so a quiet Grease Gun did exist, if only for special operations.
-33	The Moschetto Automatico Beretta 1938, designed by Tullio Marengoni, was a well-made 9 mm submachine gun with two triggers: the front one fires single shots, the rear one full auto. German troops used it too, and it was one of the best submachine guns of the war.
+33	The Moschetto Automatico Beretta 1938A, designed by Tullio Marengoni, was a well-made 9 mm submachine gun with two triggers: the front one fires single shots, the rear one full auto. The first production guns had a perforated barrel jacket and a compensator, which the wartime 38/42 dropped to speed production. German troops used it too, and it was one of the best submachine guns of the war.
 34	The MAB 38A was the first production Moschetto Automatico Beretta, with a perforated barrel jacket and a compensator. The wartime 38/42 dropped the jacket to speed production. Both fire 9 mm with front and rear triggers for single shots and full auto.
 35	The Type 100 was the only Japanese submachine gun made in any number, adopted in 1940 for the 8 mm Nambu pistol round. Fewer than 30,000 were built, including a folding version for paratroopers.
 36	John Browning's Browning Automatic Rifle reached France in 1918. The M1918A2 of 1938 was the BAR of the Second World War, with a bipod and two automatic rates of fire. It fires .30-06 from a 20-round magazine and was the base of fire of the US rifle squad.
@@ -93,6 +93,7 @@ mv:thompsonsmg_tommy1928d	An M1928 Thompson with the 50-round drum: the gangster
 mv:thompsonsmg_tommy27a1	The Model 1927A1 is Auto-Ordnance's post-war semi-automatic Thompson for the civilian market. The Commando version has a horizontal foregrip and a 30-round box.
 mv:thompsonsmg_m1a1dk	The M1A1 Thompson, adopted in October 1942, simplified the M1 further with a firing pin machined into the bolt. It was the Thompson most GIs carried from 1943.
 mv:thompsonsmg_lv_famastommy	A fantasy remodel: there was no FAMAS Thompson. The FAMAS is a French rifle of the 1970s.
+mv:moschetto	The MAB 38A as Soares93 modelled it for the Extra WW2 Weapons pack, with the perforated barrel jacket and compensator of the first production guns.
 mv:mp40_mp18	The Bergmann MP 18, designed by Hugo Schmeisser, was the first submachine gun used in large numbers in combat, issued to German assault troops in 1918. It fed 9 mm from a 32-round snail drum.
 mv:mp40_lv_mp75	MP 75 Ausf D is not a real wartime designation. This is a fantasy remodel of the MP40.
 mv:bar_pabar	The BAR as it appears in Medal of Honor: Pacific Assault, ported to this game.
