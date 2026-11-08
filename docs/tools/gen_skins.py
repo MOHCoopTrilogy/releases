@@ -202,6 +202,34 @@ def main():
     shared = shared_shader_names(weapons)
     taken = used_ranks()
 
+    def plan(text):
+        """{shader: texture} this gun reskins, and the texture order that numbers its finish shaders (_0, _1 ...)"""
+        surfs = re.findall(r"(?mi)^\s*surface\s+(\S+)\s+shader\s+(\S+)", text)
+        tex_of = {}
+        for _sn, sh in surfs:
+            if sh.lower() in shared:
+                continue
+            tex = texture_exists(pak_files, shaders.get(sh.lower(), sh))
+            if tex:
+                tex_of[sh] = tex
+        if not tex_of:
+            for _sn, sh in surfs:
+                tex = texture_exists(pak_files, shaders.get(sh.lower(), sh))
+                if tex:
+                    tex_of[sh] = tex
+        return tex_of, sorted(set(tex_of.values()))
+
+    # [bug-10532] a SILENCED twin (tt33silenced -> tt33) carries the base gun's body. Its body surfaces use the base's
+    # stock shaders, which the shared-shader rule above counts as "shared parts" and leaves stock - so the twin's finish
+    # reskinned only the suppressor and the pistol stayed plain. A twin's surface whose stock shader the BASE reskins now
+    # takes the base's finish shader for that texture (same texture, same skd surface names: no new shader, no new bake).
+    stems = {os.path.splitext(os.path.basename(p))[0].lower(): tx for p, tx, _n in weapons}
+    plans = {s: plan(tx) for s, tx in stems.items()}
+
+    def twin_base(stem):
+        b = re.sub(r"_?silenced$", "", stem)      # silenced twins only: a _lite twin already reskins its own (unshared) copy
+        return b if b != stem and b in plans and plans[b][0] else None
+
     if only:
         weapons = [w for w in weapons if only.lower() in os.path.basename(w[0]).lower()]
         if not weapons:
@@ -212,6 +240,8 @@ def main():
     for gi, (path, text, wname) in enumerate(sorted(weapons)):
         stem = os.path.splitext(os.path.basename(path))[0].lower()
         surfs = re.findall(r"(?mi)^\s*surface\s+(\S+)\s+shader\s+(\S+)", text)
+        base = twin_base(stem)
+        base_tex, base_order = plans[base] if base else ({}, [])
 
         # group the gun's own surfaces by the texture behind them - surfaces that share a texture
         # share a variant shader, which is what the hand-made thompson_gold does
@@ -243,7 +273,15 @@ def main():
             taken.add(rank)
 
             surf_map, my_blocks = {}, []
+            for _sn, sh in surfs:
+                if sh in base_tex:
+                    bname = "coop_skin_%s_%s" % (base, key)
+                    if len(base_order) > 1:
+                        bname += "_%d" % base_order.index(base_tex[sh])
+                    surf_map[sh] = bname
             for sh, tex in tex_of.items():
+                if sh in surf_map:
+                    continue
                 idx = order.index(tex)
                 sname = "coop_skin_%s_%s" % (stem, key)
                 if len(order) > 1:
@@ -262,6 +300,8 @@ def main():
                     variant_tik(text, wname, display, rank, surf_map))
             blocks += [b[1] for b in my_blocks]
             made.append((os.path.basename(out_tik), wname, display, rank, kind, len(my_blocks)))
+            if mode == "show":
+                print("  %-34s %s" % (os.path.basename(out_tik), " ".join("%s=%s" % kv for kv in sorted(surf_map.items()))))
             rank += 1
 
     if mode == "build":

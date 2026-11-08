@@ -5,9 +5,10 @@ setup
 						// is in 16 units per foot and model is in cm's
 	path models/weapons/tt33
 	skelmodel tt33silenced.skd
-	surface Cylinder shader tt33
-	surface Cylinder1 shader tt33
-	surface clip shader P38
+	surface Cylinder shader coop_skin_tt33_gold_1
+	surface Cylinder1 shader coop_skin_tt33_gold_1
+	surface clip shader coop_skin_tt33_gold_0
+	// [bug-10532] the pistol body / clip take the TT-33 finish shaders (gen_skins.py silenced-twin rule)
 	surface Cylinder2 shader coop_skin_tt33silenced_gold
 }
 
