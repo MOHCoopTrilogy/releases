@@ -159,7 +159,7 @@ foreach ($wpnPakName in @('zzzzzzzzzz_coop_hd_wpn_1low.pk3', 'zzzzzzzzzz_coop_hd
 $stage["home/maintt/zzzzzzzzzz_coop_scopes.pk3"]  = "$mod\zzzzzzzzzz_coop_scopes.pk3"
 # [v1.10.37] out-of-band paks from the test copies - copied by build.ps1 the same way, added HERE in the same change.
 foreach ($xp in @('zzzzzz_co-op_hzm_mod_assets_tey.pk3', 'zzzzzzzzzz_coop_maps.pk3', 'zzzzzzzzzzzzz_coop_snd.pk3', 'zzzzzzzzzzzzzzz_coop_scopeglass.pk3', 'zzzzzzzzzzzz_coop_fixes2.pk3', 'zzzzzzzzzzzzz_coop_fx.pk3', 'zzzzzzzzzzzzz_coop_music.pk3',
-                  'zzzzzzzzzzzzz_coop_stress.pk3', 'zzzzzzzzzzzzzz_coop_late.pk3', 'zzzzzzzzzzzzzz_hzm_menus3d.pk3')) {
+                  'zzzzzzzzzzzzz_coop_stress.pk3', 'zzzzzzzzzzzzzz_coop_late.pk3', 'zzzzzzzzzzzzzz_hzm_menus3d.pk3', 'zzzzzzzzzzzzzzzz_coop_wpnfix.pk3')) {
     if (Test-Path "$mod\$xp") { $stage["home/maintt/$xp"] = "$mod\$xp" }
 }
 $stage["home/maintt/autoexec.cfg"] = "$mod\autoexec.cfg"
