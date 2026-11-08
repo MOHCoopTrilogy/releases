@@ -92,7 +92,7 @@ def launch(tag, res, script, lines=(), budget=600):
     shutil.rmtree(SHOTS, ignore_errors=True)
     os.makedirs(SHOTS, exist_ok=True)
     args = [os.path.join(CLIENT, "openmohaa.exe"), "+set", "com_target_game", "2", "+set", "fs_basepath", E.GOG, "+set", "fs_homepath", HOME,
-            "+set", "cl_renderer", "opengl2", "+set", "r_mode", "-1", "+set", "r_customwidth", str(w), "+set", "r_customheight", str(h),
+            "+set", "cl_renderer", os.environ.get("WV_RENDERER", "opengl2"), "+set", "r_mode", "-1", "+set", "r_customwidth", str(w), "+set", "r_customheight", str(h),
             "+set", "r_fullscreen", "0", "+set", "cl_memorial", "0", "+set", "logfile", "2", "+set", "r_picmip", "0", "+set", "com_maxfps", "60",
             "+set", "ui_menuCenter", str(center), "+set", "ui_menuRoom", "1", "+set", "ui_atticMain", "1",
             "+set", "in_padTestScript", sp.replace("\\", "/"), "+exec", "wv_run.cfg"]
@@ -217,16 +217,72 @@ def ingame(res="720"):
     s.cmd("screenshotJPEG g_01_mainmenu", 400)
     s.cmd("exec ui/hzm_attic_go_rack.cfg", 2300)
     s.cmd("screenshotJPEG g_02_viewer", 400)
-    s.cmd("exec ui/wpnview/e237.cfg", 600)
-    s.cmd("set ui_wvSpin 40;set ui_wvTilt 20", 600)
-    s.cmd("screenshotJPEG g_03_stg", 400)
+    for n in os.environ.get("WV_INGAME", "237").split(","):
+        s.cmd("exec ui/wpnview/e%03d.cfg" % int(n), 700)
+        s.cmd("screenshotJPEG g_03_e%03d" % int(n), 400)
     s.pad(1 << 1, 0, 0, 120)
     s.pad(0, 0, 0, 1800)
     s.cmd("screenshotJPEG g_04_back", 400)
     s.cmd("quit", 0)
-    return launch("ingame_%s" % res, res, s, lines=["set g_gametype 2", "set sv_maxclients 4", "map dm/mohdm1"], budget=150)
+    return launch("ingame_%s" % res, res, s, lines=["set g_gametype 2", "set sv_maxclients 4", "map dm/mohdm1"], budget=170)
+
+
+def setup_fix(base=r"b4f53a1f", eng=r"H:\hzm_work\wpnfix-eng\.cmake", with_fix="1"):
+    """v1.10.64 wpnfix client: overlay = every mod file the wpnfix branch changed since the v1.10.63 tip, plus the wpnfix pak and
+    the wpnfix game / cgame / exe. with_fix 0 = the shipped state (no overlay, no wpnfix pak, the attic's v1.10.63 dlls) for befores."""
+    import subprocess
+    names = subprocess.run(["git", "-C", MOD, "diff", "--name-only", base, "HEAD"], capture_output=True, text=True).stdout.split()
+    ov = os.path.join(MAINTT, OVERLAY)
+    wp = os.path.join(MAINTT, "zzzzzzzzzzzzzzzz_coop_wpnfix.pk3")
+    for f in (ov, wp, os.path.join(MAINTT, "zzzzzzzzzzzzzzzzzzz_wpnfix_tex.pk3")):
+        if os.path.exists(f):
+            os.remove(f)
+    if with_fix == "1":
+        with zipfile.ZipFile(ov, "w", zipfile.ZIP_DEFLATED) as z:
+            wpn = set(zipfile.ZipFile(os.path.join(MOD, "zzzzzzzzzzzzzzzz_coop_wpnfix.pk3")).namelist())
+            for n in names:
+                if n in wpn:
+                    continue          # the wpnfix pak carries it (the test overlay sorts after it and would shadow the fix)
+                if os.path.exists(os.path.join(MOD, n)):
+                    z.write(os.path.join(MOD, n), n)
+        shutil.copyfile(os.path.join(MOD, "zzzzzzzzzzzzzzzz_coop_wpnfix.pk3"), wp)
+        shutil.copyfile(os.path.join(eng, "code", "server", "fgame", "Release", "game.dll"), os.path.join(CLIENT, "game.dll"))
+        shutil.copyfile(os.path.join(eng, "code", "client", "cgame", "Release", "cgame.dll"), os.path.join(CLIENT, "cgame.dll"))
+        shutil.copyfile(os.path.join(eng, "Release", "openmohaa.exe"), os.path.join(CLIENT, "openmohaa.exe"))
+    else:
+        for d in ("game.dll", "cgame.dll"):
+            shutil.copyfile(os.path.join(r"G:\mohaa-attic", d), os.path.join(CLIENT, d))
+    shutil.copyfile(MENUS3D, os.path.join(MAINTT, "zzzzzzzzzzzzzz_hzm_menus3d.pk3"))
+    log("setup_fix", with_fix, len(names), "files")
+
+
+def mg(res="720", gid="81", tag="mg", mapname="m2l1"):
+    """coop mission: pick Armory gun <gid>, fire it until it cooks, reload, drop; HANDHEAT / FIREDBG lines in the log"""
+    s = Script()
+    s.cmd("echo ^~^~^ WV mg boot", 40000)
+    s.cmd("screenshotJPEG m_00_ingame", 500)
+    s.cmd("+attack", 300)                       # "press fire to join the battle"
+    s.cmd("-attack", 7000)
+    s.cmd("exec ui/loadout/w%s_s1.cfg" % gid, 6000)  # the Armory slot-1 commit (lp_w userinfo) -> loadout_set -> regive
+    s.cmd("screenshotJPEG m_01_spawned", 400)
+    s.cmd('use "%s"' % os.environ.get("WV_GUNNAME", "Lewis Gun"), 1500)
+    s.cmd("screenshotJPEG m_02_weapon", 400)
+    burst = int(os.environ.get("WV_BURST_MS", "9000"))      # one magazine: clip x firedelay
+    for m in range(int(os.environ.get("WV_MAGS", "2"))):
+        s.cmd("echo ^~^~^ WV mag %d start" % (m + 1), 50)
+        s.cmd("+attack", burst)
+        s.cmd("screenshotJPEG m_03_mag%d" % (m + 1), 100)
+        s.cmd("-attack", 100)
+        s.cmd("echo ^~^~^ WV mag %d end" % (m + 1), 50)
+        s.cmd("reload", 3300)
+    s.cmd("screenshotJPEG m_05_after", 400)
+    s.cmd("weapdrop", 1500)
+    s.cmd("screenshotJPEG m_06_dropped", 400)
+    s.cmd("quit", 0)
+    return launch("%s_%s_%s" % (tag, res, gid), res, s, lines=["set g_gametype 2", "set coop_fireDebug 1", "set coop_lockLoadout 0",
+                                                               "set ui_dmmap %s" % mapname, "ui_startdmmap 2"], budget=150)
 
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    {"setup": setup, "sheet": sheet, "views": views, "shots": shots, "ingame": ingame}[a[0]](*a[1:])
+    {"setup": setup, "sheet": sheet, "views": views, "shots": shots, "ingame": ingame, "setup_fix": setup_fix, "mg": mg}[a[0]](*a[1:])
