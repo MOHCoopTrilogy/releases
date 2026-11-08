@@ -44,6 +44,11 @@ for ln in io.open(os.path.join(ROOT, "docs", "tools", "loadout_weapons.tsv"), en
 
 # ---- 2. challenge rewards
 chal = io.open(os.path.join(MOD, "coop_mod", "challenges.scr"), encoding="latin-1").read()
+# [v1.10.64] the variant-mastery challenges (wire_mv2.py -> mvchal_gen.scr) are chal_defs too: a roster gun that IS a former
+# variant (the Lewis gun, 81) is enforced by its wpn_*_mv challenge there, not in challenges.scr
+_mv = os.path.join(MOD, "coop_mod", "mvchal_gen.scr")
+if os.path.exists(_mv):
+    chal += io.open(_mv, encoding="latin-1").read()
 chal_unlocks = {}
 for m in re.finditer(r'chal_def\s+"([^"]+)"\s+"[^"]+"\s+"([^"]+)"\s+"[^"]*"\s+"[^"]+"\s+\S+\s+"([^"]*)"', chal):
     cid, title, reward = m.groups()

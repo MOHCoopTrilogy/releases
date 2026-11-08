@@ -50,6 +50,17 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.64 - Chronological Campaign, heavy machine guns and title cards
+
+- **Chronological Campaign** - a new button under Begin Full Campaign plays Allied Assault, Spearhead and Breakthrough in the order the events happened, from Operation Torch to Berlin, with Continue or Start Over when you come back
+- **Title cards** - join with nobody alive to watch and you get a black screen with the level's title, your rank and name, your unit, the place and the date and time, typed in one line at a time; you follow a teammate once one is alive
+- **Heavy machine guns** - the Lewis Gun is its own heavy weapon, and the Lewis, DP-28, Breda and Vickers-Berthier heat up and cook off like the MG42 (the BAR doesn't). The Thompson Drum gets its own variants and finishes, and the two M38s are one Beretta M38A
+- **Cover** - proper throws from cover (round the corner, overhand, over the top) that land at your aim marker, an over-the-shoulder view so you can see where you aim mid-wall, and low arcs for short throws
+- **Smarter Germans** - a squadmate behind or beside a German no longer blocks his shot, on every map
+- **Fixes** - your player name saves between restarts, Bastogne's mortars spread across the squad, spawn protection lasts its full 8 seconds, script errors fixed on three levels, the scoped M1903 and G98 are visible again, and grenades on snow throw white powder
+
+<p align="center"><img src="docs/screenshots/v11064-title-card.jpg" width="49%" alt="The join title card on Bastogne"> <img src="docs/screenshots/v11064-lewis-gun.jpg" width="49%" alt="The Armory heavy tab with the Lewis Gun"></p>
+
 ### v1.10.63 - Daily Orders, the weapon rack and a fully 3D attic
 
 - **Daily Orders** - five new orders every day, the same for everyone, built around what makes this mod different: revives, the ammo crate, officers, objectives, fighting while downed, cover, braced MGs and kicked grenades. Real XP toward your rank (400 / 750 / 1,250, +1,500 for clearing the day), a progress panel in every lobby, an ORDERS OF THE DAY page in the Service Record, and a pop-up when you finish one. Coop and multiplayer
