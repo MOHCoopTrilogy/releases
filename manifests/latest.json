@@ -1,7 +1,7 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.64",
-    "created":  "2026-11-08T21:04:51Z",
+    "version":  "1.10.65",
+    "created":  "2026-11-08T22:19:16Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
@@ -95,9 +95,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  30834568,
-                      "sha256":  "f37ec12c733e775f908371b85b8ebb260f83d1fe0f237a40a56319cd4d0e552a",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.64/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  30988509,
+                      "sha256":  "e2d8e9c1ff0bc98f4fb5e20eea82e82fb5cfdd0fc7a41bdf0c96eee9b9353113",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.65/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzz_coop_terrain.pk3",
@@ -186,8 +186,8 @@
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_assets_tey.pk3",
                       "size":  134365058,
-                      "sha256":  "514a1367907bf5022b9c4cfd9aa6a322ebae2b565b2a464ae75df32b8e49003f",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.64/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+                      "sha256":  "e20af7c6c463893b29ff584df59a3e7760e966f0e93ed69f40c0cdb62afd1bdc",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.65/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzz_coop_maps.pk3",
@@ -245,9 +245,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzzzzzzzz_coop_wpnfix.pk3",
-                      "size":  13272082,
-                      "sha256":  "a7d468cdeb187387625baf5084ae21909f425fa87e3b6a541dabad69a9b72742",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.64/zzzzzzzzzzzzzzzz_coop_wpnfix.pk3"
+                      "size":  42605084,
+                      "sha256":  "fff13dd58a6e072e30ee48b0160e275b2c5a80cd7e58f24c38268495a802d643",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.65/zzzzzzzzzzzzzzzz_coop_wpnfix.pk3"
                   },
                   {
                       "path":  "home/maintt/autoexec.cfg",
