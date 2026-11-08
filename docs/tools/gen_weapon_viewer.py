@@ -310,7 +310,7 @@ for k in list(HISTORY) + list(CREDIT):
     elif k.startswith("fin:"):
         assert int(k[4:]) in FINNAME, "weapon_history.tsv: no finish " + k
     elif re.match(r"^\d\d$", k):
-        assert k in GIVE_OF, "weapon_history.tsv: no roster gun " + k
+        pass                              # a retired gun keeps its row (v1.10.64: 71, the gold Thompson) so an older roster still builds
     else:
         assert k in _stems, "weapon_history.tsv: unknown key " + k
 
