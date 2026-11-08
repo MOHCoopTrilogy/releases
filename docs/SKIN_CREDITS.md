@@ -75,8 +75,7 @@ Resolved by archived-page + local-readme evidence (full report: _research/skins_
 - **DP-28** - Lt. Pato (Patricio Mardones) - readme grants reuse WITH CREDIT (the only explicit
   yes in the pile). **Johnson M1941 / Mauser C96 / S&W M10** - East (no-alteration readmes;
   displayed credit honors the spirit; modifications technically need his OK).
-- **FG42** - EA's own unused vanilla stub, revived in-house (no external credit). DarkAngel's
-  2005 animated FG42 add-on exists if we ever want real anims - credit him then.
+- **FG42** (scoped and irons) - **DaRKaNGeL**: the re-rigged FG42 model and its animations come from his 2005 animated FG42 add-on (moh-db.com/mods/17867), on EA's original FG42 mesh; the irons variant adds our own sights. (Corrected 2026-11-08: this line wrongly said in-house; a retroactive permission request to him is pending.)
 - **Kar98 rifle-grenade (Gewehrgranate)** - stock EA SH/BT asset.
 - Still pending author: tommy28 (M1928), MP40 Reactivated, M1911 Covert, 1911 Classic (drbond
   key suggests "Dr. Bond"?), Authentic-wood Winchester.
