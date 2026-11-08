@@ -50,6 +50,13 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.65 - A finish for every gun
+
+- **189 new weapon finishes** - the 27 guns that had none (the M1 Carbine, the scoped and silenced rifles and snipers, the silenced SMGs, the M1919, MG42 and Lewis, and the pistols) now get gold, chrome, blued, bloody, woodland, winter and desert, unlocked by kills with that gun like the rest. Kills you already have count
+- **Fixed:** kills with the M1 Carbine, the Lewis Gun, the silenced Colt and the BAR M1918 variants now count toward their challenges
+
+<p align="center"><img src="docs/screenshots/v11065-finishes.jpg" width="80%" alt="New finishes on the MG42, the Lewis and the pistols"></p>
+
 ### v1.10.64 - Chronological Campaign, heavy machine guns and title cards
 
 - **Chronological Campaign** - a new button under Begin Full Campaign plays Allied Assault, Spearhead and Breakthrough in the order the events happened, from Operation Torch to Berlin, with Continue or Start Over when you come back
