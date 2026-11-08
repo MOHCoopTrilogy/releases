@@ -1,0 +1,345 @@
+{
+  "models/weapons/KAR98sniper_g98scope.tik": {
+    "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
+    "base_md5": "6ea7c67d9cd1cd993e105f0c898d99bc"
+  },
+  "models/weapons/bar_bar1918.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "189c94623ed1214f4fe311336e776cda"
+  },
+  "models/weapons/springfield_m1903.tik": {
+    "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
+    "base_md5": "d1947806f35f4ce0fb135fce7f8cd2cc"
+  },
+  "models/weapons/tt33silenced_bloody.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "19b8b9c6d455d5bb592b4a6534a66342"
+  },
+  "models/weapons/tt33silenced_blued.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "41ea8cc8c8bacd9c9829294280043fe6"
+  },
+  "models/weapons/tt33silenced_camo_desert.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "0bc0cf41557452635f052d791da90a96"
+  },
+  "models/weapons/tt33silenced_camo_winter.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "14fa32b92d24af535721e8bde9135180"
+  },
+  "models/weapons/tt33silenced_camo_woodland.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "a602f6c31560625c1f5288eb8705f8c1"
+  },
+  "models/weapons/tt33silenced_chrome.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "29b23d72d82367870510986f0ca66c7a"
+  },
+  "models/weapons/tt33silenced_gold.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "7c9052aa7c82c128ad70b5d2efec8167"
+  },
+  "scripts/coop_wpnfix.shader": {
+    "by": "wpnfix",
+    "new": true
+  },
+  "textures/coop_bar1918/front.JPG": {
+    "base": "mod tree",
+    "base_md5": "5b78df380effcf1fe728330669cb9b3f",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_bar1918/lewis1.jpg": {
+    "base": "mod tree",
+    "base_md5": "935da87d128b6c2a3adb4507efe51ef0",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_bar1918/lewis2.jpg": {
+    "base": "mod tree",
+    "base_md5": "37393c81fcee650bc09c73ed68b9b7c3",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_bar1918/lewismag.jpg": {
+    "base": "mod tree",
+    "base_md5": "91753c204b0c185fce78f634fd4b401f",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_bar1918/strap.JPG": {
+    "base": "mod tree",
+    "base_md5": "2aa0bee272c94236ecfd4a096c3008aa",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_c96trench/body.jpg": {
+    "base": "mod tree",
+    "base_md5": "cb43b9ae74c55f0a313ac55540ddef4b",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_c96trench/bolt.jpg": {
+    "base": "mod tree",
+    "base_md5": "4eaaf9b4dc7fb0891bfdb24a8fbe94a1",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_c96trench/stuff.jpg": {
+    "base": "mod tree",
+    "base_md5": "4069c9acab60678ce457c65131aab144",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_c96trench/stuff2.jpg": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "9178155fbaa6884e2fa74318f0019732",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_colt1911w/body.jpg": {
+    "base": "mod tree",
+    "base_md5": "cb43b9ae74c55f0a313ac55540ddef4b",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_colt1911w/cylinder.jpg": {
+    "base": "mod tree",
+    "base_md5": "c5f7013addbcdc7f000ce776abd2217e",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_colt1911w/loop.jpg": {
+    "base": "mod tree",
+    "base_md5": "d07dcedd3cbfce52864b6b3c1e59e984",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_colt1911w/stuff.jpg": {
+    "base": "mod tree",
+    "base_md5": "4069c9acab60678ce457c65131aab144",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_colt1911w/stuff2.jpg": {
+    "base": "mod tree",
+    "base_md5": "21b733f54b8dc062009048191a587798",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98/body.jpg": {
+    "base": "mod tree",
+    "base_md5": "cb43b9ae74c55f0a313ac55540ddef4b",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98/bolt.jpg": {
+    "base": "mod tree",
+    "base_md5": "4eaaf9b4dc7fb0891bfdb24a8fbe94a1",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98/bolt2.jpg": {
+    "base": "mod tree",
+    "base_md5": "43b6ec35ccdd6c875ee3f64b7121ddac",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98/chamber.jpg": {
+    "base": "mod tree",
+    "base_md5": "a733dc2302ca0a46a873775b9f263fa7",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98/front.JPG": {
+    "base": "mod tree",
+    "base_md5": "5b78df380effcf1fe728330669cb9b3f",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98/strap.JPG": {
+    "base": "mod tree",
+    "base_md5": "2aa0bee272c94236ecfd4a096c3008aa",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98/stuff.jpg": {
+    "base": "mod tree",
+    "base_md5": "4069c9acab60678ce457c65131aab144",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98scope/body.jpg": {
+    "base": "mod tree",
+    "base_md5": "cb43b9ae74c55f0a313ac55540ddef4b",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98scope/bolt.jpg": {
+    "base": "mod tree",
+    "base_md5": "4eaaf9b4dc7fb0891bfdb24a8fbe94a1",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98scope/bolt2.jpg": {
+    "base": "mod tree",
+    "base_md5": "43b6ec35ccdd6c875ee3f64b7121ddac",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98scope/chamber.jpg": {
+    "base": "mod tree",
+    "base_md5": "a733dc2302ca0a46a873775b9f263fa7",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98scope/front.JPG": {
+    "base": "mod tree",
+    "base_md5": "5b78df380effcf1fe728330669cb9b3f",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98scope/scope.jpg": {
+    "base": "mod tree",
+    "base_md5": "e4900fd593c877793b854ee7a9ecfd7d",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98scope/strap.JPG": {
+    "base": "mod tree",
+    "base_md5": "2aa0bee272c94236ecfd4a096c3008aa",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_g98scope/stuff.jpg": {
+    "base": "mod tree",
+    "base_md5": "4069c9acab60678ce457c65131aab144",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_m1903/body.jpg": {
+    "base": "mod tree",
+    "base_md5": "cb43b9ae74c55f0a313ac55540ddef4b",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_m1903/bolt.jpg": {
+    "base": "mod tree",
+    "base_md5": "4eaaf9b4dc7fb0891bfdb24a8fbe94a1",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_m1903/chamber.jpg": {
+    "base": "mod tree",
+    "base_md5": "a733dc2302ca0a46a873775b9f263fa7",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_m1903/front.JPG": {
+    "base": "mod tree",
+    "base_md5": "5b78df380effcf1fe728330669cb9b3f",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_m1903/sight.jpg": {
+    "base": "mod tree",
+    "base_md5": "cec9717f6c365d072bad581434140b2c",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_m1903/strap.JPG": {
+    "base": "mod tree",
+    "base_md5": "2aa0bee272c94236ecfd4a096c3008aa",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_m1903/stuff-extra.jpg": {
+    "base": "mod tree",
+    "base_md5": "8de4541d2fa57abb5e450645ab117ae9",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_m1903/stuff.jpg": {
+    "base": "mod tree",
+    "base_md5": "4069c9acab60678ce457c65131aab144",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_mp18/body.jpg": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "4ce556dbfc47c18cdc53abf5854bcd98",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_mp18/clip.jpg": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "bdb50fbdfcd40c180962c4112039a2a0",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_mp18/drum.jpg": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "a048cc077146aacffd600e1fba46d0d4",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_mp18/front.JPG": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "c6bedd8915bc732f6a33d92ed2fbad84",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_mp18/stuff.jpg": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "b1fcc05f0115cdd66148d721f8ee0e8a",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_p14/chamber.jpg": {
+    "base": "mod tree",
+    "base_md5": "a733dc2302ca0a46a873775b9f263fa7",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_p14/foley.jpg": {
+    "base": "mod tree",
+    "base_md5": "5e9b6c614266a7c3727b24f0daf75997",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_p14/front.JPG": {
+    "base": "mod tree",
+    "base_md5": "5b78df380effcf1fe728330669cb9b3f",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_p14/p14body.jpg": {
+    "base": "mod tree",
+    "base_md5": "23e0ec4814c9f613981ec927b07c7a00",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_p14/p14bolt.jpg": {
+    "base": "mod tree",
+    "base_md5": "beefde590e57dfa436dcd4dd3752b161",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_p14/p14stuff.tga": {
+    "base": "mod tree",
+    "base_md5": "393cda4f61b2d4ef5f9546f5c76636fe",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_p14/sight.jpg": {
+    "base": "mod tree",
+    "base_md5": "cec9717f6c365d072bad581434140b2c",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_p14/strap.JPG": {
+    "base": "mod tree",
+    "base_md5": "2aa0bee272c94236ecfd4a096c3008aa",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_p14/stuff-extra.jpg": {
+    "base": "mod tree",
+    "base_md5": "8de4541d2fa57abb5e450645ab117ae9",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_smlescope/body.jpg": {
+    "base": "mod tree",
+    "base_md5": "cb43b9ae74c55f0a313ac55540ddef4b",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_smlescope/bolt.jpg": {
+    "base": "mod tree",
+    "base_md5": "4eaaf9b4dc7fb0891bfdb24a8fbe94a1",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_smlescope/chamber.jpg": {
+    "base": "mod tree",
+    "base_md5": "a733dc2302ca0a46a873775b9f263fa7",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_smlescope/cloth.jpg": {
+    "base": "mod tree",
+    "base_md5": "c61ae5a2c7a15a792ecc87428a4241ff",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_smlescope/front.JPG": {
+    "base": "mod tree",
+    "base_md5": "5b78df380effcf1fe728330669cb9b3f",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_smlescope/scope.jpg": {
+    "base": "mod tree",
+    "base_md5": "e4900fd593c877793b854ee7a9ecfd7d",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_smlescope/stuff-extra.jpg": {
+    "base": "mod tree",
+    "base_md5": "8de4541d2fa57abb5e450645ab117ae9",
+    "by": "gen_east_lift.py"
+  },
+  "textures/coop_smlescope/stuff.jpg": {
+    "base": "mod tree",
+    "base_md5": "4069c9acab60678ce457c65131aab144",
+    "by": "gen_east_lift.py"
+  },
+  "textures/models/weapons/coop_mills_grenade.jpg": {
+    "by": "mills fix",
+    "new": true
+  }
+}

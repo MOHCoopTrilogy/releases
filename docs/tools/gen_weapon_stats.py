@@ -63,6 +63,10 @@ def txt_index():
 def find_file(rel):
     """-> ('file', path) | ('zip', (pk3, name)) | None"""
     rel = rel.replace("\\", "/").lstrip("/")
+    # [v1.10.64 wpnfix] the last-sorting override pak (gen_wpnfix_pak.py) is what the game loads: its source wins here too
+    wf = os.path.join(ROOT, "docs", "tools", "assets", "wpnfix", rel.replace("/", os.sep))
+    if os.path.isfile(wf):
+        return ("file", wf)
     cand = os.path.join(MOD, rel.replace("/", os.sep))
     d0 = os.path.dirname(cand)
     if os.path.isdir(d0):

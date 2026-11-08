@@ -199,6 +199,11 @@ def slotfile(w, s):
     # archived finish chip + replay recipe with the commit (client half; the server NILs its flag).
     L.append('seta coop_loS%sF "0"' % s)
     L.append('seta coop_loFA%s ""' % s)
+    # [armory bug 2026-10-27] the slot re-entry replay (s<N>sel.cfg: vstr coop_loFinPrevS<N> / vstr coop_loFNmS<N>) was never reset on a
+    # new gun, so a finish applied to the OLD gun re-previewed it (name+model of the old gun, calibre line of the new one, chip label SNOW).
+    L.append('seta coop_loFinPrevS%s "exec ui/loadout/p%s.cfg"' % (s, w["id"]))
+    L.append('seta coop_loFNmS%s "set coop_loFinNm STD"' % s)
+    L.append("set coop_loFinNm STD")
     if s == "1":
         L.append('seta coop_loOpenInspect "exec ui/loadout/p%s.cfg"' % w["id"])
     if gated:
@@ -348,6 +353,8 @@ def _other_ways(n):
 def unlock_hovers(rows):
     """{page name: cfg text} for every req<id>.cfg and reqf<fid>.cfg, plus the clipped keys."""
     xp, chal, lp = _script("xp.scr"), _script("challenges.scr"), _script("loadoutpick.scr")
+    # [v1.10.64 wpnfix] the per-variant challenges (mvchal_gen.scr) reward guns too now: the BAR's old variant 9 IS the Lewis gun
+    chal += "\n" + _script("mvchal_gen.scr")
     skins = _script("loadoutskins.scr")
     rnames = au.rank_names(xp)
     rewards = au.chal_rewards(chal)
@@ -381,6 +388,22 @@ def unlock_hovers(rows):
     fin = re.search(r"(?ms)^loadout_finish\b[^\n]*:\{(.*?)^\}end", lp)
     assert stat and fin, "coop_skinFinStat (loadoutskins.scr) or loadout_finish (loadoutpick.scr) not found"
     mastery = "+ master this gun" if "loadout_finMastered" in fin.group(1) else ""
+    # [v1.10.64 wpnfix] since killchal (2026-10-20) a finish is earned PER GUN: kills with that gun climb its ladder
+    # (finchal_gen.scr, finish_challenges.py; loadout_finOpen). The chip is shared by every gun, so it names the ladder's usual
+    # rung for that finish - the text the killchal session shipped - instead of the retired account challenge.
+    fg = _script("finchal_gen.scr")
+    if "coop_finCid" in fg:
+        cid2fid = {c: int(f) for _w, f, c in re.findall(r'coop_finCid\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', fg)}
+        rung = {}
+        for c, t in re.findall(r'chal_def "([^"]+)" "[^"]*" "[^"]*" "[^"]*" "[^"]*" (\d+)', fg):
+            if c in cid2fid:
+                rung.setdefault(cid2fid[c], []).append(int(t))
+        fname = {int(f): n for f, n in re.findall(r'coop_skinFinName\[(\d+)\]\s*=\s*"([^"]+)"', skins)}
+        for fid in sorted(stat):
+            tg = max(set(rung[fid]), key=rung[fid].count) if rung.get(fid) else None
+            out["reqf%d.cfg" % fid] = req(("%s FINISH: %d kills w/ this gun" % (fname[fid], tg), "kills with THIS gun unlock it")
+                                          if tg else ("%s FINISH: not currently obtainable" % fname[fid], ""))
+        return out, clipped
     for fid in sorted(stat):
         src = [(t, d) for _c, t, d, rw in rewards if rw == stat[fid]]
         if src:

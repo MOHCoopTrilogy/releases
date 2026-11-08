@@ -22,9 +22,16 @@ Rebuild:  python docs/tools/variant_challenges.py --emit
 import io, os, re, sys
 
 ROOT   = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-SKINS  = os.path.join(ROOT, "hzm-mohaa-coop-mod", "coop_mod", "loadoutskins.scr")
-CHALS  = os.path.join(ROOT, "hzm-mohaa-coop-mod", "coop_mod", "challenges.scr")
-OUT    = os.path.join(ROOT, "hzm-mohaa-coop-mod", "coop_mod", "mvchal_gen.scr")
+_MOD   = os.environ.get("HZM_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod")     # [v1.10.64] HZM_MOD: a worktree
+SKINS  = os.path.join(_MOD, "coop_mod", "loadoutskins.scr")
+CHALS  = os.path.join(_MOD, "coop_mod", "challenges.scr")
+OUT    = os.path.join(_MOD, "coop_mod", "mvchal_gen.scr")
+
+# [v1.10.64 wpnfix] RETIRED model variants: gone from the gun's cycle (wire_mv2.py), but their challenge STAYS, at the same
+# place, with the same id, target and reward: it is the unlock of the weapon the variant became (the BAR's fid 9, the Lewis
+# gun, is Armory gun 81 now - same tik, so the challenge's reward token unlocks it), and removing a row would renumber every
+# later Service Record index and every later rung of the gun's curve.
+RETIRED = {("models/weapons/bar.tik", 9): ("models/weapons/bar_bar1918.tik", "LEWIS GUN (EAST)")}
 
 
 def read(p):
@@ -59,6 +66,12 @@ def collect():
         cat, stat, btgt = base[bcid]
         rows.append(dict(gun=gun, fid=fid, path=path, cat=cat, stat=stat, btgt=btgt,
                          label=name.get((gun, fid), "").strip(), bcid=bcid))
+    for (gun, fid), (path, label) in RETIRED.items():
+        if any(x["gun"] == gun and x["fid"] == fid for x in rows):
+            continue
+        host = [x for x in rows if x["gun"] == gun][0]
+        rows.append(dict(gun=gun, fid=fid, path=path, cat=host["cat"], stat=host["stat"], btgt=host["btgt"],
+                         label=label, bcid=host["bcid"], retired=True))
     rows.sort(key=lambda r: (r["gun"], r["fid"]))
     return rows
 
@@ -124,6 +137,9 @@ def emit(rows):
             desc  = desc[:118]
             L.append('\twaitthread coop_mod/challenges.scr::chal_def "%s" "%s" "%s" "%s" "%s" %d "%s"'
                      % (cid, r["cat"], title, desc, r["stat"], tgt, r["path"]))
+            if r.get("retired"):
+                L.append('\t//retired from the cycle (wire_mv2.py): this challenge unlocks the gun the variant became')
+                continue
             L.append('\tlevel.coop_skinMvChal["%s"][%d] = "%s"' % (gun, r["fid"], cid))
         L.append("")
     for gun in sorted(share):

@@ -115,9 +115,9 @@ RID = {int(i): v for i, v in re.findall(r'level\.coop_loRosterId\[(\d+)\]\s*=\s*
 RGIVE = {int(i): v for i, v in re.findall(r'level\.coop_loRosterGive\[(\d+)\]\s*=\s*"([^"]+)"', roster)}
 RTAB = {int(i): int(v) for i, v in re.findall(r'level\.coop_loRosterTab\[(\d+)\]\s*=\s*(\d+)', roster)}
 assert RID and set(RID) == set(RGIVE) == set(RTAB), "loadoutroster.scr roster arrays disagree"
-# the Armory's own rule (gen_loadout.ICON2D): a gun whose 3D model cannot be shown (the Mills bomb renders solid black: texture
-# alpha) gets the stock 2D icon instead of a black silhouette
-from gen_loadout import ICON2D  # noqa: E402
+# v1.10.64: the Mills bomb's 2D-icon stand-in is gone - its shader is fixed (gen_wpnfix_pak.py: scripts/coop_wpnfix.shader maps
+# an RGB copy of the sheet; the stock sheet's alpha is ~0 everywhere and the model drew black), so every gun shows its model
+ICON2D = ()
 TABS = ["RIFLES", "SNIPERS", "SMGS", "HEAVY", "PISTOLS", "GRENADES"]
 
 

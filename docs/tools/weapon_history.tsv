@@ -73,13 +73,13 @@
 68	The M18 smoke grenade was used to signal and to mark landing zones and targets. It burns for under a minute and comes in red, yellow, green and violet.
 69	The Nebelhandgranate 39 was the smoke version of the German stick grenade, marked with a white band and the word Nebel so it could be told apart from the explosive one.
 70	Melvin Johnson's M1941 was a recoil-operated .30-06 rifle with a 10-round rotary magazine that could be topped up with stripper clips. It lost to the Garand, but the Marine paratroopers and Raiders carried it, and the Dutch bought it for the East Indies.
-71	A gold Thompson: John T. Thompson's .45 submachine gun of 1919 in a gold reward finish. Service Thompsons were blued or parkerized.
 72	Vasily Degtyaryov's DP-28 was adopted in 1928 and fired 7.62x54R from a 47-round pan on top of the gun. Soviet soldiers nicknamed it the record player after the flat disc magazine.
 74	The Mauser C96, the Broomhandle, appeared in 1896 with its magazine in front of the trigger guard, loaded from 10-round stripper clips, and a wooden holster that doubled as a stock. Winston Churchill carried one at Omdurman in 1898.
 75	Smith and Wesson's Military and Police revolver of 1899 in .38 Special became the Model 10. In the war S and W made it as the Victory Model for the US forces and in .38/200 for Britain and the Commonwealth.
 78	Most Gewehr 43s were issued with iron sights. Only part of production carried the ZF4 scope, and the rest were rifles for the line.
 79	The FG 42 had iron sights as standard, with the ZFG42 scope as an option. It was designed for German paratroopers by Louis Stange of Rheinmetall, and only around 7,000 were made.
 80	Side-by-side double-barrel shotguns were civilian guns. In the war they turned up with partisans, home guards and resistance fighters rather than as issued weapons.
+81	The Lewis gun, designed by Isaac Newton Lewis before the First World War and built in Britain by BSA, fed .303 from a 47-round pan on top. The Bren replaced it at the front, but it still served in the Second World War on ships, on light mounts and with the Home Guard. A 47-round pan sits on top of the gun, and the cooling shroud around the barrel gives it its look.
 fin:1	GOLD is a reward finish, not a wartime one. Service weapons were blued, parkerized or painted to resist rust and glare.
 fin:2	CHROME is a reward finish. Wartime guns were blued, parkerized or painted, because bright metal catches the light.
 fin:3	BLUED: bluing, a thin controlled oxide layer on the steel, was the standard pre-war gun finish and was used on many wartime weapons.
@@ -95,7 +95,6 @@ mv:thompsonsmg_lv_famastommy	A fantasy remodel: there was no FAMAS Thompson. The
 mv:mp40_mp18	The Bergmann MP 18, designed by Hugo Schmeisser, was the first submachine gun used in large numbers in combat, issued to German assault troops in 1918. It fed 9 mm from a 32-round snail drum.
 mv:mp40_lv_mp75	MP 75 Ausf D is not a real wartime designation. This is a fantasy remodel of the MP40.
 mv:bar_pabar	The BAR as it appears in Medal of Honor: Pacific Assault, ported to this game.
-mv:bar_bar1918	The Lewis gun, designed by Isaac Newton Lewis before the First World War and built in Britain by BSA, fed .303 from a 47-round pan on top. The Bren replaced it at the front, but it still served in the Second World War on ships, on light mounts and with the Home Guard.
 mv:bar_bar1918a	The original M1918 BAR of 1918 had no bipod and could fire single shots or full automatic.
 mv:bar_bar1918a1	The M1918A1 of 1937 added a hinged butt plate and a light spiked bipod on the gas cylinder.
 mv:bar_bar1918a2	The M1918A2 of 1938 was the BAR of the Second World War, with its bipod at the muzzle and slow and fast automatic fire in place of single shots.
@@ -119,6 +118,7 @@ credit:75	Model, animations, skin: East (matseast92)
 credit:72	Model, animations, skin: Lt. Pato (Patricio Mardones)
 credit:39	FG42 mesh and animations: RoempaZ / DaRKaNGeL (FG42 Add-On)
 credit:79	FG42 mesh and animations: RoempaZ / DaRKaNGeL (FG42 Add-On)
+credit:81	Model and skin: East (Medal of Honor World War 1 mod)
 credit:thompsonsmg_m1a1dk	Model: DaRKaNGeL | Skins: Apocalypse
 credit:thompsonsmg_tommy1928d	Model: Dr.Deleto | Reskin and animation swap: Static
 credit:thompsonsmg_tommy27a1	Model: FlakRider | Strap texture: Hobbs

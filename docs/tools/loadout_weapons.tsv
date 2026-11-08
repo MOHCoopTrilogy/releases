@@ -84,9 +84,10 @@ id	tik	give	xfm	charanim	cls	tab	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	xfm
 68	models/weapons/m18_smoke_grenade.tik	models/weapons/m18_smoke_grenade_start.tik	0 1.152 1.959 1.28 0 270 180	coop_hold_pistol		5	M18 SMOKE	SMOKE SCREEN GRENADE	0	2	5	10	0		m18smoke	4	0 1.152 1.959 1.28 0 270 180
 69	models/weapons/nebelhandgranate.tik	models/weapons/nebelhandgranate_start.tik	0 1.069 1.912 1.265 0 90 180	coop_hold_pistol		5	NEBELHANDGRANATE	GERMAN SMOKE GRENADE	0	2	5	10	0		nebel	4	0 1.069 1.912 1.265 0 90 180
 70	models/weapons/johnson_m1941.tik		0 6.862 -1.323 0.817 0 270 180	coop_hold_rifle	rifle	0	JOHNSON M1941	.30-06 / SEMI-AUTO / 10 RD	5	4	8	10	10	10	m1_garand	12	0 6.862 -1.323 0.817 0 270 180
-71	models/weapons/thompsonsmg_gold.tik		0 1.507 1.751 1.134 0 270 180	coop_hold_smg	smg	2	THOMPSON (GOLD)	.45 ACP / FULL-AUTO	2	9	8	8	30	30	thompsonsmg	12	0 1.507 1.751 1.134 0 270 180
 72	models/weapons/dp28.tik		0 -5.791 -1.304 0.979 0 90 180	coop_hold_rifle	heavy	3	DP-28	7.62x54R / FULL-AUTO / 47 RD	3	7	8	6	50	47	bar	12	0 -5.791 -1.304 0.979 0 90 180
 74	models/weapons/mauser_c96.tik		0 7.815 0.595 1.136 0 270 180	coop_hold_pistol		4	MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3	0 7.815 0.595 1.136 0 270 180
 75	models/weapons/m10_revolver.tik		0 5.227 -0.802 1.122 0 270 180	coop_hold_pistol		4	S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3	0 5.227 -0.802 1.122 0 270 180
 78	models/weapons/coop_g43_irons.tik	models/weapons/coop_g43_irons.tik	0 14.718 -3.74 1.114 0 270 180	coop_hold_rifle	rifle	0	GEWEHR 43 (IRON SIGHTS)	7.92MM / SEMI-AUTO / IRON SIGHTS	5	4	8	10	10	10	g43	12	0 14.718 -3.74 1.114 0 270 180
 80	models/weapons/coop_dbshotgun.tik	models/weapons/coop_dbshotgun.tik	0 7.638 -1.135 0.804 0 270 180	coop_hold_rifle	heavy	3	DOUBLE BARREL	12 GAUGE / BREAK-ACTION	10	3	6	10	2	2	shotgun	12	0 7.638 -1.135 0.804 0 270 180
+79	models/weapons/coop_fg42_irons.tik	models/weapons/coop_fg42_irons.tik	0 10.155 -5.504 1.104 0 270 180	coop_hold_rifle	heavy	3	FG 42 (IRON SIGHTS)	7.92MM / AUTOMATIC / IRON SIGHTS	10	9	8	6	20	20	coop_fg42_irons	12	0 10.155 -5.504 1.104 0 270 180
+81	models/weapons/bar_bar1918.tik	models/weapons/bar_bar1918.tik	0 14.363 1.253 1.109 0 270 180	coop_hold_rifle	heavy	3	LEWIS GUN	.303 / LIGHT MG / 47 RD	3	7	8	6	50	47	bar	12	0 14.363 1.253 1.109 0 270 180

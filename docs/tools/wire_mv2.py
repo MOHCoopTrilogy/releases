@@ -12,7 +12,8 @@ exact variant that was picked, not one step past it.
 import io
 import re
 
-MOD = "hzm-mohaa-coop-mod/"
+import os as _os
+MOD = (_os.environ.get("HZM_MOD", "hzm-mohaa-coop-mod").replace("\\", "/").rstrip("/") + "/")   # [v1.10.64] HZM_MOD: a worktree
 # [ADS rollout step 5] a NEW gun's tiks ship in the fixes pak (docs/tools/assets/fixes), not in the mod tree
 FIXES = "docs/tools/assets/fixes/"
 
@@ -32,7 +33,10 @@ MV = [
     ("mp40",         [("mp40r2", "MP40 (REACTIVATED)"), ("mp18", "MP18 (EAST)"),
                       ("guanmp40", "MP40 (GUANSHIRE)"), ("guanmp40s", "SILVER MP40 (GUANSHIRE)"),
                       ("lv_mp75", "MP 75 AUSF D (LEON)")], "wpn_mp40_e"),
-    ("bar",          [("pabar", "BAR (PACIFIC) (MOH:PA)"), ("bar1918", "LEWIS GUN (EAST)"),
+    # [v1.10.64 wpnfix] fid 9, the Lewis gun, is RETIRED here: a different machine gun filed as a BAR skin, now its own Armory
+    # gun (roster 81, same tik). A retired entry keeps its fid (later fids, their archived picks and their challenge ids do not
+    # move) and emits nothing - no table row, no chain page; variant_challenges.py keeps its challenge (it unlocks the gun).
+    ("bar",          [("pabar", "BAR (PACIFIC) (MOH:PA)"), ("bar1918", None),
                       ("bar1918a", "M1918 CLASSIC (STLKID)"), ("bar1918a1", "M1918A1 (STLKID)"),
                       ("bar1918a2", "M1918A2 (STLKID)")], "wpn_bar_e"),
     ("m1_garand",    [("pagarand", "M1 GARAND (PACIFIC) (ACME313)"),
@@ -116,6 +120,8 @@ for _ent in MV:
     vlist = []
     for i, v in enumerate(variants):
         key, label = v[0], v[1]
+        if label is None:
+            continue                       # RETIRED: the fid stays reserved, nothing is emitted for it
         vpath = v[2] if len(v) > 2 else "models/weapons/%s_%s.tik" % (stem, key)
         import os
         assert os.path.exists(_tik_path(vpath)), "variant tik missing: " + vpath
@@ -136,9 +142,12 @@ B.append("\t//button sends 8 = CYCLE; the server steps through these and wraps t
 B.append("\t//for ALL of a gun's variants = that gun's ELITE challenge (coop_skinMvElite). Names are")
 B.append("\t//per fid; MvMax bounds the cycle; the ByElite/Pseudo maps feed the announce pipeline.")
 for give, tile, elite, base_name, vlist in resolved:
-    for fid, key, label, vpath in vlist:
+    for k, (fid, key, label, vpath) in enumerate(vlist):
         B.append('\tlevel.coop_skinGive["%s"][%d] = "%s"' % (give, fid, vpath))
         B.append('\tlevel.coop_skinMvName["%s"][%d] = "%s"' % (give, fid, label))
+        if fid != 8 + k:
+            # [v1.10.64] a retired fid before this one: the offline chain page of this fid is entry k+1, not fid-7
+            B.append('\tlevel.coop_skinMvK["%s"][%d] = %d' % (give, fid, k + 1))
     B.append('\tlevel.coop_skinMvMax["%s"] = %d' % (give, vlist[-1][0]))
     B.append('\tlevel.coop_skinMvElite["%s"] = "%s"' % (give, elite))
     if give in SHARE:      # the elite id is the HOST's: its announce names stay the host's
