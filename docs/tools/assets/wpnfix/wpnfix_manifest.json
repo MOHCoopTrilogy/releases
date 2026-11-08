@@ -7,6 +7,38 @@
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
     "base_md5": "189c94623ed1214f4fe311336e776cda"
   },
+  "models/weapons/dp28.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "16fa53f0415710cb7d3974bd921c71d2"
+  },
+  "models/weapons/dp28_bloody.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "86f8af120e682c2edef36be28e54218e"
+  },
+  "models/weapons/dp28_blued.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "23ec82ca0b0056b233949e47290a5ff4"
+  },
+  "models/weapons/dp28_camo_desert.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "1af4cdcd20d51f7404c9fbaf6b60d496"
+  },
+  "models/weapons/dp28_camo_winter.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "4194d57c3ac095123ae6feb8a2c1adb1"
+  },
+  "models/weapons/dp28_camo_woodland.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "ac33dc42a7656a16d04dacd1f654a0ae"
+  },
+  "models/weapons/dp28_chrome.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "40dffb4decf0331052c78a971e774639"
+  },
+  "models/weapons/dp28_gold.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "1050ec58e03cfe5ff8c5ee36c12f8a5f"
+  },
   "models/weapons/springfield_m1903.tik": {
     "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
     "base_md5": "d1947806f35f4ce0fb135fce7f8cd2cc"
