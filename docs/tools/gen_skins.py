@@ -79,7 +79,17 @@ def build_index():
                         break
                 j += 1
             body = text[i:j]
-            mm = (re.search(r"(?mi)^\s*(?:map|clampmap)\s+(\S+)", body)
+            # [v1.10.65 camo] the DIFFUSE: the first stage that is not an environment / gloss layer. Soares93's shaders open with
+            # `map textures/effects/s93_gloss1.tga ... tcgen environmentmodel` and paint the gun in the SECOND stage - taking the
+            # first map finished the gloss sheet instead of the gun (garand_silenced, springfield_unscoped)
+            mm = None
+            for st in re.findall(r"\{([^{}]*)\}", body):
+                if re.search(r"(?i)tcgen\s+environment", st):
+                    continue
+                mm = re.search(r"(?mi)^\s*(?:map|clampmap)\s+([^$\s]\S*)", st)
+                if mm:
+                    break
+            mm = (mm or re.search(r"(?mi)^\s*(?:map|clampmap)\s+(\S+)", body)
                   or re.search(r"(?mi)^\s*qer_editorimage\s+(\S+)", body))
             if mm and name not in shaders:
                 tex = mm.group(1).strip()
@@ -338,46 +348,52 @@ def _put(path, text):
     raise SystemExit("could not write " + path)
 
 
+# [v1.10.65 camo] sheets that stay STOCK under the baked finishes (camo, blood), still tinted by gold / chrome / blued: the retail
+# suppressor sheet colt45s2 (Colt / Garand / Beretta / Grease Gun / Mosin silenced) is near-black low-res noise, and a camo bake of
+# it reads as a dark smear on the can. A blackened can on a painted gun is also what a field-painted weapon looked like.
+BAKE_KEEP_STOCK = {"textures/models/weapons/colt/colt45s2"}
+
 FIN_FID = {"gold": 1, "chrome": 2, "blued": 3, "bloody": 4, "camo_woodland": 5, "camo_winter": 6, "camo_desert": 7}
 
 
-def add_gun(stem, write):
-    """[v1.10.64 wpnfix2] give ONE gun the standard seven finishes without a full rebuild.
+def _retail(rel):
+    """[v1.10.65 camo] the game's own copy of a file the mod never ships: main < mainta < maintt, and inside a folder the
+    last-sorting pak wins (the coop paks are skipped - gen_wpnfix_pak.carriers covers those)"""
+    best = None
+    for d in ("main", "mainta", "maintt"):
+        for f in sorted(glob.glob(os.path.join(GOG, d, "*.pk3")), key=lambda s: os.path.basename(s).lower()):
+            b = os.path.basename(f).lower()
+            if "coop" in b or "co-op" in b or "hzm" in b:
+                continue
+            try:
+                z = zipfile.ZipFile(f)
+            except Exception:
+                continue
+            for n in z.namelist():
+                if n.lower() == rel.lower():
+                    best = ("%s/%s" % (d, os.path.basename(f)), z.read(n))
+    return best
 
-    `build` regenerates every variant tik from the MOD TREE's base tik and rewrites coop_skins.shader wholesale, which is wrong
-    for a gun whose shipped tik is an out-of-band pak's newer copy (the Thompson Drum's winner is the stress pak's, with the
-    open-bolt rows and the drum reload the mod tree's copy lacks): its finishes must be derived from the copy that LOADS, or a
-    finish would play different animations than the base gun. So this mode:
-      - derives the seven tiks from the load-order WINNER (gen_wpnfix_pak.carriers); when that winner is an out-of-band pak
-        the tiks go to the wpnfix pak's sources (pinned NEW in its manifest), else to the mod tree beside the others
-      - picks ranks unique against every weapon tik in the mod tree, the fixes / wpnfix sources AND every coop pak
-      - replaces only this gun's blocks in scripts/coop_skins.shader (appends them when new)
-      - writes the coop_skinGive rows 1-7 into coop_mod/loadoutskins.scr (after the last finish row) and coop_skinN
-      - bakes the four baked finishes (bake_skins.py) into textures/coop_skins/<stem>/
-    """
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    import gen_wpnfix_pak as W
-    import json
-    rel = "models/weapons/%s.tik" % stem
-    car = W.carriers(rel)
-    assert car, "%s is not shipped" % rel
-    where, raw = car[-1]
-    text = raw.decode("latin-1").replace("\r\n", "\n")       # written back with CRLF: never \r\r\n
-    wname = re.search(r'(?mi)^\s*name\s+"([^"]+)"', text).group(1)
-    assert " (" not in wname, "a variant cannot get finishes"
-    oob = where != "mod tree"
-    out_dir = os.path.join(W.SRC, "models", "weapons") if oob else WEAPONS
 
+_CTX = {}
+
+
+def _ctx(W):
+    """the expensive indexes, built once per run and shared by every gun (ranks are allocated into the same set)"""
+    if _CTX:
+        return _CTX
     shaders, pak_files = build_index()
     weapons = weapon_tiks()
-    shared = shared_shader_names(weapons)
+    users = {}
+    for p, t, _ in weapons:
+        st = re.sub(r"_lite$", "", os.path.splitext(os.path.basename(p))[0].lower())
+        for _sn, sh in set(re.findall(r"(?mi)^\s*surface\s+(\S+)\s+shader\s+(\S+)", t)):
+            users.setdefault(sh.lower(), set()).add(st)
     taken = used_ranks()
+    tiks = {}
     for d in (os.path.join(ROOT, "docs", "tools", "assets", "fixes", "models", "weapons"), os.path.join(W.SRC, "models", "weapons")):
         for p in glob.glob(os.path.join(d, "*.tik")):
-            if os.path.basename(p).lower() in ["%s_%s.tik" % (stem, k) for k, _d, _k, _p in FINISHES]:
-                continue                     # this gun's own earlier output: a re-run keeps its ranks
-            for m in re.finditer(r"(?mi)^\s*rank\s+(\d+)", io.open(p, encoding="latin-1", errors="replace").read()):
-                taken.add(int(m.group(1)))
+            tiks[os.path.basename(p).lower()] = io.open(p, encoding="latin-1", errors="replace").read()
     for f in os.listdir(W.BASE_MOD):
         if f.lower().endswith(".pk3"):
             try:
@@ -386,28 +402,108 @@ def add_gun(stem, write):
                 continue
             for n in z.namelist():
                 if n.lower().startswith("models/weapons/") and n.lower().endswith(".tik"):
-                    for m in re.finditer(rb"(?mi)^\s*rank\s+(\d+)", z.read(n)):
-                        taken.add(int(m.group(1)))
+                    tiks.setdefault("pak:" + f + ":" + n.lower(), z.read(n).decode("latin-1", "replace"))
+    _CTX.update(shaders=shaders, pak_files=pak_files, users=users, taken=taken, other_tiks=tiks)
+    return _CTX
+
+
+def _existing_blocks():
+    """{block name: lower(first map without extension)} of scripts/coop_skins.shader"""
+    t = io.open(SHADER_OUT, encoding="latin-1").read()
+    out = {}
+    for m in re.finditer(r"(?ms)^(coop_skin_\S+)\s*\{(.*?)^\}", t):
+        mm = re.search(r"(?m)^\s*map\s+(\S+)", m.group(2))
+        if mm:
+            out[m.group(1)] = re.sub(r"\.\w+$", "", mm.group(1).lower())
+    return out
+
+
+def add_gun(stem, write):
+    """[v1.10.64 wpnfix2, v1.10.65 camo] give ONE gun the standard seven finishes without a full rebuild.
+
+    `build` regenerates every variant tik from the MOD TREE's base tik and rewrites coop_skins.shader wholesale, which is wrong
+    for a gun whose shipped tik is an out-of-band pak's newer copy (the Thompson Drum's winner is the stress pak's, with the
+    open-bolt rows and the drum reload the mod tree's copy lacks): its finishes must be derived from the copy that LOADS, or a
+    finish would play different animations than the base gun. So this mode:
+      - derives the seven tiks from the load-order WINNER: the wpnfix pak's own source first (it sorts last), then the coop
+        paks / mod tree (gen_wpnfix_pak.carriers), then the game's own paks for a gun the mod never ships (retail carbine, PPK...)
+      - the tiks go to the mod tree only when the winner IS the mod tree; otherwise to the wpnfix pak's sources (pinned NEW)
+      - a surface whose texture already has a finish shader (a silenced twin's body = its base gun's texture, a texture two guns
+        share) REUSES that shader for the same finish - same look as the base gun, no second bake (generalises bug-10532)
+      - a texture drawn by 3+ guns (sights: thompsite) stays stock, as in `build`, unless the gun has nothing else
+      - picks ranks unique against every weapon tik in the mod tree, the fixes / wpnfix sources AND every coop pak
+      - replaces only this gun's blocks in scripts/coop_skins.shader (appends them when new)
+      - writes the coop_skinGive rows 1-7 into coop_mod/loadoutskins.scr (after the last finish row) and coop_skinN
+    finalize() then fixes the map spellings, bakes, and moves the bakes into the wpnfix pak (mod-repo *.jpg is git-ignored).
+    """
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen_wpnfix_pak as W
+    import json
+    rel = "models/weapons/%s.tik" % stem
+    own = os.path.join(W.SRC, *rel.split("/"))
+    if os.path.isfile(own):
+        where, raw = "wpnfix source", open(own, "rb").read()
+    else:
+        car = W.carriers(rel)
+        if car:
+            where, raw = car[-1]
+        else:
+            r = _retail(rel)
+            assert r, "%s is shipped nowhere" % rel
+            where, raw = "retail " + r[0], r[1]
+    text = raw.decode("latin-1").replace("\r\n", "\n")       # written back with CRLF: never \r\r\n
+    wname = re.search(r'(?mi)^\s*name\s+"([^"]+)"', text).group(1)
+    assert " (" not in wname, "a variant cannot get finishes"
+    to_tree = where == "mod tree"
+    out_dir = WEAPONS if to_tree else os.path.join(W.SRC, "models", "weapons")
+
+    C = _ctx(W)
+    shaders, pak_files, users, taken = C["shaders"], C["pak_files"], C["users"], C["taken"]
+    mine = ["%s_%s.tik" % (stem, k) for k, _d, _k, _p in FINISHES]
+    for name, t in C["other_tiks"].items():
+        if name.split("/")[-1] in mine:
+            continue                     # this gun's own earlier output: a re-run keeps its ranks
+        for m in re.finditer(r"(?mi)^\s*rank\s+(\d+)", t):
+            taken.add(int(m.group(1)))
+    existing = _existing_blocks()
+    by_tex = {}                          # (key, lower texture w/o ext) -> an existing finish block for it, not this gun's
+    for name, tx in existing.items():
+        mm = re.match(r"coop_skin_(.+?)_(gold|chrome|blued)(_\d+)?$", name)
+        if mm and mm.group(1) != stem:
+            for key, _d, _k, _p in FINISHES:
+                cand = "coop_skin_%s_%s%s" % (mm.group(1), key, mm.group(3) or "")
+                if cand in existing:
+                    by_tex.setdefault((key, tx), cand)
 
     surfs = re.findall(r"(?mi)^\s*surface\s+(\S+)\s+shader\s+(\S+)", text)
-    tex_of = {}
+    tex_all = {}
     for _sn, sh in surfs:
-        if sh.lower() in shared:
-            continue
         tex = texture_exists(pak_files, shaders.get(sh.lower(), sh))
         if tex:
-            tex_of[sh] = tex
-    assert tex_of, "no resolvable textures"
-    order = sorted(set(tex_of.values()))
+            tex_all[sh] = tex
+    assert tex_all, "no resolvable textures"
+    sight = {sh for sh in tex_all if len(users.get(sh.lower(), set()) - {stem}) >= 2}
+    # a shared texture that another gun already finishes (the P38's own P38.tga on the silenced P38) takes that finish too
+    tex_of = {sh: t for sh, t in tex_all.items()
+              if sh not in sight or (FINISHES[0][0], re.sub(r"\.\w+$", "", t.lower())) in by_tex} or dict(tex_all)
+    order = sorted(set(t for sh, t in tex_of.items()
+                       if (FINISHES[0][0], re.sub(r"\.\w+$", "", t.lower())) not in by_tex))
 
     rank = RANK_BASE
-    blocks, tiks, rows = [], [], []
+    blocks, tiks, rows, reused = [], [], [], set()
     for key, display, kind, params in FINISHES:
         while rank in taken:
             rank += 1
         taken.add(rank)
         surf_map = {}
         for sh, tex in tex_of.items():
+            if kind == "bake" and re.sub(r"\.\w+$", "", tex.lower()) in BAKE_KEEP_STOCK:
+                continue                     # this sheet keeps its stock look under camo / blood (see BAKE_KEEP_STOCK)
+            hit = by_tex.get((key, re.sub(r"\.\w+$", "", tex.lower())))
+            if hit:
+                surf_map[sh] = hit
+                reused.add(hit)
+                continue
             sname = "coop_skin_%s_%s" % (stem, key) + ("_%d" % order.index(tex) if len(order) > 1 else "")
             surf_map[sh] = sname
             src = tex if kind == "stage" else "textures/coop_skins/%s/%s_%s.jpg" % (
@@ -417,15 +513,15 @@ def add_gun(stem, write):
         vt = variant_tik(text, wname, display, rank, surf_map)
         tiks.append(("%s_%s.tik" % (stem, key), vt))
         rows.append((FIN_FID[key], "models/weapons/%s_%s.tik" % (stem, key)))
-        print("  %-30s rank %d  %s" % (tiks[-1][0], rank, " ".join("%s=%s" % kv for kv in sorted(surf_map.items()))))
-    print("  base %s (%s) -> %s" % (rel, where, os.path.relpath(out_dir, ROOT)))
+        print("  %-36s rank %d  %s" % (tiks[-1][0], rank, " ".join("%s=%s" % kv for kv in sorted(surf_map.items()))))
+    print("  base %s (%s) -> %s; %d new shader block(s), %d reused, stock: %s" % (
+        rel, where, os.path.relpath(out_dir, ROOT), len(blocks), len(reused), sorted(set(tex_all) - set(tex_of)) or "-"))
     if not write:
-        print("(dry run - pass 'add <stem> write')")
         return 0
 
     for name, vt in tiks:
         io.open(os.path.join(out_dir, name), "w", encoding="latin-1", newline="\r\n").write(vt)
-    if oob:
+    if not to_tree:
         man = W.load_manifest()
         for name, _vt in tiks:
             assert not W.carriers("models/weapons/" + name), "%s is already shipped" % name
@@ -436,7 +532,8 @@ def add_gun(stem, write):
     nl = "\r\n" if "\r\n" in sh_txt else "\n"
     sh_txt = re.sub(r"(?ms)\r?\n\r?\ncoop_skin_%s_(?:%s)(?:_\d+)?\r?\n\{.*?^\}" % (
         re.escape(stem), "|".join(k for k, _d, _k, _p in FINISHES)), "", sh_txt)
-    sh_txt = sh_txt.rstrip() + nl + nl.join(b[1].replace("\n", nl) for b in blocks) + nl
+    if blocks:
+        sh_txt = sh_txt.rstrip() + nl + nl.join(b[1].replace("\n", nl) for b in blocks) + nl
     io.open(SHADER_OUT, "w", encoding="latin-1", newline="").write(sh_txt)
 
     ls_p = os.path.join(MOD, "coop_mod", "loadoutskins.scr")
@@ -449,31 +546,82 @@ def add_gun(stem, write):
     n = len(re.findall(r'(?m)^\tlevel\.coop_skinGive\["[^"]+"\]\[[1-7]\] = ', ls))
     ls = re.sub(r"level\.coop_skinN = \d+", "level.coop_skinN = %d" % n, ls, count=1)
     io.open(ls_p, "w", encoding="latin-1", newline="").write(ls)
+    print("add %s: %d tiks, %d new shader blocks, coop_skinN %d" % (stem, len(tiks), len(blocks), n))
+    return 0
 
-    import fix_skin_case                    # bug-3397: the base maps spelled exactly as the gun's own shader spells them
+
+def _shipped_bakers():
+    """the SHIPPED baked-finish functions: gen_weapon_skins.py's camo() / bloody() with the palettes the committed bake_skins.py
+    uses, so a new gun's camo matches the 54 guns already in the release (the CC0 rework in docs/proposals/weapon_finishes_2026-11-01
+    is staged, not shipped; when it ships, re-bake everything together)"""
+    g = {"__file__": os.path.join(os.path.dirname(os.path.abspath(__file__)), "gen_weapon_skins.py"), "__name__": "gws"}
+    src = io.open(g["__file__"], encoding="utf-8").read()
+    exec(src.split("VARIANTS = [")[0], g)
+    return g["from_paks"], {
+        "bloody":        lambda im: g["bloody"](im),
+        "camo_woodland": lambda im: g["camo"](im, [(58, 66, 40), (86, 92, 56), (44, 40, 30), (104, 98, 66)]),
+        "camo_winter":   lambda im: g["camo"](im, [(178, 182, 186), (140, 146, 152), (96, 102, 108), (206, 210, 213)], seed=11),
+        "camo_desert":   lambda im: g["camo"](im, [(176, 150, 104), (146, 120, 78), (198, 178, 138), (118, 98, 66)], seed=5),
+    }
+
+
+def finalize(stems):
+    """after add_gun: map spellings (bug-3397), then bake every baked block a gun owns straight into the wpnfix pak's sources
+    (the mod repo ignores *.jpg). A baked block's base = the map of its gold twin. A sheet under 256 px (a 100 px suppressor,
+    a 128 px belt) is baked at 256 px: camo blobs and blood are drawn in output pixels and came out as a few big blocks."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen_wpnfix_pak as W
+    import json
+    import numpy as np
+    from PIL import Image
+    import fix_skin_case
     fix_skin_case.main(write=True)
-    import subprocess
-    r = subprocess.call([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "bake_skins.py"),
-                         "--regen", MOD, "--only", "coop_skins/%s/" % stem])
-    # the mod repo ignores *.jpg (textures ship in the prebuilt assets_tex pak), so the new bakes ride the wpnfix pak
-    import shutil
-    bdir = os.path.join(MOD, "textures", "coop_skins", stem)
+    from_paks, baked = _shipped_bakers()
+    t = io.open(SHADER_OUT, encoding="latin-1").read()
+    blocks = {m.group(1): re.findall(r"(?m)^\s*map\s+(\S+)", m.group(2))
+              for m in re.finditer(r"(?ms)^(coop_skin_\S+)\s*\{(.*?)^\}", t)}
     man = W.load_manifest()
-    for f in sorted(os.listdir(bdir)) if os.path.isdir(bdir) else []:
-        trel = "textures/coop_skins/%s/%s" % (stem, f)
-        assert not W.carriers(trel), "%s is already shipped" % trel
-        dst = os.path.join(W.SRC, *trel.split("/"))
-        os.makedirs(os.path.dirname(dst), exist_ok=True)
-        shutil.move(os.path.join(bdir, f), dst)
-        man[trel] = {"new": True}
-    if os.path.isdir(bdir) and not os.listdir(bdir):
-        os.rmdir(bdir)
+    made, missing = 0, []
+    for stem in stems:
+        for name, maps in sorted(blocks.items()):
+            mm = re.match(r"coop_skin_%s_(bloody|camo_woodland|camo_winter|camo_desert)(_\d+)?$" % re.escape(stem), name)
+            if not mm:
+                continue
+            gold = blocks.get("coop_skin_%s_gold%s" % (stem, mm.group(2) or ""))
+            assert gold, "no gold twin for " + name
+            out_rel = maps[0]
+            base = gold[0]
+            img = None
+            for cand in [base] + [re.sub(r"\.\w+$", e, base) for e in (".tga", ".jpg", ".dds", ".png")]:
+                img = from_paks(cand) or img
+                if img is not None:
+                    break
+            if img is None:
+                missing.append(base)
+                continue
+            if min(img.size) < 256:
+                k = 256.0 / min(img.size)
+                img = img.resize((int(round(img.size[0] * k)), int(round(img.size[1] * k))), Image.LANCZOS)
+            arr = np.clip(baked[mm.group(1)](img), 0, 255).astype(np.uint8)
+            dst = os.path.join(W.SRC, *out_rel.split("/"))
+            os.makedirs(os.path.dirname(dst), exist_ok=True)
+            Image.fromarray(arr).save(dst, quality=92)
+            man[out_rel] = {"new": True}
+            made += 1
     _put(W.MANIFEST, json.dumps(man, indent=2, sort_keys=True) + "\n")
-    print("add %s: %d tiks, %d shader blocks, loadoutskins rows 1-7 (coop_skinN %d), bake rc %d" % (stem, len(tiks), len(blocks), n, r))
-    return r
+    print("finalize: %d gun(s), %d baked texture(s)%s" % (len(stems), made, ", MISSING " + ", ".join(missing) if missing else ""))
+    return 1 if missing else 0
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 2 and sys.argv[1] == "add":
-        sys.exit(add_gun(sys.argv[2].lower(), "write" in sys.argv[3:]))
+        # add <stem>[,<stem>...] [write]
+        stems = [s.lower() for s in sys.argv[2].split(",") if s]
+        wr = "write" in sys.argv[3:]
+        for s in stems:
+            add_gun(s, wr)
+        if not wr:
+            print("(dry run - pass 'add <stems> write')")
+            sys.exit(0)
+        sys.exit(finalize(stems))
     sys.exit(main())

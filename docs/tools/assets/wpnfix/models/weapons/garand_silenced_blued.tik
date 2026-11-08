@@ -1,0 +1,364 @@
+TIKI
+setup
+{
+	scale 0.52			// Set default scale to 16/30.5 since world is in 16 units per foot and model is in cm's
+	path models/weapons/garand
+	skelmodel garand_silenced_coop.skd
+	surface Skin* shader coop_skin_garand_silenced_blued_3
+	surface material8 shader coop_skin_kar98_blued_1
+	surface scope shader coop_skin_garand_silenced_blued_2
+	surface Cylinde0 shader coop_skin_garand_silenced_blued_1
+	surface Cylinder1 shader coop_skin_garand_silenced_blued_0
+	surface lens shader coop_scope_glass_amber
+	surface scopeb shader coop_skin_garand_silenced_blued_2
+	surface eyering shader coop_skin_garand_silenced_blued_2
+}
+
+init
+{
+	server
+	{
+		surface material8 +nodraw		
+
+
+		classname		Weapon
+		weapontype		rifle
+		name			"Silenced M1 Garand (Blued)"
+		rank			1037 1037
+
+		pickupsound		m1_snd_pickup
+		ammopickupsound	m1_snd_pickup_ammo
+		noammosound		m1_snd_noammo
+
+		// Holstering info
+holstertag				"Bip01 Spine2"
+holsteroffset			"8.0 -7.75 6.5"
+holsterangles			"0 185 -25"
+holsterScale			1.0
+
+		// Primary fire type info
+		firetype		bullet
+		ammotype		"rifle"
+		meansofdeath	bullet
+		semiauto
+		cantpartialreload
+		bulletcount		1
+		clipsize		8
+		startammo		24
+		ammorequired	1
+		firedelay		0.3
+
+		//========================================//
+		//		WEAPON ACCURACY MODELLING	//
+		//========================================//
+
+//		M1 Garand: Max Eff. Range is 300 yds with a muzzle velocity of 2800 ft/s. (30-06 Springfield)
+
+		bulletrange		4000	 	//the range at which bulletspread is applied
+		bulletspread	10 10 60 60 //minpitch minyaw maxpitch maxyaw
+		zoomspreadmult	0.09
+		bulletdamage	45
+		firespreadmult	0.7 0.685 200 0.8
+
+		tracerfrequency 	2
+
+		crosshair		1
+		quiet
+		zoom			20
+//		viewkick		-2 -3   -1 1
+
+		// AI animation group info
+		weapongroup		rifle
+
+		// DM Attributes
+		dmcantpartialreload
+		dmbulletcount	1
+		dmstartammo		50
+		dmammorequired	1
+		dmfiredelay		0.4
+
+		dmbulletrange	4000
+		dmbulletspread	10 10 80 80
+		dmzoomspreadmult	0.4
+//		dmbulletdamage	50
+		dmbulletdamage	45
+//		dmfirespreadmult 	0.7 0.685 200 0.8
+		dmfirespreadmult 	0.75 0.6 200 0.8
+		dmmovementspeed	0.94
+
+		dmcrosshair		1
+		
+		// this is attached to the player during reload
+		cache models/ammo/garand_clip_reload.tik
+	}
+	client
+	{
+		cache tracer.spr
+		cache muzsprite.spr
+		cache vsssource.spr
+		cache models/fx/muzflash.tik
+		cache models/ammo/rifleshell.tik
+		cache models/fx/snipesmoke.tik
+		cache models/ammo/garand_clip_empty.tik
+	}
+}
+
+animations
+{
+	idle		garand.skc
+	idle_empty	garand_empty.skc
+	reload		garand_reload.skc
+	{
+		server
+		{
+			28 surface material8 -nodraw
+			48 surface material8 +nodraw
+			last idle
+		}
+		client
+		{
+			entry sound m1_snd_reload
+		}
+	}
+	reload_s		coop_garand_reload_s.skc
+	{
+		server
+		{
+			22 surface material8 -nodraw
+			38 surface material8 +nodraw
+			last idle
+		}
+		client
+		{
+			entry sound m1_snd_reload
+		}
+	}
+	reload_m		coop_garand_reload_m.skc
+	{
+		server
+		{
+			34 surface material8 -nodraw
+			50 surface material8 +nodraw
+			last idle
+		}
+		client
+		{
+			entry sound m1_snd_reload
+		}
+	}
+	fire	garand_fire.skc
+	{
+		server
+		{
+			entry shoot
+		}
+		client
+		{
+			entry stopaliaschannel garand_silenced
+			entry sound garand_silenced
+
+			// By now, the server has already fired the weapon, so it's
+			// ok to apply the view kick apon entry to avoid problems
+			// with multiple application on single frame animations.
+
+			////////////////////////////////////////////////////////////////////////////////////////
+			// View Kick Controls
+			//
+			// View Kicking works based on the assumptions that every weapon has its own tendencies to kick in
+			// a paticular fashion. In MOH we call then scatter patterns. Currently we have 2 scatter patterns which
+			// will be explained.
+			// Scatter Patterns:
+			// "V" - the cone. The longer you shoot the more random your shots will be in the horizontal axis.
+			// "T" - the T shape. The gun has a tendancy to push in a paticular direction. not used much...too artificial looking
+			//
+			//
+			//             		+-------------------------------------------- Scatter Pitch Min
+			//              		|    +--------------------------------------- Scatter Pitch Max
+			//              		|    |       +------------------------------- Scatter Yaw Min
+			//             		|    |       |   +--------------------------- Scatter Yaw Max
+			//             		|    |       |   |     +--------------------- The Recentering speed in fraction per second
+			//              		|    |       |   |     |    +---------------- The Scatter Pattern
+			//              		|    |       |   |     |    |     +---------- The absolute pitch min/max
+			//              		|    |       |   |     |    |     |  +------- The absolute yaw min/max
+			//              		|    |       |   |     |    |     |  | +----- This is the pitch at which you loose all
+			//              		|    |       |   |     |    |     |  | |      control of the weapon and its behavior is
+			//             	 	|    |       |   |     |    |     |  | |      purely random.
+			//				V    V       V   V     V    V     V  V V
+
+			entry viewkick 	    -2.5 -2.5   -0.1 -0.1   0.15   "T"  8.0 8.2 3.6
+
+//			entry viewkick 	    -3.0 -3.0   -0.1 -0.1   0.15   "T"  8.0 8.2 3.6//original recent
+//			entry viewkick 	    -1.0 -1.0   -0.1 -0.1   0.45   "T"  8.0 8.2 3.6//original old
+
+			// muzzle flash
+//			entry tagdlight tag_barrel 0.25 0.2 0.15 150 0.11
+//			entry tagspawn tag_barrel
+//			(
+//				count 1
+//				model models/fx/muzflash.tik
+//				color 0.00 0.00 1.00
+//				scale 0.20
+//				life 0.01
+//				velocity 300.00
+//				alignstretch 0.02
+//				randomroll
+//			)
+//
+//			entry tagspawn tag_barrel
+//			(
+//				count 1
+//				model muzsprite.spr
+//				color 1.00 1.00 1.00
+//				scale 0.10
+//				scalerate 10
+//				life 0.04
+//			)
+//
+			entry tagspawn tag_barrel
+			(
+				count 1
+				scale .7
+				model models/fx/snipesmoke.tik
+			)
+
+			// shell eject
+			entry tagspawn tag_eject
+			(
+				spawnrange 2048
+				count 1
+				model models/ammo/rifleshell.tik
+				scale 1.0
+				velocity 70
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_rifle_shell
+			)
+
+			// smoke puff
+//			entry commanddelay 0.05 tagspawn tag_barrel
+//			(
+//				volumetric
+//				model gun			// sets the type of smoke
+//				life 10				// amount of smoke
+//				scale 1.5			// radius
+//				alpha 0.4			// density
+//				color 0.7 0.7 0.7		// RBG color of the smoke
+//				velocity 2			// base velocity away from the surface
+//				randvelaxis random 6 0 0	// velocity offset
+//				offsetalongaxis random 4 0 0	// positional offset
+//			)
+		}
+	}
+	fire_empty	garand_empty.skc
+	{
+		server
+		{
+			entry shoot
+		}
+		client
+		{
+			entry stopaliaschannel garand_silenced
+			entry sound garand_silenced
+
+			// this view kick needs to match that in the main fire animation
+			entry viewkick 	    -2.5 -2.5   -0.1 -0.1   0.15   "T"  8.0 8.2 3.6
+
+			// muzzle flash
+//			entry tagdlight tag_barrel 0.25 0.2 0.15 150 0.11
+//			entry tagspawn tag_barrel
+//			(
+//				count 1
+//				model models/fx/muzflash.tik
+//				color 0.00 0.00 1.00
+//				scale 0.20
+//				life 0.01
+//				velocity 300.00
+//				alignstretch 0.03
+//				randomroll
+//			)
+//
+//			entry tagspawn tag_barrel
+//			(
+//				count 1
+//				model muzsprite.spr
+//				color 1.00 1.00 1.00
+//				scale 0.10
+//				scalerate 10
+//				life 0.04
+//			)
+//
+			entry tagspawn tag_barrel
+			(
+				count 1
+				scale .7
+				model models/fx/snipesmoke.tik
+			)
+
+			// shell eject
+			entry tagspawn tag_eject
+			(
+				spawnrange 2048
+				count 1
+				model models/ammo/rifleshell.tik
+				scale 1.0
+				velocity 70
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_rifle_shell
+			)
+
+			// eject the empty clip
+			entry commanddelay 0.3 tagspawn tag_eject
+			(
+				spawnrange 2048
+				count 1
+				model models/ammo/garand_clip_empty.tik
+				scale 1.0
+				velocity 40
+				randvel crandom 20 crandom 20 60
+				emitterangles 0 0 0
+				avelocity crandom 70 crandom 70 0
+				offset 0 0 2
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_rifle_shell
+			)
+			entry commanddelay 0.3 sound snd_ping
+
+			// smoke puff
+//			entry commanddelay 0.05 tagspawn tag_barrel
+//			(
+//				volumetric
+//				model gun			// sets the type of smoke
+//				life 10				// amount of smoke
+//				scale 1.5			// radius
+//				alpha 0.4			// density
+//				color 0.7 0.7 0.7		// RBG color of the smoke
+//				velocity 2			// base velocity away from the surface
+//				randvelaxis random 6 0 0	// velocity offset
+//				offsetalongaxis random 4 0 0	// positional offset
+//			)
+		}
+	}
+}
+
+/*QUAKED playerweapon_allied_m1-Garand (0.0 0.0 1.0) (-8 -8 -8) (8 8 8)
+American rifle - M1 Garand.
+*/

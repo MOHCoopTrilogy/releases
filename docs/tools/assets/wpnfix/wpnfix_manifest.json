@@ -1,11 +1,179 @@
 {
+  "models/weapons/30calportable_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/30calportable_blued.tik": {
+    "new": true
+  },
+  "models/weapons/30calportable_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/30calportable_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/30calportable_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/30calportable_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/30calportable_gold.tik": {
+    "new": true
+  },
   "models/weapons/KAR98sniper_g98scope.tik": {
     "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
     "base_md5": "6ea7c67d9cd1cd993e105f0c898d99bc"
   },
+  "models/weapons/arisaka_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/arisaka_blued.tik": {
+    "new": true
+  },
+  "models/weapons/arisaka_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/arisaka_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/arisaka_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/arisaka_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/arisaka_gold.tik": {
+    "new": true
+  },
+  "models/weapons/arisakasniper_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/arisakasniper_blued.tik": {
+    "new": true
+  },
+  "models/weapons/arisakasniper_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/arisakasniper_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/arisakasniper_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/arisakasniper_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/arisakasniper_gold.tik": {
+    "new": true
+  },
   "models/weapons/bar_bar1918.tik": {
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
     "base_md5": "189c94623ed1214f4fe311336e776cda"
+  },
+  "models/weapons/bar_bar1918_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/bar_bar1918_blued.tik": {
+    "new": true
+  },
+  "models/weapons/bar_bar1918_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/bar_bar1918_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/bar_bar1918_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/bar_bar1918_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/bar_bar1918_gold.tik": {
+    "new": true
+  },
+  "models/weapons/berettasilenced_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/berettasilenced_blued.tik": {
+    "new": true
+  },
+  "models/weapons/berettasilenced_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/berettasilenced_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/berettasilenced_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/berettasilenced_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/berettasilenced_gold.tik": {
+    "new": true
+  },
+  "models/weapons/carbine_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/carbine_blued.tik": {
+    "new": true
+  },
+  "models/weapons/carbine_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/carbine_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/carbine_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/carbine_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/carbine_gold.tik": {
+    "new": true
+  },
+  "models/weapons/carcanosniper_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/carcanosniper_blued.tik": {
+    "new": true
+  },
+  "models/weapons/carcanosniper_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/carcanosniper_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/carcanosniper_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/carcanosniper_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/carcanosniper_gold.tik": {
+    "new": true
+  },
+  "models/weapons/colt_silenced_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/colt_silenced_blued.tik": {
+    "new": true
+  },
+  "models/weapons/colt_silenced_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/colt_silenced_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/colt_silenced_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/colt_silenced_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/colt_silenced_gold.tik": {
+    "new": true
   },
   "models/weapons/dp28.tik": {
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
@@ -39,9 +207,387 @@
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
     "base_md5": "1050ec58e03cfe5ff8c5ee36c12f8a5f"
   },
+  "models/weapons/enfieldsniper_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/enfieldsniper_blued.tik": {
+    "new": true
+  },
+  "models/weapons/enfieldsniper_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/enfieldsniper_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/enfieldsniper_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/enfieldsniper_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/enfieldsniper_gold.tik": {
+    "new": true
+  },
+  "models/weapons/garand_scoped_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/garand_scoped_blued.tik": {
+    "new": true
+  },
+  "models/weapons/garand_scoped_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/garand_scoped_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/garand_scoped_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/garand_scoped_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/garand_scoped_gold.tik": {
+    "new": true
+  },
+  "models/weapons/garand_silenced_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/garand_silenced_blued.tik": {
+    "new": true
+  },
+  "models/weapons/garand_silenced_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/garand_silenced_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/garand_silenced_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/garand_silenced_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/garand_silenced_gold.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_blued.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_gold.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_silenced_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_silenced_blued.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_silenced_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_silenced_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_silenced_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_silenced_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/greasegun_silenced_gold.tik": {
+    "new": true
+  },
+  "models/weapons/kar98snipersilenced_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/kar98snipersilenced_blued.tik": {
+    "new": true
+  },
+  "models/weapons/kar98snipersilenced_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/kar98snipersilenced_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/kar98snipersilenced_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/kar98snipersilenced_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/kar98snipersilenced_gold.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08_blued.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08_gold.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08silenced_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08silenced_blued.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08silenced_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08silenced_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08silenced_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08silenced_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/lugerp08silenced_gold.tik": {
+    "new": true
+  },
+  "models/weapons/mg42portable_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/mg42portable_blued.tik": {
+    "new": true
+  },
+  "models/weapons/mg42portable_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/mg42portable_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/mg42portable_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/mg42portable_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/mg42portable_gold.tik": {
+    "new": true
+  },
+  "models/weapons/mp40silenced_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/mp40silenced_blued.tik": {
+    "new": true
+  },
+  "models/weapons/mp40silenced_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/mp40silenced_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/mp40silenced_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/mp40silenced_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/mp40silenced_gold.tik": {
+    "new": true
+  },
+  "models/weapons/mp44scoped_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/mp44scoped_blued.tik": {
+    "new": true
+  },
+  "models/weapons/mp44scoped_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/mp44scoped_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/mp44scoped_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/mp44scoped_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/mp44scoped_gold.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_sniper_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_sniper_blued.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_sniper_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_sniper_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_sniper_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_sniper_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_sniper_gold.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_snipersilenced_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_snipersilenced_blued.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_snipersilenced_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_snipersilenced_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_snipersilenced_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_snipersilenced_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/nagant_snipersilenced_gold.tik": {
+    "new": true
+  },
+  "models/weapons/nambu_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/nambu_blued.tik": {
+    "new": true
+  },
+  "models/weapons/nambu_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/nambu_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/nambu_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/nambu_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/nambu_gold.tik": {
+    "new": true
+  },
+  "models/weapons/p38silenced_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/p38silenced_blued.tik": {
+    "new": true
+  },
+  "models/weapons/p38silenced_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/p38silenced_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/p38silenced_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/p38silenced_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/p38silenced_gold.tik": {
+    "new": true
+  },
+  "models/weapons/ppk_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/ppk_blued.tik": {
+    "new": true
+  },
+  "models/weapons/ppk_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/ppk_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/ppk_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/ppk_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/ppk_gold.tik": {
+    "new": true
+  },
+  "models/weapons/ppsh43silenced_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/ppsh43silenced_blued.tik": {
+    "new": true
+  },
+  "models/weapons/ppsh43silenced_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/ppsh43silenced_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/ppsh43silenced_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/ppsh43silenced_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/ppsh43silenced_gold.tik": {
+    "new": true
+  },
   "models/weapons/springfield_m1903.tik": {
     "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
     "base_md5": "d1947806f35f4ce0fb135fce7f8cd2cc"
+  },
+  "models/weapons/springfield_unscoped_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/springfield_unscoped_blued.tik": {
+    "new": true
+  },
+  "models/weapons/springfield_unscoped_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/springfield_unscoped_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/springfield_unscoped_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/springfield_unscoped_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/springfield_unscoped_gold.tik": {
+    "new": true
   },
   "models/weapons/thompson50_bloody.tik": {
     "new": true
@@ -95,6 +641,27 @@
   "models/weapons/tt33silenced_gold.tik": {
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
     "base_md5": "7c9052aa7c82c128ad70b5d2efec8167"
+  },
+  "models/weapons/type100smg_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/type100smg_blued.tik": {
+    "new": true
+  },
+  "models/weapons/type100smg_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/type100smg_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/type100smg_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/type100smg_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/type100smg_gold.tik": {
+    "new": true
   },
   "scripts/coop_wpnfix.shader": {
     "by": "wpnfix",
@@ -355,6 +922,618 @@
     "base_md5": "8de4541d2fa57abb5e450645ab117ae9",
     "by": "gen_east_lift.py"
   },
+  "textures/coop_skins/30calportable/30cal_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/30calportable/30cal_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/30calportable/30cal_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/30calportable/30cal_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/30calportable/shells_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/30calportable/shells_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/30calportable/shells_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/30calportable/shells_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/arisaka/s93_model97_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/arisaka/s93_model97_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/arisaka/s93_model97_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/arisaka/s93_model97_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/front_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/front_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/front_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/front_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewis1_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewis1_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewis1_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewis1_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewis2_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewis2_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewis2_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewis2_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewismag_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewismag_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewismag_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/lewismag_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/strap_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/strap_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/strap_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/bar_bar1918/strap_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/berettasilenced/beretta_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/berettasilenced/beretta_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/berettasilenced/beretta_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/berettasilenced/beretta_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/base_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/base_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/base_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/base_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/carbine1_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/carbine1_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/carbine1_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/carbine1_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/m1a1_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/m1a1_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/m1a1_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/m1a1_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/mech_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/mech_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/mech_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/mech_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/parts_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/parts_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/parts_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/parts_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/receiver_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/receiver_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/receiver_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carbine/receiver_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carcanosniper/carcano_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carcanosniper/carcano_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carcanosniper/carcano_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carcanosniper/carcano_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carcanosniper/carcano_scope_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carcanosniper/carcano_scope_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carcanosniper/carcano_scope_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/carcanosniper/carcano_scope_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/colt_silenced/s93_colt_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/colt_silenced/s93_colt_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/colt_silenced/s93_colt_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/colt_silenced/s93_colt_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/enfieldsniper/lee-enfield_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/enfieldsniper/lee-enfield_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/enfieldsniper/lee-enfield_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/enfieldsniper/lee-enfield_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/m1d2_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/m1d2_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/m1d2_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/m1d2_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/m1d_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/m1d_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/m1d_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/m1d_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/s93_garand_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/s93_garand_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/s93_garand_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/garand_silenced/s93_garand_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/greasegun/greaser_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/greasegun/greaser_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/greasegun/greaser_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/greasegun/greaser_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_metal_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_metal_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_metal_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_metal_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_scope_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_scope_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_scope_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_scope_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_stock_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_stock_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_stock_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/kar98snipersilenced/s93_k98sniper_stock_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/lugerp08/p08_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/lugerp08/p08_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/lugerp08/p08_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/lugerp08/p08_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mg42portable/mg42_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mg42portable/mg42_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mg42portable/mg42_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mg42portable/mg42_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal1_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal1_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal1_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal1_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal2_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal2_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal2_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal2_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal3_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal3_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal3_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp40silenced/metal3_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/g43_support_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/g43_support_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/g43_support_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/g43_support_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp442_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp442_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp442_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp442_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp443_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp443_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp443_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp443_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp44_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp44_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp44_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/mp44scoped/s93_mp44_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_sniper/mosin-nagant_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_sniper/mosin-nagant_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_sniper/mosin-nagant_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_sniper/mosin-nagant_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_sniper/weas_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_sniper/weas_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_sniper/weas_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_sniper/weas_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_snipersilenced/wrapping_06_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_snipersilenced/wrapping_06_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_snipersilenced/wrapping_06_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nagant_snipersilenced/wrapping_06_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nambu/s93_nambu_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nambu/s93_nambu_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nambu/s93_nambu_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/nambu/s93_nambu_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/p38silenced/s93_p38_blackgrip_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/p38silenced/s93_p38_blackgrip_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/p38silenced/s93_p38_blackgrip_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/p38silenced/s93_p38_blackgrip_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/p38silenced/s93_p38_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/p38silenced/s93_p38_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/p38silenced/s93_p38_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/p38silenced/s93_p38_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_barrel_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_barrel_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_barrel_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_barrel_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_body_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_body_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_body_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_body_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_hammer_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_hammer_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_hammer_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_hammer_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_mag_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_mag_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_mag_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_mag_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_slide_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_slide_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_slide_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_slide_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_trigger_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_trigger_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_trigger_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppk/ppk_trigger_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppsh43silenced/ppsh43_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppsh43silenced/ppsh43_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppsh43silenced/ppsh43_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/ppsh43silenced/ppsh43_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/s93_springfield2_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/s93_springfield2_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/s93_springfield2_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/s93_springfield2_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/s93_springfield3_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/s93_springfield3_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/s93_springfield3_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/s93_springfield3_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/spring_sights_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/spring_sights_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/spring_sights_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/springfield_unscoped/spring_sights_camo_woodland.jpg": {
+    "new": true
+  },
   "textures/coop_skins/thompson50/clip50_bloody.jpg": {
     "new": true
   },
@@ -377,6 +1556,18 @@
     "new": true
   },
   "textures/coop_skins/thompson50/s93_thompson_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/type100smg/type100_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/type100smg/type100_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/type100smg/type100_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/type100smg/type100_camo_woodland.jpg": {
     "new": true
   },
   "textures/coop_smlescope/body.jpg": {
