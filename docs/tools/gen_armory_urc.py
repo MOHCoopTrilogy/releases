@@ -152,7 +152,7 @@ class Out:
 # Real metrics (measured in the engine): a verdana-12 label is a 12-unit cell (capitals ~9 tall, text widths from the font's own table x 0.63),
 # facfont-20 is a ~16-unit cell.  The hero gun box is wide (332x52) so a rifle fills ~88% of the panel width; its transform is solved for THAT box
 # (docs/tools/armory_hero_fit.tsv, hero_fit.py).  Card / slot-tile gun boxes keep the slot-thumbnail aspect (46x25 = 1.84), so xfmt is reused.
-STAT_LABELS = ["DAMAGE", "RATE OF FIRE", "ACCURACY", "MOBILITY", "RELOAD"]
+STAT_LABELS = ["DAMAGE", "FIRE RATE", "ACCURACY", "MOBILITY", "RELOAD"]   # [v1.10.61 4:3 caption fit, 84b33abe]
 BOX_W, BOX_H = 46, 25                      # card + slot-tile gun box
 HERO_X, HERO_Y, HERO_W, HERO_H = 144, 66, 332, 128      # 2.6 : 1, ~40 % of the centre column
 CARD_BACK = (0.205, 0.196, 0.178)          # a lighter backdrop behind every gun render (dark guns 26 / 32 / 52 / 61 stay readable)
@@ -248,7 +248,7 @@ def build_urc():
     o.carry("finlk8", (376, sy + 4, 7, 7))
 
     # ---------------------------------------------------------------- slot tiles: thumbnail, slot caption and the gun's NAME
-    names = ["PRIM 1", "PRIM 2", "SIDE", "NADE"]
+    names = ["PRI 1", "PRI 2", "SIDE", "NADE"]   # [v1.10.61 4:3 caption fit, 84b33abe]
     for i in range(4):
         n = i + 1
         x, y = 140 + i * 86, SLOT_Y
@@ -298,7 +298,7 @@ def build_urc():
     o.new("Label", "cmpDotE", (492, 75, 6, 6), bg=FAINT)
     o.text("cmpNowCap", 502, 72, 30, "NOW", col=DIM)
     for n in range(1, 5):
-        o.text("cmpNow%d" % n, 526, 72, 100, link="coop_loNs%d" % n, col=DIM, enable="coop_loSel%d" % n)
+        o.text("cmpNow%d" % n, 534, 72, 92, link="coop_loNs%d" % n, col=DIM, enable="coop_loSel%d" % n)
     for r in range(5):
         y = 90 + r * 44
         o.text("stLbl%d" % r, 492, y, 66, STAT_LABELS[r], col=DIM)
