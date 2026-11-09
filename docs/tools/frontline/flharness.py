@@ -115,7 +115,12 @@ def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()
         args += ["+set", "ui_dmmap", mapname, "+exec", "coop_mod/start_server.cfg"]
     else:
         args += ["+map", mapname]
-    args, late = hw.apply_policy(args, width=w, height=h)
+    d = hw.test_display()
+    if w > d["rect"][2] - d["rect"][0] or h > d["rect"][3] - d["rect"][1]:
+        # big-resolution check (e.g. the user's 3440x1440) on the 1920x1080 test display: let the window overhang
+        d = dict(d)
+        d["rect"] = (d["rect"][0], d["rect"][1], d["rect"][0] + w, d["rect"][1] + h)
+    args, late = hw.apply_policy(args, width=w, height=h, display=d)
     on += late
     with open(os.path.join(MAINTT, "fl_on.cfg"), "w", newline="\n") as f:
         f.write("\n".join(on) + "\n")
@@ -136,20 +141,29 @@ def join():
     return False
 
 
-def shots(mapname, views, outdir, renderer, coop):
+def shots(mapname, views, outdir, renderer, coop, w=1280, h=720, fps=False):
     os.makedirs(outdir, exist_ok=True)
     hg.acquire_slot(OWNER, EXE, HOME, [PORT], minutes=30)
     try:
-        c = launch(mapname, renderer, coop)
+        c = launch(mapname, renderer, coop, w=w, h=h,
+                   extra_sets=(["set fps 1", "set com_maxfps 250", "set r_swapInterval 0"] if fps else []))
         with c:
             if not wait_log(r"Server: %s|Spawning Entities Done|COOP_MAPGRADE" % re.escape(mapname), 300):
                 raise RuntimeError("map never loaded")
             time.sleep(8)
             join()
             time.sleep(14)          # the coop join card lingers up to 9 s after the last spectator send
-            step(["noclip", "wait 5", "god", "wait 5", "notarget", "wait 20"])
+            step(["noclip", "wait 5", "god", "wait 5", "notarget", "wait 20"] if not os.environ.get("FL_NOCLIP_OFF") else ["wait 20"])
             sd = os.path.join(MAINTT, "screenshots")
             for name, v in views.items():
+                if "pos" not in v:          # stock-map check: shoot from wherever the player spawned
+                    step(["popmenu 0", "wait 5", "popmenu 0", "wait 120", "screenshot fl_%s" % name, "wait 20"])
+                    time.sleep(1.5)
+                    for ext in (".tga", ".jpg"):
+                        src = os.path.join(MAINTT, "screenshots", "fl_%s%s" % (name, ext))
+                        if os.path.exists(src):
+                            shutil.move(src, os.path.join(outdir, "%s%s" % (name, ext)))
+                    continue
                 x, y, z = v["pos"]
                 p, yaw = v["ang"][0], v["ang"][1]
                 step(["popmenu 0", "wait 5", "popmenu 0", "set thereisnomonkey 1", "set cheats 1", "tele %.1f %.1f %.1f" % (x, y, z), "wait 5", "face %.1f %.1f 0" % (p, yaw), "wait 120",
@@ -173,4 +187,7 @@ if __name__ == "__main__":
         r = "opengl1"
         if "--renderer" in a:
             r = a[a.index("--renderer") + 1]
-        shots(a[1], json.load(open(a[2])), a[3], r, "--coop" in a)
+        w, h = 1280, 720
+        if "--size" in a:
+            w, h = (int(v) for v in a[a.index("--size") + 1].split("x"))
+        shots(a[1], json.load(open(a[2])), a[3], r, "--coop" in a, w, h, "--fps" in a)

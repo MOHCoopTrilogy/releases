@@ -58,6 +58,8 @@ class BSP:
         self.brushes = []          # dict(shader, sides[(plane, shader)], bounds)
         self.models = []           # extra inline models: dict(surfaces[ids], brushes[ids])
         self.entities = []         # list of ordered (key, value) lists
+        self.vis_cell = 0          # >0: leafs no wider than this, clustered on a 2D grid of this size
+        self.vis_radius = 0        # cluster sees cluster when their cell centres are within this distance
 
     # ---------- tables ----------
     def shader(self, name, surface_flags=0, content_flags=0):
@@ -162,12 +164,18 @@ class BSP:
             return -(len(leafs))  # -(leaf+1)
 
         def rec(ss, bs, lo, hi, depth):
+            big = False   # leaf size is not forced: big leaves get a see-all cluster instead (see the PVS below)
             if len(ss) + len(bs) <= max_items or depth >= max_depth:
                 return make_leaf(ss, bs, lo, hi)
-            axis = max(range(3), key=lambda k: hi[k] - lo[k])
+            if big:
+                axis = 0 if hi[0] - lo[0] >= hi[1] - lo[1] else 1     # size split: x/y only, never z
+            else:
+                axis = max(range(3), key=lambda k: hi[k] - lo[k])
             cents = sorted([(sb[i][0][axis] + sb[i][1][axis]) / 2 for i in ss] +
                            [(bb[i][0][axis] + bb[i][1][axis]) / 2 for i in bs])
-            split = float(round(cents[len(cents) // 2]))
+            split = float(round(cents[len(cents) // 2])) if cents else float(round((lo[axis] + hi[axis]) / 2))
+            if not (lo[axis] + 1 < split < hi[axis] - 1) or (big and axis < 2 and len(ss) + len(bs) <= max_items):
+                split = float(round((lo[axis] + hi[axis]) / 2))
             if not (lo[axis] < split < hi[axis]):
                 return make_leaf(ss, bs, lo, hi)
             fs = [i for i in ss if sb[i][1][axis] > split]
@@ -176,8 +184,9 @@ class BSP:
             bb_ = [i for i in bs if bb[i][0][axis] < split]
             # items exactly on the plane on both sides: put them on both
             fs += [i for i in ss if sb[i][1][axis] == split == sb[i][0][axis]]
-            if len(fs) + len(fb) == len(ss) + len(bs) and len(bs_) + len(bb_) == len(ss) + len(bs):
-                return make_leaf(ss, bs, lo, hi)
+            tot = len(ss) + len(bs)
+            if max(len(fs) + len(fb), len(bs_) + len(bb_)) > 0.9 * tot:
+                return make_leaf(ss, bs, lo, hi)      # no real progress (big overlapping items): stop here
             n = [0.0, 0.0, 0.0]
             n[axis] = 1.0
             pnum = self.plane(tuple(n), split)
@@ -233,10 +242,37 @@ class BSP:
 
         lumps[L_LEAFSURFACES] = struct.pack(f"<{len(leafsurfs)}i", *[s_remap[i] for i in leafsurfs])
         lumps[L_LEAFBRUSHES] = struct.pack(f"<{len(leafbrushes)}i", *[b_remap[i] for i in leafbrushes])
+        # Distance PVS (no portals): leaf cluster = its 2D grid cell; a cluster sees every cluster whose cell centre is
+        # within vis_radius (+ a cell diagonal). The fog/farplane hides the cut. Lets the renderer skip most of an
+        # open converted level per frame (GL2 at 3440x1440 dropped to ~31 fps drawing ~450k world tris).
+        clus = [0] * len(leafs)
+        vis = b""
+        if self.vis_cell and leafs:
+            cells = {}
+            for k, (lo, hi, *_r) in enumerate(leafs):
+                if max(hi[0] - lo[0], hi[1] - lo[1]) > 2 * self.vis_cell:
+                    key = ("all", k)            # a big leaf: its own cluster that sees and is seen by everything
+                else:
+                    key = (int(((lo[0] + hi[0]) / 2) // self.vis_cell), int(((lo[1] + hi[1]) / 2) // self.vis_cell))
+                clus[k] = cells.setdefault(key, len(cells))
+            n = len(cells)
+            nbytes = (n + 7) // 8
+            keys = sorted(cells, key=lambda c: cells[c])
+            r = self.vis_radius + 1.5 * self.vis_cell
+            rows = []
+            for a in keys:
+                row = bytearray(nbytes)
+                for b in keys:
+                    if a[0] == "all" or b[0] == "all" or                             (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 <= (r / self.vis_cell) ** 2:
+                        j = cells[b]
+                        row[j >> 3] |= 1 << (j & 7)
+                rows.append(bytes(row))
+            vis = struct.pack("<ii", n, nbytes) + b"".join(rows)
+        lumps[15] = vis
         lumps[L_LEAFS] = b"".join(
-            struct.pack("<2i3i3i8i", 0, 0, *[int(math.floor(x)) for x in lo], *[int(math.ceil(x)) for x in hi],
+            struct.pack("<2i3i3i8i", clus[k], 0, *[int(math.floor(x)) for x in lo], *[int(math.ceil(x)) for x in hi],
                         fs, ns, fb, nb, 0, 0, 0, 0)
-            for lo, hi, fs, ns, fb, nb in leafs)
+            for k, (lo, hi, fs, ns, fb, nb) in enumerate(leafs))
         lumps[L_NODES] = b"".join(
             struct.pack("<3i3i3i", p, c0, c1, *[int(math.floor(x)) for x in lo], *[int(math.ceil(x)) for x in hi])
             for p, c0, c1, lo, hi in nodes)

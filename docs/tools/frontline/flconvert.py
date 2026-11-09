@@ -25,7 +25,8 @@ import flcore  # noqa: E402
 import flbsp   # noqa: E402
 import flpack  # noqa: E402
 
-CONVERTER_VERSION = "0.1.0"
+CONVERTER_VERSION = "0.2.0"
+MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
 
@@ -104,6 +105,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         flip_render = not (rdown > rup)
 
     B = flbsp.BSP()
+    B.vis_cell = 1024.0
+    B.vis_radius = float(flpack.spec(level).get("vis_radius", 0))
     files = {}
     shader_lines = []
     tex_names = {}
@@ -138,6 +141,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         tex_names[key] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
         return tex_names[key]
 
+    batches = {}
     for m in meshes:
         if not m["tris"]:
             continue
@@ -157,11 +161,30 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             r, g, b, _a = m["cols"][i]
             u, v = m["uvs"][i]
             verts.append((p, (u, v), tuple(x / l for x in acc[i]), (r, g, b, 255)))
-        idx = [i for t in tris for i in t]
-        B.add_soup(sh, verts, idx)
+        cx = sum(v[0][0] for v in verts) / len(verts)
+        cy = sum(v[0][1] for v in verts) / len(verts)
+        batches.setdefault((sh, int(cx // MERGE_CELL), int(cy // MERGE_CELL)), []).append((verts, tris))
         stats["tris"] += len(tris)
         if m["tex"]:
             stats["tris_textured"] += len(tris)
+
+    # Merge the ~8.5k tiny Frontline draws into few big surfaces (same shader, same 1536u cell, <= the engine's
+    # SHADER_MAX_VERTEXES 2048 per surface): the draw-call count, not the triangle count, sank GL2 to ~36 fps.
+    nmerged = 0
+    for key in sorted(batches):
+        cv, ci = [], []
+        for verts, tris in batches[key]:
+            if len(cv) + len(verts) > 2000 or len(ci) + 3 * len(tris) > 12000:
+                B.add_soup(key[0], cv, ci)
+                nmerged += 1
+                cv, ci = [], []
+            base = len(cv)
+            cv.extend(verts)
+            ci.extend(base + i for t in tris for i in t)
+        if cv:
+            B.add_soup(key[0], cv, ci)
+            nmerged += 1
+    stats["surfaces"] = nmerged
 
     # sky box (quads around the world, both windings) so the void renders as a MOHAA sky
     sky = B.shader(sky_shader or flpack.spec(level).get("sky", "textures/sky/mohday1"), 0x4 | flbsp.SURF_NOLIGHTMAP, 0)

@@ -3,7 +3,8 @@
  "1_1": {
   "story": "M2L1 Seaside Stowaway",
   "sky": "textures/sky/mohday1",
-  "farplane": 9000,
+  "farplane": 6500,
+  "vis_radius": 7000,
   "farplane_color": "0.62 0.66 0.70",
   "chars_bum": {
    "obj_drop": 104, "obj_roster": 106, "obj_dock": 111, "obj_crate": 114, "obj_wall": 118,
