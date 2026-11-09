@@ -10,6 +10,7 @@ Determinism: sorted iteration everywhere, fixed zip timestamps, fixed TGA
 encoding, so two runs on the same disc give the same sha256.
 """
 import argparse
+import glob
 import hashlib
 import io
 import json
@@ -243,6 +244,41 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             tex_names[name] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
         return tex_names[name]
 
+    _rkgrade = {}
+
+    def reskin_grade(key, rk):
+        """per-channel vertex-colour gain so the MOHAA image's OPAQUE mean lands on Frontline's own texture mean
+        (grade_for's rule; the hedgerow's transparent sky band must not pull the mean)"""
+        if key in _rkgrade:
+            return _rkgrade[key]
+        g = (1.0, 1.0, 1.0)
+        try:
+            import io as _io
+            from PIL import Image
+            from statistics import fmean
+            t = L.texture(key)
+            fl = [fmean(t["rgba"][c::4]) for c in range(3)] if t and t["rgba"] else None
+            data = None
+            for game in ("main", "mainta", "maintt"):        # last in load order wins
+                for pk in sorted(glob.glob(os.path.join(mohaa_base, game, "*.pk3")), key=str.lower):
+                    try:
+                        z = zipfile.ZipFile(pk)
+                        nm = {n.lower(): n for n in z.namelist()}.get(rk["image"].lower())
+                        if nm:
+                            data = z.read(nm)
+                    except Exception:
+                        pass
+            if fl and data:
+                im = Image.open(_io.BytesIO(data)).convert("RGBA").resize((128, 128))
+                px = [q for q in im.getdata() if q[3] >= 128]
+                hd = [fmean(q[c] for q in px) for c in range(3)]
+                g = tuple(max(0.3, min(1.2, round(f / max(1.0, h), 3))) for f, h in zip(fl, hd))
+        except Exception:
+            pass
+        _rkgrade[key] = g
+        stats.setdefault("reskin_grade", {})[short_key(key)] = list(g)
+        return g
+
     _cols = {}
 
     def reskin_columns(k):
@@ -303,16 +339,31 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             # rk.overshoot of the face height so the image's alpha crown rises above the old flat top. Collision is
             # built from Frontline's .cdb separately and is not touched.
             sh = reskin_shader(rk)
-            col = reskin_columns(short_key(m["tex"]))
+            gk = reskin_grade(m["tex"], rk)
+            # one wall = the triangles of this draw that share a plane (stacked quads map as one face, and a
+            # neighbouring taller hedge can no longer stretch it - that put the image's transparent band mid-wall)
+            planes_ = {}
+            for a, b, c in tris:
+                n = face_normal(verts[a][0], verts[b][0], verts[c][0])
+                if not n or abs(n[2]) > 0.5:
+                    continue
+                hl = math.hypot(n[0], n[1]) or 1.0
+                hx, hy = n[0] / hl, n[1] / hl
+                if hx < -1e-6 or (abs(hx) < 1e-6 and hy < 0):
+                    hx, hy = -hx, -hy
+                pk_ = (round(math.degrees(math.atan2(hy, hx)) / 3), round((hx * verts[a][0][0] + hy * verts[a][0][1]) / 6))
+                zz = planes_.setdefault(pk_, [1e9, -1e9])
+                for i in (a, b, c):
+                    zz[0] = min(zz[0], verts[i][0][2])
+                    zz[1] = max(zz[1], verts[i][0][2])
+                planes_.setdefault(("t", a, b, c), pk_)
             nv, nt = [], []
             for a, b, c in tris:
                 T = [verts[a], verts[b], verts[c]]
                 n = face_normal(T[0][0], T[1][0], T[2][0])
                 if not n or abs(n[2]) > 0.5:
                     continue                          # only the vertical faces of the block
-                cx_ = sum(q[0][0] for q in T) / 3
-                cy_ = sum(q[0][1] for q in T) / 3
-                z0, z1 = col(cx_, cy_)                # the whole hedge column, so stacked quads map as one wall
+                z0, z1 = planes_[planes_[("t", a, b, c)]]
                 if z1 - z0 < 4:
                     continue
                 hl = math.hypot(n[0], n[1]) or 1.0
@@ -324,7 +375,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     pz = ztop if p[2] >= z1 - 1.0 else p[2]          # only the column's top edge rises
                     uu = (p[0] * tx + p[1] * ty) / float(rk.get("tile", 128))
                     vv = (ztop - pz) / max(1.0, ztop - z0)
-                    nv.append(((p[0], p[1], pz), (uu, vv), q[2], (q[3][0], q[3][1], q[3][2], 255)))
+                    cr, cg, cb = (min(255, int(round(q[3][k] * gk[k]))) for k in range(3))
+                    nv.append(((p[0], p[1], pz), (uu, vv), q[2], (cr, cg, cb, 255)))
                 nt.append((base, base + 1, base + 2))
             stats["reskinned_tris"] = stats.get("reskinned_tris", 0) + len(nt)
             if not nt:

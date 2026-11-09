@@ -41,7 +41,7 @@ MAGIC = b"\xff\xff\xff\xff"
 H = {"c": None}
 
 
-def test_display():
+def test_display(slot=True):
     """user 2026-11-08: test windows go on the 34" ULTRAWIDE, picked by its RESOLUTION (3440x1440), never by the
     primary flag or the device name (the primary is now a 3840x2160 TV and names renumber)"""
     for m in hw.monitors():
@@ -49,7 +49,7 @@ def test_display():
         if (r[2] - r[0], r[3] - r[1]) == (3440, 1440):
             # shared display (H:\hzm_work\DISPLAY_QUEUE.md): FL_SLOT=A|B tiles our window into the left/right
             # 1720x1440 half so concurrent test clients never overlap
-            slot = os.environ.get("FL_SLOT", "").upper()
+            slot = os.environ.get("FL_SLOT", "").upper() if slot else ""
             if slot in ("A", "B"):
                 m = dict(m)
                 x0 = r[0] + (0 if slot == "A" else 1720)
@@ -151,7 +151,8 @@ def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()
     on += late
     with open(os.path.join(MAINTT, "fl_on.cfg"), "w", newline="\n") as f:
         f.write("\n".join(on) + "\n")
-    c = hw.launch_background(args[0], args[1:], CLIENT, policy=False, log=log, display=test_display(),
+    # the guard needs the REAL monitor (a slot rect would make the ultrawide itself an 'other display')
+    c = hw.launch_background(args[0], args[1:], CLIENT, policy=False, log=log, display=test_display(slot=False),
                              below_normal=not os.environ.get("FL_FULLSPEED"))
     H["c"] = c
     hg.set_slot_pid(OWNER, c.proc.pid)

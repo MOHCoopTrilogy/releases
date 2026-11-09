@@ -212,6 +212,47 @@ challenge files)
 - **MP isolation:** the bump only runs on `coop_fl_1_1` in coop or SP. `chal_team_bump` already skips MP
   runs, and nothing writes the stat from an MP mode.
 
+**Cutscenes** (user request 2026-11-09: "We will need cutscenes too to work")
+
+What the disc has (scan of every level and `DATA/MOVIES`):
+- **Films:** `DATA/MOVIES/*.mpc`, 24 files, 1.04 GB. Each is EA `MPCh` chunks around MPEG-2 640x448 at
+  29.97 fps, plus EA ADPCM R1 stereo 48 kHz audio; ffmpeg's electronicarts demuxer reads them.
+  - campaign: `brief11`, `brief21`, `brief31`, `brief41`, `brief51` (one briefing per mission), `intro`,
+    `title`, `ealogo`, `credits`;
+  - extras, not campaign: `history1-6`, `making1-6`, `extras1-2`, `demo`.
+- **In-engine camera scenes** (placed `.bpd` objects and `.cbs` scripts):
+  - 1_2: `CrateCam_1_2` / `PlayerInCrateCam1_2`, inside the stowaway crate;
+  - 1_4, 4_1, 4_2, 5_4: the `Sturmgeist*Cam*` villain scenes;
+  - 2_1: `Buddy_Intro1`;
+  - 3_1: `Captain_Tarver_Intro`;
+  - 5_1: `M5_1_SpyCamera`, `TrunkLidSpyCamera5_2`, the flying papers;
+  - 6_1: the D-Day landing camera (`DDayMovingCameraScript` / `DDayPlayerCameraScript` plus intro lines).
+- **1_1:** no camera scene. It has the aircraft flypast (`FlyThrough_1_1`, 7 placements; Stuka/P-47 `.mvd`
+  motion) and the P-47 set piece, already rebuilt. Its cinematic is the mission briefing film `brief11`.
+
+Plan:
+1. **Films = briefing maps**, copying the stock SH/BT recipe (`maps/briefing/briefinge1.scr`):
+   - the film goes out in SERVERINFO (`sets coop_briefvideo`), so every client plays it together and a late
+     joiner joins mid-film, with a per-player `cinematic` for old exes;
+   - skip uses the coop READY gate (the whole squad), and SP uses the vanilla skip;
+   - a 210 s safety cap.
+   The pilot is `briefing/briefingfl1` -> `coop_fl_1_1`:
+   - `docs/tools/frontline/flmovies.py` (player's PC) encodes `brief11` to `video/flbrief11.roq`;
+   - the briefing room BSP is a copy of the player's own `maps/briefing/briefinge1.bsp`;
+   - both go into the local `zzzz_coop_fl_m1_brief.pk3`; the script `maps/briefing/briefingfl1.scr` and an
+     empty `spawnlocations` label are mod side.
+   RoQ size is 512x352: the engine's RoQ buffer is 512x512 (`cl_cin.cpp linbuf`). Playing the full
+   640x448 needs that buffer raised (an engine change; proposed, not done). Frontline's films have no
+   subtitle track, so none are added.
+2. **Camera scenes:** rebuild with MOHAA's cinematic recipe, copied from the stock scripts:
+   - camera entities on a path, `cuecamera` / `follow`, `freezeplayer` and `drawhud 0`, letterbox;
+   - the mod's cutscene lock: every player frozen and protected, skippable by the host or a vote, late
+     joiners are put into the scene;
+   - subtitles from the cue banks where the disc has them.
+   Pilot candidate: 1_2's crate camera (the next level after 1_1).
+3. **Order:** briefings first (one tool, five films), then the camera scenes level by level as each
+   level is ported.
+
 ## 4. Where Frontline sits in the Full Campaign (proposal)
 
 Story order, not disc order:
