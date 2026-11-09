@@ -72,7 +72,7 @@ def floor_vote(tris_xyz):
 
 
 def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, flip_coll=None, report=None,
-            sky_shader=None, vgm=None, transcribe=False, mohaa_base=None):
+            sky_shader=None, vgm=None, mohaa_base=None):
     t0 = time.time()
     L = flcore.Level(flcore.Disc(img), level)
     mapname = "mfl_" + level
@@ -175,6 +175,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     clip = B.shader("textures/common/fl_collision", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
     nb = rejected = 0
     for name, vs, ts in coll:
+        if os.environ.get("FL_COLL_ONLY") and os.environ["FL_COLL_ONLY"] not in name:
+            continue
         P = [X(v) for v in vs]
         for a, b, c, _f in ts:
             a2, b2, c2 = wind(a, b, c, flip_coll)
@@ -221,7 +223,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         files[f"maps/{mapname}.bsp"] = f.read()
     os.remove(bsp_path)
     files[f"scripts/fl_{level}.shader"] = "".join(shader_lines).encode()
-    pack = flpack.build(L.disc, L, level, X, vgm, files, do_transcribe=transcribe, mohaa_base=mohaa_base) if vgm else None
+    pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base) if vgm else None
 
     os.makedirs(os.path.dirname(os.path.abspath(out_pk3)), exist_ok=True)
     with zipfile.ZipFile(out_pk3, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:
@@ -255,10 +257,9 @@ if __name__ == "__main__":
     ap.add_argument("--flip-collision", dest="flip_coll", action="store_const", const=True, default=None)
     ap.add_argument("--report")
     ap.add_argument("--vgmstream")
-    ap.add_argument("--transcribe", action="store_true")
     ap.add_argument("--mohaa", help="the MOHAA install (basepath) - read for the alias bridge")
     a = ap.parse_args()
     r = convert(a.image, a.level, a.out, a.scale, a.mirror, a.flip_render, a.flip_coll, a.report,
-                vgm=a.vgmstream, transcribe=a.transcribe, mohaa_base=a.mohaa)
+                vgm=a.vgmstream, mohaa_base=a.mohaa)
     print(json.dumps({k: r[k] for k in ("map", "brushes", "prism_rejected", "textured_pct", "seconds", "sha256", "votes",
                                         "flip_render", "flip_collision", "pack")}, default=str))

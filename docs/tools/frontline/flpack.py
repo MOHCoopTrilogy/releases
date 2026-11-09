@@ -75,22 +75,12 @@ def chars_table(disc):
     return disc.read("DATA/chars.bum").split(b"\0")
 
 
-def transcribe(wavs, model_name="small"):
-    """Optional: English subtitles for English speech the disc never subtitled.
-    Uses faster-whisper with a locally cached model; returns {} when unavailable."""
-    try:
-        from faster_whisper import WhisperModel
-        m = WhisperModel(model_name, device="cpu", compute_type="int8", cpu_threads=4, local_files_only=True)
-    except Exception:
-        return {}
-    out = {}
-    for key, path in sorted(wavs.items()):
-        segs, _ = m.transcribe(path, language="en", beam_size=5)
-        out[key] = " ".join(s.text.strip() for s in segs).strip()
-    return out
+# TODO(frontline): English speech has no English subtitle on the disc (SMUL carries EN only for foreign-language
+# lines). Decision 2026-11-08: keep Frontline's own behaviour - subtitles only where the disc has them. A local
+# speech-to-text pass was prototyped and removed; revisit only with the user's OK (bundled model, licence, size).
 
 
-def build(disc, L, level, X, vgm, files, do_transcribe=False, log=print, mohaa_base=None):
+def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None):
     sp = spec(level)
     d = f"DATA/{level.split('_')[0]}/{level}/"
     lines = ["// GENERATED on this PC by docs/tools/frontline/flpack.py from the player's own disc.",
@@ -116,15 +106,13 @@ def build(disc, L, level, X, vgm, files, do_transcribe=False, log=print, mohaa_b
             log("cue decode failed", key)
             continue
         wavs[key] = out
-    asr = transcribe({k: v for k, v in wavs.items() if not by_stream[sp["cues"][k]]["subs"].get("en")}) \
-        if do_transcribe else {}
     for key, path in sorted(wavs.items()):
         alias = f"fl{level.replace('_', '')}_{key}"
         rel = f"sound/fl/{level}/{key}.wav"
         with open(path, "rb") as f:
             files[rel] = f.read()
         ali.append(f'aliascache {alias} {rel} soundparms 1.0 0.0 1.0 0.0 600 4000 dialog streamed maps "mfl"')
-        sub = by_stream[sp["cues"][key]]["subs"].get("en") or asr.get(key, "")
+        sub = by_stream[sp["cues"][key]]["subs"].get("en", "")
         spk = next((v for k, v in sp["speakers"].items() if key.startswith(k)), "")
         lines.append(f'\tlevel.fl_cue["{key}"] = "{alias}"')
         lines.append(f'\tlevel.fl_cue_sub["{key}"] = {scr_str(sub)}')
@@ -192,5 +180,4 @@ def build(disc, L, level, X, vgm, files, do_transcribe=False, log=print, mohaa_b
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
               "\tlevel.fl_data_ok = 1", "}end", ""]
     files[f"maps/mfl_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
-    return {"axis": na, "allies": nl, "health": nh, "cues": len(wavs), "music": len(segs),
-            "transcribed": sorted(asr)}
+    return {"axis": na, "allies": nl, "health": nh, "cues": len(wavs), "music": len(segs)}

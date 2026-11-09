@@ -98,7 +98,13 @@ class BSP:
                 d = -lo[axis] if sign < 0 else hi[axis]
                 sides.append((self.plane(tuple(n), d), shader_ix))
         for n, d in planes_nd:
-            sides.append((self.plane(n, d), shader_ix))
+            pn = self.plane(n, d)
+            # [bug-10605] never two sides on the SAME plane: an axis-aligned face (a flat floor's top = its +z bevel)
+            # would be listed twice, and the winding builders (q3 ChopWindingInPlace, epsilon 0: a winding with no
+            # point in front is freed) delete BOTH copies - flat floors lost their walk face and the navmesh had holes
+            if any(pn == s[0] for s in sides):
+                continue
+            sides.append((pn, shader_ix))
         self.brushes.append({"shader": shader_ix, "sides": sides, "bounds": (list(lo), list(hi))})
         return len(self.brushes) - 1
 

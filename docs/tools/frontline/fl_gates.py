@@ -66,14 +66,14 @@ def logcheck(path):
         print(tag, len(hits), hits[-6:])
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and sys.argv[1] in ("soak", "log"):
     if sys.argv[1] == "soak":
         soak(sys.argv[2], sys.argv[3], sys.argv[4])
     else:
         logcheck(sys.argv[2])
 
 
-def navreach(dump, pk3, mapname, start):
+def navreach(dump, pk3, mapname, start, undirected=False):
     """Directed reach on the engine's own navmesh dump (nav_dump 1): share of pathnodes whose nearest
     walkable poly (within 96u horizontally, 72u vertically) is reachable from the player start."""
     import collections
@@ -88,6 +88,8 @@ def navreach(dump, pk3, mapname, start):
             polys[int(p[1])] = tuple(sum(v[i] for v in vs) / nv for i in range(3))
         elif p[0] == "L":
             out[int(p[1])].add(int(p[2]))
+            if undirected:
+                out[int(p[2])].add(int(p[1]))
     grid = collections.defaultdict(list)
     for i, c in polys.items():
         grid[cell(c[0], c[1])].append(i)
@@ -131,3 +133,4 @@ def navreach(dump, pk3, mapname, start):
 
 if __name__ == "__main__" and sys.argv[1] == "navreach":
     navreach(sys.argv[2], sys.argv[3], sys.argv[4], tuple(float(v) for v in sys.argv[5].split(",")))
+    navreach(sys.argv[2], sys.argv[3], sys.argv[4], tuple(float(v) for v in sys.argv[5].split(",")), undirected=True)
