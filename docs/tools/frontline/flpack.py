@@ -25,6 +25,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 AXIS_RX = re.compile(r"^(Soldier[ABC]_|TransHangout_|Soldier_Say|InterrogationOfficer|SoldierA_MachineGunNest)")
 ALLY_RX = re.compile(r"^(AlliedSoldier_A$|InterrogationVictim$)")
 HEALTH = {"Health10": 10, "Health25": 25, "Health50": 50}
+# set-piece placements the mission script rebuilds with MOHAA recipes (level.fl_list[cls][1..n])
+LISTED = ("JeepBody_1_1", "LandMineTriggerParent", "ExplodingBarrelSwap_1_1", "FlyThrough_1_1", "Rocket_1_1",
+          "BuildingExplosionParent", "StartBeachExplosionBig")
 
 
 MAP_TOKEN_RX = re.compile(r'^(\s*(?:alias|aliascache)\s+(\S+)\s.*?maps\s+")([^"]*)(".*)$', re.I)
@@ -80,7 +83,7 @@ def chars_table(disc):
 # speech-to-text pass was prototyped and removed; revisit only with the user's OK (bundled model, licence, size).
 
 
-def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None):
+def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
     sp = spec(level)
     d = f"DATA/{level.split('_')[0]}/{level}/"
     lines = ["// GENERATED on this PC by docs/tools/frontline/flpack.py from the player's own disc.",
@@ -141,12 +144,21 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None):
 
     # ---- placements ----
     na = nl = nh = nm = 0
+    nudged = []
+    lists = {}
     for e in L.entities():
         names = [s for s in e["strs"] if not s.lower().startswith("start")]
         if not names:
             continue
         cls = names[0]
         p = X(e["pos"])
+        if grid is not None and cls != "Player":
+            # [bug-10623] a Frontline placement can sit where the bigger MOHAA player box overlaps collision:
+            # move it to the nearest free standing spot (deterministic ring search, <= 96u)
+            q, moved = grid.free_spot(p)
+            if moved > 0:
+                nudged.append((cls, round(moved)))
+            p = (q[0], q[1], q[2])
         o = f"( {p[0]:.0f} {p[1]:.0f} {p[2] + 24:.0f} )"
         if AXIS_RX.match(cls):
             na += 1
@@ -164,6 +176,10 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None):
         elif cls in ("MObjective_1_1", "M1_1_ResistanceDrop", "M1_1_ClipBoard", "M1_1_WallExplosion",
                      "M1_1_Field_Phone", "Conversation", "InterrogationOfficer"):
             lines.append(f'\tlevel.fl_pos["{cls}"] = {o}')
+        elif cls in LISTED:
+            nl_ = lists.get(cls, 0) + 1
+            lists[cls] = nl_
+            lines.append(f'\tlevel.fl_list["{cls}"][{nl_}] = {o}')
         elif cls == "MountedMachineGun":
             nm += 1
             lines.append(f'\tlevel.fl_mg[{nm}] = {o}')
@@ -177,7 +193,9 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None):
     if navs:
         w = navs[0]
         lines.append(f"\tlevel.fl_west = ( {w[0]:.0f} {w[1]:.0f} {w[2] + 24:.0f} )")
+    for cls, n in sorted(lists.items()):
+        lines.append(f'\tlevel.fl_list_n["{cls}"] = {n}')
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
               "\tlevel.fl_data_ok = 1", "}end", ""]
     files[f"maps/mfl_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
-    return {"axis": na, "allies": nl, "health": nh, "cues": len(wavs), "music": len(segs)}
+    return {"nudged": nudged, "axis": na, "allies": nl, "health": nh, "cues": len(wavs), "music": len(segs)}

@@ -56,14 +56,17 @@ def main(out):
             with open(os.path.join(mt, "fl_c.cfg"), "w", newline="\n") as f:
                 f.write('bind F9 "popmenu 0; wait 10; primarydmweapon rifle; wait 5; join_team allies; wait 30; '
                         'popmenu 0; wait 30; popmenu 0; +attackprimary; wait 10; -attackprimary"\n'
-                        'set cg_drawviewmodel 1\nset com_maxfps 60\n')
+                        'set cg_drawviewmodel 1\nset com_maxfps 60\n'
+                        'set s_volume 0\nset s_musicvolume 0\nset s_ambientvolume 0\n')   # muted runs
             hg.acquire_slot(owner, os.path.join(folder, "openmohaa.exe"), home, [PORT], minutes=30)
             cargs = ["+set", "com_target_game", "2", "+set", "fs_basepath", GOG, "+set", "fs_homepath", home,
                      "+set", "cl_renderer", "opengl2", "+set", "r_mode", "-1", "+set", "r_customwidth", "960",
                      "+set", "r_customheight", "540", "+set", "r_fullscreen", "0", "+set", "name", name,
                      "+set", "logfile", "2", "+exec", "fl_c.cfg", "+connect", "127.0.0.1:%d" % PORT]
-            full, late = hw.apply_policy([os.path.join(folder, "openmohaa.exe")] + cargs, width=960, height=540)
-            c = hw.launch_background(full[0], full[1:], folder, policy=False, log=lambda *a: None)
+            prim = next(m for m in hw.monitors() if (m["rect"][2] - m["rect"][0], m["rect"][3] - m["rect"][1]) == (3440, 1440))
+            full, late = hw.apply_policy([os.path.join(folder, "openmohaa.exe")] + cargs, width=960, height=540,
+                                         display=prim)
+            c = hw.launch_background(full[0], full[1:], folder, policy=False, log=lambda *a: None, display=prim)
             hg.set_slot_pid(owner, c.proc.pid)
             clients.append((c, folder, owner, name))
             print("client", name, "pid", c.proc.pid, flush=True)

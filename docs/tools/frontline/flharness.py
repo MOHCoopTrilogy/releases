@@ -13,6 +13,7 @@ usage:
   flharness.py cmd <map> <cfgfile> <seconds>       run arbitrary console lines after join
 """
 import json
+import math
 import os
 import re
 import shutil
@@ -38,6 +39,16 @@ PORT = 12295
 RCONPW = "flpilot"
 MAGIC = b"\xff\xff\xff\xff"
 H = {"c": None}
+
+
+def test_display():
+    """user 2026-11-08: test windows go on the 34" ULTRAWIDE, picked by its RESOLUTION (3440x1440), never by the
+    primary flag or the device name (the primary is now a 3840x2160 TV and names renumber)"""
+    for m in hw.monitors():
+        r = m["rect"]
+        if (r[2] - r[0], r[3] - r[1]) == (3440, 1440):
+            return m
+    raise RuntimeError("no 3440x1440 display connected - refusing to put a test window anywhere else")
 
 
 def log(*a):
@@ -88,7 +99,8 @@ def step(lines, timeout=240):
     _N["n"] += 1
     mk = "FLSTEP_%d_done" % _N["n"]
     with open(os.path.join(MAINTT, "flstep.cfg"), "w", newline="\n") as f:
-        f.write("\n".join(lines + ["echo %s" % mk]) + "\n")
+        # re-mute every step: the coop server stuffs s_volume 0.9 to the client after it joins
+        f.write("\n".join(["set s_volume 0", "set s_musicvolume 0"] + lines + ["set s_volume 0", "echo %s" % mk]) + "\n")
     start = len(read_log())
     rcon("exec flstep.cfg")
     if not wait_log(re.escape(mk), timeout, max(0, start - 10)):
@@ -103,10 +115,14 @@ def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()
         os.remove(LOG)
     on = ["set rconPassword %s" % RCONPW, "set sv_maxbots 0", "set sv_numbots 0", "set com_maxfps 60",
           "set thereisnomonkey 1", "set cheats 1", "set coop_dev 1", "set cg_drawviewmodel 0",
-          "set con_notifytime -1", "set g_teamswitchdelay 0", "set coop_joinCard 0"] + list(extra_sets)
+          "set con_notifytime -1", "set g_teamswitchdelay 0", "set coop_joinCard 0",
+          "set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0"] + list(extra_sets)   # user: every test run muted
     sets = [("com_target_game", "2"), ("fs_basepath", GOG), ("fs_homepath", HOME), ("cl_renderer", renderer),
             ("r_mode", "-1"), ("r_customwidth", str(w)), ("r_customheight", str(h)), ("r_fullscreen", "0"),
-            ("developer", "1"), ("logfile", "2"), ("net_port", str(PORT)), ("net_ip", "127.0.0.1")] + ([("com_maxfpsUnfocused", "0"), ("r_swapInterval", "0")] if os.environ.get("FL_FULLSPEED") else [])
+            ("developer", "1"), ("logfile", "2"), ("net_port", str(PORT)), ("net_ip", "127.0.0.1"),
+            ("s_volume", "0")] + \
+        ([("com_maxfpsUnfocused", "0"), ("r_swapInterval", "0")] if os.environ.get("FL_FULLSPEED") else [])
+    # user: test runs are silent - the coop server stuffs s_volume 0.9 after join, so no sound device at all
     args = [EXE]
     for k, v in sets:
         args += ["+set", k, v]
@@ -115,7 +131,7 @@ def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()
         args += ["+set", "ui_dmmap", mapname, "+exec", "coop_mod/start_server.cfg"]
     else:
         args += ["+map", mapname]
-    d = hw.test_display()
+    d = test_display()
     if w > d["rect"][2] - d["rect"][0] or h > d["rect"][3] - d["rect"][1]:
         # big-resolution check (e.g. the user's 3440x1440) on the 1920x1080 test display: let the window overhang
         d = dict(d)
@@ -124,7 +140,8 @@ def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()
     on += late
     with open(os.path.join(MAINTT, "fl_on.cfg"), "w", newline="\n") as f:
         f.write("\n".join(on) + "\n")
-    c = hw.launch_background(args[0], args[1:], CLIENT, policy=False, log=log, below_normal=not os.environ.get("FL_FULLSPEED"))
+    c = hw.launch_background(args[0], args[1:], CLIENT, policy=False, log=log, display=test_display(),
+                             below_normal=not os.environ.get("FL_FULLSPEED"))
     H["c"] = c
     hg.set_slot_pid(OWNER, c.proc.pid)
     log("client pid", c.proc.pid)
@@ -191,3 +208,65 @@ if __name__ == "__main__":
         if "--size" in a:
             w, h = (int(v) for v in a[a.index("--size") + 1].split("x"))
         shots(a[1], json.load(open(a[2])), a[3], r, "--coop" in a, w, h, "--fps" in a)
+
+
+def walk(outdir, pk3, renderer="opengl2"):
+    """REAL-INPUT objective run: the client walks the last metres with +forward and presses +use (no teleport
+    into the trigger, no self-test). AI is live (god only, no notarget) so guards/roamers/MG nests engage."""
+    import zipfile as _zf
+    os.makedirs(outdir, exist_ok=True)
+    t = _zf.ZipFile(pk3).read("maps/mfl_1_1_data.scr").decode("latin-1")
+
+    def vec(name):
+        m = re.search(re.escape(name) + r" = \( (\S+) (\S+) (\S+) \)", t)
+        return tuple(float(v) for v in m.groups())
+    drop, roster = vec('level.fl_pos["M1_1_ResistanceDrop"]'), vec('level.fl_pos["M1_1_ClipBoard"]')
+    wall, west = vec('level.fl_pos["M1_1_WallExplosion"]'), vec("level.fl_west")
+    dock = tuple((a + b) / 2 for a, b in zip(wall, west))
+    crate = (west[0] + 40, west[1], west[2])
+    goals = [("drop", drop, True), ("roster", roster, True), ("wall", wall, True), ("dock", dock, False),
+             ("crate", crate, True)]
+    hg.acquire_slot(OWNER, EXE, HOME, [PORT], minutes=30)
+    try:
+        c = launch("mfl_1_1", renderer, False, w=1280, h=720,
+                   extra_sets=["set coop_fltest 0", "set coop_health 20000", "set coop_dbno 0"])
+        with c:
+            if not wait_log(r"Spawning Entities Done|COOP_MAPGRADE", 300):
+                raise RuntimeError("map never loaded")
+            time.sleep(8)
+            join()
+            time.sleep(14)
+            for name, g, use in goals:
+                # approach from a Frontline navpoint 100-320u from the goal (a known-walkable spot), facing the goal
+                import fl_gates
+                nodes = fl_gates.pathnodes(pk3, "mfl_1_1")
+                cand = [q for q in nodes if 48 < math.hypot(q[0] - g[0], q[1] - g[1]) < 320 and abs(q[2] - g[2]) < 80]
+                q = min(cand, key=lambda q: (math.hypot(q[0] - g[0], q[1] - g[1]), q)) if cand else                     (g[0] - 200, g[1], g[2] + 16)
+                ax, ay = q[0], q[1]
+                dist = math.hypot(g[0] - ax, g[1] - ay)
+                yaw = math.degrees(math.atan2(g[1] - ay, g[0] - ax))
+                fwd_frames = int(dist / 220.0 * 60) + 10
+                start = len(read_log())
+                lines = ["popmenu 0", "+attackprimary", "wait 5", "-attackprimary", "wait 30", "popmenu 0",
+                         "set thereisnomonkey 1", "set cheats 1",
+                         "tele %.0f %.0f %.0f" % (ax, ay, q[2] - 8), "wait 20", "face 0 %.0f 0" % yaw, "wait 10",
+                         "+forward", "wait %d" % fwd_frames, "-forward", "wait 10"]
+                if use:
+                    lines += ["+use", "wait 8", "-use", "wait 20", "+use", "wait 8", "-use", "wait 30"]
+                lines += ["wait 60", "coord", "screenshot fl_walk_%s" % name, "wait 20"]
+                step(lines)
+                ok = wait_log(r"FLOBJ \d+ done", 25, start)
+                log("objective", name, "->", ok.group(0) if ok else "NOT COMPLETED")
+                time.sleep(2)
+                for ext in (".tga", ".jpg"):
+                    src = os.path.join(MAINTT, "screenshots", "fl_walk_%s%s" % (name, ext))
+                    if os.path.exists(src):
+                        shutil.move(src, os.path.join(outdir, "%s%s" % (name, ext)))
+            time.sleep(10)
+            shutil.copyfile(LOG, os.path.join(outdir, "qconsole.log"))
+    finally:
+        hg.release_slot(OWNER)
+
+
+if __name__ == "__main__" and sys.argv[1] == "walk":
+    walk(sys.argv[2], sys.argv[3])

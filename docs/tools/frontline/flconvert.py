@@ -131,6 +131,36 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     return False
         return False
 
+    # textures whose meshes carry real vertex alpha (Frontline's water: 203)
+    vtx_alpha = {m["tex"] for m in meshes if m["tex"] and m["tris"] and min(c[3] for c in m["cols"]) < 250}
+    _lv = sorted(c[0] + c[1] + c[2] for m in meshes for c in m["cols"] if not (c[0] == c[1] == c[2] == 255))
+    _mv = _lv[len(_lv) // 2] // 3 if _lv else 128
+    med_light = (_mv, _mv, _mv)
+    grade = {}     # upgraded texture key -> per-channel gain toward Frontline's own texture colour
+
+    def grade_for(key, up):
+        """deterministic grade: scale the vertex colours so the HD texture's mean colour lands on Frontline's"""
+        import io as _io
+        from statistics import fmean
+        t = L.texture(key)
+        if not (t and t["rgba"]):
+            return None
+        fl = [fmean(t["rgba"][c::4]) for c in range(3)]
+        for game in ("maintt", "mainta", "main"):
+            pk = os.path.join(mohaa_base, game, up["pak"])
+            if os.path.exists(pk):
+                try:
+                    from PIL import Image
+                    im = Image.open(_io.BytesIO(zipfile.ZipFile(pk).read(up["path"]))).convert("RGB").resize((64, 64))
+                    px = im.tobytes()
+                    hd = [fmean(px[c::3]) for c in range(3)]
+                    return tuple(max(0.3, min(1.2, round(f / max(1.0, h), 3))) for f, h in zip(fl, hd))
+                except Exception:
+                    return None
+        return None
+
+    debug_ids = {}
+
     def tex_shader(key):
         if key in tex_names:
             return tex_names[key]
@@ -152,14 +182,38 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tcull none\n\t{\n\t\tmap " + up["path"] + "\n"
                                 + tcm + "\t\trgbGen vertex\n\t}\n}\n")
             stats["upgraded"] = stats.get("upgraded", 0) + 1
+            if up.get("grade", True):
+                g = grade_for(key, up)
+                if g:
+                    grade[key] = g
+                    stats.setdefault("grades", {})[short] = g
             tex_names[key] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
             return tex_names[key]
         rgba = t["rgba"] if t and t["rgba"] else bytes((255, 0, 255, 255)) * 16
         w, h = (t["w"], t["h"]) if t and t["rgba"] else (4, 4)
         files[name + ".tga"] = tga_bytes(w, h, rgba)
         stats["textures"] += 1
+        if os.environ.get("FL_DEBUGCOLOR"):
+            # QA aid: every texture becomes one flat, fullbright ID colour -> a screenshot pixel names the shader
+            i = len(tex_names) + 1
+            col = ((i * 37) % 251, (i * 91) % 241, (i * 173) % 239)
+            debug_ids[col] = short
+            files[name + ".tga"] = tga_bytes(4, 4, bytes(col + (255,)) * 16)
+            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tcull none\n\t{\n\t\tmap " + name
+                                + ".tga\n\t\trgbGen identity\n\t}\n}\n")
+            tex_names[key] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
+            return tex_names[key]
         has_alpha = any(a < 250 for a in rgba[3::4])
-        if has_alpha:
+        n_px = max(1, len(rgba) // 4)
+        soft = sum(1 for a in rgba[3::4] if 0 < a < 250) / n_px > 0.10
+        if key in vtx_alpha or soft:
+            # translucent: Frontline's water carries its opacity in the vertex alpha (203); soft-edged decals
+            # (grass fringes along hedges) carry it in the texture - alpha-TEST turned their pale fringe opaque
+            ag = "\t\talphaGen vertex\n" if key in vtx_alpha else ""
+            stats["blended"] = stats.get("blended", 0) + 1
+            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm trans\n\tcull none\n\t{\n\t\tmap "
+                                + name + ".tga\n\t\tblendFunc blend\n\t\trgbGen vertex\n" + ag + "\t}\n}\n")
+        elif has_alpha:
             stats["alpha_textures"] += 1
             shader_lines.append(f"{name}\n{{\n\tsurfaceparm nolightmap\n\tcull none\n\t{{\n\t\tmap {name}.tga\n"
                                 f"\t\talphaFunc GE128\n\t\trgbGen vertex\n\t\tdepthWrite\n\t}}\n}}\n")
@@ -171,6 +225,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         return tex_names[key]
 
     batches = {}
+    for m in meshes:
+        if not m["tris"]:
+            continue
+        sh = tex_shader(m["tex"])
     for m in meshes:
         if not m["tris"]:
             continue
@@ -187,9 +245,16 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         verts = []
         for i, p in enumerate(P):
             l = math.sqrt(sum(x * x for x in acc[i])) or 1.0
-            r, g, b, _a = m["cols"][i]
+            r, g, b, va = m["cols"][i]
+            if r == g == b == 255:
+                # Frontline marks some draws "unlit" with pure-white vertex colour; under id Tech 3's vertex
+                # overbright that blows out (the white strip along the hedge alley) -> the level's median light
+                r, g, b = med_light
+            gr = grade.get(m["tex"])
+            if gr:
+                r, g, b = (min(255, int(round(c * k))) for c, k in zip((r, g, b), gr))
             u, v = m["uvs"][i]
-            verts.append((p, (u, v), tuple(x / l for x in acc[i]), (r, g, b, 255)))
+            verts.append((p, (u, v), tuple(x / l for x in acc[i]), (r, g, b, va if m["tex"] in vtx_alpha else 255)))
         cx = sum(v[0][0] for v in verts) / len(verts)
         cy = sum(v[0][1] for v in verts) / len(verts)
         batches.setdefault((sh, int(cx // MERGE_CELL), int(cy // MERGE_CELL)), []).append((verts, tris))
@@ -242,7 +307,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     player = next((e for e in ents if "Player" in e["strs"]), None)
     sp = flpack.spec(level)
     ws = [("classname", "worldspawn"), ("message", f"Frontline {level} (converted locally, converter {CONVERTER_VERSION})"),
-          ("farplane", str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
+          ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
           ("ambientlight", "40 40 40")]
     B.entity(ws)
     kept = []
@@ -269,13 +334,17 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             yaw = math.degrees(math.atan2(-q[1], -q[0])) % 360
             B.entity([("classname", "info_player_axis"), ("origin", f"{q[0]:.0f} {q[1]:.0f} {q[2] + 40:.0f}"), ("angle", f"{yaw:.0f}")])
 
+    import flvis
+    B.vis_occluders = flvis.occluders([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
     bsp_path = out_pk3 + ".bsp.tmp"
     info = B.write(bsp_path)
     with open(bsp_path, "rb") as f:
         files[f"maps/{mapname}.bsp"] = f.read()
     os.remove(bsp_path)
     files[f"scripts/fl_{level}.shader"] = "".join(shader_lines).encode()
-    pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base) if vgm else None
+    import flgeom
+    grid = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
+    pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base, grid=grid) if vgm else None
 
     os.makedirs(os.path.dirname(os.path.abspath(out_pk3)), exist_ok=True)
     with zipfile.ZipFile(out_pk3, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:
@@ -288,10 +357,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     rep = {"level": level, "map": mapname, "converter": CONVERTER_VERSION, "scale": scale, "mirror": mirror,
            "flip_render": flip_render, "flip_collision": flip_coll,
            "votes": {"collision_up_down": [up, down], "render_up_down": [rup, rdown]},
-           "brushes": nb, "prism_rejected": rejected, "bsp": info, "stats": stats,
+           "brushes": nb, "prism_rejected": rejected, "bsp": info, "vis": getattr(B, "vis_stats", None), "stats": stats,
            "textured_pct": round(100.0 * stats["tris_textured"] / max(1, stats["tris"]), 2),
            "pk3": os.path.basename(out_pk3), "sha256": sha, "seconds": round(time.time() - t0, 1),
            "player_start": X(player["pos"]) if player else None, "offset_m": offset, "pack": pack}
+    if debug_ids:
+        rep["debug_ids"] = {"%d,%d,%d" % k: v for k, v in debug_ids.items()}
     if report:
         with open(report, "w") as f:
             json.dump(rep, f, indent=1, default=str)

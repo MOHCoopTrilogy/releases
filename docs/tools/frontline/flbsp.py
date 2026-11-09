@@ -21,6 +21,8 @@ import math
 import struct
 import zlib
 
+import flvis
+
 HEADER_LUMPS = 28
 L_SHADERS, L_PLANES, L_LIGHTMAPS, L_SURFACES, L_DRAWVERTS, L_DRAWINDEXES = 0, 1, 2, 3, 4, 5
 L_LEAFBRUSHES, L_LEAFSURFACES, L_LEAFS, L_NODES, L_SIDEEQ, L_BRUSHSIDES, L_BRUSHES = 6, 7, 8, 9, 10, 11, 12
@@ -260,10 +262,43 @@ class BSP:
             keys = sorted(cells, key=lambda c: cells[c])
             r = self.vis_radius + 1.5 * self.vis_cell
             rows = []
+            # per grid cell: floor and top height of the render geometry in it (for the 2.5D occluder test)
+            zr = {}
+            if getattr(self, "vis_occluders", None) is not None:
+                sky = {i for i, (nm, _sf, _cf) in enumerate(self.shaders) if "/sky/" in nm}
+                for srf in self.surfaces:
+                    if srf["shader"] in sky:
+                        continue
+                    for v in srf["verts"]:
+                        k = (int(v[0][0] // self.vis_cell), int(v[0][1] // self.vis_cell))
+                        lohi = zr.get(k)
+                        zr[k] = (min(lohi[0], v[0][2]), max(lohi[1], v[0][2])) if lohi else (v[0][2], v[0][2])
+            seen_pair = {}
+            self.vis_stats = {"pairs": 0, "occluded": 0}
+
+            def sees(a, b):
+                if a[0] == "all" or b[0] == "all":
+                    return True
+                d2 = (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2
+                if d2 > (r / self.vis_cell) ** 2:
+                    return False
+                if not zr or d2 * self.vis_cell ** 2 <= flvis.NEAR ** 2 or a not in zr or b not in zr:
+                    return True
+                key = (min(a, b), max(a, b))
+                if key not in seen_pair:
+                    vc = self.vis_cell
+                    A = (a[0] * vc, a[1] * vc, (a[0] + 1) * vc, (a[1] + 1) * vc, zr[a][0], zr[a][1])
+                    Bc = (b[0] * vc, b[1] * vc, (b[0] + 1) * vc, (b[1] + 1) * vc, zr[b][0], zr[b][1])
+                    v = flvis.visible(self.vis_occluders, A, Bc) or flvis.visible(self.vis_occluders, Bc, A)
+                    seen_pair[key] = v
+                    self.vis_stats["pairs"] += 1
+                    self.vis_stats["occluded"] += (not v)
+                return seen_pair[key]
+
             for a in keys:
                 row = bytearray(nbytes)
                 for b in keys:
-                    if a[0] == "all" or b[0] == "all" or                             (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 <= (r / self.vis_cell) ** 2:
+                    if sees(a, b):
                         j = cells[b]
                         row[j >> 3] |= 1 << (j & 7)
                 rows.append(bytes(row))

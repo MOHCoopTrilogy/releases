@@ -1,7 +1,17 @@
 {
  "_comment": "Texture upgrades: a converted Frontline texture is replaced by a texture the mod ALREADY ships (nothing new is shipped or downloaded) only where that texture is clearly better (sharper, higher resolution, no upscale artefacts) and fits the look. Keys are the converter's texture names (level -> short key). tc_scale keeps the world size of the pattern (Frontline stones per metre). Frontline's baked vertex lighting stays on top (rgbGen vertex). Never signs or lettering. Reviewed by eye: docs/proposals/frontline_study_2026-11-08 (texture pass).",
  "1_1": {
-  "10d700": {"path": "textures/misc_outside/cobblestone2.jpg", "pak": "zzzzz-AA_HD_Project_Pak3.pk3", "tc_scale": 1.6,
-             "reason": "main town street (3183 floor tris): Frontline 128px dark mossy granite setts; HD Project cobblestone2 is 1024px, same mossy setts look, no artefacts; scaled 1.6x so the stones keep Frontline's size"}
+  "10d700": {
+   "path": "textures/misc_outside/cobblestone2.jpg",
+   "pak": "zzzzz-AA_HD_Project_Pak3.pk3",
+   "tc_scale": 1.6,
+   "reason": "main town street (3183 floor tris): Frontline 128px dark mossy granite setts; HD Project cobblestone2 is 1024px, same mossy setts look, no artefacts; scaled 1.6x so the stones keep Frontline's size"
+  },
+  "noupscale": [
+   "49380",
+   "49f00",
+   "b2500"
+  ],
+  "_noupscale_reason": "road signs 'Periers 7km' / '30 Km a l'heure' and the 'Le Consortium' poster: lettering - Frontline's own pixels are kept (no ESRGAN on text)"
  }
 }
