@@ -16,6 +16,11 @@ THE LADDER (7 finishes per gun, easy -> hard; the order is the prestige order, G
 The Thompson keeps its existing GOLD challenge (wpn_thompson_gold, 250 kills): its ladder is
 BLUED 25 / WOODLAND 50 / WINTER 100 / DESERT 175 / GOLD 250 (existing cid) / CHROME 350 / BLOODY 500.
 
+[v1.10.68 finishes2] The SECOND finish set (fids 40+: paint / camo coats, Airborne 101st and the layered finishes) extends the same
+per-gun ladder: its rungs are in docs/tools/finishes2.tsv (rung / slow), interleaved between the seven above so the ladder keeps
+climbing evenly to the 750 cap (standard: 75 BATTLE-WORN, 125 AIRBORNE ... 750 PARADE). Same stat, same chal_def, cid
+fin_<wid>_<key>; a gun gets a rung only for a finish it really has (coop_skinGive[give][fid] in loadoutskins.scr).
+
 ONE SET PER WID, not per tik: g43 + coop_g43_irons, fg42 + coop_fg42_irons, shotgun + coop_dbshotgun, kar98 +
 kar98_mortar all resolve to the same wid through challenges.scr::chal_widFromModel (parsed from the script here, so
 this generator can never disagree with the kill-stat writer about which gun a model is).
@@ -47,6 +52,12 @@ SLOW_BASE = 15                                      # a gun whose own base chall
 EXISTING = {("thompson", 1): "wpn_thompson_gold"}
 # wids with no base wpn_ challenge to read a display name from
 GUN_NAME = {"fg42": "FG 42", "carbine": "M1 Carbine", "lewis": "Lewis Gun"}   # [v1.10.65 camo] + two stats with no base challenge
+# [v1.10.68 finishes2] the second set, from the shared table (fid -> key, label; its own rungs)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import finishes2 as _F2  # noqa: E402
+FS2 = {r["fid"]: r for r in _F2.table()}
+for _f, _r in FS2.items():
+    FINISHES[_f] = (_r["key"], _r["name"])
 
 
 def read(p):
@@ -76,7 +87,7 @@ def load():
     give = re.findall(r'level\.coop_skinGive\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', skins)
     fins = {}
     for g, f, p in give:
-        if int(f) <= 7:
+        if int(f) <= 7 or int(f) in FS2:
             fins.setdefault(g, set()).add(int(f))
     base = {}
     for cid, desc, stat, tgt in re.findall(
@@ -108,6 +119,9 @@ def load():
         for fid, tgt in zip(order, ladder):
             if fid in e["fids"]:
                 tiers[fid] = tgt
+        for fid, r2 in FS2.items():                 # [v1.10.68 finishes2] interleaved rungs (finishes2.tsv)
+            if fid in e["fids"]:
+                tiers[fid] = r2["slow"] if btgt <= SLOW_BASE else r2["rung"]
         rows.append({"wid": w, "name": name, "stat": "wpn_" + w, "btgt": btgt, "guns": sorted(e["guns"]), "tiers": tiers})
     return rows, chain
 
@@ -133,7 +147,7 @@ def emit(rows):
     for r in rows:
         L.append("\t//---- %s (%s) ----" % (r["name"], r["wid"]))
         L.append('\tlevel.coop_finGunName["%s"] = "%s"' % (r["wid"], r["name"]))
-        for fid in sorted(r["tiers"], key=lambda f: r["tiers"][f]):
+        for fid in sorted(r["tiers"], key=lambda f: (f in FS2, r["tiers"][f])):
             tgt = r["tiers"][fid]
             cid = cid_for(r["wid"], fid)
             key, lab = FINISHES[fid]

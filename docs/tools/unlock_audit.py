@@ -120,4 +120,58 @@ for label, table in (("challenge", chal_unlocks), ("rank", rank_unlocks)):
         print(f"\n{len(dead)} {label} rewards point at NON-roster tiks:")
         for t in dead:
             print("  " + t)
+# ---- 5. FINISHES (killchal 2026-10-20, ported with finishes2 v1.10.68): a roster gun with finish art (fids 1-7 and the finishes2
+# set, fids 40+) must have, per finish: a WRITER (its wpn_<wid> stat is one chal_widFromModel can return, so challenges.scr::
+# chal_ai_killed counts it), a REACHABLE target (a chal_def in finchal_gen.scr with 0 < target <= 750) and a REAL reward (the variant
+# tik exists: the mod tree for 1-7, the finishes pak for finishes2).
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import finish_challenges as fc  # noqa: E402
+import finishes2 as F2  # noqa: E402
+_skin = io.open(os.path.join(MOD, "coop_mod", "loadoutskins.scr"), encoding="latin-1").read()
+_fs2 = set(F2.fids())
+_fins = {}
+for _g, _f, _v in re.findall(r'level\.coop_skinGive\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]*)"', _skin):
+    if int(_f) <= 7 or int(_f) in _fs2:
+        _fins.setdefault(_g.lower(), {})[int(_f)] = _v
+_chain = fc.wid_chain(io.open(os.path.join(MOD, "coop_mod", "challenges.scr"), encoding="latin-1").read())
+_wids = {w for _t, w in _chain}
+_gen = io.open(os.path.join(MOD, "coop_mod", "finchal_gen.scr"), encoding="latin-1").read()
+_cid = {(w, int(f)): c for w, f, c in re.findall(r'level\.coop_finCid\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', _gen)}
+_tgt = {c: (s, int(n)) for c, s, n in re.findall(r'chal_def "([^"]+)" "[^"]*" "[^"]*" "[^"]*" "([^"]*)" (\d+)', _gen + chal)}
+_pak = F2.pak_path(os.environ.get("HZM_BASE_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod"))
+_pakidx = F2.pak_index(_pak)[1] if os.path.exists(_pak) else {}
+fin_guns, fin_total, fin_bad = 0, 0, []
+for g in roster:
+    fs = _fins.get(g["give"].lower())
+    if not fs:
+        continue
+    wid = fc.wid_of(_chain, g["give"])
+    fin_guns += 1
+    if not wid or wid not in _wids:
+        fin_bad.append((g, "has finish art but no kill stat (chal_widFromModel returns no wid)"))
+        continue
+    for f, var in sorted(fs.items()):
+        c = _cid.get((wid, f))
+        if not c or c not in _tgt:
+            fin_bad.append((g, "finish %d: no per-gun challenge" % f))
+            continue
+        stat, n = _tgt[c]
+        if stat != "wpn_" + wid or not (0 < n <= 750):
+            fin_bad.append((g, "finish %d: %s counts %s to %d (needs wpn_%s, 1..750)" % (f, c, stat, n, wid)))
+            continue
+        if f in _fs2:
+            if var.lower() not in _pakidx:
+                fin_bad.append((g, "finish %d: reward %s is not in %s" % (f, var, os.path.basename(_pak))))
+                continue
+        elif not os.path.exists(os.path.join(MOD, *var.split("/"))) and not os.path.exists(
+                os.path.join(ROOT, "docs", "tools", "assets", "wpnfix", *var.split("/"))):
+            pass                        # the standard seven ride several paks (mod tree, wpnfix, fixes): gen_skins / tik-surfaces own that
+        fin_total += 1
+print(f"finishes: {fin_guns} roster guns carry finish art | {fin_total} gun-finish pairs have a writer, a reachable target and a reward"
+      f" (finishes2 pak: {os.path.basename(_pak) if _pakidx else 'NOT FOUND'})")
+if fin_bad:
+    print(f"\n{len(fin_bad)} FINISH ORPHANS:")
+    for g, why in fin_bad[:40]:
+        print(f"  id {g['id']:>3}  {g['name']:28s} {why}")
+    orphans = orphans + [g for g, _ in fin_bad]
 sys.exit(1 if orphans else 0)

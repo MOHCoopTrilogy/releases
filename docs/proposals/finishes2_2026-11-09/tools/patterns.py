@@ -64,22 +64,36 @@ def blob(rng, cx, cy, r, lobes=7, rough=0.35, k=24):
 
 
 def splitter(rng):
-    """Splittertarn: the field is cut by long straight lines into angular shards; about a third of the shards are printed
-    brown, a third green, the rest stay tan - then the fine green rain strokes over everything"""
-    T = Torus(bg=(138, 120, 84))                 # khaki-brown ground, mid-toned as printed (not cream)
-    cols = ((74, 88, 52), (92, 64, 42))           # green and dark brown shards
-    for _ in range(70):
-        cx, cy = rng.random(), rng.random()
-        a = rng.choice((rng.uniform(-0.5, -0.2), rng.uniform(0.2, 0.5))) + math.pi * rng.randint(0, 1)
-        L, W = rng.uniform(0.10, 0.26), rng.uniform(0.04, 0.09)
-        ca, sa = math.cos(a), math.sin(a)
-        # a sliver: a long thin quadrilateral / triangle with one blunt and one sharp end, straight sides
-        q = [(-L, -W * rng.uniform(0.3, 1.0)), (L * rng.uniform(0.6, 1.0), -W * rng.uniform(0.0, 0.4)),
-             (L, W * rng.uniform(0.2, 0.8)), (-L * rng.uniform(0.3, 0.8), W)]
-        T.poly([(cx + x * ca - y * sa, cy + x * sa + y * ca) for x, y in q], cols[rng.randint(0, 1)])
-    for _ in range(1300):
+    """Splittertarn 31, ANGULAR AT ANY SCALE (coordinator QA 2026-11-09: the overlapping-sliver tile read as rounded blobs on
+    the MP40 and the Colt - a small gun shows only part of one big sliver, and overlapping slivers merge into soft shapes).
+    Now the field is CUT, not stamped: an anisotropic Voronoi partition of the torus (a linear stretch of Euclidean distance,
+    so every cell edge is a straight line and every corner a hard angle) into ~70 long splinter cells, leaning about -25 deg
+    like the printed pattern; each cell is printed green, brown or left tan. Neighbours of one colour merge into bigger
+    shards that are still all straight edges. Then the fine dark-green rain strokes. Seamless: the sites are wrapped."""
+    from scipy.spatial import cKDTree
+    M = 88
+    pts = np.array([(rng.random(), rng.random()) for _ in range(M)])
+    ang = math.radians(-25.0)
+    stretch = 2.6                                   # splinters ~2.6x longer than wide
+    R = np.array([[math.cos(ang), math.sin(ang)], [-math.sin(ang), math.cos(ang)]])
+    A = np.diag([1.0, stretch]) @ R                 # along-axis kept, across-axis scaled up = elongated cells
+    cp = np.concatenate([pts + (dx, dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1)])
+    lab = np.tile(np.arange(M), 9)
+    tree = cKDTree(cp @ A.T)
+    S = N * SS
+    g = (np.arange(S) + 0.5) / S
+    X, Y = np.meshgrid(g, g)
+    _d, idx = tree.query(np.stack([X.ravel(), Y.ravel()], -1) @ A.T)
+    cell = lab[idx].reshape(S, S)
+    cols = np.array([(138, 120, 84), (74, 88, 52), (92, 64, 42)], np.uint8)        # tan ground, green, dark brown
+    pick = np.array([rng.choice((0, 1, 1, 2, 2, 0, 1, 2, 0, 1)) for _ in range(M)])  # ~40 % green, 30 % brown, 30 % tan
+    im = Image.fromarray(cols[pick[cell]], 'RGB')
+    T = Torus(bg=(0, 0, 0))
+    T.im = im
+    T.d = ImageDraw.Draw(T.im)
+    for _ in range(900):
         x, y = rng.random(), rng.random()
-        T.line([(x, y), (x, y + rng.uniform(0.015, 0.04))], (46, 56, 36), 0.0026)   # the dark rain
+        T.line([(x, y), (x, y + rng.uniform(0.012, 0.03))], (46, 56, 36), 0.0022)   # the dark rain
     return T.done()
 
 
@@ -177,8 +191,12 @@ def main():
     rng = random.Random(1944)
     tiles = {'camo_splitter': splitter, 'camo_pea': pea, 'camo_telo': telo, 'camo_amoeba': amoeba,
              'camo_whitewash': whitewash, 'wear_chips': chips, 'wear_scratch': scratches, 'engrave_vines': vines}
+    only = [a for a in sys.argv[2:]]
     for name, fn in tiles.items():
-        im = fn(random.Random(hash(name) & 0xffff ^ 1944))
+        if only and name not in only:
+            continue
+        # a fixed seed per tile (the old hash(name) seed is salted per process, so a re-run redrew every tile)
+        im = fn(random.Random(sum(map(ord, name)) ^ 1944))
         p = os.path.join(OUT, name + '.png')
         im.save(p, optimize=True)
         print('%-16s %s %d KB' % (name, im.mode, os.path.getsize(p) // 1024))

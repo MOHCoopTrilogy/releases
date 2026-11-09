@@ -184,6 +184,19 @@ for ln in io.open(HIST, encoding="utf-8"):
     k, v = ln.rstrip("\r\n").split("\t", 1)
     assert v == clean(v), "weapon_history.tsv row %s has a character the cfg cannot carry" % k
     (CREDIT if k.startswith("credit:") else HISTORY)[k.replace("credit:", "")] = v
+# [v1.10.68 finishes2] the second finish set (fids 40+): its history and credit text live in docs/tools/finishes2.tsv, the one table every
+# finishes2 generator reads (fin:<fid> here, so the viewer treats it exactly like a weapon_history.tsv finish row)
+import finishes2 as F2  # noqa: E402
+FS2 = F2.by_fid()
+for _f, _r in FS2.items():
+    assert _r["history"] == clean(_r["history"]) and _r["credit"] == clean(_r["credit"]), "finishes2.tsv fid %d: a character the cfg cannot carry" % _f
+    if _f in FINNAME:                  # only when this tree carries the finishes2 rows (gen_skins.py fs2)
+        HISTORY.setdefault("fin:%d" % _f, _r["history"])
+
+
+def is_finish(fid):
+    """the standard seven (1-7) and the finishes2 set (40+) are FINISHES; 8-39 are model variants"""
+    return 1 <= fid <= 7 or fid in FS2
 
 # the first pak that ships a file = where it came from; the pak whose texture wins = whose art is on screen
 INV = {}
@@ -241,9 +254,9 @@ def credits_for(gid, model, vstem, fid):
     lines = []
     if vstem and vstem in CREDIT:
         lines += CREDIT[vstem].split(" | ")
-    elif fid >= 8:
+    elif fid >= 8 and not is_finish(fid):
         lines += name_author(MVNAME.get((GIVE_OF[gid], fid), ""))
-    if fid == 0 or (fid >= 8 and not lines):
+    if fid == 0 or (fid >= 8 and not is_finish(fid) and not lines):
         if gid in CREDIT:
             lines += CREDIT[gid].split(" | ")
     e = INV.get(model.lower())
@@ -264,6 +277,8 @@ def credits_for(gid, model, vstem, fid):
                 break
     if 1 <= fid <= 7:
         lines.append("Finish: made for the HZM Coop Mod")
+    elif fid in FS2:
+        lines.append("Finish: " + FS2[fid]["credit"])
     seen, out = set(), []
     for l in lines:
         if l not in seen:
@@ -294,7 +309,7 @@ for i in sorted(RID, key=lambda i: (RTAB[i], i)):
         stem = os.path.splitext(os.path.basename(tik))[0].lower()
         if fid == 0:
             vname = "STANDARD ISSUE"
-        elif fid <= 7:
+        elif is_finish(fid):
             vname = "%s FINISH" % FINNAME.get(fid, str(fid))
         else:
             vname = MVNAME.get((give.lower(), fid), stem.upper())
@@ -340,12 +355,14 @@ def unlock(e):
             ways = ways[:2] + ["(or %d other way%s)" % (len(ways) - 2, "" if len(ways) == 3 else "s")]
         return ways, ("gun", g["gid"], chal_idx)
     wid = wid_of(give)
-    if fid <= 7:
+    if is_finish(fid):
         cid = FINCID.get((wid, fid))
         if cid and cid in CHAL:
             c = CHAL[cid]
             return (["%s (challenge %s)." % (cond(c[3]), clean(c[2])), "Needs the gun unlocked first."],
                     ("text", "Progress: Armory finish chips, in a game."))
+        if fid in FS2:
+            return ["Not currently obtainable."], ("text", "")
         return (["The old account-wide %s reward is retired, players who earned it keep it on mastered guns." % FINNAME[fid].lower()],
                 ("text", "Not obtainable for new players."))
     tok = MVTOK.get((give, fid))
@@ -549,7 +566,7 @@ for gi, g in enumerate(guns):
     for k, e in enumerate(ents):
         fid = e["fid"]
         hist = HISTORY[g["gid"]]
-        note = HISTORY.get("mv:" + e["stem"]) or (HISTORY.get("fin:%d" % fid) if 1 <= fid <= 7 else None)
+        note = HISTORY.get("mv:" + e["stem"]) or (HISTORY.get("fin:%d" % fid) if is_finish(fid) else None)
         sent = re.split(r"(?<=\.)\s+", hist)
         while True:
             body = ((note + " ") if note else "") + " ".join(sent)
@@ -774,12 +791,14 @@ if cmd == "build":
         os.remove(os.path.join(MOD, "ui", "wpnview", f))
     json.dump(manifest(), open(os.path.join(ROOT, "docs", "proposals", "wpnviewer_2026-11-04", "entries.json"), "w"), indent=1)
 print("weapon viewer: %d guns, %d entries (%d finishes, %d model variants); rack hotspot %s; %d files %s" % (
-    len(guns), len(entries), sum(1 for e in entries if 1 <= e["fid"] <= 7), sum(1 for e in entries if e["fid"] >= 8), how,
+    len(guns), len(entries), sum(1 for e in entries if is_finish(e["fid"])), sum(1 for e in entries if e["fid"] >= 8 and not is_finish(e["fid"])), how,
     len(stale), "written" if cmd == "build" else "stale"))
 for c in clipped:
     print("  clipped:", c)
+_fs2pak = F2.pak_path(os.environ.get("HZM_BASE_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod"))      # [v1.10.68] the finishes2 tiks live there
+_fs2idx = F2.pak_index(_fs2pak)[1] if os.path.exists(_fs2pak) else {}
 missing = [e for e in entries if not (os.path.exists(os.path.join(MOD, e["tik"])) or os.path.exists(os.path.join(FIXES, e["tik"])) or os.path.exists(os.path.join(WPNFIX, e["tik"]))
-                                       or vfs().winner(e["tik"]))]
+                                       or e["tik"].lower() in _fs2idx or vfs().winner(e["tik"]))]
 for e in missing:
     print("  MISSING MODEL: %03d %s %s" % (e["n"], e["g"]["name"], e["tik"]))
 sys.exit(1 if (cmd == "check" and stale) else 0)
