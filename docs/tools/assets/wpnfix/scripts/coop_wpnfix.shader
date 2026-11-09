@@ -11,3 +11,13 @@ mills_grenade
 		rgbGen lightingSpherical
 	}
 }
+
+// [v1.10.66 fg42hd] the FG 42 Irons' new sheet: Shorty_Digitan's FG42 (CC BY 4.0, modified), PBR baked to one diffuse
+coop_fg42hd
+{
+	qer_editorimage textures/models/weapons/coop_fg42hd/fg42hd.jpg
+	{
+		map textures/models/weapons/coop_fg42hd/fg42hd.jpg
+		rgbGen lightingSpherical
+	}
+}

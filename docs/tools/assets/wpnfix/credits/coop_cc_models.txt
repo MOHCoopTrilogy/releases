@@ -1,0 +1,9 @@
+HZM Coop Mod - weapon models used under Creative Commons licences
+=================================================================
+
+FG 42 Irons (models/weapons/fg42/coop_fg42hd_irons.skd, textures/models/weapons/coop_fg42hd/, the FG 42 Irons finishes)
+  "FG42" by Shorty_Digitan
+  https://sketchfab.com/3d-models/none-d699ac259bd74f70a51125a7e4320f4b
+  Licence: Creative Commons Attribution 4.0 International (CC BY 4.0) - https://creativecommons.org/licenses/by/4.0/
+  Modified: reduced to about 5,400 triangles, fitted to and rigged on DaRKaNGeL's FG42 skeleton and animations
+  (moh-db.com/mods/17867), PBR maps baked into one diffuse sheet, finish variants derived from it.

@@ -383,6 +383,16 @@ def _ctx(W):
     if _CTX:
         return _CTX
     shaders, pak_files = build_index()
+    # [v1.10.66 fg42hd] + the wpnfix pak's own shaders and files (a new mesh's sheet ships there)
+    for p in glob.glob(os.path.join(W.SRC, "scripts", "*.shader")):
+        t = io.open(p, encoding="latin-1", errors="replace").read()
+        for m in re.finditer(r"(?ms)^([^\s{}/][^\s{}]*)\s*\r?\n\s*\{(.*?)^\}", t):
+            mm = re.search(r"(?mi)^\s*map\s+([^$\s]\S*)", m.group(2))
+            if mm:
+                shaders[m.group(1).strip().lower()] = mm.group(1)
+    for dp, _dn, fn in os.walk(W.SRC):
+        for f in fn:
+            pak_files.add(os.path.relpath(os.path.join(dp, f), W.SRC).lower().replace("\\", "/"))
     weapons = weapon_tiks()
     users = {}
     for p, t, _ in weapons:
@@ -523,9 +533,12 @@ def add_gun(stem, write):
         io.open(os.path.join(out_dir, name), "w", encoding="latin-1", newline="\r\n").write(vt)
     if not to_tree:
         man = W.load_manifest()
+        import hashlib
         for name, _vt in tiks:
-            assert not W.carriers("models/weapons/" + name), "%s is already shipped" % name
-            man["models/weapons/" + name] = {"new": True}
+            car = W.carriers("models/weapons/" + name)
+            # [v1.10.66 fg42hd] a finish another pak already ships (the gun got a NEW mesh): override it, pinned to the copy it replaces
+            man["models/weapons/" + name] = ({"base": car[-1][0], "base_md5": hashlib.md5(car[-1][1]).hexdigest()} if car
+                                             else {"new": True})
         _put(W.MANIFEST, json.dumps(man, indent=2, sort_keys=True) + "\n")
 
     sh_txt = io.open(SHADER_OUT, encoding="latin-1", newline="").read()
@@ -593,7 +606,8 @@ def finalize(stems):
             base = gold[0]
             img = None
             for cand in [base] + [re.sub(r"\.\w+$", e, base) for e in (".tga", ".jpg", ".dds", ".png")]:
-                img = from_paks(cand) or img
+                own = os.path.join(W.SRC, *cand.split("/"))          # [fg42hd] a sheet the wpnfix pak itself ships
+                img = (Image.open(own).convert("RGB") if os.path.isfile(own) else from_paks(cand)) or img
                 if img is not None:
                     break
             if img is None:

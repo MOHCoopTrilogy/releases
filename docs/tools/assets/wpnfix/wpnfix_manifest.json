@@ -1,4 +1,7 @@
 {
+  "credits/coop_cc_models.txt": {
+    "new": true
+  },
   "models/weapons/30calportable_bloody.tik": {
     "new": true
   },
@@ -175,6 +178,38 @@
   "models/weapons/colt_silenced_gold.tik": {
     "new": true
   },
+  "models/weapons/coop_fg42_irons.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "2c5c88a71c20e69f9b3ed638cca94249"
+  },
+  "models/weapons/coop_fg42_irons_bloody.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "548c769556eeb3268274348aae74bd5c"
+  },
+  "models/weapons/coop_fg42_irons_blued.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "a104af9a89d9931c50e997a572ecf942"
+  },
+  "models/weapons/coop_fg42_irons_camo_desert.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "49da2189d5ae4748d1c3ff9d2d09e8e6"
+  },
+  "models/weapons/coop_fg42_irons_camo_winter.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "0416c66cf3ece454e35b83a37b6e2479"
+  },
+  "models/weapons/coop_fg42_irons_camo_woodland.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "0a8508a2997d782cc4a3dd8cb2577579"
+  },
+  "models/weapons/coop_fg42_irons_chrome.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "63c7cf793d3e4a020efd3d78dd336cb8"
+  },
+  "models/weapons/coop_fg42_irons_gold.tik": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "c9a0cce95a5911376298a602a3f40f5a"
+  },
   "models/weapons/dp28.tik": {
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
     "base_md5": "16fa53f0415710cb7d3974bd921c71d2"
@@ -226,6 +261,9 @@
     "new": true
   },
   "models/weapons/enfieldsniper_gold.tik": {
+    "new": true
+  },
+  "models/weapons/fg42/coop_fg42hd_irons.skd": {
     "new": true
   },
   "models/weapons/garand_scoped_bloody.tik": {
@@ -1138,6 +1176,18 @@
   "textures/coop_skins/colt_silenced/s93_colt_camo_woodland.jpg": {
     "new": true
   },
+  "textures/coop_skins/coop_fg42_irons/fg42hd_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_fg42_irons/fg42hd_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_fg42_irons/fg42hd_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_fg42_irons/fg42hd_camo_woodland.jpg": {
+    "new": true
+  },
   "textures/coop_skins/enfieldsniper/lee-enfield_bloody.jpg": {
     "new": true
   },
@@ -1609,6 +1659,9 @@
     "base": "mod tree",
     "base_md5": "4069c9acab60678ce457c65131aab144",
     "by": "gen_east_lift.py"
+  },
+  "textures/models/weapons/coop_fg42hd/fg42hd.jpg": {
+    "new": true
   },
   "textures/models/weapons/coop_mills_grenade.jpg": {
     "by": "mills fix",

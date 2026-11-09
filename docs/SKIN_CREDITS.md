@@ -75,8 +75,14 @@ Resolved by archived-page + local-readme evidence (full report: _research/skins_
 - **DP-28** - Lt. Pato (Patricio Mardones) - readme grants reuse WITH CREDIT (the only explicit
   yes in the pile). **Johnson M1941 / Mauser C96 / S&W M10** - East (no-alteration readmes;
   displayed credit honors the spirit; modifications technically need his OK).
-- **FG42** (scoped and irons) - **DaRKaNGeL**: the re-rigged FG42 model and its animations come from his 2005 animated FG42 add-on (moh-db.com/mods/17867), on EA's original FG42 mesh; the irons variant adds our own sights. (Corrected 2026-11-08: this line wrongly said in-house; a retroactive permission request to him is pending.)
+- **FG42** (scoped and irons) - **DaRKaNGeL**: the re-rigged FG42 skeleton and its animations come from his 2005 animated FG42 add-on (moh-db.com/mods/17867), on EA's original FG42 mesh. Since v1.10.66 the FG 42 Irons draws a new CC BY mesh on that skeleton (see Weapon models (CC) below); the scoped FG42 still uses EA's mesh. (Corrected 2026-11-08: this line wrongly said in-house; a retroactive permission request to him is pending.)
 - **Kar98 rifle-grenade (Gewehrgranate)** - stock EA SH/BT asset.
 - Still pending author: tommy28 (M1928), MP40 Reactivated, M1911 Covert, 1911 Classic (drbond
   key suggests "Dr. Bond"?), Authentic-wood Winchester.
 
+## Weapon models (CC)
+
+Models under a Creative Commons licence, credited as the licence asks (author, title, link, licence, changes). Each also ships a credits file inside its pak.
+
+- **FG42** by **Shorty_Digitan** - https://sketchfab.com/3d-models/none-d699ac259bd74f70a51125a7e4320f4b - licensed **CC BY 4.0** (https://creativecommons.org/licenses/by/4.0/). **Modified**: reduced from 16.9k to 5.4k triangles, fitted to and rigged on DaRKaNGeL's FG42 skeleton, its PBR maps baked into one 2048 diffuse, the seven finishes derived from that sheet. Used for the FG 42 Irons (v1.10.66). Credits file: `credits/coop_cc_models.txt` in zzzzzzzzzzzzzzzz_coop_wpnfix.pk3.
+- **Mauser C96** by **no12u** (Sketchfab), CC BY 4.0, modified - see the C96 line above.

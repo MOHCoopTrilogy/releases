@@ -17,17 +17,18 @@
    "models/weapons/coop_fg42_irons_camo_desert.tik": "FG 42 Irons (Desert)"
   },
   "F": [
-   26.77,
-   -0.855,
-   -5.5
+   26.5331,
+   -0.8531,
+   -6.7008
   ],
   "R": [
-   -6.2,
-   -0.855,
-   -5.44
+   -2.2055,
+   -0.8539,
+   -6.6447
   ],
-  "relief": 12.0,
-  "why": "2026-10-13 (heavy lane, fifth agent): the iron-sight FG 42 (tools/fg42irons.py). F = the rebuilt front post's tip, R = the centre of the rear aperture ring; relief = eye to the aperture. New gun: 8 rows inserted by tools/apply_fg42irons.py. Ships only with the staged mesh, tiks, shader and texture."
+  "relief": 5.0,
+  "why": "2026-10-13 (heavy lane, fifth agent): the iron-sight FG 42 (tools/fg42irons.py). F = the rebuilt front post's tip, R = the centre of the rear aperture ring; relief = eye to the aperture. New gun: 8 rows inserted by tools/apply_fg42irons.py. Ships only with the staged mesh, tiks, shader and texture.",
+  "note_fg42hd": "v1.10.66 fg42hd: Shorty_Digitan's FG42 (CC BY 4.0) - its own diopter aperture centre (R) and front post tip (F), docs/proposals/fg42hd_2026-11-08/tools/fglib.py mapped through the shipped mesh's exact local->gun affine (fg42hd tools/posefit.py)"
  },
  "m1919": {
   "new": true,
