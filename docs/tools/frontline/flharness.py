@@ -116,11 +116,15 @@ def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()
     on = ["set rconPassword %s" % RCONPW, "set sv_maxbots 0", "set sv_numbots 0", "set com_maxfps 60",
           "set thereisnomonkey 1", "set cheats 1", "set coop_dev 1", "set cg_drawviewmodel 0",
           "set con_notifytime -1", "set g_teamswitchdelay 0", "set coop_joinCard 0",
-          "set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0"] + list(extra_sets)   # user: every test run muted
+          "set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0",
+          "set in_gamepad 0", "set in_joystick 0"] + list(extra_sets)   # user: every test run muted
     sets = [("com_target_game", "2"), ("fs_basepath", GOG), ("fs_homepath", HOME), ("cl_renderer", renderer),
             ("r_mode", "-1"), ("r_customwidth", str(w)), ("r_customheight", str(h)), ("r_fullscreen", "0"),
             ("developer", "1"), ("logfile", "2"), ("net_port", str(PORT)), ("net_ip", "127.0.0.1"),
-            ("s_volume", "0")] + \
+            ("s_volume", "0"),
+            # never read the user's controller: SDL delivers pad input to background windows, and pad Y in a menu
+            # runs Sys_OpenOnScreenKeyboard -> osk.exe on the user's screen while they play (bug-10635)
+            ("in_gamepad", "0"), ("in_joystick", "0")] + \
         ([("com_maxfpsUnfocused", "0"), ("r_swapInterval", "0")] if os.environ.get("FL_FULLSPEED") else [])
     # user: test runs are silent - the coop server stuffs s_volume 0.9 after join, so no sound device at all
     args = [EXE]
