@@ -481,8 +481,10 @@ if not RACK_CENTRE and _OURS_ONLY:
     RACK_CENTRE = "%.1f %.1f %.1f" % tuple(SP.conv(np.array(RACK_C_BU, float), 52.5))
 RACK_CMD = ("set ui_scene_hot 0; exec ui/wpnview/open.cfg; globalwidgetcommand atticscene sceneleave 1; "
             "globalwidgetcommand atticscene scenefly 0.6 %s; uiafter 0.6 pushmenu hzm_wpnview" % RACK_POSE)
-ROOM = [l for l in _scene.splitlines() if l.startswith("scenemodel ") and "models/human/" not in l] + \
-       [l for l in _scene.splitlines() if l.startswith("scenelight ")]
+ROOM = [l for l in _scene.splitlines() if l.startswith("scenemodel ") and "models/human/" not in l
+        and "models/menu/hzm_wx_" not in l] + \
+       [l for l in _scene.splitlines() if l.startswith("scenelight ")] + \
+       [l for l in _scene.splitlines() if l.startswith("scenemodelcvar ") and "hzm_wx_" not in l]    # [attic v1.10.66] the gramophone's per-record 3D pieces stay gated
 assert len(ROOM) > 10, "atticscene models not found in main.urc"
 
 
