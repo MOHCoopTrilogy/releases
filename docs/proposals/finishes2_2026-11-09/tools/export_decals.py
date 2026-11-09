@@ -30,6 +30,11 @@ SET = {
     'bronze_star':  ('award', 'Bronze Star', 4.0, None),
     'cib':          ('badge', 'Combat Infantryman Badge', 5.0, None),
     'jump_wings':   ('badge', 'Parachutist Badge (jump wings)', 5.0, None),
+    # nose art (noseart.py): original period-style art, no copied pin-ups; the Nose Art finish draws one of them
+    'shark_mouth':  ('noseart', 'Shark mouth (faces the muzzle on the right side; mirror it for the left)', 9.0, 'noseart'),
+    'lucky_lady':   ('noseart', 'Lucky Lady - script, horseshoe and dice', 7.0, 'noseart'),
+    'ace_spades':   ('noseart', 'Ace of spades with ACE banner', 4.5, 'noseart'),
+    'bomb_tally':   ('noseart', 'Mission tally - six bombs', 6.0, 'noseart'),
 }
 SIZES = (512, 256, 128)
 # reads the same in a mirror (safe to paint into a texture the gun's two sides share): everything else goes on as a bench quad

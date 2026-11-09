@@ -86,3 +86,13 @@ Models under a Creative Commons licence, credited as the licence asks (author, t
 
 - **FG42** by **Shorty_Digitan** - https://sketchfab.com/3d-models/none-d699ac259bd74f70a51125a7e4320f4b - licensed **CC BY 4.0** (https://creativecommons.org/licenses/by/4.0/). **Modified**: reduced from 16.9k to 5.4k triangles, fitted to and rigged on DaRKaNGeL's FG42 skeleton, its PBR maps baked into one 2048 diffuse, the seven finishes derived from that sheet. Used for the FG 42 Irons and the scoped FG 42 (v1.10.66); on the scoped gun the rear diopter and front sight are removed and the scope is the one already shipped (RoempaZ / DaRKaNGeL's FG42 Add-On). Credits file: `credits/coop_cc_models.txt` in zzzzzzzzzzzzzzzz_coop_wpnfix.pk3.
 - **Mauser C96** by **no12u** (Sketchfab), CC BY 4.0, modified - see the C96 line above.
+
+## Finish set 2 (in progress, docs/proposals/finishes2_2026-11-09)
+
+- **Camo / wear / engraving tiles, insignia and plates, US awards and badges, nose art** - original artwork drawn by
+  script for the mod (tools/patterns.py, decals.py, medals.py, noseart.py). No downloaded images. The insignia and
+  decorations reproduce US Army / Free French / Afrika Korps designs, which are public domain (US government insignia;
+  the DAK palm is drawn without the swastika). The nose art is original period-style art (lettering, emblems,
+  tallies): it copies no real aircraft's art and no pin-up.
+- Lettering is rendered with Windows system fonts into the images (Arial Bold, Courier New Bold, Segoe Script Bold,
+  Impact); no font files ship.

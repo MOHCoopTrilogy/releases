@@ -425,6 +425,118 @@
      "h": 51
     }
    ]
+  },
+  {
+   "name": "shark_mouth",
+   "category": "noseart",
+   "label": "Shark mouth (faces the muzzle on the right side; mirror it for the left)",
+   "aspect": 1.966,
+   "recommended_long_side_cm": 9.0,
+   "recommended_long_side_units": 4.72,
+   "default_finish": "noseart",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
+   "files": [
+    {
+     "file": "shark_mouth_512.png",
+     "w": 512,
+     "h": 260
+    },
+    {
+     "file": "shark_mouth_256.png",
+     "w": 256,
+     "h": 130
+    },
+    {
+     "file": "shark_mouth_128.png",
+     "w": 128,
+     "h": 65
+    }
+   ]
+  },
+  {
+   "name": "lucky_lady",
+   "category": "noseart",
+   "label": "Lucky Lady - script, horseshoe and dice",
+   "aspect": 2.331,
+   "recommended_long_side_cm": 7.0,
+   "recommended_long_side_units": 3.67,
+   "default_finish": "noseart",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
+   "files": [
+    {
+     "file": "lucky_lady_512.png",
+     "w": 512,
+     "h": 220
+    },
+    {
+     "file": "lucky_lady_256.png",
+     "w": 256,
+     "h": 110
+    },
+    {
+     "file": "lucky_lady_128.png",
+     "w": 128,
+     "h": 55
+    }
+   ]
+  },
+  {
+   "name": "ace_spades",
+   "category": "noseart",
+   "label": "Ace of spades with ACE banner",
+   "aspect": 0.776,
+   "recommended_long_side_cm": 4.5,
+   "recommended_long_side_units": 2.36,
+   "default_finish": "noseart",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
+   "files": [
+    {
+     "file": "ace_spades_512.png",
+     "w": 398,
+     "h": 512
+    },
+    {
+     "file": "ace_spades_256.png",
+     "w": 199,
+     "h": 256
+    },
+    {
+     "file": "ace_spades_128.png",
+     "w": 99,
+     "h": 128
+    }
+   ]
+  },
+  {
+   "name": "bomb_tally",
+   "category": "noseart",
+   "label": "Mission tally - six bombs",
+   "aspect": 2.837,
+   "recommended_long_side_cm": 6.0,
+   "recommended_long_side_units": 3.15,
+   "default_finish": "noseart",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
+   "files": [
+    {
+     "file": "bomb_tally_512.png",
+     "w": 512,
+     "h": 180
+    },
+    {
+     "file": "bomb_tally_256.png",
+     "w": 256,
+     "h": 90
+    },
+    {
+     "file": "bomb_tally_128.png",
+     "w": 128,
+     "h": 45
+    }
+   ]
   }
  ]
 }
