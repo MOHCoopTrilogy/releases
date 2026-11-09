@@ -112,6 +112,25 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     tex_names = {}
     stats = {"tris": 0, "tris_textured": 0, "textures": 0, "alpha_textures": 0}
 
+    texmap = {}
+    tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fl_texmap.json")
+    if os.path.exists(tmp) and not os.environ.get("FL_NO_TEXMAP"):
+        with open(tmp) as f:
+            texmap = json.load(f).get(level, {})
+
+    def upgrade_ok(up):
+        """only when the player's own install carries the pak that holds the texture"""
+        if not mohaa_base:
+            return False
+        for game in ("maintt", "mainta", "main"):
+            pk = os.path.join(mohaa_base, game, up["pak"])
+            if os.path.exists(pk):
+                try:
+                    return up["path"] in zipfile.ZipFile(pk).namelist()
+                except Exception:
+                    return False
+        return False
+
     def tex_shader(key):
         if key in tex_names:
             return tex_names[key]
@@ -125,6 +144,16 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         t = L.texture(key)
         short = key.replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_")
         name = tdir + short
+        up = texmap.get(short)
+        if up and upgrade_ok(up):
+            # upgrade to a texture the mod already ships (fl_texmap.json); Frontline's vertex light stays on top
+            sc = up.get("tc_scale", 1.0)
+            tcm = ("\t\ttcMod scale %g %g\n" % (sc, sc)) if sc != 1.0 else ""
+            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tcull none\n\t{\n\t\tmap " + up["path"] + "\n"
+                                + tcm + "\t\trgbGen vertex\n\t}\n}\n")
+            stats["upgraded"] = stats.get("upgraded", 0) + 1
+            tex_names[key] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
+            return tex_names[key]
         rgba = t["rgba"] if t and t["rgba"] else bytes((255, 0, 255, 255)) * 16
         w, h = (t["w"], t["h"]) if t and t["rgba"] else (4, 4)
         files[name + ".tga"] = tga_bytes(w, h, rgba)

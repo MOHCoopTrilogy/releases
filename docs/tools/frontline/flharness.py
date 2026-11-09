@@ -106,7 +106,7 @@ def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()
           "set con_notifytime -1", "set g_teamswitchdelay 0", "set coop_joinCard 0"] + list(extra_sets)
     sets = [("com_target_game", "2"), ("fs_basepath", GOG), ("fs_homepath", HOME), ("cl_renderer", renderer),
             ("r_mode", "-1"), ("r_customwidth", str(w)), ("r_customheight", str(h)), ("r_fullscreen", "0"),
-            ("developer", "1"), ("logfile", "2"), ("net_port", str(PORT)), ("net_ip", "127.0.0.1")]
+            ("developer", "1"), ("logfile", "2"), ("net_port", str(PORT)), ("net_ip", "127.0.0.1")] + ([("com_maxfpsUnfocused", "0"), ("r_swapInterval", "0")] if os.environ.get("FL_FULLSPEED") else [])
     args = [EXE]
     for k, v in sets:
         args += ["+set", k, v]
@@ -124,7 +124,7 @@ def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()
     on += late
     with open(os.path.join(MAINTT, "fl_on.cfg"), "w", newline="\n") as f:
         f.write("\n".join(on) + "\n")
-    c = hw.launch_background(args[0], args[1:], CLIENT, policy=False, log=log)
+    c = hw.launch_background(args[0], args[1:], CLIENT, policy=False, log=log, below_normal=not os.environ.get("FL_FULLSPEED"))
     H["c"] = c
     hg.set_slot_pid(OWNER, c.proc.pid)
     log("client pid", c.proc.pid)

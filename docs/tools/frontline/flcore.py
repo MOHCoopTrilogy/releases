@@ -67,6 +67,10 @@ class Level:
         h = struct.unpack_from("<5I", base, 0)
         self.base = base
         self.base_tex = [struct.unpack_from("<32I", base, h[3] + 128 * i) for i in range(h[4])]
+        # second shared table (header words 5,6): what a cell's S2 records index (decoded 2026-11-08: 115/115
+        # width/height matches). Resolving S2 into the cell's own S1 instead had mis-textured ~10% of the draws.
+        h2 = struct.unpack_from("<7I", base, 0)
+        self.base_tex2 = [struct.unpack_from("<32I", base, h2[5] + 128 * i) for i in range(h2[6])]
         self.cells = sorted(k for k in self.comp if k.endswith(".cpt"))
 
     # ---------------- textures ----------------
@@ -107,8 +111,8 @@ class Level:
                     return self.resolve_base(rec[31])
                 if S2 <= ptr < S2 + 128 * n2:
                     j = rec[31]
-                    if j < n1:
-                        return resolve(S1 + 128 * j)
+                    if j < len(self.base_tex2):
+                        return self._tex_from(f"{self.level}_ART.cpt", self.base, self.base_tex2[j])
                 return None
 
             for i in range(nd):
