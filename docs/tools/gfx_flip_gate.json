@@ -16,7 +16,8 @@
     "31ceb7b6d2b6b76bf70a1d8ede0ae7485be163a570f00aa818f3a960223886fe",
     "3edfcb8f0387f0e7ecd48f74b23e9f3357c9f354b506a1238a966985408cbe8f",
     "bd7c042066e8d8ac54b3a3bb56f3260cacb6680a6d9bffcc284d5150604b9f0e",
-    "f0fec32cf16ebf9f13db374c0b21bdf0bb5c80d73cfd9d6950ddafe1e4c2c8af"
+    "f0fec32cf16ebf9f13db374c0b21bdf0bb5c80d73cfd9d6950ddafe1e4c2c8af",
+    "2b2e113fd0369060da2af8a0958f8fb8ad9d443929222616d937a1a0cf9d4469"
   ],
   "notes": {
     "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb": "v1.10.13 main-tree build of engine 68bb8881 (renderer source == bc2c3072, the flip that passed G1/G5/P6.3 boots+equal with A2C off on 2026-10-04); this exact DLL boot-smoked on m2l1+m5l3: MSAA path=new n=8, 0 script errors",
