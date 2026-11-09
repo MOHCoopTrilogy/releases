@@ -11,11 +11,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REL_TIK = "models/weapons/FG42.tik"
 REL_SKD = "models/weapons/fg42/coop_fg42hd.skd"
 NOTE = ("// HZM coop [v1.10.66 fg42hd] the body is Shorty_Digitan's FG42 (Sketchfab d699ac259bd74f70a51125a7e4320f4b, CC BY 4.0, modified:\n"
-        "// reduced, re-rigged on DaRKaNGeL's FG42 bones, PBR baked into one 2048 sheet) without its diopter; the scope is an in-house ZFG 42\n"
-        "// (short 4x tube, turrets, claw base clamped on the receiver's left) on the shipped scope axis, so the scope rows stay valid.\n")
+        "// reduced, re-rigged on DaRKaNGeL's FG42 bones, PBR baked into one 2048 sheet) without its diopter and front sight; the scope\n"
+        "// is the SHIPPED one (coop_fg42.skd), unchanged on the same bone, so the scope rows and the lens view stay as they were.\n")
 SURF = ("surface fg42hd*   shader coop_fg42hd\n"
         "surface fg42clip  shader coop_fg42hd\n"
-        "surface fg42cup   shader coop_fg42hd\t// the ZFG 42 rubber eyecup\n"
+        "surface fg42scope shader fg42\t// the SHIPPED scope (coop_fg42.skd through v1.10.65) on its own sheet\n"
         "surface fg42lens  shader coop_scope_glass_blue\n"
         "surface coop_handle shader fg42\t// HZM coop [ads heavy] the charging handle (fg42handle.py)\n")
 
@@ -36,7 +36,7 @@ def main():
     t = t.replace("skelmodel coop_fg42.skd", "skelmodel coop_fg42hd.skd")
     out, done = [], False
     for ln in t.split("\n"):
-        if re.match(r"\s*surface\s+(fg42base|fg42barrel|fg42clip|fg42lens|coop_handle|fg42cup|scopeb|scopeg)\s+shader", ln):
+        if re.match(r"\s*surface\s+(fg42base|fg42barrel|fg42clip|fg42lens|coop_handle|fg42scope|fg42cup|scopeb|scopeg)\s+shader", ln):
             if not done:
                 ind = re.match(r"(\s*)", ln).group(1)
                 out += [ind + x for x in (NOTE + SURF).rstrip("\n").split("\n")]

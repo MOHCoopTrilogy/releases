@@ -7,4 +7,4 @@ FG 42 Irons and FG 42 (models/weapons/fg42/coop_fg42hd_irons.skd, coop_fg42hd.sk
   Licence: Creative Commons Attribution 4.0 International (CC BY 4.0) - https://creativecommons.org/licenses/by/4.0/
   Modified: reduced to about 5,400 triangles, fitted to and rigged on DaRKaNGeL's FG42 skeleton and animations
   (moh-db.com/mods/17867), PBR maps baked into one diffuse sheet, finish variants derived from it.
-  On the scoped FG 42 the source's rear diopter is removed; its ZFG 42 scope and mount are HZM's own work, not part of this model.
+  On the scoped FG 42 the source's rear diopter and front sight are removed; its scope is the one the mod already shipped (RoempaZ / DaRKaNGeL's FG42 Add-On), not part of this model.

@@ -19,11 +19,11 @@ setup
 	//His mod ships as a SHOTGUN REPLACEMENT; we take only the geometry and anims, so our shotgun
 	//is untouched and this works on AA/SH/BT because it rides the coop pak, not his.
 	// HZM coop [v1.10.66 fg42hd] the body is Shorty_Digitan's FG42 (Sketchfab d699ac259bd74f70a51125a7e4320f4b, CC BY 4.0, modified:
-	// reduced, re-rigged on DaRKaNGeL's FG42 bones, PBR baked into one 2048 sheet) without its diopter; the scope is an in-house ZFG 42
-	// (short 4x tube, turrets, claw base clamped on the receiver's left) on the shipped scope axis, so the scope rows stay valid.
+	// reduced, re-rigged on DaRKaNGeL's FG42 bones, PBR baked into one 2048 sheet) without its diopter and front sight; the scope
+	// is the SHIPPED one (coop_fg42.skd), unchanged on the same bone, so the scope rows and the lens view stay as they were.
 	surface fg42hd*   shader coop_skin_coop_fg42_irons_blued
 	surface fg42clip  shader coop_skin_coop_fg42_irons_blued
-	surface fg42cup   shader coop_skin_coop_fg42_irons_blued	// the ZFG 42 rubber eyecup
+	surface fg42scope shader coop_skin_fg42_blued	// the SHIPPED scope (coop_fg42.skd through v1.10.65) on its own sheet
 	surface fg42lens  shader coop_scope_glass_blue
 	surface coop_handle shader coop_skin_fg42_blued	// HZM coop [ads heavy] the charging handle (fg42handle.py)
 }

@@ -18,7 +18,7 @@ PAD = 6
 TILES = {'Body': (0, 0, 1024), 'Wood': (1024, 0, 1024), 'Barrel': (0, 1024, 512), 'Bipod': (512, 1024, 512),
          'Magazine': (1024, 1024, 512), 'Rear_sight': (1536, 1024, 512), 'Grip': (0, 1536, 512), 'Bolt': (512, 1536, 256),
          'EjectionPort': (768, 1536, 256), 'Trigger': (512, 1792, 256)}
-EXTRA = {'Scope': (1024, 1536, 512), 'Rubber': (1536, 1536, 256)}
+EXTRA = {}   # [QA #3] the in-house ZFG 42's Scope / Rubber tiles retired with it: the scoped gun wears the shipped scope
 # [QA 2026-11-08 #2] the user: the scope read as a black blob at the hip. 0.105 -> 0.165 still read black in the hand (run zf1080c, in sun): 0.26, a worn blued grey
 SCOPE_MEAN, SCOPE_TINT = 0.26, np.array([0.92, 0.96, 1.06], np.float32)
 RUBBER_MEAN, RIM_MEAN, RIM_ROWS = 0.065, 0.17, 60   # the eyecup's lip: worn, lighter rubber in the tile's top rows
