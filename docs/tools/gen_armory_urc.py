@@ -66,6 +66,12 @@ class Out:
         self.names = set()
 
     def raw(self, typ, props):
+        # [v1.10.66 armoryfix] the carried-over model widgets (the PRI 1 / PRI 2 / SIDE / NADE slot tiles) need the same modelfitaspect
+        # as the generated ones, or their thumbnails clip on a 21:9 screen
+        keys = [k for k, _v in props]
+        if "rendermodelfit" in keys and "modelxformcvar" in keys and "modelfitaspect" not in keys:
+            i = keys.index("rendermodelfit") + 1
+            props = props[:i] + [("modelfitaspect", FIT_ASPECT)] + props[i:]
         self.parts.append("resource\n%s\n{\n%s\n}\n" % (typ, "\n".join("%s %s" % (k, v) if v != "" else k for k, v in props)))
         for k, v in props:
             if k == "name":
@@ -164,9 +170,16 @@ SLOT_Y = 227
 FINCOL = [(0.55, 0.47, 0.38), (0.87, 0.68, 0.23), (0.78, 0.80, 0.82), (0.17, 0.24, 0.40), (0.60, 0.12, 0.10), (0.33, 0.42, 0.20), (0.90, 0.92, 0.94), (0.78, 0.66, 0.45)]
 
 
+# [v1.10.66 armoryfix] every Armory model transform (armory_hero_fit.tsv / armory_card_fit.tsv) was measured on a 1920x1080 screen. The
+# menu is stretched to the screen, so on 21:9 each box is 1.34x wider and the engine's width-based 30 degree view grew every model
+# against the box height (pistols, grenades, the hero clipped). modelfitaspect (engine armoryfix-eng, cl_uistd.cpp) keeps the measured
+# vertical framing on a wider screen.
+FIT_ASPECT = "1.7778"
+
+
 def model_label(o, name, rect, link, xform, enable):
     o.new("Label", name, rect, link=link, enable=enable, order=20,
-          extra=[("modelxformcvar", '"%s"' % xform), ("rendermodel", "1"), ("rendermodelfit", "1"), ("modeloffset", '"0 0 0"'),
+          extra=[("modelxformcvar", '"%s"' % xform), ("rendermodel", "1"), ("rendermodelfit", "1"), ("modelfitaspect", FIT_ASPECT), ("modeloffset", '"0 0 0"'),
                  ("modelrotateoffset", '"0 0 0"'), ("modelangles", '"0 90 180"'), ("modelscale", "1.00"), ("modelanim", "idle")])
 
 

@@ -247,6 +247,20 @@ print("reqmv cfgs: 12 hosts, hover lists every variant")
 # chain entry now setas the slot's exact fid + resend recipe, so what you SEE at the menu is
 # byte-for-byte what the join replay applies. The server additionally echoes the chain position
 # after every live apply (loadout_finish), so rapid clicking can never desync client from server.
+def _fit(name):
+    """id -> transform from a docs/tools/armory_*_fit.tsv (gen_loadout reads the hero one the same way)"""
+    out = {}
+    p = "docs/tools/" + name
+    if _os.path.exists(p):
+        for ln in io.open(p, encoding="latin-1"):
+            if ln.startswith("#") or ln.startswith("id\t") or not ln.strip():
+                continue
+            a, b = ln.rstrip("\r\n").split("\t")
+            out[a] = b
+    return out
+
+
+HEROFIT, VARFIT = _fit("armory_hero_fit.tsv"), _fit("armory_variant_fit.tsv")
 tsvname = {}
 for line in tsv.splitlines():
     if line and not line.startswith("#"):
@@ -268,6 +282,12 @@ for give, tile, elite, base_name, vlist in resolved:
                     + 'seta coop_loS%dF "%d"' % (sl, fid) + N
                     + 'seta coop_loFA%d "append name ,f%d%d"' % (sl, sl, fid) + N
                     + 'set coop_loMvPN_s%d "exec ui/loadout/mvp%s_%d_s%d.cfg"' % (sl, tile, nxt, sl) + N)
+            # [v1.10.66 armoryfix] a variant is ANOTHER mesh: it brings its own measured hero framing (armory_variant_fit.tsv, solved
+            # like armory_hero_fit.tsv), and the standard entry puts the host's back - the host's framing made the 1928 Tommy or the
+            # Soares93 M38A spill out of the box or float in a corner
+            hx = (VARFIT.get("%s_%d" % (tile, fid)) if k else HEROFIT.get(tile))
+            if hx:
+                body += 'set coop_loXfmHero "%s"' % hx + N
             wr(UI + "mvp%s_%d_s%d.cfg" % (tile, k, sl), body)
 # [v1.10.64 wpnfix2] a ladder that SHRANK (a retired fid) leaves its old last pages behind: delete every chain page past the end
 import glob as _glob

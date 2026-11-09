@@ -62,7 +62,7 @@ ROSTER = os.path.join(MOD, "coop_mod", "loadoutroster.scr")
 
 # [armory B] guns whose 3D model cannot be shown (the Mills bomb renders solid black: texture alpha) get the stock 2D grenade icon
 # (textures/hud/weap_grenade.tga) on cards, the hero and the slot tile instead.
-ICON2D = ("66",)
+ICON2D = ()   # [v1.10.66 armoryfix] the Mills bomb renders since its wpnfix shader (v1.10.64) - its 3D model, like the viewer
 
 
 HEROFIT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "armory_hero_fit.tsv")
