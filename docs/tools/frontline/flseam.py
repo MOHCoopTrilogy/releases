@@ -27,6 +27,22 @@ def _k(p):
     return (round(p[0] * 2), round(p[1] * 2), round(p[2] * 2))
 
 
+def _affine_uv(a, b, c):
+    """UV as an affine function of world x/y from one (near-flat) triangle; None when degenerate in x/y."""
+    (x1, y1, _), (x2, y2, _), (x3, y3, _) = a[0], b[0], c[0]
+    det = (x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)
+    if abs(det) < 1e-6:
+        return None
+
+    def solve(k):
+        u1, u2, u3 = a[1][k], b[1][k], c[1][k]
+        gx = ((u2 - u1) * (y3 - y1) - (u3 - u1) * (y2 - y1)) / det
+        gy = ((u3 - u1) * (x2 - x1) - (u2 - u1) * (x3 - x1)) / det
+        return gx, gy, u1 - gx * x1 - gy * y1
+    su, sv = solve(0), solve(1)
+    return lambda p: (su[0] * p[0] + su[1] * p[1] + su[2], sv[0] * p[0] + sv[1] * p[1] + sv[2])
+
+
 def bridges(draws, on_floor=None, why=None):
     """draws: list of (shader_id, verts[(xyz, uv, nrm, rgba)], tris[(a,b,c)]) in final MOHAA coordinates.
     on_floor(x, y, z) -> True when walkable collision is near: only floor gaps are bridged (a seam on a roof
@@ -48,7 +64,7 @@ def bridges(draws, on_floor=None, why=None):
                 e = tuple(sorted((_k(verts[i][0]), _k(verts[j][0]))))
                 cnt[e] += 1
                 if flat and e not in info:
-                    info[e] = (di, sh, verts[i], verts[j], verts[r][0])
+                    info[e] = (di, sh, verts[i], verts[j], verts[r][0], verts[r])
     bnd = sorted(e for e, n in cnt.items() if n == 1 and e in info)
     grid = defaultdict(list)
     for e in bnd:
@@ -60,7 +76,7 @@ def bridges(draws, on_floor=None, why=None):
     for e in bnd:
         if e in used:
             continue
-        di, sh, vp, vq, r = info[e]
+        di, sh, vp, vq, r, _vr = info[e]
         p, q = vp[0], vq[0]
         ex, ey = q[0] - p[0], q[1] - p[1]
         el = math.hypot(ex, ey)
@@ -132,12 +148,15 @@ def bridges(draws, on_floor=None, why=None):
             if why is not None:
                 why.append(('too_wide', mx, my, mz))
             continue          # a seam, not a span: both ends of the bridge stay short
-        # shader, UVs and colours of the LOWER edge on both sides (the far side reuses them: a 2..32u stretch)
+        # shader and colours of the LOWER edge; its triangle's own UV mapping (affine in x/y) continues across
+        # the gap, so the texture carries on instead of smearing one row of texels
         low_e = mz <= fz
         lsh = sh if low_e else info[f][1]
         n0, n1 = (e0, e1) if low_e else (f0, f1)
         quad = [e0[0], e1[0], f1[0], f0[0]]
-        uvs = [n0[1], n1[1], n1[1], n0[1]]
+        own = info[e] if low_e else info[f]
+        uvmap = _affine_uv(own[2], own[3], own[5])
+        uvs = [uvmap(pt) for pt in quad] if uvmap else [n0[1], n1[1], n1[1], n0[1]]
         cols = [n0[2], n1[2], n1[2], n0[2]]
         out.append((lsh, [(quad[i], uvs[i], (0.0, 0.0, 1.0), cols[i]) for i in range(4)], [(0, 1, 2), (0, 2, 3)]))
         used.add(e)

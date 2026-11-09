@@ -78,7 +78,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             sky_shader=None, vgm=None, mohaa_base=None):
     t0 = time.time()
     L = flcore.Level(flcore.Disc(img), level)
-    mapname = "mfl_" + level
+    # coop_fl_*: the engine loads scripted anims per map by NAME PREFIX (new_generic_human.tik "includes ...
+    # coop" block); real coop maps use the same prefix, and isCoopEnabledMap accepts it
+    mapname = "coop_fl_" + level
     tdir = f"textures/fl/{level}/"
 
     coll = list(L.collision())

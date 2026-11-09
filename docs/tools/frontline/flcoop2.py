@@ -39,7 +39,7 @@ def main(out):
             "+set", "net_ip", "127.0.0.1", "+set", "sv_maxclients", "4", "+set", "g_gametype", "2",
             "+set", "logfile", "2", "+set", "developer", "1", "+set", "coop_fltest", os.environ.get("FL_TESTMODE", "1"),
             "+set", "coop_fltestPlayers", "2", "+set", "coop_joinCard", "0", "+set", "coop_dbno", "0",
-            "+set", "g_teamswitchdelay", "0", "+map", "mfl_1_1"]
+            "+set", "g_teamswitchdelay", "0", "+map", "coop_fl_1_1"]
     srv = subprocess.Popen(args, **hw.popen_kwargs())
     print("server pid", srv.pid, flush=True)
     clients = []

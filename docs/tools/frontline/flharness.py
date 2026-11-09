@@ -219,7 +219,7 @@ def walk(outdir, pk3, renderer="opengl2"):
     into the trigger, no self-test). AI is live (god only, no notarget) so guards/roamers/MG nests engage."""
     import zipfile as _zf
     os.makedirs(outdir, exist_ok=True)
-    t = _zf.ZipFile(pk3).read("maps/mfl_1_1_data.scr").decode("latin-1")
+    t = _zf.ZipFile(pk3).read("maps/coop_fl_1_1_data.scr").decode("latin-1")
 
     def vec(name):
         m = re.search(re.escape(name) + r" = \( (\S+) (\S+) (\S+) \)", t)
@@ -232,7 +232,7 @@ def walk(outdir, pk3, renderer="opengl2"):
              ("crate", crate, True)]
     hg.acquire_slot(OWNER, EXE, HOME, [PORT], minutes=30)
     try:
-        c = launch("mfl_1_1", renderer, False, w=1280, h=720,
+        c = launch("coop_fl_1_1", renderer, False, w=1280, h=720,
                    extra_sets=["set coop_fltest 0", "set coop_health 20000", "set coop_dbno 0"])
         with c:
             if not wait_log(r"Spawning Entities Done|COOP_MAPGRADE", 300):
@@ -243,7 +243,7 @@ def walk(outdir, pk3, renderer="opengl2"):
             for name, g, use in goals:
                 # approach from a Frontline navpoint 100-320u from the goal (a known-walkable spot), facing the goal
                 import fl_gates
-                nodes = fl_gates.pathnodes(pk3, "mfl_1_1")
+                nodes = fl_gates.pathnodes(pk3, "coop_fl_1_1")
                 cand = [q for q in nodes if 48 < math.hypot(q[0] - g[0], q[1] - g[1]) < 320 and abs(q[2] - g[2]) < 80]
                 q = min(cand, key=lambda q: (math.hypot(q[0] - g[0], q[1] - g[1]), q)) if cand else                     (g[0] - 200, g[1], g[2] + 16)
                 ax, ay = q[0], q[1]

@@ -64,7 +64,7 @@ def main(pk3, level, out, top=16):
         if "alphaFunc" in line:
             alpha_names.add(cur)
     import struct
-    b = z.read(f"maps/mfl_{level}.bsp")
+    b = z.read(f"maps/coop_fl_{level}.bsp")
     so, sl = struct.unpack_from("<ii", b, 12)
     names = [b[so + 140 * i: so + 140 * i + 64].split(bytes(1))[0].decode() for i in range(sl // 140)]
     fo, fln = struct.unpack_from("<ii", b, 12 + 8 * 3)
