@@ -77,7 +77,11 @@ def main(out):
         t0 = time.time()
         while time.time() - t0 < 240:
             log = slog()
-            joined = [n for _, _, _, n in clients if re.search(re.escape(n) + r" has (entered the battle|joined)", log)]
+            # "entered the battle" prints at CONNECT on v1.10.66+, before the team join: count a player only once
+            # the server says he joined a team (still spectator -> keep pressing F9)
+            def on_team(n):
+                return re.search(re.escape(n) + r" has joined the (Allies|Axis|American|German)", log, re.I) is not None
+            joined = [n for _, _, _, n in clients if on_team(n)]
             if len(joined) == len(clients) and ("FLTEST players=2" in log or os.environ.get("FL_TESTMODE") == "3"):
                 break
             for c, _, _, n in clients:
