@@ -1,6 +1,6 @@
 # Live Operations: CRIME.NET-style bot matches popping up on the NEW GAME war map
 
-**Status: PLAN + MOCKUP ONLY (2026-11-09).** Nothing in the mod or engine has been changed.
+**Status: PLAN + MOCKUP ONLY (2026-11-09).** Nothing in the mod or engine has been changed. Decisions 2 and 3 and the approximate locations are **decided** (section 7). Decision 1, the Breakthrough tag nudges, is **open**.
 
 | File | What it is |
 |---|---|
@@ -315,10 +315,11 @@ The pins in `ops_locations.json` are the coordinates below.
 static-model and texture names: Snowy Park and The Bridge. A look in game at any visible signs in the
 "approx" maps would upgrade them. That is a user check, per the rule "the user checks maps in game".
 
-**Side findings (not fixed, plan-only session):**
-- `ui/coop_mpmenu.urc:445` labels `dm/mohdm3` as "Algiers". The game calls it **Remagen**.
-- `:448` labels `dm/mohdm7` as "The Hunt". The game calls it **Algiers**; The Hunt is `obj/obj_team1`.
-- `:450` lists `dm/mp_castello_dm`, which has no BSP installed.
+**Side findings:**
+- The `ui/coop_mpmenu.urc` mislabels are **fixed by the user in mod hotfix-1.10.53**:
+  - mohdm3 had been labelled "Algiers"; it is **Remagen**.
+  - mohdm7 had been labelled "The Hunt"; it is **Algiers**.
+  - The uninstalled `dm/mp_castello_dm` was removed from the list.
 - Loading screens and scripts exist for `mp_streetsofmessina_tow`, `mp_thunder_dm` and `dm/mp_palermo_dm`,
   but none of their BSPs is installed, so they are excluded.
 
@@ -408,21 +409,53 @@ on the wall, so **no new scene/render code is needed**.
 
 ---
 
-## 7. Decisions for the user
+## 7. Decisions
 
-1. **Tag nudges.** Move the three Breakthrough tags (bt3 north to the Adriatic head, bt2 one degree east,
-   bt1 into the sea north of Tunisia) so contracts at Bologna, Monte Battaglia, Castello, Malta and
-   Tunisia are visible. This is recommended. The alternative is to keep the tags and accept that those
-   contracts hide under them.
-2. **Objective with bots.** MVP = TDM, then OBJ with the "you are the sapper" rule (recommended).
-   Alternatives:
-   - about 2 days of engine work first, so bots plant and defuse
-   - use HZM's bot-aware modes (KOTH, Domination, CTF) as the "objective" contracts
-3. **Shared world plus XP.** Seed contracts from UTC, so everyone sees the same map and friends can
-   coordinate (recommended), or roll per player. Also: should completed contracts pay a bonus into the
-   Service Record through the capped `xp_award_mp` bridge?
+### Recorded 2026-11-09 (user, via the coordinator). The plan stays plan-only; nothing is built.
 
-Smaller questions:
-- Confirm the approx theatres, especially Snowy Park and The Bridge.
+| # | Decision | Status |
+|---|---|---|
+| 2 | **Objective with bots:** TDM first (MVP), then OBJ with **the player as the sapper**: the human is always on the planting side, enemy bots defend through DEFEND nodes, friendly bots escort. Bots planting and defusing (engine) stays optional Phase 3. | **DECIDED** |
+| 3a | **Shared world:** contracts are seeded from the UTC clock slot (`hash(floor(utc/60), "hzm-ops-v1")`), so every player on the same mod version, friends included, sees the same contracts at the same moment. | **DECIDED** |
+| 3b | **Reward:** completing a contract pays a bonus into the **Service Record** through `xp.scr::xp_award_mp`, under its existing per-match cap (`coop_xp_mpMatchCap`, 2000). No unlock gating. | **DECIDED** |
+| - | **Approximate locations:** the "approx" pins and theatres in section 4 stand as they are, including Snowy Park and The Bridge. | **ACCEPTED** |
+| - | **MP menu labels:** fixed by the user in mod hotfix-1.10.53 (mohdm3 = Remagen, mohdm7 = Algiers, the uninstalled `mp_castello_dm` removed). | **DONE** (outside this plan) |
+| 1 | **Breakthrough tag nudges:** see below. | **OPEN** |
+
+### Decision 1: what a tag nudge does and does not change
+
+The user's worry is that moving the tags would get in the way of the actual missions. Here is what a
+nudge actually changes.
+
+**What moves:** only the three paper **tag labels** (bt1 Kasserine, bt2 Sicily, bt3 Monte Cassino), plus
+the click target that sits on each tag.
+
+**What does not move or change:**
+- Each tag's **dashed leader** still runs to the **unchanged mission pin** at the real place. The leaders
+  are drawn from `missions.json` `pin` and `tag` by `warmap.overlay()`.
+- The missions and pins themselves.
+- The difficulty screen each tag opens.
+- Locks, the VANILLA / CHRONOLOGICAL toggle, and campaign order and flow.
+- Save and unlock cvars.
+
+**Two things the user should know before deciding:**
+- **The click target moves with the tag.** In `hzm_newgame3d.urc`, a mission's `scenehot` click sphere
+  sits at its TAG's position (for example `scenehot "aa1_o0"` shares the tag's coordinates), not on the
+  pin. After a nudge, you start Monte Cassino by clicking its tag in the new spot, not at its old spot.
+- **The leaders get longer.**
+  - bt3's leader would run about 4 degrees from Monte Cassino up to the Adriatic head, crossing central
+    Italy past the Bologna contract area.
+  - bt1's tag moves into the sea north of Tunisia, with a leader of about 3.5 degrees.
+  - bt2 moves only 1 degree east.
+  - `warmap.qa()` stays clean (no tag over a pin, a name, another tag, the toggle or the legend).
+
+**If the user says no:**
+- The tags stay where they are and draw above the contract layer.
+- Contracts at Bologna, Monte Battaglia, Castello, Malta and the Tunisian desert sit under them.
+- **Recommended fallback:** do not roll a location whose centre is covered by a campaign tag. Those maps
+  still appear, but never at a hidden pin. The layout pass already detects this case, and the generator
+  would read its list.
+
+### Smaller questions still open
 - Are the 8 MVP maps the right pool?
 - Should the Radio-it-in public toggle be in v1?
