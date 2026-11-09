@@ -92,3 +92,21 @@ burst for 3, 4, 8 and 10. Tag each defect A / B / C.
    the view-weapon pass. One condition in `tr_main.c`; affects every gun at once; needs a z-fighting check of hands vs gun.
 2. A clamp on the summed first-person offset (cause 4), if the data shows stacking.
 3. Per-gun fixes (class C) only where 1 and 2 do not cover it, through the existing generators (sight rows, hold tables).
+
+## Findings (2026-11-09, steps 1-2 done, step 3 first fix in)
+
+- **Offline pass** (`tools/clip_survey.py` -> `assets/clip_survey.tsv`, 781 rows, 723 mapped): **40 hip clips** bring gun or hands
+  inside the world near plane (r_znear 4) - reloads, bolt work, pullout / putaway of the Johnson, Mosin, Enfield, L42A1, Kar98k,
+  Gewehrgranate, Springfield, SVT, Carcano, Vickers-Berthier, shotgun, double barrel, Hi-Standard, FG 42 - and **all 40 clear at
+  the weapon near plane**. 3 aimed rows go under 1 u (Mosin rechamber 0.71, Enfield reload 0.79, Springfield reload_end 0.87).
+  106 coop `cv_*` / `coopr_*` aim rows have no aim pose to measure (no `_charge` row of their own).
+- **Suspect #1 confirmed**: engine `viewclip-eng` 40ddb4e2 (`r_weaponProjAlways`, default 1) gives the view weapon its own
+  projection at the hip too; mod `viewclip` 9bb365cf sets `r_weaponznear 0.6`. A/B in one boot (`tools/run_ab.py`): the Johnson
+  reload's hand is sliced open before, solid after (`media/johnson_reload_before_after.*`).
+- **Second class, not a near-plane cut (class C)**: some reload / bolt clips bring a HAND so close to the eye that it fills the view
+  as a big low-poly, crumpled shape - identical before and after the fix: Kar98k aimed reload (the bolt hand), the double barrel's
+  single-shell reload (hand 3.7 u from the eye). Needs the clips re-posed (hold_bake's clear_hand), per gun.
+- **Scope-in flash**: the Kar98k sniper scopes in cleanly (run `fg_k98raise`, no retail overlay frame); the ~3-frame retail
+  overlay is FG 42-only so far.
+- Movement rows (sprint, jump, crouch, lean, fire, ADS) on Mosin / Enfield / double barrel / Kar98k / FG 42: no near-plane cut
+  seen before or after; the gun stays > 4 u from the eye in those poses.
