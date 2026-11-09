@@ -1,37 +1,88 @@
-"""finishes2 - OFFLINE preview: every new finish on a few guns, side view, the gun's own texture composited in texture space the
-way the in-game shaders will do it (a shared pattern / wear tile tiled over the UVs, a paint layer with the chip mask, one
-decal placed on the stock by the UV->model affine fitted on the stock's side faces).
-
-    python finish_sheet.py <out.jpg> <tik> [<tik> ...]
+"""finishes2 - OFFLINE preview, sheet 2: every new finish on a few guns, side view (the visible side), the gun's own texture
+composited in texture space the way the in-game shaders will do it, now driven by the gun's own mesh (finishlib):
+  * patterns at REAL size: tile repeats per UV = the sheet's model units per UV / the pattern's physical size (QA 3)
+  * a per-gun wear mask: muzzle crown, bore and sights stay bare, UV-island edges worn through (QA 4)
+  * decals at the verified spot (orient_check.place_verified: upright, unmirrored, whole) (QA: upside-down marks)
+  * trench art = the gun's own wood and steel + brass plates (buttplate, the crest plate) (QA 1)
+  * whitewash = mostly white hand-brushed coat worn to dark at the edges, neutral, no pink (QA 2)
+  * Kriegsmarine = dark grey, salt bloom, rust run down from points of the receiver in world space (QA 5)
+    python finish_sheet.py <out.jpg> <tik>:<class> [<tik>:<class> ...]   [FINISHES=a,b,c]
 """
 import math, os, sys
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-IS = os.path.join(HERE, '..', '..', 'ironsights_2026-09-28', 'tools')
-sys.path.insert(0, IS)
+sys.path.insert(0, HERE)
+import finishlib as fl  # noqa: E402
+import orient_check as oc  # noqa: E402
 import gungeo, raster, uvview  # noqa: E402
 
 TILES = os.path.join(HERE, '..', 'assets', 'tiles')
 DECALS = os.path.join(HERE, '..', 'assets', 'decals')
-TILE_REPEAT = 2.5                     # pattern repeats per UV unit (in game: tcMod scale 2.5 2.5)
 GERMAN = ('kar98', 'mp40', 'mp44', 'g43', 'fg42', 'mg42', 'p38', 'luger', 'panzer', 'stg', 'walther', 'c96', 'gewehr')
+# physical size of one tile, cm (the in-game tcMod scale = world_per_uv / (cm * U_PER_CM))
+TILE_CM = {'camo_splitter': 34, 'camo_pea': 22, 'camo_telo': 40, 'camo_amoeba': 44, 'camo_whitewash': 26,
+           'wear_chips': 16, 'wear_scratch': 18, 'engrave_vines': 10}
+FINISHES = ['battleworn', 'trenchart', 'parade', 'captured', 'airborne', 'airborne101', 'ffi', 'dak', 'kriegsmarine',
+            'splitter', 'pea', 'telo', 'amoeba', 'whitewash']
+DECAL_OF = {'trenchart': 'trench_plate', 'parade': 'plaque', 'airborne': 'ab82', 'airborne101': 'ab101', 'ffi': 'lorraine', 'dak': 'dak_palm'}
+_T = {}
 
 
 def tile(name):
-    return np.asarray(Image.open(os.path.join(TILES, name + '.png')).convert('RGBA'), float) / 255.0
+    if name not in _T:
+        _T[name] = np.asarray(Image.open(os.path.join(TILES, name + '.png')).convert('RGBA'), float) / 255.0
+    return _T[name]
 
 
 def decal(name):
-    return np.asarray(Image.open(os.path.join(DECALS, name + '.png')).convert('RGBA'), float) / 255.0
+    p = os.path.join(DECALS, name + '.png')
+    if name == 'trench_plate' and not os.path.exists(p):
+        make_trench_plate(p)
+    im = Image.open(p).convert('RGBA')
+    w, h = im.size                               # pad to a square, centred (the stage maps [0,1]^2)
+    S = max(w, h)
+    sq = Image.new('RGBA', (S, S), (0, 0, 0, 0))
+    sq.paste(im, ((S - w) // 2, (S - h) // 2))
+    return np.asarray(sq, float) / 255.0
 
 
-def tiled(t, H, W):
-    """the tile laid over a W x H texture at TILE_REPEAT repeats across it (nearest sample, as GL_REPEAT does)"""
+def make_trench_plate(path):
+    """a brass oval plate, engraved vine border, the crest engraved in the middle"""
+    K, S = 4, 512
+    im = Image.new('RGBA', (S * K, S * K), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    box = [S * K * 0.06, S * K * 0.14, S * K * 0.94, S * K * 0.86]
+    d.ellipse(box, fill=(132, 92, 30, 255))
+    inset = [box[0] + 10 * K, box[1] + 10 * K, box[2] - 10 * K, box[3] - 10 * K]
+    d.ellipse(inset, fill=(214, 168, 78, 255))
+    hl = [inset[0] + 40 * K, inset[1] + 24 * K, inset[2] - 120 * K, inset[1] + 120 * K]
+    d.ellipse(hl, fill=(236, 200, 120, 255))
+    d.ellipse([inset[0] + 46 * K, inset[1] + 70 * K, inset[2] - 46 * K, inset[3] - 10 * K], fill=(214, 168, 78, 255))
+    ink = (88, 58, 18, 255)
+    cx, cy = S * K / 2, S * K / 2
+    rx, ry = (inset[2] - inset[0]) / 2 - 22 * K, (inset[3] - inset[1]) / 2 - 22 * K
+    d.ellipse([cx - rx, cy - ry, cx + rx, cy + ry], outline=ink, width=3 * K)
+    for i in range(36):                          # the vine: a leaf pair every 10 degrees along the border
+        a = 2 * math.pi * i / 36
+        x, y = cx + rx * math.cos(a), cy + ry * math.sin(a)
+        for s in (-1, 1):
+            b = a + math.pi / 2 + s * 0.7
+            d.ellipse([x + math.cos(b) * 9 * K - 6 * K, y + math.sin(b) * 9 * K - 3 * K,
+                       x + math.cos(b) * 9 * K + 6 * K, y + math.sin(b) * 9 * K + 3 * K], fill=ink)
+    crest = Image.open(os.path.join(DECALS, 'crest.png')).convert('RGBA').resize((int(S * K * 0.5),) * 2, Image.LANCZOS)
+    ca = np.asarray(crest).copy()
+    ca[..., :3] = ink[:3]
+    crest = Image.fromarray(ca)
+    im.alpha_composite(crest, (int(cx - crest.width / 2), int(cy - crest.height / 2)))
+    im.resize((S, S), Image.LANCZOS).save(path)
+
+
+def tiled(t, H, W, rep):
     th, tw = t.shape[:2]
-    ys = (np.arange(H)[:, None] * TILE_REPEAT * th / H).astype(int) % th
-    xs = (np.arange(W)[None, :] * TILE_REPEAT * tw / W).astype(int) % tw
+    ys = (np.arange(H)[:, None] * rep * th / H).astype(int) % th
+    xs = (np.arange(W)[None, :] * rep * tw / W).astype(int) % tw
     return t[ys, xs]
 
 
@@ -39,42 +90,65 @@ def lum(a):
     return a[..., :3] @ np.array([0.299, 0.587, 0.114])
 
 
-def paint(base, rgb, chips_alpha, keep=0.35):
-    """a paint coat: its colour shaded by the texture's own light/dark (keep), chipped where the chip mask is clear"""
+def shade(base):
     L = lum(base)[..., None]
-    coat = np.array(rgb, float)[None, None, :] / 255.0 * (1 - keep + keep * L / max(L.mean(), 1e-3))
-    a = chips_alpha[..., None]
-    return base[..., :3] * (1 - a) + np.clip(coat, 0, 1) * a
+    return L / max(float(np.median(L)), 1e-3)
 
 
-def camo(base, pat):
-    L = lum(base)[..., None]
-    return np.clip(pat[..., :3] * (0.30 + 0.62 * L / max(L.mean(), 1e-3)), 0, 1)
+def coat(base, rgb, keep=0.45):
+    """a paint colour shaded by the texture's own light / dark (keep = how much of the shading survives the paint)"""
+    return np.clip(np.array(rgb, float)[None, None, :] / 255.0 * (1 - keep + keep * shade(base)), 0, 1)
 
 
-FINISHES = ['battleworn', 'trenchart', 'parade', 'captured', 'airborne', 'ffi', 'dak', 'kriegsmarine',
-            'splitter', 'pea', 'telo', 'amoeba', 'whitewash']
-DECAL_OF = {'trenchart': 'crest', 'parade': 'plaque', 'airborne': 'ab82', 'ffi': 'lorraine', 'dak': 'dak_palm'}
+def over(a, b, m):
+    m = m[..., None] if m.ndim == 2 else m
+    return a * (1 - m) + b * m
 
 
-def finish_tex(fin, base, german):
+def rust_runs(P, lo, hi, seed=7):
+    """rust streaks running DOWN the gun from a few points on the receiver, in model space (so they hang the right way on
+    every UV island): strength per texel"""
+    rng = np.random.default_rng(seed)
+    L = hi[0] - lo[0]
+    out = np.zeros(P.shape[:2])
+    x, z = P[..., 0], P[..., 2]
+    ok = np.isfinite(x)
+    x, z = np.where(ok, x, 0), np.where(ok, z, 0)
+    for _ in range(9):
+        xs = lo[0] + L * rng.uniform(0.25, 0.8)
+        zs = lo[2] + (hi[2] - lo[2]) * rng.uniform(0.45, 0.85)
+        w = L * rng.uniform(0.004, 0.008)
+        ln = (hi[2] - lo[2]) * rng.uniform(0.15, 0.4)
+        dz = zs - z
+        s = np.exp(-((x - xs) / w) ** 2) * (dz > 0) * np.exp(-np.maximum(dz, 0) / ln)
+        out = np.maximum(out, s)
+    return out * ok
+
+
+def finish_tex(fin, base, ctx):
+    """base RGBA [H,W,4] float -> RGB. ctx: rep(name) tile repeats on this sheet, mask (1 = finish, 0 = bare), P (texel
+    model points), lo/hi"""
     H, W = base.shape[:2]
-    chips = tiled(tile('wear_chips'), H, W)[..., 3]
+    rgb = base[..., :3]
+    m = ctx['mask']
+    chips = tiled(tile('wear_chips'), H, W, ctx['rep']('wear_chips'))[..., 3]
+    paint_m = m * chips                                        # where a coat survives
     if fin == 'battleworn':
-        sc = 1 - tiled(tile('wear_scratch'), H, W)[..., 0] if tile('wear_scratch').ndim == 3 else None
-        s = 1 - tiled(tile('wear_scratch'), H, W)[..., 0]
-        out = base[..., :3] * 0.88
-        bare = 1 - chips
-        out = out * (1 - bare[..., None] * 0.7) + np.array([0.62, 0.6, 0.56]) * bare[..., None] * 0.7
-        out = np.clip(out + s[..., None] * 1.6, 0, 1)
-        return out
+        s = tiled(tile('wear_scratch'), H, W, ctx['rep']('wear_scratch'))[..., 0]
+        out = rgb * 0.84
+        bare = (1 - m) * 0.85 + (1 - chips) * 0.5
+        out = over(out, np.clip(0.55 + 0.5 * (shade(base) - 1), 0.3, 0.8) * np.array([1.0, 0.98, 0.94]), np.clip(bare, 0, 0.8))
+        return np.clip(out + (1 - s)[..., None] * 0.45, 0, 1)
     if fin == 'trenchart':
-        L = lum(base)[..., None]
-        out = np.clip(np.array([0.86, 0.64, 0.28]) * (0.35 + 1.2 * L), 0, 1)
-        v = tiled(tile('engrave_vines'), H, W)
-        return out * (1 - v[..., 3:4] * 0.75)
+        P = ctx['P']
+        lo, hi = ctx['lo'], ctx['hi']
+        L = hi[0] - lo[0]
+        butt = np.nan_to_num(P[..., 0], nan=1e9) < lo[0] + 0.025 * L          # the buttplate / grip cap: brass
+        brass = np.clip(np.array([0.86, 0.66, 0.30]) * (0.45 + 0.75 * lum(base)[..., None] / max(lum(base).mean(), 1e-3) * 0.6), 0, 1)
+        v = tiled(tile('engrave_vines'), H, W, ctx['rep']('engrave_vines'))[..., 3]
+        brass_e = brass * (1 - 0.6 * v[..., None])
+        return over(rgb, brass_e, butt * 1.0)
     if fin == 'parade':
-        rgb = base[..., :3]
         mx, mn = rgb.max(-1), rgb.min(-1)
         sat = (mx - mn) / np.maximum(mx, 1e-3)
         wood = np.clip((sat - 0.18) / 0.2, 0, 1)[..., None] * (rgb[..., 0:1] > rgb[..., 2:3])
@@ -83,107 +157,60 @@ def finish_tex(fin, base, german):
         nickel = np.clip(0.5 + 0.6 * (L - L.mean()) + 0.12, 0, 1) * np.array([0.92, 0.94, 0.97])
         return walnut * wood + nickel * (1 - wood)
     if fin == 'captured':
-        return base[..., :3] * 0.95
-    if fin == 'airborne':
-        return paint(base, (92, 88, 56), chips)
+        return rgb * 0.95
+    if fin in ('airborne', 'airborne101'):
+        return over(rgb, coat(base, (88, 86, 56)), paint_m)
     if fin == 'ffi':
-        return base[..., :3] * (0.9 + 0.1 * chips[..., None])
+        return rgb * (0.88 + 0.12 * chips[..., None])
     if fin == 'dak':
-        worn = np.clip(chips * 1.0 - (1 - tiled(tile('camo_whitewash'), H, W)[..., 3]) * 0.25, 0, 1)
-        return paint(base, (196, 168, 108), worn)
+        return over(rgb, coat(base, (194, 166, 106)), paint_m)
     if fin == 'kriegsmarine':
-        out = paint(base, (116, 122, 128), chips)
-        salt = tiled(tile('camo_pea'), H, W)
-        spots = (lum(salt) > 0.62)[..., None]
-        return np.clip(out * (1 - spots * 0.35) + spots * 0.35 * np.array([0.86, 0.87, 0.86]), 0, 1)
+        out = over(rgb, coat(base, (52, 56, 60), keep=0.45), paint_m)
+        salt = np.asarray(Image.fromarray((tiled(tile('camo_pea'), H, W, ctx['rep']('camo_pea'))[..., 0] * 255).astype(np.uint8))
+                          .filter(ImageFilter.GaussianBlur(max(2, W // 120))), float) / 255.0
+        bloom = np.clip((salt - 0.55) * 3.0, 0, 1) * 0.45 * m
+        out = over(out, np.array([0.84, 0.86, 0.85]), bloom)
+        r = rust_runs(ctx['P'], ctx['lo'], ctx['hi'])
+        return over(out, np.array([0.46, 0.24, 0.11]) * (0.7 + 0.3 * shade(base)), np.clip(r * 0.75, 0, 0.75))
     if fin in ('splitter', 'pea', 'telo', 'amoeba'):
-        return camo(base, tiled(tile('camo_' + fin), H, W))
+        pat = tiled(tile('camo_' + fin), H, W, ctx['rep']('camo_' + fin))[..., :3]
+        pat = np.clip(pat * {'splitter': 1.0, 'pea': 0.78, 'telo': 0.74, 'amoeba': 0.95}[fin], 0, 1)
+        cam = np.clip(pat * (0.35 + 0.65 * shade(base)), 0, 1)
+        return over(rgb, cam, paint_m)
     if fin == 'whitewash':
-        w = tiled(tile('camo_whitewash'), H, W)
-        L = lum(base)[..., None]
-        white = np.clip(w[..., :3] * (0.7 + 0.5 * L / max(L.mean(), 1e-3)), 0, 1)
-        a = np.clip(w[..., 3:4] * 1.4 - 0.62, 0, 1) * 0.85           # thinner: the gun shows through the brush gaps
-        return base[..., :3] * (1 - a) + white * a
+        w = tiled(tile('camo_whitewash'), H, W, ctx['rep']('camo_whitewash'))[..., 3]
+        white = np.clip(np.array([0.84, 0.84, 0.82]) * (0.5 + 0.5 * shade(base)) * (0.88 + 0.12 * w[..., None]), 0, 1)
+        big = tiled(tile('wear_chips'), H, W, ctx['rep']('wear_chips') * 0.35)[..., 3]      # larger worn-through patches
+        cover = np.clip(0.45 + 0.6 * w, 0, 1) * m ** 3 * (0.1 + 0.9 * chips) * (0.35 + 0.65 * big)
+        return over(rgb * 0.8, white, np.clip(cover, 0, 0.96))
     raise KeyError(fin)
 
 
-def stock_affine(g):
-    """-> the decal's place on the gun, from its own mesh: the side-facing (|n_y| > 0.75, facing the viewer at -y) faces are
-    split into connected UV islands; the biggest island whose centre lies in the rear 60 % of the gun wins (a rifle's
-    butt, a pistol's grip panel or slide, an SMG's receiver side). Returns (area, shader, UV->(x,z) affine, centre, size,
-    island triangles, UV)."""
-    P = np.concatenate([s['P'] for s in g['surfs']])
-    x0, x1 = P[:, 0].min(), P[:, 0].max()
-    best = None
-    for s in g['surfs']:
-        V, UV, T = s['P'], s['UV'], s['tri']
-        if len(T) == 0:
-            continue
-        n = np.cross(V[T[:, 1]] - V[T[:, 0]], V[T[:, 2]] - V[T[:, 0]])
-        area = np.linalg.norm(n, axis=1)
-        ny = n[:, 1] / np.maximum(area, 1e-9)
-        idx = np.nonzero((ny < -0.75) & (area > 1e-6))[0]
-        if len(idx) < 2:
-            continue
-        par = {}
-        def find(a):
-            while par.setdefault(a, a) != a:
-                par[a] = par[par[a]]
-                a = par[a]
-            return a
-        owner = {}
-        for ti in idx:                                   # union triangles that share a vertex
-            for vi in T[ti]:
-                if vi in owner:
-                    ra, rb = find(owner[vi]), find(ti)
-                    if ra != rb:
-                        par[ra] = rb
-                else:
-                    owner[vi] = ti
-        groups = {}
-        for ti in idx:
-            groups.setdefault(find(ti), []).append(ti)
-        for tl in groups.values():
-            tl = np.array(tl)
-            A = area[tl].sum()
-            c = np.average(V[T[tl]].mean(1), axis=0, weights=area[tl])
-            if c[0] > x0 + 0.6 * (x1 - x0) or len(tl) < 2:
-                continue
-            if best is None or A > best[0]:
-                vi = np.unique(T[tl].ravel())
-                aff, *_ = np.linalg.lstsq(np.c_[UV[vi], np.ones(len(vi))], V[vi][:, [0, 2]], rcond=None)
-                size = 0.48 * min(np.ptp(V[vi][:, 2]), np.ptp(V[vi][:, 0]))
-                best = (A, s['shader'], aff, (c[0], c[2]), size, T[tl], UV)
-    return best
+def build_ctx(g, sh, H, W):
+    wpu = fl.world_per_uv(g, sh)
+    Hs, Ws = min(H, 512), min(W, 512)
+    P, _N, edge = fl.texel_world(g, sh, Ws, Hs)
+    m = fl.wear_mask(g, sh, Ws, Hs, P=P, edge=edge)
+    if (Hs, Ws) != (H, W):
+        m = np.asarray(Image.fromarray((m * 255).astype(np.uint8)).resize((W, H), Image.BILINEAR), float) / 255.0
+        P = np.stack([np.asarray(Image.fromarray(np.nan_to_num(P[..., i], nan=1e9).astype(np.float32)).resize((W, H), Image.NEAREST))
+                      for i in range(3)], -1)
+        P[P > 1e8] = np.nan
+    lo, hi = fl.gun_box(g)
+    return dict(mask=m, P=P, lo=lo, hi=hi, wpu=wpu, rep=lambda name: wpu / (TILE_CM[name] * fl.U_PER_CM))
 
 
-def stamp(img, shader_hit, best, dec):
-    """composite the decal into the texture over the stock's side faces (their UV triangles), sampled through the affine"""
-    A_, shader, aff, (cx, cz), size, tris, UV = best
-    H, W = img.shape[:2]
-    mask = Image.new('L', (W, H), 0)
-    dr = ImageDraw.Draw(mask)
-    for t in tris:
-        dr.polygon([(UV[i][0] % 1.0 * W, UV[i][1] % 1.0 * H) for i in t], fill=255)
-    m = np.asarray(mask) > 0
-    ys, xs = np.nonzero(m)
-    u, v = xs / W, ys / H
-    xz = np.c_[u, v, np.ones(len(u))] @ aff
-    du = (xz[:, 0] - cx) / size + 0.5
-    dv = 0.5 - (xz[:, 1] - cz) / size
-    ok = (du >= 0) & (du < 1) & (dv >= 0) & (dv < 1)
-    dh, dw = dec.shape[:2]
-    px = dec[(dv[ok] * dh).astype(int), (du[ok] * dw).astype(int)]
-    a = px[:, 3:4]
-    img[ys[ok], xs[ok], :3] = img[ys[ok], xs[ok], :3] * (1 - a) + px[:, :3] * a
-    return img
-
-
-def render(tik, fin, W=520, H=200):
+def render(tik, cls, fin, W=520, H=200, pl_cache={}):
     g = gungeo.load_gun(tik)
     german = any(k in tik.lower() for k in GERMAN)
-    best = stock_affine(g)
     dname = DECAL_OF.get(fin) or (('souvenir' if german else 'waa') if fin == 'captured' else None)
+    if dname:
+        key = (tik, 'receiver' if fin == 'captured' and not german else oc.KIND.get(cls, 'grip'))
+        if key not in pl_cache:
+            pl_cache[key] = oc.place_verified(g, key[1])[0]
+        pl = pl_cache[key]
+    else:
+        pl = None
     cache = {}
     real = uvview.shader_image
 
@@ -194,42 +221,44 @@ def render(tik, fin, W=520, H=200):
                 cache[sh] = (m, p, pk, im, blk)
             else:
                 base = np.asarray(im.convert('RGBA'), float) / 255.0
-                out = finish_tex(fin, base, german)
-                img = np.dstack([out, base[..., 3:4]])
-                if dname and best is not None and sh == best[1]:
-                    img = stamp(img, sh, best, decal(dname))
+                ctx = build_ctx(g, sh, *base.shape[:2])
+                img = np.dstack([finish_tex(fin, base, ctx), base[..., 3:4]])
+                if dname and pl is not None and sh == pl['shader']:
+                    dec = decal(dname)
+                    if dname == 'waa':                       # a die-struck mark on blued steel reads bright, not inked
+                        dec = dec.copy()
+                        dec[..., :3] = np.array([0.80, 0.80, 0.76])
+                    img = fl.stamp(img, pl, dec)
                 cache[sh] = (m, p, pk, Image.fromarray((np.clip(img, 0, 1) * 255).astype(np.uint8), 'RGBA'), blk)
         return cache[sh]
     uvview.shader_image = shader_image
     try:
-        P = np.concatenate([s['P'] for s in g['surfs']])
-        c = (P.min(0) + P.max(0)) / 2
-        ext = max(np.ptp(P[:, 0]), np.ptp(P[:, 2]) * W / H)
+        lo, hi = fl.gun_box(g)
+        c = (lo + hi) / 2
+        ext = max(hi[0] - lo[0], (hi[2] - lo[2]) * W / H)
         dist = ext * 6.0
-        eye = c + np.array([0, -dist, 0])
-        rgb, ids, dep = raster.render(g, eye, c, np.array([0, 0, 1.0]), fov=2 * math.degrees(math.atan(ext * 0.55 / dist)), W=W, H=H,
-                                      tex=True, bg=(58, 60, 64))
+        rgb, ids, dep = raster.render(g, c + np.array([0, -dist, 0]), c, np.array([0, 0, 1.0]),
+                                      fov=2 * math.degrees(math.atan(ext * 0.55 / dist)), W=W, H=H, tex=True, bg=(58, 60, 64))
     finally:
         uvview.shader_image = real
     return Image.fromarray(rgb)
 
 
 def main():
-    out, tiks = sys.argv[1], sys.argv[2:]
+    out, guns = sys.argv[1], [a.split(':') for a in sys.argv[2:]]
+    fins = os.environ.get('FINISHES', ','.join(FINISHES)).split(',')
     W, H = 420, 160
-    fins = FINISHES
-    sheet = Image.new('RGB', (len(tiks) * (W + 6) + 110, len(fins) * (H + 4)), (24, 24, 26))
+    sheet = Image.new('RGB', (len(guns) * (W + 6) + 110, len(fins) * (H + 4)), (24, 24, 26))
     d = ImageDraw.Draw(sheet)
     for j, f in enumerate(fins):
         d.text((6, j * (H + 4) + H // 2 - 6), f, fill=(235, 210, 120))
-        for i, t in enumerate(tiks):
+        for i, (t, cls) in enumerate(guns):
             try:
-                im = render(t, f, W, H)
-                sheet.paste(im, (110 + i * (W + 6), j * (H + 4)))
+                sheet.paste(render(t, cls, f, W, H), (110 + i * (W + 6), j * (H + 4)))
             except Exception as e:
                 d.text((110 + i * (W + 6) + 6, j * (H + 4) + 6), 'ERR %s' % repr(e)[:60], fill=(255, 80, 80))
         print(f, flush=True)
-    sheet.save(out, quality=86)
+    sheet.save(out, quality=88)
     print('wrote', out)
 
 
