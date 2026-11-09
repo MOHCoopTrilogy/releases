@@ -310,6 +310,25 @@ image path, image SHA1, converter version, the generated paks and their sha256).
 - `sv_allowDownload` refuses `zzzz_coop_fl_*` and `zzzz_fl_hdtex_*` (section 6).
 - A CI/pre-commit scan rejects FL magics (`BIGF`, `SCHl`, `SHPX`, `MPCh`) and those pak names.
 
+**Onboarding, approved by the user 2026-11-09** (built in Phase 2; refines the bullets above):
+- **Installer page:** optional, after the main install: "Own Medal of Honor: Frontline? Add its campaign".
+  **Skip is the default**, so pressing Next through the installer never touches Frontline. **Add**
+  auto-detects the image in the drive roots, Downloads, Desktop and Documents, or lets the player browse.
+  Then verify, convert, done, with the progress and result UI above.
+- **Existing players:** a one-time What's New line plus an "Add Frontline" button. It never prompts again
+  (one seen-flag in the installer settings).
+- **Attic prop** (the in-world home for the feature, per the attic rule): a Frontline object on the attic
+  shelf. Options are a Frontline game case, or the St. Mathieu / Lorient map rolled on the shelf. It lights
+  up on hover like the other attic props.
+  - **Without Frontline:** it opens the Add Frontline step (file picker or auto-detect, convert, progress,
+    result).
+  - **With Frontline:** it shows the converted missions and a **Re-convert** option.
+  - The model, placement and bake are coordinated with the attic agent, which owns the attic scene. Test
+    with `ui_atticMain 1`.
+- **Classic menu:** a Settings -> Frontline entry with the same actions, for players without the attic.
+- **Updater:** remembers the image path and re-converts silently whenever the converter version changes.
+  Failures go to a log plus a dismissible note, and **never block launch**.
+
 ## 9. Hard requirement: Frontline never gets in the way of the rest of the mod
 
 **Installer/updater**
