@@ -79,8 +79,12 @@ QA #2 (an in-house ZFG 42 with the eyepiece sized to the lens view) still failed
 was an oversized, blocky can mounted high. Per the coordinator, the recipe that already worked is copied instead:
 - `build_mesh.py` (`FG_SCOPE=1`) lifts the **shipped scope** out of `coop_fg42.skd`'s `fg42base` (everything above the old receiver,
   151 tris) and its `fg42lens` VERBATIM - same bone, same local coordinates, so it sits exactly on the shipped scope sight row and the
-  lens view behaves as it did through v1.10.65. A mount block runs from the shipped mount's foot (z -4.25) down to the new receiver.
-  The surface is `fg42scope` on the shipped `fg42` sheet; its finishes reuse the shipped `coop_skin_fg42_*` blocks.
+  lens view behaves as it did through v1.10.65. The surface is `fg42scope` on the shipped `fg42` sheet; its finishes reuse the shipped
+  `coop_skin_fg42_*` blocks. One half-quad of the old mount's rear ramp is dropped (it reached back to the old receiver: a thin fin).
+- **QA #4 mount**: a machined steel rail mount on the BODY sheet (`fg42hdmt`, `mount_corners`): a chamfered riser from the shipped
+  mount's foot, on a wider chamfered SADDLE base whose sides run down into the receiver's rounded flanks (the receiver top is a
+  narrow ridge, -2.35, falling to -1.2 at |y| 1.4 - a flat base showed snow underneath, "the scope isn't attached"), two clamp screws
+  on its left face. `mount_views.py` renders it from the side and from below on a bright ground to prove there is no daylight.
 - The source's **front sight post and hood** are removed on the scoped gun (the real scoped FG 42's folded flat); the hood read as the
   irons' ring leaking onto the front post.
 - Kept from QA #2: the fine **`zfg42` reticle** (cgame optic + `gen_scope_reticles.py`; the base scopes pak must be rebuilt at merge),

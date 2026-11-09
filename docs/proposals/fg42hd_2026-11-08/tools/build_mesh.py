@@ -60,6 +60,83 @@ FS_X, FS_Z = (48.5, 53.5), -1.7           # the front sight's post + hood on the
 SCOPE_Z, SCOPE_X = -4.4, (-8.6, 8.6)      # the shipped scope + its mount in coop_fg42.skd's fg42base: everything above the old receiver
 
 
+MOUNT_FOOT = None
+SADDLE_Z = -1.30                          # the mount base's underside: below the receiver's flanks at |y| <= 1.15 (measured)
+PX = 30.0 / 2048.0                        # the body's texel density in sheet units per raw unit
+
+
+def _steel_uv(atlas, a, b):
+    """planar steel UV in the atlas's Barrel tile (the body sheet's blued steel, machining along a)"""
+    t = atlas['tiles']['Barrel']
+    u0 = (t['x'] + t['pad'] + 20) / atlas['size']
+    v0 = (t['y'] + t['pad'] + 20) / atlas['size']
+    return (u0 + (a % 14.0) * PX, v0 + (b % 14.0) * PX)
+
+
+def _prism(atlas, x0, x1, y0, y1, z0, z1, ch):
+    """a block along x whose four long edges are chamfered by ch (an octagonal section) with flat end caps; -z up"""
+    sec = [(y0 + ch, z0), (y1 - ch, z0), (y1, z0 + ch), (y1, z1 - ch), (y1 - ch, z1), (y0 + ch, z1), (y0, z1 - ch), (y0, z0 + ch)]
+    cy, cz = (y0 + y1) / 2, (z0 + z1) / 2
+    out = []
+    per = 0.0
+    for k in range(8):
+        (ya, za), (yb, zb) = sec[k], sec[(k + 1) % 8]
+        n = np.array([0.0, (zb - za), -(yb - ya)]); n /= np.linalg.norm(n)
+        if np.dot(n, [0, (ya + yb) / 2 - cy, (za + zb) / 2 - cz]) < 0:
+            n = -n
+        seg = float(np.hypot(yb - ya, zb - za))
+        q = [np.array([x0, ya, za]), np.array([x1, ya, za]), np.array([x1, yb, zb]), np.array([x0, yb, zb])]
+        uv = [_steel_uv(atlas, x0, per), _steel_uv(atlas, x1, per), _steel_uv(atlas, x1, per + seg), _steel_uv(atlas, x0, per + seg)]
+        per += seg
+        for a, b, c in ((0, 1, 2), (0, 2, 3)):
+            out.append([(1, q[a], n, uv[a]), (1, q[b], n, uv[b]), (1, q[c], n, uv[c])])
+    for x, sx in ((x0, -1.0), (x1, 1.0)):
+        n = np.array([sx, 0.0, 0.0])
+        c = np.array([x, cy, cz])
+        for k in range(8):
+            (ya, za), (yb, zb) = sec[k], sec[(k + 1) % 8]
+            pts = [c, np.array([x, ya, za]), np.array([x, yb, zb])]
+            out.append([(1, p_, n, _steel_uv(atlas, p_[1], p_[2])) for p_ in pts])
+    return out
+
+
+def _screw(atlas, x, y, z, r, h, seg=10):
+    """a cheese-head clamp screw on the mount's LEFT face (-y), axis along y"""
+    out = []
+    c0, c1 = np.array([x, y, z]), np.array([x, y - h, z])
+    for k in range(seg):
+        t0, t1 = 2 * np.pi * k / seg, 2 * np.pi * (k + 1) / seg
+        d0 = np.array([np.cos(t0), 0, np.sin(t0)]); d1 = np.array([np.cos(t1), 0, np.sin(t1)])
+        q = [c0 + r * d0, c1 + r * d0, c1 + r * d1, c0 + r * d1]
+        for a, b, c in ((0, 1, 2), (0, 2, 3)):
+            out.append([(1, q[i], (d0 if i in (0, 1) else d1), _steel_uv(atlas, q[i][0], q[i][2])) for i in (a, b, c)])
+        nn = np.array([0, -1.0, 0])
+        out.append([(1, p_, nn, _steel_uv(atlas, p_[0], p_[2])) for p_ in (c1, c1 + r * d0, c1 + r * d1)])
+    return out
+
+
+def mount_corners(atlas):
+    """[QA #4] the shipped scope's new foot: a machined steel rail mount on the body sheet's blued steel - a chamfered riser from the
+    shipped mount's foot down to the receiver, on a wider chamfered base rail, clamped by two screws on its left face. Replaces the
+    plain box (QA #3), which took a pale texel of the scope's sheet and read as a grey block under the eyepiece."""
+    x0, x1, y0, y1, fz = MOUNT_FOOT
+    out = _prism(atlas, x0 - 0.15, x1 + 0.15, y0 - 0.08, y1 + 0.08, fz - 0.45, RECEIVER_TOP - 0.50, 0.22)   # 0.45 into the shipped mount: its lit bottom edge showed as a seam (run q4)
+    # the base is a SADDLE: the receiver's top is a narrow ridge (-2.35 over |y| < 0.35) falling to -1.7 at |y| 0.7 and -1.2 at 1.4,
+    # so a flat-bottomed base showed daylight (snow) under its sides from below (user, QA #4). Its sides run down to SADDLE_Z, into the
+    # receiver's flanks, so it sits flush and solid from every angle.
+    out += _prism(atlas, x0 - 1.30, x1 + 1.30, y0 - 0.30, y1 + 0.30, RECEIVER_TOP - 0.55, SADDLE_Z, 0.16)
+    for sx in (x0 + 0.9, x1 - 0.9):
+        out += _screw(atlas, sx, y0 - 0.08, (fz - 0.45 + RECEIVER_TOP - 0.50) / 2, 0.30, 0.14)
+    # file winding, as corners() does: a triangle whose cross product agrees with its normal is flipped (retail: cross . n < 0)
+    fixed = []
+    for c in out:
+        p = [np.asarray(v[1], float) for v in c]
+        if np.dot(np.cross(p[1] - p[0], p[2] - p[0]), np.asarray(c[0][2]) + c[1][2] + c[2][2]) > 0:
+            c = [c[0], c[2], c[1]]
+        fixed.append(c)
+    return fixed
+
+
 def old_scope():
     """the shipped scope out of coop_fg42.skd's `fg42base` (triangles above its receiver, between the scope's ends), verbatim, plus
     a mount block from the shipped mount's foot down onto the new, lower receiver, textured from the mount's own texel"""
@@ -69,6 +146,9 @@ def old_scope():
     T = np.asarray(s['tris'], int)
     C = P[T].mean(1)
     sel = (C[:, 2] < SCOPE_Z) & (C[:, 0] > SCOPE_X[0]) & (C[:, 0] < SCOPE_X[1])
+    # [QA #4] minus the one half of the old mount's rear ramp whose partner sat below the cut: it reached back to the old receiver
+    # (x -4.93, z -3.9) and stood out as a thin pointed fin beside the new mount
+    sel &= P[T][:, :, 2].max(1) < -4.0
     T = T[sel]
     used = sorted(set(T.ravel()))
     remap = {o: i for i, o in enumerate(used)}
@@ -80,29 +160,8 @@ def old_scope():
     fz = foot[:, 2].max()                                    # -z is up: the mount's lowest point
     x0, x1 = foot[:, 0].min(), foot[:, 0].max()
     y0, y1 = foot[:, 1].min(), foot[:, 1].max()
-    # a dark steel texel of the scope's own sheet: the mount's foot vertex sampled a light-grey texel and the block read as a pale box (QA #3)
-    from PIL import Image
-    import io as _io
-    sheet = np.asarray(Image.open(_io.BytesIO(W.carriers('textures/fg42/fg42.jpg')[-1][1])).convert('L'), float)
-    lum = [sheet[min(int(v[1] % 1 * sheet.shape[0]), sheet.shape[0] - 1), min(int(v[0] % 1 * sheet.shape[1]), sheet.shape[1] - 1)]
-           for v in (s['verts'][o]['uv'] for o in used)]
-    order = np.argsort(lum)
-    pick = order[int(0.25 * len(order))]                     # the darker quarter, not the darkest (that is a black seam)
-    uv = s['verts'][used[pick]]['uv']
-    bone = s['verts'][used[0]]['bone']
-    lo, hi = np.array([x0, y0, fz - 0.15]), np.array([x1, y1, RECEIVER_TOP])
-    Pq = lambda i, j, k: [(lo, hi)[i][0], (lo, hi)[j][1], (lo, hi)[k][2]]
-    faces = [((1, 0, 0), [(1, 0, 0), (1, 1, 0), (1, 1, 1), (1, 0, 1)]), ((-1, 0, 0), [(0, 0, 0), (0, 0, 1), (0, 1, 1), (0, 1, 0)]),
-             ((0, 1, 0), [(0, 1, 0), (0, 1, 1), (1, 1, 1), (1, 1, 0)]), ((0, -1, 0), [(0, 0, 0), (1, 0, 0), (1, 0, 1), (0, 0, 1)])]
-    for n, idx in faces:
-        q = [np.array(Pq(*t)) for t in idx]
-        base = len(verts)
-        for p in q:
-            verts.append((list(map(float, n)), uv, bone, [list(map(float, p))] if isinstance(s['verts'][0]['pos'][0], (list, tuple)) else list(map(float, p))))
-        for a, bb, c in ((0, 1, 2), (0, 2, 3)):
-            fn = np.cross(q[bb] - q[a], q[c] - q[a])
-            tri = [base + a, base + bb, base + c] if np.dot(fn, n) < 0 else [base + a, base + c, base + bb]   # retail winding
-            tris.append(tri)
+    global MOUNT_FOOT
+    MOUNT_FOOT = (x0, x1, y0, y1, fz)                       # the machined mount (mount_corners) is built from here down
     print('  shipped scope: %d tris, mount foot z %.2f -> receiver %.2f' % (len(tris), fz, RECEIVER_TOP))
     return ('fg42scope', np.asarray(tris, int), verts)
 
@@ -141,6 +200,7 @@ def main():
         # The in-house ZFG 42 (scope_mesh.py, removed) read as an oversized can, blocky and mounted too high. Only a mount block is new:
         # the shipped mount stopped at the old receiver, the new one is lower.
         surfs.append(old_scope())
+        surfs += X.split_surfaces('fg42hdmt', mount_corners(atlas))   # fg42hd* -> the body's shader and finishes
         surfs.append(old_surface('models/weapons/fg42/coop_fg42.skd', 'fg42lens'))
     surfs.append(old_handle())
     os.makedirs(OUT, exist_ok=True)
