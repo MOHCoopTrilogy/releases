@@ -157,7 +157,7 @@ MP_OWNED_MENUS = {"mpoptions"}
 # ONLY this file: the MP-facing menus are left unlocked on purpose - the user approved coop edits to them
 # (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
 LOCKS = {
-    "ui/coop_loadout.urc": {"sha256_lf": "cc391edc037c262d643dfe72e2e35f16d5759bb04f2f1446f501bf9118138bd3", "sha256_crlf": "55dd8cb89be66014920d295e565f1526e215103eef6af447d194e9c68db7c46e", "lf_bytes": 177085, "blob": "7cecbb1bb6a3803a93405f722d426b95a03b7b22", "eol": "crlf", "commit": "3e4f2183", "locked": "2026-11-08 v1.10.66 armoryfix: modelfitaspect 1.7778 on every Armory model widget (gen_armory_urc.py; engine armoryfix-eng) - the previews keep their 16:9 framing at 21:9 / 3440x1440 - deliberate coop change, bug-10596"},
+    "ui/coop_loadout.urc": {"sha256_lf": "887613633310e9163f88454d33cd93d9efe0f586cfdf28cdc904f3e0d94d0bd9", "sha256_crlf": "9b06e91727e7449d061fd1e42180c0aa284661943eb39725909aa03879c04776", "lf_bytes": 177428, "blob": "84e1476d1629ef0e5d99d73ed1decf5f5f745e96", "eol": "lf", "commit": "45dc0884", "locked": "2026-11-09 Customize bench: the Armory hero gains a CUSTOMIZE button (hzmcust open; pushmenu coop_custom; gen_armory_urc.py) - deliberate coop change, bug-10709"},
 }
 
 # Clauses 4/5. Every saved coop cvar MP could plausibly touch [bug-2564]; each would follow the player into coop.
