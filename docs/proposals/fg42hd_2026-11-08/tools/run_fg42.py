@@ -81,4 +81,4 @@ s.cmd("-lookdown", 900)
 s.cmd("screenshotJPEG f_09_drop", 400)
 s.cmd("quit", 0)
 W.launch("fg_%s" % tag, RES, s, lines=['seta coop_lo2 ""', 'seta coop_loA2 ""', 'seta coop_loFA2 ""', "set g_gametype 2", "set cheats 1", "set coop_dev 1", "set coop_fireDebug 1",
-                                          "set coop_lockLoadout 0", "set cg_scopeDebug 1", "set ui_dmmap m2l1", "ui_startdmmap 2"], budget=200)
+                                          "set coop_lockLoadout 0", "set cg_scopeDebug %s" % os.environ.get("WV_SCOPEDBG", "1"), "set ui_dmmap m2l1", "ui_startdmmap 2"], budget=200)
