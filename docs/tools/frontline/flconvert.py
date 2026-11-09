@@ -232,6 +232,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # render-only reskins from fl_modelmap.json (MOHAA art from the player's install, nothing shipped)
     _mm = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fl_modelmap.json")
     reskin = json.load(open(_mm)).get(level, {}).get("reskin", {}) if os.path.exists(_mm) else {}
+    hidden = {(h["cell"], int(h["draw"])) for h in (json.load(open(_mm)).get(level, {}).get("hide", []) if os.path.exists(_mm) else [])}
 
     def short_key(key):
         return str(key).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_")
@@ -307,6 +308,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         sh = tex_shader(m["tex"])
     for m in meshes:
         if not m["tris"]:
+            continue
+        if (m["cell"], m["draw"]) in hidden:          # fl_modelmap.json "hide": render-only removal (reason per entry)
+            stats["hidden_draws"] = stats.get("hidden_draws", 0) + 1
             continue
         sh = tex_shader(m["tex"])
         P = [X(v) for v in m["verts"]]

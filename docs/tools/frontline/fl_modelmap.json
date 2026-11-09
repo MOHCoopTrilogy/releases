@@ -28,6 +28,18 @@
     "model": "models/static/supplydropcrate.tik",
     "reason": "Frontline's resistance supply drop (objective 1) is a parachute supply crate; MOHAA's stock supplydropcrate is exactly that object (crate with its chute), so the drop is visible where the use-objective is. Kept as a position (objective 1 reads level.fl_pos); only the marker model changes (was the stand-in exp_crate1a)."
    }
-  }
+  },
+  "hide": [
+   {
+    "cell": "1_1_ART_c5.cpt",
+    "draw": 568,
+    "reason": "Frontline's interrogation stool (tex 152f00, 160 tris, floor -167 to seat -117): the prisoner now sits on MOHAA's stock interrogation chair (the pose is authored for it), so the stool would stand beside him. Render only; its collision stays."
+   },
+   {
+    "cell": "1_1_ART_c5.cpt",
+    "draw": 552,
+    "reason": "the same stool's seat top (4 tris)."
+   }
+  ]
  }
 }
