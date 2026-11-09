@@ -1,6 +1,6 @@
 # Live Operations: CRIME.NET-style bot matches popping up on the NEW GAME war map
 
-**Status: PLAN + MOCKUP ONLY (2026-11-09).** Nothing in the mod or engine has been changed. Decisions 2 and 3 and the approximate locations are **decided** (section 7). Decision 1, the Breakthrough tag nudges, is **open**.
+**Status: PLAN + MOCKUP ONLY (2026-11-09).** Nothing in the mod or engine has been changed. Decisions 2 and 3 and the approximate locations are **decided** (section 7). Decision 1, the Breakthrough tag nudges, is **approved** (labels only).
 
 | File | What it is |
 |---|---|
@@ -420,9 +420,9 @@ on the wall, so **no new scene/render code is needed**.
 | 3b | **Reward:** completing a contract pays a bonus into the **Service Record** through `xp.scr::xp_award_mp`, under its existing per-match cap (`coop_xp_mpMatchCap`, 2000). No unlock gating. | **DECIDED** |
 | - | **Approximate locations:** the "approx" pins and theatres in section 4 stand as they are, including Snowy Park and The Bridge. | **ACCEPTED** |
 | - | **MP menu labels:** fixed by the user in mod hotfix-1.10.53 (mohdm3 = Remagen, mohdm7 = Algiers, the uninstalled `mp_castello_dm` removed). | **DONE** (outside this plan) |
-| 1 | **Breakthrough tag nudges:** see below. | **OPEN** |
+| 1 | **Breakthrough tag nudges, labels only:** bt3 moves from (43.65, 12.6) to (45.9, 12.6), bt2 from (36.0, 17.9) to (36.0, 18.9), bt1 from (34.2, 9.4) to (38.7, 8.9). Only the tag labels move, together with their click targets. Mission pins, missions, leaders' pin ends, difficulty screens, locks, the toggle and campaign flow are unchanged. Applied at build time as three `tag` values in `missions.json` plus a rerun of `make_ng3campaigns.py`. | **APPROVED** (user, 2026-11-09) |
 
-### Decision 1: what a tag nudge does and does not change
+### Decision 1: what a tag nudge does and does not change (approved, kept for the record)
 
 The user's worry is that moving the tags would get in the way of the actual missions. Here is what a
 nudge actually changes.
@@ -449,7 +449,7 @@ the click target that sits on each tag.
   - bt2 moves only 1 degree east.
   - `warmap.qa()` stays clean (no tag over a pin, a name, another tag, the toggle or the legend).
 
-**If the user says no:**
+**The fallback that was not chosen:**
 - The tags stay where they are and draw above the contract layer.
 - Contracts at Bologna, Monte Battaglia, Castello, Malta and the Tunisian desert sit under them.
 - **Recommended fallback:** do not roll a location whose centre is covered by a campaign tag. Those maps
