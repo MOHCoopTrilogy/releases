@@ -211,7 +211,7 @@ All coordinates are **sketch values [I]**. Each one must be checked in Phase 0 w
 | 9 | Fire mission | Ridge firing line at (−700 −2300 ~480), looking east into the creek valley; target box centre (1900 −2600 ~0), about 2,600u away; check with bsptrace | Bombing run (25), with radio and red smoke |
 | 10 | Final exercise | Farmhouse plateau: start (4519 946 507), objective = the documents (5284 1956 742) | Everything, against live, weakened enemies; officer kill → reward (34); ready gate (32) |
 
-Mentioned only, on a text card at the end with no station: alarm and counter-attack (35, 36), surrender and recruit (37), disguise (38), collectibles and holdout (43), vehicles and AT supply (44, 28). Q5 asks whether to drill any of them.
+Mentioned only, on a text card at the end with no station: alarm and counter-attack (35, 36), surrender and recruit (37), disguise (38), collectibles and holdout (43), vehicles and AT supply (44, 28). "For later" 4 asks whether to drill any of them.
 
 ### 2.3 Station details
 
