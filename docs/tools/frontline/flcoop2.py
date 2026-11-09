@@ -39,13 +39,14 @@ def main(out):
             "+set", "net_ip", "127.0.0.1", "+set", "sv_maxclients", "4", "+set", "g_gametype", "2",
             "+set", "logfile", "2", "+set", "developer", "1", "+set", "coop_fltest", os.environ.get("FL_TESTMODE", "1"),
             "+set", "coop_fltestPlayers", "2", "+set", "coop_joinCard", "0", "+set", "coop_dbno", "0",
-            "+set", "g_teamswitchdelay", "0", "+map", "coop_fl_1_1"]
+            "+set", "g_teamswitchdelay", "0", "+map", os.environ.get("FL_MAP", "coop_fl_1_1")]
     srv = subprocess.Popen(args, **hw.popen_kwargs())
     print("server pid", srv.pid, flush=True)
     clients = []
     try:
         t0 = time.time()
-        while "FLAI" not in slog() and time.time() - t0 < 240:
+        ready = os.environ.get("FL_READY", "FLAI")      # server line that means the map is up
+        while not re.search(ready, slog()) and time.time() - t0 < 240:
             time.sleep(2)
         for folder, owner, name in CLIENTS:
             home = os.path.join(folder, "home")
@@ -82,7 +83,8 @@ def main(out):
             def on_team(n):
                 return re.search(re.escape(n) + r" has joined the (Allies|Axis|American|German)", log, re.I) is not None
             joined = [n for _, _, _, n in clients if on_team(n)]
-            if len(joined) == len(clients) and ("FLTEST players=2" in log or os.environ.get("FL_TESTMODE") == "3"):
+            if len(joined) == len(clients) and ("FLTEST players=2" in log or os.environ.get("FL_TESTMODE") == "3"
+                                                or os.environ.get("FL_MAP")):
                 break
             for c, _, _, n in clients:
                 if n not in joined:
@@ -91,7 +93,8 @@ def main(out):
         print("joined:", joined, flush=True)
         # watch the self-test, grab client frames for the record
         t0, k = time.time(), 0
-        while time.time() - t0 < 600 and "FLTEST end" not in slog() and "FLASSIST obj 5 done=1" not in slog():
+        done = os.environ.get("FL_DONE", r"FLTEST end|FLASSIST obj 5 done=1")
+        while time.time() - t0 < float(os.environ.get("FL_WATCH", "600")) and not re.search(done, slog()):
             if os.environ.get("FL_TESTMODE") == "3":
                 # real input: hold W (forward) ~0.7 s, then tap F (use) - the HZM default binds
                 for c, _, _, n in clients:
