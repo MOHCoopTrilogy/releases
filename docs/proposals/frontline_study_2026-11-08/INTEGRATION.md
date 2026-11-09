@@ -254,3 +254,56 @@ image path, image SHA1, converter version, the generated paks and their sha256).
 - The updater payload carries only our code and the hash table.
 - `sv_allowDownload` refuses `zzzz_coop_fl_*` and `zzzz_fl_hdtex_*` (section 6).
 - A CI/pre-commit scan rejects FL magics (`BIGF`, `SCHl`, `SHPX`, `MPCh`) and those pak names.
+
+## 9. Hard requirement: Frontline never gets in the way of the rest of the mod
+
+**Installer/updater**
+- The Frontline step is **off by default** and skippable with one click.
+- It runs only **after** the main install or update has completed, with a timeout (10 min per level,
+  2 min for detection).
+- Failure, cancel or timeout:
+  - is logged to `frontline_convert.log`, plus a dismissible note in the What's New card;
+  - **never** shows a blocking modal;
+  - never fails or rolls back the install, update or launch.
+- The converter writes only to a temp file, then renames it to its own `zzzz_coop_fl_*` / `zzzz_fl_*`
+  paks and `fl/` marker. It never touches any other file. A half-written pak is deleted, and the
+  previous good one is kept.
+
+**Campaigns**
+- **Without Frontline:** `maplist.scr` / `chrono.scr` behave byte-identically to today. The Frontline
+  entries are filtered out before the list is built, so there is no gap, no extra step and no lock
+  that waits on them.
+- **With Frontline:** the mission is inserted. The successor's unlock is computed as if Frontline
+  were absent. "Unlock m5l1 after m4l3" stays the rule, so skipping or never playing Frontline can't
+  strand progress. Frontline's own unlock depends on its predecessor, never the other way round.
+
+**Multiplayer: proposal**
+- A server only rotates or chains into an `mfl_*` map when **every connected player** advertises it.
+  The client userinfo carries `fl_have` with a bitmask of converted levels, set from the marker cfg.
+- Otherwise the server skips to the next non-Frontline map. A player who joins mid-Frontline-map
+  without it gets the clear message (section 6) and is returned to the menu. Nobody else is affected.
+- The alternative (keep the map and spectate those players) was rejected, because it strands them.
+- Public servers stay off Frontline. Their map lists don't include `mfl_*`.
+
+**Performance and size without Frontline**
+- No Frontline pak is present, so there is no mount.
+- The only cost is the one `exec fl/have_*.cfg` line, which fails silently.
+- `maps/mfl_*.scr` is never loaded (no map).
+- The `anim/pain.scr` fallback is a two-line guard with no measurable cost.
+- Measure it: boot time, memory, and the pak list.
+
+### No-Frontline regression test (required before any release that carries Frontline code)
+
+Run on a fresh install **without** the disc, and compare against the current release build:
+1. The installer completes with the Frontline step skipped. The updater runs clean; there's no new
+   modal or note beyond "Frontline: not added".
+2. **Full Campaign:** Begin starts `co_lobby1`, then `briefing1`, then `m1l1`. The chain across
+   `m3l3` to `m4l0` is unchanged (scripted run through `maplist.scr` next-map logic).
+3. **Chronological:** starts, and the order lists no Frontline entry. The step from AA M4 to AA M5 is
+   direct.
+4. **SP New Game:** the war map shows no Frontline pin, and the locks and unlocks are identical
+   (scripted unlock-state dump vs the current build).
+5. **Coop join:**
+   - a host and a client both without Frontline: join, play and mission-complete as today;
+   - a mixed lobby (one client has Frontline): the server never enters `mfl_*`.
+6. **Cost:** the same pak list; boot time within noise; the same Script Error count (0).

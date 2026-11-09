@@ -37,7 +37,7 @@ def main(out):
     args = [os.path.join(GOG, "omohaaded.exe"), "+set", "com_target_game", "2", "+set", "fs_basepath", GOG,
             "+set", "fs_homepath", SRVHOME, "+set", "dedicated", "1", "+set", "net_port", str(PORT),
             "+set", "net_ip", "127.0.0.1", "+set", "sv_maxclients", "4", "+set", "g_gametype", "2",
-            "+set", "logfile", "2", "+set", "developer", "1", "+set", "coop_fltest", "1",
+            "+set", "logfile", "2", "+set", "developer", "1", "+set", "coop_fltest", os.environ.get("FL_TESTMODE", "1"),
             "+set", "coop_fltestPlayers", "2", "+set", "coop_joinCard", "0", "+set", "coop_dbno", "0",
             "+set", "g_teamswitchdelay", "0", "+map", "mfl_1_1"]
     srv = subprocess.Popen(args, **hw.popen_kwargs())
@@ -76,7 +76,7 @@ def main(out):
         while time.time() - t0 < 240:
             log = slog()
             joined = [n for _, _, _, n in clients if re.search(re.escape(n) + r" has (entered the battle|joined)", log)]
-            if len(joined) == len(clients) and "FLTEST players=2" in log:
+            if len(joined) == len(clients) and ("FLTEST players=2" in log or os.environ.get("FL_TESTMODE") == "3"):
                 break
             for c, _, _, n in clients:
                 if n not in joined:
@@ -85,7 +85,12 @@ def main(out):
         print("joined:", joined, flush=True)
         # watch the self-test, grab client frames for the record
         t0, k = time.time(), 0
-        while time.time() - t0 < 420 and "FLTEST end" not in slog():
+        while time.time() - t0 < 600 and "FLTEST end" not in slog() and "FLASSIST obj 5 done=1" not in slog():
+            if os.environ.get("FL_TESTMODE") == "3":
+                # real input: hold W (forward) ~0.7 s, then tap F (use) - the HZM default binds
+                for c, _, _, n in clients:
+                    c.post_key(0x57, down_ms=700)
+                    c.post_key(0x46, down_ms=80)
             if k % 3 == 0:
                 for c, _, _, n in clients:
                     try:
@@ -108,7 +113,7 @@ def main(out):
         srv.kill()
         shutil.copyfile(SLOG, os.path.join(out, "server_qconsole.log"))
     log = slog()
-    for tag in ("FLTEST", "FLOBJ", "FLCUE", "FLMISSION", "Script Error"):
+    for tag in ("FLTEST", "FLASSIST", "FLUSE trigger", "FLOBJ", "FLCUE", "FLSET", "FLMISSION", "Script Error"):
         hits = re.findall(r"\^~\^~\^ " + tag + r"[^\n]*", log)
         print(tag, len(hits), hits[-7:])
 
