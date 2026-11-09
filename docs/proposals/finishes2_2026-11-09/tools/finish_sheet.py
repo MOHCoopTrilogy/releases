@@ -22,7 +22,7 @@ TILES = os.path.join(HERE, '..', 'assets', 'tiles')
 DECALS = os.path.join(HERE, '..', 'assets', 'decals')
 GERMAN = ('kar98', 'mp40', 'mp44', 'g43', 'fg42', 'mg42', 'p38', 'luger', 'panzer', 'stg', 'walther', 'c96', 'gewehr')
 # physical size of one tile, cm (the in-game tcMod scale = world_per_uv / (cm * U_PER_CM))
-TILE_CM = {'camo_splitter': 34, 'camo_pea': 22, 'camo_telo': 40, 'camo_amoeba': 44, 'camo_whitewash': 26,
+TILE_CM = {'camo_splitter': 34, 'camo_pea': 22, 'camo_telo': 40, 'camo_amoeba': 44, 'camo_whitewash': 16,
            'wear_chips': 16, 'wear_scratch': 18, 'engrave_vines': 10}
 FINISHES = ['battleworn', 'trenchart', 'parade', 'captured', 'airborne', 'airborne101', 'ffi', 'dak', 'kriegsmarine',
             'splitter', 'pea', 'telo', 'amoeba', 'whitewash']
@@ -100,8 +100,13 @@ def paint_shade(base):
     only a little - paint is opaque, so no wood grain, no tool marks (coordinator QA: the grain showed through)"""
     from scipy import ndimage as nd
     L = lum(base)
-    L = nd.gaussian_filter(L, max(2.0, base.shape[1] / 48.0))
-    return np.clip(L / max(float(np.median(L)), 1e-3), 0.82, 1.06)[..., None]
+    broad = nd.gaussian_filter(L, max(2.0, base.shape[1] / 48.0))
+    # plus ~35 % of the mid-scale light / dark (bevels, edges, the sheet's specular): blurred enough that wood grain and
+    # tool marks are gone (coordinator QA: the coats looked flat and plasticky in the viewer)
+    mid = nd.gaussian_filter(L, max(1.5, base.shape[1] / 220.0))
+    med = max(float(np.median(L)), 1e-3)
+    sh = np.clip(broad / med, 0.82, 1.06) * (1 + 0.35 * (mid - broad) / med)
+    return np.clip(sh, 0.6, 1.3)[..., None]
 
 
 def coat(base, rgb, keep=0.45):
@@ -189,8 +194,7 @@ def finish_tex(fin, base, ctx):
     if fin == 'whitewash':
         w = tiled(tile('camo_whitewash'), H, W, ctx['rep']('camo_whitewash'))[..., 3]
         white = np.clip(np.array([0.84, 0.84, 0.82]) * paint_shade(base) * (0.88 + 0.12 * w[..., None]), 0, 1)
-        big = tiled(tile('wear_chips'), H, W, ctx['rep']('wear_chips') * 0.35)[..., 3]      # larger worn-through patches
-        cover = np.clip(0.45 + 0.6 * w, 0, 1) * m ** 3 * (0.1 + 0.9 * chips) * (0.35 + 0.65 * big)
+        cover = np.clip(0.30 + 0.85 * w, 0, 1) * m ** 2 * (0.55 + 0.45 * chips)        # brushed, worn at the edges
         return over(rgb * 0.8, white, np.clip(cover, 0, 0.96))
     raise KeyError(fin)
 

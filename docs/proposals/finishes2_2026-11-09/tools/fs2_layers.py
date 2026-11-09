@@ -50,8 +50,9 @@ def coat(fin, base, ctx):
     elif fin == 'whitewash':
         w = fs.tiled(fs.tile('camo_whitewash'), H, W, ctx['rep']('camo_whitewash'))[..., 3]
         rgb = np.clip(np.array([0.84, 0.84, 0.82]) * fs.paint_shade(base) * (0.88 + 0.12 * w[..., None]), 0, 1)
-        big = fs.tiled(fs.tile('wear_chips'), H, W, ctx['rep']('wear_chips') * 0.35)[..., 3]
-        a = np.clip(np.clip(0.45 + 0.6 * w, 0, 1) * m ** 3 * (0.1 + 0.9 * chips) * (0.35 + 0.65 * big), 0, 0.96)
+        # hand-brushed: mostly white, the dark showing through BETWEEN the brush strokes (the tile's own streaks) and at the
+        # worn edges - no blocky chip patches (coordinator QA: the Colt read as angular splinter patches)
+        a = np.clip(np.clip(0.30 + 0.85 * w, 0, 1) * m ** 2 * (0.55 + 0.45 * chips), 0, 0.97)
     else:
         raise KeyError(fin)
     return rgb, a
