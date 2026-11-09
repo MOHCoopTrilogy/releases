@@ -7,21 +7,63 @@
   "vis_radius": 7000,
   "farplane_color": "0.62 0.66 0.70",
   "chars_bum": {
-   "obj_drop": 104, "obj_roster": 106, "obj_dock": 111, "obj_crate": 114, "obj_wall": 118,
-   "done_drop": 122, "done_roster": 125, "done_dock": 127, "done_crate": 129, "done_wall": 134,
-   "hint_drop": 182, "hint_wall": 187, "warn_incomplete": 170
+   "obj_drop": 104,
+   "obj_roster": 106,
+   "obj_dock": 111,
+   "obj_crate": 114,
+   "obj_wall": 118,
+   "done_drop": 122,
+   "done_roster": 125,
+   "done_dock": 127,
+   "done_crate": 129,
+   "done_wall": 134,
+   "hint_drop": 182,
+   "hint_wall": 187,
+   "warn_incomplete": 170
   },
-  "music": {"bank": "main.mus", "segments": {"intro": 0, "sting": 1, "ambient": 2, "action": 3, "end": 4}},
+  "music": {
+   "bank": "main.mus",
+   "segments": {
+    "intro": 0,
+    "sting": 1,
+    "ambient": 2,
+    "action": 3,
+    "end": 4
+   }
+  },
   "dialogue_bank": "11ScrBnk.abk",
   "cues": {
-   "interrog_1": 4, "castro_1": 5, "interrog_2": 6, "castro_2": 7, "interrog_3": 8, "castro_3": 9,
-   "interrog_4": 10, "interrog_5": 11, "interrog_6": 12,
-   "dock_1": 13, "dock_2": 14, "dock_3": 15,
-   "grenade_nest": 16, "mg_hurt": 17, "panzer": 18, "conway_tower": 19
+   "interrog_1": 4,
+   "castro_1": 5,
+   "interrog_2": 6,
+   "castro_2": 7,
+   "interrog_3": 8,
+   "castro_3": 9,
+   "interrog_4": 10,
+   "interrog_5": 11,
+   "interrog_6": 12,
+   "dock_1": 13,
+   "dock_2": 14,
+   "dock_3": 15,
+   "grenade_nest": 16,
+   "mg_hurt": 17,
+   "panzer": 18,
+   "conway_tower": 19
   },
   "speakers": {
-   "interrog": "German officer", "castro": "Pvt. Castro", "dock": "Dock worker",
-   "grenade_nest": "Sergeant", "mg_hurt": "Wounded gunner", "panzer": "GI", "conway_tower": "Sergeant"
-  }
+   "interrog": "German officer",
+   "castro": "Pvt. Castro",
+   "dock": "Dock worker",
+   "grenade_nest": "Sergeant",
+   "mg_hurt": "Wounded gunner",
+   "panzer": "GI",
+   "conway_tower": "Sergeant"
+  },
+  "date": "1944-08-17",
+  "time": "09:00",
+  "place": "Pointe Saint-Mathieu (St. Mathieu), Finistere, Brittany, France",
+  "lat": 48.33,
+  "lon": -4.771,
+  "_place_source": "disc briefing journal page j1_1_pg1 (header: level, place, date and hour); real place: Pointe Saint-Mathieu lighthouse/abbey near Brest - matches the dock dialogue about docking near the lighthouse. The 'Periers 7km' road sign is reused Frontline art, not the setting. Chrono: before AA M5 (20 Aug 1944, Brest)."
  }
 }

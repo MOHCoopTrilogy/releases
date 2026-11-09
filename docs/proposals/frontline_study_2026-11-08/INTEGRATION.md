@@ -69,13 +69,20 @@ Fields every consumer reads:
 | `unit` | ours | join card unit line (OSS, Lt. Jimmy Patterson's operation) |
 | `objectives[]` | disc | briefing, objective HUD (already wired) |
 
-**Date and place (user, 2026-11-08): 17 August 1944, Lorient.** This goes in `fl_levels.json` as
-`date: 1944-08-17`, `place: Lorient`.
+**Date and place, resolved from the disc (2026-11-08):** the briefing journal for this level
+(`DATA/SHELL/1_1_bLog.viv`, page 1) gives three facts:
+- the level is Seaside Stowaway;
+- the place is **St. Mathieu, France**;
+- the time is **17 August 1944, 0900 hours**.
 
-It still has to be cross-checked against the disc's own briefing pages (the bLog `j1_1_pg*` images).
-One conflict to resolve before the war-map pin is final: this level's road sign reads "Périers 7 km",
-and Périers is in Normandy, not Brittany. The Fandom wiki (read-only reference) can help confirm the
-setting; paraphrase it, don't copy it.
+The date matches the user's. The place is **Pointe Saint-Mathieu**, near Brest in Finistère, Brittany:
+lat 48.330, lon -4.771. It is a real headland with a lighthouse, which fits the dock dialogue about a
+captain docking near the lighthouse. The level's goal in the story is to reach the Lorient U-boat
+pens, which is why "Lorient" is associated with it. The "Périers 7 km" road sign is reused Frontline
+art, not evidence of a Normandy setting.
+
+These values are in `fl_levels.json` with their source. Chrono order is unchanged: 17 Aug 1944 sits
+before AA M5 (20 Aug 1944, Brest), which is geographically right next door.
 
 ## 3. Touchpoints
 
