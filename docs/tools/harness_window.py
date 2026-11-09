@@ -363,6 +363,9 @@ def apply_policy(args, width=None, height=None, display=None, noborder=True, win
         width, height = min(width, dw), min(height, dh)
     hard = [("r_fullscreen", "0"), ("r_mode", "-1"), ("r_customwidth", str(width)), ("r_customheight", str(height)),
             ("in_mouse", "0"), ("s_volume", "0"),
+            # never read the user's controller from a background test client: pad Y in a menu runs
+            # osk.exe and pops the On-Screen Keyboard over the user's own game (bug-10635)
+            ("in_gamepad", "0"), ("in_joystick", "0"),
             # a FRESH homepath otherwise triggers the engine's first-launch auto-detect (sdl_glimp.c, bug-753
             # addendum): it overrides r_mode/r_custom* with the PRIMARY display's desktop size (3440x1440 here)
             ("r_resAutoDetected", "1")]
