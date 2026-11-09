@@ -138,6 +138,10 @@ HARNESSES = {
     # copies of the LIVE G:\mohaa-gl2 exe/DLLs (game 6f68255a), fresh home, HEAD code pk3 + test-only tv_probe overlay,
     # net_ip 127.0.0.1, net_port 12391, queue slot "tipverify"
     r"G:\mohaa-tipverify": {"owner": "tipverify", "home": r"G:\mohaa-tipverify\home"},
+    # Frontline BYO pilot (docs/tools/frontline, branch frontline-tools): byte copies of the GOG-root exe/DLLs,
+    # fresh home holding ONLY the locally converted zzzz_coop_fl_*.pk3 (never committed), basepath = the GOG tree
+    # read-only, net_ip 127.0.0.1, net_port 12295, queue slot "frontline"
+    r"G:\mohaa-frontline": {"owner": "frontline", "home": r"G:\mohaa-frontline\home"},
     # modern scope view before/after (docs/proposals/scopes_2026-10-05/tools/run_scopes.py, bug-3462): byte copies of
     # the LIVE G:\mohaa-gl2 exe/DLLs (read only, never written) + the test cgame/gl2 swapped in from cgames\ and
     # renderers\, fresh home (no qkey/saves), basepath = the GOG tree read-only, the ironsights harness overlay + the
