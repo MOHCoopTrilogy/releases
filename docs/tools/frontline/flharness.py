@@ -167,7 +167,8 @@ def shots(mapname, views, outdir, renderer, coop, w=1280, h=720, fps=False):
     hg.acquire_slot(OWNER, EXE, HOME, [PORT], minutes=30)
     try:
         c = launch(mapname, renderer, coop, w=w, h=h,
-                   extra_sets=(["set fps 1", "set com_maxfps 250", "set r_swapInterval 0"] if fps else []))
+                   extra_sets=(["set fps 1", "set com_maxfps 250", "set r_swapInterval 0"] if fps else []) +
+                   [x.strip() for x in os.environ.get("FL_SETS", "").split(";") if x.strip()])   # e.g. FL_SETS="set coop_fltest 4"
         with c:
             if not wait_log(r"Server: %s|Spawning Entities Done|COOP_MAPGRADE" % re.escape(mapname), 300):
                 raise RuntimeError("map never loaded")
