@@ -27,9 +27,36 @@ def write(ls):
             time.sleep(0.5)
 
 
+def _client_rects():
+    """[(pid, (l, t, r, b))] of every visible openmohaa.exe window (any session's)"""
+    import ctypes
+    from ctypes import wintypes
+    out = subprocess.run(["tasklist", "/FI", "IMAGENAME eq openmohaa.exe", "/FO", "CSV", "/NH"], capture_output=True, text=True).stdout
+    pids = {int(l.split('","')[1]) for l in out.splitlines() if l.startswith('"openmohaa')}
+    rects, u = [], ctypes.windll.user32
+
+    @ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.HWND, wintypes.LPARAM)
+    def cb(h, _l):
+        pid = wintypes.DWORD()
+        u.GetWindowThreadProcessId(h, ctypes.byref(pid))
+        if pid.value in pids and u.IsWindowVisible(h):
+            r = wintypes.RECT()
+            u.GetWindowRect(h, ctypes.byref(r))
+            if r.right - r.left > 200:
+                rects.append((pid.value, (r.left, r.top, r.right, r.bottom)))
+        return True
+    u.EnumWindows(cb, 0)
+    return pids, rects
+
+
 def busy():
-    out = subprocess.run(["tasklist", "/FI", "IMAGENAME eq openmohaa.exe"], capture_output=True, text=True).stdout
-    return "openmohaa.exe" in out.lower()
+    """a full-width ultrawide run is SOLO on the ultrawide (x 0..3440): any client window there - or a client with no window
+    yet (still booting, screen unknown) - blocks it; a client on the 1920x1080 second screen (x >= 3440) does not"""
+    pids, rects = _client_rects()
+    placed = {p for p, _r in rects}
+    if pids - placed:
+        return True
+    return any(r[0] < 3440 for _p, r in rects)
 
 
 def take_turn():
@@ -38,7 +65,7 @@ def take_turn():
     while True:
         if not any(l.startswith(ME + " ") for l in lines()):     # another agent rewrote the file without our line: re-queue
             write(lines() + ["%s %s waiting solo (full-width 3440)" % (ME, time.strftime("%H:%M"))])
-        ls = [l for l in lines() if " waiting" in l]           # incl. "waiting solo (...)" / "waiting (blocked ...)" lines
+        ls = [l for l in lines() if " waiting" in l and " second" not in l]   # second-screen lines queue for that screen
         if not busy() and ls and ls[0].startswith(ME + " "):
             write([l for l in lines() if not l.startswith(ME + " ")])
             return
