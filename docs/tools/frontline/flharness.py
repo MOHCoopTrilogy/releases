@@ -107,7 +107,7 @@ def step(lines, timeout=240):
         raise RuntimeError("step timed out: %s" % lines[:3])
 
 
-def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()):
+def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=(), gametype="2"):
     for fn in os.listdir(MAINTT):
         if fn.lower().endswith(".pid"):
             os.remove(os.path.join(MAINTT, fn))
@@ -130,7 +130,7 @@ def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()
     args = [EXE]
     for k, v in sets:
         args += ["+set", k, v]
-    args += ["+set", "g_gametype", "2", "+exec", "fl_on.cfg"]
+    args += ["+set", "g_gametype", gametype, "+exec", "fl_on.cfg"]
     if coop:
         args += ["+set", "ui_dmmap", mapname, "+exec", "coop_mod/start_server.cfg"]
     else:

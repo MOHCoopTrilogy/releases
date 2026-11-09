@@ -24,8 +24,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import flcore  # noqa: E402
 import flbsp   # noqa: E402
 import flpack  # noqa: E402
+import flseam  # noqa: E402
+import flgeom  # noqa: E402
 
-CONVERTER_VERSION = "0.2.0"
+CONVERTER_VERSION = "0.2.1"
 MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
@@ -262,6 +264,23 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if m["tex"]:
             stats["tris_textured"] += len(tris)
 
+    # seam bridges: close Frontline's hairline floor gaps that would show the sky (flseam.py has the rules)
+    # collision grid: seam bridges only close gaps in WALKABLE floors; flpack places actors with it
+    grid = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
+    if not os.environ.get("FL_NO_SEAMS"):
+        draws = [(key[0], verts, tris) for key in sorted(batches) for verts, tris in batches[key]]
+        def on_floor(x, y, z):
+            # beside a walkable floor: Frontline's collision often has the same seam as its render mesh
+            return any(grid.ground(x + dx, y + dy, z + 24, z - 24) is not None
+                       for dx, dy in ((0, 0), (24, 0), (-24, 0), (0, 24), (0, -24)))
+        br = flseam.bridges(draws, on_floor)
+        br += flseam.bridges(draws + br, on_floor)     # pass 2: the corner gaps between neighbouring bridges
+        for sh_, verts, tris in br:
+            cx = sum(v[0][0] for v in verts) / len(verts)
+            cy = sum(v[0][1] for v in verts) / len(verts)
+            batches.setdefault((sh_, int(cx // MERGE_CELL), int(cy // MERGE_CELL)), []).append((verts, tris))
+        stats["seam_bridges"] = len(br)
+
     # Merge the ~8.5k tiny Frontline draws into few big surfaces (same shader, same 1536u cell, <= the engine's
     # SHADER_MAX_VERTEXES 2048 per surface): the draw-call count, not the triangle count, sank GL2 to ~36 fps.
     nmerged = 0
@@ -342,8 +361,6 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         files[f"maps/{mapname}.bsp"] = f.read()
     os.remove(bsp_path)
     files[f"scripts/fl_{level}.shader"] = "".join(shader_lines).encode()
-    import flgeom
-    grid = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
     pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base, grid=grid) if vgm else None
 
     os.makedirs(os.path.dirname(os.path.abspath(out_pk3)), exist_ok=True)
