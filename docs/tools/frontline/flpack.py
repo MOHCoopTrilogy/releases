@@ -148,13 +148,22 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
     na = nl = nh = nm = 0
     nudged = []
     lists = {}
+    _mm = os.path.join(HERE, "fl_modelmap.json")
+    mm_props = json.load(open(_mm)).get(level, {}).get("props", {}) if os.path.exists(_mm) else {}
+    mm_markers = json.load(open(_mm)).get(level, {}).get("markers", {}) if os.path.exists(_mm) else {}
     for e in L.entities():
         names = [s for s in e["strs"] if not s.lower().startswith("start")]
         if not names:
             continue
         cls = names[0]
         p = X(e["pos"])
-        if grid is not None and cls != "Player":
+        if cls in mm_props:
+            # a MOHAA prop from fl_modelmap.json: no player-box nudge (crates sit against walls by design),
+            # just seated on the ground under the point; the map script drops it and gives it the model's collision
+            g = grid.ground(p[0], p[1], p[2] + 48, p[2] - 96) if grid is not None else None
+            if g is not None:
+                p = (p[0], p[1], g)
+        elif grid is not None and cls != "Player":
             # [bug-10623] a Frontline placement can sit where the bigger MOHAA player box overlaps collision:
             # move it to the nearest free standing spot (deterministic ring search, <= 96u)
             q, moved = grid.free_spot(p)
@@ -185,7 +194,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         elif cls in ("MObjective_1_1", "M1_1_ResistanceDrop", "M1_1_ClipBoard", "M1_1_WallExplosion",
                      "M1_1_Field_Phone", "Conversation", "InterrogationOfficer"):
             lines.append(f'\tlevel.fl_pos["{cls}"] = {o}')
-        elif cls in LISTED:
+        elif cls in LISTED or cls in mm_props:
             nl_ = lists.get(cls, 0) + 1
             lists[cls] = nl_
             lines.append(f'\tlevel.fl_list["{cls}"][{nl_}] = {o}')
@@ -204,6 +213,20 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         lines.append(f"\tlevel.fl_west = ( {w[0]:.0f} {w[1]:.0f} {w[2] + 24:.0f} )")
     for cls, n in sorted(lists.items()):
         lines.append(f'\tlevel.fl_list_n["{cls}"] = {n}')
+    # fl_modelmap.json props: which MOHAA model each Frontline placement class becomes (from the player's install)
+    npr = 0
+    for cls in sorted(mm_props):
+        if cls not in lists:
+            continue
+        sp = mm_props[cls]
+        npr += 1
+        lines.append(f'\tlevel.fl_prop_cls[{npr}] = "{cls}"')
+        lines.append(f'\tlevel.fl_prop_model[{npr}] = "{sp["model"]}"')
+        lines.append(f'\tlevel.fl_prop_break[{npr}] = {int(sp.get("breakable", 0))}')
+        lines.append(f'\tlevel.fl_prop_debris[{npr}] = "{sp.get("debris", "")}"')
+    lines.append(f"\tlevel.fl_prop_n = {npr}")
+    for cls, sp in sorted(mm_markers.items()):
+        lines.append(f'\tlevel.fl_marker_model["{cls}"] = "{sp["model"]}"')
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
               "\tlevel.fl_data_ok = 1", "}end", ""]
     files[f"maps/coop_fl_{level}_data.scr"] = "\n".join(lines).encode("latin-1")

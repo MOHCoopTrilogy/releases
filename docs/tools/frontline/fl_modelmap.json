@@ -10,6 +10,24 @@
     "reason": "Frontline's hedges are opaque boxes (422 vertical faces, no tops; the user called them solid-looking). MOHAA has no usable hedge MODEL (the mod's models/hedgerow.tik is a broken Call of Duty port: missing .skc); MOHAA's own Normandy bocage is brush cards with textures/misc_outside/hedgerow.tga (HD in zzzzz_hd_foliage), so the same art is used the same way: facade-mapped on the box sides, crown raised 25% so the leafy alpha top replaces the flat edge. Render only - the hedge collision brushes are Frontline's, unchanged."
    }
   },
-  "props": {}
+  "props": {
+   "BreakingWoodBoxSwap": {
+    "model": "models/static/indycrate.tik",
+    "breakable": 1,
+    "debris": "models/animate/fx_cratedebris_0.tik",
+    "reason": "Frontline's 20 breakable wooden boxes are separate Frontline models (not converted), so the map had none. MOHAA's own wooden crate (indycrate, stock) is the same object and period; breakable like our barrels (on damage: stock crate debris, removed). The mod's models/custom/wood_crate.tik was the first choice but is broken in the installed paks (missing .skc)."
+   }
+  },
+  "no_swap": {
+   "JeepTire_1_1": "MOHAA has no tire/wheel model; left out (Frontline's own model is not converted).",
+   "DoorSwingCW": "MOHAA's only door model is a frame (static/door_frame); Frontline's door stays as its level geometry.",
+   "MountedMachineGun": "Already MOHAA MG42 nests (statweapons) placed by the map script inside Frontline's baked sandbag rings."
+  },
+  "markers": {
+   "M1_1_ResistanceDrop": {
+    "model": "models/static/supplydropcrate.tik",
+    "reason": "Frontline's resistance supply drop (objective 1) is a parachute supply crate; MOHAA's stock supplydropcrate is exactly that object (crate with its chute), so the drop is visible where the use-objective is. Kept as a position (objective 1 reads level.fl_pos); only the marker model changes (was the stand-in exp_crate1a)."
+   }
+  }
  }
 }
