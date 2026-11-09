@@ -190,6 +190,28 @@ The exact files are below.
   (Phase 1 item).
 - **Missing map:** not applicable.
 
+**Challenge: "Saving Private Castro"** (user request 2026-11-09; built in Phase 2 because it touches mainline
+challenge files)
+- **What:** the optional rescue on `coop_fl_1_1`. Kill the interrogating officer before the execution shot,
+  and Castro gets up, takes a rifle and fights with the squad. Completed when Castro is **rescued and alive at
+  mission end**, in coop or SP. The map already tracks this: `level.fl_interrogState == "rescued"` plus
+  `isalive level.fl_castro` at `FLMISSION complete` (prints `FLSET prisoner survived to mission end`).
+- **Files:**
+  - `coop_mod/challenges.scr`: one `chal_def`, APPENDED, ASCII only (the file's own rule):
+    `"evt_saving_castro" "campaign" "Saving Private Castro" "Rescue Private Castro from the interrogation
+    and bring him through Seaside Stowaway alive" "evt_saving_castro" 1 <reward>`.
+  - The writer is `chal_team_bump "evt_saving_castro" 1` at that point in `maps/coop_fl_1_1.scr`, the
+    same call m1l2a makes for "Cut Him Down".
+  - Read `docs/generated/FIX_INDEX.md` for `challenges.scr` and `mvchal_gen.scr` first.
+- **Reward (proposal):** the existing XP bonus (`xp_team_award 30 "objective" "Prisoner Rescued"`, already
+  in the map) plus the challenge's cosmetic. Challenges here reward a player skin, so the proposal is an
+  unused US enlisted skin that suits a rescued GI. Pick it from the reward pool with
+  `docs/tools/unlock_audit.py`, which must pass: a writer, a reachable target and a real reward.
+- **Visibility:** shown only when `coop_flHave_1_1` is set. Players without the disc never see a challenge
+  they cannot complete. The Service Record / medals list filters on it, the same gate as the server tile.
+- **MP isolation:** the bump only runs on `coop_fl_1_1` in coop or SP. `chal_team_bump` already skips MP
+  runs, and nothing writes the stat from an MP mode.
+
 ## 4. Where Frontline sits in the Full Campaign (proposal)
 
 Story order, not disc order:

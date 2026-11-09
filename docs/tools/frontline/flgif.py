@@ -57,7 +57,11 @@ def main(mapname, clips_path, out):
                     if time.time() < tk:
                         time.sleep(tk - time.time())
                     if c.capture_png(tmp):
-                        frames.append(Image.open(tmp).copy())
+                        im = Image.open(tmp).copy()
+                        cb = float(v.get("crop_bottom", 0.08))     # the spectator prompt sits in this band
+                        if cb > 0:
+                            im = im.crop((0, 0, im.size[0], int(im.size[1] * (1 - cb))))
+                        frames.append(im)
                     k += 1
                 if frames:
                     frames[len(frames) // 2].save(os.path.join(out, name + "_mid.jpg"), quality=88)
