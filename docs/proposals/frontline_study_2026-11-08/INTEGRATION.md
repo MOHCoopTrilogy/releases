@@ -78,10 +78,22 @@ Fields every consumer reads:
 The date matches the user's. The place is **Pointe Saint-Mathieu**, near Brest in Finistère, Brittany:
 lat 48.330, lon -4.771. It is a real headland with a lighthouse, which fits the dock dialogue about a
 captain docking near the lighthouse. The level's goal in the story is to reach the Lorient U-boat
-pens, which is why "Lorient" is associated with it. The "Périers 7 km" road sign is reused Frontline
-art, not evidence of a Normandy setting.
+pens, which is why "Lorient" is associated with it. The "Périers 7 km" road sign is set dressing
+painted for this level only, not evidence of a Normandy setting. The disc never mentions St. Nazaire
+or St. Malo. The location table (`chars.bum` @0x2bd0, repeated in `shell.viv` @0x10a36d0) gives
+the levels in order:
 
-These values are in `fl_levels.json` with their source. Chrono order is unchanged: 17 Aug 1944 sits
+| level | location |
+|---|---|
+| 1_1 | St. Mathieu, France |
+| 1_2 | Aboard U-4902 |
+| 1_3 | Shipyards of Lorient, France |
+| 1_4 | Shipyards of Lorient, France |
+| 2_1 | Holland Countryside |
+
+**Final (confirmed by the user, 2026-11-08):** mfl_1_1 is pinned to St. Mathieu, France (Pointe
+Saint-Mathieu, 48.330, -4.771), 17 August 1944, 0900 hours. When 1_3 and 1_4 are ported they take
+"Shipyards of Lorient, France". These values are in `fl_levels.json` with their source. Chrono order is unchanged: 17 Aug 1944 sits
 before AA M5 (20 Aug 1944, Brest), which is geographically right next door.
 
 ## 3. Touchpoints
