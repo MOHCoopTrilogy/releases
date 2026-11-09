@@ -210,7 +210,17 @@ def build_ctx(g, sh, H, W):
                       for i in range(3)], -1)
         P[P > 1e8] = np.nan
     lo, hi = fl.gun_box(g)
-    return dict(mask=m, P=P, lo=lo, hi=hi, wpu=wpu, rep=lambda name: wpu / (TILE_CM[name] * fl.U_PER_CM))
+    return dict(mask=m, P=P, lo=lo, hi=hi, wpu=wpu, rep=lambda name: wpu / (tile_cm(name, lo, hi) * fl.U_PER_CM))
+
+
+def tile_cm(name, lo, hi):
+    """physical tile size on THIS gun. Splittertarn scales with the gun (coordinator QA 2026-11-09: at the fixed 34 cm a Colt
+    showed part of one or two shards, which read as a rounded blob): the tile is half the gun's length, 12 - 34 cm, so every gun
+    shows a run of angular shards along its length (~88 cells per tile, see patterns.splitter)"""
+    if name == 'camo_splitter':
+        L_cm = float(hi[0] - lo[0]) / fl.U_PER_CM
+        return min(TILE_CM[name], max(12.0, 0.5 * L_cm))
+    return TILE_CM[name]
 
 
 def render(tik, cls, fin, W=520, H=200, pl_cache={}, side=None):

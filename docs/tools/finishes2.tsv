@@ -1,0 +1,23 @@
+# finishes2 (v1.10.68) - the SECOND finish set, fids 40+ (fids 1-7 = the standard seven, 8-19 = model variants). ONE table read by
+# gen_skins.py fs2 (loadoutskins rows + names), finish_challenges.py (the per-gun kill ladder), gen_loadout.py / gen_armory.py /
+# gen_armory_urc.py / gen_finish_ui.py (Armory chips, row 2) and gen_weapon_viewer.py (viewer names, history, credits).
+# key   = the variant tik suffix: models/weapons/<gun>_fs2_<key>.tik (the build: docs/proposals/finishes2_2026-11-09/tools)
+# name  = coop_skinFinName (toasts, the chip caption, "<NAME> FINISH" in the viewer); <= 14 characters
+# rung / slow = kills with THAT gun (standard ladder / launchers), interleaved with the standard seven (25 50 100 175 250 350 500 /
+# 25 40 60 90 125 175 250), every target <= 750 (the challenge cap) and none equal to an existing rung
+# kind  = paint (a baked coat over a per-sheet mask) | layer (shader stages over shared tiles)
+# history: 2-4 sentences, plain ASCII, no double quotes / semicolons / braces / em dashes (it goes into cfg strings)
+fid	key	name	rung	slow	kind	credit	history
+40	whitewash	WHITEWASH	200	80	paint	brushed coat, HZM Coop Mod	Winter whitewash was a field expedient. From the winter of 1941 German units in Russia daubed vehicles, helmets and some weapons with washable white paint or lime that wore off in streaks, and Allied troops did the same in the Ardennes in 1944. No factory ever issued a white gun.
+41	dak	AFRIKA KORPS	150	70	paint	desert coat, HZM Coop Mod	Afrika Korps vehicles were repainted in desert yellow-brown and grey-green from 1941, and in a browner sand shade from 1942. Small arms mostly kept their blued steel and wood, so a sand painted rifle is a field touch-up, not regulation.
+42	kriegsmarine	KRIEGSMARINE	225	100	paint	navy coat, HZM Coop Mod	German navy deck fittings were painted in sea greys. A gun carried at sea fought salt spray as hard as the enemy, and the rust runs and salt bloom on this finish are what weeks on an exposed deck did to painted steel.
+43	airborne	AIRBORNE	125	50	paint	olive drab, HZM Coop Mod	Olive drab for the US airborne. Paratroopers jumped with their weapons broken down or in padded cases, and anything that could shine was dulled before a night drop.
+44	splitter	SPLINTER	450	200	paint	splinter tile, HZM Coop Mod	Splittertarn, the splinter pattern, was printed on the German Zeltbahn shelter quarter from 1931: angular brown and green shards on a tan ground with fine green rain strokes. It was a cloth pattern, so on a gun it is a soldier's own paint job.
+45	pea	PEA DOT	325	140	paint	pea dot tile, HZM Coop Mod	Erbsenmuster, the pea dot pattern, came in 1944 for the Waffen-SS: brown and green blotches broken up by dense small dots. It was printed on smocks and the M44 drill uniform, never on weapons.
+46	telo	TELO	300	110	paint	telo tile, HZM Coop Mod	Telo mimetico, Italy's 1929 pattern, was one of the first printed camouflages made in quantity, used on shelter halves and later on paratrooper smocks. Soft brown and green blotches on an ochre ground.
+47	amoeba	AMOEBA	400	150	paint	amoeba tile, HZM Coop Mod	The Soviet amoeba pattern dressed scouts and snipers in two-piece camouflage suits from the late 1930s: dark brown amoeba shapes on a khaki ground. Painted on a gun it is a field touch-up.
+48	airborne101	AIRBORNE 101ST	550	225	paint	olive drab, HZM Coop Mod	The 101st Airborne, the Screaming Eagles, jumped into Normandy on the night of 5 June 1944 and held Bastogne through the siege of December 1944. The same olive drab coat as the Airborne finish.
+49	battleworn	BATTLE-WORN	75	30	layer	wear tiles, HZM Coop Mod	Years of service wore the bluing off every edge a hand, a sling or a holster touched, and left fine scratches across the steel. A gun that has been carried, not one fresh from the arsenal.
+50	trenchart	TRENCH ART	650	300	layer	engraving tile, HZM Coop Mod	Trench art is what soldiers, prisoners and civilians made from the materials of war, from engraved shell cases to carved stocks. Hand-cut scrollwork like this was done in rest areas, hospitals and prison camps.
+51	parade	PARADE	750	350	layer	polish layers, HZM Coop Mod	Honour guards kept their weapons far above field standard, with oiled wood and deep, bright steel. This is the inspection-day look.
+52	captured	CAPTURED	600	275	layer	grime tile, HZM Coop Mod	Captured weapons served on both sides. The German army issued enemy arms under its own numbers, and Allied soldiers carried enemy guns home as souvenirs. A grimy, field-worn finish for a gun with a past.

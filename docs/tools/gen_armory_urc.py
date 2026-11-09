@@ -255,8 +255,25 @@ def build_urc():
         o.new("Label", "fcLk%d" % p, (x + 6, sy + 3, 7, 7), shader="textures/mohmenu/coop_lo_lock.tga", enable="coop_loFp%dL" % p)
         o.new("Button", "fcBtn%d" % p, (x, sy, 19, 12), fg=(1, 1, 1), bg=None, sound="sound/menu/apply.wav", enable=e, title="",
               stuff="vstr coop_loFp%dGo" % p, hover="vstr coop_loFp%dHov" % p, away="exec ui/loadout/reqclear.cfg")
-    o.text("finCap", 146, sy + 14, 40, "FINISH", col=FAINT, enable="coop_loFinUIOn")
-    o.text("finNm", 188, sy + 14, 100, link="coop_loFinNm", col=CREAM, enable="coop_loFinUIOn")
+    # [v1.10.68 finishes2] the SECOND chip row (fids 40+, docs/tools/finishes2.tsv): 13 fixed positions under the first row, one per
+    # finish in fid order (no sort chain), each chip a swatch of the real pattern (textures/coop_finishes_hd/sw/<key>.jpg, shipped in the
+    # finishes pak). Padlock = coop_loLkFV<F> (lkc<F>_<0|1>.cfg, pushed per slot), click = coop_loFcmt<F> (open: fin<F>_s<n>.cfg, locked:
+    # fdeny<F>.cfg). Shown for the gun slots only (coop_loF2On, gen_finish_ui.py). Chips 17 x 11 on a 19-unit pitch end at x 391, clear of
+    # EQUIP (398); at 1920 x 1080 a chip is ~51 x 33 px, at 3440 x 1440 ~91 x 33 px.
+    import finishes2 as F2
+    sy2 = sy + 15
+    for q, r in enumerate(F2.table()):
+        f = r["fid"]
+        x = 146 + q * 19
+        o.new("Label", "fc2Bg%d" % q, (x - 1, sy2 - 1, 19, 13), bg=LINE, enable="coop_loF2On")
+        o.new("Label", "fc2Sw%d" % q, (x, sy2, 17, 11), shader="textures/coop_finishes_hd/sw/%s.jpg" % r["key"], enable="coop_loF2On")
+        o.new("Label", "fc2Dim%d" % q, (x, sy2, 17, 11), bg=(TRACK, 0.55), enable="coop_loLkFV%d" % f)
+        o.new("Label", "fc2Lk%d" % q, (x + 5, sy2 + 2, 7, 7), shader="textures/mohmenu/coop_lo_lock.tga", enable="coop_loLkFV%d" % f)
+        o.new("Button", "fc2Btn%d" % q, (x, sy2, 17, 11), fg=(1, 1, 1), bg=None, sound="sound/menu/apply.wav", enable="coop_loF2On", title="",
+              stuff="vstr coop_loFcmt%d" % f, hover="exec ui/loadout/reqf%d.cfg" % f, away="exec ui/loadout/reqclear.cfg")
+    # the finish caption + name (and a locked chip's "37 / 100 KAR98K kills") moved from under the first row to the hero's top right
+    o.text("finCap", 318, HERO_Y + 3, 40, "FINISH", col=FAINT, enable="coop_loFinUIOn")
+    o.text("finNm", 352, HERO_Y + 3, 122, link="coop_loFinNm", col=CREAM, enable="coop_loFinUIOn")
     o.carry("finbtn8", (324, sy + 2, 62, 12), title='"MODEL"', fgcolor=c4(CREAM), bgcolor=c4(PANEL), borderstyle='"NONE"', textalign="left")
     o.carry("finlk8", (376, sy + 4, 7, 7))
 
