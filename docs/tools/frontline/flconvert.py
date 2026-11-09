@@ -372,7 +372,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 base = len(nv)
                 for q in T:
                     p = q[0]
-                    pz = ztop if p[2] >= z1 - 1.0 else p[2]          # only the column's top edge rises
+                    # the wall's top-quarter vertices rise by the crown FROM THEIR OWN HEIGHT: Frontline's bumpy hedge
+                    # profile is kept and the image's alpha crown sits on it (v1/v2 flattened the tops)
+                    pz = p[2] + (ztop - z1) if p[2] >= z0 + (z1 - z0) * 0.75 else p[2]
                     uu = (p[0] * tx + p[1] * ty) / float(rk.get("tile", 128))
                     vv = (ztop - pz) / max(1.0, ztop - z0)
                     cr, cg, cb = (min(255, int(round(q[3][k] * gk[k]))) for k in range(3))
