@@ -247,6 +247,114 @@
     ],
     "tex": "b3600",
     "reason": "1-3u slit along the kerb-wall foot (165e80) east of the hedge bed, x -3228..-3152: white line in the strip view; 1u BSP coverage scan 2026-11-09"
+   },
+   {
+    "poly": [
+     [
+      -3435.0,
+      -4907.0,
+      -166.0
+     ],
+     [
+      -3423.0,
+      -4911.0,
+      -166.0
+     ],
+     [
+      -3383.0,
+      -4923.0,
+      -166.0
+     ],
+     [
+      -3335.0,
+      -4935.0,
+      -166.0
+     ],
+     [
+      -3315.0,
+      -4939.0,
+      -166.0
+     ],
+     [
+      -3119.0,
+      -4975.0,
+      -166.0
+     ],
+     [
+      -3109.0,
+      -4975.0,
+      -166.0
+     ],
+     [
+      -3109.0,
+      -4973.0,
+      -166.0
+     ],
+     [
+      -3125.0,
+      -4809.0,
+      -166.0
+     ],
+     [
+      -3129.0,
+      -4805.0,
+      -166.0
+     ],
+     [
+      -3161.0,
+      -4789.0,
+      -166.0
+     ],
+     [
+      -3281.0,
+      -4733.0,
+      -166.0
+     ],
+     [
+      -3325.0,
+      -4713.0,
+      -166.0
+     ],
+     [
+      -3327.0,
+      -4713.0,
+      -166.0
+     ],
+     [
+      -3435.0,
+      -4905.0,
+      -166.0
+     ]
+    ],
+    "tex": "b3600",
+    "grow": 4,
+    "reason": "36000u2 out-of-bounds pit behind the hedge-bed's north hedge (x -3434..-3110, y -4974..-4714): nothing rendered at any height and no collision; showed the sky as a white line under the hedge foot and through its foliage. Ground-level lid, 2u under the neighbouring floors (-165/-164). 2026-11-09"
+   },
+   {
+    "poly": [
+     [
+      -3280.0,
+      -5050.0,
+      -165.0
+     ],
+     [
+      -3280.0,
+      -5072.0,
+      -165.0
+     ],
+     [
+      -3326.0,
+      -5072.0,
+      -165.0
+     ],
+     [
+      -3326.0,
+      -5050.0,
+      -165.0
+     ]
+    ],
+    "tex": "b3600",
+    "reason": "hedge-bed east corner: sky speck seen low through the 4u step where bed (-160), ground (-164) and the seam bridge meet (sight line crosses z-170 at x~-3315); a lid 1u under the ground catches it, hidden beneath the floors elsewhere. 2026-11-09"
    }
   ]
  }

@@ -87,21 +87,22 @@ class TriGrid:
                 best = z
         return best
 
-    def box_free(self, x, y, zfloor):
-        """player box standing on zfloor (feet lifted 20u, i.e. above a step) clear of every triangle"""
-        c = (x, y, zfloor + 20 + (PLAYER_H - 20) / 2)
-        h = (PLAYER_HALF, PLAYER_HALF, (PLAYER_H - 20) / 2)
-        for i in self.near(x, y, PLAYER_HALF + 2):
+    def box_free(self, x, y, zfloor, lift=20.0, margin=0.0):
+        """player box standing on zfloor (feet lifted `lift`u, i.e. above a step) clear of every triangle, with
+        `margin` extra on the half-width (the BSP collision is 4u slabs centred on the triangles: +2u each side)"""
+        c = (x, y, zfloor + lift + (PLAYER_H - lift) / 2)
+        h = (PLAYER_HALF + margin, PLAYER_HALF + margin, (PLAYER_H - lift) / 2)
+        for i in self.near(x, y, PLAYER_HALF + margin + 2):
             if tri_box(c, h, *self.tris[i]):
                 return False
         return True
 
-    def free_spot(self, p, max_r=96, step=8):
+    def free_spot(self, p, max_r=160, step=8):
         """deterministic nearest free standing spot around p (x,y,z ~ ground); returns (spot, moved)"""
         x0, y0, z0 = p
         g = self.ground(x0, y0, z0 + 48, z0 - 96)
         zf = g if g is not None else z0
-        if self.box_free(x0, y0, zf):
+        if self.box_free(x0, y0, zf, lift=8.0, margin=4.0):
             return (x0, y0, zf), 0.0
         for r in range(step, max_r + 1, step):
             n = max(8, int(2 * math.pi * r / step))
@@ -111,6 +112,6 @@ class TriGrid:
                 g = self.ground(x, y, zf + 24, zf - 48)
                 if g is None:
                     continue
-                if self.box_free(x, y, g):
+                if self.box_free(x, y, g, lift=8.0, margin=4.0):
                     return (round(x), round(y), g), float(r)
         return (x0, y0, zf), -1.0
