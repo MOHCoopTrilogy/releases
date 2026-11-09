@@ -110,3 +110,14 @@ burst for 3, 4, 8 and 10. Tag each defect A / B / C.
   overlay is FG 42-only so far.
 - Movement rows (sprint, jump, crouch, lean, fire, ADS) on Mosin / Enfield / double barrel / Kar98k / FG 42: no near-plane cut
   seen before or after; the gun stays > 4 u from the eye in those poses.
+
+## Result (2026-11-09, pass complete)
+- All 70 holdable guns run at 3440x1440 after the fix (hip fire, reload, switch, sprint, jump, crouch, lean, ADS, ADS
+  reload, wall): review sheets media/uw_after_*.jpg. The only TRUE clipping found anywhere was the hip near-plane cut
+  (40 clips) - fixed globally (r_weaponProjAlways 1 + r_weaponznear 0.6; before/after media/johnson_reload_3440_before_after.gif)
+  - plus the double-barrel shell reload worked further out (4 clips). Bolt-rifle / Sten aimed reloads left as they are
+  (user decision).
+- Harness traps found on the way (not game bugs): sidearms load from w<gid>_s3.cfg (run_ab now picks the slot); the test
+  overlay's older anims_shared.txt lacks the revolver reload anims -> the Webley / Nagant runs crashed the TEST server
+  until the current file was laid over it for those runs (tools/vc_with_pak.py). The FG 42 Irons' tall rear diopter
+  reads large at the hip but is attached and correct.
