@@ -20,7 +20,30 @@ from PIL import Image, ImageDraw
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..', '..', 'ironsights_2026-09-28', 'tools'))
 import gungeo  # noqa: E402
-gungeo.ROOT_APPLY = True      # the engine applies a flipped root (Carcano: its idle frame lies along y otherwise)
+gungeo.ROOT_APPLY = True
+import re as _re  # noqa: E402
+import texload, uvview  # noqa: E402
+
+_real_shader_image = uvview.shader_image
+
+
+def diffuse_image(shader):
+    """uvview.shader_image takes the FIRST map of a shader, which on the s93_* chrome-gloss shaders is the environment
+    stage (textures/effects/s93_gloss*.tga, 100x100) and not the gun: take the first map of a stage that is not
+    tcGen environment*"""
+    for pak, k, maps, blk in reversed(texload.shader_maps(shader)):
+        for st in _re.findall(r'\{([^{}]*)\}', blk or ''):
+            if 'environment' in st.lower():
+                continue
+            mm = _re.search(r'\b(?:clamp)?map\s+(\S+)', st, _re.I)
+            if mm and not mm.group(1).startswith('$'):
+                p, pk, im = texload.load(mm.group(1))
+                if im is not None:
+                    return mm.group(1), p, pk, im, blk
+    return _real_shader_image(shader)
+
+
+uvview.shader_image = diffuse_image      # the engine applies a flipped root (Carcano: its idle frame lies along y otherwise)
 
 U_PER_CM = 16.0 / 30.48
 
@@ -307,11 +330,15 @@ def place(g, kind='butt', fill=0.8, side=-1, allow_shared=True, rank=0):
     area, shader, tv, s, c, (ex, ez), tl, _si = cand
     V, UV, T = s['P'], s['UV'], s['tri']
     vi = np.unique(T[tv].ravel())
-    near = vi[np.max(np.abs(V[vi][:, [0, 2]] - (cx, cz)), axis=1) < 1.2 * half + 0.5]   # fit LOCALLY: a curved / skewed
-    if len(near) >= 4 and np.linalg.matrix_rank(np.c_[UV[near], np.ones(len(near))]) == 3:    # island stays square
-        vi = near
-    # RAW texcoords (no per-vertex wrap: an island across u = 1 would tear) - exactly what the in-game tcMod stage sees
-    aff, *_ = np.linalg.lstsq(np.c_[UV[vi], np.ones(len(vi))], V[vi][:, [0, 2]], rcond=None)
+    # RAW texcoords (no per-vertex wrap: an island across u = 1 would tear) - exactly what the in-game tcMod stage sees.
+    # Weighted toward the decal's spot (a curved or skewed island stays square where the decal is), but over the WHOLE
+    # island so the fit is never ill-conditioned (a local subset can be nearly collinear in UV: bug-10664)
+    dist = np.max(np.abs(V[vi][:, [0, 2]] - (cx, cz)), axis=1)
+    w = np.sqrt(np.exp(-(dist / (1.5 * half + 1.0)) ** 2) + 1e-3)[:, None]
+    Xa = np.c_[UV[vi], np.ones(len(vi))]
+    aff, *_ = np.linalg.lstsq(Xa * w, V[vi][:, [0, 2]] * w, rcond=None)
+    near = vi[dist < 1.2 * half + 0.5]
+    vi = near if len(near) >= 3 else vi
     resid = np.abs(np.c_[UV[vi], np.ones(len(vi))] @ aff - V[vi][:, [0, 2]]).max()
     return dict(shader=shader, tris=T[tl], surf=s, aff=aff, centre=(cx, cz), size=float(fill * 2 * half),
                 side=side, shared=shared[id(cand)], fit_err=float(resid))

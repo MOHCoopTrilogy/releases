@@ -167,7 +167,7 @@
    "name": "waa",
    "category": "stamp",
    "label": "Captured: WaA acceptance stamp",
-   "aspect": 1.944,
+   "aspect": 1.869,
    "recommended_long_side_cm": 3.0,
    "recommended_long_side_units": 1.57,
    "default_finish": "captured",
@@ -176,17 +176,17 @@
     {
      "file": "waa_512.png",
      "w": 512,
-     "h": 263
+     "h": 274
     },
     {
      "file": "waa_256.png",
      "w": 256,
-     "h": 132
+     "h": 137
     },
     {
      "file": "waa_128.png",
      "w": 128,
-     "h": 66
+     "h": 68
     }
    ]
   },
@@ -194,7 +194,7 @@
    "name": "souvenir",
    "category": "stamp",
    "label": "Captured: souvenir carving",
-   "aspect": 1.642,
+   "aspect": 1.602,
    "recommended_long_side_cm": 4.0,
    "recommended_long_side_units": 2.1,
    "default_finish": "captured",
@@ -203,17 +203,17 @@
     {
      "file": "souvenir_512.png",
      "w": 512,
-     "h": 312
+     "h": 320
     },
     {
      "file": "souvenir_256.png",
      "w": 256,
-     "h": 156
+     "h": 160
     },
     {
      "file": "souvenir_128.png",
      "w": 128,
-     "h": 78
+     "h": 80
     }
    ]
   },

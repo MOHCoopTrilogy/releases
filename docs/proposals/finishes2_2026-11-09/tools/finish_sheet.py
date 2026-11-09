@@ -174,7 +174,7 @@ def finish_tex(fin, base, ctx):
         return over(out, np.array([0.46, 0.24, 0.11]) * (0.7 + 0.3 * shade(base)), np.clip(r * 0.75, 0, 0.75))
     if fin in ('splitter', 'pea', 'telo', 'amoeba'):
         pat = tiled(tile('camo_' + fin), H, W, ctx['rep']('camo_' + fin))[..., :3]
-        pat = np.clip(pat * {'splitter': 1.0, 'pea': 0.78, 'telo': 0.74, 'amoeba': 0.95}[fin], 0, 1)
+        pat = np.clip(pat * {'splitter': 1.0, 'pea': 0.78, 'telo': 0.6, 'amoeba': 0.72}[fin], 0, 1)
         cam = np.clip(pat * (0.35 + 0.65 * shade(base)), 0, 1)
         return over(rgb, cam, paint_m)
     if fin == 'whitewash':
