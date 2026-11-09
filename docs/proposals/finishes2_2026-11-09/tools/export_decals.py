@@ -30,11 +30,10 @@ SET = {
     'bronze_star':  ('award', 'Bronze Star', 4.0, None),
     'cib':          ('badge', 'Combat Infantryman Badge', 5.0, None),
     'jump_wings':   ('badge', 'Parachutist Badge (jump wings)', 5.0, None),
-    # nose art (noseart.py): original period-style art, no copied pin-ups; the Nose Art finish draws one of them
-    'shark_mouth':  ('noseart', 'Shark mouth (faces the muzzle on the right side; mirror it for the left)', 9.0, 'noseart'),
-    'lucky_lady':   ('noseart', 'Lucky Lady - script, horseshoe and dice', 7.0, 'noseart'),
-    'ace_spades':   ('noseart', 'Ace of spades with ACE banner', 4.5, 'noseart'),
-    'bomb_tally':   ('noseart', 'Mission tally - six bombs', 6.0, 'noseart'),
+    # nose art (noseart2.py): recreated from public-domain WWII photos (assets/noseart_sources.tsv), repainted period-style
+    'na_shark_mouth':   ('noseart', 'AVG P-40 shark mouth and eye (after NARA 535531; faces the muzzle on the right side)', 9.0, 'noseart'),
+    'na_liberty_belle': ('noseart', 'LIBERTY BELLE - lettered by the B-24 painter (41-23920)', 9.0, 'noseart'),
+    'na_bomb_tally':    ('noseart', 'Mission tally - six painted bombs', 6.0, 'noseart'),
 }
 SIZES = (512, 256, 128)
 # reads the same in a mirror (safe to paint into a texture the gun's two sides share): everything else goes on as a bench quad

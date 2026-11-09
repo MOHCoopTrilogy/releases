@@ -89,10 +89,17 @@ Models under a Creative Commons licence, credited as the licence asks (author, t
 
 ## Finish set 2 (in progress, docs/proposals/finishes2_2026-11-09)
 
-- **Camo / wear / engraving tiles, insignia and plates, US awards and badges, nose art** - original artwork drawn by
-  script for the mod (tools/patterns.py, decals.py, medals.py, noseart.py). No downloaded images. The insignia and
-  decorations reproduce US Army / Free French / Afrika Korps designs, which are public domain (US government insignia;
-  the DAK palm is drawn without the swastika). The nose art is original period-style art (lettering, emblems,
-  tallies): it copies no real aircraft's art and no pin-up.
-- Lettering is rendered with Windows system fonts into the images (Arial Bold, Courier New Bold, Segoe Script Bold,
-  Impact); no font files ship.
+- **Camo / wear / engraving tiles, insignia and plates, US awards and badges** - original artwork drawn by script for
+  the mod (tools/patterns.py, decals.py, medals.py). The insignia and decorations reproduce US Army / Free French /
+  Afrika Korps designs, which are public domain (US government insignia; the DAK palm is drawn without the swastika).
+- **Nose art** (tools/noseart2.py, list with URLs in assets/noseart_sources.tsv) - recreated from public-domain WWII
+  photographs on Wikimedia Commons and repainted in a period palette with brush texture, chips and fading:
+  - *Shark mouth* - "A Chinese soldier guards a line of American P-40 fighter planes, painted with the shark-face emblem
+    of the Flying Tigers", US National Archives (NARA 535531), c.1942, public domain (US government work).
+    https://commons.wikimedia.org/wiki/File:A_Chinese_soldier_guards_a_line_of_American_P-40_fighter_planes,_painted_with_the_shark-face_emblem_of_the_Flying..._-_NARA_-_535531.jpg
+  - *LIBERTY BELLE* lettering - "41-23920 Liberty Belle" (B-24D), San Diego Air & Space Museum archives, public domain
+    on Commons (no known copyright restrictions). The painted figure in that photo is not used.
+    https://commons.wikimedia.org/wiki/File:41-23920_Liberty_Belle.jpg
+  - *Mission tally* - original period-style drawing.
+- Insignia lettering (82nd AA, WaA, souvenir, AIRBORNE tab, VALOR) is rendered with Windows system fonts into the
+  images (Arial Bold, Courier New Bold); no font files ship. The nose art uses no fonts.
