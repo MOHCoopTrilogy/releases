@@ -74,7 +74,7 @@ In game, first look, NOT ready:
 | finish tik ranks (gen_skins) | 1210-1239 (in use: 1210-1230) | 1240 and up |
 | coop_skinN rows (loadoutskins.scr) | up to 599 (in use: 574-588) | 600 and up |
 | Armory roster ids | 82-84 (73 stays a hole) | 85 and up |
-| finish fids | the standard 1-7 only | 8 and up are model variants (variant_challenges) |
+| finish slots (fids) | 1-7 only (the seven standard finishes; checked in loadoutskins.scr 2026-11-09) | 8-18 model variants, 40 and up = finishes2's new finishes |
 | challenge ids | wpn_bren_v, wpn_mp28_v, wpn_panzerfaust_v, fin_bren_*, fin_mp28_*, fin_panzerfaust_* | - |
 gen_skins asserts rank uniqueness only against what is on disk, so whichever branch merges second must re-run `gen_skins.py add`.
 
