@@ -479,7 +479,10 @@ def add_gun(stem, write):
     by_tex = {}                          # (key, lower texture w/o ext) -> an existing finish block for it, not this gun's
     for name, tx in existing.items():
         mm = re.match(r"coop_skin_(.+?)_(gold|chrome|blued)(_\d+)?$", name)
-        if mm and mm.group(1) != stem:
+        # [v1.10.66 fg42hd] this gun's OWN earlier blocks count too: the scoped FG 42 got a new mesh whose body takes the Irons'
+        # sheet, but its charging handle still draws the old fg42 sheet, whose finishes (coop_skin_fg42_*) already ship - reuse them
+        # (kept in place, not deleted and re-appended, bakes not redone) instead of regenerating identical blocks under new ranks
+        if mm:
             for key, _d, _k, _p in FINISHES:
                 cand = "coop_skin_%s_%s%s" % (mm.group(1), key, mm.group(3) or "")
                 if cand in existing:
@@ -501,10 +504,23 @@ def add_gun(stem, write):
 
     rank = RANK_BASE
     blocks, tiks, rows, reused = [], [], [], set()
+    prev = {}                            # [v1.10.66 fg42hd] a finish this gun already ships keeps its rank
+    own_prev = [("models/weapons/%s_%s.tik" % (stem, k), (W.carriers("models/weapons/%s_%s.tik" % (stem, k)) or [(0, b"")])[-1][1]
+                 .decode("latin-1", "replace")) for k, _d, _k, _p in FINISHES]          # the mod tree's / a pak's shipped copy
+    for name, t in list(C["other_tiks"].items()) + own_prev:      # the wpnfix / fixes source first: it is what loads
+        for key, _d, _k, _p in FINISHES:
+            if name.split("/")[-1].lower() == "%s_%s.tik" % (stem, key):
+                m = re.search(r"(?mi)^\s*rank\s+(\d+)", t)
+                if m:
+                    prev.setdefault(key, int(m.group(1)))
     for key, display, kind, params in FINISHES:
-        while rank in taken:
-            rank += 1
-        taken.add(rank)
+        if key in prev:
+            rank_k = prev[key]
+        else:
+            while rank in taken or rank in prev.values():
+                rank += 1
+            rank_k = rank
+        taken.add(rank_k)
         surf_map = {}
         for sh, tex in tex_of.items():
             if kind == "bake" and re.sub(r"\.\w+$", "", tex.lower()) in BAKE_KEEP_STOCK:
@@ -520,10 +536,10 @@ def add_gun(stem, write):
                 stem, os.path.splitext(os.path.basename(tex))[0], key)
             if sname not in [b[0] for b in blocks]:
                 blocks.append((sname, shader_block(sname, src, kind, params)))
-        vt = variant_tik(text, wname, display, rank, surf_map)
+        vt = variant_tik(text, wname, display, rank_k, surf_map)
         tiks.append(("%s_%s.tik" % (stem, key), vt))
         rows.append((FIN_FID[key], "models/weapons/%s_%s.tik" % (stem, key)))
-        print("  %-36s rank %d  %s" % (tiks[-1][0], rank, " ".join("%s=%s" % kv for kv in sorted(surf_map.items()))))
+        print("  %-36s rank %d  %s" % (tiks[-1][0], rank_k, " ".join("%s=%s" % kv for kv in sorted(surf_map.items()))))
     print("  base %s (%s) -> %s; %d new shader block(s), %d reused, stock: %s" % (
         rel, where, os.path.relpath(out_dir, ROOT), len(blocks), len(reused), sorted(set(tex_all) - set(tex_of)) or "-"))
     if not write:
@@ -543,8 +559,9 @@ def add_gun(stem, write):
 
     sh_txt = io.open(SHADER_OUT, encoding="latin-1", newline="").read()
     nl = "\r\n" if "\r\n" in sh_txt else "\n"
-    sh_txt = re.sub(r"(?ms)\r?\n\r?\ncoop_skin_%s_(?:%s)(?:_\d+)?\r?\n\{.*?^\}" % (
-        re.escape(stem), "|".join(k for k, _d, _k, _p in FINISHES)), "", sh_txt)
+    sh_txt = re.sub(r"(?ms)\r?\n\r?\n(coop_skin_%s_(?:%s)(?:_\d+)?)\r?\n\{.*?^\}" % (
+        re.escape(stem), "|".join(k for k, _d, _k, _p in FINISHES)),
+        lambda m: m.group(0) if m.group(1) in reused else "", sh_txt)     # a reused own block stays where it is
     if blocks:
         sh_txt = sh_txt.rstrip() + nl + nl.join(b[1].replace("\n", nl) for b in blocks) + nl
     io.open(SHADER_OUT, "w", encoding="latin-1", newline="").write(sh_txt)
@@ -552,6 +569,10 @@ def add_gun(stem, write):
     ls_p = os.path.join(MOD, "coop_mod", "loadoutskins.scr")
     ls = io.open(ls_p, encoding="latin-1", newline="").read()
     give = rel.lower()
+    have = re.findall(r'(?m)^\tlevel\.coop_skinGive\["%s"\]\[([1-7])\] = "([^"]*)"' % re.escape(give), ls)
+    if sorted((int(f), v) for f, v in have) == sorted(rows):
+        print("add %s: %d tiks, %d new shader blocks, loadoutskins rows unchanged" % (stem, len(tiks), len(blocks)))
+        return 0                             # [v1.10.66 fg42hd] same rows already there: leave them where they are
     ls = re.sub(r'(?m)^\tlevel\.coop_skinGive\["%s"\]\[[1-7]\] = [^\r\n]*\r?\n' % re.escape(give), "", ls)
     last = list(re.finditer(r'(?m)^\tlevel\.coop_skinGive\["[^"]+"\]\[[1-7]\] = [^\r\n]*\r?\n', ls))[-1]
     ins = "".join('\tlevel.coop_skinGive["%s"][%d] = "%s"' % (give, f, v) + nl for f, v in rows)
@@ -603,6 +624,8 @@ def finalize(stems):
             gold = blocks.get("coop_skin_%s_gold%s" % (stem, mm.group(2) or ""))
             assert gold, "no gold twin for " + name
             out_rel = maps[0]
+            if out_rel not in man and W.carriers(out_rel):
+                continue                     # [v1.10.66 fg42hd] a bake another pak / the mod tree already ships: a reused finish
             base = gold[0]
             img = None
             for cand in [base] + [re.sub(r"\.\w+$", e, base) for e in (".tga", ".jpg", ".dds", ".png")]:

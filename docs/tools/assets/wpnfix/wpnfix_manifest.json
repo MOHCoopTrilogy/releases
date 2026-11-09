@@ -23,6 +23,10 @@
   "models/weapons/30calportable_gold.tik": {
     "new": true
   },
+  "models/weapons/FG42.tik": {
+    "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
+    "base_md5": "3eeed44d2e040a69538c1b69da4a5364"
+  },
   "models/weapons/KAR98sniper_g98scope.tik": {
     "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
     "base_md5": "6ea7c67d9cd1cd993e105f0c898d99bc"
@@ -263,8 +267,43 @@
   "models/weapons/enfieldsniper_gold.tik": {
     "new": true
   },
+  "models/weapons/fg42/coop_fg42_fire.skc": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "5095f914bae19c192d2c9d2208484378"
+  },
+  "models/weapons/fg42/coop_fg42hd.skd": {
+    "new": true
+  },
   "models/weapons/fg42/coop_fg42hd_irons.skd": {
     "new": true
+  },
+  "models/weapons/fg42_bloody.tik": {
+    "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
+    "base_md5": "47c9cc5ee4a54bc371f18dc28f113fa7"
+  },
+  "models/weapons/fg42_blued.tik": {
+    "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
+    "base_md5": "4c86280afacc4623689c75c22293cbe8"
+  },
+  "models/weapons/fg42_camo_desert.tik": {
+    "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
+    "base_md5": "21f2bfea662a5451c1ed1fa204245437"
+  },
+  "models/weapons/fg42_camo_winter.tik": {
+    "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
+    "base_md5": "c83981b7564e305add090520e4273ba1"
+  },
+  "models/weapons/fg42_camo_woodland.tik": {
+    "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
+    "base_md5": "cb8f93d2f85a2d01fd1eff9642eff7c2"
+  },
+  "models/weapons/fg42_chrome.tik": {
+    "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
+    "base_md5": "8b22d78938d0f3925b88d69101794226"
+  },
+  "models/weapons/fg42_gold.tik": {
+    "base": "zzzzzzzzzzzzzzz_coop_scopeglass.pk3",
+    "base_md5": "9c111fcc76f2c13bb66949574ac45abe"
   },
   "models/weapons/garand_scoped_bloody.tik": {
     "new": true

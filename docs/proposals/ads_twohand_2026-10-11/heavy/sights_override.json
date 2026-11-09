@@ -22,13 +22,13 @@
    -6.7008
   ],
   "R": [
-   -2.2055,
-   -0.8539,
-   -6.6447
+   -2.1978,
+   -0.8535,
+   -7.4159
   ],
-  "relief": 5.0,
+  "relief": 6.0,
   "why": "2026-10-13 (heavy lane, fifth agent): the iron-sight FG 42 (tools/fg42irons.py). F = the rebuilt front post's tip, R = the centre of the rear aperture ring; relief = eye to the aperture. New gun: 8 rows inserted by tools/apply_fg42irons.py. Ships only with the staged mesh, tiks, shader and texture.",
-  "note_fg42hd": "v1.10.66 fg42hd: Shorty_Digitan's FG42 (CC BY 4.0) - its own diopter aperture centre (R) and front post tip (F), docs/proposals/fg42hd_2026-11-08/tools/fglib.py mapped through the shipped mesh's exact local->gun affine (fg42hd tools/posefit.py)"
+  "note_fg42hd": "v1.10.66 fg42hd: Shorty_Digitan's FG42 (CC BY 4.0) - R = the centre of the ghost ring that replaces its pin-hole diopter loop, F = its front post tip, through the shipped mesh's exact local->gun affine (fg42hd tools/posefit.py)"
  },
  "m1919": {
   "new": true,

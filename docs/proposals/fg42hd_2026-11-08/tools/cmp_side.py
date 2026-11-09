@@ -7,7 +7,7 @@ import gen_wpnfix_pak as W
 import skd as K
 HERE = os.path.dirname(os.path.abspath(__file__))
 new = K.read(open(os.path.join(HERE, '..', 'ship', 'models', 'weapons', 'fg42', sys.argv[1] if len(sys.argv) > 1 else 'coop_fg42hd_irons.skd'), 'rb').read())
-old = K.read(W.carriers('models/weapons/fg42/coop_fg42_irons.skd')[-1][1])
+old = K.read(W.carriers(os.environ.get('FG_OLD', 'models/weapons/fg42/coop_fg42_irons.skd'))[-1][1])
 SC, X0, Z0 = 9, -45, -14
 Wd, Hd = int(115 * SC), int(36 * SC)
 

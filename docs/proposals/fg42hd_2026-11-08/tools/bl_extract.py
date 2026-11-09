@@ -8,7 +8,7 @@ import numpy as np
 fbx, out = sys.argv[sys.argv.index('--') + 1:][:2]
 os.makedirs(out, exist_ok=True)
 RATIO = json.loads(os.environ.get('FG_RATIO', '{}')) or {
-    'Body': 0.30, 'Barrel': 0.28, 'Bipod': 0.28, 'Rear_sight': 0.40, 'Magazine': 0.60, 'Ejection_port': 1.0, 'Trigger': 1.0, 'Bolt': 1.0}
+    'Body': 0.30, 'Barrel': 0.28, 'Bipod': 0.28, 'Rear_sight': 1.0, 'Magazine': 0.60, 'Ejection_port': 1.0, 'Trigger': 1.0, 'Bolt': 1.0}
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.context.preferences.filepaths.use_scripts_auto_execute = False
 bpy.ops.wm.fbx_import(filepath=fbx)

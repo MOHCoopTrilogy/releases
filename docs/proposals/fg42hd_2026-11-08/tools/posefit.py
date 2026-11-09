@@ -27,5 +27,5 @@ Xa = np.hstack([X, np.ones((len(X), 1))])
 M, res, _, _ = np.linalg.lstsq(Xa, Y, rcond=None)
 err = np.abs(Xa @ M - Y).max()
 print('affine rows\n', np.round(M, 5), '\nmax err', round(float(err), 4))
-for nm, p in (('aperture', L.to_raw(L.R_SRC)), ('post tip', L.to_raw(L.F_SRC))):
+for nm, p in (('aperture', L.to_raw(L.R_SRC)), ('ring', L.to_raw(L.RING_C)), ('post tip', L.to_raw(L.F_SRC))):
     print(nm, 'local', np.round(p, 3), 'gun', np.round(np.append(p, 1) @ M, 4))

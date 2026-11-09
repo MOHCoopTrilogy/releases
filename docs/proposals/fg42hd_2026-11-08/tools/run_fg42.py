@@ -9,7 +9,7 @@ import wpnview_run as W  # noqa: E402
 gid, gun, tag = sys.argv[1:4]
 page = sys.argv[4] if len(sys.argv) > 4 else ""
 s = W.Script()
-s.cmd("echo ^~^~^ WV boot", 40000)
+s.cmd("echo ^~^~^ WV boot", int(__import__("os").environ.get("WV_BOOT", "40000")))
 s.cmd("+attack", 300)
 s.cmd("-attack", 7000)
 s.cmd("exec ui/loadout/w%s_s1.cfg" % gid, 5000)
@@ -40,7 +40,7 @@ s.cmd("use \"%s\"" % gun, 1500)
 s.cmd("cg_3rd_person 1", 1500)
 s.cmd("screenshotJPEG f_10_third", 400)
 s.cmd("cg_3rd_person 0", 600)
-s.cmd("spawn models/weapons/coop_fg42_irons.tik", 1500)
+s.cmd("spawn " + __import__("os").environ.get("WV_SPAWN", "models/weapons/coop_fg42_irons.tik"), 1500)
 s.cmd("+lookdown", 500)
 s.cmd("-lookdown", 900)
 s.cmd("screenshotJPEG f_09_drop", 400)
