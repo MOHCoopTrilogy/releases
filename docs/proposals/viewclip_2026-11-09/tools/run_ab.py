@@ -15,7 +15,9 @@ s = W.Script()
 s.cmd("echo ^~^~^ VC boot", int(os.environ.get("WV_BOOT", "85000")))
 s.cmd("+attack", 300)
 s.cmd("-attack", 7000)
-s.cmd("exec ui/loadout/w%s_s1.cfg" % gid, 6000)
+_lo = os.path.join(os.environ.get("WV_MOD", "H:/hzm_work/viewclip-mod"), "ui", "loadout")
+_slot = next((k for k in ("s1", "s2", "s3") if os.path.exists(os.path.join(_lo, "w%s_%s.cfg" % (gid, k)))), "s1")
+s.cmd("exec ui/loadout/w%s_%s.cfg" % (gid, _slot), 6000)     # sidearms live in slot 3 (w49_s3.cfg): s1 never gave them
 s.cmd('use "%s"' % gun, 3000)
 MOVES = os.environ.get("VC_MOVES") == "1"
 SIDES = [x for x in (("a", "0", "1"), ("b", "1", "0.6")) if x[0] in os.environ.get("VC_SIDES", "ab")]

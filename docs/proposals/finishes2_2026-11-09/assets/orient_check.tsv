@@ -1,0 +1,71 @@
+id	gun	armory side (gun right)	first-person side (gun left)	result
+01	M1 Garand	ok (spot #1, 2.0 cm)	ok (spot #1, 2.0 cm)	pass
+02	M1 Carbine	ok (spot #2, 1.7 cm)	ok (spot #1, 1.7 cm)	pass
+03	Mauser KAR 98K	ok (spot #1, 7.0 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island)	pass
+04	G 43	ok (spot #1, 1.7 cm)	ok (spot #1, 1.7 cm)	pass
+05	Lee-Enfield	ok (spot #1, 1.7 cm)	ok (spot #1, 1.6 cm)	pass
+06	Springfield M1903	ok (spot #1, 7.8 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+07	Carcano	ok (spot #1, 6.3 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+08	SVT 40	ok (spot #1, 7.4 cm)	ok (spot #1, 5.6 cm)	pass
+09	Mosin Nagant Rifle	ok (spot #1, 6.7 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+10	Arisaka Type 99	ok (spot #1, 6.8 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+11	Silenced M1 Garand	ok (spot #1, 5.5 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+12	Springfield '03 Sniper	ok (spot #1, 7.1 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+13	KAR98 - Sniper	ok (spot #1, 7.0 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+14	Enfield L42A1	ok (spot #1, 6.2 cm)	ok (spot #1, 3.2 cm)	pass
+15	M1 Garand Sniper	ok (spot #1, 5.6 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+16	G43 Sniper	ok (spot #1, 1.8 cm)	ok (spot #1, 1.7 cm)	pass
+17	Lee-Enfield Sniper	ok (spot #1, 6.2 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (FLIPPED (arrow head at bottom)); mirror copy of the other side shows	pass
+18	Carcano Sniper	ok (spot #1, 6.3 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+19	Arisaka Sniper	ok (spot #1, 6.8 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+20	Mosin-Nagant Sniper	ok (spot #1, 1.8 cm)	ok (spot #1, 2.1 cm)	pass
+21	Silenced Mosin Sniper	ok (spot #1, 2.1 cm)	ok (spot #1, 5.7 cm)	pass
+22	Silenced Kar98 Sniper	ok (spot #1, 7.9 cm)	ok (spot #1, 4.3 cm)	pass
+23	DeLisle	ok (spot #1, 2.6 cm)	ok (spot #1, 2.6 cm)	pass
+24	Thompson	ok (spot #1, 2.2 cm)	ok (spot #1, 2.5 cm)	pass
+25	Thompson 50rd	ok (spot #1, 3.0 cm)	ok (spot #1, 3.0 cm)	pass
+26	MP40	ok (spot #1, 1.8 cm, SHARED UVs: mirror copy on the far side)	ok (spot #1, 1.7 cm)	pass
+27	Silenced MP40	ok (spot #1, 1.8 cm)	ok (spot #1, 1.8 cm)	pass
+28	Sten Mark II	ok (spot #1, 6.2 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+29	PPSH SMG	ok (spot #1, 3.3 cm)	ok (spot #1, 3.3 cm)	pass
+30	Silenced PPS-43	ok (spot #1, 3.3 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island)	pass
+31	M3 Grease Gun	ok (spot #8, 2.0 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island)	pass
+32	Silenced Grease Gun	ok (spot #10, 2.0 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island)	pass
+33	Moschetto	ok (spot #1, 1.9 cm)	ok (spot #1, 1.9 cm)	pass
+35	Type 100 SMG	ok (spot #1, 6.6 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+36	BAR	ok (spot #1, 4.7 cm)	ok (spot #1, 2.0 cm)	pass
+37	StG 44	ok (spot #1, 3.1 cm)	ok (spot #1, 4.0 cm)	pass
+38	StG44 Scoped	ok (spot #1, 7.4 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+39	FG 42	ok (spot #1, 5.5 cm)	ok (spot #1, 4.4 cm)	pass
+40	Vickers-Berthier	ok (spot #1, 6.9 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+41	Breda	ok (spot #1, 3.3 cm)	ok (spot #1, 4.4 cm)	pass
+42	M1919 30cal	ok (spot #1, 6.4 cm)	ok (spot #1, 7.1 cm)	pass
+43	MG42	ok (spot #1, 5.2 cm, SHARED UVs: mirror copy on the far side)	ok (spot #1, 3.8 cm)	pass
+44	Shotgun	ok (spot #1, 3.7 cm)	ok (spot #1, 4.3 cm)	pass
+45	Bazooka	ok (spot #1, 3.7 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island)	pass
+46	Panzerschreck	ok (spot #1, 4.4 cm, SHARED UVs: mirror copy on the far side)	ok (spot #1, 2.0 cm)	pass
+47	PIAT	ok (spot #1, 2.8 cm)	ok (spot #1, 2.8 cm)	pass
+48	Colt 45	ok (spot #1, 2.4 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+49	Silenced Colt .45	ok (spot #1, 2.0 cm)	ok (spot #1, 2.0 cm)	pass
+50	Walther P38	ok (spot #1, 3.7 cm)	ok (spot #1, 3.7 cm)	pass
+51	Silenced Walther P38	ok (spot #1, 3.5 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+52	Hi-Standard Silenced	ok (spot #1, 2.4 cm)	ok (spot #1, 2.3 cm)	pass
+53	Webley Revolver	ok (spot #1, 3.5 cm)	ok (spot #1, 2.7 cm)	pass
+54	Nagant Revolver	ok (spot #3, 1.9 cm)	ok (spot #1, 2.3 cm)	pass
+55	Beretta	ok (spot #1, 3.9 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+56	Silenced Beretta	ok (spot #1, 3.7 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+57	Luger P08	ok (spot #1, 3.0 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+58	Silenced Luger P08	ok (spot #1, 2.9 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+59	Walther PPK	ok (spot #1, 2.6 cm)	NO CLEAN SPOT (no side island)	pass
+60	TT-33 Tokarev	ok (spot #1, 2.9 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+61	Silenced TT-33	ok (spot #1, 2.9 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+62	Nambu Type 14	ok (spot #1, 2.5 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+63	Welrod	ok (spot #1, 3.4 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+70	Johnson M1941	ok (spot #2, 3.9 cm)	ok (spot #2, 2.1 cm)	pass
+72	DP-28	ok (spot #1, 2.4 cm)	ok (spot #2, 1.7 cm)	pass
+74	Mauser C96	ok (spot #4, 3.4 cm)	ok (spot #1, 3.4 cm)	pass
+75	S&W M10 .38	ok (spot #1, 2.6 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+78	G 43 Irons	ok (spot #1, 6.7 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (no side island); mirror copy of the other side shows	pass
+80	Shotgun (Double Barrel)	ok (spot #1, 2.9 cm)	ok (spot #1, 2.9 cm)	pass
+79	FG 42 Irons	ok (spot #1, 5.5 cm)	ok (spot #1, 4.3 cm)	pass
+81	Lewis Gun	ok (spot #1, 6.4 cm, SHARED UVs: mirror copy on the far side)	NO CLEAN SPOT (glyph not visible (red 0 green 0 px))	pass

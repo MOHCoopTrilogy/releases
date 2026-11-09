@@ -159,19 +159,21 @@ def stamp_text(text, font, box, ink):
 
 
 def waa():
-    im, d = stamp_text('WaA214', FONT_C, 0.16, (34, 32, 30, 230))
-    d.ellipse((S(0.12), S(0.32), S(0.88), S(0.68)), outline=(34, 32, 30, 230), width=int(SS * 6))
+    im, d = stamp_text('WaA214', FONT_C, 0.22, (34, 32, 30, 240))         # big and heavy: it must read at viewer size
+    d.ellipse((S(0.03), S(0.27), S(0.97), S(0.73)), outline=(34, 32, 30, 240), width=int(SS * 12))
     return fin(im)
 
 
 def souvenir():
     im, d = canvas()
-    f1 = ImageFont.truetype(FONT_C, int(S(0.16)))
-    f2 = ImageFont.truetype(FONT_C, int(S(0.11)))
-    ink = (222, 214, 196, 235)                               # scratched into the finish: bare-metal light lines
-    for txt, f, y in (('J.M.', f1, 0.36), ('SOUVENIR', f2, 0.58)):
+    f1 = ImageFont.truetype(FONT_C, int(S(0.30)))
+    f2 = ImageFont.truetype(FONT_C, int(S(0.165)))
+    ink = (226, 218, 198, 245)                               # scratched into the finish: bare light lines
+    for txt, f, y in (('J.M.', f1, 0.34), ('SOUVENIR', f2, 0.66)):
         bb = d.textbbox((0, 0), txt, font=f)
-        d.text((S(0.5) - (bb[2] - bb[0]) / 2 - bb[0], S(y) - (bb[3] - bb[1]) / 2 - bb[1]), txt, font=f, fill=ink)
+        x0, y0 = S(0.5) - (bb[2] - bb[0]) / 2 - bb[0], S(y) - (bb[3] - bb[1]) / 2 - bb[1]
+        d.text((x0 + SS * 4, y0 + SS * 4), txt, font=f, fill=(20, 14, 8, 200))     # the cut's shadow
+        d.text((x0, y0), txt, font=f, fill=ink)
     return fin(im)
 
 
