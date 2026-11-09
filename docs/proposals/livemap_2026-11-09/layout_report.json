@@ -1,0 +1,142 @@
+[
+ {
+  "map": "dm/mohdm1",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mohdm2",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mohdm3",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mohdm4",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mohdm5",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mohdm6",
+  "verdict": "off the wall -> edge marker"
+ },
+ {
+  "map": "dm/mohdm7",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/obj_team1",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/obj_team2",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/obj_team3",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/obj_team4",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mp_bahnhof_dm",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mp_bazaar_dm",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mp_brest_dm",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mp_gewitter_dm",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mp_holland_dm",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mp_malta_dm",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mp_stadt_dm",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mp_unterseite_dm",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "dm/mp_verschneit_dm",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_ardennes_tow",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_berlin_tow",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_druckkammern_tow",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_flughafen_tow",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_bologna_obj",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_castello_obj",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_palermo_obj",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_bizertefort_obj",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_kasserine_tow",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_montebattaglia_tow",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "obj/mp_montecassino_tow",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "lib/mp_anzio_lib",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "lib/mp_bizerteharbor_lib",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "lib/mp_ship_lib",
+  "verdict": "stamp ok"
+ },
+ {
+  "map": "lib/mp_tunisia_lib",
+  "verdict": "stamp ok"
+ }
+]
