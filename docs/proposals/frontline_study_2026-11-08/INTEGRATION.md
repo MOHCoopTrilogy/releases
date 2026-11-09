@@ -241,9 +241,12 @@ Plan:
    - the briefing room BSP is a copy of the player's own `maps/briefing/briefinge1.bsp`;
    - both go into the local `zzzz_coop_fl_m1_brief.pk3`; the script `maps/briefing/briefingfl1.scr` and an
      empty `spawnlocations` label are mod side.
-   RoQ size is 512x352: the engine's RoQ buffer is 512x512 (`cl_cin.cpp linbuf`). Playing the full
-   640x448 needs that buffer raised (an engine change; proposed, not done). Frontline's films have no
-   subtitle track, so none are added.
+   - The RoQ follows the stock layout exactly: 512x256 with no audio chunks, plus `video/flbrief11.wav` beside it.
+     The engine streams `<movie>.mp3`, then `.wav`, as the film's sound (`S_SetupMovieAudio`).
+   - The first take (512x352 with roq_dpcm audio inside the RoQ) was published to the player and played, but the
+     engine closed it in the same second: `trFMV::stop` came straight after `play`.
+   - The stock-layout take still needs one in-game check.
+   - Frontline's films have no subtitle track, so none are added.
 2. **Camera scenes:** rebuild with MOHAA's cinematic recipe, copied from the stock scripts:
    - camera entities on a path, `cuecamera` / `follow`, `freezeplayer` and `drawhud 0`, letterbox;
    - the mod's cutscene lock: every player frozen and protected, skippable by the host or a vote, late
@@ -460,7 +463,9 @@ Campaign and chrono slots (section 4) come in a later version unless they turn o
     - built with MSYS2/MinGW from the signed source tarball (sha256 b072aed6…756a);
     - a static `ffmpeg.exe` of 2.2 MB with no external libraries, `License: LGPL version 2.1 or later`;
     - only these parts are enabled: the EA and RoQ demuxers, the mpeg2video, adpcm_ea_r1 and RoQ decoders, the
-      RoQ encoders and muxer, scale/crop/format/aresample/fps, and file I/O;
+      RoQ encoders and muxer, the pcm_s16le encoder and wav muxer (film sound), scale/crop/format/aresample/fps,
+      and file I/O;
+    - its RoQ output is byte-identical to the BtbN LGPL build's (brief11, same sha256);
     - it ships in `tools/ffmpeg/` with COPYING.LGPLv2.1, `CONFIGURE_LINE.txt` and the source link
       https://ffmpeg.org/releases/ffmpeg-8.1.tar.xz. The build script `build.sh` is kept beside it.
     - Fallback (Option C): fetch the pinned BtbN LGPL build on demand. Briefing films are optional at runtime.
