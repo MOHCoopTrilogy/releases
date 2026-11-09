@@ -93,3 +93,30 @@ Open: the viewer's locked "Progress" reads 0/450, 0/550, 0/350 although unlockpr
 export (coop_loLkA<id>) is pointing at the wrong data; Armory hero framing (armory_fit) not run; MP Armory rows (blocked on mpid 34,
 bug-10673); retargeted Bren reload hands; in-game stills need a lit map (m1l1 starts in the night truck ride).
 Test runner: run_gun.py (Armory route, overlay = every mod file changed since hotfix-1.10.53), run_viewer.py.
+
+## Status 2026-11-09 ~17:45 (finishing pass: reload hands, rack numbers, finishes2 coverage, stills)
+- **Merged in**: root `main` + `finishes2-tools`; mod `hotfix-1.10.53` + `finishes2`; engine `rel-1.10.38-engine` (the v1.10.67
+  view-weapon projection / near-plane fix). Generated files regenerated, not hand-merged.
+- **Bren reload hands** (tools/bren_hands.py): the VB's three view reload clips with the RIGHT hand moved (-5.65, 0.3, 1.2) gun
+  units onto the Bren's magazine (eased in off the grip f3-12, out to the cocking handle after the insert), right arm re-solved
+  by the ADS lanes' two-bone IK, tags untouched. Rows `coopr_bren_reload`, `cv_bren_reload_s`, `cv_bren_reload_m` in an ADOPTED
+  `fps_anims_mg.txt` (wpnfix, stress-pak base pinned). build_bren_clip.py re-places the prop against the new _s clip (reproduces
+  byte-identically). Offline clip check (tools/clipcheck.py): 0 vertices nearer than the weapon near plane on all 3 clips; the
+  right hand's nearest approach 6.8 u (VB 8.1 u; hand_survey NEAR is 6). In game the hand is large at the start of the pull.
+- **Rack unlock numbers**: the viewer's "0/450" was a STALE archived coop_uiN<i>: the 3 unlock challenges were added as Service
+  Record rows without regenerating the SR (boot SELFTEST FAIL 450 vs 447), and every later row moved up by 3. gen_service_record.py
+  re-run (450 rows, stamp 554288dc, reward names added); ng8 boots SELFTEST OK. The numbers are right after the first export
+  (chal_flush, <= 30 s after joining) - the same rule as every other gun.
+- **finishes2 coverage**: tools/fs2_ng.py runs fs2_build / fs2_finish2 against a PRIVATE copy `H:\hzm_work
+ewgunss2_build`
+  (finishes2's own staging untouched): 910 existing rows byte-identical, +39 (fids 40-52, ranks 2910-2948), pak 199.3 MB sha256
+  2b76b445. Generators run with `HZM_BASE_MOD=<base mod> HZM_FS2_PAK=<that pak> HZM_FS2_BUILD=<that dir> HZM_MOD=<mod worktree>`.
+- **Stills** (m5l1a, overcast daylight, 3440x1440, GL2): media/ng8/ (+ sheet_bren.jpg, sheet_mp28_pzf.jpg). Bren / MP 28 /
+  Panzerfaust ADS sights aligned (ADSSIGHT res < 0.3 mrad); Panzerfaust fires and the tube is discarded (PZF_DISCARD).
+- **Merge order**: finishes2 first, then newguns. Then in the base checkout: replace finishes2's pak with
+  `H:\hzm_work
+ewgunss2_build\zzzzzzzzzz_coop_finishes_hd.pk3` (or re-run fs2_ng.py-equivalent in finishes2's staging),
+  `gen_wpnfix_pak.py build`, and the 5-step generator sequence (gen_skins check, finish_challenges --emit, gen_loadout build,
+  gen_weapon_viewer build, gen_skinbase). Engine: merge newguns-eng (cgame/game unchanged since 8f10e4a2).
+- Open: MP Armory rows (mpid 34, bug-10673); Armory hero framing (armory_fit) not run; the MP 28's ADS shows the Sten's support
+  sleeve over the left third of the view (Sten parity).
