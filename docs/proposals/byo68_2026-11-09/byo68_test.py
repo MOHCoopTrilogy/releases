@@ -176,21 +176,30 @@ def main(cases):
                         shot(c, out, "sp_absent_menu")
             elif case.startswith("coop"):
                 mp = "coop_fl_1_1" if present else "m1l1"
-                c = launch(present, ["+set", "g_gametype", "2", "+set", "ui_dmmap", mp, "+exec", "coop_mod/start_server.cfg"], [])
+                mt = os.path.join(home(present), "maintt")
+                # client-side steps through F keys (rcon runs on the server console, where join_team has no player)
+                open(os.path.join(mt, "byo_join.cfg"), "w", newline="\n").write(
+                    "echo BYOT_join\npopmenu 0\nprimarydmweapon rifle\njoin_team allies\npopmenu 0\n")
+                open(os.path.join(mt, "byo_flmap.cfg"), "w", newline="\n").write(
+                    "echo BYOT_flmap\nset ui_dmmap coop_fl_1_1\nexec coop_mod/start_server.cfg\n")
+                c = launch(present, ["+set", "g_gametype", "2", "+set", "ui_dmmap", mp, "+exec", "coop_mod/start_server.cfg"],
+                           ['bind F5 "exec byo_join.cfg"', 'bind F6 "exec byo_flmap.cfg"'])
                 with c:
                     res["loaded"] = wait_for(present, r"Spawning Entities Done", 300)
                     time.sleep(10)
                     for _ in range(4):
-                        rcon("popmenu 0; wait 10; primarydmweapon rifle; wait 5; join_team allies; wait 20; popmenu 0")
+                        c.post_key(0x74)
                         if wait_for(present, r"has joined|joined the", 15):
                             break
                     res["joined"] = bool(re.search(r"has joined|joined the", read(present)))
+                    res["spawned"] = bool(re.search(r"T:allies", read(present)))
                     time.sleep(25)
                     shot(c, out, "coop_" + mp)
                     if not present:
                         n = len(read(present))
-                        rcon("map coop_fl_1_1")
-                        res["fl_refused"] = wait_for(present, r"[Cc]an't find map|Couldn't load", 60, n)
+                        c.post_key(0x75)
+                        res["fl_refused"] = wait_for(present, r"[Cc]an't find map|Couldn't load|not found", 60, n)
+                        res["fl_tail"] = [l[34:150] for l in read(present)[n:].splitlines() if l.strip()][-8:]
                         time.sleep(5)
                         res["client_alive"] = c.proc.poll() is None
             log = read(present)
