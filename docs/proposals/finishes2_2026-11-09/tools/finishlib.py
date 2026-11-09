@@ -43,7 +43,25 @@ def diffuse_image(shader):
     return _real_shader_image(shader)
 
 
-uvview.shader_image = diffuse_image      # the engine applies a flipped root (Carcano: its idle frame lies along y otherwise)
+uvview.shader_image = diffuse_image
+
+# The skd frame gungeo returns is the gun ROLLED 180 deg about its barrel axis (grips, magazines and the rifle butts point
+# UP, bolt handles at +y). Measured over all 70 guns (media/frame_check.jpg), and a roll, not a mirror: the bolt handles of
+# the Kar98k / Springfield / Enfield come out on +y = the gun's right once rolled back. Every finishes tool works in the TRUE
+# frame: x towards the muzzle, y = the gun's LEFT, z up (bug-10666).
+ROLL = np.array([1.0, -1.0, -1.0])
+ARMORY = -1              # the gun's RIGHT side, muzzle to the right: what the Armory and the weapon viewer show
+FIRSTPERSON = +1         # the gun's LEFT side: what the first-person view shows (receiver / slide; a rifle's butt is off-screen)
+VISIBLE = ARMORY
+
+
+def load_gun(tik):
+    g = gungeo.load_gun(tik)
+    if not g.get('_true_frame'):
+        for s in g['surfs']:
+            s['P'] = s['P'] * ROLL
+        g['_true_frame'] = True
+    return g      # the engine applies a flipped root (Carcano: its idle frame lies along y otherwise)
 
 U_PER_CM = 16.0 / 30.48
 
@@ -139,7 +157,7 @@ def wear_mask(g, shader, W, H, P=None, edge=None):
 
 
 # ---------------------------------------------------------------------------------------------------------- decals
-def islands(g, side=-1):
+def islands(g, side=VISIBLE):
     """side-facing (outward n_y * side > 0.75; side -1 = the gun's left, the side the viewer, the Armory and first person show) connected
     UV islands of every sheet: [(area, shader, tris, surf, centre xyz, extent xz)]"""
     out = []
@@ -276,7 +294,7 @@ def pixel_square(ids, X, Z, res, keys, region=None):
     return (float(X[ix]), float(Z[iy])), float(max(d[iy, ix] - 0.5, 0) * res)
 
 
-def place(g, kind='butt', fill=0.8, side=-1, allow_shared=True, rank=0):
+def place(g, kind='butt', fill=0.8, side=VISIBLE, allow_shared=True, rank=0):
     """-> dict(shader, tris, surf, aff (UV->model xz 3x2), centre (x,z), size) or None. The island: 'butt' = the rear-most big
     island of a long gun with a butt, else the grip; 'grip' = the lowest island in the rear 60 %; 'receiver' = the biggest
     island in the middle third. The decal is a square of side `size` centred on the island's largest inscribed square
@@ -385,6 +403,15 @@ def stamp(img, pl, dec):
             a_ = px[:, 3:4]
             img[ys[ok], xs[ok], :3] = img[ys[ok], xs[ok], :3] * (1 - a_) + px[:, :3] * a_
     return img
+
+
+def decal_texels(pl, W=512, H=512):
+    """texels (on a W x H grid of the sheet) the placement's decal square covers - two placements that share any texel would
+    paint each other"""
+    img = np.zeros((H, W, 3))
+    sq = np.ones((8, 8, 4))
+    stamp(img, pl, sq)
+    return img[..., 0] > 0.5
 
 
 def orientation_ok(pl):

@@ -200,17 +200,19 @@ def build_ctx(g, sh, H, W):
     return dict(mask=m, P=P, lo=lo, hi=hi, wpu=wpu, rep=lambda name: wpu / (TILE_CM[name] * fl.U_PER_CM))
 
 
-def render(tik, cls, fin, W=520, H=200, pl_cache={}):
-    g = gungeo.load_gun(tik)
+def render(tik, cls, fin, W=520, H=200, pl_cache={}, side=None):
+    g = fl.load_gun(tik)
     german = any(k in tik.lower() for k in GERMAN)
     dname = DECAL_OF.get(fin) or (('souvenir' if german else 'waa') if fin == 'captured' else None)
     if dname:
         key = (tik, 'receiver' if fin == 'captured' and not german else oc.KIND.get(cls, 'grip'))
-        if key not in pl_cache:
-            pl_cache[key] = oc.place_verified(g, key[1])[0]
-        pl = pl_cache[key]
+        if key not in pl_cache:                  # the Armory-side decal, then the first-person-side one (no shared texel)
+            pa = oc.place_verified(g, key[1], side=fl.ARMORY)[0]
+            pf = oc.place_verified(g, 'receiver', side=fl.FIRSTPERSON, avoid=[pa] if pa else [], allow_shared=False)[0]
+            pl_cache[key] = [p for p in (pa, pf) if p]
+        pls = pl_cache[key]
     else:
-        pl = None
+        pls = []
     cache = {}
     real = uvview.shader_image
 
@@ -223,7 +225,9 @@ def render(tik, cls, fin, W=520, H=200, pl_cache={}):
                 base = np.asarray(im.convert('RGBA'), float) / 255.0
                 ctx = build_ctx(g, sh, *base.shape[:2])
                 img = np.dstack([finish_tex(fin, base, ctx), base[..., 3:4]])
-                if dname and pl is not None and sh == pl['shader']:
+                for pl in pls:
+                    if sh != pl['shader']:
+                        continue
                     dec = decal(dname)
                     if dname == 'waa':                       # a die-struck mark on blued steel reads bright, not inked
                         dec = dec.copy()
@@ -237,7 +241,7 @@ def render(tik, cls, fin, W=520, H=200, pl_cache={}):
         c = (lo + hi) / 2
         ext = max(hi[0] - lo[0], (hi[2] - lo[2]) * W / H)
         dist = ext * 6.0
-        rgb, ids, dep = raster.render(g, c + np.array([0, -dist, 0]), c, np.array([0, 0, 1.0]),
+        rgb, ids, dep = raster.render(g, c + np.array([0, (side or fl.ARMORY) * dist, 0]), c, np.array([0, 0, 1.0]),
                                       fov=2 * math.degrees(math.atan(ext * 0.55 / dist)), W=W, H=H, tex=True, bg=(58, 60, 64))
     finally:
         uvview.shader_image = real

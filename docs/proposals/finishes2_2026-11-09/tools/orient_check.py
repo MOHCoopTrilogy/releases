@@ -103,20 +103,26 @@ def read_glyph(rgb):
     return 'ok'
 
 
-def place_verified(g, kind, tries=24):
+def place_verified(g, kind, tries=24, side=None, avoid=(), allow_shared=True):
     """the first placement (best spot first) whose rendered test glyph reads upright, unmirrored, whole and square from the
     visible side -> (placement or None, verdict of the best try, render). The finishes build uses exactly this."""
+    side = fl.VISIBLE if side is None else side
     first = None
-    for k, fill in [(k, 0.8) for k in range(tries)] + [(k, 0.5) for k in range(6)]:   # then smaller, on the best spots
-        pl = fl.place(g, kind, side=-1, rank=k, fill=fill)
+    # an island whose UVs the other side reuses shows the decal there too, MIRRORED: unshared islands first, at full then at
+    # smaller size; shared ones only as the last resort (flagged: then only a mirror-safe decal belongs there)
+    order = [(k, f, sh) for sh in ((False, True) if allow_shared else (False,)) for k, f in [(k, 0.8) for k in range(tries)] + [(k, 0.5) for k in range(6)]]
+    for k, fill, shared_ok in order:
+        pl = fl.place(g, kind, side=side, rank=k, fill=fill, allow_shared=shared_ok)
         if pl is None:
             continue
+        if any(a['shader'] == pl['shader'] and (fl.decal_texels(a) & fl.decal_texels(pl)).any() for a in avoid):
+            continue                                  # would paint over (or be painted by) the other side's decal
         if pl['size'] < 1.5 * fl.U_PER_CM:         # under 1.5 cm nobody reads it
             continue
         im = uvview.shader_image(pl['shader'])[3]
         if im is not None and pl['size'] / fl.world_per_uv(g, pl['shader']) * max(im.size) < 28:
             continue                                  # under ~28 texels across the decal is a smudge
-        rgb = view(g, [pl], -1)
+        rgb = view(g, [pl], side)
         v = read_glyph(rgb)
         if v == 'ok' and not fl.orientation_ok(pl):
             v = 'analytic gate disagrees'
@@ -129,18 +135,27 @@ def place_verified(g, kind, tries=24):
 
 
 def check(tik, cls):
-    g = gungeo.load_gun(tik)
-    pl, v, rgb = place_verified(g, KIND.get(cls, 'grip'))
-    pls = [pl] if pl else []
-    far = view(g, pls, +1)
-    red = ((far[..., 0] > 170) & (far[..., 1] < 110) & (far[..., 2] < 110)).sum()
-    b = 'no decal' if red < 25 else 'mirror copy (shared UVs: only mirror-safe decals here)'
-    if pl is None:
-        a = 'NO CLEAN SPOT - decal skipped (%s)' % v
-    else:
-        a = 'ok (spot #%d, %.1f cm)' % (pl['rank'] + 1, pl['size'] / fl.U_PER_CM)
-    shots = [rgb if rgb is not None else np.zeros((270, 360, 3), np.uint8), far]
-    return (a, b), shots, pls
+    """both sides: the Armory / viewer side (the gun's right) with the finish's decal on the butt or grip, and the first-person
+    side (the gun's left) with one on the receiver / slide that must not share a texel with the first. Each placed decal is
+    re-read with BOTH stamped (the other one must not ghost over it); a side without its own decal reports any mirror copy."""
+    g = fl.load_gun(tik)
+    pa, va, _ = place_verified(g, KIND.get(cls, 'grip'), side=fl.ARMORY)
+    # the first-person decal only where it has its OWN texels: on a shared island it would also print mirrored on the Armory side
+    pf, vf, _ = place_verified(g, 'receiver', side=fl.FIRSTPERSON, avoid=[pa] if pa else [], allow_shared=False)
+    pls = [p for p in (pa, pf) if p]
+    res, shots = [], []
+    for side, pl, v0 in ((fl.ARMORY, pa, va), (fl.FIRSTPERSON, pf, vf)):
+        rgb = view(g, pls, side)
+        shots.append(rgb)
+        if pl is not None:
+            v = read_glyph(rgb)
+            res.append(('ok (spot #%d, %.1f cm%s)' % (pl['rank'] + 1, pl['size'] / fl.U_PER_CM,
+                                                      ', SHARED UVs: mirror copy on the far side' if pl['shared'] >= 0.15 else ''))
+                       if v == 'ok' else 'BAD WITH BOTH: ' + v)
+        else:
+            red = ((rgb[..., 0] > 170) & (rgb[..., 1] < 110) & (rgb[..., 2] < 110)).sum()
+            res.append('NO CLEAN SPOT (%s)%s' % (v0, '; mirror copy of the other side shows' if red >= 25 else ''))
+    return tuple(res), shots, pls
 
 
 def main():
@@ -156,7 +171,7 @@ def main():
         except Exception as e:
             a = b = 'ERROR %r' % e
             shots = []
-        fail = not (a.startswith('ok') or a.startswith('NO CLEAN SPOT'))
+        fail = any(not (x.startswith('ok') or x.startswith('NO CLEAN SPOT')) for x in (a, b)) or not a.startswith('ok')
         bad += fail
         lines.append('%s\t%s\t%s\t%s\t%s' % (gid, name, a, b, 'FAIL' if fail else 'pass'))
         print(lines[-1], flush=True)
@@ -168,7 +183,7 @@ def main():
                                    fill=(255, 90, 90) if fail else (220, 220, 220))
             tiles.append(t)
     if out:
-        open(out, 'w', encoding='utf-8').write('id\tgun\tleft(-y)\tright(+y)\tresult\n' + '\n'.join(lines) + '\n')
+        open(out, 'w', encoding='utf-8').write('id\tgun\tarmory side (gun right)\tfirst-person side (gun left)\tresult\n' + '\n'.join(lines) + '\n')
     if sheet_p and tiles:
         cols = 5
         tw, th = tiles[0].size
