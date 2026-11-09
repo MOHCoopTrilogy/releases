@@ -157,7 +157,7 @@ MP_OWNED_MENUS = {"mpoptions"}
 # ONLY this file: the MP-facing menus are left unlocked on purpose - the user approved coop edits to them
 # (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
 LOCKS = {
-    "ui/coop_loadout.urc": {"sha256_lf": "cc391edc037c262d643dfe72e2e35f16d5759bb04f2f1446f501bf9118138bd3", "sha256_crlf": "55dd8cb89be66014920d295e565f1526e215103eef6af447d194e9c68db7c46e", "lf_bytes": 177085, "blob": "7cecbb1bb6a3803a93405f722d426b95a03b7b22", "eol": "lf", "commit": "3e4f2183", "locked": "2026-11-08 v1.10.66 armoryfix: modelfitaspect 1.7778 on every Armory model widget (gen_armory_urc.py; engine armoryfix-eng) - the previews keep their 16:9 framing at 21:9 / 3440x1440 - deliberate coop change, bug-10596"},
+    "ui/coop_loadout.urc": {"sha256_lf": "cc391edc037c262d643dfe72e2e35f16d5759bb04f2f1446f501bf9118138bd3", "sha256_crlf": "55dd8cb89be66014920d295e565f1526e215103eef6af447d194e9c68db7c46e", "lf_bytes": 177085, "blob": "7cecbb1bb6a3803a93405f722d426b95a03b7b22", "eol": "crlf", "commit": "3e4f2183", "locked": "2026-11-08 v1.10.66 armoryfix: modelfitaspect 1.7778 on every Armory model widget (gen_armory_urc.py; engine armoryfix-eng) - the previews keep their 16:9 framing at 21:9 / 3440x1440 - deliberate coop change, bug-10596"},
 }
 
 # Clauses 4/5. Every saved coop cvar MP could plausibly touch [bug-2564]; each would follow the player into coop.
