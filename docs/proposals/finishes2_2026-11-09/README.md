@@ -43,3 +43,18 @@ masks 40.6 MB (grey JPEG was larger: 49.8, RGBA PNG 58.7), 630 variant tiks (9 p
 the airborne coat; ranks 1240+, fids 40-48 in rows.tsv for loadoutskins.scr). Paint is opaque now (only the broad shading of
 the gun shows through, no wood grain); Splittertarn / pea / telo mid-toned. Verified in game: media/ingame_built_3guns.jpg.
 Open: wiring into gen_skins (loadoutskins rows, finish picker names, unlock ladder), the four shader-composited finishes.
+Rebuilt after the whitewash / shading QA: 188.2 MB (the brushed whitewash and the mid-scale shading compress a little worse).
+
+## Wiring into the game (next; target v1.10.68) - what has to change, all through generators
+The finish system is built around fids 1-7 (finishes) and 8-19 (model variants). fids 40-48 touch:
+1. `docs/tools/gen_skins.py` - a `fs2` mode that adopts H:\hzm_work\finishes2_build (tiks into the finishes pak, not the mod
+   tree; rows.tsv -> `level.coop_skinGive[give][40..48]` in coop_mod/loadoutskins.scr, coop_skinN recount; shaders stay in
+   the pak's own scripts/coop_finishes_hd.shader).
+2. `coop_mod/loadoutpick.scr` - the fid dispatch: 40-48 take the FINISH path (the <=7 branch: loadout_finOpen gate,
+   coop_loS<n>F, finp re-preview), not the model-variant cycle (8-19); `level.coop_skinFinName[40..48]`.
+3. `docs/tools/finish_challenges.py` - FINISHES gains 40-48 (+ the 4 layered finishes later) with their own ladder rungs
+   on the per-gun kill ladder (user: "extend the per-gun kill ladder"); regenerates the challenge defs.
+4. `docs/tools/gen_loadout.py` - finp<id>_<fid>.cfg previews and the finish row of the Armory page (it hard-codes the 7
+   keys); `gen_armory_urc.py` - a second finish row / page for the new finishes.
+5. `docs/tools/gen_weapon_viewer.py` - viewer entries for the new variants.
+6. Release: the pak ships as its own file (zzzzzzzzzz_coop_finishes_hd.pk3) so the updater re-downloads it only on change.
