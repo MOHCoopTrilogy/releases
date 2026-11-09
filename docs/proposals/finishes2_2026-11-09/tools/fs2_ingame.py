@@ -52,7 +52,7 @@ def bake(fin, tag=None):
     os.makedirs(OUT, exist_ok=True)
     out.convert('RGB').resize((out.width // 4, out.height // 4)).save(os.path.join(OUT, 'fs2_%s_preview.jpg' % tag), quality=85)
     buf = io.BytesIO()
-    out.save(buf, format='DDS')                              # uncompressed RGBA, the name the shader already maps
+    out.save(buf, format='DDS', pixel_format='DXT5')         # DXT5: the renderer's DDS loader rejects Pillow's BGRA uncompressed layout
     pak = os.path.join(OUT, 'fs2_%s.pk3' % tag)
     with zipfile.ZipFile(pak, 'w', zipfile.ZIP_DEFLATED) as z:
         z.writestr(path, buf.getvalue())
@@ -69,6 +69,8 @@ def run(fin):
     try:
         s = W.Script()
         s.cmd("echo ^~^~^ FS boot", int(os.environ.get("WV_BOOT", "85000")))
+        s.cmd("+attack", 300)                # past the mission briefing ("press fire to join the battle"), as run_ab does
+        s.cmd("-attack", 7000)
         s.cmd("exec ui/loadout/w%s_s1.cfg" % GID, 6000)
         s.cmd('use "%s"' % GUN, 3000)
         s.cmd("screenshotJPEG fs_00_hip", 600)
