@@ -445,12 +445,25 @@ Campaign and chrono slots (section 4) come in a later version unless they turn o
 - **Bundled runtimes and licences (checked before shipping):**
   - Python (PSF);
   - numpy, Pillow (BSD/HPND);
-  - vgmstream-cli (ISC-style permissive), built from source as now;
+  - vgmstream-cli (ISC-style permissive), one build shared by both games:
+    - the EA agent's MPEG-enabled build (EA's EALayer3 music needs mpg123);
+    - it goes in as `tools/vgmstream/vgmstream-cli.exe`;
+    - `hzmconv_ea.py` expects that path and drops music if it is missing;
+    - Frontline uses the same build only if the converted 1_1 pak is byte-identical (sha256) to the one from
+      the plain build; otherwise Frontline keeps the plain build in its own folder.
+  - libmpg123 (LGPL-2.1):
+    - a dynamic DLL, `libmpg123-0.dll`, placed next to vgmstream-cli.exe;
+    - built with MSVC x64 from mpg123-1.32.12 (sha256 9ed33460…2e55, GPG-verified against Thomas Orgis' key);
+    - shipped with COPYING (LGPL-2.1) and a link to the source tarball. Being a DLL, a user can swap it out.
   - realesrgan-ncnn-vulkan (MIT) and its x4plus weights (BSD-3), optional;
-  - films (MPEG-2 decode, RoQ encode): ffmpeg as an **LGPL-only build** (no `--enable-gpl`; `roqvideo`,
-    `roq_dpcm` and the EA demuxer are LGPL), shipped as a separate exe with its licence text and a source
-    link. Fallback if any doubt remains: skip films unless the player has their own ffmpeg, so that
-    briefings are optional.
+  - films (MPEG-2 decode, RoQ encode): our own **minimal LGPL-2.1 ffmpeg 8.1**:
+    - built with MSYS2/MinGW from the signed source tarball (sha256 b072aed6…756a);
+    - a static `ffmpeg.exe` of 2.2 MB with no external libraries, `License: LGPL version 2.1 or later`;
+    - only these parts are enabled: the EA and RoQ demuxers, the mpeg2video, adpcm_ea_r1 and RoQ decoders, the
+      RoQ encoders and muxer, scale/crop/format/aresample/fps, and file I/O;
+    - it ships in `tools/ffmpeg/` with COPYING.LGPLv2.1, `CONFIGURE_LINE.txt` and the source link
+      https://ffmpeg.org/releases/ffmpeg-8.1.tar.xz. The build script `build.sh` is kept beside it.
+    - Fallback (Option C): fetch the pinned BtbN LGPL build on demand. Briefing films are optional at runtime.
   - No GPL component is bundled.
 
 **What lands when:**
