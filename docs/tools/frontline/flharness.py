@@ -137,6 +137,11 @@ def launch(mapname, renderer="opengl1", coop=False, w=1280, h=720, extra_sets=()
     args = [EXE]
     for k, v in sets:
         args += ["+set", k, v]
+    # extra "set X Y" lines also go on the command line: coop resets coop_* cvars after fl_on.cfg runs
+    for line in extra_sets:
+        parts = line.split(None, 2)
+        if len(parts) == 3 and parts[0] == "set" and parts[1].startswith("coop_"):
+            args += ["+set", parts[1], parts[2]]
     args += ["+set", "g_gametype", gametype, "+exec", "fl_on.cfg"]
     if coop:
         args += ["+set", "ui_dmmap", mapname, "+exec", "coop_mod/start_server.cfg"]

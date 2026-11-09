@@ -43,11 +43,21 @@ def main(mapname, clips_path, out):
             time.sleep(8)
             fh.join()
             time.sleep(14)
-            fh.step(["noclip", "wait 5", "god", "wait 5", "notarget", "wait 10", "cg_drawhud 0", "cg_draw2d 0", "fps 0", "wait 5"])   # clean frames: no HUD, hints or fps text
+            for _ in range(4):      # deploy: coop waits for the player to CLICK in ("waiting for you to spawn"); a
+                fh.step(["popmenu 0", "wait 5"])     # console +attackprimary goes to the server console, so post a
+                c.post_click(20, 20)                 # real left click to OUR window only
+                time.sleep(2)
+            pre = ["noclip", "wait 5", "god", "wait 5", "notarget", "wait 10"] if os.environ.get("FL_NOCLIP", "1") == "1" else []
+            fh.step(pre + ["cg_drawhud 0", "cg_draw2d 0", "fps 0", "wait 5"])   # clean frames: no HUD, hints or fps text
             for name, v in clips.items():
                 x, y, z = v["pos"]
                 fh.step(["popmenu 0", "tele %.1f %.1f %.1f" % (x, y, z), "wait 5", "face %.1f %.1f 0" % (v["ang"][0], v["ang"][1]), "wait 5"])
                 time.sleep(float(v.get("delay", 2)))
+                if v.get("trigger"):
+                    # start on a console line (e.g. the self-test's event print) so the moment is in the clip
+                    if not fh.wait_log(v["trigger"], float(v.get("trigger_timeout", 90)), max(0, len(fh.read_log()) - 50)):
+                        fh.log("trigger not seen", v["trigger"])
+                    time.sleep(float(v.get("trigger_lead", 0)))
                 fps = float(v.get("fps", 8))
                 secs = min(12.0, float(v.get("secs", 10)))
                 frames, t0, k = [], time.time(), 0
