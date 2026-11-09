@@ -50,6 +50,18 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.67 - A view outside
+
+- **The attic window looks out onto an occupied town** - rooftops, chimney smoke, a church spire, an oak by the window and banners on the buildings
+- **It follows your clock and the weather** - dawn, day, golden hour, dusk and night with lit windows, stars and moon; fair skies, overcast, rain on the glass and the odd thunderstorm with lightning
+- **LOOK OUTSIDE and LOOK UP** - a close view of the town, and a new roof skylight to look straight up through. Planes cross the skyline every few minutes, and sometimes a formation passes overhead
+- **The sounds of the town** - rain, wind, birds or crickets, a church bell on the hour, a passing tank, soldiers talking below and a loudspeaker, muffled behind the glass. SOUND in the window view sets it to off, low or medium
+- **No more guns cut open by the camera** - guns and hands no longer slice open when they come close to the screen during reloads, bolt work, switches and sprints, checked on all 70 guns
+- **Fixes** - the multiplayer map list names Remagen and Algiers correctly, and the double-barrel reload keeps your hand further from your face
+
+<p align="center"><img src="docs/screenshots/v11067-look-outside.jpg" width="49%" alt="LOOK OUTSIDE: the town from the attic window"> <img src="docs/screenshots/v11067-night.jpg" width="49%" alt="The town at night with lit windows"></p>
+<p align="center"><img src="docs/screenshots/v11067-attic-night.jpg" width="49%" alt="The attic main menu at night with the skylight"> <img src="docs/screenshots/v11067-day-night.jpg" width="49%" alt="The window view by day and by night"></p>
+
 ### v1.10.66 - Every campaign, one war map
 
 - **All three campaigns start in single player again** - Allied Assault, Spearhead and Breakthrough, from the 3D map or the classic menu
