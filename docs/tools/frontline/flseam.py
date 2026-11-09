@@ -162,3 +162,43 @@ def bridges(draws, on_floor=None, why=None):
         used.add(e)
         used.add(f)
     return out
+
+
+def patches(draws, specs, shader_name):
+    """Per-level hand patches for corner holes no edge pair spans (fl_levels.json "patches"). Each spec:
+    {"poly": [[x, y, z], ...] (convex, in order, MOHAA coordinates), "tex": "<texture key>",
+     "reason": "..."}. The patch is a fan in the shader of that texture; its UVs and colour continue the nearest
+    flat triangle drawn with that texture (affine in x/y), so it reads as the surrounding floor.
+    -> list of (shader, verts, tris)"""
+    out = []
+    for sp in specs:
+        poly = [tuple(float(c) for c in p) for p in sp["poly"]]
+        cx = sum(p[0] for p in poly) / len(poly)
+        cy = sum(p[1] for p in poly) / len(poly)
+        cz = sum(p[2] for p in poly) / len(poly)
+        best = None
+        for sh, verts, tris in draws:
+            if not shader_name(sh).endswith("/" + sp["tex"]):
+                continue
+            for a, b, c in tris:
+                A, B, C = verts[a], verts[b], verts[c]
+                u = [B[0][i] - A[0][i] for i in range(3)]
+                v = [C[0][i] - A[0][i] for i in range(3)]
+                n = (u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0])
+                ln = math.sqrt(n[0] ** 2 + n[1] ** 2 + n[2] ** 2) or 1.0
+                if abs(n[2] / ln) < FLAT:
+                    continue
+                mx = (A[0][0] + B[0][0] + C[0][0]) / 3
+                my = (A[0][1] + B[0][1] + C[0][1]) / 3
+                mz = (A[0][2] + B[0][2] + C[0][2]) / 3
+                d = (mx - cx) ** 2 + (my - cy) ** 2 + 4 * (mz - cz) ** 2
+                if best is None or d < best[0]:
+                    best = (d, sh, A, B, C)
+        if best is None:
+            raise SystemExit(f"patch {sp.get('reason', '')!r}: no flat triangle drawn with texture {sp['tex']}")
+        _d, sh, A, B, C = best
+        uvmap = _affine_uv(A, B, C)
+        col = A[3]
+        verts = [(p, uvmap(p) if uvmap else A[1], (0.0, 0.0, 1.0), col) for p in poly]
+        out.append((sh, verts, [(0, i, i + 1) for i in range(1, len(poly) - 1)]))
+    return out

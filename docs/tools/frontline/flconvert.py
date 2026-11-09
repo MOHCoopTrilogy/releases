@@ -282,6 +282,13 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             cy = sum(v[0][1] for v in verts) / len(verts)
             batches.setdefault((sh_, int(cx // MERGE_CELL), int(cy // MERGE_CELL)), []).append((verts, tris))
         stats["seam_bridges"] = len(br)
+        # hand-located corner holes no edge pair spans (fl_levels.json "patches": polygon + texture + reason)
+        pq = flseam.patches(draws + br, flpack.spec(level).get("patches", []), lambda i: B.shaders[i][0])
+        for sh_, verts, tris in pq:
+            cx = sum(v[0][0] for v in verts) / len(verts)
+            cy = sum(v[0][1] for v in verts) / len(verts)
+            batches.setdefault((sh_, int(cx // MERGE_CELL), int(cy // MERGE_CELL)), []).append((verts, tris))
+        stats["seam_patches"] = len(pq)
 
     # Merge the ~8.5k tiny Frontline draws into few big surfaces (same shader, same 1536u cell, <= the engine's
     # SHADER_MAX_VERTEXES 2048 per surface): the draw-call count, not the triangle count, sank GL2 to ~36 fps.
