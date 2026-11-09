@@ -269,15 +269,15 @@ for k, v in TRIG.items():
 # ---- weapon classes, keyed on challenges.scr::chal_widFromModel's wids
 WCLASS = {
  "rifle": "garand kar98 g43 enfield mosin svt carcano arisaka johnson stg44 carbine",
- "smg": "thompson greasegun mp40 sten ppsh type100 moschetto",
+ "smg": "thompson greasegun mp40 sten ppsh type100 moschetto mp28",
  "sniper": "springfield kar98sniper g43sniper mosinsniper carcanosniper arisakasniper l42a1 delisle",
  "pistol": "colt silenced p38 luger ppk webley nagantrev tt33 beretta nambu welrod c96 m10",
- "mg": "bar mg42 thirtycal breda dp28 vickers fg42 lewis",
+ "mg": "bar mg42 thirtycal breda dp28 vickers fg42 lewis bren",
  "shotgun": "shotgun",
- "launcher": "bazooka panzerschreck piat",
+ "launcher": "bazooka panzerschreck piat panzerfaust",
 }
 AXIS = ("kar98 kar98sniper g43 g43sniper mp40 stg44 mg42 fg42 p38 luger ppk c96 panzerschreck carcano carcanosniper breda "
-        "beretta moschetto arisaka arisakasniper type100 nambu").split()
+        "beretta moschetto arisaka arisakasniper type100 nambu mp28 panzerfaust").split()
 _wids = set(re.findall(r'local\.wid = "([a-z0-9]+)"', _src))
 _cls = {w: c for c, ws in WCLASS.items() for w in ws.split()}
 assert _wids and _wids <= set(_cls), ("wid without a class", sorted(_wids - set(_cls)))

@@ -1,0 +1,33 @@
+TIKI
+
+setup
+{
+	scale 0.52
+	// HZM coop [newguns 2026-11-09] the Bren's reload prop: its own magazine on the VB clip prop's bones (build_bren_clip.py)
+	path models/weapons/coop_bren
+	skelmodel coop_bren_clip.skd
+	surface brenclipprop* shader coop_bren
+}
+init
+{
+	server
+	{
+		surface brenclipprop* 	+nodraw
+	}
+}
+animations
+{
+	idle		A_W_vickers_reload_clip.skc
+         {	
+	  server
+          //frames are 23, 51, ammo at 85
+		{
+			0  surface brenclipprop* +nodraw
+			19 surface brenclipprop* -nodraw
+			51 surface brenclipprop* +nodraw
+			
+		}
+			
+	  }
+}
+	

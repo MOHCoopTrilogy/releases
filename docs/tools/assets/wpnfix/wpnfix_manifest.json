@@ -18,6 +18,19 @@
     "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
     "base_md5": "2bcc66c734040bbca3a82802b991d4a4"
   },
+  "models/player/base/anims_vickers.txt": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "3744f7284878840f784f2471461531f1"
+  },
+  "models/projectiles/coop_panzerfaust/coop_pzfhead.skd": {
+    "new": true
+  },
+  "models/projectiles/coop_panzerfaustshell.tik": {
+    "new": true
+  },
+  "models/projectiles/coop_panzerfaustshell_dm.tik": {
+    "new": true
+  },
   "models/weapons/30calportable_bloody.tik": {
     "new": true
   },
@@ -198,6 +211,123 @@
   "models/weapons/colt_silenced_gold.tik": {
     "new": true
   },
+  "models/weapons/coop_bergmann.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_bergmann.skd": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_fire.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_fire_empty.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_held_sten_smg.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_idle_empty.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_reload.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_reload_ads_empty.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_reload_ads_empty_m.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_reload_ads_empty_s.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_reload_empty.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_reload_empty_m.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_reload_empty_s.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_reload_m.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann/coop_sten_reload_s.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann_blued.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bergmann_gold.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bren.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bren/A_W_vickers_reload_clip.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bren/coop_bren.skd": {
+    "new": true
+  },
+  "models/weapons/coop_bren/coop_bren_clip.skd": {
+    "new": true
+  },
+  "models/weapons/coop_bren/coop_bren_fire.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bren/coop_bren_idle.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bren/coop_bren_reload.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bren/coop_bren_reload_m.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bren/coop_bren_reload_s.skc": {
+    "new": true
+  },
+  "models/weapons/coop_bren_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bren_blued.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bren_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bren_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bren_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bren_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bren_clip.tik": {
+    "new": true
+  },
+  "models/weapons/coop_bren_gold.tik": {
+    "new": true
+  },
   "models/weapons/coop_fg42_irons.tik": {
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
     "base_md5": "2c5c88a71c20e69f9b3ed638cca94249"
@@ -229,6 +359,36 @@
   "models/weapons/coop_fg42_irons_gold.tik": {
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
     "base_md5": "c9a0cce95a5911376298a602a3f40f5a"
+  },
+  "models/weapons/coop_panzerfaust.tik": {
+    "new": true
+  },
+  "models/weapons/coop_panzerfaust/coop_panzerfaust.skd": {
+    "new": true
+  },
+  "models/weapons/coop_panzerfaust/panzerschreck.skc": {
+    "new": true
+  },
+  "models/weapons/coop_panzerfaust_bloody.tik": {
+    "new": true
+  },
+  "models/weapons/coop_panzerfaust_blued.tik": {
+    "new": true
+  },
+  "models/weapons/coop_panzerfaust_camo_desert.tik": {
+    "new": true
+  },
+  "models/weapons/coop_panzerfaust_camo_winter.tik": {
+    "new": true
+  },
+  "models/weapons/coop_panzerfaust_camo_woodland.tik": {
+    "new": true
+  },
+  "models/weapons/coop_panzerfaust_chrome.tik": {
+    "new": true
+  },
+  "models/weapons/coop_panzerfaust_gold.tik": {
+    "new": true
   },
   "models/weapons/dp28.tik": {
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
@@ -756,6 +916,9 @@
   "models/weapons/type100smg_gold.tik": {
     "new": true
   },
+  "scripts/coop_newguns.shader": {
+    "new": true
+  },
   "scripts/coop_wpnfix.shader": {
     "by": "wpnfix",
     "new": true
@@ -1231,6 +1394,30 @@
   "textures/coop_skins/colt_silenced/s93_colt_camo_woodland.jpg": {
     "new": true
   },
+  "textures/coop_skins/coop_bergmann/mp28_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_bergmann/mp28_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_bergmann/mp28_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_bergmann/mp28_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_bren/bren_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_bren/bren_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_bren/bren_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_bren/bren_camo_woodland.jpg": {
+    "new": true
+  },
   "textures/coop_skins/coop_fg42_irons/fg42hd_bloody.jpg": {
     "new": true
   },
@@ -1241,6 +1428,18 @@
     "new": true
   },
   "textures/coop_skins/coop_fg42_irons/fg42hd_camo_woodland.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_panzerfaust/pzf_bloody.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_panzerfaust/pzf_camo_desert.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_panzerfaust/pzf_camo_winter.jpg": {
+    "new": true
+  },
+  "textures/coop_skins/coop_panzerfaust/pzf_camo_woodland.jpg": {
     "new": true
   },
   "textures/coop_skins/enfieldsniper/lee-enfield_bloody.jpg": {
@@ -1715,11 +1914,29 @@
     "base_md5": "4069c9acab60678ce457c65131aab144",
     "by": "gen_east_lift.py"
   },
+  "textures/hud/loot/w_bren.tga": {
+    "new": true
+  },
+  "textures/hud/loot/w_mp28.tga": {
+    "new": true
+  },
+  "textures/hud/loot/w_panzerfaust.tga": {
+    "new": true
+  },
+  "textures/models/weapons/coop_bergmann/mp28.jpg": {
+    "new": true
+  },
+  "textures/models/weapons/coop_bren/bren.jpg": {
+    "new": true
+  },
   "textures/models/weapons/coop_fg42hd/fg42hd.jpg": {
     "new": true
   },
   "textures/models/weapons/coop_mills_grenade.jpg": {
     "by": "mills fix",
+    "new": true
+  },
+  "textures/models/weapons/coop_panzerfaust/pzf.jpg": {
     "new": true
   }
 }

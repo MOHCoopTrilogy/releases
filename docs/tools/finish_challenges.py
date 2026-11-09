@@ -46,7 +46,9 @@ SLOW_BASE = 15                                      # a gun whose own base chall
 # wid -> an EXISTING challenge that already is this gun's finish challenge (not generated twice)
 EXISTING = {("thompson", 1): "wpn_thompson_gold"}
 # wids with no base wpn_ challenge to read a display name from
-GUN_NAME = {"fg42": "FG 42", "carbine": "M1 Carbine", "lewis": "Lewis Gun"}   # [v1.10.65 camo] + two stats with no base challenge
+GUN_NAME = {"fg42": "FG 42", "carbine": "M1 Carbine", "lewis": "Lewis Gun",   # [v1.10.65 camo] + two stats with no base challenge
+            "bren": "Bren", "mp28": "MP 28", "panzerfaust": "Panzerfaust"}    # [newguns 2026-11-09] no base wpn_ challenge either
+SLOW_WIDS = {"panzerfaust"}                         # [newguns] single-shot launcher: the rocket ladder
 
 
 def read(p):
@@ -102,7 +104,7 @@ def load():
         if not name:
             name = w.replace("_", " ").title()
         name = name.replace('"', "'")
-        ladder = LADDER_SLOW if btgt <= SLOW_BASE else LADDER
+        ladder = LADDER_SLOW if (btgt <= SLOW_BASE or w in SLOW_WIDS) else LADDER
         order = ORDER_THOMPSON if w == "thompson" else ORDER
         tiers = {}
         for fid, tgt in zip(order, ladder):
