@@ -13,6 +13,18 @@ import harness_guard as hg  # noqa: E402
 import harness_window as hw  # noqa: E402
 import e5_run as E  # noqa: E402
 
+if os.environ.get("WV_DISPLAY_RES"):
+    # [2026-11-08] the user: test on the 34" ULTRAWIDE (3440x1440). Picked by RESOLUTION, never by name or the primary flag: names
+    # renumber, and the primary is now the user's 3840x2160 TV. harness_window's own pick (the first non-primary) is bypassed.
+    def _by_res(name=None):
+        w, h = (int(v) for v in os.environ["WV_DISPLAY_RES"].lower().split("x"))
+        for m in hw.monitors():
+            x0, y0, x1, y1 = m["rect"]
+            if (x1 - x0, y1 - y0) == (w, h):
+                return m
+        raise hw.NoTestDisplay("no %dx%d display (have %s)" % (w, h, [m["rect"] for m in hw.monitors()]))
+    hw.test_display = _by_res
+
 CLIENT = r"G:\mohaa-wpnview"
 HOME = os.path.join(CLIENT, "home")
 MAINTT = os.path.join(HOME, "maintt")

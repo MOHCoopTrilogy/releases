@@ -21,7 +21,9 @@ the gl2 scope pass (renderergl2 RB_HZMScope, glsl/hzmscope_fp.glsl) did not run,
 THE RETICLES are drawn as geometry in lens units (radius 1), rasterised at 4x and box-filtered, so there is no
 text, no numbers and nothing painted. One per optic family, period-correct:
   zf39    German Absehen 1 (Zeiss/Hensoldt ZF39 on the Kar98k): pointed post + two heavy side posts, open centre
-  zf4     ZF4 (G43 / FG42 / StG 44 scoped): pointed spike from below + a fine horizontal line
+  zf4     ZF4 (G43 / StG 44 scoped): pointed spike from below + a fine horizontal line
+  zfg42   ZFG 42 (FG 42, v1.10.66): a FINE, long-tapered post from below and fine horizontal lines that stop short of its tip,
+          stepping to short heavier bars near the rim so they still read against a bright sky (user QA: the ZF4 post read chunky)
   m73b1   Weaver 330 / M73B1 (Springfield '03): fine crosshair
   m84     M84 (M1 Garand sniper): fine crosshair + a fine tapered post from below
   pu      Soviet PU (Mosin, SVT-40): pointed post + side lines that stop short of the centre
@@ -37,7 +39,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
-MOD = os.path.join(ROOT, "hzm-mohaa-coop-mod")
+MOD = os.environ.get("HZM_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod")     # [v1.10.66] HZM_MOD: a worktree
 PAK = os.path.join(MOD, "zzzzzzzzzz_coop_scopes.pk3")
 STAMP = (2026, 10, 6, 0, 0, 0)
 
@@ -46,7 +48,7 @@ SS = 4                 # supersampling factor
 INK = 6                # reticle colour (near black, never pure 0 so it reads as ink on glass)
 FADE_R0, FADE_R1 = 0.93, 0.995   # every reticle fades out at the lens rim (the rim itself is the aperture's job)
 
-OPTICS = ["zf39", "zf4", "m73b1", "m84", "pu", "no32", "type97", "carcano"]
+OPTICS = ["zf39", "zf4", "m73b1", "m84", "pu", "no32", "type97", "carcano", "zfg42"]
 
 
 # ---------------------------------------------------------------- geometry helpers (lens units, +y = up)
@@ -114,6 +116,11 @@ def draw(optic):
         post_up(cv, POST * 0.8, 0.0, 0.30)
         cv.hline(-1.2, -0.035, 0.0, HAIR * 1.3)
         cv.hline(0.035, 1.2, 0.0, HAIR * 1.3)
+    elif optic == "zfg42":
+        post_up(cv, 0.030, 0.0, 0.34)
+        for sx in (-1, 1):
+            cv.hline(sx * 0.055, sx * 0.62, 0.0, HAIR * 1.1)
+            cv.hline(sx * 0.62, sx * 1.2, 0.0, HAIR * 2.6)
     elif optic == "m73b1":
         cv.hline(-1.2, 1.2, 0.0, HAIR)
         cv.vline(0.0, -1.2, 1.2, HAIR)
@@ -206,7 +213,7 @@ def build_all():
         cov = float(a.mean())
         assert 0.0015 < cov < 0.12, (o, cov)                      # something drawn, never a filled disc
         h = RET_PX // 2
-        assert a[h - 3:h + 3, h - 3:h + 3].max() > 0.0 or o in ("zf39", "pu", "carcano", "zf4"), o
+        assert a[h - 3:h + 3, h - 3:h + 3].max() > 0.0 or o in ("zf39", "pu", "carcano", "zf4", "zfg42"), o
         assert a[0, 0] == 0.0 and a[-1, -1] == 0.0, o                # nothing outside the lens
         files["ret_%s.tga" % o] = tga_bytes(to_rgba(a))
     ap = aperture()
@@ -239,7 +246,7 @@ def main():
     if cmd == "build":
         data, n = render_pak(files, sh)
         open(PAK, "wb").write(data)
-        print("wrote %s: %d members, %d bytes" % (os.path.relpath(PAK, ROOT), n, len(data)))
+        print("wrote %s: %d members, %d bytes" % (PAK, n, len(data)))
     elif cmd == "check":
         data, n = render_pak(files, sh)
         if not os.path.exists(PAK) or open(PAK, "rb").read() != data:

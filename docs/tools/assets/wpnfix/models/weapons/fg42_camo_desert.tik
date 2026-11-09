@@ -23,6 +23,7 @@ setup
 	// (short 4x tube, turrets, claw base clamped on the receiver's left) on the shipped scope axis, so the scope rows stay valid.
 	surface fg42hd*   shader coop_skin_coop_fg42_irons_camo_desert
 	surface fg42clip  shader coop_skin_coop_fg42_irons_camo_desert
+	surface fg42cup   shader coop_skin_coop_fg42_irons_camo_desert	// the ZFG 42 rubber eyecup
 	surface fg42lens  shader coop_scope_glass_blue
 	surface coop_handle shader coop_skin_fg42_camo_desert	// HZM coop [ads heavy] the charging handle (fg42handle.py)
 }

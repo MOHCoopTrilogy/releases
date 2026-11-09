@@ -19,8 +19,9 @@ TILES = {'Body': (0, 0, 1024), 'Wood': (1024, 0, 1024), 'Barrel': (0, 1024, 512)
          'Magazine': (1024, 1024, 512), 'Rear_sight': (1536, 1024, 512), 'Grip': (0, 1536, 512), 'Bolt': (512, 1536, 256),
          'EjectionPort': (768, 1536, 256), 'Trigger': (512, 1792, 256)}
 EXTRA = {'Scope': (1024, 1536, 512), 'Rubber': (1536, 1536, 256)}
-SCOPE_MEAN, SCOPE_TINT = 0.105, np.array([0.92, 0.96, 1.06], np.float32)     # blued: darker than the receiver (Body ~0.14)
-RUBBER_MEAN = 0.065
+# [QA 2026-11-08 #2] the user: the scope read as a black blob at the hip. 0.105 -> 0.165 still read black in the hand (run zf1080c, in sun): 0.26, a worn blued grey
+SCOPE_MEAN, SCOPE_TINT = 0.26, np.array([0.92, 0.96, 1.06], np.float32)
+RUBBER_MEAN, RIM_MEAN, RIM_ROWS = 0.065, 0.17, 60   # the eyecup's lip: worn, lighter rubber in the tile's top rows
 WOOD = {'Wood', 'Grip'}
 EMB, EDGE_DARK, POLISH = 0.85, 0.45, 0.20
 STEEL = np.array([0.84, 0.88, 0.95], np.float32)
@@ -99,7 +100,9 @@ def main():
         else:
             rng = np.random.default_rng(7)
             n = box_blur(rng.standard_normal((inner, inner)).astype(np.float32), 2)
-            img = np.clip((RUBBER_MEAN * (1.0 + 0.25 * n / (np.abs(n).max() + 1e-6)))[..., None] * np.ones(3, np.float32), 0, 1)
+            base = np.full((inner, inner), RUBBER_MEAN, np.float32)
+            base[:RIM_ROWS] = RIM_MEAN
+            img = np.clip((base * (1.0 + 0.25 * n / (np.abs(n).max() + 1e-6)))[..., None] * np.ones(3, np.float32), 0, 1)
             m = np.zeros((inner, inner), np.float32)
         img = np.pad(img, ((PAD, PAD), (PAD, PAD), (0, 0)), mode='edge')
         sheet[y:y + s, x:x + s] = img

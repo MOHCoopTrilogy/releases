@@ -15,6 +15,7 @@ NOTE = ("// HZM coop [v1.10.66 fg42hd] the body is Shorty_Digitan's FG42 (Sketch
         "// (short 4x tube, turrets, claw base clamped on the receiver's left) on the shipped scope axis, so the scope rows stay valid.\n")
 SURF = ("surface fg42hd*   shader coop_fg42hd\n"
         "surface fg42clip  shader coop_fg42hd\n"
+        "surface fg42cup   shader coop_fg42hd\t// the ZFG 42 rubber eyecup\n"
         "surface fg42lens  shader coop_scope_glass_blue\n"
         "surface coop_handle shader fg42\t// HZM coop [ads heavy] the charging handle (fg42handle.py)\n")
 
@@ -35,7 +36,7 @@ def main():
     t = t.replace("skelmodel coop_fg42.skd", "skelmodel coop_fg42hd.skd")
     out, done = [], False
     for ln in t.split("\n"):
-        if re.match(r"\s*surface\s+(fg42base|fg42barrel|fg42clip|fg42lens|coop_handle)\s+shader", ln):
+        if re.match(r"\s*surface\s+(fg42base|fg42barrel|fg42clip|fg42lens|coop_handle|fg42cup|scopeb|scopeg)\s+shader", ln):
             if not done:
                 ind = re.match(r"(\s*)", ln).group(1)
                 out += [ind + x for x in (NOTE + SURF).rstrip("\n").split("\n")]

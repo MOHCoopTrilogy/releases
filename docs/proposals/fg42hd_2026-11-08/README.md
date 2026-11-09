@@ -74,6 +74,27 @@ on the SHIPPED scope's optical axis, so the scope rows in `cg_adssights_scope.h`
 QA: `media/fg42_scoped_before_after.jpg` (ADS through the irons, ADS through the scope, hip, viewer, Armory hero), 0 Script
 Errors. `build/cmp_side.png` is the side / top wireframe over the shipped scoped mesh.
 
+## Scope QA #2 (user: "looks bad up close"): the riflescope recipe, a ZFG 42 reticle, a real eyecup
+The user picked option 1: aiming uses the same scope view as the Kar98k / Springfield. That view is not a separate system: every scoped
+rifle (FG 42 included) runs cgame `cg_hzmscope.c`'s lens pass - the live magnified picture composited into the gun's own GLASS
+surface, the world blurred round it, the reticle per optic from `zzzzzzzzzz_coop_scopes.pk3` (`gen_scope_reticles.py`). What made the FG 42
+read badly was our geometry and its reticle, so that is what changed:
+- **Eyepiece = the Kar98k's recipe**: the eyepiece itself is the dark ring round the picture. The cup's opening and the recessed ocular
+  glass are `GLASS_R` 1.14, measured against the pass's picture circle (gR, from the scope row's relief) so the picture edge is the
+  rubber lip, never a band of bare glass; the cup is 1.62 outside (the tube is 1.48), so the ring is about a third of the picture.
+  The first cup (2.18 outside, glass 1.70) gave the thick black double ring and the hazy grey band.
+- Tried and dropped: hiding the cup at the eye (`coop_scopeEyeHide`, the G43 / StG 44 route) left a small scope floating inside the
+  pass's own ring, and hiding the GLASS kills the picture (the pass composites into the glass pixels). cgame keeps the original lists.
+- **Closed dark bore** inside the tube, and the turret saddle / windage drum kept outside the tube: the gun layer is drawn over the
+  picture, so through a hollow tube the turret block showed as a notch at the top of the eyepiece.
+- **Reticle `zfg42`** (new optic in `cg_hzmscope.c`, 4x like the ZF4; FG 42 mapped to it): a fine long-tapered post and fine
+  horizontal lines that step to short heavier bars near the rim. The G43 / StG 44 keep `zf4`. `gen_scope_reticles.py` draws it;
+  `HZM_MOD` builds the scopes pak into a worktree. **The base tree's scopes pak must be rebuilt when this merges** (its `check` fails until then).
+- **Hip look**: the eyecup is a real cup (outer wall, rolled lip in lighter worn rubber, straight inner wall, glass recessed 0.9 inside),
+  smooth-shaded lathe normals; the scope steel is lifted to a worn blued grey (atlas `SCOPE_MEAN` 0.26 - 0.165 still read black in the hand).
+- Harness: `wpnview_run.py` takes `WV_DISPLAY_RES=3440x1440` (the test display picked by resolution: the user's ultrawide, not the TV);
+  `run_fg42.py` takes `WV_RES` (1080 / uw) and `WV_RAISE` (lit hip + raise frames); `qa2_batch.py` runs the set one client at a time.
+
 ## Open
 - **World model on the ground:** not shot. `weapdrop` does nothing in coop, and `spawn` needs `+set cheats 1` on the command line.
   The third-person still shows the world model.

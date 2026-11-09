@@ -89,8 +89,11 @@ def main():
                         cc = [cc[0], cc[2], cc[1]]
                     out.append(cc)
             return out
-        surfs += X.split_surfaces('fg42hdsc', sc(('steel', 'rubber')))
-        lz = X.split_surfaces('fg42lens', sc(('lens',)))
+        surfs += X.split_surfaces('fg42hdsc', sc(('steel',)))
+        z = X.split_surfaces('fg42cup', sc(('cup',)))      # the rubber eyecup (its own surface: one shader, drawn as is at the eye)
+        assert len(z) == 1
+        surfs.append(('fg42cup',) + tuple(z[0][1:]))
+        lz = X.split_surfaces('fg42lens', sc(('lens', 'glass')))   # objective + ocular glass: coop_scope_glass_blue, the lens pass's glass
         assert len(lz) == 1
         surfs.append(('fg42lens',) + tuple(lz[0][1:]))
     surfs.append(old_handle())
