@@ -107,15 +107,13 @@ Test runner: run_gun.py (Armory route, overlay = every mod file changed since ho
   Record rows without regenerating the SR (boot SELFTEST FAIL 450 vs 447), and every later row moved up by 3. gen_service_record.py
   re-run (450 rows, stamp 554288dc, reward names added); ng8 boots SELFTEST OK. The numbers are right after the first export
   (chal_flush, <= 30 s after joining) - the same rule as every other gun.
-- **finishes2 coverage**: tools/fs2_ng.py runs fs2_build / fs2_finish2 against a PRIVATE copy `H:\hzm_work
-ewgunss2_build`
+- **finishes2 coverage**: tools/fs2_ng.py runs fs2_build / fs2_finish2 against a PRIVATE copy `H:\hzm_work\newgunss2_build`
   (finishes2's own staging untouched): 910 existing rows byte-identical, +39 (fids 40-52, ranks 2910-2948), pak 199.3 MB sha256
   2b76b445. Generators run with `HZM_BASE_MOD=<base mod> HZM_FS2_PAK=<that pak> HZM_FS2_BUILD=<that dir> HZM_MOD=<mod worktree>`.
 - **Stills** (m5l1a, overcast daylight, 3440x1440, GL2): media/ng8/ (+ sheet_bren.jpg, sheet_mp28_pzf.jpg). Bren / MP 28 /
   Panzerfaust ADS sights aligned (ADSSIGHT res < 0.3 mrad); Panzerfaust fires and the tube is discarded (PZF_DISCARD).
 - **Merge order**: finishes2 first, then newguns. Then in the base checkout: replace finishes2's pak with
-  `H:\hzm_work
-ewgunss2_build\zzzzzzzzzz_coop_finishes_hd.pk3` (or re-run fs2_ng.py-equivalent in finishes2's staging),
+  `H:\hzm_work\newgunss2_build\zzzzzzzzzz_coop_finishes_hd.pk3` (or re-run fs2_ng.py-equivalent in finishes2's staging),
   `gen_wpnfix_pak.py build`, and the 5-step generator sequence (gen_skins check, finish_challenges --emit, gen_loadout build,
   gen_weapon_viewer build, gen_skinbase). Engine: merge newguns-eng (cgame/game unchanged since 8f10e4a2).
 - Open: MP Armory rows (mpid 34, bug-10673); Armory hero framing (armory_fit) not run; the MP 28's ADS shows the Sten's support
