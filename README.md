@@ -50,6 +50,18 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.66 - Every campaign, one war map
+
+- **All three campaigns start in single player again** - Allied Assault, Spearhead and Breakthrough, from the 3D map or the classic menu
+- **A new campaign war map** - one map of Europe and North Africa with every mission pinned at its real location. A small switch picks **Chronological** (the default, historical order) or **Vanilla** (each campaign's own order); missions unlock as you finish them, with separate progress for each order
+- **New loading screens** - the war map pushes in to the mission's real location and the title, unit, place and date type in. Loads are 1-2 seconds faster, and the soldiers that used to glitch over the old clips are gone
+- **Main menu** - the same war map on the attic wall and in the classic room, much sharper desk props (readable phone dials, books, lamp, typewriter), real 3D records on the gramophone, a U-boat blueprint on the general's table, and a live clock in the multiplayer room
+- **New FG 42 model** - both FG 42s get a detailed wood-stock model, a clean diopter ring on the iron sights and a fine ZFG 42 reticle on the scope (model by Shorty_Digitan, CC BY 4.0)
+- **Fixes** - the Armory previews are framed correctly at 21:9 and 3440x1440, a controller's Y button no longer opens the Windows on-screen keyboard from a background window, and a single-player mission end no longer throws a script error
+
+<p align="center"><img src="docs/screenshots/v11066-war-map.jpg" width="49%" alt="The new campaign war map"> <img src="docs/screenshots/v11066-loading.jpg" width="49%" alt="A new map loading screen: Whiteout, Trondheim"></p>
+<p align="center"><img src="docs/screenshots/v11066-attic.jpg" width="49%" alt="The attic main menu with the new war map and desk props"> <img src="docs/screenshots/v11066-fg42.jpg" width="49%" alt="The new scoped FG 42"></p>
+
 ### v1.10.65 - A finish for every gun
 
 - **189 new weapon finishes** - the 27 guns that had none (the M1 Carbine, the scoped and silenced rifles and snipers, the silenced SMGs, the M1919, MG42 and Lewis, and the pistols) now get gold, chrome, blued, bloody, woodland, winter and desert, unlocked by kills with that gun like the rest. Kills you already have count
