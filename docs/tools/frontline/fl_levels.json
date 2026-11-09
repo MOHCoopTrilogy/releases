@@ -356,6 +356,19 @@
     "tex": "b3600",
     "reason": "hedge-bed east corner: sky speck seen low through the 4u step where bed (-160), ground (-164) and the seam bridge meet (sight line crosses z-170 at x~-3315); a lid 1u under the ground catches it, hidden beneath the floors elsewhere. 2026-11-09"
    }
+  ],
+  "moves": [
+   {
+    "from": [
+     799,
+     479
+    ],
+    "to": [
+     760,
+     479
+    ],
+    "reason": "ally[14] (Frontline ally spawn) sits under a stair/ramp underside (BSP brush x777..880 y446..565, z-118..-38): droptofloor fails in solid and he cannot move (in-game check 2026-11-09, runto 128u x4: moved 0). 39u west the standing box is clear of every brush"
+   }
   ]
  }
 }

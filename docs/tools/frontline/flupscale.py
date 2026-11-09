@@ -11,9 +11,10 @@ Rules (docs/DECISIONS.md "ESRGAN is for photos and text, not chrome", TRAPS row 
   * skip signs / lettering / decals with text (fl_texmap.json "noupscale" per level) and textures with a
     texmap upgrade (those already use a mod-shipped HD texture)
   * tile-aware: wrap-pad by 1/4 on every side, upscale, crop - no seams on tiling textures
-  * alpha is NOT sent through the network: nearest x4 + light blur, re-thresholded at 128 for cut-outs
-  * reject (keep the original) on: black/blown frames, brightness drift > 12 %, a downscale-back mismatch, or
-    hallucinated high-frequency "worm" detail (Laplacian energy far above a bicubic upscale)
+  * alpha-tested cut-out cards (foliage, tree cards) are NOT upscaled: ESRGAN erodes and thins the leaf clusters
+  * the output is colour-matched to the original (per-channel mean/std) - ESRGAN darkens bark and hedges
+  * reject (keep the original) on: black/blown frames, brightness drift > 12 % after the match, a
+    downscale-back mismatch, or hallucinated "worm" detail (Laplacian energy > 60x a bicubic upscale)
   * 4x cap, then resampled to 512..1024 on the long side
   * no Vulkan / no GPU / any failure -> the level simply keeps its original textures
 usage: flupscale.py <converted.pk3> <level> <out_pk3> <upscaler_dir> [--threads 1:1:1]
@@ -46,10 +47,39 @@ def run_esrgan(exe, src, dst, threads):
     return r.returncode == 0 and os.path.exists(dst)
 
 
+WORM_LIMIT = 60.0      # Laplacian energy vs a bicubic x4; real ESRGAN detail on 64-256px textures sits ~5..40x
+DRIFT_LIMIT = 0.12     # mean brightness drift allowed AFTER the colour match
+
+
+def colour_match(up, orig):
+    """per-channel mean/std transfer of the ESRGAN output onto the original's statistics (ESRGAN darkens
+    dark organic textures - bark, hedges); statistics are taken on the downscaled-back image vs the original"""
+    h, w = orig.shape[:2]
+    back = np.asarray(Image.fromarray(up).resize((w, h), Image.BOX)).astype(np.float32)
+    o = orig.astype(np.float32)
+    out = up.astype(np.float32)
+    for c in range(3):
+        bm, bs = back[:, :, c].mean(), back[:, :, c].std()
+        om, osd = o[:, :, c].mean(), o[:, :, c].std()
+        g = (osd / bs) if bs > 1e-3 else 1.0
+        g = min(2.0, max(0.5, g))
+        out[:, :, c] = (out[:, :, c] - bm) * g + om
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+
+def is_cutout(a):
+    """alpha-tested card (foliage, tree cards, fences): a real share of fully transparent texels"""
+    al = a[:, :, 3]
+    return al.min() < 250 and (al < 128).mean() > 0.05
+
+
 def upscale_one(exe, im, tmp, threads):
     rgba = im.convert("RGBA")
     w, h = rgba.size
     a = np.asarray(rgba)
+    if is_cutout(a):
+        # ESRGAN erodes and thins leaf clusters (fewer, smaller leaves): alpha-tested cards keep the original
+        return None, "cutout kept original"
     pw, ph = max(4, w // 4), max(4, h // 4)
     rgb = np.pad(a[:, :, :3], ((ph, ph), (pw, pw), (0, 0)), mode="wrap")
     src, dst = os.path.join(tmp, "in.png"), os.path.join(tmp, "out.png")
@@ -60,19 +90,20 @@ def upscale_one(exe, im, tmp, threads):
         return None, "esrgan failed"
     up = np.asarray(Image.open(dst).convert("RGB"))
     up = up[ph * 4: ph * 4 + h * 4, pw * 4: pw * 4 + w * 4]
+    up = colour_match(up, a[:, :, :3])
     up_im = Image.fromarray(up)
-    # checks against the original
+    # checks against the original (after the colour match)
     orig = a[:, :, :3].astype(np.float32)
     back = np.asarray(up_im.resize((w, h), Image.BOX)).astype(np.float32)
     m0, m1 = orig.mean(), back.mean()
     if m1 < 8 or m1 > 247:
         return None, "black/blown frame"
-    if abs(m1 - m0) / max(1.0, m0) > 0.12:
+    if abs(m1 - m0) / max(1.0, m0) > DRIFT_LIMIT:
         return None, "brightness drift"
     if np.abs(back - orig).mean() > 14:
         return None, "downscale-back mismatch"
     bic = np.asarray(Image.fromarray(a[:, :, :3]).resize((w * 4, h * 4), Image.BICUBIC))
-    if lap_energy(up) > 6.0 * max(1.0, lap_energy(bic)):
+    if lap_energy(up) > WORM_LIMIT * max(1.0, lap_energy(bic)):
         return None, "worm-noise"
     long_side = max(w, h) * 4
     target = min(1024, max(512, max(w, h) * 4)) if long_side >= 512 else long_side

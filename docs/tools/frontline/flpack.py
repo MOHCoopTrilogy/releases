@@ -161,6 +161,13 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             if moved > 0:
                 nudged.append((cls, round(moved)))
             p = (q[0], q[1], q[2])
+        # reviewed per-level moves (fl_levels.json "moves": from/to x,y + reason) for spots the box test passes but
+        # the engine does not (e.g. an actor under a stair underside: droptofloor fails in solid, he never moves)
+        for mv in spec(level).get("moves", []):
+            if abs(p[0] - mv["from"][0]) <= 16 and abs(p[1] - mv["from"][1]) <= 16:
+                g = grid.ground(mv["to"][0], mv["to"][1], p[2] + 48, p[2] - 96) if grid is not None else None
+                p = (float(mv["to"][0]), float(mv["to"][1]), g if g is not None else p[2])
+                nudged.append((cls, -1))
         o = f"( {p[0]:.0f} {p[1]:.0f} {p[2] + 24:.0f} )"
         if AXIS_RX.match(cls):
             na += 1
