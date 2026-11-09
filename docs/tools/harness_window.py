@@ -372,8 +372,12 @@ def apply_policy(args, width=None, height=None, display=None, noborder=True, win
     # pops the On-Screen Keyboard over the user's own game (bug-10635). A run driven by in_padTestScript
     # needs the pad system (its virtual pad), so it keeps it - those need the engine fix that opens only
     # the virtual pad when in_padTestScript is set (menu-attic66).
+    # in_gamepad is CVAR_ARCHIVE: a 0 from an earlier run survives in omconfig.cfg and silently stops the
+    # pad-script runs (no "Gamepad support ready", no PADTEST), so pad-script runs force it back on.
     if "in_padTestScript" not in idx:
         hard += [("in_gamepad", "0"), ("in_joystick", "0")]
+    else:
+        hard += [("in_gamepad", "1")]
     soft = [("in_nograb", "1"), ("s_musicvolume", "0")]
     # defaults: added only when the harness did not set them itself (an explicit value wins)
     defaults = [("com_maxfpsUnfocused", str(unfocused_fps))]
