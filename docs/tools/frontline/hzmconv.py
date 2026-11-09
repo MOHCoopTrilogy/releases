@@ -97,6 +97,44 @@ class FrontlineGame:
         return files
 
 
+class OpenImage:
+    """A disc image path, or a .zip holding one: a zip member is streamed ONCE to a temp file (deflate cannot
+    seek), next to `near` and only if that drive has room; the temp copy is always deleted afterwards."""
+
+    def __init__(self, path, near=None, progress=None):
+        self.path, self.tmp = path, None
+        if path.lower().endswith(".zip"):
+            import shutil
+            import tempfile
+            import zipfile
+            z = zipfile.ZipFile(path)
+            members = [i for i in z.infolist() if i.filename.lower().endswith((".iso", ".xiso"))]
+            if not members:
+                raise RuntimeError("the zip holds no .iso/.xiso image")
+            m = max(members, key=lambda i: i.file_size)
+            base = near if near and os.path.isdir(near) else tempfile.gettempdir()
+            if shutil.disk_usage(base).free < m.file_size + (512 << 20):
+                raise RuntimeError("not enough free space to unpack the image (%.1f GB needed)" % (m.file_size / 2 ** 30))
+            fd, self.tmp = tempfile.mkstemp(prefix="hzmconv_", suffix=".iso", dir=base)
+            os.close(fd)
+            if progress:
+                progress(step="unpack", size=m.file_size)
+            with z.open(m) as src, open(self.tmp, "wb") as dst:
+                shutil.copyfileobj(src, dst, 8 << 20)
+            self.path = self.tmp
+
+    def close(self):
+        if self.tmp and os.path.exists(self.tmp):
+            os.remove(self.tmp)
+        self.tmp = None
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *a):
+        self.close()
+
+
 def game(name):
     if name == "frontline":
         return FrontlineGame
@@ -146,22 +184,28 @@ def main(argv=None):
         emit(candidates=detect())
         return 0
     g = game(o.game)
-    ok, why = g.verify(o.image)
-    if o.cmd == "verify":
-        emit(ok=ok, why=why)
-        return 0 if ok else 2
-    if not ok:
-        emit(error=why)
-        return 2
-    home = o.home or os.path.join(o.mohaa, "maintt")
-    written = []
+    home = (o.home or os.path.join(o.mohaa, "maintt")) if o.cmd == "add" else None
     try:
-        for lv in (o.level or g.levels()):
-            written += g.convert(o.image, lv, home, o.mohaa, lambda **kv: emit(**kv),
-                                 {"films": o.films, "upscale": o.upscale})
+        img = OpenImage(o.image, near=home, progress=lambda **kv: emit(**kv))
     except Exception as e:
-        emit(error="conversion failed: %s" % e)
-        return 1
+        emit(ok=False, error=str(e))
+        return 2
+    with img:
+        ok, why = g.verify(img.path)
+        if o.cmd == "verify":
+            emit(ok=ok, why=why)
+            return 0 if ok else 2
+        if not ok:
+            emit(error=why)
+            return 2
+        written = []
+        try:
+            for lv in (o.level or g.levels()):
+                written += g.convert(img.path, lv, home, o.mohaa, lambda **kv: emit(**kv),
+                                     {"films": o.films, "upscale": o.upscale})
+        except Exception as e:
+            emit(error="conversion failed: %s" % e)
+            return 1
     emit(done=True, files=written)
     return 0
 
