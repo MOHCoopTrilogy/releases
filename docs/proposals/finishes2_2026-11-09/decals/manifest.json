@@ -1,5 +1,38 @@
 {
  "source": "docs/proposals/finishes2_2026-11-09/tools/export_decals.py",
+ "blend": "straight (not premultiplied) RGBA, alpha blend (GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA); colour bled under alpha 0 so filtering never fringes. Not the engraving modulate/bare-metal convention: emblems are painted, not carved",
+ "finish_presets": {
+  "airborne": "ab82",
+  "airborne101": "ab101",
+  "ffi": "lorraine",
+  "dak": "dak_palm",
+  "trenchart": "crest",
+  "parade": "plaque",
+  "captured_german_gun": "souvenir",
+  "captured_allied_gun": "waa"
+ },
+ "preset_spots": {
+  "rifle": [
+   "stock_R",
+   "receiver_L"
+  ],
+  "sniper": [
+   "stock_R",
+   "receiver_L"
+  ],
+  "heavy": [
+   "stock_R",
+   "receiver_L"
+  ],
+  "smg": [
+   "grip_R",
+   "receiver_L"
+  ],
+  "pistol": [
+   "grip_R",
+   "receiver_L"
+  ]
+ },
  "decals": [
   {
    "name": "ab82",
@@ -9,7 +42,8 @@
    "recommended_long_side_cm": 4.0,
    "recommended_long_side_units": 2.1,
    "default_finish": "airborne",
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": true,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "ab82_512.png",
@@ -36,7 +70,8 @@
    "recommended_long_side_cm": 4.5,
    "recommended_long_side_units": 2.36,
    "default_finish": "airborne101",
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "ab101_512.png",
@@ -63,7 +98,8 @@
    "recommended_long_side_cm": 4.0,
    "recommended_long_side_units": 2.1,
    "default_finish": "ffi",
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": true,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "lorraine_512.png",
@@ -90,7 +126,8 @@
    "recommended_long_side_cm": 4.5,
    "recommended_long_side_units": 2.36,
    "default_finish": "dak",
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "dak_palm_512.png",
@@ -117,7 +154,8 @@
    "recommended_long_side_cm": 4.5,
    "recommended_long_side_units": 2.36,
    "default_finish": "trenchart",
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "crest_512.png",
@@ -144,7 +182,8 @@
    "recommended_long_side_cm": 5.0,
    "recommended_long_side_units": 2.62,
    "default_finish": "parade",
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": true,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "plaque_512.png",
@@ -171,7 +210,8 @@
    "recommended_long_side_cm": 3.0,
    "recommended_long_side_units": 1.57,
    "default_finish": "captured",
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "waa_512.png",
@@ -198,7 +238,8 @@
    "recommended_long_side_cm": 4.0,
    "recommended_long_side_units": 2.1,
    "default_finish": "captured",
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "souvenir_512.png",
@@ -225,7 +266,8 @@
    "recommended_long_side_cm": 4.5,
    "recommended_long_side_units": 2.36,
    "default_finish": null,
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "moh_army_512.png",
@@ -252,7 +294,8 @@
    "recommended_long_side_cm": 4.0,
    "recommended_long_side_units": 2.1,
    "default_finish": null,
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "purple_heart_512.png",
@@ -279,7 +322,8 @@
    "recommended_long_side_cm": 4.0,
    "recommended_long_side_units": 2.1,
    "default_finish": null,
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": true,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "silver_star_512.png",
@@ -306,7 +350,8 @@
    "recommended_long_side_cm": 4.0,
    "recommended_long_side_units": 2.1,
    "default_finish": null,
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": true,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "bronze_star_512.png",
@@ -333,7 +378,8 @@
    "recommended_long_side_cm": 5.0,
    "recommended_long_side_units": 2.62,
    "default_finish": null,
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": false,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "cib_512.png",
@@ -360,7 +406,8 @@
    "recommended_long_side_cm": 5.0,
    "recommended_long_side_units": 2.62,
    "default_finish": null,
-   "upright": "decal +s = towards the muzzle, +t = down (as drawn)",
+   "mirror_safe": true,
+   "upright": "as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun (Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored",
    "files": [
     {
      "file": "jump_wings_512.png",

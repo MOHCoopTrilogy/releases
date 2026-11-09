@@ -32,6 +32,19 @@ SET = {
     'jump_wings':   ('badge', 'Parachutist Badge (jump wings)', 5.0, None),
 }
 SIZES = (512, 256, 128)
+# reads the same in a mirror (safe to paint into a texture the gun's two sides share): everything else goes on as a bench quad
+MIRROR_SAFE = {'ab82', 'lorraine', 'plaque', 'silver_star', 'bronze_star', 'jump_wings'}
+# the finishes' default decals as Customize-bench presets (coordinator 2026-11-09: asymmetric decals are quads on the gun
+# bone, the engrave agent's system; a finish only names WHICH decal on WHICH bench spot). Spot names follow
+# docs/proposals/engrave_2026-11-09/PLAN.md "Spots per gun": stock_R / receiver_L / grip_R ... ; by gun class.
+FINISH_PRESETS = {
+    'airborne':    'ab82', 'airborne101': 'ab101', 'ffi': 'lorraine', 'dak': 'dak_palm', 'trenchart': 'crest',
+    'parade': 'plaque', 'captured_german_gun': 'souvenir', 'captured_allied_gun': 'waa',
+}
+PRESET_SPOTS = {   # first available spot wins; the Armory/viewer shows the gun's RIGHT side, first person its LEFT
+    'rifle': ['stock_R', 'receiver_L'], 'sniper': ['stock_R', 'receiver_L'], 'heavy': ['stock_R', 'receiver_L'],
+    'smg': ['grip_R', 'receiver_L'], 'pistol': ['grip_R', 'receiver_L'],
+}
 
 
 def bleed(im):
@@ -74,9 +87,15 @@ def main():
             files.append(dict(file=f, w=sz[0], h=sz[1]))
         man.append(dict(name=name, category=cat, label=label, aspect=round(w / h, 3),
                         recommended_long_side_cm=cm, recommended_long_side_units=round(cm * U_PER_CM, 2),
-                        default_finish=fin, upright='decal +s = towards the muzzle, +t = down (as drawn)',
+                        default_finish=fin, mirror_safe=name in MIRROR_SAFE,
+                        upright='as drawn: top of the image = up on the gun; left of the image = towards the BUTT on the right side of the gun '
+                                '(Armory / viewer view, muzzle to the right) - i.e. the quad is never mirrored',
                         files=files))
-    json.dump(dict(source='docs/proposals/finishes2_2026-11-09/tools/export_decals.py', decals=man),
+    json.dump(dict(source='docs/proposals/finishes2_2026-11-09/tools/export_decals.py',
+                   blend='straight (not premultiplied) RGBA, alpha blend (GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA); colour bled under '
+                         'alpha 0 so filtering never fringes. Not the engraving modulate/bare-metal convention: emblems are '
+                         'painted, not carved',
+                   finish_presets=FINISH_PRESETS, preset_spots=PRESET_SPOTS, decals=man),
               open(os.path.join(OUT, 'manifest.json'), 'w'), indent=1)
     print('wrote', len(man), 'decals to', OUT)
 
