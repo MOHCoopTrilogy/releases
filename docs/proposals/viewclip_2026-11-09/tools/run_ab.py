@@ -18,7 +18,8 @@ s.cmd("-attack", 7000)
 s.cmd("exec ui/loadout/w%s_s1.cfg" % gid, 6000)
 s.cmd('use "%s"' % gun, 3000)
 MOVES = os.environ.get("VC_MOVES") == "1"
-for side, val, zn in (("a", "0", "1"), ("b", "1", "0.6")):     # a = v1.10.66 as shipped, b = the viewclip fixes
+SIDES = [x for x in (("a", "0", "1"), ("b", "1", "0.6")) if x[0] in os.environ.get("VC_SIDES", "ab")]
+for side, val, zn in SIDES:     # a = v1.10.66 as shipped, b = the viewclip fixes; VC_SIDES=b: the after side only
     s.cmd("r_weaponProjAlways %s" % val, 300)
     s.cmd("r_weaponznear %s" % zn, 300)
     s.cmd("echo ^~^~^ VC side %s r_weaponProjAlways %s" % (side, val), 300)
@@ -38,6 +39,19 @@ for side, val, zn in (("a", "0", "1"), ("b", "1", "0.6")):     # a = v1.10.66 as
         s.cmd("screenshotJPEG %s_%02d_pullout" % (side, k), 180)
     if MOVES:
         # the movement half of the matrix (PLAN.md rows 3-9): sprint, jump + land, crouch, lean both ways, a burst, ADS + ADS fire
+        # gun vs world (PLAN row 12): turn to the rock face on the left of the m2l1 spawn and walk into it
+        s.cmd("+left", 420)
+        s.cmd("-left", 200)
+        s.cmd("+forward", 1600)
+        s.cmd("-forward", 400)
+        s.cmd("screenshotJPEG %s_50_wall" % side, 300)
+        s.cmd("+button13", 1200)
+        s.cmd("screenshotJPEG %s_51_wallads" % side, 300)
+        s.cmd("-button13", 600)
+        s.cmd("+back", 1600)
+        s.cmd("-back", 200)
+        s.cmd("+right", 420)
+        s.cmd("-right", 600)
         s.cmd("+speed", 0)
         s.cmd("+forward", 900)
         s.cmd("screenshotJPEG %s_30_sprint" % side, 450)
