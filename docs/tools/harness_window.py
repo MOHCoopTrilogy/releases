@@ -374,7 +374,7 @@ def apply_policy(args, width=None, height=None, display=None, noborder=True, win
     # the virtual pad when in_padTestScript is set (menu-attic66).
     # in_gamepad is CVAR_ARCHIVE: a 0 from an earlier run survives in omconfig.cfg and silently stops the
     # pad-script runs (no "Gamepad support ready", no PADTEST), so pad-script runs force it back on.
-    if "in_padTestScript" not in idx:
+    if "in_padtestscript" not in idx:   # _set_index lower-cases keys (bug-10646)
         hard += [("in_gamepad", "0"), ("in_joystick", "0")]
     else:
         hard += [("in_gamepad", "1")]
