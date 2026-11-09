@@ -575,7 +575,7 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
     # fx = fire/explosion flipbooks, music = Frontline music, stress = stress reloads, late = merged weapon tiks,
     # hzm_menus3d = the 3D OPTIONS attic). Copied verbatim; listed in publish_release.ps1's staging in the same change.
     foreach ($xp in @('zzzzzz_co-op_hzm_mod_assets_tey.pk3', 'zzzzzzzzzz_coop_maps.pk3', 'zzzzzzzzzzzzz_coop_snd.pk3', 'zzzzzzzzzzzzzzz_coop_scopeglass.pk3', 'zzzzzzzzzzzz_coop_fixes2.pk3', 'zzzzzzzzzzzzz_coop_fx.pk3', 'zzzzzzzzzzzzz_coop_music.pk3',
-                      'zzzzzzzzzzzzz_coop_stress.pk3', 'zzzzzzzzzzzzzz_coop_late.pk3', 'zzzzzzzzzzzzzz_hzm_menus3d.pk3', 'zzzzzzzzzzzzzzzz_coop_wpnfix.pk3')) {
+                      'zzzzzzzzzzzzz_coop_stress.pk3', 'zzzzzzzzzzzzzz_coop_late.pk3', 'zzzzzzzzzzzzzz_hzm_menus3d.pk3', 'zzzzzzzzzz_coop_mapclips.pk3', 'zzzzzzzzzzzzzzzz_coop_wpnfix.pk3')) {
         $xpPath = Join-Path $srcDir $xp
         if (Test-Path $xpPath) {
             Copy-Item -Path $xpPath -Destination (Join-Path $destDir $xp) -Force
