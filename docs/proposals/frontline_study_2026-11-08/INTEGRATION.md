@@ -422,3 +422,46 @@ Run on a fresh install **without** the disc, and compare against the current rel
    - a host and a client both without Frontline: join, play and mission-complete as today;
    - a mixed lobby (one client has Frontline): the server never enters `coop_fl_*`.
 6. **Cost:** the same pak list; boot time within noise; the same Script Error count (0).
+
+## 10. Release plan: Frontline + European Assault pilots playable in coop by v1.10.70
+
+User target (2026-11-09): "I want Frontline/European Assault map pilots playable in coop by .70". v1.10.66 is
+live. The Frontline side owns the shared bring-your-own-disc delivery; the EA agent plugs its converter into it.
+Campaign and chrono slots (section 4) come in a later version unless they turn out cheap.
+
+**One shared tool, our code only: `hzmconv.exe`.**
+- **What it is:** a standalone build (PyInstaller one-folder) of the Frontline converter, the EA converter and
+  the optional upscale step. Players need no Python. It contains only our code plus the runtimes listed below,
+  with **no EA bytes**.
+- **Shipping:** in the mod's updater payload, sha256-listed in the manifest. If code-signing is available at
+  release time, the exe is signed too.
+- **Interface both games share (the EA agent implements its half):**
+  - `hzmconv detect` lists candidate images (drive roots, Downloads, Desktop, Documents).
+  - `hzmconv verify --game frontline|ea --image P` checks the hash table.
+  - `hzmconv add --game frontline|ea --image P --home <maintt>` converts, then writes the local paks and
+    the marker `fl/have_<l>.cfg` or `ea/have_<l>.cfg`.
+  - Progress goes to stdout as JSON lines, read by the installer UI.
+  - Per game, a Python module provides `verify(image)`, `levels()`, `convert(image, level, out_dir, progress)`.
+- **Bundled runtimes and licences (checked before shipping):**
+  - Python (PSF);
+  - numpy, Pillow (BSD/HPND);
+  - vgmstream-cli (ISC-style permissive), built from source as now;
+  - realesrgan-ncnn-vulkan (MIT) and its x4plus weights (BSD-3), optional;
+  - films (MPEG-2 decode, RoQ encode): ffmpeg as an **LGPL-only build** (no `--enable-gpl`; `roqvideo`,
+    `roq_dpcm` and the EA demuxer are LGPL), shipped as a separate exe with its licence text and a source
+    link. Fallback if any doubt remains: skip films unless the player has their own ffmpeg, so that
+    briefings are optional.
+  - No GPL component is bundled.
+
+**What lands when:**
+
+| version | lands | player-visible without a disc? |
+|---|---|---|
+| **.67** | Hidden plumbing, MP safety and this plan: `coop_flHave_*` / `coop_eaHave_*` cvars and markers; the userinfo advertise and the server's all-clients rule; the MP missing-map message (section 6); the never-hinder regression test (section 9) in the release checklist | no |
+| **.68** | `hzmconv.exe` in the updater payload; **Settings -> Frontline / European Assault** (add, re-convert, status); a one-time What's New line; converted maps listed in the coop map select and the server start menu **only when present**, with title-card text | no (only a Settings entry and one line) |
+| **.69** | Installer page (skip by default) and updater silent re-convert; **attic prop** (with the attic agent); EA converter plugged in by the EA agent; real 2-client coop playtests of both pilots, with fixes | no |
+| **.70** | Both pilots playable start to finish in coop: 2 real clients, 0 Script Errors, every gate passing (deterministic conversion, patrol < 5%, objectives via the real use key, SP end, fps). Frontline extras: the Castro rescue/execution, the briefing film, the model swaps. The "Saving Private Castro" challenge if the mainline challenge work fits; else .71 with the campaign slots | no |
+
+**Never-hinder test** (section 9) runs at every one of these versions, unchanged. Without a disc: the
+campaigns are byte-identical, menus show nothing new beyond the Settings entry and the one-time line, and MP
+joins and rotations behave as before.
