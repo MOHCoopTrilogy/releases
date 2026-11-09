@@ -175,6 +175,14 @@ def patches(draws, specs, shader_name):
         poly = [tuple(float(c) for c in p) for p in sp["poly"]]
         cx = sum(p[0] for p in poly) / len(poly)
         cy = sum(p[1] for p in poly) / len(poly)
+        grow = float(sp.get("grow", 0))    # push every vertex out from the centre: the patch sits UNDER the floor, so the
+        if grow:                            # overlap is hidden, and it reaches under the wall/kerb faces the hole runs to
+            gp = []
+            for p in poly:
+                dx, dy = p[0] - cx, p[1] - cy
+                dl = math.hypot(dx, dy) or 1.0
+                gp.append((p[0] + dx / dl * grow, p[1] + dy / dl * grow, p[2]))
+            poly = gp
         cz = sum(p[2] for p in poly) / len(poly)
         best = None
         for sh, verts, tris in draws:

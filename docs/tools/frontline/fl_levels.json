@@ -142,6 +142,7 @@
      ]
     ],
     "tex": "b3600",
+    "grow": 6,
     "reason": "hedge-bed SE corner: 788u2 hole in Frontline's render mesh (ground b3600 / bed c6_123b00 / bank 54200 stop short; no edge pair for flseam); showed the sky as a white patch. Located from a top-down shot + BSP coverage scan 2026-11-09; 0.5u under the ground so overlaps hide beneath"
    },
    {
@@ -218,7 +219,34 @@
      ]
     ],
     "tex": "b3600",
+    "grow": 6,
     "reason": "hedge-bed NE corner: 664u2 hole (ground b3600 / bed c6_123b00 / kerb wall 165e80); white patch in the strip view. Same method"
+   },
+   {
+    "poly": [
+     [
+      -3233.0,
+      -4978.0,
+      -164.5
+     ],
+     [
+      -3148.0,
+      -4996.0,
+      -164.5
+     ],
+     [
+      -3148.0,
+      -5005.0,
+      -164.5
+     ],
+     [
+      -3233.0,
+      -4987.0,
+      -164.5
+     ]
+    ],
+    "tex": "b3600",
+    "reason": "1-3u slit along the kerb-wall foot (165e80) east of the hedge bed, x -3228..-3152: white line in the strip view; 1u BSP coverage scan 2026-11-09"
    }
   ]
  }
