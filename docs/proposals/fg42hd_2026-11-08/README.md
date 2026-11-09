@@ -94,6 +94,11 @@ was an oversized, blocky can mounted high. Per the coordinator, the recipe that 
   scope row's relief; never hide the glass, and size any new eyepiece against that circle.
 
 ## Open
+- **Scope-in flash (for the gun-clipping audit, after v1.10.66):** for ~3 frames on scope-in the RETAIL full-screen overlay (black
+  side bars, green lens) shows before the lens view takes over - captured in run fg_q6fg1080 r_08..r_14 (FG 42). Check whether the
+  Kar98k sniper does it too. The raise GIF that shows it is NOT for the user.
+- **Pad-script harness + controller:** `in_gamepad 0` breaks `in_padTestScript` runs and de222de5 deadlocks them (reverted, 98f75e4d);
+  waiting on the attic agent's fixed commit before the next pad-script launch.
 - **World model on the ground:** not shot. `weapdrop` does nothing in coop, and `spawn` needs `+set cheats 1` on the command line.
   The third-person still shows the world model.
 - **Bipod:** it is the model's own, folded and static, like the shipped one.
