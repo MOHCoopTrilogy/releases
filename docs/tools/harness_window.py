@@ -363,14 +363,17 @@ def apply_policy(args, width=None, height=None, display=None, noborder=True, win
         width, height = min(width, dw), min(height, dh)
     hard = [("r_fullscreen", "0"), ("r_mode", "-1"), ("r_customwidth", str(width)), ("r_customheight", str(height)),
             ("in_mouse", "0"), ("s_volume", "0"),
-            # never read the user's controller from a background test client: pad Y in a menu runs
-            # osk.exe and pops the On-Screen Keyboard over the user's own game (bug-10635)
-            ("in_gamepad", "0"), ("in_joystick", "0"),
             # a FRESH homepath otherwise triggers the engine's first-launch auto-detect (sdl_glimp.c, bug-753
             # addendum): it overrides r_mode/r_custom* with the PRIMARY display's desktop size (3440x1440 here)
             ("r_resAutoDetected", "1")]
     if noborder:
         hard.append(("r_noborder", "1"))
+    # never read the user's controller from a background test client: pad Y in a menu runs osk.exe and
+    # pops the On-Screen Keyboard over the user's own game (bug-10635). A run driven by in_padTestScript
+    # needs the pad system (its virtual pad), so it keeps it - those need the engine fix that opens only
+    # the virtual pad when in_padTestScript is set (menu-attic66).
+    if "in_padTestScript" not in idx:
+        hard += [("in_gamepad", "0"), ("in_joystick", "0")]
     soft = [("in_nograb", "1"), ("s_musicvolume", "0")]
     # defaults: added only when the harness did not set them itself (an explicit value wins)
     defaults = [("com_maxfpsUnfocused", str(unfocused_fps))]
