@@ -2,6 +2,15 @@
   "credits/coop_cc_models.txt": {
     "new": true
   },
+  "models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps.skc": {
+    "new": true
+  },
+  "models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps_m.skc": {
+    "new": true
+  },
+  "models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps_s.skc": {
+    "new": true
+  },
   "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload.skc": {
     "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
     "base_md5": "5f164546d2f36619e5cce6997b1603fa"
@@ -21,6 +30,10 @@
   "models/player/base/anims_vickers.txt": {
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
     "base_md5": "3744f7284878840f784f2471461531f1"
+  },
+  "models/player/base/fps_anims_mg.txt": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "39cdfad4f5dcb76cc75f9bcf0ce0aa7e"
   },
   "models/projectiles/coop_panzerfaust/coop_pzfhead.skd": {
     "new": true

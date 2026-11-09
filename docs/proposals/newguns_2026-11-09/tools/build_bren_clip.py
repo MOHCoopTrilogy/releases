@@ -2,7 +2,7 @@
 A_W_vickers_reload_clip.skc and the torso's attach / remove commands drive it. The mesh is the Bren's OWN magazine (brenclip), placed
 in the prop bone's frame where the gun's magazine is on the frame the prop appears (reload_s f15: the gun on the off hand, the prop on
 tag_weapon_right) - so the hand-off is seamless; the rest follows the VB's hand path (the hand still lands on the VB's magazine well,
-4.7 u ahead of the Bren's: a retargeted clip is the next step, see README).
+4.7 u ahead of the Bren's) - now the Bren's own retargeted clips (bren_hands.py), so the prop sits in the hand again).
     IRONSIGHT_EXTRA_PAKS=<ov.pk3> python build_bren_clip.py
 """
 import sys, os, json
@@ -17,7 +17,9 @@ import skx as X
 import pk, skd as K
 
 R = V.R
-CLIP = 'models/human/animation/viewmodel/Vickers/coop_A_W_Vickers_reload_fps_s.skc'
+# [newguns 2026-11-09 b] the Bren's OWN stressed reload hands (bren_hands.py): the prop is re-placed against the retargeted hand
+CLIP = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'tools', 'assets', 'wpnfix', 'models', 'human', 'animation',
+                    'viewmodel', 'coop_bren', 'coop_bren_reload_fps_s.skc')
 F_ON = 15
 OUT = r'H:\hzm_work\newguns\build\bren\ship\models\weapons\coop_bren\coop_bren_clip.skd'
 

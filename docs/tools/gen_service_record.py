@@ -55,6 +55,9 @@ REWARD_NAMES = {
     # loadoutskins.scr::coop_skinMvName - the same table the armory renders - so the Service Record
     # hover and the armory can never disagree. Regenerate with docs/tools/variant_challenges.py.
     "models/weapons/coop_dbshotgun.tik": "Double Barrel Shotgun",   # [dbshotgun 2026-10-13]
+    "models/weapons/coop_bren.tik": "Bren Mk I",   # [newguns 2026-11-09]
+    "models/weapons/coop_bergmann.tik": "MP 28",   # [newguns 2026-11-09]
+    "models/weapons/coop_panzerfaust.tik": "Panzerfaust 60",   # [newguns 2026-11-09]
     "models/weapons/bar_pabar.tik": "Bar (pacific) (moh:pa)",
     "models/weapons/bar_bar1918.tik": "Lewis Gun (east)",
     "models/weapons/bar_bar1918a.tik": "M1918 Classic (stlkid)",
