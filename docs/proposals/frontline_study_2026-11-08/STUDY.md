@@ -475,3 +475,23 @@ xdvdfs.py extract <iso> <dir> "DATA/1/1_1/*"
 viv.py <viv> <dir>
 cpt2obj.py / cdb2obj.py
 ```
+
+---
+
+## Addendum 2026-11-08: POC result and pilot status
+
+**POC: GO.**
+- **Texture binding is solved.** Each 20-byte draw record (one table per art cell) points to a 128-byte texture record. The record's SHPX offset (word 28) is either a block inside its own chunk or zero; when it is zero, word 31 indexes the base chunk's texture table. That is 778/778 matches; the only exceptions are each chunk's null record 0. Result: 97.96% of the triangles are textured.
+- **`.bpd` placement is decoded.**
+  - Section 1 holds the navpoints, 24 bytes each: xyz plus the edge list.
+  - Section 3 holds the entity instances: variable-size records with xyz and the behaviour chain as inline strings.
+  - For 1_1 that is 1364 navpoints and 543 entities.
+- **Frontline's world is mirrored** relative to MOHAA. The converter's `--mirror` flag handles it.
+
+**Pilot (converter in `docs/tools/frontline/`, mission script in the mod's `maps/mfl_1_1.scr`):**
+- Disc to pk3 takes 30 s and is byte-deterministic.
+- 0 Script Errors at boot.
+- The 2-bot self-test (`coop_fltest 1`) completes all 5 objectives and plays 12 dialogue cues and the music.
+- **Open:** the bot navmesh is fragmented (bug-10605), and GL1 triangle-soup colours are stale (bug-10600; GL2 is fine).
+
+**Correction to section 2a:** the engine repo already ships an open-source MOHAA map compiler, `openmohaa-hzm/code/tools/ommap`. It is a fallback to our own BSP writer, not EA's closed `q3map`.
