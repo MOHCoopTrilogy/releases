@@ -495,3 +495,18 @@ cpt2obj.py / cdb2obj.py
 - **Open:** the bot navmesh is fragmented (bug-10605), and GL1 triangle-soup colours are stale (bug-10600; GL2 is fine).
 
 **Correction to section 2a:** the engine repo already ships an open-source MOHAA map compiler, `openmohaa-hzm/code/tools/ommap`. It is a fallback to our own BSP writer, not EA's closed `q3map`.
+
+
+### BYO converter productisation: user decision 2026-11-08
+
+Frontline stays bring-your-own-disc and must be near-effortless. This adds:
+- an optional installer/updater step with auto-detection of disc images (drive roots, Downloads,
+  Documents, Desktop);
+- hash verification (USA Xbox first);
+- about 30 s of in-place conversion plus an optional local upscale;
+- a local pak plus a marker cvar;
+- a remembered path for silent re-conversion when the converter changes;
+- a "Settings -> Frontline" entry to convert later.
+
+Nothing EA-derived goes into git, releases, the updater payload or the public servers. Details are in
+INTEGRATION.md section 8.
