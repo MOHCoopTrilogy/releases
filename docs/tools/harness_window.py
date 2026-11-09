@@ -579,7 +579,9 @@ class Watcher(threading.Thread):
         self.pid = pid
         self.display = display or test_display()
         self.others = others if others is not None else \
-            [m["rect"] for m in monitors() if m["rect"] != self.display["rect"]]
+            [m["rect"] for m in monitors() if m["device"] != self.display.get("device")]
+        # by DEVICE, not rect: a slot (a sub-rect of the ultrawide, DISPLAY_QUEUE.md) is not the monitor rect, and
+        # comparing rects listed the test monitor itself as "other" -> every slotted window killed (bug-10666)
         self.primary = next((m["rect"] for m in monitors() if m["primary"]), None)
         self.logf = log or (lambda *a: print("[harness_window]", *a, file=sys.stderr, flush=True))
         self.poll = poll_ms
