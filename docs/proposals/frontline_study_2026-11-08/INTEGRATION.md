@@ -67,6 +67,7 @@ Fields every consumer reads:
 | `place`, `lat`, `lon` | ours, researched | war-map pin, join card place line |
 | `date`, `time` | ours, researched | chrono order, join card date |
 | `unit` | ours | join card unit line (OSS, Lt. Jimmy Patterson's operation) |
+| `card_title`, `card_place`, `card_when`, `card_unit` | ours | join card for 1_1: **SEALED ORDERS** (user's choice, 2026-11-09; replaced RETURN TO SENDER, which is daily challenge #57) / St. Mathieu, France / August 17, 1944 - 0900 hrs / Office of Strategic Services. The row is set in `maps/coop_fl_1_1.scr`, because `joincard_titles.tsv` validates against the retail paks |
 | `objectives[]` | disc | briefing, objective HUD (already wired) |
 
 **Date and place, resolved from the disc (2026-11-08):** the briefing journal for this level
