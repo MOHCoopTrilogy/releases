@@ -32,6 +32,9 @@ def main(mapname, out):
             n0 = 0
             t0, k = time.time(), 0
             while time.time() - t0 < 900:
+                if c.proc.poll() is not None:      # client died: stop posting keys and free the display slot (EA bug-10682)
+                    fh.log("client exited", c.proc.returncode)
+                    break
                 log = fh.read_log()
                 if "FLMISSION complete" in log:
                     n0 = len(log)
