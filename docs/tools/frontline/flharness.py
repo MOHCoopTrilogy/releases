@@ -47,6 +47,13 @@ def test_display():
     for m in hw.monitors():
         r = m["rect"]
         if (r[2] - r[0], r[3] - r[1]) == (3440, 1440):
+            # shared display (H:\hzm_work\DISPLAY_QUEUE.md): FL_SLOT=A|B tiles our window into the left/right
+            # 1720x1440 half so concurrent test clients never overlap
+            slot = os.environ.get("FL_SLOT", "").upper()
+            if slot in ("A", "B"):
+                m = dict(m)
+                x0 = r[0] + (0 if slot == "A" else 1720)
+                m["rect"] = (x0, r[1], x0 + 1720, r[3])
             return m
     raise RuntimeError("no 3440x1440 display connected - refusing to put a test window anywhere else")
 

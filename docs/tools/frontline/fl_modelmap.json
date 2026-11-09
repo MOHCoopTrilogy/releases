@@ -1,0 +1,15 @@
+{
+ "_doc": "Frontline prop/static -> MOHAA swaps, used only where the replacement is clearly better and fits (same object type, period, scale, footprint). Everything referenced comes from the player's own MOHAA install or the mod's paks; nothing from Frontline is shipped. 'reskin' = render-only facade swap of a Frontline texture's vertical faces (collision untouched). 'props' = MOHAA models placed at Frontline placement classes. Each entry carries its reason.",
+ "1_1": {
+  "reskin": {
+   "16c480": {
+    "shader": "hedgecard",
+    "image": "textures/misc_outside/hedgerow.tga",
+    "tile": 128,
+    "overshoot": 0.25,
+    "reason": "Frontline's hedges are opaque boxes (422 vertical faces, no tops; the user called them solid-looking). MOHAA has no usable hedge MODEL (the mod's models/hedgerow.tik is a broken Call of Duty port: missing .skc); MOHAA's own Normandy bocage is brush cards with textures/misc_outside/hedgerow.tga (HD in zzzzz_hd_foliage), so the same art is used the same way: facade-mapped on the box sides, crown raised 25% so the leafy alpha top replaces the flat edge. Render only - the hedge collision brushes are Frontline's, unchanged."
+   }
+  },
+  "props": {}
+ }
+}

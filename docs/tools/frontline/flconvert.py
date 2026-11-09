@@ -228,6 +228,42 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         tex_names[key] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
         return tex_names[key]
 
+    # render-only reskins from fl_modelmap.json (MOHAA art from the player's install, nothing shipped)
+    _mm = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fl_modelmap.json")
+    reskin = json.load(open(_mm)).get(level, {}).get("reskin", {}) if os.path.exists(_mm) else {}
+
+    def short_key(key):
+        return str(key).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_")
+
+    def reskin_shader(rk):
+        name = tdir + rk["shader"]
+        if name not in tex_names:
+            shader_lines.append(f"{name}\n{{\n\tsurfaceparm nolightmap\n\tcull none\n\tnopicmip\n\t{{\n\t\tmap {rk['image']}\n"
+                                f"\t\talphaFunc GE128\n\t\trgbGen vertex\n\t\tdepthWrite\n\t}}\n}}\n")
+            tex_names[name] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
+        return tex_names[name]
+
+    _cols = {}
+
+    def reskin_columns(k):
+        """(x, y) -> (bottom, top) of the reskinned texture's geometry within 40u: one hedge wall = one column"""
+        if k not in _cols:
+            g = {}
+            for mm in meshes:
+                if mm["tris"] and mm["tex"] and short_key(mm["tex"]) == k:
+                    for v in mm["verts"]:
+                        q = X(v)
+                        g.setdefault((int(q[0] // 40), int(q[1] // 40)), []).append(q[2])
+            _cols[k] = g
+
+        def f(x, y):
+            zs = []
+            for dx in (-1, 0, 1):
+                for dy in (-1, 0, 1):
+                    zs += _cols[k].get((int(x // 40) + dx, int(y // 40) + dy), [])
+            return (min(zs), max(zs)) if zs else (0.0, 0.0)
+        return f
+
     batches = {}
     for m in meshes:
         if not m["tris"]:
@@ -259,6 +295,41 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 r, g, b = (min(255, int(round(c * k))) for c, k in zip((r, g, b), gr))
             u, v = m["uvs"][i]
             verts.append((p, (u, v), tuple(x / l for x in acc[i]), (r, g, b, va if m["tex"] in vtx_alpha else 255)))
+        rk = reskin.get(short_key(m["tex"])) if m["tex"] else None
+        if rk:
+            # fl_modelmap.json "reskin": render-only swap to MOHAA art from the player's own install (e.g. Frontline's
+            # opaque hedge boxes -> the MOHAA bocage hedgerow card). Each vertical face is re-mapped as a facade:
+            # u along the face (rk.tile units per repeat), v bottom -> top over the whole image, and the top raised by
+            # rk.overshoot of the face height so the image's alpha crown rises above the old flat top. Collision is
+            # built from Frontline's .cdb separately and is not touched.
+            sh = reskin_shader(rk)
+            col = reskin_columns(short_key(m["tex"]))
+            nv, nt = [], []
+            for a, b, c in tris:
+                T = [verts[a], verts[b], verts[c]]
+                n = face_normal(T[0][0], T[1][0], T[2][0])
+                if not n or abs(n[2]) > 0.5:
+                    continue                          # only the vertical faces of the block
+                cx_ = sum(q[0][0] for q in T) / 3
+                cy_ = sum(q[0][1] for q in T) / 3
+                z0, z1 = col(cx_, cy_)                # the whole hedge column, so stacked quads map as one wall
+                if z1 - z0 < 4:
+                    continue
+                hl = math.hypot(n[0], n[1]) or 1.0
+                tx, ty = -n[1] / hl, n[0] / hl
+                ztop = z0 + (z1 - z0) * (1.0 + float(rk.get("overshoot", 0.25)))
+                base = len(nv)
+                for q in T:
+                    p = q[0]
+                    pz = ztop if p[2] >= z1 - 1.0 else p[2]          # only the column's top edge rises
+                    uu = (p[0] * tx + p[1] * ty) / float(rk.get("tile", 128))
+                    vv = (ztop - pz) / max(1.0, ztop - z0)
+                    nv.append(((p[0], p[1], pz), (uu, vv), q[2], (q[3][0], q[3][1], q[3][2], 255)))
+                nt.append((base, base + 1, base + 2))
+            stats["reskinned_tris"] = stats.get("reskinned_tris", 0) + len(nt)
+            if not nt:
+                continue
+            verts, tris = nv, nt
         cx = sum(v[0][0] for v in verts) / len(verts)
         cy = sum(v[0][1] for v in verts) / len(verts)
         batches.setdefault((sh, int(cx // MERGE_CELL), int(cy // MERGE_CELL)), []).append((verts, tris))
