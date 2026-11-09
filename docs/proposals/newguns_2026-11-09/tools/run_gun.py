@@ -38,9 +38,11 @@ def overlay():
         for n in a.namelist():
             z.writestr(n, a.read(n))
         # every file the newguns mod branch changed or added (state files, scripts, the Armory / viewer pages)
-        st = subprocess.run(["git", "-C", MODWT, "status", "--porcelain", "-uall"], capture_output=True, text=True).stdout
+        # [ng5] committed changes too: everything that differs from the branch point (git status alone went empty after a commit)
+        st = subprocess.run(["git", "-C", MODWT, "diff", "--name-only", "hotfix-1.10.53"], capture_output=True, text=True).stdout
+        st += subprocess.run(["git", "-C", MODWT, "ls-files", "--others", "--exclude-standard"], capture_output=True, text=True).stdout
         for ln in st.splitlines():
-            rel = ln[3:].strip().strip('"')
+            rel = ln.strip().strip('"')
             p = os.path.join(MODWT, *rel.split("/"))
             if os.path.isfile(p) and not rel.lower().endswith(".pk3"):
                 z.write(p, rel)
@@ -59,8 +61,9 @@ def main():
     s.cmd("+attack", 300)
     s.cmd("-attack", 7000)
     turn = int(os.environ.get("NG_TURN_MS", "600"))          # m2l1's spawn view is backlit: turn toward the light for the stills
-    s.cmd("+right" if turn > 0 else "+left", abs(turn))
-    s.cmd("-right" if turn > 0 else "-left", 900)
+    if turn:
+        s.cmd("+right" if turn > 0 else "+left", abs(turn))
+        s.cmd("-right" if turn > 0 else "-left", 900)
     for gi, g in enumerate(a.gun):
         gid, name = g.split("=", 1)
         k = "g%d" % gi
@@ -101,7 +104,7 @@ def main():
     s.cmd("quit", 0)
     W.launch(a.tag, a.res, s, lines=['seta coop_lo2 ""', 'seta coop_loA2 ""', "set g_gametype 2", "set cheats 1", "set coop_dev 1",
                                      "set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0",
-                                     "set coop_lockLoadout 0", "set cg_adsSightDebug 1", "set coop_fireDebug 1", "set ui_dmmap m2l1", "ui_startdmmap 2"], budget=120 + 45 * len(a.gun))
+                                     "set coop_lockLoadout 0", "set cg_adsSightDebug 1", "set coop_fireDebug 1", "set ui_dmmap %s" % os.environ.get("NG_MAP", "m2l1"), "ui_startdmmap 2"], budget=120 + 45 * len(a.gun))
 
 
 if __name__ == "__main__":

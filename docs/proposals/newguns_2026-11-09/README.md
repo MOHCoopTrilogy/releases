@@ -77,3 +77,19 @@ In game, first look, NOT ready:
 | finish fids | the standard 1-7 only | 8 and up are model variants (variant_challenges) |
 | challenge ids | wpn_bren_v, wpn_mp28_v, wpn_panzerfaust_v, fin_bren_*, fin_mp28_*, fin_panzerfaust_* | - |
 gen_skins asserts rank uniqueness only against what is on disk, so whichever branch merges second must re-run `gen_skins.py add`.
+
+## Status 2026-11-09 ~12:25 (runs ng4-ng7 in game, nv1 viewer)
+Corrections to the 11:50 notes: the MP 28 is fine (the twisted look was the Sten's own hold and reload tilt); the near-black guns are
+m2l1's backlit spawn (the shipped StG 44 reads as black there too), not the sheets. The Bren and MP 28 sheets were still lifted
+(steel x1.75 / x1.45: the VB's own sheet averages ~58/255).
+- Bren: carried-MG heat works (HANDHEATHUD lines; table row "Bren" 2.8 on newguns-eng), firedelay 0.12 (500 rpm); ADS solves
+  (ADSRIG) with the ghost ring around the blade, magazine to the right as on the real gun; relief 6 clamps at 4, set to 3. Reload
+  carries its OWN magazine now (coop_bren_clip.tik on the VB clip prop's bones, torso aliases bren_reload* in the adopted
+  anims_vickers.txt); the hand still lands on the VB's well (4.7 u ahead): retargeted hands are next.
+- Panzerfaust: fires, warhead hides, the spent tube is taken (PZF_DISCARD). The rocket-class AIM exclusion now includes it (an aimed
+  Panzerfaust showed no weapon at all, like the Panzerschreck would): its hip view is the aim view, warhead under the crosshair.
+- Viewer (media/viewer_nv1.jpg): all three on the rack with history, credits, unlock line, 8 entries each.
+Open: the viewer's locked "Progress" reads 0/450, 0/550, 0/350 although unlockprog_gen says 60 / 60 / 10 kills - the runtime
+export (coop_loLkA<id>) is pointing at the wrong data; Armory hero framing (armory_fit) not run; MP Armory rows (blocked on mpid 34,
+bug-10673); retargeted Bren reload hands; in-game stills need a lit map (m1l1 starts in the night truck ride).
+Test runner: run_gun.py (Armory route, overlay = every mod file changed since hotfix-1.10.53), run_viewer.py.
