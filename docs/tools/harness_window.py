@@ -297,6 +297,18 @@ def test_display(name=None):
     Refuses (NoTestDisplay) rather than fall back to the primary - that is the user's screen."""
     name = name or os.environ.get("HZM_TEST_DISPLAY")
     mons = monitors()
+    # The user picks the test screen by RESOLUTION (2026-11-09: "Ultra wide" - the 34in 3440x1440, even while it is
+    # the primary). HZM_TEST_RES overrides; "" disables the resolution pick (old non-primary rule).
+    res = os.environ.get("HZM_TEST_RES", "3440x1440")
+    if not name and res:
+        try:
+            rw, rh = (int(v) for v in res.lower().split("x"))
+        except ValueError:
+            rw = rh = None
+        for m in mons:
+            l, t, r, b = m["rect"]
+            if (r - l, b - t) == (rw, rh):
+                return m
     for m in mons:
         if name and m["device"].lower() == name.lower():
             if m["primary"]:
