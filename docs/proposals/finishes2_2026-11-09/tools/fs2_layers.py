@@ -45,11 +45,11 @@ def coat(fin, base, ctx):
         rgb = fs.over(rgb, np.array([0.46, 0.24, 0.11]) * (0.7 + 0.3 * fs.shade(base)), np.clip(r * 0.75, 0, 0.75))
     elif fin in ('splitter', 'pea', 'telo', 'amoeba'):
         pat = fs.tiled(fs.tile('camo_' + fin), H, W, ctx['rep']('camo_' + fin))[..., :3]
-        pat = np.clip(pat * {'splitter': 1.0, 'pea': 0.78, 'telo': 0.6, 'amoeba': 0.72}[fin], 0, 1)
-        rgb = np.clip(pat * (0.35 + 0.65 * fs.shade(base)), 0, 1)
+        pat = np.clip(pat * {'splitter': 1.0, 'pea': 1.0, 'telo': 1.0, 'amoeba': 1.0}[fin], 0, 1)   # the tiles carry true colours
+        rgb = np.clip(pat * fs.paint_shade(base), 0, 1)
     elif fin == 'whitewash':
         w = fs.tiled(fs.tile('camo_whitewash'), H, W, ctx['rep']('camo_whitewash'))[..., 3]
-        rgb = np.clip(np.array([0.84, 0.84, 0.82]) * (0.5 + 0.5 * fs.shade(base)) * (0.88 + 0.12 * w[..., None]), 0, 1)
+        rgb = np.clip(np.array([0.84, 0.84, 0.82]) * fs.paint_shade(base) * (0.88 + 0.12 * w[..., None]), 0, 1)
         big = fs.tiled(fs.tile('wear_chips'), H, W, ctx['rep']('wear_chips') * 0.35)[..., 3]
         a = np.clip(np.clip(0.45 + 0.6 * w, 0, 1) * m ** 3 * (0.1 + 0.9 * chips) * (0.35 + 0.65 * big), 0, 0.96)
     else:
@@ -77,7 +77,10 @@ def shader_block(name, base_path, mask_path, coat_path):
     base = re.sub(r'\.(dds|jpg|png)$', '.tga', base_path, flags=re.I)        # as the stock shaders name it (.dds wins at load)
     return "\n".join([name, "{", "\tqer_editorimage %s" % base,
                       "\t{", "\t\tmap %s" % base, "\t\trgbGen lightingSpherical", "\t}",
-                      "\t{", "\t\tmap %s" % mask_path, "\t\tblendFunc GL_ZERO GL_ONE_MINUS_SRC_ALPHA", "\t}",
+                      "\t{", "\t\tmap %s" % mask_path,
+                      # a grey png / jpg mask carries the coverage in its value, a tga (the first look test) in alpha
+                      "\t\tblendFunc GL_ZERO %s" % ("GL_ONE_MINUS_SRC_ALPHA" if mask_path.endswith('.tga') else "GL_ONE_MINUS_SRC_COLOR"),
+                      "\t}",
                       "\t{", "\t\tmap %s" % coat_path, "\t\tblendFunc GL_ONE GL_ONE", "\t\trgbGen lightingSpherical", "\t}",
                       "}", ""])
 

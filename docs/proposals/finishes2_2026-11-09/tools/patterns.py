@@ -66,9 +66,9 @@ def blob(rng, cx, cy, r, lobes=7, rough=0.35, k=24):
 def splitter(rng):
     """Splittertarn: the field is cut by long straight lines into angular shards; about a third of the shards are printed
     brown, a third green, the rest stay tan - then the fine green rain strokes over everything"""
-    T = Torus(bg=(160, 146, 106))
-    cols = ((60, 74, 46), (100, 72, 46))
-    for _ in range(46):
+    T = Torus(bg=(138, 120, 84))                 # khaki-brown ground, mid-toned as printed (not cream)
+    cols = ((74, 88, 52), (92, 64, 42))           # green and dark brown shards
+    for _ in range(70):
         cx, cy = rng.random(), rng.random()
         a = rng.choice((rng.uniform(-0.5, -0.2), rng.uniform(0.2, 0.5))) + math.pi * rng.randint(0, 1)
         L, W = rng.uniform(0.10, 0.26), rng.uniform(0.04, 0.09)
@@ -79,24 +79,24 @@ def splitter(rng):
         T.poly([(cx + x * ca - y * sa, cy + x * sa + y * ca) for x, y in q], cols[rng.randint(0, 1)])
     for _ in range(1300):
         x, y = rng.random(), rng.random()
-        T.line([(x, y), (x, y + rng.uniform(0.015, 0.04))], (54, 70, 42), 0.0024)
+        T.line([(x, y), (x, y + rng.uniform(0.015, 0.04))], (46, 56, 36), 0.0026)   # the dark rain
     return T.done()
 
 
 def pea(rng):
-    T = Torus(bg=(156, 140, 104))
-    for col, n, r in (((98, 74, 50), 14, 0.07), ((70, 82, 52), 14, 0.06)):
+    T = Torus(bg=(132, 116, 84))
+    for col, n, r in (((92, 68, 46), 14, 0.07), ((66, 78, 48), 14, 0.06)):
         for _ in range(n):
             T.poly(blob(rng, rng.random(), rng.random(), r * rng.uniform(0.7, 1.3), rough=0.5), col)
-    for col in ((88, 64, 42), (64, 76, 46), (178, 160, 120)):   # the dots: brown, green and light, everywhere
+    for col in ((80, 58, 38), (58, 70, 42), (160, 144, 108)):   # the dots: brown, green and light, everywhere
         for _ in range(900):
             T.ellipse(rng.random(), rng.random(), 0.0045, 0.0045, col)
     return T.done()
 
 
 def telo(rng):
-    T = Torus(bg=(176, 150, 96))
-    for col, n in (((112, 84, 52), 7), ((86, 98, 58), 7)):
+    T = Torus(bg=(150, 128, 84))
+    for col, n in (((104, 76, 48), 7), ((78, 90, 52), 7)):
         for _ in range(n):
             T.poly(blob(rng, rng.random(), rng.random(), rng.uniform(0.10, 0.16), rough=0.45), col)
     im = T.done().filter(ImageFilter.GaussianBlur(1.6))   # printed cloth: soft edges

@@ -95,9 +95,18 @@ def shade(base):
     return L / max(float(np.median(L)), 1e-3)
 
 
+def paint_shade(base):
+    """how much of the gun's own light / dark shows THROUGH a coat of paint: only the broad shape (a heavy low-pass), and
+    only a little - paint is opaque, so no wood grain, no tool marks (coordinator QA: the grain showed through)"""
+    from scipy import ndimage as nd
+    L = lum(base)
+    L = nd.gaussian_filter(L, max(2.0, base.shape[1] / 48.0))
+    return np.clip(L / max(float(np.median(L)), 1e-3), 0.82, 1.06)[..., None]
+
+
 def coat(base, rgb, keep=0.45):
     """a paint colour shaded by the texture's own light / dark (keep = how much of the shading survives the paint)"""
-    return np.clip(np.array(rgb, float)[None, None, :] / 255.0 * (1 - keep + keep * shade(base)), 0, 1)
+    return np.clip(np.array(rgb, float)[None, None, :] / 255.0 * paint_shade(base), 0, 1)
 
 
 def over(a, b, m):
@@ -174,12 +183,12 @@ def finish_tex(fin, base, ctx):
         return over(out, np.array([0.46, 0.24, 0.11]) * (0.7 + 0.3 * shade(base)), np.clip(r * 0.75, 0, 0.75))
     if fin in ('splitter', 'pea', 'telo', 'amoeba'):
         pat = tiled(tile('camo_' + fin), H, W, ctx['rep']('camo_' + fin))[..., :3]
-        pat = np.clip(pat * {'splitter': 1.0, 'pea': 0.78, 'telo': 0.6, 'amoeba': 0.72}[fin], 0, 1)
-        cam = np.clip(pat * (0.35 + 0.65 * shade(base)), 0, 1)
+        pat = np.clip(pat * {'splitter': 1.0, 'pea': 1.0, 'telo': 1.0, 'amoeba': 1.0}[fin], 0, 1)
+        cam = np.clip(pat * paint_shade(base), 0, 1)
         return over(rgb, cam, paint_m)
     if fin == 'whitewash':
         w = tiled(tile('camo_whitewash'), H, W, ctx['rep']('camo_whitewash'))[..., 3]
-        white = np.clip(np.array([0.84, 0.84, 0.82]) * (0.5 + 0.5 * shade(base)) * (0.88 + 0.12 * w[..., None]), 0, 1)
+        white = np.clip(np.array([0.84, 0.84, 0.82]) * paint_shade(base) * (0.88 + 0.12 * w[..., None]), 0, 1)
         big = tiled(tile('wear_chips'), H, W, ctx['rep']('wear_chips') * 0.35)[..., 3]      # larger worn-through patches
         cover = np.clip(0.45 + 0.6 * w, 0, 1) * m ** 3 * (0.1 + 0.9 * chips) * (0.35 + 0.65 * big)
         return over(rgb * 0.8, white, np.clip(cover, 0, 0.96))

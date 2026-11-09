@@ -35,3 +35,11 @@ half base res 802 MB, cap 1024 366 MB, cap 512 95 MB, **cap 384 54 MB**, cap 320
 (main sheet per gun only: cap 512 44 MB, cap 384 25 MB). At cap 384 a rifle sheet is ~1 mm per texel - camo shapes
 (3-6 cm) and edge wear still resolve. Plan: the gun's own HD texture stays; the paint is two stages over it - the per-gun
 mask darkens (GL_ZERO GL_ONE_MINUS_SRC_ALPHA), the premultiplied paint is added and lit (GL_ONE GL_ONE, lightingSpherical).
+
+## Paint / camo build (2026-11-09) - real size
+User raised the cap to 1024 px (higher quality). Built by tools/fs2_build.py into H:\hzm_work\finishes2_build (staging, not
+deployed): **zzzzzzzzzz_coop_finishes_hd.pk3 = 177.2 MB** - 126 sheets, 70 guns, 8 coats (134.4 MB of q85 JPEG), grey PNG
+masks 40.6 MB (grey JPEG was larger: 49.8, RGBA PNG 58.7), 630 variant tiks (9 per gun: the 8 coats + Airborne 101st on
+the airborne coat; ranks 1240+, fids 40-48 in rows.tsv for loadoutskins.scr). Paint is opaque now (only the broad shading of
+the gun shows through, no wood grain); Splittertarn / pea / telo mid-toned. Verified in game: media/ingame_built_3guns.jpg.
+Open: wiring into gen_skins (loadoutskins rows, finish picker names, unlock ladder), the four shader-composited finishes.
