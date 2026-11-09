@@ -8,7 +8,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 WV = r"C:\mohaa-coop-dev\docs\proposals\wpnviewer_2026-11-04\tools"
 ENG = r"H:\hzm_work\wpnfix-eng\.cmake"
 CLIENT = r"G:\mohaa-wpnview"
-MOD = os.path.join("H:" + os.sep, "hzm_work", "fg42hd-mod")
+MOD = os.path.join("H:" + os.sep, "hzm_work", "viewclip-mod")
 
 
 def busy():

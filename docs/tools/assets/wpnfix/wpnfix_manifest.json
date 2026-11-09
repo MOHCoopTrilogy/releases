@@ -2,6 +2,22 @@
   "credits/coop_cc_models.txt": {
     "new": true
   },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload.skc": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "5f164546d2f36619e5cce6997b1603fa"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_end.skc": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "ca4d9934c3076c2c0ebeb4abcd4d4cc8"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_single.skc": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "b27b2484405419a7536f9a8d9542da20"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_single_l.skc": {
+    "base": "zzzzzzzzzzzz_coop_fixes2.pk3",
+    "base_md5": "2bcc66c734040bbca3a82802b991d4a4"
+  },
   "models/weapons/30calportable_bloody.tik": {
     "new": true
   },

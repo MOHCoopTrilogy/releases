@@ -18,7 +18,7 @@ s.cmd("-attack", 7000)
 s.cmd("exec ui/loadout/w%s_s1.cfg" % gid, 6000)
 s.cmd('use "%s"' % gun, 3000)
 MOVES = os.environ.get("VC_MOVES") == "1"
-for side, val, zn in (("a", "0", "1"), ("b", "1", "0.6")):     # a = v1.10.66 as shipped, b = the viewclip fix
+for side, val, zn in (("a", "0", "1"), ("b", "1", "0.6")):     # a = v1.10.66 as shipped, b = the viewclip fixes
     s.cmd("r_weaponProjAlways %s" % val, 300)
     s.cmd("r_weaponznear %s" % zn, 300)
     s.cmd("echo ^~^~^ VC side %s r_weaponProjAlways %s" % (side, val), 300)
@@ -73,4 +73,4 @@ for side, val, zn in (("a", "0", "1"), ("b", "1", "0.6")):     # a = v1.10.66 as
 s.cmd("quit", 0)
 W.launch("vc_%s" % tag, os.environ.get("WV_RES", "1080"), s,
          lines=['seta coop_lo2 ""', 'seta coop_loA2 ""', 'seta coop_loFA2 ""', "set g_gametype 2", "set cheats 1", "set coop_dev 1",
-                "set coop_lockLoadout 0", "set ui_dmmap m2l1", "ui_startdmmap 2"], budget=340)
+                "set coop_lockLoadout 0"] + ["set ui_dmmap m2l1", "ui_startdmmap 2"], budget=340)

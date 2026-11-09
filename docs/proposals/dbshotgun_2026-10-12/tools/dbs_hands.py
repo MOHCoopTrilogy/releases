@@ -49,11 +49,15 @@ HOLD = dict(breech=(13.8, -6.0, -3.2), yaw=5.0, pitch=2.5, roll=-8.0)     # run 
 AIM = dict(relief=11.0, delta=0.131)
 SIGHT_R = (4.7932, -1.05, -5.0074)        # top of the breech end, centre line (build/model.json sight.R)
 SIGHT_F = (21.5216, -1.05, -5.3041)       # top of the bead
-WORK = {'hip': dict(cham=(10.8, -2.6, -1.1), yaw=6.0, pitch=16.0, roll=-8.0),      # run rh1: at -2.6 up the hip reload played on the screen's bottom edge
+WORK = {'hip': dict(cham=(13.5, -2.6, -1.6), yaw=6.0, pitch=16.0, roll=-8.0),      # run rh1: at -2.6 up the hip reload played on the screen's bottom edge
+        # [viewclip 2026-11-09] was (10.8, -2.6, -1.1): the shell hand came within 3.7 u of the eye and filled the view as a crumpled
+        # low-poly shape (viewclip hand_survey). 2.7 u further out and 0.5 u lower: hand >= 6.2 u, nothing nearer than the planes
         'ads': dict(cham=(9.6, -0.2, -3.0), yaw=0.0, pitch=18.0, roll=-4.0)}
 # the aimed work pose of the third pass: the belt point (where the hand fetches a shell) is fixed in the GUN frame from
 # this pose, so raising the aimed work pose does not move the shells' path or the hip clips
 WORK_BELT_REF = dict(cham=(9.6, -0.2, -3.0), yaw=0.0, pitch=18.0, roll=-4.0)
+if os.environ.get('DBS_HIP_CHAM'):   # [viewclip 2026-11-09] the hip loading hand came within 3.7 u of the eye - a trial knob
+    WORK['hip']['cham'] = tuple(float(x) for x in os.environ['DBS_HIP_CHAM'].split(','))
 if os.environ.get('DBS_ADS_CHAM'):
     WORK['ads']['cham'] = tuple(float(x) for x in os.environ['DBS_ADS_CHAM'].split(','))
 if os.environ.get('DBS_ADS_PITCH'):

@@ -1,0 +1,28 @@
+ERR thompson_putaway TypeError("'NoneType' object is not subscriptable")
+ERR mp40_putaway TypeError("'NoneType' object is not subscriptable")
+wrote C:\mohaa-coop-dev\docs\proposals\viewclip_2026-11-09\tools\..\assets\hand_survey.tsv: 615 rows, 336 s
+0.336 enfield_rechamber_ads                ADS  near 0.14 centre 0.10 arm 2.6 f13
+0.311 kar98_rechamber_ads                  ADS  near 0.13 centre 0.09 arm 2.3 f16
+0.256 sten_reload_empty_ads                ADS  near 0.10 centre 0.08 arm 2.5 f72
+0.253 colt45_fire_secondary1               hip  near 0.04 centre 0.11 arm 5.3 f5
+0.253 p38_fire_secondary1                  hip  near 0.04 centre 0.11 arm 5.3 f5
+0.253 histandard_fire_secondary1           hip  near 0.04 centre 0.11 arm 5.3 f5
+0.253 nagantrev_fire_secondary1            hip  near 0.04 centre 0.11 arm 5.3 f5
+0.253 webley_fire_secondary1               hip  near 0.04 centre 0.11 arm 5.3 f5
+0.253 m10_fire_secondary1                  hip  near 0.04 centre 0.11 arm 5.3 f5
+0.174 coopr_shotgun_double_barrel_reload_single_l hip  near 0.08 centre 0.05 arm 3.6 f6
+0.152 shotgun_putaway                      hip  near 0.15 centre 0.00 arm 4.2 f10
+0.139 sten_reload_empty_s_ads              ADS  near 0.07 centre 0.03 arm 2.6 f57
+0.130 sten_reload_empty_m_ads              ADS  near 0.08 centre 0.02 arm 2.7 f69
+0.118 johnson_reload                       hip  near 0.12 centre 0.00 arm 4.4 f42
+0.112 coopr_shotgun_double_barrel_reload_single hip  near 0.08 centre 0.02 arm 3.7 f6
+0.104 johnson_reload_m                     hip  near 0.10 centre 0.00 arm 4.5 f51
+0.098 johnson_reload_s                     hip  near 0.10 centre 0.00 arm 4.6 f33
+0.093 kar98_reload_ads                     ADS  near 0.06 centre 0.02 arm 2.3 f16
+0.091 kar98_reload_s_ads                   ADS  near 0.06 centre 0.02 arm 2.3 f12
+0.090 kar98_reload_m_ads                   ADS  near 0.06 centre 0.02 arm 2.3 f72
+0.069 enfield_reload_s_ads                 ADS  near 0.07 centre 0.00 arm 2.8 f12
+0.068 enfield_reload_ads                   ADS  near 0.07 centre 0.00 arm 2.8 f16
+0.068 springfield_reload_ads               ADS  near 0.06 centre 0.00 arm 2.4 f16
+0.066 springfield_charge                   ADS  near 0.07 centre 0.00 arm 2.4 f3
+0.065 springfield_reload_m_ads             ADS  near 0.06 centre 0.00 arm 2.4 f22
