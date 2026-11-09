@@ -14,7 +14,10 @@ param(
     # `gh --notes-file` with no PowerShell string round-trip, so there is nothing to mis-decode.
     [string]$NotesFile = "",
     [switch]$DryRun,
-    [switch]$SkipBuild
+    [switch]$SkipBuild,
+    # [v1.10.68] the bring-your-own-disc converter, built by docs/tools/frontline/build_hzmconv.py (our code + LGPL /
+    # permissive runtimes, no disc data); installer/byo_convert.ps1 unpacks it beside the exe on first use
+    [string]$HzmconvZip = "H:\hzm_work\frontline_tools\hzmconv_release\hzmconv.zip"
 )
 $ErrorActionPreference = "Stop"
 
@@ -190,6 +193,10 @@ $stage["home/maintt/zzzzzzz_dds_hdmem.pk3"] = "$gog\maintt\zzzzzzz_dds_hdmem.pk3
 $stage["home/maintt/zzzzzzzz_hd_fxfix.pk3"] = "$gog\maintt\zzzzzzzz_hd_fxfix.pk3"
 # v1.1.43 imported WW2 weapons (S93 pack, cleaned) - standalone pk3, NOT part of the coop 3-way split
 $stage["home/maintt/zzzzz_xw_weapons.pk3"] = "$gog\maintt\zzzzz_xw_weapons.pk3"
+# [v1.10.68] YOUR OWN DISCS: the converter window (Settings -> YOUR OWN DISCS, engine coop_byoconvert) and the converter.
+# Both live at the install root beside openmohaa.exe. The converted paks are NEVER staged (BYO guard below).
+$stage["byo_convert.ps1"] = "$dev\installer\byo_convert.ps1"
+$stage["hzmconv.zip"]     = $HzmconvZip
 # KUN weapons pack (Surgical Ops KUN HD guns) removed per design - no longer built or shipped.
 # NOTE: omconfig default is deliberately NOT in the update manifest - the installer seeds it
 # once; auto-updates never stomp player settings.
@@ -268,6 +275,14 @@ if ($vclBad.Count -gt 0) {
 }
 Write-Host "vcl test-DLL guard: pass"
 # <<< VCL TEST-DLL GUARD
+
+# >>> BRING-YOUR-OWN-DISC GUARD [v1.10.68]. Nothing converted from (or copied off) a Frontline / European Assault disc
+# ships - no zzzz_coop_fl_* / zzzz_coop_ea_* / zzzz_fl_* / zzzz_ea_* pak, no converter output path inside any pak, no raw
+# disc container (docs/tools/byo_guard.py). Every staged file is checked, the converter zip included.
+$byoArgs = @("$dev\docs\tools\byo_guard.py") + @($stage.Values | ForEach-Object { [string]$_ })
+& python @byoArgs
+if ($LASTEXITCODE -ne 0) { throw "PUBLISH BLOCKED by the bring-your-own-disc guard" }
+# <<< BRING-YOUR-OWN-DISC GUARD
 
 # --- 4. manifest: hash everything; carry forward URLs for unchanged assets ---
 Write-Host "== hashing $($stage.Count) files =="
@@ -377,7 +392,7 @@ try {
         if ($k -like 'home/maintt/*') {
             $e = @{ name = ("maintt/" + $k.Substring('home/maintt/'.Length)); src = $stage[$k] }
             $entriesAll += $e; $entriesMod += $e
-        } elseif ($k -in $engineKeys) {
+        } elseif ($k -in $engineKeys -or $k -in @('byo_convert.ps1', 'hzmconv.zip')) {   # [v1.10.68] beside the exe
             $entriesAll += @{ name = $k; src = $stage[$k] }
         }
     }

@@ -262,10 +262,14 @@ def sheet_settings():
     foot = 406
     footer = [
         label("footRule", (44, foot - 8, 552, 1), bg=RULE),
-        text_label("footHint", (164, foot + 5, 320, 14), "Applies instantly. Host rules: Start Game.", "verdana-12", MUTED, "center"),
+        text_label("footHint", (348, foot + 5, 140, 14), "Applies instantly.", "verdana-12", MUTED, "center"),
     ]
     buttons = [
         plate_button("defaultsBtn", (44, foot, 112, 24), "DEFAULTS", "sound/menu/apply.wav", "exec coop_mod/cfg/coop_fielddefaults.cfg"),
+        # [v1.10.68] bring-your-own-disc: Frontline / European Assault missions from the player's own disc (ui/coop_byodisc.urc).
+        # Left of the hint: options_main's DOCUMENTS hotspot (350 386 140 58) sits over x 350-490, so a double-click there
+        # must land on the hint label, never on this button.
+        plate_button("discsBtn", (196, foot, 140, 24), "OWN DISCS", "sound/menu/apply.wav", "pushmenu coop_byodisc"),
         plate_button("closeBtn", (496, foot, 100, 24), "CLOSE", "sound/menu/back.wav", "popmenu 0"),
     ]
     return rows, ordered(chrome, g, footer, buttons), (32, 38, 608, 446)

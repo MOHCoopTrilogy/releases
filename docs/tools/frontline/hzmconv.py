@@ -62,7 +62,17 @@ class FrontlineGame:
         out = os.path.join(out_dir, "zzzz_coop_fl_%s.pk3" % level)
         vgm = os.path.join(TOOLS, "vgmstream", "vgmstream-cli.exe")
         progress(step="convert", level=level)
-        flconvert.convert(image, level, out, mirror=True, vgm=vgm if os.path.exists(vgm) else None, mohaa_base=mohaa)
+        # [v1.10.68] written to a temp name and renamed only when complete (a failed run never leaves a half pak, and
+        # the previous good pak survives it); the marker cfg goes INSIDE the pak, so deleting the pak also hides the map
+        tmp = out + ".tmp"
+        try:
+            flconvert.convert(image, level, tmp, mirror=True, vgm=vgm if os.path.exists(vgm) else None, mohaa_base=mohaa)
+            add_marker(tmp, "fl/have_%s.cfg" % level, 'set coop_flHave_%s "1"\nset coop_flHave "1"\n' % level)
+            os.replace(tmp, out)
+        finally:
+            if os.path.exists(tmp):
+                os.remove(tmp)
+        drop_loose_marker(out_dir, "fl", level)
         files = [out]
         if opts.get("films"):
             ff = os.path.join(TOOLS, "ffmpeg", "ffmpeg.exe")
@@ -89,12 +99,30 @@ class FrontlineGame:
                         files.append(hp)
                 except Exception as e:     # optional too
                     progress(step="upscale", level=level, skipped=str(e))
-        mk = os.path.join(out_dir, "fl")
-        os.makedirs(mk, exist_ok=True)
-        with open(os.path.join(mk, "have_%s.cfg" % level), "w", newline="\n") as f:
-            f.write('set coop_flHave_%s "1"\n' % level)
-        files.append(os.path.join(mk, "have_%s.cfg" % level))
         return files
+
+
+def add_marker(pk3, name, text):
+    """The detection marker (INTEGRATION section 1) as an entry of the level pak itself: autoexec.cfg execs it, so it
+    exists exactly as long as the pak does."""
+    import zipfile
+    with zipfile.ZipFile(pk3, "a", zipfile.ZIP_DEFLATED) as z:
+        zi = zipfile.ZipInfo(name, (2026, 1, 1, 0, 0, 0))
+        zi.compress_type = zipfile.ZIP_DEFLATED
+        zi.external_attr = 0o644 << 16
+        z.writestr(zi, text.encode("ascii"))
+
+
+def drop_loose_marker(out_dir, sub, level):
+    """Earlier converter builds wrote the marker loose (maintt/<sub>/have_<l>.cfg); a loose copy would keep the map
+    listed after its pak is deleted, so it goes once the pak carries its own."""
+    p = os.path.join(out_dir, sub, "have_%s.cfg" % level)
+    try:
+        if os.path.isfile(p):
+            os.remove(p)
+            os.rmdir(os.path.dirname(p))
+    except OSError:
+        pass
 
 
 class OpenImage:
@@ -139,7 +167,11 @@ def game(name):
     if name == "frontline":
         return FrontlineGame
     if name == "ea":
-        import hzmconv_ea       # the EA agent's module (same interface)
+        try:
+            import hzmconv_ea   # the EA agent's module (same interface)
+        except ImportError:
+            emit(error="European Assault support is not in this converter build yet")
+            raise SystemExit(3)
         return hzmconv_ea
     raise SystemExit("unknown game %r" % name)
 

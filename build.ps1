@@ -444,6 +444,11 @@ foreach ($p in $paks) {
 }
 $sha.Dispose()
 
+# [v1.10.68] BRING-YOUR-OWN-DISC GUARD: nothing converted from (or copied off) a Frontline / European Assault disc may
+# be packed or deployed - those missions exist only on a PC that converted its own disc (docs/tools/byo_guard.py).
+python "C:\mohaa-coop-dev\docs\tools\byo_guard.py" $srcDir
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by the bring-your-own-disc guard" -ForegroundColor Red; exit 1 }
+
 # --- Deploy pk3s to both targets; retire the old monolith ---
 foreach ($destDir in @($deployDir, $appDataDir)) {
     foreach ($p in $paks) {
