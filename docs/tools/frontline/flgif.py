@@ -77,8 +77,11 @@ def main(mapname, clips_path, out):
                     frames[len(frames) // 2].save(os.path.join(out, name + "_mid.jpg"), quality=88)
                     w, sz = write_gif(frames, os.path.join(out, name + ".gif"), fps, int(v.get("w", 640)))
                     fh.log("gif", name, len(frames), "frames", w, "px", sz, "bytes")
-            fh.shutil.copyfile(fh.LOG, os.path.join(out, "qconsole.log"))
     finally:
+        try:
+            fh.shutil.copyfile(fh.LOG, os.path.join(out, "qconsole.log"))   # always: a timeout must not lose the evidence
+        except Exception:
+            pass
         fh.hg.release_slot(fh.OWNER)
 
 
