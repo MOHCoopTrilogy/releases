@@ -38,7 +38,7 @@ def main(mapname, clips_path, out):
         c = fh.launch(mapname, "opengl2", False, 1280, 720,
                       extra_sets=[x.strip() for x in os.environ.get("FL_SETS", "").split(";") if x.strip()])
         with c:
-            if not fh.wait_log(r"Spawning Entities Done|FLAI", 300):
+            if not fh.wait_log(r"Spawning Entities Done|FLAI", float(os.environ.get("FL_LOAD_TIMEOUT", "150"))):
                 raise RuntimeError("map never loaded")
             time.sleep(8)
             fh.join()
