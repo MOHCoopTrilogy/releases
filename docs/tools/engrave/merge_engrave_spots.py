@@ -9,6 +9,12 @@ import gen_engrave_anchors as G
 base = json.load(open(sys.argv[1]))
 for path in sys.argv[2].split(","):
     new = json.load(open(path))
+    if os.environ.get("EG_ADDNEW"):
+        # [benchfix] guns the checked report does not know yet (newer armory guns): their fresh solve is the anchor; the
+        # in-game checks (check_visible / check_faces) then drop what a hand covers
+        for tik, r in new.items():
+            if isinstance(r, dict) and tik not in base:
+                base[tik] = json.loads(json.dumps(r))
     for tik, r in new.items():
         if not isinstance(r, dict) or tik not in base or not isinstance(base[tik], dict):
             continue
