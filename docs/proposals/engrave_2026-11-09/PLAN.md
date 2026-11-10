@@ -110,3 +110,14 @@ finish decal off per gun: `cl_cust_<gun>` holds `nofinish`).
 decals, at most 6), each `{shader, spot, width, aspect, du, dv, rot, mirror}`, all placed from the same anchor table
 (`scripts/hzm_engrave_anchors.txt` gains `spot <gun> <name> o u v width maxw maxh material` lines). Same render flags as
 the gun, so every decal is behind the hands and follows reloads.
+
+## benchfix (v1.10.72, 2026-11-10) - user report on v1.10.71
+- **Tilt**: the bench preview drag tilts too (modeltiltcvar cl_custTilt, +-60 deg, clamped in the drag and re-based at the
+  limit; applied about the screen's horizontal axis before the bench's own framing, so TURN OVER and every screen shape
+  stay framed; ZOOM keeps its face-on pose). `hzmcust tilt <deg>` / `spin <deg>` drive it in scripted QA.
+- **MOVE over the whole face**: the solver writes, per spot, `face <key> <spot> u0 v0 cellu cellv nu nv <hex>` - the flat face
+  the spot lies on as a <= 48 x 16 grid (on the patch, on screen at the hip, not hidden by the gun). The in-game tile check
+  (`cg_engraveFaceCheck <spot>` -> ENGRAVETILE corners -> `check_faces.py`) clears the cells a hand covers
+  (merge_engrave_spots.py EG_TILEFAIL). HZE_Place keeps the whole quad (size, tilt, mirror) on set cells; the bench stores
+  where the piece really lands. Steps: < > 0.25, << >> 1.5, ^ v 0.1 units.
+- HZE_MAX_USES 1024 -> 4096: a table with a use line per finish variant (1569) silently lost every gun past 1024.

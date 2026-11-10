@@ -94,9 +94,10 @@ def build():
     res("Label", "pvGun", (20, 38, 600, 231), link="cl_custModel", enable="cl_custHasGun",
         extra=["ordernumber 20", "modelxformcvar \"cl_custXfm\"", "rendermodel 1", "rendermodelfit 1",
                "modelfitaspect " + FIT_ASPECT, "modeloffset \"0 0 0\"", "modelrotateoffset \"0 0 0\"", "modelangles \"0 90 180\"",
-               "modelscale 1.00", "modelanim idle", "modelspincvar \"cl_custSpin\""])
+               "modelscale 1.00", "modelanim idle", "modelspincvar \"cl_custSpin\"",
+               "modeltiltcvar \"cl_custTilt\""])   # [benchfix] the drag tilts too (+-60, engine-clamped)
     text("pvNone", 30, 140, 580, "THIS GUN HAS NO ENGRAVING SPOT YET.", col=DIM, align="center", enable="cl_custNoGun")
-    text("pvHint", 26, 254, 400, "DRAG TO TURN THE GUN.", col=FAINT)
+    text("pvHint", 26, 254, 400, "DRAG TO TURN AND TILT THE GUN.", col=FAINT)
     button("zoom", 426, 249, 92, 16, "ZOOM", "hzmcust zoom")
     button("turn", 524, 249, 92, 16, "TURN OVER", "hzmcust turn")
 
@@ -128,9 +129,12 @@ def build():
         for k in range(len(OUT) - 4, len(OUT)):
             OUT[k] = OUT[k].replace("\n}\n", "\nenabledcvar \"cl_custItem%d\"\n}\n" % i)
     stepper("spot", 328, 324, 286, "SPOT", "cl_custSpotTxt", "spot -1", "spot 1")
-    text("moveCap", 328, 346, 60, "MOVE", col=DIM)
-    for j, (lab, cmd) in enumerate((("<", "move -0.1 0"), (">", "move 0.1 0"), ("^", "move 0 0.1"), ("v", "move 0 -0.1"))):
-        button("mv%d" % j, 390 + j * 18, 344, 16, 14, lab, "hzmcust " + cmd)
+    text("moveCap", 328, 346, 34, "MOVE", col=DIM)
+    # [benchfix] the face is the limit now, not a short range: a step of a quarter unit, a fast step of 1.5 to cross the gun,
+    # up / down in tenths (faces are short that way); the engine keeps the whole piece on usable face
+    for j, (lab, cmd) in enumerate((("<<", "move -1.5 0"), ("<", "move -0.25 0"), (">", "move 0.25 0"), (">>", "move 1.5 0"),
+                                    ("^", "move 0 0.1"), ("v", "move 0 -0.1"))):
+        button("mv%d" % j, 362 + j * 17, 344, 16, 14, lab, "hzmcust " + cmd)
     text("tiltCap", 470, 346, 30, "TILT", col=DIM)
     button("rotM", 502, 344, 16, 14, "-", "hzmcust rot -5")
     button("rotP", 520, 344, 16, 14, "+", "hzmcust rot 5")
