@@ -30,4 +30,34 @@ Record layout notes are in `flscene.py`; the .cdb flag word in `flcore.collision
 - 19-34u lips (Frontline steps over them) and 20-30u gaps (Frontline's narrower body) still snag: ramp pass exists
   (`flclear.ledge_ramps`, off: it let the walker onto wall tops), width pass not written.
 
+## Round 2 (2026-11-10 evening) - engine extensions, collision classes, set pieces
+
+**Engine (branch flpolish-eng off rel-1.10.38-engine; gated by worldspawn keys only converted maps carry):**
+- `6b9b3575` wide entity coordinates (`hzm_widecoords` -> serverinfo `sv_wideCoords`): the root cause of
+  bug-flp-jeepdraw is the +-8192 wrap of the 16-bit entity-origin wire field; MP/coop isolation check 22/22.
+- `362b483d` per-map step height (`hzm_stepsize` -> `sv_stepSize`; game Pmove, cgame prediction, actor Mmove).
+
+**Collision sources.** Every converted collision brush now names its source in its nodraw shader, so the walk audit
+splits invisible contacts by origin. On the routes the remainder is mostly Frontline's own smooth player-clip layer
+(material 3 + special bit): sheets 16-128u in front of facades and rubble that are the ONLY collision of what stands
+behind them, and boundaries closing side streets. The original player stopped at them too. Sheets with a wall that
+already collides behind them are dropped (`flskin.skins`, 180). Re-seating the rest onto the drawn surface was tried
+and removed (it opened escapes through one-sided facade cards or closed passages; bug log).
+
+| geoaudit (crouch flood) | v19 (shipped polish) | v23 |
+|---|---:|---:|
+| route blocks (original nav edges a crouching player cannot follow) | 146 | 85 |
+| path points unreachable | 17 | 17 |
+| void falls | 7 | 25 (7 clusters, new step-34 reach) |
+| invisible contacts on routes | 982 | 1190 (more reachable area at step 34) |
+| - of which Frontline player-clip sheets (m3s) | 419 | 664 |
+| - our edge-of-world clip | 132 | 8 |
+| visaudit steep see-through | 0 | 0 |
+
+**Set pieces / fidelity (script + converter, not yet seen in game):** the Panzer is placed again (it had been
+spawned as a rifleman since the team-byte rule) and drives Frontline's path 66 when its group wakes; the seven
+fighter passes, two bombs, two rockets and the U-boat play Frontline's own motion keys with stock models
+(`fl_levels.json set_pieces`); StayOnPath soldiers walk their named paths; death ambushers lie in a dead pose and rise
+when a player comes within 420u; the wounded MG gunner's line plays; the jeep starts at key 1 and its crew is bound.
+
 ## Audits (docs/tools/byoaudit) - re-run with the commands in its README
