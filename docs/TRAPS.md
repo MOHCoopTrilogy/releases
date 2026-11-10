@@ -471,17 +471,12 @@ either ships alone (bug-2149); a protocol-constant change ships exe + cgame + ga
 
 **Push nav is DIRECTED** (bug-2870/2871): fall links are one-way; after nav changes run `push_spawn_sweep.py` + `nav_sinks.py` (bug-2901). The mesh bakes at level spawn, BEFORE MP scripts seed spawns / clear debris: keep it reversible. **Coop helpers reachable from MP must test `level.coop_mpRun == 1` before `inCoopMode`** (bug-2968).
 
-**A bot feature that logs its DECISION proves nothing - log the ACT** (bugs 2875-2877): `CheckValidWeapon`
-re-drew the gun in the no-weapon frame of every grenade switch (no bot grenade ever flew); `TurnThink` stops
-turning inside 20 deg of target (exact aim needs `SetPrecise`); a bot's eye is the `usereyes_t` offset it
-sends (lean was cosmetic). Log the outcome (`nadeloose`, BOTPROBE `cov=`).
+**A bot feature that logs its DECISION proves nothing - log the ACT** (`nadeloose`, BOTPROBE `cov=`; bugs 2875-2877:
+no bot grenade ever flew; `TurnThink` stops inside 20 deg - exact aim needs `SetPrecise`).
 **A gate that trims a rescue's false positives trims true ones**: bug-2889's 60u/s wedge gate froze a bot at 50u/s
 (bug-2891). Re-soak the map behind the OLD behaviour.
-**Bots are tuned at a PACE - `sv_dmspeedmult`** (autoexec 0.6; engine default 1.1). v1.8.8-1.9.1 dropped autoexec
-(bug-2908), so every Push tune ran at 1.1 and regressed at 0.6: m4l2 stuck 14% vs 1-4%, all at the lift whose
-timing assumed 1.1 (bug-2912). Soak at the shipped pace - check SPEEDPROBE `dm=`. **A steering state machine must
-die with its bot**: the lift protocol outlived a death and steered the respawn straight at the lift across the
-map - reset on spawn, drop when far. `Q_clamp(a,b,c)` ASSIGNS into `a`: use `Q_clamp_float`/`Q_min(Q_max())`.
+**Bots are tuned at a PACE**: soak at the shipped `sv_dmspeedmult` 0.6 (SPEEDPROBE `dm=`; bug-2908/2912). **A steering
+state machine dies with its bot** (reset on spawn). `Q_clamp(a,b,c)` ASSIGNS into `a`: use `Q_clamp_float`/`Q_min(Q_max())`.
 **Under coop_sprint a CLEAR `BUTTON_RUN` is the SPRINT key** - "drop RUN to walk" made bots sprint across danger
 ground (bug-2920); the walk is `BUTTON_COOPWALK`. **BT grenades COOK** (`minlife` -> P_CHARGE_LIFE): the hold that
 throws farther also shortens the fuse, so charge-scaled lobs air-burst (~65%, bug-2925). A `CVAR_ROM` serverinfo
@@ -499,21 +494,11 @@ flag is written only by script `setcvar` (forced); a cfg `set` is refused - zero
 in the schema flags a reversal, so **edit the original entry** when you supersede a finding - bug-1473/1474
 were corrected in place on 2026-08-06 after being filed on the wrong files.
 
-- **A plan's STATUS HEADER is a record too, and it rots hardest.**
-  `_research/composure_and_ads_plan.md` still said "PLAN ONLY - nothing built" four days after Part A
-  shipped in v1.4.4, with the correction 500 lines down, and sent a session to re-fix a fixed defect
-  (bug-2089). **When a plan ships, edit its header and mark the superseded body in the same commit** -
-  the top of a file is what gets read.
-- **Wrong anchors are worse than no anchors.** `q_shared.h:1680` credits the `MAX_MODELS` 1024->2048
-  raise to **bug-866**; the actual work is **bug-892**, and a grep at a wrong path reads as "already
-  fixed". **28 bug ids cited in source comments have no buglog entry** - bug-237 (packer determinism,
-  `build.ps1:11-15`), bug-241 (never deploy under a running game) and bug-239 (the brace-counting
-  lesson) among them; **for those, the code comment IS the only record.** *(buglog tooling hazards: id formats,
-  append-never-rewrite - `docs/reference/buglog_maintenance.md`.)*
+- **A plan's STATUS HEADER rots hardest**: when a plan ships, edit its header in the same commit (bug-2089).
+- **Wrong anchors are worse than none** (bug-866 vs 892); 28 source-cited bug ids have no buglog entry - for
+  those (bug-237, 239, 241) the code comment IS the record. *(full text: archive/traps-pruned-2026-11-10.md)*
 - **⭐ Leave the correction at the site.** `maps/m1l1.scr:1683`, `coop_mod/loadoutpick.scr:436-440` and
   `q_shared.h:1690-1755` are self-documenting and all three survived a later session.
-- **When classifying REVERTED, separate "it broke" from "the user changed their mind"** - only the former
-  is a lesson; bug-787 reversed a design at the user's request.
 
 ---
 
@@ -581,8 +566,11 @@ marker or a census reads it as missing.
 *(h)* **A rubric gates only what it measures**: water/wet passed every sparkle/seam gate; users saw ruled
 cut-offs at object edges (a 1-tap height map traces outlines). 
 
-**Harness:** `ui_startdmmap` sets `cheats 0` (tele/face refused); a `map` restart to get cheats back lost the
-coop weather (bug-3174): move the camera by overlay script. **one frame = `wait 1; wait 1`** (bug-3314), **`cg_drawviewmodel 1` hides
+**Harness:** ⭐ **the server UN-MUTES test clients at spawn** (bug-10805): `player.scr` stufftexts
+`s_volume <coop_tinnitusBaseVol>` (0.9) per spawn, tinnitus/wound muffles fixed volumes. After autoexec, on the
+SERVER: `coop_tinnitusBaseVol 0`, `coop_tinnitusMuffle 0`, `coop_woundMuffleVol 0`; run `watch_audio=True`.
+**Cheats die three ways**: `ui_startdmmap` sets `cheats 0`; `map` does with `developer 0` (autoexec); EV_CHEAT
+(`testthread`) does unless the server has `thereisnomonkey 1`. A `map` restart for cheats lost the weather (bug-3174). **one frame = `wait 1; wait 1`** (bug-3314), **`cg_drawviewmodel 1` hides
 the arms**, **one frame keeps ONE `screenshot` name** (static fileName): give each shot its own frame (bug-3253). A client is in `status` before its Player exists (`Could not find entity *0`). **A test client boots SPECTATING**; `join_team` alone leaves it out: send `primarydmweapon rifle` (smg is BANNED) then `+attackprimary`. spectator is FINE for filming (origin/viewangles stepping works): the 'interior never renders' was a MIRRORED Y in the cine abs rig (angles_toleft(0)=-Y; negate pose y), bug-4154. Launch via `harness_window.py` (bug-3147). **A violation-planting self-test** writes only `zzselftest` names and
 anchors in the checker's comment-stripped view (bug-2579).
 **`god` is a no-op - the cheat is `dog`** (`god` = a NULL forwarder; bare `god` in rkeep/vcl/lt_ab did
