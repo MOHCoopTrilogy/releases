@@ -71,6 +71,9 @@ Filename: "{sys}\wscript.exe"; Parameters: """{app}\launch_coop.vbs"""; WorkingD
 [Code]
 var
   GogPage: TInputDirWizardPage;
+  { [v1.10.69] OPTIONAL "your own discs" page: nothing ticked by default, so Next-Next-Install never touches it }
+  ByoPage: TInputOptionWizardPage;
+  ByoFiles: TInputFileWizardPage;
 
 function DetectGogPath(): String;
 var
@@ -119,6 +122,48 @@ begin
   Detected := DetectGogPath();
   if Detected <> '' then
     GogPage.Values[0] := Detected;
+
+  { [v1.10.69] bring-your-own-disc. Only the image PATHS are remembered here (home\maintt\byo_images.txt); the
+    updater's first launch converts them hidden after the download (byo_convert.ps1 -Reconvert), on this PC only.
+    Skipping is the default and changes nothing. Later: Settings -> OWN DISCS in the game. }
+  ByoPage := CreateInputOptionPage(wpSelectDir,
+    'Your own discs (optional)',
+    'Own Medal of Honor: Frontline or European Assault? Add their missions.',
+    'If you own the Xbox (USA) disc of either game, MOH Coop Trilogy can convert one of its missions on this PC ' +
+    'into a co-op mission. Nothing from those games is downloaded or shipped: the conversion reads your own disc ' +
+    'image. Leave both unticked to skip - you can add them later in the game (Settings -> OWN DISCS).',
+    False, False);
+  ByoPage.Add('Medal of Honor: Frontline - SEALED ORDERS (St. Mathieu, 1944)');
+  ByoPage.Add('Medal of Honor: European Assault - THEIR DYING BREATH (Stalingrad, 1943)');
+  ByoFiles := CreateInputFilePage(ByoPage.ID,
+    'Your own discs (optional)',
+    'Where are your disc images?',
+    'Pick the disc image (.iso, or a .zip holding one). It is converted after the game download finishes.');
+  ByoFiles.Add('Medal of Honor: Frontline disc image:', 'Disc images (*.iso;*.xiso;*.zip)|*.iso;*.xiso;*.zip|All files|*.*', '.iso');
+  ByoFiles.Add('Medal of Honor: European Assault disc image:', 'Disc images (*.iso;*.xiso;*.zip)|*.iso;*.xiso;*.zip|All files|*.*', '.iso');
+end;
+
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+  Result := False;
+  if PageID = ByoFiles.ID then
+    Result := not (ByoPage.Values[0] or ByoPage.Values[1]);
+end;
+
+procedure SaveByoImages();
+var
+  L: String;
+begin
+  L := '';
+  if ByoPage.Values[0] and FileExists(ByoFiles.Values[0]) then
+    L := L + 'frontline|' + ByoFiles.Values[0] + #13#10;
+  if ByoPage.Values[1] and FileExists(ByoFiles.Values[1]) then
+    L := L + 'ea|' + ByoFiles.Values[1] + #13#10;
+  if L <> '' then
+  begin
+    ForceDirectories(ExpandConstant('{app}') + '\home\maintt');
+    SaveStringToFile(ExpandConstant('{app}') + '\home\maintt\byo_images.txt', L, False);
+  end;
 end;
 
 procedure CurPageChanged(CurPageID: Integer);
@@ -232,6 +277,7 @@ procedure CurStepChanged(CurStep: TSetupStep);
 begin
   if CurStep = ssPostInstall then
   begin
+    SaveByoImages();
     SaveStringToFile(ExpandConstant('{app}') + '\install_info.txt',
       'Version=' + '{#AppVer}' + #13#10 +
       'GogPath=' + GetGogPath('') + #13#10 +

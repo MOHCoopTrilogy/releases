@@ -1,0 +1,73 @@
+{
+ "1_11": {
+  "story": "RUS1 The Road to Stalingrad",
+  "sky": "textures/sky/mohday1",
+  "farplane": 9000,
+  "vis_radius": 0,
+  "farplane_color": "0.58 0.60 0.64",
+  "date": "1943-01-28",
+  "place": "Gorodishche, near Stalingrad, USSR",
+  "place_display": "Gorodishche, near Stalingrad, USSR",
+  "lat": 48.79,
+  "lon": 44.47,
+  "_place_source": "disc: RusMIntr.vp6 title card 'Stalingrad, USSR / January 28, 1943 / The Eastern Front'; approved by the user 2026-11-09",
+  "unit": "OSS, attached to Soviet partisans",
+  "text": [
+   "MO_COSuccess",
+   "MO_SignalAdd",
+   "MO_SignalComplete",
+   "MO_CommAdd",
+   "MO_CommTowerComplete",
+   "MO_PartisanAdd",
+   "MO_PartisanComplete",
+   "MO_TankAdd",
+   "MO_TankNext",
+   "MO_Tank_1of3_Destroyed",
+   "MO_TankComplete",
+   "MO_PrimaryAdd",
+   "MO_PrimaryComplete",
+   "MO_Place3_Charges",
+   "MO_EscapeAdd",
+   "MO_EscapeComplete",
+   "MO_BunkerAdd",
+   "MO_BunkerComplete",
+   "MO_RescueAdd",
+   "MO_RescueComplete"
+  ],
+  "objects": {
+   "start": "JA_SquadObjective_SQ01_PlayerStart_01",
+   "officer": "JA_SquadObjective_Allie_ICS_FollowMe_02",
+   "railgun": "SMA_RailGun6.sob",
+   "tower": [
+    "SMA_RadioTower5.sob",
+    "JA_Dispatcher_CommTower_Destroyed"
+   ],
+   "ammo": "XD_Rus1_ammo_dump.sob",
+   "bridge": "SMA_WoodBridge6.sob",
+   "partisans": "BR_MissionObjective_Secondary_PartisanLeader_03",
+   "panzer1": "BR_SquadDefinition_BAR_Secondary_Panzer1",
+   "panzer3": "BR_SquadDefinition_BAR_Secondary_Panzer3",
+   "panzers_obj": "BR_MissionObjective_Secondary_DestroyPanzers_02"
+  },
+  "_objects_doc": "names of placements in the disc's own object DB (eaents.py); eapack resolves them to positions on the player's PC. Identifiers only, no disc data.",
+  "music": {
+   "mpf": "mus_ctrl.mpf",
+   "mus": "mus_str.mus",
+   "segments": {
+    "ambient": 4,
+    "action": 5,
+    "action2": 15,
+    "end": 39
+   },
+   "_reasons": "chosen from the 54 EALayer3 segments by length and loudness: 4 = 80 s quietest long cue (exploration), 5/15 = ~39 s loudest long cues (combat), 39 = 28 s closing cue; indices only"
+  },
+  "title": "THEIR DYING BREATH",
+  "_title_source": "picked by the user 2026-11-09 from Holt's campaign-intro narration ('Those Russians would fight to their dying breath'); our title, not disc text",
+  "_unit_source": "disc: briefing ('I'm moving forward with a Russian outfit'), partisan leader ('any man willing to kill Germans is welcome among the Partisans'), OSS orders throughout",
+  "date_display": "January 28, 1943",
+  "time": "07:30",
+  "_time_status": "chosen, approved by the user 2026-11-09: 07:30 = first light (sunrise ~07:35 local Moscow time, the zone used in 1943); not on the disc",
+  "place_short": "Gorodishche, USSR",
+  "locsrc": "ours: the game says only 'Stalingrad, USSR'; Gorodishche chosen to fit the 28 Jan 1943 northern pocket (user decision 2026-11-09)"
+ }
+}
