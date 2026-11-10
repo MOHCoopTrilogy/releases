@@ -140,7 +140,7 @@ class Level:
     def collision(self):
         """Yield (cell, verts, tris[(a,b,c,f)]) from the .cdb chunks.
         .cdb v7: u32 7, size, nverts, vert_off, ntris, ?, ?, ?, 0, tri_off, ...
-        tri = {u32 v0,v1,v2 byte offsets; u32/f32 extra}."""
+        tri = {u32 v0,v1,v2 byte offsets; u32 flags}."""
         for name in sorted(k for k in self.comp if k.endswith(".cdb")):
             d = self.comp[name]
             h = struct.unpack_from("<13I", d, 0)
@@ -150,7 +150,9 @@ class Level:
             verts = [struct.unpack_from("<3f", d, voff + 12 * i) for i in range(nv)]
             tris = []
             for i in range(nt):
-                a, b, c, f = struct.unpack_from("<3If", d, toff + 16 * i)
+                # 4th word = the triangle's flag word (decoded 2026-11-10, flconvert.COLL_*): low 11 bits = surface
+                # material, bit 22 = volume (non-solid), bit 23 = special surface
+                a, b, c, f = struct.unpack_from("<4I", d, toff + 16 * i)
                 ia, ib, ic = ((t - voff) // 12 for t in (a, b, c))
                 if 0 <= min(ia, ib, ic) and max(ia, ib, ic) < nv:
                     tris.append((ia, ib, ic, f))

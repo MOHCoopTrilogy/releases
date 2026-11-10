@@ -373,6 +373,19 @@
   "card_title": "SEALED ORDERS",
   "card_unit": "Office of Strategic Services",
   "card_when": "August 17, 1944 - 0900 hrs",
-  "card_place": "St. Mathieu, France"
+  "card_place": "St. Mathieu, France",
+  "motions": {
+   "jeep": "jeep_body_1_1.mvd",
+   "wheel_fl": "Vhcl_Jp_Tr_FrntL_1_1.mvd",
+   "wheel_fr": "Vhcl_Jp_Tr_FrntR_1_1.mvd",
+   "wheel_rl": "Vhcl_Jp_Tr_RrL_1_1.mvd",
+   "wheel_rr": "Vhcl_Jp_Tr_RrR_1_1.mvd"
+  },
+  "_motions": "[flpolish] set-piece motion paths the mission script plays by origin-stepping (flscene.path_lines): the jeep's run down the road into the mine and its four wheels flying off - Frontline's own .mvd keys, sampled every motion_step frames at 30 fps",
+  "motion_step": 3,
+  "motion_first": {
+   "jeep": 20
+  },
+  "_motion_first": "[flpolish] first key the scene plays from. Started at any key before 20 (x > 8192, behind the farm gate) the moving jeep was never drawn for the whole run, from any vantage, with alwaysdraw and r_novis (captures 2026-11-10, cause not found - engine follow-up bug-flp-jeepdraw); from key 20 it drives on screen. Keys 1-19 run behind the gate where no player can see them."
  }
 }

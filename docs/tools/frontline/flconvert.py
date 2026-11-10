@@ -27,8 +27,24 @@ import flbsp   # noqa: E402
 import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
+import flclear  # noqa: E402
+import flfit  # noqa: E402
+import flcliff  # noqa: E402
 
-CONVERTER_VERSION = "0.2.1"
+CONVERTER_VERSION = "0.3.0"
+
+# Frontline .cdb collision flag word (flcore.collision, decoded 2026-11-10 against the level's own AI nav graph):
+#   bits 0-10 surface material, bit 23 special surface, bit 22 VOLUME. Material 14 + bit 22 = 450u-tall boxes standing
+#   on trigger spots (the crawl hole into the town, the interrogation room): the original's AI navpoint links run
+#   straight through them, so they never blocked a character. Converted as solid they were the invisible walls of the
+#   user's playtest ("a lot of invisible walls everywhere, blocking progression"). Material 15 + bit 22 is the
+#   river's surface and stays.
+COLL_VOLUME = 1 << 22
+COLL_MAT_VOLUME = (14,)
+
+
+def coll_is_volume(f):
+    return bool(f & COLL_VOLUME) and (f & 0x7FF) in COLL_MAT_VOLUME
 MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
@@ -136,6 +152,19 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     return False
         return False
 
+    # share of each texture's triangles that are NOT vertical (foliage cards vs wall decals)
+    _tf = {}
+    for m in meshes:
+        if not m["tex"]:
+            continue
+        for a, b, c in m["tris"]:
+            n = face_normal(m["verts"][a], m["verts"][b], m["verts"][c])
+            if n is None:
+                continue
+            t_ = _tf.setdefault(m["tex"], [0, 0])
+            t_[0] += 1
+            t_[1] += abs(n[2]) >= 0.3
+    tex_flat = {k: v[1] / v[0] for k, v in _tf.items() if v[0]}
     # textures whose meshes carry real vertex alpha (Frontline's water: 203)
     vtx_alpha = {m["tex"] for m in meshes if m["tex"] and m["tris"] and min(c[3] for c in m["cols"]) < 250}
     _lv = sorted(c[0] + c[1] + c[2] for m in meshes for c in m["cols"] if not (c[0] == c[1] == c[2] == 255))
@@ -172,7 +201,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if key is None:
             name = tdir + "untextured"
             if name not in files:
-                files[name + ".tga"] = tga_bytes(4, 4, bytes((40, 70, 90, 255)) * 16)
+                # [flpolish] white: Frontline draws these untextured (1974 tris on 1_1) in their vertex colour alone;
+                # the old blue-grey (40,70,90) stand-in tinted every one of them
+                files[name + ".tga"] = tga_bytes(4, 4, bytes((255, 255, 255, 255)) * 16)
                 shader_lines.append(f"{name}\n{{\n\tsurfaceparm nolightmap\n\tcull none\n\t{{\n\t\tmap {name}.tga\n\t\trgbGen vertex\n\t}}\n}}\n")
             tex_names[key] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
             return tex_names[key]
@@ -210,7 +241,16 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             return tex_names[key]
         has_alpha = any(a < 250 for a in rgba[3::4])
         n_px = max(1, len(rgba) // 4)
-        soft = sum(1 for a in rgba[3::4] if 0 < a < 250) / n_px > 0.10
+        part = sum(1 for a in rgba[3::4] if 0 < a < 250) / n_px
+        soft = part > 0.10
+        # [flpolish] FOLIAGE is cut out, not blended: the tree canopies near the drop (1e1a80 flat cards, 1e5c00 tilted
+        # cards) have antialiased leaf edges (10-17% partial alpha) and were drawn as blended surfaces - no depth write,
+        # unsorted, so the leaves behind showed through the leaves in front: the user's "tree billboards near the
+        # beginning are broken: open or see-through". A mostly-clear texture (>= 40% fully transparent) with few soft
+        # pixels (< 25%) used mainly on non-vertical cards is foliage -> alpha test with depth write.
+        if soft and part < 0.25 and sum(1 for a in rgba[3::4] if a == 0) / n_px >= 0.40 and tex_flat.get(key, 0) >= 0.5:
+            soft = False
+            stats["foliage_cutout"] = stats.get("foliage_cutout", 0) + 1
         if key in vtx_alpha or soft:
             # translucent: Frontline's water carries its opacity in the vertex alpha (203); soft-edged decals
             # (grass fringes along hedges) carry it in the texture - alpha-TEST turned their pale fringe opaque
@@ -397,7 +437,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     # seam bridges: close Frontline's hairline floor gaps that would show the sky (flseam.py has the rules)
     # collision grid: seam bridges only close gaps in WALKABLE floors; flpack places actors with it
-    grid = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
+    grid = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts
+                          if not coll_is_volume(_f)])
     if not os.environ.get("FL_NO_SEAMS"):
         draws = [(key[0], verts, tris) for key in sorted(batches) for verts, tris in batches[key]]
         def on_floor(x, y, z):
@@ -448,16 +489,81 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     clip = B.shader("textures/common/fl_collision", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
     nb = rejected = 0
+    wound = []
+    wtags = []
+    volumes = 0
     for name, vs, ts in coll:
         if os.environ.get("FL_COLL_ONLY") and os.environ["FL_COLL_ONLY"] not in name:
             continue
         P = [X(v) for v in vs]
-        for a, b, c, _f in ts:
+        for a, b, c, f in ts:
+            if coll_is_volume(f):
+                volumes += 1
+                continue
             a2, b2, c2 = wind(a, b, c, flip_coll)
-            if B.add_prism(clip, P[a2], P[b2], P[c2], thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
-                rejected += 1
-            else:
-                nb += 1
+            wound.append((P[a2], P[b2], P[c2]))
+            wtags.append(f)
+    stats["coll_volumes_dropped"] = volumes
+    # invisible blocker columns (trees, posts) shrunk to what is drawn inside them (flfit.py)
+    colboxes = []
+    rtris = [(X(m["verts"][a]), X(m["verts"][b]), X(m["verts"][c])) for m in meshes if m["tris"]
+             and (m["cell"], m["draw"]) not in hidden for a, b, c in m["tris"]]
+    if not os.environ.get("FL_NO_FIT"):
+        # the floor under a column, measured WITHOUT the special-surface boxes themselves (their inner faces read as
+        # floors and floated the fitted box ~50u up: a crawl-height slab under the tree)
+        g_nm = flgeom.TriGrid([t for t, f in zip(wound, wtags) if (f & 0x7FF) != flfit.MAT_SPECIAL])
+        wound, wtags, colboxes, stats["columns"] = flfit.fit_columns(
+            wound, wtags, rtris, lambda x, y, zt, zb: g_nm.ground(x, y, zt - 4, zb))
+    # headroom: crawl holes / doorways sized for Frontline's smaller player get MOHAA crouch / stand clearance
+    # (flclear.py; collision only, the drawn walls are untouched)
+    caps = []
+    if not os.environ.get("FL_NO_CLEAR"):
+        wound, caps, hr = flclear.normalise(wound, flpack.spec(level).get("headroom"), wtags, rtris)
+        wtags = hr.pop("tags")
+        stats["headroom"] = hr
+    # lips 19-34u high get walkable clip ramps (flclear.ledge_ramps): Frontline steps over them, MOHAA (18) did not
+    # OFF by default (fl_levels.json "ramps": true opts in): measured on 1_1 they let the walk audit climb onto wall tops
+    # and out of the world (void falls 7 -> 239) while removing 5 of 146 route blocks
+    if flpack.spec(level).get("ramps") and not os.environ.get("FL_NO_RAMPS"):
+        rp, stats["ramps"] = flclear.ledge_ramps(wound, flpack.spec(level).get("headroom"))
+        wound += rp
+        wtags += [0] * len(rp)
+    # the edges of the world: a clip wall wherever a walkable floor ends over nothing (flcliff.py)
+    if not os.environ.get("FL_NO_CLIFF"):
+        cw, stats["cliffs"] = flcliff.walls(wound, grid)
+        wound += cw
+        wtags += [0] * len(cw)
+    for a2, b2, c2 in wound:
+        if B.add_prism(clip, a2, b2, c2, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
+            rejected += 1
+        else:
+            nb += 1
+    for lo_, hi_ in caps + colboxes:
+        B.add_brush_planes(clip, [], lo_, hi_)
+        nb += 1
+    if os.environ.get("FL_DEBUGCOLL"):
+        # QA aid (never shipped): draw every collision triangle, tinted by its Frontline material, so screenshots show
+        # where collision is and what kind it is (red = material 3 / special, cyan = caps excluded)
+        pal = {3: (255, 40, 40), 13: (255, 255, 0), 15: (0, 120, 255), 2047: (255, 140, 0)}
+        dbg = {}
+        for t, f in zip(wound, wtags):
+            m = f & 0x7FF
+            col = pal.get(m, (60, 255, 60))
+            nm = tdir + "dbgcoll_%d" % m
+            if nm not in tex_names:
+                files[nm + ".tga"] = tga_bytes(4, 4, bytes(col + (255,)) * 16)
+                shader_lines.append(nm + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm trans\n\tcull none\n\t{\n\t\tmap " + nm
+                                    + ".tga\n\t\tblendFunc add\n\t\trgbGen identity\n\t}\n}\n")
+                tex_names[nm] = B.shader(nm, flbsp.SURF_NOLIGHTMAP, 0)
+            key_ = (tex_names[nm], int(t[0][0] // MERGE_CELL), int(t[0][1] // MERGE_CELL))
+            bk = dbg.setdefault(key_, [])
+            if len(bk) >= 1998:
+                B.add_soup(key_[0], list(bk), list(range(len(bk))))
+                bk.clear()
+            bk.extend((p, (0.0, 0.0), (0.0, 0.0, 1.0), (255, 255, 255, 255)) for p in t)
+        for key_, bk in sorted(dbg.items()):
+            if bk:
+                B.add_soup(key_[0], list(bk), list(range(len(bk))))
 
     # ---- entities ----
     ents = L.entities()
@@ -492,7 +598,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             B.entity([("classname", "info_player_axis"), ("origin", f"{q[0]:.0f} {q[1]:.0f} {q[2] + 40:.0f}"), ("angle", f"{yaw:.0f}")])
 
     import flvis
-    B.vis_occluders = flvis.occluders([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
+    B.vis_occluders = flvis.occluders([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts
+                                       if not coll_is_volume(_f)])
     bsp_path = out_pk3 + ".bsp.tmp"
     info = B.write(bsp_path)
     with open(bsp_path, "rb") as f:
