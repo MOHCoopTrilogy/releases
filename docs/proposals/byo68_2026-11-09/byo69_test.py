@@ -61,7 +61,7 @@ def launch(present, tail, steps):
     for fn in os.listdir(mt):
         if fn.lower().endswith(".pid") or fn in ("qconsole.log", "byo_status.txt"):
             os.remove(os.path.join(mt, fn))
-    on = ["set sv_maxbots 0", "set com_maxfps 60", "set coop_dev 1", "set coop_joinCard 0", "set thereisnomonkey 1", "set cheats 1",
+    on = ["set rconPassword byo69t", "set sv_maxbots 0", "set com_maxfps 60", "set coop_dev 1", "set coop_joinCard 0", "set thereisnomonkey 1", "set cheats 1",
           "set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set in_gamepad 0", "set in_joystick 0", "set in_mouse 0",
           "set in_nograb 1", "set con_notifytime -1"]
     for key, tag, cmds in steps:
@@ -171,73 +171,76 @@ def case_sp(present, out, res):
         guard_check(c)
 
 
-def case_coop(present, out, res):
-    """coop FULL campaign: m4l3's end -> (present) Frontline's briefing / (absent) AA 5's; coop_fl_1_1's end -> AA 5's briefing"""
-    st = [("F5", "join", ["popmenu 0", "primarydmweapon rifle", "join_team allies", "popmenu 0"]),
-          ("F6", "endm4l3", ["testthread maps/byotest.scr end_m4l3"]),
-          ("F7", "endbyo", ["testthread maps/byotest.scr end_byo"])]
-    tail = ["+set", "g_gametype", "2", "+set", "ui_dmmap", "m4l3", "+exec", "coop_mod/start_server.cfg", "+set", "coop_campaign", "1"]
-    c = launch(present, tail, st)
+RCONPW = "byo69t"
+
+
+def rcon(cmd):
+    import socket
+    sk = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sk.sendto(b"\xff\xff\xff\xff\x02rcon " + RCONPW.encode() + b" " + cmd.encode(), ("127.0.0.1", PORT))
+    sk.close()
+
+
+def walk(present, out, res, chrono, stop):
+    """the campaign test walk (coop_mod/chrono.scr::chronoMapStart, coop_chronoTest 1): from m4l3, end each level the way the
+    game does (rcon coop_chronoTestEnd 1) and record every map the campaign loads, until `stop`"""
+    # the production recipe (coop_mod/cfg/chrono_start.cfg): the campaign cvars are set AFTER start_server.cfg inside one cfg - a
+    # "+set" after "+exec start_server.cfg" on the command line lands after ui_startdmmap has already spawned the map
+    open(os.path.join(home(present), "maintt", "byo_walk.cfg"), "w", newline="\n").write("\n".join(
+        ["set ui_dmmap m4l3", "exec coop_mod/start_server.cfg", "set coop_campaign 1", "set coop_chronoTest 1",
+         "set coop_campaignChrono %d" % (1 if chrono else 0), 'set coop_campaignNext ""']) + "\n")
+    tail = ["+set", "g_gametype", "2", "+exec", "byo_walk.cfg"]
+    seq = []
+    c = launch(present, tail, [("F12", "rconpw", ["set rconPassword %s" % RCONPW])])
     with c:
-        res["m4l3_loaded"] = wait_for(present, r"Spawning Entities Done", 300)
-        time.sleep(12)
-        press(c, present, "F5", "join", settle=6)
-        n = len(read(present))
-        res["m4l3_end"] = press(c, present, "F6", "endm4l3", settle=1)
-        res["byoAll"] = (re.findall(r"BYOTEST end_m4l3 gametype=\d+ byoAll=\[([^\]]*)\]", read(present)[n:]) or [None])[-1]
-        res["to"] = None
-        for _ in range(120):
-            mm = re.findall(r"CM_LoadMap\( maps/(\S+)\.bsp, 0 \)", read(present)[n:])
-            if mm:
-                res["to"] = mm[0]
+        n = 0
+        while True:
+            t = time.time()
+            got = None
+            while time.time() - t < 300 and got is None:
+                mm = re.findall(r"CHRONO_MAP (\S+)", read(present)[n:])
+                if mm:
+                    got = mm[0]
+                    n = read(present).index("CHRONO_MAP " + got, n) + 5
+                time.sleep(1)
+                guard_check(c)
+                if TRIPPED:
+                    return seq
+            if got is None:
+                res["stalled_after"] = seq[-1] if seq else None
                 break
-            time.sleep(1)
-        want = "briefing/briefingfl1" if present else "briefing/briefing5"
-        res["to_ok"] = res["to"] == want
-        time.sleep(15)
-        shot(c, out, "coop_after_m4l3_" + ("present" if present else "absent"))
-        guard_check(c)
-        if present and not TRIPPED:
-            # straight into the own-disc level, then its end
-            n = len(read(present))
-            open(os.path.join(home(present), "maintt", "byo_go.cfg"), "w", newline="\n").write(
-                "echo BYOT_go\nset ui_dmmap coop_fl_1_1\nexec coop_mod/start_server.cfg\nset coop_campaign 1\n")
-            c.post_key(FK["F8"]) if False else None
-    if present and not TRIPPED:
-        tail = ["+set", "g_gametype", "2", "+set", "ui_dmmap", "coop_fl_1_1", "+exec", "coop_mod/start_server.cfg", "+set", "coop_campaign", "1"]
-        c = launch(present, tail, st)
-        with c:
-            res["fl_loaded"] = wait_for(present, r"Spawning Entities Done", 300)
-            time.sleep(12)
-            press(c, present, "F5", "join", settle=6)
-            n = len(read(present))
-            res["fl_end"] = press(c, present, "F7", "endbyo", settle=1)
-            res["fl_next"] = (re.findall(r"BYOTEST coop next (\S*)", read(present)[n:]) or [None])[-1]
-            res["fl_next_ok"] = res["fl_next"] == "briefing/briefing5"
-            time.sleep(10)
-            guard_check(c)
+            seq.append(got)
+            if got == stop or len(seq) > 8:
+                break
+            time.sleep(8)
+            for _ in range(4):                        # resend only when the level never took it (40 s): a second set lands on the NEXT map
+                rcon("set coop_chronoTestEnd 1")
+                if wait_for(present, "CHRONO_TESTEND " + re.escape(got), 40, n):
+                    break
+        log = read(present)
+        res["handoffs"] = re.findall(r"(?:CHRONO_NEXT|BYO_NEXT) (\S+ -> \S+)", log)
+        res["saves"] = re.findall(r"CHRONO_SAVE (\S*)", log)
+        res["resolves"] = re.findall(r"BYO_RESOLVE (\S+ -> \S+)", log)
+        shot(c, out, "walk_end")
+    res["maps"] = seq
+    return seq
+
+
+def case_coop(present, out, res):
+    """coop FULL campaign: m4l3 -> (present) briefingfl1 -> lobby -> coop_fl_1_1 -> briefing5 / (absent) m4l3 -> briefing5"""
+    seq = walk(present, out, res, False, "briefing/briefing5")
+    want = ["m4l3", "briefing/briefingfl1", "co_lobby1", "coop_fl_1_1", "briefing/briefing5"] if present else ["m4l3", "briefing/briefing5"]
+    res["ok"] = seq == want
 
 
 def case_chrono(present, out, res):
-    """coop CHRONOLOGICAL: m4l3's end -> Frontline's briefing (saved for CONTINUE); keep chrono.dat for continue_absent"""
-    st = [("F5", "join", ["popmenu 0", "primarydmweapon rifle", "join_team allies", "popmenu 0"]),
-          ("F6", "endm4l3", ["testthread maps/byotest.scr end_m4l3"])]
-    tail = ["+set", "g_gametype", "2", "+set", "ui_dmmap", "m4l3", "+exec", "coop_mod/start_server.cfg", "+set", "coop_campaign", "1",
-            "+set", "coop_campaignChrono", "1"]
+    """coop CHRONOLOGICAL: the same walk; chrono.dat is kept once the squad is in coop_fl_1_1 (for continue_absent)"""
     sv = os.path.join(home(present), "maintt", "coop_mod", "save", "chrono.dat")
     if os.path.exists(sv):
         os.remove(sv)
-    c = launch(present, tail, st)
-    with c:
-        res["m4l3_loaded"] = wait_for(present, r"Spawning Entities Done", 300)
-        time.sleep(12)
-        press(c, present, "F5", "join", settle=6)
-        n = len(read(present))
-        res["m4l3_end"] = press(c, present, "F6", "endm4l3", settle=1)
-        res["chrono_next"] = wait_for(present, r"CHRONO_NEXT m4l3 -> briefing/briefingfl1", 60, n)
-        res["chrono_save"] = (re.findall(r"CHRONO_SAVE (\S+)", read(present)[n:]) or [None])[-1]
-        time.sleep(20)
-        guard_check(c)
+    seq = walk(present, out, res, True, "coop_fl_1_1" if present else "briefing/briefing5")
+    want = ["m4l3", "briefing/briefingfl1", "co_lobby1", "coop_fl_1_1"] if present else ["m4l3", "briefing/briefing5"]
+    res["ok"] = seq == want
     if os.path.exists(sv):
         res["chrono_dat"] = open(sv, encoding="latin-1").read().strip()
         shutil.copyfile(sv, os.path.join(out, "chrono.dat"))
@@ -255,7 +258,7 @@ def case_continue_absent(out, res):
         res["lobby"] = wait_for(False, r"CHRONO_LOBBY", 300)
         res["resolve"] = (re.findall(r"BYO_RESOLVE (\S+ -> \S+)", read(False)) or [None])[-1]
         res["resume"] = (re.findall(r"CHRONO_RESUME (\S+)", read(False)) or [None])[-1]
-        res["ok"] = res["resume"] == "briefing/briefing5"
+        res["ok"] = res["resolve"] is not None and res["resume"] == "briefing/briefing5"
         time.sleep(10)
         shot(c, out, "continue_absent_lobby")
         guard_check(c)
