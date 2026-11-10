@@ -83,7 +83,13 @@ obstacles the 8u test does not see; the 2 remaining void falls are one spot on t
 
 ## Score (1 player)
 
-Counted from the tables above: **Matched 16 - Deviated 7 - Missing 3** (of 26 rows; several M rows carry a minor D noted in the row).
-Verified in a headless self-test walk (dedicated server + one private client): the objectives came up and completed in the original's order
-up to the church (railgun, Panzers after all 3 tanks died, ammo dump, comm tower); the church defence waits for kills the walk did not make (fixed
-in the self-test since, not re-run). Not yet verified on screen: trigger box sizes, squad moves (E4), the partisan go-back chain.
+Counted from the tables above: **Matched 16 - Deviated 9 - Missing 1** (of 26 rows; S7 ambient effects packages is
+the one X; several M rows carry a minor D noted in the row).
+
+Verified headless (dedicated server + one private client, self-test walk, converter 0.4.0, 2026-11-10 17:39-17:47):
+all 6 objectives in the original's order - partisans, railgun (3 charges -> counter -> timer -> destruction), the
+3 Panzers (objective only after all three died), comm tower, ammo dump, church (counter-attack, PA lines, waves
+counted to the original's end counter) - then the original's EndLevel gag and the mission end; 0 Script Errors;
+0 of 104 deferred spawns in a player's view. On screen (stills, local): the converted railgun, tower, ammo dump,
+bridge, gates and tombstones in place; the Panzers firing (muzzle smoke, impact) at the player. Not verified on screen
+yet: trigger box sizes, the radio tower's blue-tinted top.
