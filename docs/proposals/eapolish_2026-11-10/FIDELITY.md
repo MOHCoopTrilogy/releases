@@ -72,4 +72,7 @@ missing meshes; they need a look on screen before a converter rule is written (s
 
 ## Score (1 player)
 
-Counted from the tables above: **Matched 17 - Deviated 13 - Missing 5** (of 35).
+Counted from the tables above: **Matched 16 - Deviated 7 - Missing 3** (of 26 rows; several M rows carry a minor D noted in the row).
+Verified in a headless self-test walk (dedicated server + one private client): the objectives came up and completed in the original's order
+up to the church (railgun, Panzers after all 3 tanks died, ammo dump, comm tower); the church defence waits for kills the walk did not make (fixed
+in the self-test since, not re-run). Not yet verified on screen: trigger box sizes, squad moves (E4), the partisan go-back chain.
