@@ -20,6 +20,22 @@ MAG_PARTS = {4, 5, 6, 7}
 HANDLE_PARTS = {37}
 LEG_PARTS = {18, 20}
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(L.BUILD, 'ship')
+# [newguns 2026-11-09 c] SIGHTS FURTHER LEFT: the ghost ring (+ sight arm) and the front blade (+ bracket) move SIGHT_DY gun
+# units left (gun frame +y = right, +z = down), eased to zero between SIGHT_Z0 and SIGHT_Z1 so the brackets stay on the receiver /
+# barrel top. ADS showed the top magazine standing right above the aperture with the line only 1.24 u left of its centre.
+SIGHT_DY = -0.70   # (ng12-16: the dark block at the eye was the source rear-sight housing on the ring line, fixed by the virtual rear row)
+SIGHT_BOXES = [(-10.2, -8.3), (34.0, 36.6)]          # gun-frame x ranges: rear ring, front blade
+SIGHT_Z0, SIGHT_Z1 = -3.6, -4.2                       # above the receiver / barrel top (up = -z)
+
+
+def sight_shift(g):
+    g = np.array(g, float)
+    inx = np.zeros(len(g), bool)
+    for x0, x1 in SIGHT_BOXES:
+        inx |= (g[:, 0] > x0) & (g[:, 0] < x1)
+    w = np.clip((SIGHT_Z0 - g[:, 2]) / (SIGHT_Z0 - SIGHT_Z1), 0.0, 1.0) * inx
+    g[:, 1] += SIGHT_DY * w
+    return g
 
 
 def rot_to(a, b):
@@ -58,7 +74,7 @@ def corners(A, bone, M):
     out = []
     Minv = np.linalg.inv(M[:3])
     for tri in A:
-        g = L.to_gun(tri[:, :3]); gn = L.nrm_gun(tri[:, 3:6])
+        g = sight_shift(L.to_gun(tri[:, :3])); gn = L.nrm_gun(tri[:, 3:6])
         p = to_local(g, M)
         n = gn @ Minv; n = n / np.linalg.norm(n, axis=1, keepdims=True)
         uv = tri[:, 6:8].astype(float)
@@ -96,6 +112,7 @@ def main():
     open(os.path.join(od, 'coop_bren.skd'), 'wb').write(skd)
     G = np.concatenate([L.to_gun(A[:, :, :3])]).reshape(-1, 3)
     F, Rr = L.sight_row()
+    F, Rr = F + np.array([0.0, SIGHT_DY, 0.0]), Rr + np.array([0.0, SIGHT_DY, 0.0])   # both points sit in the moved parts
     meta = dict(F=F.tolist(), R=Rr.tolist(), surfaces=[s[0] for s in surfs], gun_min=G.min(0).tolist(), gun_max=G.max(0).tolist(), S=L.S, T=L.T.tolist())
     json.dump(meta, open(os.path.join(L.BUILD, 'coop_bren.json'), 'w'), indent=1)
     print('skd %d bytes, %d surfaces, %d verts, %d tris; gun x %.2f..%.2f' % (len(skd), len(surfs), sum(len(s[2]) for s in surfs),

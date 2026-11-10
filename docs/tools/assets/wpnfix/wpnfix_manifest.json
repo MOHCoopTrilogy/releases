@@ -2,6 +2,27 @@
   "credits/coop_cc_models.txt": {
     "new": true
   },
+  "models/human/animation/viewmodel/coop_bergmann/coop_mp28_ads_mag.skc": {
+    "new": true
+  },
+  "models/human/animation/viewmodel/coop_bergmann/coop_mp28_reload_empty_hip.skc": {
+    "new": true
+  },
+  "models/human/animation/viewmodel/coop_bergmann/coop_mp28_reload_empty_hip_m.skc": {
+    "new": true
+  },
+  "models/human/animation/viewmodel/coop_bergmann/coop_mp28_reload_empty_hip_s.skc": {
+    "new": true
+  },
+  "models/human/animation/viewmodel/coop_bergmann/coop_mp28_reload_hip.skc": {
+    "new": true
+  },
+  "models/human/animation/viewmodel/coop_bergmann/coop_mp28_reload_hip_m.skc": {
+    "new": true
+  },
+  "models/human/animation/viewmodel/coop_bergmann/coop_mp28_reload_hip_s.skc": {
+    "new": true
+  },
   "models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps.skc": {
     "new": true
   },
@@ -34,6 +55,10 @@
   "models/player/base/fps_anims_mg.txt": {
     "base": "zzzzzzzzzzzzz_coop_stress.pk3",
     "base_md5": "39cdfad4f5dcb76cc75f9bcf0ce0aa7e"
+  },
+  "models/player/base/fps_anims_smg.txt": {
+    "base": "zzzzzzzzzzzzz_coop_stress.pk3",
+    "base_md5": "567643f2cc82e368a1de061f90bf27f1"
   },
   "models/projectiles/coop_panzerfaust/coop_pzfhead.skd": {
     "new": true

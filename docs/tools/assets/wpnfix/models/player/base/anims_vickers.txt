@@ -51,6 +51,8 @@ animations
 			first 	reloadweapon															
 			first	attachmodel models/weapons/coop_bren_clip.tik tag_weapon_right		
 			last	removeattachedmodel tag_weapon_right 0 models/weapons/coop_bren_clip.tik
+			exit	removeattachedmodel tag_weapon_right 0 models/weapons/coop_bren_clip.tik	// [newguns] also when the reload is cut short
+			exit	weaponcommand mainhand attachtohand mainhand
 			85	weaponcommand mainhand clip_fill					
 			last	weaponcommand mainhand attachtohand mainhand	
 		}
@@ -63,6 +65,8 @@ animations
 			first 	reloadweapon															
 			first	attachmodel models/weapons/coop_bren_clip.tik tag_weapon_right		
 			last	removeattachedmodel tag_weapon_right 0 models/weapons/coop_bren_clip.tik
+			exit	removeattachedmodel tag_weapon_right 0 models/weapons/coop_bren_clip.tik	// [newguns] also when the reload is cut short
+			exit	weaponcommand mainhand attachtohand mainhand
 			68	weaponcommand mainhand clip_fill					
 			last	weaponcommand mainhand attachtohand mainhand	
 		}
@@ -75,6 +79,8 @@ animations
 			first 	reloadweapon															
 			first	attachmodel models/weapons/coop_bren_clip.tik tag_weapon_right		
 			last	removeattachedmodel tag_weapon_right 0 models/weapons/coop_bren_clip.tik
+			exit	removeattachedmodel tag_weapon_right 0 models/weapons/coop_bren_clip.tik	// [newguns] also when the reload is cut short
+			exit	weaponcommand mainhand attachtohand mainhand
 			80	weaponcommand mainhand clip_fill					
 			last	weaponcommand mainhand attachtohand mainhand	
 		}

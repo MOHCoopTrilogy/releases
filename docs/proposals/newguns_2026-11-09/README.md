@@ -118,3 +118,26 @@ Test runner: run_gun.py (Armory route, overlay = every mod file changed since ho
   gen_weapon_viewer build, gen_skinbase). Engine: merge newguns-eng (cgame/game unchanged since 8f10e4a2).
 - Open: MP Armory rows (mpid 34, bug-10673); Armory hero framing (armory_fit) not run; the MP 28's ADS shows the Sten's support
   sleeve over the left third of the view (Sten parity).
+
+## Status 2026-11-09 ~18:50 (coordinator QA pass: Bren reload / Bren ADS / MP 28 aim + reload / third person)
+- **Bren reload** (tools/bren_reload2.py, keys bren_reload2_keys.json): on top of the magazine retarget, the GUN is re-posed for the
+  whole reload (rigid transform about the left hand: pitch 15 down, roll 35 about the bore, 2 back, 1 right; eased in over the first
+  ~12 frames and out at the end) and BOTH hands ride with it, arms re-solved by IK. The work (pull, pouch, insert) now happens low
+  and right; the VB's arm that swept at the eye is gone. Offline coverage (engine rig, 21:9, hip fov): right hand <= 3.2 %, right
+  sleeve <= 9.1 % of the screen on every frame (gate 15 %). Clip check: 0 vertices nearer than the weapon near plane on all three
+  clips, nearest gun vertex 1.08 u (r_weaponznear 0.6).
+- **Bren ADS**: the ADS picture was a dark block over the lower half whenever the gun had not just fired (ng11-ng16). Cause: the
+  sight row put the eye on the ghost-ring line, 4 u behind the ring, which is INSIDE the source mesh's rear-sight housing.
+  Fix (engine row, the Sten "virtual rear" precedent): rear point 0.6 u above the ring centre. Plus the sights moved 0.7 u
+  further left of the magazine (build_bren.py SIGHT_DY, rows y -1.942 / -1.939): the magazine edge now starts ~110 px right of
+  the blade at 3440 (was ~40). media/final/bren_ads_zoom_ng18.jpg.
+- **Bren torso reloads**: `exit` commands remove the magazine prop and give the gun back to the main hand when a reload is cut
+  short (anims_vickers.txt; a cut reload skipped `last`).
+- **MP 28** (tools/mp28_ads.py, mp28_reload.py): its own aim pose `coopr_mp28_charge` (left hand under the magazine housing,
+  elbow down: left sleeve 13.3 % -> 1.1 % of the screen) and its own hip reloads `coopr_mp28_reload[_empty]`,
+  `cv_mp28_reload[_empty]_s/_m` (the gun held 70 % toward a steady reference pose and 18 deg lower instead of swinging up at the
+  eye); aimed reloads keep the Sten's clips under `coopr_mp28_reload*_ads` / `cv_mp28_*_ads`. Adopted fps_anims_smg.txt (wpnfix).
+- **Third person**: stills with cg_cameradist 22 / cg_camerasideoffset 58 / cg_cameraheight 2, aimed (the gun shows).
+- **Test runner** tools/run_cfg.py: NO pad script (user playing): console steps exec'd over loopback rcon (net_ip 127.0.0.1,
+  IPv4 only), waits in ms (cmd.c), in_gamepad 0 / in_joystick 0, harness_window no-activate policy, muted, 3440x1440 ultrawide.
+- Stills: media/final/ (ng18 = all but the Bren reload; ng19 = the Bren reload with the shipped clips; ng19's weather is darker).
