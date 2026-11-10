@@ -50,6 +50,16 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.69 - Home front
+
+- **The Bren is back** - rebuilt iron sights on the gun itself (offset left of the magazine like the real one), its own aim pose, and aimed reloads that keep you on target
+- **The join-game room is lived in** - four real 1942-43 Allied posters, a NOTICES board for daily orders, your Service Record and promotions, a field radio that changes the music, a soldier playing cards by the stove, and the weapons rack on the left wall
+- **Main menu** - the projector faces a new pull-down screen that plays a looping newsreel, PLAY in the film room flies the camera to the screen with the projector running, and the horizon outside the window gets real woods and hedgerows
+- **Frontline and European Assault missions from your own disc** - SEALED ORDERS (St. Mathieu, 1944) and THEIR DYING BREATH (Stalingrad, 1943). Point Settings -> OWN DISCS at your own Xbox (USA) disc image and the mission is converted on your PC; nothing from those games is shipped. Until then the tiles show a padlock; once converted they play like any other map and join the Full and Chronological campaigns
+
+<p align="center"><img src="docs/screenshots/v11069-room.jpg" width="49%" alt="The furnished join-game room"> <img src="docs/screenshots/v11069-bren.jpg" width="49%" alt="The Bren's rebuilt aperture sight"></p>
+<p align="center"><img src="docs/screenshots/v11069-projector.jpg" width="49%" alt="The projector running onto the new pull-down screen"> <img src="docs/screenshots/v11069-owndiscs.jpg" width="49%" alt="Frontline and European Assault in co-op map select, locked until your disc is added"></p>
+
 ### v1.10.68 - Make it yours
 
 - **13 new gun finishes** - Whitewash, Afrika Korps, Kriegsmarine, Airborne, Splinter, Pea Dot, Telo, Amoeba, Airborne 101st, Battle-Worn, Trench Art, Parade and Captured, earned with kills on each gun and shown as a second row in the Armory
