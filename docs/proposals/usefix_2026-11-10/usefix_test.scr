@@ -1,0 +1,165 @@
+// usefix (v1.10.74) self-test: tap USE = a dropped gun's ammo, hold USE = the gun. Packed into a TEST overlay pk3 as
+// coop_mod/usefix_test.scr (never shipped) and started from the console: script *0 thread coop_mod/usefix_test.scr::main
+// Needs coop_lootProbe 1 (game.dll LOOT lines). The presses (cvar uf_mode): 1 = the REAL key - the script prints
+// "USEFIX KEY <case> <seconds>" and usefix_run.py sends +use / -use by rcon into the listen host's command buffer;
+// 0 = stufftext +use/-use to the client; 2 = the game's harness press (player coop_lootuse <s>).
+// Every result line starts ^~^~^ USEFIX.
+
+main:{
+	local.p = waitthread alive
+	if( local.p == NIL ){ println "^~^~^ USEFIX no player"; end }
+	level.uf_mode = int( getcvar( "uf_mode" ) )
+	println ( "^~^~^ USEFIX start mode=" + level.uf_mode + " origin=" + local.p.origin )
+	local.p nodamage
+	local.p threatbias ignoreme
+	wait 1
+
+	// a rifle and a pistol the player does not carry
+	local.rif = NIL
+	local.cand[1] = "models/weapons/kar98.tik"
+	local.cand[2] = "models/weapons/mp40.tik"
+	local.cand[3] = "models/weapons/mp44.tik"
+	for( local.i = 1; local.i <= 3 && local.rif == NIL; local.i++ ){
+		if( ( waitthread coop_mod/atsupply.scr::test_has local.p local.cand[local.i] ) == 0 ){ local.rif = local.cand[local.i] }
+	}
+	local.pis = "models/weapons/p38.tik"
+	if( ( waitthread coop_mod/atsupply.scr::test_has local.p local.pis ) == 1 ){ local.pis = "models/weapons/colt45.tik" }
+	println ( "^~^~^ USEFIX guns rifle=" + local.rif + " pistol=" + local.pis )
+
+	waitthread tcase local.p local.rif "A1_new_tap" 0.1 "u_a1"
+	waitthread tcase local.p local.rif "A2_new_hold" 0.9 "u_a2"
+	waitthread tcase local.p local.rif "A3_owned_tap" 0.1 "u_a3"
+	waitthread tcase local.p local.rif "A4_owned_hold" 0.9 "u_a4"
+	waitthread tcase local.p local.pis "B1_pistol_tap" 0.1 "u_b1"
+	waitthread tcase local.p local.pis "B2_pistol_hold" 0.9 "u_b2"
+	// full pool: fill the rifle's ammo
+	for( local.k = 0; local.k < 12; local.k++ ){ local.p ammo "rifle" 300; local.p ammo "smg" 300; local.p ammo "mg" 300 }
+	waitthread tcase local.p local.rif "A5_owned_full_tap" 0.1 "u_a5"
+	waitthread tcase local.p local.rif "A6_owned_full_hold" 0.9 "u_a6"
+	waitthread tcase local.p "models/weapons/steilhandgranate.tik" "C1_grenade_tap" 0.1 "u_c1"
+
+	// AI-dropped guns: two Germans killed in front of the player, the first gun tapped, the second held
+	waitthread german local.p 0.1 "D1_ai_tap"
+	waitthread german local.p 0.9 "D2_ai_hold"
+	println "^~^~^ USEFIX done"
+}end
+
+alive:{
+	for( local.t = 0; local.t < 150; local.t++ ){
+		local.p = $player[1]
+		if( local.p != NULL && local.p != NIL && isAlive local.p && local.p.flags["coop_isActive"] == 1 ){ end local.p }
+		if( local.p != NULL && local.p != NIL && !( isAlive local.p ) ){ local.p stufftext "+attackprimary"; wait 0.2; local.p stufftext "-attackprimary" }
+		if( local.p != NULL && local.p != NIL && local.p.flags["coop_isActive"] != 1 && ( local.t % 3 ) == 0 ){ local.p stufftext "popmenu 0"; wait 0.2; local.p stufftext "+attackprimary"; wait 0.2; local.p stufftext "-attackprimary"; wait 0.2; local.p stufftext "primarydmweapon rifle"; wait 0.2; local.p stufftext "join_team allies" }
+		wait 1
+	}
+}end NIL
+
+// a ground point 52 u ahead of the player
+ahead local.p local.d:{
+	local.f = angles_toforward ( 0 local.p.viewangles[1] 0 )
+	local.st = local.p.origin + ( local.f * local.d )
+	local.gr = traced ( local.st + ( 0 0 40 ) ) ( local.st + ( 0 0 -200 ) ) 1
+	if( local.gr["fraction"] < 1.0 ){ local.st = local.gr["endpos"] }
+}end local.st
+
+look local.p local.w:{
+	local.eye = local.p.origin + ( 0 0 82 )
+	local.p.viewangles = vector_toangles ( local.w.origin - local.eye )
+}end
+
+press local.p local.sec local.name:{
+	if( level.uf_mode == 1 ){
+		println ( "^~^~^ USEFIX KEY " + local.name + " " + local.sec )
+		wait 3
+		end
+	}
+	if( level.uf_mode == 2 ){
+		local.p coop_lootuse local.sec
+		wait ( local.sec + 0.2 )
+		end
+	}
+	local.p stufftext "+use"
+	wait local.sec
+	local.p stufftext "-use"
+}end
+
+tcase local.p local.mdl local.name local.sec local.shot:{
+	if( local.mdl == NIL ){ println ( "^~^~^ USEFIX " + local.name + " SKIP no gun" ); end }
+	local.pos = waitthread ahead local.p 52
+	local.w = spawn local.mdl
+	local.w.origin = local.pos + ( 0 0 4 )
+	waitthread coop_mod/itemhandler.scr::coop_makeLootGun local.w
+	wait 2.5
+	if( local.w == NULL ){ println ( "^~^~^ USEFIX " + local.name + " SKIP gun vanished" ); end }
+	waitthread look local.p local.w
+	wait 1
+	local.had = waitthread coop_mod/atsupply.scr::test_has local.p local.mdl
+	local.p stufftext ( "screenshotJPEG " + local.shot + "_prompt" )
+	wait 0.5
+	println ( "^~^~^ USEFIX " + local.name + " begin press=" + local.sec + " had=" + local.had + " gun=" + local.w.entnum )
+	if( local.sec > 0.5 && level.uf_mode != 0 ){ thread holdshot local.p ( local.shot + "_holding" ) }
+	waitthread press local.p local.sec local.name
+	wait 1.5
+	local.has = waitthread coop_mod/atsupply.scr::test_has local.p local.mdl
+	local.gone = 0
+	if( local.w == NULL ){ local.gone = 1 }else{ if( local.w.owner != NULL && local.w.owner != NIL ){ local.gone = 2 } }
+	println ( "^~^~^ USEFIX " + local.name + " end had=" + local.had + " has=" + local.has + " gunGone=" + local.gone )
+	if( local.w != NULL && local.gone == 0 ){ local.w remove }
+	wait 0.5
+}end
+
+german local.p local.sec local.name:{
+	local.a = NIL
+	for( local.k = 1; local.k < 1024 && local.a == NIL; local.k++ ){
+		local.e = getentbyentnum local.k
+		if( local.e == NULL || local.e == NIL ){ continue }
+		if( local.e.classname != "Actor" || !( isAlive local.e ) ){ continue }
+		if( !( waitthread coop_mod/main.scr::containsText local.e.model "human" ) ){ continue }
+		if( local.e.team == "german" || ( waitthread coop_mod/main.scr::containsText local.e.model "german" ) ){ local.a = local.e }
+	}
+	if( local.a == NIL ){ println ( "^~^~^ USEFIX " + local.name + " SKIP no German alive" ); end }
+	local.spot = waitthread ahead local.p 70
+	local.a.origin = local.spot
+	wait 0.5
+	println ( "^~^~^ USEFIX " + local.name + " german ent=" + local.a.entnum + " " + local.a.model + " weapon=" + local.a.weapon )
+	// every gun that exists before the kill is not his drop
+	for( local.k = 1; local.k < 1024; local.k++ ){
+		local.e = getentbyentnum local.k
+		if( local.e == NULL || local.e == NIL ){ continue }
+		if( local.e.classname == "Weapon" ){ local.e.flags["uf_old"] = 1 }
+	}
+	local.a dontdropweapons 0	// some maps (m2l1's spawned enemies) set it on every German
+	local.a damage $world 9999 $world ( 0 0 0 ) ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+	wait 4
+	local.w = NIL
+	for( local.k = 1; local.k < 1024; local.k++ ){
+		local.e = getentbyentnum local.k
+		if( local.e == NULL || local.e == NIL ){ continue }
+		if( local.e.classname != "Weapon" || local.e.flags["uf_old"] == 1 ){ continue }
+		if( local.e.owner != NULL && local.e.owner != NIL ){ continue }
+		if( vector_length ( local.e.origin - local.spot ) > 300 ){ continue }
+		println ( "^~^~^ USEFIX " + local.name + " new gun ent=" + local.e.entnum + " " + local.e.model + " at " + local.e.origin + " init=" + local.e.flags["coop_initialiseMe"] )
+		if( local.w == NIL ){ local.w = local.e }
+	}
+	// the body lies under his gun and is a target too (a search): drag it aside so the crosshair finds the gun
+	if( local.w != NIL ){ local.a.origin = local.a.origin + ( 0 0 -400 ) }
+	if( local.w == NIL ){ println ( "^~^~^ USEFIX " + local.name + " SKIP no dropped gun" ); end }
+	local.mdl = local.w.model
+	waitthread look local.p local.w
+	wait 1
+	local.had = waitthread coop_mod/atsupply.scr::test_has local.p local.mdl
+	println ( "^~^~^ USEFIX " + local.name + " begin press=" + local.sec + " had=" + local.had + " gun=" + local.w.entnum + " " + local.mdl )
+	waitthread press local.p local.sec local.name
+	wait 1.5
+	local.has = waitthread coop_mod/atsupply.scr::test_has local.p local.mdl
+	local.gone = 0
+	if( local.w == NULL ){ local.gone = 1 }else{ if( local.w.owner != NULL && local.w.owner != NIL ){ local.gone = 2 } }
+	println ( "^~^~^ USEFIX " + local.name + " end had=" + local.had + " has=" + local.has + " gunGone=" + local.gone )
+}end
+
+// a still while a hold is in progress (the ring): 0.45 s after the KEY line (rcon) / the press (harness)
+holdshot local.p local.name:{
+	wait 0.45
+	if( level.uf_mode == 1 ){ wait 0.1 }
+	local.p stufftext ( "screenshotJPEG " + local.name )
+}end
