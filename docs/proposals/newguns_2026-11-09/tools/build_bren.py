@@ -7,7 +7,7 @@ Bone-local frames: solved from the shipped VB mesh against its idle pose (gun = 
 [QA 2026-11-09] the bipod is FOLDED forward under the barrel (the source has it deployed): each leg turns about its top.
     python build_bren.py [out_root]
 """
-import os, sys, json
+import os, sys, json, math
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -20,24 +20,15 @@ MAG_PARTS = {4, 5, 6, 7}
 HANDLE_PARTS = {37}
 LEG_PARTS = {18, 20}
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(L.BUILD, 'ship')
-# [newguns 2026-11-09 c] SIGHTS FURTHER LEFT: the ghost ring (+ sight arm) and the front blade (+ bracket) move SIGHT_DY gun
-# units left (gun frame +y = right, +z = down), eased to zero between SIGHT_Z0 and SIGHT_Z1 so the brackets stay on the receiver /
-# barrel top. ADS showed the top magazine standing right above the aperture with the line only 1.24 u left of its centre.
-SIGHT_DY = -0.70   # (ng12-16: the dark block at the eye was the source rear-sight housing on the ring line, fixed by the virtual rear row)
-APERTURE_G = np.array([-6.6, -1.939, -5.665])            # [ng26] the ring ON the sight line (F -> R of cg_adssights.h), 3 u ahead of the old leaf:
-                                                         # the eye sits ~1 u behind R, where the rig's residual swung a near ring 10+ deg (x -6.6 is outside SIGHT_BOXES)
-SIGHT_BOXES = [(-10.2, -8.3), (34.0, 36.6)]          # gun-frame x ranges: rear ring, front blade
-SIGHT_Z0, SIGHT_Z1 = -3.6, -4.2                       # above the receiver / barrel top (up = -z)
-
-
-def sight_shift(g):
-    g = np.array(g, float)
-    inx = np.zeros(len(g), bool)
-    for x0, x1 in SIGHT_BOXES:
-        inx |= (g[:, 0] > x0) & (g[:, 0] < x1)
-    w = np.clip((SIGHT_Z0 - g[:, 2]) / (SIGHT_Z0 - SIGHT_Z1), 0.0, 1.0) * inx
-    g[:, 1] += SIGHT_DY * w
-    return g
+# [newguns2 2026-11-09] THE SIGHTS ARE REBUILT ON THE MODEL (bren_sights.py): the source's own arm + aperture leaf (34), aperture
+# disc (49), front blade / ears (55 / 16) and the ring on the magazine catch (35) are dropped; the drum (32, 33) stays where it is
+# (it already sits on the line, left of the magazine). The v1.10.68 stopgaps are gone: no SIGHT_DY shear, no floating ring.
+DROP_PARTS = {34, 49, 35, 16, 55}
+NEW_PART0 = 60
+SIGHT_LUM = float(os.environ.get('BREN_SIGHT_LUM', '72'))   # the new sight parts' steel (sheet luminance; the receiver averages ~50)
+# [newguns2] the carrying handle (grip 2, arm 3, barrel collar 8) is turned down to the RIGHT about the bore, the way it is
+# folded for firing: upright it stood in the aperture's view right of the blade (the sights are on the left)
+CARRY_PARTS, HANDLE_DEG = {2, 3, 8}, float(os.environ.get('BREN_HANDLE_DEG', '95'))
 
 
 def rot_to(a, b):
@@ -67,6 +58,63 @@ def fold_legs(A, part):
     return A
 
 
+def sight_parts(cand_uv, BS):
+    """bren_sights.parts() (gun frame) -> source-frame corner rows (T, 3, 8). Textured from a 40-texel window of the sheet's
+    receiver steel (picked among the receiver's own UVs: mean luminance nearest SIGHT_LUM, some grain), mapped planar so the
+    parts carry the steel's grain; the first look (one flat texel) read as a black cut-out in game"""
+    from PIL import Image
+    sheet = np.asarray(Image.open(os.path.join(L.BUILD, 'bren.png')).convert('L'), float)
+    h, w = sheet.shape
+    best = None
+    for uv in cand_uv[::7]:
+        x, y = int(uv[0] * (w - 1)), int((1 - uv[1]) * (h - 1))
+        if x < 20 or y < 20 or x > w - 21 or y > h - 21:
+            continue
+        win = sheet[y - 20:y + 20, x - 20:x + 20]
+        if win.std() < 8:
+            continue
+        sc = abs(win.mean() - SIGHT_LUM)
+        if best is None or sc < best[0]:
+            best = (sc, uv, win.mean(), win.std())
+    c = best[1]
+    half = 18.0 / w
+    Ls = np.array([-1.0, 1.0, -1.0])
+    rows, ids = [], []
+    for k, (name, tris) in enumerate(BS.parts().items()):
+        P = np.array([t for t, n in tris]).reshape(-1, 3)
+        ctr = (P.min(0) + P.max(0)) / 2
+        span = max(float((P.max(0) - P.min(0)).max()), 1e-6)
+        sc = 1.8 * half / span                  # the whole part inside the window: continuous UVs, no seams (a wrap drew one)
+        for tri, n in tris:
+            src = ((tri - L.T) / L.S) * Ls
+            ns = n * Ls
+            q = tri - ctr
+            uu = c[0] + (q[:, 1] + 0.5 * q[:, 0]) * sc * 0.67
+            vv = c[1] + (q[:, 2] + 0.3 * q[:, 0]) * sc * 0.77
+            rows.append([list(src[i]) + list(ns) + [uu[i], vv[i]] for i in range(3)])
+            ids.append(NEW_PART0 + k)
+    print('  sight parts: %d tris, steel window uv %s (mean %.0f, grain %.0f)' % (len(rows), np.round(c, 4), best[2], best[3]))
+    return np.array(rows, np.float32), np.array(ids)
+
+
+def fold_handle(A, part):
+    """turn the handle parts about the bore axis (source frame: the bore is the x line at z = BORE_SRC_Z, y = 0)"""
+    A = A.copy()
+    a = math.radians(HANDLE_DEG)
+    # gun frame: +y right, +z down; up (-z) -> right (+y) is a turn of +a about +x in (y, z): y' = y c - z s, z' = y s + z c.
+    # source frame: (y, z)_src = (y, -z)_gun, so the same turn is y' = y c + z s, z' = -y s + z c about the bore
+    c, s_ = math.cos(a), math.sin(a)
+    m = np.isin(part, list(CARRY_PARTS))
+    for off in (0, 3):
+        y = A[m][:, :, off + 1].copy(); z = A[m][:, :, off + 2].copy()
+        z0 = L.BORE_SRC_Z if off == 0 else 0.0
+        q = A[m]
+        q[:, :, off + 1] = y * c + (z - z0) * s_
+        q[:, :, off + 2] = -y * s_ + (z - z0) * c + z0
+        A[m] = q
+    return A
+
+
 def to_local(g, M):
     """gun frame -> bone-local (inverse of gun = local @ M[:3] + M[3])"""
     return (g - M[3]) @ np.linalg.inv(M[:3])
@@ -76,7 +124,7 @@ def corners(A, bone, M):
     out = []
     Minv = np.linalg.inv(M[:3])
     for tri in A:
-        g = sight_shift(L.to_gun(tri[:, :3])); gn = L.nrm_gun(tri[:, 3:6])
+        g = L.to_gun(tri[:, :3]); gn = L.nrm_gun(tri[:, 3:6])
         p = to_local(g, M)
         n = gn @ Minv; n = n / np.linalg.norm(n, axis=1, keepdims=True)
         uv = tri[:, 6:8].astype(float)
@@ -92,28 +140,11 @@ def main():
     d = np.load(os.path.join(L.BUILD, 'tris.npz'))
     A, part = d['corners'], d['part']
     A = fold_legs(A, part)
-    # [ADS] the source aperture disc (part 49) out, a ghost ring in (brenlib.RING_*), textured from the sight arm's steel
-    from PIL import Image
-    sheet = np.asarray(Image.open(os.path.join(L.BUILD, 'bren.png')).convert('L'), float)
-    cand = A[part == 0][:, :, 6:8].reshape(-1, 2)          # a mid-grey receiver-steel texel (the arm's mean UV fell on wood)
-    lum = sheet[((1 - cand[:, 1]) * (sheet.shape[0] - 1)).astype(int).clip(0, sheet.shape[0] - 1),
-                (cand[:, 0] * (sheet.shape[1] - 1)).astype(int).clip(0, sheet.shape[1] - 1)]
-    uv = cand[np.argsort(lum)[len(lum) * 3 // 4]]
-    ring = L.ring_tris(uv)
-    keep = part != 49
-    # [newguns QA 4] the source aperture leaf (rear end of part 34, above the receiver) filled the aim view: out. A thin ring
-    # on the sight line instead (APERTURE_G, gun frame before SIGHT_DY), outer 0.17 u / inner 0.145 u, both faces
-    G0 = L.to_gun(A[:, :, :3]).mean(1)
-    leaf = (part == 34) & (G0[:, 0] > -10.4) & (G0[:, 0] < -8.6) & (G0[:, 2] < -4.3)
-    assert leaf.sum() == 110, leaf.sum()
-    keep = keep & ~leaf
-    Ls = np.array([-1.0, 1.0, -1.0])
-    L.RING_C = ((APERTURE_G - L.T) / L.S) * Ls
-    L.RING_RO, L.RING_RI = 0.55 / L.S, 0.49 / L.S         # ~4 u from the eye: ~1/3 of the screen height across
-    ring = L.ring_tris(uv)
-    back = ring[:, ::-1].copy(); back[:, :, 3:6] *= -1.0
-    ring = np.concatenate([ring, back])
-    A = np.concatenate([A[keep], ring]); part = np.concatenate([part[keep], np.full(len(ring), 49)])
+    A = fold_handle(A, part)
+    keep = ~np.isin(part, list(DROP_PARTS))
+    import bren_sights as BS
+    new, newp = sight_parts(A[part == 0][:, :, 6:8].reshape(-1, 2), BS)
+    A = np.concatenate([A[keep], new]); part = np.concatenate([part[keep], newp])
     M1 = np.load(os.path.join(L.BUILD, 'vb_affine_1.npy')); M3 = np.load(os.path.join(L.BUILD, 'vb_affine_3.npy'))
     mag = np.isin(part, list(MAG_PARTS)); hnd = np.isin(part, list(HANDLE_PARTS)); body = ~(mag | hnd)
     surfs = X.split_surfaces('bren', corners(A[body], 1, M1))
@@ -125,10 +156,12 @@ def main():
     skd = X.build_skd('coop_bren', BONES, surfs)
     open(os.path.join(od, 'coop_bren.skd'), 'wb').write(skd)
     G = np.concatenate([L.to_gun(A[:, :, :3])]).reshape(-1, 3)
-    F, Rr = L.sight_row()
-    F, Rr = F + np.array([0.0, SIGHT_DY, 0.0]), Rr + np.array([0.0, SIGHT_DY, 0.0])   # both points sit in the moved parts
+    row = BS.row()
+    F, Rr = np.array(row['F']), np.array(row['R'])
+    json.dump(row, open(os.path.join(L.BUILD, 'sight_bren2.json'), 'w'), indent=1)
     meta = dict(F=F.tolist(), R=Rr.tolist(), surfaces=[s[0] for s in surfs], gun_min=G.min(0).tolist(), gun_max=G.max(0).tolist(), S=L.S, T=L.T.tolist())
     json.dump(meta, open(os.path.join(L.BUILD, 'coop_bren.json'), 'w'), indent=1)
+    np.savez(os.path.join(L.BUILD, 'gun_final.npz'), G=L.to_gun(A[:, :, :3]), uv=A[:, :, 6:8], part=part)   # previews (bren_sights.py view)
     print('skd %d bytes, %d surfaces, %d verts, %d tris; gun x %.2f..%.2f' % (len(skd), len(surfs), sum(len(s[2]) for s in surfs),
           sum(len(s[1]) for s in surfs), G[:, 0].min(), G[:, 0].max()))
     for s in surfs:

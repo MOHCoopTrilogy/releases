@@ -8,9 +8,13 @@ Re-enable: run with `on` (strips the same markers). The finishes2 rows come from
 import sys
 ON = len(sys.argv) > 1 and sys.argv[1] == 'on'
 MARK = b'//[OFF v1.10.68 Bren held, BREN_SIGHTS.md] '
-TSV = r'C:\hzm-newguns\root\docs\tools\loadout_weapons.tsv'
-CH = r'H:\hzm_work\newguns-mod\coop_mod\challenges.scr'
-RO = r'H:\hzm_work\newguns-mod\coop_mod\loadoutroster.scr'
+import os
+# [newguns2] the worktrees come from the environment (default: the newguns2 ones; v1.10.68 ran it on newguns / newguns-mod)
+_ROOT = os.environ.get('HZM_NG_ROOT', r'C:\hzm-newguns2\root')
+_MOD = os.environ.get('HZM_MOD', r'H:\hzm_work\newguns2-mod')
+TSV = os.path.join(_ROOT, 'docs', 'tools', 'loadout_weapons.tsv')
+CH = os.path.join(_MOD, 'coop_mod', 'challenges.scr')
+RO = os.path.join(_MOD, 'coop_mod', 'loadoutroster.scr')
 
 
 def edit(path, fn):

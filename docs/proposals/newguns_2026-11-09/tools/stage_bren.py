@@ -156,7 +156,7 @@ def main():
     # the new guns' shaders live in their own file (no edit to coop_wpnfix.shader, which other branches change)
     sh = os.path.join(SRC, 'scripts', 'coop_newguns.shader')
     s = open(sh, 'rb').read().decode('latin-1') if os.path.isfile(sh) else HEAD
-    if '\ncoop_bren\n' not in s:
+    if not re.search(r'\ncoop_bren\r?\n', s):   # [newguns2] the checkout is CRLF: the old '\ncoop_bren\n' test appended a 2nd copy
         s = s.rstrip() + '\n' + SHADER
     put('scripts/coop_newguns.shader', s.encode('latin-1'), man)
     cr = os.path.join(SRC, 'credits', 'coop_cc_models.txt')

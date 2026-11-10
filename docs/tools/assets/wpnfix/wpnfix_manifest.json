@@ -23,13 +23,25 @@
   "models/human/animation/viewmodel/coop_bergmann/coop_mp28_reload_hip_s.skc": {
     "new": true
   },
+  "models/human/animation/viewmodel/coop_bren/coop_bren_ads.skc": {
+    "new": true
+  },
   "models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps.skc": {
+    "new": true
+  },
+  "models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps_ads.skc": {
     "new": true
   },
   "models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps_m.skc": {
     "new": true
   },
+  "models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps_m_ads.skc": {
+    "new": true
+  },
   "models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps_s.skc": {
+    "new": true
+  },
+  "models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps_s_ads.skc": {
     "new": true
   },
   "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload.skc": {

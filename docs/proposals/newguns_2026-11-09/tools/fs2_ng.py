@@ -4,9 +4,9 @@ finishes2 agent's H:\\hzm_work\\finishes2_build. The new guns' tiks / meshes com
 """
 import os, sys
 NG = r"H:\hzm_work\newguns"
-STAGE = os.path.join(NG, "fs2_build")
+STAGE = os.environ.get("HZM_FS2_BUILD") or os.path.join(NG, "fs2_build")   # [newguns2] env: a copy of the staging
 os.environ.setdefault("IRONSIGHT_EXTRA_PAKS", os.path.join(NG, "fs2_tools", "ng_assets.pk3"))
-TOOLS = r"C:\hzm-newguns\root\docs\proposals\finishes2_2026-11-09\tools"
+TOOLS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "finishes2_2026-11-09", "tools")
 sys.path.insert(0, r"C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools")
 sys.path.insert(0, TOOLS)
 import fs2_build as B  # noqa: E402
