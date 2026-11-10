@@ -1,7 +1,7 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.70",
-    "created":  "2026-11-10T15:03:07Z",
+    "version":  "1.10.71",
+    "created":  "2026-11-10T16:06:53Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
@@ -95,9 +95,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  32242229,
-                      "sha256":  "5b834651dfdba1b9e95461b113920b6e429399ae1205a889c24ba6a1efd16151",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.70/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  32242359,
+                      "sha256":  "ee97bf1797d4534cd1ee228d901358cc10d38cbb322f6a3a10cf009f7411d9aa",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.71/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzz_coop_terrain.pk3",
@@ -186,8 +186,8 @@
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_assets_tey.pk3",
                       "size":  145271673,
-                      "sha256":  "c5fd5a42580a7217584d6bfb8c9fb4f4b6db3c51a51923e937cf96fd4009c083",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.70/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+                      "sha256":  "c15004d899ec3cd9fde39a203b59eee116e4589610d15b3347d2ac5ac4e4c555",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.71/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzz_coop_maps.pk3",
@@ -239,9 +239,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzzzzzz_hzm_menus3d.pk3",
-                      "size":  138585247,
-                      "sha256":  "322799a5337c35b2f67cf33a1f929560432c3cdec961e2aa46cfd9b848443573",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.70/zzzzzzzzzzzzzz_hzm_menus3d.pk3"
+                      "size":  138585250,
+                      "sha256":  "b3c953cdbd9dd741dc9f5a4fa9780785d6adac46aad17c4c542d945858dd267b",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.71/zzzzzzzzzzzzzz_hzm_menus3d.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzz_coop_mapclips.pk3",
