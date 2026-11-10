@@ -1979,6 +1979,9 @@
   "textures/models/weapons/coop_bren/bren.jpg": {
     "new": true
   },
+  "textures/models/weapons/coop_bren/bren_sight.jpg": {
+    "new": true
+  },
   "textures/models/weapons/coop_fg42hd/fg42hd.jpg": {
     "new": true
   },

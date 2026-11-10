@@ -123,6 +123,19 @@ coop_bren
 	}
 }
 """
+SIGHT_SHADER = """
+// [newguns2 2026-11-09] the Bren's rebuilt sights (drum bracket, arm, aperture leaf, blade, ears, bracket): their own sheet,
+// the Bren sheet's parkerized steel with edge wear (bren_sights.texture). The skd surface `coop_bren_sight` has no tik line,
+// so every Bren tik (finishes included) draws it with this shader: the sights stay plain steel
+coop_bren_sight
+{
+	qer_editorimage textures/models/weapons/coop_bren/bren_sight.jpg
+	{
+		map textures/models/weapons/coop_bren/bren_sight.jpg
+		rgbGen lightingSpherical
+	}
+}
+"""
 HEAD = "// HZM coop [newguns 2026-11-09] shaders of the new CC-model guns (docs/proposals/newguns_2026-11-09)\n"
 CREDIT = """
 Bren Mk I (models/weapons/coop_bren.tik, models/weapons/coop_bren/, textures/models/weapons/coop_bren/, its finishes)
@@ -148,6 +161,7 @@ def main():
     muzzle_x = meta['gun_max'][0]
     put('models/weapons/coop_bren/coop_bren.skd', open(os.path.join(L.BUILD, 'ship', 'models', 'weapons', 'coop_bren', 'coop_bren.skd'), 'rb').read(), man)
     put('textures/models/weapons/coop_bren/bren.jpg', open(os.path.join(L.BUILD, 'bren.jpg'), 'rb').read(), man)
+    put('textures/models/weapons/coop_bren/bren_sight.jpg', open(os.path.join(L.BUILD, 'bren_sight.jpg'), 'rb').read(), man)
     for n in CLIPS:
         data, (old, new) = clip(n, muzzle_x)
         put('models/weapons/coop_bren/' + NEWCLIP[n], data, man)
@@ -158,6 +172,9 @@ def main():
     s = open(sh, 'rb').read().decode('latin-1') if os.path.isfile(sh) else HEAD
     if not re.search(r'\ncoop_bren\r?\n', s):   # [newguns2] the checkout is CRLF: the old '\ncoop_bren\n' test appended a 2nd copy
         s = s.rstrip() + '\n' + SHADER
+    if not re.search(r'\ncoop_bren_sight\r?\n', s):
+        nl = '\r\n' if '\r\n' in s else '\n'
+        s = s.rstrip() + nl + SIGHT_SHADER.replace('\n', nl)
     put('scripts/coop_newguns.shader', s.encode('latin-1'), man)
     cr = os.path.join(SRC, 'credits', 'coop_cc_models.txt')
     c = open(cr, 'rb').read().decode('utf-8')

@@ -25,7 +25,6 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(L.BUILD, 'ship')
 # (it already sits on the line, left of the magazine). The v1.10.68 stopgaps are gone: no SIGHT_DY shear, no floating ring.
 DROP_PARTS = {34, 49, 35, 16, 55}
 NEW_PART0 = 60
-SIGHT_LUM = float(os.environ.get('BREN_SIGHT_LUM', '72'))   # the new sight parts' steel (sheet luminance; the receiver averages ~50)
 # [newguns2] the carrying handle (grip 2, arm 3, barrel collar 8) is turned down to the RIGHT about the bore, the way it is
 # folded for firing: upright it stood in the aperture's view right of the blade (the sights are on the left)
 CARRY_PARTS, HANDLE_DEG = {2, 3, 8}, float(os.environ.get('BREN_HANDLE_DEG', '95'))
@@ -58,42 +57,23 @@ def fold_legs(A, part):
     return A
 
 
-def sight_parts(cand_uv, BS):
-    """bren_sights.parts() (gun frame) -> source-frame corner rows (T, 3, 8). Textured from a 40-texel window of the sheet's
-    receiver steel (picked among the receiver's own UVs: mean luminance nearest SIGHT_LUM, some grain), mapped planar so the
-    parts carry the steel's grain; the first look (one flat texel) read as a black cut-out in game"""
-    from PIL import Image
-    sheet = np.asarray(Image.open(os.path.join(L.BUILD, 'bren.png')).convert('L'), float)
-    h, w = sheet.shape
-    best = None
-    for uv in cand_uv[::7]:
-        x, y = int(uv[0] * (w - 1)), int((1 - uv[1]) * (h - 1))
-        if x < 20 or y < 20 or x > w - 21 or y > h - 21:
-            continue
-        win = sheet[y - 20:y + 20, x - 20:x + 20]
-        if win.std() < 8:
-            continue
-        sc = abs(win.mean() - SIGHT_LUM)
-        if best is None or sc < best[0]:
-            best = (sc, uv, win.mean(), win.std())
-    c = best[1]
-    half = 18.0 / w
+def sight_parts(BS):
+    """bren_sights.parts() (gun frame) -> source-frame corner rows (T, 3, 8) on the sights' OWN sheet (bren_sights.texture:
+    the Bren sheet's parkerized steel + edge wear where the UVs put the edges). [newguns2 polish] the first two passes sat on
+    the gun sheet: one flat texel read as a black cut-out, a 40-texel steel window as a flat grey CG washer."""
     Ls = np.array([-1.0, 1.0, -1.0])
     rows, ids = [], []
     for k, (name, tris) in enumerate(BS.parts().items()):
-        P = np.array([t for t, n in tris]).reshape(-1, 3)
-        ctr = (P.min(0) + P.max(0)) / 2
-        span = max(float((P.max(0) - P.min(0)).max()), 1e-6)
-        sc = 1.8 * half / span                  # the whole part inside the window: continuous UVs, no seams (a wrap drew one)
-        for tri, n in tris:
-            src = ((tri - L.T) / L.S) * Ls
-            ns = n * Ls
-            q = tri - ctr
-            uu = c[0] + (q[:, 1] + 0.5 * q[:, 0]) * sc * 0.67
-            vv = c[1] + (q[:, 2] + 0.3 * q[:, 0]) * sc * 0.77
-            rows.append([list(src[i]) + list(ns) + [uu[i], vv[i]] for i in range(3)])
-            ids.append(NEW_PART0 + k)
-    print('  sight parts: %d tris, steel window uv %s (mean %.0f, grain %.0f)' % (len(rows), np.round(c, 4), best[2], best[3]))
+        assert len(tris) % 2 == 0
+        for q in range(0, len(tris), 2):
+            uvs = BS.quad_uvs(name, tris[q:q + 2])
+            for (tri, n), uv in zip(tris[q:q + 2], uvs):
+                src = ((tri - L.T) / L.S) * Ls
+                ns = n * Ls
+                rows.append([list(src[i]) + list(ns) + [uv[i, 0], 1.0 - uv[i, 1]] for i in range(3)])   # rows keep GL v (corners flips)
+                ids.append(NEW_PART0 + k)
+    BS.texture(os.path.join(L.BUILD, 'bren.png'), os.path.join(L.BUILD, 'bren_sight.jpg'))
+    print('  sight parts: %d tris on coop_bren_sight (bren_sight.jpg %dx%d)' % (len(rows), BS.TEX, BS.TEX))
     return np.array(rows, np.float32), np.array(ids)
 
 
@@ -143,15 +123,18 @@ def main():
     A = fold_handle(A, part)
     keep = ~np.isin(part, list(DROP_PARTS))
     import bren_sights as BS
-    new, newp = sight_parts(A[part == 0][:, :, 6:8].reshape(-1, 2), BS)
+    new, newp = sight_parts(BS)
     A = np.concatenate([A[keep], new]); part = np.concatenate([part[keep], newp])
     M1 = np.load(os.path.join(L.BUILD, 'vb_affine_1.npy')); M3 = np.load(os.path.join(L.BUILD, 'vb_affine_3.npy'))
-    mag = np.isin(part, list(MAG_PARTS)); hnd = np.isin(part, list(HANDLE_PARTS)); body = ~(mag | hnd)
+    mag = np.isin(part, list(MAG_PARTS)); hnd = np.isin(part, list(HANDLE_PARTS)); sgt = part >= NEW_PART0; body = ~(mag | hnd | sgt)
     surfs = X.split_surfaces('bren', corners(A[body], 1, M1))
     ms = X.split_surfaces('brenclip', corners(A[mag], 1, M1)); assert len(ms) == 1
     surfs.append(('brenclip',) + tuple(ms[0][1:]))
     hs = X.split_surfaces('brenchg', corners(A[hnd], 3, M3)); assert len(hs) == 1
     surfs.append(('brenchg',) + tuple(hs[0][1:]))
+    # the sights: a surface no tik line names -> drawn with the shader of its own name in every tik (base, finishes, finishes2)
+    ss = X.split_surfaces('coop_bren_sight', corners(A[sgt], 1, M1)); assert len(ss) == 1
+    surfs.append(('coop_bren_sight',) + tuple(ss[0][1:]))
     od = os.path.join(OUT, 'models', 'weapons', 'coop_bren'); os.makedirs(od, exist_ok=True)
     skd = X.build_skd('coop_bren', BONES, surfs)
     open(os.path.join(od, 'coop_bren.skd'), 'wb').write(skd)

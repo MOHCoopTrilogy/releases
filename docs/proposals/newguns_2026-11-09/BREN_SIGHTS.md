@@ -90,3 +90,11 @@ starts under the gun, aimed reload rows, magazine prop in the hand, exit cleanup
   (a COPY of newguns' staging) `fs2_drop_bren.py restore` + `fs2_ng.py pack` -> sha256 2b76b445 (byte-identical to the
   pre-hold pak), gen_skins fs2 write, the five steps, gen_service_record (450 rows, stamp 554288dc, ng-run SELFTEST OK).
 - Stills: media/final4 (run nb4, m5l1a, 3440x1438, GL2; red cross = screen centre).
+- **Polish (coordinator QA, ~22:00)**: the new sight parts (drum bracket, arm, leaf, blade, ears, bracket) are their own skd
+  surface `coop_bren_sight` with no tik line, so every Bren tik - finishes and finishes2 variants included - draws it with the
+  shader of that name: `textures/models/weapons/coop_bren/bren_sight.jpg` (512, `bren_sights.texture`): the Bren sheet's receiver
+  steel colour with a parkerized mottle, edge wear painted where the UVs put the edges (the disc's rim and hole, the rim strip,
+  every flat face's border). UVs: the leaf faces map onto a disc, the rims onto a strip by angle, flat faces edge to edge. The
+  hole is chamfered on the eye side (r 0.245 -> 0.21 at the front: the sight is still 0.21). Rows unchanged (F / R identical,
+  `bren_sights.row()` takes R from both hole rims). Clip check unchanged (0 / 0, nearest 2.80 u); nb5: 48 aimed samples, R-F
+  <= 3.9 px; media/final4/bren_ads_zoom_nb5.jpg.
