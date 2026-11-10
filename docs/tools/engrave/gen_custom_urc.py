@@ -86,7 +86,7 @@ def build():
             "menu \"coop_custom\" 640 480 NONE 1\nborderstyle NONE\nbgcolor 0 0 0 0\nalign centerx centery\nvirtualres 1\nfullscreen 0\n\n")
     res("Label", "bg", (0, 0, 640, 480), bg=(0.05, 0.06, 0.08), title="", extra=["ordernumber 1"])
     text("title", 20, 10, 220, "CUSTOMIZE BENCH", col=ORANGE, font="facfont-20", h=18)
-    text("gun", 250, 12, 370, link="coop_loNm", col=CREAM, font="facfont-20", h=18, align="right")
+    text("gun", 250, 12, 370, link="coop_loNm", col=CREAM, font="facfont-20", h=18, align="right", enable="cl_custHasGun")
     res("Label", "topRule", (20, 32, 600, 2), bg=ORANGE, title="")
 
     # ---------------------------------------------------------------- the preview: the hero render, bigger (same 2.6:1 box)
@@ -97,6 +97,7 @@ def build():
                "modelscale 1.00", "modelanim idle", "modelspincvar \"cl_custSpin\""])
     text("pvNone", 30, 140, 580, "THIS GUN HAS NO ENGRAVING SPOT YET.", col=DIM, align="center", enable="cl_custNoGun")
     text("pvHint", 26, 254, 400, "DRAG TO TURN THE GUN.", col=FAINT)
+    button("zoom", 426, 249, 92, 16, "ZOOM", "hzmcust zoom")
     button("turn", 524, 249, 92, 16, "TURN OVER", "hzmcust turn")
 
     # ---------------------------------------------------------------- left: the words

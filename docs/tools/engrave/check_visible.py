@@ -27,7 +27,7 @@ def main():
         if m:
             pending = m.group(1)
             continue
-        m = re.search(r"ENGRAVEQUAD key=(\S+) px ([-\d. ]+)", line)
+        m = re.search(r"ENGRAVEQUAD key=(\S+)(?: spot=\S+ kind=\d+)? px ([-\d. ]+)", line)
         if m and pending:
             v = [float(x) for x in m.group(2).split()]
             quad[pending] = (m.group(1), [(v[i], v[i + 1]) for i in range(0, 8, 2)])

@@ -59,6 +59,7 @@ animations
 
 build("engrave_quad", 8.0, "textures/hzm/engrave_wood")
 build("engrave_quad2", 4.0, "textures/hzm/engrave_wood2")
+build("engrave_quad3", 2.0, "textures/hzm/engrave_wood3")   # short words: two lines on 2:1 (textures/hzm/engrave_dyn3.tga, 512 x 256)
 # [Customize bench] emblem quads: one per decal aspect (qcommon/hzm_engrave_table.h HZE_ASPECTS); the decal art is padded to
 # exactly one of these (gen_engrave_decals.py), so no emblem is ever stretched
 for a in (0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0, 8.0):

@@ -36,9 +36,15 @@ series emblems and US decorations, placed on predefined spots per gun, nudged, s
   (`cl_engraveText`), tabs ENGRAVING / EMBLEM 1 / EMBLEM 2, emblem + spot steppers, move / tilt / size / mirror / centre,
   finish-emblem toggle, TURN OVER, RESET, SAVE, BACK. All controls are the client command `hzmcust`; unsaved edits live in
   `cl_custEdit` (+ `cl_custEditKey`) and show on the preview and on the gun in hand; SAVE writes archived `cl_cust_<key>`.
-- **Legibility (22 px goal)**: still 19/72. Measured 2026-11-09: a 3-line 8:3 layout (53 -> 54 below goal) and looser
-  patches / steeper tilt gain nothing - the hip view sees the guns' sides end-on; the remaining 53 are limited by the
-  physical size on screen, not by the layout. Real levers left: a 2:1 two-line quad for short words, or ADS-view anchors.
+- **Legibility (22 px goal)**: 19/72 for long words; **33/72 for words of <= 10 letters** - those use the gun's
+  `engrave_short` spot (two lines on a 2:1 quad, image engrave_dyn3 512x256, layout code 3) where it gives >10% bigger
+  letters (34 guns, all hand-checked). A 3-line 8:3 layout and looser patches gained nothing.
+- **Bench framing / ZOOM** (cl_engrave.cpp `CL_Engrave_ZoomEntity`): the bench ignores the hero transform's framing and
+  centres the posed-mesh bounds (`bounds` lines from the solver) at any box shape; ZOOM turns the edited piece face-on and
+  fills the box with it. Checked on 9 guns at 1920x1080 and 3440x1440 (H:/hzm_work/engrave/bench_stills2).
+- **Hand check of spots**: cfg-only runs (docs/tools/engrave/qa/bench_run.py check_spots / check_short; cmd_wait is in MS,
+  SP loads continue with `finishloadingscreen`); 17/188 emblem spots + 9 short spots failed and are dropped
+  (merge_engrave_spots.py EG_SPOTFAIL). Emblems at the hip are small (top / butt slivers): the bench ZOOM is where they read.
 - **Tool fixes**: gunmesh.read_skc_frame0 validated the SKAN header (10 min -> 3 s a gun, bug-10714); the solver keeps the
   40 largest patches; `merge_engrave_spots.py <checked report> <new reports> <out> <mod>` adds spots without moving a
   hand-checked anchor (never re-run --avoid against the current report, bug-10710).
