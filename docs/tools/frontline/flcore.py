@@ -136,6 +136,45 @@ class Level:
                 yield {"cell": cell, "draw": i, "tex": resolve(tptr), "verts": verts,
                        "cols": cols, "uvs": uvs, "tris": tris}
 
+    # ---------------- object meshes ----------------
+    def mesh(self, name):
+        """[flpolish] an object mesh (.msh in level.viv: the door, the falling house chunks, the jeep wheel, the
+        planes, the U-boat ...) as draws in the cells' own shape: [dict(tex, verts, cols, uvs, tris)], in the mesh's
+        LOCAL frame (Frontline units). Layout (decoded 2026-11-10): u32 header[12]; header[6] = draw records,
+        header[7] = their count, 32 bytes each = (node, texture record, geometry, n); geometry + 12 = u32 vb, u32 ib,
+        u16 nv, u16 ni exactly as a cell draw (28-byte vertices, a triangle strip); the texture record is the cells'
+        128-byte one (word 28 = its SHPX image in this file, else word 31 indexes the level's base table)."""
+        buf = self.files.get(name)
+        if not buf or len(buf) < 48:
+            return []
+        h = struct.unpack_from("<12I", buf, 0)
+        out = []
+        for i in range(h[7]):
+            r = struct.unpack_from("<4I", buf, h[6] + 32 * i)
+            tptr, gptr = r[1], r[2]
+            if gptr + 24 > len(buf) or tptr + 128 > len(buf):
+                continue
+            vb, ib, nv, ni = struct.unpack_from("<IIHH", buf, gptr + 12)
+            if nv < 3 or ni < 3 or vb + nv * VSTRIDE > len(buf) or ib + 2 * ni > len(buf):
+                continue
+            rec = struct.unpack_from("<32I", buf, tptr)
+            tex = self._tex_from(name, buf, rec) if rec[28] else (self.resolve_base(rec[31]) if rec[25] else None)
+            verts, cols, uvs = [], [], []
+            for k in range(nv):
+                x, y, z, _nrm, col, u, v = struct.unpack_from("<3fII2f", buf, vb + k * VSTRIDE)
+                verts.append((x, y, z))
+                cols.append(((col >> 16) & 255, (col >> 8) & 255, col & 255, (col >> 24) & 255))
+                uvs.append((u, v))
+            idx = struct.unpack_from(f"<{ni}H", buf, ib)
+            tris = []
+            for t in range(ni - 2):
+                a, b, c = idx[t], idx[t + 1], idx[t + 2]
+                if a == b or b == c or a == c or max(a, b, c) >= nv:
+                    continue
+                tris.append((a, b, c) if t % 2 == 0 else (b, a, c))
+            out.append({"cell": name, "draw": i, "tex": tex, "verts": verts, "cols": cols, "uvs": uvs, "tris": tris})
+        return out
+
     # ---------------- collision ----------------
     def collision(self):
         """Yield (cell, verts, tris[(a,b,c,f)]) from the .cdb chunks.

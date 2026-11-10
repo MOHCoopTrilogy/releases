@@ -91,7 +91,9 @@ class Walker:
         cx, cy = end[0] + d[0] * (HALF + 2), end[1] + d[1] * (HALF + 2)
         near = 0
         tot = 0
-        for dz in range(int(STEP + 6), int(STAND_H) + 1, 12):
+        # from 12u up: a low drawn thing (a crate, a kerb) taller than the step is the visible reason for the stop
+        # (sampling only above the step height called every such stop 'invisible' once the step became 34)
+        for dz in range(12, int(STAND_H) + 1, 12):
             for lat in (-12, 0, 12):
                 q = (cx + (lat if d[1] else 0), cy + (lat if d[0] else 0), z + dz)
                 tot += 1

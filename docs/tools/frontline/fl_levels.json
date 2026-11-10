@@ -392,52 +392,60 @@
     "motion": "STUKAdogfight_1_1.mvd",
     "model": "models/vehicles/stuka_fly.tik",
     "trigger": 77,
-    "snd": "coop_flstuka"
+    "snd": "coop_flstuka",
+    "mesh": "Stuka_fly.msh"
    },
    {
     "motion": "P47dogfight_1_1.mvd",
     "model": "models/vehicles/p47fly.tik",
     "trigger": 77,
     "delay": 2.5,
-    "snd": "coop_flp47"
+    "snd": "coop_flp47",
+    "mesh": "1_1mustangP47.msh"
    },
    {
     "motion": "P47bomb_building1_1.mvd",
     "model": "models/vehicles/p47fly.tik",
     "trigger": 41,
-    "snd": "coop_flp47"
+    "snd": "coop_flp47",
+    "mesh": "1_1mustangP47.msh"
    },
    {
     "motion": "Bomb_1_1_01.mvd",
     "model": "models/ammo/us_bomb.tik",
     "trigger": 423,
-    "fx": "bomb"
+    "fx": "bomb",
+    "mesh": "Falling_Bomb.msh"
    },
    {
     "motion": "Bomb_1_1_02.mvd",
     "model": "models/ammo/us_bomb.tik",
     "trigger": 86,
-    "fx": "bomb"
+    "fx": "bomb",
+    "mesh": "Falling_Bomb.msh"
    },
    {
     "motion": "P47flyingcircle1_1.mvd",
     "model": "models/vehicles/p47fly.tik",
     "trigger": 220,
-    "snd": "coop_flp47"
+    "snd": "coop_flp47",
+    "mesh": "1_1mustangP47.msh"
    },
    {
     "motion": "P47rocket_tank1_1.mvd",
     "model": "models/vehicles/p47fly.tik",
     "trigger": 226,
     "snd": "coop_flp47",
-    "fx": "tank"
+    "fx": "tank",
+    "mesh": "1_1mustangP47.msh"
    },
    {
     "motion": "rocket_firing.mvd",
     "model": "models/projectiles/panzerschreckshell.tik",
     "object": 385,
     "trigger": 255,
-    "fx": "rocket"
+    "fx": "rocket",
+    "mesh": "rocket.msh"
    },
    {
     "motion": "rocket_firing.mvd",
@@ -445,28 +453,198 @@
     "object": 386,
     "trigger": 255,
     "delay": 0.6,
-    "fx": "rocket"
+    "fx": "rocket",
+    "mesh": "rocket.msh"
    },
    {
     "motion": "P47strafe_mg_1_1.mvd",
     "model": "models/vehicles/p47fly.tik",
     "trigger": 219,
-    "snd": "coop_flp47"
+    "snd": "coop_flp47",
+    "mesh": "1_1mustangP47.msh"
    },
    {
     "motion": "P47flyby1_1.mvd",
     "model": "models/vehicles/p47fly.tik",
     "trigger": 84,
-    "snd": "coop_flp47"
+    "snd": "coop_flp47",
+    "mesh": "1_1mustangP47.msh"
    },
    {
     "motion": "1_1_Uboat_bobbing.mvd",
     "model": "models/static/uboat.tik",
     "object": 286,
     "loop": 1,
+    "fx": "stay",
+    "mesh": "1_1_Uboat_bobbing.msh"
+   },
+   {
+    "motion": "house_1_1_01.mvd",
+    "mesh": "house_chunk_1_1_01.msh",
+    "object": 294,
+    "trigger": 86,
+    "delay": 3.4,
+    "fx": "stay"
+   },
+   {
+    "motion": "house_1_1_02.mvd",
+    "mesh": "house_chunk_1_1_02.msh",
+    "object": 295,
+    "trigger": 86,
+    "delay": 3.4,
+    "fx": "stay"
+   },
+   {
+    "motion": "Vhcl_Jp_Tr_FrntL_1_1.mvd",
+    "mesh": "Vehicle_Jeep_Wheel.msh",
+    "sync": "jeep",
+    "fx": "stay"
+   },
+   {
+    "motion": "Vhcl_Jp_Tr_FrntR_1_1.mvd",
+    "mesh": "Vehicle_Jeep_Wheel.msh",
+    "sync": "jeep",
+    "fx": "stay"
+   },
+   {
+    "motion": "Vhcl_Jp_Tr_RrL_1_1.mvd",
+    "mesh": "Vehicle_Jeep_Wheel.msh",
+    "sync": "jeep",
+    "fx": "stay"
+   },
+   {
+    "motion": "Vhcl_Jp_Tr_RrR_1_1.mvd",
+    "mesh": "Vehicle_Jeep_Wheel.msh",
+    "sync": "jeep",
     "fx": "stay"
    }
   ],
-  "_set_pieces": "[flpolish] which Frontline motion plays as which stock MOHAA model, and when (fidelity pass 2026-11-10). 'trigger'/'object' are Frontline RECORD indexes resolved on the player's PC. Planes go to the trigger their flight passes closest to (unique assignment; the untriggered start pass and the two dogfights open over the drop); bombs and rockets to the triggers that send them; the U-boat bobs at its own record for the whole mission. Frontline's own meshes for the planes, bombs, rockets and U-boat are not converted: the stock models stand in."
+  "_set_pieces": "[flpolish] which Frontline motion plays when, and as what: 'mesh' = Frontline's own object mesh from the player's disc (flconvert builds it as an inline model), 'model' = a stock MOHAA stand-in when there is none. 'trigger'/'object' are Frontline RECORD indexes resolved on the player's PC. Planes go to the trigger their flight passes closest to (unique assignment; the untriggered start pass and the two dogfights open over the drop); bombs and rockets to the triggers that send them; the house chunks fall when the second bomb lands beside them (its fall is 3.4 s); the jeep's wheels fly off on the jeep's own clock from the mine hit ('sync'); the U-boat bobs all mission.",
+  "clip_keep": [
+   ["1_1_C_c0.cdb", 3646],
+   ["1_1_C_c0.cdb", 3647],
+   ["1_1_C_c0.cdb", 3852],
+   ["1_1_C_c0.cdb", 3853],
+   ["1_1_C_c0.cdb", 3857],
+   ["1_1_C_c0.cdb", 3860],
+   ["1_1_C_c0.cdb", 3861],
+   ["1_1_C_c0.cdb", 3866],
+   ["1_1_C_c0.cdb", 3867],
+   ["1_1_C_c0.cdb", 3870],
+   ["1_1_C_c0.cdb", 3871],
+   ["1_1_C_c0.cdb", 3873],
+   ["1_1_C_c0.cdb", 3874],
+   ["1_1_C_c0.cdb", 3875],
+   ["1_1_C_c0.cdb", 3876],
+   ["1_1_C_c0.cdb", 3877],
+   ["1_1_C_c0.cdb", 3878],
+   ["1_1_C_c0.cdb", 3879],
+   ["1_1_C_c0.cdb", 3881],
+   ["1_1_C_c0.cdb", 3887],
+   ["1_1_C_c1.cdb", 1802],
+   ["1_1_C_c1.cdb", 1803],
+   ["1_1_C_c1.cdb", 2815],
+   ["1_1_C_c1.cdb", 2816],
+   ["1_1_C_c1.cdb", 2817],
+   ["1_1_C_c1.cdb", 2818],
+   ["1_1_C_c1.cdb", 2819],
+   ["1_1_C_c1.cdb", 2821],
+   ["1_1_C_c1.cdb", 2825],
+   ["1_1_C_c2.cdb", 3437],
+   ["1_1_C_c2.cdb", 3438],
+   ["1_1_C_c2.cdb", 3439],
+   ["1_1_C_c2.cdb", 3440],
+   ["1_1_C_c2.cdb", 3441],
+   ["1_1_C_c2.cdb", 3497],
+   ["1_1_C_c2.cdb", 3498],
+   ["1_1_C_c2.cdb", 3501],
+   ["1_1_C_c2.cdb", 3502],
+   ["1_1_C_c2.cdb", 3503],
+   ["1_1_C_c2.cdb", 3504],
+   ["1_1_C_c2.cdb", 3505],
+   ["1_1_C_c2.cdb", 3506],
+   ["1_1_C_c2.cdb", 3509],
+   ["1_1_C_c2.cdb", 3510],
+   ["1_1_C_c2.cdb", 3511],
+   ["1_1_C_c2.cdb", 3512],
+   ["1_1_C_c2.cdb", 3514],
+   ["1_1_C_c2.cdb", 3516],
+   ["1_1_C_c2.cdb", 3517],
+   ["1_1_C_c2.cdb", 3518],
+   ["1_1_C_c2.cdb", 3522],
+   ["1_1_C_c2.cdb", 3523],
+   ["1_1_C_c2.cdb", 3524],
+   ["1_1_C_c2.cdb", 3533],
+   ["1_1_C_c2.cdb", 3534],
+   ["1_1_C_c3.cdb", 4034],
+   ["1_1_C_c3.cdb", 4035],
+   ["1_1_C_c3.cdb", 4478],
+   ["1_1_C_c3.cdb", 4479],
+   ["1_1_C_c3.cdb", 4481],
+   ["1_1_C_c3.cdb", 4485],
+   ["1_1_C_c3.cdb", 4487],
+   ["1_1_C_c3.cdb", 4489],
+   ["1_1_C_c3.cdb", 4490],
+   ["1_1_C_c3.cdb", 4491],
+   ["1_1_C_c3.cdb", 4492],
+   ["1_1_C_c3.cdb", 4493],
+   ["1_1_C_c3.cdb", 4494],
+   ["1_1_C_c3.cdb", 4495],
+   ["1_1_C_c3.cdb", 4497],
+   ["1_1_C_c3.cdb", 4499],
+   ["1_1_C_c3.cdb", 4503],
+   ["1_1_C_c3.cdb", 4504],
+   ["1_1_C_c3.cdb", 4505],
+   ["1_1_C_c3.cdb", 4507],
+   ["1_1_C_c3.cdb", 4509],
+   ["1_1_C_c3.cdb", 4510],
+   ["1_1_C_c3.cdb", 4511],
+   ["1_1_C_c3.cdb", 4512],
+   ["1_1_C_c3.cdb", 4513],
+   ["1_1_C_c3.cdb", 4530],
+   ["1_1_C_c3.cdb", 4531],
+   ["1_1_C_c3.cdb", 4533],
+   ["1_1_C_c4.cdb", 268],
+   ["1_1_C_c4.cdb", 274],
+   ["1_1_C_c4.cdb", 2874],
+   ["1_1_C_c4.cdb", 2875],
+   ["1_1_C_c4.cdb", 3407],
+   ["1_1_C_c4.cdb", 3408],
+   ["1_1_C_c4.cdb", 3409],
+   ["1_1_C_c4.cdb", 3410],
+   ["1_1_C_c4.cdb", 3411],
+   ["1_1_C_c4.cdb", 3412],
+   ["1_1_C_c4.cdb", 3413],
+   ["1_1_C_c4.cdb", 3414],
+   ["1_1_C_c5.cdb", 3596],
+   ["1_1_C_c5.cdb", 3597],
+   ["1_1_C_c5.cdb", 3598],
+   ["1_1_C_c5.cdb", 3599],
+   ["1_1_C_c5.cdb", 3600],
+   ["1_1_C_c5.cdb", 3601],
+   ["1_1_C_c5.cdb", 3602],
+   ["1_1_C_c5.cdb", 3603],
+   ["1_1_C_c5.cdb", 3606],
+   ["1_1_C_c5.cdb", 3607],
+   ["1_1_C_c6.cdb", 3151],
+   ["1_1_C_c6.cdb", 3153],
+   ["1_1_C_c6.cdb", 3155],
+   ["1_1_C_c6.cdb", 3157],
+   ["1_1_C_c6.cdb", 3159],
+   ["1_1_C_c6.cdb", 3161],
+   ["1_1_C_c6.cdb", 3163],
+   ["1_1_C_c6.cdb", 3165],
+   ["1_1_C_c6.cdb", 3582]
+  ],
+  "object_meshes": [
+   {
+    "name": "door",
+    "mesh": "Door_square_1_1.msh",
+    "object": 401,
+    "solid": 1
+   }
+  ],
+  "_object_meshes": "[flpolish] Frontline object meshes that stand on their own record (inline models): the door (DoorSwingCW, solid while shut, swings open when its group wakes).",
+  "_clip_keep": "[flpolish] Frontline player-clip sheets (disc chunk, triangle index) that STAY: they bound the playable area where nothing is drawn, and get a visible barbed-wire edge (flsheets.edges). Every other non-walkable sheet is dropped and the drawn geometry behind it collides instead. Curated with the walk audit (docs/proposals/flpolish_2026-11-10/sheetiter.py): drop all, keep the sheets where the walker got out of the level."
  }
 }

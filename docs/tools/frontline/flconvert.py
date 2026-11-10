@@ -28,11 +28,12 @@ import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
 import flclear
-import flskin  # noqa: E402
+import flsheets  # noqa: E402
+import flscene  # noqa: E402
 import flfit  # noqa: E402
 import flcliff  # noqa: E402
 
-CONVERTER_VERSION = "0.4.0"
+CONVERTER_VERSION = "0.5.0"
 FL_STEP = 34                  # Frontline step height at 48 u/m (~0.7 m): the lips its player walks over
 
 # Frontline .cdb collision flag word (flcore.collision, decoded 2026-11-10 against the level's own AI nav graph):
@@ -46,6 +47,7 @@ COLL_MAT_VOLUME = (14, 15)   # 14 trigger volumes; 15 the river's WATER volume (
 COLL_SPECIAL = 1 << 23
 TAG_CLIFF = 0x7FFFF001        # [flpolish] collision added by us: edge-of-world clip (flcliff) / lip ramps (flclear)
 TAG_RAMP = 0x7FFFF002
+TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dropped player-clip sheet stood in front of
 
 
 def coll_is_volume(f):
@@ -497,17 +499,19 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     wound = []
     wtags = []
     volumes = 0
+    idmap = {}                    # [flpolish] wound triangle -> (disc chunk, triangle index), for flsheets' keep list
     for name, vs, ts in coll:
         if os.environ.get("FL_COLL_ONLY") and os.environ["FL_COLL_ONLY"] not in name:
             continue
         P = [X(v) for v in vs]
-        for a, b, c, f in ts:
+        for ti_, (a, b, c, f) in enumerate(ts):
             if coll_is_volume(f):
                 volumes += 1
                 continue
             a2, b2, c2 = wind(a, b, c, flip_coll)
             wound.append((P[a2], P[b2], P[c2]))
             wtags.append(f)
+            idmap[wound[-1]] = (name, ti_)
     stats["coll_volumes_dropped"] = volumes
     # invisible blocker columns (trees, posts) shrunk to what is drawn inside them (flfit.py)
     colboxes = []
@@ -519,11 +523,27 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         g_nm = flgeom.TriGrid([t for t, f in zip(wound, wtags) if (f & 0x7FF) != flfit.MAT_SPECIAL])
         wound, wtags, colboxes, stats["columns"] = flfit.fit_columns(
             wound, wtags, rtris, lambda x, y, zt, zb: g_nm.ground(x, y, zt - 4, zb))
-    # player-clip SKINS standing in front of walls that already block (flskin.py): the player meets the drawn wall
-    if not os.environ.get("FL_NO_SKINS"):
-        km, stats["skins"] = flskin.skins(wound, wtags, lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL))
-        wound = [t for t, k in zip(wound, km) if k]
-        wtags = [f for f, k in zip(wtags, km) if k]
+    # [flpolish] blocked only by what you can see (flsheets.py): Frontline's floating player-clip sheets are dropped
+    # (all but the reviewed level-boundary ones, fl_levels.json "clip_keep") and the drawn geometry they stood in front
+    # of gets collision of its own
+    if not os.environ.get("FL_NO_SHEETS"):
+        wound, wtags, drawn_coll, stats["sheets"] = flsheets.replace(
+            wound, wtags, [idmap.get(t) for t in wound], lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL),
+            rtris, keep=flpack.spec(level).get("clip_keep", []))
+        wound += drawn_coll
+        wtags += [TAG_DRAWN] * len(drawn_coll)
+        # ...and the sheets that stay (the level's boundaries where nothing is drawn) get a VISIBLE edge: a barbed-wire
+        # fence along their foot (MOHAA's own textures/mohcommon/barbwire from the player's install)
+        gk_ = flgeom.TriGrid(wound)
+        wire = B.shader("textures/mohcommon/barbwire", 0, 0)
+        nfe = 0
+        for (x0, y0, z0), (x1, y1, z1) in flsheets.edges(stats["sheets"].pop("kept_tris"), gk_.ground):
+            L_ = math.hypot(x1 - x0, y1 - y0)
+            q = [((x0, y0, z0), (0.0, 1.0)), ((x1, y1, z1), (L_ / 64.0, 1.0)),
+                 ((x1, y1, z1 + 64.0), (L_ / 64.0, 0.0)), ((x0, y0, z0 + 64.0), (0.0, 0.0))]
+            B.add_soup(wire, [(pp, st, (0.0, 0.0, 1.0), med_light + (255,)) for pp, st in q], [0, 1, 2, 0, 2, 3])
+            nfe += 1
+        stats["sheets"]["visible_edges"] = nfe
     # headroom: crawl holes / doorways sized for Frontline's smaller player get MOHAA crouch / stand clearance
     # (flclear.py; collision only, the drawn walls are untouched)
     caps = []
@@ -621,6 +641,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             nm = "cliff"
         elif tag == TAG_RAMP:
             nm = "ramp"
+        elif tag == TAG_DRAWN:
+            nm = "drawn"
         else:
             nm = "m%d%s%s" % (tag & 0x7FF, "s" if tag & COLL_SPECIAL else "", "v" if tag & COLL_VOLUME else "")
         return B.shader("textures/common/fl_coll_" + nm, flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
@@ -661,6 +683,65 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             if bk:
                 B.add_soup(key_[0], list(bk), list(range(len(bk))))
 
+    # [flpolish] Frontline's own OBJECT MESHES (.msh: the door, the falling house chunks, the jeep's wheels, the
+    # planes, bombs, rockets, the U-boat) as inline brush models, each in its own local frame, so the mission script
+    # moves them by origin/angles (script_object $fl_om<k>). Which mesh goes where is fl_levels.json ("set_pieces"
+    # entries with "mesh", and "object_meshes" for the ones that stand on a record); converted on the player's PC.
+    om_ents = []
+    Xr = lambda q: (q[0] * X.s, q[1] * X.s * X.m, q[2] * X.s)          # noqa: E731 - local frame: no recentre
+    recs_ = {e.get("i"): e for e in L.entities()}
+    om_specs = []
+    for k_, spc in enumerate(flpack.spec(level).get("set_pieces", []), 1):
+        if spc.get("mesh"):
+            om_specs.append(("sp%d" % k_, spc, None))
+    for spc in flpack.spec(level).get("object_meshes", []):
+        om_specs.append((spc["name"], spc, recs_.get(spc.get("object"))))
+    nom = 0
+    for tag_, spc, rec_ in om_specs:
+        draws = L.mesh(spc["mesh"])
+        if not draws:
+            continue
+        surf_ids = []
+        lo_ = [1e9] * 3
+        hi_ = [-1e9] * 3
+        for m in draws:
+            if not m["tris"]:
+                continue
+            P = [Xr(v) for v in m["verts"]]
+            tris = [wind(a, b, c, flip_render) for a, b, c in m["tris"]]
+            acc = [[0.0, 0.0, 0.0] for _ in P]
+            for a, b, c in tris:
+                n = face_normal(P[a], P[b], P[c])
+                if n:
+                    for i in (a, b, c):
+                        acc[i][0] += n[0]; acc[i][1] += n[1]; acc[i][2] += n[2]
+            verts = []
+            for i, p_ in enumerate(P):
+                l_ = math.sqrt(sum(x * x for x in acc[i])) or 1.0
+                r_, g_, b_, a_ = m["cols"][i]
+                if r_ == g_ == b_ == 255:
+                    r_, g_, b_ = med_light
+                verts.append((p_, m["uvs"][i], tuple(x / l_ for x in acc[i]), (r_, g_, b_, 255)))
+                for q in range(3):
+                    lo_[q] = min(lo_[q], p_[q])
+                    hi_[q] = max(hi_[q], p_[q])
+            surf_ids.append(B.add_soup(tex_shader(m["tex"]), verts, [i for t in tris for i in t]))
+        if not surf_ids:
+            continue
+        brushes_ = []
+        if spc.get("solid"):
+            # the door blocks while it is shut: one box on its own bounds (moves with it)
+            brushes_.append(B.add_brush_planes(clip, [], lo_, hi_))
+        B.models.append({"surfaces": surf_ids, "brushes": brushes_})
+        nom += 1
+        kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)), ("targetname", "fl_om_" + tag_)]
+        if rec_ is not None:
+            o_ = X(rec_["pos"])
+            a_ = flscene.mohaa_angles(struct.unpack("<4f", struct.pack("<4I", *flscene.words(rec_)[7:11])), X.m < 0)
+            kv += [("origin", "%.1f %.1f %.1f" % o_), ("angles", "%.1f %.1f %.1f" % a_)]
+        om_ents.append(kv)
+    stats["object_meshes"] = nom
+
     # ---- entities ----
     ents = L.entities()
     player = next((e for e in ents if "Player" in e["strs"]), None)
@@ -673,6 +754,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
           # walks over the 19-34u lips and kerbs MOHAA's 18u step snags on). server/sv_init.c reads both.
           ("hzm_widecoords", "1"), ("hzm_stepsize", str(sp.get("step_height", FL_STEP)))]
     B.entity(ws)
+    for kv in om_ents:
+        B.entity(kv)
     kept = []
     for n in L.navpoints():
         p = X(n["pos"])

@@ -66,12 +66,19 @@ def fit_columns(tris, tags, render_tris, ground, opts=None):
             (rhi[:, 2] > z0) & (rlo[:, 2] < z1)
         drop.update(ts)
         rep["area_before"] += float(ext[0] * ext[1])
-        if not m.any():
+        # [flpolish] the drawn POINTS inside the footprint and the body band, from non-floor triangles: a big wall or
+        # ground triangle merely overlapping the footprint kept the box as fat as Frontline's (walk audit: 83 column
+        # contacts on the routes with the trunk 16-128u away)
+        Rm = R[m]
+        nz = np.abs(np.cross(Rm[:, 1] - Rm[:, 0], Rm[:, 2] - Rm[:, 0])[:, 2]) / (
+            np.linalg.norm(np.cross(Rm[:, 1] - Rm[:, 0], Rm[:, 2] - Rm[:, 0]), axis=1) + 1e-9)
+        Vw = Rm[nz < 0.7].reshape(-1, 3)
+        Vw = Vw[(Vw[:, 0] >= lo[0]) & (Vw[:, 0] <= hi[0]) & (Vw[:, 1] >= lo[1]) & (Vw[:, 1] <= hi[1])]
+        if not m.any() or len(Vw) < 3:
             rep["dropped"] += 1
             continue
-        # drawn extent inside the footprint and the body band (clamped to the column)
-        blo = np.maximum(rlo[m].min(0), lo)
-        bhi = np.minimum(rhi[m].max(0), hi)
+        blo = np.maximum(Vw.min(0), lo)
+        bhi = np.minimum(Vw.max(0), hi)
         pad = o["pad"]
         boxes.append(((float(blo[0] - pad), float(blo[1] - pad), float(fz - 8.0)),
                       (float(bhi[0] + pad), float(bhi[1] + pad), float(hi[2]))))

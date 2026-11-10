@@ -182,6 +182,9 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         for pid_, pp in npaths.items():
             if pid_ in skip:
                 continue
+            # a path shorter than 4 m is not a route (path 3 on 1_1: three points over 1.8 m beside the tank)
+            if sum(math.dist(pp[k][:2], pp[k + 1][:2]) for k in range(len(pp) - 1)) < 4.0:
+                continue
             d = min((q[0] - pos[0]) ** 2 + (q[1] - pos[1]) ** 2 for q in pp)
             if d < 12.0 ** 2 and (best is None or d < best[0]):
                 best = (d, pid_)
@@ -367,7 +370,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
     # "relative" motions (the U-boat's bob, the rockets' launch) play around their object's own spot and facing.
     recs = {e.get("i"): e for e in L.entities()}
     nsp = 0
-    for spc in sp.get("set_pieces", []):
+    for spk_, spc in enumerate(sp.get("set_pieces", []), 1):
         mv_ = spc["motion"]
         name = "sp_" + re.sub(r"\W", "_", mv_.rsplit(".", 1)[0]).lower()
         data = L.files.get(mv_)
@@ -387,7 +390,10 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         lines += [q for q in pl if "level.fl_mot" in q]
         nsp += 1
         lines.append(f'\tlevel.fl_sp_motion[{nsp}] = "{name}"')
-        lines.append(f'\tlevel.fl_sp_model[{nsp}] = "{spc["model"]}"')
+        lines.append(f'\tlevel.fl_sp_model[{nsp}] = "{spc.get("model", "models/fx/dummy.tik")}"')
+        if spc.get("mesh"):
+            # Frontline's own mesh: flconvert builds it as the inline model $fl_om_sp<k> (k = its place in the table)
+            lines.append(f'\tlevel.fl_sp_om[{nsp}] = "fl_om_sp{spk_}"')
         if spc.get("trigger") is not None:
             t_ = recs.get(spc["trigger"])
             tr_ = flscene.trigger(t_) if t_ is not None else None
@@ -401,12 +407,17 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             lines.append(f'\tlevel.fl_sp_base[{nsp}] = ( {bp[0]:.0f} {bp[1]:.0f} {bp[2]:.0f} )')
             lines.append(f'\tlevel.fl_sp_yaw[{nsp}] = {flscene.yaw(o_, X.m < 0):.0f}')
         for k_, key_ in (("delay", "delay"), ("snd", "snd"), ("fx", "fx"), ("loop", "loop"), ("yaw", "yaw"),
-                         ("scale", "scale")):
+                         ("scale", "scale"), ("sync", "sync")):
             if spc.get(k_) is not None and not (k_ == "yaw" and rel):
                 v_ = spc[k_]
                 lines.append(f'\tlevel.fl_sp_{key_}[{nsp}] = ' + (f'"{v_}"' if isinstance(v_, str) else f"{v_}"))
     if nsp:
         lines.append(f"\tlevel.fl_sp_n = {nsp}")
+    # the door's group (Frontline's DoorSwingCW swings open when it wakes)
+    for e in L.entities():
+        if "DoorSwingCW" in e["strs"] and flscene.ids(e):
+            lines.append(f"\tlevel.fl_door_grp = {flscene.ids(e)[0]}")
+            break
     # the tank's group (it drives its path when the group wakes)
     for e in L.entities():
         if "TankVehicle" in e["strs"] and flscene.ids(e):
