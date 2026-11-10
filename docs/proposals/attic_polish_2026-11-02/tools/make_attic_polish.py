@@ -259,7 +259,7 @@ W += ["resource", "Button", "{", 'name "hzm_wxback"', "rect 8 446 64 24", "fgcol
       'enabledcvar "ui_atticActive==1 ui_atcStop>2"', "}"]
 # the window's ambience level (user: "overbearing"): a chalk tab beside BACK cycling SOUND OFF / LOW / MED (ui_wxAmbLevel 0 / 1 / 2,
 # archived, default LOW); one label and one button per state, each button steps to the next level
-for _v, _t, _n in (("0", "SOUND  OFF", "1"), ("1", "SOUND  LOW", "2"), ("2", "SOUND  MED", "0")):
+for _v, _t, _n in (("0", "SOUND  OFF", "1"), ("1", "SOUND  LOW", "2"), ("2", "SOUND  MED", "3"), ("3", "SOUND  HIGH", "0")):      # v1.10.73: + HIGH
     W += ["resource", "Label", "{", 'name "hzm_wxsnd_text%s"' % _v, 'title "%s"' % _t, "rect 78 446 84 24", "fgcolor 0.93 0.93 0.88 0.90",
           "bgcolor 0.10 0.08 0.06 0.60", 'borderstyle "NONE"', 'font "facfont-20"', "textalign center",
           'enabledcvar "ui_atticActive==1 ui_atcStop>2 ui_wxAmbLevel==%s"' % _v, "}"]
