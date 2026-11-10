@@ -23,7 +23,9 @@ python -P -E gen_ops.py engine <engine checkout>                                
 python -P -E gen_ops.py mp     <mod checkout>                                    # coop_mod/mp_ops_table.scr
 python ../sp3camp_2026-11-08/make_ng3campaigns.py --mod <mod checkout> --sheet H:/hzm_work/liveops-warmap
 ```
-The `hzm_ng3c_*` / `hzm_ops_*` textures are gitignored: run the last step in the checkout `build.ps1` packs from.
+The `hzm_ng3c_*` / `hzm_ops_*` textures are gitignored and ship in the **menus3d pak**, not the tex paks: that pak sorts
+last and already carries `hzm_ng3c_*` (a tex-pak copy loses to it), and new files under `textures/` trip the tex pak baseline
+gate. v1.10.72 recipe: `attic_polish_2026-11-02/tools/attic72_build.sh` (moves them out of the mod tree into the pak).
 The exe and the mod pak ship TOGETHER (the menu's `hzm_ops` command and `ui_ops*` cvars live in the exe).
 
 ## Decisions taken while building
