@@ -260,6 +260,10 @@ animations
 	coopr_bren_reload		viewmodel/coop_bren/coop_bren_reload_fps.skc				crossblend 0.05
 	cv_bren_reload_s		viewmodel/coop_bren/coop_bren_reload_fps_s.skc				crossblend 0.05
 	cv_bren_reload_m		viewmodel/coop_bren/coop_bren_reload_fps_m.skc				crossblend 0.05
+	// aimed: the same clips as AIMED reload rows (the ADS framing holds; the hip row under the aim rig swung the gun across the view)
+	coopr_bren_reload_ads		viewmodel/coop_bren/coop_bren_reload_fps.skc				crossblend 0.1
+	cv_bren_reload_s_ads		viewmodel/coop_bren/coop_bren_reload_fps_s.skc				crossblend 0.1
+	cv_bren_reload_m_ads		viewmodel/coop_bren/coop_bren_reload_fps_m.skc				crossblend 0.1
 
 	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
 	cv_fg_42_irons_reload_s		viewmodel/fg42/coop_fg42_reload_hip_s.skc		crossblend 0.05	// HZM coop [ads heavy] FG 42 Irons hip, rounds left (= fg42_reload)

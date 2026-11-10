@@ -59,9 +59,13 @@ def script(turn_ms):
         for i in range(10):
             s.cmd('screenshotJPEG %s_05_reload_%02d' % (k, i), 280)
         s.wait(2000)
-        s.cmd('+button13', 1500); s.cmd('reload', 300)
-        for i in range(6):
-            s.cmd('screenshotJPEG %s_06_adsreload_%d' % (k, i), 400)
+        # [QA 2] aim, a burst so the magazine is not full, the aim picture AFTER the first shots, then reload while aiming
+        s.cmd('+button13', 1500); s.cmd('+attack', 900); s.cmd('-attack', 1200)
+        s.cmd('screenshotJPEG %s_03_ads_aftershot' % k, 300)
+        s.cmd('reload', 50)
+        for i in range(8):
+            s.cmd('screenshotJPEG %s_06_adsreload_%d' % (k, i), 280)
+        s.wait(3000)
         s.cmd('-button13', 2500)
         s.cmd('cg_3rd_person 1', 300); s.cmd('cg_cameradist 22', 0); s.cmd('cg_camerasideoffset 58', 0); s.cmd('cg_cameraheight 2', 1200)
         s.cmd('screenshotJPEG %s_07_third' % k, 400)
@@ -117,8 +121,7 @@ def script_adstest(turn_ms):
     s = Cfg()
     s.cmd('use "Bren"', 3000)
     s.cmd('+button13', 2000)
-    for i, cv in enumerate(['', 'coop_adsSightRelief 1', 'coop_adsSightRelief 2', 'coop_adsSightRelief 6', 'coop_adsSightRelief -1; coop_adsSightDz -0.6',
-                            'coop_adsSightDz 0.6', 'coop_adsSightDz 0']):
+    for i, cv in enumerate(['', '', '', 'cg_adsRigReliefBias -1', 'cg_adsRigReliefBias 1', 'cg_adsRigReliefBias 0']):
         if cv:
             for c_ in cv.split('; '):
                 s.cmd(c_)

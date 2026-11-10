@@ -141,3 +141,18 @@ Test runner: run_gun.py (Armory route, overlay = every mod file changed since ho
 - **Test runner** tools/run_cfg.py: NO pad script (user playing): console steps exec'd over loopback rcon (net_ip 127.0.0.1,
   IPv4 only), waits in ms (cmd.c), in_gamepad 0 / in_joystick 0, harness_window no-activate policy, muted, 3440x1440 ultrawide.
 - Stills: media/final/ (ng18 = all but the Bren reload; ng19 = the Bren reload with the shipped clips; ng19's weather is darker).
+
+## Status 2026-11-09 ~19:10 (QA 3: Bren aperture sight, reach low, aimed reload)
+- **Bren sight picture**: the eye now looks THROUGH the source mesh's own aperture leaf (the 12-sided hole), front post at the
+  crosshair inside it, magazine to the right outside the line; big and soft in the foreground (M1 / Kar98k style). Engine row:
+  F = blade tip (34.83, -1.942, -5.879), R = the aperture (-9.592, -1.939, -5.650) - bracketed in game between ng13 (ring centre:
+  hole below) and ng21 (0.6 lower: hole above). The ghost ring is gone from the mesh (it showed as a thin bright arc across the
+  aim view); the source disc stays out, so the leaf is open. Same picture after the first shots. media/final2/bren_ads_zoom_ng24.jpg
+  (red cross = screen centre).
+- **Aimed reload**: `coopr_bren_reload_ads`, `cv_bren_reload_s_ads`, `cv_bren_reload_m_ads` (the same clips) - a reload started
+  while aiming is an aimed reload; before, the hip row under the aim rig swung the gun sideways across the view at its start.
+- **Reach**: `loww` keys (camera frame) drop the right hand under the gun for the reach off the grip, so it never comes in big
+  from the right edge (reload_00 in media/final2/bren_reload_sheet_ng24.jpg). Clip check: 0 cuts even against r_znear 4.
+- **Harness incident (ng24, 19:06:19)**: the guard caught the test client clipping the cursor to its window (cursor_clip) for
+  0.26 s and killed it (ENFORCED). Testing stopped there; the MP 28 / Panzerfaust part of ng24 did not finish (both were already
+  approved from ng18).

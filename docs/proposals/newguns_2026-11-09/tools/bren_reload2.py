@@ -130,11 +130,12 @@ def bake(src, cfg, keys):
     out = R.load(VM + src)
     cm = R.chanmap(out)
     clamps = []
-    gk = keys.get('gun', {}); lk = keys.get('low', {})
+    gk = keys.get('gun', {}); lk = keys.get('low', {}); wk = keys.get('loww', {})
     for f in range(hip.numFrames):
         w = ramp(f, cfg['rin'], cfg['rout'])
         g = interp(gk, f, 6); lo = interp(lk, f, 3)
-        if w <= 0 and not np.any(g) and not np.any(lo):
+        lw = interp(wk, f, 3)
+        if w <= 0 and not np.any(g) and not np.any(lo) and not np.any(lw):
             continue
         pd = R.pose_dict(hip, f)
         Wc = R.evaluate(pd)
@@ -143,10 +144,12 @@ def bake(src, cfg, keys):
         HR = Wc['Bip01 R Hand'].copy()
         HR[3, 0:3] = HR[3, 0:3] + ((w * D) + lo) @ G[0:3, 0:3] / S
         HL = Wc['Bip01 L Hand']
+        HRT = HR @ T
+        HRT[3, 0:3] = HRT[3, 0:3] + lw / S          # [QA 2] world (camera) frame: fwd, left, up - the reach starts LOW
         if np.any(g):
             if solve_arm(pd, Wc, 'L', HL @ T):
                 clamps.append(('L', f))
-        if solve_arm(pd, Wc, 'R', HR @ T):
+        if solve_arm(pd, Wc, 'R', HRT):
             clamps.append(('R', f))
         KB.write_frame(out, hip, cm, f, pd)
     assert np.array_equal(out.V[0], hip.V[0]) and np.array_equal(out.V[-1], hip.V[-1])

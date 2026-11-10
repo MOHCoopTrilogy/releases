@@ -99,7 +99,9 @@ def main():
     uv = cand[np.argsort(lum)[len(lum) * 3 // 4]]
     ring = L.ring_tris(uv)
     keep = part != 49
-    A = np.concatenate([A[keep], ring]); part = np.concatenate([part[keep], np.full(len(ring), 49)])
+    # [newguns QA 3] no ghost ring: the sight row looks through the source aperture leaf (part 34), the disc (49) stays out
+    A = A[keep]; part = part[keep]
+    _unused_ring = ring
     M1 = np.load(os.path.join(L.BUILD, 'vb_affine_1.npy')); M3 = np.load(os.path.join(L.BUILD, 'vb_affine_3.npy'))
     mag = np.isin(part, list(MAG_PARTS)); hnd = np.isin(part, list(HANDLE_PARTS)); body = ~(mag | hnd)
     surfs = X.split_surfaces('bren', corners(A[body], 1, M1))
