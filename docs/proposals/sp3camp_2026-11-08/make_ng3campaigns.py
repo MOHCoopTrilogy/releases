@@ -211,6 +211,12 @@ _pin = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
 ImageDraw.Draw(_pin).ellipse((6, 6, 57, 57), fill=(176, 28, 24, 250), outline=(70, 14, 10, 255), width=5)
 _pin.save(os.path.join(TEX, "hzm_ng3c_pin.tga"))
 add_shader("hzm_ng3c_pin", True, "tga")
+# [attic70] an optional mission's dashed leader pin -> tag (warmap.py lead_<key>.png, its wall uv box in the markers json): a scene
+# label gated like its pin, so it is there exactly when the mission is
+for m in MIS:
+    if m.get("lead_uv"):
+        Image.open(os.path.join(SHEETD, "lead_%s.png" % m["key"])).save(os.path.join(TEX, "hzm_ng3c_lead_%s.tga" % m["key"]))
+        add_shader("hzm_ng3c_lead_%s" % m["key"], True, "tga")
 add_shader("hzm_ng3c_done", True, "tga")
 TOG = JS["toggle"]
 TOG_H = TOG["h"]
@@ -278,6 +284,12 @@ def hot(hn, ce, half_w, hw, hh, cmd, cap, gate, back=False):
 for m in MIS:
     k = m["key"]
     if ROW[k].get("optional_cvar"):
+        if m.get("lead_uv"):
+            u0, v0, u1, v1 = m["lead_uv"]
+            lc = conv(map_bu(((u0 + u1) / 2, (v0 + v1) / 2), dy=0.0045))
+            scn_extra.append('scenelabel "ng3c_lead_%s" %.1f %.1f %.1f %.2f %.2f' % (k, lc[0], lc[1], lc[2], (u1 - u0) * (WM_HI[0] - WM_LO[0]) / 2 * SCALE,
+                                                                                  (v1 - v0) * (WM_HI[2] - WM_LO[2]) / 2 * SCALE))
+            wid += label("ng3c_lead_%s" % k, "hzm_ng3c_lead_%s" % k, opt_gate(k).strip())
         pc = conv(map_bu(m["pin_uv"], dy=0.004))
         scn_extra.append('scenelabel "ng3c_pin_%s" %.1f %.1f %.1f %.2f %.2f' % (k, pc[0], pc[1], pc[2], 0.018 * SCALE, 0.018 * SCALE))
         wid += label("ng3c_pin_%s" % k, "hzm_ng3c_pin", opt_gate(k).strip())
