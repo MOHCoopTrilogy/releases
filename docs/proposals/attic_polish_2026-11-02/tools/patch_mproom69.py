@@ -121,7 +121,7 @@ assert n0 == 6, ("expected the six hub hotspots (rack included) before these", n
 HOTS = []
 CAP = {"daily": "ORDERS OF THE DAY", "record": "SERVICE RECORD", "ranks": "PROMOTIONS"}
 OPEN = {"daily": "coop_srsync; exec ui/coop_sr_pgd.cfg", "record": "coop_srsync; exec ui/coop_sr_pg0.cfg",
-        "ranks": "set coop_mpSrP0 1; set coop_mpSrP1 0; set coop_mpSrP2 0; set coop_mpSrP3 0; set coop_mpSrP4 0; set coop_mpSrP5 0"}
+        "ranks": "set coop_mpSrP0 1; set coop_mpSrP1 0; set coop_mpSrP2 0; set coop_mpSrP3 0; set coop_mpSrP4 0; set coop_mpSrP5 0; set coop_mpSrP6 0"}
 MENU = {"daily": "coop_sr", "record": "coop_sr", "ranks": "coop_mp_record"}
 add = []
 for k, nt in enumerate(A["notices"]):
