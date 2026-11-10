@@ -50,6 +50,17 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.68 - Make it yours
+
+- **13 new gun finishes** - Whitewash, Afrika Korps, Kriegsmarine, Airborne, Splinter, Pea Dot, Telo, Amoeba, Airborne 101st, Battle-Worn, Trench Art, Parade and Captured, earned with kills on each gun and shown as a second row in the Armory
+- **Two new guns** - the MP 28 (unlock with 60 MP40 kills) and the single-shot Panzerfaust 60 (unlock with 10 Panzerschreck kills), both with the full set of finishes
+- **Customize bench** - press CUSTOMIZE in the Armory to knife-cut your own words into any gun and add insignia, medals and emblems; move, tilt, resize and save a design for each gun, and see it on the gun in your hands
+- **The town outside the attic window, rebuilt** - terraced streets, cleaner banners, and a new distance of hills, fields, woods and the church
+- **Fixes** - finished guns aim through the same sights as the plain gun, the war map is no longer covered by desk props, and the game no longer traps your mouse when its window is out of focus
+
+<p align="center"><img src="docs/screenshots/v11068-finishes.jpg" width="49%" alt="New finishes at the hip: Splinter, Amoeba, Whitewash, Trench Art, Captured, Battle-Worn"> <img src="docs/screenshots/v11068-town.jpg" width="49%" alt="The rebuilt town outside the attic window at golden hour"></p>
+<p align="center"><img src="docs/screenshots/v11068-engrave.jpg" width="98%" alt="The Customize bench: your words knife-cut into a Garand receiver"></p>
+
 ### v1.10.67 - A view outside
 
 - **The attic window looks out onto an occupied town** - rooftops, chimney smoke, a church spire, an oak by the window and banners on the buildings
