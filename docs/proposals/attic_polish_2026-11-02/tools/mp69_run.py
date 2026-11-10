@@ -52,7 +52,7 @@ def shots(pak, ui, extra, tag, spec):
     if os.path.exists(STOP):
         raise SystemExit("a guard tripped earlier (%s) - no more launches" % STOP)
     setup(pak, ui, extra)
-    w, h, center, lay = E.RES["1080"]
+    w, h, center, lay = E.RES[os.environ.get("MP69_RES", "1080")]
     L = ["set developer 0", "set ui_menuRoom 1", "set ui_atticMain 1", "set ui_menuCenter %d" % center, "set ui_camslow 1",
          "set coop_hardcore 0", "set ui_wxHour 12.5", "set ui_wxWeather 1", "wait 12000", "echo ^~^~^ MP69 start",
          "exec ui/hzm_attic_go_mp.cfg", "wait 3500"]

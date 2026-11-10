@@ -296,18 +296,22 @@ def put(group, label, *a, wall_y=None, **k):
 # same spot and angle. Here: the game's plain square wooden table (static square_table, legs at its corners - the m1l1 trestle
 # table's X-legs stand at its ends and went through his shins when he sat at an end), the soldier at S facing YAW, three-quarters
 # to the camera, the table in front of him.
-S = np.array([float(os.environ.get("MP69_SX", "160")), float(os.environ.get("MP69_SY", "92"))])
-YAW = float(os.environ.get("MP69_YAW", "190"))
+# (coordinator QA 2026-11-09: facing the home camera, his raised cards hid his face, and the stove behind him read as standing on
+# the table. Now he sits 20 deg off the camera's line (his face shows past the cards) at the table scaled to a 0.70 m card table,
+# moved forward and left so the stove stands clear to his right on screen, its feet on the floor.)
+S = np.array([float(os.environ.get("MP69_SX", "148")), float(os.environ.get("MP69_SY", "118"))])
+YAW = float(os.environ.get("MP69_YAW", "165"))
+TSC = float(os.environ.get("MP69_TABLESCALE", "0.76"))
 t1, _ = tag("models/furniture/cardtable.tik", "tag_actor01")
 _ct = game_mesh("models/furniture/cardtable.tik")
 GAP = _ct[1][0] - t1[0]                                          # the stock seat-to-edge distance (15.4 u)
 TABLE = "models/static/square_table.tik"
-_tb = game_mesh(TABLE)
+_tb = game_mesh(TABLE, scale=TSC)
 HALF = (_tb[2][0] - _tb[1][0]) / 2
 fwd, left = yawv(YAW, (1, 0)), yawv(YAW, (0, 1))                 # the soldier's forward (to the table) / left
 TC = S + fwd * (HALF + GAP)                                      # the table's centre
 fz = floor_z(*S)
-lo_, hi_ = put("home", "table", TABLE, (TC[0], TC[1], fz), YAW, ground=fz)
+lo_, hi_ = put("home", "table", TABLE, (TC[0], TC[1], fz), YAW, scale=TSC, ground=fz)
 put("home", "chair", "models/furniture/cardchair.tik", (S[0], S[1], fz), YAW)
 TOP = float(hi_[2])                                              # (its top is flat at its highest point)
 print("table top %.2f centre %s half %.1f" % (TOP, TC.round(1), HALF))
@@ -320,35 +324,26 @@ def on_table(dx, dy):
 
 
 # his patience spread just in front of him, across the table; the rest round it, clear of one another
-put("home", "cards", "models/miscobj/cardpile.tik", on_table(-14, -1), YAW + 90, ground=TOP + 0.05)
-put("home", "mug1", "models/static/metal_mug.tik", on_table(-21, -21), YAW + 40, ground=TOP)
-put("home", "mug2", "models/static/metal_mug.tik", on_table(4, 19), YAW + 160, ground=TOP)
-put("home", "saucer", "models/static/whiteplate.tik", on_table(-20, 20), 0, scale=0.42, ground=TOP)
-sc = on_table(-20, 20)
+put("home", "cards", "models/miscobj/cardpile.tik", on_table(-10, 0), YAW + 90, ground=TOP + 0.05)
+put("home", "mug1", "models/static/metal_mug.tik", on_table(-15, -16), YAW + 40, ground=TOP)
+put("home", "mug2", "models/static/metal_mug.tik", on_table(6, 15), YAW + 160, ground=TOP)
+put("home", "saucer", "models/static/whiteplate.tik", on_table(-15, 15), 0, scale=0.42, ground=TOP)
+sc = on_table(-15, 15)
 put("home", "cigarette", "models/items/cigarette.tik", (sc[0], sc[1], 0), YAW + 70, ground=TOP + 0.65)
-put("home", "lantern", "models/items/af_p_lantern.tik", on_table(5, -19), YAW, roll=90, ground=TOP)      # (its mesh lies along y: stood up)
-LANTERN = np.array(on_table(5, -19)) + np.array([0, 0, 11.0])
-# the Garand along the far edge, lying on its side (rolled 90 deg)
-put("home", "garand", "models/weapons/m1_garand.tik", on_table(20, 0), YAW + 90, roll=90, ground=TOP)
-
-# ================================================================== 2. THE RADIO on two .45 ammunition crates, at his right hand
-RC = np.array([float(os.environ.get("MP69_RX", "90")), float(os.environ.get("MP69_RY", "27"))])
-RY = float(os.environ.get("MP69_RYAW", "200"))
-lo, hi = put("home", "crate1", "models/static/45cal_crate.tik", (RC[0], RC[1], 0), RY + 90, ground=floor_z(*RC))
-CRATE_TOP = hi[2]
-CRATE_BOX = (lo.copy(), hi.copy())
-rparts, rlo, rhi = game_mesh("models/static/static_radio2.tik", (RC[0], RC[1], 0), RY, ground=CRATE_TOP)
-RADIO_C = ((rlo + rhi) / 2).round(1)
-REPORT["radio"] = (rlo.round(1).tolist(), rhi.round(1).tolist())
+put("home", "lantern", "models/items/af_p_lantern.tik", on_table(4, -14), YAW, roll=90, ground=TOP)      # (its mesh lies along y: stood up)
+LANTERN = np.array(on_table(4, -14)) + np.array([0, 0, 11.0])
+# the Garand along the far edge, lying on its side (rolled 90 deg), butt and muzzle a hand's width over the ends as a rifle on a
+# small table does (corner to corner it pointed at the home camera and read as a stub)
+put("home", "garand", "models/weapons/m1_garand.tik", on_table(17, 0), YAW + 90, roll=90, ground=TOP)
 
 # ================================================================== 4a. THE STOVE in the back-left corner, its flue to the ceiling
-STV = np.array([float(os.environ.get("MP69_STX", "258")), float(os.environ.get("MP69_STY", "158"))])
+STV = np.array([float(os.environ.get("MP69_STX", "266")), float(os.environ.get("MP69_STY", "130"))])
 SYAW = float(os.environ.get("MP69_STYAW", "-135"))
 slo, shi = put("home", "stove", "models/static/bunkerstove.tik", (STV[0], STV[1], 0), SYAW, ground=floor_z(*STV))
 # the flue: a 6-inch pipe from the stove's top-centre straight up into the ceiling, a collar at the top
 STOVE_C = (slo + shi) / 2
 CEIL = 100.0 + ray((STOVE_C[0], STOVE_C[1], 100.0), (0, 0, 1))
-pipe_c = np.array([STOVE_C[0], STOVE_C[1]]) + yawv(SYAW, (-float(os.environ.get("MP69_FLUE", "8")), 0))
+pipe_c = np.array([STOVE_C[0], STOVE_C[1]]) + yawv(SYAW, (-float(os.environ.get("MP69_FLUE", "-8")), 0))
 st_img = Image.open(io.BytesIO(vfs.read("textures/models/items/bunkerstove.tga"))).convert("RGB")
 # the pipe's metal: the stove texture's plainest dark patch (the lowest local variance) - the game's own iron
 sa = np.asarray(st_img, np.float32)
@@ -379,9 +374,25 @@ def cylinder(c, r, z0, z1, n=14, uv=PIPE_UV):
 
 
 pipe_sh = lit_shader("bunkerstove")
-SETS["home"].append((pipe_sh, cylinder(pipe_c, 3.9, shi[2] - 1.5, CEIL + 0.5)))
-SETS["home"].append((pipe_sh, cylinder(pipe_c, 5.2, CEIL - 3.0, CEIL + 0.5)))          # the ceiling collar
+# (coordinator QA 2026-11-09 round 2: a flue to the ceiling crossed the UNITED poster from the home camera wherever the stove stood
+# clear of the soldier.) The pipe rises a hand's width off the stove top and turns into the back wainscot - a chimney thimble -
+# below the poster and the dado rail.
+ELBOW_Z = shi[2] + 3.0
+
+
+def cyl_x(cy, cz, r, x0, x1, n=14):
+    """a pipe along +x from x0 to x1 at (cy, cz): cylinder() about z, turned by the rotation (x, y, z) -> (z, y, -x)"""
+    out = []
+    for tr in cylinder((0.0, 0.0), r, 0.0, x1 - x0, n):
+        out.append([(c[0], (x0 + c[1][2], cy + c[1][1], cz - c[1][0]), (c[2][2], c[2][1], -c[2][0]), c[3]) for c in tr])
+    return out
+
+
+SETS["home"].append((pipe_sh, cylinder(pipe_c, 3.9, shi[2] - 1.5, ELBOW_Z + 3.9)))
 SETS["home"].append((pipe_sh, cylinder(pipe_c, 4.6, shi[2] - 1.5, shi[2] + 2.5)))      # the collar on the stove
+SETS["home"].append((pipe_sh, cyl_x(pipe_c[1], ELBOW_Z, 3.9, pipe_c[0] - 3.9, WBlo + 0.5)))
+SETS["home"].append((pipe_sh, cyl_x(pipe_c[1], ELBOW_Z, 5.0, WBlo - 1.2, WBlo + 0.5)))   # the thimble collar at the wall
+assert ELBOW_Z + 5.0 < 62.0, ELBOW_Z      # under the poster (its foot at z 62.7) and at the dado rail
 STOVE_C = (slo + shi) / 2
 _sm = game_mesh("models/static/bunkerstove.tik")
 _half = (_sm[2][0] - _sm[1][0]) / 2                  # its local x half-depth: the door face is at +x
@@ -397,6 +408,16 @@ flo, fhi = put("home", "footlocker", "models/static/trunk.tik", (WBlo - 16.0, FL
 _d = (WBlo - 1.0) - fhi[0]          # its back to the wainscot, clear of the baseboard (0.5 u proud of it below z 8)
 SETS["home"][-1] = (SETS["home"][-1][0], [[(c[0], (c[1][0] + _d, c[1][1], c[1][2]), c[2], c[3]) for c in tr] for tr in SETS["home"][-1][1]])
 REPORT["footlocker"] = ((flo + [_d, 0, 0]).round(1).tolist(), (fhi + [_d, 0, 0]).round(1).tolist())
+
+# ================================================================== 2. THE RADIO on the footlocker (coordinator QA: on its crate in the
+# middle of the floor it read as dropped there and blocked the room; on the cabinet it would sit inside the game-type board's hit
+# box). The footlocker's top, under the SERVICE RECORD board: its hit box clears the board's, the door's and the game board's.
+FL_TOP = float(fhi[2])
+RC = np.array([(flo[0] + fhi[0]) / 2 + _d, (flo[1] + fhi[1]) / 2 + float(os.environ.get("MP69_RDY", "4"))])
+RY = float(os.environ.get("MP69_RYAW", "172"))
+rparts, rlo, rhi = game_mesh("models/static/static_radio2.tik", (RC[0], RC[1], 0), RY, ground=FL_TOP)
+RADIO_C = ((rlo + rhi) / 2).round(1)
+REPORT["radio"] = (rlo.round(1).tolist(), rhi.round(1).tolist())
 
 # ================================================================== 1. THE NOTICE BOARD (right wall, front half) + its corner
 BX = float(os.environ.get("MP69_BX", "45"))
@@ -415,6 +436,26 @@ for n in ("hub_bg1", "hub_bg2"):
         for t_ in T[inb]:
             FR.append([(0, tuple(V[q][3]), tuple(V[q][0]), tuple(V[q][1])) for q in t_])
 assert 300 < len(FR) < 2000, len(FR)
+# (coordinator QA: the copied frame's top and bottom rails were half dark, half light with a hard split at the middle - the back
+# wall's bake lit the two halves differently. Keep the brighter half, mirror it across the board's centre line y -86.6.)
+_bg = np.asarray(Image.open(io.BytesIO(zb.read("textures/menu/hzm_hub_bg.jpg"))).convert("L"), np.float32)
+YC_SR = -86.6
+
+
+def _lum(tr):
+    u = np.mean([c[3][0] for c in tr]) % 1.0
+    v = np.mean([c[3][1] for c in tr]) % 1.0
+    return _bg[int(v * (_bg.shape[0] - 1)), int(u * (_bg.shape[1] - 1))]
+
+
+_rail = [tr for tr in FR if min(c[1][2] for c in tr) > 104.0 or max(c[1][2] for c in tr) < 65.0]
+_side = lambda tr: np.mean([c[1][1] for c in tr]) > YC_SR  # noqa: E731
+_lp = np.mean([_lum(t) for t in _rail if _side(t)])
+_lm = np.mean([_lum(t) for t in _rail if not _side(t)])
+_keep_plus = _lp >= _lm
+_half = [tr for tr in FR if _side(tr) == _keep_plus]
+FR = _half + [[(c[0], (c[1][0], 2 * YC_SR - c[1][1], c[1][2]), (c[2][0], -c[2][1], c[2][2]), c[3]) for c in reversed(tr)] for tr in _half]
+print("board frame: rail halves lit %.0f / %.0f - kept the %s half, mirrored" % (_lp, _lm, "+y" if _keep_plus else "-y"))
 C_SR = np.array([WB, -86.6, 0.0])
 C_NB = np.array([BX, WR, 0.0])
 
@@ -621,7 +662,7 @@ write_model("hzm_hub69_board", board)
 REPORT["board"] = (flo_.round(1).tolist(), fhi_.round(1).tolist())
 
 # ---- the corner under / beside it: a bench along the wall, a peg rail with two helmets, a pack and a canteen
-BENCH_X = float(os.environ.get("MP69_BENCHX", "38"))
+BENCH_X = float(os.environ.get("MP69_BENCHX", "-43"))
 blo, bhi = put("corner", "bench", "models/static/bunkerbench.tik", (BENCH_X, WRlo + 14.0, 0), 90.0, ground=0.0)
 _d = (WRlo + 1.0) - blo[1]            # against the wainscot
 SETS["corner"][-1] = (SETS["corner"][-1][0], [[(c[0], (c[1][0], c[1][1] + _d, c[1][2]), c[2], c[3]) for c in tr] for tr in SETS["corner"][-1][1]])
@@ -720,7 +761,6 @@ def box_shadow(lo, hi, pad=1.9):
     return fshadow(c, (1, 0), (hi[0] - lo[0]) * pad, (hi[1] - lo[1]) * pad)
 
 
-glows.append(box_shadow(*CRATE_BOX))
 glows.append(box_shadow(slo, shi, 1.8))
 glows.append(fshadow(TC, fwd, 2 * HALF * 1.9, 2 * HALF * 1.9))               # the table
 glows.append(fshadow(S - fwd * 3.0, fwd, 52.0, 52.0))                        # the chair and his feet

@@ -22,7 +22,9 @@ TAG = "// [mp69]"
 HOME = "-70.9 15.8 86.6 4.00 -3.00 0.00 58.00"
 WR = A["walls"]["right"]
 FC = A["board"]["face"]
-BOARD_CAM = (FC[0] - 4.0, WR + 80.0, 84.0)
+# (further back than the first cut; x +5 keeps the void past the room's missing front wall out of the 21:9 frame; at z 84 the bench
+# under the peg rail stays wholly below the frame instead of poking into its corner)
+BOARD_CAM = (FC[0] + 5.0, WR + 90.0, 84.0)
 BOARD_POSE = "%.1f %.1f %.1f 2.00 -90.00 0.00 58.00" % BOARD_CAM
 # the notices' hotspots carry a scenehot stop: live only while ui_atcStop == BOARD_STOP. ui_atcStop is the ATTIC's stop cvar (its
 # own hotspots are stop 0 and its stops 1-4) - every way out of the board view sets it back to 0: the turn home, a notice's click,
