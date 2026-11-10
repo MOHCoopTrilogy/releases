@@ -191,13 +191,13 @@ class Server:
                 os.remove(os.path.join(self.maintt, fn))
         open(os.path.join(self.maintt, "byoaudit_srv.cfg"), "w", newline="\n").write("\n".join(
             ["set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0", "set developer 1",
-             "set thereisnomonkey 1", "set cheats 1"] + self.cfg) + "\n")
+             "set thereisnomonkey 1", "set cheats 1", "set g_inactivekick 0", "set g_inactivespectate 0"] + self.cfg) + "\n")
         args = [os.path.join(self.folder, "omohaaded.exe"), "+set", "com_target_game", "2", "+set", "fs_basepath", GOG,
                 "+set", "fs_homepath", self.home, "+set", "dedicated", "1", "+set", "net_port", str(self.port),
                 "+set", "net_ip", "127.0.0.1", "+set", "sv_maxclients", "4", "+set", "g_gametype", "2",
                 "+set", "logfile", "2", "+set", "developer", "1", "+set", "cheats", "1", "+set", "thereisnomonkey", "1",
                 "+set", "coop_joinCard", "0", "+set", "g_teamswitchdelay", "0", "+set", "rconpassword", self.pw,
-                "+set", "g_inactivity", "0", "+set", "g_inactiveSpectate", "0"]   # a parked audit player is not idle
+                "+set", "g_inactivekick", "0", "+set", "g_inactivespectate", "0"]   # a parked audit player is not idle
         for k, v in self.sets:
             args += ["+set", k, v]
         args += ["+exec", "byoaudit_srv.cfg", "+map", self.map]

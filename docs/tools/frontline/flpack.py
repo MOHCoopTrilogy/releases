@@ -26,6 +26,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 AXIS_RX = re.compile(r"^(Soldier[ABC]_|TransHangout_|Soldier_Say|InterrogationOfficer|SoldierA_MachineGunNest)")
 ALLY_RX = re.compile(r"^(AlliedSoldier_A$|InterrogationVictim$)")
 HEALTH = {"Health10": 10, "Health25": 25, "Health50": 50}
+# [flpolish] Frontline's ammo pickups -> the stock MOHAA ammo boxes (models/items/item_<kind>_ammobox.tik)
+AMMO = {"GrenadeAmmo": "grenade", "Colt45Ammo": "pistol", "M1GarandAmmo": "rifle"}
 # set-piece placements the mission script rebuilds with MOHAA recipes (level.fl_list[cls][1..n])
 JEEP_CREW = {"Jeep_Driver": "driver", "Jeep_Gunner": "gunner", "Jeep_Passenger": "passenger"}
 LISTED = ("JeepBody_1_1", "LandMineTriggerParent", "ExplodingBarrelSwap_1_1", "FlyThrough_1_1", "Rocket_1_1",
@@ -152,6 +154,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
 
     # ---- placements ----
     na = nl = nh = nm = 0
+    n_ammo = 0
     nudged = []
     lists = {}
     _mm = os.path.join(HERE, "fl_modelmap.json")
@@ -218,6 +221,10 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             lines.append(f'\tlevel.fl_ally_grp[{nl}] = {grp_}')
             lines.append(f'\tlevel.fl_ally_state[{nl}] = "{flscene.state(e)}"')
             lines.append(f'\tlevel.fl_ally_yaw[{nl}] = {yaw_:.0f}')
+        elif cls in AMMO:
+            n_ammo += 1
+            lines.append(f'\tlevel.fl_ammo[{n_ammo}] = {o}')
+            lines.append(f'\tlevel.fl_ammo_kind[{n_ammo}] = "{AMMO[cls]}"')
         elif cls in HEALTH:
             nh += 1
             lines.append(f'\tlevel.fl_health[{nh}] = {o}')
@@ -232,6 +239,9 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         elif cls == "MountedMachineGun":
             nm += 1
             lines.append(f'\tlevel.fl_mg[{nm}] = {o}')
+            # [flpolish] its facing and whether Frontline places it broken (the jeep's .30 cal on the wreck)
+            lines.append(f'\tlevel.fl_mg_yaw[{nm}] = {yaw_:.0f}')
+            lines.append(f'\tlevel.fl_mg_broken[{nm}] = {int(any("Broken" in s_ for s_ in e["strs"]))}')
         elif cls in ("TankVehicle", "Player"):
             lines.append(f'\tlevel.fl_pos["{cls}"] = {o}')
             if cls == "Player":
@@ -320,6 +330,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
     lines.append(f"\tlevel.fl_prop_n = {npr}")
     for cls, sp in sorted(mm_markers.items()):
         lines.append(f'\tlevel.fl_marker_model["{cls}"] = "{sp["model"]}"')
+    lines.append(f"\tlevel.fl_ammo_n = {n_ammo}")
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
               "\tlevel.fl_data_ok = 1", "}end", ""]
     files[f"maps/coop_fl_{level}_data.scr"] = "\n".join(lines).encode("latin-1")

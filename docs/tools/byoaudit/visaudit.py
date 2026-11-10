@@ -5,7 +5,8 @@ From viewpoints along every walkable route (the crouch flood of geoaudit, one po
 point, at stand / crouch / prone eye height (82 / 48 / 16), rays are cast in a fan of directions at and below the
 horizon (24 azimuths x elevations -2, -8, -20, -45, -89). A ray that meets NO drawn surface before the farplane is a
 view into the void / under the map / out of the world (above the horizon the sky box is meant to be seen, so those are
-not cast). Also reported: drawn surfaces whose shader is a converter fallback (untextured / missing texture).
+not cast). Rays at -2/-8 deg that run past the farplane are the fog horizon; `flagged_steep` (rays at -20 deg and
+steeper) is the strict see-under-the-map count. Also reported: drawn surfaces whose shader is a converter fallback (untextured / missing texture).
 
   python visaudit.py <pk3> <map> <outdir> [--spacing 192] [--png]
 Results: visaudit.json with flagged viewpoint clusters (position, height, direction) - the zero-target metric is
@@ -80,10 +81,15 @@ def main():
     dist = mapgeo.cast_many(M, O, D, farplane)
     bad = np.nonzero(dist < 0)[0]
     flagged = collections.Counter()
+    by_elev = collections.Counter()
     pts = []
+    steep = 0
     for r in bad:
         i, nm, j = meta[r]
         flagged[nm] += 1
+        el = round(math.degrees(math.asin(dirs[j][2])))
+        by_elev[el] += 1
+        steep += el <= -20
         x, y, z = vps[i]
         d = dirs[j]
         pts.append((x, y, z))
@@ -96,7 +102,9 @@ def main():
             fb.add(nm)
     fb_tris = int(sum(1 for s in M.rshader if M.shaders[s][0] in fb))
     rep = {"viewpoints": len(vps), "rays": int(len(O)), "farplane": farplane, "flagged_rays": int(len(bad)),
-           "flagged_by_eye": dict(flagged), "flagged_viewpoints": len(set(meta[r][0] for r in bad)),
+           "flagged_by_eye": dict(flagged),
+           "flagged_by_elevation": {str(k): v for k, v in sorted(by_elev.items())},
+           "flagged_steep": steep, "flagged_viewpoints": len(set(meta[r][0] for r in bad)),
            "flagged_clusters": len(cl), "clusters": cl[:300], "fallback_shader_tris": fb_tris,
            "seconds": round(time.time() - t0, 1)}
     json.dump(rep, open(os.path.join(a.outdir, "visaudit.json"), "w"), indent=1)

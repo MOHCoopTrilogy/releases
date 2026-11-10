@@ -533,6 +533,75 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         cw, stats["cliffs"] = flcliff.walls(wound, grid)
         wound += cw
         wtags += [0] * len(cw)
+        # [flpolish] ...and a DRAWN skirt under the same edge: the floor's own texture and light carried 512u straight
+        # down, so a player at the edge sees a quay wall / bank instead of the white void under the level (visaudit:
+        # 287 rays into the void along the town's west edge; user: "floors open and expose the underside of the map")
+        rt_sh = []
+        for m in meshes:
+            if not m["tris"] or (m["cell"], m["draw"]) in hidden or not m["tex"]:
+                continue
+            P_ = [X(v) for v in m["verts"]]
+            for a, b, c in m["tris"]:
+                n_ = face_normal(P_[a], P_[b], P_[c])
+                if n_ is None or abs(n_[2]) < 0.7:
+                    continue
+                col = tuple(sum(m["cols"][i][k] for i in (a, b, c)) // 3 for k in range(3))
+                rt_sh.append((((P_[a][0] + P_[b][0] + P_[c][0]) / 3, (P_[a][1] + P_[b][1] + P_[c][1]) / 3,
+                               (P_[a][2] + P_[b][2] + P_[c][2]) / 3), m["tex"], col))
+        rgrid = {}
+        for cen, tex, col in rt_sh:
+            rgrid.setdefault((int(cen[0] // 64), int(cen[1] // 64)), []).append((cen, tex, col))
+        nsk = 0
+        for k_ in range(0, len(cw), 2):
+            a_, b_ = cw[k_][0], cw[k_][1]           # the wall's bottom edge = the floor edge (minus 8)
+            mx, my, mz = (a_[0] + b_[0]) / 2, (a_[1] + b_[1]) / 2, (a_[2] + b_[2]) / 2 + 8
+            best = None
+            for dx in (-1, 0, 1):
+                for dy in (-1, 0, 1):
+                    for cen, tex, col in rgrid.get((int(mx // 64) + dx, int(my // 64) + dy), ()):
+                        d2 = (cen[0] - mx) ** 2 + (cen[1] - my) ** 2 + 4 * (cen[2] - mz) ** 2
+                        if d2 < 96 * 96 and (best is None or d2 < best[0]):
+                            best = (d2, tex, col)
+            if best is None:
+                continue
+            sh_ = tex_shader(best[1])
+            L_ = math.hypot(b_[0] - a_[0], b_[1] - a_[1])
+            top_a, top_b = a_[2] + 7, b_[2] + 7
+            vs_ = [((a_[0], a_[1], top_a), (0.0, 0.0), (0.0, 0.0, 1.0), best[2] + (255,)),
+                   ((b_[0], b_[1], top_b), (L_ / 128.0, 0.0), (0.0, 0.0, 1.0), best[2] + (255,)),
+                   ((b_[0], b_[1], top_b - 512), (L_ / 128.0, 4.0), (0.0, 0.0, 1.0), best[2] + (255,)),
+                   ((a_[0], a_[1], top_a - 512), (0.0, 4.0), (0.0, 0.0, 1.0), best[2] + (255,))]
+            B.add_soup(sh_, vs_, [0, 1, 2, 0, 2, 3])
+            nsk += 1
+        stats["skirts"] = nsk
+        # ...and a drawn GROUND under the whole level, 512u under its lowest floor, in the level's most used floor
+        # texture at the level's median light: a look over the edge of the world, or through a gap in a floor, lands
+        # on ground instead of the white void (Frontline draws nothing there; its own player never stood at those edges)
+        if rt_sh:
+            cnt = {}
+            for _cen, tex, _col in rt_sh:
+                cnt[tex] = cnt.get(tex, 0) + 1
+            gtex = max(sorted(cnt), key=lambda t: cnt[t])
+            gz = min(c[2] for c, _t, _c in rt_sh) - 512.0
+            gx0, gy0 = [min(c[k] for c, _t, _c in rt_sh) - 4096 for k in (0, 1)]
+            gx1, gy1 = [max(c[k] for c, _t, _c in rt_sh) + 4096 for k in (0, 1)]
+            gx0, gy0, gx1, gy1 = max(gx0, -15800), max(gy0, -15800), min(gx1, 15800), min(gy1, 15800)
+            gcol = tuple(int(v * 0.7) for v in med_light) + (255,)
+            gsh = tex_shader(gtex)
+            T = 2048.0
+            ng = 0
+            yy = gy0
+            while yy < gy1:
+                xx = gx0
+                while xx < gx1:
+                    x2, y2 = min(xx + T, gx1), min(yy + T, gy1)
+                    q = [((xx, yy, gz), (xx / 128.0, yy / 128.0)), ((x2, yy, gz), (x2 / 128.0, yy / 128.0)),
+                         ((x2, y2, gz), (x2 / 128.0, y2 / 128.0)), ((xx, y2, gz), (xx / 128.0, y2 / 128.0))]
+                    B.add_soup(gsh, [(pp, st, (0.0, 0.0, 1.0), gcol) for pp, st in q], [0, 1, 2, 0, 2, 3])
+                    ng += 1
+                    xx += T
+                yy += T
+            stats["under_ground_tiles"] = ng
     for a2, b2, c2 in wound:
         if B.add_prism(clip, a2, b2, c2, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
             rejected += 1
