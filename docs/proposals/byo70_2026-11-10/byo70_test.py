@@ -45,8 +45,9 @@ MUTE = ["set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set i
         # the mod stufftexts "s_volume <coop_tinnitusBaseVol>" to every player on every spawn (player.scr spawn safety net) and
         # the tinnitus muffle sets fixed volumes: on a listen server these are this process's own cvars - keep them at 0
         # (the first run of this harness was killed by the audio guard at the first spawn, peak 0.012)
-        "set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0"]
-JOIN = 'bind F9 "popmenu 0; wait 10; primarydmweapon rifle; wait 5; join_team allies; wait 30; popmenu 0; wait 30; popmenu 0"'
+        "set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0"]
+JOIN = ('bind F9 "popmenu 0; wait 10; primarydmweapon rifle; wait 5; join_team allies; wait 30; popmenu 0; wait 30; '
+        'popmenu 0; +attackprimary; wait 10; -attackprimary"')
 
 
 def home(folder, present=True):
@@ -148,6 +149,167 @@ def script_errors(log):
 
 def tags(log, pats):
     return {p: re.findall(r"\^~\^~\^ (" + p + r"[^\n]*)", log)[-8:] for p in pats}
+
+
+# ------------------------------------------------------------------------------------------- audio check (listen)
+def case_audio(out, res):
+    """spawn on a coop map, then read s_volume after the spawn and through the REAL tinnitus paths (test-only overlay
+    script maps/byo70test.scr fires coop_tinnitus_trigger + triggerBlast on player 1); the audio guard watches all of it"""
+    h = home(A)
+    open(os.path.join(h, "maintt", "byo70_go.cfg"), "w", newline="\n").write(
+        "set ui_dmmap coop_fl_1_1\nexec coop_mod/start_server.cfg\n")
+    vol = ['bind F5 "echo BYO70VOL; s_volume; s_musicvolume; s_ambientvolume; coop_tinnitusBaseVol"',
+           'bind F6 "testthread maps/byo70test.scr tinnitus"']
+    sets = [("g_gametype", "2"), ("cheats", "1"), ("thereisnomonkey", "1"), ("net_port", str(PORT)), ("coop_dev", "1")]
+    c = client(A, h, sets, ["+exec", "byo70_go.cfg"], vol, "BYO_Alpha")
+    L = lp(h)
+    reads = {}
+
+    def readvol(tag):
+        n = len(read(L))
+        c.post_key(VK["F5"])
+        wait_for(L, r'"s_volume" is:"[^"]*', 10, n)
+        reads[tag] = re.findall(r'"(s_volume|s_musicvolume|s_ambientvolume|coop_tinnitusBaseVol)" is:"([^"]*)', read(L)[n:])
+    with c:
+        res["loaded"] = wait_for(L, r"Spawning Entities Done", 400)
+        res["joined"] = join_until(c, L, "BYO_Alpha", 400)
+        time.sleep(10)
+        if not guard(c):
+            readvol("after_spawn")
+            n = len(read(L))
+            c.post_key(VK["F6"])
+            res["tinnitus_fired"] = wait_for(L, "BYO70TEST tinnitus on", 15, n)
+            for t in (1, 4, 9):
+                time.sleep(t if t == 1 else 3 if t == 4 else 5)
+                if guard(c):
+                    break
+                readvol("tinnitus+%ds" % t)
+            time.sleep(10)
+            try:
+                c.capture_png(os.path.join(out, "audio_check.png"))
+            except Exception:
+                pass
+        guard(c)
+        res["peak_report"] = repr(c.report())[:400]
+    res["reads"] = reads
+    vals = [v for r in reads.values() for k, v in r if k == "s_volume"]
+    res["ok"] = bool(vals) and all(float(re.sub(r'\^\d', '', v) or 0) == 0 for v in vals) and not TRIPPED and len(reads) == 4
+    log = read(L)
+    shutil.copyfile(L, os.path.join(out, "qconsole.log"))
+    return log
+
+
+def case_audio_ded(out, res):
+    """the same audio check on a DEDICATED server (cheats stay on: a listen host's ui_startdmmap always runs 'set cheats 0',
+    cl_ui.cpp UI_StartDMMap): one client spawns, then the server fires the real tinnitus paths on it via rcon testthread"""
+    clean(SRVHOME)
+    SL = lp(SRVHOME)
+    open(os.path.join(SRVHOME, "maintt", "byo70_srv.cfg"), "w", newline="\n").write(
+        "set coop_tinnitusBaseVol 0\nset coop_tinnitusMuffle 0\nset coop_woundMuffleVol 0\nset developer 1\nset thereisnomonkey 1\nset cheats 1\n")
+    args = [os.path.join(A, "omohaaded.exe"), "+set", "com_target_game", "2", "+set", "fs_basepath", GOG,
+            "+set", "fs_homepath", SRVHOME, "+set", "dedicated", "1", "+set", "net_port", str(PORT),
+            "+set", "net_ip", "127.0.0.1", "+set", "sv_maxclients", "4", "+set", "g_gametype", "2",
+            "+set", "logfile", "2", "+set", "developer", "1", "+set", "cheats", "1", "+set", "coop_joinCard", "0",
+            "+set", "rconpassword", RCONPW, "+exec", "byo70_srv.cfg", "+map", "coop_fl_1_1"]
+    srv = subprocess.Popen(args, **hw.popen_kwargs())
+    h = home(A)
+    L = lp(h)
+    reads = {}
+    try:
+        res["server_loaded"] = wait_for(SL, "FLAI ", 400)
+        vol = ['bind F5 "echo BYO70VOL; s_volume; s_musicvolume; s_ambientvolume"',
+               'bind F6 "testthread maps/byo70test.scr tinnitus"']   # a Player command (player.cpp), not a server one
+        c = client(A, h, [("cheats", "1")], ["+connect", "127.0.0.1:%d" % PORT], vol, "BYO_Alpha")
+
+        def readvol(tag):
+            n = len(read(L))
+            c.post_key(VK["F5"])
+            wait_for(L, r'"s_volume" is:"[^"]*', 10, n)
+            reads[tag] = re.findall(r'"(s_volume|s_musicvolume|s_ambientvolume)" is:"([^"]*)', read(L)[n:])
+        with c:
+            res["joined"] = join_until(c, SL, "BYO_Alpha", 600)
+            time.sleep(10)
+            if not guard(c):
+                readvol("after_spawn")
+                n = len(read(SL))
+                c.post_key(VK["F6"])
+                res["tinnitus_fired"] = wait_for(SL, "BYO70TEST tinnitus on", 20, n)
+                for tag, dt in (("tinnitus+1s", 1), ("tinnitus+4s", 3), ("tinnitus+9s", 5)):
+                    time.sleep(dt)
+                    if guard(c):
+                        break
+                    readvol(tag)
+                time.sleep(8)
+                try:
+                    c.capture_png(os.path.join(out, "audio_ded.png"))
+                except Exception:
+                    pass
+            guard(c)
+    finally:
+        if srv.poll() is None:
+            srv.kill()
+        if os.path.exists(SL):
+            shutil.copyfile(SL, os.path.join(out, "server_qconsole.log"))
+        if os.path.exists(L):
+            shutil.copyfile(L, os.path.join(out, "client_qconsole.log"))
+    res["reads"] = reads
+    vals = [v for r in reads.values() for k, v in r if k == "s_volume"]
+    res["ok"] = (bool(vals) and all(float(re.sub(r'\^\d', '', v) or 0) == 0 for v in vals) and not TRIPPED
+                 and len(reads) == 4 and res.get("tinnitus_fired"))
+    return read(SL)
+
+
+def case_ded1(mapname, sets, until, out, res, timeout=420):
+    """one dedicated server + one client: until = a server-log (or client-log, prefix 'C:') pattern that ends the run"""
+    clean(SRVHOME)
+    SL = lp(SRVHOME)
+    open(os.path.join(SRVHOME, "maintt", "byo70_srv.cfg"), "w", newline="\n").write(
+        "set coop_tinnitusBaseVol 0\nset coop_tinnitusMuffle 0\nset coop_woundMuffleVol 0\nset developer 1\nset thereisnomonkey 1\nset cheats 1\n")
+    args = [os.path.join(A, "omohaaded.exe"), "+set", "com_target_game", "2", "+set", "fs_basepath", GOG,
+            "+set", "fs_homepath", SRVHOME, "+set", "dedicated", "1", "+set", "net_port", str(PORT),
+            "+set", "net_ip", "127.0.0.1", "+set", "sv_maxclients", "4", "+set", "g_gametype", "2",
+            "+set", "logfile", "2", "+set", "coop_joinCard", "0", "+set", "coop_dbno", "0", "+set", "rconpassword", RCONPW]
+    for k, v in sets:
+        args += ["+set", k, v]
+    args += ["+exec", "byo70_srv.cfg", "+map", mapname]
+    srv = subprocess.Popen(args, **hw.popen_kwargs())
+    h = home(A)
+    L = lp(h)
+    try:
+        res["server_loaded"] = wait_for(SL, "Spawning Entities Done", 400)
+        c = client(A, h, [("cheats", "1")], ["+connect", "127.0.0.1:%d" % PORT], [], "BYO_Alpha")
+        with c:
+            t0 = time.time()
+            k = 0
+            pat = until[2:] if until.startswith("C:") else until
+            path = L if until.startswith("C:") else SL
+            while time.time() - t0 < timeout and not re.search(pat, read(path)):
+                if "CS_ACTIVE for BYO_Alpha" in read(SL):
+                    c.post_key(VK["F9"])
+                if k % 3 == 1:
+                    try:
+                        c.capture_png(os.path.join(out, "shot_%02d.png" % k))
+                    except Exception:
+                        pass
+                k += 1
+                if guard(c):
+                    break
+                time.sleep(5)
+            res["reached"] = bool(re.search(pat, read(path)))
+            time.sleep(6)
+            try:
+                c.capture_png(os.path.join(out, "end.png"))
+            except Exception:
+                pass
+            guard(c)
+    finally:
+        if srv.poll() is None:
+            srv.kill()
+        for src, dst in ((SL, "server_qconsole.log"), (L, "client_qconsole.log")):
+            if os.path.exists(src):
+                shutil.copyfile(src, os.path.join(out, dst))
+    res["ok"] = res.get("reached") and not TRIPPED
+    return read(SL)
 
 
 # ----------------------------------------------------------------------------------------------------- exit (listen)
@@ -274,7 +436,7 @@ def case_coop2(game, rescue, out, res):
             "+set", "coop_joinCard", "0", "+set", "coop_dbno", "0", "+set", "g_teamswitchdelay", "0",
             "+set", "rconpassword", RCONPW, "+exec", "byo70_srv.cfg", "+map", m]
     # after autoexec (which seta's coop_tinnitusBaseVol 0.9): what the server stufftexts to the clients' s_volume
-    open(os.path.join(SRVHOME, "maintt", "byo70_srv.cfg"), "w", newline="\n").write("set coop_tinnitusBaseVol 0\nset coop_tinnitusMuffle 0\n")
+    open(os.path.join(SRVHOME, "maintt", "byo70_srv.cfg"), "w", newline="\n").write("set coop_tinnitusBaseVol 0\nset coop_tinnitusMuffle 0\nset coop_woundMuffleVol 0\nset developer 1\nset thereisnomonkey 1\nset cheats 1\n")
     srv = subprocess.Popen(args, **hw.popen_kwargs())
     res["server_pid"] = srv.pid
     cl = []
@@ -301,6 +463,10 @@ def case_coop2(game, rescue, out, res):
                 return read(SL)
             time.sleep(6)
         res["joined"] = joined
+        for _ in range(5):
+            for c, n in cl:
+                c.post_key(VK["F9"])
+            time.sleep(6)
         k = 0
         t0 = time.time()
         while time.time() - t0 < 1500 and (T + "TEST end") not in read(SL):
@@ -385,7 +551,18 @@ def main(cases):
         hg.acquire_slot("byo70", os.path.join(A, "openmohaa.exe"), home(A), [PORT], minutes=60)
         hg.acquire_slot("byo70b", os.path.join(B, "openmohaa.exe"), home(B), [PORT], minutes=60)
         try:
-            if case.startswith("exit_"):
+            if case == "audio_check":
+                log = case_audio(out, res)
+            elif case == "exec_fl":     # Castro's execution (coop_fltest 6: fl_rescuetest's execution branch)
+                log = case_ded1("coop_fl_1_1", [("coop_fltest", "6"), ("coop_fltestDelay", "8")],
+                                r"FLRESCUETEST end state", out, res, 360)
+                res["tags"] = tags(log, ["FLRESCUETEST", "FLSHOOT", "FLSET", "FLSLUMP", "FLANIM", "FLOFFPOS"])
+            elif case == "film_ea":     # EA's intro film in its briefing room (converted locally, played by the client)
+                log = case_ded1("briefing/briefingea111", [], r"C:COOPBV (start|stale|missing|cannot)", out, res, 300)
+                res["film"] = re.findall(r"\^~\^~\^ COOPBV [^\n]*", read(lp(home(A))))[-4:]
+            elif case == "audio_ded":
+                log = case_audio_ded(out, res)
+            elif case.startswith("exit_"):
                 _, g, mode = case.split("_")
                 log = case_exit(g, mode == "chrono", out, res)
             elif case == "walk_fl":
