@@ -50,6 +50,16 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.72 - Live Fire
+
+- **Live Operations** - timed Team Deathmatch and Objective contracts pop up as pins on the New Game war map, Payday-style. Open a dispatch card, DEPLOY into a match against bots, and earn bonus XP (half if the operation fails). Contracts are seeded by the clock, so your friends see the same ones; no unlocks needed
+- **Advanced Training at The Farmhouse** - eleven stations covering every co-op addition: medkits, patching and searching, down-but-not-out, sandbags and ammo boxes, MG heat, the supply drop and the bombing run, ending in a live final. A practice target on an easel in the attic opens Basic or Advanced Training
+- **Customize bench** - drag to tilt the gun as well as turn it, slide engravings and emblems across a whole face, bigger move steps, and ZOOM steps from gun to face to close-up
+- **Loading clips for every mission** re-rendered from the widened war map, now including Sealed Orders and Their Dying Breath
+- **Needs playtesting** - planting in Live Operations Objective rounds and the Advanced Training movement drills have only had automated tests
+
+<p align="center"><img src="docs/screenshots/v11072-liveops.jpg" width="49%" alt="A Live Operations dispatch card on the war map"> <img src="docs/screenshots/v11072-training.jpg" width="49%" alt="The Training easel in the attic and the course choice"></p>
+
 ### v1.10.70 - Sealed Orders
 
 - **SEALED ORDERS and THEIR DYING BREATH are fully playable** in co-op and single player, from your own Medal of Honor: Frontline / European Assault Xbox (USA) disc image converted on your PC (Settings -> OWN DISCS). Nothing from those games ships with the mod. They run through the Full and Chronological campaigns in their place in the war
