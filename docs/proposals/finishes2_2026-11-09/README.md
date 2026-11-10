@@ -8,7 +8,7 @@ on the private client; shipping build (shader composites through gen_skins) not 
 
 | what | finishes2 | new-guns |
 |---|---|---|
-| finish tik `rank` | **1240 and up** | 1210-1239 |
+| finish tik `rank` | ~~1240 and up~~ **2000-2909** (1240+ collided with shipped finishes, see WIRED) | 1210-1239 |
 | `coop_skinN` rows | **600 and up** | up to 599 |
 | Armory ids | **85 and up** (if any) | 82-84 |
 | finish slots (fid: `coop_skinGive[<gun>][<fid>]`) | **40 and up** | 1-7 on its own 3 guns (model variants hold 8-18) |
@@ -45,7 +45,28 @@ the gun shows through, no wood grain); Splittertarn / pea / telo mid-toned. Veri
 Open: wiring into gen_skins (loadoutskins rows, finish picker names, unlock ladder), the four shader-composited finishes.
 Rebuilt after the whitewash / shading QA: 188.2 MB (the brushed whitewash and the mid-scale shading compress a little worse).
 
-## Wiring into the game (next; target v1.10.68) - what has to change, all through generators
+## WIRED (2026-11-09, wiring agent; target v1.10.68) - mod branch `finishes2`, root branch `finishes2-tools`
+- **Ranks moved to 2000-2909.** The agreed 1240+ band collided with 350+ shipped ranks (the standard seven finishes and the model
+  variants occupy 1000-1724; 3000-3006 are taken too). `fs2_finish2.py rerank 2000`; `gen_skins.py check` now asserts every
+  finishes2 rank against every other weapon tik (mod tree, fixes / wpnfix sources, every out-of-band pak in the base checkout).
+- **Splittertarn rebuilt** (QA: rounded blobs on the MP40 / Colt): the tile is now an anisotropic Voronoi partition (straight edges,
+  hard corners, ~88 shards, -25 deg lean) and its physical size scales with the gun (half its length, 12-34 cm:
+  `finish_sheet.tile_cm`). `fs2_finish2.py rebake splitter` re-baked all 126 sheets from the gun that baked each one (mask
+  registration asserted: mean error 0.000). Offline: media/sheet5_splitter.jpg.
+- **The four layered finishes built** (fids 49-52: battle-worn, trench art, parade, captured): shader stages over the gun's own
+  texture + 4 shared tiles (`fs2_finish2.py layers`), tcMod scale per sheet from its world-per-UV. 280 more variant tiks.
+- Pak: `fs2_finish2.py pack` (deterministic: sorted, fixed timestamp) = 910 variant tiks (70 guns x 13), 1690 shaders,
+  13 Armory swatches (textures/coop_finishes_hd/sw), ~190 MB.
+- Wiring, all through generators (`docs/tools/finishes2.tsv` + `finishes2.py` = the one table):
+  `gen_skins.py fs2 [write]` / `check` (loadoutskins.scr block, scripts/hzm_finish_decals.txt, pak audit);
+  `finish_challenges.py` (13 interleaved rungs per gun, 75-750, slow ladder 30-350); `unlock_audit.py` section 5 (writer,
+  reachable target, reward in the pak); `gen_finish_ui.py` (ported from killchal-docs, wired into gen_loadout) + gen_loadout
+  (finp previews, reqf hovers) + gen_armory (fail-locked defaults) + `gen_armory_urc.py` (the second chip row, finish name moved
+  to the hero's top right); `gen_weapon_viewer.py` (1557 entries, history / credits from finishes2.tsv);
+  loadoutpick.scr / challenges.scr by `tools/wire_loadoutpick.py`; build.ps1 / publish_release.ps1 ship the pak.
+- In-game stills: `tools/run_fs2.py` on the private client G:\mohaa-finishes.
+
+## Wiring into the game (the plan, kept for reference) - what has to change, all through generators
 The finish system is built around fids 1-7 (finishes) and 8-19 (model variants). fids 40-48 touch:
 1. `docs/tools/gen_skins.py` - a `fs2` mode that adopts H:\hzm_work\finishes2_build (tiks into the finishes pak, not the mod
    tree; rows.tsv -> `level.coop_skinGive[give][40..48]` in coop_mod/loadoutskins.scr, coop_skinN recount; shaders stay in

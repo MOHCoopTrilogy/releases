@@ -1,0 +1,5327 @@
+{
+ "sheets": {
+  "garand_3375": {
+   "path": "textures/models/weapons/m1garand/garand.dds",
+   "shader": "Garand",
+   "size": [
+    4096,
+    2048
+   ],
+   "wpu": 22.96025703206905,
+   "baker": "m1_garand"
+  },
+  "base_1e05": {
+   "path": "textures/hobbscarbine/base.dds",
+   "shader": "carb1",
+   "size": [
+    4096,
+    2048
+   ],
+   "wpu": 15.0836609134079,
+   "baker": "carbine"
+  },
+  "mech_d585": {
+   "path": "textures/hobbscarbine/mech.dds",
+   "shader": "carb3",
+   "size": [
+    2048,
+    1024
+   ],
+   "wpu": 3.6520992286391194,
+   "baker": "carbine"
+  },
+  "parts_404c": {
+   "path": "textures/hobbscarbine/parts.dds",
+   "shader": "carb4",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 10.402675432764212,
+   "baker": "carbine"
+  },
+  "receiver_15d5": {
+   "path": "textures/hobbscarbine/receiver.dds",
+   "shader": "carb5",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 6.885915525585839,
+   "baker": "carbine"
+  },
+  "carbine1_ae4b": {
+   "path": "textures/hobbscarbine/carbine1.dds",
+   "shader": "carbine1",
+   "size": [
+    4096,
+    2048
+   ],
+   "wpu": 21.808481736910007,
+   "baker": "carbine"
+  },
+  "kar98_756a": {
+   "path": "textures/models/weapons/KAR98/KAR98.dds",
+   "shader": "KAR98",
+   "size": [
+    4096,
+    2048
+   ],
+   "wpu": 21.618060516471676,
+   "baker": "kar98"
+  },
+  "g43_ec1a": {
+   "path": "models/weapons/g43/g43.dds",
+   "shader": "g43",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 26.956934865790352,
+   "baker": "g43"
+  },
+  "enfield_63af": {
+   "path": "models/weapons/enfield/enfield.dds",
+   "shader": "enfield",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 18.200927791002147,
+   "baker": "enfield"
+  },
+  "s93_springfield2_ee13": {
+   "path": "textures/models/weapons/springfield/S93_springfield2.tga",
+   "shader": "S93_springfield2",
+   "size": [
+    512,
+    512
+   ],
+   "wpu": 7.683008258443855,
+   "baker": "springfield_unscoped"
+  },
+  "s93_springfield3_df12": {
+   "path": "textures/models/weapons/springfield/S93_springfield3.tga",
+   "shader": "S93_springfield3",
+   "size": [
+    512,
+    512
+   ],
+   "wpu": 31.128349680799268,
+   "baker": "springfield_unscoped"
+  },
+  "it_w_carcano_e437": {
+   "path": "textures/models/weapons/Carcano/It_W_Carcano.dds",
+   "shader": "It_W_Carcano",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 22.429422023328836,
+   "baker": "it_w_carcano"
+  },
+  "svt_038f": {
+   "path": "models/weapons/svt_rifle/svt.dds",
+   "shader": "svt_rifle",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 17.920507807707487,
+   "baker": "svt_rifle"
+  },
+  "mosin_nagant_e1e7": {
+   "path": "models/weapons/mosin_nagant/mosin_nagant.dds",
+   "shader": "mosin_nagant",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 15.008295182437823,
+   "baker": "mosin_nagant_rifle"
+  },
+  "s93_model97_b555": {
+   "path": "textures/models/weapons/arisaka/s93_model97.dds",
+   "shader": "s93_model97",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 26.222438830325153,
+   "baker": "arisaka"
+  },
+  "colt45s2_3ee2": {
+   "path": "textures/models/weapons/Colt/colt45s2.dds",
+   "shader": "colt45s2",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 22.456396261166148,
+   "baker": "garand_silenced"
+  },
+  "m1d_f14b": {
+   "path": "textures/models/weapons/m1garand/M1D.dds",
+   "shader": "m1d",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 4.420614821136169,
+   "baker": "garand_silenced"
+  },
+  "m1d2_019a": {
+   "path": "textures/models/weapons/m1garand/M1D2.dds",
+   "shader": "m1d2",
+   "size": [
+    1024,
+    2048
+   ],
+   "wpu": 8.357155899580214,
+   "baker": "garand_silenced"
+  },
+  "s93_garand_0451": {
+   "path": "textures/models/weapons/m1garand/s93_garand.dds",
+   "shader": "s93_garand",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 19.342196615080475,
+   "baker": "garand_silenced"
+  },
+  "springfield_064d": {
+   "path": "textures/models/weapons/springfield/springfield.dds",
+   "shader": "springfield",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 20.078238415788363,
+   "baker": "springfield"
+  },
+  "uk_w_l42a1_2c21": {
+   "path": "textures/models/weapons/Enfield_L42A1/Uk_W_L42A1.dds",
+   "shader": "Uk_W_L42A1",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 27.45934023940687,
+   "baker": "uk_w_l42a1"
+  },
+  "reflection1_b1d0": {
+   "path": "textures/common/reflection1.dds",
+   "shader": "lens",
+   "size": [
+    256,
+    256
+   ],
+   "wpu": 3.73279119630209,
+   "baker": "uk_w_l42a1"
+  },
+  "gewehr43_913a": {
+   "path": "textures/models/weapons/g43/gewehr43.dds",
+   "shader": "Gewehr43",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 15.168765053144524,
+   "baker": "g43sniper"
+  },
+  "lee_enfield_d0a9": {
+   "path": "textures/models/weapons/enfield/Lee-Enfield.dds",
+   "shader": "Lee-Enfield",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 12.519137820933963,
+   "baker": "enfieldsniper"
+  },
+  "carcano_ba7d": {
+   "path": "textures/models/weapons/carcano/carcano.dds",
+   "shader": "carcano",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 22.429422023323102,
+   "baker": "carcanosniper"
+  },
+  "mosin_nagant_7f89": {
+   "path": "textures/models/weapons/mosin_nagant/mosin-nagant.dds",
+   "shader": "Mosin-Nagant",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 11.779479459166247,
+   "baker": "nagant_sniper"
+  },
+  "weas_4405": {
+   "path": "textures/models/weapons/mosin_nagant/weas.dds",
+   "shader": "weas",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 23.910406949622192,
+   "baker": "nagant_sniper"
+  },
+  "wrapping_06_7d9a": {
+   "path": "textures/models/weapons/mosin_Nagant/Wrapping_06.dds",
+   "shader": "wrap",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 23.031285585798283,
+   "baker": "nagant_snipersilenced"
+  },
+  "s93_k98sniper_metal_afa0": {
+   "path": "textures/models/weapons/k98/S93_K98Sniper_metal.dds",
+   "shader": "S93_K98Sniper_metal",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 9.722476420252015,
+   "baker": "kar98snipersilenced"
+  },
+  "s93_k98sniper_stock_230e": {
+   "path": "textures/models/weapons/k98/S93_K98Sniper_stock.dds",
+   "shader": "S93_K98Sniper_stock",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 27.457258634637746,
+   "baker": "kar98snipersilenced"
+  },
+  "delisle_eebc": {
+   "path": "textures/models/weapons/DeLisle/delisle.dds",
+   "shader": "delisle",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 15.869679429322737,
+   "baker": "delisle"
+  },
+  "thompsonsmg_509f": {
+   "path": "textures/models/weapons/ThompsonSMG/ThompsonSMG.dds",
+   "shader": "ThompsonSMG",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 26.91265332512213,
+   "baker": "thompsonsmg"
+  },
+  "thompsite_810c": {
+   "path": "textures/models/weapons/ThompsonSMG/thompsite.dds",
+   "shader": "thompsite",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 0.976375270396132,
+   "baker": "thompsonsmg"
+  },
+  "s93_thompson_43e0": {
+   "path": "textures/models/weapons/Thompson/S93_Thompson.dds",
+   "shader": "s93_thompson",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 29.78767763987838,
+   "baker": "thompson50"
+  },
+  "mp40_4235": {
+   "path": "textures/models/weapons/mp40/mp40.dds",
+   "shader": "MP40",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 22.79372228820785,
+   "baker": "mp40"
+  },
+  "metal1_40e3": {
+   "path": "textures/models/weapons/mp40/metal1.dds",
+   "shader": "MP40metal",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 21.347656411120216,
+   "baker": "mp40silenced"
+  },
+  "metal2_2f7d": {
+   "path": "textures/models/weapons/mp40/metal2.dds",
+   "shader": "MP40metal2",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 19.032066011504604,
+   "baker": "mp40silenced"
+  },
+  "metal3_56c1": {
+   "path": "textures/models/weapons/mp40/metal3.dds",
+   "shader": "MP40metal3",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 6.544542823170982,
+   "baker": "mp40silenced"
+  },
+  "ppk_silencer_df46": {
+   "path": "textures/models/weapons/PPK/PPK_Silencer.dds",
+   "shader": "ppk_SILENCER",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 11.832719969611956,
+   "baker": "mp40silenced"
+  },
+  "sten_3629": {
+   "path": "models/weapons/sten_smg/sten.tga",
+   "shader": "sten_smg",
+   "size": [
+    512,
+    512
+   ],
+   "wpu": 24.679135680037653,
+   "baker": "sten"
+  },
+  "ppsh_smg_c5eb": {
+   "path": "textures/models/weapons/ppsh_smg.dds",
+   "shader": "ppsh_smg",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 9.881970339144308,
+   "baker": "ppsh_smg"
+  },
+  "ppsh43_78ed": {
+   "path": "textures/models/weapons/ppsh43/ppsh43.dds",
+   "shader": "PPSh43",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 22.963388003644884,
+   "baker": "ppsh43silenced"
+  },
+  "greaser_324a": {
+   "path": "textures/models/weapons/greasegun/greaser.dds",
+   "shader": "greaser",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 29.210961220188906,
+   "baker": "greasegun"
+  },
+  "it_w_moschetto_870f": {
+   "path": "textures/models/weapons/Moschetto/It_W_Moschetto.dds",
+   "shader": "It_W_Moschetto",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 22.751539576465476,
+   "baker": "it_w_moschetto"
+  },
+  "type100_ce67": {
+   "path": "textures/models/weapons/type100/type100.dds",
+   "shader": "mohpa_type100",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 25.27824987732985,
+   "baker": "type100smg"
+  },
+  "s93_bar_ef68": {
+   "path": "textures/models/weapons/bar/S93_bar.dds",
+   "shader": "s93_bar",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 23.348898935567682,
+   "baker": "bar"
+  },
+  "s93_bar_bipod_d2ac": {
+   "path": "textures/models/weapons/bar/S93_bar-bipod.dds",
+   "shader": "s93_bar-bipod",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 14.251907676150644,
+   "baker": "bar"
+  },
+  "mp44_0b0e": {
+   "path": "textures/models/weapons/mp44/mp44.dds",
+   "shader": "mp44",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 22.276301706283043,
+   "baker": "mp44"
+  },
+  "s93_mp44_1795": {
+   "path": "textures/models/weapons/mp44/s93_mp44.dds",
+   "shader": "S93_mp44",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 13.750499737021613,
+   "baker": "mp44scoped"
+  },
+  "s93_mp442_f62a": {
+   "path": "textures/models/weapons/mp44/s93_mp442.dds",
+   "shader": "S93_mp442",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 13.719594065835736,
+   "baker": "mp44scoped"
+  },
+  "s93_mp443_478d": {
+   "path": "textures/models/weapons/mp44/s93_mp443.dds",
+   "shader": "S93_mp443",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 6.808940091066451,
+   "baker": "mp44scoped"
+  },
+  "g43_support_3440": {
+   "path": "textures/models/weapons/g43/g43_support.dds",
+   "shader": "g43_support",
+   "size": [
+    512,
+    256
+   ],
+   "wpu": 1.3375279876516937,
+   "baker": "mp44scoped"
+  },
+  "fg42hd_27ec": {
+   "path": "textures/models/weapons/coop_fg42hd/fg42hd.jpg",
+   "shader": "coop_fg42hd",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 72.40012791414942,
+   "baker": "fg42"
+  },
+  "fg42_8d73": {
+   "path": "models/weapons/fg42/fg42.jpg",
+   "shader": "fg42",
+   "size": [
+    512,
+    512
+   ],
+   "wpu": 21.394689839001316,
+   "baker": "fg42"
+  },
+  "uk_w_vickers_9347": {
+   "path": "textures/models/weapons/Vickers/Uk_W_Vickers.dds",
+   "shader": "Uk_W_Vickers",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 24.443950186111273,
+   "baker": "uk_w_vickers"
+  },
+  "it_w_breda_7def": {
+   "path": "textures/models/weapons/Breda/It_W_Breda.dds",
+   "shader": "It_W_Breda",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 27.008071908668967,
+   "baker": "it_w_breda"
+  },
+  "30cal_487e": {
+   "path": "textures/models/weapons/30cal/30cal.dds",
+   "shader": "30cal",
+   "size": [
+    1024,
+    1024
+   ],
+   "wpu": 32.67838199745929,
+   "baker": "30calportable"
+  },
+  "shells_e348": {
+   "path": "textures/models/human/germanmaps/german_grenadier/shells.dds",
+   "shader": "shellbelt",
+   "size": [
+    512,
+    512
+   ],
+   "wpu": 7.213146696492069,
+   "baker": "30calportable"
+  },
+  "mg42_c597": {
+   "path": "textures/models/weapons/mg42/mg42.dds",
+   "shader": "mg42",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 40.91127052082863,
+   "baker": "mg42portable"
+  },
+  "winchester_db82": {
+   "path": "textures/models/weapons/winchester/winchester.dds",
+   "shader": "shotgun",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 22.493505809230975,
+   "baker": "shotgun"
+  },
+  "bazooka_9cb3": {
+   "path": "textures/models/weapons/bazooka/bazooka.dds",
+   "shader": "bazooka",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 27.39579105284495,
+   "baker": "bazooka"
+  },
+  "bazookarim_747b": {
+   "path": "textures/models/weapons/bazooka/bazookarim.dds",
+   "shader": "bazookarim",
+   "size": [
+    512,
+    1024
+   ],
+   "wpu": 5.367585454923356,
+   "baker": "bazooka"
+  },
+  "bazookashell_8312": {
+   "path": "textures/models/weapons/bazooka/bazookashell.dds",
+   "shader": "bazookashell",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 13.432649782640684,
+   "baker": "bazooka"
+  },
+  "pschreck_e0e9": {
+   "path": "textures/models/weapons/panzerschreck/pschreck.dds",
+   "shader": "panzerschreck",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 26.615175114392578,
+   "baker": "panzerschreck"
+  },
+  "uk_w_piat_3f02": {
+   "path": "textures/models/weapons/Piat/Uk_W_Piat.dds",
+   "shader": "Uk_W_Piat",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 28.392172942632598,
+   "baker": "uk_w_piat"
+  },
+  "uk_w_piatrocket_badc": {
+   "path": "textures/models/weapons/Piat/Uk_W_PiatRocket.dds",
+   "shader": "Uk_W_Piatrocket",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 12.003366447875667,
+   "baker": "uk_w_piat"
+  },
+  "colt45_efac": {
+   "path": "textures/models/weapons/colt45/colt45.dds",
+   "shader": "colt",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 13.56958487388897,
+   "baker": "colt45"
+  },
+  "s93_colt_3190": {
+   "path": "textures/models/weapons/colt/S93_colt.dds",
+   "shader": "S93_colt",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 12.268373689738787,
+   "baker": "colt_silenced"
+  },
+  "p38_b891": {
+   "path": "textures/models/weapons/P38/P38.dds",
+   "shader": "P38",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 15.435027492470827,
+   "baker": "p38"
+  },
+  "s93_p38_e0b6": {
+   "path": "textures/models/weapons/p38/S93_p38.dds",
+   "shader": "S93_p38",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 6.436632404586329,
+   "baker": "p38silenced"
+  },
+  "s93_p38_blackgrip_02ea": {
+   "path": "textures/models/weapons/p38/s93_p38_blackgrip.dds",
+   "shader": "s93_p38_blackgrip",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 10.259164326608673,
+   "baker": "p38silenced"
+  },
+  "hi_standard_f788": {
+   "path": "textures/models/weapons/hi_standard/hi_standard.dds",
+   "shader": "hi_standard",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 16.95953502754842,
+   "baker": "silencedpistol"
+  },
+  "webley_1e62": {
+   "path": "textures/models/weapons/webley.dds",
+   "shader": "webley",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 17.506526600525603,
+   "baker": "webley_revolver"
+  },
+  "nagentrevolver_5d25": {
+   "path": "textures/models/weapons/nagentrevolver.dds",
+   "shader": "nagent_revolver",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 12.609481920307548,
+   "baker": "nagant_revolver"
+  },
+  "it_w_beretta_739b": {
+   "path": "textures/models/weapons/Beretta/It_W_Beretta.dds",
+   "shader": "It_W_Beretta",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 13.135547536041807,
+   "baker": "it_w_beretta"
+  },
+  "beretta_1cfa": {
+   "path": "textures/models/weapons/Beretta/Beretta.dds",
+   "shader": "beretta",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 12.233907192619832,
+   "baker": "berettasilenced"
+  },
+  "p08_1a7d": {
+   "path": "textures/models/weapons/luger/p08.dds",
+   "shader": "P08",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 12.329629070962385,
+   "baker": "lugerp08"
+  },
+  "ppk_barrel_bf5c": {
+   "path": "textures/models/weapons/PPK/PPK_barrel.dds",
+   "shader": "ppk_BARREL",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 5.945300593546567,
+   "baker": "ppk"
+  },
+  "ppk_body_7c6d": {
+   "path": "textures/models/weapons/PPK/PPK_body.dds",
+   "shader": "ppk_BODY",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 11.903295407113834,
+   "baker": "ppk"
+  },
+  "ppk_hammer_1841": {
+   "path": "textures/models/weapons/PPK/PPK_hammer.dds",
+   "shader": "ppk_HAMMER",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 3.684709160204653,
+   "baker": "ppk"
+  },
+  "ppk_mag_7f90": {
+   "path": "textures/models/weapons/PPK/PPK_mag.dds",
+   "shader": "ppk_MAG",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 5.679952595628592,
+   "baker": "ppk"
+  },
+  "ppk_slide_4c6a": {
+   "path": "textures/models/weapons/PPK/PPK_Slide.dds",
+   "shader": "ppk_SLIDE",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 11.372708320912293,
+   "baker": "ppk"
+  },
+  "ppk_trigger_d6cf": {
+   "path": "textures/models/weapons/PPK/PPK_trigger.dds",
+   "shader": "ppk_TRIGGER",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 8.012419328275705,
+   "baker": "ppk"
+  },
+  "tokarev_f886": {
+   "path": "textures/models/weapons/tt33/tokarev.dds",
+   "shader": "tt33",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 15.213121023088858,
+   "baker": "tt33"
+  },
+  "s93_nambu_155e": {
+   "path": "textures/models/weapons/nambu/s93_nambu.dds",
+   "shader": "s93_nambu",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 15.869312251856048,
+   "baker": "nambu"
+  },
+  "barrel_5167": {
+   "path": "textures/models/weapons/welrod/barrel.dds",
+   "shader": "WR_barrel",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 11.299823309906433,
+   "baker": "welrod"
+  },
+  "bolt_4f29": {
+   "path": "textures/models/weapons/welrod/bolt.dds",
+   "shader": "WR_bolt",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 8.051441630358672,
+   "baker": "welrod"
+  },
+  "misc_121e": {
+   "path": "textures/models/weapons/welrod/misc.dds",
+   "shader": "WR_misc",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 7.776573284650629,
+   "baker": "welrod"
+  },
+  "rec_c41e": {
+   "path": "textures/models/weapons/welrod/rec.dds",
+   "shader": "WR_rec",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 3.8827418660114965,
+   "baker": "welrod"
+  },
+  "johnson_01_c425": {
+   "path": "textures/coop_johnson/johnson_01.dds",
+   "shader": "johnson_part1",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 3.2098791679180785,
+   "baker": "johnson_m1941"
+  },
+  "johnson_10_d12a": {
+   "path": "textures/coop_johnson/johnson_10.dds",
+   "shader": "johnson_part10",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 23.114759935953483,
+   "baker": "johnson_m1941"
+  },
+  "johnson_11_72ba": {
+   "path": "textures/coop_johnson/johnson_11.dds",
+   "shader": "johnson_part11",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 4.039768899136716,
+   "baker": "johnson_m1941"
+  },
+  "johnson_12_5084": {
+   "path": "textures/coop_johnson/johnson_12.dds",
+   "shader": "johnson_part12",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 5.403191209839708,
+   "baker": "johnson_m1941"
+  },
+  "johnson_13_a1ac": {
+   "path": "textures/coop_johnson/johnson_13.dds",
+   "shader": "johnson_part13",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 2.6603973967331074,
+   "baker": "johnson_m1941"
+  },
+  "johnson_14_e18f": {
+   "path": "textures/coop_johnson/johnson_14.dds",
+   "shader": "johnson_part14",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 0.688739958371039,
+   "baker": "johnson_m1941"
+  },
+  "johnson_15_7f4e": {
+   "path": "textures/coop_johnson/johnson_15.dds",
+   "shader": "johnson_part15",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 1.6644055112934324,
+   "baker": "johnson_m1941"
+  },
+  "johnson_16_0d34": {
+   "path": "textures/coop_johnson/johnson_16.dds",
+   "shader": "johnson_part16",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 2.8851171655827472,
+   "baker": "johnson_m1941"
+  },
+  "johnson_02_2bf9": {
+   "path": "textures/coop_johnson/johnson_02.dds",
+   "shader": "johnson_part2",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 3.0507275107866176,
+   "baker": "johnson_m1941"
+  },
+  "johnson_03_730a": {
+   "path": "textures/coop_johnson/johnson_03.dds",
+   "shader": "johnson_part3",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 20.831485303440935,
+   "baker": "johnson_m1941"
+  },
+  "johnson_04_3b11": {
+   "path": "textures/coop_johnson/johnson_04.dds",
+   "shader": "johnson_part4",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 21.891865268318732,
+   "baker": "johnson_m1941"
+  },
+  "johnson_05_5709": {
+   "path": "textures/coop_johnson/johnson_05.dds",
+   "shader": "johnson_part5",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 6.158179203023001,
+   "baker": "johnson_m1941"
+  },
+  "johnson_06_86f0": {
+   "path": "textures/coop_johnson/johnson_06.dds",
+   "shader": "johnson_part6",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 13.0107781035143,
+   "baker": "johnson_m1941"
+  },
+  "johnson_07_2698": {
+   "path": "textures/coop_johnson/johnson_07.dds",
+   "shader": "johnson_part7",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 12.357083041517928,
+   "baker": "johnson_m1941"
+  },
+  "johnson_08_c6d4": {
+   "path": "textures/coop_johnson/johnson_08.dds",
+   "shader": "johnson_part8",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 5.820758693445855,
+   "baker": "johnson_m1941"
+  },
+  "johnson_09_76a2": {
+   "path": "textures/coop_johnson/johnson_09.dds",
+   "shader": "johnson_part9",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 1.8364613137534156,
+   "baker": "johnson_m1941"
+  },
+  "bipod_082b": {
+   "path": "textures/coop_dp28/bipod.dds",
+   "shader": "coop_dp28_bipod",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 9.351369500182358,
+   "baker": "dp28"
+  },
+  "dp28_a8cd": {
+   "path": "textures/coop_dp28/dp28.dds",
+   "shader": "coop_dp28_body",
+   "size": [
+    4096,
+    4096
+   ],
+   "wpu": 21.087924070199758,
+   "baker": "dp28"
+  },
+  "coop_c96n_680e": {
+   "path": "textures/models/weapons/coop_c96n/coop_c96n.jpg",
+   "shader": "coop_c96n",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 34.10379531416832,
+   "baker": "mauser_c96"
+  },
+  "gun13_3ced": {
+   "path": "textures/coop_m10/gun13.dds",
+   "shader": "coop_m10_aim",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 2.32317770157162,
+   "baker": "m10_revolver"
+  },
+  "gun12_df70": {
+   "path": "textures/coop_m10/gun12.dds",
+   "shader": "coop_m10_barrel",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 4.936375817567875,
+   "baker": "m10_revolver"
+  },
+  "gun11_8f9b": {
+   "path": "textures/coop_m10/gun11.dds",
+   "shader": "coop_m10_body",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 5.728399267166815,
+   "baker": "m10_revolver"
+  },
+  "gun10_232d": {
+   "path": "textures/coop_m10/gun10.dds",
+   "shader": "coop_m10_cylinder",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 3.073593279702163,
+   "baker": "m10_revolver"
+  },
+  "gun7_7b59": {
+   "path": "textures/coop_m10/gun7.dds",
+   "shader": "coop_m10_cyopen1",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 1.5537400938661663,
+   "baker": "m10_revolver"
+  },
+  "gun5_2a44": {
+   "path": "textures/coop_m10/gun5.dds",
+   "shader": "coop_m10_grip",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 5.919128269793879,
+   "baker": "m10_revolver"
+  },
+  "gun4_b105": {
+   "path": "textures/coop_m10/gun4.dds",
+   "shader": "coop_m10_hammer",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 1.9590554739065293,
+   "baker": "m10_revolver"
+  },
+  "gun8_4b29": {
+   "path": "textures/coop_m10/gun8.dds",
+   "shader": "coop_m10_pin",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 1.7524328621658438,
+   "baker": "m10_revolver"
+  },
+  "gun1_9c68": {
+   "path": "textures/coop_m10/gun1.dds",
+   "shader": "coop_m10_pinpro",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 0.6807117548805048,
+   "baker": "m10_revolver"
+  },
+  "gun9_a7d5": {
+   "path": "textures/coop_m10/gun9.dds",
+   "shader": "coop_m10_protect",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 2.074682088155498,
+   "baker": "m10_revolver"
+  },
+  "gun2_c778": {
+   "path": "textures/coop_m10/gun2.dds",
+   "shader": "coop_m10_trig",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 1.963504320771363,
+   "baker": "m10_revolver"
+  },
+  "gun3_f62b": {
+   "path": "textures/coop_m10/gun3.dds",
+   "shader": "coop_m10_trigguard",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 2.7655871503030327,
+   "baker": "m10_revolver"
+  },
+  "coop_dbshotgun_39c6": {
+   "path": "textures/models/weapons/coop_dbshotgun/coop_dbshotgun.jpg",
+   "shader": "coop_dbshotgun",
+   "size": [
+    2048,
+    2048
+   ],
+   "wpu": 27.3353202762699,
+   "baker": "coop_dbshotgun"
+  },
+  "coop_dbshotgun_parts_87f4": {
+   "path": "textures/models/weapons/coop_dbshotgun/coop_dbshotgun_parts.jpg",
+   "shader": "coop_dbshotgun_parts",
+   "size": [
+    256,
+    256
+   ],
+   "wpu": 4.203719927539558,
+   "baker": "coop_dbshotgun"
+  },
+  "front_9732": {
+   "path": "textures/coop_bar1918/front.JPG",
+   "shader": "coop_bar1918_SMLEfront",
+   "size": [
+    1100,
+    736
+   ],
+   "wpu": 8.036673851098875,
+   "baker": "bar_bar1918"
+  },
+  "lewis1_7a7d": {
+   "path": "textures/coop_bar1918/lewis1.jpg",
+   "shader": "coop_bar1918_lewis1",
+   "size": [
+    1100,
+    736
+   ],
+   "wpu": 23.513985537353157,
+   "baker": "bar_bar1918"
+  },
+  "lewis2_4d6b": {
+   "path": "textures/coop_bar1918/lewis2.jpg",
+   "shader": "coop_bar1918_lewis2",
+   "size": [
+    1100,
+    736
+   ],
+   "wpu": 13.447707372189988,
+   "baker": "bar_bar1918"
+  },
+  "lewismag_f8a2": {
+   "path": "textures/coop_bar1918/lewismag.jpg",
+   "shader": "coop_bar1918_lewismag",
+   "size": [
+    1100,
+    736
+   ],
+   "wpu": 19.409328914977124,
+   "baker": "bar_bar1918"
+  }
+ },
+ "guns": {
+  "m1_garand": {
+   "tik": "models/weapons/m1_garand.tik",
+   "name": "M1 Garand",
+   "variants": {
+    "whitewash": {
+     "rank": 2000,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2001,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2002,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2003,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2004,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2005,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2006,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2007,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2008,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2009,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2010,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2011,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2012,
+     "fid": 52
+    }
+   }
+  },
+  "carbine": {
+   "tik": "models/weapons/carbine.tik",
+   "name": "M1 Carbine",
+   "variants": {
+    "whitewash": {
+     "rank": 2013,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2014,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2015,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2016,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2017,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2018,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2019,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2020,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2021,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2022,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2023,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2024,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2025,
+     "fid": 52
+    }
+   }
+  },
+  "kar98": {
+   "tik": "models/weapons/kar98.tik",
+   "name": "Mauser KAR 98K",
+   "variants": {
+    "whitewash": {
+     "rank": 2026,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2027,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2028,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2029,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2030,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2031,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2032,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2033,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2034,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2035,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2036,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2037,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2038,
+     "fid": 52
+    }
+   }
+  },
+  "g43": {
+   "tik": "models/weapons/g43.tik",
+   "name": "G 43",
+   "variants": {
+    "whitewash": {
+     "rank": 2039,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2040,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2041,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2042,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2043,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2044,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2045,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2046,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2047,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2048,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2049,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2050,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2051,
+     "fid": 52
+    }
+   }
+  },
+  "enfield": {
+   "tik": "models/weapons/enfield.tik",
+   "name": "Lee-Enfield",
+   "variants": {
+    "whitewash": {
+     "rank": 2052,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2053,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2054,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2055,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2056,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2057,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2058,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2059,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2060,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2061,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2062,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2063,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2064,
+     "fid": 52
+    }
+   }
+  },
+  "springfield_unscoped": {
+   "tik": "models/weapons/springfield_unscoped.tik",
+   "name": "Springfield M1903",
+   "variants": {
+    "whitewash": {
+     "rank": 2065,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2066,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2067,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2068,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2069,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2070,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2071,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2072,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2073,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2074,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2075,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2076,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2077,
+     "fid": 52
+    }
+   }
+  },
+  "it_w_carcano": {
+   "tik": "models/weapons/it_w_carcano.tik",
+   "name": "Carcano",
+   "variants": {
+    "whitewash": {
+     "rank": 2078,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2079,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2080,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2081,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2082,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2083,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2084,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2085,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2086,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2087,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2088,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2089,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2090,
+     "fid": 52
+    }
+   }
+  },
+  "svt_rifle": {
+   "tik": "models/weapons/svt_rifle.tik",
+   "name": "SVT 40",
+   "variants": {
+    "whitewash": {
+     "rank": 2091,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2092,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2093,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2094,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2095,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2096,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2097,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2098,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2099,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2100,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2101,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2102,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2103,
+     "fid": 52
+    }
+   }
+  },
+  "mosin_nagant_rifle": {
+   "tik": "models/weapons/mosin_nagant_rifle.tik",
+   "name": "Mosin Nagant Rifle",
+   "variants": {
+    "whitewash": {
+     "rank": 2104,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2105,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2106,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2107,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2108,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2109,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2110,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2111,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2112,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2113,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2114,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2115,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2116,
+     "fid": 52
+    }
+   }
+  },
+  "arisaka": {
+   "tik": "models/weapons/arisaka.tik",
+   "name": "Arisaka Type 99",
+   "variants": {
+    "whitewash": {
+     "rank": 2117,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2118,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2119,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2120,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2121,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2122,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2123,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2124,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2125,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2126,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2127,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2128,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2129,
+     "fid": 52
+    }
+   }
+  },
+  "garand_silenced": {
+   "tik": "models/weapons/garand_silenced.tik",
+   "name": "Silenced M1 Garand",
+   "variants": {
+    "whitewash": {
+     "rank": 2130,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2131,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2132,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2133,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2134,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2135,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2136,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2137,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2138,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2139,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2140,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2141,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2142,
+     "fid": 52
+    }
+   }
+  },
+  "springfield": {
+   "tik": "models/weapons/springfield.tik",
+   "name": "Springfield '03 Sniper",
+   "variants": {
+    "whitewash": {
+     "rank": 2143,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2144,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2145,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2146,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2147,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2148,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2149,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2150,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2151,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2152,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2153,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2154,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2155,
+     "fid": 52
+    }
+   }
+  },
+  "kar98sniper": {
+   "tik": "models/weapons/kar98sniper.tik",
+   "name": "KAR98 - Sniper",
+   "variants": {
+    "whitewash": {
+     "rank": 2156,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2157,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2158,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2159,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2160,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2161,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2162,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2163,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2164,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2165,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2166,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2167,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2168,
+     "fid": 52
+    }
+   }
+  },
+  "uk_w_l42a1": {
+   "tik": "models/weapons/uk_w_l42a1.tik",
+   "name": "Enfield L42A1",
+   "variants": {
+    "whitewash": {
+     "rank": 2169,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2170,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2171,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2172,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2173,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2174,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2175,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2176,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2177,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2178,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2179,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2180,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2181,
+     "fid": 52
+    }
+   }
+  },
+  "garand_scoped": {
+   "tik": "models/weapons/garand_scoped.tik",
+   "name": "M1 Garand Sniper",
+   "variants": {
+    "whitewash": {
+     "rank": 2182,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2183,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2184,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2185,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2186,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2187,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2188,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2189,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2190,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2191,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2192,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2193,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2194,
+     "fid": 52
+    }
+   }
+  },
+  "g43sniper": {
+   "tik": "models/weapons/g43sniper.tik",
+   "name": "G43 Sniper",
+   "variants": {
+    "whitewash": {
+     "rank": 2195,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2196,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2197,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2198,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2199,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2200,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2201,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2202,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2203,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2204,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2205,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2206,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2207,
+     "fid": 52
+    }
+   }
+  },
+  "enfieldsniper": {
+   "tik": "models/weapons/enfieldsniper.tik",
+   "name": "Lee-Enfield Sniper",
+   "variants": {
+    "whitewash": {
+     "rank": 2208,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2209,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2210,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2211,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2212,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2213,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2214,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2215,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2216,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2217,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2218,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2219,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2220,
+     "fid": 52
+    }
+   }
+  },
+  "carcanosniper": {
+   "tik": "models/weapons/carcanosniper.tik",
+   "name": "Carcano Sniper",
+   "variants": {
+    "whitewash": {
+     "rank": 2221,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2222,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2223,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2224,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2225,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2226,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2227,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2228,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2229,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2230,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2231,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2232,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2233,
+     "fid": 52
+    }
+   }
+  },
+  "arisakasniper": {
+   "tik": "models/weapons/arisakasniper.tik",
+   "name": "Arisaka Sniper",
+   "variants": {
+    "whitewash": {
+     "rank": 2234,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2235,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2236,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2237,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2238,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2239,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2240,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2241,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2242,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2243,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2244,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2245,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2246,
+     "fid": 52
+    }
+   }
+  },
+  "nagant_sniper": {
+   "tik": "models/weapons/nagant_sniper.tik",
+   "name": "Mosin-Nagant Sniper",
+   "variants": {
+    "whitewash": {
+     "rank": 2247,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2248,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2249,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2250,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2251,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2252,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2253,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2254,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2255,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2256,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2257,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2258,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2259,
+     "fid": 52
+    }
+   }
+  },
+  "nagant_snipersilenced": {
+   "tik": "models/weapons/nagant_snipersilenced.tik",
+   "name": "Silenced Mosin Sniper",
+   "variants": {
+    "whitewash": {
+     "rank": 2260,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2261,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2262,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2263,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2264,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2265,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2266,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2267,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2268,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2269,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2270,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2271,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2272,
+     "fid": 52
+    }
+   }
+  },
+  "kar98snipersilenced": {
+   "tik": "models/weapons/kar98snipersilenced.tik",
+   "name": "Silenced Kar98 Sniper",
+   "variants": {
+    "whitewash": {
+     "rank": 2273,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2274,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2275,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2276,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2277,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2278,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2279,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2280,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2281,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2282,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2283,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2284,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2285,
+     "fid": 52
+    }
+   }
+  },
+  "delisle": {
+   "tik": "models/weapons/delisle.tik",
+   "name": "DeLisle",
+   "variants": {
+    "whitewash": {
+     "rank": 2286,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2287,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2288,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2289,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2290,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2291,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2292,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2293,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2294,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2295,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2296,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2297,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2298,
+     "fid": 52
+    }
+   }
+  },
+  "thompsonsmg": {
+   "tik": "models/weapons/thompsonsmg.tik",
+   "name": "Thompson",
+   "variants": {
+    "whitewash": {
+     "rank": 2299,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2300,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2301,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2302,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2303,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2304,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2305,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2306,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2307,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2308,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2309,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2310,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2311,
+     "fid": 52
+    }
+   }
+  },
+  "thompson50": {
+   "tik": "models/weapons/thompson50.tik",
+   "name": "Thompson 50rd",
+   "variants": {
+    "whitewash": {
+     "rank": 2312,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2313,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2314,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2315,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2316,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2317,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2318,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2319,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2320,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2321,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2322,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2323,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2324,
+     "fid": 52
+    }
+   }
+  },
+  "mp40": {
+   "tik": "models/weapons/mp40.tik",
+   "name": "MP40",
+   "variants": {
+    "whitewash": {
+     "rank": 2325,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2326,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2327,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2328,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2329,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2330,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2331,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2332,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2333,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2334,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2335,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2336,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2337,
+     "fid": 52
+    }
+   }
+  },
+  "mp40silenced": {
+   "tik": "models/weapons/mp40silenced.tik",
+   "name": "Silenced MP40",
+   "variants": {
+    "whitewash": {
+     "rank": 2338,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2339,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2340,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2341,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2342,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2343,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2344,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2345,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2346,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2347,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2348,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2349,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2350,
+     "fid": 52
+    }
+   }
+  },
+  "sten": {
+   "tik": "models/weapons/sten.tik",
+   "name": "Sten Mark II",
+   "variants": {
+    "whitewash": {
+     "rank": 2351,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2352,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2353,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2354,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2355,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2356,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2357,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2358,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2359,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2360,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2361,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2362,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2363,
+     "fid": 52
+    }
+   }
+  },
+  "ppsh_smg": {
+   "tik": "models/weapons/ppsh_smg.tik",
+   "name": "PPSH SMG",
+   "variants": {
+    "whitewash": {
+     "rank": 2364,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2365,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2366,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2367,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2368,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2369,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2370,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2371,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2372,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2373,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2374,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2375,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2376,
+     "fid": 52
+    }
+   }
+  },
+  "ppsh43silenced": {
+   "tik": "models/weapons/ppsh43silenced.tik",
+   "name": "Silenced PPS-43",
+   "variants": {
+    "whitewash": {
+     "rank": 2377,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2378,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2379,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2380,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2381,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2382,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2383,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2384,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2385,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2386,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2387,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2388,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2389,
+     "fid": 52
+    }
+   }
+  },
+  "greasegun": {
+   "tik": "models/weapons/greasegun.tik",
+   "name": "M3 Grease Gun",
+   "variants": {
+    "whitewash": {
+     "rank": 2390,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2391,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2392,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2393,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2394,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2395,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2396,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2397,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2398,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2399,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2400,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2401,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2402,
+     "fid": 52
+    }
+   }
+  },
+  "greasegun_silenced": {
+   "tik": "models/weapons/greasegun_silenced.tik",
+   "name": "Silenced Grease Gun",
+   "variants": {
+    "whitewash": {
+     "rank": 2403,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2404,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2405,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2406,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2407,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2408,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2409,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2410,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2411,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2412,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2413,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2414,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2415,
+     "fid": 52
+    }
+   }
+  },
+  "it_w_moschetto": {
+   "tik": "models/weapons/it_w_moschetto.tik",
+   "name": "Moschetto",
+   "variants": {
+    "whitewash": {
+     "rank": 2416,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2417,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2418,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2419,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2420,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2421,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2422,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2423,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2424,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2425,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2426,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2427,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2428,
+     "fid": 52
+    }
+   }
+  },
+  "type100smg": {
+   "tik": "models/weapons/type100smg.tik",
+   "name": "Type 100 SMG",
+   "variants": {
+    "whitewash": {
+     "rank": 2429,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2430,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2431,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2432,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2433,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2434,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2435,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2436,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2437,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2438,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2439,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2440,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2441,
+     "fid": 52
+    }
+   }
+  },
+  "bar": {
+   "tik": "models/weapons/bar.tik",
+   "name": "BAR",
+   "variants": {
+    "whitewash": {
+     "rank": 2442,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2443,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2444,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2445,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2446,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2447,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2448,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2449,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2450,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2451,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2452,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2453,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2454,
+     "fid": 52
+    }
+   }
+  },
+  "mp44": {
+   "tik": "models/weapons/mp44.tik",
+   "name": "StG 44",
+   "variants": {
+    "whitewash": {
+     "rank": 2455,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2456,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2457,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2458,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2459,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2460,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2461,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2462,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2463,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2464,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2465,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2466,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2467,
+     "fid": 52
+    }
+   }
+  },
+  "mp44scoped": {
+   "tik": "models/weapons/mp44scoped.tik",
+   "name": "StG44 Scoped",
+   "variants": {
+    "whitewash": {
+     "rank": 2468,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2469,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2470,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2471,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2472,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2473,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2474,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2475,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2476,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2477,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2478,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2479,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2480,
+     "fid": 52
+    }
+   }
+  },
+  "fg42": {
+   "tik": "models/weapons/fg42.tik",
+   "name": "FG 42",
+   "variants": {
+    "whitewash": {
+     "rank": 2481,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2482,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2483,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2484,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2485,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2486,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2487,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2488,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2489,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2490,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2491,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2492,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2493,
+     "fid": 52
+    }
+   }
+  },
+  "uk_w_vickers": {
+   "tik": "models/weapons/uk_w_vickers.tik",
+   "name": "Vickers-Berthier",
+   "variants": {
+    "whitewash": {
+     "rank": 2494,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2495,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2496,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2497,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2498,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2499,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2500,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2501,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2502,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2503,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2504,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2505,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2506,
+     "fid": 52
+    }
+   }
+  },
+  "it_w_breda": {
+   "tik": "models/weapons/it_w_breda.tik",
+   "name": "Breda",
+   "variants": {
+    "whitewash": {
+     "rank": 2507,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2508,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2509,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2510,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2511,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2512,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2513,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2514,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2515,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2516,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2517,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2518,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2519,
+     "fid": 52
+    }
+   }
+  },
+  "30calportable": {
+   "tik": "models/weapons/30calportable.tik",
+   "name": "M1919 30cal",
+   "variants": {
+    "whitewash": {
+     "rank": 2520,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2521,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2522,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2523,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2524,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2525,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2526,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2527,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2528,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2529,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2530,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2531,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2532,
+     "fid": 52
+    }
+   }
+  },
+  "mg42portable": {
+   "tik": "models/weapons/mg42portable.tik",
+   "name": "MG42",
+   "variants": {
+    "whitewash": {
+     "rank": 2533,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2534,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2535,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2536,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2537,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2538,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2539,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2540,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2541,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2542,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2543,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2544,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2545,
+     "fid": 52
+    }
+   }
+  },
+  "shotgun": {
+   "tik": "models/weapons/shotgun.tik",
+   "name": "Shotgun",
+   "variants": {
+    "whitewash": {
+     "rank": 2546,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2547,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2548,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2549,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2550,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2551,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2552,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2553,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2554,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2555,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2556,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2557,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2558,
+     "fid": 52
+    }
+   }
+  },
+  "bazooka": {
+   "tik": "models/weapons/bazooka.tik",
+   "name": "Bazooka",
+   "variants": {
+    "whitewash": {
+     "rank": 2559,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2560,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2561,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2562,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2563,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2564,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2565,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2566,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2567,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2568,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2569,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2570,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2571,
+     "fid": 52
+    }
+   }
+  },
+  "panzerschreck": {
+   "tik": "models/weapons/panzerschreck.tik",
+   "name": "Panzerschreck",
+   "variants": {
+    "whitewash": {
+     "rank": 2572,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2573,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2574,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2575,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2576,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2577,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2578,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2579,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2580,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2581,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2582,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2583,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2584,
+     "fid": 52
+    }
+   }
+  },
+  "uk_w_piat": {
+   "tik": "models/weapons/uk_w_piat.tik",
+   "name": "PIAT",
+   "variants": {
+    "whitewash": {
+     "rank": 2585,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2586,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2587,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2588,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2589,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2590,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2591,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2592,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2593,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2594,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2595,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2596,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2597,
+     "fid": 52
+    }
+   }
+  },
+  "colt45": {
+   "tik": "models/weapons/colt45.tik",
+   "name": "Colt 45",
+   "variants": {
+    "whitewash": {
+     "rank": 2598,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2599,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2600,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2601,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2602,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2603,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2604,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2605,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2606,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2607,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2608,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2609,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2610,
+     "fid": 52
+    }
+   }
+  },
+  "colt_silenced": {
+   "tik": "models/weapons/colt_silenced.tik",
+   "name": "Silenced Colt .45",
+   "variants": {
+    "whitewash": {
+     "rank": 2611,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2612,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2613,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2614,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2615,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2616,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2617,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2618,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2619,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2620,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2621,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2622,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2623,
+     "fid": 52
+    }
+   }
+  },
+  "p38": {
+   "tik": "models/weapons/p38.tik",
+   "name": "Walther P38",
+   "variants": {
+    "whitewash": {
+     "rank": 2624,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2625,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2626,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2627,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2628,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2629,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2630,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2631,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2632,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2633,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2634,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2635,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2636,
+     "fid": 52
+    }
+   }
+  },
+  "p38silenced": {
+   "tik": "models/weapons/p38silenced.tik",
+   "name": "Silenced Walther P38",
+   "variants": {
+    "whitewash": {
+     "rank": 2637,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2638,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2639,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2640,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2641,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2642,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2643,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2644,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2645,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2646,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2647,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2648,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2649,
+     "fid": 52
+    }
+   }
+  },
+  "silencedpistol": {
+   "tik": "models/weapons/silencedpistol.tik",
+   "name": "Hi-Standard Silenced",
+   "variants": {
+    "whitewash": {
+     "rank": 2650,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2651,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2652,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2653,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2654,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2655,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2656,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2657,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2658,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2659,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2660,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2661,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2662,
+     "fid": 52
+    }
+   }
+  },
+  "webley_revolver": {
+   "tik": "models/weapons/webley_revolver.tik",
+   "name": "Webley Revolver",
+   "variants": {
+    "whitewash": {
+     "rank": 2663,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2664,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2665,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2666,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2667,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2668,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2669,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2670,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2671,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2672,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2673,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2674,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2675,
+     "fid": 52
+    }
+   }
+  },
+  "nagant_revolver": {
+   "tik": "models/weapons/nagant_revolver.tik",
+   "name": "Nagant Revolver",
+   "variants": {
+    "whitewash": {
+     "rank": 2676,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2677,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2678,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2679,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2680,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2681,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2682,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2683,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2684,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2685,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2686,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2687,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2688,
+     "fid": 52
+    }
+   }
+  },
+  "it_w_beretta": {
+   "tik": "models/weapons/it_w_beretta.tik",
+   "name": "Beretta",
+   "variants": {
+    "whitewash": {
+     "rank": 2689,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2690,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2691,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2692,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2693,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2694,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2695,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2696,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2697,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2698,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2699,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2700,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2701,
+     "fid": 52
+    }
+   }
+  },
+  "berettasilenced": {
+   "tik": "models/weapons/berettasilenced.tik",
+   "name": "Silenced Beretta",
+   "variants": {
+    "whitewash": {
+     "rank": 2702,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2703,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2704,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2705,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2706,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2707,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2708,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2709,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2710,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2711,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2712,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2713,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2714,
+     "fid": 52
+    }
+   }
+  },
+  "lugerp08": {
+   "tik": "models/weapons/lugerp08.tik",
+   "name": "Luger P08",
+   "variants": {
+    "whitewash": {
+     "rank": 2715,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2716,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2717,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2718,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2719,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2720,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2721,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2722,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2723,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2724,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2725,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2726,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2727,
+     "fid": 52
+    }
+   }
+  },
+  "lugerp08silenced": {
+   "tik": "models/weapons/lugerp08silenced.tik",
+   "name": "Silenced Luger P08",
+   "variants": {
+    "whitewash": {
+     "rank": 2728,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2729,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2730,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2731,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2732,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2733,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2734,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2735,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2736,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2737,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2738,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2739,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2740,
+     "fid": 52
+    }
+   }
+  },
+  "ppk": {
+   "tik": "models/weapons/ppk.tik",
+   "name": "Walther PPK",
+   "variants": {
+    "whitewash": {
+     "rank": 2741,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2742,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2743,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2744,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2745,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2746,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2747,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2748,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2749,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2750,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2751,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2752,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2753,
+     "fid": 52
+    }
+   }
+  },
+  "tt33": {
+   "tik": "models/weapons/tt33.tik",
+   "name": "TT-33 Tokarev",
+   "variants": {
+    "whitewash": {
+     "rank": 2754,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2755,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2756,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2757,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2758,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2759,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2760,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2761,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2762,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2763,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2764,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2765,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2766,
+     "fid": 52
+    }
+   }
+  },
+  "tt33silenced": {
+   "tik": "models/weapons/tt33silenced.tik",
+   "name": "Silenced TT-33",
+   "variants": {
+    "whitewash": {
+     "rank": 2767,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2768,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2769,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2770,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2771,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2772,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2773,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2774,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2775,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2776,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2777,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2778,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2779,
+     "fid": 52
+    }
+   }
+  },
+  "nambu": {
+   "tik": "models/weapons/nambu.tik",
+   "name": "Nambu Type 14",
+   "variants": {
+    "whitewash": {
+     "rank": 2780,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2781,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2782,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2783,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2784,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2785,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2786,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2787,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2788,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2789,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2790,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2791,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2792,
+     "fid": 52
+    }
+   }
+  },
+  "welrod": {
+   "tik": "models/weapons/welrod.tik",
+   "name": "Welrod",
+   "variants": {
+    "whitewash": {
+     "rank": 2793,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2794,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2795,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2796,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2797,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2798,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2799,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2800,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2801,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2802,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2803,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2804,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2805,
+     "fid": 52
+    }
+   }
+  },
+  "johnson_m1941": {
+   "tik": "models/weapons/johnson_m1941.tik",
+   "name": "Johnson M1941",
+   "variants": {
+    "whitewash": {
+     "rank": 2806,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2807,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2808,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2809,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2810,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2811,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2812,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2813,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2814,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2815,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2816,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2817,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2818,
+     "fid": 52
+    }
+   }
+  },
+  "dp28": {
+   "tik": "models/weapons/dp28.tik",
+   "name": "DP-28",
+   "variants": {
+    "whitewash": {
+     "rank": 2819,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2820,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2821,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2822,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2823,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2824,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2825,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2826,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2827,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2828,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2829,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2830,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2831,
+     "fid": 52
+    }
+   }
+  },
+  "mauser_c96": {
+   "tik": "models/weapons/mauser_c96.tik",
+   "name": "Mauser C96",
+   "variants": {
+    "whitewash": {
+     "rank": 2832,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2833,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2834,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2835,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2836,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2837,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2838,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2839,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2840,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2841,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2842,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2843,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2844,
+     "fid": 52
+    }
+   }
+  },
+  "m10_revolver": {
+   "tik": "models/weapons/m10_revolver.tik",
+   "name": "S&W M10 .38",
+   "variants": {
+    "whitewash": {
+     "rank": 2845,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2846,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2847,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2848,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2849,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2850,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2851,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2852,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2853,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2854,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2855,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2856,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2857,
+     "fid": 52
+    }
+   }
+  },
+  "coop_g43_irons": {
+   "tik": "models/weapons/coop_g43_irons.tik",
+   "name": "G 43 Irons",
+   "variants": {
+    "whitewash": {
+     "rank": 2858,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2859,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2860,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2861,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2862,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2863,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2864,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2865,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2866,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2867,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2868,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2869,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2870,
+     "fid": 52
+    }
+   }
+  },
+  "coop_dbshotgun": {
+   "tik": "models/weapons/coop_dbshotgun.tik",
+   "name": "Shotgun (Double Barrel)",
+   "variants": {
+    "whitewash": {
+     "rank": 2871,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2872,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2873,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2874,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2875,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2876,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2877,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2878,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2879,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2880,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2881,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2882,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2883,
+     "fid": 52
+    }
+   }
+  },
+  "coop_fg42_irons": {
+   "tik": "models/weapons/coop_fg42_irons.tik",
+   "name": "FG 42 Irons",
+   "variants": {
+    "whitewash": {
+     "rank": 2884,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2885,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2886,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2887,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2888,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2889,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2890,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2891,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2892,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2893,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2894,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2895,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2896,
+     "fid": 52
+    }
+   }
+  },
+  "bar_bar1918": {
+   "tik": "models/weapons/bar_bar1918.tik",
+   "name": "Lewis Gun",
+   "variants": {
+    "whitewash": {
+     "rank": 2897,
+     "fid": 40
+    },
+    "dak": {
+     "rank": 2898,
+     "fid": 41
+    },
+    "kriegsmarine": {
+     "rank": 2899,
+     "fid": 42
+    },
+    "airborne": {
+     "rank": 2900,
+     "fid": 43
+    },
+    "splitter": {
+     "rank": 2901,
+     "fid": 44
+    },
+    "pea": {
+     "rank": 2902,
+     "fid": 45
+    },
+    "telo": {
+     "rank": 2903,
+     "fid": 46
+    },
+    "amoeba": {
+     "rank": 2904,
+     "fid": 47
+    },
+    "airborne101": {
+     "rank": 2905,
+     "fid": 48
+    },
+    "battleworn": {
+     "rank": 2906,
+     "fid": 49
+    },
+    "trenchart": {
+     "rank": 2907,
+     "fid": 50
+    },
+    "parade": {
+     "rank": 2908,
+     "fid": 51
+    },
+    "captured": {
+     "rank": 2909,
+     "fid": 52
+    }
+   }
+  }
+ },
+ "rank": 2910
+}

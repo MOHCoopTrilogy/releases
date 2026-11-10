@@ -157,7 +157,7 @@ MP_OWNED_MENUS = {"mpoptions"}
 # ONLY this file: the MP-facing menus are left unlocked on purpose - the user approved coop edits to them
 # (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
 LOCKS = {
-    "ui/coop_loadout.urc": {"sha256_lf": "cc391edc037c262d643dfe72e2e35f16d5759bb04f2f1446f501bf9118138bd3", "sha256_crlf": "55dd8cb89be66014920d295e565f1526e215103eef6af447d194e9c68db7c46e", "lf_bytes": 177085, "blob": "7cecbb1bb6a3803a93405f722d426b95a03b7b22", "eol": "crlf", "commit": "3e4f2183", "locked": "2026-11-08 v1.10.66 armoryfix: modelfitaspect 1.7778 on every Armory model widget (gen_armory_urc.py; engine armoryfix-eng) - the previews keep their 16:9 framing at 21:9 / 3440x1440 - deliberate coop change, bug-10596"},
+    "ui/coop_loadout.urc": {"sha256_lf": "d89cd844f42d3178380546ba25b7193c7c4db500d514650e88dc3de6ec44c116", "sha256_crlf": "8c29ab99e6a61debd836709b6ba8de12d2d5a2ac1063142918624509772934bd", "lf_bytes": 190559, "blob": "ac10213230df56fd1ee1e9cd0b4d778645311fbd", "eol": "crlf", "commit": "580a4a40", "locked": "2026-11-09 v1.10.68 finishes2: the second finish chip row (13 swatches, fids 40-52) and the finish name moved to the hero top right (gen_armory_urc.py) - deliberate coop change, bug-10700"},
 }
 
 # Clauses 4/5. Every saved coop cvar MP could plausibly touch [bug-2564]; each would follow the player into coop.

@@ -504,6 +504,8 @@ def build(rows, files, mod):
     for n in range(1, 5):
         for f in range(1, 8):
             D.append("seta coop_loFsrt%d_%d \"exec ui/loadout/fsl%d.cfg\"" % (n, f, f))
+    import gen_finish_ui as gfu
+    D += gfu.defaults()          # [v1.10.68 finishes2] the second chip row: fail-locked until the server pushes the slot's verdicts
     import gen_armory_cos as gac
     D += gac.defaults()
     D.append("seta coop_loRefill \"set coop_loNop 0\"")

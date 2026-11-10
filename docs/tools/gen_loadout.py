@@ -136,6 +136,10 @@ def preview(w):
     L += [
     ]
     L += ['set coop_loFinP%d "%s"' % (_i + 1, _v) for _i, _v in enumerate(finp)]
+    # [v1.10.68 finishes2] the second chip row's offline previews (fin<F>_s<n>.cfg vstr coop_loFinP<F>); the variant tiks live in the
+    # finishes pak, so "exists" = the gun has that row in loadoutskins.scr (gen_skins.py fs2, which checks the pak)
+    _v2 = fs2_variants().get((w["give"] or w["tik"]).lower(), {})
+    L += ['set coop_loFinP%d "%s"' % (_f, "exec ui/loadout/finp%s_%d.cfg" % (w["id"], _f) if _f in _v2 else "") for _f in FS2_FIDS]
     L += [
         'set coop_loPrev "%s"' % w["tik"],
         'set coop_loXfmW "%s"' % w["xfm"],
@@ -464,6 +468,10 @@ def render_all(rows):
                 out["finp%s_%d.cfg" % (w["id"], _i + 1)] = (
                     'set coop_loPrev "models/weapons/%s_%s.tik"\n' % (_stem2, _k)
                     + 'set coop_loNm "%s (%s)"\n' % (w["name"], _lab))
+        # [v1.10.68 finishes2] the second set's preview pages (the tik is in the finishes pak)
+        for _f, _var in sorted(fs2_variants().get((w["give"] or w["tik"]).lower(), {}).items()):
+            out["finp%s_%d.cfg" % (w["id"], _f)] = (
+                'set coop_loPrev "%s"\n' % _var + 'set coop_loNm "%s (%s)"\n' % (w["name"], FS2_NAME[_f]))
         out["t%s.cfg" % w["id"]] = tile(w)
         for s in w["slots"]:
             out["w%s_s%s.cfg" % (w["id"], s)] = slotfile(w, s)
@@ -473,6 +481,9 @@ def render_all(rows):
         out["eq%s.cfg" % w["id"]] = eqfile(w)
         out["lkw%s.cfg" % w["id"]] = lkwfile(w, "req%s.cfg" % w["id"] in hovers)
     # [armory B 2026-10-18] the card chains, compare tables, progress joins and defaults (gen_armory.py); paths are mod-relative
+    # [killchal / finishes2] the per-gun finish chip pages: lkfs / lkc / fdeny / fin<F>_s<n> and the marked blocks of s<n>sel + init
+    import gen_finish_ui as gfu
+    gfu.build(out, lambda n: _read(os.path.join(UI, "s%dsel.cfg" % n)), lambda: _read(os.path.join(UI, "init.cfg")))
     import gen_armory as ga
     extra = ga.build(rows, out, MOD)
     for rel, text in extra.items():
@@ -484,6 +495,21 @@ def render_all(rows):
 
 
 EXTRA = {}      # generated files outside ui/loadout/ (mod-relative path -> text), filled by render_all
+
+import finishes2 as _F2  # noqa: E402
+FS2_FIDS = _F2.fids()
+FS2_NAME = {r["fid"]: r["name"] for r in _F2.table()}
+_FS2V = {}
+
+
+def fs2_variants():
+    """{give (lower): {fid: variant tik}} for the finishes2 fids, from loadoutskins.scr"""
+    if not _FS2V:
+        _FS2V[None] = 1
+        for g, f, v in re.findall(r'coop_skinGive\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', _read(os.path.join(MOD, "coop_mod", "loadoutskins.scr"))):
+            if int(f) in FS2_NAME:
+                _FS2V.setdefault(g.lower(), {})[int(f)] = v
+    return _FS2V
 
 
 # ---------------------------------------------------------------- extract --------------------

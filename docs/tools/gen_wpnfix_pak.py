@@ -25,7 +25,7 @@ import sys
 import zipfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-BASE_MOD = os.path.join(ROOT, "hzm-mohaa-coop-mod")                    # where the shipped out-of-band paks live
+BASE_MOD = os.environ.get("HZM_BASE_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod")   # [v1.10.68] a worktree points it at the base checkout                    # where the shipped out-of-band paks live
 MOD = os.environ.get("HZM_MOD") or BASE_MOD                             # where build writes the pak
 SRC = os.path.join(ROOT, "docs", "tools", "assets", "wpnfix")
 MANIFEST = os.path.join(SRC, "wpnfix_manifest.json")
