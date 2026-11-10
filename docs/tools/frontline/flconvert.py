@@ -500,6 +500,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     wtags = []
     volumes = 0
     idmap = {}                    # [flpolish] wound triangle -> (disc chunk, triangle index), for flsheets' keep list
+    riverbed = []
     for name, vs, ts in coll:
         if os.environ.get("FL_COLL_ONLY") and os.environ["FL_COLL_ONLY"] not in name:
             continue
@@ -507,12 +508,20 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         for ti_, (a, b, c, f) in enumerate(ts):
             if coll_is_volume(f):
                 volumes += 1
+                if (f & 0x7FF) == 15:
+                    # [flpolish] the river: no walkable surface, but a bed 160u under it so a player who falls in
+                    # lands (the mission script drowns him there, fl_water) instead of falling out of the world
+                    a2, b2, c2 = wind(a, b, c, flip_coll)
+                    riverbed.append(tuple((q[0], q[1], q[2] - 160.0) for q in (P[a2], P[b2], P[c2])))
                 continue
             a2, b2, c2 = wind(a, b, c, flip_coll)
             wound.append((P[a2], P[b2], P[c2]))
             wtags.append(f)
             idmap[wound[-1]] = (name, ti_)
     stats["coll_volumes_dropped"] = volumes
+    wound += riverbed
+    wtags += [0] * len(riverbed)
+    stats["riverbed_tris"] = len(riverbed)
     # invisible blocker columns (trees, posts) shrunk to what is drawn inside them (flfit.py)
     colboxes = []
     rtris = [(X(m["verts"][a]), X(m["verts"][b]), X(m["verts"][c])) for m in meshes if m["tris"]
@@ -688,7 +697,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # moves them by origin/angles (script_object $fl_om<k>). Which mesh goes where is fl_levels.json ("set_pieces"
     # entries with "mesh", and "object_meshes" for the ones that stand on a record); converted on the player's PC.
     om_ents = []
-    Xr = lambda q: (q[0] * X.s, q[1] * X.s * X.m, q[2] * X.s)          # noqa: E731 - local frame: no recentre
+    # local frame, NOT mirrored: the stored rotations already map Frontline's local axes into the mirrored world
+    # (flscene.raw_angles; the door hangs right only this way)
+    Xr = lambda q: (q[0] * X.s, q[1] * X.s, q[2] * X.s)                # noqa: E731 - local frame: no recentre
     recs_ = {e.get("i"): e for e in L.entities()}
     om_specs = []
     for k_, spc in enumerate(flpack.spec(level).get("set_pieces", []), 1):
@@ -719,8 +730,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             for i, p_ in enumerate(P):
                 l_ = math.sqrt(sum(x * x for x in acc[i])) or 1.0
                 r_, g_, b_, a_ = m["cols"][i]
-                if r_ == g_ == b_ == 255:
-                    r_, g_, b_ = med_light
+                # object meshes carry PS2-range vertex colour (0x80 = full): doubled, or they render near black
+                r_, g_, b_ = (min(255, 2 * c_) for c_ in (r_, g_, b_))
                 verts.append((p_, m["uvs"][i], tuple(x / l_ for x in acc[i]), (r_, g_, b_, 255)))
                 for q in range(3):
                     lo_[q] = min(lo_[q], p_[q])
@@ -737,7 +748,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)), ("targetname", "fl_om_" + tag_)]
         if rec_ is not None:
             o_ = X(rec_["pos"])
-            a_ = flscene.mohaa_angles(struct.unpack("<4f", struct.pack("<4I", *flscene.words(rec_)[7:11])), X.m < 0)
+            a_ = flscene.raw_angles(struct.unpack("<4f", struct.pack("<4I", *flscene.words(rec_)[7:11])))
             kv += [("origin", "%.1f %.1f %.1f" % o_), ("angles", "%.1f %.1f %.1f" % a_)]
         om_ents.append(kv)
     stats["object_meshes"] = nom

@@ -16,12 +16,12 @@ Status: **M** matched, **D** deviation (closest MOHAA equivalent, reason given),
 | R4 | Crawl hole through the wall into the town (2897 1690, 46u high in Frontline units) | carved to MOHAA crouch (60u) - FL's crouch fits 49u, MOHAA's needs 54 | D |
 | R5 | Interrogation house reached through a low crawl space (-1232 -4656) | carved to crouch | D |
 | R6 | 4 tall trigger VOLUMES (crawl hole, interrogation house, two in the town) never block a character | dropped from collision (were solid: the "invisible walls blocking progression") | M |
-| R7 | Player-clip boundaries (special surface, 2131 tris) along the route edges | kept as clip | M |
+| R7 | Player-clip boundaries (special surface) along the route edges | where they close the level with nothing drawn (124 sheets, curated with the walk audit) kept, with a barbed-wire edge drawn on them; everywhere else the drawn geometry they stood in front of collides instead (user rule: blocked only by what you can see) | D |
 | R8 | Trees/posts wrapped in tall clip columns | columns shrunk to the drawn trunk/post; 6 with nothing drawn dropped | D (snag fix) |
 | R9 | Level edges: no floor past them | clip wall + drawn skirt + ground under the level (no void) | D |
-| R10 | 19-34u lips walked over (Frontline step height ~0.7 m) | MOHAA STEPSIZE 18: lips stay steps (ramp pass built, off: it opened wall tops) | X |
+| R10 | 19-34u lips walked over (Frontline step height ~0.7 m) | HZM engine step height per map (worldspawn hzm_stepsize 34: players, prediction, actors) | M |
 | R11 | Gaps narrower than the MOHAA box (30u) but wider than Frontline's (~20u) on the AI routes: 28 | not widened | X |
-| R12 | Door (DoorSwingCW, -1891 -2748) opened by its group | drawn closed geometry, no door entity | X |
+| R12 | Door (DoorSwingCW) opened by its group | Frontline's own door mesh (inline model), solid while shut, swings when group 65552 wakes (log: FLSET door open; still to confirm on camera which drawn panel it replaces) | M |
 
 ## Encounters (group -> trigger -> members)
 
@@ -35,29 +35,29 @@ record's own (team byte, word 13); the class-name rule had made 4 Allied roamers
 | E2 | jeep wreck (6352 3965 ..) | road 7536 3360 | 3 GIs, 3 Germans, crates, barrels | same | M |
 | E3 | road shouters (5092 3358) | 384u | 3 Germans (planes / incoming / get out of the open) | spawned; their bark lines (VocBnk) not played | D |
 | E4 | town gate (2825 1599) | 307u | 4 GIs, 2 Germans | same | M |
-| E5 | tank square (2172 1539) | 528u | Panzer IV + 3 GIs | tank static, GIs spawn | D (tank does not drive path 66) |
+| E5 | tank square (2172 1539) | 528u | Panzer IV + 3 GIs | tank placed again (it had been spawned as a rifleman), drives Frontline's path 66 when its group wakes, burns out when the rocketing P-47 pass ends on it | M |
 | E6 | square south (1357 1224) | 374u | 5 Germans incl. "they're after the tanks" | same, bark not played | D |
 | E7 | west street (823 542 / 740 -735) | proximity | 2 Germans | same | M |
 | E8 | phone post (1335 -401) | 461u | dead GI + field phone | both placed at load | M |
 | E9 | hangout (1717 -2010) / (771 -1977) | 355u / 230u | 3 + 2 talkers | same | M |
-| E10 | upper floor (1126 -2156) / proximity 1133u | 283u | 8 Germans incl. 2 path walkers, 2 GIs | same; path walkers stand | D (no patrol paths) |
+| E10 | upper floor (1126 -2156) / proximity 1133u | 283u | 8 Germans incl. 2 path walkers, 2 GIs | same; the StayOnPath pair walk Frontline's named paths 2 and 151 until they have an enemy | M |
 | E11 | MG post (1123 -2271) | 154u | mounted MG | MG42 turret, manned by nearest nest gunner | M |
-| E12 | door house (-15 -2897) | 230u | 2 Germans + door | Germans spawn; door X | D |
+| E12 | door house (-15 -2897) | 230u | 2 Germans + door | Germans spawn, the door swings open | M |
 | E13 | interrogation (-2114 -4427) | 461u | officer + Castro + clipboard | interrogation scene (ours, optional rescue) | D (rescue is ours, user request) |
 | E14 | MG nest (-2549 -4759) | 461u | 3 nest crew, MG, molotov barrel, wall charge | crew + MG42 + barrels; molotov barrel X | D |
 | E15 | docks (-5144 -3783), (-6705 -6205) | 461u / 2918u | 5 + 2 Germans | same | M |
-| E16 | 4 ambushers on a death event | death of a group member | spawned at load (no death trigger) | D |
+| E16 | death ambushers (StartByIdDeathAmbush) | lie among the dead, rise when the player comes close | lie in a stock dead pose, AI off, rise (AI back on) when a player is within 420u or they are hit; no lying-to-standing anim exists for MOHAA soldiers | D |
 
 ## Scripted moments
 
 | # | moment | original | port | status |
 |---|---|---|---|---|
-| S1 | Jeep run | trigger 77 (7665 4380): jeep (driver, passenger, gunner) down the road west, hits the mine at the bend (6782 3356), flips, stops wrecked in the arch | Frontline's own 229 motion keys from key 20 (keys 1-19 run behind the gate where no one can see; started there the entity was never drawn), crew seated, mine blast, 2 killed, survivor joins | M |
-| S2 | Jeep wheels flying off (4 tyre motion files) | 4 wheels | no MOHAA wheel model | X |
-| S3 | Air: 7 fly-throughs (P47 fly-by, dogfight, strafe, rocket the tank, bomb the building, circling, Stuka) | 7 triggers | one P-47 run over the tank (coop aircraft recipe) | D |
-| S4 | Bombs hitting the ground (2) and falling building parts (2) | triggers 423, 86 | not played | X |
-| S5 | Rockets fired from the square (2) | trigger 255 | not played | X |
-| S6 | U-boat bobbing at the dock (AnimMoveMechLoop, its own mesh) | trigger 11 | mesh not converted | X |
+| S1 | Jeep run | trigger 77 (7665 4380): jeep (driver, passenger, gunner) down the road west, hits the mine at the bend (6782 3356), flips, stops wrecked in the arch | Frontline's own 229 motion keys from key 1 behind the gate (HZM engine wide coordinates: a start past x 8192 was never drawn), crew bound to the jeep, mine blast, 2 killed, survivor joins | M |
+| S2 | Jeep wheels flying off (4 tyre motion files) | 4 wheels | Frontline's own wheel mesh on its own four motions, on the jeep's clock from the mine hit | M |
+| S3 | Air: 7 fly-throughs (P47 fly-by, dogfight, strafe, rocket the tank, bomb the building, circling, Stuka) | 7 triggers | all seven passes on Frontline's own motion keys with its own P-47 and Stuka meshes; the plane-to-trigger table is ours (closest pass, unique) | M |
+| S4 | Bombs hitting the ground (2) and falling building parts (2) | triggers 423, 86 | both bombs on their own keys and meshes, burst on landing; the two house chunks (own meshes) fall on their own keys as the second bomb lands | M |
+| S5 | Rockets fired from the square (2) | trigger 255 | their own launch keys and mesh; the flight after the launch keys is ours (at the Panzer while it stands) | D |
+| S6 | U-boat bobbing at the dock (AnimMoveMechLoop, its own mesh) | trigger 11 | its own mesh bobbing on its own keys all mission | M |
 | S7 | Wall breach to the dock (M1_1_WallExplosion) | objective | use + explosion | M |
 | S8 | Land mines (4) | step on | radius damage | M |
 
@@ -70,11 +70,15 @@ record's own (team byte, word 13); the class-name rule had made 4 Allied roamers
 | P2 | ammo: grenade 11, pistol 9, rifle 8 | stock ammo boxes at the same 28 points | M |
 | P3 | Colt / Garand / grenades at the start | coop loadout instead | D |
 | A1 | ScrBnk dialogue: interrogation, dock, tower, nest, panzer | played at the matching spots | M |
-| A2 | "mg_hurt" line (wounded gunner) | decoded, never played | X |
+| A2 | "mg_hurt" line (wounded gunner) | played the first time a manned MG42's gunner is hit | M |
 | A3 | Music: ambient, action after the roster, end sting; PathFinder triggers switch segments | ambient/action/end only | D |
 
 ## Score (1 player)
 
-Matched 22 - Deviated 19 - Missing 9 (of 50). The deviations at R4/R5/R8/R9 are deliberate MOHAA-body fits; S1 is
-the original scene. Next for 1:1: tank path 66 and the patrol walkers (paths 2, 151 are in the reference), the six
-missing air passes and bombs, the door, the shouters' barks, wheels, U-boat mesh.
+Matched 32 - Deviated 14 - Missing 1 (of 47 items; the earlier "of 50" over-counted the table, which holds 47).
+Round 1 was 22 / 19 / 9 on the same table. The deviations at R4/R5/R8/R9 are deliberate MOHAA-body fits, R7 is the
+user's visible-collision rule. Still missing: R11 (28 gaps between 20u and 30u on the AI routes are not widened).
+Open deviations worth another pass: the shouters' barks (E3, E6), the molotov barrel (E14), the rockets' flight after
+their launch keys (S5), the ambushers' rise (E16), music segment switching (A3), the start loadout (P3).
+Set pieces were checked in one SP camera run (2026-11-10, stills local only); the door's swing and the fly-by over
+the docks were logged but not yet seen on camera.

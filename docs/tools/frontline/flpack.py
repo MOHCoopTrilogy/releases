@@ -15,6 +15,7 @@ import json
 import math
 import os
 import re
+import struct
 import subprocess
 import tempfile
 
@@ -339,7 +340,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
                     a = flscene.mohaa_angles(f[4:8], X.m < 0)
                     if abs(a[0]) > 10 or abs(a[2]) > 10:
                         return None
-                    g = grid.ground(q[0], q[1], q[2] + 32, q[2] - 96)
+                    g = grid.ground(q[0], q[1], q[2] + 64, q[2] - 96)   # +64: the keys beyond the gate ride 44u UNDER the road
                     return None if g is None else g + 5.0     # the collision slab top is +2
             pl = flscene.path_lines(name, fr, X, X.m < 0, step=int(sp.get("motion_step", 3)), ground=ground)
             lines += pl
@@ -383,9 +384,11 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             if o_ is None:
                 continue
             Xr = lambda q: (q[0] * X.s, q[1] * X.s * X.m, q[2] * X.s)      # noqa: E731 - offsets, no recentre
-            pl = flscene.path_lines(name, fr, Xr, X.m < 0, step=int(sp.get("motion_step", 3)))
+            pl = flscene.path_lines(name, fr, Xr, X.m < 0, step=int(sp.get("motion_step", 3)),
+                                    raw=bool(spc.get("mesh")))
         else:
-            pl = flscene.path_lines(name, fr, X, X.m < 0, step=int(sp.get("motion_step", 3)))
+            pl = flscene.path_lines(name, fr, X, X.m < 0, step=int(sp.get("motion_step", 3)),
+                                    raw=bool(spc.get("mesh")))
         # only the generic arrays (level.fl_mot*), not a per-name copy
         lines += [q for q in pl if "level.fl_mot" in q]
         nsp += 1
@@ -405,7 +408,9 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         if rel:
             bp = X(o_["pos"])
             lines.append(f'\tlevel.fl_sp_base[{nsp}] = ( {bp[0]:.0f} {bp[1]:.0f} {bp[2]:.0f} )')
-            lines.append(f'\tlevel.fl_sp_yaw[{nsp}] = {flscene.yaw(o_, X.m < 0):.0f}')
+            q_ = struct.unpack("<4f", struct.pack("<4I", *flscene.words(o_)[7:11]))
+            y_ = flscene.raw_angles(q_)[1] if spc.get("mesh") else flscene.yaw(o_, X.m < 0)
+            lines.append(f'\tlevel.fl_sp_yaw[{nsp}] = {y_:.0f}')
         for k_, key_ in (("delay", "delay"), ("snd", "snd"), ("fx", "fx"), ("loop", "loop"), ("yaw", "yaw"),
                          ("scale", "scale"), ("sync", "sync")):
             if spc.get(k_) is not None and not (k_ == "yaw" and rel):
@@ -413,6 +418,21 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
                 lines.append(f'\tlevel.fl_sp_{key_}[{nsp}] = ' + (f'"{v_}"' if isinstance(v_, str) else f"{v_}"))
     if nsp:
         lines.append(f"\tlevel.fl_sp_n = {nsp}")
+    # [flpolish] the river (material 15 water volume): its extent and surface, per collision chunk - the mission
+    # script drowns a player who falls in (there is no swimming in MOHAA; Frontline's river is not walkable either)
+    nw = 0
+    for _cn, vs_, ts_ in L.collision():
+        P_ = [X(v) for v in vs_]
+        wv = [P_[i] for a_, b_, c_, f_ in ts_ if (f_ & 0x7FF) == 15 and f_ & (1 << 22) for i in (a_, b_, c_)]
+        if not wv:
+            continue
+        nw += 1
+        lo_ = [min(q[k] for q in wv) for k in range(3)]
+        hi_ = [max(q[k] for q in wv) for k in range(3)]
+        lines.append(f"\tlevel.fl_water_lo[{nw}] = ( {lo_[0]:.0f} {lo_[1]:.0f} {lo_[2]:.0f} )")
+        lines.append(f"\tlevel.fl_water_hi[{nw}] = ( {hi_[0]:.0f} {hi_[1]:.0f} {hi_[2]:.0f} )")
+    if nw:
+        lines.append(f"\tlevel.fl_water_n = {nw}")
     # the door's group (Frontline's DoorSwingCW swings open when it wakes)
     for e in L.entities():
         if "DoorSwingCW" in e["strs"] and flscene.ids(e):

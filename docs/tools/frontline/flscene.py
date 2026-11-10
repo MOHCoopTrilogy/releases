@@ -94,7 +94,21 @@ def mohaa_angles(q, mirror):
     return pitch, yaw, roll
 
 
-def path_lines(name, frames, X, mirror, step=3, zoff=0.0, ground=None):
+def raw_angles(q):
+    """[flpolish] MOHAA (pitch, yaw, roll) of the stored rotation itself, for Frontline's OWN meshes kept in their own
+    local frame (flconvert inline models): local x/y/z stay the model's axes. Checked on the door (record 401): its
+    180-degree turn about (1,1,0) hangs the 2.6 m panel from its record point 2.5 m above the street, as in Frontline."""
+    m = _qmat(*q)
+    fwd = (m[0][0], m[1][0], m[2][0])
+    lft = (m[0][1], m[1][1], m[2][1])
+    up = (m[0][2], m[1][2], m[2][2])
+    yaw = math.degrees(math.atan2(fwd[1], fwd[0]))
+    pitch = -math.degrees(math.asin(max(-1.0, min(1.0, fwd[2]))))
+    roll = math.degrees(math.atan2(-lft[2], up[2]))
+    return pitch, yaw, roll
+
+
+def path_lines(name, frames, X, mirror, step=3, zoff=0.0, ground=None, raw=False):
     """level.fl_path_<name>_* : sampled positions / angles / times (every `step` frames + the last)"""
     idx = list(range(0, len(frames), step))
     if idx[-1] != len(frames) - 1:
@@ -103,7 +117,7 @@ def path_lines(name, frames, X, mirror, step=3, zoff=0.0, ground=None):
     for k, i in enumerate(idx, 1):
         f = frames[i]
         p = X(f[:3])
-        a = mohaa_angles(f[4:8], mirror)
+        a = raw_angles(f[4:8]) if raw else mohaa_angles(f[4:8], mirror)
         z = p[2] + zoff
         if ground is not None:
             g = ground(p, f)
