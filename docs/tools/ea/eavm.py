@@ -308,6 +308,34 @@ def build(db, X, spot, ground, text, lines, log=print):
         for a in acts[g]:
             if a.cls == "Action_GoToScriptedGag" and a.s(17):
                 want.add(a.s(17))
+    # a gag no trigger names (run by a scripted-animation point we do not port) chains after the gag that
+    # ACTIVATES the group its first message DEACTIVATES (the partisan leader's speech -> his go-back timer)
+    def first_msg(seq):
+        for a in seq:
+            if a.cls == "Action_Message":
+                gl = lists(a, 17)
+                return [x for k, v in gl if k == "g" for x in v], (a.messages() or ["Activate"])[0]
+        return [], None
+    after = {}
+    for g in sorted(acts):
+        if g in want:
+            continue
+        seq = sorted(acts[g], key=lambda a: a.u(15) or 0)
+        gs, m = first_msg(seq)
+        if m != "Deactivate" or not gs:
+            continue
+        for h in sorted(want):
+            if h not in acts or h in after:
+                continue
+            for a in acts[h]:
+                if a.cls == "Action_Message" and (a.messages() or ["Activate"])[0] == "Activate":
+                    hg = [x for k, v in lists(a, 17) if k == "g" for x in v]
+                    if set(gs) & set(hg):
+                        after[h] = g
+                        break
+    want |= set(after.values())
+    for h, g in sorted(after.items()):
+        L(f"\tlevel.ea_ga_after[{S(h)}] = {S(g)}")
     ng = 0
     for g in sorted(acts):
         if g not in want:
