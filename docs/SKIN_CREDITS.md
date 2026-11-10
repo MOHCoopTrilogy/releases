@@ -106,3 +106,13 @@ Models under a Creative Commons licence, credited as the licence asks (author, t
   - *Mission tally* - original period-style drawing.
 - Insignia lettering (82nd AA, WaA, souvenir, AIRBORNE tab, VALOR) is rendered with Windows system fonts into the
   images (Arial Bold, Courier New Bold); no font files ship. The nose art uses no fonts.
+
+## WWII posters in the multiplayer room (v1.10.68)
+
+Real Allied posters, public domain, hung in the 3D join-game room (docs/proposals/attic_polish_2026-11-02/tools/gen_posters68.py).
+The scans are reproduced as printed, only faded / yellowed / edge-worn for the room; nothing is redrawn or invented.
+
+- *The United Nations Fight for Freedom (UNITED)* - Leslie Ragan, 1943 (US Office of War Information, OWI Poster No. 79). Source: Hennepin County Library scan via Wikimedia Commons, https://commons.wikimedia.org/wiki/File:UN_Fight_for_Freedom_Leslie_Ragan_1943_poster.jpg. Licence: PD-USGov (work of the US federal government, OWI).
+- *United We Are Strong, United We Will Win* - Henry Koerner, 1943 (US Office of War Information). Source: US National Archives (NARA 515925) via Wikimedia Commons, https://commons.wikimedia.org/wiki/File:UNITED_WE_ARE_STRONG,_UNITED_WE_WILL_WIN_-_NARA_-_515925.jpg. Licence: PD-USGov (US federal government work; Commons tag PD-USGov-Treasury).
+- *Americans Will Always Fight for Liberty (1778 / 1943)* - Bernard Perlin, 1943 (US Office of War Information). Source: US National Archives (NARA 513806) via Wikimedia Commons, https://commons.wikimedia.org/wiki/File:%22Americans_will_always_fight_for_liberty%22_-_NARA_-_513806.jpg. Licence: PD-USGov (US federal government work; Commons tags PD-USGov-Treasury, PD-US-not-renewed).
+- *We French Workers Warn You... Defeat Means Slavery, Starvation, Death* - Ben Shahn, 1942 (US Office of War Information). Source: US National Archives (NARA 513688) via Wikimedia Commons, https://commons.wikimedia.org/wiki/File:%22WE_FRENCH_WORKERS_WARN_YOU...DEFEAT_MEANS_SLAVERY,_STARVATION,_DEATH%22._-_NARA_-_513688.jpg. Licence: PD-USGov (US federal government work, OWI).

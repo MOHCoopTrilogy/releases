@@ -167,7 +167,8 @@ assert len(MODELS) >= 5, MODELS
 POSE = {}
 for m in re.finditer(r'(?m)^scenehot "(\w+)" \S+ \S+ \S+ \S+ "([^"]*)"', blk):
     f = re.search(r"scenefly 0\.6 ((?:-?[\d.]+ ){6}-?[\d.]+)", m.group(2))
-    POSE[m.group(1)] = f.group(1)
+    if f:   # [v1.10.69] a hotspot that does not fly (the attic's radio: a crackle in place) has no pose; only the four below need one
+        POSE[m.group(1)] = f.group(1)
 HOME = re.search(r"(?m)^scenecam (.*?)\r$", blk).group(1)
 for k in ("join", "start", "loadout", "record"):
     assert k in POSE, k
@@ -418,7 +419,9 @@ for i, (t, cfg, grp) in enumerate(CAMPAIGNS):
     C += text("byoFaceC_" + cfg, (x + 2, ty + 58, ts - 4, 14), lines[2], "verdana-12", (0.98, 0.78, 0.28, 1.0), "center",
               enabledcvar=g + " " + cv)
     lg = g + " !" + cv
-    BYO_LOCKS += W("Label", "byoLockIcon_" + cfg, (x + 25, ty + 8, 32, 32), shader="textures/mohmenu/coop_mp_lock.tga", enabledcvar=lg)
+    # [v1.10.69] coop_lo_lock.tga (the Armory's padlock, byte-identical to coop_mp_lock.tga): a coop menu may not name a coop_mp*
+    # token (check_mp_isolation clause 7)
+    BYO_LOCKS += W("Label", "byoLockIcon_" + cfg, (x + 25, ty + 8, 32, 32), shader="textures/mohmenu/coop_lo_lock.tga", enabledcvar=lg)
     BYO_LOCKS += text("byoLockTtl_" + cfg, (x + 2, ty + 44, ts - 4, 14), lines[2], "verdana-12", BEIGE, "center", enabledcvar=lg)
     BYO_LOCKS += text("byoLockTxt_" + cfg, (x + 2, ty + 60, ts - 4, 14), "NEEDS YOUR DISC", "verdana-12", (0.98, 0.78, 0.28, 1.0),
                       "center", enabledcvar=lg)
@@ -494,7 +497,7 @@ for i, (t, cfg, grp) in enumerate(CAMPAIGNS):
               enabledcvar=g)
     C += label("byoSheetPaper_" + cfg, (128, 170, 384, 136), bg=PAPER, border="3D_BORDER", enabledcvar=g)
     C += label("byoSheetPlate_" + cfg, (136, 178, 368, 24), bg=PLATE, border="3D_BORDER", enabledcvar=g)
-    C += W("Label", "byoSheetIcon_" + cfg, (140, 179, 22, 22), shader="textures/mohmenu/coop_mp_lock.tga", enabledcvar=g)
+    C += W("Label", "byoSheetIcon_" + cfg, (140, 179, 22, 22), shader="textures/mohmenu/coop_lo_lock.tga", enabledcvar=g)
     C += text("byoSheetTitle_" + cfg, (166, 180, 334, 20), ttl + " IS LOCKED", "facfont-20", BEIGE, "left", enabledcvar=g)
     C += text("byoSheetB1_" + cfg, (140, 210, 360, 14), "From your own %s disc (Xbox, USA)." % game.split(": ")[1], "verdana-12", INK, "left",
               enabledcvar=g)

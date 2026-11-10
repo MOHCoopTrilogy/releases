@@ -598,7 +598,10 @@ def gate_fallthrough(settings, host, problems, notes):
     for kind, name, rect, cmd in om:
         if ov(close1["rect"], rect):
             problems.append("coop_settings CLOSE falls through onto options_main %s %s" % (name, rect))
-    st = urc_resources(START_URC)
+    # [v1.10.69] the own-disc lock sheet (make_mpui.py: byoSheet*_fl / _ea) is drawn inside coop_start only while ui_byoLock names
+    # its tile; its dim layer is a full-sheet Button BY DESIGN (a modal: it swallows every click while the sheet is up), and the
+    # sheet cannot be up while HOST RULES is open or clicked. Not a fall-through or an overlap.
+    st = [r for r in urc_resources(START_URC) if not r[1].startswith("byoSheet")]
     close2 = [w for w in host if w["name"] == "closeBtn"][0]
     for kind, name, rect, cmd in st:
         if kind in INTERACTIVE and rect and ov(close2["rect"], rect):

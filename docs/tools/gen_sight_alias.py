@@ -33,7 +33,7 @@ import zipfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 MOD = os.environ.get("HZM_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod")
-BUILDS = [d for d in (os.environ.get("HZM_FS2_BUILDS") or r"H:\hzm_work\finishes2_build;H:\hzm_work\newguns\fs2_build").split(";") if d]
+BUILDS = [d for d in (os.environ.get("HZM_FS2_BUILDS") or r"H:\hzm_work\newguns2\fs2_build").split(";") if d]
 TIK_DIRS = [d for d in (os.environ.get("HZM_TIK_DIRS") or "").split(";") if d] + [
     os.path.join(MOD, "models", "weapons"),
     os.path.join(ROOT, "docs", "tools", "assets", "wpnfix", "models", "weapons"),
