@@ -25,7 +25,10 @@ Plan: [PLAN.md](PLAN.md) (D1-D6). Mod branch `advtrain` (off `hotfix-1.10.53` at
 | `lmsCheckLives` gate in `main.scr` | `player.scr::manage` | `main.scr:1888-1925` is a dead `/* */` block; the live copy is inlined in `player.scr`. |
 | `level.coop_disableSpawnWarper = game.true` "as training.scr does" | left `game.false` | `training.scr` sets `game.false`; the raid's spawn-warper threads (`m4l0_update1-3`) are simply never started. |
 | St 2 cover drill at the Zone B farm walls | on the range, two low bag walls (the `cover.scr` collider recipe) | No traced wall geometry; low cover is engine-recognised anywhere. Wall cover is taught by text. |
-| St 3 range at (-5408,-4328), St 9 ridge at (-776,-2448) | range up the start lane, vantage (2648,-8,184) | Both sketch spots face buildings (harness stills; bsptrace + pathnode sightline search). bug-10821 |
+| St 3 range at (-5408,-4328), St 9 ridge at (-776,-2448) | range up the start lane, vantage (2648,-8,184) | Both sketch spots face buildings (harness stills; bsptrace + pathnode sightline search). bug-10821. The vantage sees the red smoke down a track, small at 2,680u - playtest call |
+| St 5/6 at the Ranger rally (-5420,-2336) | the yard east of the barn (-4944,-2544); the Rangers are moved there in the fade | The rally is under the barn roof - dark (BSP roof trace, stills) |
+| Hurt trainees with `health` | `at_course.scr::wound`, 180 hp steps 2.3 s apart | Under DBNO a 250 drop inside 2 s downs the player (bug-10822) |
+| Props dropped with `droptofloor` / plain `traced` | `traced` with SOLID+FENCE+PLAYERCLIP | m4l0's ground is PLAYERCLIP (bug-10823) |
 | Graduation `chal_grant` | `chal_bump "atgrad"` after the till opens | `check_challenges.py` fails a challenge with no stat writer. |
 | Medal derived from the challenge | `level.coop_chal_noMedal["atgrad"] = 1` | A new row must not move anyone's capstone (the Castro precedent). |
 | Attic prop + two-card screen | **not built** | "For later" 2 (prop choice) is still the user's decision. The coop start tile is built. |

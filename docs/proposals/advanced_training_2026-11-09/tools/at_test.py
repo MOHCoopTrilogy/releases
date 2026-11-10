@@ -46,6 +46,7 @@ TRIPPED = []
 MUTE = ["set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set in_gamepad 0", "set in_joystick 0",
         "set in_mouse 0", "set in_nograb 1", "set com_maxfps 60", "set con_notifytime -1", "set coop_joinCard 0",
         "set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0"]
+HUDKEYS = ['bind F6 "cg_draw2d 0; cg_drawviewmodel 0"', 'bind F7 "cg_draw2d 1; cg_drawviewmodel 1"']
 JOIN = ('bind F9 "popmenu 0; wait 10; primarydmweapon rifle; wait 5; join_team allies; wait 30; popmenu 0; wait 30; '
         'popmenu 0; +attackprimary; wait 10; -attackprimary"')
 SRVCFG = ["set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0", "set developer 1",
@@ -126,7 +127,7 @@ def client(folder, h, sets, tail, cfg_lines, name, size=(960, 540)):
     args += ["+exec", "at_on.cfg"] + list(tail)
     d = hw.test_display()
     args, late = hw.apply_policy(args, width=size[0], height=size[1], display=d)
-    open(os.path.join(mt, "at_on.cfg"), "w", newline="\n").write("\n".join(MUTE + [JOIN] + cfg_lines + late) + "\n")
+    open(os.path.join(mt, "at_on.cfg"), "w", newline="\n").write("\n".join(MUTE + [JOIN] + HUDKEYS + cfg_lines + late) + "\n")
     return hw.launch_background(args[0], args[1:], folder, policy=False, display=d, below_normal=True, watch_audio=True,
                                 log=lambda *a: None)
 
@@ -138,7 +139,8 @@ def server(sets, mapname):
             "+set", "fs_homepath", SRVHOME, "+set", "dedicated", "1", "+set", "net_port", str(PORT),
             "+set", "net_ip", "127.0.0.1", "+set", "sv_maxclients", "4", "+set", "g_gametype", "2",
             "+set", "logfile", "2", "+set", "developer", "1", "+set", "cheats", "1", "+set", "coop_joinCard", "0",
-            "+set", "rconpassword", RCONPW]
+            "+set", "rconpassword", RCONPW, "+set", "g_inactiveSpectate", "0", "+set", "g_inactivekick", "0"]
+    # idle harness clients were moved to spectator after 60 s (coop2 run 1: every station from 5 on counted 0/0)
     for k, v in sets:
         args += ["+set", k, v]
     args += ["+exec", "at_srv.cfg", "+map", mapname]
@@ -204,7 +206,7 @@ def go_listen(h, extra, name="AT_Alpha", size=(960, 540), binds=None):
     go = extra + ["set ui_dmmap m4l0", "set coop_campaign 0", "exec coop_mod/start_server.cfg"]
     open(os.path.join(h, "maintt", "at_go.cfg"), "w", newline="\n").write("\n".join(go) + "\n")
     sets = [("g_gametype", "2"), ("cheats", "1"), ("thereisnomonkey", "1"), ("net_port", str(PORT)),
-            ("rconpassword", RCONPW), ("coop_dev", "1")]
+            ("rconpassword", RCONPW), ("coop_dev", "1"), ("g_inactiveSpectate", "0"), ("g_inactivekick", "0")]
     return client(A, h, sets, ["+exec", "at_go.cfg"], ['bind F5 "echo ATVOL; s_volume"'] + (binds or []), name, size)
 
 
@@ -248,10 +250,21 @@ def watch_course(c, L, out, res, timeout, others=()):
             k = m.group(1)
             if k not in seen:
                 seen.add(k)
-                time.sleep(9)
+                time.sleep(4)
+                c.post_key(VK["F6"])
+                time.sleep(1.5)
+                shoot(c, out, "st%02d_clean" % int(k))
+                c.post_key(VK["F7"])
+                time.sleep(2)
                 shoot(c, out, "st%02d_a" % int(k))
                 for i, o in enumerate(others):
                     shoot(o, out, "st%02d_%s" % (int(k), "b"))
+                if k == "9":
+                    time.sleep(14)
+                    c.post_key(VK["F6"])
+                    time.sleep(1)
+                    shoot(c, out, "st09_strike")
+                    c.post_key(VK["F7"])
         if "ATRAIN course_complete" in log:
             time.sleep(25)
             shoot(c, out, "end")
