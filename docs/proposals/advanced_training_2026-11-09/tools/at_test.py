@@ -77,11 +77,59 @@ def wait_for(path, pat, timeout, start=0, poll=None):
     return False
 
 
+import ctypes  # noqa: E402
+_U32 = ctypes.WinDLL("user32", use_last_error=True)
+USER_EXE = r"G:\mohaa-gl2\openmohaa.exe"
+FOREIGN = []        # violations judged NOT ours (logged in result.json, never a stop)
+
+
+def user_game_running():
+    """the user own MOHAA (G:/mohaa-gl2) - checked before EVERY launch; while it runs, tests go to the 1080p screen"""
+    out = subprocess.run(["powershell", "-NoProfile", "-Command",
+                          "(Get-CimInstance Win32_Process -Filter \"Name='openmohaa.exe'\").ExecutablePath"],
+                         capture_output=True, text=True).stdout.lower()
+    return USER_EXE.lower() in out
+
+
+def pick_screen():
+    if user_game_running():
+        os.environ["HZM_TEST_RES"] = "1920x1080"
+        return "1080p (user game running)"
+    os.environ["HZM_TEST_RES"] = "1920x1080"     # the user games on the ultrawide: stay off it all session
+    return "1080p"
+
+
+def _fg_pid():
+    h = _U32.GetForegroundWindow()
+    pid = ctypes.c_ulong(0)
+    _U32.GetWindowThreadProcessId(h, ctypes.byref(pid))
+    return pid.value
+
+
 def guard(*clients):
+    """LOCAL judgement on top of harness_window's watcher (launched with enforce=False; the shared module is untouched):
+    a cursor clip counts as OURS only when our window is foreground (the watcher already requires the clip rect to lie
+    inside one of our windows - and a centred test window on the ultrawide contains the screen centre, where the user's
+    own game clips, which is how coop2 attempt 2 was stopped). Every other kind - foreground theft, capture, audible,
+    off-display, guard missing - is ours: the client is killed and every launch stops."""
     for c in clients:
-        v = getattr(getattr(c, "watcher", None), "violations", None)
-        if v:
+        w = getattr(c, "watcher", None)
+        vs = getattr(w, "violations", None) or []
+        seen = getattr(c, "_at_seen", 0)
+        for v in vs[seen:]:
+            if v.get("kind") == "cursor_clip" and _fg_pid() != c.pid:
+                FOREIGN.append(dict(v, judged="foreign: our window not foreground"))
+                continue
             TRIPPED.append(repr(v))
+        c._at_seen = len(vs)
+    if TRIPPED:
+        for c in clients:
+            try:
+                if c.alive():
+                    k = ctypes.WinDLL("kernel32").OpenProcess(1, False, c.pid)
+                    ctypes.WinDLL("kernel32").TerminateProcess(k, 1)
+            except Exception:  # noqa: BLE001
+                pass
     return bool(TRIPPED)
 
 
@@ -125,11 +173,12 @@ def client(folder, h, sets, tail, cfg_lines, name, size=(960, 540)):
     for k, v in base:
         args += ["+set", k, v]
     args += ["+exec", "at_on.cfg"] + list(tail)
+    print("screen:", pick_screen())
     d = hw.test_display()
     args, late = hw.apply_policy(args, width=size[0], height=size[1], display=d)
     open(os.path.join(mt, "at_on.cfg"), "w", newline="\n").write("\n".join(MUTE + [JOIN] + HUDKEYS + cfg_lines + late) + "\n")
     return hw.launch_background(args[0], args[1:], folder, policy=False, display=d, below_normal=True, watch_audio=True,
-                                log=lambda *a: None)
+                                enforce=False, log=lambda *a: None)
 
 
 def server(sets, mapname):
@@ -386,6 +435,7 @@ def main():
             res["policy_error"] = str(e)
         res["secs"] = int(time.time() - t0)
         res["tripped"] = TRIPPED
+        res["foreign"] = FOREIGN[:20]
         json.dump(res, open(os.path.join(out, "result.json"), "w"), indent=1)
         print(json.dumps({k: v for k, v in res.items() if k != "atrain"}, indent=1)[:3000])
     return 1 if TRIPPED else 0

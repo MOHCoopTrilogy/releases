@@ -4,15 +4,15 @@ Two cards on the field-office paper (the OWN DISCS sheet's look, ui/coop_byodisc
 dark ADD-style buttons, CLOSE on the footer): BASIC TRAINING (map training) and ADVANCED TRAINING (m4l0 with the course on).
 Each card: its co-op tile art (textures/mohmenu/hzmtile/training_c, .../m4l0at_c - the co-op map select's own tiles), the
 caption, the description, and BEGIN. The whole card is a button too (paper glow on hover).
-Launch = what the co-op map select's tiles 1 / 2 set (ui/coop_start/m0.cfg) + coop_mod/start_server.cfg (listen host,
+Launch = what the co-op map select's tiles 1 / 2 set (ui/coop_start/m0.cfg) + coop_mod/cfg/mission_start.cfg (the Apply path: pre-mission lobby, then the map; listen host,
 ui_startdmmap 2). coop_advTraining is `set`, never `seta` (TRAPS T7: an archived mode flag is a latch). ESC / BACK: popmenu 0
 (the attic flies home as after every other prop). Every resource field on its own line; CRLF like the rest of ui/.
 """
 import os, re, sys
 
 ui = sys.argv[1]
-BASIC = "set ui_dmmap training; set coop_advTraining 0; exec coop_mod/start_server.cfg"
-ADV = "set ui_dmmap m4l0; set coop_advTraining 1; exec coop_mod/start_server.cfg"
+BASIC = "set ui_dmmap training; set coop_advTraining 0; exec coop_mod/cfg/mission_start.cfg"
+ADV = "set ui_dmmap m4l0; set coop_advTraining 1; exec coop_mod/cfg/mission_start.cfg"
 DARK, PAPER, ROW, INKC, RUST, MUTED = "0.14 0.10 0.06 0.94", "0.90 0.86 0.74 1.00", "0.84 0.78 0.62 1.00", "0.16 0.09 0.03 1.00", \
     "0.55 0.22 0.06 1.00", "0.36 0.26 0.15 1.00"
 CLEAR = "0.00 0.00 0.00 0.00"
