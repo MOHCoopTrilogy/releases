@@ -33,7 +33,7 @@ LISTED = ("JeepBody_1_1", "LandMineTriggerParent", "ExplodingBarrelSwap_1_1", "F
 MAP_TOKEN_RX = re.compile(r'^(\s*(?:alias|aliascache)\s+(\S+)\s.*?maps\s+")([^"]*)(".*)$', re.I)
 
 
-def alias_bridge(mohaa_base, mapname):
+def alias_bridge(mohaa_base, mapname, token=None, only=None):
     """Sound aliases are filtered per map by name prefix ("maps "m1 m2 ... train""). A converted map named
     coop_fl_* matches lists holding "coop" (as real coop maps do) but not the AA campaign ones, so the generic
     sounds tied to m1..m6 (AI grunts, rain loops, doors...) would be silent. Re-declare every alias whose list
@@ -42,7 +42,9 @@ def alias_bridge(mohaa_base, mapname):
     install. Last definition wins, pak order."""
     import glob
     import zipfile
-    token = "_".join(mapname.split("_")[:2])      # coop_fl (Frontline) / coop_ea (European Assault)
+    # [v1.10.70] token: the maps token written (default coop_fl / coop_ea from the map name; the briefing room passes
+    # "briefing/briefingea", bug-10803); only: a tuple of alias-name prefixes to keep (None = every bridged alias)
+    token = token or "_".join(mapname.split("_")[:2])      # coop_fl (Frontline) / coop_ea (European Assault)
     defs = {}
     paks = []
     for game in ("main", "mainta", "maintt"):
@@ -61,6 +63,8 @@ def alias_bridge(mohaa_base, mapname):
                     continue
                 toks = [t.lower() for t in m.group(3).split()]
                 if any(mapname.lower().startswith(t) for t in toks):
+                    continue
+                if only and not m.group(2).lower().startswith(only):
                     continue
                 if any(t == "m" or (len(t) == 2 and t[0] == "m" and t[1] in "123456") for t in toks):
                     defs[m.group(2).lower()] = m.group(1) + token + m.group(4)

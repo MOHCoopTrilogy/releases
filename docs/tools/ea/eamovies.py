@@ -56,6 +56,11 @@ def build(image, film, level, out, ffmpeg, mohaa=None):
     bsp = find_in_install(mohaa, "maps/briefing/briefinge1.bsp") if mohaa else None
     if bsp is not None:
         members.append(("maps/briefing/briefingea%s.bsp" % lv, bsp))
+        # [v1.10.70, bug-10803] the briefing room's footsteps (snd_step_* / snd_landing_* are filtered to campaign map
+        # names): bridged from the player's own install with the briefing room's name as the token
+        import flpack
+        members.append(("ubersound/ea_filmbridge%s.scr" % lv, flpack.alias_bridge(
+            mohaa, "briefing/briefingea%s" % lv, token="briefing/briefingea%s" % lv, only=("snd_step", "snd_landing")).encode("latin-1")))
     with zipfile.ZipFile(out, "w", zipfile.ZIP_STORED) as z:
         for arc, data in sorted(members):
             z.writestr(zipfile.ZipInfo(arc, ZIP_TIME), data)

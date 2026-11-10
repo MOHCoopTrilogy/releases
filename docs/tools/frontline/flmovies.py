@@ -72,8 +72,15 @@ def main():
                     "-vn", "-c:a", "pcm_s16le", "-ar", "22050", "-ac", "2",
                     "-fflags", "+bitexact", "-flags", "+bitexact", wav], check=True)
     with zipfile.ZipFile(a.out, "w", zipfile.ZIP_STORED) as z:
+        # [v1.10.70, bug-10803] the briefing room's footsteps: snd_step_* / snd_landing_* are filtered to campaign map
+        # names ("m1 m2 ..."), so on briefing/briefingfl<m> every step logged "needs an alias" - bridged from the
+        # player's own install with the briefing room's name as the token (flpack.alias_bridge)
+        import flpack
+        bridge = flpack.alias_bridge(a.mohaa, "briefing/briefingfl%d" % a.mission, token="briefing/briefingfl%d" % a.mission,
+                                     only=("snd_step", "snd_landing")).encode("latin-1")
         for arc, data in (("maps/briefing/briefingfl%d.bsp" % a.mission, bsp), ("video/fl%s.roq" % name, open(roq, "rb").read()),
-                          ("video/fl%s.wav" % name, open(wav, "rb").read())):
+                          ("video/fl%s.wav" % name, open(wav, "rb").read()),
+                          ("ubersound/fl_briefbridge%d.scr" % a.mission, bridge)):
             zi = zipfile.ZipInfo(arc, ZIP_TIME)
             z.writestr(zi, data)
     for p in (src, roq, wav):

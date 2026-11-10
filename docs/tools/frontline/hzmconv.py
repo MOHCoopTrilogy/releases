@@ -25,7 +25,7 @@ sys.path.insert(0, HERE)
 # [v1.10.69] the converter's own version. Bump it whenever a change alters what a conversion writes: the updater
 # (updater.ps1 BYO RE-CONVERT) re-converts every remembered disc silently when this differs from the version that
 # wrote the player's paks (maintt\byo_converted.txt). Unchanged = no work at all.
-HZMCONV_VERSION = "1.10.69.1"
+HZMCONV_VERSION = "1.10.70.1"   # .70: briefing-room step aliases (bug-10803)
 TOOLS = os.path.join(os.path.dirname(os.path.abspath(sys.executable if getattr(sys, "frozen", False) else __file__)), "tools")
 
 
