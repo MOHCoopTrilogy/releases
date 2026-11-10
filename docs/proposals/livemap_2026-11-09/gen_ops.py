@@ -84,8 +84,8 @@ PLACE = {
 MODE_GT = {"TDM": 2, "OBJ": 4}
 SKILLS = [("RECRUIT", 25, 100), ("REGULAR", 35, 125), ("VETERAN", 28, 150), ("ELITE", 12, 200)]   # name, weight %, win XP
 MODS = [("", 50), ("HARDCORE", 12), ("RIFLES", 12), ("SNIPERS", 8), ("STORM", 18)]                  # name, weight %
-MOD_CARD = {"": "NONE", "HARDCORE": "HARDCORE (half health)", "RIFLES": "RIFLES ONLY", "SNIPERS": "SNIPERS ONLY",
-            "STORM": "STORM  (rain, thunder)"}
+MOD_CARD = {"": "NONE", "HARDCORE": "HARDCORE - half health", "RIFLES": "RIFLES ONLY", "SNIPERS": "SNIPERS ONLY",
+            "STORM": "STORM - rain, thunder"}
 # codenames: two plain words, never a real wartime operation (Anvil, Compass, Torch, Husky, Shingle, Market ... are left out)
 ADJ = ["IRON", "COPPER", "SILENT", "GREY", "NORTHERN", "BRASS", "HOLLOW", "WINTER", "STONE", "AMBER", "DISTANT", "BROKEN",
        "SILVER", "QUIET", "FROZEN", "BITTER", "PALE", "EARLY", "SALT", "OAKEN", "WESTERN", "LEADEN", "RUSTY", "SLOW", "COLD",
@@ -565,7 +565,7 @@ def ng3d(api, js):
                                         ("E", "0.55 0.07 0.05 1"))):
             tb = (sl[0] + 30, sl[1] + 15 + j * lh, sl[2] - 20, sl[1] + 15 + (j + 1) * lh)
             box3("ops_s%s%d" % (cv_, n), tb, 0.0028)
-            slips += lab("ops_s%s%d" % (cv_, n), hov, link="ui_ops%s%d" % (cv_, n), title="M" * 21, font="courier-20", fg=col, align="left")
+            slips += lab("ops_s%s%d" % (cv_, n), hov, link="ui_ops%s%d" % (cv_, n), title="M" * 21, font="courier-16", fg=col, align="left")
     # the dispatch card, pinned on the wall away from its contract: right over Russia for a western one, left over the
     # Atlantic for an eastern one (the engine sets ui_opsCSide)
     for side, (cu0, cv1) in (("1", (0.515, 0.95)), ("2", (0.025, 0.95))):     # 1 right, 2 left (enabledcvar compares numbers)
@@ -580,13 +580,13 @@ def ng3d(api, js):
         box3("ops_cd%s" % side, cb(0, 0, 1, 1), 0.0020)
         card += lab("ops_cd%s" % side, gate, shader="hzm_ops_card")
         box3("ops_cn%s" % side, cb(0.045, 0.072, 0.40, 0.112), 0.0018)
-        card += lab("ops_cn%s" % side, gate, link="ui_opsCNo", title="M" * 9, font="courier-20", fg="0.16 0.12 0.09 1", align="left")
+        card += lab("ops_cn%s" % side, gate, link="ui_opsCNo", title="M" * 9, font="courier-16", fg="0.16 0.12 0.09 1", align="left")
         box3("ops_co%s" % side, cb(0.04, 0.125, 0.96, 0.195), 0.0018)
-        card += lab("ops_co%s" % side, gate, link="ui_opsCName", title="M" * 28, font="courier-20", fg="0.13 0.10 0.08 1", align="left")
+        card += lab("ops_co%s" % side, gate, link="ui_opsCName", title="M" * 28, font="courier-16", fg="0.13 0.10 0.08 1", align="left")
         for (cap, y0, h), cv_ in zip(CARD_ROWS, CARD_VALUES):
             box3("ops_%s%s" % (cv_, side), cb(CARD_VAL_X, y0 + h * 0.12, 0.97, y0 + h * 0.95), 0.0018)
             col = "0.55 0.07 0.05 1" if cv_ == "CExp" else "0.16 0.12 0.09 1"
-            card += lab("ops_%s%s" % (cv_, side), gate, link="ui_ops" + cv_, title="M" * 22, font="courier-20", fg=col, align="left")
+            card += lab("ops_%s%s" % (cv_, side), gate, link="ui_ops" + cv_, title="M" * 22, font="courier-16", fg=col, align="left")
         for nm, key, g2, cmd, back in (("dp", "deploy", " ui_opsCRes==0", "set ui_scene_hot 0; hzm_ops deploy", False),
                                        ("fa", "file", "", "set ui_scene_hot 0; hzm_ops close", True)):
             b = cb(*CARD_STAMPS[key])

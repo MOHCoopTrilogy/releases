@@ -185,7 +185,7 @@ def case_board(out, res):
         cmdfile("lo_c.cfg", ["set ui_scene_hot %d" % hi])
         press(c, "F7", 2)
         res["slip"] = shot(c, out, "hover_slip")
-        cmdfile("lo_d.cfg", ["set ui_scene_hot 0", "hzm_ops card %d" % slot_no(card)])
+        cmdfile("lo_d.cfg", ["set ui_scene_hot 0", "hzm_ops card %d" % slot_no(card)] + (["set ui_opsCharset 1"] if "--charset" in sys.argv else []))
         press(c, "F8", 3)
         res["card_shot"] = shot(c, out, "card")
         guard(c)
