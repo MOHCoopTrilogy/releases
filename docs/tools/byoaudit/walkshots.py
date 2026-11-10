@@ -71,7 +71,8 @@ def main():
             views.append(("%03d_o" % i, (x - 300 * math.cos(math.radians(yaw)), y - 300 * math.sin(math.radians(yaw)),
                                          z + 420), (40, yaw)))
     json.dump({"route": R, "views": views}, open(os.path.join(a.outdir, "route.json"), "w"), indent=1)
-    with byoclient.Client(a.map, sets=[("coop_fltest", "0"), ("coop_eatest", "0")], coop=False, w=960, h=540) as c:
+    with byoclient.Client(a.map, sets=[("coop_fltest", "0"), ("coop_eatest", "0")], coop=False, w=960, h=540,
+                          port=int(os.environ.get("BYO_PORT", "12391"))) as c:
         if not c.wait(r"Spawning Entities Done|FLAI |EAAI ", 300):
             raise RuntimeError("map never loaded")
         time.sleep(8)
