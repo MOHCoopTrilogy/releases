@@ -19,7 +19,8 @@
     "f0fec32cf16ebf9f13db374c0b21bdf0bb5c80d73cfd9d6950ddafe1e4c2c8af",
     "2b2e113fd0369060da2af8a0958f8fb8ad9d443929222616d937a1a0cf9d4469",
     "2324fce6fb6e9280cece7169717b6626a5fcfb30f2f3d69bb16fed9e1d60f454",
-    "3e13e7f18e8d4a5d38e8dbd0a5f4c481dd1717545cfd925cd3282465b41b773c"
+    "3e13e7f18e8d4a5d38e8dbd0a5f4c481dd1717545cfd925cd3282465b41b773c",
+    "222f669baf43a128f64c3b5fcd56459a6bf26511e6f016650a7d1830df7d9c12"
   ],
   "notes": {
     "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb": "v1.10.13 main-tree build of engine 68bb8881 (renderer source == bc2c3072, the flip that passed G1/G5/P6.3 boots+equal with A2C off on 2026-10-04); this exact DLL boot-smoked on m2l1+m5l3: MSAA path=new n=8, 0 script errors",
@@ -39,6 +40,7 @@
     "bd7c042066e8d8ac54b3a3bb56f3260cacb6680a6d9bffcc284d5150604b9f0e": "v1.10.63 build of eng-hotfix13661 (dailies, attic63 peek/projector, wpnviewer, demofix, coverlook merged); boot-smoked on m2l3 (final163 Norway hold, 640 s): gl2 loaded, 0 script errors",
     "f0fec32cf16ebf9f13db374c0b21bdf0bb5c80d73cfd9d6950ddafe1e4c2c8af": "v1.10.64 build of eng-hotfix13661; boot-smoked on m2l3 (final164b Norway hold, 640 s): gl2 loaded, 0 script errors",
     "2324fce6fb6e9280cece7169717b6626a5fcfb30f2f3d69bb16fed9e1d60f454": "v1.10.67 renderer: viewclip r_weaponProjAlways (40ddb4e2) on rel-1.10.38-engine; all 70 guns pass the near-plane clip check at 1080p and 3440x1440",
-    "3e13e7f18e8d4a5d38e8dbd0a5f4c481dd1717545cfd925cd3282465b41b773c": "v1.10.68 renderer: rel-1.10.38-engine + engrave (SetDynamicImage appended to refexport_t) + sightalias + newguns; flip defaults unchanged from 2324fce6"
+    "3e13e7f18e8d4a5d38e8dbd0a5f4c481dd1717545cfd925cd3282465b41b773c": "v1.10.68 renderer: rel-1.10.38-engine + engrave (SetDynamicImage appended to refexport_t) + sightalias + newguns; flip defaults unchanged from 2324fce6",
+    "222f669baf43a128f64c3b5fcd56459a6bf26511e6f016650a7d1830df7d9c12": "v1.10.69 renderer: recompiled for byo69-eng shared header; no renderer source change since 3e13e7f1"
   }
 }
