@@ -57,14 +57,14 @@ def launch(tag, w, h, lines, extra=()):
     return out
 
 
-UI_FILES = ["main.urc", "hzm_newgame3d.urc", "multiplayer.urc", "hzm_records3d.urc", "hzm_medals3d.urc"]      # multiplayer.urc: the MP room (its exit door pane)
+UI_FILES = ["main.urc", "hzm_newgame3d.urc", "multiplayer.urc", "hzm_records3d.urc", "hzm_medals3d.urc", "hzm_wpnview.urc", "hzm_frplay.cfg"]      # multiplayer.urc: the MP room (its exit door pane)
 
 
 def setup():
     shutil.copyfile(SHIP, os.path.join(E.MAINTT, "zzzzzzzzzzzzzz_hzm_menus3d.pk3"))
     with zipfile.ZipFile(os.path.join(E.MAINTT, OVERLAY), "w", zipfile.ZIP_DEFLATED) as z:
         ui = os.path.join(MOD, "ui")
-        for f in UI_FILES + [x for x in os.listdir(ui) if x.startswith(("hzm_attic_go_", "hzm_ng3d_"))]:
+        for f in UI_FILES + [x for x in os.listdir(ui) if x.startswith(("hzm_attic_go_", "hzm_ng3d_", "hzm_mpui_scene_"))]:
             z.write(os.path.join(ui, f), "ui/" + f)
         mm = os.path.join(ui, "coop_menumusic")
         if os.path.isdir(mm):
@@ -859,6 +859,79 @@ def wxstill(res="1080", tag="t68", states="day,golden,night", zoom="1"):
     return launch("wxs_%s_%s" % (tag, res), w, h, L, args)
 
 
+
+def st68(res="1080", tag="s68", states="day,golden,night", parts="wx,attic,play,mp"):
+    """v1.10.68 stills, NO input (the user plays on the TV): a boot cfg of cvars, waits (ms) and screenshots.
+    wx: the window views + the horizon grid (trees). attic: the right-hand wall (pull-down screen, the turned projector), idle and
+    running (ui_scene_fxon film). play: the film room's framed PLAY simulated (pushmenu filmroom, then hzm_frplay.cfg's steps inline
+    with screenshots between; ui_frPlayCmd is an echo - never a demo, no map loads). mp: the MP room with the rack, its caption, the
+    weapon viewer opened from it (hzm_attic_go_rack.cfg)."""
+    w, h, center, lay = E.RES[res]
+    P = parts.split(",")
+    L = ["set developer 0", "set ui_menuRoom 1", "set ui_atticMain 1", "set ui_menuCenter %d" % center, "set ui_camslow 1",
+         "set coop_hardcore 0", "set ui_wxDebug 1", "wait 12000", "echo ^~^~^ ST68 start"]
+    cam = [float(v) for v in WX_CLOSE.split()[:3]]
+    grid = [("g%02d_%02d" % (yw, int(pt * 10)), "%.1f %.1f %.1f %.2f %.2f 0.00 16.00" % (cam[0], cam[1], cam[2], pt, yw))
+            for yw in (-6, 2, 10, 18, 26, 34) for pt in (2.5, 5.5)] + [("home", "-36.7 21.0 102.4 1.60 27.40 0.00 8.00")]
+    A68 = [("peek", "-36.7 21.0 102.4 7.01 -35.00 0.00 55.11"),
+           ("wall", "150.0 -40.0 95.0 8.00 -125.00 0.00 60.00"),
+           ("screen", "81.0 -60.0 86.0 0.00 -90.00 0.00 62.00"),
+           ("proj", _pose_to((140.0, -20.0, 85.0), (105.0, -54.0, 62.0), 34.0)),
+           ("projside", _pose_to((60.0, -35.0, 80.0), (104.0, -56.0, 62.0), 30.0)),
+           ("scrzoom", _pose_to((81.0, -100.0, 86.0), (81.0, -150.0, 86.0), 40.0)),
+           ("scrcase", _pose_to((70.0, -120.0, 118.0), (75.0, -153.0, 124.0), 30.0))]
+    for name, hr, wx in WX_STATES:
+        if name not in states.split(","):
+            continue
+        L += ["set ui_wxHour %g; set ui_wxWeather %d" % (hr, wx), "wait 3000",
+              'set ui_scene_pose "%s"; set ui_atcStop 0' % WX_HOME, "wait 2000", "screenshot st_%s_%s_%s_home" % (tag, res, name), "wait 700"]
+        if "wx" in P:
+            L += ['set ui_scene_pose "%s"; set ui_atcStop 3' % WX_CLOSE, "wait 2000", "screenshot st_%s_%s_%s_close" % (tag, res, name), "wait 700"]
+            for zn, zp in (grid if name != "night" else grid[-3:]):
+                L += ['set ui_scene_pose "%s"' % zp, "wait 1000", "screenshot st_%s_%s_%s_z%s" % (tag, res, name, zn), "wait 600"]
+        if "attic" in P and name == "day":
+            L += ["set ui_atcStop 0"]
+            for zn, zp in A68:
+                L += ['set ui_scene_pose "%s"' % zp, "wait 1000", "screenshot st_%s_%s_%s_a%s" % (tag, res, name, zn), "wait 600"]
+            L += ["set ui_scene_fxon film", "wait 800"]
+            for zn, zp in A68:
+                L += ['set ui_scene_pose "%s"' % zp, "wait 1000", "screenshot st_%s_%s_%s_a%s_run" % (tag, res, name, zn), "wait 600"]
+            L += ['set ui_scene_fxon ""']
+    L += ['set ui_scene_pose ""; set ui_atcStop 0; set ui_wxHour 12.5; set ui_wxWeather 1', "wait 2500"]
+    if "play" in P:
+        pic = json.load(open(r"H:\hzm_work\attic62\attic68.json"))["screen"]["pic"]
+        scr = "%.1f %.1f %.1f 0.00 -90.00 0.00 50.00" % (pic[0], pic[1] + 72.0, pic[2])
+        L += ["set ui_frTransition exec ui/hzm_frplay.cfg", "pushmenu filmroom", "wait 2500", "screenshot st_%s_%s_play0_filmroom" % (tag, res),
+              'set ui_frPlayCmd "echo ^~^~^ FILMSTART"', "set ui_scene_hot 0", "set ui_scene_fxon film", "popmenu 0", "wait 50",
+              "globalwidgetcommand atticscene scenefly 1.8 %s" % scr, "wait 500", "screenshot st_%s_%s_play1" % (tag, res),
+              "wait 600", "screenshot st_%s_%s_play2" % (tag, res), "wait 1000", "screenshot st_%s_%s_play3" % (tag, res),
+              "uiveil 1 0.35", "wait 200", "screenshot st_%s_%s_play4_veil" % (tag, res), "wait 200", 'set ui_scene_fxon ""', "vstr ui_frPlayCmd",
+              "wait 300", "uiveil 0 0.2", "wait 1500",
+              "globalwidgetcommand atticscene scenecam -36.7 21.0 102.4 7.01 0.00 0.00 55.11", "wait 1500"]
+    if "mp" in P:
+        rc = json.load(open(os.path.join("H:\\", "hzm_work", "attic62", "attic68.json")))["hub_rack_centre"]
+        pk = math.degrees(math.atan2(rc[1] - 15.8, rc[0] + 70.9)) - 4.0
+        L += ["exec ui/hzm_attic_go_mp.cfg", "wait 3500", "screenshot st_%s_%s_mp_home" % (tag, res), "wait 600",
+              "set ui_scene_hot 6", "wait 1500", "screenshot st_%s_%s_mp_rackcap" % (tag, res), "set ui_scene_hot 0", "wait 400",
+              "globalwidgetcommand hubscene scenecam -70.9 15.8 86.6 4.00 %.2f 0.00 58.00" % pk, "wait 900", "screenshot st_%s_%s_mp_rackpeek" % (tag, res),
+              "globalwidgetcommand hubscene scenecam %.1f 60.0 95.0 4.00 70.00 0.00 55.00" % (rc[0] - 40), "wait 900", "screenshot st_%s_%s_mp_rackwide" % (tag, res),
+              "globalwidgetcommand hubscene scenecam %.1f 95.0 100.0 0.00 90.00 0.00 55.00" % rc[0], "wait 900", "screenshot st_%s_%s_mp_rackfront" % (tag, res),
+              "globalwidgetcommand hubscene scenecam %.1f 120.0 110.0 10.00 40.00 0.00 45.00" % (rc[0] - 42), "wait 900", "screenshot st_%s_%s_mp_rackside" % (tag, res),
+              ]
+        pj = os.path.join("H:\\", "hzm_work", "attic62", "posters68.json")
+        for pz in (json.load(open(pj))["posters"] if os.path.exists(pj) else []):
+            c = pz["centre"]
+            n = [-1, 0] if c[0] > 275 else ([0, 1] if c[1] < 0 else [0, -1])     # into the room
+            cam = (c[0] + n[0] * 75, c[1] + n[1] * 75, c[2] + 4)
+            L += ["globalwidgetcommand hubscene scenecam %s" % _pose_to(cam, c, 40.0), "wait 900",
+                  "screenshot st_%s_%s_mp_poster_%s" % (tag, res, pz["name"])]
+        L += ["globalwidgetcommand hubscene scenecam -70.9 15.8 86.6 4.00 -3.00 0.00 58.00", "wait 900",
+              "exec ui/hzm_attic_go_rack.cfg", "wait 3000", "screenshot st_%s_%s_mp_viewer" % (tag, res), "wait 600"]
+    L += ["echo ^~^~^ MR done", "wait 1500", "quit"]
+    args = ["+set", "ui_menuCenter", str(center), "+set", "ui_menuRoom", "1", "+set", "ui_atticMain", "1",
+            "+set", "s_volume", "0", "+set", "s_musicvolume", "0", "+set", "s_ambientvolume", "0", "+set", "com_maxfpsUnfocused", "30"]
+    return launch("st_%s_%s" % (tag, res), w, h, L, args)
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if a[0] == "setup":
@@ -869,6 +942,8 @@ if __name__ == "__main__":
         still(a[1], a[2], a[3:])
     elif a[0] == "camclip":
         camclip(*a[1:])
+    elif a[0] == "st68":
+        st68(*a[1:])
     elif a[0] == "wxstill":
         wxstill(*a[1:])
     elif a[0] == "wx67":

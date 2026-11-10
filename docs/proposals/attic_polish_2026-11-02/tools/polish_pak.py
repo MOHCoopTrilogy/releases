@@ -17,7 +17,7 @@ for r, _, fs in os.walk(add):
     for f in fs:
         p = os.path.join(r, f)
         k = os.path.relpath(p, add).replace("\\", "/")
-        if k.split("/")[0] not in ("models", "textures", "scripts", "sound", "ui"):
+        if k.split("/")[0] not in ("models", "textures", "scripts", "sound", "ui", "video"):      # video: v1.10.68 the screen preview (RoQ)
             continue                    # notes beside the add dir (gram_spindle.txt) never go in the pak
         if k in files:
             n_rep += 1
