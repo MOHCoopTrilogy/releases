@@ -30,7 +30,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, r"C:\mohaa-coop-dev\docs\proposals\c96_model_2026-10-18\tools")
 import skd_read as R  # noqa: E402
 import skx as X  # noqa: E402
-from shade73 import RACK_SHADE, SCREEN_SHADE, shade_shader, shade_tga  # noqa: E402
+from shade73 import RACK, SCREEN, shade_halo, shade_shader  # noqa: E402
 
 stage, pkadd, out_json = sys.argv[1:4]
 smd = os.path.join(stage, "models", "menu")
@@ -153,7 +153,7 @@ print("hzm_hub_rack:", INFO["hub_rack_lo"], INFO["hub_rack_hi"])
 # its shadow on the hub wall: a soft dark rectangle, offset down a little (the room's lamps hang from the ceiling).
 # v1.10.73: was a multiply (GL_DST_COLOR GL_ZERO), which draws NOTHING in the menu scene (bug-10768) - now the posters' recipe:
 # a black RGBA tga whose alpha is the shadow, blendFunc blend (shade73.py; new file name, the pak keeps the old .jpg)
-shade_tga(os.path.join(tdir, "hzm_hub_rackshade.tga"), RACK_SHADE)
+shade_halo(os.path.join(tdir, "hzm_hub_rackshade.tga"), RACK)
 lo, hi = RP.min(0), RP.max(0)
 xs0, xs1 = lo[0] - 16, hi[0] + 16
 zs0, zs1 = lo[2] - 14, hi[2] + 8
@@ -250,7 +250,7 @@ for k in range(12):
         S += quad_c((pa[0], FY + dy, pa[2]), (pb[0], FY + dy, pb[2]), (pb[0] * 0.92 + XC * 0.08, FY + dy, pb[2] * 0.92 + RZ * 0.08),
                     (pa[0] * 0.92 + XC * 0.08, FY + dy, pa[2] * 0.92 + RZ * 0.08), (bu0, bv0), (bu1, bv0), (bu1, bv1), (bu0, bv1))
 # a soft contact shadow on the wall round the screen (v1.10.73: alpha blend, not the invisible multiply - bug-10768)
-shade_tga(os.path.join(tdir, "hzm_proj_screenshade.tga"), SCREEN_SHADE)
+shade_halo(os.path.join(tdir, "hzm_proj_screenshade.tga"), SCREEN)
 SD = quad_c((SX1 + 9, WALL + 0.2, SZ0 - 12), (SX0 - 9, WALL + 0.2, SZ0 - 12), (SX0 - 9, WALL + 0.2, CASE_Z + 6), (SX1 + 9, WALL + 0.2, CASE_Z + 6),
             (1, 0), (0, 0), (0, 1), (1, 1))
 write_model(mdir, "hzm_proj_screen", [("hzm_proj_screen", S), ("hzm_proj_screenshadow", SD)])

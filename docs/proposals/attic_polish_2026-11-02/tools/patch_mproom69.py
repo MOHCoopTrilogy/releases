@@ -4,7 +4,8 @@ tagged or recognisable and is removed first). Runs AFTER patch_attic68.py (which
 multiplayer.urc (the hub, scene "hubscene")
   * the new models, their scene lights, the staged soldier (actorstage / actorcycle / actorprop - the attic's recipe), and the lit
     copies hidden until hovered (scenemodelhide ... 1; scenehotfx shows the lit copy and hides the plain one).
-  * four hotspots after the six: 7 ORDERS OF THE DAY, 8 SERVICE RECORD, 9 PROMOTIONS (the three notices), 10 the RADIO. Each has a
+  * five hotspots after the six: 7 ORDERS OF THE DAY, 8 SERVICE RECORD, 9 PROMOTIONS, 10 PERSONAL BESTS (the four notices; v1.10.73
+    added the 4th), 11 the RADIO. Each has a
     proxy Button (mouse / keyboard / pad focus, as the other six) and a caption.
   * the notice board is off the home view (right-hand wall, front half). The engine's scenepeek takes ONE hotspot per scene and
     the rack has it, so the board's turn is scripted: the right-edge cue "NOTICES >" flies the camera to the board when hovered
@@ -71,7 +72,7 @@ LIGHTS = ["scenelight 140.0 -10.0 112.0 300.69 0.95 0.82 0.62", "scenelight 190.
           "scenelight %.1f %.1f %.1f 80.69 1.0 0.78 0.45" % tuple(A["lantern"]),
           "scenelight %.1f %.1f 118.0 220.69 0.80 0.74 0.62" % (FC[0], FC[1] + 60.0)]
 HIDES = ['scenemodelhide "hzm_hub69_n_daily_lit" 1', 'scenemodelhide "hzm_hub69_n_record_lit" 1', 'scenemodelhide "hzm_hub69_n_ranks_lit" 1',
-         'scenemodelhide "hzm_hub69_radio_lit" 1']
+         'scenemodelhide "hzm_hub69_n_bests_lit" 1', 'scenemodelhide "hzm_hub69_radio_lit" 1']
 # one loop, no cycles: the other card clips raise the cards to his face (coordinator QA 2026-11-10, see gen_mproom69.py)
 STAGE = ['actorstage "%s" %.1f %.1f %.1f "cardA" 6.0 11.0' % (AL, S["pos"][0], S["pos"][1], S["yaw"]),
          'actorprop "%s" "models/miscobj/cardhand01.tik" "tag_weapon_left" "card" 0 0 0 1 0 0 0' % AL]
@@ -84,8 +85,8 @@ def strip69(t):
     t = re.sub(r'(?m)^(?:scenemodel|scenemodelhide|actorstage|actorcycle|actorprop) "(?:models/menu/)?hzm_hub69_[^\n]*\n', "", t)
     t = re.sub(r'(?m)^(?:scenemodel|actorstage|actorcycle|actorprop) "models/human/hzm_menu/hub_gi_menu\.tik"[^\n]*\n', "", t)
     t = re.sub(r'(?m)^scenelight (?:\S+ ){3}\d+\.69 [^\n]*\n', "", t)
-    t = re.sub(r'(?m)^(?:scenehot|scenehotbox|scenehotfx) "(?:n_daily|n_record|n_ranks|radio)" [^\n]*\n', "", t)
-    t = re.sub(r'(?m)^scenelabel "hubcap10" [^\n]*\n', "", t)
+    t = re.sub(r'(?m)^(?:scenehot|scenehotbox|scenehotfx) "(?:n_daily|n_record|n_ranks|n_bests|radio)" [^\n]*\n', "", t)
+    t = re.sub(r'(?m)^scenelabel "hubcap1[01]" [^\n]*\n', "", t)        # the radio's caption: 10 until v1.10.72, 11 since
     return t
 
 
@@ -107,8 +108,9 @@ def drop_widget(t, name):
 mpp = os.path.join(ui, "multiplayer.urc")
 m, mnl = rd(mpp)
 m = strip69(m)
-for w in ("hubcap7", "hubcap8", "hubcap9", "hubcap10", "hot_n_daily", "hot_n_record", "hot_n_ranks", "hot_radio", "hzm_hubboardcue_text",
-          "hzm_hubboardcue", "hzm_hubboardback", "hzm_hubrackback", "hzm_hubcuerearm", "hzm_hubboardcap7", "hzm_hubboardcap8", "hzm_hubboardcap9"):
+for w in ("hubcap7", "hubcap8", "hubcap9", "hubcap10", "hubcap11", "hot_n_daily", "hot_n_record", "hot_n_ranks", "hot_n_bests", "hot_radio",
+          "hzm_hubboardcue_text", "hzm_hubboardcue", "hzm_hubboardback", "hzm_hubrackback", "hzm_hubcuerearm", "hzm_hubboardcap7",
+          "hzm_hubboardcap8", "hzm_hubboardcap9", "hzm_hubboardcap10"):
     m = drop_widget(m, w)
 sc0 = m.index('name "hubscene"')
 m = add_room(m, sc0)
@@ -118,10 +120,13 @@ n0 = len(re.findall(r'(?m)^scenehot "', m[sc0:sc1]))
 assert n0 == 6, ("expected the six hub hotspots (rack included) before these", n0)
 
 HOTS = []
-CAP = {"daily": "ORDERS OF THE DAY", "record": "SERVICE RECORD", "ranks": "PROMOTIONS"}
+CAP = {"daily": "ORDERS OF THE DAY", "record": "SERVICE RECORD", "ranks": "PROMOTIONS", "bests": "PERSONAL BESTS"}
 OPEN = {"daily": "coop_srsync; exec ui/coop_sr_pgd.cfg", "record": "coop_srsync; exec ui/coop_sr_pg0.cfg",
-        "ranks": "set coop_mpSrP0 1; set coop_mpSrP1 0; set coop_mpSrP2 0; set coop_mpSrP3 0; set coop_mpSrP4 0; set coop_mpSrP5 0; set coop_mpSrP6 0"}
-MENU = {"daily": "coop_sr", "record": "coop_sr", "ranks": "coop_mp_record"}
+        "ranks": "set coop_mpSrP0 1; set coop_mpSrP1 0; set coop_mpSrP2 0; set coop_mpSrP3 0; set coop_mpSrP4 0; set coop_mpSrP5 0; set coop_mpSrP6 0",
+        "bests": "set coop_pbPg 0"}
+# v1.10.73: the 4th notice opens PERSONAL BESTS (docs/proposals/leaderboard_2026-11-10, gen_bests.py -> ui/coop_pb.urc). The notices take
+# list positions 7-10 and the radio moves from 10 to 11 (ui_scene_hot is the scenehot's position in the list).
+MENU = {"daily": "coop_sr", "record": "coop_sr", "ranks": "coop_mp_record", "bests": "coop_pb"}
 add = []
 for k, nt in enumerate(A["notices"]):
     key, c = nt["key"], nt["centre"]
@@ -142,7 +147,7 @@ for k, nt in enumerate(A["notices"]):
     HOTS.append((idx, "hot_n_%s" % key, CAP[key], cmd, "hzm_hubboardcap%d" % idx))
 # the radio
 rc, rlo, rhi = A["radio"]["centre"], A["radio"]["lo"], A["radio"]["hi"]
-ridx = n0 + 4
+ridx = n0 + 1 + len(A["notices"])
 rcmd = "play sound/menu/hzm_radio_tune.wav; uiafter 0.35 vstr ui_mmSelNext"
 cs = [project((x, y, z), HOME) for x in (rlo[0], rhi[0]) for y in (rlo[1], rhi[1]) for z in (rlo[2], rhi[2])]
 rsx, rsy, _ = project(rc, HOME)
