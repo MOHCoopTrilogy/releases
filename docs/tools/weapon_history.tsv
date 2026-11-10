@@ -81,6 +81,9 @@
 79	The FG 42 had iron sights as standard, with the ZFG42 scope as an option. It was designed for German paratroopers by Louis Stange of Rheinmetall, and only around 7,000 were made.
 80	Side-by-side double-barrel shotguns were civilian guns. In the war they turned up with partisans, home guards and resistance fighters rather than as issued weapons.
 81	The Lewis gun, designed by Isaac Newton Lewis before the First World War and built in Britain by BSA, fed .303 from a 47-round pan on top. The Bren replaced it at the front, but it still served in the Second World War on ships, on light mounts and with the Home Guard. A 47-round pan sits on top of the gun, and the cooling shroud around the barrel gives it its look.
+82	The Bren was the Czech ZB vz. 26 adapted in Britain to fire .303 and built at Enfield, which gave it its name: BRno and ENfield. Adopted in 1937, it fed from a curved 30-round magazine on top, so its sights sit to the left. Accurate, with a barrel that could be changed in seconds, it was the section light machine gun of the British and Commonwealth armies for the whole war.
+83	Hugo Schmeisser developed his First World War MP 18 into the MP 28, made by C.G. Haenel from 1928. It added a selector for single shots and fed 9 mm from a box magazine on the left side. It was exported and copied abroad, and in the Second World War it served with German police and second-line units.
+84	The Panzerfaust was a cheap single-shot anti-tank weapon: a thin steel tube whose small propellant charge launched an oversized hollow-charge warhead, after which the tube was thrown away. The Panzerfaust 60 of 1944 reached about 60 metres and could pierce some 200 mm of armour. More than six million of all versions were made.
 fin:1	GOLD is a reward finish, not a wartime one. Service weapons were blued, parkerized or painted to resist rust and glare.
 fin:2	CHROME is a reward finish. Wartime guns were blued, parkerized or painted, because bright metal catches the light.
 fin:3	BLUED: bluing, a thin controlled oxide layer on the steel, was the standard pre-war gun finish and was used on many wartime weapons.
@@ -133,3 +136,6 @@ credit:shotgun_authwinch	Author not yet traced. If it is yours, tell us.
 credit:bar_pabar	A Medal of Honor: Pacific Assault port | Porter not certain, pack credit
 credit:m1_garand_pagarand	Pacific Assault port: acme313
 credit:colt45_coltpa	Pacific Assault port: acme313
+credit:82	Model: maximiliaanmaene (Sketchfab, CC BY 4.0, modified)
+credit:83	Model: BrendanStakenburg (Sketchfab, CC BY 4.0, modified)
+credit:84	Model: marcusww (Sketchfab, CC BY 4.0, modified)

@@ -1,0 +1,495 @@
+animations
+{
+	$path models/human/animation
+
+	//========================
+	// Thompson Anims
+	//========================
+	thompson_idle1	 	 	viewmodel/smg/idle_tommy_stand.skc		crossblend 0.1	weight 1.0
+	thompson_disabled 		viewmodel/unarmed/unarmed_idle.skc		crossblend 0.2
+	thompson_fire			viewmodel/smg/fire_tommy_stand.skc		crossblend 0
+	thompson_fire_secondary		viewmodel/smg/butt_tommy_stand.skc		crossblend 0.3
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	thompson_reload			viewmodel/smg/reload_tommy_stand.skc		crossblend 0.3
+	thompson_reload_ads		viewmodel/smg/thompson_reload_ads.skc		crossblend 0.1	// HZM coop [adsreload] reload held in ADS, with weight
+	thompson_pullout		viewmodel/smg/raise_tommy_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	$path models/human/protoanimations
+	thompson_putaway		lower_rifle_standplayer.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+	$path models/human/animation
+
+	
+	//========================
+	// MP40 Anims
+	//========================
+	mp40_idle1	 		viewmodel/mp40/mp40_stand_idle.skc	crossblend 0.25		weight 1.0
+	mp40_idle2	 		viewmodel/mp40/mp40_stand_idle_a.skc	crossblend 0.25		weight 1.0	dontrepeate
+	mp40_idle3	 		viewmodel/mp40/mp40_stand_idle_b.skc	crossblend 0.25		weight 1.0
+	mp40_idle4	 		viewmodel/mp40/mp40_stand_idle_c.skc	crossblend 0.25		weight 1.0
+	mp40_disabled 		        viewmodel/unarmed/unarmed_idle.skc	crossblend 0.2
+	mp40_fire			viewmodel/mp40/mp40_stand_fire.skc	crossblend 0.05
+	mp40_fire_secondary		viewmodel/mp40/mp40_butt_stand.skc	crossblend 0.3
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	mp40_reload		viewmodel/MP40/reload_mp40_stand.skc	crossblend 0.1
+	mp40_reload_ads		viewmodel/MP40/mp40_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	mp40_pullout		viewmodel/mp40/raise_mp40_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	$path models/human/protoanimations
+	mp40_putaway		lower_rifle_standplayer.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+
+	$path models/human/animation
+
+	//========================
+	// sten Anims
+	//========================
+	sten_idle	 		viewmodel/sten/sten_idle.skc	                crossblend 0.25		
+	sten_charge	 		viewmodel/sten/coop_sten_ads_mag.skc	                crossblend 0.25		
+	sten_disabled 			viewmodel/unarmed/unarmed_idle.skc		crossblend 0.2
+	sten_fire			viewmodel/sten/sten_stand_fire.skc		crossblend 0.05	
+	sten_fire_secondary		viewmodel/sten/sten_butt.skc			crossblend 0.3
+	{	
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	sten_reload			viewmodel/sten/coop_sten_reload_hip.skc	crossblend 0.1
+	sten_reload_ads		viewmodel/sten/coop_sten_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	sten_pullout			viewmodel/sten/raise_sten_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	sten_putaway			viewmodel/sten/sten_lower.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+	
+	//========================
+	// PPSH SMG Anims
+	//========================
+	ppsh_idle	 		viewmodel/ppsh/ppsh_idle.skc			crossblend 0.25		
+	ppsh_charge	 		viewmodel/mp40_stand_idle00.skc			crossblend 0.25		
+	ppsh_disabled 			viewmodel/unarmed/unarmed_idle.skc		crossblend 0.2
+	ppsh_fire			viewmodel/ppsh/ppsh_fire.skc			crossblend 0.05	
+	ppsh_fire_secondary		viewmodel/ppsh/ppsh_butt.skc			crossblend 0.3
+	{	
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	ppsh_reload		viewmodel/ppsh/coop_ppsh_reload_hip.skc		crossblend 0.1	// HZM coop [hands] PPSh hip, rounds left (cock removed)
+	ppsh_reload_ads		viewmodel/ppsh/ppsh_reload_ads.skc		crossblend 0.1	// HZM coop [hands] aimed, rounds left
+	ppsh_pullout			viewmodel/ppsh/ppsh_pullout.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	ppsh_putaway			viewmodel/ppsh/ppsh_putaway.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+	//========================
+	// Moschetto
+	//========================
+	moschetto_idle	 		        viewmodel/moschetto/A_W_MOD38ASMG_idle_fps.skc			//crossblend 0.25		
+	moschetto_charge	 		        viewmodel/mp40_stand_idle00.skc			//crossblend 0.25		
+	moschetto_disabled 			viewmodel/unarmed/unarmed_idle.skc		                //crossblend 0.2
+	moschetto_fire			        viewmodel/moschetto/A_W_MOD38ASMG_fire_fps.skc			//crossblend 0.05	
+	moschetto_fire_secondary		viewmodel/moschetto/A_W_MOD38ASMG_butt_fps.skc			//crossblend 0.3
+	{	
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	moschetto_reload		viewmodel/mp40/coop_moschetto_reload_hip.skc		crossblend 0.1	// HZM coop [hands] Moschetto hip, rounds left (no cock)
+	moschetto_reload_ads		viewmodel/moschetto/moschetto_reload_ads.skc		crossblend 0.1	// HZM coop [adsreload] reload held in ADS, with weight
+	moschetto_pullout			viewmodel/moschetto/A_W_MOD38ASMG_pullout_fps.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	moschetto_putaway			viewmodel/moschetto/A_W_MOD38ASMG_putaway_fps.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+	//===================== HZM coop ADS aim poses (additive) =====================
+	thompson_charge		viewmodel/idle_tommy_stand.skc		crossblend 0.1
+	thompson_adsfire		viewmodel/fire_tommy_stand00.skc	crossblend 0
+	mp40_charge			viewmodel/mp40_stand_idle00.skc		crossblend 0.25
+	mp40_adsfire			viewmodel/mp40_stand_fire00.skc		crossblend 0.05
+
+	//===================== HZM coop Type 100 first-person set =====================
+	//[user 2026-08-17] The xw pack ships FIVE distinct first-person animations for this gun under
+	//viewmodel/type100/ that nothing ever referenced, because "Type 100 SMG" was mapped to
+	//WPREFIX_STEN (the 07-12 spec, made before we knew these existed). cg_viewmodelanim.c now
+	//returns WPREFIX_TYPE100, so the engine asks for these type100_* aliases instead of sten_*.
+	//Its reload is 76 frames - the Sten's stand-in was a different gun's motion entirely.
+	//The pack ships no melee/charge/disabled anim, so those three borrow exactly what the Sten
+	//block borrows. Revert the one line in cg_viewmodelanim.c to go back to Sten hands.
+	type100_idle			viewmodel/type100/type100-idle.skc		crossblend 0.25
+	type100_charge			viewmodel/mp40_stand_idle00.skc			crossblend 0.25
+	type100_disabled		viewmodel/unarmed/unarmed_idle.skc		crossblend 0.2
+	type100_fire			viewmodel/type100/type100-fire.skc		crossblend 0.05
+	type100_fire_secondary		viewmodel/sten/sten_butt.skc			crossblend 0.3
+	{
+		client
+		{
+			entry sound pistol_whip
+		}
+	}
+	type100_reload		viewmodel/type100/coop_type100_reload_hip.skc		crossblend 0.1	// HZM coop [hands] hip, rounds left
+	type100_reload_ads		viewmodel/type100/type100_reload_ads.skc		crossblend 0.1	// HZM coop [hands] aimed, rounds left
+	type100_pullout			viewmodel/type100/type100-pullout.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	type100_putaway			viewmodel/type100/type100-putaway.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+	//===================== HZM coop ADS rollout (integrate_ads.py; rows taken from the lane folders) =====================
+	coopr_mp40_charge		viewmodel/mp40/coop_mp40_ads_mag.skc		crossblend 0.25	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only (per-weapon row): aim pose, support hand on the magazine housing
+	coopr_mp40_reload		viewmodel/mp40/coop_mp40_reload_hip.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: hip reload, rounds left (no cocking)
+	coopr_mp40_reload_empty		viewmodel/mp40/coop_mp40_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: hip reload of an emptied gun
+	coopr_mp40_reload_ads		viewmodel/mp40/coop_mp40_reload_ads.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: aimed reload, rounds left (the lane clip mp40_reload_ads.skc under its own name; the released file stays for the other mp40-prefix guns)
+	coopr_mp40_reload_empty_ads		viewmodel/mp40/mp40_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: aimed reload of an emptied gun
+	coopr_mp40_mp18_charge		viewmodel/mp40/coop_mp40_mp18_charge.skc		crossblend 0.25	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload		viewmodel/mp40/coop_silenced_mp40_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload_empty		viewmodel/mp40/coop_silenced_mp40_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload_ads		viewmodel/mp40/silenced_mp40_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload_empty_ads		viewmodel/mp40/silenced_mp40_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_charge		viewmodel/mp40/coop_mp40_ads_mag.skc		crossblend 0.25	// HZM coop [ads smg, integrate_ads.py] Silenced MP40 (its own weapon key): the MP40 aim pose
+	coopr_mp40_reactivated_reload		viewmodel/mp40/coop_mp40_reactivated_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_reactivated_reload_empty		viewmodel/mp40/coop_mp40_reactivated_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_reactivated_reload_ads		viewmodel/mp40/mp40_reactivated_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_reactivated_reload_empty_ads		viewmodel/mp40/mp40_reactivated_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	//===================== HZM coop ADS smg MP18 + Sten (integrate_smg_mp18_sten.py; rows from smg/assets) =====================
+	sten_reload_empty		viewmodel/sten/coop_sten_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	sten_reload_empty_ads		viewmodel/sten/sten_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_mp18_idle		viewmodel/mp40/coop_mp40_mp18_idle.skc		crossblend 0.25	// HZM coop [ads-smg] staged
+	coopr_mp40_mp18_fire		viewmodel/mp40/coop_mp40_mp18_fire.skc		crossblend 0.05	// HZM coop [ads-smg] staged
+	coopr_mp40_mp18_fire_secondary		viewmodel/mp40/coop_mp40_mp18_fire_secondary.skc		crossblend 0.3	// HZM coop [ads-smg] staged
+	coopr_mp40_mp18_reload_empty		viewmodel/mp40/coop_mp40_mp18_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_mp18_reload_ads		viewmodel/mp40/mp40_mp18_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_mp18_reload_empty_ads		viewmodel/mp40/mp40_mp18_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_mp18_pullout		viewmodel/mp40/coop_mp40_mp18_pullout.skc		crossblend 0.3	// HZM coop [ads-smg] staged
+	//===================== HZM coop ADS smg Thompson (integrate_thompson.py; per-weapon rows) =====================
+	coopr_thompson_reload			viewmodel/smg/coop_thompson_reload_hip.skc		crossblend 0.3
+	coopr_thompson_reload_empty		viewmodel/smg/coop_thompson_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_reload_ads		viewmodel/smg/coop_thompson_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_reload_empty_ads		viewmodel/smg/coop_thompson_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_guanshire_reload			viewmodel/smg/coop_thompson_reload_hip.skc		crossblend 0.3
+	coopr_thompson_guanshire_reload_empty		viewmodel/smg/coop_thompson_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_guanshire_reload_ads		viewmodel/smg/coop_thompson_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_guanshire_reload_empty_ads		viewmodel/smg/coop_thompson_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_worn_reload			viewmodel/smg/coop_thompson_reload_hip.skc		crossblend 0.3
+	coopr_thompson_worn_reload_empty		viewmodel/smg/coop_thompson_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_worn_reload_ads		viewmodel/smg/coop_thompson_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_worn_reload_empty_ads		viewmodel/smg/coop_thompson_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_famas_ii_reload			viewmodel/smg/coop_thompson_reload_hip.skc		crossblend 0.3
+	coopr_thompson_famas_ii_reload_empty		viewmodel/smg/coop_thompson_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_famas_ii_reload_ads		viewmodel/smg/coop_thompson_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_famas_ii_reload_empty_ads		viewmodel/smg/coop_thompson_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_team_tactics_reload			viewmodel/smg/coop_thompson_reload_hip.skc		crossblend 0.3
+	coopr_thompson_team_tactics_reload_empty		viewmodel/smg/coop_thompson_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_team_tactics_reload_ads		viewmodel/smg/coop_thompson_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_team_tactics_reload_empty_ads		viewmodel/smg/coop_thompson_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_m1a1_remodel_reload		viewmodel/smg/coop_thompson_m1a1_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_m1a1_remodel_reload_empty		viewmodel/smg/coop_thompson_m1a1_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_m1a1_remodel_reload_ads		viewmodel/smg/thompson_m1a1_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_m1a1_remodel_reload_empty_ads		viewmodel/smg/thompson_m1a1_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_27a1_commando_reload		viewmodel/smg/coop_thompson_27a1_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_27a1_commando_reload_empty		viewmodel/smg/coop_thompson_27a1_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_27a1_commando_reload_ads		viewmodel/smg/thompson_27a1_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_27a1_commando_reload_empty_ads		viewmodel/smg/thompson_27a1_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_pps_43_reload		viewmodel/mp40/coop_silenced_pps_43_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] Silenced PPS-43: hip, rounds left
+	coopr_silenced_pps_43_reload_empty		viewmodel/mp40/coop_silenced_pps_43_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] hip, emptied: the hand turned onto the handle
+	coopr_silenced_pps_43_reload_ads		viewmodel/mp40/silenced_pps_43_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] aimed, rounds left
+	coopr_silenced_pps_43_reload_empty_ads		viewmodel/mp40/silenced_pps_43_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] aimed, emptied: the handle worked from under the receiver
+	ppsh_reload_empty		viewmodel/ppsh/coop_ppsh_reload_empty_hip.skc		crossblend 0.1	// HZM coop [hands] hip, emptied: the hand works the knob
+	type100_reload_empty		viewmodel/type100/coop_type100_reload_empty_hip.skc		crossblend 0.1	// HZM coop [hands] hip, emptied: hand over the top onto the bolt
+	type100_reload_empty_ads		viewmodel/type100/type100_reload_empty_ads.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+	coopr_m3_grease_gun_reload		viewmodel/mp40/coop_m3_knob_reload_hip.skc		crossblend 0.1	// HZM coop [hands] M3 hip, rounds left (no cock)
+	coopr_m3_grease_gun_reload_empty		viewmodel/mp40/coop_m3_knob_reload_empty_hip.skc		crossblend 0.1	// HZM coop [hands] M3 hip, emptied: left hand over the top onto the knob
+	coopr_silenced_grease_gun_reload		viewmodel/mp40/coop_m3_knob_reload_hip.skc		crossblend 0.1	// HZM coop [hands] silenced M3 hip, rounds left
+	coopr_silenced_grease_gun_reload_empty		viewmodel/mp40/coop_m3_knob_reload_empty_hip.skc		crossblend 0.1	// HZM coop [hands] silenced M3 hip, emptied
+	moschetto_reload_empty		viewmodel/mp40/coop_moschetto_reload_empty_hip.skc		crossblend 0.1	// HZM coop [hands] hip, emptied: left hand over the top onto the carrier stud
+	coopr_thompson_m1928_reload		viewmodel/smg/coop_thompson_m1928_reload_hip.skc		crossblend 0.3	// HZM coop [hands] hip, rounds left
+	coopr_thompson_m1928_reload_empty		viewmodel/smg/coop_thompson_m1928_reload_empty_hip.skc		crossblend 0.1	// HZM coop [hands] hip, emptied
+	coopr_thompson_m1928_reload_ads		viewmodel/smg/thompson_m1928_reload_ads.skc		crossblend 0.1	// HZM coop [hands] aimed
+	coopr_thompson_m1928_reload_empty_ads		viewmodel/smg/thompson_m1928_reload_empty_ads.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+	coopr_thompson_50rd_reload		viewmodel/smg/coop_thompson_50rd_reload_hip.skc		crossblend 0.3	// HZM coop [hands] hip, rounds left
+	coopr_thompson_50rd_reload_empty		viewmodel/smg/coop_thompson_50rd_reload_empty_hip.skc		crossblend 0.1	// HZM coop [hands] hip, emptied
+	coopr_thompson_50rd_reload_ads		viewmodel/smg/thompson_50rd_reload_ads.skc		crossblend 0.1	// HZM coop [hands] aimed
+	coopr_thompson_50rd_reload_empty_ads		viewmodel/smg/thompson_50rd_reload_empty_ads.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+	coopr_thompson_1928_tommy_reload		viewmodel/smg/coop_thompson_1928_tommy_reload_hip.skc		crossblend 0.3	// HZM coop [hands] hip, rounds left
+	coopr_thompson_1928_tommy_reload_empty		viewmodel/smg/coop_thompson_1928_tommy_reload_empty_hip.skc		crossblend 0.1	// HZM coop [hands] hip, emptied
+	coopr_thompson_1928_tommy_reload_ads		viewmodel/smg/thompson_1928_tommy_reload_ads.skc		crossblend 0.1	// HZM coop [hands] aimed
+	coopr_thompson_1928_tommy_reload_empty_ads		viewmodel/smg/thompson_1928_tommy_reload_empty_ads.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_thompson_reload_s			viewmodel/smg/coop_thompson_reload_hip_s.skc		crossblend 0.3
+	cv_thompson_reload_m			viewmodel/smg/coop_thompson_reload_hip_m.skc		crossblend 0.3
+	cv_thompson_reload_empty_s		viewmodel/smg/coop_thompson_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_reload_empty_m		viewmodel/smg/coop_thompson_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_reload_s_ads		viewmodel/smg/coop_thompson_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_reload_m_ads		viewmodel/smg/coop_thompson_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_reload_empty_s_ads		viewmodel/smg/coop_thompson_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_reload_empty_m_ads		viewmodel/smg/coop_thompson_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_guanshire_reload_s			viewmodel/smg/coop_thompson_reload_hip_s.skc		crossblend 0.3
+	cv_thompson_guanshire_reload_m			viewmodel/smg/coop_thompson_reload_hip_m.skc		crossblend 0.3
+	cv_thompson_guanshire_reload_empty_s		viewmodel/smg/coop_thompson_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_guanshire_reload_empty_m		viewmodel/smg/coop_thompson_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_guanshire_reload_s_ads		viewmodel/smg/coop_thompson_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_guanshire_reload_m_ads		viewmodel/smg/coop_thompson_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_guanshire_reload_empty_s_ads		viewmodel/smg/coop_thompson_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_guanshire_reload_empty_m_ads		viewmodel/smg/coop_thompson_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_worn_reload_s			viewmodel/smg/coop_thompson_reload_hip_s.skc		crossblend 0.3
+	cv_thompson_worn_reload_m			viewmodel/smg/coop_thompson_reload_hip_m.skc		crossblend 0.3
+	cv_thompson_worn_reload_empty_s		viewmodel/smg/coop_thompson_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_worn_reload_empty_m		viewmodel/smg/coop_thompson_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_worn_reload_s_ads		viewmodel/smg/coop_thompson_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_worn_reload_m_ads		viewmodel/smg/coop_thompson_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_worn_reload_empty_s_ads		viewmodel/smg/coop_thompson_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_worn_reload_empty_m_ads		viewmodel/smg/coop_thompson_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_famas_ii_reload_s			viewmodel/smg/coop_thompson_reload_hip_s.skc		crossblend 0.3
+	cv_thompson_famas_ii_reload_m			viewmodel/smg/coop_thompson_reload_hip_m.skc		crossblend 0.3
+	cv_thompson_famas_ii_reload_empty_s		viewmodel/smg/coop_thompson_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_famas_ii_reload_empty_m		viewmodel/smg/coop_thompson_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_famas_ii_reload_s_ads		viewmodel/smg/coop_thompson_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_famas_ii_reload_m_ads		viewmodel/smg/coop_thompson_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_famas_ii_reload_empty_s_ads		viewmodel/smg/coop_thompson_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_famas_ii_reload_empty_m_ads		viewmodel/smg/coop_thompson_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_team_tactics_reload_s			viewmodel/smg/coop_thompson_reload_hip_s.skc		crossblend 0.3
+	cv_thompson_team_tactics_reload_m			viewmodel/smg/coop_thompson_reload_hip_m.skc		crossblend 0.3
+	cv_thompson_team_tactics_reload_empty_s		viewmodel/smg/coop_thompson_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_team_tactics_reload_empty_m		viewmodel/smg/coop_thompson_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_team_tactics_reload_s_ads		viewmodel/smg/coop_thompson_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_team_tactics_reload_m_ads		viewmodel/smg/coop_thompson_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_team_tactics_reload_empty_s_ads		viewmodel/smg/coop_thompson_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_team_tactics_reload_empty_m_ads		viewmodel/smg/coop_thompson_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_mp40_reload_s		viewmodel/mp40/coop_mp40_reload_hip_s.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: hip reload, rounds left (no cocking)
+	cv_mp40_reload_m		viewmodel/mp40/coop_mp40_reload_hip_m.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: hip reload, rounds left (no cocking)
+	cv_mp40_reload_empty_s		viewmodel/mp40/coop_mp40_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: hip reload of an emptied gun
+	cv_mp40_reload_empty_m		viewmodel/mp40/coop_mp40_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: hip reload of an emptied gun
+	cv_mp40_reload_s_ads		viewmodel/mp40/coop_mp40_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: aimed reload, rounds left (the lane clip mp40_reload_ads.skc under its own name; the released file stays for the other mp40-prefix guns)
+	cv_mp40_reload_m_ads		viewmodel/mp40/coop_mp40_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: aimed reload, rounds left (the lane clip mp40_reload_ads.skc under its own name; the released file stays for the other mp40-prefix guns)
+	cv_mp40_reload_empty_s_ads		viewmodel/mp40/coop_mp40_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: aimed reload of an emptied gun
+	cv_mp40_reload_empty_m_ads		viewmodel/mp40/coop_mp40_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: aimed reload of an emptied gun
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_thompson_27a1_commando_reload_s		viewmodel/smg/coop_thompson_27a1_reload_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_27a1_commando_reload_m		viewmodel/smg/coop_thompson_27a1_reload_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_27a1_commando_reload_empty_s		viewmodel/smg/coop_thompson_27a1_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_27a1_commando_reload_empty_m		viewmodel/smg/coop_thompson_27a1_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_27a1_commando_reload_s_ads		viewmodel/smg/coop_thompson_27a1_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_27a1_commando_reload_m_ads		viewmodel/smg/coop_thompson_27a1_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_27a1_commando_reload_empty_s_ads		viewmodel/smg/coop_thompson_27a1_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_27a1_commando_reload_empty_m_ads		viewmodel/smg/coop_thompson_27a1_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_thompson_m1928_reload_s		viewmodel/smg/coop_thompson_m1928_reload_hip_s.skc		crossblend 0.3	// HZM coop [hands] hip, rounds left
+	cv_thompson_m1928_reload_m		viewmodel/smg/coop_thompson_m1928_reload_hip_m.skc		crossblend 0.3	// HZM coop [hands] hip, rounds left
+	cv_thompson_m1928_reload_empty_s		viewmodel/smg/coop_thompson_m1928_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [hands] hip, emptied
+	cv_thompson_m1928_reload_empty_m		viewmodel/smg/coop_thompson_m1928_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [hands] hip, emptied
+	cv_thompson_m1928_reload_s_ads		viewmodel/smg/coop_thompson_m1928_reload_ads_s.skc		crossblend 0.1	// HZM coop [hands] aimed
+	cv_thompson_m1928_reload_m_ads		viewmodel/smg/coop_thompson_m1928_reload_ads_m.skc		crossblend 0.1	// HZM coop [hands] aimed
+	cv_thompson_m1928_reload_empty_s_ads		viewmodel/smg/coop_thompson_m1928_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+	cv_thompson_m1928_reload_empty_m_ads		viewmodel/smg/coop_thompson_m1928_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_thompson_m1a1_remodel_reload_s		viewmodel/smg/coop_thompson_m1a1_reload_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_m1a1_remodel_reload_m		viewmodel/smg/coop_thompson_m1a1_reload_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_m1a1_remodel_reload_empty_s		viewmodel/smg/coop_thompson_m1a1_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_m1a1_remodel_reload_empty_m		viewmodel/smg/coop_thompson_m1a1_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_m1a1_remodel_reload_s_ads		viewmodel/smg/coop_thompson_m1a1_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_m1a1_remodel_reload_m_ads		viewmodel/smg/coop_thompson_m1a1_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_m1a1_remodel_reload_empty_s_ads		viewmodel/smg/coop_thompson_m1a1_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_thompson_m1a1_remodel_reload_empty_m_ads		viewmodel/smg/coop_thompson_m1a1_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_thompson_50rd_reload_s		viewmodel/smg/coop_thompson_50rd_reload_hip_s.skc		crossblend 0.3	// HZM coop [hands] hip, rounds left
+	cv_thompson_50rd_reload_m		viewmodel/smg/coop_thompson_50rd_reload_hip_m.skc		crossblend 0.3	// HZM coop [hands] hip, rounds left
+	cv_thompson_50rd_reload_empty_s		viewmodel/smg/coop_thompson_50rd_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [hands] hip, emptied
+	cv_thompson_50rd_reload_empty_m		viewmodel/smg/coop_thompson_50rd_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [hands] hip, emptied
+	cv_thompson_50rd_reload_s_ads		viewmodel/smg/coop_thompson_50rd_reload_ads_s.skc		crossblend 0.1	// HZM coop [hands] aimed
+	cv_thompson_50rd_reload_m_ads		viewmodel/smg/coop_thompson_50rd_reload_ads_m.skc		crossblend 0.1	// HZM coop [hands] aimed
+	cv_thompson_50rd_reload_empty_s_ads		viewmodel/smg/coop_thompson_50rd_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+	cv_thompson_50rd_reload_empty_m_ads		viewmodel/smg/coop_thompson_50rd_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_thompson_1928_tommy_reload_s		viewmodel/smg/coop_thompson_1928_tommy_reload_hip_s.skc		crossblend 0.3	// HZM coop [hands] hip, rounds left
+	cv_thompson_1928_tommy_reload_m		viewmodel/smg/coop_thompson_1928_tommy_reload_hip_m.skc		crossblend 0.3	// HZM coop [hands] hip, rounds left
+	cv_thompson_1928_tommy_reload_empty_s		viewmodel/smg/coop_thompson_1928_tommy_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [hands] hip, emptied
+	cv_thompson_1928_tommy_reload_empty_m		viewmodel/smg/coop_thompson_1928_tommy_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [hands] hip, emptied
+	cv_thompson_1928_tommy_reload_s_ads		viewmodel/smg/coop_thompson_1928_tommy_reload_ads_s.skc		crossblend 0.1	// HZM coop [hands] aimed
+	cv_thompson_1928_tommy_reload_m_ads		viewmodel/smg/coop_thompson_1928_tommy_reload_ads_m.skc		crossblend 0.1	// HZM coop [hands] aimed
+	cv_thompson_1928_tommy_reload_empty_s_ads		viewmodel/smg/coop_thompson_1928_tommy_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+	cv_thompson_1928_tommy_reload_empty_m_ads		viewmodel/smg/coop_thompson_1928_tommy_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_mp40_reactivated_reload_s		viewmodel/mp40/coop_mp40_reactivated_reload_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_reactivated_reload_m		viewmodel/mp40/coop_mp40_reactivated_reload_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_reactivated_reload_empty_s		viewmodel/mp40/coop_mp40_reactivated_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_reactivated_reload_empty_m		viewmodel/mp40/coop_mp40_reactivated_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_reactivated_reload_s_ads		viewmodel/mp40/coop_mp40_reactivated_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_reactivated_reload_m_ads		viewmodel/mp40/coop_mp40_reactivated_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_reactivated_reload_empty_s_ads		viewmodel/mp40/coop_mp40_reactivated_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_reactivated_reload_empty_m_ads		viewmodel/mp40/coop_mp40_reactivated_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_mp40_mp18_reload_s		viewmodel/mp40/coop_mp40_mp18_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_mp18_reload_m		viewmodel/mp40/coop_mp40_mp18_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_mp18_reload_empty_s		viewmodel/mp40/coop_mp40_mp18_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_mp18_reload_empty_m		viewmodel/mp40/coop_mp40_mp18_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_mp18_reload_s_ads		viewmodel/mp40/coop_mp40_mp18_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_mp18_reload_m_ads		viewmodel/mp40/coop_mp40_mp18_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_mp18_reload_empty_s_ads		viewmodel/mp40/coop_mp40_mp18_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_mp40_mp18_reload_empty_m_ads		viewmodel/mp40/coop_mp40_mp18_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	sten_reload_s			viewmodel/sten/coop_sten_reload_hip_s.skc	crossblend 0.1
+	sten_reload_m			viewmodel/sten/coop_sten_reload_hip_m.skc	crossblend 0.1
+	sten_reload_empty_s		viewmodel/sten/coop_sten_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	sten_reload_empty_m		viewmodel/sten/coop_sten_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	// HZM coop [newguns 2026-11-09] the MP 28's own hands (docs/proposals/newguns_2026-11-09/tools/mp28_ads.py, mp28_reload.py):
+	// the aim pose with the left hand under the magazine housing (the Sten's sleeve covered the left third of the view) and
+	// the hip reloads with the gun held steady and lower (the Sten's swing brought it up at the eye). Aimed reloads stay the Sten's.
+	coopr_mp28_charge		viewmodel/coop_bergmann/coop_mp28_ads_mag.skc		crossblend 0.25
+	coopr_mp28_reload		viewmodel/coop_bergmann/coop_mp28_reload_hip.skc		crossblend 0.1
+	coopr_mp28_reload_empty		viewmodel/coop_bergmann/coop_mp28_reload_empty_hip.skc		crossblend 0.1
+	cv_mp28_reload_s		viewmodel/coop_bergmann/coop_mp28_reload_hip_s.skc		crossblend 0.1
+	cv_mp28_reload_m		viewmodel/coop_bergmann/coop_mp28_reload_hip_m.skc		crossblend 0.1
+	cv_mp28_reload_empty_s		viewmodel/coop_bergmann/coop_mp28_reload_empty_hip_s.skc		crossblend 0.1
+	cv_mp28_reload_empty_m		viewmodel/coop_bergmann/coop_mp28_reload_empty_hip_m.skc		crossblend 0.1
+	// aimed: the Sten's own aimed clips under the per-weapon names (cgame appends _ads to the row it picked)
+	coopr_mp28_reload_ads		viewmodel/sten/coop_sten_reload_ads.skc		crossblend 0.1
+	coopr_mp28_reload_empty_ads		viewmodel/sten/sten_reload_empty_ads.skc		crossblend 0.1
+	cv_mp28_reload_s_ads		viewmodel/sten/coop_sten_reload_ads_s.skc		crossblend 0.1
+	cv_mp28_reload_m_ads		viewmodel/sten/coop_sten_reload_ads_m.skc		crossblend 0.1
+	cv_mp28_reload_empty_s_ads		viewmodel/sten/coop_sten_reload_empty_ads_s.skc		crossblend 0.1
+	cv_mp28_reload_empty_m_ads		viewmodel/sten/coop_sten_reload_empty_ads_m.skc		crossblend 0.1
+	sten_reload_s_ads		viewmodel/sten/coop_sten_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	sten_reload_m_ads		viewmodel/sten/coop_sten_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	sten_reload_empty_s_ads		viewmodel/sten/coop_sten_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	sten_reload_empty_m_ads		viewmodel/sten/coop_sten_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	ppsh_reload_s		viewmodel/ppsh/coop_ppsh_reload_hip_s.skc		crossblend 0.1	// HZM coop [hands] PPSh hip, rounds left (cock removed)
+	ppsh_reload_m		viewmodel/ppsh/coop_ppsh_reload_hip_m.skc		crossblend 0.1	// HZM coop [hands] PPSh hip, rounds left (cock removed)
+	ppsh_reload_empty_s		viewmodel/ppsh/coop_ppsh_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [hands] hip, emptied: the hand works the knob
+	ppsh_reload_empty_m		viewmodel/ppsh/coop_ppsh_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [hands] hip, emptied: the hand works the knob
+	ppsh_reload_s_ads		viewmodel/ppsh/coop_ppsh_reload_ads_s.skc		crossblend 0.1	// HZM coop [hands] aimed, rounds left
+	ppsh_reload_m_ads		viewmodel/ppsh/coop_ppsh_reload_ads_m.skc		crossblend 0.1	// HZM coop [hands] aimed, rounds left
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	type100_reload_s		viewmodel/type100/coop_type100_reload_hip_s.skc		crossblend 0.1	// HZM coop [hands] hip, rounds left
+	type100_reload_m		viewmodel/type100/coop_type100_reload_hip_m.skc		crossblend 0.1	// HZM coop [hands] hip, rounds left
+	type100_reload_empty_s		viewmodel/type100/coop_type100_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [hands] hip, emptied: hand over the top onto the bolt
+	type100_reload_empty_m		viewmodel/type100/coop_type100_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [hands] hip, emptied: hand over the top onto the bolt
+	type100_reload_s_ads		viewmodel/type100/coop_type100_reload_ads_s.skc		crossblend 0.1	// HZM coop [hands] aimed, rounds left
+	type100_reload_m_ads		viewmodel/type100/coop_type100_reload_ads_m.skc		crossblend 0.1	// HZM coop [hands] aimed, rounds left
+	type100_reload_empty_s_ads		viewmodel/type100/coop_type100_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+	type100_reload_empty_m_ads		viewmodel/type100/coop_type100_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [hands] aimed, emptied
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	moschetto_reload_s		viewmodel/mp40/coop_moschetto_reload_hip_s.skc		crossblend 0.1	// HZM coop [hands] Moschetto hip, rounds left (no cock)
+	moschetto_reload_m		viewmodel/mp40/coop_moschetto_reload_hip_m.skc		crossblend 0.1	// HZM coop [hands] Moschetto hip, rounds left (no cock)
+	moschetto_reload_empty_s		viewmodel/mp40/coop_moschetto_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [hands] hip, emptied: left hand over the top onto the carrier stud
+	moschetto_reload_empty_m		viewmodel/mp40/coop_moschetto_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [hands] hip, emptied: left hand over the top onto the carrier stud
+	moschetto_reload_s_ads		viewmodel/moschetto/coop_moschetto_reload_ads_s.skc		crossblend 0.1	// HZM coop [adsreload] reload held in ADS, with weight
+	moschetto_reload_m_ads		viewmodel/moschetto/coop_moschetto_reload_ads_m.skc		crossblend 0.1	// HZM coop [adsreload] reload held in ADS, with weight
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_m3_grease_gun_reload_s		viewmodel/mp40/coop_m3_knob_reload_hip_s.skc		crossblend 0.1	// HZM coop [hands] M3 hip, rounds left (no cock)
+	cv_m3_grease_gun_reload_m		viewmodel/mp40/coop_m3_knob_reload_hip_m.skc		crossblend 0.1	// HZM coop [hands] M3 hip, rounds left (no cock)
+	cv_m3_grease_gun_reload_empty_s		viewmodel/mp40/coop_m3_knob_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [hands] M3 hip, emptied: left hand over the top onto the knob
+	cv_m3_grease_gun_reload_empty_m		viewmodel/mp40/coop_m3_knob_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [hands] M3 hip, emptied: left hand over the top onto the knob
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_silenced_grease_gun_reload_s		viewmodel/mp40/coop_m3_knob_reload_hip_s.skc		crossblend 0.1	// HZM coop [hands] silenced M3 hip, rounds left
+	cv_silenced_grease_gun_reload_m		viewmodel/mp40/coop_m3_knob_reload_hip_m.skc		crossblend 0.1	// HZM coop [hands] silenced M3 hip, rounds left
+	cv_silenced_grease_gun_reload_empty_s		viewmodel/mp40/coop_m3_knob_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [hands] silenced M3 hip, emptied
+	cv_silenced_grease_gun_reload_empty_m		viewmodel/mp40/coop_m3_knob_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [hands] silenced M3 hip, emptied
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_silenced_pps_43_reload_s		viewmodel/mp40/coop_silenced_pps_43_reload_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] Silenced PPS-43: hip, rounds left
+	cv_silenced_pps_43_reload_m		viewmodel/mp40/coop_silenced_pps_43_reload_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] Silenced PPS-43: hip, rounds left
+	cv_silenced_pps_43_reload_empty_s		viewmodel/mp40/coop_silenced_pps_43_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] hip, emptied: the hand turned onto the handle
+	cv_silenced_pps_43_reload_empty_m		viewmodel/mp40/coop_silenced_pps_43_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] hip, emptied: the hand turned onto the handle
+	cv_silenced_pps_43_reload_s_ads		viewmodel/mp40/coop_silenced_pps_43_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] aimed, rounds left
+	cv_silenced_pps_43_reload_m_ads		viewmodel/mp40/coop_silenced_pps_43_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] aimed, rounds left
+	cv_silenced_pps_43_reload_empty_s_ads		viewmodel/mp40/coop_silenced_pps_43_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] aimed, emptied: the handle worked from under the receiver
+	cv_silenced_pps_43_reload_empty_m_ads		viewmodel/mp40/coop_silenced_pps_43_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg 2026-10-19] aimed, emptied: the handle worked from under the receiver
+
+	// HZM coop [stress reload 2026-10-25, README item 6] hands of the stressed / fumbled reloads (cgame: cv_<key>_reload..._s|_m)
+	cv_silenced_mp40_reload_s		viewmodel/mp40/coop_silenced_mp40_reload_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_silenced_mp40_reload_m		viewmodel/mp40/coop_silenced_mp40_reload_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_silenced_mp40_reload_empty_s		viewmodel/mp40/coop_silenced_mp40_reload_empty_hip_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_silenced_mp40_reload_empty_m		viewmodel/mp40/coop_silenced_mp40_reload_empty_hip_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_silenced_mp40_reload_s_ads		viewmodel/mp40/coop_silenced_mp40_reload_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_silenced_mp40_reload_m_ads		viewmodel/mp40/coop_silenced_mp40_reload_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_silenced_mp40_reload_empty_s_ads		viewmodel/mp40/coop_silenced_mp40_reload_empty_ads_s.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	cv_silenced_mp40_reload_empty_m_ads		viewmodel/mp40/coop_silenced_mp40_reload_empty_ads_m.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+}
+

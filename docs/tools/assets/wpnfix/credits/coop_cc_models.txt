@@ -8,3 +8,25 @@ FG 42 Irons and FG 42 (models/weapons/fg42/coop_fg42hd_irons.skd, coop_fg42hd.sk
   Modified: reduced to about 5,400 triangles, fitted to and rigged on DaRKaNGeL's FG42 skeleton and animations
   (moh-db.com/mods/17867), PBR maps baked into one diffuse sheet, finish variants derived from it.
   On the scoped FG 42 the source's rear diopter and front sight are removed; its scope is the one the mod already shipped (RoempaZ / DaRKaNGeL's FG42 Add-On), not part of this model.
+
+Bren Mk I (models/weapons/coop_bren.tik, models/weapons/coop_bren/, textures/models/weapons/coop_bren/, its finishes)
+  "Bren Mk1 LMG" by maximiliaanmaene
+  https://sketchfab.com/3d-models/df74f7e3720d469e8bf425407e7ddc34
+  Licence: Creative Commons Attribution 4.0 International (CC BY 4.0) - https://creativecommons.org/licenses/by/4.0/
+  Modified: reduced to about 10,000 triangles, levelled, the bipod folded, rigged on the Vickers-Berthier's skeleton and
+  animations, PBR maps baked into one diffuse sheet, finish variants derived from it.
+
+MP 28 (models/weapons/coop_bergmann.tik, models/weapons/coop_bergmann/, textures/models/weapons/coop_bergmann/, its finishes)
+  "MP-28" by BrendanStakenburg
+  https://sketchfab.com/3d-models/a8838ccaf87243cfa71a321092065d6a
+  Licence: Creative Commons Attribution 4.0 International (CC BY 4.0) - https://creativecommons.org/licenses/by/4.0/
+  Modified: reduced from about 530,000 to about 7,400 triangles, rigged on the Sten Mk II's skeleton and animations,
+  PBR maps baked into one diffuse sheet, finish variants derived from it.
+
+Panzerfaust 60 (models/weapons/coop_panzerfaust.tik, models/weapons/coop_panzerfaust/, models/projectiles/coop_panzerfaust*, textures/models/weapons/coop_panzerfaust/, its finishes)
+  "Panzerfaust 60" by marcusww
+  https://sketchfab.com/3d-models/bb5ac613b7b84c5384900bc64ee83ead
+  Licence: Creative Commons Attribution 4.0 International (CC BY 4.0) - https://creativecommons.org/licenses/by/4.0/
+  Modified: one of the model's two copies, reduced to about 7,300 triangles, rigged on the Panzerschreck's skeleton and
+  animations, the warhead split off as the projectile, PBR maps baked into one diffuse sheet with the warning labels
+  re-lettered ("Starker Feuerstrahl !"), finish variants derived from it.

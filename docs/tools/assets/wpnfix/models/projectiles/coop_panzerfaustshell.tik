@@ -1,0 +1,61 @@
+TIKI
+setup
+{
+	scale 0.52
+	// HZM coop [newguns 2026-11-09] the Panzerfaust's warhead in flight (panzerschreckshell.tik's numbers)
+	path models/projectiles/coop_panzerfaust
+	skelmodel coop_pzfhead.skd
+	surface pzfshell* shader coop_panzerfaust
+}
+init
+{
+	server
+	{
+		classname			Projectile
+		anim idle
+		setsize				"-1 -1 -1" "1 1 1"
+		speed				1500 // full realistic speed is 2800 (175ft/sec)
+		addownervelocity	0
+		hitdamage			200
+		life				20.0
+		health				50
+		takedamage
+		meansofdeath		rocket
+		explosionmodel		models/fx/bazookaexplosion.tik
+		explodeontouch
+		smashthroughglass 64
+		knockback			300
+		dlight 0.4 0.2 0.1 256 // red green blue radius
+
+		commanddelay 0.8 drunk 0.115 0.115
+
+		cache blastmark.spr
+		cache models/fx/bazookaexplosion.tik
+	}
+	client
+	{
+		originemitter bazookatrail
+		(
+				model vsssource.spr
+				velocity 150
+				friction 0.85
+				randvel crandom 10 crandom 10 crandom 10
+				accel 0 0 20
+				spawnrate 100
+				color .4 .4 .4
+				spritegridlighting
+				alpha 0.4
+				fadein 0.1
+				fadedelay 1.0
+				scalemin 0.8
+				scalemax 1.0
+				scalerate 0.5
+				life 2.0 2.5
+		)
+	}
+}
+
+animations
+{
+	idle projectile_bazooka.skc
+}

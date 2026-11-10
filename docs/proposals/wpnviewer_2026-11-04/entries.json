@@ -7282,6 +7282,195 @@
  },
  {
   "n": 810,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/coop_bergmann.tik",
+  "tab": 2
+ },
+ {
+  "n": 811,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/coop_bergmann_gold.tik",
+  "tab": 2
+ },
+ {
+  "n": 812,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/coop_bergmann_chrome.tik",
+  "tab": 2
+ },
+ {
+  "n": 813,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/coop_bergmann_blued.tik",
+  "tab": 2
+ },
+ {
+  "n": 814,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/coop_bergmann_bloody.tik",
+  "tab": 2
+ },
+ {
+  "n": 815,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/coop_bergmann_camo_woodland.tik",
+  "tab": 2
+ },
+ {
+  "n": 816,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/coop_bergmann_camo_winter.tik",
+  "tab": 2
+ },
+ {
+  "n": 817,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/coop_bergmann_camo_desert.tik",
+  "tab": 2
+ },
+ {
+  "n": 818,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "WHITEWASH FINISH",
+  "fid": 40,
+  "tik": "models/weapons/coop_bergmann_fs2_whitewash.tik",
+  "tab": 2
+ },
+ {
+  "n": 819,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "AFRIKA KORPS FINISH",
+  "fid": 41,
+  "tik": "models/weapons/coop_bergmann_fs2_dak.tik",
+  "tab": 2
+ },
+ {
+  "n": 820,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "KRIEGSMARINE FINISH",
+  "fid": 42,
+  "tik": "models/weapons/coop_bergmann_fs2_kriegsmarine.tik",
+  "tab": 2
+ },
+ {
+  "n": 821,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "AIRBORNE FINISH",
+  "fid": 43,
+  "tik": "models/weapons/coop_bergmann_fs2_airborne.tik",
+  "tab": 2
+ },
+ {
+  "n": 822,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "SPLINTER FINISH",
+  "fid": 44,
+  "tik": "models/weapons/coop_bergmann_fs2_splitter.tik",
+  "tab": 2
+ },
+ {
+  "n": 823,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "PEA DOT FINISH",
+  "fid": 45,
+  "tik": "models/weapons/coop_bergmann_fs2_pea.tik",
+  "tab": 2
+ },
+ {
+  "n": 824,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "TELO FINISH",
+  "fid": 46,
+  "tik": "models/weapons/coop_bergmann_fs2_telo.tik",
+  "tab": 2
+ },
+ {
+  "n": 825,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "AMOEBA FINISH",
+  "fid": 47,
+  "tik": "models/weapons/coop_bergmann_fs2_amoeba.tik",
+  "tab": 2
+ },
+ {
+  "n": 826,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "AIRBORNE 101ST FINISH",
+  "fid": 48,
+  "tik": "models/weapons/coop_bergmann_fs2_airborne101.tik",
+  "tab": 2
+ },
+ {
+  "n": 827,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "BATTLE-WORN FINISH",
+  "fid": 49,
+  "tik": "models/weapons/coop_bergmann_fs2_battleworn.tik",
+  "tab": 2
+ },
+ {
+  "n": 828,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "TRENCH ART FINISH",
+  "fid": 50,
+  "tik": "models/weapons/coop_bergmann_fs2_trenchart.tik",
+  "tab": 2
+ },
+ {
+  "n": 829,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "PARADE FINISH",
+  "fid": 51,
+  "tik": "models/weapons/coop_bergmann_fs2_parade.tik",
+  "tab": 2
+ },
+ {
+  "n": 830,
+  "gid": "83",
+  "name": "MP 28",
+  "variant": "CAPTURED FINISH",
+  "fid": 52,
+  "tik": "models/weapons/coop_bergmann_fs2_captured.tik",
+  "tab": 2
+ },
+ {
+  "n": 831,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "STANDARD ISSUE",
@@ -7290,7 +7479,7 @@
   "tab": 3
  },
  {
-  "n": 811,
+  "n": 832,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "GOLD FINISH",
@@ -7299,7 +7488,7 @@
   "tab": 3
  },
  {
-  "n": 812,
+  "n": 833,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "CHROME FINISH",
@@ -7308,7 +7497,7 @@
   "tab": 3
  },
  {
-  "n": 813,
+  "n": 834,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "BLUED FINISH",
@@ -7317,7 +7506,7 @@
   "tab": 3
  },
  {
-  "n": 814,
+  "n": 835,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "BLOODY FINISH",
@@ -7326,7 +7515,7 @@
   "tab": 3
  },
  {
-  "n": 815,
+  "n": 836,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "WOODLAND FINISH",
@@ -7335,7 +7524,7 @@
   "tab": 3
  },
  {
-  "n": 816,
+  "n": 837,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "WINTER FINISH",
@@ -7344,7 +7533,7 @@
   "tab": 3
  },
  {
-  "n": 817,
+  "n": 838,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "DESERT FINISH",
@@ -7353,7 +7542,7 @@
   "tab": 3
  },
  {
-  "n": 818,
+  "n": 839,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "BAR (PACIFIC) (MOH:PA)",
@@ -7362,7 +7551,7 @@
   "tab": 3
  },
  {
-  "n": 819,
+  "n": 840,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "M1918 CLASSIC (STLKID)",
@@ -7371,7 +7560,7 @@
   "tab": 3
  },
  {
-  "n": 820,
+  "n": 841,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "M1918A1 (STLKID)",
@@ -7380,7 +7569,7 @@
   "tab": 3
  },
  {
-  "n": 821,
+  "n": 842,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "M1918A2 (STLKID)",
@@ -7389,7 +7578,7 @@
   "tab": 3
  },
  {
-  "n": 822,
+  "n": 843,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "WHITEWASH FINISH",
@@ -7398,7 +7587,7 @@
   "tab": 3
  },
  {
-  "n": 823,
+  "n": 844,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "AFRIKA KORPS FINISH",
@@ -7407,7 +7596,7 @@
   "tab": 3
  },
  {
-  "n": 824,
+  "n": 845,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "KRIEGSMARINE FINISH",
@@ -7416,7 +7605,7 @@
   "tab": 3
  },
  {
-  "n": 825,
+  "n": 846,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "AIRBORNE FINISH",
@@ -7425,7 +7614,7 @@
   "tab": 3
  },
  {
-  "n": 826,
+  "n": 847,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "SPLINTER FINISH",
@@ -7434,7 +7623,7 @@
   "tab": 3
  },
  {
-  "n": 827,
+  "n": 848,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "PEA DOT FINISH",
@@ -7443,7 +7632,7 @@
   "tab": 3
  },
  {
-  "n": 828,
+  "n": 849,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "TELO FINISH",
@@ -7452,7 +7641,7 @@
   "tab": 3
  },
  {
-  "n": 829,
+  "n": 850,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "AMOEBA FINISH",
@@ -7461,7 +7650,7 @@
   "tab": 3
  },
  {
-  "n": 830,
+  "n": 851,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "AIRBORNE 101ST FINISH",
@@ -7470,7 +7659,7 @@
   "tab": 3
  },
  {
-  "n": 831,
+  "n": 852,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "BATTLE-WORN FINISH",
@@ -7479,7 +7668,7 @@
   "tab": 3
  },
  {
-  "n": 832,
+  "n": 853,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "TRENCH ART FINISH",
@@ -7488,7 +7677,7 @@
   "tab": 3
  },
  {
-  "n": 833,
+  "n": 854,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "PARADE FINISH",
@@ -7497,7 +7686,7 @@
   "tab": 3
  },
  {
-  "n": 834,
+  "n": 855,
   "gid": "36",
   "name": "BAR M1918",
   "variant": "CAPTURED FINISH",
@@ -7506,7 +7695,7 @@
   "tab": 3
  },
  {
-  "n": 835,
+  "n": 856,
   "gid": "37",
   "name": "STG 44",
   "variant": "STANDARD ISSUE",
@@ -7515,7 +7704,7 @@
   "tab": 3
  },
  {
-  "n": 836,
+  "n": 857,
   "gid": "37",
   "name": "STG 44",
   "variant": "GOLD FINISH",
@@ -7524,7 +7713,7 @@
   "tab": 3
  },
  {
-  "n": 837,
+  "n": 858,
   "gid": "37",
   "name": "STG 44",
   "variant": "CHROME FINISH",
@@ -7533,7 +7722,7 @@
   "tab": 3
  },
  {
-  "n": 838,
+  "n": 859,
   "gid": "37",
   "name": "STG 44",
   "variant": "BLUED FINISH",
@@ -7542,7 +7731,7 @@
   "tab": 3
  },
  {
-  "n": 839,
+  "n": 860,
   "gid": "37",
   "name": "STG 44",
   "variant": "BLOODY FINISH",
@@ -7551,7 +7740,7 @@
   "tab": 3
  },
  {
-  "n": 840,
+  "n": 861,
   "gid": "37",
   "name": "STG 44",
   "variant": "WOODLAND FINISH",
@@ -7560,7 +7749,7 @@
   "tab": 3
  },
  {
-  "n": 841,
+  "n": 862,
   "gid": "37",
   "name": "STG 44",
   "variant": "WINTER FINISH",
@@ -7569,7 +7758,7 @@
   "tab": 3
  },
  {
-  "n": 842,
+  "n": 863,
   "gid": "37",
   "name": "STG 44",
   "variant": "DESERT FINISH",
@@ -7578,7 +7767,7 @@
   "tab": 3
  },
  {
-  "n": 843,
+  "n": 864,
   "gid": "37",
   "name": "STG 44",
   "variant": "STG 44 (STRAPPED) (DARKANGEL)",
@@ -7587,7 +7776,7 @@
   "tab": 3
  },
  {
-  "n": 844,
+  "n": 865,
   "gid": "37",
   "name": "STG 44",
   "variant": "SS STG 44 (DIRTYHARRY)",
@@ -7596,7 +7785,7 @@
   "tab": 3
  },
  {
-  "n": 845,
+  "n": 866,
   "gid": "37",
   "name": "STG 44",
   "variant": "STG 44 (GUANSHIRE)",
@@ -7605,7 +7794,7 @@
   "tab": 3
  },
  {
-  "n": 846,
+  "n": 867,
   "gid": "37",
   "name": "STG 44",
   "variant": "TEAM TACTICS (LEON)",
@@ -7614,7 +7803,7 @@
   "tab": 3
  },
  {
-  "n": 847,
+  "n": 868,
   "gid": "37",
   "name": "STG 44",
   "variant": "WHITEWASH FINISH",
@@ -7623,7 +7812,7 @@
   "tab": 3
  },
  {
-  "n": 848,
+  "n": 869,
   "gid": "37",
   "name": "STG 44",
   "variant": "AFRIKA KORPS FINISH",
@@ -7632,7 +7821,7 @@
   "tab": 3
  },
  {
-  "n": 849,
+  "n": 870,
   "gid": "37",
   "name": "STG 44",
   "variant": "KRIEGSMARINE FINISH",
@@ -7641,7 +7830,7 @@
   "tab": 3
  },
  {
-  "n": 850,
+  "n": 871,
   "gid": "37",
   "name": "STG 44",
   "variant": "AIRBORNE FINISH",
@@ -7650,7 +7839,7 @@
   "tab": 3
  },
  {
-  "n": 851,
+  "n": 872,
   "gid": "37",
   "name": "STG 44",
   "variant": "SPLINTER FINISH",
@@ -7659,7 +7848,7 @@
   "tab": 3
  },
  {
-  "n": 852,
+  "n": 873,
   "gid": "37",
   "name": "STG 44",
   "variant": "PEA DOT FINISH",
@@ -7668,7 +7857,7 @@
   "tab": 3
  },
  {
-  "n": 853,
+  "n": 874,
   "gid": "37",
   "name": "STG 44",
   "variant": "TELO FINISH",
@@ -7677,7 +7866,7 @@
   "tab": 3
  },
  {
-  "n": 854,
+  "n": 875,
   "gid": "37",
   "name": "STG 44",
   "variant": "AMOEBA FINISH",
@@ -7686,7 +7875,7 @@
   "tab": 3
  },
  {
-  "n": 855,
+  "n": 876,
   "gid": "37",
   "name": "STG 44",
   "variant": "AIRBORNE 101ST FINISH",
@@ -7695,7 +7884,7 @@
   "tab": 3
  },
  {
-  "n": 856,
+  "n": 877,
   "gid": "37",
   "name": "STG 44",
   "variant": "BATTLE-WORN FINISH",
@@ -7704,7 +7893,7 @@
   "tab": 3
  },
  {
-  "n": 857,
+  "n": 878,
   "gid": "37",
   "name": "STG 44",
   "variant": "TRENCH ART FINISH",
@@ -7713,7 +7902,7 @@
   "tab": 3
  },
  {
-  "n": 858,
+  "n": 879,
   "gid": "37",
   "name": "STG 44",
   "variant": "PARADE FINISH",
@@ -7722,7 +7911,7 @@
   "tab": 3
  },
  {
-  "n": 859,
+  "n": 880,
   "gid": "37",
   "name": "STG 44",
   "variant": "CAPTURED FINISH",
@@ -7731,7 +7920,7 @@
   "tab": 3
  },
  {
-  "n": 860,
+  "n": 881,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "STANDARD ISSUE",
@@ -7740,7 +7929,7 @@
   "tab": 3
  },
  {
-  "n": 861,
+  "n": 882,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "GOLD FINISH",
@@ -7749,7 +7938,7 @@
   "tab": 3
  },
  {
-  "n": 862,
+  "n": 883,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "CHROME FINISH",
@@ -7758,7 +7947,7 @@
   "tab": 3
  },
  {
-  "n": 863,
+  "n": 884,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "BLUED FINISH",
@@ -7767,7 +7956,7 @@
   "tab": 3
  },
  {
-  "n": 864,
+  "n": 885,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "BLOODY FINISH",
@@ -7776,7 +7965,7 @@
   "tab": 3
  },
  {
-  "n": 865,
+  "n": 886,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "WOODLAND FINISH",
@@ -7785,7 +7974,7 @@
   "tab": 3
  },
  {
-  "n": 866,
+  "n": 887,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "WINTER FINISH",
@@ -7794,7 +7983,7 @@
   "tab": 3
  },
  {
-  "n": 867,
+  "n": 888,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "DESERT FINISH",
@@ -7803,7 +7992,7 @@
   "tab": 3
  },
  {
-  "n": 868,
+  "n": 889,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "WHITEWASH FINISH",
@@ -7812,7 +8001,7 @@
   "tab": 3
  },
  {
-  "n": 869,
+  "n": 890,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "AFRIKA KORPS FINISH",
@@ -7821,7 +8010,7 @@
   "tab": 3
  },
  {
-  "n": 870,
+  "n": 891,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "KRIEGSMARINE FINISH",
@@ -7830,7 +8019,7 @@
   "tab": 3
  },
  {
-  "n": 871,
+  "n": 892,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "AIRBORNE FINISH",
@@ -7839,7 +8028,7 @@
   "tab": 3
  },
  {
-  "n": 872,
+  "n": 893,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "SPLINTER FINISH",
@@ -7848,7 +8037,7 @@
   "tab": 3
  },
  {
-  "n": 873,
+  "n": 894,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "PEA DOT FINISH",
@@ -7857,7 +8046,7 @@
   "tab": 3
  },
  {
-  "n": 874,
+  "n": 895,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "TELO FINISH",
@@ -7866,7 +8055,7 @@
   "tab": 3
  },
  {
-  "n": 875,
+  "n": 896,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "AMOEBA FINISH",
@@ -7875,7 +8064,7 @@
   "tab": 3
  },
  {
-  "n": 876,
+  "n": 897,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "AIRBORNE 101ST FINISH",
@@ -7884,7 +8073,7 @@
   "tab": 3
  },
  {
-  "n": 877,
+  "n": 898,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "BATTLE-WORN FINISH",
@@ -7893,7 +8082,7 @@
   "tab": 3
  },
  {
-  "n": 878,
+  "n": 899,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "TRENCH ART FINISH",
@@ -7902,7 +8091,7 @@
   "tab": 3
  },
  {
-  "n": 879,
+  "n": 900,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "PARADE FINISH",
@@ -7911,7 +8100,7 @@
   "tab": 3
  },
  {
-  "n": 880,
+  "n": 901,
   "gid": "38",
   "name": "STG 44 SCOPED",
   "variant": "CAPTURED FINISH",
@@ -7920,7 +8109,7 @@
   "tab": 3
  },
  {
-  "n": 881,
+  "n": 902,
   "gid": "39",
   "name": "FG 42",
   "variant": "STANDARD ISSUE",
@@ -7929,7 +8118,7 @@
   "tab": 3
  },
  {
-  "n": 882,
+  "n": 903,
   "gid": "39",
   "name": "FG 42",
   "variant": "GOLD FINISH",
@@ -7938,7 +8127,7 @@
   "tab": 3
  },
  {
-  "n": 883,
+  "n": 904,
   "gid": "39",
   "name": "FG 42",
   "variant": "CHROME FINISH",
@@ -7947,7 +8136,7 @@
   "tab": 3
  },
  {
-  "n": 884,
+  "n": 905,
   "gid": "39",
   "name": "FG 42",
   "variant": "BLUED FINISH",
@@ -7956,7 +8145,7 @@
   "tab": 3
  },
  {
-  "n": 885,
+  "n": 906,
   "gid": "39",
   "name": "FG 42",
   "variant": "BLOODY FINISH",
@@ -7965,7 +8154,7 @@
   "tab": 3
  },
  {
-  "n": 886,
+  "n": 907,
   "gid": "39",
   "name": "FG 42",
   "variant": "WOODLAND FINISH",
@@ -7974,7 +8163,7 @@
   "tab": 3
  },
  {
-  "n": 887,
+  "n": 908,
   "gid": "39",
   "name": "FG 42",
   "variant": "WINTER FINISH",
@@ -7983,7 +8172,7 @@
   "tab": 3
  },
  {
-  "n": 888,
+  "n": 909,
   "gid": "39",
   "name": "FG 42",
   "variant": "DESERT FINISH",
@@ -7992,7 +8181,7 @@
   "tab": 3
  },
  {
-  "n": 889,
+  "n": 910,
   "gid": "39",
   "name": "FG 42",
   "variant": "WHITEWASH FINISH",
@@ -8001,7 +8190,7 @@
   "tab": 3
  },
  {
-  "n": 890,
+  "n": 911,
   "gid": "39",
   "name": "FG 42",
   "variant": "AFRIKA KORPS FINISH",
@@ -8010,7 +8199,7 @@
   "tab": 3
  },
  {
-  "n": 891,
+  "n": 912,
   "gid": "39",
   "name": "FG 42",
   "variant": "KRIEGSMARINE FINISH",
@@ -8019,7 +8208,7 @@
   "tab": 3
  },
  {
-  "n": 892,
+  "n": 913,
   "gid": "39",
   "name": "FG 42",
   "variant": "AIRBORNE FINISH",
@@ -8028,7 +8217,7 @@
   "tab": 3
  },
  {
-  "n": 893,
+  "n": 914,
   "gid": "39",
   "name": "FG 42",
   "variant": "SPLINTER FINISH",
@@ -8037,7 +8226,7 @@
   "tab": 3
  },
  {
-  "n": 894,
+  "n": 915,
   "gid": "39",
   "name": "FG 42",
   "variant": "PEA DOT FINISH",
@@ -8046,7 +8235,7 @@
   "tab": 3
  },
  {
-  "n": 895,
+  "n": 916,
   "gid": "39",
   "name": "FG 42",
   "variant": "TELO FINISH",
@@ -8055,7 +8244,7 @@
   "tab": 3
  },
  {
-  "n": 896,
+  "n": 917,
   "gid": "39",
   "name": "FG 42",
   "variant": "AMOEBA FINISH",
@@ -8064,7 +8253,7 @@
   "tab": 3
  },
  {
-  "n": 897,
+  "n": 918,
   "gid": "39",
   "name": "FG 42",
   "variant": "AIRBORNE 101ST FINISH",
@@ -8073,7 +8262,7 @@
   "tab": 3
  },
  {
-  "n": 898,
+  "n": 919,
   "gid": "39",
   "name": "FG 42",
   "variant": "BATTLE-WORN FINISH",
@@ -8082,7 +8271,7 @@
   "tab": 3
  },
  {
-  "n": 899,
+  "n": 920,
   "gid": "39",
   "name": "FG 42",
   "variant": "TRENCH ART FINISH",
@@ -8091,7 +8280,7 @@
   "tab": 3
  },
  {
-  "n": 900,
+  "n": 921,
   "gid": "39",
   "name": "FG 42",
   "variant": "PARADE FINISH",
@@ -8100,7 +8289,7 @@
   "tab": 3
  },
  {
-  "n": 901,
+  "n": 922,
   "gid": "39",
   "name": "FG 42",
   "variant": "CAPTURED FINISH",
@@ -8109,7 +8298,7 @@
   "tab": 3
  },
  {
-  "n": 902,
+  "n": 923,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "STANDARD ISSUE",
@@ -8118,7 +8307,7 @@
   "tab": 3
  },
  {
-  "n": 903,
+  "n": 924,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "GOLD FINISH",
@@ -8127,7 +8316,7 @@
   "tab": 3
  },
  {
-  "n": 904,
+  "n": 925,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "CHROME FINISH",
@@ -8136,7 +8325,7 @@
   "tab": 3
  },
  {
-  "n": 905,
+  "n": 926,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "BLUED FINISH",
@@ -8145,7 +8334,7 @@
   "tab": 3
  },
  {
-  "n": 906,
+  "n": 927,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "BLOODY FINISH",
@@ -8154,7 +8343,7 @@
   "tab": 3
  },
  {
-  "n": 907,
+  "n": 928,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "WOODLAND FINISH",
@@ -8163,7 +8352,7 @@
   "tab": 3
  },
  {
-  "n": 908,
+  "n": 929,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "WINTER FINISH",
@@ -8172,7 +8361,7 @@
   "tab": 3
  },
  {
-  "n": 909,
+  "n": 930,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "DESERT FINISH",
@@ -8181,7 +8370,7 @@
   "tab": 3
  },
  {
-  "n": 910,
+  "n": 931,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "WHITEWASH FINISH",
@@ -8190,7 +8379,7 @@
   "tab": 3
  },
  {
-  "n": 911,
+  "n": 932,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "AFRIKA KORPS FINISH",
@@ -8199,7 +8388,7 @@
   "tab": 3
  },
  {
-  "n": 912,
+  "n": 933,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "KRIEGSMARINE FINISH",
@@ -8208,7 +8397,7 @@
   "tab": 3
  },
  {
-  "n": 913,
+  "n": 934,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "AIRBORNE FINISH",
@@ -8217,7 +8406,7 @@
   "tab": 3
  },
  {
-  "n": 914,
+  "n": 935,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "SPLINTER FINISH",
@@ -8226,7 +8415,7 @@
   "tab": 3
  },
  {
-  "n": 915,
+  "n": 936,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "PEA DOT FINISH",
@@ -8235,7 +8424,7 @@
   "tab": 3
  },
  {
-  "n": 916,
+  "n": 937,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "TELO FINISH",
@@ -8244,7 +8433,7 @@
   "tab": 3
  },
  {
-  "n": 917,
+  "n": 938,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "AMOEBA FINISH",
@@ -8253,7 +8442,7 @@
   "tab": 3
  },
  {
-  "n": 918,
+  "n": 939,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "AIRBORNE 101ST FINISH",
@@ -8262,7 +8451,7 @@
   "tab": 3
  },
  {
-  "n": 919,
+  "n": 940,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "BATTLE-WORN FINISH",
@@ -8271,7 +8460,7 @@
   "tab": 3
  },
  {
-  "n": 920,
+  "n": 941,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "TRENCH ART FINISH",
@@ -8280,7 +8469,7 @@
   "tab": 3
  },
  {
-  "n": 921,
+  "n": 942,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "PARADE FINISH",
@@ -8289,7 +8478,7 @@
   "tab": 3
  },
  {
-  "n": 922,
+  "n": 943,
   "gid": "40",
   "name": "VICKERS-BERTHIER",
   "variant": "CAPTURED FINISH",
@@ -8298,7 +8487,7 @@
   "tab": 3
  },
  {
-  "n": 923,
+  "n": 944,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "STANDARD ISSUE",
@@ -8307,7 +8496,7 @@
   "tab": 3
  },
  {
-  "n": 924,
+  "n": 945,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "GOLD FINISH",
@@ -8316,7 +8505,7 @@
   "tab": 3
  },
  {
-  "n": 925,
+  "n": 946,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "CHROME FINISH",
@@ -8325,7 +8514,7 @@
   "tab": 3
  },
  {
-  "n": 926,
+  "n": 947,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "BLUED FINISH",
@@ -8334,7 +8523,7 @@
   "tab": 3
  },
  {
-  "n": 927,
+  "n": 948,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "BLOODY FINISH",
@@ -8343,7 +8532,7 @@
   "tab": 3
  },
  {
-  "n": 928,
+  "n": 949,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "WOODLAND FINISH",
@@ -8352,7 +8541,7 @@
   "tab": 3
  },
  {
-  "n": 929,
+  "n": 950,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "WINTER FINISH",
@@ -8361,7 +8550,7 @@
   "tab": 3
  },
  {
-  "n": 930,
+  "n": 951,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "DESERT FINISH",
@@ -8370,7 +8559,7 @@
   "tab": 3
  },
  {
-  "n": 931,
+  "n": 952,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "WHITEWASH FINISH",
@@ -8379,7 +8568,7 @@
   "tab": 3
  },
  {
-  "n": 932,
+  "n": 953,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "AFRIKA KORPS FINISH",
@@ -8388,7 +8577,7 @@
   "tab": 3
  },
  {
-  "n": 933,
+  "n": 954,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "KRIEGSMARINE FINISH",
@@ -8397,7 +8586,7 @@
   "tab": 3
  },
  {
-  "n": 934,
+  "n": 955,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "AIRBORNE FINISH",
@@ -8406,7 +8595,7 @@
   "tab": 3
  },
  {
-  "n": 935,
+  "n": 956,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "SPLINTER FINISH",
@@ -8415,7 +8604,7 @@
   "tab": 3
  },
  {
-  "n": 936,
+  "n": 957,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "PEA DOT FINISH",
@@ -8424,7 +8613,7 @@
   "tab": 3
  },
  {
-  "n": 937,
+  "n": 958,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "TELO FINISH",
@@ -8433,7 +8622,7 @@
   "tab": 3
  },
  {
-  "n": 938,
+  "n": 959,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "AMOEBA FINISH",
@@ -8442,7 +8631,7 @@
   "tab": 3
  },
  {
-  "n": 939,
+  "n": 960,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "AIRBORNE 101ST FINISH",
@@ -8451,7 +8640,7 @@
   "tab": 3
  },
  {
-  "n": 940,
+  "n": 961,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "BATTLE-WORN FINISH",
@@ -8460,7 +8649,7 @@
   "tab": 3
  },
  {
-  "n": 941,
+  "n": 962,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "TRENCH ART FINISH",
@@ -8469,7 +8658,7 @@
   "tab": 3
  },
  {
-  "n": 942,
+  "n": 963,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "PARADE FINISH",
@@ -8478,7 +8667,7 @@
   "tab": 3
  },
  {
-  "n": 943,
+  "n": 964,
   "gid": "41",
   "name": "BREDA M30",
   "variant": "CAPTURED FINISH",
@@ -8487,7 +8676,7 @@
   "tab": 3
  },
  {
-  "n": 944,
+  "n": 965,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "STANDARD ISSUE",
@@ -8496,7 +8685,7 @@
   "tab": 3
  },
  {
-  "n": 945,
+  "n": 966,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "GOLD FINISH",
@@ -8505,7 +8694,7 @@
   "tab": 3
  },
  {
-  "n": 946,
+  "n": 967,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "CHROME FINISH",
@@ -8514,7 +8703,7 @@
   "tab": 3
  },
  {
-  "n": 947,
+  "n": 968,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "BLUED FINISH",
@@ -8523,7 +8712,7 @@
   "tab": 3
  },
  {
-  "n": 948,
+  "n": 969,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "BLOODY FINISH",
@@ -8532,7 +8721,7 @@
   "tab": 3
  },
  {
-  "n": 949,
+  "n": 970,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "WOODLAND FINISH",
@@ -8541,7 +8730,7 @@
   "tab": 3
  },
  {
-  "n": 950,
+  "n": 971,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "WINTER FINISH",
@@ -8550,7 +8739,7 @@
   "tab": 3
  },
  {
-  "n": 951,
+  "n": 972,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "DESERT FINISH",
@@ -8559,7 +8748,7 @@
   "tab": 3
  },
  {
-  "n": 952,
+  "n": 973,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "WHITEWASH FINISH",
@@ -8568,7 +8757,7 @@
   "tab": 3
  },
  {
-  "n": 953,
+  "n": 974,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "AFRIKA KORPS FINISH",
@@ -8577,7 +8766,7 @@
   "tab": 3
  },
  {
-  "n": 954,
+  "n": 975,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "KRIEGSMARINE FINISH",
@@ -8586,7 +8775,7 @@
   "tab": 3
  },
  {
-  "n": 955,
+  "n": 976,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "AIRBORNE FINISH",
@@ -8595,7 +8784,7 @@
   "tab": 3
  },
  {
-  "n": 956,
+  "n": 977,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "SPLINTER FINISH",
@@ -8604,7 +8793,7 @@
   "tab": 3
  },
  {
-  "n": 957,
+  "n": 978,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "PEA DOT FINISH",
@@ -8613,7 +8802,7 @@
   "tab": 3
  },
  {
-  "n": 958,
+  "n": 979,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "TELO FINISH",
@@ -8622,7 +8811,7 @@
   "tab": 3
  },
  {
-  "n": 959,
+  "n": 980,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "AMOEBA FINISH",
@@ -8631,7 +8820,7 @@
   "tab": 3
  },
  {
-  "n": 960,
+  "n": 981,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "AIRBORNE 101ST FINISH",
@@ -8640,7 +8829,7 @@
   "tab": 3
  },
  {
-  "n": 961,
+  "n": 982,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "BATTLE-WORN FINISH",
@@ -8649,7 +8838,7 @@
   "tab": 3
  },
  {
-  "n": 962,
+  "n": 983,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "TRENCH ART FINISH",
@@ -8658,7 +8847,7 @@
   "tab": 3
  },
  {
-  "n": 963,
+  "n": 984,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "PARADE FINISH",
@@ -8667,7 +8856,7 @@
   "tab": 3
  },
  {
-  "n": 964,
+  "n": 985,
   "gid": "42",
   "name": "M1919 .30 CAL",
   "variant": "CAPTURED FINISH",
@@ -8676,7 +8865,7 @@
   "tab": 3
  },
  {
-  "n": 965,
+  "n": 986,
   "gid": "43",
   "name": "MG42",
   "variant": "STANDARD ISSUE",
@@ -8685,7 +8874,7 @@
   "tab": 3
  },
  {
-  "n": 966,
+  "n": 987,
   "gid": "43",
   "name": "MG42",
   "variant": "GOLD FINISH",
@@ -8694,7 +8883,7 @@
   "tab": 3
  },
  {
-  "n": 967,
+  "n": 988,
   "gid": "43",
   "name": "MG42",
   "variant": "CHROME FINISH",
@@ -8703,7 +8892,7 @@
   "tab": 3
  },
  {
-  "n": 968,
+  "n": 989,
   "gid": "43",
   "name": "MG42",
   "variant": "BLUED FINISH",
@@ -8712,7 +8901,7 @@
   "tab": 3
  },
  {
-  "n": 969,
+  "n": 990,
   "gid": "43",
   "name": "MG42",
   "variant": "BLOODY FINISH",
@@ -8721,7 +8910,7 @@
   "tab": 3
  },
  {
-  "n": 970,
+  "n": 991,
   "gid": "43",
   "name": "MG42",
   "variant": "WOODLAND FINISH",
@@ -8730,7 +8919,7 @@
   "tab": 3
  },
  {
-  "n": 971,
+  "n": 992,
   "gid": "43",
   "name": "MG42",
   "variant": "WINTER FINISH",
@@ -8739,7 +8928,7 @@
   "tab": 3
  },
  {
-  "n": 972,
+  "n": 993,
   "gid": "43",
   "name": "MG42",
   "variant": "DESERT FINISH",
@@ -8748,7 +8937,7 @@
   "tab": 3
  },
  {
-  "n": 973,
+  "n": 994,
   "gid": "43",
   "name": "MG42",
   "variant": "WHITEWASH FINISH",
@@ -8757,7 +8946,7 @@
   "tab": 3
  },
  {
-  "n": 974,
+  "n": 995,
   "gid": "43",
   "name": "MG42",
   "variant": "AFRIKA KORPS FINISH",
@@ -8766,7 +8955,7 @@
   "tab": 3
  },
  {
-  "n": 975,
+  "n": 996,
   "gid": "43",
   "name": "MG42",
   "variant": "KRIEGSMARINE FINISH",
@@ -8775,7 +8964,7 @@
   "tab": 3
  },
  {
-  "n": 976,
+  "n": 997,
   "gid": "43",
   "name": "MG42",
   "variant": "AIRBORNE FINISH",
@@ -8784,7 +8973,7 @@
   "tab": 3
  },
  {
-  "n": 977,
+  "n": 998,
   "gid": "43",
   "name": "MG42",
   "variant": "SPLINTER FINISH",
@@ -8793,7 +8982,7 @@
   "tab": 3
  },
  {
-  "n": 978,
+  "n": 999,
   "gid": "43",
   "name": "MG42",
   "variant": "PEA DOT FINISH",
@@ -8802,7 +8991,7 @@
   "tab": 3
  },
  {
-  "n": 979,
+  "n": 1000,
   "gid": "43",
   "name": "MG42",
   "variant": "TELO FINISH",
@@ -8811,7 +9000,7 @@
   "tab": 3
  },
  {
-  "n": 980,
+  "n": 1001,
   "gid": "43",
   "name": "MG42",
   "variant": "AMOEBA FINISH",
@@ -8820,7 +9009,7 @@
   "tab": 3
  },
  {
-  "n": 981,
+  "n": 1002,
   "gid": "43",
   "name": "MG42",
   "variant": "AIRBORNE 101ST FINISH",
@@ -8829,7 +9018,7 @@
   "tab": 3
  },
  {
-  "n": 982,
+  "n": 1003,
   "gid": "43",
   "name": "MG42",
   "variant": "BATTLE-WORN FINISH",
@@ -8838,7 +9027,7 @@
   "tab": 3
  },
  {
-  "n": 983,
+  "n": 1004,
   "gid": "43",
   "name": "MG42",
   "variant": "TRENCH ART FINISH",
@@ -8847,7 +9036,7 @@
   "tab": 3
  },
  {
-  "n": 984,
+  "n": 1005,
   "gid": "43",
   "name": "MG42",
   "variant": "PARADE FINISH",
@@ -8856,7 +9045,7 @@
   "tab": 3
  },
  {
-  "n": 985,
+  "n": 1006,
   "gid": "43",
   "name": "MG42",
   "variant": "CAPTURED FINISH",
@@ -8865,7 +9054,7 @@
   "tab": 3
  },
  {
-  "n": 986,
+  "n": 1007,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "STANDARD ISSUE",
@@ -8874,7 +9063,7 @@
   "tab": 3
  },
  {
-  "n": 987,
+  "n": 1008,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "GOLD FINISH",
@@ -8883,7 +9072,7 @@
   "tab": 3
  },
  {
-  "n": 988,
+  "n": 1009,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "CHROME FINISH",
@@ -8892,7 +9081,7 @@
   "tab": 3
  },
  {
-  "n": 989,
+  "n": 1010,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "BLUED FINISH",
@@ -8901,7 +9090,7 @@
   "tab": 3
  },
  {
-  "n": 990,
+  "n": 1011,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "BLOODY FINISH",
@@ -8910,7 +9099,7 @@
   "tab": 3
  },
  {
-  "n": 991,
+  "n": 1012,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "WOODLAND FINISH",
@@ -8919,7 +9108,7 @@
   "tab": 3
  },
  {
-  "n": 992,
+  "n": 1013,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "WINTER FINISH",
@@ -8928,7 +9117,7 @@
   "tab": 3
  },
  {
-  "n": 993,
+  "n": 1014,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "DESERT FINISH",
@@ -8937,7 +9126,7 @@
   "tab": 3
  },
  {
-  "n": 994,
+  "n": 1015,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "AUTHENTIC WOOD",
@@ -8946,7 +9135,7 @@
   "tab": 3
  },
  {
-  "n": 995,
+  "n": 1016,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "BLACK TACTICAL (DIRTYHARRY)",
@@ -8955,7 +9144,7 @@
   "tab": 3
  },
  {
-  "n": 996,
+  "n": 1017,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "CHROME TACTICAL (DIRTYHARRY)",
@@ -8964,7 +9153,7 @@
   "tab": 3
  },
  {
-  "n": 997,
+  "n": 1018,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "RECOIL SHOTTY (HOBBS & RECOIL)",
@@ -8973,7 +9162,7 @@
   "tab": 3
  },
  {
-  "n": 998,
+  "n": 1019,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "SHOTGUN (GUANSHIRE)",
@@ -8982,7 +9171,7 @@
   "tab": 3
  },
  {
-  "n": 999,
+  "n": 1020,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "TEAM TACTICS (LEON)",
@@ -8991,7 +9180,7 @@
   "tab": 3
  },
  {
-  "n": 1000,
+  "n": 1021,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "WHITEWASH FINISH",
@@ -9000,7 +9189,7 @@
   "tab": 3
  },
  {
-  "n": 1001,
+  "n": 1022,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "AFRIKA KORPS FINISH",
@@ -9009,7 +9198,7 @@
   "tab": 3
  },
  {
-  "n": 1002,
+  "n": 1023,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "KRIEGSMARINE FINISH",
@@ -9018,7 +9207,7 @@
   "tab": 3
  },
  {
-  "n": 1003,
+  "n": 1024,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "AIRBORNE FINISH",
@@ -9027,7 +9216,7 @@
   "tab": 3
  },
  {
-  "n": 1004,
+  "n": 1025,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "SPLINTER FINISH",
@@ -9036,7 +9225,7 @@
   "tab": 3
  },
  {
-  "n": 1005,
+  "n": 1026,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "PEA DOT FINISH",
@@ -9045,7 +9234,7 @@
   "tab": 3
  },
  {
-  "n": 1006,
+  "n": 1027,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "TELO FINISH",
@@ -9054,7 +9243,7 @@
   "tab": 3
  },
  {
-  "n": 1007,
+  "n": 1028,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "AMOEBA FINISH",
@@ -9063,7 +9252,7 @@
   "tab": 3
  },
  {
-  "n": 1008,
+  "n": 1029,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "AIRBORNE 101ST FINISH",
@@ -9072,7 +9261,7 @@
   "tab": 3
  },
  {
-  "n": 1009,
+  "n": 1030,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "BATTLE-WORN FINISH",
@@ -9081,7 +9270,7 @@
   "tab": 3
  },
  {
-  "n": 1010,
+  "n": 1031,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "TRENCH ART FINISH",
@@ -9090,7 +9279,7 @@
   "tab": 3
  },
  {
-  "n": 1011,
+  "n": 1032,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "PARADE FINISH",
@@ -9099,7 +9288,7 @@
   "tab": 3
  },
  {
-  "n": 1012,
+  "n": 1033,
   "gid": "44",
   "name": "TRENCH GUN",
   "variant": "CAPTURED FINISH",
@@ -9108,7 +9297,7 @@
   "tab": 3
  },
  {
-  "n": 1013,
+  "n": 1034,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "STANDARD ISSUE",
@@ -9117,7 +9306,7 @@
   "tab": 3
  },
  {
-  "n": 1014,
+  "n": 1035,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "GOLD FINISH",
@@ -9126,7 +9315,7 @@
   "tab": 3
  },
  {
-  "n": 1015,
+  "n": 1036,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "CHROME FINISH",
@@ -9135,7 +9324,7 @@
   "tab": 3
  },
  {
-  "n": 1016,
+  "n": 1037,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "BLUED FINISH",
@@ -9144,7 +9333,7 @@
   "tab": 3
  },
  {
-  "n": 1017,
+  "n": 1038,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "BLOODY FINISH",
@@ -9153,7 +9342,7 @@
   "tab": 3
  },
  {
-  "n": 1018,
+  "n": 1039,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "WOODLAND FINISH",
@@ -9162,7 +9351,7 @@
   "tab": 3
  },
  {
-  "n": 1019,
+  "n": 1040,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "WINTER FINISH",
@@ -9171,7 +9360,7 @@
   "tab": 3
  },
  {
-  "n": 1020,
+  "n": 1041,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "DESERT FINISH",
@@ -9180,7 +9369,7 @@
   "tab": 3
  },
  {
-  "n": 1021,
+  "n": 1042,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "REALISTIC BAZOOKA (GUANSHIRE)",
@@ -9189,7 +9378,7 @@
   "tab": 3
  },
  {
-  "n": 1022,
+  "n": 1043,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "WHITEWASH FINISH",
@@ -9198,7 +9387,7 @@
   "tab": 3
  },
  {
-  "n": 1023,
+  "n": 1044,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "AFRIKA KORPS FINISH",
@@ -9207,7 +9396,7 @@
   "tab": 3
  },
  {
-  "n": 1024,
+  "n": 1045,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "KRIEGSMARINE FINISH",
@@ -9216,7 +9405,7 @@
   "tab": 3
  },
  {
-  "n": 1025,
+  "n": 1046,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "AIRBORNE FINISH",
@@ -9225,7 +9414,7 @@
   "tab": 3
  },
  {
-  "n": 1026,
+  "n": 1047,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "SPLINTER FINISH",
@@ -9234,7 +9423,7 @@
   "tab": 3
  },
  {
-  "n": 1027,
+  "n": 1048,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "PEA DOT FINISH",
@@ -9243,7 +9432,7 @@
   "tab": 3
  },
  {
-  "n": 1028,
+  "n": 1049,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "TELO FINISH",
@@ -9252,7 +9441,7 @@
   "tab": 3
  },
  {
-  "n": 1029,
+  "n": 1050,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "AMOEBA FINISH",
@@ -9261,7 +9450,7 @@
   "tab": 3
  },
  {
-  "n": 1030,
+  "n": 1051,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "AIRBORNE 101ST FINISH",
@@ -9270,7 +9459,7 @@
   "tab": 3
  },
  {
-  "n": 1031,
+  "n": 1052,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "BATTLE-WORN FINISH",
@@ -9279,7 +9468,7 @@
   "tab": 3
  },
  {
-  "n": 1032,
+  "n": 1053,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "TRENCH ART FINISH",
@@ -9288,7 +9477,7 @@
   "tab": 3
  },
  {
-  "n": 1033,
+  "n": 1054,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "PARADE FINISH",
@@ -9297,7 +9486,7 @@
   "tab": 3
  },
  {
-  "n": 1034,
+  "n": 1055,
   "gid": "45",
   "name": "M1A1 BAZOOKA",
   "variant": "CAPTURED FINISH",
@@ -9306,7 +9495,7 @@
   "tab": 3
  },
  {
-  "n": 1035,
+  "n": 1056,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "STANDARD ISSUE",
@@ -9315,7 +9504,7 @@
   "tab": 3
  },
  {
-  "n": 1036,
+  "n": 1057,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "GOLD FINISH",
@@ -9324,7 +9513,7 @@
   "tab": 3
  },
  {
-  "n": 1037,
+  "n": 1058,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "CHROME FINISH",
@@ -9333,7 +9522,7 @@
   "tab": 3
  },
  {
-  "n": 1038,
+  "n": 1059,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "BLUED FINISH",
@@ -9342,7 +9531,7 @@
   "tab": 3
  },
  {
-  "n": 1039,
+  "n": 1060,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "BLOODY FINISH",
@@ -9351,7 +9540,7 @@
   "tab": 3
  },
  {
-  "n": 1040,
+  "n": 1061,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "WOODLAND FINISH",
@@ -9360,7 +9549,7 @@
   "tab": 3
  },
  {
-  "n": 1041,
+  "n": 1062,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "WINTER FINISH",
@@ -9369,7 +9558,7 @@
   "tab": 3
  },
  {
-  "n": 1042,
+  "n": 1063,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "DESERT FINISH",
@@ -9378,7 +9567,7 @@
   "tab": 3
  },
  {
-  "n": 1043,
+  "n": 1064,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "OFENROHR (LEON)",
@@ -9387,7 +9576,7 @@
   "tab": 3
  },
  {
-  "n": 1044,
+  "n": 1065,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "WHITEWASH FINISH",
@@ -9396,7 +9585,7 @@
   "tab": 3
  },
  {
-  "n": 1045,
+  "n": 1066,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "AFRIKA KORPS FINISH",
@@ -9405,7 +9594,7 @@
   "tab": 3
  },
  {
-  "n": 1046,
+  "n": 1067,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "KRIEGSMARINE FINISH",
@@ -9414,7 +9603,7 @@
   "tab": 3
  },
  {
-  "n": 1047,
+  "n": 1068,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "AIRBORNE FINISH",
@@ -9423,7 +9612,7 @@
   "tab": 3
  },
  {
-  "n": 1048,
+  "n": 1069,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "SPLINTER FINISH",
@@ -9432,7 +9621,7 @@
   "tab": 3
  },
  {
-  "n": 1049,
+  "n": 1070,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "PEA DOT FINISH",
@@ -9441,7 +9630,7 @@
   "tab": 3
  },
  {
-  "n": 1050,
+  "n": 1071,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "TELO FINISH",
@@ -9450,7 +9639,7 @@
   "tab": 3
  },
  {
-  "n": 1051,
+  "n": 1072,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "AMOEBA FINISH",
@@ -9459,7 +9648,7 @@
   "tab": 3
  },
  {
-  "n": 1052,
+  "n": 1073,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "AIRBORNE 101ST FINISH",
@@ -9468,7 +9657,7 @@
   "tab": 3
  },
  {
-  "n": 1053,
+  "n": 1074,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "BATTLE-WORN FINISH",
@@ -9477,7 +9666,7 @@
   "tab": 3
  },
  {
-  "n": 1054,
+  "n": 1075,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "TRENCH ART FINISH",
@@ -9486,7 +9675,7 @@
   "tab": 3
  },
  {
-  "n": 1055,
+  "n": 1076,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "PARADE FINISH",
@@ -9495,7 +9684,7 @@
   "tab": 3
  },
  {
-  "n": 1056,
+  "n": 1077,
   "gid": "46",
   "name": "PANZERSCHRECK",
   "variant": "CAPTURED FINISH",
@@ -9504,7 +9693,7 @@
   "tab": 3
  },
  {
-  "n": 1057,
+  "n": 1078,
   "gid": "47",
   "name": "PIAT",
   "variant": "STANDARD ISSUE",
@@ -9513,7 +9702,7 @@
   "tab": 3
  },
  {
-  "n": 1058,
+  "n": 1079,
   "gid": "47",
   "name": "PIAT",
   "variant": "GOLD FINISH",
@@ -9522,7 +9711,7 @@
   "tab": 3
  },
  {
-  "n": 1059,
+  "n": 1080,
   "gid": "47",
   "name": "PIAT",
   "variant": "CHROME FINISH",
@@ -9531,7 +9720,7 @@
   "tab": 3
  },
  {
-  "n": 1060,
+  "n": 1081,
   "gid": "47",
   "name": "PIAT",
   "variant": "BLUED FINISH",
@@ -9540,7 +9729,7 @@
   "tab": 3
  },
  {
-  "n": 1061,
+  "n": 1082,
   "gid": "47",
   "name": "PIAT",
   "variant": "BLOODY FINISH",
@@ -9549,7 +9738,7 @@
   "tab": 3
  },
  {
-  "n": 1062,
+  "n": 1083,
   "gid": "47",
   "name": "PIAT",
   "variant": "WOODLAND FINISH",
@@ -9558,7 +9747,7 @@
   "tab": 3
  },
  {
-  "n": 1063,
+  "n": 1084,
   "gid": "47",
   "name": "PIAT",
   "variant": "WINTER FINISH",
@@ -9567,7 +9756,7 @@
   "tab": 3
  },
  {
-  "n": 1064,
+  "n": 1085,
   "gid": "47",
   "name": "PIAT",
   "variant": "DESERT FINISH",
@@ -9576,7 +9765,7 @@
   "tab": 3
  },
  {
-  "n": 1065,
+  "n": 1086,
   "gid": "47",
   "name": "PIAT",
   "variant": "WHITEWASH FINISH",
@@ -9585,7 +9774,7 @@
   "tab": 3
  },
  {
-  "n": 1066,
+  "n": 1087,
   "gid": "47",
   "name": "PIAT",
   "variant": "AFRIKA KORPS FINISH",
@@ -9594,7 +9783,7 @@
   "tab": 3
  },
  {
-  "n": 1067,
+  "n": 1088,
   "gid": "47",
   "name": "PIAT",
   "variant": "KRIEGSMARINE FINISH",
@@ -9603,7 +9792,7 @@
   "tab": 3
  },
  {
-  "n": 1068,
+  "n": 1089,
   "gid": "47",
   "name": "PIAT",
   "variant": "AIRBORNE FINISH",
@@ -9612,7 +9801,7 @@
   "tab": 3
  },
  {
-  "n": 1069,
+  "n": 1090,
   "gid": "47",
   "name": "PIAT",
   "variant": "SPLINTER FINISH",
@@ -9621,7 +9810,7 @@
   "tab": 3
  },
  {
-  "n": 1070,
+  "n": 1091,
   "gid": "47",
   "name": "PIAT",
   "variant": "PEA DOT FINISH",
@@ -9630,7 +9819,7 @@
   "tab": 3
  },
  {
-  "n": 1071,
+  "n": 1092,
   "gid": "47",
   "name": "PIAT",
   "variant": "TELO FINISH",
@@ -9639,7 +9828,7 @@
   "tab": 3
  },
  {
-  "n": 1072,
+  "n": 1093,
   "gid": "47",
   "name": "PIAT",
   "variant": "AMOEBA FINISH",
@@ -9648,7 +9837,7 @@
   "tab": 3
  },
  {
-  "n": 1073,
+  "n": 1094,
   "gid": "47",
   "name": "PIAT",
   "variant": "AIRBORNE 101ST FINISH",
@@ -9657,7 +9846,7 @@
   "tab": 3
  },
  {
-  "n": 1074,
+  "n": 1095,
   "gid": "47",
   "name": "PIAT",
   "variant": "BATTLE-WORN FINISH",
@@ -9666,7 +9855,7 @@
   "tab": 3
  },
  {
-  "n": 1075,
+  "n": 1096,
   "gid": "47",
   "name": "PIAT",
   "variant": "TRENCH ART FINISH",
@@ -9675,7 +9864,7 @@
   "tab": 3
  },
  {
-  "n": 1076,
+  "n": 1097,
   "gid": "47",
   "name": "PIAT",
   "variant": "PARADE FINISH",
@@ -9684,7 +9873,7 @@
   "tab": 3
  },
  {
-  "n": 1077,
+  "n": 1098,
   "gid": "47",
   "name": "PIAT",
   "variant": "CAPTURED FINISH",
@@ -9693,7 +9882,7 @@
   "tab": 3
  },
  {
-  "n": 1078,
+  "n": 1099,
   "gid": "72",
   "name": "DP-28",
   "variant": "STANDARD ISSUE",
@@ -9702,7 +9891,7 @@
   "tab": 3
  },
  {
-  "n": 1079,
+  "n": 1100,
   "gid": "72",
   "name": "DP-28",
   "variant": "GOLD FINISH",
@@ -9711,7 +9900,7 @@
   "tab": 3
  },
  {
-  "n": 1080,
+  "n": 1101,
   "gid": "72",
   "name": "DP-28",
   "variant": "CHROME FINISH",
@@ -9720,7 +9909,7 @@
   "tab": 3
  },
  {
-  "n": 1081,
+  "n": 1102,
   "gid": "72",
   "name": "DP-28",
   "variant": "BLUED FINISH",
@@ -9729,7 +9918,7 @@
   "tab": 3
  },
  {
-  "n": 1082,
+  "n": 1103,
   "gid": "72",
   "name": "DP-28",
   "variant": "BLOODY FINISH",
@@ -9738,7 +9927,7 @@
   "tab": 3
  },
  {
-  "n": 1083,
+  "n": 1104,
   "gid": "72",
   "name": "DP-28",
   "variant": "WOODLAND FINISH",
@@ -9747,7 +9936,7 @@
   "tab": 3
  },
  {
-  "n": 1084,
+  "n": 1105,
   "gid": "72",
   "name": "DP-28",
   "variant": "WINTER FINISH",
@@ -9756,7 +9945,7 @@
   "tab": 3
  },
  {
-  "n": 1085,
+  "n": 1106,
   "gid": "72",
   "name": "DP-28",
   "variant": "DESERT FINISH",
@@ -9765,7 +9954,7 @@
   "tab": 3
  },
  {
-  "n": 1086,
+  "n": 1107,
   "gid": "72",
   "name": "DP-28",
   "variant": "WHITEWASH FINISH",
@@ -9774,7 +9963,7 @@
   "tab": 3
  },
  {
-  "n": 1087,
+  "n": 1108,
   "gid": "72",
   "name": "DP-28",
   "variant": "AFRIKA KORPS FINISH",
@@ -9783,7 +9972,7 @@
   "tab": 3
  },
  {
-  "n": 1088,
+  "n": 1109,
   "gid": "72",
   "name": "DP-28",
   "variant": "KRIEGSMARINE FINISH",
@@ -9792,7 +9981,7 @@
   "tab": 3
  },
  {
-  "n": 1089,
+  "n": 1110,
   "gid": "72",
   "name": "DP-28",
   "variant": "AIRBORNE FINISH",
@@ -9801,7 +9990,7 @@
   "tab": 3
  },
  {
-  "n": 1090,
+  "n": 1111,
   "gid": "72",
   "name": "DP-28",
   "variant": "SPLINTER FINISH",
@@ -9810,7 +9999,7 @@
   "tab": 3
  },
  {
-  "n": 1091,
+  "n": 1112,
   "gid": "72",
   "name": "DP-28",
   "variant": "PEA DOT FINISH",
@@ -9819,7 +10008,7 @@
   "tab": 3
  },
  {
-  "n": 1092,
+  "n": 1113,
   "gid": "72",
   "name": "DP-28",
   "variant": "TELO FINISH",
@@ -9828,7 +10017,7 @@
   "tab": 3
  },
  {
-  "n": 1093,
+  "n": 1114,
   "gid": "72",
   "name": "DP-28",
   "variant": "AMOEBA FINISH",
@@ -9837,7 +10026,7 @@
   "tab": 3
  },
  {
-  "n": 1094,
+  "n": 1115,
   "gid": "72",
   "name": "DP-28",
   "variant": "AIRBORNE 101ST FINISH",
@@ -9846,7 +10035,7 @@
   "tab": 3
  },
  {
-  "n": 1095,
+  "n": 1116,
   "gid": "72",
   "name": "DP-28",
   "variant": "BATTLE-WORN FINISH",
@@ -9855,7 +10044,7 @@
   "tab": 3
  },
  {
-  "n": 1096,
+  "n": 1117,
   "gid": "72",
   "name": "DP-28",
   "variant": "TRENCH ART FINISH",
@@ -9864,7 +10053,7 @@
   "tab": 3
  },
  {
-  "n": 1097,
+  "n": 1118,
   "gid": "72",
   "name": "DP-28",
   "variant": "PARADE FINISH",
@@ -9873,7 +10062,7 @@
   "tab": 3
  },
  {
-  "n": 1098,
+  "n": 1119,
   "gid": "72",
   "name": "DP-28",
   "variant": "CAPTURED FINISH",
@@ -9882,7 +10071,7 @@
   "tab": 3
  },
  {
-  "n": 1099,
+  "n": 1120,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "STANDARD ISSUE",
@@ -9891,7 +10080,7 @@
   "tab": 3
  },
  {
-  "n": 1100,
+  "n": 1121,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "GOLD FINISH",
@@ -9900,7 +10089,7 @@
   "tab": 3
  },
  {
-  "n": 1101,
+  "n": 1122,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "CHROME FINISH",
@@ -9909,7 +10098,7 @@
   "tab": 3
  },
  {
-  "n": 1102,
+  "n": 1123,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "BLUED FINISH",
@@ -9918,7 +10107,7 @@
   "tab": 3
  },
  {
-  "n": 1103,
+  "n": 1124,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "BLOODY FINISH",
@@ -9927,7 +10116,7 @@
   "tab": 3
  },
  {
-  "n": 1104,
+  "n": 1125,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "WOODLAND FINISH",
@@ -9936,7 +10125,7 @@
   "tab": 3
  },
  {
-  "n": 1105,
+  "n": 1126,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "WINTER FINISH",
@@ -9945,7 +10134,7 @@
   "tab": 3
  },
  {
-  "n": 1106,
+  "n": 1127,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "DESERT FINISH",
@@ -9954,7 +10143,7 @@
   "tab": 3
  },
  {
-  "n": 1107,
+  "n": 1128,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "WHITEWASH FINISH",
@@ -9963,7 +10152,7 @@
   "tab": 3
  },
  {
-  "n": 1108,
+  "n": 1129,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "AFRIKA KORPS FINISH",
@@ -9972,7 +10161,7 @@
   "tab": 3
  },
  {
-  "n": 1109,
+  "n": 1130,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "KRIEGSMARINE FINISH",
@@ -9981,7 +10170,7 @@
   "tab": 3
  },
  {
-  "n": 1110,
+  "n": 1131,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "AIRBORNE FINISH",
@@ -9990,7 +10179,7 @@
   "tab": 3
  },
  {
-  "n": 1111,
+  "n": 1132,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "SPLINTER FINISH",
@@ -9999,7 +10188,7 @@
   "tab": 3
  },
  {
-  "n": 1112,
+  "n": 1133,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "PEA DOT FINISH",
@@ -10008,7 +10197,7 @@
   "tab": 3
  },
  {
-  "n": 1113,
+  "n": 1134,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "TELO FINISH",
@@ -10017,7 +10206,7 @@
   "tab": 3
  },
  {
-  "n": 1114,
+  "n": 1135,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "AMOEBA FINISH",
@@ -10026,7 +10215,7 @@
   "tab": 3
  },
  {
-  "n": 1115,
+  "n": 1136,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "AIRBORNE 101ST FINISH",
@@ -10035,7 +10224,7 @@
   "tab": 3
  },
  {
-  "n": 1116,
+  "n": 1137,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "BATTLE-WORN FINISH",
@@ -10044,7 +10233,7 @@
   "tab": 3
  },
  {
-  "n": 1117,
+  "n": 1138,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "TRENCH ART FINISH",
@@ -10053,7 +10242,7 @@
   "tab": 3
  },
  {
-  "n": 1118,
+  "n": 1139,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "PARADE FINISH",
@@ -10062,7 +10251,7 @@
   "tab": 3
  },
  {
-  "n": 1119,
+  "n": 1140,
   "gid": "80",
   "name": "DOUBLE BARREL",
   "variant": "CAPTURED FINISH",
@@ -10071,7 +10260,7 @@
   "tab": 3
  },
  {
-  "n": 1120,
+  "n": 1141,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "STANDARD ISSUE",
@@ -10080,7 +10269,7 @@
   "tab": 3
  },
  {
-  "n": 1121,
+  "n": 1142,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "GOLD FINISH",
@@ -10089,7 +10278,7 @@
   "tab": 3
  },
  {
-  "n": 1122,
+  "n": 1143,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "CHROME FINISH",
@@ -10098,7 +10287,7 @@
   "tab": 3
  },
  {
-  "n": 1123,
+  "n": 1144,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "BLUED FINISH",
@@ -10107,7 +10296,7 @@
   "tab": 3
  },
  {
-  "n": 1124,
+  "n": 1145,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "BLOODY FINISH",
@@ -10116,7 +10305,7 @@
   "tab": 3
  },
  {
-  "n": 1125,
+  "n": 1146,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "WOODLAND FINISH",
@@ -10125,7 +10314,7 @@
   "tab": 3
  },
  {
-  "n": 1126,
+  "n": 1147,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "WINTER FINISH",
@@ -10134,7 +10323,7 @@
   "tab": 3
  },
  {
-  "n": 1127,
+  "n": 1148,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "DESERT FINISH",
@@ -10143,7 +10332,7 @@
   "tab": 3
  },
  {
-  "n": 1128,
+  "n": 1149,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "WHITEWASH FINISH",
@@ -10152,7 +10341,7 @@
   "tab": 3
  },
  {
-  "n": 1129,
+  "n": 1150,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "AFRIKA KORPS FINISH",
@@ -10161,7 +10350,7 @@
   "tab": 3
  },
  {
-  "n": 1130,
+  "n": 1151,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "KRIEGSMARINE FINISH",
@@ -10170,7 +10359,7 @@
   "tab": 3
  },
  {
-  "n": 1131,
+  "n": 1152,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "AIRBORNE FINISH",
@@ -10179,7 +10368,7 @@
   "tab": 3
  },
  {
-  "n": 1132,
+  "n": 1153,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "SPLINTER FINISH",
@@ -10188,7 +10377,7 @@
   "tab": 3
  },
  {
-  "n": 1133,
+  "n": 1154,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "PEA DOT FINISH",
@@ -10197,7 +10386,7 @@
   "tab": 3
  },
  {
-  "n": 1134,
+  "n": 1155,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "TELO FINISH",
@@ -10206,7 +10395,7 @@
   "tab": 3
  },
  {
-  "n": 1135,
+  "n": 1156,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "AMOEBA FINISH",
@@ -10215,7 +10404,7 @@
   "tab": 3
  },
  {
-  "n": 1136,
+  "n": 1157,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "AIRBORNE 101ST FINISH",
@@ -10224,7 +10413,7 @@
   "tab": 3
  },
  {
-  "n": 1137,
+  "n": 1158,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "BATTLE-WORN FINISH",
@@ -10233,7 +10422,7 @@
   "tab": 3
  },
  {
-  "n": 1138,
+  "n": 1159,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "TRENCH ART FINISH",
@@ -10242,7 +10431,7 @@
   "tab": 3
  },
  {
-  "n": 1139,
+  "n": 1160,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "PARADE FINISH",
@@ -10251,7 +10440,7 @@
   "tab": 3
  },
  {
-  "n": 1140,
+  "n": 1161,
   "gid": "79",
   "name": "FG 42 (IRON SIGHTS)",
   "variant": "CAPTURED FINISH",
@@ -10260,7 +10449,7 @@
   "tab": 3
  },
  {
-  "n": 1141,
+  "n": 1162,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "STANDARD ISSUE",
@@ -10269,7 +10458,7 @@
   "tab": 3
  },
  {
-  "n": 1142,
+  "n": 1163,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "GOLD FINISH",
@@ -10278,7 +10467,7 @@
   "tab": 3
  },
  {
-  "n": 1143,
+  "n": 1164,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "CHROME FINISH",
@@ -10287,7 +10476,7 @@
   "tab": 3
  },
  {
-  "n": 1144,
+  "n": 1165,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "BLUED FINISH",
@@ -10296,7 +10485,7 @@
   "tab": 3
  },
  {
-  "n": 1145,
+  "n": 1166,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "BLOODY FINISH",
@@ -10305,7 +10494,7 @@
   "tab": 3
  },
  {
-  "n": 1146,
+  "n": 1167,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "WOODLAND FINISH",
@@ -10314,7 +10503,7 @@
   "tab": 3
  },
  {
-  "n": 1147,
+  "n": 1168,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "WINTER FINISH",
@@ -10323,7 +10512,7 @@
   "tab": 3
  },
  {
-  "n": 1148,
+  "n": 1169,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "DESERT FINISH",
@@ -10332,7 +10521,7 @@
   "tab": 3
  },
  {
-  "n": 1149,
+  "n": 1170,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "WHITEWASH FINISH",
@@ -10341,7 +10530,7 @@
   "tab": 3
  },
  {
-  "n": 1150,
+  "n": 1171,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "AFRIKA KORPS FINISH",
@@ -10350,7 +10539,7 @@
   "tab": 3
  },
  {
-  "n": 1151,
+  "n": 1172,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "KRIEGSMARINE FINISH",
@@ -10359,7 +10548,7 @@
   "tab": 3
  },
  {
-  "n": 1152,
+  "n": 1173,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "AIRBORNE FINISH",
@@ -10368,7 +10557,7 @@
   "tab": 3
  },
  {
-  "n": 1153,
+  "n": 1174,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "SPLINTER FINISH",
@@ -10377,7 +10566,7 @@
   "tab": 3
  },
  {
-  "n": 1154,
+  "n": 1175,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "PEA DOT FINISH",
@@ -10386,7 +10575,7 @@
   "tab": 3
  },
  {
-  "n": 1155,
+  "n": 1176,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "TELO FINISH",
@@ -10395,7 +10584,7 @@
   "tab": 3
  },
  {
-  "n": 1156,
+  "n": 1177,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "AMOEBA FINISH",
@@ -10404,7 +10593,7 @@
   "tab": 3
  },
  {
-  "n": 1157,
+  "n": 1178,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "AIRBORNE 101ST FINISH",
@@ -10413,7 +10602,7 @@
   "tab": 3
  },
  {
-  "n": 1158,
+  "n": 1179,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "BATTLE-WORN FINISH",
@@ -10422,7 +10611,7 @@
   "tab": 3
  },
  {
-  "n": 1159,
+  "n": 1180,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "TRENCH ART FINISH",
@@ -10431,7 +10620,7 @@
   "tab": 3
  },
  {
-  "n": 1160,
+  "n": 1181,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "PARADE FINISH",
@@ -10440,7 +10629,7 @@
   "tab": 3
  },
  {
-  "n": 1161,
+  "n": 1182,
   "gid": "81",
   "name": "LEWIS GUN",
   "variant": "CAPTURED FINISH",
@@ -10449,7 +10638,196 @@
   "tab": 3
  },
  {
-  "n": 1162,
+  "n": 1183,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "STANDARD ISSUE",
+  "fid": 0,
+  "tik": "models/weapons/coop_panzerfaust.tik",
+  "tab": 3
+ },
+ {
+  "n": 1184,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "GOLD FINISH",
+  "fid": 1,
+  "tik": "models/weapons/coop_panzerfaust_gold.tik",
+  "tab": 3
+ },
+ {
+  "n": 1185,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "CHROME FINISH",
+  "fid": 2,
+  "tik": "models/weapons/coop_panzerfaust_chrome.tik",
+  "tab": 3
+ },
+ {
+  "n": 1186,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "BLUED FINISH",
+  "fid": 3,
+  "tik": "models/weapons/coop_panzerfaust_blued.tik",
+  "tab": 3
+ },
+ {
+  "n": 1187,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "BLOODY FINISH",
+  "fid": 4,
+  "tik": "models/weapons/coop_panzerfaust_bloody.tik",
+  "tab": 3
+ },
+ {
+  "n": 1188,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "WOODLAND FINISH",
+  "fid": 5,
+  "tik": "models/weapons/coop_panzerfaust_camo_woodland.tik",
+  "tab": 3
+ },
+ {
+  "n": 1189,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "WINTER FINISH",
+  "fid": 6,
+  "tik": "models/weapons/coop_panzerfaust_camo_winter.tik",
+  "tab": 3
+ },
+ {
+  "n": 1190,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "DESERT FINISH",
+  "fid": 7,
+  "tik": "models/weapons/coop_panzerfaust_camo_desert.tik",
+  "tab": 3
+ },
+ {
+  "n": 1191,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "WHITEWASH FINISH",
+  "fid": 40,
+  "tik": "models/weapons/coop_panzerfaust_fs2_whitewash.tik",
+  "tab": 3
+ },
+ {
+  "n": 1192,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "AFRIKA KORPS FINISH",
+  "fid": 41,
+  "tik": "models/weapons/coop_panzerfaust_fs2_dak.tik",
+  "tab": 3
+ },
+ {
+  "n": 1193,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "KRIEGSMARINE FINISH",
+  "fid": 42,
+  "tik": "models/weapons/coop_panzerfaust_fs2_kriegsmarine.tik",
+  "tab": 3
+ },
+ {
+  "n": 1194,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "AIRBORNE FINISH",
+  "fid": 43,
+  "tik": "models/weapons/coop_panzerfaust_fs2_airborne.tik",
+  "tab": 3
+ },
+ {
+  "n": 1195,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "SPLINTER FINISH",
+  "fid": 44,
+  "tik": "models/weapons/coop_panzerfaust_fs2_splitter.tik",
+  "tab": 3
+ },
+ {
+  "n": 1196,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "PEA DOT FINISH",
+  "fid": 45,
+  "tik": "models/weapons/coop_panzerfaust_fs2_pea.tik",
+  "tab": 3
+ },
+ {
+  "n": 1197,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "TELO FINISH",
+  "fid": 46,
+  "tik": "models/weapons/coop_panzerfaust_fs2_telo.tik",
+  "tab": 3
+ },
+ {
+  "n": 1198,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "AMOEBA FINISH",
+  "fid": 47,
+  "tik": "models/weapons/coop_panzerfaust_fs2_amoeba.tik",
+  "tab": 3
+ },
+ {
+  "n": 1199,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "AIRBORNE 101ST FINISH",
+  "fid": 48,
+  "tik": "models/weapons/coop_panzerfaust_fs2_airborne101.tik",
+  "tab": 3
+ },
+ {
+  "n": 1200,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "BATTLE-WORN FINISH",
+  "fid": 49,
+  "tik": "models/weapons/coop_panzerfaust_fs2_battleworn.tik",
+  "tab": 3
+ },
+ {
+  "n": 1201,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "TRENCH ART FINISH",
+  "fid": 50,
+  "tik": "models/weapons/coop_panzerfaust_fs2_trenchart.tik",
+  "tab": 3
+ },
+ {
+  "n": 1202,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "PARADE FINISH",
+  "fid": 51,
+  "tik": "models/weapons/coop_panzerfaust_fs2_parade.tik",
+  "tab": 3
+ },
+ {
+  "n": 1203,
+  "gid": "84",
+  "name": "PANZERFAUST 60",
+  "variant": "CAPTURED FINISH",
+  "fid": 52,
+  "tik": "models/weapons/coop_panzerfaust_fs2_captured.tik",
+  "tab": 3
+ },
+ {
+  "n": 1204,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "STANDARD ISSUE",
@@ -10458,7 +10836,7 @@
   "tab": 4
  },
  {
-  "n": 1163,
+  "n": 1205,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "GOLD FINISH",
@@ -10467,7 +10845,7 @@
   "tab": 4
  },
  {
-  "n": 1164,
+  "n": 1206,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "CHROME FINISH",
@@ -10476,7 +10854,7 @@
   "tab": 4
  },
  {
-  "n": 1165,
+  "n": 1207,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "BLUED FINISH",
@@ -10485,7 +10863,7 @@
   "tab": 4
  },
  {
-  "n": 1166,
+  "n": 1208,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "BLOODY FINISH",
@@ -10494,7 +10872,7 @@
   "tab": 4
  },
  {
-  "n": 1167,
+  "n": 1209,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "WOODLAND FINISH",
@@ -10503,7 +10881,7 @@
   "tab": 4
  },
  {
-  "n": 1168,
+  "n": 1210,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "WINTER FINISH",
@@ -10512,7 +10890,7 @@
   "tab": 4
  },
  {
-  "n": 1169,
+  "n": 1211,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "DESERT FINISH",
@@ -10521,7 +10899,7 @@
   "tab": 4
  },
  {
-  "n": 1170,
+  "n": 1212,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "COLT 45 (PACIFIC) (ACME313)",
@@ -10530,7 +10908,7 @@
   "tab": 4
  },
  {
-  "n": 1171,
+  "n": 1213,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "WEBLEY MK VI (EAST)",
@@ -10539,7 +10917,7 @@
   "tab": 4
  },
  {
-  "n": 1172,
+  "n": 1214,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "M1911 COVERT",
@@ -10548,7 +10926,7 @@
   "tab": 4
  },
  {
-  "n": 1173,
+  "n": 1215,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "1911 CLASSIC",
@@ -10557,7 +10935,7 @@
   "tab": 4
  },
  {
-  "n": 1174,
+  "n": 1216,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "M1911 BLOODY EIC (SCHUTZE)",
@@ -10566,7 +10944,7 @@
   "tab": 4
  },
  {
-  "n": 1175,
+  "n": 1217,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "COLT 1911 (GUANSHIRE)",
@@ -10575,7 +10953,7 @@
   "tab": 4
  },
  {
-  "n": 1176,
+  "n": 1218,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "TEAM TACTICS (LEON)",
@@ -10584,7 +10962,7 @@
   "tab": 4
  },
  {
-  "n": 1177,
+  "n": 1219,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "WHITEWASH FINISH",
@@ -10593,7 +10971,7 @@
   "tab": 4
  },
  {
-  "n": 1178,
+  "n": 1220,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "AFRIKA KORPS FINISH",
@@ -10602,7 +10980,7 @@
   "tab": 4
  },
  {
-  "n": 1179,
+  "n": 1221,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "KRIEGSMARINE FINISH",
@@ -10611,7 +10989,7 @@
   "tab": 4
  },
  {
-  "n": 1180,
+  "n": 1222,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "AIRBORNE FINISH",
@@ -10620,7 +10998,7 @@
   "tab": 4
  },
  {
-  "n": 1181,
+  "n": 1223,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "SPLINTER FINISH",
@@ -10629,7 +11007,7 @@
   "tab": 4
  },
  {
-  "n": 1182,
+  "n": 1224,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "PEA DOT FINISH",
@@ -10638,7 +11016,7 @@
   "tab": 4
  },
  {
-  "n": 1183,
+  "n": 1225,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "TELO FINISH",
@@ -10647,7 +11025,7 @@
   "tab": 4
  },
  {
-  "n": 1184,
+  "n": 1226,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "AMOEBA FINISH",
@@ -10656,7 +11034,7 @@
   "tab": 4
  },
  {
-  "n": 1185,
+  "n": 1227,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "AIRBORNE 101ST FINISH",
@@ -10665,7 +11043,7 @@
   "tab": 4
  },
  {
-  "n": 1186,
+  "n": 1228,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "BATTLE-WORN FINISH",
@@ -10674,7 +11052,7 @@
   "tab": 4
  },
  {
-  "n": 1187,
+  "n": 1229,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "TRENCH ART FINISH",
@@ -10683,7 +11061,7 @@
   "tab": 4
  },
  {
-  "n": 1188,
+  "n": 1230,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "PARADE FINISH",
@@ -10692,7 +11070,7 @@
   "tab": 4
  },
  {
-  "n": 1189,
+  "n": 1231,
   "gid": "48",
   "name": "COLT M1911",
   "variant": "CAPTURED FINISH",
@@ -10701,7 +11079,7 @@
   "tab": 4
  },
  {
-  "n": 1190,
+  "n": 1232,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "STANDARD ISSUE",
@@ -10710,7 +11088,7 @@
   "tab": 4
  },
  {
-  "n": 1191,
+  "n": 1233,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "GOLD FINISH",
@@ -10719,7 +11097,7 @@
   "tab": 4
  },
  {
-  "n": 1192,
+  "n": 1234,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "CHROME FINISH",
@@ -10728,7 +11106,7 @@
   "tab": 4
  },
  {
-  "n": 1193,
+  "n": 1235,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "BLUED FINISH",
@@ -10737,7 +11115,7 @@
   "tab": 4
  },
  {
-  "n": 1194,
+  "n": 1236,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "BLOODY FINISH",
@@ -10746,7 +11124,7 @@
   "tab": 4
  },
  {
-  "n": 1195,
+  "n": 1237,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "WOODLAND FINISH",
@@ -10755,7 +11133,7 @@
   "tab": 4
  },
  {
-  "n": 1196,
+  "n": 1238,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "WINTER FINISH",
@@ -10764,7 +11142,7 @@
   "tab": 4
  },
  {
-  "n": 1197,
+  "n": 1239,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "DESERT FINISH",
@@ -10773,7 +11151,7 @@
   "tab": 4
  },
  {
-  "n": 1198,
+  "n": 1240,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "WHITEWASH FINISH",
@@ -10782,7 +11160,7 @@
   "tab": 4
  },
  {
-  "n": 1199,
+  "n": 1241,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "AFRIKA KORPS FINISH",
@@ -10791,7 +11169,7 @@
   "tab": 4
  },
  {
-  "n": 1200,
+  "n": 1242,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "KRIEGSMARINE FINISH",
@@ -10800,7 +11178,7 @@
   "tab": 4
  },
  {
-  "n": 1201,
+  "n": 1243,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "AIRBORNE FINISH",
@@ -10809,7 +11187,7 @@
   "tab": 4
  },
  {
-  "n": 1202,
+  "n": 1244,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "SPLINTER FINISH",
@@ -10818,7 +11196,7 @@
   "tab": 4
  },
  {
-  "n": 1203,
+  "n": 1245,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "PEA DOT FINISH",
@@ -10827,7 +11205,7 @@
   "tab": 4
  },
  {
-  "n": 1204,
+  "n": 1246,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "TELO FINISH",
@@ -10836,7 +11214,7 @@
   "tab": 4
  },
  {
-  "n": 1205,
+  "n": 1247,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "AMOEBA FINISH",
@@ -10845,7 +11223,7 @@
   "tab": 4
  },
  {
-  "n": 1206,
+  "n": 1248,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "AIRBORNE 101ST FINISH",
@@ -10854,7 +11232,7 @@
   "tab": 4
  },
  {
-  "n": 1207,
+  "n": 1249,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "BATTLE-WORN FINISH",
@@ -10863,7 +11241,7 @@
   "tab": 4
  },
  {
-  "n": 1208,
+  "n": 1250,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "TRENCH ART FINISH",
@@ -10872,7 +11250,7 @@
   "tab": 4
  },
  {
-  "n": 1209,
+  "n": 1251,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "PARADE FINISH",
@@ -10881,7 +11259,7 @@
   "tab": 4
  },
  {
-  "n": 1210,
+  "n": 1252,
   "gid": "49",
   "name": "COLT M1911 SILENCED",
   "variant": "CAPTURED FINISH",
@@ -10890,7 +11268,7 @@
   "tab": 4
  },
  {
-  "n": 1211,
+  "n": 1253,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "STANDARD ISSUE",
@@ -10899,7 +11277,7 @@
   "tab": 4
  },
  {
-  "n": 1212,
+  "n": 1254,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "GOLD FINISH",
@@ -10908,7 +11286,7 @@
   "tab": 4
  },
  {
-  "n": 1213,
+  "n": 1255,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "CHROME FINISH",
@@ -10917,7 +11295,7 @@
   "tab": 4
  },
  {
-  "n": 1214,
+  "n": 1256,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "BLUED FINISH",
@@ -10926,7 +11304,7 @@
   "tab": 4
  },
  {
-  "n": 1215,
+  "n": 1257,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "BLOODY FINISH",
@@ -10935,7 +11313,7 @@
   "tab": 4
  },
  {
-  "n": 1216,
+  "n": 1258,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "WOODLAND FINISH",
@@ -10944,7 +11322,7 @@
   "tab": 4
  },
  {
-  "n": 1217,
+  "n": 1259,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "WINTER FINISH",
@@ -10953,7 +11331,7 @@
   "tab": 4
  },
  {
-  "n": 1218,
+  "n": 1260,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "DESERT FINISH",
@@ -10962,7 +11340,7 @@
   "tab": 4
  },
  {
-  "n": 1219,
+  "n": 1261,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "WALTHER P38 (GUANSHIRE)",
@@ -10971,7 +11349,7 @@
   "tab": 4
  },
  {
-  "n": 1220,
+  "n": 1262,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "TEAM TACTICS (LEON)",
@@ -10980,7 +11358,7 @@
   "tab": 4
  },
  {
-  "n": 1221,
+  "n": 1263,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "WHITEWASH FINISH",
@@ -10989,7 +11367,7 @@
   "tab": 4
  },
  {
-  "n": 1222,
+  "n": 1264,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "AFRIKA KORPS FINISH",
@@ -10998,7 +11376,7 @@
   "tab": 4
  },
  {
-  "n": 1223,
+  "n": 1265,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "KRIEGSMARINE FINISH",
@@ -11007,7 +11385,7 @@
   "tab": 4
  },
  {
-  "n": 1224,
+  "n": 1266,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "AIRBORNE FINISH",
@@ -11016,7 +11394,7 @@
   "tab": 4
  },
  {
-  "n": 1225,
+  "n": 1267,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "SPLINTER FINISH",
@@ -11025,7 +11403,7 @@
   "tab": 4
  },
  {
-  "n": 1226,
+  "n": 1268,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "PEA DOT FINISH",
@@ -11034,7 +11412,7 @@
   "tab": 4
  },
  {
-  "n": 1227,
+  "n": 1269,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "TELO FINISH",
@@ -11043,7 +11421,7 @@
   "tab": 4
  },
  {
-  "n": 1228,
+  "n": 1270,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "AMOEBA FINISH",
@@ -11052,7 +11430,7 @@
   "tab": 4
  },
  {
-  "n": 1229,
+  "n": 1271,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "AIRBORNE 101ST FINISH",
@@ -11061,7 +11439,7 @@
   "tab": 4
  },
  {
-  "n": 1230,
+  "n": 1272,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "BATTLE-WORN FINISH",
@@ -11070,7 +11448,7 @@
   "tab": 4
  },
  {
-  "n": 1231,
+  "n": 1273,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "TRENCH ART FINISH",
@@ -11079,7 +11457,7 @@
   "tab": 4
  },
  {
-  "n": 1232,
+  "n": 1274,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "PARADE FINISH",
@@ -11088,7 +11466,7 @@
   "tab": 4
  },
  {
-  "n": 1233,
+  "n": 1275,
   "gid": "50",
   "name": "WALTHER P38",
   "variant": "CAPTURED FINISH",
@@ -11097,7 +11475,7 @@
   "tab": 4
  },
  {
-  "n": 1234,
+  "n": 1276,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "STANDARD ISSUE",
@@ -11106,7 +11484,7 @@
   "tab": 4
  },
  {
-  "n": 1235,
+  "n": 1277,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "GOLD FINISH",
@@ -11115,7 +11493,7 @@
   "tab": 4
  },
  {
-  "n": 1236,
+  "n": 1278,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "CHROME FINISH",
@@ -11124,7 +11502,7 @@
   "tab": 4
  },
  {
-  "n": 1237,
+  "n": 1279,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "BLUED FINISH",
@@ -11133,7 +11511,7 @@
   "tab": 4
  },
  {
-  "n": 1238,
+  "n": 1280,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "BLOODY FINISH",
@@ -11142,7 +11520,7 @@
   "tab": 4
  },
  {
-  "n": 1239,
+  "n": 1281,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "WOODLAND FINISH",
@@ -11151,7 +11529,7 @@
   "tab": 4
  },
  {
-  "n": 1240,
+  "n": 1282,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "WINTER FINISH",
@@ -11160,7 +11538,7 @@
   "tab": 4
  },
  {
-  "n": 1241,
+  "n": 1283,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "DESERT FINISH",
@@ -11169,7 +11547,7 @@
   "tab": 4
  },
  {
-  "n": 1242,
+  "n": 1284,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "WHITEWASH FINISH",
@@ -11178,7 +11556,7 @@
   "tab": 4
  },
  {
-  "n": 1243,
+  "n": 1285,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "AFRIKA KORPS FINISH",
@@ -11187,7 +11565,7 @@
   "tab": 4
  },
  {
-  "n": 1244,
+  "n": 1286,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "KRIEGSMARINE FINISH",
@@ -11196,7 +11574,7 @@
   "tab": 4
  },
  {
-  "n": 1245,
+  "n": 1287,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "AIRBORNE FINISH",
@@ -11205,7 +11583,7 @@
   "tab": 4
  },
  {
-  "n": 1246,
+  "n": 1288,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "SPLINTER FINISH",
@@ -11214,7 +11592,7 @@
   "tab": 4
  },
  {
-  "n": 1247,
+  "n": 1289,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "PEA DOT FINISH",
@@ -11223,7 +11601,7 @@
   "tab": 4
  },
  {
-  "n": 1248,
+  "n": 1290,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "TELO FINISH",
@@ -11232,7 +11610,7 @@
   "tab": 4
  },
  {
-  "n": 1249,
+  "n": 1291,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "AMOEBA FINISH",
@@ -11241,7 +11619,7 @@
   "tab": 4
  },
  {
-  "n": 1250,
+  "n": 1292,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "AIRBORNE 101ST FINISH",
@@ -11250,7 +11628,7 @@
   "tab": 4
  },
  {
-  "n": 1251,
+  "n": 1293,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "BATTLE-WORN FINISH",
@@ -11259,7 +11637,7 @@
   "tab": 4
  },
  {
-  "n": 1252,
+  "n": 1294,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "TRENCH ART FINISH",
@@ -11268,7 +11646,7 @@
   "tab": 4
  },
  {
-  "n": 1253,
+  "n": 1295,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "PARADE FINISH",
@@ -11277,7 +11655,7 @@
   "tab": 4
  },
  {
-  "n": 1254,
+  "n": 1296,
   "gid": "51",
   "name": "WALTHER P38 SILENCED",
   "variant": "CAPTURED FINISH",
@@ -11286,7 +11664,7 @@
   "tab": 4
  },
  {
-  "n": 1255,
+  "n": 1297,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "STANDARD ISSUE",
@@ -11295,7 +11673,7 @@
   "tab": 4
  },
  {
-  "n": 1256,
+  "n": 1298,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "GOLD FINISH",
@@ -11304,7 +11682,7 @@
   "tab": 4
  },
  {
-  "n": 1257,
+  "n": 1299,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "CHROME FINISH",
@@ -11313,7 +11691,7 @@
   "tab": 4
  },
  {
-  "n": 1258,
+  "n": 1300,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "BLUED FINISH",
@@ -11322,7 +11700,7 @@
   "tab": 4
  },
  {
-  "n": 1259,
+  "n": 1301,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "BLOODY FINISH",
@@ -11331,7 +11709,7 @@
   "tab": 4
  },
  {
-  "n": 1260,
+  "n": 1302,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "WOODLAND FINISH",
@@ -11340,7 +11718,7 @@
   "tab": 4
  },
  {
-  "n": 1261,
+  "n": 1303,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "WINTER FINISH",
@@ -11349,7 +11727,7 @@
   "tab": 4
  },
  {
-  "n": 1262,
+  "n": 1304,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "DESERT FINISH",
@@ -11358,7 +11736,7 @@
   "tab": 4
  },
  {
-  "n": 1263,
+  "n": 1305,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "WHITEWASH FINISH",
@@ -11367,7 +11745,7 @@
   "tab": 4
  },
  {
-  "n": 1264,
+  "n": 1306,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "AFRIKA KORPS FINISH",
@@ -11376,7 +11754,7 @@
   "tab": 4
  },
  {
-  "n": 1265,
+  "n": 1307,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "KRIEGSMARINE FINISH",
@@ -11385,7 +11763,7 @@
   "tab": 4
  },
  {
-  "n": 1266,
+  "n": 1308,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "AIRBORNE FINISH",
@@ -11394,7 +11772,7 @@
   "tab": 4
  },
  {
-  "n": 1267,
+  "n": 1309,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "SPLINTER FINISH",
@@ -11403,7 +11781,7 @@
   "tab": 4
  },
  {
-  "n": 1268,
+  "n": 1310,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "PEA DOT FINISH",
@@ -11412,7 +11790,7 @@
   "tab": 4
  },
  {
-  "n": 1269,
+  "n": 1311,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "TELO FINISH",
@@ -11421,7 +11799,7 @@
   "tab": 4
  },
  {
-  "n": 1270,
+  "n": 1312,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "AMOEBA FINISH",
@@ -11430,7 +11808,7 @@
   "tab": 4
  },
  {
-  "n": 1271,
+  "n": 1313,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "AIRBORNE 101ST FINISH",
@@ -11439,7 +11817,7 @@
   "tab": 4
  },
  {
-  "n": 1272,
+  "n": 1314,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "BATTLE-WORN FINISH",
@@ -11448,7 +11826,7 @@
   "tab": 4
  },
  {
-  "n": 1273,
+  "n": 1315,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "TRENCH ART FINISH",
@@ -11457,7 +11835,7 @@
   "tab": 4
  },
  {
-  "n": 1274,
+  "n": 1316,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "PARADE FINISH",
@@ -11466,7 +11844,7 @@
   "tab": 4
  },
  {
-  "n": 1275,
+  "n": 1317,
   "gid": "52",
   "name": "HI-STANDARD HDM",
   "variant": "CAPTURED FINISH",
@@ -11475,7 +11853,7 @@
   "tab": 4
  },
  {
-  "n": 1276,
+  "n": 1318,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "STANDARD ISSUE",
@@ -11484,7 +11862,7 @@
   "tab": 4
  },
  {
-  "n": 1277,
+  "n": 1319,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "GOLD FINISH",
@@ -11493,7 +11871,7 @@
   "tab": 4
  },
  {
-  "n": 1278,
+  "n": 1320,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "CHROME FINISH",
@@ -11502,7 +11880,7 @@
   "tab": 4
  },
  {
-  "n": 1279,
+  "n": 1321,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "BLUED FINISH",
@@ -11511,7 +11889,7 @@
   "tab": 4
  },
  {
-  "n": 1280,
+  "n": 1322,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "BLOODY FINISH",
@@ -11520,7 +11898,7 @@
   "tab": 4
  },
  {
-  "n": 1281,
+  "n": 1323,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "WOODLAND FINISH",
@@ -11529,7 +11907,7 @@
   "tab": 4
  },
  {
-  "n": 1282,
+  "n": 1324,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "WINTER FINISH",
@@ -11538,7 +11916,7 @@
   "tab": 4
  },
  {
-  "n": 1283,
+  "n": 1325,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "DESERT FINISH",
@@ -11547,7 +11925,7 @@
   "tab": 4
  },
  {
-  "n": 1284,
+  "n": 1326,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "TEAM TACTICS (LEON)",
@@ -11556,7 +11934,7 @@
   "tab": 4
  },
  {
-  "n": 1285,
+  "n": 1327,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "WHITEWASH FINISH",
@@ -11565,7 +11943,7 @@
   "tab": 4
  },
  {
-  "n": 1286,
+  "n": 1328,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "AFRIKA KORPS FINISH",
@@ -11574,7 +11952,7 @@
   "tab": 4
  },
  {
-  "n": 1287,
+  "n": 1329,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "KRIEGSMARINE FINISH",
@@ -11583,7 +11961,7 @@
   "tab": 4
  },
  {
-  "n": 1288,
+  "n": 1330,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "AIRBORNE FINISH",
@@ -11592,7 +11970,7 @@
   "tab": 4
  },
  {
-  "n": 1289,
+  "n": 1331,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "SPLINTER FINISH",
@@ -11601,7 +11979,7 @@
   "tab": 4
  },
  {
-  "n": 1290,
+  "n": 1332,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "PEA DOT FINISH",
@@ -11610,7 +11988,7 @@
   "tab": 4
  },
  {
-  "n": 1291,
+  "n": 1333,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "TELO FINISH",
@@ -11619,7 +11997,7 @@
   "tab": 4
  },
  {
-  "n": 1292,
+  "n": 1334,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "AMOEBA FINISH",
@@ -11628,7 +12006,7 @@
   "tab": 4
  },
  {
-  "n": 1293,
+  "n": 1335,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "AIRBORNE 101ST FINISH",
@@ -11637,7 +12015,7 @@
   "tab": 4
  },
  {
-  "n": 1294,
+  "n": 1336,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "BATTLE-WORN FINISH",
@@ -11646,7 +12024,7 @@
   "tab": 4
  },
  {
-  "n": 1295,
+  "n": 1337,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "TRENCH ART FINISH",
@@ -11655,7 +12033,7 @@
   "tab": 4
  },
  {
-  "n": 1296,
+  "n": 1338,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "PARADE FINISH",
@@ -11664,7 +12042,7 @@
   "tab": 4
  },
  {
-  "n": 1297,
+  "n": 1339,
   "gid": "53",
   "name": "WEBLEY MK VI",
   "variant": "CAPTURED FINISH",
@@ -11673,7 +12051,7 @@
   "tab": 4
  },
  {
-  "n": 1298,
+  "n": 1340,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "STANDARD ISSUE",
@@ -11682,7 +12060,7 @@
   "tab": 4
  },
  {
-  "n": 1299,
+  "n": 1341,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "GOLD FINISH",
@@ -11691,7 +12069,7 @@
   "tab": 4
  },
  {
-  "n": 1300,
+  "n": 1342,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "CHROME FINISH",
@@ -11700,7 +12078,7 @@
   "tab": 4
  },
  {
-  "n": 1301,
+  "n": 1343,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "BLUED FINISH",
@@ -11709,7 +12087,7 @@
   "tab": 4
  },
  {
-  "n": 1302,
+  "n": 1344,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "BLOODY FINISH",
@@ -11718,7 +12096,7 @@
   "tab": 4
  },
  {
-  "n": 1303,
+  "n": 1345,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "WOODLAND FINISH",
@@ -11727,7 +12105,7 @@
   "tab": 4
  },
  {
-  "n": 1304,
+  "n": 1346,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "WINTER FINISH",
@@ -11736,7 +12114,7 @@
   "tab": 4
  },
  {
-  "n": 1305,
+  "n": 1347,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "DESERT FINISH",
@@ -11745,7 +12123,7 @@
   "tab": 4
  },
  {
-  "n": 1306,
+  "n": 1348,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "WHITEWASH FINISH",
@@ -11754,7 +12132,7 @@
   "tab": 4
  },
  {
-  "n": 1307,
+  "n": 1349,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "AFRIKA KORPS FINISH",
@@ -11763,7 +12141,7 @@
   "tab": 4
  },
  {
-  "n": 1308,
+  "n": 1350,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "KRIEGSMARINE FINISH",
@@ -11772,7 +12150,7 @@
   "tab": 4
  },
  {
-  "n": 1309,
+  "n": 1351,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "AIRBORNE FINISH",
@@ -11781,7 +12159,7 @@
   "tab": 4
  },
  {
-  "n": 1310,
+  "n": 1352,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "SPLINTER FINISH",
@@ -11790,7 +12168,7 @@
   "tab": 4
  },
  {
-  "n": 1311,
+  "n": 1353,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "PEA DOT FINISH",
@@ -11799,7 +12177,7 @@
   "tab": 4
  },
  {
-  "n": 1312,
+  "n": 1354,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "TELO FINISH",
@@ -11808,7 +12186,7 @@
   "tab": 4
  },
  {
-  "n": 1313,
+  "n": 1355,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "AMOEBA FINISH",
@@ -11817,7 +12195,7 @@
   "tab": 4
  },
  {
-  "n": 1314,
+  "n": 1356,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "AIRBORNE 101ST FINISH",
@@ -11826,7 +12204,7 @@
   "tab": 4
  },
  {
-  "n": 1315,
+  "n": 1357,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "BATTLE-WORN FINISH",
@@ -11835,7 +12213,7 @@
   "tab": 4
  },
  {
-  "n": 1316,
+  "n": 1358,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "TRENCH ART FINISH",
@@ -11844,7 +12222,7 @@
   "tab": 4
  },
  {
-  "n": 1317,
+  "n": 1359,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "PARADE FINISH",
@@ -11853,7 +12231,7 @@
   "tab": 4
  },
  {
-  "n": 1318,
+  "n": 1360,
   "gid": "54",
   "name": "NAGANT M1895",
   "variant": "CAPTURED FINISH",
@@ -11862,7 +12240,7 @@
   "tab": 4
  },
  {
-  "n": 1319,
+  "n": 1361,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "STANDARD ISSUE",
@@ -11871,7 +12249,7 @@
   "tab": 4
  },
  {
-  "n": 1320,
+  "n": 1362,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "GOLD FINISH",
@@ -11880,7 +12258,7 @@
   "tab": 4
  },
  {
-  "n": 1321,
+  "n": 1363,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "CHROME FINISH",
@@ -11889,7 +12267,7 @@
   "tab": 4
  },
  {
-  "n": 1322,
+  "n": 1364,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "BLUED FINISH",
@@ -11898,7 +12276,7 @@
   "tab": 4
  },
  {
-  "n": 1323,
+  "n": 1365,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "BLOODY FINISH",
@@ -11907,7 +12285,7 @@
   "tab": 4
  },
  {
-  "n": 1324,
+  "n": 1366,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "WOODLAND FINISH",
@@ -11916,7 +12294,7 @@
   "tab": 4
  },
  {
-  "n": 1325,
+  "n": 1367,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "WINTER FINISH",
@@ -11925,7 +12303,7 @@
   "tab": 4
  },
  {
-  "n": 1326,
+  "n": 1368,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "DESERT FINISH",
@@ -11934,7 +12312,7 @@
   "tab": 4
  },
  {
-  "n": 1327,
+  "n": 1369,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "TEAM TACTICS (LEON)",
@@ -11943,7 +12321,7 @@
   "tab": 4
  },
  {
-  "n": 1328,
+  "n": 1370,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "WHITEWASH FINISH",
@@ -11952,7 +12330,7 @@
   "tab": 4
  },
  {
-  "n": 1329,
+  "n": 1371,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "AFRIKA KORPS FINISH",
@@ -11961,7 +12339,7 @@
   "tab": 4
  },
  {
-  "n": 1330,
+  "n": 1372,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "KRIEGSMARINE FINISH",
@@ -11970,7 +12348,7 @@
   "tab": 4
  },
  {
-  "n": 1331,
+  "n": 1373,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "AIRBORNE FINISH",
@@ -11979,7 +12357,7 @@
   "tab": 4
  },
  {
-  "n": 1332,
+  "n": 1374,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "SPLINTER FINISH",
@@ -11988,7 +12366,7 @@
   "tab": 4
  },
  {
-  "n": 1333,
+  "n": 1375,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "PEA DOT FINISH",
@@ -11997,7 +12375,7 @@
   "tab": 4
  },
  {
-  "n": 1334,
+  "n": 1376,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "TELO FINISH",
@@ -12006,7 +12384,7 @@
   "tab": 4
  },
  {
-  "n": 1335,
+  "n": 1377,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "AMOEBA FINISH",
@@ -12015,7 +12393,7 @@
   "tab": 4
  },
  {
-  "n": 1336,
+  "n": 1378,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "AIRBORNE 101ST FINISH",
@@ -12024,7 +12402,7 @@
   "tab": 4
  },
  {
-  "n": 1337,
+  "n": 1379,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "BATTLE-WORN FINISH",
@@ -12033,7 +12411,7 @@
   "tab": 4
  },
  {
-  "n": 1338,
+  "n": 1380,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "TRENCH ART FINISH",
@@ -12042,7 +12420,7 @@
   "tab": 4
  },
  {
-  "n": 1339,
+  "n": 1381,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "PARADE FINISH",
@@ -12051,7 +12429,7 @@
   "tab": 4
  },
  {
-  "n": 1340,
+  "n": 1382,
   "gid": "55",
   "name": "BERETTA M1934",
   "variant": "CAPTURED FINISH",
@@ -12060,7 +12438,7 @@
   "tab": 4
  },
  {
-  "n": 1341,
+  "n": 1383,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "STANDARD ISSUE",
@@ -12069,7 +12447,7 @@
   "tab": 4
  },
  {
-  "n": 1342,
+  "n": 1384,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "GOLD FINISH",
@@ -12078,7 +12456,7 @@
   "tab": 4
  },
  {
-  "n": 1343,
+  "n": 1385,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "CHROME FINISH",
@@ -12087,7 +12465,7 @@
   "tab": 4
  },
  {
-  "n": 1344,
+  "n": 1386,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "BLUED FINISH",
@@ -12096,7 +12474,7 @@
   "tab": 4
  },
  {
-  "n": 1345,
+  "n": 1387,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "BLOODY FINISH",
@@ -12105,7 +12483,7 @@
   "tab": 4
  },
  {
-  "n": 1346,
+  "n": 1388,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "WOODLAND FINISH",
@@ -12114,7 +12492,7 @@
   "tab": 4
  },
  {
-  "n": 1347,
+  "n": 1389,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "WINTER FINISH",
@@ -12123,7 +12501,7 @@
   "tab": 4
  },
  {
-  "n": 1348,
+  "n": 1390,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "DESERT FINISH",
@@ -12132,7 +12510,7 @@
   "tab": 4
  },
  {
-  "n": 1349,
+  "n": 1391,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "WHITEWASH FINISH",
@@ -12141,7 +12519,7 @@
   "tab": 4
  },
  {
-  "n": 1350,
+  "n": 1392,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "AFRIKA KORPS FINISH",
@@ -12150,7 +12528,7 @@
   "tab": 4
  },
  {
-  "n": 1351,
+  "n": 1393,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "KRIEGSMARINE FINISH",
@@ -12159,7 +12537,7 @@
   "tab": 4
  },
  {
-  "n": 1352,
+  "n": 1394,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "AIRBORNE FINISH",
@@ -12168,7 +12546,7 @@
   "tab": 4
  },
  {
-  "n": 1353,
+  "n": 1395,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "SPLINTER FINISH",
@@ -12177,7 +12555,7 @@
   "tab": 4
  },
  {
-  "n": 1354,
+  "n": 1396,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "PEA DOT FINISH",
@@ -12186,7 +12564,7 @@
   "tab": 4
  },
  {
-  "n": 1355,
+  "n": 1397,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "TELO FINISH",
@@ -12195,7 +12573,7 @@
   "tab": 4
  },
  {
-  "n": 1356,
+  "n": 1398,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "AMOEBA FINISH",
@@ -12204,7 +12582,7 @@
   "tab": 4
  },
  {
-  "n": 1357,
+  "n": 1399,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "AIRBORNE 101ST FINISH",
@@ -12213,7 +12591,7 @@
   "tab": 4
  },
  {
-  "n": 1358,
+  "n": 1400,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "BATTLE-WORN FINISH",
@@ -12222,7 +12600,7 @@
   "tab": 4
  },
  {
-  "n": 1359,
+  "n": 1401,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "TRENCH ART FINISH",
@@ -12231,7 +12609,7 @@
   "tab": 4
  },
  {
-  "n": 1360,
+  "n": 1402,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "PARADE FINISH",
@@ -12240,7 +12618,7 @@
   "tab": 4
  },
  {
-  "n": 1361,
+  "n": 1403,
   "gid": "56",
   "name": "BERETTA SILENCED",
   "variant": "CAPTURED FINISH",
@@ -12249,7 +12627,7 @@
   "tab": 4
  },
  {
-  "n": 1362,
+  "n": 1404,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "STANDARD ISSUE",
@@ -12258,7 +12636,7 @@
   "tab": 4
  },
  {
-  "n": 1363,
+  "n": 1405,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "GOLD FINISH",
@@ -12267,7 +12645,7 @@
   "tab": 4
  },
  {
-  "n": 1364,
+  "n": 1406,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "CHROME FINISH",
@@ -12276,7 +12654,7 @@
   "tab": 4
  },
  {
-  "n": 1365,
+  "n": 1407,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "BLUED FINISH",
@@ -12285,7 +12663,7 @@
   "tab": 4
  },
  {
-  "n": 1366,
+  "n": 1408,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "BLOODY FINISH",
@@ -12294,7 +12672,7 @@
   "tab": 4
  },
  {
-  "n": 1367,
+  "n": 1409,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "WOODLAND FINISH",
@@ -12303,7 +12681,7 @@
   "tab": 4
  },
  {
-  "n": 1368,
+  "n": 1410,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "WINTER FINISH",
@@ -12312,7 +12690,7 @@
   "tab": 4
  },
  {
-  "n": 1369,
+  "n": 1411,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "DESERT FINISH",
@@ -12321,7 +12699,7 @@
   "tab": 4
  },
  {
-  "n": 1370,
+  "n": 1412,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "WHITEWASH FINISH",
@@ -12330,7 +12708,7 @@
   "tab": 4
  },
  {
-  "n": 1371,
+  "n": 1413,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "AFRIKA KORPS FINISH",
@@ -12339,7 +12717,7 @@
   "tab": 4
  },
  {
-  "n": 1372,
+  "n": 1414,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "KRIEGSMARINE FINISH",
@@ -12348,7 +12726,7 @@
   "tab": 4
  },
  {
-  "n": 1373,
+  "n": 1415,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "AIRBORNE FINISH",
@@ -12357,7 +12735,7 @@
   "tab": 4
  },
  {
-  "n": 1374,
+  "n": 1416,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "SPLINTER FINISH",
@@ -12366,7 +12744,7 @@
   "tab": 4
  },
  {
-  "n": 1375,
+  "n": 1417,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "PEA DOT FINISH",
@@ -12375,7 +12753,7 @@
   "tab": 4
  },
  {
-  "n": 1376,
+  "n": 1418,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "TELO FINISH",
@@ -12384,7 +12762,7 @@
   "tab": 4
  },
  {
-  "n": 1377,
+  "n": 1419,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "AMOEBA FINISH",
@@ -12393,7 +12771,7 @@
   "tab": 4
  },
  {
-  "n": 1378,
+  "n": 1420,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "AIRBORNE 101ST FINISH",
@@ -12402,7 +12780,7 @@
   "tab": 4
  },
  {
-  "n": 1379,
+  "n": 1421,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "BATTLE-WORN FINISH",
@@ -12411,7 +12789,7 @@
   "tab": 4
  },
  {
-  "n": 1380,
+  "n": 1422,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "TRENCH ART FINISH",
@@ -12420,7 +12798,7 @@
   "tab": 4
  },
  {
-  "n": 1381,
+  "n": 1423,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "PARADE FINISH",
@@ -12429,7 +12807,7 @@
   "tab": 4
  },
  {
-  "n": 1382,
+  "n": 1424,
   "gid": "57",
   "name": "LUGER P08",
   "variant": "CAPTURED FINISH",
@@ -12438,7 +12816,7 @@
   "tab": 4
  },
  {
-  "n": 1383,
+  "n": 1425,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "STANDARD ISSUE",
@@ -12447,7 +12825,7 @@
   "tab": 4
  },
  {
-  "n": 1384,
+  "n": 1426,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "GOLD FINISH",
@@ -12456,7 +12834,7 @@
   "tab": 4
  },
  {
-  "n": 1385,
+  "n": 1427,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "CHROME FINISH",
@@ -12465,7 +12843,7 @@
   "tab": 4
  },
  {
-  "n": 1386,
+  "n": 1428,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "BLUED FINISH",
@@ -12474,7 +12852,7 @@
   "tab": 4
  },
  {
-  "n": 1387,
+  "n": 1429,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "BLOODY FINISH",
@@ -12483,7 +12861,7 @@
   "tab": 4
  },
  {
-  "n": 1388,
+  "n": 1430,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "WOODLAND FINISH",
@@ -12492,7 +12870,7 @@
   "tab": 4
  },
  {
-  "n": 1389,
+  "n": 1431,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "WINTER FINISH",
@@ -12501,7 +12879,7 @@
   "tab": 4
  },
  {
-  "n": 1390,
+  "n": 1432,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "DESERT FINISH",
@@ -12510,7 +12888,7 @@
   "tab": 4
  },
  {
-  "n": 1391,
+  "n": 1433,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "WHITEWASH FINISH",
@@ -12519,7 +12897,7 @@
   "tab": 4
  },
  {
-  "n": 1392,
+  "n": 1434,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "AFRIKA KORPS FINISH",
@@ -12528,7 +12906,7 @@
   "tab": 4
  },
  {
-  "n": 1393,
+  "n": 1435,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "KRIEGSMARINE FINISH",
@@ -12537,7 +12915,7 @@
   "tab": 4
  },
  {
-  "n": 1394,
+  "n": 1436,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "AIRBORNE FINISH",
@@ -12546,7 +12924,7 @@
   "tab": 4
  },
  {
-  "n": 1395,
+  "n": 1437,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "SPLINTER FINISH",
@@ -12555,7 +12933,7 @@
   "tab": 4
  },
  {
-  "n": 1396,
+  "n": 1438,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "PEA DOT FINISH",
@@ -12564,7 +12942,7 @@
   "tab": 4
  },
  {
-  "n": 1397,
+  "n": 1439,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "TELO FINISH",
@@ -12573,7 +12951,7 @@
   "tab": 4
  },
  {
-  "n": 1398,
+  "n": 1440,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "AMOEBA FINISH",
@@ -12582,7 +12960,7 @@
   "tab": 4
  },
  {
-  "n": 1399,
+  "n": 1441,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "AIRBORNE 101ST FINISH",
@@ -12591,7 +12969,7 @@
   "tab": 4
  },
  {
-  "n": 1400,
+  "n": 1442,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "BATTLE-WORN FINISH",
@@ -12600,7 +12978,7 @@
   "tab": 4
  },
  {
-  "n": 1401,
+  "n": 1443,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "TRENCH ART FINISH",
@@ -12609,7 +12987,7 @@
   "tab": 4
  },
  {
-  "n": 1402,
+  "n": 1444,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "PARADE FINISH",
@@ -12618,7 +12996,7 @@
   "tab": 4
  },
  {
-  "n": 1403,
+  "n": 1445,
   "gid": "58",
   "name": "LUGER P08 SILENCED",
   "variant": "CAPTURED FINISH",
@@ -12627,7 +13005,7 @@
   "tab": 4
  },
  {
-  "n": 1404,
+  "n": 1446,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "STANDARD ISSUE",
@@ -12636,7 +13014,7 @@
   "tab": 4
  },
  {
-  "n": 1405,
+  "n": 1447,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "GOLD FINISH",
@@ -12645,7 +13023,7 @@
   "tab": 4
  },
  {
-  "n": 1406,
+  "n": 1448,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "CHROME FINISH",
@@ -12654,7 +13032,7 @@
   "tab": 4
  },
  {
-  "n": 1407,
+  "n": 1449,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "BLUED FINISH",
@@ -12663,7 +13041,7 @@
   "tab": 4
  },
  {
-  "n": 1408,
+  "n": 1450,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "BLOODY FINISH",
@@ -12672,7 +13050,7 @@
   "tab": 4
  },
  {
-  "n": 1409,
+  "n": 1451,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "WOODLAND FINISH",
@@ -12681,7 +13059,7 @@
   "tab": 4
  },
  {
-  "n": 1410,
+  "n": 1452,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "WINTER FINISH",
@@ -12690,7 +13068,7 @@
   "tab": 4
  },
  {
-  "n": 1411,
+  "n": 1453,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "DESERT FINISH",
@@ -12699,7 +13077,7 @@
   "tab": 4
  },
  {
-  "n": 1412,
+  "n": 1454,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "WHITEWASH FINISH",
@@ -12708,7 +13086,7 @@
   "tab": 4
  },
  {
-  "n": 1413,
+  "n": 1455,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "AFRIKA KORPS FINISH",
@@ -12717,7 +13095,7 @@
   "tab": 4
  },
  {
-  "n": 1414,
+  "n": 1456,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "KRIEGSMARINE FINISH",
@@ -12726,7 +13104,7 @@
   "tab": 4
  },
  {
-  "n": 1415,
+  "n": 1457,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "AIRBORNE FINISH",
@@ -12735,7 +13113,7 @@
   "tab": 4
  },
  {
-  "n": 1416,
+  "n": 1458,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "SPLINTER FINISH",
@@ -12744,7 +13122,7 @@
   "tab": 4
  },
  {
-  "n": 1417,
+  "n": 1459,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "PEA DOT FINISH",
@@ -12753,7 +13131,7 @@
   "tab": 4
  },
  {
-  "n": 1418,
+  "n": 1460,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "TELO FINISH",
@@ -12762,7 +13140,7 @@
   "tab": 4
  },
  {
-  "n": 1419,
+  "n": 1461,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "AMOEBA FINISH",
@@ -12771,7 +13149,7 @@
   "tab": 4
  },
  {
-  "n": 1420,
+  "n": 1462,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "AIRBORNE 101ST FINISH",
@@ -12780,7 +13158,7 @@
   "tab": 4
  },
  {
-  "n": 1421,
+  "n": 1463,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "BATTLE-WORN FINISH",
@@ -12789,7 +13167,7 @@
   "tab": 4
  },
  {
-  "n": 1422,
+  "n": 1464,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "TRENCH ART FINISH",
@@ -12798,7 +13176,7 @@
   "tab": 4
  },
  {
-  "n": 1423,
+  "n": 1465,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "PARADE FINISH",
@@ -12807,7 +13185,7 @@
   "tab": 4
  },
  {
-  "n": 1424,
+  "n": 1466,
   "gid": "59",
   "name": "WALTHER PPK",
   "variant": "CAPTURED FINISH",
@@ -12816,7 +13194,7 @@
   "tab": 4
  },
  {
-  "n": 1425,
+  "n": 1467,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "STANDARD ISSUE",
@@ -12825,7 +13203,7 @@
   "tab": 4
  },
  {
-  "n": 1426,
+  "n": 1468,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "GOLD FINISH",
@@ -12834,7 +13212,7 @@
   "tab": 4
  },
  {
-  "n": 1427,
+  "n": 1469,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "CHROME FINISH",
@@ -12843,7 +13221,7 @@
   "tab": 4
  },
  {
-  "n": 1428,
+  "n": 1470,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "BLUED FINISH",
@@ -12852,7 +13230,7 @@
   "tab": 4
  },
  {
-  "n": 1429,
+  "n": 1471,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "BLOODY FINISH",
@@ -12861,7 +13239,7 @@
   "tab": 4
  },
  {
-  "n": 1430,
+  "n": 1472,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "WOODLAND FINISH",
@@ -12870,7 +13248,7 @@
   "tab": 4
  },
  {
-  "n": 1431,
+  "n": 1473,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "WINTER FINISH",
@@ -12879,7 +13257,7 @@
   "tab": 4
  },
  {
-  "n": 1432,
+  "n": 1474,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "DESERT FINISH",
@@ -12888,7 +13266,7 @@
   "tab": 4
  },
  {
-  "n": 1433,
+  "n": 1475,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "WHITEWASH FINISH",
@@ -12897,7 +13275,7 @@
   "tab": 4
  },
  {
-  "n": 1434,
+  "n": 1476,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "AFRIKA KORPS FINISH",
@@ -12906,7 +13284,7 @@
   "tab": 4
  },
  {
-  "n": 1435,
+  "n": 1477,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "KRIEGSMARINE FINISH",
@@ -12915,7 +13293,7 @@
   "tab": 4
  },
  {
-  "n": 1436,
+  "n": 1478,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "AIRBORNE FINISH",
@@ -12924,7 +13302,7 @@
   "tab": 4
  },
  {
-  "n": 1437,
+  "n": 1479,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "SPLINTER FINISH",
@@ -12933,7 +13311,7 @@
   "tab": 4
  },
  {
-  "n": 1438,
+  "n": 1480,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "PEA DOT FINISH",
@@ -12942,7 +13320,7 @@
   "tab": 4
  },
  {
-  "n": 1439,
+  "n": 1481,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "TELO FINISH",
@@ -12951,7 +13329,7 @@
   "tab": 4
  },
  {
-  "n": 1440,
+  "n": 1482,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "AMOEBA FINISH",
@@ -12960,7 +13338,7 @@
   "tab": 4
  },
  {
-  "n": 1441,
+  "n": 1483,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "AIRBORNE 101ST FINISH",
@@ -12969,7 +13347,7 @@
   "tab": 4
  },
  {
-  "n": 1442,
+  "n": 1484,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "BATTLE-WORN FINISH",
@@ -12978,7 +13356,7 @@
   "tab": 4
  },
  {
-  "n": 1443,
+  "n": 1485,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "TRENCH ART FINISH",
@@ -12987,7 +13365,7 @@
   "tab": 4
  },
  {
-  "n": 1444,
+  "n": 1486,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "PARADE FINISH",
@@ -12996,7 +13374,7 @@
   "tab": 4
  },
  {
-  "n": 1445,
+  "n": 1487,
   "gid": "60",
   "name": "TOKAREV TT-33",
   "variant": "CAPTURED FINISH",
@@ -13005,7 +13383,7 @@
   "tab": 4
  },
  {
-  "n": 1446,
+  "n": 1488,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "STANDARD ISSUE",
@@ -13014,7 +13392,7 @@
   "tab": 4
  },
  {
-  "n": 1447,
+  "n": 1489,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "GOLD FINISH",
@@ -13023,7 +13401,7 @@
   "tab": 4
  },
  {
-  "n": 1448,
+  "n": 1490,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "CHROME FINISH",
@@ -13032,7 +13410,7 @@
   "tab": 4
  },
  {
-  "n": 1449,
+  "n": 1491,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "BLUED FINISH",
@@ -13041,7 +13419,7 @@
   "tab": 4
  },
  {
-  "n": 1450,
+  "n": 1492,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "BLOODY FINISH",
@@ -13050,7 +13428,7 @@
   "tab": 4
  },
  {
-  "n": 1451,
+  "n": 1493,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "WOODLAND FINISH",
@@ -13059,7 +13437,7 @@
   "tab": 4
  },
  {
-  "n": 1452,
+  "n": 1494,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "WINTER FINISH",
@@ -13068,7 +13446,7 @@
   "tab": 4
  },
  {
-  "n": 1453,
+  "n": 1495,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "DESERT FINISH",
@@ -13077,7 +13455,7 @@
   "tab": 4
  },
  {
-  "n": 1454,
+  "n": 1496,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "WHITEWASH FINISH",
@@ -13086,7 +13464,7 @@
   "tab": 4
  },
  {
-  "n": 1455,
+  "n": 1497,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "AFRIKA KORPS FINISH",
@@ -13095,7 +13473,7 @@
   "tab": 4
  },
  {
-  "n": 1456,
+  "n": 1498,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "KRIEGSMARINE FINISH",
@@ -13104,7 +13482,7 @@
   "tab": 4
  },
  {
-  "n": 1457,
+  "n": 1499,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "AIRBORNE FINISH",
@@ -13113,7 +13491,7 @@
   "tab": 4
  },
  {
-  "n": 1458,
+  "n": 1500,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "SPLINTER FINISH",
@@ -13122,7 +13500,7 @@
   "tab": 4
  },
  {
-  "n": 1459,
+  "n": 1501,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "PEA DOT FINISH",
@@ -13131,7 +13509,7 @@
   "tab": 4
  },
  {
-  "n": 1460,
+  "n": 1502,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "TELO FINISH",
@@ -13140,7 +13518,7 @@
   "tab": 4
  },
  {
-  "n": 1461,
+  "n": 1503,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "AMOEBA FINISH",
@@ -13149,7 +13527,7 @@
   "tab": 4
  },
  {
-  "n": 1462,
+  "n": 1504,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "AIRBORNE 101ST FINISH",
@@ -13158,7 +13536,7 @@
   "tab": 4
  },
  {
-  "n": 1463,
+  "n": 1505,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "BATTLE-WORN FINISH",
@@ -13167,7 +13545,7 @@
   "tab": 4
  },
  {
-  "n": 1464,
+  "n": 1506,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "TRENCH ART FINISH",
@@ -13176,7 +13554,7 @@
   "tab": 4
  },
  {
-  "n": 1465,
+  "n": 1507,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "PARADE FINISH",
@@ -13185,7 +13563,7 @@
   "tab": 4
  },
  {
-  "n": 1466,
+  "n": 1508,
   "gid": "61",
   "name": "TT-33 SILENCED",
   "variant": "CAPTURED FINISH",
@@ -13194,7 +13572,7 @@
   "tab": 4
  },
  {
-  "n": 1467,
+  "n": 1509,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "STANDARD ISSUE",
@@ -13203,7 +13581,7 @@
   "tab": 4
  },
  {
-  "n": 1468,
+  "n": 1510,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "GOLD FINISH",
@@ -13212,7 +13590,7 @@
   "tab": 4
  },
  {
-  "n": 1469,
+  "n": 1511,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "CHROME FINISH",
@@ -13221,7 +13599,7 @@
   "tab": 4
  },
  {
-  "n": 1470,
+  "n": 1512,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "BLUED FINISH",
@@ -13230,7 +13608,7 @@
   "tab": 4
  },
  {
-  "n": 1471,
+  "n": 1513,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "BLOODY FINISH",
@@ -13239,7 +13617,7 @@
   "tab": 4
  },
  {
-  "n": 1472,
+  "n": 1514,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "WOODLAND FINISH",
@@ -13248,7 +13626,7 @@
   "tab": 4
  },
  {
-  "n": 1473,
+  "n": 1515,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "WINTER FINISH",
@@ -13257,7 +13635,7 @@
   "tab": 4
  },
  {
-  "n": 1474,
+  "n": 1516,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "DESERT FINISH",
@@ -13266,7 +13644,7 @@
   "tab": 4
  },
  {
-  "n": 1475,
+  "n": 1517,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "WHITEWASH FINISH",
@@ -13275,7 +13653,7 @@
   "tab": 4
  },
  {
-  "n": 1476,
+  "n": 1518,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "AFRIKA KORPS FINISH",
@@ -13284,7 +13662,7 @@
   "tab": 4
  },
  {
-  "n": 1477,
+  "n": 1519,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "KRIEGSMARINE FINISH",
@@ -13293,7 +13671,7 @@
   "tab": 4
  },
  {
-  "n": 1478,
+  "n": 1520,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "AIRBORNE FINISH",
@@ -13302,7 +13680,7 @@
   "tab": 4
  },
  {
-  "n": 1479,
+  "n": 1521,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "SPLINTER FINISH",
@@ -13311,7 +13689,7 @@
   "tab": 4
  },
  {
-  "n": 1480,
+  "n": 1522,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "PEA DOT FINISH",
@@ -13320,7 +13698,7 @@
   "tab": 4
  },
  {
-  "n": 1481,
+  "n": 1523,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "TELO FINISH",
@@ -13329,7 +13707,7 @@
   "tab": 4
  },
  {
-  "n": 1482,
+  "n": 1524,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "AMOEBA FINISH",
@@ -13338,7 +13716,7 @@
   "tab": 4
  },
  {
-  "n": 1483,
+  "n": 1525,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "AIRBORNE 101ST FINISH",
@@ -13347,7 +13725,7 @@
   "tab": 4
  },
  {
-  "n": 1484,
+  "n": 1526,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "BATTLE-WORN FINISH",
@@ -13356,7 +13734,7 @@
   "tab": 4
  },
  {
-  "n": 1485,
+  "n": 1527,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "TRENCH ART FINISH",
@@ -13365,7 +13743,7 @@
   "tab": 4
  },
  {
-  "n": 1486,
+  "n": 1528,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "PARADE FINISH",
@@ -13374,7 +13752,7 @@
   "tab": 4
  },
  {
-  "n": 1487,
+  "n": 1529,
   "gid": "62",
   "name": "NAMBU TYPE 14",
   "variant": "CAPTURED FINISH",
@@ -13383,7 +13761,7 @@
   "tab": 4
  },
  {
-  "n": 1488,
+  "n": 1530,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "STANDARD ISSUE",
@@ -13392,7 +13770,7 @@
   "tab": 4
  },
  {
-  "n": 1489,
+  "n": 1531,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "GOLD FINISH",
@@ -13401,7 +13779,7 @@
   "tab": 4
  },
  {
-  "n": 1490,
+  "n": 1532,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "CHROME FINISH",
@@ -13410,7 +13788,7 @@
   "tab": 4
  },
  {
-  "n": 1491,
+  "n": 1533,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "BLUED FINISH",
@@ -13419,7 +13797,7 @@
   "tab": 4
  },
  {
-  "n": 1492,
+  "n": 1534,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "BLOODY FINISH",
@@ -13428,7 +13806,7 @@
   "tab": 4
  },
  {
-  "n": 1493,
+  "n": 1535,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "WOODLAND FINISH",
@@ -13437,7 +13815,7 @@
   "tab": 4
  },
  {
-  "n": 1494,
+  "n": 1536,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "WINTER FINISH",
@@ -13446,7 +13824,7 @@
   "tab": 4
  },
  {
-  "n": 1495,
+  "n": 1537,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "DESERT FINISH",
@@ -13455,7 +13833,7 @@
   "tab": 4
  },
  {
-  "n": 1496,
+  "n": 1538,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "WHITEWASH FINISH",
@@ -13464,7 +13842,7 @@
   "tab": 4
  },
  {
-  "n": 1497,
+  "n": 1539,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "AFRIKA KORPS FINISH",
@@ -13473,7 +13851,7 @@
   "tab": 4
  },
  {
-  "n": 1498,
+  "n": 1540,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "KRIEGSMARINE FINISH",
@@ -13482,7 +13860,7 @@
   "tab": 4
  },
  {
-  "n": 1499,
+  "n": 1541,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "AIRBORNE FINISH",
@@ -13491,7 +13869,7 @@
   "tab": 4
  },
  {
-  "n": 1500,
+  "n": 1542,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "SPLINTER FINISH",
@@ -13500,7 +13878,7 @@
   "tab": 4
  },
  {
-  "n": 1501,
+  "n": 1543,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "PEA DOT FINISH",
@@ -13509,7 +13887,7 @@
   "tab": 4
  },
  {
-  "n": 1502,
+  "n": 1544,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "TELO FINISH",
@@ -13518,7 +13896,7 @@
   "tab": 4
  },
  {
-  "n": 1503,
+  "n": 1545,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "AMOEBA FINISH",
@@ -13527,7 +13905,7 @@
   "tab": 4
  },
  {
-  "n": 1504,
+  "n": 1546,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "AIRBORNE 101ST FINISH",
@@ -13536,7 +13914,7 @@
   "tab": 4
  },
  {
-  "n": 1505,
+  "n": 1547,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "BATTLE-WORN FINISH",
@@ -13545,7 +13923,7 @@
   "tab": 4
  },
  {
-  "n": 1506,
+  "n": 1548,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "TRENCH ART FINISH",
@@ -13554,7 +13932,7 @@
   "tab": 4
  },
  {
-  "n": 1507,
+  "n": 1549,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "PARADE FINISH",
@@ -13563,7 +13941,7 @@
   "tab": 4
  },
  {
-  "n": 1508,
+  "n": 1550,
   "gid": "63",
   "name": "WELROD MK II",
   "variant": "CAPTURED FINISH",
@@ -13572,7 +13950,7 @@
   "tab": 4
  },
  {
-  "n": 1509,
+  "n": 1551,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "STANDARD ISSUE",
@@ -13581,7 +13959,7 @@
   "tab": 4
  },
  {
-  "n": 1510,
+  "n": 1552,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "GOLD FINISH",
@@ -13590,7 +13968,7 @@
   "tab": 4
  },
  {
-  "n": 1511,
+  "n": 1553,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "CHROME FINISH",
@@ -13599,7 +13977,7 @@
   "tab": 4
  },
  {
-  "n": 1512,
+  "n": 1554,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "BLUED FINISH",
@@ -13608,7 +13986,7 @@
   "tab": 4
  },
  {
-  "n": 1513,
+  "n": 1555,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "BLOODY FINISH",
@@ -13617,7 +13995,7 @@
   "tab": 4
  },
  {
-  "n": 1514,
+  "n": 1556,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "WOODLAND FINISH",
@@ -13626,7 +14004,7 @@
   "tab": 4
  },
  {
-  "n": 1515,
+  "n": 1557,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "WINTER FINISH",
@@ -13635,7 +14013,7 @@
   "tab": 4
  },
  {
-  "n": 1516,
+  "n": 1558,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "DESERT FINISH",
@@ -13644,7 +14022,7 @@
   "tab": 4
  },
  {
-  "n": 1517,
+  "n": 1559,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "C96 (TRENCH) (EAST)",
@@ -13653,7 +14031,7 @@
   "tab": 4
  },
  {
-  "n": 1518,
+  "n": 1560,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "WHITEWASH FINISH",
@@ -13662,7 +14040,7 @@
   "tab": 4
  },
  {
-  "n": 1519,
+  "n": 1561,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "AFRIKA KORPS FINISH",
@@ -13671,7 +14049,7 @@
   "tab": 4
  },
  {
-  "n": 1520,
+  "n": 1562,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "KRIEGSMARINE FINISH",
@@ -13680,7 +14058,7 @@
   "tab": 4
  },
  {
-  "n": 1521,
+  "n": 1563,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "AIRBORNE FINISH",
@@ -13689,7 +14067,7 @@
   "tab": 4
  },
  {
-  "n": 1522,
+  "n": 1564,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "SPLINTER FINISH",
@@ -13698,7 +14076,7 @@
   "tab": 4
  },
  {
-  "n": 1523,
+  "n": 1565,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "PEA DOT FINISH",
@@ -13707,7 +14085,7 @@
   "tab": 4
  },
  {
-  "n": 1524,
+  "n": 1566,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "TELO FINISH",
@@ -13716,7 +14094,7 @@
   "tab": 4
  },
  {
-  "n": 1525,
+  "n": 1567,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "AMOEBA FINISH",
@@ -13725,7 +14103,7 @@
   "tab": 4
  },
  {
-  "n": 1526,
+  "n": 1568,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "AIRBORNE 101ST FINISH",
@@ -13734,7 +14112,7 @@
   "tab": 4
  },
  {
-  "n": 1527,
+  "n": 1569,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "BATTLE-WORN FINISH",
@@ -13743,7 +14121,7 @@
   "tab": 4
  },
  {
-  "n": 1528,
+  "n": 1570,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "TRENCH ART FINISH",
@@ -13752,7 +14130,7 @@
   "tab": 4
  },
  {
-  "n": 1529,
+  "n": 1571,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "PARADE FINISH",
@@ -13761,7 +14139,7 @@
   "tab": 4
  },
  {
-  "n": 1530,
+  "n": 1572,
   "gid": "74",
   "name": "MAUSER C96",
   "variant": "CAPTURED FINISH",
@@ -13770,7 +14148,7 @@
   "tab": 4
  },
  {
-  "n": 1531,
+  "n": 1573,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "STANDARD ISSUE",
@@ -13779,7 +14157,7 @@
   "tab": 4
  },
  {
-  "n": 1532,
+  "n": 1574,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "GOLD FINISH",
@@ -13788,7 +14166,7 @@
   "tab": 4
  },
  {
-  "n": 1533,
+  "n": 1575,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "CHROME FINISH",
@@ -13797,7 +14175,7 @@
   "tab": 4
  },
  {
-  "n": 1534,
+  "n": 1576,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "BLUED FINISH",
@@ -13806,7 +14184,7 @@
   "tab": 4
  },
  {
-  "n": 1535,
+  "n": 1577,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "BLOODY FINISH",
@@ -13815,7 +14193,7 @@
   "tab": 4
  },
  {
-  "n": 1536,
+  "n": 1578,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "WOODLAND FINISH",
@@ -13824,7 +14202,7 @@
   "tab": 4
  },
  {
-  "n": 1537,
+  "n": 1579,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "WINTER FINISH",
@@ -13833,7 +14211,7 @@
   "tab": 4
  },
  {
-  "n": 1538,
+  "n": 1580,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "DESERT FINISH",
@@ -13842,7 +14220,7 @@
   "tab": 4
  },
  {
-  "n": 1539,
+  "n": 1581,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "WHITEWASH FINISH",
@@ -13851,7 +14229,7 @@
   "tab": 4
  },
  {
-  "n": 1540,
+  "n": 1582,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "AFRIKA KORPS FINISH",
@@ -13860,7 +14238,7 @@
   "tab": 4
  },
  {
-  "n": 1541,
+  "n": 1583,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "KRIEGSMARINE FINISH",
@@ -13869,7 +14247,7 @@
   "tab": 4
  },
  {
-  "n": 1542,
+  "n": 1584,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "AIRBORNE FINISH",
@@ -13878,7 +14256,7 @@
   "tab": 4
  },
  {
-  "n": 1543,
+  "n": 1585,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "SPLINTER FINISH",
@@ -13887,7 +14265,7 @@
   "tab": 4
  },
  {
-  "n": 1544,
+  "n": 1586,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "PEA DOT FINISH",
@@ -13896,7 +14274,7 @@
   "tab": 4
  },
  {
-  "n": 1545,
+  "n": 1587,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "TELO FINISH",
@@ -13905,7 +14283,7 @@
   "tab": 4
  },
  {
-  "n": 1546,
+  "n": 1588,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "AMOEBA FINISH",
@@ -13914,7 +14292,7 @@
   "tab": 4
  },
  {
-  "n": 1547,
+  "n": 1589,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "AIRBORNE 101ST FINISH",
@@ -13923,7 +14301,7 @@
   "tab": 4
  },
  {
-  "n": 1548,
+  "n": 1590,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "BATTLE-WORN FINISH",
@@ -13932,7 +14310,7 @@
   "tab": 4
  },
  {
-  "n": 1549,
+  "n": 1591,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "TRENCH ART FINISH",
@@ -13941,7 +14319,7 @@
   "tab": 4
  },
  {
-  "n": 1550,
+  "n": 1592,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "PARADE FINISH",
@@ -13950,7 +14328,7 @@
   "tab": 4
  },
  {
-  "n": 1551,
+  "n": 1593,
   "gid": "75",
   "name": "S&W M10 .38",
   "variant": "CAPTURED FINISH",
@@ -13959,7 +14337,7 @@
   "tab": 4
  },
  {
-  "n": 1552,
+  "n": 1594,
   "gid": "64",
   "name": "M2 FRAG",
   "variant": "STANDARD ISSUE",
@@ -13968,7 +14346,7 @@
   "tab": 5
  },
  {
-  "n": 1553,
+  "n": 1595,
   "gid": "65",
   "name": "STIELHANDGRANATE",
   "variant": "STANDARD ISSUE",
@@ -13977,7 +14355,7 @@
   "tab": 5
  },
  {
-  "n": 1554,
+  "n": 1596,
   "gid": "66",
   "name": "MILLS BOMB",
   "variant": "STANDARD ISSUE",
@@ -13986,7 +14364,7 @@
   "tab": 5
  },
  {
-  "n": 1555,
+  "n": 1597,
   "gid": "67",
   "name": "BREDA MOD.35",
   "variant": "STANDARD ISSUE",
@@ -13995,7 +14373,7 @@
   "tab": 5
  },
  {
-  "n": 1556,
+  "n": 1598,
   "gid": "68",
   "name": "M18 SMOKE",
   "variant": "STANDARD ISSUE",
@@ -14004,7 +14382,7 @@
   "tab": 5
  },
  {
-  "n": 1557,
+  "n": 1599,
   "gid": "69",
   "name": "NEBELHANDGRANATE",
   "variant": "STANDARD ISSUE",
