@@ -31,7 +31,7 @@ Plan: [PLAN.md](PLAN.md) (D1-D6). Mod branch `advtrain` (off `hotfix-1.10.53` at
 | Props dropped with `droptofloor` / plain `traced` | `traced` with SOLID+FENCE+PLAYERCLIP | m4l0's ground is PLAYERCLIP (bug-10823) |
 | Graduation `chal_grant` | `chal_bump "atgrad"` after the till opens | `check_challenges.py` fails a challenge with no stat writer. |
 | Medal derived from the challenge | `level.coop_chal_noMedal["atgrad"] = 1` | A new row must not move anyone's capstone (the Castro precedent). |
-| Attic prop + two-card screen | built: practice target on an easel, hotspot 20, opens `ui/coop_training.urc` (Basic / Advanced) | User choice 2026-11-10. Menus pak = ship71 (b3c953cd) + 14 entries, `H:\hzm_workdvtrain-ship\ship_at\` (sha 89deb29f), tools in `attic/tools/` |
+| Attic prop + two-card screen | built: practice target on an easel, hotspot 20, opens `ui/coop_training.urc` (Basic / Advanced) | User choice 2026-11-10. Menus pak = ship71 (b3c953cd) + 14 entries, `H:/hzm_work/advtrain-ship/ship_at/` (sha 89deb29f), tools in `attic/tools/` |
 | Cards launch via `start_server.cfg` | via `coop_mod/cfg/mission_start.cfg` | That is what the coop start Apply runs (pre-mission lobby first) |
 | Tile art | `m4l0at_{c,s}` + prints from a clean Dig-in frame, in `docs/tools/assets/tileart`; tile-art pak rebuilt (sha 1d56a290, 272 members, `check` byte-identical) | |
 
