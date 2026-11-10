@@ -108,7 +108,7 @@ mpp = os.path.join(ui, "multiplayer.urc")
 m, mnl = rd(mpp)
 m = strip69(m)
 for w in ("hubcap7", "hubcap8", "hubcap9", "hubcap10", "hot_n_daily", "hot_n_record", "hot_n_ranks", "hot_radio", "hzm_hubboardcue_text",
-          "hzm_hubboardcue", "hzm_hubboardback", "hzm_hubrackback", "hzm_hubboardcap7", "hzm_hubboardcap8", "hzm_hubboardcap9"):
+          "hzm_hubboardcue", "hzm_hubboardback", "hzm_hubrackback", "hzm_hubcuerearm", "hzm_hubboardcap7", "hzm_hubboardcap8", "hzm_hubboardcap9"):
     m = drop_widget(m, w)
 sc0 = m.index('name "hubscene"')
 m = add_room(m, sc0)
@@ -181,7 +181,7 @@ for idx, wname, cap, cmd, capw in HOTS:
 # Now each side view is entered from its edge cue and left from a zone at the OPPOSITE edge, which no cue or hotspot shares:
 #   rack:  "< RACK" cue (left edge) -> ui_hubRack 1, the rack view; back = the right quarter of the screen.
 #   board: "NOTICES >" cue (right edge) -> ui_hubBoard 1, the board view; back = the left quarter.
-# Hysteresis: every turn home sets ui_hubCueHold 1 for 0.9 s; both cues are disabled while it holds, so a cursor that lands home on
+# Hysteresis: every turn home sets ui_hubCueHold 1 until the cursor reaches the middle half of the screen (or 0.9 s); both cues are disabled while it holds, so a cursor that lands home on
 # (or next to) the other view's cue - the rack's back zone is the NOTICES cue's edge and vice versa - cannot fire it straight away.
 _pk = re.search(r'(?m)^scenepeek "rack" \S+ (.+)$', m)
 RACK_POSE = _pk.group(1).strip() if _pk else "-70.9 15.8 86.6 4.00 42.35 0.00 58.00"      # (the pose patch_attic68 gave the engine peek)
@@ -203,7 +203,12 @@ cue = ["resource", "Label", "{", 'name "hzm_hubboardcue_text"', 'title "NOTICES 
        'borderstyle "NONE"', 'stuffcommand "%s"' % OFF, 'hovercommand "%s"' % OFF, 'enabledcvar "ui_atticActive==1 ui_hubBoard==1"', "}",
        # the way back from the rack: the cursor in the right quarter of the screen
        "resource", "Button", "{", 'name "hzm_hubrackback"', "rect 480 0 160 480", "fgcolor 0 0 0 0", "bgcolor 0 0 0 0",
-       'borderstyle "NONE"', 'stuffcommand "%s"' % ROFF, 'hovercommand "%s"' % ROFF, 'enabledcvar "ui_atticActive==1 ui_hubRack==1"', "}"]
+       'borderstyle "NONE"', 'stuffcommand "%s"' % ROFF, 'hovercommand "%s"' % ROFF, 'enabledcvar "ui_atticActive==1 ui_hubRack==1"', "}",
+       # the hold's release: the cursor anywhere in the middle half of the screen (no stuffcommand: a click passes on as nothing).
+       # The uiafter timer is only the fallback - a harness cfg's own waits hold every Cbuf'd uiafter back (TRAPS), and a hold that
+       # never cleared would leave both cues dead; this zone clears it on the first move toward the room.
+       "resource", "Button", "{", 'name "hzm_hubcuerearm"', "rect 160 0 320 480", "fgcolor 0 0 0 0", "bgcolor 0 0 0 0",
+       'borderstyle "NONE"', 'hovercommand "set ui_hubCueHold 0"', 'enabledcvar "ui_atticActive==1 ui_hubCueHold==1 ui_hubRack!=1 ui_hubBoard!=1"', "}"]
 blk += "\n".join(cue) + "\n"
 end = m.index("// ---- [mphub3d] end")
 m = m[:end] + blk + m[end:]
