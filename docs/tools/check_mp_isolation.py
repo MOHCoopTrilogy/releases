@@ -427,6 +427,10 @@ def run(mod_root, engine_root):
         for ln, tok in hits(texts7, RX_MP_TOKEN):
             if tok == "coop_mpmenu":
                 continue
+            # the MP hub room (ui/multiplayer.urc) may OPEN the MP Service Record from its PROMOTIONS notice: a menu hop
+            # from the MP room itself, no coop state touched (bug-10781)
+            if rel.lower() == "ui/multiplayer.urc" and re.fullmatch(r"coop_mp_record|coop_mpsrp[0-9]", tok):
+                continue
             if tik and RX_TIK_OK.match(tok) and RX_TIK_OK.match(tok).end() == len(tok):
                 continue
             r.fail("7a", where(rel, ln), "coop file names the MP token %s - MP cvars, menus and cfg trees stay out of coop"
