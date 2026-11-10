@@ -31,19 +31,19 @@ M64 = (1 << 64) - 1
 # ------------------------------------------------------------------------------------------------ the pool (authored)
 # map -> {mode: (bots min, bots max)}; bots are odd so the human makes the sides even ("You + 5 vs 6"). Sized by map.
 # Only maps the Phase 0 sweep passed (bots spawned, navigated and killed each other, 0 Script Errors) may appear here.
+# Sweep 2026-11-10 (tools/ops_sweep.py, 10 bots, H:/hzm_work/liveops-test/sweep.json): DROPPED for no fighting at 300 s -
+# Malta (2 kills), Berlin TDM (3), Omaha OBJ (2, the beach is too big for 10 bots). Monte Cassino TDM stays (16 kills; its 4
+# Script Errors are the stock TOW script's own labels under gt2, not ours).
 POOL = {
     "dm/mohdm3": {"TDM": (7, 11)},
     "dm/mohdm6": {"TDM": (7, 11)},
     "dm/mohdm7": {"TDM": (5, 9)},
     "dm/mp_brest_dm": {"TDM": (7, 11)},
-    "dm/mp_malta_dm": {"TDM": (5, 9)},
-    "obj/mp_berlin_tow": {"TDM": (9, 13)},
     "obj/mp_montecassino_tow": {"TDM": (9, 13)},
     "obj/mp_bologna_obj": {"TDM": (9, 13), "OBJ": (7, 11)},
     # Phase 2 - objective, the player is the sapper (decision 2): his side is the map's planting team
     "obj/obj_team1": {"OBJ": (7, 11)},
     "obj/obj_team2": {"OBJ": (7, 11)},
-    "obj/obj_team3": {"OBJ": (9, 13)},
     "obj/obj_team4": {"OBJ": (7, 11)},
     "obj/mp_bizertefort_obj": {"OBJ": (7, 11)},
     "obj/mp_palermo_obj": {"OBJ": (7, 11)},
@@ -212,6 +212,9 @@ def roll(utc, groups):
 # ------------------------------------------------------------------------------------------------ layout on the wall view
 WALL_W, WALL_H = 4096.0, 3072.0          # the markers json is in uv; this pass works in 4096 x 3072 wall pixels
 R_LOOP, AREA_K = 84.0, 1.4               # a point loop's radius; a censored area's dashed loop is AREA_K x wider
+# [QA 2026-11-10] "Somewhere in France" sits in the narrow band between the BASTOGNE tag and the printed FRANCE: a
+# smaller area there keeps its ring and tack off the lettering
+R_OVERRIDE = {"france": 72.0}
 STAMP = (210.0, 86.0)                    # the TDM / OBJ stamp
 SLIP = (860.0, 340.0)                    # the hover slip (four typed lines)
 
@@ -265,7 +268,7 @@ def layout(js):
     placed, problems = [], []
     for i, s in enumerate(SLOTS):
         x, y = lonlat_px(js, *s["pin"])
-        r = R_LOOP * (AREA_K if s["area"] else 1.0)
+        r = R_OVERRIDE.get(s["key"], R_LOOP * (AREA_K if s["area"] else 1.0))
         if not (r < x < WALL_W - r and r < y < WALL_H - r):
             problems.append((s["key"], "off the sheet"))
         under = [n for n, b in tags if circ_hits_rect(x, y, r, b)]
@@ -449,7 +452,7 @@ CARD_ROWS = [("LOCATION", 0.215, 0.052), ("", 0.267, 0.052), ("MAP", 0.319, 0.05
              ("LIMIT", 0.631, 0.052), ("REWARD", 0.683, 0.052), ("EXPIRES", 0.735, 0.052)]
 CARD_VALUES = ["CLoc1", "CLoc2", "CMap", "CMode", "CF1", "CF2", "CSkill", "CMod", "CLimit", "CReward", "CExp"]
 CARD_VAL_X = 0.28
-CARD_STAMPS = {"deploy": (0.07, 0.83, 0.42, 0.95), "file": (0.60, 0.845, 0.93, 0.935), "res": (0.07, 0.40, 0.93, 0.53)}      # the result is stamped across the typed form
+CARD_STAMPS = {"deploy": (0.07, 0.83, 0.42, 0.95), "file": (0.60, 0.845, 0.93, 0.935), "res": (0.03, 0.845, 0.59, 0.945)}     # the result is stamped where DEPLOY was (DEPLOY is gone after the operation)
 
 
 def build_textures(texdir, add_shader):
@@ -502,6 +505,7 @@ def ng3d(api, js):
     conv, map_bu, SC, (WLO, WHI) = api["conv"], api["map_bu"], api["SCALE"], api["WM"]
     WX, WZ = WHI[0] - WLO[0], WHI[2] - WLO[2]
     scn, under, over, card = [], [], [], []
+    slips = []                              # drawn after EVERY stamp: no stamp of another contract may print over a slip
 
     def box3(nm, b, dy):
         """a scene label framed to wall-pixel box b"""
@@ -555,13 +559,13 @@ def ng3d(api, js):
         sl = p["slip"]
         hov = "ui_scene_hot==%d %s" % (hi, live)
         box3("ops_sp%d" % n, sl, 0.0030)
-        over += lab("ops_sp%d" % n, hov, shader="hzm_ops_slip")
+        slips += lab("ops_sp%d" % n, hov, shader="hzm_ops_slip")
         lh = (sl[3] - sl[1] - 30) / 4.0
         for j, (cv_, col) in enumerate((("A", "0.16 0.12 0.09 1"), ("B", "0.16 0.12 0.09 1"), ("M", "0.16 0.12 0.09 1"),
                                         ("E", "0.55 0.07 0.05 1"))):
             tb = (sl[0] + 30, sl[1] + 15 + j * lh, sl[2] - 20, sl[1] + 15 + (j + 1) * lh)
             box3("ops_s%s%d" % (cv_, n), tb, 0.0028)
-            over += lab("ops_s%s%d" % (cv_, n), hov, link="ui_ops%s%d" % (cv_, n), title="M" * 21, font="courier-20", fg=col, align="left")
+            slips += lab("ops_s%s%d" % (cv_, n), hov, link="ui_ops%s%d" % (cv_, n), title="M" * 21, font="courier-20", fg=col, align="left")
     # the dispatch card, pinned on the wall away from its contract: right over Russia for a western one, left over the
     # Atlantic for an eastern one (the engine sets ui_opsCSide)
     for side, (cu0, cv1) in (("1", (0.515, 0.95)), ("2", (0.025, 0.95))):     # 1 right, 2 left (enabledcvar compares numbers)
@@ -598,7 +602,7 @@ def ng3d(api, js):
         for rv, tex in ((1, "won"), (2, "failed")):
             box3("ops_r%d%s" % (rv, side), cb(*CARD_STAMPS["res"]), 0.0014)
             card += lab("ops_r%d%s" % (rv, side), "%s ui_opsCRes==%d" % (gate, rv), shader="hzm_ops_" + tex)
-    return scn, under, over, card
+    return scn, under, over + slips, card
 
 
 def flat(F_):

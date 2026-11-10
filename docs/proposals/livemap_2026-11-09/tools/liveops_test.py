@@ -94,7 +94,7 @@ def guard(c):
     return bool(TRIPPED)
 
 
-def client(binds, extra_sets=(), tail=(), w=1920, h=1080):
+def client(binds, extra_sets=(), tail=(), w=1600, h=900):
     mt = os.path.join(HOME, "maintt")
     os.makedirs(mt, exist_ok=True)
     for fn in os.listdir(mt):
@@ -210,11 +210,13 @@ def case_match(out, res, mode):
     utc, live, groups = pick_utc(ok)
     c0 = [c for c in live if gen_ops.ENTRIES[c["entry"]]["mode"] == mode and (not want or gen_ops.ENTRIES[c["entry"]]["map"] == want) and c["left"] > 150][0]
     res["utc"], res["contract"] = utc, gen_ops.describe(c0)
-    cmdfile("lo_a.cfg", ["set ui_opsFakeUtc %d" % utc, "seta ui_atticMain 1", "pushmenu hzm_newgame3d", "wait 500",
+    cmdfile("lo_a.cfg", ["set ui_opsFakeUtc %d" % utc, "seta ui_atticMain 1", "pushmenu hzm_newgame3d", "wait 1500",
                          "hzm_ops card %d" % slot_no(c0)])
     cmdfile("lo_b.cfg", ["hzm_ops deploy"])
     # in the match: a short limit so it ends inside the test (TDM: the time limit; OBJ: the round time)
-    cmdfile("lo_c.cfg", ["set timelimit 2", "set fraglimit 0"] if mode == "TDM" else ["set roundlimit 2"])
+    spawn = ["set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0", "popmenu 0", "wait 10",
+             "primarydmweapon rifle", "wait 20", "popmenu 0", "wait 20", "popmenu 0", "+attackprimary", "wait 10", "-attackprimary"]
+    cmdfile("lo_c.cfg", (["set timelimit 2", "set fraglimit 0"] if mode == "TDM" else ["set roundlimit 2"]) + spawn)
     cmdfile("lo_d.cfg", ["echo LOSCORE", "ui_opsResult", "ui_opsLive"])
     c = client(BINDS, extra_sets=[("cheats", "1"), ("thereisnomonkey", "1")])
     with c:
@@ -227,9 +229,10 @@ def case_match(out, res, mode):
         res["deployed"] = wait_for(r"OPS deploy", 20, n0, c)
         res["started"] = wait_for(r"\^~\^~\^ OPS start", 240, n0, c)
         res["joined"] = wait_for(r"OpsTester has joined the (Allies|Axis)", 60, n0, c)
-        time.sleep(12)
+        time.sleep(6)
         if not guard(c):
-            press(c, "F7", 1)
+            press(c, "F7", 8)
+            press(c, "F7", 6)
             res["inmatch"] = shot(c, out, "in_match")
             time.sleep(25)
             res["inmatch2"] = shot(c, out, "in_match2")
