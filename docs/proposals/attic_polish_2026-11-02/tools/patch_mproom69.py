@@ -108,7 +108,7 @@ mpp = os.path.join(ui, "multiplayer.urc")
 m, mnl = rd(mpp)
 m = strip69(m)
 for w in ("hubcap7", "hubcap8", "hubcap9", "hubcap10", "hot_n_daily", "hot_n_record", "hot_n_ranks", "hot_radio", "hzm_hubboardcue_text",
-          "hzm_hubboardcue", "hzm_hubboardback", "hzm_hubboardcap7", "hzm_hubboardcap8", "hzm_hubboardcap9"):
+          "hzm_hubboardcue", "hzm_hubboardback", "hzm_hubrackback", "hzm_hubcuerearm", "hzm_hubboardcap7", "hzm_hubboardcap8", "hzm_hubboardcap9"):
     m = drop_widget(m, w)
 sc0 = m.index('name "hubscene"')
 m = add_room(m, sc0)
@@ -172,25 +172,56 @@ for idx, wname, cap, cmd, capw in HOTS:
     b_ = re.sub(r'(?m)^stuffcommand ".*"$', lambda _m: 'stuffcommand "%s"' % cmd, btn)
     b_ = re.sub(r'(?m)^hovercommand ".*"$', 'hovercommand "set ui_scene_hot %d"' % idx, b_)
     blk += "resource\nLabel\n{\nname \"%s\"\n%s\n}\nresource\nButton\n{\nname \"%s\"\n%s\n}\n" % (capw, l_, wname, b_)
+# ---- the two side views: the NOTICES board (right wall) and the RACK (left wall). Both are SCRIPTED turns (v1.10.70 hotfix,
+# bug: the rack could not be clicked). The rack used the engine's scenepeek, whose return rule is fixed: "the cursor in the left 40 %
+# of the screen turns home" - written for the attic, where the rack hung on the RIGHT wall and its cue sat at the right edge. When
+# v1.10.68 moved the rack to the MP room's LEFT wall, its "< RACK" cue went to the left edge, i.e. INSIDE that return zone: the peek
+# turned, the cursor (still on the cue) turned it home at once, the cue re-appeared under the cursor and turned it again - an endless
+# flip, and the rack (just right of centre at the peek, reached only by crossing the left 40 %) could never be hovered.
+# Now each side view is entered from its edge cue and left from a zone at the OPPOSITE edge, which no cue or hotspot shares:
+#   rack:  "< RACK" cue (left edge) -> ui_hubRack 1, the rack view; back = the right quarter of the screen.
+#   board: "NOTICES >" cue (right edge) -> ui_hubBoard 1, the board view; back = the left quarter.
+# Hysteresis: every turn home sets ui_hubCueHold 1 until the cursor reaches the middle half of the screen (or 0.9 s); both cues are disabled while it holds, so a cursor that lands home on
+# (or next to) the other view's cue - the rack's back zone is the NOTICES cue's edge and vice versa - cannot fire it straight away.
+_pk = re.search(r'(?m)^scenepeek "rack" \S+ (.+)$', m)
+RACK_POSE = _pk.group(1).strip() if _pk else "-70.9 15.8 86.6 4.00 42.35 0.00 58.00"      # (the pose patch_attic68 gave the engine peek)
+m = re.sub(r'(?m)^scenepeek "rack" .*\n', "", m)
+HOLD = "set ui_hubCueHold 1; uiafter 0.9 set ui_hubCueHold 0"
 ON = "set ui_scene_hot 0; set ui_hubBoard 1; set ui_atcStop %d; globalwidgetcommand hubscene scenefly 0.5 %s" % (BOARD_STOP, BOARD_POSE)
-OFF = "set ui_scene_hot 0; set ui_hubBoard 0; set ui_atcStop 0; globalwidgetcommand hubscene scenefly 0.5 %s" % HOME
+OFF = "set ui_scene_hot 0; set ui_hubBoard 0; set ui_atcStop 0; %s; globalwidgetcommand hubscene scenefly 0.5 %s" % (HOLD, HOME)
+RON = "set ui_scene_hot 0; set ui_hubRack 1; globalwidgetcommand hubscene scenefly 0.5 %s" % RACK_POSE
+ROFF = "set ui_scene_hot 0; set ui_hubRack 0; %s; globalwidgetcommand hubscene scenefly 0.5 %s" % (HOLD, HOME)
+CUE_ON = "ui_atticActive==1 ui_hubBoard!=1 ui_hubRack!=1 ui_hubCueHold!=1"
 cue = ["resource", "Label", "{", 'name "hzm_hubboardcue_text"', 'title "NOTICES  >"', "rect 556 222 80 22", "fgcolor 0.93 0.93 0.88 0.90",
        "bgcolor 0.10 0.08 0.06 0.60", 'borderstyle "NONE"', 'font "facfont-20"', "textalign center",
-       'enabledcvar "ui_atticActive==1 ui_scene_peek!=1 ui_hubBoard!=1"', "}",
+       'enabledcvar "ui_atticActive==1 ui_hubBoard!=1 ui_hubRack!=1"', "}",
        "resource", "Button", "{", 'name "hzm_hubboardcue"', "rect 556 222 80 22", "fgcolor 0 0 0 0", "bgcolor 0 0 0 0",
        'borderstyle "NONE"', 'clicksound "sound/menu/apply.wav"', 'stuffcommand "%s"' % ON, 'hovercommand "%s"' % ON,
-       'enabledcvar "ui_atticActive==1 ui_scene_peek!=1 ui_hubBoard!=1"', "}",
-       # the way back: the cursor in the left quarter of the screen (the rack's peek turns home in the left 40 %)
+       'enabledcvar "%s"' % CUE_ON, "}",
+       # the way back from the board: the cursor in the left quarter of the screen
        "resource", "Button", "{", 'name "hzm_hubboardback"', "rect 0 0 160 480", "fgcolor 0 0 0 0", "bgcolor 0 0 0 0",
-       'borderstyle "NONE"', 'stuffcommand "%s"' % OFF, 'hovercommand "%s"' % OFF, 'enabledcvar "ui_atticActive==1 ui_hubBoard==1"', "}"]
+       'borderstyle "NONE"', 'stuffcommand "%s"' % OFF, 'hovercommand "%s"' % OFF, 'enabledcvar "ui_atticActive==1 ui_hubBoard==1"', "}",
+       # the way back from the rack: the cursor in the right quarter of the screen
+       "resource", "Button", "{", 'name "hzm_hubrackback"', "rect 480 0 160 480", "fgcolor 0 0 0 0", "bgcolor 0 0 0 0",
+       'borderstyle "NONE"', 'stuffcommand "%s"' % ROFF, 'hovercommand "%s"' % ROFF, 'enabledcvar "ui_atticActive==1 ui_hubRack==1"', "}",
+       # the hold's release: the cursor anywhere in the middle half of the screen (no stuffcommand: a click passes on as nothing).
+       # The uiafter timer is only the fallback - a harness cfg's own waits hold every Cbuf'd uiafter back (TRAPS), and a hold that
+       # never cleared would leave both cues dead; this zone clears it on the first move toward the room.
+       "resource", "Button", "{", 'name "hzm_hubcuerearm"', "rect 160 0 320 480", "fgcolor 0 0 0 0", "bgcolor 0 0 0 0",
+       'borderstyle "NONE"', 'hovercommand "set ui_hubCueHold 0"', 'enabledcvar "ui_atticActive==1 ui_hubCueHold==1 ui_hubRack!=1 ui_hubBoard!=1"', "}"]
 blk += "\n".join(cue) + "\n"
 end = m.index("// ---- [mphub3d] end")
 m = m[:end] + blk + m[end:]
-# the rack's "< RACK" cue hides at the board view
-m = re.sub(r'(name "hzm_hubrack(?:cue|cue_text)"\n(?:.*\n)*?)enabledcvar "ui_atticActive==1 ui_scene_peek!=1(?: ui_hubBoard!=1)?"',
-           lambda mm: mm.group(1) + 'enabledcvar "ui_atticActive==1 ui_scene_peek!=1 ui_hubBoard!=1"', m)
-# ESC leaves the room as before; the hub camera and the board flag reset first (it may be at the board view)
-m = re.sub(r'(?m)^escapecommand ".*"$', 'escapecommand "set ui_scene_hot 0; set ui_hubBoard 0; set ui_atcStop 0; globalwidgetcommand hubscene scenecam %s; popmenu 1"' % HOME, m, count=1)
+# the "< RACK" cue (patch_attic68's widgets): hover turns to the rack view (was: hover set ui_scene_hot for the engine peek), a click
+# still opens the weapon viewer; hidden at either side view and while the hold runs
+m = re.sub(r'(name "hzm_hubrackcue_text"\n(?:.*\n)*?)enabledcvar "[^"]*"', lambda mm: mm.group(1) + 'enabledcvar "ui_atticActive==1 ui_hubBoard!=1 ui_hubRack!=1"', m)
+m = re.sub(r'(name "hzm_hubrackcue"\n(?:.*\n)*?)hovercommand "[^"]*"', lambda mm: mm.group(1) + 'hovercommand "%s"' % RON, m)
+m = re.sub(r'(name "hzm_hubrackcue"\n(?:.*\n)*?)enabledcvar "[^"]*"', lambda mm: mm.group(1) + 'enabledcvar "%s"' % CUE_ON, m)
+# opening the weapon viewer leaves the rack view: back from the viewer the scene flies home (sceneleave), so the flag clears with it
+m = re.sub(r'"set ui_scene_hot 0; (?:set ui_hubRack 0; )?exec ui/wpnview/open\.cfg;', '"set ui_scene_hot 0; set ui_hubRack 0; exec ui/wpnview/open.cfg;', m)
+assert "scenepeek" not in m[m.index('name "hubscene"'):m.index("\n}\n", m.index('name "hubscene"'))]
+# ESC leaves the room as before; the hub camera and both side-view flags reset first
+m = re.sub(r'(?m)^escapecommand ".*"$', 'escapecommand "set ui_scene_hot 0; set ui_hubBoard 0; set ui_hubRack 0; set ui_atcStop 0; globalwidgetcommand hubscene scenecam %s; popmenu 1"' % HOME, m, count=1)
 wr(mpp, m, mnl)
 print("multiplayer.urc: hotspots %s, board pose %s" % ([h[0] for h in HOTS], BOARD_POSE))
 

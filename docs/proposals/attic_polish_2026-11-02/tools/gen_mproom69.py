@@ -777,10 +777,10 @@ n2 = write_model("hzm_hub69_corner", SETS["corner"])
 write_model("hzm_hub69_fx", glows + corner_fx)
 
 # ------------------------------------------------------------------ the soldier (a staged actor) - models/human/hzm_menu/hub_gi_menu.tik
-# (coordinator QA 2026-11-10: the m1l1 card idles - cardidle01 / 02 and the pickup - hold the hand up at the face, so from the home
-# view he read as drinking or using binoculars. Ten table / card clips rendered side by side, three time samples each: the m1l1
-# "give me your king" clip (actor_m1l1_11) keeps the cards at chest height, the face clear throughout. It loops alone and silent -
-# its line is a client sound in the stock table.tik, not in this one.)
+# (v1.10.71, user: the 'give me your king' loop (actor_m1l1_11) read as him talking at his cards. A pose sweep - every 8th frame
+# of both quiet card idles, each rendered at his seat from the home camera (mp69 run 'sl') - shows actor_m1l1_cardidle02 holds the
+# hand at chest height, head bowed over it, through all 121 frames (8 s): he just studies his hand. cardidle01 is the one that lifts
+# the cards to his face (the v1.10.69 complaint). cardidle02 loops whole; no talking clip, no cycles.)
 open(os.path.join(adir, "hub_gi_menu.tik"), "w", newline="\n").write("""TIKI
 setup
 {
@@ -813,8 +813,8 @@ init
 animations
 {
 	$path models/human/animation
-	idle scripted/table/actor_m1l1_11.skc
-	cardA scripted/table/actor_m1l1_11.skc
+	idle scripted/table/actor_m1l1_cardidle02.skc
+	cardA scripted/table/actor_m1l1_cardidle02.skc
 }
 """)
 
