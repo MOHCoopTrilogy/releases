@@ -31,11 +31,11 @@ Plan: [PLAN.md](PLAN.md) (D1-D6). Mod branch `advtrain` (off `hotfix-1.10.53` at
 | Props dropped with `droptofloor` / plain `traced` | `traced` with SOLID+FENCE+PLAYERCLIP | m4l0's ground is PLAYERCLIP (bug-10823) |
 | Graduation `chal_grant` | `chal_bump "atgrad"` after the till opens | `check_challenges.py` fails a challenge with no stat writer. |
 | Medal derived from the challenge | `level.coop_chal_noMedal["atgrad"] = 1` | A new row must not move anyone's capstone (the Castro precedent). |
-| Attic prop + two-card screen | **not built** | "For later" 2 (prop choice) is still the user's decision. The coop start tile is built. |
-| Tile art | wiring points at `hzmtile/m4l0at_c/_s`; art **pending** | Needs a clean 1080p frame (harness case `tilesrc`) through `mission_tile_art_2026-09-29/tools/build_set.py` and `gen_tileart_pak.py`. Until then tile 2 draws blank. |
+| Attic prop + two-card screen | built: practice target on an easel, hotspot 20, opens `ui/coop_training.urc` (Basic / Advanced) | User choice 2026-11-10. Menus pak = ship71 (b3c953cd) + 14 entries, `H:\hzm_workdvtrain-ship\ship_at\` (sha 89deb29f), tools in `attic/tools/` |
+| Cards launch via `start_server.cfg` | via `coop_mod/cfg/mission_start.cfg` | That is what the coop start Apply runs (pre-mission lobby first) |
+| Tile art | `m4l0at_{c,s}` + prints from a clean Dig-in frame, in `docs/tools/assets/tileart`; tile-art pak rebuilt (sha 1d56a290, 272 members, `check` byte-identical) | |
 
-Decisions taken here that the user may overturn: end of course = a ready-gate restart (`stuffsrv "map m4l0"`, for-later 5);
-reward = XP 100 + the Graduate row, no cosmetic (for-later 1); late joiners graduate if present at the end (for-later 1).
+User decisions (2026-11-10, all seven recommended options): practice-target attic prop for both courses; XP 100 + the Graduate row, no medal; late joiners graduate if present at the end; ready-gate restart, otherwise stay; unbound binds pointed at Controls; mentioned-only systems on the end card; basic training side fixes (`level.gametpye` typo; training_46 not played - lines 37/50/51 are correct here: the SECONDARY key IS the bash / short toss).
 
 ## Shared-file edits (all additive, all gated on `level.coop_trainingMap == 1` or a new level flag)
 
@@ -58,3 +58,14 @@ reward = XP 100 + the Graduate row, no cosmetic (for-later 1); late joiners grad
 
 See the report in the session; re-run with: scrlint, depthscan2/linecheck/quotecheck/prosecheck, check_empty_rhs,
 check_challenges, gen_service_record (452 rows), unlock_audit (unchanged vs base), check_mp_isolation (22/22).
+
+## Test matrix (2026-11-10, private clients on the 1080p screen, self-test)
+
+| Run | Result |
+|---|---|
+| boot_at / boot_raid (dedicated) | clean, branch on / off |
+| solo (listen, 273 s) | 11/11 stations done, course complete, real medkit heal, real search, real DBNO + ally revive, real sandbag/ammo box/paradrop/strike, props grounded (PLAYERCLIP trace) |
+| coop2 (dedicated + 2) | course complete 2/2 on every station except Field medicine (the self-test's team heal never completed: needs a human two-player check of hold-USE patching) |
+| maptest_raid | MAPTEST_LOADED m4l0, advanced to the next map, 0 ATRAIN lines in the raid, 0 compile errors |
+| tilesrc | clean Dig-in frame -> tile |
+| attic (at_attic_run.py) | hotspot 20 lit on hover, close-up, sheet; Basic card -> training (branch off), Advanced card -> m4l0 (ATRAIN branch on) |
