@@ -28,7 +28,7 @@ import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
 
-CONVERTER_VERSION = "0.3.0"   # [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
+CONVERTER_VERSION = "0.4.0"   # [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
 MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
@@ -109,6 +109,18 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     if flip_coll is None:
         flip_coll = down > up
     meshes = list(L.meshes())
+    # [eapolish] EA smart objects (easob.py): the railgun, radio tower, ammo dump, bridge, gates, tombstones, crates
+    # are separate meshes placed by the object DB. Static ones join the world; the ones the mission changes (blown
+    # up, opened) become inline brush models the script can remove or swing. Their collision is built from the
+    # drawn triangles (blocked only by what you can see).
+    sob_static, sob_dyn = [], []
+    if game == "ea" and not os.environ.get("EA_NO_SOB"):
+        import easob
+        import eadb as _eadb
+        for rec, sob, ms in easob.placed(L.stream, _eadb.DB(L.stream)):
+            (sob_dyn if sob in easob.DYNAMIC else sob_static).append((rec, sob, ms))
+        for _r, _s, ms in sob_static:
+            meshes += ms
     rup, rdown = floor_vote([(m["verts"][a], m["verts"][b], m["verts"][c]) for m in meshes for a, b, c in m["tris"]])
     if flip_render is None:
         # the vote makes floors counter-clockwise seen from above; id Tech 3 front faces are clockwise
@@ -437,6 +449,24 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if m["tex"]:
             stats["tris_textured"] += len(tris)
 
+    # [eapolish] the dynamic smart objects as inline models (script_object "*N", targetname ea_sob_<placement>)
+    sob_models = []
+    for rec, sob, ms in sob_dyn:
+        sids, tri_world = [], []
+        for m in ms:
+            P = [X(v) for v in m["verts"]]
+            tris = [wind(a, b, c, flip_render) for a, b, c in m["tris"]]
+            vv = []
+            for i, q in enumerate(P):
+                r_, g_, b_, _a = m["cols"][i]
+                vv.append((q, m["uvs"][i], (0.0, 0.0, 1.0), (r_, g_, b_, 255)))
+            sids.append(B.add_soup(tex_shader(m["tex"]), vv, [i for t in tris for i in t]))
+            tri_world += [(P[a], P[b], P[c]) for a, b, c in tris]
+        sob_models.append((rec, sob, sids, tri_world))
+        stats["sob_dynamic_tris"] = stats.get("sob_dynamic_tris", 0) + len(tri_world)
+    stats["sob_static"] = len(sob_static)
+    stats["sob_dynamic"] = len(sob_dyn)
+
     # seam bridges: close Frontline's hairline floor gaps that would show the sky (flseam.py has the rules)
     # collision grid: seam bridges only close gaps in WALKABLE floors; flpack places actors with it
     grid = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
@@ -520,6 +550,21 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             else:
                 nb += 1
 
+    # [eapolish] visible collision for the smart objects: thin slabs on their drawn triangles
+    sobclip = B.shader("textures/common/ea_coll_sob", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
+    for _r, _s, ms in sob_static:
+        for m in ms:
+            P = [X(v) for v in m["verts"]]
+            for a, b, c in m["tris"]:
+                if B.add_prism(sobclip, P[a], P[b], P[c], thickness=4.0, centered=True) is not None:
+                    stats["sob_coll"] = stats.get("sob_coll", 0) + 1
+    sob_ents = []
+    for rec, sob, sids, tri_world in sob_models:
+        bids = [b for b in (B.add_prism(sobclip, *t, thickness=4.0, centered=True) for t in tri_world) if b is not None]
+        B.models.append({"surfaces": sids, "brushes": bids})
+        sob_ents.append([("classname", "script_object"), ("model", "*%d" % len(B.models)),
+                         ("targetname", "ea_sob_" + rec.name)])
+
     # ---- entities ----
     ents = L.entities()
     player = next((e for e in ents if "Player" in e["strs"]), None)
@@ -528,7 +573,38 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
           ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
           ("ambientlight", "40 40 40")]
     B.entity(ws)
+    for kv in sob_ents:
+        B.entity(kv)
     kept = []
+    if game == "ea" and not os.environ.get("EA_NO_NODES"):
+        # [eapolish] EA's AI walks a navmesh we do not decode; MOHAA's AI paths on info_pathnodes, and with none every
+        # runto failed ("Path not found ... MoveToPatrolCurrentNode": the squads never moved, bug-eap-aikills).
+        # Nodes on a 224u grid of free standing spots around the original's own AI places (spawn points, squad
+        # objective points, triggers, the player start), at their floor heights.
+        import eadb as _eadb2
+        _db = _eadb2.DB(L.stream)
+        anchors = [X(r.pos) for r in _db.recs if r.cls in ("NPCSpawnPoint", "SquadObjective_New", "BasicTrigger",
+                                                            "Player", "ICSPoint", "MMGPoint") and r.pos != (0.0, 0.0, 0.0)]
+        cells = {}
+        for a in anchors:
+            for gx in range(int((a[0] - 1400) // 224), int((a[0] + 1400) // 224) + 1):
+                for gy in range(int((a[1] - 1400) // 224), int((a[1] + 1400) // 224) + 1):
+                    x, y = gx * 224 + 112, gy * 224 + 112
+                    if (x - a[0]) ** 2 + (y - a[1]) ** 2 > 1400 ** 2:
+                        continue
+                    g = grid.ground(x, y, a[2] + 160, a[2] - 260)
+                    if g is None:
+                        continue
+                    key = (gx, gy, int(g // 96))
+                    if key in cells:
+                        continue
+                    cells[key] = (x, y, g) if grid.box_free(x, y, g, lift=18.0, margin=2.0) else None
+        nodes = sorted(v for v in cells.values() if v)
+        for x, y, g in nodes[:3800]:
+            kept.append((x, y, g))
+            B.entity([("classname", "info_pathnode"), ("origin", f"{x:.0f} {y:.0f} {g + 16:.0f}")])
+        stats["pathnodes"] = min(len(nodes), 3800)
+        kept = []          # not the coop spawn ring source below (that stays around the player start)
     for n in L.navpoints():
         p = X(n["pos"])
         # Frontline packs navpoints tighter than MOHAA's PathSearch accepts ("Duplicate node ... not linked")
@@ -591,6 +667,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     if game == "ea":
         import eapack     # EA: level data script from the disc's object DB + strings (audio: separate step)
         pack = eapack.build(L, level, X, files, sp, grid, zrange_m, mohaa_base=mohaa_base, vgm=vgm)
+        dk = f"maps/coop_ea_{level}_data.scr"
+        if sob_static or sob_dyn:      # [eapolish] the smart objects are real geometry: the script drops its stand-ins
+            files[dk] = files[dk].replace(b"\tlevel.ea_data_ok = 1", b"\tlevel.ea_sob = 1\n\tlevel.ea_data_ok = 1")
     else:
         pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base, grid=grid) if vgm else None
 

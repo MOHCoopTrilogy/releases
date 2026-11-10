@@ -25,8 +25,11 @@ import eadb
 
 TRIGGERS = ("BasicTrigger", "SoundDialogueTrigger", "GagDialogueTrigger", "GagTrigger", "CSATrigger",
             "DirectDamageTrigger")
-GUNS = {"npcwpn_mp40": "mp40", "npcwpn_nem_mp40": "mp40", "npcwpn_gewehr": "g 43", "npcwpn_ps_gewehr": "g 43",
-        "npcwpn_ppsh": "ppsh smg", "npcwpn_ps_ppsh": "ppsh smg", "npcwpn_kar98": "mauser kar 98k",
+# AI weapon names global/weapon.scr knows ('ppsh smg' fell to "setting to none": the partisans fought unarmed,
+# bug-eap-aikills); the AI rifle is the Kar98k: anim/reload.scr has no AI G43 reload
+GUNS = {"npcwpn_mp40": "mp40", "npcwpn_nem_mp40": "mp40", "npcwpn_gewehr": "mauser kar 98k",
+        "npcwpn_ps_gewehr": "mauser kar 98k",
+        "npcwpn_ppsh": "ppsh", "npcwpn_ps_ppsh": "ppsh", "npcwpn_kar98": "mauser kar 98k",
         "npcwpn_mg42": "mg42", "npcwpn_stg44": "stg44", "npcwpn_panzerschreck": "panzerschrek"}
 ITEMS = {"medkit": "health", "revive": "health", "rus1_playerstick": "grenade", "playerm1bazooka": "bazooka",
          "playerppsh": "ppsh", "playergewehr": "g43", "document": "document"}
@@ -147,7 +150,7 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_sp_pos[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2] + 24:.0f} )")
         L(f"\tlevel.ea_sp_yaw[{n}] = {r.yaw:.0f}")
         L(f'\tlevel.ea_sp_team[{n}] = "{team}"')
-        L(f'\tlevel.ea_sp_wpn[{n}] = "{GUNS.get(base(npc["weapon"]).lower(), "mp40" if team == "axis" else "ppsh smg")}"')
+        L(f'\tlevel.ea_sp_wpn[{n}] = "{GUNS.get(base(npc["weapon"]).lower(), "mp40" if team == "axis" else "ppsh")}"')
         L(f'\tlevel.ea_sp_chr[{n}] = {S(base(npc["character"]))}')
         L(f"\tlevel.ea_sp_grp[{n}] = {gid(g) if g else chr(34) * 2}")
         L(f"\tlevel.ea_sp_cnt[{n}] = {max(1, min(12, r.u(48) or 1))}")
