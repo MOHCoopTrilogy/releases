@@ -82,7 +82,10 @@ def run(mapname, outdir, mode, clients=1, test="1", minutes=12.0, game="fl"):
     else:
         sets += [("coop_%stest" % game, test), ("coop_%stestPlayers" % game, str(clients))]
     names = ["AIA_Alpha", "AIA_Bravo"][:clients]
-    with byoclient.Server(mapname, sets=sets) as srv:
+    # BYO_SRVPORT: a private port block per agent - on the shared default 12391 the clients of one run joined
+    # ANOTHER agent's audit server (2026-11-10: the flpolish clients loaded coop_ea_1_11 and dropped)
+    base = int(os.environ.get("BYO_SRVPORT", "12391"))
+    with byoclient.Server(mapname, sets=sets, port=base) as srv:
         if not srv.wait(r"Spawning Entities Done|AIA_START|FLAI ", 420):
             raise RuntimeError("server never loaded the map")
         cl = []
@@ -90,7 +93,7 @@ def run(mapname, outdir, mode, clients=1, test="1", minutes=12.0, game="fl"):
             for i, nm in enumerate(names):
                 home = os.path.join(srv.folder, "home" if i == 0 else "home%d" % (i + 1))
                 c = byoclient.Client(mapname, sets=[("cheats", "1")], connect="127.0.0.1:%d" % srv.port, name=nm,
-                                     home=home, port=12392 + i, w=640, h=360)
+                                     home=home, port=base + 1 + i, w=640, h=360)
                 c.__enter__()
                 cl.append(c)
                 time.sleep(15)
