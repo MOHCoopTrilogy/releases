@@ -79,7 +79,7 @@ def burst(r, interval, shots, mult=1.0, seed=None, aimed=True):
                     owed[ax] -= back
         pts.append((view[1], view[0]))
         dt = tfire - shot_t
-        excess = dt - interval * 1.25
+        excess = dt - (interval * 1.5 + 0.05)
         if excess > 0:
             heat *= max(0.0, 1.0 - excess / r["settle"])
         n = int(heat)

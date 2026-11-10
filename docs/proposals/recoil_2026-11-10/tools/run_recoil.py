@@ -59,19 +59,31 @@ def rcon(cmd):
         so.close()
 
 
-def log_text():
+def log_size():
     try:
-        return open(LOG, "rb").read().decode("latin-1")
+        return os.path.getsize(LOG)
+    except OSError:
+        return 0
+
+
+def log_text(start=0):
+    """the log from byte <start> on (a MemoryError while other clients filled the RAM: never re-read the whole log)"""
+    try:
+        with open(LOG, "rb") as f:
+            f.seek(max(0, start))
+            return f.read().decode("latin-1")
     except OSError:
         return ""
 
 
-def wait_for(rx, timeout, c):
+def wait_for(rx, timeout, c, start=None):
     t0 = time.time()
+    if start is None:
+        start = max(0, log_size() - 65536)
     while time.time() - t0 < timeout:
         if c.watcher.violations or c.proc.poll() is not None:
             return False
-        if re.search(rx, log_text()):
+        if re.search(rx, log_text(start)):
             return True
         time.sleep(0.5)
     return False
@@ -219,7 +231,7 @@ def main():
         c = hw.launch_background(args[0], args[1:], CLIENT, policy=False, log=log)
         hg.set_slot_pid("recoil", c.pid)
         try:
-            if not wait_for(r"SELFTEST (OK|FAIL)|coop: loaded \d+ recoil pattern", 180, c):
+            if not wait_for(r"SELFTEST (OK|FAIL)|coop: loaded \d+ recoil pattern", 180, c, 0):
                 log("no map load")
             time.sleep(20)
             # the per-spawn un-mute (bug-10805) runs on spawn: set the volumes again now the player is in
@@ -233,18 +245,18 @@ def main():
                 rx = None
                 if isinstance(st, tuple):
                     st, rx = st
-                n0 = len(log_text())
+                n0 = log_size()
                 mk = "^~^~^ RCLSTEP %d" % i
                 open(os.path.join(MAINTT, "rclstep.cfg"), "w", newline="\n").write("\n".join(st + ["echo " + mk]) + "\n")
                 rcon("exec rclstep.cfg")
-                if not wait_for(re.escape(mk) + r"(?![0-9])", 240, c):
+                if not wait_for(re.escape(mk) + r"(?![0-9])", 240, c, n0):
                     log("step", i, "timed out")
                     break
                 if rx:
                     t0 = time.time()
-                    while time.time() - t0 < 90 and not re.search(rx, log_text()[n0:]):
+                    while time.time() - t0 < 90 and not re.search(rx, log_text(n0)):
                         time.sleep(0.5)
-                    log("step", i, "pickup", bool(re.search(rx, log_text()[n0:])))
+                    log("step", i, "pickup", bool(re.search(rx, log_text(n0))))
                     time.sleep(2)
                 if c.watcher.violations:
                     log("VIOLATION", c.watcher.violations[:3])
