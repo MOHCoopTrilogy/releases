@@ -353,8 +353,19 @@ def _ops_hot(*a, **k):
     return i
 
 
+# [opsfix, v1.10.72] the dispatch card's DEPLOY / FILE AWAY proxy buttons go AFTER the card's labels (see gen_ops: the hit-test
+# picks the last widget under the cursor, and a Label counts), so they are kept out of the main button run
+_tophots = []
+
+
+def _ops_hot_top(*a, **k):
+    i = _ops_hot(*a, **k)
+    _tophots.append(i)
+    return i
+
+
 OPS_SCN, OPS_UNDER, OPS_OVER, OPS_CARD = gen_ops.ng3d({"conv": conv, "map_bu": map_bu, "SCALE": SCALE, "WM": (WM_LO, WM_HI), "hot": _ops_hot,
-                                                       "DIST": DIST, "FPX": FPX}, JS)
+                                                       "hot_top": _ops_hot_top, "DIST": DIST, "FPX": FPX}, JS)
 scn_extra += OPS_SCN
 for _i in _opshots:
     del caps[_i]
@@ -375,11 +386,27 @@ for i, (cap, _ce) in caps.items():
     U += ["resource", "Label", "{", 'name "ngcap%d"' % i, "rect 0 0 8 8", 'title "%s"' % cap, "fgcolor 0.93 0.88 0.72 1.00",
           "bgcolor 0.10 0.08 0.06 0.82", 'borderstyle "NONE"', 'font "facfont-20"', "textalign center", 'enabledcvar "ui_scene_hot==%d"' % i, "}"]
 U += OPS_OVER                     # contract stamps and hover slips: over the campaign tags
+
+
+def _button(i, cmd, gate, back):
+    return ["resource", "Button", "{", 'name "ng_h%d"' % i, "rect 0 0 8 8", "fgcolor 0 0 0 0", "bgcolor 0 0 0 0", 'borderstyle "NONE"',
+            'clicksound "sound/menu/%s.wav"' % ("back" if back else "apply"), 'stuffcommand "%s"' % cmd, 'hovercommand "set ui_scene_hot %d"' % i,
+            'mouseawaycommand "set ui_scene_hot 0"'] + (['enabledcvar "%s"' % gate] if gate else []) + ["}"]
+
+
 for i, cmd, gate, back in btns:
-    U += ["resource", "Button", "{", 'name "ng_h%d"' % i, "rect 0 0 8 8", "fgcolor 0 0 0 0", "bgcolor 0 0 0 0", 'borderstyle "NONE"',
-          'clicksound "sound/menu/%s.wav"' % ("back" if back else "apply"), 'stuffcommand "%s"' % cmd, 'hovercommand "set ui_scene_hot %d"' % i,
-          'mouseawaycommand "set ui_scene_hot 0"'] + (['enabledcvar "%s"' % gate] if gate else []) + ["}"]
+    if i not in _tophots:
+        U += _button(i, cmd, gate, back)
 U += OPS_CARD                     # the dispatch card: on top of everything
+for i, cmd, gate, back in btns:   # ... and its own buttons on top of the card (the hit-test takes the last widget)
+    if i in _tophots:
+        U += _button(i, cmd, gate, back)
+# the click contract, asserted: every card button comes after every card label (a label after it would eat the click)
+_names = [U[k + 3] for k in range(len(U) - 3) if U[k] == "resource" and U[k + 2] == "{"]
+_card = {OPS_CARD[k + 3] for k in range(len(OPS_CARD) - 3) if OPS_CARD[k] == "resource"}
+_last_card = max(k for k, n in enumerate(_names) if n in _card)
+_first_top = min(k for k, n in enumerate(_names) if n in ['name "ng_h%d"' % i for i in _tophots])
+assert _tophots and _first_top > _last_card, ("card buttons under the card's labels", _first_top, _last_card)
 U += ["resource", "Button", "{", 'name "back"', "rect 8 448 96 24", "fgcolor 1.00 1.00 1.00 1.00", "bgcolor 0.50 0.50 0.50 0.00", 'borderstyle "3D_BORDER"',
       'shader "textures/mohmenu/back"', 'hovershader "textures/mohmenu/back_h"', 'clicksound "sound/menu/back.wav"', 'stuffcommand "set ui_scene_hot 0; hzm_ops close; popmenu 1"', "}", "end."]
 open(os.path.join(UI, "hzm_newgame3d.urc"), "wb").write((NL.join(U) + NL).encode("latin-1"))

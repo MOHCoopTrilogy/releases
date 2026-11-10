@@ -121,3 +121,11 @@ the gun, so every decal is behind the hands and follows reloads.
   (merge_engrave_spots.py EG_TILEFAIL). HZE_Place keeps the whole quad (size, tilt, mirror) on set cells; the bench stores
   where the piece really lands. Steps: < > 0.25, << >> 1.5, ^ v 0.1 units.
 - HZE_MAX_USES 1024 -> 4096: a table with a use line per finish variant (1569) silently lost every gun past 1024.
+- **Newer guns (benchfix 2)**: the 21 armory meshes added since the first solve (Bren, MP28, Panzerfaust, BAR/Lewis, the
+  Pacific / Trench / G98 / P14 / Tommy variants) measured in game (cams_new), solved, merged with EG_ADDNEW and hand-checked
+  (text 1 fail -> re-solved with --avoid, spots 4 dropped, face tiles 103 cleared). 93 anchors cover 1672 tiks; only the
+  grenades have none. Inputs now live in data/ (cams.json, anchors_report.json) instead of a scratch folder.
+- **Wood carvings**: the wood shaders take the stain away under the cut (alpha) and put lit raw wood back - pale on dark walnut.
+- **"Dark preview" was a test-build artefact**: a fresh cmake configure defaults USE_RENDERER_DLOPEN OFF, which links the GL1
+  renderer into the exe; GL1 lights menu models darker. Release builds load renderer_opengl2.dll and are as bright as v1.10.68.
+- Legibility (22 px at 1080p): 23/93 long words, 44/93 words of <= 10 letters.
