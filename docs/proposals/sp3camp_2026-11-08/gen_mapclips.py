@@ -25,8 +25,11 @@ FPS = 30
 TOP = int(576 * 0.78) - 162    # the title block's top: its last line ends at 78% of the frame height
 ZOOM_S, TOTAL_S = 3.4, 4.6    # the push-in, then the ring and the last lines; the engine holds the last frame after that
 MJ = json.load(open(os.path.join(HERE, "missions.json")))
-THEATRE = dict(lat=(33.0, 65.0), lon_c=12.0)
-K = math.cos(math.radians(49.0))      # the wall view's projection constant (warmap: lon span = lat span x aspect / cos(mid lat))
+# [mapclips70] the theatre IS the war map's window (warmap.WALL_WIN; v1.10.70 widened it east to Stalingrad, 31.5..67.5N, lon_c
+# 15.85), so a clip opens on the New Game map's own latitudes and centre - read, never copied, so the two cannot drift apart again
+THEATRE = dict(lat=tuple(warmap.WALL_WIN["lat"]), lon_c=warmap.WALL_WIN["lon_c"])
+K = math.cos(math.radians(sum(THEATRE["lat"]) / 2))   # the wall view's projection constant (warmap: lon span = lat span x aspect / cos(mid lat))
+MOD = os.environ.get("MAPCLIPS_MOD", r"C:\mohaa-coop-dev\hzm-mohaa-coop-mod")   # the mod tree whose join-card lines are typed in
 INK = (58, 44, 30)
 
 
@@ -36,6 +39,10 @@ def font(n, px):
 
 def map_mission(m):
     """the mission key of a map name (levels + their briefings), None for anything else"""
+    for x in MJ["missions"]:                      # [mapclips70] an own-disc mission: missions.json byo.map / byo.brief_token
+        b = x.get("byo") or {}
+        if b and m.split("/")[-1].lower() in (b["map"].lower(), b["brief_token"].lower()):
+            return x["key"]
     for pat, camp in ((r"^m(\d)l", "aa"), (r"^t(\d)l", "sh"), (r"^e(\d)l", "bt"), (r"^briefing(\d)$", "aa"), (r"^briefingt(\d)$", "sh"), (r"^briefinge(\d)$", "bt")):
         mm = re.match(pat, m.split("/")[-1].lower())
         if mm:
@@ -221,8 +228,13 @@ def frames(ne, work, only):
 
 
 def parse_joincard(mod):
-    mod = mod or r"C:\mohaa-coop-dev\hzm-mod-spfix2"
+    mod = mod or MOD
     t = open(os.path.join(mod, "coop_mod", "joincard_table.scr"), encoding="latin-1").read()
+    # [mapclips70] an own-disc mission keeps its join-card row in its own map script (joincard_titles.tsv checks every row
+    # against the retail paks, which have no such level): read those rows too, so its clip types the card's own lines
+    for x in MJ["missions"]:
+        if x.get("byo"):
+            t += "\n" + open(os.path.join(mod, "maps", x["byo"]["map"] + ".scr"), encoding="latin-1").read()
     out = {}
     for f, m, v in re.findall(r'level\.coop_jc(\w+)\["([^"]+)"\]\s*=\s*"((?:[^"\\]|\\.)*)"', t):
         out.setdefault(m, {})[f] = v
@@ -338,6 +350,17 @@ def pack(mod, work):
     open(os.path.join(mod, "ui", "loadclips.txt"), "w", newline="\r\n").write("\n".join(R) + "\n")
     subprocess.check_call([sys.executable, "-P", "-E", tool, "pak", os.path.join(work, "zzzzzzzzzz_coop_mapclips.pk3")] + clips
                           + ["--rules", os.path.join(mod, "ui", "loadclips.txt")])
+    # [mapclips70] deterministic pak: gen_loadclip.py stamps each entry with its file's mtime, so the same clips gave a new sha on
+    # every run. Re-store the entries in name order with one fixed date (stored, as before): same frames -> same bytes.
+    import zipfile
+    pk = os.path.join(work, "zzzzzzzzzz_coop_mapclips.pk3")
+    with zipfile.ZipFile(pk) as zi:
+        ents = [(n, zi.read(n)) for n in sorted(zi.namelist())]
+    with zipfile.ZipFile(pk, "w", zipfile.ZIP_STORED) as zo:
+        for n, b in ents:
+            zi_ = zipfile.ZipInfo(n, date_time=(2026, 11, 10, 0, 0, 0))
+            zi_.external_attr = 0o644 << 16
+            zo.writestr(zi_, b)
     # the rules ride in the pak too: it sorts after the old zzzzzzzzzz_coop_loadclips*.pk3 (dev installs, 1.10.34-36 players), whose
     # own ui/loadclips.txt would otherwise beat the code pak's (fewer z's) and point every load at the old 2048 clips
     print("packed", len(clips), "clips")
