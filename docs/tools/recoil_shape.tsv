@@ -1,0 +1,113 @@
+# Recoil pattern SHAPE - the authored (judgement) input of gen_recoil_pattern.py. The physics (cartridge, weight, rate) is
+# NOT here: it comes from recoil_research.tsv (published specs, per-gun sources) overridden by recoil_measured.tsv wherever a
+# MEASURED figure exists. This file only says how each game weapon maps onto that physics and how the kick is SHAPED.
+#
+# stem     game tik stem (models/weapons/<stem>.tik). Finish variants (<stem>_<finish>) need no row: the engine drops trailing
+#          _segments until a row matches, so they share their base gun's pattern. A MODEL variant that is a different real gun
+#          (thompsonsmg_tommy28 = an M1928) gets its own row here and matches first.
+# phys     key of the physics row in recoil_research.tsv
+# cls      A automatic (SMG / AR / LMG / MG)  S semi-auto rifle  B bolt / pump / break  P pistol / revolver  L launcher
+# extra_kg mass added to (or taken from) the spec weight: a scope ~0.4, a suppressor ~0.3, a lighter model variant < 0
+# mag_kg   loaded magazine / drum / belt carried on the gun (the spec weights are EMPTY); estimates, from the cartridge count
+# layout   stock line: drop (the bore well above the shoulder - climbs), inline (straight-line stock - pushes back), mid,
+#          thompson (the dropped stock Aberdeen 1942 measured: an in-line stock raised hits 61->81 pct at 50 yd), pistol
+# device   none, cutts, brake, jacket (PPSh slanted jacket compensator), suppressor, booster (MG42 muzzle recoil booster)
+# hip      hip-fire (no sights) multiplier on the kick
+# drift    horizontal drift per round as a share of the climb, + = right (right-handed shooter)
+# sway     horizontal sway amplitude, share of the climb;  period  rounds per sway cycle
+# jitP     random vertical share (+-);  jitY  random horizontal share (+-)
+# scale    final trim (1 = the physics as derived) - every value off 1 says why in basis
+# basis    where the SHAPE comes from: [M] measured / documented, [D] derived from layout or physics, [A] anecdotal
+stem	phys	cls	extra_kg	mag_kg	layout	device	hip	drift	sway	period	jitP	jitY	scale	basis
+thompsonsmg	thompsonsmg	A	0	0.75	thompson	none	1.30	0.22	0.25	9	0.12	0.10	1	[M] Aberdeen 1942: climb from the dropped stock (in-line stock 61->81 pct hits at 50 yd). [A] climbs up and right for a right-handed shooter
+thompson50	thompsonsmg	A	0	2.2	thompson	none	1.30	0.22	0.25	9	0.12	0.10	1	[M] as thompsonsmg; the 50 rd drum adds ~2.2 kg forward (heavier, slower to climb)
+thompsonsmg_tommy28	thompson_m1928	A	0	0.75	thompson	cutts	1.30	0.18	0.25	9	0.12	0.10	1	[M] M1928A1 with Cutts (Aberdeen: the Cutts gave no net gain in hits - smoke on the sights - so it only trims the climb a little). [A] up-right
+thompsonsmg_tommy1928d	thompson_m1928	A	0	2.2	thompson	cutts	1.30	0.18	0.25	9	0.12	0.10	1	[M] as tommy28, drum
+thompsonsmg_tommy27a1	thompson_m1928	A	0	0.75	thompson	cutts	1.30	0.18	0.25	9	0.12	0.10	1	[M] as tommy28
+thompsonsmg_m1a1dk	thompsonsmg	A	0	0.75	thompson	none	1.30	0.22	0.25	9	0.12	0.10	1	[M] as thompsonsmg
+mp40	mp40	A	0	0.65	mid	none	1.25	0.06	0.20	12	0.10	0.10	1	[M] slow measured rate (400-550) chosen for burst control; [D] mild, nearly vertical
+mp40silenced	mp40	A	0.30	0.65	mid	suppressor	1.25	0.06	0.20	12	0.10	0.10	1	[D] mp40 + suppressor mass and gas trap
+mp40_mp18	mp18	A	0	0.65	drop	none	1.25	0.15	0.20	10	0.10	0.10	1	[D] MP18: wooden dropped stock, side magazine. [M] MP28 burst groups moved right (Soviet 1941 trial)
+mp40_lv_mp75	mp40	A	0	0.65	mid	none	1.25	0.06	0.20	12	0.10	0.10	1	[D] as mp40
+coop_bergmann	coop_bergmann	A	0	0.65	drop	none	1.25	0.20	0.20	10	0.10	0.10	1	[M] Soviet Dec 1941 trial: MP28 burst groups shift right (+4.8 horizontal vs +1.8 vertical over single shots)
+sten	sten	A	0	0.65	mid	none	1.25	0.00	0.15	7	0.40	0.12	1	[D] light skeleton gun, side magazine: a vertical bounce rather than a steady walk; [M] 1941 trial found it accurate
+ppsh_smg	ppsh_smg	A	0	1.8	drop	jacket	1.30	0.45	0.30	6	0.35	0.45	1	[M] Soviet Dec 1941 trial: burst groups spread mostly SIDEWAYS (+7.8 horizontal, +1.3 vertical vs single shots), 1050 rpm measured; the jacket compensator holds the muzzle down
+ppsh43silenced	ppsh43silenced	A	0.30	0.75	mid	suppressor	1.25	0.25	0.25	8	0.20	0.25	1	[D] PPS-43 at a lower rate (630 measured), folding stock; drift as the PPSh, smaller
+greasegun	greasegun	A	0	0.75	mid	none	1.20	0.05	0.15	12	0.08	0.08	1	[D] 450 rpm, heavy bolt: the slowest, most controllable .45 - nearly straight up
+greasegun_silenced	greasegun	A	0.35	0.75	mid	suppressor	1.20	0.05	0.15	12	0.08	0.08	1	[D] as greasegun + suppressor
+it_w_moschetto	it_w_moschetto	A	0	0.6	drop	brake	1.25	0.08	0.18	10	0.10	0.10	1	[D] MAB 38A: heavy wooden stock and a ported compensator
+moschetto	it_w_moschetto	A	0	0.6	drop	brake	1.25	0.08	0.18	10	0.10	0.10	1	[D] as it_w_moschetto
+type100smg	type100smg	A	0	0.6	drop	none	1.25	0.10	0.20	8	0.15	0.15	1	[D] 8 mm Nambu is a weak round; the 1944 model's 800 rpm builds it
+bar	bar	A	0	0.65	drop	none	1.40	0.10	0.10	14	0.06	0.06	1	[D] heavy and muzzle-heavy: a big but steady, nearly vertical climb
+bar_bar1918a	bar	A	-1.55	0.65	drop	none	1.40	0.10	0.10	14	0.06	0.06	1	[D] M1918 (7.25 kg, no bipod) - lighter, climbs more
+bar_bar1918a1	bar	A	-1.50	0.65	drop	none	1.40	0.10	0.10	14	0.06	0.06	1	[D] M1918A1 (7.3 kg)
+bar_bar1918a2	bar	A	0	0.65	drop	none	1.40	0.10	0.10	14	0.06	0.06	1	[D] as bar
+bar_pabar	bar	A	0	0.65	drop	none	1.40	0.10	0.10	14	0.06	0.06	1	[D] as bar
+bar_bar1918	bar_bar1918	A	0	1.4	drop	none	1.40	0.08	0.10	12	0.08	0.08	1	[D] Lewis gun: 13 kg with the 47 rd pan - heavy, steady
+mp44	mp44	A	0	0.85	inline	none	1.30	0.05	0.12	12	0.08	0.08	1.15	[M] US ETO Ordnance Oct 1944: marked climb, 5 rd bursts not held on a 6x6 ft target at 35 yd - scale 1.15 for that report
+mp44scoped	mp44	A	0.45	0.85	inline	none	1.30	0.05	0.12	12	0.08	0.08	1.15	[M] as mp44 + scope
+fg42	fg42	A	0	0.6	inline	brake	1.35	0.06	0.12	8	0.10	0.10	1	[M] 2nd pattern, straight-line stock and muzzle brake; McCollum: little visible climb in SHORT bursts, long bursts walk off - the light gun's hard kick per round with a pattern that tapers early
+coop_fg42_irons	fg42	A	0	0.6	inline	brake	1.35	0.06	0.12	8	0.10	0.10	1	[M] as fg42
+uk_w_vickers	uk_w_vickers	A	0	0.9	drop	none	1.40	0.04	0.10	12	0.10	0.08	1	[D] Vickers-Berthier: 11.1 kg, slow rate - very stable
+it_w_breda	it_w_breda	A	0	0.6	drop	none	1.40	0.06	0.12	10	0.12	0.10	1	[D] Breda M30: 10.6 kg, slow
+coop_bren	coop_bren	A	0	0.9	mid	none	1.40	0.00	0.08	10	0.20	0.06	0.9	[M] hands-on: a rocking front-to-back recoil from the heavy bolt, manageable held tight - a small bounce, almost no walk; scale 0.9 for its reputation as the steadiest LMG
+dp28	dp28	A	0	1.9	drop	none	1.40	0.08	0.12	10	0.10	0.10	1	[D] DP: 9.1 kg + 47 rd pan, slow
+30calportable	30calportable	A	0	1.5	drop	none	1.50	0.10	0.18	8	0.15	0.15	1	[D] M1919A6 14.7 kg - held off the bipod it is a heavy, slow-rising gun
+mg42portable	mg42portable	A	0	1.3	inline	booster	1.60	0.15	0.45	5	0.25	0.45	1	[M] Soviet manual for captured guns: from the bipod the cone leaves the target after 7 rounds (bursts of 5-7); 1100-1350 rpm measured. [D] off the mount the booster and the rate make it violent - mounting cuts it (coop_braceKickMG)
+m1_garand	m1_garand	S	0	0.25	drop	none	1.15	0.05	0.15	4	0.10	0.15	1	[D] one big shove, straight back and up; follow-ups climb if rushed
+garand_silenced	m1_garand	S	0.30	0.25	drop	suppressor	1.15	0.05	0.15	4	0.10	0.15	1	[D] as m1_garand + suppressor
+garand_scoped	m1_garand	S	0.45	0.25	drop	none	1.15	0.05	0.15	4	0.10	0.15	1	[D] M1C/D: + scope and mount
+m1_garand_pagarand	m1_garand	S	0	0.25	drop	none	1.15	0.05	0.15	4	0.10	0.15	1	[D] as m1_garand
+carbine	carbine	S	0	0.25	drop	none	1.10	0.04	0.15	4	0.10	0.15	1	[D] 5.4 J free recoil in a 2.4 kg rifle - light, quick to come back
+johnson_m1941	johnson_m1941	S	0	0.3	drop	none	1.15	0.05	0.15	4	0.10	0.15	1	[D] recoil-operated .30-06; the moving barrel softens the peak a little
+g43	g43	S	0	0.35	drop	none	1.15	0.05	0.15	4	0.10	0.15	1	[D] 7.92 semi-auto
+coop_g43_irons	g43	S	0	0.35	drop	none	1.15	0.05	0.15	4	0.10	0.15	1	[D] as g43
+g43sniper	g43	S	0.45	0.35	drop	none	1.15	0.05	0.15	4	0.10	0.15	1	[D] as g43 + ZF4
+svt_rifle	svt_rifle	S	0	0.3	drop	brake	1.15	0.05	0.15	4	0.10	0.15	1	[D] SVT-40 muzzle brake takes the edge off a stout cartridge
+kar98	kar98	B	0	0.12	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] the hardest-kicking standard rifle here: heavy bullet, light rifle
+kar98_g98	kar98	B	0.20	0.12	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] Gewehr 98: longer and heavier
+kar98sniper	kar98	B	0.45	0.12	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] + scope
+kar98snipersilenced	kar98	B	0.75	0.12	drop	suppressor	1.15	0.04	0.10	3	0.08	0.15	1	[D] + scope and suppressor
+enfield	enfield	B	0	0.15	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] .303 in a 4.1 kg rifle - softer than the Mauser
+enfield_p14	enfield	B	0.15	0.15	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] Pattern 14 (4.25 kg)
+enfieldsniper	enfield	B	0.45	0.15	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] No.4(T) + scope
+uk_w_l42a1	uk_w_l42a1	B	0.45	0.2	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] 7.62 NATO, heavy barrel + scope
+springfield_unscoped	springfield_unscoped	B	0	0.1	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] .30-06 bolt gun
+springfield_m1903	springfield_unscoped	B	0	0.1	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] as springfield_unscoped
+springfield	springfield_unscoped	B	0.45	0.1	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] M1903A4 + scope
+it_w_carcano	it_w_carcano	B	0	0.1	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] 6.5 mm - the mildest service bolt rifle here
+carcanosniper	it_w_carcano	B	0.45	0.1	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] + scope
+mosin_nagant_rifle	mosin_nagant_rifle	B	0	0.12	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] 7.62x54R
+nagant_sniper	mosin_nagant_rifle	B	0.45	0.12	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] + PU scope
+nagant_snipersilenced	mosin_nagant_rifle	B	0.75	0.12	drop	suppressor	1.15	0.04	0.10	3	0.08	0.15	1	[D] + scope and Bramit-type suppressor
+arisaka	arisaka	B	0	0.12	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] 7.7 mm Type 99
+arisakasniper	arisaka	B	0.45	0.12	drop	none	1.15	0.04	0.10	3	0.08	0.15	1	[D] + scope
+delisle	delisle	B	0	0.2	drop	suppressor	1.10	0.03	0.10	3	0.08	0.12	1	[D] subsonic .45 in an integrally suppressed carbine - very little kick
+shotgun	shotgun	B	0	0.2	drop	none	1.10	0.05	0.10	3	0.10	0.15	1	[D] 12 ga full load in a 3.6 kg gun: the biggest shoulder shove of the long guns
+coop_dbshotgun	coop_dbshotgun	B	0	0.1	drop	none	1.10	0.05	0.10	2	0.10	0.15	1	[D] lighter double: snaps up harder than the pump
+colt45	colt45	P	0	0.25	pistol	none	1.0	0.08	0.20	3	0.12	0.20	1	[D] .45 ACP, high bore axis: a sharp flip that comes straight back
+colt_silenced	colt45	P	0.30	0.25	pistol	suppressor	1.0	0.08	0.20	3	0.12	0.20	1	[D] + suppressor
+colt45_coltpa	colt45	P	0	0.25	pistol	none	1.0	0.08	0.20	3	0.12	0.20	1	[D] as colt45
+colt45_colt1911w	colt45	P	0	0.25	pistol	none	1.0	0.08	0.20	3	0.12	0.20	1	[D] as colt45
+dbno_pistol	colt45	P	0	0.25	pistol	none	1.0	0.08	0.20	3	0.12	0.20	1	[D] the downed sidearm fires as the Colt
+p38	p38	P	0	0.15	pistol	none	1.0	0.06	0.20	3	0.12	0.20	1	[D] 9 mm
+p38silenced	p38	P	0.30	0.15	pistol	suppressor	1.0	0.06	0.20	3	0.12	0.20	1	[D] + suppressor
+lugerp08	lugerp08	P	0	0.15	pistol	none	1.0	0.05	0.20	3	0.10	0.20	1	[D] steep grip, low bore axis toggle: a softer flip than the P38
+lugerp08silenced	lugerp08	P	0.30	0.15	pistol	suppressor	1.0	0.05	0.20	3	0.10	0.20	1	[D] + suppressor
+ppk	ppk	P	0	0.1	pistol	none	1.0	0.06	0.20	3	0.12	0.20	1	[D] .32 ACP blowback - light and snappy
+tt33	tt33	P	0	0.12	pistol	none	1.0	0.06	0.20	3	0.12	0.20	1	[D] hot 7.62x25
+tt33silenced	tt33	P	0.30	0.12	pistol	suppressor	1.0	0.06	0.20	3	0.12	0.20	1	[D] + suppressor
+nambu	nambu	P	0	0.12	pistol	none	1.0	0.05	0.20	3	0.10	0.20	1	[D] weak 8 mm in a heavy frame
+webley_revolver	webley_revolver	P	0	0.04	pistol	none	1.0	0.08	0.20	3	0.12	0.20	1	[D] slow heavy .455: a big roll up
+nagant_revolver	nagant_revolver	P	0	0.05	pistol	none	1.0	0.05	0.20	3	0.10	0.20	1	[D] 7.62 Nagant - mild
+m10_revolver	m10_revolver	P	0	0.07	pistol	none	1.0	0.06	0.20	3	0.10	0.20	1	[D] .38 Special
+it_w_beretta	it_w_beretta	P	0	0.1	pistol	none	1.0	0.06	0.20	3	0.12	0.20	1	[D] 9 mm Corto blowback
+berettasilenced	it_w_beretta	P	0.30	0.1	pistol	suppressor	1.0	0.06	0.20	3	0.12	0.20	1	[D] + suppressor
+welrod	welrod	P	0	0.1	pistol	suppressor	1.0	0.03	0.10	3	0.08	0.12	1	[D] integrally suppressed, manual bolt - almost no flip
+mauser_c96	mauser_c96	P	0	0.1	pistol	none	1.0	0.06	0.20	3	0.12	0.20	1	[D] broomhandle: high bore line, light round
+mauser_c96_c96trench	mauser_c96	S	0.60	0.1	drop	none	1.10	0.05	0.15	4	0.10	0.15	1	[D] with the shoulder stock fitted it handles as a light carbine
+silencedpistol	silencedpistol	P	0	0.1	pistol	suppressor	1.0	0.03	0.10	3	0.08	0.12	1	[D] .22 LR, suppressed
+bazooka	bazooka	L	0	0	inline	none	1.0	0.00	0.05	2	0.10	0.20	1	[D] recoilless: the rocket burns out in the tube, a small shove
+panzerschreck	panzerschreck	L	0	0	inline	none	1.0	0.00	0.05	2	0.10	0.20	1	[D] recoilless
+coop_panzerfaust	coop_panzerfaust	L	0	0	inline	none	1.0	0.00	0.05	2	0.10	0.20	1	[D] recoilless
+uk_w_piat	uk_w_piat	L	0	0	inline	none	1.0	0.04	0.10	2	0.10	0.20	6	[M] the one launcher that kicks: its spigot spring recoil is documented as powerful
