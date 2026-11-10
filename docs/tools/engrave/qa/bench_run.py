@@ -89,8 +89,8 @@ def check_spots():
     import json
     wait(20); c("set cg_engraveCheck 1"); c('set cl_engraveText "X"'); c("set thereisnomonkey 1"); c("set cheats 1"); c("set developer 1")
     c("spdevmap m3l2"); wait(45); c("finishloadingscreen"); wait(6)
-    guns = json.load(open(r"C:\Users\curry\AppData\Local\Temp\claude\cf30267572f02900\62f7348a-09fe-4e2b-810a-023a3be2b822\scratchpad\eg_allguns.json"))
-    rep = json.load(open(r"C:\Users\curry\AppData\Local\Temp\claude\cf30267572f02900\62f7348a-09fe-4e2b-810a-023a3be2b822\scratchpad\eg\r_merged.json"))
+    guns = json.load(open(os.environ.get("EG_GUNLIST") or r"C:\Users\curry\AppData\Local\Temp\claude\cf30267572f02900\62f7348a-09fe-4e2b-810a-023a3be2b822\scratchpad\eg_allguns.json"))
+    rep = json.load(open(os.environ.get("EG_REPORT") or r"C:\Users\curry\AppData\Local\Temp\claude\cf30267572f02900\62f7348a-09fe-4e2b-810a-023a3be2b822\scratchpad\eg\r_merged.json"))
     only = os.environ.get("EG_ONLY", "")
     for tik, name, typ in guns:
         r = rep.get(tik)
@@ -109,7 +109,7 @@ def face_check():
     import json
     wait(20); c("set thereisnomonkey 1"); c("set cheats 1"); c("set developer 1"); c('set cl_engraveText "X"')
     c("spdevmap m3l2"); wait(45); c("finishloadingscreen"); wait(6)
-    guns = json.load(open(r"C:\Users\curry\AppData\Local\Temp\claude\cf30267572f02900\62f7348a-09fe-4e2b-810a-023a3be2b822\scratchpad\eg_allguns.json"))
+    guns = json.load(open(os.environ.get("EG_GUNLIST") or r"C:\Users\curry\AppData\Local\Temp\claude\cf30267572f02900\62f7348a-09fe-4e2b-810a-023a3be2b822\scratchpad\eg_allguns.json"))
     table = open(os.path.join(MOD, "scripts", "hzm_engrave_anchors.txt")).read().splitlines()
     faces = {}
     for ln in table:
@@ -166,13 +166,29 @@ def bench_move():
         c("hzmcust move 0 0.1")
     c("echo ^~^~^ MOVE kar98 up;cl_custEdit"); look("kar98_stock_up")
 
+def cams_new():
+    """first-person camera + bone frames of guns without anchors (cg_engraveDebug 1 -> ENGRAVECAM / ENGRAVETAG)"""
+    import json
+    wait(20); c("set thereisnomonkey 1"); c("set cheats 1"); c("set developer 1"); c("set cg_engraveDebug 1")
+    c("spdevmap m3l2"); wait(45); c("finishloadingscreen"); wait(6)
+    for tik, name, typ in json.load(open(os.environ["EG_GUNLIST"])):
+        c("echo ^~^~^ SPTEST gun " + tik); c("give " + tik); wait(1); c('use "%s"' % name); wait(5)
+        n[0] += 1; c("screenshotJPEG %s_%02d_%s" % (tag, n[0], os.path.basename(tik)[:-4])); wait(0.5)
+
+def bench_one():
+    """one bench shot of the Garand (lighting A/B) + the Kar98k wood carving zoomed"""
+    wait(20); c('set cl_engraveText "Lucky Lady"'); c("pushmenu coop_custom")
+    c("exec ui/loadout/mvp01_0_s1.cfg"); c("hzmcust open"); shot("garand_open", 2)
+    c("exec ui/loadout/mvp03_0_s1.cfg"); c("hzmcust open;hzmcust spot 1;hzmcust zoom;hzmcust zoom"); shot("kar98_wood_close", 2)
+    c("pushmenu coop_loadout"); shot("armory", 2)
+
 def check_short():
     """hand check of the words on every gun (short words use the engrave_short spot): flat magenta quads"""
     import json
     wait(20); c("set cg_engraveCheck 1"); c("set thereisnomonkey 1"); c("set cheats 1"); c("set developer 1")
     c('set cl_engraveText "%s"' % os.environ.get("EG_TEXT", "LUCKY LADY"))
     c("spdevmap m3l2"); wait(45); c("finishloadingscreen"); wait(6)
-    guns = json.load(open(r"C:\Users\curry\AppData\Local\Temp\claude\cf30267572f02900\62f7348a-09fe-4e2b-810a-023a3be2b822\scratchpad\eg_allguns.json"))
+    guns = json.load(open(os.environ.get("EG_GUNLIST") or r"C:\Users\curry\AppData\Local\Temp\claude\cf30267572f02900\62f7348a-09fe-4e2b-810a-023a3be2b822\scratchpad\eg_allguns.json"))
     only = os.environ.get("EG_ONLY", "")
     for tik, name, typ in guns:
         key = os.path.basename(tik)[:-4]
@@ -182,7 +198,7 @@ def check_short():
         c("give " + tik); wait(1); c('use "%s"' % name); wait(3.2)
         n[0] += 1; c("set cg_engraveQuadNow 1;screenshotJPEG %s_%02d_%s" % (tag, n[0], key)); wait(0.8)
 
-{"face_check": face_check, "bench_tilt": bench_tilt, "bench_move": bench_move, "check_short": check_short, "bench_guns": bench_guns, "bench_type": bench_type, "ingame_emblems": ingame_emblems, "check_spots": check_spots}[scen]()
+{"bench_one": bench_one, "cams_new": cams_new, "face_check": face_check, "bench_tilt": bench_tilt, "bench_move": bench_move, "check_short": check_short, "bench_guns": bench_guns, "bench_type": bench_type, "ingame_emblems": ingame_emblems, "check_spots": check_spots}[scen]()
 c("echo ^~^~^ ENGRAVE done"); c("quit")
 E.CLIENT_CFG = "omconfig_fresh.cfg"
 shutil.copyfile(os.path.join(E.CLIENT, "pristine", "omconfig_fresh.cfg"), os.path.join(E.CLIENT, "pristine", "omconfig.cfg.run"))
