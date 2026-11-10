@@ -131,9 +131,9 @@ assert len(SHP) == 1, SHP
 txt = ZB.read(SHP[0]).decode("latin1")
 new = ("hzm_wx_skydrops\n{\n\tnopicmip\n\tcull none\n\tsort 8.5\n"
        "\t{\n\t\tmap textures/menu/hzm_wx_skybeads.tga\n\t\tblendFunc blend\n\t\trgbGen entity\n\t\talphaGen entity\n"
-       "\t\ttcMod scale 1.6 1.6\n\t\ttcMod scroll 0.0 -0.006\n\t}\n"
-       "\t{\n\t\tmap textures/menu/hzm_wx_skyriv.tga\n\t\tblendFunc blend\n\t\trgbGen entity\n\t\talphaGen entity\n"
-       "\t\ttcMod scale 1.1 1.1\n\t\ttcMod scroll 0.0 -0.045\n\t}\n}")
+       "\t\ttcMod scale 1.6 1.6\n\t\ttcMod scroll 0.0 -0.006\n\t}\n}")
+# (in-game QA v1.10.73: the rivulet layer still read as thin vertical lines at LOOK UP - dropped; rain73's drop simulation runs
+# real trickles down the slope)
 pat = re.compile(r"(?m)^hzm_wx_skydrops\n\{\n.*?\n\}(?=\n|$)", re.S)
 assert len(pat.findall(txt)) == 1
 txt = pat.sub(lambda _: new, txt)

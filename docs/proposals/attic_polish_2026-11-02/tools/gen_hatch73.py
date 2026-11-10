@@ -9,7 +9,7 @@ turn (patch_hatch73.py). Writes into <add dir>:
   models/menu/hzm_hatch_lit.*   the same, the lamp turned up (the attic's lit-copy recipe: hover shows it, hides the plain one)
   models/menu/hzm_hatch_below.* the stairwell below: plank walls, the ladder's lower run, a landing floor, a warm bounce glow
   scripts/hzm_hatch73.shader    the game's own wood (general_structure/beam_wood1, plank_flat, mohtest/woodfloor2), painted to
-                                the room's baked light (rgbGen const: the attic is baked, nothing is lit at run time)
+                                the room's baked light (baked into copies of the textures: the attic is baked, nothing is lit at run time)
 """
 import math, os, re, sys, zipfile
 import numpy as np
@@ -160,22 +160,25 @@ for (c, a1, a2, sz) in (((HC[0], HY0 - FW / 2, 0.15), ex, ey, (HX1 - HX0 + 2 * F
                         ((HX0 - FW / 2, HC[1], 0.15), ex, ey, (FW, HY1 - HY0, 0.6)),
                         ((HX1 + FW / 2, HC[1], 0.15), ex, ey, (FW, HY1 - HY0, 0.6))):
     box(frame, c, a1, a2, up, sz)
-# the trapdoor: hinged along the opening's left (x = HX0) edge, swung up past upright to 100 deg and resting back on its stay
+# the trapdoor: hinged along the opening's FAR edge (y = HY1), swung up past upright to 100 deg and leaning back on its stay - it
+# faces the turn view (in-game QA: hinged on the left edge it stood edge-on to the camera and read as a hollow frame); the ladder's
+# grab rails rise in front of it
 th = math.radians(100.0)
-lw, ld, lt = HX1 - HX0 - 1.0, HY1 - HY0 - 1.0, 2.2          # leaf: width (from the hinge), depth along y, thickness
-d_ = np.array([math.cos(th), 0, math.sin(th)])               # from the hinge across the leaf (hinge at x HX0, z 0)
-n_ = np.array([-math.sin(th), 0, math.cos(th)])              # its top face's normal
-hinge = np.array([HX0, HC[1], 0.6])
-box(lid, hinge + d_ * lw / 2 + n_ * lt / 2, d_, ey, n_, (lw, ld, lt), 30.0)
-for f_ in (0.18, 0.82):                                       # two battens on the underside (now facing the opening)
-    box(lid, hinge + d_ * lw * f_ - n_ * 0.9, d_ * 0 + ey, d_, -n_, (ld - 4, 3.2, 1.8), 20.0)
-box(lid, hinge + d_ * lw * 0.5 - n_ * 0.9, d_, ey, -n_, (lw - 6, 3.0, 1.8), 20.0)
-# its stay: a short iron bar from the frame to the leaf (dark)
+lw, ld, lt = HY1 - HY0 - 1.0, HX1 - HX0 - 1.0, 2.2          # leaf: length (from the hinge), width along x, thickness
+d_ = np.array([0.0, -math.cos(th), math.sin(th)])            # from the hinge across the leaf (th 0 = lying shut over the opening)
+n_ = np.array([0.0, math.sin(th), math.cos(th)])             # its top face's normal
+hinge = np.array([HC[0], HY1 + 0.5, 0.6])
+box(lid, hinge + d_ * lw / 2 + n_ * lt / 2, d_, ex, n_, (lw, ld, lt), 30.0)
+for f_ in (0.18, 0.82):                                       # two battens across the underside (now facing the opening)
+    box(lid, hinge + d_ * lw * f_ - n_ * 0.9, ex, d_, -n_, (ld - 4, 3.2, 1.8), 20.0)
+box(lid, hinge + d_ * lw * 0.5 - n_ * 0.9, d_, ex, -n_, (lw - 6, 3.0, 1.8), 20.0)
+# its stay: a short iron bar from the frame's right corner to the leaf (dark)
 stay = []
-s0 = np.array([HX0 - FW, HY0 + 4, 0.6])
-s1 = hinge + d_ * lw * 0.55 + np.array([0, -ld / 2 + 4, 0])
+s0 = np.array([HX1 + FW - 1.0, HY1 + 2.0, 0.6])
+s1 = hinge + d_ * lw * 0.55 + ex * (ld / 2 - 3.0) + n_ * 1.2
 v_ = s1 - s0
-box(stay, (s0 + s1) / 2, v_ / np.linalg.norm(v_), ey, np.cross(v_ / np.linalg.norm(v_), ey), (np.linalg.norm(v_), 0.8, 0.8), 40.0)
+vn = v_ / np.linalg.norm(v_)
+box(stay, (s0 + s1) / 2, vn, ex if abs(vn[0]) < 0.9 else ey, np.cross(vn, ex if abs(vn[0]) < 0.9 else ey), (np.linalg.norm(v_), 0.8, 0.8), 40.0)
 # the ladder: leaning on the far (y = HY1) wall, its rails run on 40 u above the floor
 LX = (HX0 + 7.0, HX1 - 7.0)
 yb, yt, zb, zt = HY1 - 13.0, HY1 - 4.0, -DEPTH, 42.0
@@ -239,8 +242,17 @@ for tex in (WOOD, PLANK, FLOORT):
 SH = []
 
 
+PAK2 = zipfile.ZipFile(r"G:\GOG\Medal of Honor - Allied Assault War Chest\main\Pak2.pk3")
+
+
 def sh(name, tex, rgb, extra=""):
-    SH.append("%s\n{\n\tnopicmip\n\tcull none\n\t{\n\t\tmap %s\n\t\trgbGen const ( %.2f %.2f %.2f )\n%s\t}\n}" % (name, tex, rgb[0], rgb[1], rgb[2], extra))
+    """the light baked into a copy of the game's texture (in-game QA: rgbGen const drew the hatch teal and see-through in the menu
+    scene) - textures/menu/<name>.jpg, rgbGen identity like every baked attic surface"""
+    import io
+    im = np.asarray(Image.open(io.BytesIO(PAK2.read(tex))).convert("RGB"), np.float32)
+    im = np.clip(im * np.array(rgb, np.float32)[None, None, :], 0, 255).astype(np.uint8)
+    Image.fromarray(im).save(os.path.join(tdir, name + ".jpg"), quality=92)
+    SH.append("%s\n{\n\tnopicmip\n\tcull none\n\t{\n\t\tmap textures/menu/%s.jpg\n\t\trgbGen identity\n%s\t}\n}" % (name, name, extra))
 
 
 ROOM = (0.62, 0.56, 0.48)              # the attic floor's baked level at the opening (lamp-lit boards, warm)
