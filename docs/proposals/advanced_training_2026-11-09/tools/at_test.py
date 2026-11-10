@@ -380,14 +380,16 @@ def case_tilesrc(out, res):
     """a clean 1920x1080 frame of the range (HUD, gun and feed off) - the source for the Advanced Training tile art"""
     h = os.path.join(A, "home")
     clean(h)
-    c = go_listen(h, ["set coop_advTraining 1", "set coop_atStation 2", "set coop_atTimeout 600"], size=(1920, 1080),
+    # Dig in (course position 6): no vote gate (its ready HUD draws even with cg_draw2d 0), the farm on the hill behind
+    # the bag wall; the feed lines are left 35 s to fade before the frame
+    c = go_listen(h, ["set coop_advTraining 1", "set coop_atStation 6", "set coop_atTimeout 600"], size=(1920, 1080),
                   binds=['bind F6 "cg_draw2d 0; cg_drawviewmodel 0; ui_hud 0"'])
     L = lp(h)
     with c:
         res["loaded"] = wait_for(L, r"Spawning Entities Done", 400)
         res["joined"] = join_until(c, L, "AT_Alpha", 300)
-        res["range"] = wait_for(L, r"ATRAIN prop st3 models/static/haystack", 200, poll=lambda: guard(c))
-        time.sleep(12)
+        res["range"] = wait_for(L, r"ATRAIN prop st7 mg42", 200, poll=lambda: guard(c))
+        time.sleep(35)
         shoot(c, out, "range_hud")
         c.post_key(VK["F6"])
         time.sleep(3)
