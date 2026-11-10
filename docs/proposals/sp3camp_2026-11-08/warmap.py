@@ -36,7 +36,10 @@ import ne_shp  # noqa: E402
 FD = r"C:\Windows\Fonts"
 WALL_M = (3.149, 2.705)                 # the attic wallmap quad, metres
 TAG_M = (0.38, 0.13)                    # a NEW GAME tag on the wall (make_ng3campaigns.py reads it from the json)
-WALL_WIN = dict(lat=(33.0, 65.0), lon_c=12.0)
+# [attic70] widened east to take in Stalingrad (EA's THEIR DYING BREATH, Gorodishche 48.8N 44.5E - its pin sat clamped on the
+# right edge of the old 33..65N / lon_c 12 window, which ended at 40.4E). The sheet's aspect is the wall's, so the extra width comes
+# from a taller latitude span: 31.5..67.5N, centred 15.9E -> about 16.4W..48.1E (the west edge where it was).
+WALL_WIN = dict(lat=(31.5, 67.5), lon_c=15.85)
 
 # the missions, their campaigns and colours: missions.json (THE table; one row adds a mission everywhere)
 _MJ = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "missions.json")))
@@ -46,10 +49,12 @@ TOGGLE = dict(c=(63.35, -9.8), w=0.56, h=0.085)          # NEW GAME's VANILLA | 
 TOWNS = [("LONDON", 51.507, -0.128, "r"), ("PARIS", 48.857, 2.352, "r"), ("ROME", 41.903, 12.496, "l"), ("MADRID", 40.417, -3.704, "r"),
          ("ALGIERS", 36.754, 3.059, "b"), ("OSLO", 59.914, 10.752, "l"), ("STOCKHOLM", 59.329, 18.069, "r"), ("WARSAW", 52.230, 21.012, "r"),
          ("VIENNA", 48.208, 16.373, "r"), ("TUNIS", 36.806, 10.181, "r"), ("NAPLES", 40.852, 14.268, "r"), ("AMSTERDAM", 52.370, 4.895, "r"),
-         ("HAMBURG", 53.551, 9.993, "r"), ("MUNICH", 48.137, 11.576, "r")]
-REGIONS = [("ATLANTIC|OCEAN", 41.6, -12.7, -46), ("NORTH  SEA", 56.6, 3.4, 64), ("MEDITERRANEAN SEA", 34.65, 19.0, -64),
-           ("BALTIC SEA", 55.4, 17.8, -50), ("FRANCE", 45.4, 1.8, 76), ("SPAIN", 39.6, -4.2, 76), ("GERMANY", 50.9, 10.3, -76),
-           ("NORWAY", 61.2, 8.6, 64), ("SWEDEN", 63.3, 16.3, 64), ("ITALY", 40.0, 16.4, 56), ("ENGLAND", 52.6, -1.6, 52)]
+         ("HAMBURG", 53.551, 9.993, "r"), ("MUNICH", 48.137, 11.576, "r"),
+         ("MOSCOW", 55.756, 37.617, "r"), ("KIEV", 50.450, 30.523, "r")]          # [attic70] the widened east
+REGIONS = [("ATLANTIC|OCEAN", 38.2, -12.6, -46), ("NORTH  SEA", 56.6, 3.4, 64), ("MEDITERRANEAN SEA", 33.6, 20.6, -64),
+           ("BALTIC SEA", 55.4, 17.8, -50), ("FRANCE", 45.4, 1.8, 76), ("SPAIN", 39.0, -4.2, 76), ("GERMANY", 50.9, 10.6, -76),
+           ("NORWAY", 61.2, 8.6, 64), ("SWEDEN", 63.3, 16.3, 64), ("ITALY", 40.0, 16.4, 56), ("ENGLAND", 52.6, -1.6, 52),
+           ("U. S. S. R.", 54.2, 31.0, -76), ("BLACK SEA", 43.3, 34.4, 56)]
 COL = {c["key"]: tuple(c["colour"]) for c in _MJ["campaigns"]}
 # [byo69] an OPTIONAL mission (optional_cvar: converted on the player's PC from their own disc) is never baked into the shared
 # images - no pin, no leader, no legend row - because a baked pin cannot be hidden when the pak is absent. make_ng3campaigns.py
