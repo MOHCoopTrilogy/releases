@@ -61,7 +61,8 @@ def shots(pak, ui, extra, tag, spec):
     L += ["echo ^~^~^ MR done", "wait 1500", "quit"]
     args = ["+set", "ui_menuCenter", str(center), "+set", "ui_menuRoom", "1", "+set", "ui_atticMain", "1",
             "+set", "s_volume", "0", "+set", "s_musicvolume", "0", "+set", "s_ambientvolume", "0", "+set", "com_maxfpsUnfocused", "30",
-            "+set", "in_mouse", "0", "+set", "in_nograb", "1", "+set", "in_gamepad", "0", "+set", "in_joystick", "0"]
+            "+set", "in_mouse", "0", "+set", "in_nograb", "1", "+set", "in_gamepad", "0", "+set", "in_joystick", "0",
+            "+set", "coop_tinnitus", "0"]
     out = A.launch("mp69_%s" % tag, w, h, L, args)
     if TRIPS:
         raise SystemExit("GUARD TRIPPED: %s - stopping" % (TRIPS[:2],))
