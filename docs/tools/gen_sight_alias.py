@@ -50,7 +50,10 @@ def arg(name, default=None):
     return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else default
 
 
-ENGINE = arg("--engine") or os.environ.get("HZM_ENGINE") or os.path.join(ROOT, "openmohaa-hzm")
+# [v1.10.68 integration] the release engine checkout first (build.ps1 calls `check` with no env; openmohaa-hzm is an older
+# branch and its source lacks the newguns / finishes2 rows, so the default failed the gate) - same order as check_deck.py
+_ENGINE_CANDIDATES = [r"H:\hzm_work\eng-hotfix13661", os.path.join(ROOT, "openmohaa-hzm")]
+ENGINE = arg("--engine") or os.environ.get("HZM_ENGINE") or next((d for d in _ENGINE_CANDIDATES if os.path.isdir(os.path.join(d, "code", "cgame"))), _ENGINE_CANDIDATES[-1])
 
 
 def norm(text):

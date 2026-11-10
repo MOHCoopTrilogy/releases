@@ -157,7 +157,7 @@ MP_OWNED_MENUS = {"mpoptions"}
 # ONLY this file: the MP-facing menus are left unlocked on purpose - the user approved coop edits to them
 # (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
 LOCKS = {
-    "ui/coop_loadout.urc": {"sha256_lf": "d89cd844f42d3178380546ba25b7193c7c4db500d514650e88dc3de6ec44c116", "sha256_crlf": "8c29ab99e6a61debd836709b6ba8de12d2d5a2ac1063142918624509772934bd", "lf_bytes": 190559, "blob": "ac10213230df56fd1ee1e9cd0b4d778645311fbd", "eol": "crlf", "commit": "580a4a40", "locked": "2026-11-09 v1.10.68 finishes2: the second finish chip row (13 swatches, fids 40-52) and the finish name moved to the hero top right (gen_armory_urc.py) - deliberate coop change, bug-10700"},
+    "ui/coop_loadout.urc": {"sha256_lf": "869f5fe3cbbd59331c67affc09679cf5c56f9c309f2be6d334c0de9069ca17a5", "sha256_crlf": "7575242b627ddc629079558f4c127b6983eb74339773822a78159d1593a70c2a", "lf_bytes": 190902, "blob": "6faf6eadeb57dc0c24364002bea380c45ba1169f", "eol": "crlf", "commit": "777d1367", "locked": "2026-11-09 v1.10.68 integration: finishes2 second chip row (fids 40-52, bug-10700) + the Customize bench CUSTOMIZE button (hzmcust open; pushmenu coop_custom, bug-10709), both from gen_armory_urc.py via gen_loadout build - deliberate coop change"},
 }
 
 # Clauses 4/5. Every saved coop cvar MP could plausibly touch [bug-2564]; each would follow the player into coop.
