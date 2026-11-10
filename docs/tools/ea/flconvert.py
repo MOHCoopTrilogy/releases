@@ -539,16 +539,86 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     clip = B.shader("textures/common/fl_collision", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
     nb = rejected = 0
+    ctris = []
     for name, vs, ts in coll:
         if os.environ.get("FL_COLL_ONLY") and os.environ["FL_COLL_ONLY"] not in name:
             continue
         P = [X(v) for v in vs]
         for a, b, c, _f in ts:
             a2, b2, c2 = wind(a, b, c, flip_coll)
-            if B.add_prism(clip, P[a2], P[b2], P[c2], thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
-                rejected += 1
-            else:
-                nb += 1
+            ctris.append((P[a2], P[b2], P[c2]))
+    added_drawn = []
+    if game == "ea" and not os.environ.get("EA_NO_SHEETS"):
+        # [eapolish] blocked only by what you can see (the Frontline polish rule, flsheets.py): a steep collision
+        # triangle with nothing drawn within 12u is a floating clip sheet. Sheets standing in front of drawn
+        # geometry (within 160u) are dropped and that drawn geometry gets collision of its own; sheets out in the
+        # open, with nothing drawn near (the level's boundaries), stay and get a visible barbed-wire edge.
+        import flsheets
+        rtris = [tuple(X(v) for v in (m["verts"][a], m["verts"][b], m["verts"][c])) for m in meshes for a, b, c in m["tris"]]
+        rtris += [t for _r, _s, _sid, tw in sob_models for t in tw]
+        RG = flgeom.TriGrid(rtris, cell=128.0)
+
+        def drawn_near(t, r):
+            cx = sum(v[0] for v in t) / 3
+            cy = sum(v[1] for v in t) / 3
+            cz = sum(v[2] for v in t) / 3
+            for j in RG.near(cx, cy, r + 2):
+                if flgeom.tri_box((cx, cy, cz), (r, r, r), *RG.tris[j]):
+                    return True
+            return False
+        CG = flgeom.TriGrid(ctris)
+
+        def void_beside(t, n):
+            # no floor within 2048u below a point 48u off either face: the sheet holds a level edge
+            cx = sum(v[0] for v in t) / 3
+            cy = sum(v[1] for v in t) / 3
+            zb = min(v[2] for v in t)
+            hl = math.hypot(n[0], n[1]) or 1.0
+            for sg in (1, -1):
+                x, y = cx + sg * 48 * n[0] / hl, cy + sg * 48 * n[1] / hl
+                if CG.ground(x, y, zb + 64, zb - 2048) is None:
+                    return True
+            return False
+        # reviewed keep list (ea_levels.json "clip_keep": collision triangle indexes, deterministic per disc level):
+        # sheets the walk audit found holding a level edge (dropping them let the walker fall out of the world)
+        clip_keep = set(flpack.spec(level, game).get("clip_keep", []))
+        tags, keep = [], []
+        for k, t in enumerate(ctris):
+            n = face_normal(*t)
+            sheet = n is not None and abs(n[2]) < 0.7 and not drawn_near(t, 12.0)
+            tags.append(1 if sheet else 0)
+            if sheet and (not drawn_near(t, 64.0) or void_beside(t, n) or k in clip_keep):
+                keep.append((k,))
+        ctris, _tg, added_drawn, srep = flsheets.replace(ctris, tags, [(k,) for k in range(len(ctris))],
+                                                         lambda f: f == 1, rtris, keep=keep, near=96.0)
+        kept_tris = srep.pop("kept_tris")
+        stats["sheets_dropped"] = srep.pop("dropped_list", [])
+        stats["sheets"] = srep
+        # the edges of the world (flcliff.py, the Frontline polish recipe): where a walkable floor now ends over
+        # nothing, a 160u clip wall - drawn as the same barbed-wire edge, so it is never an invisible wall
+        import flcliff
+        cw, stats["cliffs"] = flcliff.walls(ctris + added_drawn, flgeom.TriGrid(ctris + added_drawn))
+        ctris += cw
+        kept_tris += cw
+        wire = B.shader("textures/mohcommon/barbwire", 0, 0)
+        GW = flgeom.TriGrid(ctris)
+        nfe = 0
+        for (x0, y0, z0), (x1, y1, z1) in flsheets.edges(kept_tris, GW.ground):
+            L_ = math.hypot(x1 - x0, y1 - y0)
+            q = [((x0, y0, z0), (0.0, 1.0)), ((x1, y1, z1), (L_ / 64.0, 1.0)),
+                 ((x1, y1, z1 + 64.0), (L_ / 64.0, 0.0)), ((x0, y0, z0 + 64.0), (0.0, 0.0))]
+            B.add_soup(wire, [(pp, st, (0.0, 0.0, 1.0), med_light + (255,)) for pp, st in q], [0, 1, 2, 0, 2, 3])
+            nfe += 1
+        stats["sheets"]["visible_edges"] = nfe
+    for t in ctris:
+        if B.add_prism(clip, *t, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
+            rejected += 1
+        else:
+            nb += 1
+    drawnclip = B.shader("textures/common/ea_coll_drawn", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
+    for t in added_drawn:
+        if B.add_prism(drawnclip, *t, thickness=4.0, centered=True) is not None:
+            nb += 1
 
     # [eapolish] visible collision for the smart objects: thin slabs on their drawn triangles
     sobclip = B.shader("textures/common/ea_coll_sob", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)

@@ -65,6 +65,30 @@
   "time": "07:30",
   "_time_status": "chosen, approved by the user 2026-11-09: 07:30 = first light (sunrise ~07:35 local Moscow time, the zone used in 1943); not on the disc",
   "place_short": "Gorodishche, USSR",
-  "locsrc": "ours: the game says only 'Stalingrad, USSR'; Gorodishche chosen to fit the 28 Jan 1943 northern pocket (user decision 2026-11-09)"
+  "locsrc": "ours: the game says only 'Stalingrad, USSR'; Gorodishche chosen to fit the 28 Jan 1943 northern pocket (user decision 2026-11-09)",
+  "clip_keep": [
+   3034,
+   3036,
+   3038,
+   3040,
+   3048,
+   3050,
+   3052,
+   3054,
+   18944,
+   18945,
+   18946,
+   18947,
+   18950,
+   18954,
+   18955,
+   18956,
+   18957,
+   18959,
+   18960,
+   18961,
+   18964
+  ],
+  "_clip_keep_doc": "collision triangle indexes (level .cdb order) of floating clip sheets that hold a level edge: kept, drawn as a barbed-wire edge (docs/tools/ea/ea_sheetiter.py)"
  }
 }

@@ -123,6 +123,7 @@ class Store:
         cen = [(mn[k] + mx[k]) / 2 for k in range(3)]
         half = [(mx[k] - mn[k]) / 2 for k in range(3)]
         out = []
+        prev_end = 0
         seg = c[e - 0x80:]
         st = eacpt.streams(seg)
         for k, (p, size, typ) in enumerate(st):
@@ -134,17 +135,17 @@ class Store:
             for q in run:
                 kind = eacpt.classify4(seg[q:q + 4 * n], n)
                 att.setdefault(kind, q)
+            # an indexed strip (index block between the previous mesh and this one), else the vertices ARE the strip
             ib = None
-            for x in range(p - 0x24, 0x14, -4):
+            for x in range(p - 0x24, max(prev_end, 0x14), -4):
                 if struct.unpack_from("<I", seg, x - 0x10)[0] == 0x00040000:
                     cnt = struct.unpack_from("<I", seg, x)[0]
                     if 3 <= cnt < 65536 and x + 0x20 + 2 * cnt <= p:
                         ib = (x + 0x20, cnt)
                         break
-            if not ib:
-                continue
-            idx = struct.unpack_from("<%dH" % ib[1], seg, ib[0])
-            if max(idx) >= n:
+            idx = struct.unpack_from("<%dH" % ib[1], seg, ib[0]) if ib else tuple(range(n))
+            prev_end = (run[-1] + 4 * n) if run else p + size
+            if not idx or max(idx) >= n:
                 continue
             pos = []
             for i in range(n):
