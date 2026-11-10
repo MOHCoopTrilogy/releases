@@ -228,6 +228,57 @@ def userpath4():
     c("pushmenu coop_loadout"); wait(2); c("exec ui/loadout/mvp01_0_s1.cfg;set coop_loHero 1"); shot("10_armory_after_restart", 1.5)
     c("hzmcust open;pushmenu coop_custom"); c("hzmcust zoom;hzmcust zoom"); shot("11_bench_after_restart", 1.5); c("hzmcust done")
 
+def sizewords():
+    """[benchsize] SIZE min / default / max on the Garand receiver and the Kar98k stock (face + close), per-gun words
+    (Garand + Thompson own, Kar98k the default), per-gun emblems, then the guns in hand"""
+    def dump(t):
+        c("echo ^~^~^ DUMP " + t); c("cl_custEdit"); c("cl_custSizeNote"); c("cl_custWords"); c("cl_custWordsTxt")
+    def views(name):
+        c("hzmcust zoom"); shot(name + "_face", 1.2); c("hzmcust zoom"); shot(name + "_close", 1.2); c("hzmcust zoom")
+    wait(20); c('set cl_engraveText "Easy Company"'); c("set thereisnomonkey 1"); c("set cheats 1"); c("set developer 1")
+    c("spdevmap m3l2"); wait(45); c("finishloadingscreen"); wait(6)
+    for g in ("m1_garand", "thompsonsmg", "kar98"):
+        c("give models/weapons/%s.tik" % g); wait(0.5)
+    c("pushmenu coop_loadout"); wait(1.5)
+    # Garand: own words, SIZE min / default / max on the receiver, an emblem
+    c("exec ui/loadout/mvp01_0_s1.cfg;set coop_loHero 1"); c("hzmcust open;pushmenu coop_custom"); wait(1)
+    c('hzmcust typetest "Lucky Lady" 1'); wait(0.5)
+    [c("hzmcust scale -0.25") for _ in range(3)]; dump("garand_min"); views("garand_size_min")
+    [c("hzmcust scale 0.25") for _ in range(2)]; dump("garand_default"); views("garand_size_default")
+    [c("hzmcust scale 0.25") for _ in range(6)]; dump("garand_max"); views("garand_size_max")
+    shot("garand_bench_max", 0.5)
+    c("hzmcust item 1"); [c("hzmcust emblem 1") for _ in range(11)]; dump("garand_emblem"); shot("garand_bench_emblem", 1)
+    [c("hzmcust scale 0.25") for _ in range(4)]; dump("garand_emblem_bigger"); views("garand_emblem_bigger")
+    c("hzmcust done"); wait(2.5)
+    # Kar98k: the default words, SIZE on the stock
+    c("exec ui/loadout/mvp03_0_s1.cfg;set coop_loHero 1"); c("hzmcust open;pushmenu coop_custom"); wait(1)
+    c("hzmcust spot 1"); dump("kar98_default_words"); shot("kar98_bench_default_words", 1)
+    [c("hzmcust scale -0.25") for _ in range(3)]; dump("kar98_min"); views("kar98_size_min")
+    [c("hzmcust scale 0.25") for _ in range(2)]; dump("kar98_default"); views("kar98_size_default")
+    [c("hzmcust scale 0.25") for _ in range(6)]; dump("kar98_max"); views("kar98_size_max")
+    c("hzmcust done"); wait(2.5)
+    # Thompson: its own words and another emblem
+    c("exec ui/loadout/mvp24_0_s1.cfg;set coop_loHero 1"); c("hzmcust open;pushmenu coop_custom"); wait(1)
+    c('hzmcust typetest "Chicago Piano" 1'); c("hzmcust item 1"); [c("hzmcust emblem 1") for _ in range(13)]
+    dump("thompson"); shot("thompson_bench", 1.2); c("hzmcust done"); wait(2.5)
+    c("exec ui/loadout/mvp01_0_s1.cfg;set coop_loHero 1"); shot("armory_garand_after", 1.2)
+    c("exec ui/loadout/mvp24_0_s1.cfg;set coop_loHero 1"); shot("armory_thompson_after", 1.2)
+    c("popmenu 0"); wait(1)
+    for g, nm in (("m1_garand", "M1 Garand"), ("thompsonsmg", "Thompson"), ("kar98", "Mauser KAR 98K"), ("m1_garand", "M1 Garand")):
+        c('use "%s"' % nm); shot("in_hand_" + g, 3)
+
+def sizewords2():
+    """[benchsize] after a restart: the three guns in hand and in the Armory"""
+    wait(20); c("echo ^~^~^ DUMP restart"); c("cl_words_m1_garand"); c("cl_words_thompsonsmg"); c("cl_words_kar98"); c("cl_engraveText")
+    c("cl_cust_m1_garand"); c("cl_cust_thompsonsmg"); c("cl_cust_kar98")
+    c("set thereisnomonkey 1"); c("set cheats 1"); c("spdevmap m3l2"); wait(45); c("finishloadingscreen"); wait(6)
+    for g, nm in (("m1_garand", "M1 Garand"), ("thompsonsmg", "Thompson"), ("kar98", "Mauser KAR 98K")):
+        c("give models/weapons/%s.tik" % g); wait(0.5); c('use "%s"' % nm); shot("restart_in_hand_" + g, 3)
+    c("pushmenu coop_loadout"); wait(1.5)
+    for g, page in (("m1_garand", "mvp01_0_s1"), ("thompsonsmg", "mvp24_0_s1"), ("kar98", "mvp03_0_s1")):
+        c("exec ui/loadout/%s.cfg;set coop_loHero 1" % page); shot("restart_armory_" + g, 1.2)
+        c("hzmcust open;pushmenu coop_custom"); c("hzmcust zoom;hzmcust zoom"); shot("restart_bench_" + g, 1.2); c("hzmcust done"); wait(0.5)
+
 def check_short():
     """hand check of the words on every gun (short words use the engrave_short spot): flat magenta quads"""
     import json
@@ -244,7 +295,7 @@ def check_short():
         c("give " + tik); wait(1); c('use "%s"' % name); wait(3.2)
         n[0] += 1; c("set cg_engraveQuadNow 1;screenshotJPEG %s_%02d_%s" % (tag, n[0], key)); wait(0.8)
 
-{"userpath3": userpath3, "userpath4": userpath4, "userpath": userpath, "userpath2": userpath2, "bench_one": bench_one, "cams_new": cams_new, "face_check": face_check, "bench_tilt": bench_tilt, "bench_move": bench_move, "check_short": check_short, "bench_guns": bench_guns, "bench_type": bench_type, "ingame_emblems": ingame_emblems, "check_spots": check_spots}[scen]()
+{"sizewords": sizewords, "sizewords2": sizewords2, "userpath3": userpath3, "userpath4": userpath4, "userpath": userpath, "userpath2": userpath2, "bench_one": bench_one, "cams_new": cams_new, "face_check": face_check, "bench_tilt": bench_tilt, "bench_move": bench_move, "check_short": check_short, "bench_guns": bench_guns, "bench_type": bench_type, "ingame_emblems": ingame_emblems, "check_spots": check_spots}[scen]()
 c("echo ^~^~^ ENGRAVE done"); c("quit")
 E.CLIENT_CFG = "omconfig_fresh.cfg"
 shutil.copyfile(os.path.join(E.CLIENT, "pristine", "omconfig_fresh.cfg"), os.path.join(E.CLIENT, "pristine", "omconfig.cfg.run"))

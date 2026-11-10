@@ -106,16 +106,25 @@ def build():
 
     # ---------------------------------------------------------------- left: the words
     box("wordsPanel", 20, 276, 290, 150)
-    text("wordsCap", 28, 282, 200, "YOUR ENGRAVING (EVERY GUN)", col=DIM)
-    res("Field", "words", (28, 298, 274, 24), fg=(0.16, 0.09, 0.03), bg=(0.97, 0.95, 0.88), title="engraving",
-        font="facfont-20", align="left", link="cl_engraveText", sound="sound/menu/scroll.wav", border="INDENT_BORDER",
+    # [benchsize] per-gun words: this gun's own words (empty = it uses the default words), and the default words for every
+    # gun without its own; both fields write their cvar as you type, hzmcust done keeps them (cl_words_<gun>, cl_engraveText)
+    text("wordsCap", 28, 280, 160, "WORDS FOR THIS GUN", col=DIM)
+    text("wordsState", 160, 280, 142, link="cl_custWordsTxt", col=ORANGE, align="right", enable="cl_custOwnWords")
+    text("wordsStateD", 160, 280, 142, link="cl_custWordsTxt", col=FAINT, align="right", enable="cl_custOwnWordsNot")
+    res("Field", "words", (28, 293, 274, 22), fg=(0.16, 0.09, 0.03), bg=(0.97, 0.95, 0.88), title="engraving",
+        font="facfont-20", align="left", link="cl_custWords", sound="sound/menu/scroll.wav", border="INDENT_BORDER",
         extra=["SetMaxChars 20"])
-    text("wordsHint1", 28, 326, 274, "UP TO 20 LETTERS, KNIFE-CUT INTO THE GUN.", col=FAINT)
-    text("wordsHint2", 28, 338, 274, "A-Z 0-9 . - ! ? & # / : ( ) + * = % $", col=FAINT)
-    button("textToggle", 28, 358, 274, 16, "SHOW / HIDE ON THIS GUN", "hzmcust item 0;hzmcust text")
-    text("textState", 28, 378, 274, link="cl_custEmbTxt", col=CREAM, enable="cl_custItem0")
-    text("finState", 28, 400, 160, link="cl_custFinTxt", col=DIM)
-    button("finToggle", 222, 397, 80, 16, "TOGGLE", "hzmcust finish")
+    button("wordsDefault", 222, 317, 80, 14, "USE DEFAULT", "hzmcust words default")
+    text("wordsHint1", 28, 318, 190, "EMPTY = THE DEFAULT WORDS BELOW", col=FAINT)
+    text("defCap", 28, 334, 274, "DEFAULT WORDS (ALL GUNS)", col=DIM)
+    res("Field", "wordsDef", (28, 347, 274, 20), fg=(0.16, 0.09, 0.03), bg=(0.90, 0.88, 0.80), title="default engraving",
+        font="verdana-12", align="left", link="cl_engraveText", sound="sound/menu/scroll.wav", border="INDENT_BORDER",
+        extra=["SetMaxChars 20"])
+    text("wordsHint2", 28, 370, 274, "UP TO 20: A-Z 0-9 . - ! ? & # / : ( ) + * = % $", col=FAINT)
+    button("textToggle", 28, 384, 160, 14, "SHOW / HIDE ON THIS GUN", "hzmcust item 0;hzmcust text")
+    text("textState", 194, 385, 108, link="cl_custEmbTxt", col=CREAM, enable="cl_custItem0")
+    text("finState", 28, 404, 160, link="cl_custFinTxt", col=DIM)
+    button("finToggle", 222, 401, 80, 16, "TOGGLE", "hzmcust finish")
 
     # ---------------------------------------------------------------- right: what to place, where, how
     box("placePanel", 320, 276, 300, 150)
@@ -142,9 +151,10 @@ def build():
     button("rotM", 502, 344, 16, 14, "-", "hzmcust rot -5")
     button("rotP", 520, 344, 16, 14, "+", "hzmcust rot 5")
     text("sizeCap", 546, 346, 30, "SIZE", col=DIM)
-    button("scM", 580, 344, 16, 14, "-", "hzmcust scale -0.1")
-    button("scP", 598, 344, 16, 14, "+", "hzmcust scale 0.1")
-    text("nudge", 328, 366, 286, link="cl_custNudgeTxt", col=CREAM)
+    button("scM", 580, 344, 16, 14, "-", "hzmcust scale -0.25")   # [benchsize] 25 % a press, 50..200 %, the face caps it
+    button("scP", 598, 344, 16, 14, "+", "hzmcust scale 0.25")
+    text("nudge", 328, 366, 196, link="cl_custNudgeTxt", col=CREAM)
+    text("sizeNote", 516, 366, 98, link="cl_custSizeNote", col=ORANGE, align="right")   # MAX FOR THIS SPOT / MIN SIZE
     button("mirror", 328, 386, 90, 16, "MIRROR", "hzmcust mirror")
     button("center", 424, 386, 90, 16, "CENTRE", "hzmcust center")
     text("embHint", 328, 408, 286, "EMBLEMS: INSIGNIA, AWARDS, TRENCH ART, MOH SERIES.", col=FAINT)
