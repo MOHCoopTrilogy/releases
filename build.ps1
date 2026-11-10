@@ -169,6 +169,11 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_daily_orders" -Foreg
 python "C:\mohaa-coop-dev\docs\tools\gen_skinbase.py"
 if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_skinbase check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_skinbase" -ForegroundColor Red; exit 1 }
+# [v1.10.68, bug-10724] every skin FINISH variant aims with its base gun's sight row - its own row in cg_adssights.h or a generated
+# alias in cg_adssights_alias.h (the cgame lookup is exact-name, so a finish without either got no sight picture). Gate only: the
+# header is engine source, rebuilt with the cgame.
+python "C:\mohaa-coop-dev\docs\tools\gen_sight_alias.py" check
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_sight_alias (a finish variant without sight rows)" -ForegroundColor Red; exit 1 }
 # [user 2026-09-01, bug-2297] THE VO OVERRIDE BLOCK. 179 PlaySound errors in one of the user's own
 # sessions, all "needs an alias" for allied attack/cover callouts that ARE declared - 3,654 times -
 # but where every declaration carries a `maps` field that never lists m3l1a. That field is a LOAD
