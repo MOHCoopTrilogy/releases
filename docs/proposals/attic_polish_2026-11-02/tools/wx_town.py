@@ -82,7 +82,7 @@ def img(name):
     return IMG[name]
 
 
-HAZE = (0.64, 0.68, 0.75)
+HAZE = (0.60, 0.68, 0.80)
 
 
 def finish(nt, col, rough=0.95):
@@ -148,7 +148,12 @@ TOWNTEX = {
     "copper":    ("textures/it_extwall/it_e_3-4stonebase.jpg", 2.0, (0.55, 0.80, 0.70)),
     "street":    ("textures/it_extwall/it_e_3-4cobblestone.jpg", 1.8, (1.0, 0.96, 0.9)),
     "yard":      ("textures/central_europe/earth_road_gen1dn.jpg", 8.0, (0.95, 0.95, 0.90)),
-    "field":     ("textures/central_europe/earth_road_gen1dn.jpg", 14.0, (0.72, 0.88, 0.58)),
+    "field":     ("textures/misc_outside/steve_grass512_set2.jpg", 12.0, (0.92, 1.0, 0.85)),
+    "meadow":    ("textures/misc_outside/steve_grass512_set2.jpg", 14.0, (0.92, 1.0, 0.85)),
+    "pasture":   ("textures/misc_outside/nu_grass_set1.jpg", 14.0, (0.85, 0.95, 0.8)),
+    "wheat":     ("textures/misc_outside/bocagegrass_1.jpg", 14.0, (1.0, 0.92, 0.55)),
+    "plough":    ("textures/misc_outside/bocagegrass_furrough.jpg", 14.0, (0.95, 0.85, 0.72)),
+    "wood":      ("textures/mohtest/foliage1.jpg", 6.0, (0.85, 1.0, 0.85)),
     "window":    ("textures/TAHolland/hollwindow_f1.jpg", 1.0, (1.0, 1.0, 1.0)),
     "shopwin":   ("textures/TAHolland/hollwindow_f1.jpg", 1.0, (0.9, 0.9, 0.9)),
     "door1":     ("textures/general_structure/euro_door1.jpg", 1.0, (1.0, 1.0, 1.0)),
@@ -196,7 +201,7 @@ MARKS = []          # (kind, point, size): chimney tops (smoke) and tree cards, 
 
 def haze_of(p):
     d = (Vector(p) - WC).length
-    return min(0.62, 0.62 * (1 - math.exp(-max(0.0, d - 60.0) / 520.0)))
+    return min(0.8, 0.85 * (1 - math.exp(-max(0.0, d - 60.0) / 1450.0)))
 
 
 class Mesh:
@@ -205,6 +210,7 @@ class Mesh:
         self.vs = []          # the squashed positions (what the engine draws); self.v stays real (what the bake lights)
         self.uvoff = (0.0, 0.0)   # added to the texture uv (metres) of every quad: each house its own patch of the texture
         self.step = 0.0       # > 0: quads / triangles are tessellated to this edge length (set per house from its distance)
+        self.smooth = False   # smooth-shaded in the bake (the terrain and the woods: no facets)
         self.wf = []          # the window faces (pushed toward the eye after the squash: never lose the depth test to their wall)
 
     def mat(self, m):
@@ -344,6 +350,7 @@ class Mesh:
             me.materials.append(M[m])
         for poly, mi in zip(me.polygons, self.mi):
             poly.material_index = mi
+            poly.use_smooth = self.smooth
         me.update()
         o = bpy.data.objects.new(name, me)
         SC.collection.objects.link(o)
@@ -594,7 +601,6 @@ def G(x, y):
 
 town = Mesh()
 far = Mesh()
-hills_pre = Mesh()                      # the church's knoll (baked with the hills)
 gnd = Mesh()
 
 
@@ -609,10 +615,9 @@ STREETS = [(46, 7.0), (78, 7.0), (112, 7.5), (150, 8.0), (195, 8.0), (248, 8.5),
 KERB = [(EYE.x + sx - sw / 2, EYE.x + sx + sw / 2) for sx, sw in STREETS]
 YLO, YHI = -260.0, 1150.0               # the rows' extent across the view (from the eye's y): every camera that sees the pane
 X_END = EYE.x + 1330.0                  # the fields run on under the hills' foot (1300+)
-# the church on its knoll, 1 km out on the pane's centre line (its spire tip at +0.3 deg); the rows stop short of the knoll
-CH_X, CH_Y = place(27.0, 1000)
-cgz = EYE.z + 1000 * math.tan(math.radians(0.3)) - 34.0
-KN_R, KN_Y = 160.0, 1.5                 # the knoll's radius (x) and its stretch along y
+# the church: on its own square in the town, 650 m out on the pane's line of sight (no knoll - QA 2026-11-09); the rows keep clear
+CH_X, CH_Y = place(26.0, 650)
+KN_R, KN_Y = 40.0, 1.0                  # the square's radius (the rows are cut KN_R + 12 m round it)
 
 PAVE, KH, KW = 1.6, 0.12, 0.03          # pavement width, kerb height, kerb face width (a near-vertical strip of the ground grid)
 # the blocks: (x of the near kerb's far side, x of the next street's near kerb, front-row depth, double?)
@@ -789,7 +794,7 @@ for (si, xa, xb, d1, dbl) in BLOCKS:
         prev = c + cw / 2
         if prev >= yhi_r:
             break
-    # the knoll: no houses on it (cut the segments where the block crosses its ellipse)
+    # the church square: no houses on it (cut the segments where the block crosses it)
     xn = min(max(CH_X, xa), xb)
     if abs(xn - CH_X) < KN_R + 12.0:
         hy = KN_Y * math.sqrt(max(0.0, (KN_R + 12.0) ** 2 - (xn - CH_X) ** 2)) + 6.0
@@ -876,65 +881,168 @@ for j in range(len(gy) - 1):
     gnd.quad([(_xw, y0_, za0), (_xw, y1_, za1), (_xw, y1_, zb1), (_xw, y0_, zb0)], "stone", [(y0_, za0), (y1_, za1), (y1_, zb1), (y0_, zb0)])
 gnd.orient(f0, (_xw - 10.0, 0.0, GN))
 
-# the knoll: rings from the church's footing out to the ground at its rim (per point, so its edge lies ON the ground)
-NR, NA = 14, 48
-for _r in range(NR):
-    for _a in range(NA):
-        r0, r1 = _r * KN_R / NR, min((_r + 1) * KN_R / NR, KN_R - 0.01)
-        a0, a1 = math.radians(_a * 360.0 / NA), math.radians((_a + 1) * 360.0 / NA)
-        _pp = []
-        for r, a in ((r0, a0), (r1, a0), (r1, a1), (r0, a1)):
-            x_, y_ = CH_X + r * math.cos(a), CH_Y + r * math.sin(a) * KN_Y
-            _pp.append((x_, y_, knoll_z(x_, y_) - 0.2 * (r / KN_R) ** 6))     # its rim tucked just under the ground
-        hills_pre.quad(_pp, "hill_near", [(0, 0), (1, 0), (1, 1), (0, 1)])
-hills_pre.orient(0, up=True)
-# the church: a square tower with its copper spire, the nave (stone, slate) abutting its east face - never inside it
-q = 3.6
+# ---- the church: in the town on its own square (QA 2026-11-09: on a 1 km knoll it read as a grey cube on a pale snowfield).
+# A nave of 26 x 11 m, its long side to the attic, a 7 m square tower at its right end with a slate spire: tip ~48 m up
+cgz = Gl(CH_X, CH_Y)
+_lo = min(Gl(CH_X + sx * 12.0, CH_Y + sy * 20.0) for sx in (-1, 0, 1) for sy in (-1, 0, 1))
 town.step = 0.0
-house(town, (CH_X + q + 12.0, CH_Y, cgz), 9.0, 24.0, 9.0, 6.0, "slate", "stone", ridge_y=False, chims_at=[], wins=False,
-      oy=(0.3, 0.3), plinth=6.0)
+house(town, (CH_X, CH_Y + 4.5, cgz), 26.0, 11.0, 11.0, 7.5, "slate", "stone", ridge_y=True, chims_at=[], wins=False,
+      oy=(0.0, 0.3), plinth=max(1.0, cgz - _lo + 0.6), detail=False)
+q = 3.5
+TX, TY = CH_X, CH_Y + 4.5 - 13.0 - q            # the tower abuts the nave's right gable (y - 13) - never inside it
 f0 = len(town.f)
-town.step = max(2.5, 0.035 * (Vector((CH_X, CH_Y, cgz)) - EYE).length)
-box_sides(town, lambda x, y, z: Vector((CH_X + x, CH_Y + y, cgz + z)), [(-q, -q), (-q, q), (q, q), (q, -q)], -3.0, 22.0, "stone")
-for (a, b) in (((-q, -q), (-q, q)), ((-q, q), (q, q)), ((q, q), (q, -q)), ((q, -q), (-q, -q))):
-    town.quad([(CH_X + a[0] * 1.1, CH_Y + a[1] * 1.1, cgz + 22), (CH_X + b[0] * 1.1, CH_Y + b[1] * 1.1, cgz + 22), (CH_X, CH_Y, cgz + 34)],
-              "copper", [(0, 22), (7.9, 22), (3.95, 37.5)])
-town.orient(f0, (CH_X, CH_Y, cgz + 20))
+town.step = max(2.5, 0.035 * (Vector((TX, TY, cgz)) - EYE).length)
+box_sides(town, lambda x, y, z: Vector((TX + x, TY + y, cgz + z)), [(-q, -q), (-q, q), (q, q), (q, -q)],
+          -max(1.0, cgz - _lo + 0.6), 27.0, "stone")
+box_sides(town, lambda x, y, z: Vector((TX + x, TY + y, cgz + z)), [(-q - 0.25, -q - 0.25), (-q - 0.25, q + 0.25), (q + 0.25, q + 0.25), (q + 0.25, -q - 0.25)],
+          26.4, 27.0, "trim")                     # a string course under the spire
 town.step = 0.0
+for (a, b) in (((-q, -q), (-q, q)), ((-q, q), (q, q)), ((q, q), (q, -q)), ((q, -q), (-q, -q))):
+    town.quad([(TX + a[0] * 1.08, TY + a[1] * 1.08, cgz + 27.0), (TX + b[0] * 1.08, TY + b[1] * 1.08, cgz + 27.0), (TX, TY, cgz + 48.0)],
+              "slate", [(0, 0), (7.6, 0), (3.8, 21.4)])
+town.orient(f0, (TX, TY, cgz + 20))
+print("CHURCH at", round(CH_X - EYE.x), round(CH_Y - EYE.y), "floor", round(cgz, 1), "spire tip elev %.2f deg" %
+      math.degrees(math.atan2(cgz + 48.0 - EYE.z, math.hypot(TX - EYE.x, TY - EYE.y))), flush=True)
 
-# ---- hills: two wooded ridges (1.4-3 km), fields on the near slope
+# ---- the distance (QA 2026-11-09 "what's out in the distance?": one pale faceted mound): three soft rolling ridges, 1.3-3.4 km,
+# layered by aerial perspective (haze_of: green to blue with distance); the nearest a patchwork of fields with hedgerows and
+# woods, its crest lined with trees. Welded and smooth-shaded (no facets); textured like the town (the game's grass / foliage)
 hills = Mesh()
+trees = Mesh()
+FIELDS_N = ["meadow", "pasture", "wheat", "plough", "meadow", "pasture", "wood"]
+FIELDS_F = ["meadow", "wood", "pasture", "wood", "meadow"]
+RIDGES = []
 
 
-def ridge(x0, x1, e_base, e_amp, seed, mat, ny=140, nx=5, ylo=-1900, yhi=2600):
-    """a ridge whose height is given as the elevation (deg, home eye) of its crest: it rises from x0, crests, falls to x1"""
+def ridge(x0, x1, e_base, e_amp, seed, fields, patch, ny=230, nx=16, ylo=-700, yhi=2700):
+    """a ridge given by the elevation (deg, home eye) of its crest: rises from x0 (its foot under the ground in front), crests, falls
+    to x1; the crest line rolls along y; a field patchwork (patch = (dx, dy) metres) picks each quad's material"""
     r = random.Random(seed)
-    ph = [r.uniform(0, 6.28) for _ in range(4)]
-    ys = np.linspace(WC.y + ylo, WC.y + yhi, ny)
+    ph = [r.uniform(0, 6.28) for _ in range(6)]
+    ys = [EYE.y + ylo + (yhi - ylo) * j / (ny - 1) for j in range(ny)]
+    xs = [x0 + (x1 - x0) * i / (nx - 1) for i in range(nx)]
 
     def zfun(x, y):
         t = min(1.0, max(0.0, (x - x0) / (x1 - x0)))
-        # (crest floor 0.4, was 0.1: where it dipped under the far roofs the bare sky showed as a white band - QA 2026-11-09)
-        hgt = 0.7 + 0.18 * math.sin(y / 420 + ph[0]) + 0.09 * math.sin(y / 160 + ph[1]) + 0.03 * math.sin(y / 61 + ph[2])
-        e = e_base + e_amp * hgt * math.sin(math.pi * t) ** 0.7
+        hgt = 0.72 + 0.16 * math.sin(y / 430 + ph[0]) + 0.08 * math.sin(y / 170 + ph[1]) + 0.04 * math.sin(y / 73 + ph[2])
+        prof = 0.5 - 0.5 * math.cos(2 * math.pi * min(t, 0.5)) if t < 0.5 else 0.55 + 0.45 * math.cos(math.pi * (t - 0.5) * 1.6)
+        roll = 0.10 * math.sin(x / 140 + ph[3]) * math.sin(y / 210 + ph[4])
+        e = e_base + e_amp * hgt * prof + roll * prof
         d = math.hypot(x - EYE.x, y - EYE.y)
         return EYE.z + d * math.tan(math.radians(e))
-    for ix in range(nx):
-        xa, xb = x0 + (x1 - x0) * ix / nx, x0 + (x1 - x0) * (ix + 1) / nx
-        i0 = len(hills.v)
-        f0 = len(hills.f)
+    P_ = [Vector((x, y, zfun(x, y))) for x in xs for y in ys]
+    K = lambda i, j: i * ny + j
+    pr = random.Random(seed * 7 + 1)
+    pmat = {}
+    groups = {}
+    for i in range(nx - 1):
         for j in range(ny - 1):
-            ya, yb = ys[j], ys[j + 1]
-            hills.quad([(xa, ya, zfun(xa, ya)), (xa, yb, zfun(xa, yb)), (xb, yb, zfun(xb, yb)), (xb, ya, zfun(xb, ya))], mat,
-                       [(0, 0), (1, 0), (1, 1), (0, 1)])
+            xm, ym = (xs[i] + xs[i + 1]) / 2, (ys[j] + ys[j + 1]) / 2
+            key = (int((xm - x0) // patch[0]), int((ym - EYE.y + 5000) // patch[1]))
+            if key not in pmat:
+                pmat[key] = pr.choice(fields)
+            m = pmat[key]
+            idx = (K(i, j), K(i + 1, j), K(i + 1, j + 1), K(i, j + 1))
+            groups.setdefault(m, []).append((idx, [(P_[k].y, P_[k].x) for k in idx]))
+    for m, faces in groups.items():
+        used = sorted({k for idx, _ in faces for k in idx})
+        remap = {k: n for n, k in enumerate(used)}
+        f0 = len(hills.f)
+        hills._grid([P_[k] for k in used], m, [(tuple(remap[k] for k in idx), uv) for idx, uv in faces])
         hills.orient(f0, up=True)
+    RIDGES.append((x0, x1, zfun, pmat, patch))
     return zfun
 
 
-# (their feet start just under the fields' edge, -2.85 deg: at -2.4 / -2.0 the ridges' near edges hung over a strip of sky)
-zn = ridge(WALL_X + 1300, WALL_X + 2200, -3.75, 3.3, 7, "hill_near")
-ridge(WALL_X + 2100, WALL_X + 3100, -3.8, 3.9, 11, "hill_far")
-# (the crossed-card woods read as grey spikes at this size: the ridges carry their woods as dark patches in the material instead)
+# feet just under the fields' edge (-3.75 deg); crests -1.5 / -1.0 / -0.5 deg on average: each ridge shows over the one before
+z1 = ridge(EYE.x + 1300, EYE.x + 2150, -3.75, 2.7, 7, FIELDS_N, (170.0, 210.0))
+z2 = ridge(EYE.x + 1950, EYE.x + 2850, -3.8, 3.3, 11, FIELDS_F, (420.0, 520.0), ny=170, nx=12)
+z3 = ridge(EYE.x + 2650, EYE.x + 3350, -3.85, 3.9, 13, ["wood", "meadow"], (900.0, 900.0), ny=120, nx=10)
+
+
+def clump(mesh, x, y, zf, rad, hgt, m="wood"):
+    """a tree clump: a soft dome of the game's foliage, its rim 1.5 m under the ground (follows the slope)"""
+    n, rings = 8, 3
+    base = [(x + rad * math.cos(2 * math.pi * k / n), y + rad * math.sin(2 * math.pi * k / n)) for k in range(n)]
+    pts = [Vector((bx, by, zf(bx, by) - 1.5)) for bx, by in base]
+    P_ = list(pts)
+    for rr in range(1, rings + 1):
+        a = rr / (rings + 1)
+        sc = math.cos(a * math.pi / 2)
+        zc = zf(x, y) + hgt * math.sin(a * math.pi / 2)
+        P_ += [Vector((x + rad * sc * 1.05 * math.cos(2 * math.pi * k / n), y + rad * sc * 1.05 * math.sin(2 * math.pi * k / n), zc)) for k in range(n)]
+    P_.append(Vector((x, y, zf(x, y) + hgt)))
+    faces = []
+    for rr in range(rings):
+        for k in range(n):
+            a_, b_ = rr * n + k, rr * n + (k + 1) % n
+            c_, d_ = (rr + 1) * n + (k + 1) % n, (rr + 1) * n + k
+            faces.append(((a_, b_, c_, d_), [(k * 3.0, rr * 4.0), (k * 3.0 + 3, rr * 4.0), (k * 3.0 + 3, rr * 4.0 + 4), (k * 3.0, rr * 4.0 + 4)]))
+    top = len(P_) - 1
+    for k in range(n):
+        a_, b_ = rings * n + k, rings * n + (k + 1) % n
+        faces.append(((a_, b_, top), [(k * 3.0, 12.0), (k * 3.0 + 3, 12.0), (k * 3.0 + 1.5, 15.0)]))
+    f0 = len(mesh.f)
+    mesh._grid(P_, m, faces)
+    mesh.orient(f0, (x, y, zf(x, y) + hgt * 0.3))
+
+
+def hedge(mesh, x, ya, yb, zf, h=2.6, w=2.4):
+    """a hedgerow along y at x: a soft prism of foliage following the ground, its feet under it"""
+    n = max(2, int((yb - ya) / 18.0) + 1)
+    ys_ = [ya + (yb - ya) * k / (n - 1) for k in range(n)]
+    P_ = []
+    for y_ in ys_:
+        g = zf(x, y_)
+        P_ += [Vector((x - w / 2, y_, g - 1.2)), Vector((x - w * 0.15, y_, g + h)), Vector((x + w * 0.15, y_, g + h)), Vector((x + w / 2, y_, g - 1.2))]
+    faces = []
+    for k in range(n - 1):
+        for s in range(3):
+            a_, b_ = k * 4 + s, k * 4 + s + 1
+            faces.append(((a_, b_, b_ + 4, a_ + 4), [(ys_[k], s * 1.5), (ys_[k], s * 1.5 + 1.5), (ys_[k + 1], s * 1.5 + 1.5), (ys_[k + 1], s * 1.5)]))
+    f0 = len(mesh.f)
+    mesh._grid(P_, "wood", faces)
+    mesh.orient(f0, (x, (ya + yb) / 2, zf(x, (ya + yb) / 2) - 30.0))
+
+
+trng2 = random.Random(68)
+x0, x1, zf, pmat, patch = RIDGES[0]
+yv0, yv1 = EYE.y - 120.0, EYE.y + 2050.0          # what the cameras see of the near ridge
+# hedgerows along the patch edges that run across the view (constant x), broken where a wood patch meets
+for (pi, pj), m in pmat.items():
+    xe = x0 + (pi + 1) * patch[0]
+    ya, yb = EYE.y - 5000 + pj * patch[1], EYE.y - 5000 + (pj + 1) * patch[1]
+    if xe >= x1 - 60 or yb < yv0 or ya > yv1 or m == "wood" or pmat.get((pi + 1, pj)) == "wood":
+        continue
+    hedge(trees, xe, ya + 6.0, yb - 6.0, zf)
+# woods: clumps over every wood patch's edge facing the attic + a scatter inside; the crest lined with trees, gaps between
+for (pi, pj), m in pmat.items():
+    if m != "wood":
+        continue
+    xa, ya = x0 + pi * patch[0], EYE.y - 5000 + pj * patch[1]
+    if ya + patch[1] < yv0 or ya > yv1:
+        continue
+    for k in range(int(patch[1] / 13.0)):
+        clump(trees, xa + trng2.uniform(2, 9), ya + 6.5 + k * 13.0 + trng2.uniform(-2, 2), zf, trng2.uniform(5.5, 8.0), trng2.uniform(11, 17))
+    for k in range(int(patch[0] * patch[1] / 2600.0)):
+        clump(trees, xa + trng2.uniform(15, patch[0] - 8), ya + trng2.uniform(8, patch[1] - 8), zf, trng2.uniform(6, 9), trng2.uniform(12, 18))
+xc = x0 + (x1 - x0) * 0.5
+y_ = yv0
+while y_ < yv1:
+    run = trng2.uniform(60, 220)
+    for k in range(int(run / 12.0)):
+        clump(trees, xc + trng2.uniform(-25, 25), y_ + k * 12.0, zf, trng2.uniform(5.5, 8.5), trng2.uniform(12, 18))
+    y_ += run + trng2.uniform(40, 160)
+# the far ridges: woods as soft bands along their crests (no detail reads at 2-3 km, the silhouette does)
+for (xr0, xr1, zfr, _, _), stepy in ((RIDGES[1], 26.0), (RIDGES[2], 40.0)):
+    xc_ = xr0 + (xr1 - xr0) * 0.5
+    y_ = yv0
+    while y_ < EYE.y + 3000:
+        run = trng2.uniform(150, 500)
+        for k in range(int(run / stepy)):
+            clump(trees, xc_ + trng2.uniform(-40, 40), y_ + k * stepy, zfr, trng2.uniform(9, 14), trng2.uniform(14, 20))
+        y_ += run + trng2.uniform(80, 300)
+print("DISTANCE hills tris", sum(len(f) - 2 for f in hills.f), "trees tris", sum(len(f) - 2 for f in trees.f), flush=True)
 
 
 def _sq(p):
@@ -946,7 +1054,7 @@ def _sq(p):
 
 # every vertex by its own distance (shared walls stay shared), and every light and mark the same way; a banner's wall normal is the
 # SQUASHED wall's (the squash compresses along the sight line, so the wall turns: a banner on the real normal stood off one edge)
-for _m in (near, town, far, gnd, gnd_near, hills_pre, hills):
+for _m in (near, town, far, gnd, gnd_near, hills, trees):
     _m.squash_each(0)
 LIGHTS[:] = [[tuple(_sq(p)[0]) for p in q] for q in LIGHTS]
 for _mk in MARKS:
@@ -978,14 +1086,15 @@ for _i, a_ in enumerate(_FPs):
             _ov.append((a_[4], b_[4], round(ox, 2), round(oy_, 2)))
 print("OVERLAPS", len(_ov), _ov[:10], flush=True)
 print("TRIS", {k: sum(len(fc) - 2 for fc in m_.f) for k, m_ in (("near", near), ("town", town), ("far", far), ("ground", gnd),
-                                                             ("ground_near", gnd_near), ("hills", hills))}, "LIGHTS", len(LIGHTS), flush=True)
+                                                             ("ground_near", gnd_near), ("hills", hills), ("trees", trees))}, "LIGHTS", len(LIGHTS), flush=True)
 near.build("near", "near")
 town.build("town", "town")
 far.build("far", "far")
 gnd.build("ground", "ground")
 gnd_near.build("ground_near", "ground")
-hills_pre.build("knoll", "hills")
+hills.smooth = trees.smooth = True
 hills.build("hills", "hills")
+trees.build("trees", "trees")
 
 
 
@@ -1089,9 +1198,9 @@ if MODE == "preview":
         print("PREVIEW", cn, SC.render.filepath, flush=True)
 
 if MODE == "bake":
-    TEXG = ("near", "town", "far", "ground")                 # drawn with the game's textures x LIGHT + HAZE atlases
+    TEXG = ("near", "town", "far", "ground", "hills", "trees")                 # drawn with the game's textures x LIGHT + HAZE atlases
     SIZES = {"near": int(arg("--near", "1024")), "town": int(arg("--town", "4096")), "far": int(arg("--far", "2048")),
-             "ground": int(arg("--ground", "2048")), "hills": int(arg("--hills", "1024"))}
+             "ground": int(arg("--ground", "2048")), "hills": int(arg("--hills", "2048")), "trees": 2048}
     for k_, m_ in M.items():
         m_["key"] = k_
     bk = SC.render.bake

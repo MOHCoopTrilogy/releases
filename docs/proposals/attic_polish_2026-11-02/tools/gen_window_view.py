@@ -305,13 +305,13 @@ def _fill_holes(a, ok):
     return a
 
 
-for g in ("hills", "ground", "far", "town", "near"):
+for g in ("hills", "trees", "ground", "far", "town", "near"):
     npz = os.path.join(town, g + ".npz")
     if not os.path.exists(npz):
         print("no", npz)
         continue
     D = np.load(npz)
-    if g == "hills":
+    if not os.path.exists(os.path.join(town, g + "_L.npz")):          # (an old full-colour bake: <g>.png)
         im = Image.open(os.path.join(town, g + ".png")).convert("RGB")
         _a = np.asarray(im, np.float32)
         _a = _fill_holes(_a, _a.max(2) > 10)
