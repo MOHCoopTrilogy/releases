@@ -41,12 +41,12 @@ POOL = {
     "dm/mp_brest_dm": {"TDM": (7, 11)},
     "obj/mp_montecassino_tow": {"TDM": (9, 13)},
     "obj/mp_bologna_obj": {"TDM": (9, 13), "OBJ": (7, 11)},
-    # Phase 2 - objective, the player is the sapper (decision 2): his side is the map's planting team
+    # Phase 2 - objective, the player is the sapper (decision 2) AND Allied (user 2026-11-10): only maps whose planting side is
+# the Allies. The Bridge (obj_team4) and Palermo plant with the Axis and have no Allied-attack variant, so they are out;
+# Palermo's bots were also lost on it (user report, v1.10.73).
     "obj/obj_team1": {"OBJ": (7, 11)},
     "obj/obj_team2": {"OBJ": (7, 11)},
-    "obj/obj_team4": {"OBJ": (7, 11)},
     "obj/mp_bizertefort_obj": {"OBJ": (7, 11)},
-    "obj/mp_palermo_obj": {"OBJ": (7, 11)},
 }
 # the stock maps' own objective scripts (maintt/pak1 + pak3 maps/obj/*.scr): level.planting_team and the charges' targetnames
 # (each runs global/obj_dm.scr::bomb_thinker or its own copy). mp_ops.scr points the bots at these: the defenders hold them,
@@ -184,7 +184,7 @@ def contract(g, k, groups):
             break
     if SKILLS[skill][0] == "ELITE" and MODS[mod][0] == "HARDCORE":
         mod = 0
-    side = e["side"] or ("allies" if rnd(key, 6) % 100 < 65 else "axis")
+    side = "allies"                      # [opsfix2, user 2026-11-10] the humans are always Allied (rnd(key, 6) is left unused)
     return {"t": born, "entry": ENTRIES.index(e), "slot": e["slot"], "group": g, "life": life, "bots": bots, "skill": skill,
             "mod": mod, "side": side, "name": ADJ[rnd(key, 7) % len(ADJ)] + " " + NOUN[rnd(key, 8) % len(NOUN)],
             "serial": 100 + key % 9900}
