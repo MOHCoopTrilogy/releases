@@ -240,6 +240,10 @@ def build_urc():
     o.text("heroCd", 150, HERO_Y + HERO_H - 20, 250, link="coop_loCd", col=DIM)
     o.text("heroOk", 404, HERO_Y + HERO_H - 18, 68, "UNLOCKED", col=GREEN, enable="coop_loHero", align="right")
     o.text("heroOkI", 404, HERO_Y + HERO_H - 18, 68, "UNLOCKED", col=GREEN, enable="coop_loHeroIc", align="right")
+    # [Customize bench 2026-11-09] the inspected gun's engraving / emblems (ui/coop_custom.urc, docs/tools/engrave/gen_custom_urc.py)
+    o.new("Button", "custBtn", (404, HERO_Y + HERO_H - 35, 68, 14), fg=ORANGE, bg=PANEL, title="CUSTOMIZE", font="verdana-12", align="center",
+          sound="sound/menu/apply.wav", stuff="hzmcust open;pushmenu coop_custom", enable="coop_loHero",
+          extra=[("hovershader", '"textures/mohmenu/hzm_theme/mpui_glow"')])
     o.text("heroLk", 404, HERO_Y + HERO_H - 18, 68, "LOCKED", col=RED, enable="coop_loHeroLk", align="right")
     sy = HERO_Y + HERO_H + 3                  # the strip under the render
     o.new("Button", "equipBtn", (398, sy, 76, 16), title="EQUIP", fg=TRACK, bg=ORANGE, font="verdana-12", sound="sound/menu/apply.wav",
