@@ -52,7 +52,7 @@ TOWNS = [("LONDON", 51.507, -0.128, "r"), ("PARIS", 48.857, 2.352, "r"), ("ROME"
          ("HAMBURG", 53.551, 9.993, "r"), ("MUNICH", 48.137, 11.576, "r"),
          ("MOSCOW", 55.756, 37.617, "r"), ("KIEV", 50.450, 30.523, "r")]          # [attic70] the widened east
 REGIONS = [("ATLANTIC|OCEAN", 38.2, -12.6, -46), ("NORTH  SEA", 56.6, 3.4, 64), ("MEDITERRANEAN SEA", 33.6, 20.6, -64),
-           ("BALTIC SEA", 55.4, 17.8, -50), ("FRANCE", 45.4, 1.8, 76), ("SPAIN", 39.0, -4.2, 76), ("GERMANY", 50.9, 10.6, -76),
+           ("BALTIC SEA", 55.4, 17.8, -50), ("FRANCE", 44.2, 3.0, 76), ("SPAIN", 39.0, -4.2, 76), ("GERMANY", 50.9, 10.6, -76),
            ("NORWAY", 61.2, 8.6, 64), ("SWEDEN", 63.3, 16.3, 64), ("ITALY", 40.0, 16.4, 56), ("ENGLAND", 52.6, -1.6, 52),
            ("U. S. S. R.", 54.2, 31.0, -76), ("BLACK SEA", 43.3, 34.4, 56)]
 COL = {c["key"]: tuple(c["colour"]) for c in _MJ["campaigns"]}
@@ -269,6 +269,25 @@ def legend_box(v):
     return (v.W - 980 * s, v.H - 400 * s, v.W - 120 * s, v.H - 130 * s)
 
 
+def leader(v, pin, tc):
+    """the dashed leader pin -> the nearest point of its tag: [(p0, p1)] dash segments in v's pixels (none when the tag is at the pin)"""
+    s = v.s
+    px, py = v.P(*pin)
+    r = tag_rect(v, *tc, *TAG_M)
+    qx, qy = min(max(px, r[0]), r[2]), min(max(py, r[1]), r[3])
+    L = math.hypot(qx - px, qy - py)
+    out = []
+    if L > 30 * s:
+        steps = int(L / (30 * s))
+        for i in range(0, steps, 2):
+            a, b = i / steps, min(1, (i + 1) / steps)
+            out.append(((px + (qx - px) * a, py + (qy - py) * a), (px + (qx - px) * b, py + (qy - py) * b)))
+    return out
+
+
+LEAD_RGBA, LEAD_W = (120, 24, 20, 225), 8
+
+
 def overlay(v, out_size):
     """NEW GAME only: dashed leaders pin -> the nearest point of its tag, and the campaign legend (transparent elsewhere)."""
     s = v.s
@@ -277,15 +296,8 @@ def overlay(v, out_size):
     for k, _c, _n, _t, pin, tc in MISSIONS:
         if OPTIONAL[k]:
             continue
-        px, py = v.P(*pin)
-        r = tag_rect(v, *tc, *TAG_M)
-        qx, qy = min(max(px, r[0]), r[2]), min(max(py, r[1]), r[3])
-        L = math.hypot(qx - px, qy - py)
-        if L > 30 * s:
-            steps = int(L / (30 * s))
-            for i in range(0, steps, 2):
-                a, b = i / steps, min(1, (i + 1) / steps)
-                d.line([(px + (qx - px) * a, py + (qy - py) * a), (px + (qx - px) * b, py + (qy - py) * b)], fill=(120, 24, 20, 225), width=max(2, int(8 * s)))
+        for a, b in leader(v, pin, tc):
+            d.line([a, b], fill=LEAD_RGBA, width=max(2, int(LEAD_W * s)))
     lb = legend_box(v)
     d.rectangle(lb, fill=(226, 208, 152, 240), outline=(90, 70, 44, 255), width=max(2, int(6 * s)))
     fl = font("timesbd.ttf", 56 * s)
@@ -390,6 +402,27 @@ def all_views(ne, out):
                         "pin_offsheet": not (0.03 <= v.uv(*v.P(*pin))[0] <= 0.97 and 0.03 <= v.uv(*v.P(*pin))[1] <= 0.97),
                         "tag_uv": v.uv(*v.P(*tc)), "colour": COL[c], "optional_cvar": OPTIONAL[k]} for k, c, n, nm, pin, tc in MISSIONS],
           "labels": {n: [r[0] / v.W, 1 - r[3] / v.H, r[2] / v.W, 1 - r[1] / v.H] for n, r in info["labels"]}}
+    # [attic70] an optional mission's leader (coordinator QA: the own-disc tags had none) is its own small transparent image, framed
+    # onto the wall by make_ng3campaigns.py as a scene label gated on the mission's cvar - a leader baked into ng_overlay would stay
+    # when the player has no such disc. Drawn at the overlay's scale (2048 x 1536 for the 4096-wide view), cropped to the dashes.
+    ox, oy = 2048.0 / v.W, 1536.0 / v.H
+    for m in mk["missions"]:
+        if not m["optional_cvar"]:
+            continue
+        segs = leader(v, tuple(m["pin_latlon"]), next(tc for k, _c, _n, _t, _p, tc in MISSIONS if k == m["key"]))
+        if not segs:
+            continue
+        xs = [q[0] for sg in segs for q in sg]
+        ys = [q[1] for sg in segs for q in sg]
+        pad = 12 * v.s
+        x0, x1, y0, y1 = min(xs) - pad, max(xs) + pad, min(ys) - pad, max(ys) + pad
+        li = Image.new("RGBA", (int(round((x1 - x0) * ox)) + 1, int(round((y1 - y0) * oy)) + 1), (0, 0, 0, 0))
+        ld = ImageDraw.Draw(li)
+        for a, b in segs:
+            ld.line([((a[0] - x0) * ox, (a[1] - y0) * oy), ((b[0] - x0) * ox, (b[1] - y0) * oy)], fill=LEAD_RGBA,
+                    width=max(2, int(LEAD_W * v.s * ox)))
+        li.save(os.path.join(out, "lead_%s.png" % m["key"]))
+        m["lead_uv"] = [x0 / v.W, 1 - y1 / v.H, x1 / v.W, 1 - y0 / v.H]           # u0 v0 (bottom) u1 v1 (top)
     json.dump(mk, open(os.path.join(out, "allmap_markers.json"), "w"), indent=1)
     # make_newgame3d.py's schema (its BT tag pass reads tunisia / sicily / italy; its label QA reads "labels")
     compat = {"lon": mk["lon"], "lat": mk["lat"], "labels": {},
