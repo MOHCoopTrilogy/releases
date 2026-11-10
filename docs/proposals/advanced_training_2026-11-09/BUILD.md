@@ -1,0 +1,57 @@
+# Advanced Training on m4l0: build record (2026-11-10)
+
+Status: **built on branches, harness-tested (self-test), NOT deployed, needs a human playtest.**
+Plan: [PLAN.md](PLAN.md) (D1-D6). Mod branch `advtrain` (off `hotfix-1.10.53` at 2294f3eb), root branch `advtrain` (off `main`).
+
+## How to run it
+
+- Menu: Multiplayer, Start Game, HZM Coop, page "Training / Secret": tile 2 = **Advanced Training**
+  (`set coop_advTraining 1`), tile 3 = **The Farmhouse** (the raid, `set coop_advTraining 0`). Solo = a 1-player listen server.
+- Dedicated: `+set coop_advTraining 1 +map m4l0`.
+- Dev: `coop_atStation <0-10>` starts at that course position; `coop_atSelftest 1` makes every station drive its own
+  features (headless walk); `coop_atDebug 1` prints every tap; `coop_atTimeout <s>` overrides the 240 s station timeout.
+- Harness: `docs/proposals/advanced_training_2026-11-09/tools/at_test.py` (cases `pak boot_at boot_raid maptest_raid solo
+  coop2 tilesrc`). Private installs `G:\mohaa-advtrain`, `G:\mohaa-advtrainb` (registered in `harness_guard.py`).
+
+## Where the build departs from PLAN.md (the code won)
+
+| Plan | Built | Why |
+|---|---|---|
+| Station objectives via `objectives.scr::coop_obj_push` | `global/objectives.scr::add_objectives` | `coop_obj_push` drives only the two side-objective lines (coop_so1/so2). `add_objectives` is the channel that drives the menu AND the New Objective card. 8 native slots: stations 0-8 use 1-8, at the ninth they are hidden and 1-4 reused. |
+| `officer_positions.scr` m4l0 block reads `level.coop_trainingMap` | not touched | `level.coop_noOfficerWaves = 1` is set before `main.scr::main`; `coop_officer_init` exits before it reads the positions. |
+| Final: spawn a coop officer late | the farmhouse's own retail officer + `coop_officer_death_drops` | `coop_officer_init` bails when an officer exists and re-runs 25 s policy waits; PLAN 2.3's own fallback. |
+| St 8 "resupply from the paratroopers' ammo can" | row 2 = link up with the landed stick | The stick's ammo can is set dressing (`parasquad.scr:1285`, never an ammo box). |
+| St 7 resupply check `chal_bump "ammoboxuse"` | the box's own ledger `level.coop_ammobox_uses[slot][entnum]` | `ammoboxuse` pays the box OWNER for a teammate's refill; a solo trainee using his own box never bumps it. |
+| `lmsCheckLives` gate in `main.scr` | `player.scr::manage` | `main.scr:1888-1925` is a dead `/* */` block; the live copy is inlined in `player.scr`. |
+| `level.coop_disableSpawnWarper = game.true` "as training.scr does" | left `game.false` | `training.scr` sets `game.false`; the raid's spawn-warper threads (`m4l0_update1-3`) are simply never started. |
+| St 2 cover drill at the Zone B farm walls | on the range, two low bag walls (the `cover.scr` collider recipe) | No traced wall geometry; low cover is engine-recognised anywhere. Wall cover is taught by text. |
+| St 3 range at (-5408,-4328), St 9 ridge at (-776,-2448) | range up the start lane, vantage (2648,-8,184) | Both sketch spots face buildings (harness stills; bsptrace + pathnode sightline search). bug-10821 |
+| Graduation `chal_grant` | `chal_bump "atgrad"` after the till opens | `check_challenges.py` fails a challenge with no stat writer. |
+| Medal derived from the challenge | `level.coop_chal_noMedal["atgrad"] = 1` | A new row must not move anyone's capstone (the Castro precedent). |
+| Attic prop + two-card screen | **not built** | "For later" 2 (prop choice) is still the user's decision. The coop start tile is built. |
+| Tile art | wiring points at `hzmtile/m4l0at_c/_s`; art **pending** | Needs a clean 1080p frame (harness case `tilesrc`) through `mission_tile_art_2026-09-29/tools/build_set.py` and `gen_tileart_pak.py`. Until then tile 2 draws blank. |
+
+Decisions taken here that the user may overturn: end of course = a ready-gate restart (`stuffsrv "map m4l0"`, for-later 5);
+reward = XP 100 + the Graduate row, no cosmetic (for-later 1); late joiners graduate if present at the end (for-later 1).
+
+## Shared-file edits (all additive, all gated on `level.coop_trainingMap == 1` or a new level flag)
+
+`challenges.scr` (tap in `chal_bump` + `atgrad` row), `xp.scr` (tap in `xp_award`), `daily.scr` (`daily_onEmote` tap,
+`daily_add` off), `loot.scr` (`searched` tap, loot still given), `officer.scr` (strike veto in `binoculars_fired`),
+`aircraft.scr` + `paradrop.scr` (`level.coop_noFlak`), `alarm.scr` (`alm_blocked` "training"), `dbno.scr` (600 s bleed),
+`allysquad.scr` (600 s ally bleed), `player.scr` (LMS lives 0), `carry.scr` (`level.coop_noCarry`), `variables.scr`
+(m4l0 description), `m0.cfg` (tiles), `m4l0_precache.scr`. Nothing touches the war map, MP contracts or any `mp_*.scr`.
+
+## Merge
+
+1. Mod: merge `advtrain` into the release branch. **Then re-run `HZM_MOD=<tree> python docs/tools/gen_service_record.py`**
+   if Live Operations (or anyone) also added a `chal_def` - the Service Record bakes rows per index, so both additions
+   must be regenerated together; `check_challenges.py` and the deploy stamp self-test catch a mismatch.
+2. Root: merge `advtrain` (harness_guard registration, this folder).
+3. Tile art: run `at_test.py tilesrc`, build `m4l0at` through the tile pipeline, add to the tileart pak.
+4. `build.ps1` as usual (no engine change).
+
+## Gates
+
+See the report in the session; re-run with: scrlint, depthscan2/linecheck/quotecheck/prosecheck, check_empty_rhs,
+check_challenges, gen_service_record (452 rows), unlock_audit (unchanged vs base), check_mp_isolation (22/22).
