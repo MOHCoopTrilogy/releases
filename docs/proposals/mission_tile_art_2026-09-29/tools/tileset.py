@@ -68,6 +68,10 @@ SPECS = {
                                 "dust haze; allow stops above the ride truck's wheel"),
     # ------------------------------------------------------------------ batch A/B (picked from the scouting pick sheets)
     "training": S("training", "s0tigertank_r450_300", (140, 300, 1260, 780), 0.42, "the training yard's own Tiger I among the sheds"),
+    # [advtrain 2026-11-10] ADVANCED TRAINING (m4l0 + coop_advTraining 1): the Dig-in station, the farm and silo on the hill behind
+    # the bag wall - a clean 1920x1080 harness frame (advanced_training_2026-11-09/tools/at_test.py tilesrc, HUD off)
+    "m4l0at": dict(raw=r"H:/hzm_work/advtrain-ship/tile/m4l0at_src.png", focus=(470, 140, 1700, 860), allow=(420, 0, 1920, 1080),
+                   key=0.45, how="in-engine: Advanced Training's Dig-in station, the farm on the hill (harness frame, HUD off)"),
     "m4l0": S("m4l0", "sc3_000", (300, 200, 1300, 800), 0.45, "the Normandy farm buildings on the hill, seen down the farm track"),
     "m1l1": S("m1l1", "st_270", (0, 80, 1500, 1080), 0.45, "the Rangers in the truck at the start of the level", allow=(0, 60, 1920, 1080)),
     "m1l2b": S("m1l2b", "s2obj_r300_120", (180, 250, 1200, 920), 0.32, "the motor pool's Opel truck with its hood up, a mechanic behind it"),

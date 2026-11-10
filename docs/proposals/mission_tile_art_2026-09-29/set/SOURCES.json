@@ -1325,6 +1325,40 @@
    1080
   ]
  },
+ "m4l0at": {
+  "boxes": {
+   "crop_c": [
+    470,
+    16,
+    1700,
+    984
+   ],
+   "crop_s": [
+    464,
+    140,
+    1706,
+    860
+   ],
+   "pcrop_c": [
+    470,
+    39,
+    1700,
+    961
+   ],
+   "pcrop_s": [
+    445,
+    140,
+    1725,
+    860
+   ]
+  },
+  "from": "H:/hzm_work/advtrain-ship/tile/m4l0at_src.png",
+  "how": "in-engine: Advanced Training's Dig-in station, the farm on the hill (harness frame, HUD off)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
  "m4l1": {
   "boxes": {
    "crop_c": [
