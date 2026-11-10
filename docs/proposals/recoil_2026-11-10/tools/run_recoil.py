@@ -35,6 +35,10 @@ GUNS = {
     "garand": ("m1_garand", "M1 Garand", 1500), "kar98": ("kar98", "Mauser KAR 98K", 5200),
     "carbine": ("carbine", "M1 Carbine", 1500), "colt": ("colt45", "Colt 45", 1000),
 }
+# the Armory route (cheats are forced off on a coop server, so `give` is refused): ui/loadout/w<id>_s<slot>.cfg
+ARMORY = {"thompson": "24_s1", "mp40": "26_s1", "ppsh": "29_s1", "sten": "28_s1", "bar": "36_s1", "fg42": "39_s1",
+          "stg44": "37_s1", "bren": "82_s1", "mg42": "43_s1", "garand": "01_s1", "kar98": "03_s1", "carbine": "02_s1",
+          "colt": "48_s3"}
 SEMI = {"garand": 5, "kar98": 5, "carbine": 5, "colt": 5}   # rounds in the string, one press each
 
 
@@ -88,13 +92,17 @@ def overlay():
         z.write(os.path.join(MODWT, "coop_mod", "recoil_pattern.txt"), "coop_mod/recoil_pattern.txt")
 
 
-def burst(s, gun, ms, semi):
+def burst(s, gun, ms, semi, shot=None):
     if semi:
         for _ in range(semi):
             s.cmd("+attack", 60)
             s.cmd("-attack", 700 if gun != "kar98" else 1300)
     else:
-        s.cmd("+attack", ms)
+        if shot:   # a frame mid-burst: the sights must still sit on the crosshair line while the aim climbs
+            s.cmd("+attack", ms // 2)
+            s.cmd("screenshotJPEG " + shot, ms - ms // 2)
+        else:
+            s.cmd("+attack", ms)
         s.cmd("-attack", 0)
 
 
@@ -104,12 +112,15 @@ def fire_steps(guns, yaw, pitch):
         stem, name, ms = GUNS[g]
         semi = SEMI.get(g)
         s = Cfg()
-        s.cmd("echo ^~^~^ RCLGUN %s" % g)
-        s.cmd("give models/weapons/%s.tik" % stem, 1500)
-        s.cmd("give models/weapons/%s.tik" % stem, 600)
+        steps.append(["echo ^~^~^ RCLGUN %s" % g])
+        s.cmd("coop_recoilPatOn")
+        s.cmd("coop_recoilPattern")
+        s.cmd("coop_gunHeft")
+        steps.append((["exec ui/loadout/w%s.cfg" % ARMORY[g]], r"Picked Up %s" % re.escape(name)))
         s.cmd('use "%s"' % name, 2500)
         # four groups side by side on the wall, 7 deg apart; each burst starts at the same pitch from a fixed stand
-        groups = [("aimed", -10.5), ("hip", -3.5), ("crouch", 3.5), ("prone", 10.5)]
+        groups = [("aimed", 10.5), ("hip", 3.5), ("crouch", -3.5), ("prone", -10.5)]   # + = left
+        prev = [-yaw]          # <yaw> = the stand's initial turn LEFT from the spawn view (deg), done once per gun
         for kind, dy in groups:
             if kind == "prone":
                 s.cmd("set coop_prone 1")
@@ -117,14 +128,21 @@ def fire_steps(guns, yaw, pitch):
             elif kind == "crouch":
                 s.cmd("set coop_prone 0")
                 s.cmd("+movedown", 900)
-            s.cmd("face %.2f %.2f 0" % (pitch, yaw + dy), 700)
+            # `face` does not move a coop client's view (measured 2026-11-10): turn with the keys, 140 deg/s (cl_yawspeed)
+            turn = int(round((dy - prev[0]) / 140.0 * 1000.0))
+            prev[0] = dy
+            if turn:
+                s.cmd("+left" if turn > 0 else "+right", abs(turn))
+                s.cmd("-left" if turn > 0 else "-right", 700)
             if kind != "hip":
                 s.cmd("+button13", 1100)
+            s.cmd("set coop_recoilProbe 1")
             s.cmd("echo ^~^~^ RCLBURST %s %s %.2f %.2f" % (g, kind, pitch, yaw + dy), 50)
-            burst(s, g, ms, semi)
+            burst(s, g, ms, semi, ("rcl_%s_%s_mid" % (g, kind)) if kind == "aimed" else None)
             s.cmd("screenshotJPEG rcl_%s_%s_climb" % (g, kind), 200)
             s.cmd("wait 1", 1500)
             s.cmd("echo ^~^~^ RCLEND %s %s" % (g, kind))
+            s.cmd("set coop_recoilProbe 0")
             s.cmd("-button13", 300)
             if kind in ("prone", "crouch"):
                 s.cmd("-movedown", 1200 if kind == "prone" else 600)
@@ -133,8 +151,14 @@ def fire_steps(guns, yaw, pitch):
                 s.cmd("+moveup", 300)
                 s.cmd("-moveup", 1500)
             s.cmd("reload", 3500)
-        s.cmd("face %.2f %.2f 0" % (pitch - 3.0, yaw), 1200)
+        mid = int(round((0.0 - prev[0]) / 140.0 * 1000.0))     # face the middle of the four groups for the wall still
+        s.cmd("+left" if mid > 0 else "+right", abs(mid))
+        s.cmd("-left" if mid > 0 else "-right", 1200)
         s.cmd("screenshotJPEG rcl_%s_wall" % g, 600)
+        back = int(round(yaw / 140.0 * 1000.0))                 # back to the spawn view for the next gun
+        if back:
+            s.cmd("+right" if back > 0 else "+left", abs(back))
+            s.cmd("-right" if back > 0 else "-left", 1200)
         steps.append(s.lines)
     return steps
 
@@ -180,7 +204,7 @@ def main():
         "set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0",
         "seta coop_tinnitusBaseVol 0", "seta coop_tinnitusMuffle 0", "seta coop_woundMuffleVol 0",
         "set g_gametype 2", "set coop_dev 1", "set coop_lockLoadout 0", "set coop_recoilDebug 1",
-        "set coop_recoilProbe 0", "set coop_recoilPattern %d" % (0 if off else 1),
+        "set coop_recoilProbe 0", "set coop_lookDebug 0", "set coop_recoilPattern %d" % (0 if off else 1),
         "set rconpassword %s" % RCONPW, "set ui_dmmap %s" % mp, "ui_startdmmap 2"]
     open(os.path.join(MAINTT, "rcl_run.cfg"), "w", newline="\n").write("\n".join(lines) + "\n")
     if mode == "scout":
@@ -201,13 +225,27 @@ def main():
             # the per-spawn un-mute (bug-10805) runs on spawn: set the volumes again now the player is in
             rcon("set s_volume 0; seta coop_tinnitusBaseVol 0; seta coop_tinnitusMuffle 0; seta coop_woundMuffleVol 0")
             time.sleep(1)
+            # the mission card: "press FIRE to join the battle"
+            steps = [["+attack", "wait 300", "-attack", "wait 4000", "+attack", "wait 300", "-attack", "wait 6000",
+                      "seta coop_tinnitusBaseVol 0", "seta coop_tinnitusMuffle 0", "seta coop_woundMuffleVol 0",
+                      "set s_volume 0"]] + steps
             for i, st in enumerate(steps):
+                rx = None
+                if isinstance(st, tuple):
+                    st, rx = st
+                n0 = len(log_text())
                 mk = "^~^~^ RCLSTEP %d" % i
                 open(os.path.join(MAINTT, "rclstep.cfg"), "w", newline="\n").write("\n".join(st + ["echo " + mk]) + "\n")
                 rcon("exec rclstep.cfg")
                 if not wait_for(re.escape(mk) + r"(?![0-9])", 240, c):
                     log("step", i, "timed out")
                     break
+                if rx:
+                    t0 = time.time()
+                    while time.time() - t0 < 90 and not re.search(rx, log_text()[n0:]):
+                        time.sleep(0.5)
+                    log("step", i, "pickup", bool(re.search(rx, log_text()[n0:])))
+                    time.sleep(2)
                 if c.watcher.violations:
                     log("VIOLATION", c.watcher.violations[:3])
                     break
