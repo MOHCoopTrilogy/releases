@@ -596,7 +596,10 @@ def ng3d(api, js):
             ce = conv(map_bu((cu, cv), dy=0.0016))
             hw = (b[2] - b[0]) / WALL_W * WX / 2 / api["DIST"] * api["FPX"]
             hh = (b[3] - b[1]) / WALL_H * WZ / 2 / api["DIST"] * api["FPX"]
-            hi = api["hot"]("ops%s%s" % (nm, side), ce, (b[2] - b[0]) / WALL_W * WX / 2 * SC, hw, hh, cmd, "", gate + g2, back)
+            # [opsfix, v1.10.72 bug] the card's proxy buttons must be emitted AFTER the card's labels: the UI hit-test
+            # (UIWidget::FindResponder) takes the LAST widget under the cursor, Labels included, so a card label drawn
+            # after the button swallowed every real click on DEPLOY / FILE AWAY. hot_top = emitted after the card.
+            hi = api.get("hot_top", api["hot"])("ops%s%s" % (nm, side), ce, (b[2] - b[0]) / WALL_W * WX / 2 * SC, hw, hh, cmd, "", gate + g2, back)
             box3("ops_%sh%s" % (nm, side), b, 0.0015)          # the stamp inks darker under the cursor
             card += lab("ops_%sh%s" % (nm, side), "%s%s ui_scene_hot==%d" % (gate, g2, hi), shader="hzm_ops_%s_h" % key)
         for rv, tex in ((1, "won"), (2, "failed")):
