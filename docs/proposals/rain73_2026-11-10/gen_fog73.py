@@ -24,12 +24,15 @@ add = sys.argv[1]
 mdir, tdir, sdir = (os.path.join(add, d) for d in ("models/menu", "textures/menu", "scripts"))
 for d in (mdir, tdir, sdir):
     os.makedirs(d, exist_ok=True)
-CARDS = [("hzm_wx_fog0", 640.0, 25, -500.0, 450.0, 0.0010, 1300.0),
-         ("hzm_wx_fog1", 1000.0, 55, -500.0, 450.0, 0.0016, 2000.0),
-         ("hzm_wx_fog2", 1450.0, 85, -500.0, 450.0, 0.0022, 2600.0),
-         ("hzm_wx_fog3", 1880.0, 100, -500.0, 500.0, 0.0030, 3200.0)]     # name, x, weight, z0, z1, drift, half-width (y)
-# (in-game QA rain73: the first cut's dense part lay BELOW the band seen through the window - the storm haze left the town clear.
-# The profile is now by height: full up to the roofs' and ridges' height (z 60), thinning out by z 300, none above)
+CARDS = [("hzm_wx_fog0", 560.0, 15, -500.0, 450.0, 0.0008, 1200.0),
+         ("hzm_wx_fog1", 820.0, 40, -500.0, 450.0, 0.0013, 1700.0),
+         ("hzm_wx_fog2", 1200.0, 70, -500.0, 450.0, 0.0019, 2300.0),
+         ("hzm_wx_fog3", 1650.0, 90, -500.0, 480.0, 0.0024, 2900.0),
+         ("hzm_wx_fog4", 1900.0, 100, -500.0, 520.0, 0.0030, 3300.0)]     # name, x, weight, z0, z1, drift, half-width (y)
+# v2 (QA "flat white translucent rectangles, a pale box with hard edges"): five banks from just past the near roofs (so even they
+# soften a little - no crisp near/far split), patchy (cloud contrast), the overcast sky's grey (the engine's fog colour); and
+# the top AND bottom rows clear, so the texture's v wrap can never draw a line (the "horizontal banding at y 290 / 345" was
+# the far cards' top edges blending with their opaque bottom rows)
 YC = 150.0
 
 
@@ -53,8 +56,9 @@ for k, (nm, x, wgt, z0, z1, drift, hw) in enumerate(CARDS):
     v = np.linspace(0, 1, H)[:, None]                 # 0 = the card's top (image row 0), 1 = its bottom
     zz = z1 - v * (z1 - z0)
     prof = np.clip((300.0 - zz) / 240.0, 0, 1) ** 1.2
-    prof[: int(H * 0.06)] = 0.0                       # no alpha in the top rows: the v wrap can never show
-    a = np.clip(prof * (0.45 + 0.75 * c), 0, 1)
+    prof[: int(H * 0.06)] = 0.0                       # no alpha in the top rows ...
+    prof[-int(H * 0.06):] = 0.0                       # ... nor the bottom ones: the v wrap can never draw a line
+    a = np.clip(prof * (0.10 + 1.25 * c ** 1.6), 0, 1)
     rgb = np.clip(0.88 + 0.12 * c, 0, 1)
     Image.fromarray((np.dstack([rgb, rgb, rgb, a]) * 255).astype(np.uint8), "RGBA").save(os.path.join(tdir, nm + ".tga"))
     # the card: facing -x (towards the window), u along y (2.5 repeats), v down
