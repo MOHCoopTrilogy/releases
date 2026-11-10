@@ -9,7 +9,11 @@ level's real place (missions.json pins, level_pins for levels elsewhere), a red 
 lines typed in one at a time - title, unit, place, date and time - read from coop_mod/joincard_table.scr, the join card's source, so
 the two always match.  Maps with no known place (lobbies, MP maps) get the theatre view without a pin (clip 'nm_theatre').
 Every frame is drawn from the vectors at frame scale (no scaled bitmap: nothing shimmers during the zoom), supersampled 2x and
-Lanczos-downsampled; the clip plays once and holds its last frame (gen_loadclip.py --once)."""
+Lanczos-downsampled; the clip plays once and holds its last frame (gen_loadclip.py --once).
+[mapclipshd] Frames are 21:9 (2446x1024, stored 2048x1024 q90 4:4:4 - see ASPECT / SAFE below): a 21:9 screen sees the whole
+frame, 16:9 and 4:3 screens see its middle (the engine draws "cover", never a stretch); the card block, pin, ring and name live
+in the central 4:3 band. Env: MAPCLIPS_MOD (join-card source tree), MAPCLIPS_H / MAPCLIPS_STORE / MAPCLIPS_Q (frame height,
+stored size, JPEG quality)."""
 import json, math, os, re, subprocess, sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -19,10 +23,20 @@ sys.path.insert(0, HERE)
 import warmap  # noqa: E402
 
 FD = r"C:\Windows\Fonts"
-OW, OH = 1024, 576            # frame size (16:9), packed 1024x512 by gen_loadclip.py (the engine stretches it back)
+# [mapclipshd] HD + 21:9 (user 2026-11-10: the 1024x576 clips were pixelated on a 3440x1440 screen, "quality, ~1 GB is fine").
+# The engine draws a clip "cover" at its stored aspect (cl_loadcine.cpp CL_LoadCine_Draw), so the frames ARE 21:9 (3440/1440):
+# a 21:9 screen shows all of it, 16:9 and 4:3 screens crop the sides (never a stretch). Everything that must be read - the card
+# block, the pin, its ring and name - sits inside SAFE (the central 4:3 band of the frame), so every screen from 4:3 to 21:9 has it.
+# Frames are drawn at 2446x1024 and stored 2048x1024 (the player's power-of-two limit, LC_MAXDIM 2048) at q90 4:4:4.
+ASPECT = 3440 / 1440.0
+OH = int(os.environ.get("MAPCLIPS_H", "1024"))                 # frame height
+OW = int(round(OH * ASPECT))                                    # 2446 at 1024
+SAFE = (0.5 - (4 / 3.0) / ASPECT / 2, 0.5 + (4 / 3.0) / ASPECT / 2)   # 0.221 .. 0.779 of the frame width
+PIN_X = 0.625                  # where the place ends (frame width fraction): right of the card block, its name inside SAFE
+STORE = os.environ.get("MAPCLIPS_STORE", "2048x1024")
+QUALITY = int(os.environ.get("MAPCLIPS_Q", "90"))
 SS = 2
 FPS = 30
-TOP = int(576 * 0.78) - 162    # the title block's top: its last line ends at 78% of the frame height
 ZOOM_S, TOTAL_S = 3.4, 4.6    # the push-in, then the ring and the last lines; the engine holds the last frame after that
 MJ = json.load(open(os.path.join(HERE, "missions.json")))
 # [mapclips70] the theatre IS the war map's window (warmap.WALL_WIN; v1.10.70 widened it east to Stalingrad, 31.5..67.5N, lon_c
@@ -166,8 +180,20 @@ def draw_frame(D, cam, target, ring_t, pins_all=False, label=None):   # a clip s
             d.line(pts, fill=(160, 26, 20, 225), width=max(2, int(7 * s)), joint="curve")
         if label and ring_t > 0.6:                  # the place's name in red grease pencil beside the ring, fading in
             a_ = int(255 * min(1.0, (ring_t - 0.6) / 0.4))
-            fl = font("courbd.ttf", 44 * s)
-            d.text((x + 86 * s, y - 64 * s), label, font=fl, fill=(150, 24, 18, a_), stroke_width=max(1, int(5 * s)), stroke_fill=(222, 206, 162, int(a_ * 0.9)))
+            px_l = 44 * s
+            room = SAFE[1] * W - 10 * s - (x + 86 * s)     # [mapclipshd] the name ends inside SAFE (a 4:3 screen shows it whole)
+            lines = [label]
+            fl = font("courbd.ttf", px_l)
+            if d.textlength(label, font=fl) > room and " " in label:      # two lines, split at the space nearest the middle
+                sp_ = [i for i, c in enumerate(label) if c == " "]
+                cut = min(sp_, key=lambda i: abs(i - len(label) / 2))
+                lines = [label[:cut], label[cut + 1:]]
+            while max(d.textlength(l_, font=fl) for l_ in lines) > room and px_l > 20 * s:
+                px_l *= 0.95
+                fl = font("courbd.ttf", px_l)
+            for li, l_ in enumerate(lines):
+                d.text((x + 86 * s, y - 64 * s + li * px_l * 1.05), l_, font=fl, fill=(150, 24, 18, a_), stroke_width=max(1, int(5 * s)),
+                       stroke_fill=(222, 206, 162, int(a_ * 0.9)))
     return im
 
 
@@ -176,7 +202,7 @@ def ease(t):
 
 
 def frames(ne, work, only):
-    D = warmap.load(ne)
+    D = warmap.load(ne, bbox=(-70, 10, 105, 85))     # [mapclipshd] the 21:9 theatre opens on ~50W..82E
     W, H = OW * SS, OH * SS
     jobs = {}
     for k in sorted(set(parse_joincard(None).keys()) | {"theatre"}):
@@ -209,7 +235,7 @@ def frames(ne, work, only):
             lat1, lon1, span1 = lat0, lon0, span0 * 0.78
         else:
             lat1, lon1, span1 = pl[0], pl[1], 3.2
-            lon1 -= 0.13 * W * span1 / (K * H)        # the place ends right of centre (x 0.63): the card block owns the left
+            lon1 -= (PIN_X - 0.5) * W * span1 / (K * H)   # the place ends right of centre (PIN_X): the card block owns the left
         for i in range(n_fr):
             t = min(1.0, i / (ZOOM_S * FPS))
             e = ease(t)
@@ -260,11 +286,13 @@ def titles(mod, work, only=None):
     # the whole block at BLOCK x the card's u (every size and gap together, so the ratios stay the card's): the clip is 1024 wide
     # and the engine stretches it to the screen, and courier at the card's 1x is one texel thick here over a busy map
     u = OH / 1080.0 * BLOCK
-    X0 = int(round(40 * OH / 1080.0 * 1.4))
+    W169 = OH * 16 / 9.0                       # [mapclipshd] block sizes keep the 16:9 card's proportions (the old clip's width)
+    X0 = int(round(SAFE[0] * OW + 0.035 * OH * 4 / 3.0))     # 3.5% in from a 4:3 screen's left edge
     def band(solid):
-        # a straight, full-height dark band from the left edge: 75% until past the longest line, then a linear fade over 15%
+        # a straight, full-height dark band: 75% from SAFE's left edge until past the longest line, then a short linear fade;
+        # on screens wider than 4:3 it fades out to the left too, so a 21:9 screen is not a third dark
         x = np.arange(OW, dtype=np.float32)
-        gx = np.clip(1.0 - (x - solid) / (0.15 * OW), 0, 1) * 0.75
+        gx = np.clip(1.0 - (x - solid) / (0.06 * OW), 0, 1) * np.clip((x - (SAFE[0] - 0.10) * OW) / (0.10 * OW), 0, 1) * 0.75
         g = np.zeros((OH, OW, 4), np.uint8)
         g[..., 0], g[..., 1], g[..., 2] = 4, 4, 3
         g[..., 3] = (np.tile(gx, (OH, 1)) * 255).astype(np.uint8)
@@ -279,7 +307,7 @@ def titles(mod, work, only=None):
             continue
         rec = jc.get(m, {})
         title = rec.get("Title", "")
-        maxw = 0.40 * OW            # long titles shrink to fit (the card's JC_Fit), so the band never reaches the pin at x 0.63
+        maxw = 0.40 * W169          # long titles shrink to fit (the card's JC_Fit), so the band never reaches the pin at PIN_X
         def fit(f, s_, px, k=1.0):
             w = f.width(s_, px * k)
             return px * (maxw / w) if w > maxw else px
@@ -298,7 +326,7 @@ def titles(mod, work, only=None):
                 rows.append((txt, fc, px, col, y))
                 y += step * u
         ext = max([X0 + f.width(r0, px) for r0, f, px, _c, _y in rows] + [X0 + 360 * u])
-        grad = band(min(0.47 * OW, max(0.40 * OW, ext + 24 * u)))
+        grad = band(X0 + min(0.40 * W169, max(0.33 * W169, ext - X0 + 24 * u)))
         top = int(OH * 0.78 - y)            # the block ends at 78% of the height: inside the 21:9 'cover' and above the tip strip
         out = os.path.join(work, "clips", m)
         os.makedirs(out, exist_ok=True)
@@ -320,21 +348,22 @@ def titles(mod, work, only=None):
                     if nch <= 0:
                         break
                     shown = txt[:nch]
-                    f.draw(im, X0 + 2 * u, top + oy + 2 * u, shown, px, (0, 0, 0), 0.8)
-                    f.draw(im, X0, top + oy, shown, px, col, 1.0)
-            im.convert("RGB").save(os.path.join(out, "f%04d.jpg" % i), quality=95, subsampling=0)
+                    f.draw(im, X0 + 2 * u, top + oy + 2 * u, shown, px, (0, 0, 0), 0.8, sharp=True)
+                    f.draw(im, X0, top + oy, shown, px, col, 1.0, sharp=True)
+            im.convert("RGB").save(os.path.join(out, "f%04d.jpg" % i), quality=98, subsampling=0)
         print("titles", m, len(rows), flush=True)
 
 
 def pack(mod, work):
-    tool = r"C:\mohaa-coop-dev\docs\tools\gen_loadclip.py"
+    tool = os.path.join(HERE, "..", "..", "tools", "gen_loadclip.py")    # this tree's copy (it has --subsampling)
     cdir = os.path.join(work, "hzlc")
     os.makedirs(cdir, exist_ok=True)
     clips = []
     for m in sorted(os.listdir(os.path.join(work, "clips"))):
         name = "nm_%s" % m
         subprocess.check_call([sys.executable, "-P", "-E", tool, "clip", os.path.join(work, "clips", m), name, "--out", cdir, "--fps", "24",
-                               "--src-fps", str(FPS), "--size", "1024x512", "--quality", "80", "--once"])   # 24 fps q80: ~6.5 MB a clip, text stays crisp
+                               "--src-fps", str(FPS), "--size", STORE, "--quality", str(QUALITY), "--subsampling", "0",
+                               "--aspect", "%.4f" % ASPECT, "--once"])   # [mapclipshd] 2048x1024 q90 4:4:4: red ink and thin lines stay crisp
         clips.append(os.path.join(cdir, name + ".hzlc"))
     # the rules: every join-card map its own clip, any other level of a mission that mission's zoom, everything else the theatre
     R = ["// GENERATED by docs/proposals/sp3camp_2026-11-08/gen_mapclips.py - do not hand-edit.  The loading screens are the shared war map",
@@ -354,13 +383,16 @@ def pack(mod, work):
     # every run. Re-store the entries in name order with one fixed date (stored, as before): same frames -> same bytes.
     import zipfile
     pk = os.path.join(work, "zzzzzzzzzz_coop_mapclips.pk3")
-    with zipfile.ZipFile(pk) as zi:
-        ents = [(n, zi.read(n)) for n in sorted(zi.namelist())]
-    with zipfile.ZipFile(pk, "w", zipfile.ZIP_STORED) as zo:
-        for n, b in ents:
+    tmp = pk + ".tmp"
+    with zipfile.ZipFile(pk) as zi, zipfile.ZipFile(tmp, "w", zipfile.ZIP_STORED) as zo:   # one entry at a time (~1.2 GB pak)
+        for n in sorted(zi.namelist()):
             zi_ = zipfile.ZipInfo(n, date_time=(2026, 11, 10, 0, 0, 0))
             zi_.external_attr = 0o644 << 16
-            zo.writestr(zi_, b)
+            zo.writestr(zi_, zi.read(n))
+    os.replace(tmp, pk)
+    # [mapclipshd] one file stays under the release limits: GitHub refuses an asset over 2 GiB and publish_release.ps1 never splits a
+    # single file across its 1.9 GB zip parts. Over that, split the clips into paks by campaign instead of raising this.
+    assert os.path.getsize(pk) < 1900 * 1024 * 1024, "mapclips pak over 1.9 GB - split it by campaign"
     # the rules ride in the pak too: it sorts after the old zzzzzzzzzz_coop_loadclips*.pk3 (dev installs, 1.10.34-36 players), whose
     # own ui/loadclips.txt would otherwise beat the code pak's (fewer z's) and point every load at the old 2048 clips
     print("packed", len(clips), "clips")

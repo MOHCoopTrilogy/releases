@@ -29,7 +29,19 @@ class RitualFont:
         k = px / self.height
         return sum((g[2] if g else self.height * 0.5) * k for g in (self.glyph(c) for c in s))
 
-    def draw(self, img, x, y, s, px, rgb, alpha=1.0):
+    @staticmethod
+    def _sharp_cov(src, w, h):
+        """[mapclipshd] coverage of a glyph drawn LARGER than the atlas has it (a 1024-tall clip draws the title ~2x the @3x
+        atlas): a plain Lanczos upscale smears the edge over two pixels. Upscale 4x past the target, steepen the edge ramp
+        around half coverage (the outline the atlas encodes), then box-filter down - an edge about one output pixel wide."""
+        a = np.asarray(src, np.float32)
+        c = a[..., 3] * (a[..., :3].mean(axis=2) / 255.0) / 255.0
+        big = Image.fromarray((np.clip(c, 0, 1) * 255).astype(np.uint8), "L").resize((w * 4, h * 4), Image.BICUBIC)
+        b = np.asarray(big, np.float32) / 255.0
+        b = np.clip((b - 0.5) * 2.2 + 0.5, 0, 1)
+        return np.asarray(Image.fromarray((b * 255).astype(np.uint8), "L").resize((w, h), Image.BOX), np.float32)
+
+    def draw(self, img, x, y, s, px, rgb, alpha=1.0, sharp=False):
         """draw s with its top-left at (x, y), px = the font's line height on screen (the engine's 'px' / scale)"""
         k = px / self.height
         for c in s:
@@ -43,9 +55,12 @@ class RitualFont:
                 continue
             src = self.atlas.crop((int(round(gx * self.sx)), int(round(gy * self.sy)), int(round((gx + gw) * self.sx)), int(round((gy + gh) * self.sy))))
             w, h = max(1, int(round(gw * k))), max(1, int(round(gh * k)))
-            src = src.resize((w, h), Image.LANCZOS)
-            a = np.asarray(src, np.float32)
-            cov = a[..., 3] * (a[..., :3].mean(axis=2) / 255.0) * alpha        # white glyphs on alpha: coverage
+            if sharp and w > src.size[0] * 1.15:
+                cov = self._sharp_cov(src, w, h) * alpha
+            else:
+                src = src.resize((w, h), Image.LANCZOS)
+                a = np.asarray(src, np.float32)
+                cov = a[..., 3] * (a[..., :3].mean(axis=2) / 255.0) * alpha        # white glyphs on alpha: coverage
             tile = np.zeros((h, w, 4), np.uint8)
             tile[..., 0], tile[..., 1], tile[..., 2] = rgb
             tile[..., 3] = np.clip(cov, 0, 255).astype(np.uint8)

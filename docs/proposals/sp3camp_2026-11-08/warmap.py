@@ -72,22 +72,27 @@ def font(name, px):
 _DATA = {}
 
 
-def load(ne):
-    if not _DATA:
+def load(ne, bbox=(-40, 20, 70, 75)):
+    """the Natural Earth layers whose shapes meet bbox (lon0, lat0, lon1, lat1). [mapclipshd] bbox is a parameter: the 21:9
+    loading clips open on ~50W..82E, and the old fixed box dropped every shape starting east of 70E (China), so its land
+    showed as sea. The wall views keep the default (same shapes, same images)."""
+    if bbox not in _DATA:
+        D = {}
         def shp(layer):
             for root, _d, fs in os.walk(ne):
                 for f in fs:
                     if f.lower() == layer + ".shp":
-                        return ne_shp.read(os.path.join(root, f), bbox=(-40, 20, 70, 75))
+                        return ne_shp.read(os.path.join(root, f), bbox=bbox)
             raise SystemExit("missing " + layer)
-        _DATA["land"] = shp("ne_10m_admin_0_countries")
-        _DATA["coast"] = shp("ne_10m_coastline")
+        D["land"] = shp("ne_10m_admin_0_countries")
+        D["coast"] = shp("ne_10m_coastline")
         for root, _d, fs in os.walk(ne):
             for f in fs:
                 if f.lower() == "ne_10m_rivers_lake_centerlines.shp":
-                    _DATA["rivers"] = ne_shp.read_with_attrs(os.path.join(root, f), bbox=(-40, 20, 70, 75))
-        _DATA.setdefault("rivers", [])
-    return _DATA
+                    D["rivers"] = ne_shp.read_with_attrs(os.path.join(root, f), bbox=bbox)
+        D.setdefault("rivers", [])
+        _DATA[bbox] = D
+    return _DATA[bbox]
 
 
 class View:
