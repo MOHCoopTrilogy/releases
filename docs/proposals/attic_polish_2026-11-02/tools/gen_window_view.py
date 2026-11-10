@@ -438,30 +438,81 @@ if P:
               "\t\tclampmap textures/menu/hzm_wx_smoke.tga\n\t\tblendFunc blend\n\t\trgbGen entity\n"
               "\t\ttcMod stretch sin 1 0.03 0 0.1\n\t}\n}")
     WX.append('scenewx "hzm_wx_smoke" tint')
-# treetops: the stock HD tree sprite, hazed by distance (two bands), alpha-tested
-ts = Image.open(io.BytesIO(zipfile.ZipFile(G + r"\maintt\zzzzz_hd_foliage.pk3").read("textures/models/natural/tree1sprite.tga"))).convert("RGBA")
-ts = ts.resize((256, 512), Image.LANCZOS)
-ta = np.asarray(ts, np.float32) / 255
-HZ = np.array([0.64, 0.68, 0.75])
-for band, hz in (() if not os.environ.get("WX_TREECARDS") else (("n", 0.22), ("f", 0.42))):
-    c = ta[..., :3] * (1 - hz) + HZ * hz
-    Image.fromarray((np.dstack([c, ta[..., 3]]) * 255).astype(np.uint8), "RGBA").save(os.path.join(tdir, "hzm_wx_tree_%s.tga" % band))
+# woods, hedgerows and trees on the ridges (user QA 2026-11-09: identical smooth domes, "lollipop clones"; white dashed strips): the
+# game's own foliage art (zzzzz_hd_foliage) on alpha-tested cards facing the home eye, from wx_town.py's "fol:" marks. ONE atlas
+# (png, rows = haze levels, columns = variants) and one shader, so the whole distance is one model set (32-surface limit).
+FOLSRC = {   # variant: (pk3 path, crop box x0, y0, x1, y1 in its own pixels, width stretch)
+    "oak":      ("textures/models/natural/tree4sprite.tga", (152, 56, 871, 1012), 1.0),
+    "ash":      ("textures/models/natural/tree1sprite.tga", (34, 94, 488, 932), 1.0),
+    "ashn":     ("textures/models/natural/tree1sprite_new.tga", (34, 94, 488, 932), 1.0),
+    "poplar":   ("textures/models/natural/tree2sprite.tga", (31, 33, 230, 994), 1.0),
+    "fir":      ("textures/models/natural/tree2asprite.tga", (40, 32, 219, 994), 1.0),
+    "treeline": ("textures/misc_outside/treeline_cntr.tga", (0, 164, 1024, 1000), 1.0),
+    "bocage":   ("textures/misc_outside/bocage_treerow1rev.tga", (0, 298, 1024, 960), 1.0),
+    "hedge":    ("textures/misc_outside/hedgerow.tga", (0, 156, 1024, 1010), 1.0),
+    "bush":     ("textures/misc_outside/hedgerowsml.tga", (300, 155, 1000, 1010), 1.0),
+}
+FOL_HZ = [0.44, 0.49, 0.54, 0.59, 0.64, 0.69, 0.74, 0.80]
+FOL_CELL, FOL_PAD = 236, 10          # 8 rows x 246 = 1968: the atlas stays 2048 x 2048 (256 rounded it up to 4096 tall)
+FOL_TINT = np.array([0.64, 0.68, 0.75])
+fmk = [m for m in MK if m["kind"].startswith("fol:")]
+if fmk:
+    zf_ = zipfile.ZipFile(G + r"\maintt\zzzzz_hd_foliage.pk3")
+    cells, x_ = {}, FOL_PAD
+    srcs = {}
+    for v, (pth, box, _) in FOLSRC.items():
+        im = Image.open(io.BytesIO(zf_.read(pth))).convert("RGBA")
+        cb = box                                                 # (the crop boxes are in each sprite's own pixels)
+        im = im.crop(cb)
+        w_ = max(8, int(round(FOL_CELL * im.size[0] / im.size[1])))
+        im = im.resize((w_, FOL_CELL), Image.LANCZOS)
+        srcs[v] = im
+        cells[v] = (x_, x_ + w_)
+        x_ += w_ + FOL_PAD
+    AW = 1 << (x_ - 1).bit_length()
+    AH = FOL_CELL * len(FOL_HZ) + FOL_PAD * len(FOL_HZ)
+    AH = 1 << (AH - 1).bit_length()
+    rowh = AH // len(FOL_HZ)
+    atl = np.zeros((AH, AW, 4), np.float32)
+    for v, im in srcs.items():
+        a = np.asarray(im, np.float32) / 255
+        al = np.clip(a[..., 3] * 1.35, 0, 1)                    # a touch bolder: the far mips erode an alpha-tested crown
+        rgb = a[..., :3] * 0.78                         # (QA 2026-11-09: the first cut read washed out against the fields)
+        op = al > 0.5
+        mean = rgb[op].mean(0) if op.any() else np.array([0.2, 0.3, 0.2])
+        rgb = np.where(op[..., None], rgb, mean)                # the cut-away texels carry the crown's colour: no dark mip fringe
+        for k, hz in enumerate(FOL_HZ):
+            y0 = k * rowh + (rowh - FOL_CELL) // 2
+            hz = hz * 0.8
+            c = rgb * (1 - hz) + FOL_TINT * hz
+            x0_, x1_ = cells[v]
+            atl[y0:y0 + FOL_CELL, x0_:x1_, :3] = c
+            atl[y0:y0 + FOL_CELL, x0_:x1_, 3] = al
+            # the pad round each cell: the colour, no alpha
+            atl[max(0, y0 - FOL_PAD // 2):y0, x0_:x1_, :3] = mean * (1 - hz) + FOL_TINT * hz
+            atl[y0 + FOL_CELL:y0 + FOL_CELL + FOL_PAD // 2, x0_:x1_, :3] = mean * (1 - hz) + FOL_TINT * hz
+    Image.fromarray((np.clip(atl, 0, 1) * 255 + 0.5).astype(np.uint8), "RGBA").save(os.path.join(tdir, "hzm_wx_fol.png"), optimize=True)
     P, Uv = [], []
-    for m in MK:
-        if m["kind"] != "tree":
-            continue
-        dist = np.linalg.norm(np.array(m["p"]) * U - EYEg) / U
-        if (band == "n") != (dist < 36.75):
-            continue
+    for m in fmk:
+        _, v, hz, flip, ratio = m["kind"].split(":")
+        k = int(np.argmin([abs(float(hz) - h_) for h_ in FOL_HZ]))
         base = np.array(m["p"]) * U
         h_ = m["size"] * U
-        p_, u_ = card(base, h_ * 0.62, h_)
-        P.append(p_); Uv.append(u_)
-    if P:
-        nm = write_model("hzm_wx_trees_%s" % band, np.concatenate(P), np.concatenate(Uv), "hzm_wx_trees_%s" % band)
-        SH.append("hzm_wx_trees_%s\n{\n\tcull none\n\t{\n\t\tclampmap textures/menu/hzm_wx_tree_%s.tga\n\t\talphaFunc GE128\n"
-                  "\t\tdepthWrite\n\t\trgbGen entity\n\t}\n}" % (band, band))
-        WX.append('scenewx "%s" tint' % nm)
+        p_, _u = card(base, h_ * float(ratio), h_)
+        x0_, x1_ = cells[v]
+        y0 = k * rowh + (rowh - FOL_CELL) // 2
+        ua, ub = (x0_ + 0.5) / AW, (x1_ - 0.5) / AW
+        if flip == "1":
+            ua, ub = ub, ua
+        vb, vt = 1 - (y0 + FOL_CELL - 0.5) / AH, 1 - (y0 + 0.5) / AH
+        Uv.append(np.array([[(ua, vb), (ub, vb), (ub, vt)], [(ua, vb), (ub, vt), (ua, vt)]], float))
+        P.append(p_)
+    nm = write_model("hzm_wx_fol", np.concatenate(P), np.concatenate(Uv), "hzm_wx_fol")
+    SH.append("hzm_wx_fol\n{\n\tcull none\n\t{\n\t\tmap textures/menu/hzm_wx_fol.png\n\t\talphaFunc GE128\n"
+              "\t\tdepthWrite\n\t\trgbGen entity\n\t}\n}")
+    for n_ in (nm if isinstance(nm, list) else [nm]):
+        WX.append('scenewx "%s" tint' % n_)
+    print("foliage cards", len(fmk), "atlas", AW, AH, {v: cells[v][1] - cells[v][0] for v in cells})
 
 # ------------------------------------------------------------------ 2b''. banners (user: "there are Nazi flags and banners in the game, we
 # should have those hanging from some buildings to give the vibe of being behind enemy lines"): the game's own models and textures,
@@ -480,7 +531,7 @@ SH.append("hzm_wx_flagtop\n{\n\tcull none\n\t{\n\t\tmap textures/models/flags/fl
 # its skc: a -90 deg turn about z) is placed on the REAL wall - its rod's back on the wall plane, hanging plumb from the eaves - and
 # every vertex is squashed exactly like the town's, so it lies on the squashed wall wherever the wall goes. Our own mesh, the game's
 # textures (referenced by path), the flap deform in the shader.
-KNEE, SPAN, EPS_SQ = 12.0, 25.0, 5e-4
+KNEE, SPAN, EPS_SQ = 12.0, 21.0, 5e-4      # = wx_town.py (v1.10.68: SPAN 21)
 EYE_M = np.array([-36.7, 21.0, 102.4]) / U
 
 

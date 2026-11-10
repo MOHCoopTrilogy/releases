@@ -4,7 +4,7 @@ import os, runpy, subprocess, sys, time
 sys.path.insert(0, r"C:\mohaa-coop-dev\docs\tools")
 import harness_window as hw  # noqa: E402
 
-T = r"C:\mohaa-coop-dev\docs\proposals\attic_polish_2026-11-02\tools"
+T = os.environ.get("ATTIC_TOOLS", os.path.dirname(os.path.abspath(__file__)))      # v1.10.68: this checkout's tools
 os.environ.setdefault("ATTIC_MOD", r"C:\mohaa-coop-dev\hzm-mod-attic")
 os.environ.setdefault("ATTIC_SHIP", r"H:\hzm_work\attic62\ship\zzzzzzzzzzzzzz_hzm_menus3d.pk3")
 # (user 2026-11-09: a second screen, 1920x1080, takes ONE client of its own: HZM_TEST_RES=1920x1080 runs there without waiting for the

@@ -53,7 +53,7 @@ CAMS = {
 }
 EYE = Vector(CAMS["home"][0]) / 52.5
 HZ_DROP = math.radians(1.3)          # the home pane spans -2.77..+1.42 deg: town in its lower third, sky above
-KNEE, SPAN = 12.0, 25.0
+KNEE, SPAN = 12.0, 21.0      # v1.10.68 (was 25): the far ridges stayed inside the 2048 u far plane from the HOME eye only - from LOOK OUTSIDE (3.6 m forward, left) their right half was clipped, bare sky below the horizon (QA 2026-11-09, the "pink band")
 
 
 def horizon_z(x):
@@ -153,7 +153,7 @@ TOWNTEX = {
     "pasture":   ("textures/misc_outside/nu_grass_set1.jpg", 14.0, (0.85, 0.95, 0.8)),
     "wheat":     ("textures/misc_outside/bocagegrass_1.jpg", 14.0, (1.0, 0.92, 0.55)),
     "plough":    ("textures/misc_outside/bocagegrass_furrough.jpg", 14.0, (0.95, 0.85, 0.72)),
-    "wood":      ("textures/mohtest/foliage1.jpg", 6.0, (0.85, 1.0, 0.85)),
+    "wood":      ("textures/mohtest/foliage1.jpg", 6.0, (0.50, 0.66, 0.42)),      # v1.10.68 darker: a wood floor under its crowns, not a grey-mauve field
     "window":    ("textures/TAHolland/hollwindow_f1.jpg", 1.0, (1.0, 1.0, 1.0)),
     "shopwin":   ("textures/TAHolland/hollwindow_f1.jpg", 1.0, (0.9, 0.9, 0.9)),
     "door1":     ("textures/general_structure/euro_door1.jpg", 1.0, (1.0, 1.0, 1.0)),
@@ -914,7 +914,7 @@ FIELDS_F = ["meadow", "wood", "pasture", "wood", "meadow"]
 RIDGES = []
 
 
-def ridge(x0, x1, e_base, e_amp, seed, fields, patch, ny=230, nx=16, ylo=-700, yhi=2700):
+def ridge(x0, x1, e_base, e_amp, seed, fields, patch, ny=230, nx=16, ylo=-2700, yhi=3000):
     """a ridge given by the elevation (deg, home eye) of its crest: rises from x0 (its foot under the ground in front), crests, falls
     to x1; the crest line rolls along y; a field patchwork (patch = (dx, dy) metres) picks each quad's material"""
     r = random.Random(seed)
@@ -955,94 +955,140 @@ def ridge(x0, x1, e_base, e_amp, seed, fields, patch, ny=230, nx=16, ylo=-700, y
 
 
 # feet just under the fields' edge (-3.75 deg); crests -1.5 / -1.0 / -0.5 deg on average: each ridge shows over the one before
-z1 = ridge(EYE.x + 1300, EYE.x + 2150, -3.75, 2.7, 7, FIELDS_N, (170.0, 210.0))
-z2 = ridge(EYE.x + 1950, EYE.x + 2850, -3.8, 3.3, 11, FIELDS_F, (420.0, 520.0), ny=170, nx=12)
-z3 = ridge(EYE.x + 2650, EYE.x + 3350, -3.85, 3.9, 13, ["wood", "meadow"], (900.0, 900.0), ny=120, nx=10)
+z1 = ridge(EYE.x + 1300, EYE.x + 2150, -3.75, 2.7, 7, FIELDS_N, (170.0, 210.0), ny=420)      # y -2.7..+3 km (QA 2026-11-09: the
+# ridges ended 12 deg right of the home eye - the LOOK OUTSIDE view saw bare sky over the town there, the "pink band")
+z2 = ridge(EYE.x + 1950, EYE.x + 2850, -3.8, 3.3, 11, FIELDS_F, (420.0, 520.0), ny=300, nx=12)
+z3 = ridge(EYE.x + 2650, EYE.x + 3350, -3.85, 3.9, 13, ["wood", "meadow"], (900.0, 900.0), ny=210, nx=10)
 
 
-def clump(mesh, x, y, zf, rad, hgt, m="wood"):
-    """a tree clump: a soft dome of the game's foliage, its rim 1.5 m under the ground (follows the slope)"""
-    n, rings = 8, 3
-    base = [(x + rad * math.cos(2 * math.pi * k / n), y + rad * math.sin(2 * math.pi * k / n)) for k in range(n)]
-    pts = [Vector((bx, by, zf(bx, by) - 1.5)) for bx, by in base]
-    P_ = list(pts)
-    for rr in range(1, rings + 1):
-        a = rr / (rings + 1)
-        sc = math.cos(a * math.pi / 2)
-        zc = zf(x, y) + hgt * math.sin(a * math.pi / 2)
-        P_ += [Vector((x + rad * sc * 1.05 * math.cos(2 * math.pi * k / n), y + rad * sc * 1.05 * math.sin(2 * math.pi * k / n), zc)) for k in range(n)]
-    P_.append(Vector((x, y, zf(x, y) + hgt)))
-    faces = []
-    for rr in range(rings):
-        for k in range(n):
-            a_, b_ = rr * n + k, rr * n + (k + 1) % n
-            c_, d_ = (rr + 1) * n + (k + 1) % n, (rr + 1) * n + k
-            faces.append(((a_, b_, c_, d_), [(k * 3.0, rr * 4.0), (k * 3.0 + 3, rr * 4.0), (k * 3.0 + 3, rr * 4.0 + 4), (k * 3.0, rr * 4.0 + 4)]))
-    top = len(P_) - 1
-    for k in range(n):
-        a_, b_ = rings * n + k, rings * n + (k + 1) % n
-        faces.append(((a_, b_, top), [(k * 3.0, 12.0), (k * 3.0 + 3, 12.0), (k * 3.0 + 1.5, 15.0)]))
-    f0 = len(mesh.f)
-    mesh._grid(P_, m, faces)
-    mesh.orient(f0, (x, y, zf(x, y) + hgt * 0.3))
+# ---- the woods and hedgerows (user QA 2026-11-09: the ridge clumps were identical smooth domes - "lollipop clones" - and the hedge
+# prisms baked to white dashed strips across the fields). Now cards of the GAME's own foliage art (zzzzz_hd_foliage: the tree
+# sprites, the treeline / bocage rows, the hedgerow), placed here as marks "fol:<variant>:<haze>:<flip>:<w/h>" (size = height, real
+# metres) and drawn by gen_window_view.py as alpha-tested cards facing the home eye, one atlas per haze band. Mixed species and
+# heights, clusters and gaps, hedgerows ON the field edges with gates and hedgerow trees, wood edges as tree rows with crowns
+# of different heights behind them.
+FOL_ASPECT = {"oak": 0.75, "ash": 0.54, "ashn": 0.54, "poplar": 0.21, "fir": 0.19, "treeline": 1.22, "bocage": 1.55,
+              "hedge": 1.45, "bush": 0.95}        # the sprites' own crop aspects (gen_window_view.FOLSRC); hedge / bush a little widened
+DECID = ["oak", "oak", "oak", "ash", "ashn", "oak", "fir"]
 
 
-def hedge(mesh, x, ya, yb, zf, h=2.6, w=2.4):
-    """a hedgerow along y at x: a soft prism of foliage following the ground, its feet under it"""
-    n = max(2, int((yb - ya) / 18.0) + 1)
-    ys_ = [ya + (yb - ya) * k / (n - 1) for k in range(n)]
-    P_ = []
-    for y_ in ys_:
-        g = zf(x, y_)
-        P_ += [Vector((x - w / 2, y_, g - 1.2)), Vector((x - w * 0.15, y_, g + h)), Vector((x + w * 0.15, y_, g + h)), Vector((x + w / 2, y_, g - 1.2))]
-    faces = []
-    for k in range(n - 1):
-        for s in range(3):
-            a_, b_ = k * 4 + s, k * 4 + s + 1
-            faces.append(((a_, b_, b_ + 4, a_ + 4), [(ys_[k], s * 1.5), (ys_[k], s * 1.5 + 1.5), (ys_[k + 1], s * 1.5 + 1.5), (ys_[k + 1], s * 1.5)]))
-    f0 = len(mesh.f)
-    mesh._grid(P_, "wood", faces)
-    mesh.orient(f0, (x, (ya + yb) / 2, zf(x, (ya + yb) / 2) - 30.0))
+def az_ok(x, y, lo=-42.0, hi=38.0):
+    a = math.degrees(math.atan2(y - EYE.y, x - EYE.x))
+    return lo < a < hi
 
 
-trng2 = random.Random(68)
+def fol(var, x, y, zf, h, r, wscale=1.0, sink=0.035):
+    """one card: variant var, its foot at (x, y) sunk a little into the ground (the ground under a card is never level)"""
+    if not az_ok(x, y):
+        return
+    g = zf(x, y)
+    p = Vector((x, y, g - h * sink))
+    hz = haze_of(p)
+    MARKS.append(["fol:%s:%.3f:%d:%.3f" % (var, hz, r.random() < 0.5, FOL_ASPECT[var] * wscale), tuple(p), h, None])
+
+
+def tree(x, y, zf, r, h=None, var=None):
+    var = var or r.choice(DECID)
+    h = h or r.uniform(9.0, 23.0) * (1.25 if var in ("poplar", "fir") else 1.0)
+    fol(var, x, y, zf, h, r, r.uniform(0.85, 1.2))
+
+
+def hedgerow(xa, ya, xb, yb, zf, r):
+    """a hedge along a field edge from (xa, ya) to (xb, yb): overlapping hedge cards of uneven height, a gate now and then,
+    hedgerow trees standing out of it at irregular spacing"""
+    L = math.hypot(xb - xa, yb - ya)
+    if L < 10:
+        return
+    across = abs(yb - ya) >= abs(xb - xa)          # runs across the view: wide cards; along the sight line: short bushes, close
+    s = 0.0
+    while s < L:
+        t = s / L
+        x, y = xa + (xb - xa) * t, ya + (yb - ya) * t
+        if r.random() < 0.06:                       # a field gate
+            s += r.uniform(8, 14)
+            continue
+        h = r.uniform(2.4, 4.2)
+        if across:
+            fol("hedge", x, y, zf, h, r, r.uniform(0.8, 1.15), sink=0.15)
+            s += h * FOL_ASPECT["hedge"] * r.uniform(0.55, 0.8)
+        else:
+            fol("bush", x, y, zf, h * 0.9, r, r.uniform(0.8, 1.2), sink=0.15)
+            s += r.uniform(5, 9)
+        if r.random() < 0.10:                       # a hedgerow tree
+            tree(x + r.uniform(-1, 1), y + r.uniform(-1, 1), zf, r, r.uniform(10, 21))
+
+
+def wood_edge(x, ya, yb, zf, r, depth):
+    """a wood seen from its side facing the attic: a row of treeline cards (crowns of mixed height), single trees standing out
+    in front and over it, a scatter of crowns behind"""
+    y = ya
+    while y < yb:
+        h = r.uniform(12, 19)
+        fol(r.choice(["treeline", "treeline", "bocage"]), x + r.uniform(-3, 3), y, zf, h, r, r.uniform(0.9, 1.3))
+        y += h * r.uniform(0.6, 0.95)
+    for _ in range(int((yb - ya) / 14)):
+        tree(x + r.uniform(-4, depth), r.uniform(ya, yb), zf, r, r.uniform(13, 25))
+
+
+trng2 = random.Random(6801)
 x0, x1, zf, pmat, patch = RIDGES[0]
-yv0, yv1 = EYE.y - 120.0, EYE.y + 2050.0          # what the cameras see of the near ridge
-# hedgerows along the patch edges that run across the view (constant x), broken where a wood patch meets
+# hedgerows on the near ridge's field edges: across the view (constant x) and along it (constant y), never inside a wood
 for (pi, pj), m in pmat.items():
-    xe = x0 + (pi + 1) * patch[0]
-    ya, yb = EYE.y - 5000 + pj * patch[1], EYE.y - 5000 + (pj + 1) * patch[1]
-    if xe >= x1 - 60 or yb < yv0 or ya > yv1 or m == "wood" or pmat.get((pi + 1, pj)) == "wood":
+    xa_, ya_ = x0 + pi * patch[0], EYE.y - 5000 + pj * patch[1]
+    xb_, yb_ = xa_ + patch[0], ya_ + patch[1]
+    if not (az_ok(xa_, ya_) or az_ok(xa_, yb_) or az_ok(xb_, ya_) or az_ok(xb_, yb_)) or m == "wood":
         continue
-    hedge(trees, xe, ya + 6.0, yb - 6.0, zf)
-# woods: clumps over every wood patch's edge facing the attic + a scatter inside; the crest lined with trees, gaps between
+    # (QA 2026-11-09: a field edge without its hedge read as a straight seam between two crops) every edge but a wood's has one
+    if xb_ < x1 - 60 and pmat.get((pi + 1, pj)) != "wood":
+        hedgerow(xb_, ya_ + 4, xb_, yb_ - 4, zf, trng2)
+    if pmat.get((pi, pj + 1)) != "wood":
+        hedgerow(xa_ + 6, yb_, xb_ - 6, yb_, zf, trng2)
+    for _ in range(trng2.choice((0, 0, 1, 1, 2))):           # a lone field oak or two
+        tree(xa_ + trng2.uniform(20, patch[0] - 20), ya_ + trng2.uniform(20, patch[1] - 20), zf, trng2, trng2.uniform(11, 19), "oak")
+# the woods: an edge row facing the attic + crowns scattered through the patch (densest near the edge)
 for (pi, pj), m in pmat.items():
     if m != "wood":
         continue
-    xa, ya = x0 + pi * patch[0], EYE.y - 5000 + pj * patch[1]
-    if ya + patch[1] < yv0 or ya > yv1:
-        continue
-    for k in range(int(patch[1] / 13.0)):
-        clump(trees, xa + trng2.uniform(2, 9), ya + 6.5 + k * 13.0 + trng2.uniform(-2, 2), zf, trng2.uniform(5.5, 8.0), trng2.uniform(11, 17))
-    for k in range(int(patch[0] * patch[1] / 2600.0)):
-        clump(trees, xa + trng2.uniform(15, patch[0] - 8), ya + trng2.uniform(8, patch[1] - 8), zf, trng2.uniform(6, 9), trng2.uniform(12, 18))
+    xa_, ya_ = x0 + pi * patch[0], EYE.y - 5000 + pj * patch[1]
+    wood_edge(xa_ + 3, ya_ + 2, ya_ + patch[1] - 2, zf, trng2, 30)
+    for _ in range(int(patch[0] * patch[1] / 300.0)):          # (QA 2026-11-09: at 1/900 m2 a wood read as a bare mauve field)
+        tree(xa_ + patch[0] * trng2.random() ** 0.6, ya_ + trng2.uniform(4, patch[1] - 4), zf, trng2)
+# the near crest: clusters of 2-9 trees, lone trees and gaps; a poplar row now and then (a lane over the hill)
 xc = x0 + (x1 - x0) * 0.5
-y_ = yv0
-while y_ < yv1:
-    run = trng2.uniform(60, 220)
-    for k in range(int(run / 12.0)):
-        clump(trees, xc + trng2.uniform(-25, 25), y_ + k * 12.0, zf, trng2.uniform(5.5, 8.5), trng2.uniform(12, 18))
-    y_ += run + trng2.uniform(40, 160)
-# the far ridges: woods as soft bands along their crests (no detail reads at 2-3 km, the silhouette does)
-for (xr0, xr1, zfr, _, _), stepy in ((RIDGES[1], 26.0), (RIDGES[2], 40.0)):
+y_ = EYE.y - 2000
+while y_ < EYE.y + 2100:
+    k = trng2.random()
+    if k < 0.55:
+        for _ in range(trng2.randint(2, 9)):
+            tree(xc + trng2.uniform(-30, 30), y_ + trng2.uniform(0, 45), zf, trng2)
+        y_ += trng2.uniform(30, 60)
+    elif k < 0.75:
+        tree(xc + trng2.uniform(-30, 30), y_, zf, trng2)
+        y_ += trng2.uniform(10, 30)
+    elif k < 0.83:
+        for j in range(trng2.randint(6, 12)):
+            tree(xc - 40 + j * 9.0, y_ + j * 1.5 + trng2.uniform(-1, 1), zf, trng2, trng2.uniform(19, 26), "poplar")
+        y_ += 20
+    y_ += trng2.uniform(20, 170)
+# the far ridges: wood rows along their crests in runs of different lengths, broken by open ground; lone trees between
+for (xr0, xr1, zfr, _, _), hmul in ((RIDGES[1], 1.0), (RIDGES[2], 1.1)):
     xc_ = xr0 + (xr1 - xr0) * 0.5
-    y_ = yv0
+    y_ = EYE.y - 2600
     while y_ < EYE.y + 3000:
-        run = trng2.uniform(150, 500)
-        for k in range(int(run / stepy)):
-            clump(trees, xc_ + trng2.uniform(-40, 40), y_ + k * stepy, zfr, trng2.uniform(9, 14), trng2.uniform(14, 20))
-        y_ += run + trng2.uniform(80, 300)
-print("DISTANCE hills tris", sum(len(f) - 2 for f in hills.f), "trees tris", sum(len(f) - 2 for f in trees.f), flush=True)
+        run = trng2.uniform(60, 420)
+        xo = trng2.uniform(-60, 60)
+        y2 = y_
+        while y2 < y_ + run:
+            h = trng2.uniform(13, 22) * hmul
+            fol(trng2.choice(["treeline", "treeline", "bocage", "oak"]), xc_ + xo + trng2.uniform(-12, 12), y2, zfr, h, trng2,
+                trng2.uniform(0.9, 1.4))
+            y2 += h * trng2.uniform(0.6, 1.0)
+        y_ += run
+        for _ in range(trng2.randint(0, 3)):
+            fol(trng2.choice(DECID), xc_ + trng2.uniform(-80, 80), y_ + trng2.uniform(10, 120), zfr, trng2.uniform(12, 20) * hmul, trng2)
+        y_ += trng2.uniform(60, 320)
+print("DISTANCE hills tris", sum(len(f) - 2 for f in hills.f), "foliage cards", sum(1 for m_ in MARKS if m_[0].startswith("fol:")),
+      flush=True)
 
 
 def _sq(p):
@@ -1094,7 +1140,8 @@ gnd.build("ground", "ground")
 gnd_near.build("ground_near", "ground")
 hills.smooth = trees.smooth = True
 hills.build("hills", "hills")
-trees.build("trees", "trees")
+if trees.f:
+    trees.build("trees", "trees")
 
 
 

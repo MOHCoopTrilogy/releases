@@ -97,6 +97,8 @@ import json  # noqa: E402
 import math  # noqa: E402
 import numpy as np  # noqa: E402
 _M3 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "kickoff_2026-10-18", "menus3d")
+if not os.path.exists(os.path.join(_M3, "scene_params.py")):        # (a checkout without the 3D menu sources: the base tree's)
+    _M3 = r"C:\mohaa-coop-dev\docs\proposals\kickoff_2026-10-18\menus3d"
 sys.path.insert(0, _M3)
 import scene_params as SP  # noqa: E402
 
@@ -299,6 +301,8 @@ import json  # noqa: E402
 import math  # noqa: E402
 import numpy as np  # noqa: E402
 _M3 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "kickoff_2026-10-18", "menus3d")
+if not os.path.exists(os.path.join(_M3, "scene_params.py")):        # (a checkout without the 3D menu sources: the base tree's)
+    _M3 = r"C:\mohaa-coop-dev\docs\proposals\kickoff_2026-10-18\menus3d"
 sys.path.insert(0, _M3)
 import scene_params as SP  # noqa: E402
 _bj = os.environ.get("ATTIC62_BUILD")          # build_models2's build.json of the v1.10.62 bake (unset: model lists untouched)
@@ -307,7 +311,7 @@ if _bj:
     ORDER = ("floor", "fan", "projector", "props", "blueprint", "desk", "desk2")     # blueprint: v1.10.66 (attic62_edit section 11)
     for g in ORDER:
         n = _G[g]["models"] if g in _G else 0
-        old = re.findall(r'(?m)^scenemodel "models/menu/atc_%s\d+\.tik" 0 0 0 0\n' % g, t)
+        old = re.findall(r'(?m)^scenemodel "models/menu/atc_%s\d+\.tik" [^\n]*\n' % g, t)     # any placement (v1.10.68 turns the projector)
         new = "".join('scenemodel "models/menu/atc_%s%d.tik" 0 0 0 0\n' % (g, k + 1) for k in range(n))
         if old:
             t = t.replace("".join(old), new, 1)
