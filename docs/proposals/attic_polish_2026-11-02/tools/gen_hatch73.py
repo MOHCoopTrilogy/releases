@@ -151,132 +151,196 @@ open(os.path.join(mdir, "atc_floor1.skc"), "wb").write(X.build_skc(["root pos", 
 open(os.path.join(mdir, "atc_floor1.tik"), "w", newline="\n").write(re.sub(r"(?m)(^\tsurface \S+ shader \S+\n?)+", "\n".join(sl) + "\n", tik))
 print("floor: %d triangles cut round the opening" % n_cut)
 
-# ---------------------------------------------------------------- 2. above the floor: frame, trapdoor, ladder top, post + rail
+# ---------------------------------------------------------------- 2. above the floor (v2, coordinator QA: "fuzzy, stretched wood
+# reads as a CG placeholder; noisy boxes; a flat smeared panel; an undersized ladder poking up mid-floor")
+# Every piece of wood is a PLANK of the attic's own floor texture (hzm_atc_floor_alb: 8 planks per tile, one plank = 7.9 u at the
+# floor's own scale - tile 126 u along the boards), so the hatch is cut from the same boards it sits in. Each piece takes one plank
+# row (different rows per piece, grain along its length), the room light baked into the copy (rgbGen identity).
+import io  # noqa: E402
+ALB = np.asarray(Image.open(io.BytesIO(Z.read("textures/menu/hzm_atc_floor_alb.jpg"))).convert("RGB"), np.float32)
+TILE_U, PLANK = 126.0, 7.875
 up, ex, ey = np.array([0, 0, 1.0]), np.array([1.0, 0, 0]), np.array([0, 1.0, 0])
-frame, lid, ladder, rail = [], [], [], []
-FW = 4.0
-for (c, a1, a2, sz) in (((HC[0], HY0 - FW / 2, 0.15), ex, ey, (HX1 - HX0 + 2 * FW, FW, 0.6)),
-                        ((HC[0], HY1 + FW / 2, 0.15), ex, ey, (HX1 - HX0 + 2 * FW, FW, 0.6)),
-                        ((HX0 - FW / 2, HC[1], 0.15), ex, ey, (FW, HY1 - HY0, 0.6)),
-                        ((HX1 + FW / 2, HC[1], 0.15), ex, ey, (FW, HY1 - HY0, 0.6))):
-    box(frame, c, a1, a2, up, sz)
-# the trapdoor: hinged along the opening's FAR edge (y = HY1), swung up past upright to 100 deg and leaning back on its stay - it
-# faces the turn view (in-game QA: hinged on the left edge it stood edge-on to the camera and read as a hollow frame); the ladder's
-# grab rails rise in front of it
+_row = [0]
+
+
+def plank_box(out, c, ax, ay, az, size, row=None, end_grain=0.18):
+    """an oriented box (centre c, unit axes ax ay az, size along them); its long axis carries the grain: the faces along it map
+    the length over u (TILE_U per tile) and ONE plank row (v) round the section; the end faces take a small patch (end grain)"""
+    c = np.asarray(c, float)
+    ax, ay, az = (np.asarray(v, float) for v in (ax, ay, az))
+    size = np.asarray(size, float)
+    L = int(np.argmax(size))
+    axes = [ax, ay, az]
+    if row is None:
+        row = _row[0] % 8
+        _row[0] += 3
+    v0, v1 = row / 8.0, (row + 1) / 8.0
+    u_off = (_row[0] * 0.37) % 1.0
+    h = size / 2
+    A = [axes[i] * h[i] for i in range(3)]
+    for i in range(3):
+        for s in (-1, 1):
+            j, k = (i + 1) % 3, (i + 2) % 3
+            fc = c + A[i] * s
+            pts = [fc - A[j] - A[k], fc + A[j] - A[k], fc + A[j] + A[k], fc - A[j] + A[k]]
+            if i == L:                                     # end grain: a small square of the plank
+                uv = [(u_off, v0), (u_off + end_grain, v0), (u_off + end_grain, v1), (u_off, v1)]
+            elif j == L:
+                lu = size[L] / TILE_U
+                uv = [(u_off, v0), (u_off + lu, v0), (u_off + lu, v1), (u_off, v1)]
+            else:                                          # k == L
+                lu = size[L] / TILE_U
+                uv = [(u_off, v0), (u_off, v1), (u_off + lu, v1), (u_off + lu, v0)]
+            if s < 0:
+                pts, uv = pts[::-1], uv[::-1]
+            tri(out, pts[:3], uv[:3])
+            tri(out, [pts[0], pts[2], pts[3]], [uv[0], uv[2], uv[3]])
+
+
+def rung(out, a, b, rad=1.05, n=8):
+    """a round rung (octagonal prism) from a to b; grain along it"""
+    a, b = np.asarray(a, float), np.asarray(b, float)
+    d = b - a
+    L = np.linalg.norm(d)
+    d /= L
+    s1 = np.cross(d, up)
+    s1 = s1 / np.linalg.norm(s1) if np.linalg.norm(s1) > 1e-6 else ey
+    s2 = np.cross(d, s1)
+    row = _row[0] % 8
+    _row[0] += 3
+    v0, v1 = row / 8.0, (row + 1) / 8.0
+    for k in range(n):
+        t0, t1 = 2 * math.pi * k / n, 2 * math.pi * (k + 1) / n
+        o0 = (s1 * math.cos(t0) + s2 * math.sin(t0)) * rad
+        o1 = (s1 * math.cos(t1) + s2 * math.sin(t1)) * rad
+        q = [a + o0, b + o0, b + o1, a + o1]
+        vv0, vv1 = v0 + (v1 - v0) * k / n, v0 + (v1 - v0) * (k + 1) / n
+        uv = [(0, vv0), (L / TILE_U, vv0), (L / TILE_U, vv1), (0, vv1)]
+        tri(out, q[:3], uv[:3])
+        tri(out, [q[0], q[2], q[3]], [uv[0], uv[2], uv[3]])
+
+
+frame, lid, ladder_up, rail, iron = [], [], [], [], []
+# the frame: four boards round the opening, flush with the floor (0.1 u proud), mitred lengths
+FW, FT = 5.5, 0.6
+for (c, a1, sz) in (((HC[0], HY0 - FW / 2, FT / 2 - 0.5), ex, (HX1 - HX0 + 2 * FW, FW, FT)),
+                    ((HC[0], HY1 + FW / 2, FT / 2 - 0.5), ex, (HX1 - HX0 + 2 * FW, FW, FT)),
+                    ((HX0 - FW / 2, HC[1], FT / 2 - 0.5), ey, (HY1 - HY0, FW, FT)),
+                    ((HX1 + FW / 2, HC[1], FT / 2 - 0.5), ey, (HY1 - HY0, FW, FT))):
+    plank_box(frame, c, a1, np.cross(up, a1), up, sz)
+# the lining: the opening's edges, the joists' faces (6 u deep) - lit wood, no void under the rim
+for (p, q, nrm) in (((HX0, HY0), (HX1, HY0), ey), ((HX1, HY0), (HX1, HY1), -ex), ((HX1, HY1), (HX0, HY1), -ey), ((HX0, HY1), (HX0, HY0), ex)):
+    c = np.array([(p[0] + q[0]) / 2, (p[1] + q[1]) / 2, -3.2]) - np.asarray(nrm) * 0.6
+    ln = math.hypot(q[0] - p[0], q[1] - p[1])
+    a1 = np.array([q[0] - p[0], q[1] - p[1], 0.0]) / ln
+    plank_box(frame, c, a1, np.cross(up, a1), up, (ln, 1.2, 6.4))
+# the trapdoor: hinged on the far edge (y = HY1), swung up to 100 deg, leaning back - five planks with gaps, two battens and a
+# Z-brace on its underside (now facing the opening), two iron strap hinges over the hinge edge
 th = math.radians(100.0)
-lw, ld, lt = HY1 - HY0 - 1.0, HX1 - HX0 - 1.0, 2.2          # leaf: length (from the hinge), width along x, thickness
-d_ = np.array([0.0, -math.cos(th), math.sin(th)])            # from the hinge across the leaf (th 0 = lying shut over the opening)
-n_ = np.array([0.0, math.sin(th), math.cos(th)])             # its top face's normal
-hinge = np.array([HC[0], HY1 + 0.5, 0.6])
-box(lid, hinge + d_ * lw / 2 + n_ * lt / 2, d_, ex, n_, (lw, ld, lt), 30.0)
-for f_ in (0.18, 0.82):                                       # two battens across the underside (now facing the opening)
-    box(lid, hinge + d_ * lw * f_ - n_ * 0.9, ex, d_, -n_, (ld - 4, 3.2, 1.8), 20.0)
-box(lid, hinge + d_ * lw * 0.5 - n_ * 0.9, d_, ex, -n_, (lw - 6, 3.0, 1.8), 20.0)
-# its stay: a short iron bar from the frame's right corner to the leaf (dark)
-stay = []
-s0 = np.array([HX1 + FW - 1.0, HY1 + 2.0, 0.6])
-s1 = hinge + d_ * lw * 0.55 + ex * (ld / 2 - 3.0) + n_ * 1.2
-v_ = s1 - s0
-vn = v_ / np.linalg.norm(v_)
-box(stay, (s0 + s1) / 2, vn, ex if abs(vn[0]) < 0.9 else ey, np.cross(vn, ex if abs(vn[0]) < 0.9 else ey), (np.linalg.norm(v_), 0.8, 0.8), 40.0)
-# the ladder: leaning on the far (y = HY1) wall, its rails run on 40 u above the floor
-LX = (HX0 + 7.0, HX1 - 7.0)
-yb, yt, zb, zt = HY1 - 13.0, HY1 - 4.0, -DEPTH, 42.0
-dirv = np.array([0, yt - yb, zt - zb])
-L_ = np.linalg.norm(dirv)
-dirv /= L_
-side = np.cross(ex, dirv)
-lad_above, lad_below = [], []
+lw, ld, lt = HY1 - HY0 - 0.5, HX1 - HX0 - 0.5, 1.8
+d_ = np.array([0.0, -math.cos(th), math.sin(th)])
+n_ = np.array([0.0, math.sin(th), math.cos(th)])
+hinge = np.array([HC[0], HY1 + 0.6, 0.4])
+NP = 5
+pw = ld / NP
+for k in range(NP):
+    xk = HX0 + 0.25 + pw * (k + 0.5) - HC[0]
+    plank_box(lid, hinge + d_ * lw / 2 + n_ * lt / 2 + ex * xk, d_, ex, n_, (lw, pw - 0.35, lt))
+for f_ in (0.15, 0.85):
+    plank_box(lid, hinge + d_ * lw * f_ - n_ * 1.0, ex, d_, -n_, (ld - 3.0, 4.2, 2.0))
+zb = (ex * (ld / 2 - 4.0) + d_ * lw * 0.15) - (-ex * (ld / 2 - 4.0) + d_ * lw * 0.85)
+zl = np.linalg.norm(zb)
+plank_box(lid, hinge + d_ * lw * 0.5 - n_ * 1.0, zb / zl, np.cross(-n_, zb / zl), -n_, (zl, 3.6, 2.0))
+for sx in (-1, 1):
+    hc = hinge + ex * sx * (ld / 2 - 7.0) + d_ * 6.0 + n_ * (lt + 0.25)
+    plank_box(iron, hc, d_, ex, n_, (13.0, 2.0, 0.5))
+# the ladder: a loft ladder from the landing, leaning on the far wall at ~75 deg; two stiles (2.4 x 5.5), round rungs every
+# 10.5 u, the stiles run on 48 u above the floor (grab rails, rounded tops) - full size: 0.62 m between the stiles
+LX = (HC[0] - 16.5, HC[0] + 16.5)
+yb, yt, zb_, zt = HY1 - 30.0, HY1 - 2.0, -DEPTH, 48.0
+dv = np.array([0, yt - yb, zt - zb_])
+dv /= np.linalg.norm(dv)
+sd = np.cross(ex, dv)
+lad_below = []
 for x_ in LX:
-    for z0, z1, out in ((zb, 0.0, lad_below), (0.0, zt, lad_above)):
-        s0_ = np.array([x_, yb + (yt - yb) * (z0 - zb) / (zt - zb), z0])
-        s1_ = np.array([x_, yb + (yt - yb) * (z1 - zb) / (zt - zb), z1])
-        box(out, (s0_ + s1_) / 2, dirv, ex, side, (np.linalg.norm(s1_ - s0_), 2.6, 3.8), 30.0)
-    # rounded rail top
-    box(lad_above, np.array([x_, yt, zt + 0.8]), ex, ey, up, (2.6, 3.8, 1.6), 10.0)
-for zr in np.arange(zb + 10.0, zt - 6.0, 11.5):
-    yr = yb + (yt - yb) * (zr - zb) / (zt - zb)
-    box(lad_below if zr < -2 else lad_above, np.array([HC[0], yr, zr]), ex, ey, up, (LX[1] - LX[0], 1.8, 1.8), 12.0)
-# grab post at the far right corner + a handrail down the right side to a short newel at the near corner
-box(rail, (HX1 + FW + 2.0, HY1 + FW, 30.0), ex, ey, up, (3.6, 3.6, 60.0), 24.0)
-box(rail, (HX1 + FW + 2.0, HY0 - FW, 18.0), ex, ey, up, (3.2, 3.2, 36.0), 24.0)
-r0, r1 = np.array([HX1 + FW + 2.0, HY1 + FW, 57.5]), np.array([HX1 + FW + 2.0, HY0 - FW, 35.0])
-rv = (r1 - r0) / np.linalg.norm(r1 - r0)
-box(rail, (r0 + r1) / 2, rv, ex, np.cross(rv, ex), (np.linalg.norm(r1 - r0) + 3, 2.8, 2.4), 30.0)
+    for z0, z1, out in ((zb_, -0.3, lad_below), (-0.3, zt, ladder_up)):
+        s0_ = np.array([x_, yb + (yt - yb) * (z0 - zb_) / (zt - zb_), z0])
+        s1_ = np.array([x_, yb + (yt - yb) * (z1 - zb_) / (zt - zb_), z1])
+        plank_box(out, (s0_ + s1_) / 2, dv, ex, sd, (np.linalg.norm(s1_ - s0_), 2.4, 5.5))
+    tp = np.array([x_, yt, zt])
+    plank_box(ladder_up, tp + dv * 0.9, dv, ex, sd, (1.8, 2.0, 4.6))         # a rounded-off top (a shorter cap)
+for zr in np.arange(zb_ + 9.0, zt - 4.0, 10.5):
+    yr = yb + (yt - yb) * (zr - zb_) / (zt - zb_)
+    rung(ladder_up if zr > -1.0 else lad_below, (LX[0] + 1.2, yr, zr), (LX[1] - 1.2, yr, zr))
+# the guard rail along the open right side: two posts (4 x 4), a handrail and a mid rail
+RX = HX1 + FW + 2.2
+for py in (HY0 - FW, HY1 + FW):
+    plank_box(rail, (RX, py, 23.0), up, ex, ey, (46.0, 4.0, 4.0))
+plank_box(rail, (RX, HC[1], 44.0), ey, ex, up, (HY1 - HY0 + 2 * FW + 4.0, 3.6, 3.2))
+plank_box(rail, (RX, HC[1], 23.0), ey, ex, up, (HY1 - HY0 + 2 * FW, 2.4, 3.0))
 
-# ---------------------------------------------------------------- 3. below: the stairwell and the landing
-shaft_hi, shaft_lo, landing = [], [], []
+# ---------------------------------------------------------------- 3. below: a plastered stairwell, warm-lit from the landing
+shaft, landing = [], []
 ZB = -DEPTH
-for z0, z1, out in ((-40.0, 0.0, shaft_hi), (ZB, -40.0, shaft_lo)):
-    quad(out, (HX0, HY0, z1), (HX1, HY0, z1), (HX1, HY0, z0), (HX0, HY0, z0), (0, z1 / 24), (1.7, z1 / 24), (1.7, z0 / 24), (0, z0 / 24))
-    quad(out, (HX1, HY1, z1), (HX0, HY1, z1), (HX0, HY1, z0), (HX1, HY1, z0), (0, z1 / 24), (1.7, z1 / 24), (1.7, z0 / 24), (0, z0 / 24))
-    quad(out, (HX0, HY1, z1), (HX0, HY0, z1), (HX0, HY0, z0), (HX0, HY1, z0), (0, z1 / 24), (1.5, z1 / 24), (1.5, z0 / 24), (0, z0 / 24))
-    quad(out, (HX1, HY0, z1), (HX1, HY1, z1), (HX1, HY1, z0), (HX1, HY0, z0), (0, z1 / 24), (1.5, z1 / 24), (1.5, z0 / 24), (0, z0 / 24))
-quad(landing, (HX0, HY0, ZB), (HX1, HY0, ZB), (HX1, HY1, ZB), (HX0, HY1, ZB), (0, 0), (1.6, 0), (1.6, 1.4), (0, 1.4))
-# the floor's thickness at the cut (the joists' edge: 6 u of dark end grain round the opening)
-edge = []
-for (a_, b_) in (((HX0, HY0), (HX1, HY0)), ((HX1, HY0), (HX1, HY1)), ((HX1, HY1), (HX0, HY1)), ((HX0, HY1), (HX0, HY0))):
-    quad(edge, (a_[0], a_[1], 0.0), (b_[0], b_[1], 0.0), (b_[0], b_[1], -6.0), (a_[0], a_[1], -6.0), (0, 0), (2, 0), (2, 0.3), (0, 0.3))
-# the bounce: a warm glow pooled on the landing, and rising up the walls (additive, soft)
+for (p0, p1) in (((HX0, HY0), (HX1, HY0)), ((HX1, HY0), (HX1, HY1)), ((HX1, HY1), (HX0, HY1)), ((HX0, HY1), (HX0, HY0))):
+    ln = math.hypot(p1[0] - p0[0], p1[1] - p0[1])
+    quad(shaft, (p0[0], p0[1], -6.4), (p1[0], p1[1], -6.4), (p1[0], p1[1], ZB), (p0[0], p0[1], ZB),
+         (0, 0), (ln / 64.0, 0), (ln / 64.0, 1), (0, 1))
+quad(landing, (HX0, HY0, ZB), (HX1, HY0, ZB), (HX1, HY1, ZB), (HX0, HY1, ZB),
+     (0, 0), ((HX1 - HX0) / TILE_U, 0), ((HX1 - HX0) / TILE_U, (HY1 - HY0) / 63.0), (0, (HY1 - HY0) / 63.0))
+# the lamp's light on the far wall, below the rim (what the turn view sees down the opening): an additive warm pool
 glow = []
-gs = 0.0
-quad(glow, (HX0 + 0.5, HY0 + 0.5, ZB + 0.4), (HX1 - 0.5, HY0 + 0.5, ZB + 0.4), (HX1 - 0.5, HY1 - 0.5, ZB + 0.4), (HX0 + 0.5, HY1 - 0.5, ZB + 0.4),
+gy = HY1 - 0.3
+quad(glow, (HX0 + 2, gy, -10.0), (HX1 - 2, gy, -10.0), (HX1 - 2, gy, -70.0), (HX0 + 2, gy, -70.0), (0, 0), (1, 0), (1, 1), (0, 1))
+quad(glow, (HX0 + 1, HY0 + 1, ZB + 0.4), (HX1 - 1, HY0 + 1, ZB + 0.4), (HX1 - 1, HY1 - 1, ZB + 0.4), (HX0 + 1, HY1 - 1, ZB + 0.4),
      (0, 0), (1, 0), (1, 1), (0, 1))
-rise = []
-for (p0, p1) in (((HX0 + 0.3, HY0 + 0.3), (HX1 - 0.3, HY0 + 0.3)), ((HX1 - 0.3, HY1 - 0.3), (HX0 + 0.3, HY1 - 0.3)),
-                 ((HX0 + 0.3, HY1 - 0.3), (HX0 + 0.3, HY0 + 0.3)), ((HX1 - 0.3, HY0 + 0.3), (HX1 - 0.3, HY1 - 0.3))):
-    quad(rise, (p0[0], p0[1], ZB + 75), (p1[0], p1[1], ZB + 75), (p1[0], p1[1], ZB), (p0[0], p0[1], ZB), (0, 0), (1, 0), (1, 1), (0, 1))
-g = np.linspace(-1, 1, 128)
-GX, GY = np.meshgrid(g, g)
-pool = np.clip(1 - np.sqrt(GX ** 2 + GY ** 2) / 1.05, 0, 1) ** 1.6
-Image.fromarray((np.dstack([pool * 0.95, pool * 0.66, pool * 0.36]) * 255).astype(np.uint8)).save(os.path.join(tdir, "hzm_hatch_pool.jpg"), quality=92)
-ramp = (np.linspace(0, 1, 128)[:, None] ** 2.2) * np.ones((1, 16))      # dark at the top (v 0), warm at the bottom
-Image.fromarray((np.dstack([ramp * 0.62, ramp * 0.42, ramp * 0.22]) * 255).astype(np.uint8)).save(os.path.join(tdir, "hzm_hatch_rise.jpg"), quality=92)
 
-# ---------------------------------------------------------------- 4. shaders: the game's wood, painted to the room's light
-WOOD = "textures/general_structure/beam_wood1.jpg"
-PLANK = "textures/general_structure/plank_flat.jpg"
-FLOORT = "textures/mohtest/woodfloor2.jpg"
-for tex in (WOOD, PLANK, FLOORT):
-    assert any(tex in zz.namelist() for zz in [zipfile.ZipFile(r"G:\GOG\Medal of Honor - Allied Assault War Chest\main\Pak0.pk3")]) or True
+# ---------------------------------------------------------------- 4. textures + shaders (the light baked in, rgbGen identity)
+PAK2 = zipfile.ZipFile(r"G:\GOG\Medal of Honor - Allied Assault War Chest\main\Pak2.pk3")
 SH = []
 
 
-PAK2 = zipfile.ZipFile(r"G:\GOG\Medal of Honor - Allied Assault War Chest\main\Pak2.pk3")
-
-
-def sh(name, tex, rgb, extra=""):
-    """the light baked into a copy of the game's texture (in-game QA: rgbGen const drew the hatch teal and see-through in the menu
-    scene) - textures/menu/<name>.jpg, rgbGen identity like every baked attic surface"""
-    import io
-    im = np.asarray(Image.open(io.BytesIO(PAK2.read(tex))).convert("RGB"), np.float32)
+def bake(name, src, rgb, ramp=None):
+    im = src.copy()
+    if ramp is not None:                       # a vertical light ramp baked in (v 0 = top of the shaft .. 1 = the landing)
+        h = im.shape[0]
+        r = np.interp(np.linspace(0, 1, h), np.linspace(0, 1, len(ramp)), ramp)[:, None, None]
+        im = im * r
     im = np.clip(im * np.array(rgb, np.float32)[None, None, :], 0, 255).astype(np.uint8)
     Image.fromarray(im).save(os.path.join(tdir, name + ".jpg"), quality=92)
-    SH.append("%s\n{\n\tnopicmip\n\tcull none\n\t{\n\t\tmap textures/menu/%s.jpg\n\t\trgbGen identity\n%s\t}\n}" % (name, name, extra))
 
 
-ROOM = (0.62, 0.56, 0.48)              # the attic floor's baked level at the opening (lamp-lit boards, warm)
-LIT = (0.95, 0.84, 0.66)
+def shader(name, clamp=False, extra=""):
+    SH.append("%s\n{\n\tnopicmip\n\tcull none\n\t{\n\t\t%s textures/menu/%s.jpg\n\t\trgbGen identity\n%s\t}\n}" % (name, "clampmap" if clamp else "map", name, extra))
+
+
+ROOM = (0.56, 0.51, 0.47)              # the boards' level beside the opening (measured in-game: the floor there is ~0.69 x the first cut)
+LIT = (0.78, 0.69, 0.58)               # hover: the lamp turned up, ~1.35 x and warmer (the first cut blew out)
 for sfx, k in (("", ROOM), ("_lit", LIT)):
-    sh("hzm_hatch_wood%s" % sfx, WOOD, k)
-    sh("hzm_hatch_plank%s" % sfx, PLANK, (k[0] * 0.95, k[1] * 0.95, k[2] * 0.95))
-    sh("hzm_hatch_iron%s" % sfx, WOOD, (k[0] * 0.22, k[1] * 0.22, k[2] * 0.24))
-sh("hzm_hatch_shafthi", PLANK, (0.34, 0.29, 0.24))
-sh("hzm_hatch_shaftlo", PLANK, (0.20, 0.17, 0.14))
-sh("hzm_hatch_ladlo", WOOD, (0.30, 0.25, 0.20))
-sh("hzm_hatch_landing", FLOORT, (0.24, 0.20, 0.16))
-sh("hzm_hatch_edge", WOOD, (0.16, 0.13, 0.10))
-SH.append("hzm_hatch_pool\n{\n\tnopicmip\n\tcull none\n\tsort additive\n\t{\n\t\tclampmap textures/menu/hzm_hatch_pool.jpg\n\t\tblendFunc add\n"
-          "\t\trgbGen identity\n\t}\n}")
-SH.append("hzm_hatch_rise\n{\n\tnopicmip\n\tcull none\n\tsort additive\n\t{\n\t\tclampmap textures/menu/hzm_hatch_rise.jpg\n\t\tblendFunc add\n"
-          "\t\trgbGen identity\n\t}\n}")
+    bake("hzm_hatch_wood%s" % sfx, ALB, k)
+    shader("hzm_hatch_wood%s" % sfx)
+    bake("hzm_hatch_iron%s" % sfx, ALB, (k[0] * 0.16, k[1] * 0.16, k[2] * 0.17))
+    shader("hzm_hatch_iron%s" % sfx)
+plaster = np.asarray(Image.open(io.BytesIO(PAK2.read("textures/general_structure/plaster_wall2.jpg"))).convert("RGB"), np.float32)
+bake("hzm_hatch_shaft", plaster, (0.95, 0.80, 0.60), ramp=[0.34, 0.42, 0.55, 0.72, 0.86])      # dim at the rim, warmer down to the lamp
+shader("hzm_hatch_shaft")
+bake("hzm_hatch_ladlo", ALB, (0.62, 0.52, 0.38))
+shader("hzm_hatch_ladlo")
+bake("hzm_hatch_landing", ALB, (0.70, 0.58, 0.40))
+shader("hzm_hatch_landing")
+g = np.linspace(-1, 1, 128)
+GX, GY = np.meshgrid(g, g)
+pool = np.clip(1 - np.sqrt((GX / 1.0) ** 2 + ((GY - 0.25) / 0.9) ** 2), 0, 1) ** 1.8 * 0.55
+Image.fromarray((np.dstack([pool * 1.0, pool * 0.70, pool * 0.38]).clip(0, 1) * 255).astype(np.uint8)).save(os.path.join(tdir, "hzm_hatch_pool.jpg"), quality=92)
+SH.append("hzm_hatch_pool\n{\n\tnopicmip\n\tcull none\n\tsort additive\n\tpolygonOffset\n\t{\n\t\tclampmap textures/menu/hzm_hatch_pool.jpg\n"
+          "\t\tblendFunc add\n\t\trgbGen identity\n\t}\n}")
 open(os.path.join(sdir, "hzm_hatch73.shader"), "w", newline="\n").write(
-    "// v1.10.73 the attic's ladder hatch (gen_hatch73.py): the game's own wood, painted to the room's baked light\n\n" + "\n\n".join(SH) + "\n")
+    "// v1.10.73 the attic's ladder hatch (gen_hatch73.py v2): the attic floor's own boards, the room light baked in; a plastered,\n"
+    "// warm-lit stairwell below\n\n" + "\n\n".join(SH) + "\n")
 for sfx in ("", "_lit"):
-    write_model("hzm_hatch" + sfx, [("hzm_hatch_wood" + sfx, frame + ladder + lad_above + rail), ("hzm_hatch_plank" + sfx, lid),
-                                    ("hzm_hatch_iron" + sfx, stay)])
-write_model("hzm_hatch_below", [("hzm_hatch_shafthi", shaft_hi), ("hzm_hatch_shaftlo", shaft_lo), ("hzm_hatch_ladlo", lad_below),
-                                ("hzm_hatch_landing", landing), ("hzm_hatch_edge", edge), ("hzm_hatch_pool", glow), ("hzm_hatch_rise", rise)])
+    write_model("hzm_hatch" + sfx, [("hzm_hatch_wood" + sfx, frame + ladder_up + rail + lid), ("hzm_hatch_iron" + sfx, iron)])
+write_model("hzm_hatch_below", [("hzm_hatch_shaft", shaft), ("hzm_hatch_ladlo", lad_below), ("hzm_hatch_landing", landing),
+                                ("hzm_hatch_pool", glow)])
 import json  # noqa: E402
 json.dump(INFO, open(os.path.join(add, "hatch73.json"), "w"), indent=1)
-print("hatch: models hzm_hatch / _lit / _below, opening x %.0f..%.0f y %.0f..%.0f, depth %.0f" % (HX0, HX1, HY0, HY1, DEPTH))
+print("hatch v2: models hzm_hatch / _lit / _below, opening x %.0f..%.0f y %.0f..%.0f, depth %.0f" % (HX0, HX1, HY0, HY1, DEPTH))
