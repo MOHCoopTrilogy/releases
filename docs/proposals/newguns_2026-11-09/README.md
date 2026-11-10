@@ -156,3 +156,18 @@ Test runner: run_gun.py (Armory route, overlay = every mod file changed since ho
 - **Harness incident (ng24, 19:06:19)**: the guard caught the test client clipping the cursor to its window (cursor_clip) for
   0.26 s and killed it (ENFORCED). Testing stopped there; the MP 28 / Panzerfaust part of ng24 did not finish (both were already
   approved from ng18).
+
+## Status 2026-11-09 ~19:20 (QA 4: thin rear ring, cursor-clip guard)
+- **Bren rear sight**: the source aperture leaf (rear end of part 34, 110 tris) filled ~75 % of the aim view (in game the eye sits
+  only ~1 u behind the rear sight point). It is gone; a thin double-sided ring sits ON the sight line 3 u further forward
+  (x -6.6, outer 0.55 / inner 0.49 u): about a third of the screen height across, the world clear around it, the post at the
+  crosshair inside it, the magazine outside on the right. Same before / after the first shots and in the aimed reload.
+  media/final3/bren_ads_zoom_ng27.jpg (red cross = screen centre), bren_reload_sheet_ng27.jpg.
+- **bug-10735 (cursor clip)**: the client ran with in_mouse 0 (harness policy), so IN_ActivateMouse - the only engine code that
+  grabs - returns before any grab, and IN_Frame already gates it on SDL_WINDOW_INPUT_FOCUS. The clip rect (0,0,3440,1440) is the
+  whole primary display, which my solo window covered exactly, so the guard's "inside one of our windows" test cannot tell it
+  from the user's game clipping to a display (it clips to its own display now: GetClipCursor = 5360,0,6640,720). Most likely a
+  false attribution. Still hardened: engine 2c614139 (standalone, cherry-pick) - IN_ActivateMouse returns without input focus and
+  never grabs in windowed mode with in_nograb 1 (the old order grabbed first, released a line later). Three runs since (ng25-27):
+  no violation. Suggestion for harness_window.py (shared tool, not edited here): attribute a clip to the test client only when
+  GetForegroundWindow is ours, or keep solo windows 1 px smaller than the display.

@@ -24,6 +24,8 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(L.BUILD, 'ship')
 # units left (gun frame +y = right, +z = down), eased to zero between SIGHT_Z0 and SIGHT_Z1 so the brackets stay on the receiver /
 # barrel top. ADS showed the top magazine standing right above the aperture with the line only 1.24 u left of its centre.
 SIGHT_DY = -0.70   # (ng12-16: the dark block at the eye was the source rear-sight housing on the ring line, fixed by the virtual rear row)
+APERTURE_G = np.array([-6.6, -1.939, -5.665])            # [ng26] the ring ON the sight line (F -> R of cg_adssights.h), 3 u ahead of the old leaf:
+                                                         # the eye sits ~1 u behind R, where the rig's residual swung a near ring 10+ deg (x -6.6 is outside SIGHT_BOXES)
 SIGHT_BOXES = [(-10.2, -8.3), (34.0, 36.6)]          # gun-frame x ranges: rear ring, front blade
 SIGHT_Z0, SIGHT_Z1 = -3.6, -4.2                       # above the receiver / barrel top (up = -z)
 
@@ -99,9 +101,19 @@ def main():
     uv = cand[np.argsort(lum)[len(lum) * 3 // 4]]
     ring = L.ring_tris(uv)
     keep = part != 49
-    # [newguns QA 3] no ghost ring: the sight row looks through the source aperture leaf (part 34), the disc (49) stays out
-    A = A[keep]; part = part[keep]
-    _unused_ring = ring
+    # [newguns QA 4] the source aperture leaf (rear end of part 34, above the receiver) filled the aim view: out. A thin ring
+    # on the sight line instead (APERTURE_G, gun frame before SIGHT_DY), outer 0.17 u / inner 0.145 u, both faces
+    G0 = L.to_gun(A[:, :, :3]).mean(1)
+    leaf = (part == 34) & (G0[:, 0] > -10.4) & (G0[:, 0] < -8.6) & (G0[:, 2] < -4.3)
+    assert leaf.sum() == 110, leaf.sum()
+    keep = keep & ~leaf
+    Ls = np.array([-1.0, 1.0, -1.0])
+    L.RING_C = ((APERTURE_G - L.T) / L.S) * Ls
+    L.RING_RO, L.RING_RI = 0.55 / L.S, 0.49 / L.S         # ~4 u from the eye: ~1/3 of the screen height across
+    ring = L.ring_tris(uv)
+    back = ring[:, ::-1].copy(); back[:, :, 3:6] *= -1.0
+    ring = np.concatenate([ring, back])
+    A = np.concatenate([A[keep], ring]); part = np.concatenate([part[keep], np.full(len(ring), 49)])
     M1 = np.load(os.path.join(L.BUILD, 'vb_affine_1.npy')); M3 = np.load(os.path.join(L.BUILD, 'vb_affine_3.npy'))
     mag = np.isin(part, list(MAG_PARTS)); hnd = np.isin(part, list(HANDLE_PARTS)); body = ~(mag | hnd)
     surfs = X.split_surfaces('bren', corners(A[body], 1, M1))

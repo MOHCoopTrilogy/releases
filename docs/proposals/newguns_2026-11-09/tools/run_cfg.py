@@ -142,7 +142,7 @@ def script_adstest(turn_ms):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('tag'); ap.add_argument('--map', default='m5l1a'); ap.add_argument('--res', default='uw')
-    ap.add_argument('--turn', type=int, default=600); ap.add_argument('--adstest', action='store_true')
+    ap.add_argument('--turn', type=int, default=600); ap.add_argument('--adstest', action='store_true'); ap.add_argument('--only', default='')
     a = ap.parse_args()
     G.overlay()
     w, h, center = W.RES[a.res]
@@ -164,6 +164,8 @@ def main():
                           'seta coop_lo2 ""', 'seta coop_loA2 ""', 'set g_gametype 2', 'set coop_dev 1', 'set coop_lockLoadout 0',
                           'set cg_adsSightDebug 1', 'set coop_vmTrace 1', 'set r_weaponProjAlways 1', 'set r_weaponznear 0.6',
                           'set rconpassword %s' % RCONPW, 'set ui_dmmap %s' % a.map, 'ui_startdmmap 2']
+    if a.only:
+        GUNS[:] = [g for g in GUNS if g[0] in a.only.split(',')]
     steps = script_adstest(a.turn) if a.adstest else script(a.turn)
     open(os.path.join(W.MAINTT, 'ng_run.cfg'), 'w', newline='\n').write('\n'.join(lines) + '\n')
     if W.hg.user_game_running():
