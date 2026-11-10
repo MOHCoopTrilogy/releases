@@ -657,10 +657,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                                                             "Player", "ICSPoint", "MMGPoint") and r.pos != (0.0, 0.0, 0.0)]
         cells = {}
         for a in anchors:
-            for gx in range(int((a[0] - 1400) // 224), int((a[0] + 1400) // 224) + 1):
-                for gy in range(int((a[1] - 1400) // 224), int((a[1] + 1400) // 224) + 1):
-                    x, y = gx * 224 + 112, gy * 224 + 112
-                    if (x - a[0]) ** 2 + (y - a[1]) ** 2 > 1400 ** 2:
+            for gx in range(int((a[0] - 1600) // 160), int((a[0] + 1600) // 160) + 1):
+                for gy in range(int((a[1] - 1600) // 160), int((a[1] + 1600) // 160) + 1):
+                    x, y = gx * 160 + 80, gy * 160 + 80
+                    if (x - a[0]) ** 2 + (y - a[1]) ** 2 > 1600 ** 2:
                         continue
                     g = grid.ground(x, y, a[2] + 160, a[2] - 260)
                     if g is None:
