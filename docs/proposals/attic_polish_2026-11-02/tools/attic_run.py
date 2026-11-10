@@ -917,7 +917,15 @@ def st68(res="1080", tag="s68", states="day,golden,night", parts="wx,attic,play,
               "globalwidgetcommand hubscene scenecam %.1f 60.0 95.0 4.00 70.00 0.00 55.00" % (rc[0] - 40), "wait 900", "screenshot st_%s_%s_mp_rackwide" % (tag, res),
               "globalwidgetcommand hubscene scenecam %.1f 95.0 100.0 0.00 90.00 0.00 55.00" % rc[0], "wait 900", "screenshot st_%s_%s_mp_rackfront" % (tag, res),
               "globalwidgetcommand hubscene scenecam %.1f 120.0 110.0 10.00 40.00 0.00 45.00" % (rc[0] - 42), "wait 900", "screenshot st_%s_%s_mp_rackside" % (tag, res),
-              "globalwidgetcommand hubscene scenecam -70.9 15.8 86.6 4.00 -3.00 0.00 58.00", "wait 900",
+              ]
+        pj = os.path.join("H:\\", "hzm_work", "attic62", "posters68.json")
+        for pz in (json.load(open(pj))["posters"] if os.path.exists(pj) else []):
+            c = pz["centre"]
+            n = [-1, 0] if c[0] > 275 else ([0, 1] if c[1] < 0 else [0, -1])     # into the room
+            cam = (c[0] + n[0] * 75, c[1] + n[1] * 75, c[2] + 4)
+            L += ["globalwidgetcommand hubscene scenecam %s" % _pose_to(cam, c, 40.0), "wait 900",
+                  "screenshot st_%s_%s_mp_poster_%s" % (tag, res, pz["name"])]
+        L += ["globalwidgetcommand hubscene scenecam -70.9 15.8 86.6 4.00 -3.00 0.00 58.00", "wait 900",
               "exec ui/hzm_attic_go_rack.cfg", "wait 3000", "screenshot st_%s_%s_mp_viewer" % (tag, res), "wait 600"]
     L += ["echo ^~^~^ MR done", "wait 1500", "quit"]
     args = ["+set", "ui_menuCenter", str(center), "+set", "ui_menuRoom", "1", "+set", "ui_atticMain", "1",

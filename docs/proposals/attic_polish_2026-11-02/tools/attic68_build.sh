@@ -18,7 +18,7 @@ grep '^newgame3d' $W/ng67.log | cut -c1-160
 git -C $MOD checkout -- ui/hzm_newgame3d.urc ui/hzm_ng3d_aa1diff.urc ui/hzm_ng3d_aa2diff.urc ui/hzm_ng3d_aa3diff.urc ui/hzm_ng3d_aa4diff.urc ui/hzm_ng3d_aa5diff.urc ui/hzm_ng3d_aa6diff.urc ui/hzm_ng3d_bt1diff.urc ui/hzm_ng3d_bt2diff.urc ui/hzm_ng3d_bt3diff.urc ui/hzm_ng3d_sh1diff.urc ui/hzm_ng3d_sh2diff.urc ui/hzm_ng3d_sh3diff.urc
 rm -f $MOD/ui/hzm_ng3d_mission1difficulty.urc $MOD/ui/hzm_ng3d_mission2difficulty.urc $MOD/ui/hzm_ng3d_mission3difficulty.urc
 cd /c/mohaa-coop-dev/docs/proposals/kickoff_2026-10-18/menus3d; python build_models2.py 'H:\hzm_work\attic62\bake' 'H:\hzm_work\attic62\stage62' --scale 52.5 | tail -1
-rm -rf $W/a68pre; python $T/gen_attic68_props.py $W/stage62 $W/a68pre $W/attic68.json | tail -4      # v1.10.68: the rack cut (stage62 in place), the json
+rm -rf $W/a68pre; python $T/gen_attic68_props.py $W/stage62 $W/a68pre $W/attic68.json | tail -4; python -I $T/gen_posters68.py $W/a68pre $W/posters68.json | tail -1      # v1.10.68: the rack cut (stage62 in place), the json
 cd $T; python gen_wx_sky.py H:/hzm_work/wx/sky | tail -1
 rm -rf $W/wxadd; python gen_window_view.py ${WX_TOWN:-H:/hzm_work/wx/town} H:/hzm_work/wx/sky $W/ship_base.pk3 $W/wxadd | tail -3
 [ -d $W/wxadd/models/menu ] || { echo "gen_window_view.py FAILED (its | tail hid the error)"; exit 1; }
@@ -37,7 +37,8 @@ python gen_gram_model.py "$W/pkadd" >/dev/null; python gen_gram_art.py "$W/pkadd
 python gen_dials.py "$W/bake" "$W/dials.json" "$W/pkadd" | tail -1
 python gen_projector_fx.py "$W/bake" "$W/stage62" "$W/pkadd" "$W/projector_reels.json" | tail -3
 python gen_attic68_props.py "$W/stage62" "$W/pkadd" "$W/attic68.json" | tail -3; cp $W/stage62/models/menu/atc_props1.sk? $W/stage62/models/menu/atc_props1.tik $W/pkadd/models/menu/
-python gen_screen_preview.py "$W/pkadd" m1l1 | tail -1      # v1.10.68 (c): the screen's looping newsreel (RoQ, videoMap)
+python gen_screen_preview.py "$W/pkadd" m1l1 | tail -1
+python -I gen_posters68.py "$W/pkadd" "$W/posters68.json" | tail -1      # v1.10.68: WWII posters in the MP room (PD-USGov scans, H:/hzm_work/posters68)      # v1.10.68 (c): the screen's looping newsreel (RoQ, videoMap)
 python gen_records3d.py "$W/bake" "$W/art" "$W/medalbox.json" "$W/pkadd" 'C:\mohaa-coop-dev\hzm-mod-attic\ui' | tail -1
 for f in hzm_wpnview.urc hzm_records3d.urc hzm_medals3d.urc; do sed -i '/models\/menu\/hzm_wx_/d; /^scenemodelcvar "hzm_wx_/d; /^scenewx "/d' $MOD/ui/$f; done      # (again: gen_records3d re-copies the models into records / medals)
 RETOUCH_OPS=floor_lm,floor_alb,wall,phones,dials DIALS_JSON=H:/hzm_work/attic62/dials.json FLOOR_ALB_PAK=/h/hzm_work/mpui/ship/zzzzzzzzzzzzzz_hzm_menus3d.pk3 python retouch.py "$W/bake" "$W/pkadd" | tail -1

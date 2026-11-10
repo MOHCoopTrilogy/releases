@@ -84,12 +84,14 @@ print("main.urc: projector yaw %.2f at %s, screen in, 2D beam retired" % (YAW, O
 RC = A["hub_rack_centre"]
 POSE = "%.1f %.1f %.1f 0.00 90.00 0.00 50.00" % (RC[0], A["hub_rack_lo"][1] - 1.7 * 52.5 + 25.7, RC[2])
 RLINES = ['scenemodel "models/menu/hzm_hub_rack.tik" 0 0 0 0', 'scenemodel "models/menu/hzm_hub_rackshadow.tik" 0 0 0 0']
+if os.path.exists(os.path.join(os.path.dirname(js), "posters68.json")):       # v1.10.68: the WWII posters (gen_posters68.py)
+    RLINES.append('scenemodel "models/menu/hzm_hub_posters.tik" 0 0 0 0')
 HCMD = ("set ui_scene_hot 0; exec ui/wpnview/open.cfg; globalwidgetcommand hubscene sceneleave 1; "
         "globalwidgetcommand hubscene scenefly 0.6 %s; uiafter 0.6 pushmenu hzm_wpnview" % POSE)
 mpp = os.path.join(ui, "multiplayer.urc")
 for f in [mpp] + [os.path.join(ui, x) for x in sorted(os.listdir(ui)) if re.match(r"hzm_mpui_scene_\w+\.inc$", x)]:
     m, mnl = rd(f)
-    m = re.sub(r'(?m)^scenemodel "models/menu/hzm_hub_rack\w*\.tik".*\n', "", m)
+    m = re.sub(r'(?m)^scenemodel "models/menu/hzm_hub_(?:rack|posters)\w*\.tik".*\n', "", m)
     i0 = m.index('name "hubscene"') if f == mpp else m.index("Scene3D")
     j = m.index("\nscenecam ", i0)
     m = m[:j] + "\n" + "\n".join(RLINES) + m[j:]
