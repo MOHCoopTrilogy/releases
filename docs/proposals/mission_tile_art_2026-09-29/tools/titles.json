@@ -433,6 +433,12 @@
    "title": "The Last Stand",
    "src": "retail-save",
    "note": "retail objectives: 1 'Destroy the South Bridge', 2 'Return to the Soviet Recon Group', 3 'Defend the Bridge Until Air Support Arrives' - the level ends in the bridge defence; checkpoint 'The Last Stand' names it (other: the opening 'Half Way Home'). Today's label 'Sub Pens' is WRONG (t3l2 is Berlin; the sub pens are AA m2)."
+  },
+  "m4l0at": {
+   "kicker": "Training / Secret",
+   "title": "Advanced Training",
+   "src": "authored",
+   "note": "m4l0 with coop_advTraining 1 - the coop course (docs/proposals/advanced_training_2026-11-09)"
   }
  },
  "_missions_format": "'proposed' is the NAME only; the prefix (e.g. 'AA 5 ', 'BT 2 ', or today's 'Allied Assault: 5 ') is the menu's layout choice. Names match the menu-system remaster's chalk list (station_layouts.py COOPOPS) exactly.",

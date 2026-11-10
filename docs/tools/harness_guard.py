@@ -144,6 +144,10 @@ HARNESSES = {
     r"G:\mohaa-frontline": {"owner": "frontline", "home": r"G:\mohaa-frontline\home"},
     # second private client of the same pilot (two-human-client coop run against a private dedicated server)
     r"G:\mohaa-frontline2": {"owner": "frontline2", "home": r"G:\mohaa-frontline2\home"},
+    # Advanced Training on m4l0 (docs/proposals/advanced_training_2026-11-09/tools/at_test.py): byte copies of the LIVE G:\mohaa-gl2
+    # exe/DLLs (read only, never written), fresh homes, basepath = the GOG tree read-only, the branch code as one override pk3
+    r"G:\mohaa-advtrain": {"owner": "advtrain", "home": r"G:\mohaa-advtrain\home"},
+    r"G:\mohaa-advtrainb": {"owner": "advtrain", "home": r"G:\mohaa-advtrainb\home"},
     # modern scope view before/after (docs/proposals/scopes_2026-10-05/tools/run_scopes.py, bug-3462): byte copies of
     # the LIVE G:\mohaa-gl2 exe/DLLs (read only, never written) + the test cgame/gl2 swapped in from cgames\ and
     # renderers\, fresh home (no qkey/saves), basepath = the GOG tree read-only, the ironsights harness overlay + the
