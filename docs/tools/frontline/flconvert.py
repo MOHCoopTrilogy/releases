@@ -27,11 +27,13 @@ import flbsp   # noqa: E402
 import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
-import flclear  # noqa: E402
+import flclear
+import flskin  # noqa: E402
 import flfit  # noqa: E402
 import flcliff  # noqa: E402
 
-CONVERTER_VERSION = "0.3.0"
+CONVERTER_VERSION = "0.4.0"
+FL_STEP = 34                  # Frontline step height at 48 u/m (~0.7 m): the lips its player walks over
 
 # Frontline .cdb collision flag word (flcore.collision, decoded 2026-11-10 against the level's own AI nav graph):
 #   bits 0-10 surface material, bit 23 special surface, bit 22 VOLUME. Material 14 + bit 22 = 450u-tall boxes standing
@@ -40,7 +42,10 @@ CONVERTER_VERSION = "0.3.0"
 #   user's playtest ("a lot of invisible walls everywhere, blocking progression"). Material 15 + bit 22 is the
 #   river's surface and stays.
 COLL_VOLUME = 1 << 22
-COLL_MAT_VOLUME = (14,)
+COLL_MAT_VOLUME = (14, 15)   # 14 trigger volumes; 15 the river's WATER volume (its surface was walkable)
+COLL_SPECIAL = 1 << 23
+TAG_CLIFF = 0x7FFFF001        # [flpolish] collision added by us: edge-of-world clip (flcliff) / lip ramps (flclear)
+TAG_RAMP = 0x7FFFF002
 
 
 def coll_is_volume(f):
@@ -514,6 +519,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         g_nm = flgeom.TriGrid([t for t, f in zip(wound, wtags) if (f & 0x7FF) != flfit.MAT_SPECIAL])
         wound, wtags, colboxes, stats["columns"] = flfit.fit_columns(
             wound, wtags, rtris, lambda x, y, zt, zb: g_nm.ground(x, y, zt - 4, zb))
+    # player-clip SKINS standing in front of walls that already block (flskin.py): the player meets the drawn wall
+    if not os.environ.get("FL_NO_SKINS"):
+        km, stats["skins"] = flskin.skins(wound, wtags, lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL))
+        wound = [t for t, k in zip(wound, km) if k]
+        wtags = [f for f, k in zip(wtags, km) if k]
     # headroom: crawl holes / doorways sized for Frontline's smaller player get MOHAA crouch / stand clearance
     # (flclear.py; collision only, the drawn walls are untouched)
     caps = []
@@ -527,12 +537,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     if flpack.spec(level).get("ramps") and not os.environ.get("FL_NO_RAMPS"):
         rp, stats["ramps"] = flclear.ledge_ramps(wound, flpack.spec(level).get("headroom"))
         wound += rp
-        wtags += [0] * len(rp)
+        wtags += [TAG_RAMP] * len(rp)
     # the edges of the world: a clip wall wherever a walkable floor ends over nothing (flcliff.py)
     if not os.environ.get("FL_NO_CLIFF"):
-        cw, stats["cliffs"] = flcliff.walls(wound, grid)
+        # against the collision AS BUILT (skins dropped, headroom carved), not the disc's: a dropped player-clip sheet
+        # still read as 'a wall already stands here' and the edge got no clip (walk audit: void falls 7 -> 25)
+        cw, stats["cliffs"] = flcliff.walls(wound, flgeom.TriGrid(wound))
         wound += cw
-        wtags += [0] * len(cw)
+        wtags += [TAG_CLIFF] * len(cw)
         # [flpolish] ...and a DRAWN skirt under the same edge: the floor's own texture and light carried 512u straight
         # down, so a player at the edge sees a quay wall / bank instead of the white void under the level (visaudit:
         # 287 rays into the void along the town's west edge; user: "floors open and expose the underside of the map")
@@ -602,13 +614,28 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     xx += T
                 yy += T
             stats["under_ground_tiles"] = ng
-    for a2, b2, c2 in wound:
-        if B.add_prism(clip, a2, b2, c2, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
+    # [flpolish] each collision brush carries its SOURCE in its (nodraw) shader name, so the walk audit can tell an
+    # original player-clip boundary from a wall, a fitted column, a headroom cap or our edge-of-world clip
+    def clip_for(tag):
+        if tag == TAG_CLIFF:
+            nm = "cliff"
+        elif tag == TAG_RAMP:
+            nm = "ramp"
+        else:
+            nm = "m%d%s%s" % (tag & 0x7FF, "s" if tag & COLL_SPECIAL else "", "v" if tag & COLL_VOLUME else "")
+        return B.shader("textures/common/fl_coll_" + nm, flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
+    for (a2, b2, c2), tg in zip(wound, wtags):
+        if B.add_prism(clip_for(tg), a2, b2, c2, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
             rejected += 1
         else:
             nb += 1
-    for lo_, hi_ in caps + colboxes:
-        B.add_brush_planes(clip, [], lo_, hi_)
+    for lo_, hi_ in caps:
+        B.add_brush_planes(B.shader("textures/common/fl_coll_cap", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP,
+                                    flbsp.CONTENTS_SOLID), [], lo_, hi_)
+        nb += 1
+    for lo_, hi_ in colboxes:
+        B.add_brush_planes(B.shader("textures/common/fl_coll_column", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP,
+                                    flbsp.CONTENTS_SOLID), [], lo_, hi_)
         nb += 1
     if os.environ.get("FL_DEBUGCOLL"):
         # QA aid (never shipped): draw every collision triangle, tinted by its Frontline material, so screenshots show
@@ -640,7 +667,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     sp = flpack.spec(level)
     ws = [("classname", "worldspawn"), ("message", f"Frontline {level} (converted locally, converter {CONVERTER_VERSION})"),
           ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
-          ("ambientlight", "40 40 40")]
+          ("ambientlight", "40 40 40"),
+          # [flpolish] engine extensions this map opts into (HZM engine >= 1.10.73; older engines ignore the keys):
+          # entity coordinates past +-8192 (the jeep's start behind the gate) and Frontline's own step height (its body
+          # walks over the 19-34u lips and kerbs MOHAA's 18u step snags on). server/sv_init.c reads both.
+          ("hzm_widecoords", "1"), ("hzm_stepsize", str(sp.get("step_height", FL_STEP)))]
     B.entity(ws)
     kept = []
     for n in L.navpoints():

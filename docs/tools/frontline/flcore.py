@@ -166,6 +166,20 @@ class Level:
         d = self._bpd()
         return [struct.unpack_from("<2I", d, 16 + 8 * i) for i in range(12)]
 
+    def named_paths(self):
+        """[flpolish] .bpd section 0: named paths {id: [(x, y, z), ...]} - the routes Frontline's TankVehicle
+        (StartOnPath) and its StayOnPath patrol soldiers follow. Record = u32 id, u32 count, u32 offset of count
+        float xyz points in the same file."""
+        d = self._bpd()
+        off, cnt = self.bpd_sections()[0]
+        out = {}
+        for i in range(cnt):
+            pid, n, o = struct.unpack_from("<3I", d, off + 12 * i)
+            if n < 1 or n > 256 or o + 12 * n > len(d):
+                continue
+            out[pid] = [struct.unpack_from("<3f", d, o + 12 * k) for k in range(n)]
+        return out
+
     def navpoints(self):
         d = self._bpd()
         off, cnt = self.bpd_sections()[1]

@@ -15,7 +15,7 @@ def _key(p):
     return (round(p[0], 1), round(p[1], 1), round(p[2], 1))
 
 
-def walls(tris, grid, floor_nz=0.7, probe=20.0, height=160.0, depth=2048.0):
+def walls(tris, grid, floor_nz=0.7, probe=20.0, height=160.0, depth=2048.0, rise=48.0):
     """tris: wound collision [(a, b, c)] (floors face up); grid: flgeom.TriGrid over the same collision.
     Returns ([(a, b, c)] wall triangles, report)."""
     edges = {}
@@ -50,16 +50,23 @@ def walls(tris, grid, floor_nz=0.7, probe=20.0, height=160.0, depth=2048.0):
         if ox * (mx - cx) + oy * (my - cy) < 0:
             ox, oy = -ox, -oy
         # probe just outside the edge, at both ends and the middle: any collision below within `depth` = not the void
+        # [flpolish] the floor past the edge may sit HIGHER (a kerb, a platform, the next floor across a seam): the
+        # old probe looked only from 24u above the edge down, so every edge at the foot of a raised floor got a 160u
+        # clip wall - invisible walls in front of kerbs and loading docks (geoaudit: 105 cliff contacts on routes with
+        # floor right behind them). Probe from `rise` above, at two distances out.
         void = True
         for f in (0.15, 0.5, 0.85):
-            px = p[0] + (q[0] - p[0]) * f + ox * probe
-            py = p[1] + (q[1] - p[1]) * f + oy * probe
-            pz = p[2] + (q[2] - p[2]) * f
-            if grid.ground(px, py, pz + 24, pz - depth) is not None:
-                void = False
-                break
-            if any(True for _ in grid.near(px, py, 4)) and _wall_near(grid, px, py, pz):
-                void = False
+            for dist in (probe, probe * 2.5):
+                px = p[0] + (q[0] - p[0]) * f + ox * dist
+                py = p[1] + (q[1] - p[1]) * f + oy * dist
+                pz = p[2] + (q[2] - p[2]) * f
+                if grid.ground(px, py, pz + rise, pz - depth) is not None:
+                    void = False
+                    break
+                if any(True for _ in grid.near(px, py, 4)) and _wall_near(grid, px, py, pz):
+                    void = False
+                    break
+            if not void:
                 break
         if not void:
             continue

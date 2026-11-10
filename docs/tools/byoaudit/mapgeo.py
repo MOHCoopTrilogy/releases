@@ -270,6 +270,9 @@ class MapGeo:
         self._stamp = 0
         el = lump(L_ENTITIES).split(b"\0")[0].decode("latin-1")
         self.entities = parse_entities(el)
+        # the map's own step height (converted maps: worldspawn "hzm_stepsize", HZM engine sv_stepSize), else STEPSIZE
+        ws = next((e for e in self.entities if e.get("classname") == "worldspawn"), {})
+        self.step = float(ws.get("hzm_stepsize", 0) or 0) or STEP
         self._vox = None
 
     # -------------------------------------------------------------- queries

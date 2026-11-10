@@ -112,7 +112,12 @@ def path_lines(name, frames, X, mirror, step=3, zoff=0.0, ground=None):
         out.append(f"\tlevel.fl_path_{name}[{k}] = ( {p[0]:.0f} {p[1]:.0f} {z:.0f} )")
         out.append(f"\tlevel.fl_path_{name}_ang[{k}] = ( {a[0]:.1f} {a[1]:.1f} {a[2]:.1f} )")
         out.append(f"\tlevel.fl_path_{name}_t[{k}] = {i / FPS:.2f}")
+        # [flpolish] the same keys under the motion's NAME, for the generic player (coop_fl_*.scr fl_motion)
+        out.append(f'\tlevel.fl_mot["{name}"][{k}] = ( {p[0]:.0f} {p[1]:.0f} {z:.0f} )')
+        out.append(f'\tlevel.fl_mot_ang["{name}"][{k}] = ( {a[0]:.1f} {a[1]:.1f} {a[2]:.1f} )')
+        out.append(f'\tlevel.fl_mot_t["{name}"][{k}] = {i / FPS:.2f}')
     out.append(f"\tlevel.fl_path_{name}_n = {len(idx)}")
+    out.append(f'\tlevel.fl_mot_n["{name}"] = {len(idx)}')
     return out
 
 

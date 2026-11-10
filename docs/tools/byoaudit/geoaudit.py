@@ -165,14 +165,18 @@ def main():
     ap.add_argument("--data", default=None, help="data script inside the pak (default maps/<map>_data.scr)")
     ap.add_argument("--step", type=float, default=16.0)
     ap.add_argument("--png", action="store_true")
+    ap.add_argument("--cells", action="store_true", help="also write the reachable cells (cells.npy) for diffs")
+    ap.add_argument("--step-height", type=float, default=0, help="override the map's step height (0 = the map's own)")
     a = ap.parse_args()
     t0 = time.time()
     os.makedirs(a.outdir, exist_ok=True)
     M = mapgeo.MapGeo.load(a.pk3, a.mapname)
+    global STEP
+    STEP = a.step_height or M.step   # the map's own step height (worldspawn hzm_stepsize on converted maps)
     dtext = M.read(a.data or f"maps/{a.mapname}_data.scr")
     pts = data_points(dtext.decode("latin-1")) if dtext else []
     # placements only: trigger volumes, motion-path keys and audio are not things that stand on the floor
-    pts = [(n, p) for n, p in pts if not re.match(r"^\w*_(trig|path|cue|music|jeepcrew)", n)]
+    pts = [(n, p) for n, p in pts if not re.match(r"^\w*_(trig|path|cue|music|jeepcrew|mot|sp_|npath)", n)]
     ents = M.entities
     spawns = [tuple(map(float, e["origin"].split())) for e in ents
               if e.get("classname") in ("info_player_start", "info_player_allied", "info_player_deathmatch")]
@@ -181,11 +185,13 @@ def main():
         z, _n, _b = M.ground(s[0], s[1], s[2] + 8, s[2] - 512)
         if z is not None:
             seeds.append((s[0], s[1], z))
-    rep = {"pk3": os.path.basename(a.pk3), "map": a.mapname, "step": a.step, "seeds": len(seeds)}
+    rep = {"pk3": os.path.basename(a.pk3), "map": a.mapname, "step": a.step, "step_height": STEP, "seeds": len(seeds)}
 
     # ---- 1/2: reachability = a player who crouches where he must (CROUCH hull); blocked-move classification on it
     seen, blocked, voids, drops, W = flood(M, seeds, a.step, CROUCH_H)
     rep["walkable_cells"] = len(seen)
+    if a.cells:
+        np.save(os.path.join(a.outdir, "cells.npy"), np.array([(k[0] * a.step, k[1] * a.step, z) for k, z in seen.items()]))
     seen_st, _b, _v, _d, _w = flood(M, seeds, a.step, STAND_H)
     rep["walkable_cells_stand"] = len(seen_st)
     # must-crouch cells: reachable, but a standing box does not fit there (doorway / beam head bumps, crawl holes)
@@ -199,12 +205,14 @@ def main():
     cls = collections.Counter()
     inv_pts, open_blocked, open_ok = [], [], []
     inv_brushes = collections.Counter()
+    inv_srcb = []
     for (x, y, z), d, info in blocked:
         c = W.classify((x, y), z, d, info)
         if c == "invisible":
             cls["invisible"] += 1
             inv_pts.append((x + d[0] * a.step / 2, y + d[1] * a.step / 2, z))
             inv_brushes[int(info[1])] += 1
+            inv_srcb.append(int(info[1]))
         elif c == "opening":
             ok = None
             for hh, nm in ((PRONE_H, "prone"),):
@@ -287,6 +295,15 @@ def main():
                         return True
         return False
     rep["invisible_on_route"] = sum(1 for p in inv_pts if near_node(p))
+    # which collision SOURCE each invisible contact hits (converted maps name it in the nodraw shader: original
+    # material / our edge clip / fitted column / headroom cap), overall and on route
+    def src(b):
+        return M.shaders[int(M.bshader[b])][0].rsplit("/", 1)[-1] if b >= 0 else "?"
+    rep["invisible_by_source"] = dict(collections.Counter(src(b) for b in inv_srcb).most_common())
+    rep["invisible_on_route_by_source"] = dict(collections.Counter(
+        src(b) for p, b in zip(inv_pts, inv_srcb) if near_node(p)).most_common())
+    rep["invisible_on_route_pts"] = [(round(p[0]), round(p[1]), round(p[2]), src(b))
+                                     for p, b in zip(inv_pts, inv_srcb) if near_node(p)]
     # ROUTE BLOCKS: two of the level's own AI path points (info_pathnode, from the original's navpoints) <= 200u apart
     # with an open line between them as DRAWN (render rays at 30u and 60u reach) - a way the player can see - that a
     # crouching player cannot sweep along (step 18). Each one is an invisible wall or snag on an intended route.
@@ -294,6 +311,7 @@ def main():
     for i, p in enumerate(nodes):
         ng[(int(p[0] // 200), int(p[1] // 200))].append(i)
     rb = []
+    rb_src = []
     npairs = 0
     for i, p in enumerate(nodes):
         for dx in (-1, 0, 1):
@@ -314,8 +332,11 @@ def main():
                     f, end, b, n, ss = M.trace((p[0], p[1], za + STEP + 1), (q[0], q[1], zb + STEP + 1), *M.hull(CROUCH_H - STEP))
                     if f < 1.0 and not ss:
                         rb.append(tuple(round(float(v)) for v in end))
+                        rb_src.append(src(b))
     rep["route_pairs_open"] = npairs
     rep["route_blocks"] = len(rb)
+    rep["route_blocks_by_source"] = dict(collections.Counter(rb_src).most_common())
+    rep["route_blocks_pts"] = [p + (sname,) for p, sname in zip(rb, rb_src)]
     rep["route_block_clusters"] = sorted(cluster(rb, 64), key=lambda c: -c[1])
     rep["openings_blocked_on_route"] = sum(1 for p, _d, _o in open_blocked if near_node(p))
     rep["seconds"] = round(time.time() - t0, 1)
@@ -334,6 +355,8 @@ def main():
     summary["placements_floating"] = len(floating)
     summary["placements_buried"] = len(buried)
     summary["data_unreachable"] = len(unreach)
+    summary["invisible_on_route_by_source"] = rep["invisible_on_route_by_source"]
+    summary["route_blocks_by_source"] = rep["route_blocks_by_source"]
     rep["summary"] = summary
     with open(os.path.join(a.outdir, "geoaudit.json"), "w") as f:
         json.dump(rep, f, indent=1, default=str)

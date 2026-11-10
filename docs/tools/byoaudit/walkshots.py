@@ -28,6 +28,26 @@ import mapgeo  # noqa: E402
 PT = re.compile(r'level\.(\w+)(\[[^\]]*\])?\s*=\s*\(\s*(-?[\d.]+)\s+(-?[\d.]+)\s+(-?[\d.]+)\s*\)')
 
 
+def snap(R, cells_path, r=256.0):
+    """[flpolish] put every point on the nearest cell a player can actually reach (geoaudit --cells): trigger records
+    for air events sit on roofs (Frontline 1_1's bomb trigger at z 816) and their stills showed the level from a
+    height no player reaches - and a teleport into solid left the next still at the previous roof"""
+    import numpy as np
+    C = np.load(cells_path)
+    out = []
+    for r_ in R:
+        x, y = r_["pos"][0], r_["pos"][1]
+        d = np.hypot(C[:, 0] - x, C[:, 1] - y)
+        k = np.where(d < r)[0]
+        if not len(k):
+            continue
+        # nearest in xy, preferring the floor closest to the point's own ground
+        j = k[np.argmin(d[k] + 0.5 * np.abs(C[k, 2] - r_["ground"]))]
+        out.append(dict(r_, pos=(float(C[j, 0]), float(C[j, 1]), float(C[j, 2])), ground=float(C[j, 2]),
+                        snapped=round(float(d[j]))))
+    return out
+
+
 def route(pk3, mapname, points_rx, order):
     t = zipfile.ZipFile(pk3).read("maps/%s_data.scr" % mapname).decode("latin-1")
     pts = [(m.group(1) + (m.group(2) or ""), (float(m.group(3)), float(m.group(4)), float(m.group(5))))
@@ -53,9 +73,12 @@ def main():
     ap.add_argument("--order", default="x+y")
     ap.add_argument("--every", type=int, default=1)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--cells", default=None, help="geoaudit --cells output: snap every point onto a reachable floor")
     a = ap.parse_args()
     os.makedirs(a.outdir, exist_ok=True)
     R = route(a.pk3, a.map, a.points, a.order)[::a.every]
+    if a.cells:
+        R = snap(R, a.cells)
     if a.limit:
         R = R[:a.limit]
     views = []

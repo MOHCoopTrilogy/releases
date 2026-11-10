@@ -384,8 +384,89 @@
   "_motions": "[flpolish] set-piece motion paths the mission script plays by origin-stepping (flscene.path_lines): the jeep's run down the road into the mine and its four wheels flying off - Frontline's own .mvd keys, sampled every motion_step frames at 30 fps",
   "motion_step": 3,
   "motion_first": {
-   "jeep": 20
+   "jeep": 1
   },
-  "_motion_first": "[flpolish] first key the scene plays from. Started at any key before 20 (x > 8192, behind the farm gate) the moving jeep was never drawn for the whole run, from any vantage, with alwaysdraw and r_novis (captures 2026-11-10, cause not found - engine follow-up bug-flp-jeepdraw); from key 20 it drives on screen. Keys 1-19 run behind the gate where no player can see them."
+  "_motion_first": "[flpolish] the key a motion starts from, named outright (else flpack's collision sweep picks the first key whose run is open). The jeep starts at Frontline's own key 1 behind the farm gate again: it used to be forced to key 20 because a start past x 8192 was never drawn - the entity-origin wire format wraps at +-8192 (bug-flp-jeepdraw); the converter now opts the map into the HZM engine's wide coordinates (worldspawn hzm_widecoords).",
+  "set_pieces": [
+   {
+    "motion": "STUKAdogfight_1_1.mvd",
+    "model": "models/vehicles/stuka_fly.tik",
+    "trigger": 77,
+    "snd": "coop_flstuka"
+   },
+   {
+    "motion": "P47dogfight_1_1.mvd",
+    "model": "models/vehicles/p47fly.tik",
+    "trigger": 77,
+    "delay": 2.5,
+    "snd": "coop_flp47"
+   },
+   {
+    "motion": "P47bomb_building1_1.mvd",
+    "model": "models/vehicles/p47fly.tik",
+    "trigger": 41,
+    "snd": "coop_flp47"
+   },
+   {
+    "motion": "Bomb_1_1_01.mvd",
+    "model": "models/ammo/us_bomb.tik",
+    "trigger": 423,
+    "fx": "bomb"
+   },
+   {
+    "motion": "Bomb_1_1_02.mvd",
+    "model": "models/ammo/us_bomb.tik",
+    "trigger": 86,
+    "fx": "bomb"
+   },
+   {
+    "motion": "P47flyingcircle1_1.mvd",
+    "model": "models/vehicles/p47fly.tik",
+    "trigger": 220,
+    "snd": "coop_flp47"
+   },
+   {
+    "motion": "P47rocket_tank1_1.mvd",
+    "model": "models/vehicles/p47fly.tik",
+    "trigger": 226,
+    "snd": "coop_flp47",
+    "fx": "tank"
+   },
+   {
+    "motion": "rocket_firing.mvd",
+    "model": "models/projectiles/panzerschreckshell.tik",
+    "object": 385,
+    "trigger": 255,
+    "fx": "rocket"
+   },
+   {
+    "motion": "rocket_firing.mvd",
+    "model": "models/projectiles/panzerschreckshell.tik",
+    "object": 386,
+    "trigger": 255,
+    "delay": 0.6,
+    "fx": "rocket"
+   },
+   {
+    "motion": "P47strafe_mg_1_1.mvd",
+    "model": "models/vehicles/p47fly.tik",
+    "trigger": 219,
+    "snd": "coop_flp47"
+   },
+   {
+    "motion": "P47flyby1_1.mvd",
+    "model": "models/vehicles/p47fly.tik",
+    "trigger": 84,
+    "snd": "coop_flp47"
+   },
+   {
+    "motion": "1_1_Uboat_bobbing.mvd",
+    "model": "models/static/uboat.tik",
+    "object": 286,
+    "loop": 1,
+    "fx": "stay"
+   }
+  ],
+  "_set_pieces": "[flpolish] which Frontline motion plays as which stock MOHAA model, and when (fidelity pass 2026-11-10). 'trigger'/'object' are Frontline RECORD indexes resolved on the player's PC. Planes go to the trigger their flight passes closest to (unique assignment; the untriggered start pass and the two dogfights open over the drop); bombs and rockets to the triggers that send them; the U-boat bobs at its own record for the whole mission. Frontline's own meshes for the planes, bombs, rockets and U-boat are not converted: the stock models stand in."
  }
 }
