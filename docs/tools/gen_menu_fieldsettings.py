@@ -411,7 +411,8 @@ def strip_block(text):
         return text
     assert text.count(SEED_BEGIN) == 1 and text.count(SEED_END) == 1, "seed markers must appear exactly once"
     a = text.index(SEED_BEGIN)
-    b = text.index(SEED_END) + len(SEED_END) + 1
+    b = text.index(SEED_END) + len(SEED_END)
+    b += 2 if text.startswith("\r\n", b) else (1 if text.startswith("\n", b) else 0)   # [byo69] CRLF: the old +1 left the LF behind
     return text[:a] + text[b:]
 
 
@@ -423,10 +424,12 @@ def splice_defaults(text):
         if cvar not in seeded:
             lines.append("seta %s %s" % (cvar, num(spec["default"])))
     lines.append(SEED_END)
-    block = "\n".join(lines) + "\n"
+    nl = "\r\n" if "\r\n" in text else "\n"         # [byo69] the file's own line ending (TRAPS T2): the block was LF in a CRLF file
+    block = nl.join(lines) + nl
     if SEED_BEGIN in text:
         a = text.index(SEED_BEGIN)
-        b = text.index(SEED_END) + len(SEED_END) + 1
+        b = text.index(SEED_END) + len(SEED_END)
+        b += 2 if text.startswith("\r\n", b) else (1 if text.startswith("\n", b) else 0)
         return text[:a] + block + text[b:]
     assert text.count(SEED_ANCHOR) == 1, "coop_defaults.cfg seed anchor found %d times" % text.count(SEED_ANCHOR)
     i = text.index(SEED_ANCHOR) + len(SEED_ANCHOR)

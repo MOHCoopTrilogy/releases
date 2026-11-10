@@ -73,8 +73,8 @@ for i, (key, game, title, sub, cvar) in enumerate((
 lab("statusRule", (64, 306, 512, 1), RULE)
 W("Label", "status", (64, 312, 512, 30), title="", fgcolor=RUST, bgcolor=CLEAR, borderstyle="NONE", font="verdana-12",
   textalign="left", linkcvar="coop_byoStatus")
-txt("note1", (64, 350, 512, 15), "After adding a mission, restart the game: it then appears in Start Game -> Co-op under", "verdana-12", MUTED)
-txt("note2", (64, 365, 512, 15), "YOUR OWN DISCS. To remove it, delete its zzzz_coop_ pak from your maintt folder.", "verdana-12", MUTED)
+txt("note1", (64, 350, 512, 15), "After adding a mission, restart the game: its tile unlocks (Co-op: FRONTLINE / EUROPEAN", "verdana-12", MUTED)
+txt("note2", (64, 365, 512, 15), "ASSAULT) and the campaigns include it. To remove it, delete its zzzz_coop_ pak in maintt.", "verdana-12", MUTED)
 lab("footRule", (64, 396, 512, 1), RULE)
 btn("closeBtn", (348, 406, 140, 24), "CLOSE", "popmenu 0", sound="sound/menu/back.wav")
 L.append("end.")

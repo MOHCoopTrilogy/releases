@@ -1,0 +1,389 @@
+{
+ "_doc": "THE single-player mission table (sp3camp). One row per mission; warmap.py (pins, tags, legend) and make_ng3campaigns.py (tags, locks, difficulty screens, flat chooser, coop_mod/spcampaign_table.scr) read only this. Add a mission = add a row (and its campaign if new). pin = the real place (lat, lon); tag = where its paper tag hangs on the wall view (lat, lon; warmap QA asserts it clears every pin, name, tag, the toggle and the legend). chrono = position in the chronological order (coop_mod/chrono.scr / chrono_campaign ORDER.md). last = the mission's last level(s): finishing it in SP marks the mission done. optional_cvar = the mission exists only when this cvar is 1 (e.g. content converted on the player's machine): every widget of it is gated on it, and a mission whose predecessor is optional and absent unlocks from the one before. byo (optional missions only) = map, the coop_byoAll token of its level and of its briefing room (engine Com_ByoTokens), its title and game: make_ng3campaigns.py writes coop_mod/byo_campaign.scr (campaign routing into and out of it) from these rows.",
+ "campaigns": [
+  {
+   "key": "aa",
+   "name": "ALLIED ASSAULT",
+   "colour": [
+    232,
+    214,
+    150
+   ]
+  },
+  {
+   "key": "sh",
+   "name": "SPEARHEAD",
+   "colour": [
+    196,
+    210,
+    222
+   ]
+  },
+  {
+   "key": "bt",
+   "name": "BREAKTHROUGH",
+   "colour": [
+    206,
+    218,
+    170
+   ]
+  },
+  {
+   "key": "fl",
+   "name": "FRONTLINE",
+   "colour": [
+    222,
+    196,
+    170
+   ]
+  },
+  {
+   "key": "ea",
+   "name": "EUROPEAN ASSAULT",
+   "colour": [
+    214,
+    186,
+    200
+   ]
+  }
+ ],
+ "missions": [
+  {
+   "key": "aa1",
+   "camp": "aa",
+   "n": 1,
+   "name": "ARZEW",
+   "pin": [
+    35.854,
+    -0.316
+   ],
+   "tag": [
+    34.25,
+    -1.6
+   ],
+   "brief": "briefing/briefing1",
+   "last": [
+    "m1l3c",
+    "M1L3c"
+   ],
+   "chrono": 1,
+   "optional_cvar": null,
+   "place": "Arzew, Algeria (Operation Torch landing)"
+  },
+  {
+   "key": "aa2",
+   "camp": "aa",
+   "n": 2,
+   "name": "TRONDHEIM",
+   "pin": [
+    63.43,
+    10.395
+   ],
+   "tag": [
+    63.05,
+    1.9
+   ],
+   "brief": "briefing/briefing2",
+   "last": [
+    "m2l3"
+   ],
+   "chrono": 3,
+   "optional_cvar": null,
+   "place": "Trondheim, Norway (the U-boat pens)"
+  },
+  {
+   "key": "aa3",
+   "camp": "aa",
+   "n": 3,
+   "name": "OMAHA BEACH",
+   "pin": [
+    49.369,
+    -0.871
+   ],
+   "tag": [
+    48.2,
+    -12.3
+   ],
+   "brief": "briefing/briefing3",
+   "last": [
+    "m3l3",
+    "M3L3"
+   ],
+   "chrono": 8,
+   "optional_cvar": null,
+   "place": "Omaha Beach, Normandy"
+  },
+  {
+   "key": "aa4",
+   "camp": "aa",
+   "n": 4,
+   "name": "SAINT-LO",
+   "pin": [
+    49.116,
+    -1.09
+   ],
+   "tag": [
+    46.4,
+    -12.3
+   ],
+   "brief": "briefing/briefing4",
+   "last": [
+    "m4l3"
+   ],
+   "chrono": 9,
+   "optional_cvar": null,
+   "place": "south of St. Lo (briefing4: the Resistance safehouse)"
+  },
+  {
+   "key": "aa5",
+   "camp": "aa",
+   "n": 5,
+   "name": "BREST",
+   "pin": [
+    48.39,
+    -4.486
+   ],
+   "tag": [
+    44.6,
+    -12.3
+   ],
+   "brief": "briefing/briefing5",
+   "last": [
+    "m5l3"
+   ],
+   "chrono": 11,
+   "optional_cvar": null,
+   "place": "Brittany, the Brest area (briefing art 'brestmap')"
+  },
+  {
+   "key": "aa6",
+   "camp": "aa",
+   "n": 6,
+   "name": "SIEGFRIED LINE",
+   "pin": [
+    50.776,
+    6.084
+   ],
+   "tag": [
+    54.6,
+    2.4
+   ],
+   "brief": "briefing/briefing6",
+   "last": [
+    "m6l3e"
+   ],
+   "chrono": 13,
+   "optional_cvar": null,
+   "place": "the Siegfried Line at Aachen"
+  },
+  {
+   "key": "sh1",
+   "camp": "sh",
+   "n": 1,
+   "name": "NORMANDY",
+   "pin": [
+    49.408,
+    -1.317
+   ],
+   "tag": [
+    50.0,
+    -12.3
+   ],
+   "brief": "briefing/briefingt1",
+   "last": [
+    "t1l3"
+   ],
+   "chrono": 7,
+   "optional_cvar": null,
+   "place": "the airborne drop zones, Sainte-Mere-Eglise"
+  },
+  {
+   "key": "sh2",
+   "camp": "sh",
+   "n": 2,
+   "name": "BASTOGNE",
+   "pin": [
+    50.0,
+    5.715
+   ],
+   "tag": [
+    47.2,
+    3.6
+   ],
+   "brief": "briefing/briefingt2",
+   "last": [
+    "t2l4"
+   ],
+   "chrono": 12,
+   "optional_cvar": null,
+   "place": "Bastogne, Belgium (Ardennes)"
+  },
+  {
+   "key": "sh3",
+   "camp": "sh",
+   "n": 3,
+   "name": "BERLIN",
+   "pin": [
+    52.52,
+    13.405
+   ],
+   "tag": [
+    51.0,
+    17.6
+   ],
+   "brief": "briefing/briefingt3",
+   "last": [
+    "t3l2"
+   ],
+   "chrono": 14,
+   "optional_cvar": null,
+   "place": "Berlin"
+  },
+  {
+   "key": "bt1",
+   "camp": "bt",
+   "n": 1,
+   "name": "KASSERINE",
+   "pin": [
+    35.2,
+    8.72
+   ],
+   "tag": [
+    34.2,
+    9.4
+   ],
+   "brief": "briefing/briefinge1",
+   "last": [
+    "e1l4"
+   ],
+   "chrono": 4,
+   "optional_cvar": null,
+   "place": "Kasserine Pass, Tunisia"
+  },
+  {
+   "key": "bt2",
+   "camp": "bt",
+   "n": 2,
+   "name": "SICILY",
+   "pin": [
+    37.066,
+    14.25
+   ],
+   "tag": [
+    36.0,
+    17.9
+   ],
+   "brief": "briefing/briefinge2",
+   "last": [
+    "e2l3"
+   ],
+   "chrono": 5,
+   "optional_cvar": null,
+   "place": "Gela, Sicily (Operation Husky)"
+  },
+  {
+   "key": "bt3",
+   "camp": "bt",
+   "n": 3,
+   "name": "MONTE CASSINO",
+   "pin": [
+    41.49,
+    13.814
+   ],
+   "tag": [
+    43.65,
+    12.6
+   ],
+   "brief": "briefing/briefinge3",
+   "last": [
+    "e3l4"
+   ],
+   "chrono": 6,
+   "optional_cvar": null,
+   "place": "Monte Cassino, Italy"
+  },
+  {
+   "key": "fl1",
+   "camp": "fl",
+   "n": 1,
+   "name": "ST. MATHIEU",
+   "pin": [
+    48.33,
+    -4.771
+   ],
+   "tag": [
+    43.9,
+    -5.0
+   ],
+   "brief": "briefing/briefingfl1",
+   "last": [
+    "coop_fl_1_1"
+   ],
+   "chrono": 10,
+   "optional_cvar": "coop_flHave_1_1",
+   "place": "Pointe Saint-Mathieu, Brittany, 17 Aug 1944 0900 (Medal of Honor: Frontline, SEALED ORDERS - from the player's own disc)",
+   "byo": {
+    "map": "coop_fl_1_1",
+    "token": "fl_1_1",
+    "brief_token": "briefingfl1",
+    "title": "SEALED ORDERS",
+    "game": "Medal of Honor: Frontline"
+   }
+  },
+  {
+   "key": "ea1",
+   "camp": "ea",
+   "n": 1,
+   "name": "STALINGRAD",
+   "pin": [
+    48.79,
+    44.47
+   ],
+   "tag": [
+    47.6,
+    34.6
+   ],
+   "brief": "briefing/briefingea111",
+   "last": [
+    "coop_ea_1_11"
+   ],
+   "chrono": 2,
+   "optional_cvar": "coop_eaHave_1_11",
+   "place": "Gorodishche, near Stalingrad, USSR, 28 Jan 1943 0730 (Medal of Honor: European Assault, THEIR DYING BREATH - from the player's own disc)",
+   "byo": {
+    "map": "coop_ea_1_11",
+    "token": "ea_1_11",
+    "brief_token": "briefingea111",
+    "title": "THEIR DYING BREATH",
+    "game": "Medal of Honor: European Assault"
+   }
+  }
+ ],
+ "level_pins": {
+  "_doc": "levels whose real place differs from their mission's pin (joincard_table.scr jcPlace): the loading-screen zoom ends here",
+  "e1l3": [
+   37.274,
+   9.873
+  ],
+  "e1l4": [
+   37.274,
+   9.873
+  ],
+  "e2l2": [
+   37.238,
+   14.513
+  ],
+  "e2l3": [
+   37.066,
+   14.25
+  ],
+  "e3l3": [
+   41.447,
+   12.627
+  ],
+  "e3l4": [
+   44.217,
+   11.551
+  ]
+ }
+}
