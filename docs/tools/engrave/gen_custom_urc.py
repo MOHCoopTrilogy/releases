@@ -109,15 +109,17 @@ def build():
     # [benchsize] per-gun words: this gun's own words (empty = it uses the default words), and the default words for every
     # gun without its own; both fields write their cvar as you type, hzmcust done keeps them (cl_words_<gun>, cl_engraveText)
     text("wordsCap", 28, 280, 160, "WORDS FOR THIS GUN", col=DIM)
+    # the bench opens with the keyboard in this gun's words field (showcommand runs when the menu shows)
+    res("Label", "focusGunWords", (0, 0, 1, 1), title="", extra=["showcommand \"hzmcust focus\""])
     text("wordsState", 160, 280, 142, link="cl_custWordsTxt", col=ORANGE, align="right", enable="cl_custOwnWords")
     text("wordsStateD", 160, 280, 142, link="cl_custWordsTxt", col=FAINT, align="right", enable="cl_custOwnWordsNot")
-    res("Field", "words", (28, 293, 274, 22), fg=(0.16, 0.09, 0.03), bg=(0.97, 0.95, 0.88), title="engraving",
+    res("Field", "gunWordsField", (28, 293, 274, 22), fg=(0.16, 0.09, 0.03), bg=(0.97, 0.95, 0.88), title="engraving",
         font="facfont-20", align="left", link="cl_custWords", sound="sound/menu/scroll.wav", border="INDENT_BORDER",
         extra=["SetMaxChars 20"])
     button("wordsDefault", 222, 317, 80, 14, "USE DEFAULT", "hzmcust words default")
     text("wordsHint1", 28, 318, 190, "EMPTY = THE DEFAULT WORDS BELOW", col=FAINT)
     text("defCap", 28, 334, 274, "DEFAULT WORDS (ALL GUNS)", col=DIM)
-    res("Field", "wordsDef", (28, 347, 274, 20), fg=(0.16, 0.09, 0.03), bg=(0.90, 0.88, 0.80), title="default engraving",
+    res("Field", "defWordsField", (28, 347, 274, 20), fg=(0.16, 0.09, 0.03), bg=(0.90, 0.88, 0.80), title="default engraving",
         font="verdana-12", align="left", link="cl_engraveText", sound="sound/menu/scroll.wav", border="INDENT_BORDER",
         extra=["SetMaxChars 20"])
     text("wordsHint2", 28, 370, 274, "UP TO 20: A-Z 0-9 . - ! ? & # / : ( ) + * = % $", col=FAINT)
