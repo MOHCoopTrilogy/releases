@@ -60,3 +60,41 @@ starts under the gun, aimed reload rows, magazine prop in the hand, exit cleanup
    first shots, a sway series (5 frames, 0.3 s apart) to show the ring stays put, aimed reload frames, hip reload sheet.
 4. Gates: gen_loadout / gen_weapon_viewer / gen_skins check, unlock_audit, check_tik_surfaces, check_anim_aliases,
    check_mp_isolation, SELFTEST stamp after gen_service_record.
+
+## Status 2026-11-09 ~21:50: DONE on newguns2 (root / mod `newguns2`, engine `newguns2-eng`) - the Bren is back ON
+- **A. Sights on the model** (`tools/bren_sights.py`, called by `build_bren.py`): one line of sight y -1.94 / z -5.85 (gun frame:
+  1.94 u = ~1.37 in left of the bore, over the source drum's centre, which was already there), level with the bore. Rear: the
+  source drum (32/33) kept + its bracket onto the body, a sight ARM back to an APERTURE LEAF at x -9.60 (plate 0.06 thick, disc
+  r 0.45, hole r 0.21, stem down to the arm). Front: a blade 0.10 wide between two ears on a base + strut into the barrel's left
+  side. Dropped: source arm + leaf (34), aperture disc (49), blade / ears (55 / 16), the ring on the magazine catch (35), the
+  `SIGHT_DY` shear and the floating ring. The carrying handle (2/3/8) is turned down to the right (it stood in the aperture's
+  view, right of the post). New parts are planar-mapped into a 40-texel receiver-steel window of the sheet (one flat texel read
+  as a black cut-out; a wrapped mapping drew a seam - both seen in game, nb2 / nb3).
+- **Rows from the model**: `bren_ads.py row <engine>` rewrites the 8 `coop_bren*` rows of cg_adssights.h from `bren_sights.row()`
+  (F = blade top, R = hole centre, relief 3); `gen_sight_alias` adds the 13 finishes2 variants.
+- **B. Own aim pose** `coopr_bren_charge` = `coop_bren_ads.skc` (`bren_ads.py bake`): the rig's whole correction for the new row
+  baked into bar_stand00 (the VB's pose had the aperture 3.42 u BEHIND the eye: rot 0.71 deg, move, relief +6.42 u); hands ride,
+  arms by IK, no clamp. The engine's target on it is now 0 / 0 / 0 (aperture 3.00 u ahead of the eye, nothing clamped).
+- **Peep lock** (engine, cg_view.c `CG_AdsPeepLock`, rows with 0 < relief <= 4.5 = the Bren only; `cg_adsPeepLock 0` = off):
+  the feel layers after the rig all TRANSLATE the gun (cg_adsSway 0.4 u, breath, kick, lag), which swung a 3 u ring +-60 px
+  round a steady post (nb2). After them the gun is turned about its front sight so the aperture is back on the eye -> post
+  line. nb3 / nb4: R - F <= 6.4 px on all 48 aimed samples (ADS, 5-frame sway, strafe sway, burst, after the shots, after the
+  aimed reload); before 60-90 px.
+- **Aimed reloads** `coopr_bren_reload_ads` / `cv_bren_reload_{s,m}_ads` -> `coop_bren_reload_fps{,_s,_m}_ads.skc`
+  (`bren_ads.py reload`): the hip clips with the gun LOCKED in the aim pose, rolled 70 deg about the VIEW axis (ring and post
+  stay on target, the magazine and the hand work out to the right) and a 6 deg dip round the insert. Arms in the centre box
+  <= 3.1 % (35 deg roll: 13.9 %), no IK clamp on the main clip. (ADSSIGHT R-F during a reload is not meaningful: the gun is on
+  tag_weapon_left.) Hip reloads untouched (hand low).
+- **Clip check**: aim pose + 3 aimed reloads 0 vertices nearer than 1 u (nearest 2.80 u); hip reloads 0 / 0 even at r_znear 4.
+- **Re-enabled**: `bren_off.py on` (paths now env / newguns2 defaults), `HZM_FS2_BUILD=H:\hzm_work\newguns2\fs2_build`
+  (a COPY of newguns' staging) `fs2_drop_bren.py restore` + `fs2_ng.py pack` -> sha256 2b76b445 (byte-identical to the
+  pre-hold pak), gen_skins fs2 write, the five steps, gen_service_record (450 rows, stamp 554288dc, ng-run SELFTEST OK).
+- Stills: media/final4 (run nb4, m5l1a, 3440x1438, GL2; red cross = screen centre).
+- **Polish (coordinator QA, ~22:00)**: the new sight parts (drum bracket, arm, leaf, blade, ears, bracket) are their own skd
+  surface `coop_bren_sight` with no tik line, so every Bren tik - finishes and finishes2 variants included - draws it with the
+  shader of that name: `textures/models/weapons/coop_bren/bren_sight.jpg` (512, `bren_sights.texture`): the Bren sheet's receiver
+  steel colour with a parkerized mottle, edge wear painted where the UVs put the edges (the disc's rim and hole, the rim strip,
+  every flat face's border). UVs: the leaf faces map onto a disc, the rims onto a strip by angle, flat faces edge to edge. The
+  hole is chamfered on the eye side (r 0.245 -> 0.21 at the front: the sight is still 0.21). Rows unchanged (F / R identical,
+  `bren_sights.row()` takes R from both hole rims). Clip check unchanged (0 / 0, nearest 2.80 u); nb5: 48 aimed samples, R-F
+  <= 3.9 px; media/final4/bren_ads_zoom_nb5.jpg.

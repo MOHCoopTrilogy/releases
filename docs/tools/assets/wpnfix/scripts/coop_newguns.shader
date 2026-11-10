@@ -29,3 +29,15 @@ coop_panzerfaust
 		rgbGen lightingSpherical
 	}
 }
+
+// [newguns2 2026-11-09] the Bren's rebuilt sights (drum bracket, arm, aperture leaf, blade, ears, bracket): their own sheet,
+// the Bren sheet's parkerized steel with edge wear (bren_sights.texture). The skd surface `coop_bren_sight` has no tik line,
+// so every Bren tik (finishes included) draws it with this shader: the sights stay plain steel
+coop_bren_sight
+{
+	qer_editorimage textures/models/weapons/coop_bren/bren_sight.jpg
+	{
+		map textures/models/weapons/coop_bren/bren_sight.jpg
+		rgbGen lightingSpherical
+	}
+}
