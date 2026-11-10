@@ -106,6 +106,26 @@ def main():
                 "No GPL component is included. (numpy's OpenBLAS DLL carries GCC runtime code, which the GCC Runtime\n"
                 "Library Exception permits in any program; see LICENSES/numpy/licenses_LICENSE.txt.)\n" % (sys.version.split()[0], numpy.__version__, PIL.__version__))
 
+    # [v1.10.69] European Assault: its own copies of the shared modules, as source, in _internal/ea (hzmconv.py
+    # _ea_modules_first puts them ahead of the frozen Frontline set for an EA run). Only what hzmconv_ea imports.
+    ea_src = os.path.join(os.path.dirname(HERE), "ea")
+    need, todo = set(), ["hzmconv_ea"]
+    import re
+    while todo:
+        m = todo.pop()
+        f = os.path.join(ea_src, m + ".py")
+        if m in need or not os.path.isfile(f):
+            continue
+        need.add(m)
+        todo += re.findall(r"^\s*(?:import|from)\s+(\w+)", open(f, encoding="utf-8", errors="replace").read(), re.M)
+    assert "hzmconv_ea" in need and "flconvert" in need, need
+    ea_dst = os.path.join(root, "_internal", "ea")
+    for m in sorted(need):
+        cp(os.path.join(ea_src, m + ".py"), os.path.join(ea_dst, m + ".py"))
+    for j in glob.glob(os.path.join(ea_src, "*.json")):
+        cp(j, os.path.join(ea_dst, os.path.basename(j)))
+    print("ea modules:", " ".join(sorted(need)))
+
     # nothing from a disc may be in here (it never should be: the tree is our code + the runtimes above)
     guard = os.path.join(os.path.dirname(HERE), "byo_guard.py")
     subprocess.run([sys.executable, guard, root], check=True)

@@ -6,6 +6,9 @@ import os
 HERE = os.path.abspath(".")
 mods = ["flconvert", "flcore", "flbsp", "flpack", "flseam", "flgeom", "flvis", "flaudio", "shpx", "xdvdfs", "viv",
         "flmovies", "flupscale"]
+# [v1.10.69] stdlib the European Assault modules (docs/tools/ea, shipped as source in _internal/ea) use beyond Frontline's
+mods += ["bisect", "statistics", "wave", "fnmatch", "tempfile", "subprocess", "shutil", "importlib", "importlib.machinery",
+         "glob", "argparse", "zlib", "collections", "socket", "hashlib", "json"]
 a = Analysis(["hzmconv.py"], pathex=[HERE], hiddenimports=mods,
              datas=[("fl_levels.json", "."), ("fl_texmap.json", "."), ("fl_modelmap.json", ".")],
              excludes=["tkinter", "matplotlib", "scipy", "pandas", "IPython"], noarchive=False)

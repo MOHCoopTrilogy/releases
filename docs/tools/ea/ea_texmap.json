@@ -1,0 +1,37 @@
+{
+ "_doc": "European Assault texture table (our own; keys are the disc's 4-char texture SHAPE names, values reference textures of the player's own MOHAA install / the mod's paks). noupscale = textures with lettering or fine print that ESRGAN would garble (DECISIONS 'ESRGAN is for photos and text, not chrome'). Same schema as fl_texmap.json.",
+ "1_11": {
+  "noupscale": [
+   "yexP",
+   "QuSe",
+   "p71q",
+   "g~dK"
+  ],
+  "_noupscale_reasons": {
+   "yexP": "printed sign / notice with lettering",
+   "QuSe": "open book pages with print",
+   "p71q": "radio panel with dials and labels",
+   "g~dK": "instrument panel with gauges"
+  },
+  "SAZk": {
+   "path": "textures/central_europe_winter/frozenriver.jpg",
+   "pak": "zzzzz-AA_HD_Project_Pak2.pk3",
+   "tc_scale": 1.0,
+   "reason": "the frozen river (23% of the level's surface area): EA 256px blue-grey streaked ice; HD Project frozenriver is 1024px, the same streaked river ice, same cold blue-grey tone, no artefacts"
+  },
+  "NMVX": {
+   "path": "textures/central_europe_winter/forstsnow_mdlttrns256.jpg",
+   "pak": "zzzzz-AA_HD_Project_Pak2.pk3",
+   "tc_scale": 1.0,
+   "reason": "the main snow layer of EA's two-layer terrain (top layer on 6 terrain blends): EA 256px plain white snow; HD Project forstsnow (Spearhead winter set) is 1024px light snow with soft drift relief, same white-blue tone; vertex light and EA's blend weights stay on top"
+  },
+  "additive": [
+   "mkoh",
+   "wsPb"
+  ],
+  "_additive_reasons": {
+   "mkoh": "orange-to-black gradient fire-light card inside the burning house (cell 100); EA draws it additively, opaque it showed as a rusty board in the roof hole (visual QA 2026-11-09)",
+   "wsPb": "red-to-black gradient light card, same kind"
+  }
+ }
+}

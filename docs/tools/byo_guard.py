@@ -27,6 +27,9 @@ PATHS = ["maps/coop_fl_*.bsp", "maps/coop_ea_*.bsp", "maps/coop_fl_*_data.scr", 
          "textures/fl/*", "textures/ea/*", "sound/fl/*", "sound/ea/*", "sound/music/fl_*", "sound/music/ea_*",
          "scripts/fl_*.shader", "scripts/ea_*.shader", "ubersound/fl_*.scr", "ubersound/ea_*.scr",
          "video/flbrief*", "video/ea*intro*", "fl/have_*", "ea/have_*"]
+# User decision (2026-11-09, again at v1.10.69): the Frontline SOUNDTRACK already in the shipped music pak stays -
+# zzzzzzzzzzzzz_coop_music.pk3 :: sound/music/frontline_*.mp3 and sound/frontline/*. It is never flagged.
+EXEMPT = ["sound/music/frontline_*", "sound/frontline/*"]
 MAGIC = [b"BIGF", b"BIG4", b"SCHl", b"SHPX", b"SHPS", b"MPCh", b"XBEH"]
 SAFE = {".tga", ".jpg", ".jpeg", ".dds", ".png", ".bmp", ".wav", ".mp3", ".ogg", ".tik", ".skd", ".skc", ".skb", ".ska",
         ".scr", ".cfg", ".urc", ".inc", ".shader", ".txt", ".md", ".json", ".tsv", ".csv", ".bsp", ".roq", ".tik",
@@ -42,6 +45,8 @@ def leaf_hit(name):
 
 def path_hit(rel):
     r = rel.replace("\\", "/").lower().lstrip("/")
+    if any(fnmatch.fnmatch(r, e) or fnmatch.fnmatch(r, "*/" + e) for e in EXEMPT):
+        return None
     # a folder of paks is checked relative to every level, so maintt/maps/... and maps/... both match
     parts = r.split("/")
     for i in range(len(parts)):
@@ -69,6 +74,8 @@ def scan_archive(path, label, bad):
     with z:
         for i in z.infolist():
             if i.is_dir():
+                continue
+            if any(fnmatch.fnmatch(i.filename.lower(), e) for e in EXEMPT):
                 continue
             why = leaf_hit(i.filename) or path_hit(i.filename)
             if not why and os.path.splitext(i.filename)[1].lower() not in SAFE and i.file_size >= 4:

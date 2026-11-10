@@ -66,13 +66,9 @@ for i, (key, game, title, sub, cvar) in enumerate((
     txt("stOn%s" % key, (316, y + 8, 110, 15), "ADDED", "verdana-12", INK, enabledcvar=cvar)
     lab("lampOff%s" % key, (304, y + 12, 8, 8), LAMP_OFF, enabledcvar="!" + cvar)
     txt("stOff%s" % key, (316, y + 8, 110, 15), "NOT ADDED", "verdana-12", MUTED, enabledcvar="!" + cvar)
-    if game == "frontline":
-        btn("add%s" % key, (432, y + 15, 132, 28), "ADD", "coop_byoconvert frontline", enabledcvar="!%s !coop_byoBusy" % cvar)
-        btn("redo%s" % key, (432, y + 15, 132, 28), "RE-CONVERT", "coop_byoconvert frontline", enabledcvar="%s !coop_byoBusy" % cvar)
-        txt("busy%s" % key, (432, y + 22, 132, 15), "converting...", "verdana-12", RUST, "center", enabledcvar="coop_byoBusy")
-    else:
-        # [v1.10.68] the European Assault converter plugs into hzmconv in v1.10.69 (INTEGRATION.md section 10)
-        txt("soon%s" % key, (316, y + 30, 248, 15), "Arrives in the next update.", "verdana-12", MUTED, enabledcvar="!" + cvar)
+    btn("add%s" % key, (432, y + 15, 132, 28), "ADD", "coop_byoconvert " + game, enabledcvar="!%s !coop_byoBusy" % cvar)
+    btn("redo%s" % key, (432, y + 15, 132, 28), "RE-CONVERT", "coop_byoconvert " + game, enabledcvar="%s !coop_byoBusy" % cvar)
+    txt("busy%s" % key, (432, y + 22, 132, 15), "converting...", "verdana-12", RUST, "center", enabledcvar="coop_byoBusy")
 
 lab("statusRule", (64, 306, 512, 1), RULE)
 W("Label", "status", (64, 312, 512, 30), title="", fgcolor=RUST, bgcolor=CLEAR, borderstyle="NONE", font="verdana-12",

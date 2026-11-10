@@ -71,12 +71,12 @@ def launch(present, tail, boot_lines):
         if fn.lower().endswith(".pid") or fn in ("qconsole.log", "byo_status.txt"):
             os.remove(os.path.join(mt, fn))
     on = ["set rconPassword %s" % RCONPW, "set sv_maxbots 0", "set com_maxfps 60", "set coop_dev 1", "set coop_joinCard 0",
-          "set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set in_gamepad 0", "set in_joystick 0",
+          "set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set in_gamepad 0", "set in_joystick 0", "set in_mouse 0", "set in_nograb 1",
           "set con_notifytime -1", "set thereisnomonkey 1", "set cheats 1"] + list(boot_lines)
     sets = [("com_target_game", "2"), ("fs_basepath", GOG), ("fs_homepath", home(present)), ("cl_renderer", "opengl2"),
             ("r_mode", "-1"), ("r_customwidth", str(W)), ("r_customheight", str(H)), ("r_fullscreen", "0"),
             ("developer", "1"), ("logfile", "2"), ("net_port", str(PORT)), ("net_ip", "127.0.0.1"), ("s_volume", "0"),
-            ("in_gamepad", "0"), ("in_joystick", "0")]
+            ("in_gamepad", "0"), ("in_joystick", "0"), ("in_mouse", "0"), ("in_nograb", "1")]
     args = [EXE]
     for k, v in sets:
         args += ["+set", k, v]

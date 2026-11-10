@@ -6,7 +6,12 @@
 #
 #   byo_convert.ps1 -Game frontline|ea -GameHome <homepath\maintt> -MohaaBase <game folder> [-Image <iso|zip>] [-NoGui]
 #
-# -NoGui with -Image converts without a window (tests; the v1.10.69 silent re-convert). The one-line result goes to
+# -NoGui with -Image converts without a window (tests). -Reconvert (v1.10.69, run hidden by updater.ps1 at launch): for
+# every disc remembered in byo_images.txt whose missions were written by an OLDER converter (byo_converted.txt), convert
+# again into maintt\byo_pending\ and move the paks into place; a pak the running game holds open stays pending and the
+# updater moves it before the next launch. Nothing to do = exits at once. Never shows anything, never fails an update.
+# -NoActivate [-Screen 3440x1440] (tests): the window is shown without ever taking focus, not topmost, on that screen.
+# The one-line result goes to
 # <GameHome>\byo_status.txt, which the game shows in the menu when this window closes; the full log is
 # <GameHome>\byo_convert.log.
 param(
@@ -16,13 +21,18 @@ param(
     [string]$Image = "",
     [switch]$NoGui,
     # QA only: draw the window into this .png without ever showing it (no focus taken), then exit
-    [string]$Snapshot = ""
+    [string]$Snapshot = "",
+    [switch]$Reconvert,
+    [switch]$NoActivate,
+    [string]$Screen = "3440x1440"
 )
 $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot
 $statusFile = Join-Path $GameHome "byo_status.txt"
 $logFile = Join-Path $GameHome "byo_convert.log"
 $memFile = Join-Path $GameHome "byo_images.txt"
+$verFile = Join-Path $GameHome "byo_converted.txt"      # game|converter version that wrote the current paks
+$script:outDir = $GameHome
 
 $G = @{
     frontline = @{ Name = "Medal of Honor: Frontline"; Short = "Frontline"; Key = "frontline"; Missions = "SEALED ORDERS (St. Mathieu, 1944)" }
@@ -90,7 +100,7 @@ function Remember($img) {
 function Start-Convert($exe, $img) {
     $out = Join-Path $env:TEMP ("hzmconv_{0}.jsonl" -f [guid]::NewGuid().ToString("N"))
     $script:convOut = $out
-    $cargs = "add --game $Game --image `"$img`" --mohaa `"$MohaaBase`" --home `"$GameHome`" --films"
+    $cargs = "add --game $Game --image `"$img`" --mohaa `"$MohaaBase`" --home `"$($script:outDir)`" --films"
     $psi = New-Object System.Diagnostics.ProcessStartInfo
     $psi.FileName = Join-Path $env:SystemRoot "System32\cmd.exe"
     $psi.Arguments = "/d /s /c `"`"$exe`" $cargs >`"$out`" 2>`"$out.err`"`""
@@ -122,12 +132,38 @@ function Describe($o) {
     return ""
 }
 
+function Get-Converted {
+    $m = @{}
+    if (Test-Path -LiteralPath $verFile) {
+        foreach ($l in (Get-Content -LiteralPath $verFile)) { $kv = $l -split "\|", 2; if ($kv.Count -eq 2) { $m[$kv[0]] = $kv[1] } }
+    }
+    return $m
+}
+
+function Set-Converted($game, $ver) {
+    try {
+        $m = Get-Converted; $m[$game] = $ver
+        Set-Content -LiteralPath $verFile -Value @($m.Keys | Sort-Object | ForEach-Object { "$_|$($m[$_])" }) -Encoding ascii
+    } catch {}
+}
+
+# move converted paks from maintt\byo_pending into maintt; a pak the game holds open stays for the next launch
+function Move-Pending {
+    $pd = Join-Path $GameHome "byo_pending"
+    if (-not (Test-Path -LiteralPath $pd)) { return }
+    foreach ($f in @(Get-ChildItem -LiteralPath $pd -File -Filter "zzzz_*.pk3")) {
+        try { Move-Item -LiteralPath $f.FullName -Destination (Join-Path $GameHome $f.Name) -Force; Log "pending -> $($f.Name)" }
+        catch { Log "pending kept (in use?): $($f.Name)" }
+    }
+}
+
 function Finish($p) {
     $objs = Read-Progress
     $err = $objs | Where-Object { $_.error } | Select-Object -Last 1
     $done = $objs | Where-Object { $_.done } | Select-Object -Last 1
     if ($done -and $p.ExitCode -eq 0) {
         foreach ($f in $done.files) { Log "wrote $f" }
+        Set-Converted $Game ([string]$done.version)
         Set-Result "$($G.Short) added: $($G.Missions). Restart the game to play it."
         return $true
     }
@@ -143,14 +179,42 @@ $exe = $null
 try { $exe = Get-Converter } catch { Log "unpack failed: $_" }
 if (-not $exe) {
     Set-Result "The disc converter is missing - run launch_coop (the updater) once, then try again."
-    if (-not $NoGui) {
+    if (-not $NoGui -and -not $Reconvert -and -not $Snapshot) {
         Add-Type -AssemblyName System.Windows.Forms
         [void][System.Windows.Forms.MessageBox]::Show("The disc converter (hzmconv) is not installed yet.`nRun launch_coop once so the updater fetches it, then try again.", "Your own discs")
     }
     exit 2
 }
 
-# ------------------------------------------------------------------ no window (tests, silent re-convert)
+# ------------------------------------------------------------------ silent re-convert (updater, hidden)
+if ($Reconvert) {
+    try {
+        $cur = ""
+        try { $cur = ((& $exe version 2>$null | Select-Object -Last 1) | ConvertFrom-Json).version } catch {}
+        if (-not $cur -or -not (Test-Path -LiteralPath $memFile)) { exit 0 }
+        $have = Get-Converted
+        $todo = @(Get-Content -LiteralPath $memFile | ForEach-Object { $kv = $_ -split "\|", 2; if ($kv.Count -eq 2) { ,$kv } } |
+                  Where-Object { $have[$_[0]] -ne $cur })
+        foreach ($kv in $todo) {
+            $Game = $kv[0]; $img = $kv[1]
+            $G = @{ frontline = @{ Short = "Frontline"; Missions = "SEALED ORDERS" }; ea = @{ Short = "European Assault"; Missions = "THEIR DYING BREATH" } }[$Game]
+            if (-not $G) { continue }
+            if (-not (Test-Path -LiteralPath $img)) { Log "reconvert $Game skipped: image gone ($img), old paks kept"; continue }
+            Log "reconvert $Game (converter $($have[$Game]) -> $cur)"
+            $script:outDir = Join-Path $GameHome "byo_pending"
+            New-Item -ItemType Directory -Force -Path $script:outDir | Out-Null
+            $p = Start-Convert $exe $img
+            $p.PriorityClass = "BelowNormal"
+            if (-not $p.WaitForExit(30 * 60 * 1000)) { try { & taskkill.exe /T /F /PID $p.Id | Out-Null } catch {}; Log "reconvert $Game timed out"; continue }
+            Start-Sleep -Milliseconds 300
+            [void](Finish $p)
+            Move-Pending
+        }
+    } catch { Log "reconvert failed: $_" }
+    exit 0
+}
+
+# ------------------------------------------------------------------ no window (tests)
 if ($NoGui) {
     if (-not $Image) { Set-Result "No disc image given."; exit 2 }
     $p = Start-Convert $exe $Image
@@ -169,13 +233,33 @@ Add-Type -AssemblyName System.Drawing
 $ink = [System.Drawing.Color]::FromArgb(40, 28, 14)
 $paper = [System.Drawing.Color]::FromArgb(236, 226, 200)
 
-$f = New-Object System.Windows.Forms.Form
+if ($NoActivate) {
+    # tests: a form that never takes focus (WS_EX_NOACTIVATE, ShowWithoutActivation) on the chosen test screen
+    Add-Type -ReferencedAssemblies System.Windows.Forms -TypeDefinition @"
+public class HzmNoActForm : System.Windows.Forms.Form {
+    protected override bool ShowWithoutActivation { get { return true; } }
+    protected override System.Windows.Forms.CreateParams CreateParams {
+        get { var p = base.CreateParams; p.ExStyle |= 0x08000000 | 0x00000080; return p; }   // NOACTIVATE | TOOLWINDOW
+    }
+}
+"@
+    $f = New-Object HzmNoActForm
+} else {
+    $f = New-Object System.Windows.Forms.Form
+}
 $f.Text = "Your own discs - $($G.Name)"
 $f.ClientSize = New-Object System.Drawing.Size(620, 380)
 $f.StartPosition = "CenterScreen"
 $f.FormBorderStyle = "FixedDialog"
 $f.MaximizeBox = $false
-$f.TopMost = $true
+$f.TopMost = -not $NoActivate
+if ($NoActivate) {
+    $wh = $Screen -split "x"
+    $scr = [System.Windows.Forms.Screen]::AllScreens | Where-Object { $_.Bounds.Width -eq [int]$wh[0] -and $_.Bounds.Height -eq [int]$wh[1] } | Select-Object -First 1
+    if (-not $scr) { Log "no $Screen screen - not showing a test window"; exit 3 }
+    $f.StartPosition = "Manual"
+    $f.Location = New-Object System.Drawing.Point(($scr.Bounds.X + 40), ($scr.Bounds.Y + 40))
+}
 $f.BackColor = $paper
 $f.Font = New-Object System.Drawing.Font("Segoe UI", 9.5)
 
@@ -297,7 +381,7 @@ $f.Add_FormClosing({
 $close.Add_Click({ $f.Close() })
 
 $f.Add_Shown({
-    $f.Activate()
+    if (-not $NoActivate) { $f.Activate() }
     $f.Refresh()
     $c = Get-Candidates $exe
     foreach ($x in $c) { [void]$lst.Items.Add($x) }
@@ -322,4 +406,4 @@ if ($Snapshot) {
     exit 0
 }
 if (Test-Path -LiteralPath $statusFile) { Remove-Item -LiteralPath $statusFile -Force }
-[void]$f.ShowDialog()
+if ($NoActivate) { [System.Windows.Forms.Application]::Run($f) } else { [void]$f.ShowDialog() }   # Run = Show: honours ShowWithoutActivation

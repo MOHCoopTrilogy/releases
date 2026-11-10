@@ -22,6 +22,10 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(getattr(sys, "_MEIPASS", None) or __file__))
 sys.path.insert(0, HERE)
+# [v1.10.69] the converter's own version. Bump it whenever a change alters what a conversion writes: the updater
+# (updater.ps1 BYO RE-CONVERT) re-converts every remembered disc silently when this differs from the version that
+# wrote the player's paks (maintt\byo_converted.txt). Unchanged = no work at all.
+HZMCONV_VERSION = "1.10.69.1"
 TOOLS = os.path.join(os.path.dirname(os.path.abspath(sys.executable if getattr(sys, "frozen", False) else __file__)), "tools")
 
 
@@ -163,14 +167,35 @@ class OpenImage:
         self.close()
 
 
+def _ea_modules_first():
+    """European Assault ships its own copies of the shared fl*.py modules (docs/tools/ea, bundled as _internal/ea):
+    they changed for EA, and a Frontline convert with them is not byte-identical, so the two sets never mix. One
+    process converts one game, and nothing from the Frontline set is imported before this runs; a path finder at the
+    front of sys.meta_path makes the EA folder win over PyInstaller's frozen (Frontline) modules."""
+    import importlib.machinery
+    for d in [os.path.join(b, "ea") for b in (getattr(sys, "_MEIPASS", ""), HERE, os.path.dirname(HERE)) if b]:
+        if os.path.isfile(os.path.join(d, "hzmconv_ea.py")):
+            class _EAFinder:
+                @staticmethod
+                def find_spec(fullname, path=None, target=None):
+                    if "." in fullname or fullname == "hzmconv":
+                        return None
+                    return importlib.machinery.PathFinder.find_spec(fullname, [d])
+            sys.meta_path.insert(0, _EAFinder)
+            sys.path.insert(0, d)
+            return d
+    raise ImportError("no European Assault modules")
+
+
 def game(name):
     if name == "frontline":
         return FrontlineGame
     if name == "ea":
         try:
+            _ea_modules_first()
             import hzmconv_ea   # the EA agent's module (same interface)
-        except ImportError:
-            emit(error="European Assault support is not in this converter build yet")
+        except ImportError as e:
+            emit(error="European Assault support is not in this converter build yet (%s)" % e)
             raise SystemExit(3)
         return hzmconv_ea
     raise SystemExit("unknown game %r" % name)
@@ -200,6 +225,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="hzmconv")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("detect")
+    sub.add_parser("version")
     v = sub.add_parser("verify")
     v.add_argument("--game", required=True)
     v.add_argument("--image", required=True)
@@ -212,6 +238,9 @@ def main(argv=None):
     a.add_argument("--upscale", action="store_true")
     a.add_argument("--level", action="append")
     o = ap.parse_args(argv)
+    if o.cmd == "version":
+        emit(version=HZMCONV_VERSION, games=["frontline", "ea"])
+        return 0
     if o.cmd == "detect":
         emit(candidates=detect())
         return 0
@@ -238,7 +267,7 @@ def main(argv=None):
         except Exception as e:
             emit(error="conversion failed: %s" % e)
             return 1
-    emit(done=True, files=written)
+    emit(done=True, files=written, version=HZMCONV_VERSION)
     return 0
 
 

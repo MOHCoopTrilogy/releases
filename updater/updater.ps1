@@ -111,10 +111,45 @@ function Show-InstallFailure {
     }
 }
 
+# [v1.10.69] BYO RE-CONVERT. Missions converted from the player's OWN Frontline / European Assault disc are local paks
+# (never in the manifest). Before the game starts: (1) move paks a hidden re-convert left in home\maintt\byo_pending
+# into place (the game held the old ones open); (2) start byo_convert.ps1 -Reconvert detached, hidden, below normal
+# priority - it re-converts only the discs remembered in byo_images.txt whose paks an OLDER converter wrote
+# (byo_converted.txt vs `hzmconv version`), and exits at once otherwise. Every step is try/catch'd and nothing waits
+# on it: it can never block, fail or roll back an update or the launch.
+function ByoMaintain {
+    try {
+        $mt = Join-Path $app "home\maintt"
+        $pd = Join-Path $mt "byo_pending"
+        if (Test-Path -LiteralPath $pd) {
+            foreach ($f in @(Get-ChildItem -LiteralPath $pd -File -Filter "zzzz_*.pk3")) {
+                try { Move-Item -LiteralPath $f.FullName -Destination (Join-Path $mt $f.Name) -Force; Log "byo: pending $($f.Name) moved in" }
+                catch { Log "byo: pending $($f.Name) still locked" }
+            }
+        }
+        $ps1 = Join-Path $app "byo_convert.ps1"
+        if (-not (Test-Path -LiteralPath (Join-Path $mt "byo_images.txt")) -or -not (Test-Path -LiteralPath $ps1)) { return }
+        $base = ""
+        $infoFile = Join-Path $app "install_info.txt"
+        if (Test-Path $infoFile) {
+            $m = Select-String -Path $infoFile -Pattern "^GogPath=(.*)$"
+            if ($m) { $base = $m.Matches[0].Groups[1].Value.Trim() }
+        }
+        if (-not $base -and $ini["LaunchArgs"] -match 'fs_basepath "([^"]+)"') { $base = $Matches[1] }
+        if (-not $base) { Log "byo: no game folder known - re-convert skipped"; return }
+        $p = Start-Process -FilePath "powershell.exe" -WindowStyle Hidden -PassThru -WorkingDirectory $app -ArgumentList @(
+            "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-WindowStyle", "Hidden", "-File", "`"$ps1`"",
+            "-Reconvert", "-GameHome", "`"$mt`"", "-MohaaBase", "`"$base`"")
+        try { $p.PriorityClass = "BelowNormal" } catch {}
+        Log "byo: re-convert check started (pid $($p.Id))"
+    } catch { Log "byo: skipped ($_)" }
+}
+
 function LaunchGame {
     try {
         # never start a second copy (a game launched mid-update, or by another shortcut)
         if (Get-Process openmohaa -ErrorAction SilentlyContinue) { exit }
+        ByoMaintain
         $exe = Join-Path $app "openmohaa.exe"
         # nothing to launch = a first install that did not finish: say why instead of failing in silence
         if (-not (Test-Path $exe)) { Show-InstallFailure; exit }
