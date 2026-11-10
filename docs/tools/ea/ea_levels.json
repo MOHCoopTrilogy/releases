@@ -35,21 +35,18 @@
    "MO_RescueComplete"
   ],
   "objects": {
-   "start": "JA_SquadObjective_SQ01_PlayerStart_01",
-   "officer": "JA_SquadObjective_Allie_ICS_FollowMe_02",
-   "railgun": "SMA_RailGun6.sob",
-   "tower": [
-    "SMA_RadioTower5.sob",
-    "JA_Dispatcher_CommTower_Destroyed"
-   ],
-   "ammo": "XD_Rus1_ammo_dump.sob",
-   "bridge": "SMA_WoodBridge6.sob",
+   "start": "Player01",
+   "officer": "JA_SquadDefinition_SQ01_PlayerStart",
+   "railgun": "BR_SmartObject_Railgun_01",
+   "tower": "JA_CommTower_SmartObject",
+   "ammo": "JA_SmartObject_AmmoDump",
+   "bridge": "JA_Bridge_SmartObject",
    "partisans": "BR_MissionObjective_Secondary_PartisanLeader_03",
-   "panzer1": "BR_SquadDefinition_BAR_Secondary_Panzer1",
-   "panzer3": "BR_SquadDefinition_BAR_Secondary_Panzer3",
-   "panzers_obj": "BR_MissionObjective_Secondary_DestroyPanzers_02"
+   "panzer1": "BR_TreadedVehicle_BAR_Secondary_Panzer1_01",
+   "panzer3": "BR_TreadedVehicle_BAR_Secondary_Panzer3_01",
+   "panzers_obj": "BR_TreadedVehicle_BAR_Secondary_Panzer2_01"
   },
-  "_objects_doc": "names of placements in the disc's own object DB (eaents.py); eapack resolves them to positions on the player's PC. Identifiers only, no disc data.",
+  "_objects_doc": "record names in the disc's object DB (eadb.py, pool-index names; the eaents names before converter 0.3.0 were wrong); eapack resolves them to positions on the player's PC. Identifiers only, no disc data.",
   "music": {
    "mpf": "mus_ctrl.mpf",
    "mus": "mus_str.mus",

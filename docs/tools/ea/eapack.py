@@ -3,7 +3,7 @@
 player's own disc (Frontline's flpack.py pattern). Our own code. Nothing it writes is shipped.
 
 Reads: the level's strings.viv (objective text, by the keys ea_levels.json lists) and the level_a.str object
-database (eaents.ObjectDB: placements by NAME, which ea_levels.json references). Positions are converted to BSP
+database (eadb.DB: placements by NAME, which ea_levels.json references). Positions are converted to BSP
 units with the converter's transform X and moved to the nearest free standing spot on the collision (flgeom).
 
 level vars written (single frame, no waits):
@@ -15,7 +15,8 @@ level vars written (single frame, no waits):
 import math
 import re
 
-import eaents
+import eadb
+import eavm
 import eastrings
 
 SPAWN_RX = re.compile(r"NPCSpawnPoint_", re.I)
@@ -122,10 +123,25 @@ def use_points(grid, target, toward, n_ring=16, radii=(0, 96, 160, 220), app_r=(
     return use, None, None
 
 
+def _places(L, db=None):
+    """world-space records of the level's object DB (eadb: names by string-pool index), in file order, as the dicts
+    the placement code below expects; spawn points carry their team from the character definition"""
+    db = db or eadb.DB(L.stream)
+    out = []
+    for r in db.recs:
+        if r.pos == (0.0, 0.0, 0.0):
+            continue
+        o = {"name": r.name, "class": r.cls, "pos": r.pos, "yaw": r.yaw, "off": r.off, "size": len(r.w) * 4}
+        if r.cls == "NPCSpawnPoint":
+            o["team"] = eadb.team_of(r.npc()["character"])
+            o["name"] = r.name if "NPCSpawnPoint_" in r.name else "NPCSpawnPoint_" + r.name
+        out.append(o)
+    return out
+
+
 def find_object(L, wants, X, grid, zrange):
     """first world-space placement (metres) for a name or a fallback list; same rules as build()"""
-    db = eaents.ObjectDB(L.stream)
-    places = sorted(db.placements(), key=lambda o: o["off"])
+    places = _places(L)
     for want in ([wants] if isinstance(wants, str) else wants):
         for o in places:
             if (o["name"] == want or o["name"].endswith(want)) and zrange[0] - 1 <= o["pos"][2] <= zrange[1] + 1:
@@ -137,8 +153,8 @@ def find_object(L, wants, X, grid, zrange):
 
 def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vgm=None):
     text = level_strings(L.disc, level)
-    db = eaents.ObjectDB(L.stream)
-    places = sorted(db.placements(), key=lambda o: o["off"])
+    db = eadb.DB(L.stream)
+    places = _places(L, db)
     lo_z, hi_z = zrange
 
     def plausible(o):
@@ -201,7 +217,7 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
             continue
         if not SPAWN_RX.search(o["name"]):
             continue
-        is_al = ALLY_RX.search(o["name"])
+        is_al = o.get("team") == "allies" if o.get("team") else ALLY_RX.search(o["name"])
         p = strict_spot(X(o["pos"]))
         if p is None:            # no spot the engine accepts near it: drop the spawn point rather than spawn stuck
             log("eapack: spawn point dropped (no free spot)", o["name"])
@@ -261,6 +277,10 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
             else:
                 log("eapack: no clear approach for", key)
 
+    def ground_pt(q):
+        g = grid.ground(q[0], q[1], q[2] + 48, q[2] - 160)
+        return (q[0], q[1], g + 2) if g is not None else None
+    vm = eavm.build(db, X, strict_spot, ground_pt, text, lines, log)
     nmus = 0
     if vgm and spec.get("music"):
         nmus = music(L, level, spec["music"], vgm, files, lines, log)
@@ -269,4 +289,4 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     if mohaa_base:
         import flpack      # stock aliases are map-filtered: re-declare the AA-campaign ones for coop_ea (Frontline recipe)
         files["ubersound/ea_aliasbridge.scr"] = flpack.alias_bridge(mohaa_base, "coop_ea_" + level).encode("latin-1")
-    return {"objects": sorted(found), "axis": na, "allies": nl, "text": len(spec.get("text", [])), "music": nmus}
+    return {"vm": vm, "objects": sorted(found), "axis": na, "allies": nl, "text": len(spec.get("text", [])), "music": nmus}
