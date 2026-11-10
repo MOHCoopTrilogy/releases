@@ -66,13 +66,13 @@ def main():
         os.remove(log_p)
     boot = ["set developer 1", "set in_gamepad 0", "set in_joystick 0", "set in_mouse 0", "set in_nograb 1",
             "set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set coop_hardcore 0",
-            "set rcon_password %s" % PW, "set g_gametype 2", "set cheats 1", "set coop_dev 1", "set coop_lockLoadout 0",
+            "set rconPassword %s" % PW, "set g_gametype 2", "set cheats 1", "set coop_dev 1", "set coop_lockLoadout 0",
             'seta coop_lo2 ""', 'seta coop_loA2 ""', 'seta coop_loFA1 ""', 'seta coop_loFA2 ""', 'seta coop_loFA3 ""',
             "set cg_adsSightDebug 1", "set ui_dmmap m2l1", "ui_startdmmap 2"]
     open(os.path.join(MAINTT, "fs2_ads.cfg"), "w", newline="\n").write("\n".join(boot) + "\n")
     args = [os.path.join(CLIENT, "openmohaa.exe"), "+set", "com_target_game", "2", "+set", "fs_basepath", E.GOG,
             "+set", "fs_homepath", os.path.join(CLIENT, "home"), "+set", "cl_renderer", "opengl2", "+set", "r_mode", "-1",
-            "+set", "r_customwidth", str(w), "+set", "r_customheight", str(h), "+set", "net_port", str(PORT), "+set", "net_enabled", "1", "+set", "rcon_password", PW,
+            "+set", "r_customwidth", str(w), "+set", "r_customheight", str(h), "+set", "net_port", str(PORT), "+set", "net_enabled", "1", "+set", "rconPassword", PW,
             "+set", "logfile", "2", "+set", "com_maxfps", "60", "+set", "cheats", "1", "+set", "in_gamepad", "0", "+set", "in_joystick", "0",
             "+exec", "fs2_ads.cfg"]
     args, late = hw.apply_policy(args, width=w, height=h)
@@ -89,7 +89,8 @@ def main():
             if os.path.exists(log_p) and "initialising coop weapon loadout" in open(log_p, errors="ignore").read():
                 break
         time.sleep(12)
-        rc("+attack", 0.3); rc("-attack", 6)
+        for _ in range(3):                         # past the join card (spectator -> fire to join), after the client is in
+            rc("+attack", 0.4); rc("-attack", 5)
         rc("+right", 0.5); rc("-right", 1)
         for slot, gid, base, fins in GUNS:
             rc("exec ui/loadout/w%s_s%d.cfg" % (gid, slot), 6)
