@@ -104,6 +104,68 @@ def check_spots():
             n[0] += 1; c("set cg_engraveQuadNow 1;screenshotJPEG %s_%02d_%s_%s" % (tag, n[0], key, sp)); wait(0.6)
         c('set cl_cust_%s ""' % key)
 
+def face_check():
+    """[benchfix] hand check of every spot's whole face: magenta tiles over its usable cells, ENGRAVETILE corners per tile"""
+    import json
+    wait(20); c("set thereisnomonkey 1"); c("set cheats 1"); c("set developer 1"); c('set cl_engraveText "X"')
+    c("spdevmap m3l2"); wait(45); c("finishloadingscreen"); wait(6)
+    guns = json.load(open(r"C:\Users\curry\AppData\Local\Temp\claude\cf30267572f02900\62f7348a-09fe-4e2b-810a-023a3be2b822\scratchpad\eg_allguns.json"))
+    table = open(os.path.join(MOD, "scripts", "hzm_engrave_anchors.txt")).read().splitlines()
+    faces = {}
+    for ln in table:
+        if ln.startswith("face "):
+            k, sp = ln.split()[1:3]
+            faces.setdefault(k, []).append(sp)
+    only = os.environ.get("EG_ONLY", "")
+    for tik, name, typ in guns:
+        key = os.path.basename(tik)[:-4]
+        if key not in faces or (only and key not in only.split(",")):
+            continue
+        c("echo ^~^~^ SPTEST gun " + tik)
+        c("give " + tik); wait(1); c('use "%s"' % name); wait(3)
+        for sp in faces[key]:
+            c("set cg_engraveFaceCheck " + sp); wait(0.6)
+            n[0] += 1; c("set cg_engraveQuadNow 1;screenshotJPEG %s_%02d_%s__%s" % (tag, n[0], key, sp)); wait(0.6)
+        c('set cg_engraveFaceCheck ""')
+
+def bench_tilt():
+    """[benchfix] the preview tilted up / down (the drag's pitch, driven by hzmcust tilt), turned over, zoomed"""
+    wait(20); c('set cl_engraveText "Lucky Lady"'); c("pushmenu coop_custom")
+    for g, page in (("m1_garand", "mvp01_0_s1"), ("thompsonsmg", "mvp24_0_s1"), ("colt45", "mvp48_0_s1"), ("kar98", "mvp03_0_s1")):
+        c("exec ui/loadout/%s.cfg" % page); c("hzmcust open"); shot(g + "_flat", 1.5)
+        c("hzmcust tilt 45"); shot(g + "_tiltup", 1)
+        c("hzmcust tilt -90"); shot(g + "_tiltdown", 1)
+        c("hzmcust tilt -90;echo ^~^~^ TILT;cl_custTilt"); shot(g + "_tiltclamp", 1)   # asks -105: stays at -60
+        c("hzmcust turn"); shot(g + "_turn_tilted", 1)
+        c("hzmcust zoom"); shot(g + "_zoom", 1)
+        c("hzmcust zoom;hzmcust turn;hzmcust tilt 60")
+
+def bench_move():
+    """[benchfix] the carving slid along the whole face (ZOOM 1 = the face, ZOOM 2 = the piece): Garand receiver both ends,
+    Kar98k stock side, an emblem slid along the receiver"""
+    def look(name):
+        c("hzmcust zoom"); shot(name + "_face", 1.2); c("hzmcust zoom"); shot(name + "_close", 1.2); c("hzmcust zoom")
+    wait(20); c('set cl_engraveText "Lucky Lady"'); c("pushmenu coop_custom")
+    c("exec ui/loadout/mvp01_0_s1.cfg"); c("hzmcust open;hzmcust scale -0.3"); look("garand_centre")
+    for _ in range(8):
+        c("hzmcust move -1.5 0")
+    c("echo ^~^~^ MOVE garand far left;cl_custEdit"); look("garand_left")
+    for _ in range(16):
+        c("hzmcust move 1.5 0")
+    c("echo ^~^~^ MOVE garand far right;cl_custEdit"); look("garand_right")
+    c("hzmcust item 1"); [c("hzmcust emblem 1") for _ in range(12)]; c("hzmcust spot -1")
+    for _ in range(10):
+        c("hzmcust move -1.5 0")
+    c("echo ^~^~^ MOVE garand emblem far;cl_custEdit"); look("garand_emblem_left")
+    c("exec ui/loadout/mvp03_0_s1.cfg"); c("hzmcust open")
+    c("hzmcust spot 1"); c("echo ^~^~^ MOVE kar98 spot;cl_custSpotTxt"); look("kar98_stock_centre")
+    for _ in range(14):
+        c("hzmcust move -1.5 0")
+    c("echo ^~^~^ MOVE kar98 far;cl_custEdit"); look("kar98_stock_far")
+    for _ in range(4):
+        c("hzmcust move 0 0.1")
+    c("echo ^~^~^ MOVE kar98 up;cl_custEdit"); look("kar98_stock_up")
+
 def check_short():
     """hand check of the words on every gun (short words use the engrave_short spot): flat magenta quads"""
     import json
@@ -120,7 +182,7 @@ def check_short():
         c("give " + tik); wait(1); c('use "%s"' % name); wait(3.2)
         n[0] += 1; c("set cg_engraveQuadNow 1;screenshotJPEG %s_%02d_%s" % (tag, n[0], key)); wait(0.8)
 
-{"check_short": check_short, "bench_guns": bench_guns, "bench_type": bench_type, "ingame_emblems": ingame_emblems, "check_spots": check_spots}[scen]()
+{"face_check": face_check, "bench_tilt": bench_tilt, "bench_move": bench_move, "check_short": check_short, "bench_guns": bench_guns, "bench_type": bench_type, "ingame_emblems": ingame_emblems, "check_spots": check_spots}[scen]()
 c("echo ^~^~^ ENGRAVE done"); c("quit")
 E.CLIENT_CFG = "omconfig_fresh.cfg"
 shutil.copyfile(os.path.join(E.CLIENT, "pristine", "omconfig_fresh.cfg"), os.path.join(E.CLIENT, "pristine", "omconfig.cfg.run"))
