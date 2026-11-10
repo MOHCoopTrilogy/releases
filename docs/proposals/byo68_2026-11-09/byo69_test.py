@@ -26,7 +26,7 @@ EXE = os.path.join(CLIENT, "openmohaa.exe")
 RUNS = r"H:\hzm_work\byo68-test\runs69"
 OWNER = "byo68"
 PORT = 12297
-W, H = 1600, 900
+W, H = (int(v) for v in os.environ.get("BYO_RES", "1600x900").split("x"))   # 21:9 QA: BYO_RES=2400x1028
 FK = {"F%d" % n: 0x6F + n for n in range(5, 13)}
 TRIPPED = []
 
@@ -120,8 +120,8 @@ def case_menu(present, out, res):
            (["set ui_dmmap coop_ea_1_11", "seta coop_mapcmd map coop_ea_1_11"] if present else [])),
           # the tile's own command: with the pak the generic tile 1, without it the lock Button on top of it
           ("F8", "tile", (["set ui_coopCamp 14", "exec ui/coop_start/fl.cfg", "set ui_dmmap coop_fl_1_1;seta coop_mapcmd map coop_fl_1_1"]
-                          if present else ["set ui_coopCamp 14", "exec ui/coop_start/fl.cfg", "pushmenu coop_byolocked_fl"])),
-          ("F9", "lockopen", ["popmenu 0", "pushmenu coop_byodisc"]),
+                          if present else ["set ui_coopCamp 14", "exec ui/coop_start/fl.cfg", "set ui_byoLock 14"])),
+          ("F9", "lockopen", ["set ui_byoLock 0", "pushmenu coop_byodisc"]),
           ("F10", "cvars", ["ui_dmmap", "coop_flHave_1_1", "coop_eaHave_1_11", "byo"]),
           ("F11", "newgame", ["pushmenu hzm_newgame3d"])]
     c = launch(present, [], st)
@@ -270,7 +270,7 @@ def main(cases):
                 print("GUARD TRIPPED - stopping:", TRIPPED)
                 break
             present = case.endswith("present")
-            out = os.path.join(RUNS, case)
+            out = os.path.join(RUNS, case + ("_" + os.environ["BYO_RES"] if os.environ.get("BYO_RES") else ""))
             shutil.rmtree(out, ignore_errors=True)
             os.makedirs(out)
             res = {"case": case}
