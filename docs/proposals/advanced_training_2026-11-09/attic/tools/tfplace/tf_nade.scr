@@ -1,0 +1,44 @@
+// trainfix test only (never shipped): watch a REAL quick-grenade throw (+coopnade held by the harness) - how long the torso
+// charged, and how long the thrown projectile lived (= the fuse it carried out of the hand)
+watch:{
+	local.p = $player[1]	// testthread runs with no self: the one test client
+	if( local.p == NULL || local.p == NIL ){ end }
+	local.p ammo agrenade 5
+	local.p ammo "grenade" 5
+	local.chT = NIL
+	local.chMax = 0
+	local.seen = NIL
+	local.t0 = level.time
+	local.max = int( getcvar( "maxentities" ) )
+	if( local.max < 1 ){ local.max = 1024 }
+	local.proj = NULL
+	while( level.time - local.t0 < 14 && local.p != NULL ){
+		local.tor = local.p gettorsostate
+		if( local.tor == "CHARGE_ATTACK_GRENADE" ){
+			if( local.chT == NIL ){ local.chT = level.time }
+			if( level.time - local.chT > local.chMax ){ local.chMax = level.time - local.chT }
+		} else { local.chT = NIL }
+		if( local.proj == NULL && local.seen == NIL ){
+			for( local.n = 0; local.n < local.max; local.n++ ){
+				local.e = getentity( local.n )
+				if( local.e == NULL || local.e == NIL ){ continue }
+				if( local.e.classname == "Projectile" ){
+					local.proj = local.e
+					local.seen = level.time
+					println( "^~^~^ TFNADE thrown at " + level.time + " charge=" + local.chMax + " model=" + local.e.model )
+					break
+				}
+			}
+		}
+		if( local.seen != NIL && local.proj == NULL ){
+			println( "^~^~^ TFNADE fuse_after_throw=" + ( level.time - local.seen ) + " charge=" + local.chMax )
+			end
+		}
+		if( !( isAlive local.p ) ){
+			println( "^~^~^ TFNADE player_dead charge=" + local.chMax + " thrown=" + ( local.seen != NIL ) )
+			end
+		}
+		wait 0.05
+	}
+	println( "^~^~^ TFNADE timeout charge=" + local.chMax + " thrown=" + ( local.seen != NIL ) )
+}end

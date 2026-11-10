@@ -65,9 +65,14 @@ CARDS = (("Basic", 76, "Basic Training", ("The retail course: move, shoot,", "gr
          ("Adv", 328, "Advanced Training", ("Every coop skill, one field:", "cover, medkits, DBNO, sandbags,", "supply drop, bombing run."),
           "textures/mohmenu/hzmtile/m4l0at_c", ADV))
 for key, x, cap, desc, art, cmd in CARDS:
-    # the whole card: a button under everything else (paper glow while hovered)
-    res("Button", name=q("card" + key), rect="%d 122 236 258" % x, fgcolor=CLEAR, bgcolor=ROW, borderstyle=q("NONE"),
-        hovershader=q("textures/mohmenu/hzm_theme/mpui_glow_paper"), clicksound=q("sound/menu/apply.wav"), stuffcommand=q(cmd))
+    # [trainfix 2026-11-10, v1.10.72 user report: the card pictures vanished on hover] the card's paper is a LABEL, and the
+    # whole-card click target is a fully TRANSPARENT button with no hover shader. Declaring the button first does not keep
+    # it underneath: UIWindowManager activates a hovered/clicked control with BringToFrontPropogated() (uilib/uiwinman.cpp
+    # ~429), so the active button is drawn LAST - its opaque paper bgcolor + mpui_glow_paper covered the art, caption and
+    # text. A transparent button can come to the front and hide nothing.
+    label("cardBg" + key, "%d 122 236 258" % x, bg=ROW)
+    res("Button", name=q("card" + key), rect="%d 122 236 258" % x, fgcolor=CLEAR, bgcolor=CLEAR, borderstyle=q("NONE"),
+        clicksound=q("sound/menu/apply.wav"), stuffcommand=q(cmd))
     label("artFrame" + key, "%d 128 144 144" % (x + 46), bg=DARK, border="3D_BORDER")
     label("art" + key, "%d 132 136 136" % (x + 50), shader=art)
     label("cap" + key, "%d 276 212 20" % (x + 12), cap, fg=RUST, font="facfont-20", align="center")
@@ -96,6 +101,25 @@ escapecommand "popmenu 0"
 
 direction from_top 0
 """
+# [trainfix] GATE: an ACTIVE (hovered / clicked) button is brought to the front, so a button that is opaque or has a
+# hover shader must not contain any other widget's rect - it would hide it while active.
+import re as _re
+_wid = []
+for _r in R:
+    _n = _re.search(r'name "([^"]+)"', _r)
+    _rc = _re.search(r'rect (\d+) (\d+) (\d+) (\d+)', _r)
+    if _n and _rc:
+        _wid.append((_n.group(1), _r.lstrip().startswith("resource\nButton") or "\nButton\n" in _r[:40], tuple(map(int, _rc.groups())), _r))
+for _nm, _isb, (_x, _y, _w, _h), _r in _wid:
+    if not _isb:
+        continue
+    _bg = _re.search(r'bgcolor ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)', _r)
+    _opaque = ("hovershader" in _r) or (_bg is not None and float(_bg.group(4)) > 0)
+    for _nm2, _isb2, (_x2, _y2, _w2, _h2), _r2 in _wid:
+        if _nm2 == _nm or _isb2:
+            continue
+        _inside = _x <= _x2 and _y <= _y2 and _x2 + _w2 <= _x + _w and _y2 + _h2 <= _y + _h
+        assert not (_opaque and _inside), "button %s hides %s while active (BringToFront): make it transparent" % (_nm, _nm2)
 txt = HEAD + "\n" + "\n".join(R) + "\nend.\n"
 # parse gates (the shapes that silently drop a urc): balanced braces per resource, every quote paired per line, ASCII only
 assert txt.count("{") == txt.count("}") == len(R)

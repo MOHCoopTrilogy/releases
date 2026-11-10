@@ -35,7 +35,7 @@ import harness_window as hw     # noqa: E402
 GOG = r"G:\GOG\Medal of Honor - Allied Assault War Chest"
 A, B = r"G:\mohaa-advtrain", r"G:\mohaa-advtrainb"
 SRVHOME = os.path.join(A, "srvhome")
-MOD = r"H:\hzm_work\advtrain-mod"
+MOD = os.environ.get("AT_MOD", r"H:\hzm_work\advtrain-mod")
 BASE_REF = "hotfix-1.10.53"
 RUNS = r"H:\hzm_work\advtrain-test\runs"
 PAK = "zzzzzzzzzzzzzzzzzzzzzzzz_advtrain.pk3"
@@ -315,8 +315,17 @@ def watch_course(c, L, out, res, timeout, others=()):
                     shoot(c, out, "st09_strike")
                     c.post_key(VK["F7"])
         if "ATRAIN course_complete" in log:
-            time.sleep(25)
-            shoot(c, out, "end")
+            # [trainfix] the end like any mission: the graduation lines (end card), then missioncomplete -> the debrief
+            # (coop stats screen) -> the lobby with the campaign queued; never a restart
+            time.sleep(14)
+            shoot(c, out, "end_card")
+            for o in others:
+                shoot(o, out, "end_card_b")
+            for k in range(16):
+                time.sleep(5)
+                shoot(c, out, "end_%02d" % k)
+                if guard(c, *others):
+                    return False
             return True
         if guard(c, *others):
             return False
