@@ -32,7 +32,10 @@ The exe and the mod pak ship TOGETHER (the menu's `hzm_ops` command and `ui_ops*
   passes with no new allowance (22/22, selftest 91 mutations).
 - **Stateless schedule.** Each exclusion group's time is cut into 11-minute windows, at most one contract per window
   (90 %, 5-8 min). 24 h census: mean 4.2 live, one empty minute a day.
-- **Tag nudges on the widened wall:** only bt3 (-> 46.6, 13.8) and bt2 (-> 38.0, 18.65) needed to move; bt1 stays.
+- **Tag nudges on the widened wall:** only bt3 moves (-> 46.6, 13.8, the Adriatic head) to clear the Bologna loop. bt2 needed a
+  move only while Malta was in the pool; with Malta pruned it stays where v1.10.70 put it. bt1 stays.
+- **Pool after the 300 s sweep:** TDM Remagen, Stalingrad, Algiers, Brest, Monte Cassino, Bologna; OBJ Bologna, Palermo,
+  Bizerte Festung, The Hunt, V2 Facility, The Bridge. Dropped for no fighting: Malta, Berlin (TDM), Omaha (OBJ).
 - **Approx pins moved** for clearance: The Hunt -> 49.05/-1.45; "Somewhere in France" -> 45.6/2.5 (Auvergne) with a smaller
   area loop, between the BASTOGNE tag and the printed FRANCE.
 - **OBJ result** = the engine's `allieswin`/`axiswin`/`draw` level event (the `g_temp*score` cvars are not readable after the
