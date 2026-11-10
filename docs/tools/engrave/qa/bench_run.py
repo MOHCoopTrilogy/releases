@@ -182,6 +182,52 @@ def bench_one():
     c("exec ui/loadout/mvp03_0_s1.cfg"); c("hzmcust open;hzmcust spot 1;hzmcust zoom;hzmcust zoom"); shot("kar98_wood_close", 2)
     c("pushmenu coop_loadout"); shot("armory", 2)
 
+def userpath():
+    """the user's path: Armory -> a gun -> CUSTOMIZE -> words + emblem -> SAVE -> BACK -> preview / reopen; cvars dumped"""
+    def dump(tag2):
+        c("echo ^~^~^ DUMP " + tag2); c("cl_cust_m1_garand"); c("cl_custEditKey"); c("cl_custEdit"); c("cl_engraveText"); c("coop_loPrev")
+    wait(20); c("pushmenu coop_loadout"); wait(2); c("exec ui/loadout/mvp01_0_s1.cfg"); shot("armory", 1.5); dump("armory")
+    c("hzmcust open;pushmenu coop_custom"); wait(1.5)
+    c('hzmcust typetest "Sgt Rock" 1'); c("hzmcust item 1"); [c("hzmcust emblem 1") for _ in range(9)]
+    shot("edited", 1.5); dump("edited")
+    c("hzmcust save"); shot("saved", 1.0); dump("saved")
+    c("hzmcust close;popmenu 1"); shot("back_armory", 1.5); dump("back")
+    c("hzmcust open;pushmenu coop_custom"); shot("reopen", 1.5); dump("reopen")
+    c("hzmcust close;popmenu 1")
+
+def userpath2():
+    """after a restart: the same gun's bench and the Armory preview; cvars dumped"""
+    wait(20); c("echo ^~^~^ DUMP restart"); c("cl_cust_m1_garand"); c("cl_engraveText")
+    c("pushmenu coop_loadout"); wait(2); c("exec ui/loadout/mvp01_0_s1.cfg"); shot("armory_restart", 1.5)
+    c("hzmcust open;pushmenu coop_custom"); shot("reopen_restart", 1.5)
+
+def userpath3():
+    """[benchfix2] the whole path, in game like a player: Armory -> Garand -> CUSTOMIZE -> words + emblem -> SAVE (auto-return,
+    preview updated) -> EQUIP -> finish change -> reopen -> ESC with unsaved words (kept) -> the gun in hand"""
+    def dump(t):
+        c("echo ^~^~^ DUMP " + t); c("cl_cust_m1_garand"); c("cl_engraveText"); c("cl_custEditKey")
+    wait(20); c('set cl_engraveText ""'); c("set thereisnomonkey 1"); c("set cheats 1"); c("set developer 1")
+    c("spdevmap m3l2"); wait(45); c("finishloadingscreen"); wait(6)
+    c("give models/weapons/m1_garand.tik"); wait(1); c('use "M1 Garand"'); wait(2)
+    c("pushmenu coop_loadout"); wait(2); c("exec ui/loadout/mvp01_0_s1.cfg;set coop_loHero 1"); shot("1_armory", 1.5); dump("1_armory")
+    c("hzmcust open;pushmenu coop_custom"); wait(1.5)
+    c('hzmcust typetest "Sgt Rock" 1'); c("hzmcust item 1"); [c("hzmcust emblem 1") for _ in range(11)]
+    shot("2_bench_edited", 1.5); dump("2_edited")
+    c("hzmcust done"); shot("3_saved_back_in_armory", 1.5); dump("3_saved")      # the SAVE button's command
+    c("vstr coop_loCcur"); shot("4_after_equip", 1.5); dump("4_equip")            # the EQUIP button's command
+    c("vstr coop_loFp1Go"); shot("5_after_finish_change", 1.5); dump("5_finish")  # a finish chip
+    c("exec ui/loadout/mvp01_0_s1.cfg"); c("hzmcust open;pushmenu coop_custom"); shot("6_bench_reopened", 1.5); dump("6_reopen")
+    c('hzmcust typetest " Easy Co" 0'); c("hzmcust esc"); wait(1.5); shot("7_after_esc_unsaved", 0.5); dump("7_esc")
+    c("hzmcust esc"); wait(1.5); shot("8_in_hand", 1.5); dump("8_in_hand")
+
+def userpath4():
+    """[benchfix2] after a restart: the gun in hand, the Armory preview and the bench"""
+    wait(20); c("echo ^~^~^ DUMP 9_restart"); c("cl_cust_m1_garand"); c("cl_engraveText")
+    c("set thereisnomonkey 1"); c("set cheats 1"); c("spdevmap m3l2"); wait(45); c("finishloadingscreen"); wait(6)
+    c("give models/weapons/m1_garand.tik"); wait(1); c('use "M1 Garand"'); shot("9_in_hand_after_restart", 3)
+    c("pushmenu coop_loadout"); wait(2); c("exec ui/loadout/mvp01_0_s1.cfg;set coop_loHero 1"); shot("10_armory_after_restart", 1.5)
+    c("hzmcust open;pushmenu coop_custom"); c("hzmcust zoom;hzmcust zoom"); shot("11_bench_after_restart", 1.5); c("hzmcust done")
+
 def check_short():
     """hand check of the words on every gun (short words use the engrave_short spot): flat magenta quads"""
     import json
@@ -198,14 +244,14 @@ def check_short():
         c("give " + tik); wait(1); c('use "%s"' % name); wait(3.2)
         n[0] += 1; c("set cg_engraveQuadNow 1;screenshotJPEG %s_%02d_%s" % (tag, n[0], key)); wait(0.8)
 
-{"bench_one": bench_one, "cams_new": cams_new, "face_check": face_check, "bench_tilt": bench_tilt, "bench_move": bench_move, "check_short": check_short, "bench_guns": bench_guns, "bench_type": bench_type, "ingame_emblems": ingame_emblems, "check_spots": check_spots}[scen]()
+{"userpath3": userpath3, "userpath4": userpath4, "userpath": userpath, "userpath2": userpath2, "bench_one": bench_one, "cams_new": cams_new, "face_check": face_check, "bench_tilt": bench_tilt, "bench_move": bench_move, "check_short": check_short, "bench_guns": bench_guns, "bench_type": bench_type, "ingame_emblems": ingame_emblems, "check_spots": check_spots}[scen]()
 c("echo ^~^~^ ENGRAVE done"); c("quit")
 E.CLIENT_CFG = "omconfig_fresh.cfg"
 shutil.copyfile(os.path.join(E.CLIENT, "pristine", "omconfig_fresh.cfg"), os.path.join(E.CLIENT, "pristine", "omconfig.cfg.run"))
 bk = os.path.join(E.CLIENT, "pristine", "omconfig.cfg")
 keep = bk + ".keep"
 shutil.copyfile(bk, keep)
-shutil.copyfile(os.path.join(E.CLIENT, "pristine", "omconfig_fresh.cfg"), bk)
+shutil.copyfile(os.environ.get("EG_KEEPCFG") or os.path.join(E.CLIENT, "pristine", "omconfig_fresh.cfg"), bk)
 try:
     out = E.launch(tag, W, H, ["set in_joystick 0", "set in_gamepad 0", "set s_volume 0", "set s_musicvolume 0",
                                "set s_ambientvolume 0", "set developer 1"] + L,
