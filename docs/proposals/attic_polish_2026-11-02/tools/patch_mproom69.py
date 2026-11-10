@@ -72,9 +72,8 @@ LIGHTS = ["scenelight 140.0 -10.0 112.0 300.69 0.95 0.82 0.62", "scenelight 190.
           "scenelight %.1f %.1f 118.0 220.69 0.80 0.74 0.62" % (FC[0], FC[1] + 60.0)]
 HIDES = ['scenemodelhide "hzm_hub69_n_daily_lit" 1', 'scenemodelhide "hzm_hub69_n_record_lit" 1', 'scenemodelhide "hzm_hub69_n_ranks_lit" 1',
          'scenemodelhide "hzm_hub69_radio_lit" 1']
+# one loop, no cycles: the other card clips raise the cards to his face (coordinator QA 2026-11-10, see gen_mproom69.py)
 STAGE = ['actorstage "%s" %.1f %.1f %.1f "cardA" 6.0 11.0' % (AL, S["pos"][0], S["pos"][1], S["yaw"]),
-         'actorcycle "%s" 2.0 7.0 12.0 "cardB~"' % AL,
-         'actorcycle "%s" 1.0 2.5 3.5 "cardDraw"' % AL,
          'actorprop "%s" "models/miscobj/cardhand01.tik" "tag_weapon_left" "card" 0 0 0 1 0 0 0' % AL]
 MODELS = A["lines"]
 ROOM = MODELS + HIDES + LIGHTS
