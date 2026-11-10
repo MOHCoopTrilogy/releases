@@ -909,11 +909,14 @@ def st68(res="1080", tag="s68", states="day,golden,night", parts="wx,attic,play,
               "wait 300", "uiveil 0 0.2", "wait 1500",
               "globalwidgetcommand atticscene scenecam -36.7 21.0 102.4 7.01 0.00 0.00 55.11", "wait 1500"]
     if "mp" in P:
+        rc = json.load(open(os.path.join("H:\\", "hzm_work", "attic62", "attic68.json")))["hub_rack_centre"]
+        pk = math.degrees(math.atan2(rc[1] - 15.8, rc[0] + 70.9)) - 4.0
         L += ["exec ui/hzm_attic_go_mp.cfg", "wait 3500", "screenshot st_%s_%s_mp_home" % (tag, res), "wait 600",
               "set ui_scene_hot 6", "wait 1500", "screenshot st_%s_%s_mp_rackcap" % (tag, res), "set ui_scene_hot 0", "wait 400",
-              "globalwidgetcommand hubscene scenecam 30.0 60.0 95.0 4.00 50.00 0.00 55.00", "wait 900", "screenshot st_%s_%s_mp_rackwide" % (tag, res),
-              "globalwidgetcommand hubscene scenecam 112.0 95.0 100.0 0.00 90.00 0.00 55.00", "wait 900", "screenshot st_%s_%s_mp_rackfront" % (tag, res),
-              "globalwidgetcommand hubscene scenecam 70.0 120.0 110.0 10.00 40.00 0.00 45.00", "wait 900", "screenshot st_%s_%s_mp_rackside" % (tag, res),
+              "globalwidgetcommand hubscene scenecam -70.9 15.8 86.6 4.00 %.2f 0.00 58.00" % pk, "wait 900", "screenshot st_%s_%s_mp_rackpeek" % (tag, res),
+              "globalwidgetcommand hubscene scenecam %.1f 60.0 95.0 4.00 70.00 0.00 55.00" % (rc[0] - 40), "wait 900", "screenshot st_%s_%s_mp_rackwide" % (tag, res),
+              "globalwidgetcommand hubscene scenecam %.1f 95.0 100.0 0.00 90.00 0.00 55.00" % rc[0], "wait 900", "screenshot st_%s_%s_mp_rackfront" % (tag, res),
+              "globalwidgetcommand hubscene scenecam %.1f 120.0 110.0 10.00 40.00 0.00 45.00" % (rc[0] - 42), "wait 900", "screenshot st_%s_%s_mp_rackside" % (tag, res),
               "globalwidgetcommand hubscene scenecam -70.9 15.8 86.6 4.00 -3.00 0.00 58.00", "wait 900",
               "exec ui/hzm_attic_go_rack.cfg", "wait 3000", "screenshot st_%s_%s_mp_viewer" % (tag, res), "wait 600"]
     L += ["echo ^~^~^ MR done", "wait 1500", "quit"]

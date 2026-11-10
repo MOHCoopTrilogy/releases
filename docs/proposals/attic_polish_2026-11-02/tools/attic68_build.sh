@@ -37,6 +37,7 @@ python gen_gram_model.py "$W/pkadd" >/dev/null; python gen_gram_art.py "$W/pkadd
 python gen_dials.py "$W/bake" "$W/dials.json" "$W/pkadd" | tail -1
 python gen_projector_fx.py "$W/bake" "$W/stage62" "$W/pkadd" "$W/projector_reels.json" | tail -3
 python gen_attic68_props.py "$W/stage62" "$W/pkadd" "$W/attic68.json" | tail -3; cp $W/stage62/models/menu/atc_props1.sk? $W/stage62/models/menu/atc_props1.tik $W/pkadd/models/menu/
+python gen_screen_preview.py "$W/pkadd" m1l1 | tail -1      # v1.10.68 (c): the screen's looping newsreel (RoQ, videoMap)
 python gen_records3d.py "$W/bake" "$W/art" "$W/medalbox.json" "$W/pkadd" 'C:\mohaa-coop-dev\hzm-mod-attic\ui' | tail -1
 for f in hzm_wpnview.urc hzm_records3d.urc hzm_medals3d.urc; do sed -i '/models\/menu\/hzm_wx_/d; /^scenemodelcvar "hzm_wx_/d; /^scenewx "/d' $MOD/ui/$f; done      # (again: gen_records3d re-copies the models into records / medals)
 RETOUCH_OPS=floor_lm,floor_alb,wall,phones,dials DIALS_JSON=H:/hzm_work/attic62/dials.json FLOOR_ALB_PAK=/h/hzm_work/mpui/ship/zzzzzzzzzzzzzz_hzm_menus3d.pk3 python retouch.py "$W/bake" "$W/pkadd" | tail -1

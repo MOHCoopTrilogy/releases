@@ -330,9 +330,14 @@ class Mesh:
         for i in range(i0, len(self.v)):
             d = (self.v[i] - EYE).length
             self.vs[i] = EYE + (self.v[i] - EYE) * (squash(d) / d)
+        # the push is 0.35 m of REAL depth (squashed by the local slope of the squash), at least 2 mm (the depth buffer's step at
+        # ~37 m) and at most 4 cm: a flat 4 cm was 40-60 m of real depth on the far rows, so a far house's string course / cornice /
+        # dormer drew in FRONT of the roofs before it (QA 2026-11-09: a dark plank floating over the roofs, a black spike)
         for fi in self.wf:
             for i in self.f[fi]:
-                self.vs[i] = self.vs[i] + (EYE - self.vs[i]).normalized() * 0.04
+                d = (self.v[i] - EYE).length
+                slope = 1.0 if d <= KNEE else math.exp(-(d - KNEE) / SPAN) + EPS
+                self.vs[i] = self.vs[i] + (EYE - self.vs[i]).normalized() * min(0.04, max(0.002, 0.35 * slope))
 
     def build(self, name, group):
         me = bpy.data.meshes.new(name)
@@ -742,9 +747,9 @@ def terrace(mesh, x_front, depth, y0, y1, faces_attic, cfg, rng, banner=None):
         w = yb - ya
         cy = (ya + yb) / 2
         is_b = banner is not None and k == kb
-        st = cfg["storeys"] if is_b else max(1, cfg["storeys"] + rng.choice((-1, 0, 0, 0, 1)))
+        st = cfg["storeys"] if (is_b or cfg.get("uniform")) else max(1, cfg["storeys"] + rng.choice((-1, 0, 0, 0, 1)))
         h = st * 3.1 + 0.5
-        roof = hd * math.tan(math.radians(cfg["pitch"] + rng.uniform(-3, 3)))
+        roof = hd * math.tan(math.radians(cfg["pitch"] + (0.0 if cfg.get("uniform") else rng.uniform(-3, 3))))
         walls = [m for m in cfg["walls"] if m != last_wall] or cfg["walls"]
         roofs = [m for m in cfg["roofs"] if m != last_roof] or cfg["roofs"]
         wm, rm = rng.choice(walls), rng.choice(roofs)
@@ -777,8 +782,11 @@ NHOUSE = 0
 for (si, xa, xb, d1, dbl) in BLOCKS:
     sx0 = STREETS[si][0]
     farrow = sx0 > 420
-    cfg = dict(storeys=2 if sx0 < 120 else (3 if sx0 < 420 else 2), pitch=trng.choice((36, 40, 44)),
-               roofs=trng.sample(ROOFS_N, 2), walls=trng.sample(WALLS_N, 3), wins=("lights" if farrow else True),
+    # (QA 2026-11-09 "the far roof rows look jumbled"): from 200 m on a row is ONE terrace - one roof colour, one storey count, one
+    # pitch - so each street reads as a band of roofs stepping down the hill, not a heap of mismatched boxes
+    uni = sx0 > 200
+    cfg = dict(storeys=2 if sx0 < 120 else (3 if sx0 < 420 else 2), pitch=trng.choice((36, 40, 44)), uniform=uni,
+               roofs=trng.sample(ROOFS_N, 1 if uni else 2), walls=trng.sample(WALLS_N, 3), wins=("lights" if farrow else True),
                lit=0.5 if sx0 < 160 else (0.3 if not farrow else 0.12), chim=not farrow, dormer=sx0 < 200, smoke=sx0 < 260,
                width=(7.0, 11.0) if not farrow else (10.0, 16.0), detail=not farrow)
     ylo_r = EYE.y + max(YLO, -0.06 * sx0 - 25.0)                  # only what some camera through the pane can see

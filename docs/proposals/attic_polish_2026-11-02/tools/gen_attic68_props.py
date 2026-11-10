@@ -130,7 +130,7 @@ if "--no-cut" not in sys.argv:
     print("atc_props1: cut %d rack triangles, kept %d (%d surfaces) -> %s" % (len(rack), len(keep), n_, smd))
 # the MP room: attic (x, y, z) -> hub (HX - (x - AX), HW - (y - AW), z + dz): half a turn about z, the wall plane onto the hub's
 AX, AW = 80.9, -157.5
-HX, HW = float(os.environ.get("HUB_RACK_X", "125.0")), 178.5          # x 98-152: clear of the exit door's casing (177)
+HX, HW = float(os.environ.get("HUB_RACK_X", "72.0")), 178.5           # x 45-99 (user 2026-11-09: further left along the wall, away from the MAIN MENU door)
 DZ, DZ_LAMP = 12.0, 10.0
 
 
@@ -270,7 +270,7 @@ PP = np.concatenate([np.array([v[3] for v in s["verts"]]) for s in pj["surfaces"
 PC = (PP.min(0) + PP.max(0)) / 2
 LENS0 = np.array([101.6, PP[:, 1].max(), 62.2])             # the lens tube's front (bake: +y end, x 101.6, z 62)
 PIC = np.array([XC, FY + 0.3, float(os.environ.get("SCR_PICZ", "84.0"))])      # the picture's centre on the fabric
-PICW, PICH = float(os.environ.get("SCR_PICW", "50.0")), float(os.environ.get("SCR_PICH", "38.0"))
+PICW, PICH = float(os.environ.get("SCR_PICW", "58.0")), float(os.environ.get("SCR_PICH", "32.6"))      # 16:9, the preview clip's frame
 
 
 def turn(p, th):
@@ -358,8 +358,11 @@ else:
     print("no hzm_projector_lit yet: beam not added")
 SH.append("hzm_proj_beam\n{\n\tnopicmip\n\tcull none\n\tsort additive\n\t{\n\t\tclampmap textures/menu/hzm_proj_beam.jpg\n\t\tblendFunc add\n"
           "\t\tdepthWrite\n\t\trgbGen wave noise 0.85 0.15 0 9\n\t}\n}".replace("\t\tdepthWrite\n", ""))
-SH.append("hzm_proj_picture\n{\n\tnopicmip\n\tcull none\n\tsort additive\n\tpolygonOffset\n\t{\n\t\tclampmap textures/menu/hzm_proj_picture.jpg\n"
-          "\t\tblendFunc add\n\t\trgbGen wave noise 0.8 0.2 0 12\n\t}\n}")
+# (c) the picture is the looping, muted newsreel preview (gen_screen_preview.py: video/hzm_screen_preview.roq; GL2 videoMap loops and is
+# silent by itself - CIN_loop | CIN_silent | CIN_shader), added as light on the fabric, flickering a little like a lamp
+SH.append("hzm_proj_picture\n{\n\tnopicmip\n\tcull none\n\tsort additive\n\tpolygonOffset\n\t{\n\t\tvideoMap video/hzm_screen_preview.roq\n"
+          "\t\tblendFunc GL_ONE GL_ONE_MINUS_SRC_COLOR\n\t\trgbGen wave noise 0.8 0.1 0 12\n\t}\n}")
+# (a 'screen' blend, src + dst (1 - src): a plain add of the light newsreel over the lit fabric clipped to solid white, QA 2026-11-09)
 open(os.path.join(sdir, "hzm_attic68.shader"), "w", newline="\n").write("\n\n".join(SH) + "\n")
 INFO["screen"] = dict(x0=SX0, x1=SX1, z0=SZ0, z1=SZ1, fy=FY, pic=PIC.round(2).tolist())
 json.dump(INFO, open(out_json, "w"), indent=1)
