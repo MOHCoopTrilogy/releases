@@ -28,7 +28,8 @@ IN = 0.0254 * U
 LIGHT = float(os.environ.get("POSTER_LIGHT", "0.70"))      # (0.80 read a little bright against the plaster)
 # name, scan folder, wall (plane point, inward normal), centre along the wall, size (w, h in inches), tilt deg, curl
 POSTERS = [
-    ("un_fight", "p3_un_fight_freedom", ("x", 279.09, -1), 146.0, (20, 28), -0.8, 1.0),
+    # (v1.10.69: the back plaster is at x 283.5 - raycast against the hub bake; 279.09 hung this one 4.4 u off the wall)
+    ("un_fight", "p3_un_fight_freedom", ("x", 283.5, -1), 146.0, (20, 28), -0.8, 1.0),
     ("united", "p2_united_strong", ("y", -136.5, 1), 254.0, (20, 28), 0.6, 0.8),
     ("liberty", "p1_americans_liberty", ("y", 178.5, -1), 142.0, (20, 28), 1.1, 1.2),
     ("frworkers", "p5_french_workers", ("y", 178.5, -1), 2.0, (28, 20), -0.5, 0.9),
@@ -129,23 +130,25 @@ for name, folder, wall, along, (wi, hi_), tilt, curl in POSTERS:
             if t:
                 pins.append(t)
     # the shadow on the wall: a soft dark sheet, offset down and a little to the room's light side
-    so = p0 + n * 0.05 - u2 * 0.6 + r2 * 0.3
+    so = p0 + n * 0.10 - u2 * 0.6 + r2 * 0.3
     E = [so + r2 * sx * (W_ / 2 + 2.2) + u2 * sy * (H_ / 2 + 2.2) for sx, sy in ((-1, -1), (1, -1), (1, 1), (-1, 1))]
     for t in ((0, 1, 2), (0, 2, 3)):
         q = tri([E[k] for k in t], [[(0, 0), (1, 0), (1, 1), (0, 1)][k] for k in t])
         if q:
             shadows.append(q)
     info.append(dict(name=name, centre=[round(v, 1) for v in p0], size=[round(W_, 1), round(H_, 1)]))
-# pin texture (steel) and shadow texture (soft rectangle, multiply)
+# pin texture (steel) and shadow texture (soft rectangle). v1.10.69: the shadow was a multiply (GL_DST_COLOR GL_ZERO), which
+# draws NOTHING in the menu scene (in-game test quads, gen_mproom69.py) - a black sheet whose alpha is the shadow, plain blend
+# (a new file name: the engine tries .jpg before .tga, and the pak still holds the old hzm_poster_shadow.jpg)
 Image.new("RGB", (16, 16), (92, 90, 86)).save(os.path.join(tdir, "hzm_poster_pin.jpg"), quality=95)
-sh = Image.new("L", (128, 128), 255)
-ImageDraw.Draw(sh).rectangle((22, 22, 106, 106), fill=170)
+sh = Image.new("L", (128, 128), 0)
+ImageDraw.Draw(sh).rectangle((22, 22, 106, 106), fill=85)
 sh = sh.filter(ImageFilter.GaussianBlur(7))
-Image.merge("RGB", (sh, sh, sh)).save(os.path.join(tdir, "hzm_poster_shadow.jpg"), quality=92)
+Image.merge("RGBA", (Image.new("L", (128, 128), 0),) * 3 + (sh,)).save(os.path.join(tdir, "hzm_poster_shade.tga"))
 parts += [("hzm_poster_pin", pins), ("hzm_poster_shadow", shadows)]
 SH.append("hzm_poster_pin\n{\n\tnopicmip\n\tcull none\n\t{\n\t\tmap textures/menu/hzm_poster_pin.jpg\n\t\trgbGen identity\n\t}\n}")
-SH.append("hzm_poster_shadow\n{\n\tnopicmip\n\tcull none\n\tsort decal\n\tpolygonOffset\n\t{\n\t\tmap textures/menu/hzm_poster_shadow.jpg\n"
-          "\t\tblendFunc GL_DST_COLOR GL_ZERO\n\t\trgbGen identity\n\t}\n}")
+SH.append("hzm_poster_shadow\n{\n\tnopicmip\n\tcull none\n\t{\n\t\tmap textures/menu/hzm_poster_shade.tga\n"
+          "\t\tblendFunc blend\n\t\trgbGen identity\n\t}\n}")
 surfs, sl = [], []
 for k, (sh_, cr) in enumerate(parts):
     ss = X.split_surfaces("s%d_" % k, cr)
