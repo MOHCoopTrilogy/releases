@@ -20,27 +20,29 @@ LEG_FRAMES = 50                           # 2.5 s of menu time per leg
 LEGS = [
     ("attic_to_mp", "main.urc", "mp", None),
     ("mp_to_bench", "multiplayer.urc", "rack", None),
-    ("bench_to_mp", None, None, "popmenu"),
-    ("mp_to_attic", None, None, "popmenu"),
+    ("bench_to_mp", "hzm_wpnview.urc", "@esc", None),
+    ("mp_to_attic", "multiplayer.urc", "@esc", None),
     ("attic_to_records", "main.urc", "records", None),
     ("records_to_medals", "hzm_records3d.urc", "medals", None),
-    ("medals_to_records", None, None, "popmenu"),
-    ("records_to_attic", None, None, "popmenu"),
+    ("medals_to_records", "hzm_medals3d.urc", "@esc", None),
+    ("records_to_attic", "hzm_records3d.urc", "@esc", None),
     ("attic_to_film", "main.urc", "film", None),
-    ("film_to_attic", None, None, "popmenu"),
+    ("film_to_attic", None, None, "popmenu 1"),
     ("attic_to_warmap", "main.urc", "newgame", None),
-    ("warmap_to_attic", None, None, "popmenu"),
+    ("warmap_to_attic", "hzm_newgame3d.urc", "@esc", None),
     ("attic_to_window", "main.urc", "window", None),
     ("window_to_attic", None, None, "globalwidgetcommand atticscene sceneback"),
     ("attic_to_lookup", "main.urc", "lookup", None),
     ("lookup_to_attic", None, None, "globalwidgetcommand atticscene sceneback"),
     ("attic_to_brief", "main.urc", "brief", None),
-    ("brief_to_attic", None, None, "popmenu"),
+    ("brief_to_attic", "hzm_newgame3d.urc", "@esc", None),
 ]
 
 
 def hot_cmd(urc, name):
     t = open(os.path.join(URC, urc), encoding="latin-1").read()
+    if name == "@esc":                      # the menu's own ESC / BACK command (a bare popmenu does nothing: it takes an argument)
+        return re.search(r'^escapecommand "([^"]*)"', t, re.M).group(1)
     m = re.search(r'^scenehot "%s" (?:\S+ ){4}"((?:[^"\\]|\\.)*)"' % re.escape(name), t, re.M)
     if not m:
         raise SystemExit("no scenehot %s in %s" % (name, urc))
@@ -50,12 +52,20 @@ def hot_cmd(urc, name):
 def steps():
     """[(cfg lines, delay to the next step in s)] - one screenshot per step"""
     S = []
+    only = os.environ.get("ML_LEGS", "").split()          # a subset of the legs, by name (default: all)
     for leg, urc, hot, raw in LEGS:
+        if only and leg not in only:
+            continue
         cmd = hot_cmd(urc, hot) if hot else raw
         S.append((["echo ^~^~^ MLR leg %s" % leg, cmd, "screenshotJPEG mlr_%s_000" % leg], FPS_DT))
         for k in range(1, LEG_FRAMES):
             S.append((["screenshotJPEG mlr_%s_%03d" % (leg, k)], FPS_DT))
         S.append((["echo ^~^~^ MLR end %s" % leg], 1.0))
+        if os.environ.get("ML_INGAME") and leg.endswith("_to_attic"):
+            # in a game a room's BACK can close the menu stack down to the game: re-open the Main Menu the way dm_main's
+            # button does ("popmenu 0; wait 250; pushmenu main"), so every leg starts in the attic
+            S.append((["popmenu 0"], 0.3))
+            S.append((["pushmenu main"], 2.0))
     S.append((["echo ^~^~^ ML stage done", "quit"], 0))
     return S
 
@@ -69,6 +79,8 @@ def write_chain(first_exec_line):
 
 
 def run(tag, ingame=None):
+    if ingame:
+        os.environ["ML_INGAME"] = "1"
     for fn in os.listdir(R.MAINTT):
         if re.match(r"ml_r\d{4}\.cfg$", fn):
             os.remove(os.path.join(R.MAINTT, fn))

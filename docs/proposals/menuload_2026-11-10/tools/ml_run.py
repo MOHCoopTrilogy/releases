@@ -66,6 +66,9 @@ def run(tag, exe=None, mp="m2l1", shots=True, cycles=2, sets=(), rooms=False, re
         shutil.copy2(exe, os.path.join(CLIENT, "openmohaa.exe"))
     # every run starts from the user's own config (a latched +set, e.g. r_ext_compressed_textures, is archived by the run)
     shutil.copyfile(os.path.join(CLIENT, "pristine", "omconfig.cfg"), os.path.join(MAINTT, "configs", "omconfig.cfg"))
+    # and from the user's own shader-preload lists (polluted with the attic's shaders, as every player's are today)
+    shutil.rmtree(os.path.join(MAINTT, "hzm_preload"), ignore_errors=True)
+    shutil.copytree(os.path.join(CLIENT, "pristine", "hzm_preload"), os.path.join(MAINTT, "hzm_preload"))
     for fn in os.listdir(MAINTT):
         if fn.lower().endswith(".pid"):
             os.remove(os.path.join(MAINTT, fn))
@@ -121,7 +124,7 @@ def run(tag, exe=None, mp="m2l1", shots=True, cycles=2, sets=(), rooms=False, re
 
 def summarize(path):
     for l in open(path, errors="ignore"):
-        if re.search(r"MENULOAD|ML stage|CL_InitCGame:|R_Init -----|finished R_Init|Disconnected from|ERROR", l):
+        if re.search(r"MENULOAD|ML stage|CL_InitCGame:|CL_EndRegistration|PRELOAD|KEEPIMG|VRAMACCT|Disconnected from|ERROR", l):
             print("  " + l.rstrip()[:220])
 
 
