@@ -50,6 +50,16 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.70 - Sealed Orders
+
+- **SEALED ORDERS and THEIR DYING BREATH are fully playable** in co-op and single player, from your own Medal of Honor: Frontline / European Assault Xbox (USA) disc image converted on your PC (Settings -> OWN DISCS). Nothing from those games ships with the mod. They run through the Full and Chronological campaigns in their place in the war
+- **New challenge: Saving Private Castro** - find out how in Sealed Orders
+- **Main menu** - OWN DISCS now has a home in the attic (the film cans by the projector), and the war map reaches east to Stalingrad
+- **Fixes** - no more host crash when a mission starts from the lobby, enemy callouts on the disc missions, and the single-player script errors at Saint-Lo
+- **Needs playtesting** - both disc missions have only been through automated tests so far. If you have the disc, play them and tell us how they feel on Discord or with Report a Bug
+
+<p align="center"><img src="docs/screenshots/v11070-warmap.jpg" width="49%" alt="The war map reaching Stalingrad, with the disc missions pinned"> <img src="docs/screenshots/v11070-filmcans.jpg" width="49%" alt="The OWN DISCS film cans by the projector"></p>
+
 ### v1.10.69 - Home front
 
 - **The Bren is back** - rebuilt iron sights on the gun itself (offset left of the magazine like the real one), its own aim pose, and aimed reloads that keep you on target
