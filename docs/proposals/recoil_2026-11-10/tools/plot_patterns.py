@@ -54,7 +54,21 @@ def load():
     return rows
 
 
-def burst(r, interval, shots, mult=1.0, seed=None, aimed=True):
+# [real rof 2026-11-10] the automatics now fire at the rate of coop_mod/weapon_rof.txt (the engine's FireDelay override)
+ROF = {}
+try:
+    for _l in open(os.path.join(MOD, "coop_mod", "weapon_rof.txt")):
+        _c = _l.split()
+        if len(_c) == 6 and not _l.startswith("/"):
+            ROF[_c[0]] = float(_c[2])
+except OSError:
+    pass
+for _k in list(GAME):
+    if _k in ROF:
+        GAME[_k] = (ROF[_k], GAME[_k][1])
+
+
+def burst(r, interval, shots, mult=1.0, seed=None, aimed=True, auto=False):
     """aim offsets (yaw_right_deg, climb_deg) at the moment each round leaves - the engine's maths, step 1/120 s"""
     rnd = random.Random(seed)
     cr = (lambda: 2.0 * (rnd.random() - 0.5)) if seed is not None else (lambda: 0.0)
@@ -110,15 +124,16 @@ def burst(r, interval, shots, mult=1.0, seed=None, aimed=True):
         view[1] += h
         heat += 1
         shot_t = tfire
-        hold = tfire + ((min(interval * 1.5, 0.2) + 0.05) if interval < 0.125 else 0.06)
+        hold = tfire + ((min(interval * 1.5, 0.2) + 0.05) if (interval < 0.125 or auto) else 0.06)
     return pts
 
 
 def draw(ax, r, stem, interval, shots, mult=1.0, aimed=True, title=None):
+    auto = stem in ROF
     for s in range(6):
-        p = burst(r, interval, shots, mult, seed=s, aimed=aimed)
+        p = burst(r, interval, shots, mult, seed=s, aimed=aimed, auto=auto)
         ax.plot([x for x, _ in p], [y for _, y in p], "o", ms=2.5, alpha=0.35, color="#c0392b")
-    p = burst(r, interval, shots, mult, aimed=aimed)
+    p = burst(r, interval, shots, mult, aimed=aimed, auto=auto)
     ax.plot([x for x, _ in p], [y for _, y in p], "-o", ms=3, lw=1, color="#1f3a5f")
     for i in (0, 4, 9, 19, 29):
         if i < len(p):
@@ -179,7 +194,7 @@ def main():
     for j in range(len(MAIN), len(axes.flat)):
         axes.flat[j].axis("off")
     fig.suptitle("HZM recoil patterns - aimed, standing, no pull-down; blue = the pattern, red = 6 bursts with jitter "
-                 "(game fire rates)", fontsize=9)
+                 "(real fire rates)", fontsize=9)
     fig.tight_layout(rect=(0, 0, 1, 0.97))
     fig.savefig(os.path.join(OUT, "pattern_sheet.png"), dpi=130)
     plt.close(fig)
