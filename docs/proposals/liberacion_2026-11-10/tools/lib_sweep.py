@@ -116,6 +116,9 @@ def place(mp, secs, n):
     r = base(log, mp, 3, rc)
     pl = re.findall(r"\^~\^~\^ LIB place e(\d+) at \(([^)]*)\) d=(\d+) vis=(\d) ground=(\d) try=(\d+)", log)
     r["placed"] = len(pl)
+    r["spots"] = [[float(v) for v in x[1].split()] for x in pl]
+    m2 = re.search(r"LIB testeye \(([^)]*)\)", log)
+    r["eye"] = [float(v) for v in m2.group(1).split()] if m2 else None
     r["visible"] = sum(1 for x in pl if x[3] == "1")
     r["floating"] = sum(1 for x in pl if x[4] == "0")
     r["min_d"] = min([int(x[2]) for x in pl] or [0])
@@ -146,6 +149,20 @@ def clear(mp, secs, n):
     return r
 
 
+def pool_max(mp):
+    """the most Germans a contract on this map can roll (gen_ops.py LIB_POOL), so the spot supply is tested at the worst case"""
+    import importlib.util
+    gp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "livemap_2026-11-09", "gen_ops.py")
+    spec = importlib.util.spec_from_file_location("gen_ops_ls", gp)
+    g = importlib.util.module_from_spec(spec)
+    argv, sys.argv = sys.argv, ["gen_ops"]
+    try:
+        spec.loader.exec_module(g)
+    finally:
+        sys.argv = argv
+    return g.LIB_POOL[mp][1] if mp in g.LIB_POOL else 16
+
+
 def main():
     phase = sys.argv[1]
     only = opt("--only", "")
@@ -170,7 +187,7 @@ def main():
         elif phase == "clear":
             r = clear(mp, int(opt("--secs", "600")), int(opt("--n", "16")))
         else:
-            r = place(mp, int(opt("--secs", "100")), int(opt("--n", "16")))
+            r = place(mp, int(opt("--secs", "100")), int(opt("--n", "0")) or pool_max(mp))
         res[mp] = r
         print(json.dumps(r), flush=True)
         json.dump(res, open(out, "w"), indent=1)
