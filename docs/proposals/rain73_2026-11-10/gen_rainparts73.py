@@ -56,6 +56,17 @@ save("hzm_wx_glassdrop", *drop_sprite(r, X, Y))
 ang = np.arctan2(Y, X)
 r2 = np.sqrt((X / 0.86) ** 2 + (Y / 1.0) ** 2) / (1.0 + 0.10 * np.sin(3 * ang + 0.7) + 0.06 * np.sin(5 * ang + 2.1))
 save("hzm_wx_glassdrop2", *drop_sprite(r2, X, Y))
+# the skylight's bead (seen small, up through the pane against the cloud: a rim alone vanishes at 6-18 px - a lens with BODY:
+# brighter refracted lower half, darker upper, a clear rim line)
+# (v3b, QA: the first body read as opaque grey bubbles) - mostly see-through: a dark rim line, the dark upper and bright lower
+# lens kept, the middle only lightly tinted, a pin glint
+lens = np.clip(0.5 + 0.6 * Y, 0, 1)
+inside_s = np.clip((1.0 - r) / 0.10, 0, 1)
+rim_s = np.clip(1 - np.abs(r - 0.84) / 0.12, 0, 1)
+low = np.clip((Y - 0.15) / 0.6, 0, 1) * np.clip(1 - np.abs(X) / 0.8, 0, 1)
+gl = np.exp(-(((X + 0.32) ** 2 + (Y + 0.40) ** 2) / 0.010))
+col_s = np.clip(0.18 + 0.75 * lens - 0.18 * rim_s + 0.8 * gl, 0, 1)
+save("hzm_wx_skydrop", col_s, inside_s * np.clip(0.16 + 0.55 * rim_s + 0.40 * low + 0.6 * gl, 0, 1))
 # the trickle: head (round, lower 45 %), tail (upper part) a narrowing wet streak
 hy = (Y - 0.45) / 0.55
 rh = np.sqrt((X / 0.75) ** 2 + hy ** 2)
@@ -74,7 +85,7 @@ c2 = 0.45 + 0.25 * np.clip(Y2, 0, 1)
 Image.fromarray((np.dstack([c2, c2, c2 * 1.04, a2]).clip(0, 1) * 255).astype(np.uint8), "RGBA").save(os.path.join(tdir, "hzm_wx_glasstrail.tga"))
 
 SH = ["// rain73 (gen_rainparts73.py): the dynamic rain's sprites - drawn by the engine (cl_uiscene.cpp WxRainDraw), vertex colour + alpha"]
-for nm, sort in (("hzm_wx_streak", 8.40), ("hzm_wx_glassdrop", 8.50), ("hzm_wx_glassdrop2", 8.50), ("hzm_wx_glassdrop3", 8.50), ("hzm_wx_glasstrail", 8.49)):
+for nm, sort in (("hzm_wx_streak", 8.40), ("hzm_wx_glassdrop", 8.50), ("hzm_wx_glassdrop2", 8.50), ("hzm_wx_glassdrop3", 8.50), ("hzm_wx_skydrop", 8.50), ("hzm_wx_glasstrail", 8.49)):
     SH.append("%s\n{\n\tnopicmip\n\tnomipmaps\n\tcull none\n\tsort %.2f\n\t{\n\t\tclampmap textures/menu/%s.tga\n\t\tblendFunc blend\n"
               "\t\trgbGen vertex\n\t\talphaGen vertex\n\t}\n}" % (nm, sort, nm))
 open(os.path.join(sdir, "hzm_wxrain73.shader"), "w", newline="\n").write("\n\n".join(SH) + "\n")

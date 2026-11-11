@@ -32,7 +32,13 @@ def views(L, tag, fill):
 def script(which):
     L = ["set developer 0", "set ui_menuRoom 1", "set ui_atticMain 1", "set ui_camslow 1", "set coop_hardcore 0", "set ui_wxHour 12.5",
          "set ui_wxWeather 3", "set ui_wxForce \"0.1 0\"", "wait 12000", "wait 6000"]
-    if which == "bands":
+    if which == "storm":
+        for nm, I, F in (("4heavy", 0.78, 0.10), ("5storm", 1.0, 0.90)):
+            L += ["set ui_wxWeather 4", "set ui_wxForce \"%.2f %.2f\"" % (I, F), "wait 12000"]
+            views(L, nm, 2500)
+        L += ["set ui_wxFlashHold 0.8", "set ui_atcStop 3; globalwidgetcommand atticscene scenefly 0.4 %s" % OUT, "wait 1500",
+              "screenshot r73_5storm_flash_out", "wait 300", "set ui_wxFlashHold \"\""]
+    elif which == "bands":
         for nm, I in (("1drizzle", 0.10), ("2light", 0.30), ("3steady", 0.50), ("4heavy", 0.78), ("5storm", 1.0)):
             F = 0.0 if I < 0.75 else (I - 0.75) / 0.25 * 0.9
             L += ["set ui_wxForce \"%.2f %.2f\"" % (I, F), "wait 9000"]
