@@ -1,0 +1,33 @@
+// trainfix test only (never shipped): drive the REAL deployables from where the player stands and print where they land
+// testthread maps/tf_place.scr place   |   testthread maps/tf_place.scr cover
+place:{
+	local.p = $player[1]	// testthread runs with no self: the one test client
+	if( local.p == NULL || local.p == NIL ){ end }
+	local.p thread coop_mod/cover.scr::cover_place local.p
+	wait 1.5
+	local.n = level.coop_cover_count
+	local.b = NIL
+	if( local.n != NIL ){ local.b = level.coop_cover_visual[local.n] }
+	if( local.b != NIL && local.b != NULL ){ println( "^~^~^ TFPLACE bag " + local.b.origin + " feet " + local.p.origin + " map " + level.coop_mapname ) }
+	else { println( "^~^~^ TFPLACE bag NONE feet " + local.p.origin + " map " + level.coop_mapname ) }
+	level.coop_ammobox_dropped[local.p.entnum] = NIL
+	waitthread coop_mod/ammobox.scr::ammobox_place local.p
+	local.c = level.coop_ammobox_visual[level.coop_ammobox_count]
+	if( local.c != NIL && local.c != NULL ){ println( "^~^~^ TFPLACE crate " + local.c.origin + " feet " + local.p.origin ) }
+}end
+
+cover:{
+	local.p = $player[1]	// testthread runs with no self: the one test client
+	if( local.p == NULL || local.p == NIL ){ end }
+	local.n = level.coop_cover_count
+	if( local.n == NIL ){ end }
+	local.b = level.coop_cover_visual[local.n]
+	if( local.b == NIL || local.b == NULL ){ end }
+	local.f = angles_toforward local.b.angles
+	local.p origin ( local.b.origin + ( 0 0 8 ) )
+	local.p face local.b.angles
+	wait 0.5
+	local.p coop_setcover 1
+	wait 2
+	println( "^~^~^ TFPLACE cover incover=" + local.p.coop_incover + " at " + local.p.origin )
+}end
