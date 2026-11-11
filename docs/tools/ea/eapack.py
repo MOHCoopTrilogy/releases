@@ -76,6 +76,53 @@ def music(L, level, mspec, vgm, files, lines, log=print):
     return n
 
 
+def voices(L, level, text, vgm, files, lines, log=print):
+    """[eapolish] the original's scripted voice lines (eavoice.py: UBER event -> str.ast stream), decoded on this PC
+    to sound/ea/<level>/<n>.wav with a dialog alias each; level.ea_voice[cue] / ea_voice_len[cue]"""
+    import os
+    import shutil
+    import subprocess
+    import tempfile
+    import wave
+    import eavoice
+    d = f"DATA/{level.split('_')[0]}/{level}/SOUND/"
+    try:
+        ubr = L.disc.read(d + "Audio.ubr")
+        ast = L.disc.read(d + "str.ast")
+    except Exception as e:      # a disc without them: subtitles only
+        log("eapack: no voice data", e)
+        return 0
+    got = eavoice.lines(ubr, ast, [k for k in text if re.match(r"^\d", k)])
+    tmp = tempfile.mkdtemp(prefix="eavoice_")
+    ali, n = [], 0
+    try:
+        for i, (key, schl) in enumerate(sorted(got.items()), 1):
+            src = os.path.join(tmp, "v.hab")
+            dst = os.path.join(tmp, "v.wav")
+            with open(src, "wb") as f:
+                f.write(schl)
+            r = subprocess.run([vgm, "-o", dst, src], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                               creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
+            if r.returncode != 0 or not os.path.exists(dst):
+                continue
+            rel = f"sound/ea/{level}/v{i:03d}.wav"
+            with open(dst, "rb") as f:
+                files[rel] = f.read()
+            with wave.open(dst) as w:
+                secs = w.getnframes() / float(w.getframerate())
+            os.remove(dst)
+            alias = f"ea{level.replace('_', '')}_v{i:03d}"
+            ali.append(f'aliascache {alias} {rel} soundparms 1.0 0.0 1.0 0.0 800 6000 dialog streamed maps "coop_ea"')
+            lines.append(f"\tlevel.ea_voice[{scr_str(key)}] = \"{alias}\"")
+            lines.append(f"\tlevel.ea_voice_len[{scr_str(key)}] = {secs:.2f}")
+            n += 1
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    files[f"ubersound/ea_{level}_voice.scr"] = ("// GENERATED on this PC by the European Assault converter\n" +
+                                                 "\n".join(ali) + "\n").encode()
+    return n
+
+
 def clear_line(grid, a, b, step=16.0):
     """the player box can stand all along a->b (BSP units): every 16u has ground within a step and free space"""
     import math
@@ -281,6 +328,10 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
         g = grid.ground(q[0], q[1], q[2] + 48, q[2] - 160)
         return (q[0], q[1], g + 2) if g is not None else None
     vm = eavm.build(db, X, strict_spot, ground_pt, text, lines, log)
+    nvoice = 0
+    if vgm:
+        nvoice = voices(L, level, text, vgm, files, lines, log)
+    vm["voices"] = nvoice
     nmus = 0
     if vgm and spec.get("music"):
         # [eapolish] the original's music EVENTS (its 10 music triggers, eavm) each get a segment too: event e ->
