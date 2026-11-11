@@ -22,7 +22,7 @@ On ANY guard violation every launch stops and the run reports it.
 Results: H:\\hzm_work\\liveops-test\\runs\\<case>\\ (logs, result.json, png - local only)."""
 import json, os, re, shutil, subprocess, sys, time, zipfile
 
-TOOLS = r"C:\mohaa-coop-dev\docs\tools"
+TOOLS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "tools")   # this worktree's docs/tools
 sys.path.insert(0, TOOLS)
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 import harness_guard as hg     # noqa: E402
@@ -448,6 +448,13 @@ def main(cases):
             print("GUARD TRIPPED - stopping all launches:", TRIPPED, flush=True)
             break
         # the user may play on the ultrawide while we test (ALLOW_WHILE_PLAYING): then ONLY the 1080p second screen
+        if SLOT == "liberacion":
+            sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "liberacion_2026-11-10", "tools"))
+            import lib_sweep
+            why = lib_sweep.hold_reason()
+            if why:
+                print("HOLD - not launching:", why, flush=True)
+                break
         if hg.user_game_running():
             print("a USER-class MOHAA client is running and testing beside it is not allowed - not launching", flush=True)
             break

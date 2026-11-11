@@ -12,7 +12,7 @@ read-only, homepath G:\\mohaa-lib\\home_ded (logs copied to H:\\hzm_work\\libera
 Results: H:\\hzm_work\\liberacion\\sweep_fight.json, sweep_place.json."""
 import json, os, re, shutil, subprocess, sys, time
 
-sys.path.insert(0, r"C:\mohaa-coop-dev\docs\tools")
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "tools"))   # this worktree's docs/tools
 import harness_window as hw  # noqa: E402
 
 GOG = r"G:\GOG\Medal of Honor - Allied Assault War Chest"
@@ -37,6 +37,28 @@ KILL2 = re.compile(r"(was (shot|killed|gunned|blown|machine-gunned|sniped|clubbe
 
 def opt(n, d):
     return sys.argv[sys.argv.index(n) + 1] if n in sys.argv else d
+
+
+HOLD_FILE = os.path.join(OUT, "HOLD")       # touch it (or any lane-wide hold the coordinator calls) and the sweep stops
+
+
+def hold_reason():
+    """checked before EVERY launch: a user game, a release / build script running, or the lane's HOLD file"""
+    import harness_guard as hg
+    if hg.user_game_running() or hg.user_game_running_raw():
+        return "a user MOHAA client is running"
+    if os.path.exists(HOLD_FILE):
+        return "HOLD file present (%s)" % HOLD_FILE
+    try:
+        out = subprocess.run(["powershell", "-NoProfile", "-Command",
+                              r"Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'build\.ps1|publish_release\.ps1' }"
+                              " | Measure-Object | Select-Object -ExpandProperty Count"],
+                             capture_output=True, text=True, timeout=60, creationflags=0x08000000).stdout.strip()
+        if out and out != "0":
+            return "build.ps1 / publish_release.ps1 is running"
+    except Exception as e:  # noqa: BLE001
+        return "hold check failed: %r" % e
+    return ""
 
 
 def run(mp, gt, secs, lines, tag):
@@ -119,6 +141,10 @@ def main():
     out = os.path.join(OUT, "sweep_%s.json" % phase)
     res = json.load(open(out)) if os.path.exists(out) and "--fresh" not in sys.argv else {}
     for mp in maps:
+        why = hold_reason()
+        if why:
+            print("HOLD - not launching %s: %s" % (mp, why), flush=True)
+            break
         if phase == "fight":
             r = fight(mp, int(opt("--secs", "150")))
         else:
