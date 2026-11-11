@@ -60,4 +60,34 @@ fighter passes, two bombs, two rockets and the U-boat play Frontline's own motio
 (`fl_levels.json set_pieces`); StayOnPath soldiers walk their named paths; death ambushers lie in a dead pose and rise
 when a player comes within 420u; the wounded MG gunner's line plays; the jeep starts at key 1 and its crew is bound.
 
+## Round 3 (2026-11-10 night) - blocked only by what you can see; Frontline's own meshes; in-game runs
+
+**Visible collision (flsheets, converter 0.5.0).** Every non-walkable Frontline player-clip sheet is dropped and the
+drawn geometry it stood in front of gets thin collision of its own. The sheets that bound the level where nothing is
+drawn stay (fl_levels.json `clip_keep`, 114 of 1462, curated with `sheetiter.py`: drop all, keep the sheets on the walk
+audit's escape frontier) and get a barbed-wire edge. Tree/post columns fit the drawn points inside them. The canal is a
+water volume: its quays keep their edge, a bed under the water catches anyone who gets in and the mission script drowns
+him (fl_water). geoaudit now ends a walk where the map kills the player and samples visibility from 12u up.
+
+| geoaudit (crouch flood, map step 34) | v19 | v23 | v32 |
+|---|---:|---:|---:|
+| invisible contacts on routes | 982 | 1190 | 179 |
+| - Frontline player clip (m3s) | 419 | 664 | 65 (boundaries with a drawn edge, slopes) |
+| - our edge-of-world / quay clip | 132 | 8 | 39 (canal quays) |
+| route blocks | 146 | 85 | 95 |
+| path points unreachable | 17 | 17 | 16 |
+| void falls | 7 | 25 | 11 |
+| visaudit steep see-through | 0 | 0 | 0 |
+
+**Frontline's own object meshes** (`flcore.mesh`, inline models `$fl_om_*`): the door (swings open when its group
+wakes - checked on camera), the two falling house chunks, the four jeep wheels on the jeep's clock, the P-47 and Stuka
+for all seven passes, both bombs, the rockets and the U-boat (checked on camera, bobbing at the lighthouse dock). Their
+rotations are the stored ones conjugated by the mirror (`flscene.raw_angles`), vertex colour doubled (PS2 range).
+
+**In-game runs (flpolish-eng build, v1.10.73 base merged):** SP camera run - jeep from key 1 drawn past x 8192, crew
+seated, mine, wreck; tank drives path 66 and burns out at the end of the rocketing P-47 pass; bombs, house chunks,
+rockets, door, U-boat; 0 Script Errors. Two-client coop route walk (61/63 triggers in the 14 min cap): 103 actors,
+Germans 63/74 engaged, 54 killed; Allies 22/29 engaged, 10 killed; 7 idle (5 of them death ambushers no player came
+within 420u of); 0 spawned in view; 17 squad joins; 42 groups; 0 Script Errors.
+
 ## Audits (docs/tools/byoaudit) - re-run with the commands in its README

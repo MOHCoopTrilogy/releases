@@ -47,6 +47,7 @@ COLL_MAT_VOLUME = (14, 15)   # 14 trigger volumes; 15 the river's WATER volume (
 COLL_SPECIAL = 1 << 23
 TAG_CLIFF = 0x7FFFF001        # [flpolish] collision added by us: edge-of-world clip (flcliff) / lip ramps (flclear)
 TAG_RAMP = 0x7FFFF002
+TAG_RIVERBED = 0x7FFFF005    # [flpolish] the bed under the canal's water volume (a player who falls in lands and drowns)
 TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dropped player-clip sheet stood in front of
 
 
@@ -520,7 +521,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             idmap[wound[-1]] = (name, ti_)
     stats["coll_volumes_dropped"] = volumes
     wound += riverbed
-    wtags += [0] * len(riverbed)
+    wtags += [TAG_RIVERBED] * len(riverbed)
     stats["riverbed_tris"] = len(riverbed)
     # invisible blocker columns (trees, posts) shrunk to what is drawn inside them (flfit.py)
     colboxes = []
@@ -571,7 +572,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     if not os.environ.get("FL_NO_CLIFF"):
         # against the collision AS BUILT (skins dropped, headroom carved), not the disc's: a dropped player-clip sheet
         # still read as 'a wall already stands here' and the edge got no clip (walk audit: void falls 7 -> 25)
-        cw, stats["cliffs"] = flcliff.walls(wound, flgeom.TriGrid(wound))
+        # the canal bed does not count as ground past an edge: the quays keep their edge (Frontline's player never
+        # entered the water either); the bed only catches someone who gets in anyway
+        cw, stats["cliffs"] = flcliff.walls(wound, flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED]))
         wound += cw
         wtags += [TAG_CLIFF] * len(cw)
         # [flpolish] ...and a DRAWN skirt under the same edge: the floor's own texture and light carried 512u straight
@@ -652,6 +655,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             nm = "ramp"
         elif tag == TAG_DRAWN:
             nm = "drawn"
+        elif tag == TAG_RIVERBED:
+            nm = "riverbed"
         else:
             nm = "m%d%s%s" % (tag & 0x7FF, "s" if tag & COLL_SPECIAL else "", "v" if tag & COLL_VOLUME else "")
         return B.shader("textures/common/fl_coll_" + nm, flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
@@ -697,9 +702,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # moves them by origin/angles (script_object $fl_om<k>). Which mesh goes where is fl_levels.json ("set_pieces"
     # entries with "mesh", and "object_meshes" for the ones that stand on a record); converted on the player's PC.
     om_ents = []
-    # local frame, NOT mirrored: the stored rotations already map Frontline's local axes into the mirrored world
-    # (flscene.raw_angles; the door hangs right only this way)
-    Xr = lambda q: (q[0] * X.s, q[1] * X.s, q[2] * X.s)                # noqa: E731 - local frame: no recentre
+    # local frame mirrored in y like the world; flscene.raw_angles conjugates the rotations to match
+    Xr = lambda q: (q[0] * X.s, q[1] * X.s * X.m, q[2] * X.s)          # noqa: E731 - local frame: no recentre
     recs_ = {e.get("i"): e for e in L.entities()}
     om_specs = []
     for k_, spc in enumerate(flpack.spec(level).get("set_pieces", []), 1):

@@ -96,9 +96,12 @@ def mohaa_angles(q, mirror):
 
 def raw_angles(q):
     """[flpolish] MOHAA (pitch, yaw, roll) of the stored rotation itself, for Frontline's OWN meshes kept in their own
-    local frame (flconvert inline models): local x/y/z stay the model's axes. Checked on the door (record 401): its
-    180-degree turn about (1,1,0) hangs the 2.6 m panel from its record point 2.5 m above the street, as in Frontline."""
-    m = _qmat(*q)
+    local frame (flconvert inline models, mirrored in y like the world). Checked on the door (record 401): its 180-degree
+    turn hangs the 2.6 m panel from its record point 2.5 m above the street, swinging edge in the drawn doorway."""
+    m = [list(r) for r in _qmat(*q)]
+    # the mesh is mirrored in y like the world (flconvert), so the rotation is conjugated by the mirror: M R M
+    for i, j in ((0, 1), (1, 0), (1, 2), (2, 1)):
+        m[i][j] = -m[i][j]
     fwd = (m[0][0], m[1][0], m[2][0])
     lft = (m[0][1], m[1][1], m[2][1])
     up = (m[0][2], m[1][2], m[2][2])

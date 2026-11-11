@@ -116,7 +116,7 @@ class Walker:
         return "visible"
 
 
-def flood(M, seeds, step, hull_h, limit=1500000):
+def flood(M, seeds, step, hull_h, limit=1500000, deadly=()):
     W = Walker(M, step)
     seen = {}
     q = collections.deque()
@@ -126,6 +126,7 @@ def flood(M, seeds, step, hull_h, limit=1500000):
             seen[k] = s[2]
             q.append((k[0] * step, k[1] * step, s[2]))
     blocked, voids, drops = [], [], 0
+    drowned = flood.drowned = []
     while q and len(seen) < limit:
         x, y, z = q.popleft()
         for d in DIRS:
@@ -138,6 +139,12 @@ def flood(M, seeds, step, hull_h, limit=1500000):
                 continue
             if kind == "drop":
                 drops += 1
+            # a cell where the map kills the player (converted maps: under a water surface, level.fl_water_*) is the
+            # end of that walk - he drowns there, he does not walk on along the bottom
+            if any(lo[0] < x + d[0] * step < hi[0] and lo[1] < y + d[1] * step < hi[1] and nz < lo[2] - 40
+                   for lo, hi in deadly):
+                drowned.append((x + d[0] * step, y + d[1] * step, nz))
+                continue
             k = (int(round((x + d[0] * step) / step)), int(round((y + d[1] * step) / step)), int(nz // 16))
             if k in seen:
                 continue
@@ -190,11 +197,17 @@ def main():
     rep = {"pk3": os.path.basename(a.pk3), "map": a.mapname, "step": a.step, "step_height": STEP, "seeds": len(seeds)}
 
     # ---- 1/2: reachability = a player who crouches where he must (CROUCH hull); blocked-move classification on it
-    seen, blocked, voids, drops, W = flood(M, seeds, a.step, CROUCH_H)
+    wl = {int(m.group(1)): tuple(map(float, m.group(2, 3, 4))) for m in re.finditer(
+        r"level\.fl_water_lo\[(\d+)\] = \( (\S+) (\S+) (\S+) \)", dtext.decode("latin-1"))} if dtext else {}
+    wh = {int(m.group(1)): tuple(map(float, m.group(2, 3, 4))) for m in re.finditer(
+        r"level\.fl_water_hi\[(\d+)\] = \( (\S+) (\S+) (\S+) \)", dtext.decode("latin-1"))} if dtext else {}
+    deadly = [(wl[k], wh[k]) for k in sorted(wl) if k in wh]
+    seen, blocked, voids, drops, W = flood(M, seeds, a.step, CROUCH_H, deadly=deadly)
+    rep["drowned_cells"] = len(set(flood.drowned))
     rep["walkable_cells"] = len(seen)
     if a.cells:
         np.save(os.path.join(a.outdir, "cells.npy"), np.array([(k[0] * a.step, k[1] * a.step, z) for k, z in seen.items()]))
-    seen_st, _b, _v, _d, _w = flood(M, seeds, a.step, STAND_H)
+    seen_st, _b, _v, _d, _w = flood(M, seeds, a.step, STAND_H, deadly=deadly)
     rep["walkable_cells_stand"] = len(seen_st)
     # must-crouch cells: reachable, but a standing box does not fit there (doorway / beam head bumps, crawl holes)
     must = []

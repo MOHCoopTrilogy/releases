@@ -56,7 +56,7 @@ def walls(tris, grid, floor_nz=0.7, probe=20.0, height=160.0, depth=2048.0, rise
         # floor right behind them). Probe from `rise` above, at two distances out.
         void = True
         for f in (0.15, 0.5, 0.85):
-            for dist in (probe,):   # [flpolish] only right past the edge: floor 50u out means a GAP the player falls into
+            for dist in (probe, probe * 2.5):
                 px = p[0] + (q[0] - p[0]) * f + ox * dist
                 py = p[1] + (q[1] - p[1]) * f + oy * dist
                 pz = p[2] + (q[2] - p[2]) * f
