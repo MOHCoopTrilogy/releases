@@ -44,10 +44,52 @@ POOL = {
     # Phase 2 - objective, the player is the sapper (decision 2): his side is the map's planting team
     "obj/obj_team1": {"OBJ": (7, 11)},
     "obj/obj_team2": {"OBJ": (7, 11)},
-    "obj/obj_team4": {"OBJ": (7, 11)},
     "obj/mp_bizertefort_obj": {"OBJ": (7, 11)},
-    "obj/mp_palermo_obj": {"OBJ": (7, 11)},
 }
+# [opsfix2, user rule] every contract is Allied: the Axis-planting OBJ maps (The Bridge obj_team4, Palermo) left the OBJ pool
+
+# [LIBERATION, v1.10.74 - docs/proposals/liberacion_2026-11-10] solo, one life, the co-op kit, Germans that never respawn.
+# map -> (Germans min, Germans max, limit min at min Germans, limit min at max Germans). The Germans are placed by mp_ops.scr on
+# the map's own spawn points (lib_points.json, from the BSPs), so a map needs only bot navigation, not team spawns: any map
+# the Phase 0 / liberacion sweeps saw bots move and fight on. Count by map size (spawn-point spread, lib_points.json) and the
+# contract's skill; limits from the bots-only clear test (lib_sweep.py clear), about 2.5x a methodical clear, 6-12 min.
+LIB_POOL = {
+    "dm/mohdm1": (12, 16, 8, 10),
+    "dm/mohdm2": (14, 20, 10, 12),
+    "dm/mohdm3": (14, 20, 11, 12),
+    "dm/mohdm4": (16, 25, 12, 12),
+    "dm/mohdm5": (14, 20, 11, 12),
+    "dm/mohdm6": (12, 16, 7, 9),
+    "dm/mohdm7": (14, 20, 11, 12),
+    "dm/mp_bahnhof_dm": (14, 20, 11, 12),
+    "dm/mp_bazaar_dm": (14, 20, 10, 12),
+    "dm/mp_brest_dm": (14, 20, 11, 12),
+    "dm/mp_gewitter_dm": (16, 25, 12, 12),
+    "dm/mp_stadt_dm": (14, 20, 10, 12),
+    "dm/mp_unterseite_dm": (12, 16, 8, 9),
+    "dm/mp_verschneit_dm": (14, 20, 10, 12),
+    "lib/mp_anzio_lib": (14, 20, 11, 12),
+    "lib/mp_bizerteharbor_lib": (16, 25, 12, 12),
+    "lib/mp_ship_lib": (12, 16, 8, 10),
+    "obj/mp_ardennes_tow": (16, 25, 12, 12),
+    "obj/mp_berlin_tow": (16, 25, 12, 12),
+    "obj/mp_bizertefort_obj": (14, 20, 10, 12),
+    "obj/mp_bologna_obj": (16, 25, 12, 12),
+    "obj/mp_castello_obj": (14, 20, 10, 12),
+    "obj/mp_druckkammern_tow": (16, 25, 12, 12),
+    "obj/mp_flughafen_tow": (16, 25, 12, 12),
+    "obj/mp_montebattaglia_tow": (14, 20, 10, 12),
+    "obj/mp_montecassino_tow": (16, 25, 12, 12),
+    "obj/mp_palermo_obj": (14, 20, 9, 12),
+    "obj/obj_team1": (16, 25, 12, 12),
+    "obj/obj_team2": (14, 20, 10, 12),
+    "obj/obj_team3": (16, 25, 12, 12),
+    "obj/obj_team4": (14, 20, 11, 12),
+}
+LIB_SHARE_IN, LIB_SHARE_OUT = 1, 3    # at a place with both kinds, LIB contracts together are picked 1 time in 4 (entry_weights)
+LIB_ARRIVE_PCT = 60                   # a place with ONLY LIB contracts opens 60 % of its windows (TDM / OBJ places: 90 %)
+LIB_XP_MULT = 2                       # a win pays twice the TDM win XP of that skill; a failure pays nothing
+LIB_MIN_D = 1024                      # mp_ops.scr: a German is placed at least this far from the player (relaxed to 0.6x)
 # the stock maps' own objective scripts (maintt/pak1 + pak3 maps/obj/*.scr): level.planting_team and the charges' targetnames
 # (each runs global/obj_dm.scr::bomb_thinker or its own copy). mp_ops.scr points the bots at these: the defenders hold them,
 # the sapper's side escorts toward them.
@@ -62,7 +104,20 @@ OBJ_META = {
 }
 # the slot a map belongs to (maps at one place share one slot: one live contract per place)
 SLOT_OF = {"dm/mohdm4": "france", "obj/obj_team4": "france", "obj/mp_bizertefort_obj": "bizerte",
-           "lib/mp_bizerteharbor_lib": "bizerte", "lib/mp_ship_lib": "bizerte"}
+           "lib/mp_bizerteharbor_lib": "bizerte", "lib/mp_ship_lib": "bizerte",
+           # [LIBERATION] the censored places share the one censored area they already have on the map: every "Somewhere in
+           # Germany" map is the V2 slot's dashed area, every "Somewhere in Normandy" one The Hunt's (one live contract per
+           # place, and no new marks crowding the Rhineland / Normandy, where they merged every slot into one group)
+           "dm/mohdm5": "v2rocketfacility", "dm/mp_gewitter_dm": "v2rocketfacility", "dm/mp_stadt_dm": "v2rocketfacility",
+           "dm/mp_unterseite_dm": "v2rocketfacility", "dm/mp_verschneit_dm": "v2rocketfacility",
+           "obj/mp_flughafen_tow": "v2rocketfacility", "obj/mp_druckkammern_tow": "v2rocketfacility",
+           "dm/mohdm2": "thehunt", "dm/mp_bahnhof_dm": "thehunt"}
+# [LIBERATION] approx pins moved off a campaign tag for a LIB-only place (the evidence table keeps its pin; the reason is here):
+# the Bazaar ("Somewhere in North Africa", no city) and the Tunisian desert sat under the bt1 KASSERINE tag
+PIN_OVERRIDE = {"dm/mp_bazaar_dm": (36.0, 7.0)}   # nearest clear spot, still the Constantine hinterland the table chose
+# NOT in the LIB pool for the same reason, with no clear spot left in their own country: Kasserine (a real place under its
+# own bt1 tag), the Tunisian desert (all of the south lies under bt1) and Malta (under bt2). Holland is out because its
+# area joined the Remagen and Brest exclusion groups into one (fewer live contracts everywhere in north-west Europe).
 # the card's two location lines and the hover slip's place line, per slot. Real places only where the game names one
 # (ops_locations.json evidence); a censored place reads "Somewhere in ..." and is never given a town.
 PLACE = {
@@ -80,8 +135,27 @@ PLACE = {
     "france": ("SOMEWHERE IN FRANCE", "Somewhere in France", ""),
     "bizerte": ("BIZERTE, TUNISIA", "Bizerte, Tunisia", "the old fortress"),
     "palermo": ("PALERMO, SICILY", "Palermo, Sicily", ""),
+    # [LIBERATION] the places only a Liberation contract opens (ops_locations.json evidence; censored = "Somewhere in ...")
+    "southernfrance": ("SOUTHERN FRANCE", "Southern France", "the Provence coast"),
+    "destroyedvillage": ("SOMEWHERE IN NORMANDY", "Somewhere in Normandy", "a destroyed village"),
+    "snowypark": ("SOMEWHERE IN GERMANY", "Somewhere in Germany", "a park in winter"),
+    "bahnhof": ("SOMEWHERE IN NORMANDY", "Somewhere in Normandy", "a railway station"),
+    "bazaar": ("SOMEWHERE IN AFRICA", "Somewhere in North Africa", "a bazaar"),
+    "gewitter": ("SOMEWHERE IN GERMANY", "Somewhere in Germany", "in a thunderstorm"),
+    "holland": ("SOMEWHERE IN HOLLAND", "Somewhere in Holland", ""),
+    "stadt": ("SOMEWHERE IN GERMANY", "Somewhere in Germany", "a town"),
+    "unterseite": ("SOMEWHERE IN GERMANY", "Somewhere in Germany", ""),
+    "verschneit": ("SOMEWHERE IN GERMANY", "Somewhere in Germany", "snowed in"),
+    "ardennes": ("THE ARDENNES, BELGIUM", "The Ardennes, Belgium", ""),
+    "druckkammern": ("SOMEWHERE IN GERMANY", "Somewhere in Germany", "a U-boat pen"),
+    "flughafen": ("SOMEWHERE IN GERMANY", "Somewhere in Germany", "an airfield"),
+    "kasserine": ("KASSERINE, TUNISIA", "Kasserine Pass, Tunisia", ""),
+    "montebattaglia": ("MONTE BATTAGLIA", "Monte Battaglia, Italy", "the summit"),
+    "castello": ("SOMEWHERE IN ITALY", "Somewhere in Italy", "a castle in the snow"),
+    "anzio": ("ANZIO, ITALY", "Anzio, Italy", "the beachhead"),
+    "tunisia": ("SOMEWHERE IN TUNISIA", "Somewhere in Tunisia", "the desert"),
 }
-MODE_GT = {"TDM": 2, "OBJ": 4}
+MODE_GT = {"TDM": 2, "OBJ": 4, "LIB": 3}
 SKILLS = [("RECRUIT", 25, 100), ("REGULAR", 35, 125), ("VETERAN", 28, 150), ("ELITE", 12, 200)]   # name, weight %, win XP
 MODS = [("", 50), ("HARDCORE", 12), ("RIFLES", 12), ("SNIPERS", 8), ("STORM", 18)]                  # name, weight %
 MOD_CARD = {"": "NONE", "HARDCORE": "HARDCORE - half health", "RIFLES": "RIFLES ONLY", "SNIPERS": "SNIPERS ONLY",
@@ -108,23 +182,30 @@ def slot_key(mp):
 def build_pool():
     """slots (sorted, index 1-based in the engine and the menus) and the (map, mode) entries the roll picks from"""
     slots = {}
-    for mp, modes in POOL.items():
+    pool = {mp: dict(modes) for mp, modes in POOL.items()}
+    for mp, (lo, hi, _l0, _l1) in LIB_POOL.items():
+        pool.setdefault(mp, {})["LIB"] = (lo, hi)
+    for mp, modes in pool.items():
         assert mp in LOCS, mp
         L = LOCS[mp]
         for md in modes:
-            assert md == "TDM" and "TDM" in L["modes"] or md == "OBJ" and "OBJ" in L["modes"], (mp, md)
+            # a LIBERATION contract needs bot navigation only (the Germans are placed by script), so any MP map qualifies
+            assert md == "TDM" and "TDM" in L["modes"] or md == "OBJ" and "OBJ" in L["modes"] or md == "LIB", (mp, md)
         k = slot_key(mp)
-        s = slots.setdefault(k, {"key": k, "pin": tuple(L["pin"]), "area": bool(L["area"]), "maps": [], "campaign": L.get("campaign")})
+        s = slots.setdefault(k, {"key": k, "pin": tuple(PIN_OVERRIDE.get(mp, L["pin"])), "area": bool(L["area"]), "maps": [],
+                                 "campaign": L.get("campaign")})
         assert PLACE.get(k), "no place lines for slot " + k
         s["maps"].append(mp)
     order = sorted(slots)
     entries = []
     for k in order:
         for mp in sorted(slots[k]["maps"]):
-            for md in ("TDM", "OBJ"):
-                if md in POOL[mp]:
-                    entries.append({"slot": order.index(k), "map": mp, "mode": md, "bots": POOL[mp][md],
-                                    "name": LOCS[mp]["name"], "side": OBJ_META[mp][0] if md == "OBJ" else ""})
+            for md in ("TDM", "OBJ", "LIB"):
+                if md in pool[mp]:
+                    lim = LIB_POOL[mp][2:] if md == "LIB" else (TIMELIMIT, TIMELIMIT)
+                    entries.append({"slot": order.index(k), "map": mp, "mode": md, "bots": pool[mp][md],
+                                    "name": LOCS[mp]["name"], "side": OBJ_META[mp][0] if md == "OBJ" else ("allies" if md == "LIB" else ""),
+                                    "weight": 1, "limit": lim})
     return [slots[k] for k in order], entries
 
 
@@ -155,15 +236,57 @@ def rnd(t, k):
     return mix(SALT ^ ((t * 0x9E3779B97F4A7C15) & M64) ^ ((k * 0xD1B54A32D192ED03) & M64))
 
 
+def entry_weights(groups):
+    """each entry's pick weight inside its exclusion group: with a LIB entries and b TDM / OBJ ones, a LIB entry weighs
+    LIB_SHARE_IN * b and the others LIB_SHARE_OUT * a, so the LIBs together take LIB_SHARE_IN / (IN + OUT) of the picks
+    however many maps each kind has there. A group of one kind: all 1. Written into the engine table (hzmOpsEntry_t.weight)."""
+    w = []
+    for e in ENTRIES:
+        g = groups[e["slot"]]
+        a = sum(1 for x in ENTRIES if groups[x["slot"]] == g and x["mode"] == "LIB")
+        b = sum(1 for x in ENTRIES if groups[x["slot"]] == g and x["mode"] != "LIB")
+        if a and b:
+            w.append(LIB_SHARE_IN * b if e["mode"] == "LIB" else LIB_SHARE_OUT * a)
+        else:
+            w.append(1)
+    return w
+
+
+def group_pct(g, groups):
+    """a place (exclusion group) with only LIB contracts opens LIB_ARRIVE_PCT of its windows, any other ARRIVE_PCT"""
+    ms = [e["mode"] for e in ENTRIES if groups[e["slot"]] == g]
+    return LIB_ARRIVE_PCT if ms and all(m == "LIB" for m in ms) else ARRIVE_PCT
+
+
+def lib_bots(e, skill, key):
+    """Germans of a LIB contract: the map's range, placed by skill (RECRUIT low .. ELITE high), +-1 jitter"""
+    lo, hi = e["bots"]
+    b = lo + (hi - lo) * skill // (len(SKILLS) - 1) + int(rnd(key, 3) % 3) - 1
+    return max(lo, min(hi, b))
+
+
+def lib_limit(e, bots):
+    """the contract's time limit (minutes): the map's limits, linear in the German count"""
+    lo, hi = e["bots"]
+    l0, l1 = e["limit"]
+    return l0 if hi == lo else l0 + ((l1 - l0) * (bots - lo) + (hi - lo) // 2) // (hi - lo)
+
+
 def contract(g, k, groups):
     """the contract of exclusion group g in its window k, or None. A group's time is cut into WINDOW-minute windows (phase
     shifted per group); each window holds at most one contract, so two contracts of one group can never overlap, and the
     whole schedule is a pure function of the clock - no state, nothing to drift between players."""
     key = k * 64 + g
-    if rnd(key, 0) % 100 >= ARRIVE_PCT:
+    if rnd(key, 0) % 100 >= group_pct(g, groups):
         return None
     mine = [i for i, e in enumerate(ENTRIES) if groups[e["slot"]] == g]
-    e = ENTRIES[mine[rnd(key, 1) % len(mine)]]
+    W = entry_weights(groups)
+    r = rnd(key, 1) % sum(W[i] for i in mine)
+    for i in mine:
+        if r < W[i]:
+            e = ENTRIES[i]
+            break
+        r -= W[i]
     life = LIFE_MIN + rnd(key, 2) % LIFE_SPAN
     born = phase(g) + k * WINDOW + rnd(key, 9) % (WINDOW - life + 1)
     lo, hi = e["bots"]
@@ -184,7 +307,9 @@ def contract(g, k, groups):
             break
     if SKILLS[skill][0] == "ELITE" and MODS[mod][0] == "HARDCORE":
         mod = 0
-    side = e["side"] or ("allies" if rnd(key, 6) % 100 < 65 else "axis")
+    if e["mode"] == "LIB":
+        bots = lib_bots(e, skill, key)
+    side = "allies"     # [opsfix2, user 2026-11-10] the humans are always Allied (cl_hzm_ops.cpp does the same)
     return {"t": born, "entry": ENTRIES.index(e), "slot": e["slot"], "group": g, "life": life, "bots": bots, "skill": skill,
             "mod": mod, "side": side, "name": ADJ[rnd(key, 7) % len(ADJ)] + " " + NOUN[rnd(key, 8) % len(NOUN)],
             "serial": 100 + key % 9900}
@@ -470,6 +595,10 @@ def build_textures(texdir, add_shader):
         out["hzm_ops_ring%d" % k] = _ring(128, k)
     for md, rot in (("TDM", -4), ("OBJ", 3)):
         out["hzm_ops_stamp_" + md.lower()] = _stamp(md, 256, 128, seed=sum(map(ord, md)), rot=rot)
+    # [LIBERATION] the solo hunt's stamp: the French word, accent and all (Courier New Bold has the E-acute), in the field
+    # green of the result stamp so it reads apart from the red TDM / OBJ ones at a glance
+    # drawn at the stamp box's own 2.44:1 (STAMP) so the word is not squeezed when the label stretches it back
+    out["hzm_ops_stamp_lib"] = _stamp("LIB\u00c9RATION", 512, 210, col=(40, 84, 44), seed=31, rot=-3)
     tk = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
     from PIL import ImageDraw
     ImageDraw.Draw(tk).ellipse((14, 14, 50, 50), fill=(28, 24, 22, 255), outline=(70, 62, 52, 255), width=3)
@@ -669,9 +798,12 @@ def engine_header(path, js):
          "#define HZM_OPS_SALT 0x%016XULL" % SALT,
          "#define HZM_OPS_ARRIVE_PCT %d" % ARRIVE_PCT, "#define HZM_OPS_LIFE_MIN %d" % LIFE_MIN, "#define HZM_OPS_LIFE_SPAN %d" % LIFE_SPAN,
          "#define HZM_OPS_WINDOW %d" % WINDOW, "#define HZM_OPS_SHOW_MAX %d" % SHOW_MAX, "#define HZM_OPS_TIMELIMIT %d" % TIMELIMIT,
-         "#define HZM_OPS_NSLOTS %d" % len(SLOTS), "#define HZM_OPS_NENTRIES %d" % len(ENTRIES), "",
+         "#define HZM_OPS_NSLOTS %d" % len(SLOTS), "#define HZM_OPS_NENTRIES %d" % len(ENTRIES),
+         "#define HZM_OPS_NGROUPS %d" % (max(groups) + 1), "#define HZM_OPS_LIB_XP_MULT %d" % LIB_XP_MULT,
+         "#define HZM_OPS_GT_LIB %d" % MODE_GT["LIB"], "",
          "typedef struct { const char *key, *slip, *loc1, *loc2; int group; float lon; } hzmOpsSlot_t;",
-         "typedef struct { int slot; const char *bsp, *name; int gt, botsMin, botsMax; const char *side; } hzmOpsEntry_t;",
+         "// gt 3 = LIBERATION (solo hunt): botsMin/botsMax are the Germans, limLo/limHi the time limit (min) at those counts",
+         "typedef struct { int slot; const char *bsp, *name; int gt, botsMin, botsMax; const char *side; int weight, limLo, limHi; } hzmOpsEntry_t;",
          "typedef struct { const char *name; int weight, xp; } hzmOpsSkill_t;",
          "typedef struct { const char *name, *card; int weight; } hzmOpsMod_t;", "",
          "static const hzmOpsSlot_t hzmOpsSlots[HZM_OPS_NSLOTS] = {"]
@@ -679,10 +811,14 @@ def engine_header(path, js):
         a, b, c = PLACE[s["key"]]
         L.append("    {%s, %s, %s, %s, %d, %.3ff}," % (c_str(s["key"]), c_str(a), c_str(b), c_str(c), g, s["pin"][1]))
     L += ["};", "", "static const hzmOpsEntry_t hzmOpsEntries[HZM_OPS_NENTRIES] = {"]
-    for e in ENTRIES:
-        L.append("    {%d, %s, %s, %d, %d, %d, %s}," % (e["slot"], c_str(e["map"]), c_str(e["name"]), MODE_GT[e["mode"]], e["bots"][0],
-                                                   e["bots"][1], c_str(e["side"])))
-    L += ["};", "", "static const hzmOpsSkill_t hzmOpsSkills[] = {"]
+    W = entry_weights(groups)
+    for e, w in zip(ENTRIES, W):
+        L.append("    {%d, %s, %s, %d, %d, %d, %s, %d, %d, %d}," % (e["slot"], c_str(e["map"]), c_str(e["name"]), MODE_GT[e["mode"]],
+                                                               e["bots"][0], e["bots"][1], c_str(e["side"]), w,
+                                                               e["limit"][0], e["limit"][1]))
+    L += ["};", "", "// per exclusion group: the share of its windows that open a contract",
+          "static const int hzmOpsGroupPct[HZM_OPS_NGROUPS] = {" + ", ".join(str(group_pct(g, groups)) for g in range(max(groups) + 1)) + "};",
+          "", "static const hzmOpsSkill_t hzmOpsSkills[] = {"]
     L += ["    {%s, %d, %d}," % (c_str(n), w, x) for n, w, x in SKILLS] + ["};", "static const hzmOpsMod_t hzmOpsMods[] = {"]
     L += ["    {%s, %s, %d}," % (c_str(n), c_str(MOD_CARD[n]), w) for n, w in MODS] + ["};"]
     L += ["static const char *const hzmOpsAdj[] = {" + ", ".join(c_str(a) for a in ADJ) + "};",
@@ -706,7 +842,67 @@ def mp_table(path):
         for i, b in enumerate(bombs):
             L.append('\tif( local.m == "%s" && local.i == %d ){ local.r = "%s" }' % (mp, i + 1, b))
     L += ["}end local.r", ""]
+    # [LIBERATION] the spots a German may be placed on (every team / deathmatch spawn point of the BSP, deduplicated -
+    # lib_points.json, `gen_ops.py libpoints`), and the test mode's stand-in player spot
+    pts = json.load(open(os.path.join(HERE, "lib_points.json")))
+    L += ["// LIBERATION: the hunt spots of each pool map (spawn points from the BSP; mp_ops.scr grounds and sight-checks each)",
+          "libpts local.m:{", "\tlocal.r = NIL"]
+    for mp in sorted(LIB_POOL):
+        L.append('\tif( local.m == "%s" ){' % mp)
+        for i, (x, y, z) in enumerate(pts[mp]["spots"]):
+            L.append("\t\tlocal.r[%d] = ( %d %d %d )" % (i + 1, x, y, z))
+        L.append("\t}")
+    L += ["}end local.r", "", "libally local.m:{", "\tlocal.r = NIL"]
+    for mp in sorted(LIB_POOL):
+        x, y, z = pts[mp]["ally"]
+        L.append('\tif( local.m == "%s" ){ local.r = ( %d %d %d ) }' % (mp, x, y, z))
+    L += ["}end local.r", ""]
     open(path, "wb").write(("\r\n".join(L) + "\r\n").encode("latin-1"))
+
+
+def lib_points(gog):
+    """lib_points.json: per MP map of the install, every info_player_deathmatch / _allied / _axis origin in its BSP (the
+    retail paks only, later paks win as the game mounts them), deduplicated at 48 u, plus the stand-in player spot of the
+    dedicated test (the Allied spawn farthest from the Axis spawns' centre). Read straight from the entity lump text."""
+    import glob, re, zipfile
+    src = {}
+    for d in ("main", "mainta", "maintt"):
+        for pk in sorted(glob.glob(os.path.join(gog, d, "*.pk3")), key=str.lower):
+            if os.path.basename(pk).lower().startswith("zzz"):
+                continue
+            z = zipfile.ZipFile(pk)
+            for n in z.namelist():
+                l = n.lower()
+                if l.endswith(".bsp") and l.count("/") == 2 and l.split("/")[1] in ("dm", "obj", "lib"):
+                    src[l[5:-4]] = (pk, n)
+    out = {}
+    for mp, (pk, n) in sorted(src.items()):
+        b = zipfile.ZipFile(pk).read(n).decode("latin-1")
+        cls = {}
+        for blk in re.findall(r"\{([^{}]{0,2000})\}", b):
+            kv = dict(re.findall(r'"([^"\n]+)"\s+"([^"\n]*)"', blk))
+            c = kv.get("classname", "")
+            if c in ("info_player_deathmatch", "info_player_allied", "info_player_axis") and "origin" in kv:
+                try:
+                    cls.setdefault(c, []).append([int(round(float(v))) for v in kv["origin"].split()[:3]])
+                except ValueError:
+                    pass
+        spots = []
+        for c in ("info_player_deathmatch", "info_player_axis", "info_player_allied"):
+            for p in cls.get(c, []):
+                if all(math.dist(p, q) >= 48 for q in spots):
+                    spots.append(p)
+        ax = cls.get("info_player_axis") or spots
+        cx = [sum(p[i] for p in ax) / len(ax) for i in range(3)]
+        al = cls.get("info_player_allied") or cls.get("info_player_deathmatch") or spots
+        ally = max(al, key=lambda p: math.dist(p, cx))
+        lo = [min(p[i] for p in spots) for i in range(2)]
+        hi = [max(p[i] for p in spots) for i in range(2)]
+        out[mp] = {"spots": spots, "ally": ally, "spread": int(math.dist(lo, hi)),
+                   "counts": {c: len(v) for c, v in sorted(cls.items())}}
+        print("%-28s spots %3d  spread %6d u  %s" % (mp, len(spots), out[mp]["spread"], out[mp]["counts"]))
+    json.dump(out, open(os.path.join(HERE, "lib_points.json"), "w"), indent=0, sort_keys=True)
+    print("wrote", os.path.join(HERE, "lib_points.json"))
 
 
 # ------------------------------------------------------------------------------------------------ CLI
@@ -738,6 +934,13 @@ def main():
                 maps[ENTRIES[c["entry"]]["map"]] = maps.get(ENTRIES[c["entry"]]["map"], 0) + 1
         print("24h census: live mean %.2f min %d max %d; zero-minutes %d" % (sum(counts) / len(counts), min(counts), max(counts), counts.count(0)))
         print(" ", sorted(maps.items(), key=lambda kv: -kv[1]))
+        modes = {}
+        for k in range(0, 24 * 60):
+            for c in roll(t0 + k * 60 + 30, groups):
+                md = ENTRIES[c["entry"]]["mode"]
+                modes[md] = modes.get(md, 0) + 1
+        tot = sum(modes.values()) or 1
+        print("  contract-minutes by mode:", {m: "%.0f%%" % (100.0 * n / tot) for m, n in sorted(modes.items())})
         sys.exit(1 if problems else 0)
     if a[1] == "dump":
         utc = int(a[2])
@@ -749,6 +952,8 @@ def main():
     if a[1] == "mp":
         mp_table(os.path.join(a[2], "coop_mod", "mp_ops_table.scr"))
         print("wrote mp_ops_table.scr")
+    if a[1] == "libpoints":
+        lib_points(a[2] if len(a) > 2 and not a[2].startswith("--") else r"G:\GOG\Medal of Honor - Allied Assault War Chest")
 
 
 if __name__ == "__main__":

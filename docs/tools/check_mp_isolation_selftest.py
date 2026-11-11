@@ -235,6 +235,17 @@ MUTATIONS = [
     # [18] no vstr in the MP UI trees (coop_mpx_zz is not in cmd_srvguard.h)
     N("M39", "ui/coop_mpx_zzselftest/v.cfg", "vstr coop_mpx_zz", {"18a"}),
     N("M39b", "ui/coop_mpa_zzselftest/v.cfg", "vstr \"coop_mpa_zz\"", {"18a"}),
+    # [19] the Liberation bridge is read-only (user 2026-11-10: Liberation uses the co-op kit)
+    A("L1", "coop_mod/libbridge.scr", "setcvar \"coop_lo1\" \"05\"", {"19a"}),
+    A("L2", "coop_mod/libbridge.scr", "local.player stufftext \"seta coop_loS1F 3\"", {"19a"}),
+    A("L2b", "coop_mod/libbridge.scr", "local.player stufftext ( \"set coop_lo\" + local.s + \" 05\" )", {"19a"}),
+    A("L3", "coop_mod/libbridge.scr", "local.player.flags[\"coop_loSlot1\"] = \"x\"", {"19b"}),
+    A("L3b", "coop_mod/libbridge.scr", "local.player.flags[ \"coop_xp_total\" ] = 0", {"19b"}),
+    A("L4", "coop_mod/libbridge.scr", "waitthread coop_mod/loadoutpick.scr::loadout_set local.player 1 \"05\"", {"19c"}),
+    A("L4b", "coop_mod/libbridge.scr", "thread coop_mod/xp.scr::xp_award local.player 5", {"19c"}),
+    mut("L5", "delete", "coop_mod/libbridge.scr", expect={"19d"}, loc=("where", "coop_mod/mp_ops.scr")),
+    # the allowlist is exactly the two bridge labels: any other libbridge label from MP is still 10c
+    A("L6", MP, "waitthread coop_mod/libbridge.scr::lib_use local.p \"x\"", {"10c"}),
 ]
 
 NEAR_MISSES = [
@@ -269,6 +280,8 @@ NEAR_MISSES = [
     N("N19", "ui/coop_mpa_zzselftest/vc.cfg", "// vstr coop_mpa_zz is only a comment here", ()),
     # naming the gear cvars in a comment is not a write (clause 17 reads the stripped view)
     A("N20", MP, "// MP never writes dm_playermodel or coop_gloveIdx", ()),
+    # the objective display line and reads are what the bridge is FOR: no finding
+    A("N21", "coop_mod/libbridge.scr", "local.player stufftext ( \"set coop_o1 \" + local.text )\nlocal.v = getcvar \"coop_lo1\"", ()),
 ]
 
 

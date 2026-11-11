@@ -15,6 +15,10 @@ On ANY guard violation every launch stops and the run reports it.
     python liveops_test.py tdm [--map M]      deploy a TEAM MATCH contract, play it out (short limit), return (stills)
     python liveops_test.py obj [--map M]      deploy an OBJECTIVE contract, the round is called, return
     python liveops_test.py flat               the flat chooser (ui_atticMain 0) strip + card
+    python liveops_test.py lib [--map M] [--end win|lose|time|none]
+                                              a LIBERATION contract: card, DEPLOY, curtain / placement / co-op kit /
+                                              objective / radio / clock, the hunt, the result, the return (stills)
+    --lane lib                                the Liberation lane's own client and trees (G:\\mohaa-lib, H:/hzm_work/lib-mod)
 Results: H:\\hzm_work\\liveops-test\\runs\\<case>\\ (logs, result.json, png - local only)."""
 import json, os, re, shutil, subprocess, sys, time, zipfile
 
@@ -32,6 +36,14 @@ MOD = r"H:\hzm_work\liveops-mod"
 RUNS = r"H:\hzm_work\liveops-test\runs"
 PAK = "zzzzzzzzzzzzzzzzzzzzzz_liveops.pk3"
 PORT = 12293
+SLOT = "liveops"
+if "--lane" in sys.argv and sys.argv[sys.argv.index("--lane") + 1] == "lib":
+    A = r"G:\mohaa-lib"
+    HOME = os.path.join(A, "home")
+    MOD = r"H:\hzm_work\lib-mod"
+    RUNS = r"H:\hzm_work\liberacion\runs"
+    PORT = 12953
+    SLOT = "liberacion"
 VK = {"F5": 0x74, "F6": 0x75, "F7": 0x76, "F8": 0x77, "F9": 0x78, "F10": 0x79, "F11": 0x7A}
 TRIPPED = []
 MUTE = ["set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set in_gamepad 0", "set in_joystick 0",
@@ -40,7 +52,8 @@ MUTE = ["set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set i
         "set developer 1", "set logfile 2"]
 PAK_FILES = ["ui/hzm_newgame3d.urc", "ui/hzm_ngflat.urc", "scripts/hzm_ng3campaigns.shader", "coop_mod/mp.scr",
              "coop_mod/mp_bots.scr", "coop_mod/mp_hardcore.scr", "coop_mod/mp_weather.scr", "coop_mod/mp_ops.scr",
-             "coop_mod/mp_ops_table.scr"]
+             "coop_mod/mp_ops_table.scr", "coop_mod/mp_dbno.scr", "coop_mod/mp_ops_text.scr", "coop_mod/libbridge.scr",
+             "ubersound/coop_audio.scr", "sound/coop_vo/den_coop_lib_briefing.wav"]
 
 
 def opt(n, d):
@@ -344,6 +357,81 @@ def case_click(out, res):
     return read(lp())
 
 
+# [LIBERATION] a distinctive co-op kit (the user's check): Thompson with the GOLD finish, Colt, frags, the leather gloves and
+# an engraving - archived exactly as the co-op Armory writes them (coop_lo<slot> = roster id, coop_loS<slot>F = finish id)
+KIT = ['seta coop_lo1 23', 'seta coop_loS1F 1', 'seta coop_lo2 ""', 'seta coop_lo3 46', 'seta coop_lo4 62',
+       'seta coop_loAGlove "append name ,gn2"', 'seta cl_engraveText LIBERTY', 'seta cl_engrave 1']
+MP_LOADOUT = ["coop_mpa_K1", "coop_mpa_K2", "coop_mpa_K3", "coop_mpaFin1", "coop_mp_glove"]
+
+
+def case_lib(out, res):
+    want = opt("--map", "")
+    end = opt("--end", "win")
+
+    def pick(L):
+        return [c for c in L if gen_ops.ENTRIES[c["entry"]]["mode"] == "LIB" and c["left"] > 150
+                and (not want or gen_ops.ENTRIES[c["entry"]]["map"] == want)]
+    utc, live, groups = pick_utc(lambda L: bool(pick(L)))
+    c0 = pick(live)[0]
+    e0 = gen_ops.ENTRIES[c0["entry"]]
+    res["utc"], res["contract"] = utc, gen_ops.describe(c0)
+    res["limit_min"] = gen_ops.lib_limit(e0, c0["bots"])
+    res["xp_win"] = gen_ops.SKILLS[c0["skill"]][2] * gen_ops.LIB_XP_MULT
+    cmdfile("lo_a.cfg", KIT + ["echo LOMPKIT"] + MP_LOADOUT + ["set ui_opsFakeUtc %d" % utc, "seta ui_atticMain 1", "pushmenu hzm_newgame3d", "wait 1500",
+                               "hzm_ops card %d" % slot_no(c0)])
+    cmdfile("lo_b.cfg", ["hzm_ops deploy"])
+    cmdfile("lo_c.cfg", ["set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0"])
+    # the end: every German dies (script *<entnum> kill, cheats on), or the player does, or the clock runs out
+    if end == "win":
+        cmdfile("lo_d.cfg", ["script *%d kill" % i for i in range(1, 27)])
+    elif end == "lose":
+        cmdfile("lo_d.cfg", ["kill"])
+    else:
+        cmdfile("lo_d.cfg", ["echo LONOP"])
+    c = client(BINDS, extra_sets=[("cheats", "1"), ("thereisnomonkey", "1")])
+    with c:
+        wait_for(r"UI_Init|CL_InitCGame|Sound|\^~\^~\^", 120, c=c)
+        time.sleep(25)
+        nb = len(read(lp()))
+        press(c, "F5", 6)
+        res["before_cvars"] = re.findall(r'"(coop_[A-Za-z0-9_]+)" is:"([^"]*)"', read(lp())[nb:])
+        res["card_shot"] = shot(c, out, "card")
+        n0 = len(read(lp()))
+        press(c, "F6", 1)
+        res["deployed"] = wait_for(r"OPS deploy", 20, n0, c)
+        res["started"] = wait_for(r"\^~\^~\^ OPS start", 240, n0, c)
+        press(c, "F7", 1)
+        res["placed"] = wait_for(r"\^~\^~\^ LIB placed", 90, n0, c)
+        time.sleep(2.5)
+        if not guard(c):
+            res["spawn_shot"] = shot(c, out, "spawn")
+            time.sleep(2)
+            res["spawn_shot2"] = shot(c, out, "spawn_radio")
+            time.sleep(40 if end != "time" else 5)
+            res["hunt_shot"] = shot(c, out, "hunt")
+        if end in ("win", "lose") and not guard(c):
+            press(c, "F8", 2)
+        res["ended"] = wait_for(r"\^~\^~\^ OPS end mode=lib", 60 * (res["limit_min"] + 2), n0, c)
+        time.sleep(1.0)
+        if not guard(c):
+            res["result_shot"] = shot(c, out, "result")
+        res["paid"] = wait_for(r"\^~\^~\^ OPS paid", 30, n0, c)
+        res["returned"] = wait_for(r"\^~\^~\^ OPS return", 60, n0, c)
+        time.sleep(6)
+        if res["returned"] and not guard(c):
+            res["return_shot"] = shot(c, out, "returned_card")
+            n1 = len(read(lp()))
+            cmdfile("lo_a.cfg", ["echo LOMPKIT"] + MP_LOADOUT + ["coop_lo1", "coop_loS1F", "coop_lo3", "coop_lo4"])
+            press(c, "F5", 3)
+            res["after_cvars"] = re.findall(r'"(coop_[A-Za-z0-9_]+)" is:"([^"]*)"', read(lp())[n1:])
+        guard(c)
+        res["peak"] = repr(c.report())[:300]
+    log = read(lp())
+    res["lines"] = re.findall(r"\^~\^~\^ ((?:OPS|LIB|MPBOT fill|XP)[^\n]*)", log)[-80:]
+    shutil.copyfile(lp(), os.path.join(out, "qconsole.log"))
+    return log
+
+
 def script_errors(log):
     return log.count("Script Error"), log.count("Couldn't compile")
 
@@ -354,7 +442,7 @@ def main(cases):
         cases = [c for c in cases if c != "pak"]
     os.makedirs(RUNS, exist_ok=True)
     for case in cases:
-        if case.startswith("--") or case in (opt("--map", "\0"),):
+        if case.startswith("--") or case in (opt("--map", "\0"), opt("--lane", "\0"), opt("--end", "\0")):
             continue
         if TRIPPED:
             print("GUARD TRIPPED - stopping all launches:", TRIPPED, flush=True)
@@ -370,7 +458,7 @@ def main(cases):
         shutil.rmtree(out, ignore_errors=True)
         os.makedirs(out)
         res = {"case": case, "started": time.strftime("%Y-%m-%d %H:%M:%S")}
-        hg.acquire_slot("liveops", os.path.join(A, "openmohaa.exe"), HOME, [PORT], minutes=30)
+        hg.acquire_slot(SLOT, os.path.join(A, "openmohaa.exe"), HOME, [PORT], minutes=30)
         try:
             if case == "board":
                 log = case_board(out, res)
@@ -382,10 +470,12 @@ def main(cases):
                 log = case_click(out, res)
             elif case == "flat":
                 log = case_flat(out, res)
+            elif case == "lib":
+                log = case_lib(out, res)
             else:
                 raise SystemExit("unknown case " + case)
         finally:
-            hg.release_slot("liveops")
+            hg.release_slot(SLOT)
         res["script_errors"], res["compile_fail"] = script_errors(log)
         res["guard"] = TRIPPED[:]
         json.dump(res, open(os.path.join(out, "result.json"), "w"), indent=1)
