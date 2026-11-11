@@ -60,21 +60,21 @@ area) and the props stood at the wrong places.
 |---|---|---|---|
 | O1 | 6 objectives, disc text, shown in the order the original activates them (railgun first, then partisans, Panzers, ammo dump, tower, church) | same | M |
 | P1 | 40 pickups: medkits, revive kits, stick grenades, bazookas, PPSh, Gewehr | at the original's points, appear when their group fires | M (revive kit -> health box: D) |
-| A1 | Scripted lines (27 cues) | the disc's own subtitle at the right moment | D (voice: the cue -> speech-file link is not decoded) |
+| A1 | Scripted lines (27 cues in the level's scenes; 61 voiced lines on the disc) | the original's own voice (UBER event -> str.ast stream, decoded on the player's PC) with its subtitle, at the original's moment; the scene waits for the line | M |
 | A2 | Music: interactive score switched by 10 music triggers | the 10 triggers with their own volumes / groups and their own music EVENT (15-20, 35-37, 50); each event plays the score's segment of that number, converted on the player's PC | D (the .mpf event -> segment chain is not decoded) |
 
 ## Geometry (byoaudit geoaudit, local pak)
 
-| measure | 0.3.0 (names fixed) | 0.4.0 + smart objects | 0.4.0 + clip sheets | 0.5.0 (clip_keep 38) |
-|---|---:|---:|---:|---:|
-| blocked moves with nothing drawn within 8u | 1,966 | 1,059 | 602 | 579 |
-| - of which thin drawn obstacles (ea_geothin: rays to 40u at 28-60u height) | - | - | - | 460 |
-| - truly invisible | - | - | - | 119 (41 clusters) |
-| invisible brushes | 429 | 258 | 198 | 184 |
-| falls out of the world | 0 | 0 | 2 | 0 |
-| edge of world | 117 | 56 | 99 | 99 |
-| floor cells with nothing drawn under them | 462 | 421 | 670 | 562 |
-| walkable cells | 139,470 | 136,362 | 140,778 | 139,747 |
+| measure | 0.3.0 (names fixed) | 0.4.0 + smart objects | 0.4.0 + clip sheets | 0.5.0 (clip_keep 38) | 0.6.0 (split walls) |
+|---|---:|---:|---:|---:|---:|
+| blocked moves with nothing drawn within 8u | 1,966 | 1,059 | 602 | 579 | 422 |
+| - of which thin drawn obstacles (ea_geothin: rays to 40u at 28-60u height) | - | - | - | 460 | 335 |
+| - truly invisible | - | - | - | 119 (41 clusters) | 87 (32 clusters) |
+| invisible brushes | 429 | 258 | 198 | 184 | 190 |
+| falls out of the world | 0 | 0 | 2 | 0 | 0 |
+| edge of world | 117 | 56 | 99 | 99 | 130 |
+| floor cells with nothing drawn under them | 462 | 421 | 670 | 562 | 481 |
+| walkable cells | 139,470 | 136,362 | 140,778 | 139,747 | 143,292 |
 
 The 35 smart-object placements (railgun, tower, ammo dump, bridge, 2 gates, 18 tombstones/crosses, crates, building
 corners) are the original's meshes now, with collision on what is drawn. Floating clip sheets standing in front of
@@ -85,14 +85,14 @@ obstacles the 8u test does not see; the 2 remaining void falls are one spot on t
 
 ## Score (1 player)
 
-**Matched 20 - Deviated 6 - Missing 0** (of 26 rows; several M rows carry a minor note in the row).
+**Matched 21 - Deviated 5 - Missing 0** (of 26 rows).
 Deviations: R6 the partisan leader's invisible blocker (left out: it is an invisible wall), E8 the Russian squad's
-follow logic, S6/S7 EA particle systems as stock emitters, A1 voices (subtitles only: the dialogue -> speech-file hash
-is still unknown), A2 music events mapped to segments by number.
+follow logic, S6/S7 EA particle systems as stock emitters, A2 music events mapped to segments by number.
 
-Verified headless 2026-11-10 (converter 0.4.0 run, before round 3): the whole mission in the original's order to its
-own end, 0 Script Errors. Round 3 (converter 0.5.0) on camera (SP walk, stills local in H:\hzm_work\eapolish\shots\tour2):
-partisans, burning village (stock fires + smoke columns at the original's 19 fire placements), tower destroyed and its
-wreck shown, ammo dump blast, railgun destroyed and its wreck shown, gates opened, subtitles in sequence. Not yet on
-camera: the church defence (the walk stood on a z-0 music trigger off the map - fixed, not re-run), trigger box
-sizes, a Panzer driving (the walk knocked Panzer 3 out as it started).
+Verified 2026-11-10 on converter 0.6.0:
+- 2-player co-op self-test (private dedicated server + 2 clients): all 6 objectives, the mission end, 0 Script
+  Errors, 27 voice lines played, 0 idle AI, 0 of 101 deferred spawns in view; Germans 79 of 101 killed, 38 moved;
+  Russians 6 of 15 killed, 11 joined the squad.
+- SP camera walks (stills local, H:\hzm_work\eapolish\shots\tour3, tour4): fires and smoke, tower and railgun wrecks,
+  ammo dump blast, gates opening, subtitles in order, the church defence.
+Not verified on screen: trigger box sizes against the original, a Panzer driving its whole path.
