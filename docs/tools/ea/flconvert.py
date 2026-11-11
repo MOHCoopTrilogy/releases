@@ -28,10 +28,112 @@ import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
 
-CONVERTER_VERSION = "0.2.1"
+CONVERTER_VERSION = "0.7.3"   # 0.7.2 particle sizes are half extents (quads twice as wide); 0.7.1 the level's own global fog record sets the far plane and its colour (the village is a night level), width and height end scales of a particle kept apart; 0.7.0 the level's own particle systems (eafx: emitters + sprite sheets from the disc's ProcParticleType records; engine convfx); 0.6.1 music events by the .mpf's own table (eamusic); [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
 MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
+
+
+def tank_route(grid, a, b, cell=48.0, half=64.0, wide=144.0, margin=480.0, only_check=False, room=True):
+    """[eapolish] waypoints (excluding a and b) for a tank driving from a to b over open ground: A* on a cell grid
+    of the collision (a cell is open when it has ground within a step of its neighbour and a tank-sized box above
+    it hits no triangle), then string-pulled to the fewest points a straight drive between keeps on open cells.
+    [] when the straight line is already open or no route is found (the leg then drives straight, as before)."""
+    import heapq
+    x0, x1 = min(a[0], b[0]) - margin, max(a[0], b[0]) + margin
+    y0, y1 = min(a[1], b[1]) - margin, max(a[1], b[1]) + margin
+    nx, ny = int((x1 - x0) / cell) + 1, int((y1 - y0) / cell) + 1
+    zref = (a[2] + b[2]) / 2.0
+    zc, wc = {}, {}
+
+    def clear(x, y, g, hw):
+        c = (x, y, g + 30 + 50)
+        return not any(flgeom.tri_box(c, (hw, hw, 50), *grid.tris[t]) for t in grid.near(x, y, hw + 4))
+
+    def gz(i, j):
+        if (i, j) not in zc:
+            x, y = x0 + i * cell, y0 + j * cell
+            g = grid.ground(x, y, zref + 200, zref - 300)
+            zc[(i, j)] = g if g is not None and clear(x, y, g, half) else None
+        return zc[(i, j)]
+
+    def roomy(i, j):
+        # a tank is ~300u long and swings wide on a turn: keep the route well off walls where the ground allows
+        if (i, j) not in wc:
+            g = gz(i, j)
+            wc[(i, j)] = g is not None and clear(x0 + i * cell, y0 + j * cell, g, wide)
+        return wc[(i, j)]
+
+    def cell_of(p):
+        return (min(nx - 1, max(0, int(round((p[0] - x0) / cell)))), min(ny - 1, max(0, int(round((p[1] - y0) / cell)))))
+
+    def open_line(p, q, need_room=True):
+        n = max(1, int(math.hypot(q[0] - p[0], q[1] - p[1]) / (cell / 2)))
+        last = None
+        for k in range(n + 1):
+            t = k / n
+            c = cell_of((p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t))
+            z = gz(*c)
+            if z is None or (last is not None and abs(z - last) > 40) or (need_room and not roomy(*c)):
+                return False
+            last = z
+        return True
+
+    if only_check:
+        return open_line(a, b, need_room=room)
+    if open_line(a, b):
+        return []
+    s0, s1 = cell_of(a), cell_of(b)
+    for c in (s0, s1):         # the placements themselves may sit against cover: let the search start and end there
+        if gz(*c) is None:
+            zc[c] = grid.ground(x0 + c[0] * cell, y0 + c[1] * cell, zref + 200, zref - 300) or zref
+    openl = [(0.0, s0)]
+    came, cost = {s0: None}, {s0: 0.0}
+    while openl:
+        _, c = heapq.heappop(openl)
+        if c == s1:
+            break
+        zc0 = gz(*c)
+        for di in (-1, 0, 1):
+            for dj in (-1, 0, 1):
+                if not (di or dj):
+                    continue
+                n2 = (c[0] + di, c[1] + dj)
+                if not (0 <= n2[0] < nx and 0 <= n2[1] < ny):
+                    continue
+                z2 = gz(*n2)
+                if z2 is None or abs(z2 - zc0) > 32:
+                    continue
+                nc = cost[c] + math.hypot(di, dj) * cell * (1.0 if roomy(*n2) else 4.0)
+                if nc < cost.get(n2, 1e18):
+                    cost[n2] = nc
+                    came[n2] = c
+                    h = math.hypot(n2[0] - s1[0], n2[1] - s1[1]) * cell
+                    heapq.heappush(openl, (nc + h, n2))
+    if s1 not in came:
+        return []
+    path = []
+    c = s1
+    while c is not None:
+        path.append((x0 + c[0] * cell, y0 + c[1] * cell, gz(*c) + 16))
+        c = came[c]
+    path.reverse()
+    out, cur, k = [], a, 1
+    while k < len(path) - 1:
+        # pull as far as a line keeps well off walls; only where the route itself runs close (a lane between
+        # houses) pull over merely open cells - never a 48u staircase of right-angle bends the autopilot cannot follow
+        j = k
+        while j + 1 < len(path) and open_line(cur, path[j + 1]):
+            j += 1
+        if j == k:
+            while j + 1 < len(path) and open_line(cur, path[j + 1], need_room=False):
+                j += 1
+        if j + 1 >= len(path):
+            break
+        out.append(path[j])
+        cur = path[j]
+        k = j + 1
+    return out
 
 def tga_bytes(w, h, rgba):
     """Uncompressed 32-bit TGA, bottom-up rows (origin lower-left)."""
@@ -109,6 +211,19 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     if flip_coll is None:
         flip_coll = down > up
     meshes = list(L.meshes())
+    # [eapolish] EA smart objects (easob.py): the railgun, radio tower, ammo dump, bridge, gates, tombstones, crates
+    # are separate meshes placed by the object DB. Static ones join the world; the ones the mission changes (blown
+    # up, opened) become inline brush models the script can remove or swing. Their collision is built from the
+    # drawn triangles (blocked only by what you can see).
+    sob_static, sob_dyn = [], []
+    if game == "ea" and not os.environ.get("EA_NO_SOB"):
+        import easob
+        import eadb as _eadb
+        for rec, sob, ms in easob.placed(L.stream, _eadb.DB(L.stream)):
+            base_ = sob[:-2] if sob.endswith("_D") else sob
+            (sob_dyn if base_ in easob.DYNAMIC else sob_static).append((rec, sob, ms))
+        for _r, _s, ms in sob_static:
+            meshes += ms
     rup, rdown = floor_vote([(m["verts"][a], m["verts"][b], m["verts"][c]) for m in meshes for a, b, c in m["tris"]])
     if flip_render is None:
         # the vote makes floors counter-clockwise seen from above; id Tech 3 front faces are clockwise
@@ -437,6 +552,27 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if m["tex"]:
             stats["tris_textured"] += len(tris)
 
+    # [eapolish] the dynamic smart objects as inline models (script_object "*N", targetname ea_sob_<placement>)
+    sob_models = []
+    for rec, sob, ms in sob_dyn:
+        sids, tri_world = [], []
+        # hinged leaves (the gates) are built around their hinge - the placement's own origin - and the entity's
+        # "origin" puts them back: a script_object rotates about that point, so the gate swings instead of vanishing
+        piv = X(rec.pos) if "Gate" in sob else (0.0, 0.0, 0.0)
+        for m in ms:
+            P = [tuple(q[k] - piv[k] for k in range(3)) for q in (X(v) for v in m["verts"])]
+            tris = [wind(a, b, c, flip_render) for a, b, c in m["tris"]]
+            vv = []
+            for i, q in enumerate(P):
+                r_, g_, b_, _a = m["cols"][i]
+                vv.append((q, m["uvs"][i], (0.0, 0.0, 1.0), (r_, g_, b_, 255)))
+            sids.append(B.add_soup(tex_shader(m["tex"]), vv, [i for t in tris for i in t]))
+            tri_world += [(P[a], P[b], P[c]) for a, b, c in tris]
+        sob_models.append((rec, sob, sids, tri_world, piv))
+        stats["sob_dynamic_tris"] = stats.get("sob_dynamic_tris", 0) + len(tri_world)
+    stats["sob_static"] = len(sob_static)
+    stats["sob_dynamic"] = len(sob_dyn)
+
     # seam bridges: close Frontline's hairline floor gaps that would show the sky (flseam.py has the rules)
     # collision grid: seam bridges only close gaps in WALKABLE floors; flpack places actors with it
     grid = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
@@ -509,26 +645,279 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     clip = B.shader("textures/common/fl_collision", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
     nb = rejected = 0
+    ctris = []
     for name, vs, ts in coll:
         if os.environ.get("FL_COLL_ONLY") and os.environ["FL_COLL_ONLY"] not in name:
             continue
         P = [X(v) for v in vs]
         for a, b, c, _f in ts:
             a2, b2, c2 = wind(a, b, c, flip_coll)
-            if B.add_prism(clip, P[a2], P[b2], P[c2], thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
-                rejected += 1
+            ctris.append((P[a2], P[b2], P[c2]))
+    added_drawn = []
+    # [eapolish] 2026-11-10 user: invisible walls are fine where the original had them (1:1 is the bar): the
+    # original's own collision is kept as it is - the clip-sheet rebuild (drop / drawn collision / wire) is opt-in
+    if game == "ea" and os.environ.get("EA_SHEETS") == "1":
+        # [eapolish] blocked only by what you can see (the Frontline polish rule, flsheets.py): a steep collision
+        # triangle with nothing drawn within 12u is a floating clip sheet. Sheets standing in front of drawn
+        # geometry (within 160u) are dropped and that drawn geometry gets collision of its own; sheets out in the
+        # open, with nothing drawn near (the level's boundaries), stay and get a visible barbed-wire edge.
+        import flsheets
+        rtris = [tuple(X(v) for v in (m["verts"][a], m["verts"][b], m["verts"][c])) for m in meshes for a, b, c in m["tris"]]
+        rtris += [tuple(tuple(v[k] + pv[k] for k in range(3)) for v in t) for _r, _s, _sid, tw, pv in sob_models for t in tw]
+        RG = flgeom.TriGrid(rtris, cell=128.0)
+
+        def drawn_near(t, r):
+            cx = sum(v[0] for v in t) / 3
+            cy = sum(v[1] for v in t) / 3
+            cz = sum(v[2] for v in t) / 3
+            for j in RG.near(cx, cy, r + 2):
+                if flgeom.tri_box((cx, cy, cz), (r, r, r), *RG.tris[j]):
+                    return True
+            return False
+        # long steep collision triangles (EA's trench and bank walls run 800-2,800u in one triangle) are judged piece
+        # by piece: split until no edge is over 192u, so the parts standing off the drawn bank (40-80u away) count as
+        # floating sheets and the parts on it stay (ea_geothin: 41 invisible spots, 94 of their 119 contacts on these)
+        def _split(t, out):
+            a, b, c = t
+            e = [math.dist(a, b), math.dist(b, c), math.dist(c, a)]
+            if max(e) <= 192.0:
+                out.append(t)
+                return
+            ab = tuple((a[k] + b[k]) / 2 for k in range(3))
+            bc = tuple((b[k] + c[k]) / 2 for k in range(3))
+            ca = tuple((c[k] + a[k]) / 2 for k in range(3))
+            for s in ((a, ab, ca), (ab, b, bc), (ca, bc, c), (ab, bc, ca)):
+                _split(s, out)
+        split_ct = []
+        for t in ctris:
+            nn = face_normal(*t)
+            if nn is not None and abs(nn[2]) < 0.7:
+                _split(t, split_ct)
             else:
-                nb += 1
+                split_ct.append(t)
+        stats["coll_split"] = len(split_ct) - len(ctris)
+        ctris = split_ct
+        CG = flgeom.TriGrid(ctris)
+
+        def void_beside(t, n):
+            # no floor within 2048u below a point 48u off either face: the sheet holds a level edge
+            cx = sum(v[0] for v in t) / 3
+            cy = sum(v[1] for v in t) / 3
+            zb = min(v[2] for v in t)
+            hl = math.hypot(n[0], n[1]) or 1.0
+            for sg in (1, -1):
+                x, y = cx + sg * 48 * n[0] / hl, cy + sg * 48 * n[1] / hl
+                if CG.ground(x, y, zb + 64, zb - 2048) is None:
+                    return True
+            return False
+        # reviewed keep list (ea_levels.json "clip_keep": collision triangle indexes, deterministic per disc level):
+        # sheets the walk audit found holding a level edge (dropping them let the walker fall out of the world)
+        clip_keep = set(flpack.spec(level, game).get("clip_keep", []))
+        tags, keep = [], []
+        for k, t in enumerate(ctris):
+            n = face_normal(*t)
+            # a sheet: steep and, at its centroid OR at two of its three corner-ward points, nothing drawn within 12u
+            # (the centroid alone let large clip triangles with one drawn corner through: 41 invisible spots)
+            sheet = False
+            if n is not None and abs(n[2]) < 0.7:
+                if not drawn_near(t, 12.0):
+                    sheet = True
+                else:
+                    c3 = [sum(v[k] for v in t) / 3 for k in range(3)]
+                    und = 0
+                    for v in t:
+                        q = tuple(c3[k] * 0.3 + v[k] * 0.7 for k in range(3))
+                        if not drawn_near((q, q, q), 12.0):
+                            und += 1
+                    sheet = und >= 2
+            tags.append(1 if sheet else 0)
+            if sheet and (not drawn_near(t, 64.0) or void_beside(t, n) or k in clip_keep):
+                keep.append((k,))
+        ctris, _tg, added_drawn, srep = flsheets.replace(ctris, tags, [(k,) for k in range(len(ctris))],
+                                                         lambda f: f == 1, rtris, keep=keep, near=96.0)
+        kept_tris = srep.pop("kept_tris")
+        stats["sheets_dropped"] = srep.pop("dropped_list", [])
+        stats["sheets"] = srep
+        # the edges of the world (flcliff.py, the Frontline polish recipe): where a walkable floor now ends over
+        # nothing, a 160u clip wall - drawn as the same barbed-wire edge, so it is never an invisible wall
+        import flcliff
+        cw, stats["cliffs"] = flcliff.walls(ctris + added_drawn, flgeom.TriGrid(ctris + added_drawn))
+        ctris += cw
+        kept_tris += cw
+        # barbed wire ONLY where an edge has nothing visible to stop the player: a kept sheet (or edge wall) with the
+        # original's drawn geometry within 96u (a bank, a trench wall, rubble, a house) already shows why the way ends
+        # - there the drawn geometry gets collision of its own (as for the dropped sheets) and no wire is strung
+        # (coordinator 2026-11-10: wire along every trench wall would look absurd)
+        bare, by_drawn = [], []
+        for t in kept_tris:
+            (by_drawn if drawn_near(t, 96.0) else bare).append(t)
+        if by_drawn:
+            _o, _f, more_drawn, _r = flsheets.replace(by_drawn + [], [1] * len(by_drawn), [(k,) for k in range(len(by_drawn))],
+                                                      lambda f: f == 1, rtris, keep=[], near=96.0)
+            added_drawn += more_drawn
+        stats["sheets"]["edges_by_drawn"] = len(by_drawn)
+        stats["sheets"]["edges_bare"] = len(bare)
+        kept_tris = bare
+        wire = B.shader("textures/mohcommon/barbwire", 0, 0)
+        GW = flgeom.TriGrid(ctris)
+        nfe = 0
+        for (x0, y0, z0), (x1, y1, z1) in flsheets.edges(kept_tris, GW.ground):
+            L_ = math.hypot(x1 - x0, y1 - y0)
+            q = [((x0, y0, z0), (0.0, 1.0)), ((x1, y1, z1), (L_ / 64.0, 1.0)),
+                 ((x1, y1, z1 + 64.0), (L_ / 64.0, 0.0)), ((x0, y0, z0 + 64.0), (0.0, 0.0))]
+            B.add_soup(wire, [(pp, st, (0.0, 0.0, 1.0), med_light + (255,)) for pp, st in q], [0, 1, 2, 0, 2, 3])
+            nfe += 1
+        stats["sheets"]["visible_edges"] = nfe
+    for t in ctris:
+        if B.add_prism(clip, *t, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
+            rejected += 1
+        else:
+            nb += 1
+    drawnclip = B.shader("textures/common/ea_coll_drawn", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
+    for t in added_drawn:
+        if B.add_prism(drawnclip, *t, thickness=4.0, centered=True) is not None:
+            nb += 1
+
+    # [eapolish] visible collision for the smart objects: thin slabs on their drawn triangles
+    sobclip = B.shader("textures/common/ea_coll_sob", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
+    # 1:1 (user 2026-11-10): a smart object whose own collision is already in the level's .cdb (the railgun, the
+    # bridge, the ammo dump: 27-88 triangles inside its box) keeps exactly that; only the ones the .cdb leaves
+    # without collision (tower, tombstones, gates, crates) get collision on their drawn triangles. Doubling the
+    # railgun's made 5 invisible contacts on the route that the original did not have.
+    _cg = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
+
+    def own_coll(tris_world):
+        xs = [v[0] for t in tris_world for v in t]
+        ys = [v[1] for t in tris_world for v in t]
+        zs = [v[2] for t in tris_world for v in t]
+        if not xs:
+            return False
+        lo_, hi_ = (min(xs) - 16, min(ys) - 16, min(zs) - 16), (max(xs) + 16, max(ys) + 16, max(zs) + 16)
+        n_ = 0
+        for j in _cg.near((lo_[0] + hi_[0]) / 2, (lo_[1] + hi_[1]) / 2, max(hi_[0] - lo_[0], hi_[1] - lo_[1]) / 2 + 16):
+            c_ = [sum(v[k] for v in _cg.tris[j]) / 3 for k in range(3)]
+            if all(lo_[k] <= c_[k] <= hi_[k] for k in range(3)):
+                n_ += 1
+        return n_ >= 10
+    for _r, _s, ms in sob_static:
+        tw = [tuple(X(v) for v in (m["verts"][a], m["verts"][b], m["verts"][c])) for m in ms for a, b, c in m["tris"]]
+        if own_coll(tw):
+            stats["sob_own_coll"] = stats.get("sob_own_coll", 0) + 1
+            continue
+        for t in tw:
+            if B.add_prism(sobclip, *t, thickness=4.0, centered=True) is not None:
+                stats["sob_coll"] = stats.get("sob_coll", 0) + 1
+    sob_ents = []
+    for rec, sob, sids, tri_world, piv in sob_models:
+        tw_world = [tuple(tuple(v[k] + piv[k] for k in range(3)) for v in t) for t in tri_world]
+        if own_coll(tw_world):
+            bids = []                     # the .cdb already carries its collision (1:1)
+            stats["sob_own_coll"] = stats.get("sob_own_coll", 0) + 1
+        else:
+            bids = [b for b in (B.add_prism(sobclip, *t, thickness=4.0, centered=True) for t in tri_world) if b is not None]
+        B.models.append({"surfaces": sids, "brushes": bids})
+        kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)),
+              ("targetname", ("ea_sobD_" if sob.endswith("_D") else "ea_sob_") + rec.name)]
+        if piv != (0.0, 0.0, 0.0):
+            kv.append(("origin", "%.1f %.1f %.1f" % piv))
+        sob_ents.append(kv)
 
     # ---- entities ----
     ents = L.entities()
     player = next((e for e in ents if "Player" in e["strs"]), None)
-    sp = flpack.spec(level, game)
+    sp = dict(flpack.spec(level, game))
+    if game == "ea" and not os.environ.get("EA_NO_DISCFOG"):
+        # the level's own global fog record: colour 0..255, where the fog starts and where it reaches its most (m),
+        # and that most in percent. MOHAA's far plane fog is a straight ramp from the eye to opaque, so the far
+        # plane goes where that ramp passes the record's most at the record's far distance.
+        import eadb as _eadbf
+        for _r in _eadbf.DB(L.stream).recs:
+            if _r.cls == "FogTrigger" and _r.name.upper().endswith("_GBL") and len(_r.w) >= 30:
+                _col = [_r.u(i) for i in (23, 24, 25)]
+                _far, _most = _r.f(28), _r.f(29)
+                if all(0 <= c <= 255 for c in _col) and 5.0 < _far < 2000.0 and 1.0 <= _most <= 100.0:
+                    # 0.7.3: the record's fog starts at its near distance, climbs to its most at its far distance
+                    # and stays there. The engine's fog is a ramp from farplane_bias to opaque at the far plane, so
+                    # the far plane goes where the same slope would reach opaque, and farplane_maxfog (engine
+                    # extension) stops the ramp at the record's most; the far plane then no longer culls.
+                    _st = _r.f(27)
+                    _st = _st * 48.0 if 0.0 <= _st < _far else 0.0
+                    sp["farplane"] = int(max(2400.0, min(16000.0, _st + (_far * 48.0 - _st) * 100.0 / _most)))
+                    sp["farplane_color"] = "%.3f %.3f %.3f" % tuple(c / 255.0 for c in _col)
+                    if _st > 1.0:
+                        sp["farplane_bias"] = "%d" % _st
+                    if _most < 99.0:
+                        sp["farplane_maxfog"] = "%.3f" % (_most / 100.0)
+                        sp["farplane_cull"] = "0"
+                    stats["disc_fog"] = [sp["farplane"], sp["farplane_color"], sp.get("farplane_bias"), sp.get("farplane_maxfog")]
+                break
     ws = [("classname", "worldspawn"), ("message", f"{ {'fl': 'Frontline', 'ea': 'European Assault'}[game]} {level} (converted locally, converter {CONVERTER_VERSION})"),
           ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
           ("ambientlight", "40 40 40")]
+    ws += [(k, sp[k]) for k in ("farplane_bias", "farplane_maxfog", "farplane_cull") if k in sp]
     B.entity(ws)
+    if game == "ea":
+        # [eapolish] the Panzers' driving paths: each tank squad's SquadObjective points in order (the original orders
+        # its TreadedVehicle squads along them). One 2-node info_vehiclepoint path per leg, ea_tkp_<squad>_<n> ->
+        # ..._e, from the previous point (the tank's placement for the first leg) to objective point n.
+        import re as _re3
+        import eadb as _eadb3
+        _db3 = _eadb3.DB(L.stream)
+        for tv in _db3.of("TreadedVehicle"):
+            sq = tv.s(29) or ""
+            pts = sorted((int(m.group(1)), r.pos) for r in _db3.of("SquadObjective_New")
+                         for m in [_re3.match(r"^(?:JA|BR)_SquadObjective_" + _re3.escape(sq) + r"_(\d+)$", r.name)] if m)
+            prev = X(tv.pos)
+            for num, pm in pts:
+                q = X(pm)
+                g = grid.ground(q[0], q[1], q[2] + 160, q[2] - 400)
+                q = (q[0], q[1], (g if g is not None else q[2]) + 16)
+                tn = "ea_tkp_%s_%d" % (sq, num)
+                # converter 0.6.1: the original's tanks drive its navmesh between the points (roads and open ground);
+                # a straight 2-node leg ran Panzer 3 into a house. Route each leg over open ground on the collision.
+                way = tank_route(grid, prev, q)
+                stats["tank_route_pts"] = stats.get("tank_route_pts", 0) + len(way)
+                chain = [prev] + way + [q]
+                names = [tn] + ["%s_w%d" % (tn, k + 1) for k in range(len(way))] + [tn + "_e"]
+                for k, (pt, nm) in enumerate(zip(chain, names)):
+                    kv = [("classname", "info_vehiclepoint"), ("origin", "%.0f %.0f %.0f" % pt), ("targetname", nm)]
+                    if k + 1 < len(names):
+                        kv.append(("target", names[k + 1]))
+                    B.entity(kv)
+                prev = q
+                stats["tank_legs"] = stats.get("tank_legs", 0) + 1
+    for kv in sob_ents:
+        B.entity(kv)
     kept = []
+    if game == "ea" and not os.environ.get("EA_NO_NODES"):
+        # [eapolish] EA's AI walks a navmesh we do not decode; MOHAA's AI paths on info_pathnodes, and with none every
+        # runto failed ("Path not found ... MoveToPatrolCurrentNode": the squads never moved, bug-eap-aikills).
+        # Nodes on a 224u grid of free standing spots around the original's own AI places (spawn points, squad
+        # objective points, triggers, the player start), at their floor heights.
+        import eadb as _eadb2
+        _db = _eadb2.DB(L.stream)
+        anchors = [X(r.pos) for r in _db.recs if r.cls in ("NPCSpawnPoint", "SquadObjective_New", "BasicTrigger",
+                                                            "Player", "ICSPoint", "MMGPoint") and r.pos != (0.0, 0.0, 0.0)]
+        cells = {}
+        for a in anchors:
+            for gx in range(int((a[0] - 1600) // 160), int((a[0] + 1600) // 160) + 1):
+                for gy in range(int((a[1] - 1600) // 160), int((a[1] + 1600) // 160) + 1):
+                    x, y = gx * 160 + 80, gy * 160 + 80
+                    if (x - a[0]) ** 2 + (y - a[1]) ** 2 > 1600 ** 2:
+                        continue
+                    g = grid.ground(x, y, a[2] + 160, a[2] - 260)
+                    if g is None:
+                        continue
+                    key = (gx, gy, int(g // 96))
+                    if key in cells:
+                        continue
+                    cells[key] = (x, y, g) if grid.box_free(x, y, g, lift=18.0, margin=2.0) else None
+        nodes = sorted(v for v in cells.values() if v)
+        for x, y, g in nodes[:3800]:
+            kept.append((x, y, g))
+            B.entity([("classname", "info_pathnode"), ("origin", f"{x:.0f} {y:.0f} {g + 16:.0f}")])
+        stats["pathnodes"] = min(len(nodes), 3800)
+        kept = []          # not the coop spawn ring source below (that stays around the player start)
     for n in L.navpoints():
         p = X(n["pos"])
         # Frontline packs navpoints tighter than MOHAA's PathSearch accepts ("Duplicate node ... not linked")
@@ -591,6 +980,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     if game == "ea":
         import eapack     # EA: level data script from the disc's object DB + strings (audio: separate step)
         pack = eapack.build(L, level, X, files, sp, grid, zrange_m, mohaa_base=mohaa_base, vgm=vgm)
+        dk = f"maps/coop_ea_{level}_data.scr"
+        if sob_static or sob_dyn:      # [eapolish] the smart objects are real geometry: the script drops its stand-ins
+            files[dk] = files[dk].replace(b"\tlevel.ea_data_ok = 1", b"\tlevel.ea_sob = 1\n\tlevel.ea_data_ok = 1")
     else:
         pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base, grid=grid) if vgm else None
 

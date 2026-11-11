@@ -3,7 +3,7 @@
 player's own disc (Frontline's flpack.py pattern). Our own code. Nothing it writes is shipped.
 
 Reads: the level's strings.viv (objective text, by the keys ea_levels.json lists) and the level_a.str object
-database (eaents.ObjectDB: placements by NAME, which ea_levels.json references). Positions are converted to BSP
+database (eadb.DB: placements by NAME, which ea_levels.json references). Positions are converted to BSP
 units with the converter's transform X and moved to the nearest free standing spot on the collision (flgeom).
 
 level vars written (single frame, no waits):
@@ -15,7 +15,8 @@ level vars written (single frame, no waits):
 import math
 import re
 
-import eaents
+import eadb
+import eavm
 import eastrings
 
 SPAWN_RX = re.compile(r"NPCSpawnPoint_", re.I)
@@ -42,36 +43,135 @@ def level_strings(disc, level):
     return out
 
 
-def music(L, level, mspec, vgm, files, lines, log=print):
+def music(L, level, mspec, vgm, files, lines, log=print, events=()):
     """EA interactive music: SOUND/mus_ctrl.mpf (xDFP v5 path map) + mus_str.mus (EALayer3 segments). vgmstream
-    (built with mpg123, LGPL) opens the pair when both share a base name; ea_levels.json picks the segments."""
+    (built with mpg123, LGPL) opens the pair when both share a base name; ea_levels.json picks the generic segments.
+    [eapolish] events: the level's music-trigger events. Each one plays what the original's own event -> section
+    table (eamusic.py, read from the .mpf) says: its intro samples in order (evN), the looping tail if the section
+    loops (evN_loop), and whether the score then stops or goes back to the cue before (a stinger)."""
     import os
     import shutil
     import subprocess
     import tempfile
+    import wave
+    import eamusic
     d = f"DATA/{level.split('_')[0]}/{level}/SOUND/"
     tmp = tempfile.mkdtemp(prefix="eamus_")
     n = 0
     try:
+        mpf = L.disc.read(d + mspec.get("mpf", "mus_ctrl.mpf"))
         with open(os.path.join(tmp, "m.mpf"), "wb") as f:
-            f.write(L.disc.read(d + mspec.get("mpf", "mus_ctrl.mpf")))
+            f.write(mpf)
         with open(os.path.join(tmp, "m.mus"), "wb") as f:
             f.write(L.disc.read(d + mspec.get("mus", "mus_str.mus")))
-        for name, idx in sorted(mspec["segments"].items()):
+        cache = {}
+
+        def sample(idx):
+            if idx not in cache:
+                out = os.path.join(tmp, f"s{idx}.wav")
+                r = subprocess.run([vgm, "-s", str(idx), "-o", out, os.path.join(tmp, "m.mpf")],
+                                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                                   creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
+                cache[idx] = out if r.returncode == 0 and os.path.exists(out) else None
+            return cache[idx]
+
+        def write(name, idxs):
+            """the samples back to back as one wav (they are cut from one score: same rate and channels)"""
+            parts = [sample(i) for i in idxs]
+            if not parts or None in parts:
+                log("eapack: music segment failed", name, idxs)
+                return None
             out = os.path.join(tmp, f"{name}.wav")
-            r = subprocess.run([vgm, "-s", str(idx), "-o", out, os.path.join(tmp, "m.mpf")],
-                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                               creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
-            if r.returncode != 0 or not os.path.exists(out):
-                log("eapack: music segment failed", name, idx)
-                continue
+            frames, prm = [], None
+            for pth in parts:
+                with wave.open(pth, "rb") as w:
+                    prm = prm or w.getparams()
+                    frames.append(w.readframes(w.getnframes()))
+            with wave.open(out, "wb") as w:
+                w.setparams(prm)
+                for fr in frames:
+                    w.writeframes(fr)
             rel = f"sound/music/ea_{level}_{name}.wav"
             with open(out, "rb") as f:
                 files[rel] = f.read()
             lines.append(f'\tlevel.ea_music["{name}"] = "{rel}"')
+            secs = sum(len(fr) for fr in frames) / float(prm.framerate * prm.nchannels * prm.sampwidth)
+            lines.append(f'\tlevel.ea_music_len["{name}"] = {secs:.1f}')
+            return rel
+
+        for name, idx in sorted(mspec["segments"].items()):
+            if write(name, [idx]):
+                n += 1
+        try:
+            tab = eamusic.table(mpf)
+        except Exception as e:      # an unknown map layout: the generic segments still play
+            log("eapack: music table not read", e)
+            tab = {}
+        for e in sorted(set(events)):
+            t = tab.get(e)
+            if not t:
+                log("eapack: music event without a section", e)
+                continue
+            name = "ev%d" % e
+            head = t["intro"] or t["loop"]
+            if write(name, head):
+                n += 1
+            if t["intro"] and t["loop"] and write(name + "_loop", t["loop"]):
+                n += 1
+            lines.append(f'\tlevel.ea_music_cue["{name}"] = 1')
+            if t["loop"]:
+                lines.append(f'\tlevel.ea_music_loops["{name}"] = 1')
+            if t["after"] == "return":
+                lines.append(f'\tlevel.ea_music_stinger["{name}"] = 1')
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    return n
+
+
+def voices(L, level, text, vgm, files, lines, log=print):
+    """[eapolish] the original's scripted voice lines (eavoice.py: UBER event -> str.ast stream), decoded on this PC
+    to sound/ea/<level>/<n>.wav with a dialog alias each; level.ea_voice[cue] / ea_voice_len[cue]"""
+    import os
+    import shutil
+    import subprocess
+    import tempfile
+    import wave
+    import eavoice
+    d = f"DATA/{level.split('_')[0]}/{level}/SOUND/"
+    try:
+        ubr = L.disc.read(d + "Audio.ubr")
+        ast = L.disc.read(d + "str.ast")
+    except Exception as e:      # a disc without them: subtitles only
+        log("eapack: no voice data", e)
+        return 0
+    got = eavoice.lines(ubr, ast, [k for k in text if re.match(r"^\d", k)])
+    tmp = tempfile.mkdtemp(prefix="eavoice_")
+    ali, n = [], 0
+    try:
+        for i, (key, schl) in enumerate(sorted(got.items()), 1):
+            src = os.path.join(tmp, "v.hab")
+            dst = os.path.join(tmp, "v.wav")
+            with open(src, "wb") as f:
+                f.write(schl)
+            r = subprocess.run([vgm, "-o", dst, src], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                               creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
+            if r.returncode != 0 or not os.path.exists(dst):
+                continue
+            rel = f"sound/ea/{level}/v{i:03d}.wav"
+            with open(dst, "rb") as f:
+                files[rel] = f.read()
+            with wave.open(dst) as w:
+                secs = w.getnframes() / float(w.getframerate())
+            os.remove(dst)
+            alias = f"ea{level.replace('_', '')}_v{i:03d}"
+            ali.append(f'aliascache {alias} {rel} soundparms 1.0 0.0 1.0 0.0 800 6000 dialog streamed maps "coop_ea"')
+            lines.append(f"\tlevel.ea_voice[{scr_str(key)}] = \"{alias}\"")
+            lines.append(f"\tlevel.ea_voice_len[{scr_str(key)}] = {secs:.2f}")
             n += 1
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+    files[f"ubersound/ea_{level}_voice.scr"] = ("// GENERATED on this PC by the European Assault converter\n" +
+                                                 "\n".join(ali) + "\n").encode()
     return n
 
 
@@ -122,10 +222,25 @@ def use_points(grid, target, toward, n_ring=16, radii=(0, 96, 160, 220), app_r=(
     return use, None, None
 
 
+def _places(L, db=None):
+    """world-space records of the level's object DB (eadb: names by string-pool index), in file order, as the dicts
+    the placement code below expects; spawn points carry their team from the character definition"""
+    db = db or eadb.DB(L.stream)
+    out = []
+    for r in db.recs:
+        if r.pos == (0.0, 0.0, 0.0):
+            continue
+        o = {"name": r.name, "class": r.cls, "pos": r.pos, "yaw": r.yaw, "off": r.off, "size": len(r.w) * 4}
+        if r.cls == "NPCSpawnPoint":
+            o["team"] = eadb.team_of(r.npc()["character"])
+            o["name"] = r.name if "NPCSpawnPoint_" in r.name else "NPCSpawnPoint_" + r.name
+        out.append(o)
+    return out
+
+
 def find_object(L, wants, X, grid, zrange):
     """first world-space placement (metres) for a name or a fallback list; same rules as build()"""
-    db = eaents.ObjectDB(L.stream)
-    places = sorted(db.placements(), key=lambda o: o["off"])
+    places = _places(L)
     for want in ([wants] if isinstance(wants, str) else wants):
         for o in places:
             if (o["name"] == want or o["name"].endswith(want)) and zrange[0] - 1 <= o["pos"][2] <= zrange[1] + 1:
@@ -137,8 +252,8 @@ def find_object(L, wants, X, grid, zrange):
 
 def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vgm=None):
     text = level_strings(L.disc, level)
-    db = eaents.ObjectDB(L.stream)
-    places = sorted(db.placements(), key=lambda o: o["off"])
+    db = eadb.DB(L.stream)
+    places = _places(L, db)
     lo_z, hi_z = zrange
 
     def plausible(o):
@@ -201,7 +316,7 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
             continue
         if not SPAWN_RX.search(o["name"]):
             continue
-        is_al = ALLY_RX.search(o["name"])
+        is_al = o.get("team") == "allies" if o.get("team") else ALLY_RX.search(o["name"])
         p = strict_spot(X(o["pos"]))
         if p is None:            # no spot the engine accepts near it: drop the spawn point rather than spawn stuck
             log("eapack: spawn point dropped (no free spot)", o["name"])
@@ -261,12 +376,28 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
             else:
                 log("eapack: no clear approach for", key)
 
+    def ground_pt(q):
+        g = grid.ground(q[0], q[1], q[2] + 48, q[2] - 160)
+        return (q[0], q[1], g + 2) if g is not None else None
+    vm = eavm.build(db, X, strict_spot, ground_pt, text, lines, log)
+    nvoice = 0
+    if vgm:
+        nvoice = voices(L, level, text, vgm, files, lines, log)
+    vm["voices"] = nvoice
     nmus = 0
     if vgm and spec.get("music"):
-        nmus = music(L, level, spec["music"], vgm, files, lines, log)
+        # [eapolish] the original's music EVENTS (its music triggers, eavm) play the sections the .mpf's own
+        # event table gives them (eamusic.py; converter 0.6.1)
+        nmus = music(L, level, spec["music"], vgm, files, lines, log, events=vm.get("music_events", []))
+    # [eapolish] the level's own particle systems (fires, smoke, fog, blasts) as emitters (eafx.py; converter 0.7.0)
+    import collections
+    import eafx
+    fxused = collections.Counter(eavm.base(t) for r in db.of("EffectsPackage") for _k, t in r.strings()
+                                 if t.lower().endswith(".xpd"))
+    vm["fx"] = eafx.build(L.stream, db, X, level, files, lines, used=dict(fxused), log=log)
     lines += [f"\tlevel.ea_axis_n = {na}", f"\tlevel.ea_ally_n = {nl}", "\tlevel.ea_data_ok = 1", "}end", ""]
     files[f"maps/coop_ea_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     if mohaa_base:
         import flpack      # stock aliases are map-filtered: re-declare the AA-campaign ones for coop_ea (Frontline recipe)
         files["ubersound/ea_aliasbridge.scr"] = flpack.alias_bridge(mohaa_base, "coop_ea_" + level).encode("latin-1")
-    return {"objects": sorted(found), "axis": na, "allies": nl, "text": len(spec.get("text", [])), "music": nmus}
+    return {"vm": vm, "objects": sorted(found), "axis": na, "allies": nl, "text": len(spec.get("text", [])), "music": nmus}
