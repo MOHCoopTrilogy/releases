@@ -48,8 +48,13 @@
    "grenade_nest": 16,
    "mg_hurt": 17,
    "panzer": 18,
-   "conway_tower": 19
+   "conway_tower": 19,
+   "bark_incoming": 22,
+   "bark_cover": 23,
+   "bark_tanks": 24,
+   "bark_planes": 25
   },
+  "_barks": "[flpolish] the four road/square shouters (classes Soldier_SayIncoming / SayGetOutOfTheOpen / SayTheyreAfterTheTanks / SayPlanesAbove): unsubtitled German lines in the same script bank, matched to their classes by transcribing the decoded samples locally; no subtitle, as on the disc",
   "speakers": {
    "interrog": "German officer",
    "castro": "Pvt. Castro",
@@ -644,9 +649,13 @@
     "mesh": "Door_square_1_1.msh",
     "object": 401,
     "solid": 1
-   }
+   },
+   {"name": "brl", "mesh": "Barrel_Metal_Flammable_Red.mpk#0", "class": "ExplodingBarrelSwap_1_1", "solid": 1},
+   {"name": "brlx", "mesh": "Barrel_Metal_Flammable_Red.mpk#1", "class": "ExplodingBarrelSwap_1_1"},
+   {"name": "mol", "mesh": "BarrelMolotovSwapping.mpk#0", "class": "BarrelMolotovSwap", "solid": 1},
+   {"name": "molx", "mesh": "BarrelMolotovSwapping.mpk#1", "class": "BarrelMolotovSwap"}
   ],
-  "_object_meshes": "[flpolish] Frontline object meshes that stand on their own record (inline models): the door (DoorSwingCW, solid while shut, swings open when its group wakes).",
+  "_object_meshes": "[flpolish] Frontline object meshes that stand on their own record (inline models): the door (DoorSwingCW, solid while shut, swings open when its group wakes). With 'class' instead of 'object': one per record of that class, named <name><n> in record order - the exploding barrels and the molotov barrel (mesh packs: #0 intact, #1 the wreck the original swaps in).",
   "_clip_keep": "[flpolish] Frontline player-clip sheets (disc chunk, triangle index) that STAY: they bound the playable area where nothing is drawn, and get a visible barbed-wire edge (flsheets.edges). Every other non-walkable sheet is dropped and the drawn geometry behind it collides instead. Curated with the walk audit (docs/proposals/flpolish_2026-11-10/sheetiter.py): drop all, keep the sheets where the walker got out of the level."
  }
 }

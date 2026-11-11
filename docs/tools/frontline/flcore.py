@@ -144,7 +144,17 @@ class Level:
         header[7] = their count, 32 bytes each = (node, texture record, geometry, n); geometry + 12 = u32 vb, u32 ib,
         u16 nv, u16 ni exactly as a cell draw (28-byte vertices, a triangle strip); the texture record is the cells'
         128-byte one (word 28 = its SHPX image in this file, else word 31 indexes the level's base table)."""
-        buf = self.files.get(name)
+        if "#" in name:
+            # "<pack>.mpk#k": mesh k of a mesh pack (the swap objects: 0 = intact, 1 = destroyed). A pack is
+            # u32 0, size, 0x20, count, count, then at 0x20 the meshes' offsets; each is a plain .msh from there.
+            base, k = name.split("#")
+            pk = self.files.get(base)
+            if not pk or len(pk) < 0x28 or int(k) >= struct.unpack_from("<I", pk, 12)[0]:
+                return []
+            buf = pk[struct.unpack_from("<I", pk, 0x20 + 4 * int(k))[0]:]
+            name = base.rsplit(".", 1)[0] + "_p" + k
+        else:
+            buf = self.files.get(name)
         if not buf or len(buf) < 48:
             return []
         h = struct.unpack_from("<12I", buf, 0)

@@ -152,6 +152,16 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
                 files[rel] = f.read()
             lines.append(f'\tlevel.fl_music["{name}"] = "{rel}"')
             lines.append(f'\tlevel.fl_music_len["{name}"] = {flaudio.wav_seconds(dst):.1f}')
+    # the order the original plays them in, read from the level's own music map (flaudio.music_map)
+    mm = flaudio.music_map(L.files.get(f"{level}M.mpf", b""))
+    if mm:
+        by_idx = {idx: name for name, idx in sp["music"]["segments"].items()}
+        order = [by_idx[i] for i in mm["order"] if i in by_idx]
+        if len(order) == len(mm["order"]):
+            for k, name in enumerate(order, 1):
+                lines.append(f'\tlevel.fl_music_order[{k}] = "{name}"')
+            lines.append(f'\tlevel.fl_music_loop = {0 if mm["loop"] is None else mm["loop"] + 1}')
+            log("music order", order, "loop to", mm["loop"], "alt", mm["alt"])
 
     # ---- placements ----
     na = nl = nh = nm = 0

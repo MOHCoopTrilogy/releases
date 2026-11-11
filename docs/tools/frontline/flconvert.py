@@ -724,6 +724,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if spc.get("mesh"):
             om_specs.append(("sp%d" % k_, spc, None))
     for spc in flpack.spec(level).get("object_meshes", []):
+        if spc.get("class"):
+            # one per record of that class, numbered in record order (the order of the script's level.fl_list)
+            n_ = 0
+            for e_ in L.entities():
+                if spc["class"] in e_["strs"]:
+                    n_ += 1
+                    om_specs.append(("%s%d" % (spc["name"], n_), spc, e_))
+            continue
         om_specs.append((spc["name"], spc, recs_.get(spc.get("object"))))
     nom = 0
     for tag_, spc, rec_ in om_specs:

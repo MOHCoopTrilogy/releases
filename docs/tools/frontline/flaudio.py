@@ -82,6 +82,55 @@ def split_schl(data):
     return out
 
 
+def music_map(mpf):
+    """Frontline's per-level music map (<level>M.mpf, EA PathFinder 'xDFP' version 3) -> the order the level's
+    music segments play in: {"order": [seg, ...], "loop": i, "alt": [[seg, ...], ...]} with 0-based segment
+    numbers into the level's .mus (in stream order) and `loop` the index in `order` the walk returns to
+    (None = it ends).  `alt` are the other sections (started by a game event, e.g. the mission's end).
+
+    Layout (little endian): 'xDFP', u8 version (3) ... u16 node count at 0x12, u16 node offsets (in 4-byte units)
+    from 0x24.  A node is 12 bytes - u16 sample (0 = a section's entry, 0xffff = end, else 1-based segment),
+    u8 branch count at +5 - then 4 bytes per branch (u8 lo, u8 hi, u16 next node).  The walk takes a node's
+    first branch that leads to a node."""
+    if mpf[:4] != b"xDFP" or mpf[4] != 3:
+        return None
+    n = struct.unpack_from("<H", mpf, 0x12)[0]
+    offs = [4 * o for o in struct.unpack_from(f"<{n}H", mpf, 0x24)]
+    nodes = []
+    for o in offs:
+        if o + 12 > len(mpf):
+            return None
+        sample = struct.unpack_from("<H", mpf, o)[0]
+        nb = mpf[o + 5]
+        nxt = [struct.unpack_from("<H", mpf, o + 12 + 4 * k + 2)[0] for k in range(nb) if o + 16 + 4 * k <= len(mpf)]
+        nodes.append((sample, [t for t in nxt if t < n]))
+    walks = []
+    for i, (sample, _) in enumerate(nodes):
+        if sample != 0:
+            continue
+        order, seen, loop, cur = [], {}, None, i
+        while True:
+            sample, nxt = nodes[cur]
+            if sample == 0xFFFF:
+                break
+            if cur in seen:
+                loop = seen[cur]
+                break
+            if sample:
+                seen[cur] = len(order)
+                order.append(sample - 1)
+            elif cur != i:
+                break
+            if not nxt:
+                break
+            cur = nxt[0]
+        if order:
+            walks.append((order, loop))
+    if not walks:
+        return None
+    return {"order": walks[0][0], "loop": walks[0][1], "alt": [w[0] for w in walks[1:]]}
+
+
 def vgm_decode(vgm, src, dst, stream=None):
     args = [vgm, "-o", dst]
     if stream:

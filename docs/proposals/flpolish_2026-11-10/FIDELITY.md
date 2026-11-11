@@ -33,10 +33,10 @@ record's own (team byte, word 13); the class-name rule had made 4 Allied roamers
 |---|---|---|---|---|---|
 | E1 | north lane allies (7774 3688) | proximity 3024u | 3 GIs + 1 German, alert | same, GIs join the squad when a player passes | M (+ squad follow, D) |
 | E2 | jeep wreck (6352 3965 ..) | road 7536 3360 | 3 GIs, 3 Germans, crates, barrels | same | M |
-| E3 | road shouters (5092 3358) | 384u | 3 Germans (planes / incoming / get out of the open) | spawned; their bark lines (VocBnk) not played | D |
+| E3 | road shouters (5092 3358) | 384u | 3 Germans (planes / incoming / get out of the open) | spawned; each shouts his own German line a moment after he appears (unsubtitled samples 22, 23, 25 of the level's script bank, converted as `bark_*` cues) | M |
 | E4 | town gate (2825 1599) | 307u | 4 GIs, 2 Germans | same | M |
 | E5 | tank square (2172 1539) | 528u | Panzer IV + 3 GIs | tank placed again (it had been spawned as a rifleman), drives Frontline's path 66 when its group wakes, burns out when the rocketing P-47 pass ends on it | M |
-| E6 | square south (1357 1224) | 374u | 5 Germans incl. "they're after the tanks" | same, bark not played | D |
+| E6 | square south (1357 1224) | 374u | 5 Germans incl. "they're after the tanks" | same; the shouter's line (script bank sample 24) plays as he appears | M |
 | E7 | west street (823 542 / 740 -735) | proximity | 2 Germans | same | M |
 | E8 | phone post (1335 -401) | 461u | dead GI + field phone | both placed at load | M |
 | E9 | hangout (1717 -2010) / (771 -1977) | 355u / 230u | 3 + 2 talkers | same | M |
@@ -44,9 +44,9 @@ record's own (team byte, word 13); the class-name rule had made 4 Allied roamers
 | E11 | MG post (1123 -2271) | 154u | mounted MG | MG42 turret, manned by nearest nest gunner | M |
 | E12 | door house (-15 -2897) | 230u | 2 Germans + door | Germans spawn, the door swings open | M |
 | E13 | interrogation (-2114 -4427) | 461u | officer + Castro + clipboard | interrogation scene (ours, optional rescue) | D (rescue is ours, user request) |
-| E14 | MG nest (-2549 -4759) | 461u | 3 nest crew, MG, molotov barrel, wall charge | crew + MG42 + barrels; the molotov barrel (BarrelMolotovSwap) stands among them, goes up like the others and burns 10 s where it stood | M |
+| E14 | MG nest (-2549 -4759) | 461u | 3 nest crew, MG, molotov barrel, wall charge | crew + MG42 + barrels. The barrels are Frontline's own meshes (mesh packs `Barrel_Metal_Flammable_Red.mpk`, `BarrelMolotovSwapping.mpk`: intact, and the wreck the original swaps in), solid, set off by a bullet or a blast; the molotov barrel burns 10 s where it stood. Until this round the stand-in model failed to load and every barrel was invisible and could not be shot | M |
 | E15 | docks (-5144 -3783), (-6705 -6205) | 461u / 2918u | 5 + 2 Germans | same | M |
-| E16 | death ambushers (StartByIdDeathAmbush) | lie among the dead, rise when the player comes close | lie in a stock dead pose, AI off, rise (AI back on) when a player is within 420u or they are hit; no lying-to-standing anim exists for MOHAA soldiers | D |
+| E16 | death ambushers (StartByIdDeathAmbush) | lie among the dead, rise when the player comes close | lie in a stock dead pose and get up through the stock prone-to-crouch clip of their weapon (1.1 s, seen on camera: lying, gathering, kneeling, aiming) when a player is within 420u or they are hit. Frontline's own clip is in its undecoded motion format; before this round four of the six stood upright while "playing dead" | M |
 
 ## Scripted moments
 
@@ -71,16 +71,16 @@ record's own (team byte, word 13); the class-name rule had made 4 Allied roamers
 | P3 | Colt / Garand / grenades at the start | coop loadout instead (deliberate: the mod's Armory loadout on every map) | D |
 | A1 | ScrBnk dialogue: interrogation, dock, tower, nest, panzer | played at the matching spots | M |
 | A2 | "mg_hurt" line (wounded gunner) | played the first time a manned MG42's gunner is hit | M |
-| A3 | Music: ambient, action after the roster, end sting; PathFinder triggers switch segments | intro, then the ambient loop, action after the roster, end; the triggers' segment switching is not decoded | D |
+| A3 | Music: the level's music map (`1_1M.mpf`) plays intro, sting, then ambient and action alternating; the end piece is its second section. It is a fixed order, not trigger-switched (the earlier note was wrong) | the same order, read from the map at conversion (`flaudio.music_map`); the end piece at the mission's end | M |
 
 ## Score (1 player)
 
-Matched 35 - Deviated 12 - Missing 0 (of 47 items; the earlier "of 50" over-counted the table, which holds 47).
+Matched 39 - Deviated 8 - Missing 0 (of 47 items; the earlier "of 50" over-counted the table, which holds 47).
 Round 1 was 22 / 19 / 9 on the same table. The deviations at R4/R5/R8/R9 are deliberate MOHAA-body fits, R7 now
 matches (the original's own sheets, nothing added). R11 is a deviation: the gaps are cut to MOHAA's box along the original's routes (42 route blocks remain: 24 hug a wall the walk passes, the rest are the original's own walls).
 Progression walk (progwalk.py): 0 blocks; a player has to crouch in three places only, all the original's crawl passages (R4 hole, the passage at -656 -2700, the interrogation crawl space R5).
-Open deviations: the shouters' barks (E3, E6; VocBnk not decodable), the rockets' flight after their launch keys
-(S5; the disc holds only the launch keys), the ambushers' rise (E16; the stock soldier set has no lying-to-standing
-animation), music segment switching (A3), the start loadout (P3, deliberate).
+Open deviations: the rockets' flight after their launch keys (S5; the disc holds only the launch keys), the start
+loadout (P3, deliberate, awaiting the user's answer), and the deliberate MOHAA-body fits above. Closed in round 6:
+the shouters' barks (E3, E6), the ambushers' rise (E16), the music order (A3).
 Set pieces were checked in one SP camera run (2026-11-10, stills local only); the door's swing and the fly-by over
 the docks were logged but not yet seen on camera.

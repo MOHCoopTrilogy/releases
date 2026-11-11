@@ -128,3 +128,32 @@ the start loadout (deliberate, the mod's own). FIDELITY.md: 35 matched, 12 devia
 In-game on v53: SP self-test 5/5 objectives, rescue, molotov burn proven, 0 Script Errors. Two-client coop to mission
 end: 63/63 triggers, 5/5 objectives, FLMISSION complete; 96 actors, Germans 58/67 engaged (45 killed), Allies 22/29
 engaged (8 killed), 4 idle, 0 spawned in view, 19 squad joins, 0 Script Errors, no server crash.
+
+## Round 6 (2026-11-10 late night) - barks, rise, music order, the barrels
+
+Converter hzmconv 1.10.73.8 (forces a reconversion), pak v56.
+
+| deviation | what it was | now |
+|---|---|---|
+| German barks (E3, E6) | thought to sit in the undecoded VocBnk | the shouters' lines are in the level's script bank, which `flaudio` already decodes; the four cues (22-25) are wired to their shouters |
+| music (A3) | thought to be trigger-switched | the level's music map (`1_1M.mpf`) gives a fixed play order with one loop point, no trigger switching in this level; `flaudio.music_map` reads it and `flpack` writes the order |
+| ambushers' rise (E16) | popped upright | stock dead pose, then the weapon's own prone-to-crouch clip (1.1 s) into normal AI. Authored from the stock animation set, not converted from the disc |
+| exploding barrels (E14) | stand-in crate model | Frontline's own barrel and wreck meshes (mesh packs `.mpk#0` / `#1`), solid, set off by a bullet or a blast; the molotov barrel burns 10 s |
+
+Two defects found on the way, both in the shipped v1.10.70 mission:
+
+- **The barrels were invisible and could not be shot.** The stand-in `models/custom/wooden_barrel.tik` has no
+  animation file and never spawned ("Bad model name"); only blast damage at the right spot set one off.
+- **Four of six "dead" ambushers stood upright.** `ai_off` stops `Actor::Think`, which is what applies the pose; only
+  actors that had already thought once lay down. The pose is now held with `no_idle` and re-issued, without `ai_off`.
+
+On camera (local stills only, they show disc content): all six ambushers lie and rise through the clip; a rifle shot
+at the molotov barrel sets it off, the four drums beside it chain, the wrecks swap in, the fire burns and goes out.
+The shot needs a player on the ground with a weapon in hand: a noclip camera never fires, which cost four takes.
+
+Gates on v56: progression walk 0 blocks (68 targets), route blocks 42, narrow gaps 0. SP self-test 5/5 objectives,
+rescue, molotov burn through the blast path, 0 Script Errors, no "Bad model name". Two-client coop to mission end:
+63/63 triggers, 5/5 objectives, FLMISSION complete, 4 barks, 8 barrels set off, Germans 63/71 engaged (49 killed),
+Allies 22/31 engaged (11 killed), 3 idle (two are ambushers nobody walked up to), 0 spawned in view, 0 Script Errors.
+FIDELITY.md: 39 matched, 8 deviated, 0 missing. Open: the rockets' flight (S5), the start loadout (P3, waits
+on the user), the deliberate MOHAA-body fits.
