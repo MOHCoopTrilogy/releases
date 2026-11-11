@@ -81,21 +81,74 @@ def keep_drawn(drawn, segs, heights=(24.0, 36.0, 48.0, 72.0)):
     return [t for i, t in enumerate(drawn) if i not in bad], len(bad)
 
 
-def carve(tris, tags, segs, step_h=38.0, top=96.0, half=19.0, spacing=12.0, keep=lambda f: False):
+def _inside(poly, lo, hi):
+    """the part of a convex polygon inside an axis-aligned box (or None)"""
+    cur = poly
+    for n, d in (((1, 0, 0), hi[0]), ((-1, 0, 0), -lo[0]), ((0, 1, 0), hi[1]), ((0, -1, 0), -lo[1]),
+                 ((0, 0, 1), hi[2]), ((0, 0, -1), -lo[2])):
+        cur, _out = flclear._split(cur, n, d)
+        if not cur:
+            return None
+    return cur
+
+
+def thin_objects(tris, span=48.0):
+    """indices of the wall triangles that belong to a small free-standing object (a post, a pole, a sign): connected
+    pieces - triangles sharing a corner - no wider than `span` either way"""
+    par = list(range(len(tris)))
+
+    def find(i):
+        while par[i] != i:
+            par[i] = par[par[i]]
+            i = par[i]
+        return i
+    at = {}
+    walls = []
+    for i, t in enumerate(tris):
+        n = flclear_normal(t)
+        if n is None or abs(n[2]) >= 0.7:
+            continue
+        walls.append(i)
+        for v in t:
+            k = (round(v[0]), round(v[1]), round(v[2]))
+            j = at.setdefault(k, i)
+            if j != i:
+                a, b = find(i), find(j)
+                if a != b:
+                    par[a] = b
+    box = {}
+    for i in walls:
+        r = find(i)
+        b = box.setdefault(r, [1e18, 1e18, -1e18, -1e18])
+        for v in tris[i]:
+            b[0] = min(b[0], v[0]); b[1] = min(b[1], v[1]); b[2] = max(b[2], v[0]); b[3] = max(b[3], v[1])
+    return {i for i in walls if box[find(i)][2] - box[find(i)][0] <= span and box[find(i)][3] - box[find(i)][1] <= span}
+
+
+def carve(tris, tags, segs, step_h=38.0, top=96.0, half=19.0, spacing=12.0, keep=lambda f: False, notch=12.0, dense=()):
     """cut the collision that keeps a MOHAA box off an open route, above the step height (collision only)"""
     G = flgeom.TriGrid(tris)
     boxes = []
     for p, q in segs:
         L = math.hypot(q[0] - p[0], q[1] - p[1])
-        n = max(1, int(L // spacing))
+        # sampled every `spacing`u; three times as finely within reach of a reviewed spot (fl_levels.json
+        # "route_widen": the square boxes of a slanting route reach 19u only AT the samples, and a post 17u off the
+        # line between two of them stayed). Not everywhere: fine samples take whole wall sheets off beside the routes
+        # and the walk gets out over the stubs (docks, 988 fall-outs).
+        n = max(1, int(L // spacing)) * 3
         for k in range(n + 1):
             f = k / n
             x, y = p[0] + (q[0] - p[0]) * f, p[1] + (q[1] - p[1]) * f
+            if k % 3 and not any(math.hypot(x - d[0], y - d[1]) <= d[2] for d in dense):
+                continue
             z = p[2] + (q[2] - p[2]) * f
             # a standing MOHAA box (15u + the 2u half-slab of each collision prism + 1, up to 96u) above the step
             hz_ = (top - step_h) / 2
-            if not any(flgeom.tri_box((x, y, z + step_h + hz_), (18.0, 18.0, hz_), *G.tris[i_])
-                       for i_ in G.near(x, y, 20)):
+
+            def hit_(x_, y_):
+                return any(flgeom.tri_box((x_, y_, z + step_h + hz_), (18.0, 18.0, hz_), *G.tris[i_])
+                           for i_ in G.near(x_, y_, 20))
+            if not hit_(x, y):
                 continue
             # from 6u under the step: the cut piece below keeps a 2u half-slab, which must stay climbable
             boxes.append(((x - half, y - half, z + step_h - 6.0), (x + half, y + half, z + top)))
@@ -103,10 +156,13 @@ def carve(tris, tags, segs, step_h=38.0, top=96.0, half=19.0, spacing=12.0, keep
         return tris, tags, {"routes": len(segs), "blocked_samples": 0, "tris_cut": 0}
     B = flgeom.TriGrid([((lo[0], lo[1], lo[2]), (hi[0], lo[1], lo[2]), (hi[0], hi[1], hi[2])) for lo, hi in boxes])
     out_t, out_f, cut = [], [], 0
-    for t, f in zip(tris, tags):
+    # a post or a pole standing by a wall has "nothing under its far side" too, but bounds nothing: the original's
+    # body slips past it, MOHAA's 30u box did not (route audit: 2 such gaps, a lamp pole and a fence post)
+    thin = thin_objects(tris)
+    for i_t, (t, f) in enumerate(zip(tris, tags)):
         n_ = flclear_normal(t)
         edge = False
-        if n_ is not None and abs(n_[2]) < 0.7:
+        if n_ is not None and abs(n_[2]) < 0.7 and i_t not in thin:
             # a wall with nothing under its far side bounds the level: never cut (a hedge along the north lane, cut
             # for the route beside it, let the walk out over the void)
             c_ = [sum(v[k] for v in t) / 3 for k in range(3)]
@@ -125,6 +181,18 @@ def carve(tris, tags, segs, step_h=38.0, top=96.0, half=19.0, spacing=12.0, keep
             c2 = [sum(v[k] for v in t) / 3 for k in range(2)]
             flat = not any(lo[2] + 28.0 <= zmin_ <= hi[2] and lo[0] <= c2[0] <= hi[0] and lo[1] <= c2[1] <= hi[1]
                            for lo, hi in (boxes[j] for j in B.near(c2[0], c2[1], half)))
+        if edge and not keep(f):
+            # ...except a NOTCH: where the route only clips the last few units of such a wall (its end by the path,
+            # a corner the original's body brushes past), cutting that much opens nothing - a 30u box does not fit
+            # through 12u (route audit: 2 gaps left, both wall ends beside the path)
+            c_ = [sum(v[k] for v in t) / 3 for k in range(3)]
+            r_ = max(math.dist(t[0], t[1]), math.dist(t[1], t[2]), math.dist(t[2], t[0]))
+            got = []
+            for j in B.near(c_[0], c_[1], r_ + half):
+                got += _inside(list(t), *boxes[j]) or []
+            # over ALL the route boxes together: box after box along a wall each clips a little and the bites join up
+            worst = max((math.hypot(u[0] - v[0], u[1] - v[1]) for u in got for v in got), default=0.0) if len(got) < 400 else 1e9
+            edge = not (got and worst <= notch)
         if keep(f) or edge or n_ is None or flat:
             # the level's boundaries are never cut, and no floor is: a route on a lower level cut holes into the floor
             # of the level above it (walk audit: fall-outs in the north lane over the jeep road)

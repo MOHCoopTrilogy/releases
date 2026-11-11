@@ -31,7 +31,7 @@ HEALTH = {"Health10": 10, "Health25": 25, "Health50": 50}
 AMMO = {"GrenadeAmmo": "grenade", "Colt45Ammo": "pistol", "M1GarandAmmo": "rifle"}
 # set-piece placements the mission script rebuilds with MOHAA recipes (level.fl_list[cls][1..n])
 JEEP_CREW = {"Jeep_Driver": "driver", "Jeep_Gunner": "gunner", "Jeep_Passenger": "passenger"}
-LISTED = ("JeepBody_1_1", "LandMineTriggerParent", "ExplodingBarrelSwap_1_1", "FlyThrough_1_1", "Rocket_1_1",
+LISTED = ("JeepBody_1_1", "LandMineTriggerParent", "ExplodingBarrelSwap_1_1", "BarrelMolotovSwap", "FlyThrough_1_1", "Rocket_1_1",
           "BuildingExplosionParent", "StartBeachExplosionBig")
 
 

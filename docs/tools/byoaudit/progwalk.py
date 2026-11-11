@@ -32,7 +32,7 @@ PT = re.compile(r'^\s*level\.(fl_trig|fl_pos)\[("?[\w ]+"?)\]\s*=\s*\(\s*(-?[\d.
 RR = re.compile(r'^\s*level\.fl_trig_r\[(\d+)\]\s*=\s*(-?[\d.]+)', re.M)
 
 
-def flood_parents(M, seeds, step, hull_h, deadly):
+def flood_parents(M, seeds, step, hull_h, deadly, edges=None):
     W = geoaudit.Walker(M, step)
     seen, par = {}, {}
     q = collections.deque()
@@ -53,6 +53,8 @@ def flood_parents(M, seeds, step, hull_h, deadly):
             if any(lo[0] < nx < hi[0] and lo[1] < ny < hi[1] and nz < lo[2] - 40 for lo, hi in deadly):
                 continue
             k2 = (int(round(nx / step)), int(round(ny / step)), int(nz // 16))
+            if edges is not None:
+                edges.setdefault(k, []).append(k2)
             if k2 in seen:
                 continue
             seen[k2] = nz
@@ -97,7 +99,48 @@ def main():
         if z is not None:
             seeds.append((s[0], s[1], z))
     stand, par_s = flood_parents(M, seeds, a.step, mapgeo.STAND_H, deadly)
-    crouch, par_c = flood_parents(M, seeds, a.step, mapgeo.CROUCH_H, deadly)
+    edges = {}
+    crouch, par_c = flood_parents(M, seeds, a.step, mapgeo.CROUCH_H, deadly, edges)
+
+    # where a STANDING box does not fit (a low ceiling). The floor under a cell can be a sloped collision prism the
+    # tall box grazes at the cell's own height, so the box is tried at the floor and a few units above it.
+    lowc = {}
+
+    def low(k):
+        v = lowc.get(k)
+        if v is None:
+            z_ = crouch.get(k, stand.get(k))
+            x_, y_ = k[0] * a.step, k[1] * a.step
+            v = all(M.trace((x_, y_, z_ + dz), (x_, y_, z_ + dz + 0.01), *M.hull(mapgeo.STAND_H))[4]
+                    for dz in (1.0, 4.0, 8.0, 12.0))
+            lowc[k] = v
+        return v
+    # the crouch walk that crouches as LITTLE as possible (0-1 search: entering a low cell costs 1, any other 0) -
+    # a plain breadth-first walk cuts under every overhang beside the street and reports crawling the original
+    # never asked for
+    cost = {}
+    par_c = {}
+    dq = collections.deque()
+    for s_ in seeds:
+        k = (int(round(s_[0] / a.step)), int(round(s_[1] / a.step)), int(s_[2] // 16))
+        if k in crouch and k not in cost:
+            cost[k] = 0
+            par_c[k] = None
+            dq.append(k)
+    while dq:
+        k = dq.popleft()
+        ck = cost[k]
+        for k2 in edges.get(k, ()):
+            if k2 not in crouch:
+                continue
+            c2 = ck + (1 if low(k2) else 0)
+            if c2 < cost.get(k2, 1 << 30):
+                cost[k2] = c2
+                par_c[k2] = k
+                if c2 == ck:
+                    dq.appendleft(k2)
+                else:
+                    dq.append(k2)
     st = np.array([(k[0] * a.step, k[1] * a.step, z) for k, z in stand.items()])
     cr_keys = list(crouch)
     cr = np.array([(k[0] * a.step, k[1] * a.step, crouch[k]) for k in cr_keys])
@@ -153,11 +196,7 @@ def main():
             route = path(par_s, k)
         # where the walk has to crouch: cells on the path where a STANDING box does not fit (a low ceiling) - past a
         # crawl hole the rest of the way is walked upright again
-        def low(k):
-            z_ = crouch.get(k, stand.get(k))
-            return M.trace((k[0] * a.step, k[1] * a.step, z_ + 1), (k[0] * a.step, k[1] * a.step, z_ + 1.01),
-                           *M.hull(mapgeo.STAND_H))[4]
-        must = [r_ for r_ in route if low(r_)]
+        must = [r_ for r_ in route if low(r_)] if how == "crouch" else []
 
         def spot(k):
             # the low spot and what is over the head there (the collision's source: the original's surface or ours)

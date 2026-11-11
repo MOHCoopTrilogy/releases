@@ -520,6 +520,8 @@
    }
   ],
   "_set_pieces": "[flpolish] which Frontline motion plays when, and as what: 'mesh' = Frontline's own object mesh from the player's disc (flconvert builds it as an inline model), 'model' = a stock MOHAA stand-in when there is none. 'trigger'/'object' are Frontline RECORD indexes resolved on the player's PC. Planes go to the trigger their flight passes closest to (unique assignment; the untriggered start pass and the two dogfights open over the drop); bombs and rockets to the triggers that send them; the house chunks fall when the second bomb lands beside them (its fall is 3.4 s); the jeep's wheels fly off on the jeep's own clock from the mine hit ('sync'); the U-boat bobs all mission.",
+  "route_widen": [[-2050, -4616, 48], [-1554, -2756, 48]],
+  "_route_widen": "[flpolish] [x, y, radius] in map units: spots where a route of the original squeezes past a post or a wall end and the route cut (flroutes.carve) is sampled finely. Reviewed one by one against the walk audit (fall-outs must stay 0) - doing it everywhere opens the walls beside the routes.",
   "clip_keep": [
    ["1_1_C_c0.cdb", 3646],
    ["1_1_C_c0.cdb", 3647],

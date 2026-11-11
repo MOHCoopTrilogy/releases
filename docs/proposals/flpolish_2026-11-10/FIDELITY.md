@@ -16,11 +16,11 @@ Status: **M** matched, **D** deviation (closest MOHAA equivalent, reason given),
 | R4 | Crawl hole through the wall into the town (2897 1690, 46u high in Frontline units) | carved to MOHAA crouch (60u) - FL's crouch fits 49u, MOHAA's needs 54 | D |
 | R5 | Interrogation house reached through a low crawl space (-1232 -4656) | carved to crouch | D |
 | R6 | 4 tall trigger VOLUMES (crawl hole, interrogation house, two in the town) never block a character | dropped from collision (were solid: the "invisible walls blocking progression") | M |
-| R7 | Player-clip boundaries (special surface) along the route edges | where they close the level with nothing drawn (124 sheets, curated with the walk audit) kept, with a barbed-wire edge drawn on them; everywhere else the drawn geometry they stood in front of collides instead (user rule: blocked only by what you can see) | D |
+| R7 | Player-clip boundaries (special surface) along the route edges | where they close the level with nothing drawn (124 sheets, curated with the walk audit) kept as the original has them, invisible (user: the original's own invisible walls are fine; no wire the original did not draw); the converter-made blockers are gone and the drawn geometry collides instead. Canal quay walls kept (user decision: no falling in) | M |
 | R8 | Trees/posts wrapped in tall clip columns | columns shrunk to the drawn trunk/post; 6 with nothing drawn dropped | D (snag fix) |
 | R9 | Level edges: no floor past them | clip wall + drawn skirt + ground under the level (no void) | D |
 | R10 | 19-34u lips walked over (Frontline step height ~0.7 m) | HZM engine step height per map (worldspawn hzm_stepsize 34: players, prediction, actors) | M |
-| R11 | Gaps narrower than the MOHAA box (30u) but wider than Frontline's (~20u) on the AI routes | collision cut to the MOHAA box along every open route of the original's navigation (flroutes; collision only, nothing drawn changes); route blocks 146 -> 49 | D |
+| R11 | Gaps narrower than the MOHAA box (30u) but wider than Frontline's (~20u) on the AI routes | collision cut to the MOHAA box along every open route of the original's navigation (flroutes; collision only, nothing drawn changes); route blocks 146 -> 42, none of them a gap too narrow for the box (two slanted gaps past a post and a wall end are sampled finer, fl_levels.json route_widen) | D |
 | R12 | Door (DoorSwingCW) opened by its group | Frontline's own door mesh (inline model), solid while shut, swings when group 65552 wakes (log: FLSET door open; still to confirm on camera which drawn panel it replaces) | M |
 
 ## Encounters (group -> trigger -> members)
@@ -44,7 +44,7 @@ record's own (team byte, word 13); the class-name rule had made 4 Allied roamers
 | E11 | MG post (1123 -2271) | 154u | mounted MG | MG42 turret, manned by nearest nest gunner | M |
 | E12 | door house (-15 -2897) | 230u | 2 Germans + door | Germans spawn, the door swings open | M |
 | E13 | interrogation (-2114 -4427) | 461u | officer + Castro + clipboard | interrogation scene (ours, optional rescue) | D (rescue is ours, user request) |
-| E14 | MG nest (-2549 -4759) | 461u | 3 nest crew, MG, molotov barrel, wall charge | crew + MG42 + barrels; molotov barrel X | D |
+| E14 | MG nest (-2549 -4759) | 461u | 3 nest crew, MG, molotov barrel, wall charge | crew + MG42 + barrels; the molotov barrel (BarrelMolotovSwap) stands among them, goes up like the others and burns 10 s where it stood | M |
 | E15 | docks (-5144 -3783), (-6705 -6205) | 461u / 2918u | 5 + 2 Germans | same | M |
 | E16 | death ambushers (StartByIdDeathAmbush) | lie among the dead, rise when the player comes close | lie in a stock dead pose, AI off, rise (AI back on) when a player is within 420u or they are hit; no lying-to-standing anim exists for MOHAA soldiers | D |
 
@@ -66,19 +66,21 @@ record's own (team byte, word 13); the class-name rule had made 4 Allied roamers
 | # | item | original | port | status |
 |---|---|---|---|---|
 | O1-O5 | 5 objectives, text from the disc | same order and text | | M |
-| P1 | health 10/25/50 (18/7/5) | stock 25/50 health boxes | D (no 10 box) |
+| P1 | health 10/25/50 (18/7/5) | stock health boxes carrying the original's amounts (10/25/50) | M |
 | P2 | ammo: grenade 11, pistol 9, rifle 8 | stock ammo boxes at the same 28 points | M |
-| P3 | Colt / Garand / grenades at the start | coop loadout instead | D |
+| P3 | Colt / Garand / grenades at the start | coop loadout instead (deliberate: the mod's Armory loadout on every map) | D |
 | A1 | ScrBnk dialogue: interrogation, dock, tower, nest, panzer | played at the matching spots | M |
 | A2 | "mg_hurt" line (wounded gunner) | played the first time a manned MG42's gunner is hit | M |
-| A3 | Music: ambient, action after the roster, end sting; PathFinder triggers switch segments | ambient/action/end only | D |
+| A3 | Music: ambient, action after the roster, end sting; PathFinder triggers switch segments | intro, then the ambient loop, action after the roster, end; the triggers' segment switching is not decoded | D |
 
 ## Score (1 player)
 
-Matched 32 - Deviated 15 - Missing 0 (of 47 items; the earlier "of 50" over-counted the table, which holds 47).
-Round 1 was 22 / 19 / 9 on the same table. The deviations at R4/R5/R8/R9 are deliberate MOHAA-body fits, R7 is the
-user's visible-collision rule. R11 is now a deviation: the gaps are cut to MOHAA's box along the original's routes (49 route blocks remain, most of them the original's own walls).
-Open deviations worth another pass: the shouters' barks (E3, E6), the molotov barrel (E14), the rockets' flight after
-their launch keys (S5), the ambushers' rise (E16), music segment switching (A3), the start loadout (P3).
+Matched 35 - Deviated 12 - Missing 0 (of 47 items; the earlier "of 50" over-counted the table, which holds 47).
+Round 1 was 22 / 19 / 9 on the same table. The deviations at R4/R5/R8/R9 are deliberate MOHAA-body fits, R7 now
+matches (the original's own sheets, nothing added). R11 is a deviation: the gaps are cut to MOHAA's box along the original's routes (42 route blocks remain: 24 hug a wall the walk passes, the rest are the original's own walls).
+Progression walk (progwalk.py): 0 blocks; a player has to crouch in three places only, all the original's crawl passages (R4 hole, the passage at -656 -2700, the interrogation crawl space R5).
+Open deviations: the shouters' barks (E3, E6; VocBnk not decodable), the rockets' flight after their launch keys
+(S5; the disc holds only the launch keys), the ambushers' rise (E16; the stock soldier set has no lying-to-standing
+animation), music segment switching (A3), the start loadout (P3, deliberate).
 Set pieces were checked in one SP camera run (2026-11-10, stills local only); the door's swing and the fly-by over
 the docks were logged but not yet seen on camera.

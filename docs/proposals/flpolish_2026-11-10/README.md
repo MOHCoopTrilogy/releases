@@ -100,3 +100,31 @@ FLMISSION complete; 106 actors, Germans 67/76 engaged (49 killed), Allies 22/30 
 in view, 0 Script Errors.
 
 ## Audits (docs/tools/byoaudit) - re-run with the commands in its README
+
+## Round 5 (2026-11-10 night) - 1:1 rule, progression walk, last gaps
+
+User rules for this round: the original's own invisible walls stay where the original has them (the canal quays too:
+no falling in); wire only where the original drew a fence; a player from the drop must reach every objective and
+trigger in order.
+
+| check (v53, hzmconv 1.10.73.7) | result |
+|---|---|
+| fall-outs | **0** |
+| progression walk (`byoaudit/progwalk.py`, 63 triggers + objectives) | **0 blocks** |
+| places a player must crouch | 3, all the original's crawl passages: the R4 hole (2900 1680), the passage at (-656 -2700), the interrogation crawl space (-1232..-1712 -4464..-4752) |
+| route blocks | 42 (was 46): 24 hug a wall the walk passes, 18 are the original's own walls; **0** gaps too narrow for the box (was 2) |
+| unreachable pathnodes | 16 |
+
+The two narrow gaps (an awning post at -1574 -2768, a wall end at -2032 -4601) sat between the 12u samples of a
+slanted route. Sampling every route finer opened 988 fall-outs, so the finer samples apply only at reviewed spots
+(`fl_levels.json` `route_widen`). The 92u lintel at (-1184 -2592) and three "crouch with no ceiling" spots were audit
+artefacts: a standing way exists beside each, and the walk now crouches only where it has to.
+
+Deviations closed: the molotov barrel at the MG nest (explodes, then burns 10 s), the music's intro segment before the
+ambient loop, health boxes carry the original's 10/25/50. Still open: barks (VocBnk), the rockets' flight after their
+launch keys, the ambushers' rise (no lying-to-standing animation in the stock soldier set), music segment switching,
+the start loadout (deliberate, the mod's own). FIDELITY.md: 35 matched, 12 deviated, 0 missing.
+
+In-game on v53: SP self-test 5/5 objectives, rescue, molotov burn proven, 0 Script Errors. Two-client coop to mission
+end: 63/63 triggers, 5/5 objectives, FLMISSION complete; 96 actors, Germans 58/67 engaged (45 killed), Allies 22/29
+engaged (8 killed), 4 idle, 0 spawned in view, 19 squad joins, 0 Script Errors, no server crash.

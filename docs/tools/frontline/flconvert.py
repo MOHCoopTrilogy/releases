@@ -548,7 +548,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         wound += drawn_coll
         wtags += [TAG_DRAWN] * len(drawn_coll)
         wound, wtags, stats["routes"] = flroutes.carve(
-            wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL) and f < TAG_CLIFF)
+            wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL) and f < TAG_CLIFF,
+            dense=flpack.spec(level).get("route_widen", ()))
         # ...and the sheets that stay (the level's boundaries where nothing is drawn) get a VISIBLE edge: a barbed-wire
         # fence along their foot (MOHAA's own textures/mohcommon/barbwire from the player's install)
         gk_ = flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED])   # fences stand on land, not the canal bed
