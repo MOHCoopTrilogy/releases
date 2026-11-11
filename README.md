@@ -50,6 +50,13 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.77 - Night Watch
+
+- **Their Dying Breath is a real night now** - the village is dark, the snow keeps its detail, and tanks and soldiers take the night light instead of glowing
+- **Ground fog, distant fires and scorched shell craters** all show as they should
+- **Your disc is converted again automatically** on update; nothing from the disc ships with the mod
+- **Needs playtesting** - the full mission with human players under the new lighting
+
 ### v1.10.76 - Liberation
 
 - **New contract: LIBERATION** - a solo hunt in Field Operations. You go in alone against 12 to 25 dug-in Germans who never respawn, with one life and a clock
