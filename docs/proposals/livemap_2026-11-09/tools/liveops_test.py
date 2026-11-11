@@ -56,14 +56,20 @@ def read(p):
 
 def build_pak():
     out = os.path.join(HOME, "maintt", PAK)
+    if "--nopak" in sys.argv:                      # the shipped paks only (reproduce a released bug)
+        if os.path.exists(out):
+            os.remove(out)
+        print("no test pak")
+        return out
+    files = PAK_FILES if "--urconly" not in sys.argv else ["ui/hzm_newgame3d.urc"]
     os.makedirs(os.path.dirname(out), exist_ok=True)
     n = 0
     with zipfile.ZipFile(out + ".tmp", "w", zipfile.ZIP_DEFLATED) as z:
-        for rel in PAK_FILES:
+        for rel in files:
             z.write(os.path.join(MOD, rel), rel)
             n += 1
         td = os.path.join(MOD, "textures", "menu")
-        for fn in sorted(os.listdir(td)):
+        for fn in (sorted(os.listdir(td)) if "--urconly" not in sys.argv else []):
             if fn.startswith(("hzm_ng3c_", "hzm_ops_")):
                 z.write(os.path.join(td, fn), "textures/menu/" + fn)
                 n += 1
@@ -94,7 +100,7 @@ def guard(c):
     return bool(TRIPPED)
 
 
-def client(binds, extra_sets=(), tail=(), w=1600, h=900):
+def client(binds, extra_sets=(), tail=(), w=1600, h=900, env=None):
     mt = os.path.join(HOME, "maintt")
     os.makedirs(mt, exist_ok=True)
     for fn in os.listdir(mt):
@@ -110,7 +116,7 @@ def client(binds, extra_sets=(), tail=(), w=1600, h=900):
     d = hw.test_display()
     args, late = hw.apply_policy(args, width=w, height=h, display=d)
     open(os.path.join(mt, "lo_on.cfg"), "w", newline="\n").write("\n".join(MUTE + binds + late) + "\n")
-    return hw.launch_background(args[0], args[1:], A, policy=False, display=d, below_normal=True, watch_audio=True, log=lambda *a: None)
+    return hw.launch_background(args[0], args[1:], A, env=env, policy=False, display=d, below_normal=True, watch_audio=True, log=lambda *a: None)
 
 
 def cmdfile(name, lines):
@@ -270,6 +276,74 @@ def case_flat(out, res):
     return read(lp())
 
 
+def hotpos(name, start):
+    """screen position of a scene hotspot, from the engine's own projection (ui_scene_hotdump)"""
+    m = re.findall(r"SCENEHOT " + re.escape(name) + r" sx=(-?\d+) sy=(-?\d+) r=(\d+) depth=(-?\d+) W=(\d+) H=(\d+)", read(lp())[start:])
+    return (int(m[-1][0]), int(m[-1][1]), int(m[-1][4]), int(m[-1][5])) if m else None
+
+
+def case_click(out, res):
+    """the REAL click path: the cursor is put on the button (private test exe: hzm_ops testmouse), then a left click is
+    POSTED to our own window (WM_LBUTTONDOWN/UP -> SDL -> K_MOUSE1 -> UI hit-test -> the button's stuffcommand).
+    FILE AWAY must close the card; a click on the contract's stamp must reopen it; DEPLOY must launch the match."""
+    w, h = (1600, 900) if "--wide" not in sys.argv else (1904, 816)
+    res["window"] = "%dx%d" % (w, h)
+    utc, live, groups = pick_utc(lambda L: any(gen_ops.ENTRIES[c["entry"]]["mode"] == "TDM" and c["left"] > 200 for c in L))
+    c0 = [c for c in live if gen_ops.ENTRIES[c["entry"]]["mode"] == "TDM" and c["left"] > 200][0]
+    n = slot_no(c0)
+    side = "1" if gen_ops.SLOTS[c0["slot"]]["pin"][1] < 20 else "2"
+    res["contract"] = gen_ops.describe(c0)
+    cmdfile("lo_a.cfg", ["set ui_opsFakeUtc %d" % utc, "seta ui_atticMain 1", "pushmenu hzm_newgame3d"])
+    cmdfile("lo_b.cfg", ["set ui_scene_hotdump 1", "wait 60", "set ui_scene_hotdump 0"])
+    cmdfile("lo_d.cfg", ["echo LOCARD", "ui_opsCard"])
+    env = {"SDL_MOUSE_AUTO_CAPTURE": "0", "SDL_HINT_MOUSE_AUTO_CAPTURE": "0"}
+    c = client(BINDS, w=w, h=h, env=env)
+    steps = []
+
+    def click(hot):
+        n0 = len(read(lp()))
+        press(c, "F6", 2)
+        p = hotpos(hot, n0)
+        if not p:
+            steps.append((hot, "no position"))
+            return False
+        x, y = p[0] * w // p[2], p[1] * h // p[3]
+        cmdfile("lo_c.cfg", ["hzm_ops testmouse %d %d" % (p[0], p[1])])
+        press(c, "F7", 1)
+        c.post_click(x, y)
+        time.sleep(2)
+        steps.append((hot, p, (x, y)))
+        return True
+
+    def card_state():
+        n0 = len(read(lp()))
+        press(c, "F8", 2)
+        m = re.findall(r'"ui_opsCard" is:"(\d)', read(lp())[n0:])
+        return m[-1] if m else "?"
+    with c:
+        wait_for(r"UI_Init|CL_InitCGame|Sound|\^~\^~\^", 120, c=c)
+        time.sleep(25)
+        press(c, "F5", 6)
+        res["card_before_click"] = card_state()
+        click("ops%d" % n)                                  # the contract's stamp: opens the card
+        res["after_stamp_click"] = card_state()
+        res["card_open_shot"] = shot(c, out, "card_open")
+        click("opsfa%s" % side)                             # FILE AWAY
+        res["after_fileaway_click"] = card_state()
+        res["fileaway_shot"] = shot(c, out, "after_fileaway")
+        click("ops%d" % n)
+        res["reopened"] = card_state()
+        n1 = len(read(lp()))
+        click("opsdp%s" % side)                             # DEPLOY
+        res["deployed"] = wait_for(r"\^~\^~\^ OPS deploy", 15, n1, c)
+        res["match_started"] = wait_for(r"\^~\^~\^ OPS start", 240, n1, c)
+        guard(c)
+        res["peak"] = repr(c.report())[:300]
+    res["steps"] = [repr(s_) for s_ in steps]
+    shutil.copyfile(lp(), os.path.join(out, "qconsole.log"))
+    return read(lp())
+
+
 def script_errors(log):
     return log.count("Script Error"), log.count("Couldn't compile")
 
@@ -285,8 +359,12 @@ def main(cases):
         if TRIPPED:
             print("GUARD TRIPPED - stopping all launches:", TRIPPED, flush=True)
             break
-        if hg.user_game_running_raw():
-            print("a USER-class MOHAA client is running - not launching", flush=True)
+        # the user may play on the ultrawide while we test (ALLOW_WHILE_PLAYING): then ONLY the 1080p second screen
+        if hg.user_game_running():
+            print("a USER-class MOHAA client is running and testing beside it is not allowed - not launching", flush=True)
+            break
+        if hg.user_game_running_raw() and hw.test_display()["rect"][2] - hw.test_display()["rect"][0] != 1920:
+            print("the user is playing: test on the 1080p screen only (HZM_TEST_RES=1920x1080) - not launching", flush=True)
             break
         out = os.path.join(RUNS, case + ("_" + opt("--map", "").replace("/", "_") if "--map" in sys.argv else ""))
         shutil.rmtree(out, ignore_errors=True)
@@ -300,6 +378,8 @@ def main(cases):
                 log = case_match(out, res, "TDM")
             elif case == "obj":
                 log = case_match(out, res, "OBJ")
+            elif case == "click":
+                log = case_click(out, res)
             elif case == "flat":
                 log = case_flat(out, res)
             else:
