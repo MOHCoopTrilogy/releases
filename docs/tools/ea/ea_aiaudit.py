@@ -54,7 +54,8 @@ if __name__ == "__main__":
     out = sys.argv[1]
     mode = sys.argv[2] if len(sys.argv) > 2 else "mission"
     mins = float(sys.argv[sys.argv.index("--minutes") + 1]) if "--minutes" in sys.argv else 24.0
-    rep = aiaudit.run("coop_ea_1_11", out, mode, 1, "1", mins, "ea")
+    clients = int(sys.argv[sys.argv.index("--clients") + 1]) if "--clients" in sys.argv else 1
+    rep = aiaudit.run("coop_ea_1_11", out, mode, clients, "1", mins, "ea")
     rep["ignored_user_clips"] = len(IGNORED)
     json.dump(rep, open(os.path.join(out, "aiaudit.json"), "w"), indent=1, default=str)
     print(json.dumps({k: v for k, v in rep.items() if k not in ("idle_list", "spawn_lines")}, indent=1, default=str))

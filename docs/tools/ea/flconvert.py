@@ -570,6 +570,29 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 if flgeom.tri_box((cx, cy, cz), (r, r, r), *RG.tris[j]):
                     return True
             return False
+        # long steep collision triangles (EA's trench and bank walls run 800-2,800u in one triangle) are judged piece
+        # by piece: split until no edge is over 192u, so the parts standing off the drawn bank (40-80u away) count as
+        # floating sheets and the parts on it stay (ea_geothin: 41 invisible spots, 94 of their 119 contacts on these)
+        def _split(t, out):
+            a, b, c = t
+            e = [math.dist(a, b), math.dist(b, c), math.dist(c, a)]
+            if max(e) <= 192.0:
+                out.append(t)
+                return
+            ab = tuple((a[k] + b[k]) / 2 for k in range(3))
+            bc = tuple((b[k] + c[k]) / 2 for k in range(3))
+            ca = tuple((c[k] + a[k]) / 2 for k in range(3))
+            for s in ((a, ab, ca), (ab, b, bc), (ca, bc, c), (ab, bc, ca)):
+                _split(s, out)
+        split_ct = []
+        for t in ctris:
+            nn = face_normal(*t)
+            if nn is not None and abs(nn[2]) < 0.7:
+                _split(t, split_ct)
+            else:
+                split_ct.append(t)
+        stats["coll_split"] = len(split_ct) - len(ctris)
+        ctris = split_ct
         CG = flgeom.TriGrid(ctris)
 
         def void_beside(t, n):
@@ -589,7 +612,20 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         tags, keep = [], []
         for k, t in enumerate(ctris):
             n = face_normal(*t)
-            sheet = n is not None and abs(n[2]) < 0.7 and not drawn_near(t, 12.0)
+            # a sheet: steep and, at its centroid OR at two of its three corner-ward points, nothing drawn within 12u
+            # (the centroid alone let large clip triangles with one drawn corner through: 41 invisible spots)
+            sheet = False
+            if n is not None and abs(n[2]) < 0.7:
+                if not drawn_near(t, 12.0):
+                    sheet = True
+                else:
+                    c3 = [sum(v[k] for v in t) / 3 for k in range(3)]
+                    und = 0
+                    for v in t:
+                        q = tuple(c3[k] * 0.3 + v[k] * 0.7 for k in range(3))
+                        if not drawn_near((q, q, q), 12.0):
+                            und += 1
+                    sheet = und >= 2
             tags.append(1 if sheet else 0)
             if sheet and (not drawn_near(t, 64.0) or void_beside(t, n) or k in clip_keep):
                 keep.append((k,))
