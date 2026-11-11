@@ -22,7 +22,7 @@ On ANY guard violation every launch stops and the run reports it.
 Results: H:\\hzm_work\\liveops-test\\runs\\<case>\\ (logs, result.json, png - local only)."""
 import json, os, re, shutil, subprocess, sys, time, zipfile
 
-TOOLS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "tools")   # this worktree's docs/tools
+TOOLS = r"C:\mohaa-coop-dev\docs\tools"   # the LIVE harness guard / window policy (read only)
 sys.path.insert(0, TOOLS)
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 import harness_guard as hg     # noqa: E402

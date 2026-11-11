@@ -12,7 +12,7 @@ read-only, homepath G:\\mohaa-lib\\home_ded (logs copied to H:\\hzm_work\\libera
 Results: H:\\hzm_work\\liberacion\\sweep_fight.json, sweep_place.json."""
 import json, os, re, shutil, subprocess, sys, time
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "tools"))   # this worktree's docs/tools
+sys.path.insert(0, r"C:\mohaa-coop-dev\docs\tools")   # the LIVE harness guard (it classifies every running game; read only)
 import harness_window as hw  # noqa: E402
 
 GOG = r"G:\GOG\Medal of Honor - Allied Assault War Chest"
@@ -45,8 +45,9 @@ HOLD_FILE = os.path.join(OUT, "HOLD")       # touch it (or any lane-wide hold th
 def hold_reason():
     """checked before EVERY launch: a user game, a release / build script running, or the lane's HOLD file"""
     import harness_guard as hg
-    if hg.user_game_running() or hg.user_game_running_raw():
-        return "a user MOHAA client is running"
+    # the user playing does not stop a headless dedicated server (clients go to the 1080p screen); his guard says when it must
+    if hg.user_game_running():
+        return "a user MOHAA client is running (and ALLOW_WHILE_PLAYING is off)"
     if os.path.exists(HOLD_FILE):
         return "HOLD file present (%s)" % HOLD_FILE
     try:
@@ -126,6 +127,25 @@ def place(mp, secs, n):
     return r
 
 
+def clear(mp, secs, n):
+    """the clear-time test: three Allied bots hunt n placed Germans (mp_ops.scr::lib_testClear); the seconds to the last one"""
+    log, rc = run(mp, 3, secs, ["set developer 1", "set sv_numbots 0", "set coop_mpBotMax 26", "set coop_mpMode none",
+                                "set timelimit 0", "set fraglimit 0", "set roundlimit 0", "set sv_minPlayers 0", "set ui_opsLive 1",
+                                "set ui_opsPhase \"\"", "set ui_opsResult \"\"", "set ui_opsGoMap " + mp, "set ui_opsGoGt 3",
+                                "set ui_opsGoMode LIB", "set ui_opsGoFill %d" % (n + 4), "set ui_opsGoSkill REGULAR",
+                                "set ui_opsGoMod \"\"", "set ui_opsGoSide allies", "set ui_opsGoName \"TEST CLEAR\"",
+                                "set ui_opsGoXp 250", "set ui_opsGoLimit 0", "set ui_opsLibTest 2"], "clear")
+    r = base(log, mp, 3, rc)
+    m = re.search(r"\^~\^~\^ LIB clear (?:done|lost|timeout)[^\r\n]*", log)
+    r["clear"] = m.group(0)[6:] if m else None
+    t = re.search(r"LIB clear (?:done|lost) t=(\d+)", log)
+    r["t"] = int(t.group(1)) if t else None
+    pl = re.findall(r"\^~\^~\^ LIB place e(\d+) (?:at|kept at) \(([^)]*)\) d=(\d+) vis=(\d)", log)
+    r["placed"], r["visible"] = len(pl), sum(1 for x in pl if x[3] == "1")
+    r["fail"] = re.findall(r"\^~\^~\^ LIB (?:refused|failed)[^\r\n]*", log)
+    return r
+
+
 def main():
     phase = sys.argv[1]
     only = opt("--only", "")
@@ -147,6 +167,8 @@ def main():
             break
         if phase == "fight":
             r = fight(mp, int(opt("--secs", "150")))
+        elif phase == "clear":
+            r = clear(mp, int(opt("--secs", "600")), int(opt("--n", "16")))
         else:
             r = place(mp, int(opt("--secs", "100")), int(opt("--n", "16")))
         res[mp] = r
