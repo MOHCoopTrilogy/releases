@@ -157,3 +157,5 @@ rescue, molotov burn through the blast path, 0 Script Errors, no "Bad model name
 Allies 22/31 engaged (11 killed), 3 idle (two are ambushers nobody walked up to), 0 spawned in view, 0 Script Errors.
 FIDELITY.md: 39 matched, 8 deviated, 0 missing. Open: the rockets' flight (S5), the start loadout (P3, waits
 on the user), the deliberate MOHAA-body fits.
+
+**Decided 2026-11-11 (user):** the start loadout (P3) stays the co-op loadout. Closed; do not add the original's Colt / Garand / grenades start.
