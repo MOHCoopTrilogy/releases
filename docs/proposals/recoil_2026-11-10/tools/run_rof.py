@@ -158,7 +158,7 @@ def main():
     boot = ["set developer 1", "set in_gamepad 0", "set in_joystick 0", "set in_mouse 0", "set in_nograb 1", "set s_volume 0",
             "set s_musicvolume 0", "set s_ambientvolume 0", "seta coop_tinnitusBaseVol 0", "seta coop_tinnitusMuffle 0",
             "seta coop_woundMuffleVol 0", "set rconpassword %s" % RCONPW, "set coop_lockLoadout 0", "set coop_dev 1",
-            "set coop_recoilDebug %d" % (1 if mode == "player" else 2), "set coop_realRof %d" % (0 if off else 1)]
+            "set thereisnomonkey 1", "set coop_recoilDebug %d" % (1 if mode == "player" else 3), "set coop_realRof %d" % (0 if off else 1)]
     if mode == "ai":
         boot += ["seta coop_maptest 2", "seta coop_maptest_dwell %d" % int(minutes * 60 + 60), "seta coop_maptest_waypoints 20",
                  "seta coop_maptest_dwell_wpt 6", "set coop_dbno 0", "seta g_scriptcheck 0"]

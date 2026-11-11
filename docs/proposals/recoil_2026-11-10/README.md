@@ -78,7 +78,7 @@ with the RELEASE dlls too (bug-10899, not this branch).
 * Remote clients see the server's kick one round trip late (as with the authored kick before it); not playtested in MP.
 * Not felt by a human yet. Tune knobs: `scale` in recoil_shape.tsv per gun, `coop_recoilCrouch/Prone/Hip/MaxClimb`.
 
-## Real rates of fire (user-approved 2026-11-10) - offline done, in-game verification pending the v1.10.74 launch hold
+## Real rates of fire (user-approved 2026-11-10) - verified in game 2026-11-10
 
 * `docs/tools/gen_weapon_rof.py build|check` -> `coop_mod/weapon_rof.txt` (35 automatics + 5 turret MGs) and `ROF.md` (the
   before / after table: rpm, damage, bullets, TTK at 100 and 50 HP, AI burst). Rates from the recoil research (measured beats
@@ -99,6 +99,31 @@ with the RELEASE dlls too (bug-10899, not this branch).
 * Semi-autos and bolts keep their tik delay: they have no cyclic rate; their delay is the trigger cap.
 * To verify (harness ready: `tools/run_rof.py player|ai`): measured rpm from the server trace, player vs AI on the same gun,
   AI burst lengths, a co-op fight on a campaign map.
+
+### In-game measurements (tools/run_rof.py, private client G:/mohaa-recoil, server round trace)
+
+| gun | real rpm | player, before the cadence fix | player, final | AI, final (median in burst) | AI burst (final / before) |
+|---|---|---|---|---|---|
+| Thompson M1A1 | 667 | 600 | 663 | 600 | 6 / up to 155 (one held animation) |
+| MP40 | 500 | 480 | 497 | 436 | 5 / up to 24 |
+| PPSh-41 | 1050 | 800 | 1046 | - | - |
+| Sten | 532 | 480 | 533 | - | - |
+| M3 | 450 | 400 | 447 | - | - |
+| BAR | 550 | 480 | 549 | - | - |
+| StG 44 | 550 | 480 | 549 | 343 (before the mid-burst fix) | 4-5 / 23 |
+| FG 42 | 750 | 600 | 748 | - | - |
+| Bren | 520 | 480 | 517 | - | - |
+| MG 42 (portable) | 1200 | 800 | 1200 | turret nest 1244 (was 2,400) | turret rhythm 20 |
+| M1919 | 500 | 480 | 497 | - | - |
+
+* Player rates were rounded UP to whole 25 ms server frames (every interval) until "keep the cadence" (Weapon::Fire): now all
+  within 1%. AI SMG medians read 10-15 % low: the queued rounds still land on server frames and the bursts are only 5-6
+  rounds long. AI bursts are now the real 4-7 rounds instead of whatever the animation held (a Thompson AI fired 155 rounds
+  in one burst before).
+* Co-op fight check, m3l3 with the map tester's patrol (5 min): no crash, AI MP40 241 rounds in 51 bursts of <= 5. One
+  earlier m3l3 run stopped on `anim/shoot.scr took over 10 seconds` (engine Actor::State_Cover_Shoot watchdog) - a known
+  crash class seen without this branch (bug-10935, Norway); the before run and the final after run did not hit it.
+* Not felt by a human: whether AI pressure "feels right" needs a playtest.
 
 ## Merge
 
