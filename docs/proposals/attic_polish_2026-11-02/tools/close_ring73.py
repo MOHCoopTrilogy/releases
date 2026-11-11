@@ -84,10 +84,31 @@ def tri(sh, p, u):
 
 
 X0, X1 = XF + SGN * EXT, XF - SGN * 1.5
+# the floor is planar-mapped (its boards tile in world space): continue it with its own uvs instead of smearing its edge texels
+# (in-game QA: the smeared floor read as a dark band of stretched wood at the left of the hatch view)
+FLOOR_FIT = {}
+for shf in set(SH.tolist()):
+    sel = (SH == shf) & (np.abs(TRI[:, :, 2]).max(1) < 0.05)
+    if sel.sum() >= 2:
+        Pf, Uf = TRI[sel].reshape(-1, 3), UV[sel].reshape(-1, 2)
+        Af = np.c_[Pf[:, 0], Pf[:, 1], np.ones(len(Pf))]
+        cf, *_ = np.linalg.lstsq(Af, Uf, rcond=None)
+        if np.abs(Af @ cf - Uf).max() < 1e-3:
+            FLOOR_FIT[shf] = cf
+
+
+def fuv(sh, p):
+    return tuple(np.array([p[0], p[1], 1.0]) @ FLOOR_FIT[sh])
+
+
 for i in range(len(ring)):
     (pa, ua, sa), (pb, ub, sb) = ring[i], ring[(i + 1) % len(ring)]
     A0, A1 = (X0, pa[1], pa[2]), (X1, pa[1], pa[2])
     B0, B1 = (X0, pb[1], pb[2]), (X1, pb[1], pb[2])
+    if sa in FLOOR_FIT and sa == sb and abs(pa[2]) < 0.6 and abs(pb[2]) < 0.6:
+        tri(sa, (A0, A1, B1), (fuv(sa, A0), fuv(sa, A1), fuv(sa, B1)))
+        tri(sa, (A0, B1, B0), (fuv(sa, A0), fuv(sa, B1), fuv(sa, B0)))
+        continue
     tri(sa, (A0, A1, B1), (ua, ua, ub))
     tri(sa, (A0, B1, B0), (ua, ub, ub))
 # the cap: rows of z, from the ring's left (max y) point to its right (min y) point at that height

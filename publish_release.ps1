@@ -368,7 +368,11 @@ function New-SplitZips($zipBase, $entries, $installTxt) {
     $out = @()
     for ($i = 0; $i -lt $n; $i++) {
         $leaf = if ($n -eq 1) { "$zipBase.zip" } else { "{0}-part{1}of{2}.zip" -f $zipBase, ($i + 1), $n }
-        $zp = Join-Path $env:TEMP $leaf
+        # [2026-11-10] release zips (~9 GB a release) go to H:, not TEMP - TEMP on C: grew to 365 GB of uploaded
+        # zips and filled the drive. Falls back to TEMP if H: is missing.
+        $zipDir = if (Test-Path 'H:\') { 'H:\hzm_archive\release_zips' } else { $env:TEMP }
+        if (-not (Test-Path -LiteralPath $zipDir)) { New-Item -ItemType Directory -Force -Path $zipDir | Out-Null }
+        $zp = Join-Path $zipDir $leaf
         if (Test-Path -LiteralPath $zp) { Remove-Item -LiteralPath $zp -Force }
         $za = [System.IO.Compression.ZipFile]::Open($zp, 'Create')
         try {
