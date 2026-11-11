@@ -50,6 +50,26 @@ long bursts walk off (McCollum); MG 42: cone leaves the target after 7 rounds ev
   10 m, 13 guns x hip / aimed / crouched / prone (`tools/run_recoil.py` + `tools/impact_sheet.py`, private client
   G:\mohaa-recoil, m5l1a). `impact/stills_*.jpg` - mid-burst aimed frames (sight-line lock) and the wall.
 
+## In-game results (10 m wall; climb = highest round, metres; drift = last round, + right)
+
+| gun | aimed | hip | crouched | prone | drift aimed |
+|---|---|---|---|---|---|
+| Thompson M1A1 | 1.66 | 1.91 | 1.49 | 1.07 | +0.35 |
+| MP40 | 1.12 | 1.40 | 0.82 | 0.50 | -0.04 |
+| PPSh-41 | 1.13 | 1.44 | 0.82 | 0.61 | +0.52 |
+| Sten | 1.17 | 1.37 | 0.82 | 0.69 | -0.04 |
+| BAR | 1.14 | 1.46 | 1.13 | 0.70 | +0.24 |
+| StG 44 | 2.13 | 2.10 | 2.04 | 1.15 | -0.04 |
+| Bren | 0.89 | 1.29 | 0.65 | 0.50 | -0.06 |
+| MG 42 (70 rds) | 2.51 | 2.80 | 2.06 | 1.39 | +0.14 |
+| Garand / Kar98k / Carbine / Colt (5 rds, 0.7 s apart) | 0.05 / 0.03 / 0.03 / 0.18 | | | | |
+
+A/B with `coop_recoilPattern 0` (`impact/impact_sheet_off.png`): Thompson 3.71 m (same aimed / hip / crouched /
+prone: the old model has no stance term), MP40 3.87, PPSh 2.09, MG 42 4.70 - it climbed about twice as far, mostly
+through the random camera kick, and drifted LEFT. Aimed frames mid-burst keep the sights on the crosshair line
+(`impact/stills_contact.jpg`). FG 42 not in the sheet: equipping it through the Armory crashes the server in v1.10.73
+with the RELEASE dlls too (bug-10899, not this branch).
+
 ## Not done / open
 
 * Game fire rates are the tiks' (`dm firedelay`): MP40 0.08 = 750 rpm (real 400-550), PPSh 0.09 = 667 rpm (measured
