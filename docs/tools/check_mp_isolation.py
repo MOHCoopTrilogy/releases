@@ -70,6 +70,15 @@ THE CONTRACT (ISO track, 2026-09-13), and why each clause is here rather than me
  18. NO vstr IN THE MP UI TREES (ui/coop_mp*.urc, ui/coop_mp*/**) unless the cvar is listed in
      code/qcommon/cmd_srvguard.h. A server-stuffed vstr is filtered (TRAPS T8) and the MP UI is a
      client-origin design; keeping vstr out means slice 1 needs no stufftext-filter grammar entry.
+ 19. THE LIBERATION BRIDGE IS READ-ONLY (user 2026-11-10: a Field Operations LIBERATION contract uses the player's CO-OP
+     kit). coop_mod/libbridge.scr is the one coop file MP may reach for that kit - through the two MP_COOP_ALLOW labels
+     libbridge::lib_kit and libbridge::lib_objective, nothing else (clause 10c still fails any other label or file). The
+     bridge READS the archived co-op picks and GIVES what they name; it may never WRITE: 19a no cvar write of any kind
+     (setcvar, or a stuffed set/seta/sets/setu/vstr/reset/toggle/cvar_restart) except the co-op objective display line
+     coop_o1* (not saved, re-seeded on every co-op spawn); 19b no assignment to a coop_lo* / coop_xp* / coop_chal* /
+     coop_isHost player flag; 19c no call into the armory's commit path or the progression (loadout_set, loadout_setBody,
+     loadout_finish, loadout_rebuild, loadout_clear, any xp.scr / challenges.scr / daily.scr label); 19d an MP file calls
+     it but it is missing. Without these, the allowlist entry would be a door into the co-op loadout and progression.
 
 MATCHING RULES
     Every name match is case-insensitive: the engine looks cvars up with Q_stricmp (cvar.c:109).
@@ -99,7 +108,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 DEFAULT_MOD = os.path.join(ROOT, "hzm-mohaa-coop-mod")
 DEFAULT_ENGINE = os.path.join(ROOT, "openmohaa-hzm")
 
-CLAUSES = [str(i) for i in range(19)]
+CLAUSES = [str(i) for i in range(20)]
 
 # ---------------------------------------------------------------- tables
 # The files that ARE multiplayer. Mod-relative, forward slashes, case-insensitive; * stays inside one
@@ -145,7 +154,21 @@ MP_COOP_ALLOW = {"main::containstext", "player::playercleanname", "player::coop_
                  # [2026-09-28] on rain it also starts storm darkness (stormlight.scr), which in MP runs only when
                  # mp_weather.scr set level.coop_stormMp (host toggle coop_mpStorm, default off) and then stufftexts
                  # one visual cvar (set coop_storm <ints>) per non-bot player - no gameplay, saved or coop_mp* state.
-                 "weather::coop_weather_init"}
+                 "weather::coop_weather_init",
+                 # [user 2026-11-10, v1.10.74] FIELD OPERATIONS - LIBERATION uses the player's CO-OP kit, not an MP pick. The
+                 # ONE read-only bridge: lib_kit reads the archived co-op picks (coop_lo1..4, coop_loS1..4F, coop_loAGlove - a
+                 # listen host shares the host's cvar table, the loadout_hostSeed recipe) and gives what they name; lib_objective
+                 # draws the co-op objective line for that one player. Clause 19 holds coop_mod/libbridge.scr to read-only (no
+                 # cvar write but the coop_o1* display line, no coop_lo*/xp/chal flag, no armory commit or progression call).
+                 # Only mp_ops.scr calls them, only while a Liberation contract runs; nothing here writes the co-op loadout.
+                 "libbridge::lib_kit", "libbridge::lib_objective"}
+# Clause 19. The Liberation bridge and what it may never do.
+LIB_BRIDGE = "coop_mod/libbridge.scr"
+RX_LB_WRITE = re.compile(r"(?<![A-Za-z0-9_])(?:setcvar|cvar_restart)\b|stufftext[^\n]*?\"\s*(?:\(\s*\")?\s*"
+                         r"(?:set[asu]?|vstr|reset|toggle|cvar_restart)\s+(?!coop_o1)", re.I)
+RX_LB_FLAG = re.compile(r"flags\s*\[\s*\"(?:coop_lo|coop_xp|coop_chal|coop_isHost)[^\"]*\"\s*\]\s*=(?!=)", re.I)
+RX_LB_CALL = re.compile(r"coop_mod[/\\]+(?:loadoutpick\.scr::(?:loadout_set|loadout_setBody|loadout_finish|loadout_rebuild|"
+                        r"loadout_clear)\b|(?:xp|challenges|daily)\.scr)", re.I)
 
 # Clause 14. Declared engine MP hooks: name -> one-line reason. Keep this on ONE line (the self-test patches it).
 ENGINE_MP_HOOKS = {"mp_score_hud": "cgame (cg_coopfeed.c CG_CoopScoreHudMirror): read-only - mirrors coop_mp_session into the neutral cg_hudScore so the shared ui/hud_score.urc shows in MP only (bug-3485)", "mp_report_withhold": "bug report (cl_bugreport.cpp): read-only list of MP progress cvars withheld from settings.cfg", "mp_report_mode": "bug report (cl_bugreport.cpp): read-only MP session/mode shown in the report header", "mp_report_weather": "bug report (cl_bugreport.cpp): read-only host weather cvars (incl. coop_mpWeather/coop_mpStorm) listed in report_info", "mp_mapscript_hook": "E4: Level::ServerSpawned starts MP on a non-coop map with no ambient.scr hook", "mp_weaponselect_redirect": "E5: Player::UserSelectWeapon opens the side MP armory when coop_mpRun==1", "mp_kit_userinfo": "E1: CG_Init registers carried kit cvars as CVAR_USERINFO|CVAR_ARCHIVE", "mp_armory_cmd": "E2: hzm_armory console command handler in cg_consolecmds.c", "mp_armory_session": "E2b: coop_mp_session flag zeroed in CG_Init", "mp_glove_cvar": "E3: MP glove cvar override in cg_modelanim.c glove block", "mp_getlasthitmod": "M8: Event declaration for getlasthitmod (melee-demote getter)", "mp_getlasthitmod_reg": "M8: Response table entry for getlasthitmod", "mp_getlasthitmod_impl": "M8: Player::GetLastHitMod returns pain_type", "mp_getlasthitmod_decl": "M8: player.h declaration of GetLastHitMod", "mp_voice_nationality": "E6: GetNationalityPrefix reads worn model in MP instead of dm_playermodel", "mp_signcrypto": "Slice 2: vendored SHA-256/HMAC helpers for mp_sign/mp_verify", "mp_sign_ev": "Slice 2: mp_sign/mp_verify Event declarations", "mp_sign_reg": "Slice 2: mp_sign/mp_verify response table entries", "mp_sign_impl": "Slice 2: ScriptThread::MpSign/MpVerify implementations", "mp_sign_decl": "Slice 2: scriptthread.h declarations of MpSign/MpVerify", "mp_prog_blob": "Slice 3: coop_mpProgBlob USERINFO|ARCHIVE carrier cvar in CG_Init", "mp_cos_userinfo": "MP cosmetics: coop_mp<side>_cosSkin/Helm/Glove USERINFO|ARCHIVE carrier cvars in CG_Init", "mp_force_arena": "Push SP-maps: one-shot sv_mpForceArena runs global/ambient.scr in place of a coop campaign map's script so MP engages (Level::PreSpawnSentient)", "mp_compass_reg": "Modern compass in MP: CG_CompassBarCvars registers coop_mpCompass (the MP analog of coop_isCoopSession) so CG_DrawCompassBar draws the top compass bar in multiplayer", "mp_compass_reset": "Modern compass in MP: CG_CompassBarReset zeroes coop_mpCompass on each map so the MP compass session is re-armed per spawn", "mp_bot_push_front": "bot C4: playerbot.cpp BotPushLevelInt/BotLevelZoneCentre read the Push front + zone boxes (coop_mpPushFront/ZN/ZAmin/ZAmax level vars) so holder bots set up on the front line - absent outside Push, so the brain is inert in coop", "mp_pvp_campaign": "bug-2713: CoopMpPlayerHit lets MP PvP damage through on campaign-map arenas (coop_mpRun set) instead of the coop-map-name block that dropped every hit", "mp_persist_userinfo": "bug-2749: coop_mpProgBlob + the 12 kit + 6 cosmetic cvars registered CVAR_ARCHIVE|CVAR_USERINFO at CLIENT LAUNCH (cl_main.cpp CL_Init, like coop_pin1..5) so MP progression/kit/cosmetics carry across sessions+servers - the cgame CG_Init registration was connect-time, too late for the first userinfo (MPPROG load VERIFIED=0)", "mp_aimassist_gate": "coop-only aim assist: Player::CoopAimAssist reads coop_mpRun by TYPE to hard-refuse in any MP/PvP session (player.cpp)", "mp_preview_defaults": "bug-2777: coop_mp<side>_Char/Helm registered CVAR_ARCHIVE with default body/helmet paths at CLIENT LAUNCH (cl_main.cpp CL_Init) so a fresh profile's armory preview shows a default soldier while a saved cosmetic pick (seta'd by the pick cfg) is preserved and re-displayed on re-open", "mp_gore": "bug-2798/2799: CoopMpGoreSession() reads level.coop_mpRun by type in sentient.cpp so the bug-792 player-gore guards (blood-skin tiers, head disfigure, headshot blood-pool) are lifted for MP sessions only - coop players stay clean; the death-kinetics/headshot-FX caller gates use CoopMpPlayerHit (no coop_mp token)", "mp_corpse_shootable": "bug-2802: Player::Killed reads level.coop_mpRun by type so an MP dead body is made shootable (CONTENTS_WEAPONCLIP + SOLID_BBOX + flattened bbox, the Actor::BecomeCorpse recipe) instead of SOLID_NOT, so shooting a corpse gibs it via CoopGoreCorpseDamage; coop/SP corpses byte-unchanged", "mp_corpse_cap": "user 2026-09-25: body.cpp MP body ring - at most coop_mpCorpseMax (48) lingering MP bodies and never within 160 of MAX_GENTITIES; the pushed-out body sinks (EV_DeathSink) and is removed 5s later. Only reached from the coop_mpRun-gated block", "mp_corpse_persist": "bug-2806: Body::Body() (the corpse left on respawn) reads level.coop_mpRun by type + coop_mpCorpseLinger so in MP the persistent body is shootable (same BecomeCorpse recipe) and lingers ~45s instead of sinking at 5s, and a shot gibs it via the now-wired Body::Damage; coop/SP bodies stay vanilla SOLID_NOT"}
@@ -685,6 +708,38 @@ def run(mod_root, engine_root):
         r.pend("18", "no MP UI file exists yet")
     elif len(r.fails) == mark:
         r.ok("18", "no MP UI file runs an unguarded vstr (%d UI files, %d guarded cvars)" % (n_ui, len(guard_cvars)))
+
+    # ------------------------------------------------------------ 19. the Liberation bridge is read-only
+    mark = len(r.fails)
+    lb_raw = read("mod", LIB_BRIDGE)
+    lb_callers = [rel for rel, texts in mp_scr if any(re.search(r"coop_mod[/\\]+libbridge\.scr", t, re.I) for t in texts)]
+    if lb_raw is None and lb_callers:
+        r.fail("19d", lb_callers[0], "MP calls %s but it is missing - the Liberation kit would silently not be given" % LIB_BRIDGE)
+    elif lb_raw is None:
+        r.pend("19", "%s does not exist yet" % LIB_BRIDGE)
+    else:
+        seen = set()     # both lexers see the same finding: report it once
+        for t in both_texts(lb_raw.decode("latin-1")):
+            for m in RX_LB_WRITE.finditer(t):
+                if ("19a", line_of(t, m.start())) in seen:
+                    continue
+                seen.add(("19a", line_of(t, m.start())))
+                r.fail("19a", where(LIB_BRIDGE, line_of(t, m.start())), "the Liberation bridge writes a cvar (%s) - it may "
+                       "only read the co-op kit (the coop_o1* objective line is the one exception)" % m.group(0).strip())
+            for m in RX_LB_FLAG.finditer(t):
+                if ("19b", line_of(t, m.start())) in seen:
+                    continue
+                seen.add(("19b", line_of(t, m.start())))
+                r.fail("19b", where(LIB_BRIDGE, line_of(t, m.start())), "the Liberation bridge sets the co-op state flag "
+                       "%s - it may only read" % m.group(0).strip())
+            for m in RX_LB_CALL.finditer(t):
+                if ("19c", line_of(t, m.start())) in seen:
+                    continue
+                seen.add(("19c", line_of(t, m.start())))
+                r.fail("19c", where(LIB_BRIDGE, line_of(t, m.start())), "the Liberation bridge calls %s - the armory commit "
+                       "path and the progression are off limits" % m.group(0))
+        if len(r.fails) == mark:
+            r.ok("19", "%s reads the co-op kit and writes nothing but the co-op objective line" % LIB_BRIDGE)
 
     # ------------------------------------------------------------ 6. shared menus are locked by checksum
     for rel in sorted(LOCKS):

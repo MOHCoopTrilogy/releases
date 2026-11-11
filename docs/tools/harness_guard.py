@@ -262,6 +262,10 @@ HARNESSES = {
     r"G:\mohaa-gamepad2": {"owner": "gamepad2", "home": r"G:\mohaa-gamepad2\home"},
     # padnav-fix (docs/proposals/padnav_fix_2026-10-21/tools/pn_client.py): copy of the LIVE v1.10.35 set (exe 2cee0ef6), main menu only
     r"G:\mohaa-padnav": {"owner": "padnav", "home": r"G:\mohaa-padnav\home"},
+    # Liberation contract lane (docs/proposals/liberacion_2026-11-10/tools): byte copies of the LIVE G:\mohaa-gl2 DLLs + omohaaded
+    # (read only) and the liberacion-branch openmohaa.exe, fresh home, basepath = the GOG tree read-only, one test pak in the home,
+    # net_ip 127.0.0.1, ports 12951 (dedicated sweep) / 12953 (client), queue slot "liberacion"
+    r"G:\mohaa-lib": {"owner": "liberacion", "home": r"G:\mohaa-lib\home"},
 }
 # [2026-10-12] one slot PER OWNER (= per harness folder), no longer one for the whole PC: the user lifted the quiet rule
 # ("It's fine to hear the fans now"), so different harnesses run at the same time. Two clients of the SAME harness
