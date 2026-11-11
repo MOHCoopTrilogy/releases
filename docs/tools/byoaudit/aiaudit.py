@@ -107,6 +107,11 @@ def run(mapname, outdir, mode, clients=1, test="1", minutes=12.0, game="fl"):
                 for c in cl:
                     c.check()
                 s = srv.text()
+                if "Server crashed" in s:
+                    # a script error that stops the server (2026-11-10: anim/shoot.scr ran 10 s without a wait) - stop
+                    # here instead of idling to the cap; the summary says so
+                    print("SERVER CRASHED:", re.search(r"Server crashed: [^)]*\)", s).group(0) if re.search(r"Server crashed: [^)]*\)", s) else "?")
+                    break
                 if done_at is None and re.search(end_pat, s):
                     done_at = time.time()
                 if done_at and time.time() - done_at > (150 if mode == "faceoff" else 30):
