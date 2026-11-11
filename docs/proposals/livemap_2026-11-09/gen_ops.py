@@ -53,6 +53,8 @@ POOL = {
 # the map's own spawn points (lib_points.json, from the BSPs), so a map needs only bot navigation, not team spawns: any map
 # the Phase 0 / liberacion sweeps saw bots move and fight on. Count by map size (spawn-point spread, lib_points.json) and the
 # contract's skill; limits from the bots-only clear test (lib_sweep.py clear), about 2.5x a methodical clear, 6-12 min.
+# Dropped 2026-11-11 (fight sweep, 0-1 kills: the Germans do not engage): obj/obj_team1 (The Hunt), obj/obj_team3
+# (Omaha Beach), lib/mp_bizerteharbor_lib (Bizerte harbor).
 LIB_POOL = {
     "dm/mohdm1": (12, 16, 8, 9),
     "dm/mohdm2": (14, 20, 10, 12),
@@ -69,7 +71,6 @@ LIB_POOL = {
     "dm/mp_unterseite_dm": (12, 16, 7, 8),
     "dm/mp_verschneit_dm": (14, 20, 8, 11),
     "lib/mp_anzio_lib": (14, 20, 10, 12),
-    "lib/mp_bizerteharbor_lib": (17, 25, 12, 12),
     "lib/mp_ship_lib": (12, 16, 6, 8),
     "obj/mp_ardennes_tow": (13, 18, 11, 12),
     "obj/mp_berlin_tow": (17, 25, 12, 12),
@@ -81,9 +82,7 @@ LIB_POOL = {
     "obj/mp_montebattaglia_tow": (14, 20, 8, 11),
     "obj/mp_montecassino_tow": (17, 25, 11, 12),
     "obj/mp_palermo_obj": (14, 20, 8, 11),
-    "obj/obj_team1": (12, 18, 9, 11),
     "obj/obj_team2": (14, 20, 9, 12),
-    "obj/obj_team3": (17, 25, 11, 12),
     "obj/obj_team4": (12, 18, 7, 9),
 }
 LIB_SHARE_IN, LIB_SHARE_OUT = 1, 3    # at a place with both kinds, LIB contracts together are picked 1 time in 4 (entry_weights)
