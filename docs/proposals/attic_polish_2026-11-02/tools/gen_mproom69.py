@@ -3,8 +3,8 @@
 User (2026-11-09): the multiplayer room "feels barren". Four WWII posters went up in v1.10.68; this adds, in the handoff's order:
   1. a NOTICE BOARD on the right-hand wall (front half, x 15-75: the only free wall left - the back wall and the visible parts of
      the side walls are taken). It is a twin of the room's own SERVICE RECORD board: the same frame (its triangles copied from the
-     hub bake and turned onto the right wall, so its light and wood are the room's own), an olive-drab face and a plaque. Three
-     typed notices pinned to it - ORDERS OF THE DAY, SERVICE RECORD, PROMOTIONS - each its own model with a lit copy, so the
+     hub bake and turned onto the right wall, so its light and wood are the room's own), an olive-drab face and a plaque. Four (v1.10.73)
+     typed notices pinned to it - ORDERS OF THE DAY, SERVICE RECORD, PROMOTIONS, PERSONAL BESTS - each its own model with a lit copy, so the
      scenehotfx lit-copy recipe (the attic projector) lights the hovered one. Off the home view: a right-edge cue turns the
      camera to it (a scripted peek, see patch_mproom69.py).
   2. a FIELD RADIO on an ammunition crate in front of the card table (the game's static_radio2 receiver on a .45 crate - the
@@ -545,10 +545,15 @@ NOTES = [
     ("ranks", "PROMOTIONS", "MULTIPLAYER",
      ["Rank is shared", "with Co-op.", "", "Rank", "Prestige", "Total XP", "XP to next rank", "",
       "Your rank and your", "challenges both", "unlock weapons."]),
+    # v1.10.73: the 4th notice (docs/proposals/leaderboard_2026-11-10/PLAN.md) - the player's own records, ui/coop_pb.urc
+    ("bests", "PERSONAL BESTS", "YOUR OWN RECORDS",
+     ["Best time and most", "kills for every", "mission you clear.", "", "Missions cleared", "Flawless clears",
+      "Longest flawless run", "", "No scores leave", "this PC."]),
 ]
-NW, NH = 16.6, 21.6                        # the sheet (units): 32 x 41 cm
+# v1.10.73: four sheets across the 55.1 u face (was three of 16.6 x 21.6 at 18.2 apart): the same paper, 0.74 x the size
+NW, NH = 12.3, 16.0                        # the sheet (units): 24 x 31 cm
 PW, PH = 512, 666
-centres = [(-18.2, 0.8, -1.4), (0.0, -0.4, 0.9), (18.2, 0.5, -0.7)]     # along the face (to the viewer's right), up, tilt deg
+centres = [(-20.1, 0.8, -1.4), (-6.7, -0.4, 0.9), (6.7, 0.5, -0.7), (20.1, -0.2, 1.1)]     # along the face (to the viewer's right), up, tilt deg
 NOTE_INFO = []
 
 
@@ -625,8 +630,8 @@ for i, (key, title, sub, lines) in enumerate(NOTES):
     # the two pins (red heads, the SR board's): small domes at the top corners
     pins = []
     for sx in (-1, 1):
-        q = c + r2 * sx * (NW / 2 - 1.4) + u2 * (NH / 2 - 1.4) + INW * 0.25
-        ring = [q + (r2 * math.cos(t_) + u2 * math.sin(t_)) * 0.42 for t_ in np.linspace(0, 2 * math.pi, 10)]
+        q = c + r2 * sx * (NW / 2 - 0.9) + u2 * (NH / 2 - 0.8) + INW * 0.25      # v1.10.73: in the top margin (the smaller sheets put them on the titles)
+        ring = [q + (r2 * math.cos(t_) + u2 * math.sin(t_)) * 0.36 for t_ in np.linspace(0, 2 * math.pi, 10)]
         top = q + INW * 0.45
         for k in range(9):
             t = tri([ring[k], ring[k + 1], top], [(0.2, 0.2), (0.8, 0.2), (0.5, 0.8)])
@@ -850,6 +855,7 @@ INFO["lines"] = [
     'scenemodel "models/menu/hzm_hub69_n_daily.tik" 0 0 0 0', 'scenemodel "models/menu/hzm_hub69_n_daily_lit.tik" 0 0 0 0',
     'scenemodel "models/menu/hzm_hub69_n_record.tik" 0 0 0 0', 'scenemodel "models/menu/hzm_hub69_n_record_lit.tik" 0 0 0 0',
     'scenemodel "models/menu/hzm_hub69_n_ranks.tik" 0 0 0 0', 'scenemodel "models/menu/hzm_hub69_n_ranks_lit.tik" 0 0 0 0',
+    'scenemodel "models/menu/hzm_hub69_n_bests.tik" 0 0 0 0', 'scenemodel "models/menu/hzm_hub69_n_bests_lit.tik" 0 0 0 0',
     'scenemodel "models/menu/hzm_hub69_props.tik" 0 0 0 0 "idle"',
     'scenemodel "models/menu/hzm_hub69_corner.tik" 0 0 0 0 "idle"',
     'scenemodel "models/menu/hzm_hub69_radio.tik" 0 0 0 0 "idle"', 'scenemodel "models/menu/hzm_hub69_radio_lit.tik" 0 0 0 0 "idle"',

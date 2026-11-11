@@ -1,0 +1,85 @@
+# Leaderboard for the MP room's NOTICES board — options and plan (v1.10.73)
+
+**Status:** option C is built (`gen_bests.py`, mod `coop_mod/bests.scr`, `ui/coop_pb.urc`). The menu side was checked in-game with menu-only stills. The script side (mission end → record → export) has only been checked statically: `scrlint` and `depthscan2` are clean, but it has **not run in a mission yet**.
+
+## The ask
+
+The board had three notices. The third, PROMOTIONS, opens the MP Service Record because the mod had no leaderboard screen. The task was to build a real leaderboard if possible, and otherwise the best honest alternative, with no new online service and no accounts.
+
+## What data exists (survey, 2026-11-10)
+
+| Data | Where it lives | Menu-readable? |
+|---|---|---|
+| XP total → rank, prestige | `coop_mod/save/xp_<id>.dat`, cgame-synced master copy on the player's PC (`bg_coopsync.h`), pushed as archived `coop_xp_*` cvars (`xp.scr` `xp_push_own_cvars`) | yes |
+| Challenges (incl. kill / headshot / mission counters) | `chal_<id>.dat` as `cid:progress`, **capped at each target** — so no raw lifetime totals | `coop_uiN/B/D<i>` |
+| Daily Orders done | `dlyC` key inside the chal record | `coop_dlyC` |
+| Medals | `medals_<id>.dat`, derived from challenges | via SR |
+| MP progression | signed `coop_mpProgBlob` (userinfo) | `coop_mp*` (MP-only names: a coop menu may not read them — isolation clause 7) |
+| Mission clear times, deaths per mission, best anything | **not recorded anywhere.** `challenges.scr` computes the elapsed time at mission end for one feat (Kings Push) and throws it away | — |
+| Live Operations result | `ui_opsResult`, current operation only | — |
+| "Contract streak" | does not exist | — |
+
+**Cross-player data:**
+
+- Each server's `coop_mod/save/` holds one file per guid. The public servers are on v1.10.22 binaries, have no xp files, and keep no guid→name map.
+- `qconsole.log` carries no per-player stat lines.
+- The engine has only a GameSpy master heartbeat, the bug-report webhook and `cl_curl`. There is no stats endpoint.
+- The script API can list files (`flist`) and read and write them (`fs_read_content` / `fs_write_content`), but only on the machine it runs on.
+
+## Options
+
+| | Option | Verdict |
+|---|---|---|
+| A | **Global leaderboard** (all players, everywhere) | Needs an online service, accounts or identity, and anti-cheat. Out of scope by rule ("no new online service, no accounts"), and every value is client-supplied today, so it could not be trusted. **Rejected.** |
+| B | **Per-server leaderboard** from the public servers' own save files | A server could `flist save/xp_*.dat`, rank by XP and push the top 10 to connected clients. But it only works while you are connected to that server. The board sits in the MP room, which is used offline. Names are unknown (guid only). It needs a server-side update on v1.10.22 boxes. It would rank XP, which is grind, not skill. **Deferred:** worth doing later as an in-server scoreboard tab, not as this notice. |
+| C | **Personal Bests**: the player's own records, kept in the record that already syncs to their PC | Needs no service, no accounts and no engine change. It rides an existing, proven persistence path (the Daily Orders recipe). It is honest about what it is and works offline. **Recommended, built.** |
+| D | Relabel PROMOTIONS as "leaderboard" | Dishonest. **Rejected.** |
+
+## What C records (all max-merge-safe keys in the chal record)
+
+`bg_coopsync.h` `COOPSYNC_MERGE_CHAL` keeps the **larger** value per key when the PC's copy and a server's copy meet. So every key only grows:
+
+| Key | Meaning | Why it is monotonic |
+|---|---|---|
+| `pbT_<map>` | `100000 - best clear seconds` | Faster = larger |
+| `pbK_<map>` | Most kills in one clear of that mission | Max |
+| `pbC` / `pbF` | Missions cleared / flawless clears (never went down) | Counters |
+| `pbS` | Flawless run as `epoch*1000 + run`; a broken run jumps to the next epoch at run 0 | Still larger after a reset |
+| `pbB` | Longest flawless run | Max |
+
+**Honesty rules:**
+
+- A best time counts only if the player was there from the start: first touch on the map ≤ 90 s after load. A late joiner still gets the clear, the kills and the run.
+- Maptest runs are ignored.
+- The screen says "Kept on this PC". Nothing on it implies other players.
+- No fastest-clear across missions. Missions differ in length, so a cross-mission "fastest" would be meaningless. Each mission has its own best time instead.
+
+## Built (v1.10.73)
+
+- **Mod `coop_mod/bests.scr`.** Hooks:
+  - `chal_mission_complete` → `bests_onMission`, after the existing briefing / lobby / paid-once guards and before its `chal_flush`.
+  - `chal_serialize` → `bests_tail`.
+  - `chal_flush` → `bests_export`. It is dirty-tracked and paced 8 per 0.25 s like `daily_export`, and only rows with a record are sent.
+  - `chal_lvl_touch` stamps `coop_chalL_t0`.
+- **Mod `coop_mod/bests_table.scr` and `ui/coop_pb.urc`**, generated by `gen_bests.py`.
+  - The 53 coop missions come from the menus' chalk names (`mission_tile_art_2026-09-29/tools/titles.json`).
+  - The screen has three campaign pages (`coop_pbPg`), a RECORDS block, a CAREER block (rank, prestige, XP, XP to next, Orders done — existing cvars) and per-mission TIME / KILLS.
+  - The most-kills mission's name is shown by index labels (`coop_pbKmI==i`), so no multi-word value ever crosses `stufftext`.
+- **Menus pak** (`attic73_build.sh`):
+  - `hzm_pb_pg0..2` baked paper pages.
+  - The 4th notice sheet (`gen_mproom69.py`): four sheets of 12.3 × 16.0 u across the face, replacing three of 16.6 × 21.6.
+- **`patch_mproom69.py`:**
+  - The notices are hotspots 7-10 and the radio moves from 10 to 11.
+  - PERSONAL BESTS opens `coop_pb`; PROMOTIONS is unchanged.
+- **`check_mp_isolation`:** 22 passed, 0 failed, against `eng-hotfix13661`. That is the same result as the hotfix-1.10.53 baseline. `coop_pb*` is not an MP token, and the screen names no `coop_mp*` cvar.
+
+## Not done / follow-ups
+
+1. **Playtest the script side.** Clear one mission in coop, then check:
+   - `^~^~^ BESTS cl=… newT=1` in the log;
+   - `pbT_<map>` in `coop_mod/save/chal_<id>.dat`;
+   - the row on the screen after the next `chal_flush`.
+
+   Also check that the record survives a reconnect, i.e. the merge-max round trip.
+2. MP match bests (most kills in one match) would have to live in MP code and an MP-named screen, because of isolation clauses 7 / 12. That is a separate item.
+3. Option B as a server scoreboard tab, once the public servers run a current build.

@@ -9,7 +9,7 @@ faces the RIGHT wall, where the weapons locker used to be. A pull-down screen ha
    (run after build_models2, before the pak copy, so every scene - main, New Game, records, viewer - takes the cut model).
    The same triangles, with their own baked light (the props atlas, shader hzm_atc_props), become models/menu/hzm_hub_rack: turned
    half round onto the MP room's left wall (hub plaster y 178.5 facing -y), the shelf sitting on the dado rail (its top z 59.1), the
-   lamp 2 u lower than the rest so its wall plate clears the picture rail (z 145.9). A soft shadow decal (multiply) on the wall
+   lamp 2 u lower than the rest so its wall plate clears the picture rail (z 145.9). A soft shadow decal (alpha blend) on the wall
    behind it - the hub's bake never saw a rack. hzm_hub_rackshadow.
 2. THE PROJECTOR (atc_projector1, its reels and the lamp-lit copy) is not re-baked: the urc places each model at O with yaw TH, so a
    vertex v lands at O + R(TH) v = P + R(TH)(v - P) (O = P - R(TH) P): a turn about the projector's own centre P. TH aims the lens
@@ -23,13 +23,14 @@ faces the RIGHT wall, where the weapons locker used to be. A pull-down screen ha
 """
 import json, math, os, sys
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageFilter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, r"C:\mohaa-coop-dev\docs\proposals\c96_model_2026-10-18\tools")
 import skd_read as R  # noqa: E402
 import skx as X  # noqa: E402
+from shade73 import RACK, SCREEN, shade_halo, shade_shader  # noqa: E402
 
 stage, pkadd, out_json = sys.argv[1:4]
 smd = os.path.join(stage, "models", "menu")
@@ -149,21 +150,17 @@ RP = np.array([q[1] for crs in hub.values() for cr in crs for q in cr])
 INFO["hub_rack_lo"], INFO["hub_rack_hi"] = RP.min(0).round(1).tolist(), RP.max(0).round(1).tolist()
 INFO["hub_rack_centre"] = ((RP.min(0) + RP.max(0)) / 2).round(1).tolist()
 print("hzm_hub_rack:", INFO["hub_rack_lo"], INFO["hub_rack_hi"])
-# its shadow on the hub wall: a soft dark rectangle (multiply), offset down a little (the room's lamps hang from the ceiling)
-W_, H_ = 256, 256
-sh = Image.new("L", (W_, H_), 255)
-dr = ImageDraw.Draw(sh)
-dr.rectangle((56, 40, 200, 214), fill=150)
-sh = sh.filter(ImageFilter.GaussianBlur(16))
-Image.merge("RGB", (sh, sh, sh)).save(os.path.join(tdir, "hzm_hub_rackshadow.jpg"), quality=92)
+# its shadow on the hub wall: a soft dark rectangle, offset down a little (the room's lamps hang from the ceiling).
+# v1.10.73: was a multiply (GL_DST_COLOR GL_ZERO), which draws NOTHING in the menu scene (bug-10768) - now the posters' recipe:
+# a black RGBA tga whose alpha is the shadow, blendFunc blend (shade73.py; new file name, the pak keeps the old .jpg)
+shade_halo(os.path.join(tdir, "hzm_hub_rackshade.tga"), RACK)
 lo, hi = RP.min(0), RP.max(0)
 xs0, xs1 = lo[0] - 16, hi[0] + 16
 zs0, zs1 = lo[2] - 14, hi[2] + 8
 ys = HW - 0.25
 write_model(mdir, "hzm_hub_rackshadow", [("hzm_hub_rackshadow", quad_c((xs1, ys, zs0), (xs0, ys, zs0), (xs0, ys, zs1), (xs1, ys, zs1),
                                                                          (0, 0), (1, 0), (1, 1), (0, 1)))])
-SH.append("hzm_hub_rackshadow\n{\n\tnopicmip\n\tcull none\n\tsort decal\n\tpolygonOffset\n\t{\n\t\tmap textures/menu/hzm_hub_rackshadow.jpg\n"
-          "\t\tblendFunc GL_DST_COLOR GL_ZERO\n\t\trgbGen identity\n\t}\n}")
+SH.append(shade_shader("hzm_hub_rackshadow", "hzm_hub_rackshade"))
 
 # ------------------------------------------------------------------ 3. the pull-down screen (attic right wall, y -157.5, facing +y)
 WALL = -157.5
@@ -194,7 +191,7 @@ atl[256:384, 768:1024] = (LIGHT * 0.5 * (1 + 0.08 * rng.standard_normal((128, 25
 atl[384:512, 768:1024] = LIGHT * 0.22 * np.array([0.8, 0.8, 0.82])
 # end caps (768..1024 x 512..640): flat, a little darker
 atl[512:640, 768:1024] = LIGHT * 0.55 * 0.5 * np.array([0.42, 0.44, 0.34])          # the case's own enamel, in its shade
-# shadow (0..256 x 768..1024): a soft dark halo for the wall under the screen (multiply - its own shader below)
+# shadow (0..256 x 768..1024): a soft dark halo for the wall under the screen (unused: the decal has its own tga, shade73)
 Image.fromarray((np.clip(atl, 0, 1) * 255 + 0.5).astype(np.uint8)).save(os.path.join(tdir, "hzm_proj_screen.jpg"), quality=93)
 
 
@@ -252,17 +249,13 @@ for k in range(12):
     for dy in (-0.2, 0.2):
         S += quad_c((pa[0], FY + dy, pa[2]), (pb[0], FY + dy, pb[2]), (pb[0] * 0.92 + XC * 0.08, FY + dy, pb[2] * 0.92 + RZ * 0.08),
                     (pa[0] * 0.92 + XC * 0.08, FY + dy, pa[2] * 0.92 + RZ * 0.08), (bu0, bv0), (bu1, bv0), (bu1, bv1), (bu0, bv1))
-# a soft contact shadow on the wall round the screen (multiply decal)
-shd = Image.new("L", (256, 256), 255)
-ImageDraw.Draw(shd).rectangle((40, 30, 216, 236), fill=170)
-shd = shd.filter(ImageFilter.GaussianBlur(14))
-Image.merge("RGB", (shd, shd, shd)).save(os.path.join(tdir, "hzm_proj_screenshadow.jpg"), quality=92)
+# a soft contact shadow on the wall round the screen (v1.10.73: alpha blend, not the invisible multiply - bug-10768)
+shade_halo(os.path.join(tdir, "hzm_proj_screenshade.tga"), SCREEN)
 SD = quad_c((SX1 + 9, WALL + 0.2, SZ0 - 12), (SX0 - 9, WALL + 0.2, SZ0 - 12), (SX0 - 9, WALL + 0.2, CASE_Z + 6), (SX1 + 9, WALL + 0.2, CASE_Z + 6),
             (1, 0), (0, 0), (0, 1), (1, 1))
 write_model(mdir, "hzm_proj_screen", [("hzm_proj_screen", S), ("hzm_proj_screenshadow", SD)])
 SH.append("hzm_proj_screen\n{\n\tnopicmip\n\tcull none\n\t{\n\t\tmap textures/menu/hzm_proj_screen.jpg\n\t\trgbGen identity\n\t}\n}")
-SH.append("hzm_proj_screenshadow\n{\n\tnopicmip\n\tcull none\n\tsort decal\n\tpolygonOffset\n\t{\n\t\tmap textures/menu/hzm_proj_screenshadow.jpg\n"
-          "\t\tblendFunc GL_DST_COLOR GL_ZERO\n\t\trgbGen identity\n\t}\n}")
+SH.append(shade_shader("hzm_proj_screenshadow", "hzm_proj_screenshade"))
 
 # ------------------------------------------------------------------ 2. the projector's turn: lens (+y in the bake) at the picture
 pj = R.read_skd(open(os.path.join(smd, "atc_projector1.skd"), "rb").read())
