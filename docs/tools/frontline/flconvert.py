@@ -29,6 +29,7 @@ import flseam  # noqa: E402
 import flgeom  # noqa: E402
 import flclear
 import flsheets  # noqa: E402
+import flroutes  # noqa: E402
 import flscene  # noqa: E402
 import flfit  # noqa: E402
 import flcliff  # noqa: E402
@@ -540,8 +541,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         wound, wtags, drawn_coll, stats["sheets"] = flsheets.replace(
             wound, wtags, [idmap.get(t) for t in wound], lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL),
             rtris, keep=flpack.spec(level).get("clip_keep", []))
+        # the original's AI routes stay open (flroutes.py): no drawn-geometry collision across them, and the gaps the
+        # original's narrower body walks through are cut wide enough for MOHAA's box (collision only)
+        route_segs = flroutes.routes([X(n_["pos"]) for n_ in L.navpoints()], flgeom.TriGrid(wound))
+        drawn_coll, stats["sheets"]["drawn_kept_off_routes"] = flroutes.keep_drawn(drawn_coll, route_segs)
         wound += drawn_coll
         wtags += [TAG_DRAWN] * len(drawn_coll)
+        wound, wtags, stats["routes"] = flroutes.carve(
+            wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL) and f < TAG_CLIFF)
         # ...and the sheets that stay (the level's boundaries where nothing is drawn) get a VISIBLE edge: a barbed-wire
         # fence along their foot (MOHAA's own textures/mohcommon/barbwire from the player's install)
         gk_ = flgeom.TriGrid(wound)
@@ -577,6 +584,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         cw, stats["cliffs"] = flcliff.walls(wound, flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED]))
         wound += cw
         wtags += [TAG_CLIFF] * len(cw)
+        pw, stats["parapets"] = flcliff.parapets(wound, flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED]))
+        wound += pw
+        wtags += [TAG_CLIFF] * len(pw)
         # [flpolish] ...and a DRAWN skirt under the same edge: the floor's own texture and light carried 512u straight
         # down, so a player at the edge sees a quay wall / bank instead of the white void under the level (visaudit:
         # 287 rays into the void along the town's west edge; user: "floors open and expose the underside of the map")

@@ -74,6 +74,11 @@ def fit_columns(tris, tags, render_tris, ground, opts=None):
             np.linalg.norm(np.cross(Rm[:, 1] - Rm[:, 0], Rm[:, 2] - Rm[:, 0]), axis=1) + 1e-9)
         Vw = Rm[nz < 0.7].reshape(-1, 3)
         Vw = Vw[(Vw[:, 0] >= lo[0]) & (Vw[:, 0] <= hi[0]) & (Vw[:, 1] >= lo[1]) & (Vw[:, 1] <= hi[1])]
+        # the trunk/post at body height only: low branches and the canopy's lower cards widened the box (walk audit:
+        # 38 column contacts on the routes with the drawn trunk 16-128u away)
+        Vt = Vw[(Vw[:, 2] >= z0) & (Vw[:, 2] <= z0 + 70.0)]
+        if len(Vt) >= 3:
+            Vw = Vt
         if not m.any() or len(Vw) < 3:
             rep["dropped"] += 1
             continue
