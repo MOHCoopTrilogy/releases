@@ -236,11 +236,13 @@ for (p, q, nrm) in (((HX0, HY0), (HX1, HY0), ey), ((HX1, HY0), (HX1, HY1), -ex),
     plank_box(frame, c, a1, np.cross(up, a1), up, (ln, 1.2, 6.4))
 # the trapdoor: hinged on the far edge (y = HY1), swung up to 100 deg, leaning back - five planks with gaps, two battens and a
 # Z-brace on its underside (now facing the opening), two iron strap hinges over the hinge edge
-th = math.radians(100.0)
+# v3 (coordinator: "the trapdoor and ladder top stand oddly tall and close together, like a crate frame"): open to a clear 115 deg,
+# leaning back on a stop post; the hinge line ON the frame's inner edge, at the frame's top face
+th = math.radians(115.0)
 lw, ld, lt = HY1 - HY0 - 0.5, HX1 - HX0 - 0.5, 1.8
 d_ = np.array([0.0, -math.cos(th), math.sin(th)])
 n_ = np.array([0.0, math.sin(th), math.cos(th)])
-hinge = np.array([HC[0], HY1 + 0.6, 0.4])
+hinge = np.array([HC[0], HY1, FT - 0.5])
 NP = 5
 pw = ld / NP
 for k in range(NP):
@@ -251,13 +253,19 @@ for f_ in (0.15, 0.85):
 zb = (ex * (ld / 2 - 4.0) + d_ * lw * 0.15) - (-ex * (ld / 2 - 4.0) + d_ * lw * 0.85)
 zl = np.linalg.norm(zb)
 plank_box(lid, hinge + d_ * lw * 0.5 - n_ * 1.0, zb / zl, np.cross(-n_, zb / zl), -n_, (zl, 3.6, 2.0))
-for sx in (-1, 1):
-    hc = hinge + ex * sx * (ld / 2 - 7.0) + d_ * 6.0 + n_ * (lt + 0.25)
-    plank_box(iron, hc, d_, ex, n_, (13.0, 2.0, 0.5))
+for sx in (-1, 1):                                   # strap hinges: across the hinge line, half on the leaf, half on the frame
+    hc = hinge + ex * sx * (ld / 2 - 7.0) + d_ * 5.0 + n_ * (lt + 0.25)
+    plank_box(iron, hc, d_, ex, n_, (11.0, 2.0, 0.5))
+    plank_box(iron, hinge + ex * sx * (ld / 2 - 7.0) + ey * (FW * 0.5) + up * 0.35, ey, ex, up, (FW - 0.6, 2.0, 0.5))
+    rung(iron, hinge + ex * (sx * (ld / 2 - 7.0) - 1.6), hinge + ex * (sx * (ld / 2 - 7.0) + 1.6), rad=0.55, n=6)   # the knuckle
+# the stop: a short post on the floor behind the frame, its top under the leaf's back face (where the leaf rests)
+s_rest = 24.0
+rest = hinge + d_ * s_rest + n_ * lt
+plank_box(lid, (HC[0], rest[1] + 2.2, rest[2] / 2), up, ex, ey, (rest[2], 4.4, 4.4))
 # the ladder: a loft ladder from the landing, leaning on the far wall at ~75 deg; two stiles (2.4 x 5.5), round rungs every
 # 10.5 u, the stiles run on 48 u above the floor (grab rails, rounded tops) - full size: 0.62 m between the stiles
 LX = (HC[0] - 16.5, HC[0] + 16.5)
-yb, yt, zb_, zt = HY1 - 30.0, HY1 - 2.0, -DEPTH, 48.0
+yb, yt, zb_, zt = HY1 - 28.0, HY1 - 4.0, -DEPTH, 36.0                 # v3: the stiles rise ~0.7 m above the floor (were 48 u)
 dv = np.array([0, yt - yb, zt - zb_])
 dv /= np.linalg.norm(dv)
 sd = np.cross(ex, dv)
