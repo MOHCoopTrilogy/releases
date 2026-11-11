@@ -30,7 +30,7 @@ def log(*a):
     print(time.strftime("%H:%M:%S"), *a, flush=True)
 
 
-def rcon(cmd, port=12971, pw="usefixpw"):
+def rcon(cmd, port=12987, pw="usefixpw"):
     import socket
     sk = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sk.sendto(b"\xff\xff\xff\xff\x02rcon " + pw.encode() + b" " + cmd.encode(), ("127.0.0.1", port))
@@ -81,7 +81,7 @@ def main(tag, mapname="m2l1"):
             "set in_mouse 0", "set in_nograb 1", "set in_gamepad 0", "set in_joystick 0",
             "set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0",
             "set developer 1", "set coop_lootProbe 1", "set coop_dev 1", "set cl_memorial 0",
-            "set rconPassword usefixpw", "set net_ip 127.0.0.1", "set coop_st_triggers %d" % (0 if FIN else 1), "set coop_finPathTest %d" % (4 if FIN else 0), "set uf_mode %s" % os.environ.get("UF_MODE", "1"), "set coop_joinCard 0", "set g_teamswitchdelay 0", "set sv_maxbots 0", "set sv_numbots 0",
+            "set rconPassword usefixpw", "set net_ip 127.0.0.1", "set coop_st_triggers %d" % (0 if FIN else 1), "set coop_finPathTest %d" % (4 if FIN else 0), "set uf_mode %s" % os.environ.get("UF_MODE", "1"), "set uf_only %s" % os.environ.get("UF_ONLY", ""), "set coop_joinCard 0", "set g_teamswitchdelay 0", "set sv_maxbots 0", "set sv_numbots 0",
             "wait 15000",
             "set g_gametype 2", "set thereisnomonkey 1", "set cheats 1",
             # LAST line: ui_startdmmap Cbuf_AddText's its `map` behind whatever is still in the buffer, so nothing may
@@ -92,7 +92,7 @@ def main(tag, mapname="m2l1"):
                 "+set", "cl_renderer", "opengl2", "+set", "r_mode", "-1", "+set", "r_customwidth", str(W),
                 "+set", "r_customheight", str(H), "+set", "r_fullscreen", "0", "+set", "logfile", "2",
                 "+set", "com_maxfps", "60", "+set", "in_gamepad", "0", "+set", "in_joystick", "0",
-                "+set", "net_port", "12971", "+set", "thereisnomonkey", "1", "+set", "cheats", "1", "+set", "developer", "1", "+exec", "usefix_run.cfg"]
+                "+set", "net_port", "12987", "+set", "thereisnomonkey", "1", "+set", "cheats", "1", "+set", "developer", "1", "+exec", "usefix_run.cfg"]
         args, late = hw.apply_policy(args, width=W, height=H)
         open(os.path.join(MAINTT, "usefix_run.cfg"), "w", newline="\n").write("\n".join(late + lines) + "\n")
         c = hw.launch_background(args[0], args[1:], CLIENT, policy=False, log=log)
@@ -117,7 +117,7 @@ def main(tag, mapname="m2l1"):
                         time.sleep(0.3)
                     # join as the flharness does: rcon on a listen host runs in the host client's command buffer
                     open(os.path.join(MAINTT, "ufjoin.cfg"), "w", newline="\n").write("\n".join([
-                        "popmenu 0", "wait 10", "primarydmweapon rifle", "wait 5", "join_team allies", "wait 20",
+                        "popmenu 0", "wait 10", "primarydmweapon smg", "wait 5", "join_team allies", "wait 20",
                         "popmenu 0", "wait 40", "popmenu 0", "wait 20", "+attackprimary", "wait 10", "-attackprimary",
                         "set s_volume 0", "set com_maxfps 60"]) + "\n")
                     for _ in range(4):

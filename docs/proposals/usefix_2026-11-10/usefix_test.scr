@@ -26,6 +26,7 @@ main:{
 	if( ( waitthread coop_mod/atsupply.scr::test_has local.p local.pis ) == 1 ){ local.pis = "models/weapons/colt45.tik" }
 	println ( "^~^~^ USEFIX guns rifle=" + local.rif + " pistol=" + local.pis )
 
+	if( getcvar( "uf_only" ) == "D" ){ goto aionly }
 	waitthread tcase local.p local.rif "A1_new_tap" 0.1 "u_a1"
 	waitthread tcase local.p local.rif "A2_new_hold" 0.9 "u_a2"
 	waitthread tcase local.p local.rif "A3_owned_tap" 0.1 "u_a3"
@@ -38,18 +39,25 @@ main:{
 	waitthread tcase local.p local.rif "A6_owned_full_hold" 0.9 "u_a6"
 	waitthread tcase local.p "models/weapons/steilhandgranate.tik" "C1_grenade_tap" 0.1 "u_c1"
 
+aionly:
 	// AI-dropped guns: two Germans killed in front of the player, the first gun tapped, the second held
 	waitthread german local.p 0.1 "D1_ai_tap"
 	waitthread german local.p 0.9 "D2_ai_hold"
+	waitthread german local.p 0.1 "D3_ai_tap"
+	waitthread german local.p 0.9 "D4_ai_hold"
 	println "^~^~^ USEFIX done"
 }end
 
 alive:{
+	level.uf_cls[0] = "smg"
+	level.uf_cls[1] = "rifle"
+	level.uf_cls[2] = "mg"
+	level.uf_cls[3] = "shotgun"
 	for( local.t = 0; local.t < 150; local.t++ ){
 		local.p = $player[1]
 		if( local.p != NULL && local.p != NIL && isAlive local.p && local.p.flags["coop_isActive"] == 1 ){ end local.p }
 		if( local.p != NULL && local.p != NIL && !( isAlive local.p ) ){ local.p stufftext "+attackprimary"; wait 0.2; local.p stufftext "-attackprimary" }
-		if( local.p != NULL && local.p != NIL && local.p.flags["coop_isActive"] != 1 && ( local.t % 3 ) == 0 ){ local.p stufftext "popmenu 0"; wait 0.2; local.p stufftext "+attackprimary"; wait 0.2; local.p stufftext "-attackprimary"; wait 0.2; local.p stufftext "primarydmweapon rifle"; wait 0.2; local.p stufftext "join_team allies" }
+		if( local.p != NULL && local.p != NIL && local.p.flags["coop_isActive"] != 1 && ( local.t % 3 ) == 0 ){ local.p stufftext "popmenu 0"; wait 0.2; local.p stufftext "+attackprimary"; wait 0.2; local.p stufftext "-attackprimary"; wait 0.2; local.p stufftext ( "primarydmweapon " + level.uf_cls[( local.t / 3 ) % 4] ); wait 0.2; local.p stufftext "join_team allies" }
 		wait 1
 	}
 }end NIL
@@ -129,6 +137,8 @@ german local.p local.sec local.name:{
 		if( local.e.classname == "Weapon" ){ local.e.flags["uf_old"] = 1 }
 	}
 	local.a dontdropweapons 0	// some maps (m2l1's spawned enemies) set it on every German
+	local.a forcedropweapon 1	// m2l1 also has level nodropweapons: the aihandler coop_forceDropWeapons path (Item::Drop, the real death drop)
+	local.g = local.a.flags["coop_mainActorWeapon"]	// the gun in his hands (itemhandler.scr::storeActorWeapon) - the one he drops
 	local.a damage $world 9999 $world ( 0 0 0 ) ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
 	wait 4
 	local.w = NIL
@@ -140,6 +150,10 @@ german local.p local.sec local.name:{
 		if( vector_length ( local.e.origin - local.spot ) > 300 ){ continue }
 		println ( "^~^~^ USEFIX " + local.name + " new gun ent=" + local.e.entnum + " " + local.e.model + " at " + local.e.origin + " init=" + local.e.flags["coop_initialiseMe"] )
 		if( local.w == NIL ){ local.w = local.e }
+	}
+	if( local.g != NULL && local.g != NIL ){
+		println ( "^~^~^ USEFIX " + local.name + " his gun ent=" + local.g.entnum + " " + local.g.model + " at " + local.g.origin + " init=" + local.g.flags["coop_initialiseMe"] )
+		if( local.g.owner == NULL || local.g.owner == NIL ){ local.w = local.g }
 	}
 	// the body lies under his gun and is a target too (a search): drag it aside so the crosshair finds the gun
 	if( local.w != NIL ){ local.a.origin = local.a.origin + ( 0 0 -400 ) }
