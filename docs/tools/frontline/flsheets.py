@@ -40,7 +40,7 @@ def _cen(t):
     return tuple((t[0][k] + t[1][k] + t[2][k]) / 3 for k in range(3))
 
 
-def edges(kept, ground, height=64.0, snap=16.0):
+def edges(kept, ground, height=64.0, snap=16.0, drawn=None):
     """The visible edge for the sheets that stay (they bound the level where nothing is drawn): one upright quad per
     distinct foot line, `height` tall from the floor at each end - flconvert draws it as a barbed-wire fence.
     Returns [((x0, y0, z0), (x1, y1, z1))] foot segments (deduplicated: a sheet is many stacked triangles)."""
@@ -80,6 +80,14 @@ def edges(kept, ground, height=64.0, snap=16.0):
             continue
         za = zb if za is None else za
         zb = za if zb is None else zb
+        # where something is already drawn on the sheet's line (the farm gate, a fence) the reason to stop is visible:
+        # no wire on top of it (the jeep drove through wire strung across the gate)
+        if drawn is not None:
+            def on_line(f):
+                mx, my, mz = a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, za + (zb - za) * f + 44.0
+                return any(flgeom.tri_box((mx, my, mz), (10.0, 10.0, 36.0), *drawn.tris[j]) for j in drawn.near(mx, my, 14))
+            if sum(on_line(f) for f in (0.1, 0.3, 0.5, 0.7, 0.9)) >= 3:
+                continue
         out.append(((a[0], a[1], za), (b[0], b[1], zb)))
     return out
 

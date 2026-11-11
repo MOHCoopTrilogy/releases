@@ -554,7 +554,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         gk_ = flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED])   # fences stand on land, not the canal bed
         wire = B.shader("textures/mohcommon/barbwire", 0, 0)
         nfe = 0
-        for (x0, y0, z0), (x1, y1, z1) in flsheets.edges(stats["sheets"].pop("kept_tris"), gk_.ground):
+        # user 2026-11-11: invisible walls are fine where the original had them; no fence the original did not draw
+        kept_ = stats["sheets"].pop("kept_tris")
+        for (x0, y0, z0), (x1, y1, z1) in (flsheets.edges(kept_, gk_.ground, drawn=flgeom.TriGrid(rtris, cell=128.0))
+                                           if flpack.spec(level).get("boundary_wire") else []):
             L_ = math.hypot(x1 - x0, y1 - y0)
             q = [((x0, y0, z0), (0.0, 1.0)), ((x1, y1, z1), (L_ / 64.0, 1.0)),
                  ((x1, y1, z1 + 64.0), (L_ / 64.0, 0.0)), ((x0, y0, z0 + 64.0), (0.0, 0.0))]

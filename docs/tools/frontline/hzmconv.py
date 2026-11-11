@@ -25,7 +25,7 @@ sys.path.insert(0, HERE)
 # [v1.10.69] the converter's own version. Bump it whenever a change alters what a conversion writes: the updater
 # (updater.ps1 BYO RE-CONVERT) re-converts every remembered disc silently when this differs from the version that
 # wrote the player's paks (maintt\byo_converted.txt). Unchanged = no work at all.
-HZMCONV_VERSION = "1.10.73.5"   # .73.5: step 38, fences on land, route carve from under the step; .73.4: route carving (flroutes), parapets, tighter columns; .73.3: visible collision (flsheets), object meshes; .73.2: flpolish wide coords + step height, skins, cliffs vs built collision, river volume, set pieces; .73: flpolish - invisible volumes, crouch headroom, fitted tree columns, foliage cutout, scene data
+HZMCONV_VERSION = "1.10.73.6"   # .73.6: no fences the original did not draw, lintels on routes; .73.5: step 38, fences on land, route carve from under the step; .73.4: route carving (flroutes), parapets, tighter columns; .73.3: visible collision (flsheets), object meshes; .73.2: flpolish wide coords + step height, skins, cliffs vs built collision, river volume, set pieces; .73: flpolish - invisible volumes, crouch headroom, fitted tree columns, foliage cutout, scene data
 TOOLS = os.path.join(os.path.dirname(os.path.abspath(sys.executable if getattr(sys, "frozen", False) else __file__)), "tools")
 
 

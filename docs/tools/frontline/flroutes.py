@@ -92,7 +92,10 @@ def carve(tris, tags, segs, step_h=38.0, top=96.0, half=19.0, spacing=12.0, keep
             f = k / n
             x, y = p[0] + (q[0] - p[0]) * f, p[1] + (q[1] - p[1]) * f
             z = p[2] + (q[2] - p[2]) * f
-            if G.box_free(x, y, z, lift=step_h, margin=3.0):   # 15u box + the 2u half-slab of each collision prism + 1
+            # a standing MOHAA box (15u + the 2u half-slab of each collision prism + 1, up to 96u) above the step
+            hz_ = (top - step_h) / 2
+            if not any(flgeom.tri_box((x, y, z + step_h + hz_), (18.0, 18.0, hz_), *G.tris[i_])
+                       for i_ in G.near(x, y, 20)):
                 continue
             # from 6u under the step: the cut piece below keeps a 2u half-slab, which must stay climbable
             boxes.append(((x - half, y - half, z + step_h - 6.0), (x + half, y + half, z + top)))
@@ -114,7 +117,15 @@ def carve(tris, tags, segs, step_h=38.0, top=96.0, half=19.0, spacing=12.0, keep
                 if G.ground(px, py, zlo_ + 48.0, zlo_ - 2048.0) is None:
                     edge = True
                     break
-        if keep(f) or edge or n_ is None or abs(n_[2]) >= 0.7:
+        flat = n_ is not None and abs(n_[2]) >= 0.7
+        if flat:
+            # a flat piece is a floor - never cut - unless it hangs as a CEILING 60-96u over a route's floor (a lintel
+            # Frontline's 86u body walks under and MOHAA's 94u one does not)
+            zmin_ = min(v[2] for v in t)
+            c2 = [sum(v[k] for v in t) / 3 for k in range(2)]
+            flat = not any(lo[2] + 28.0 <= zmin_ <= hi[2] and lo[0] <= c2[0] <= hi[0] and lo[1] <= c2[1] <= hi[1]
+                           for lo, hi in (boxes[j] for j in B.near(c2[0], c2[1], half)))
+        if keep(f) or edge or n_ is None or flat:
             # the level's boundaries are never cut, and no floor is: a route on a lower level cut holes into the floor
             # of the level above it (walk audit: fall-outs in the north lane over the jeep road)
             out_t.append(t)
