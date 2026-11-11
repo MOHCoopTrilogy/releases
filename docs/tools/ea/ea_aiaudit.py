@@ -14,6 +14,8 @@ import sys
 BYO = os.environ.get("BYOAUDIT", r"C:\hzm-root-flpolish\docs\tools\byoaudit")
 sys.path.insert(0, BYO)
 os.environ.setdefault("BYO_CLIENT", r"G:\mohaa-ea")
+# our own port block (flpolish uses 12470): on the shared default 12391 its clients joined our server (17:15, 2026-11-10)
+os.environ.setdefault("BYO_SRVPORT", "12480")
 import byoclient  # noqa: E402
 import aiaudit    # noqa: E402
 

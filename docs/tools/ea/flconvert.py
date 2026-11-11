@@ -28,7 +28,7 @@ import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
 
-CONVERTER_VERSION = "0.4.0"   # [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
+CONVERTER_VERSION = "0.5.0"   # [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
 MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
@@ -118,7 +118,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         import easob
         import eadb as _eadb
         for rec, sob, ms in easob.placed(L.stream, _eadb.DB(L.stream)):
-            (sob_dyn if sob in easob.DYNAMIC else sob_static).append((rec, sob, ms))
+            base_ = sob[:-2] if sob.endswith("_D") else sob
+            (sob_dyn if base_ in easob.DYNAMIC else sob_static).append((rec, sob, ms))
         for _r, _s, ms in sob_static:
             meshes += ms
     rup, rdown = floor_vote([(m["verts"][a], m["verts"][b], m["verts"][c]) for m in meshes for a, b, c in m["tris"]])
@@ -453,8 +454,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     sob_models = []
     for rec, sob, ms in sob_dyn:
         sids, tri_world = [], []
+        # hinged leaves (the gates) are built around their hinge - the placement's own origin - and the entity's
+        # "origin" puts them back: a script_object rotates about that point, so the gate swings instead of vanishing
+        piv = X(rec.pos) if "Gate" in sob else (0.0, 0.0, 0.0)
         for m in ms:
-            P = [X(v) for v in m["verts"]]
+            P = [tuple(q[k] - piv[k] for k in range(3)) for q in (X(v) for v in m["verts"])]
             tris = [wind(a, b, c, flip_render) for a, b, c in m["tris"]]
             vv = []
             for i, q in enumerate(P):
@@ -462,7 +466,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 vv.append((q, m["uvs"][i], (0.0, 0.0, 1.0), (r_, g_, b_, 255)))
             sids.append(B.add_soup(tex_shader(m["tex"]), vv, [i for t in tris for i in t]))
             tri_world += [(P[a], P[b], P[c]) for a, b, c in tris]
-        sob_models.append((rec, sob, sids, tri_world))
+        sob_models.append((rec, sob, sids, tri_world, piv))
         stats["sob_dynamic_tris"] = stats.get("sob_dynamic_tris", 0) + len(tri_world)
     stats["sob_static"] = len(sob_static)
     stats["sob_dynamic"] = len(sob_dyn)
@@ -555,7 +559,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         # open, with nothing drawn near (the level's boundaries), stay and get a visible barbed-wire edge.
         import flsheets
         rtris = [tuple(X(v) for v in (m["verts"][a], m["verts"][b], m["verts"][c])) for m in meshes for a, b, c in m["tris"]]
-        rtris += [t for _r, _s, _sid, tw in sob_models for t in tw]
+        rtris += [tuple(tuple(v[k] + pv[k] for k in range(3)) for v in t) for _r, _s, _sid, tw, pv in sob_models for t in tw]
         RG = flgeom.TriGrid(rtris, cell=128.0)
 
         def drawn_near(t, r):
@@ -629,11 +633,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 if B.add_prism(sobclip, P[a], P[b], P[c], thickness=4.0, centered=True) is not None:
                     stats["sob_coll"] = stats.get("sob_coll", 0) + 1
     sob_ents = []
-    for rec, sob, sids, tri_world in sob_models:
+    for rec, sob, sids, tri_world, piv in sob_models:
         bids = [b for b in (B.add_prism(sobclip, *t, thickness=4.0, centered=True) for t in tri_world) if b is not None]
         B.models.append({"surfaces": sids, "brushes": bids})
-        sob_ents.append([("classname", "script_object"), ("model", "*%d" % len(B.models)),
-                         ("targetname", "ea_sob_" + rec.name)])
+        kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)),
+              ("targetname", ("ea_sobD_" if sob.endswith("_D") else "ea_sob_") + rec.name)]
+        if piv != (0.0, 0.0, 0.0):
+            kv.append(("origin", "%.1f %.1f %.1f" % piv))
+        sob_ents.append(kv)
 
     # ---- entities ----
     ents = L.entities()
@@ -643,6 +650,28 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
           ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
           ("ambientlight", "40 40 40")]
     B.entity(ws)
+    if game == "ea":
+        # [eapolish] the Panzers' driving paths: each tank squad's SquadObjective points in order (the original orders
+        # its TreadedVehicle squads along them). One 2-node info_vehiclepoint path per leg, ea_tkp_<squad>_<n> ->
+        # ..._e, from the previous point (the tank's placement for the first leg) to objective point n.
+        import re as _re3
+        import eadb as _eadb3
+        _db3 = _eadb3.DB(L.stream)
+        for tv in _db3.of("TreadedVehicle"):
+            sq = tv.s(29) or ""
+            pts = sorted((int(m.group(1)), r.pos) for r in _db3.of("SquadObjective_New")
+                         for m in [_re3.match(r"^(?:JA|BR)_SquadObjective_" + _re3.escape(sq) + r"_(\d+)$", r.name)] if m)
+            prev = X(tv.pos)
+            for num, pm in pts:
+                q = X(pm)
+                g = grid.ground(q[0], q[1], q[2] + 160, q[2] - 400)
+                q = (q[0], q[1], (g if g is not None else q[2]) + 16)
+                tn = "ea_tkp_%s_%d" % (sq, num)
+                B.entity([("classname", "info_vehiclepoint"), ("origin", "%.0f %.0f %.0f" % prev),
+                          ("targetname", tn), ("target", tn + "_e")])
+                B.entity([("classname", "info_vehiclepoint"), ("origin", "%.0f %.0f %.0f" % q), ("targetname", tn + "_e")])
+                prev = q
+                stats["tank_legs"] = stats.get("tank_legs", 0) + 1
     for kv in sob_ents:
         B.entity(kv)
     kept = []

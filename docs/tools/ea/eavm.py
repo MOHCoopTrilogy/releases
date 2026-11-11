@@ -186,18 +186,26 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_so_grp[{n}] = {gid(g) if g else chr(34) * 2}")
     L(f"\tlevel.ea_so_n = {n}")
     # ---- logic objects ----
+    music_events = set()
     n = 0
     for r in db.recs:
-        if r.cls not in TRIGGERS + ("Dispatcher", "Counter", "BasicTimer", "DemoCharge"):
+        if r.cls not in TRIGGERS + ("Dispatcher", "Counter", "BasicTimer", "DemoCharge", "SoundMusicTrigger"):
             continue
         listen, targets, send, fire, gag, cnt, dur, lmsg = [], [], [], "enter", "", 0, 0, ""
+        mus = None
 
         def G(ls):
             return [x for k, v in ls if k == "g" for x in v]
 
         def Ms(ls):
             return [v for k, v in ls if k == "m"]
-        if r.cls in TRIGGERS:
+        if r.cls == "SoundMusicTrigger":
+            # field 32 = the music event, 30 = its volume, 35 = 1: started by its group (36) instead of a volume
+            mus = r.u(32)
+            if r.u(35) == 1 and eadb.is_group(r.u(36) or 0):
+                listen, fire = [r.u(36)], "activate"
+            music_events.add(mus)
+        elif r.cls in TRIGGERS:
             m = marker(r)
             ls = lists(r, (m or 26) + 1)
             gl = [v for k, v in ls if k == "g"]
@@ -256,11 +264,11 @@ def build(db, X, spot, ground, text, lines, log=print):
             ml = Ms(ls)
             send = ml[0] if ml else ["Activate"]
             fire = "use"
-        if not (targets or listen or gag):
+        if not (targets or listen or gag or mus is not None):
             continue
         n += 1
         q = X(r.pos)
-        if r.cls in TRIGGERS + ("DemoCharge",) and r.pos != (0.0, 0.0, 0.0):
+        if r.cls in TRIGGERS + ("DemoCharge", "SoundMusicTrigger") and r.pos != (0.0, 0.0, 0.0):
             gq = ground(q)
             if gq:
                 q = gq
@@ -268,7 +276,7 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_lo_name[{n}] = {S(r.name)}")
         L(f"\tlevel.ea_trig_pos[{n}] = {P(q)}")
         L(f"\tlevel.ea_lo_yaw[{n}] = {r.yaw:.0f}")
-        if r.cls in TRIGGERS + ("DemoCharge",):
+        if r.cls in TRIGGERS + ("DemoCharge", "SoundMusicTrigger"):
             k, rad, hx, hy, hz = shape(r, X)
             if r.cls == "DemoCharge":
                 k, rad = 1, 96.0
@@ -287,6 +295,8 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f'\tlevel.ea_lo_lmsg[{n}] = "{lmsg}"')
         L(f"\tlevel.ea_lo_cnt[{n}] = {cnt}")
         L(f"\tlevel.ea_lo_dur[{n}] = {dur}")
+        if mus is not None:
+            L(f"\tlevel.ea_lo_mus[{n}] = {mus}")
         L(f"\tlevel.ea_lo_ln[{n}] = {len(listen)}")
         for k, g in enumerate(listen, 1):
             L(f'\tlevel.ea_lo_l["{n}_{k}"] = {gid(g)}')
@@ -401,12 +411,25 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_pr_name[{n}] = {S(r.name)}")
         L(f"\tlevel.ea_pr_grp[{n}] = {gid(g) if g else chr(34) * 2}")
     L(f"\tlevel.ea_pr_n = {n}")
+    # ---- effects packages (fires, smoke, fog, explosions): the .xpd name, its place, the group that plays it ----
+    n = 0
+    for r in db.of("EffectsPackage"):
+        xp = [t for _k, t in r.strings() if t.lower().endswith(".xpd")]
+        if not xp or r.pos == (0.0, 0.0, 0.0):
+            continue
+        n += 1
+        gl = [x for k, v in lists(r, 15) if k == "g" for x in v]
+        L(f"\tlevel.ea_fx_pos[{n}] = {P(X(r.pos))}")
+        L(f"\tlevel.ea_fx_name[{n}] = {S(base(xp[0]))}")
+        L(f"\tlevel.ea_fx_grp[{n}] = {gid(gl[0]) if gl else chr(34) * 2}")
+    L(f"\tlevel.ea_fx_n = {n}")
     n = 0
     for r in db.of("TreadedVehicle"):
         q = ground(X(r.pos)) or X(r.pos)
         n += 1
         L(f"\tlevel.ea_tk_pos[{n}] = {P(q)}")
         L(f"\tlevel.ea_tk_yaw[{n}] = {r.yaw:.0f}")
+        L(f"\tlevel.ea_tk_sq[{n}] = {S(r.s(29) or '')}")
         L(f"\tlevel.ea_tk_grp[{n}] = {gid(r.group()) if r.group() else chr(34) * 2}")
         tl = lists(r, 30)
         ts = [x for k, v in tl if k == "g" for x in v if x != r.group()]
@@ -444,5 +467,5 @@ def build(db, X, spot, ground, text, lines, log=print):
             L(f"\tlevel.ea_player_yaw = {r.yaw:.0f}")
         kit = [ITEMS.get(base(t).lower()) for _k, t in r.strings() if "Powerups" in t]
         L(f'\tlevel.ea_kit = "{" ".join(k for k in kit if k)}"')
-    return {"spawn_points": sum(1 for x in lines if "ea_sp_team" in x), "logic": sum(1 for x in lines if "ea_lo_cls" in x),
+    return {"music_events": sorted(music_events), "spawn_points": sum(1 for x in lines if "ea_sp_team" in x), "logic": sum(1 for x in lines if "ea_lo_cls" in x),
             "gags": ng, "said": len(said)}

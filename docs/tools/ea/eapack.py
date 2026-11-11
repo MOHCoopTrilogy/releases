@@ -283,7 +283,13 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     vm = eavm.build(db, X, strict_spot, ground_pt, text, lines, log)
     nmus = 0
     if vgm and spec.get("music"):
-        nmus = music(L, level, spec["music"], vgm, files, lines, log)
+        # [eapolish] the original's music EVENTS (its 10 music triggers, eavm) each get a segment too: event e ->
+        # the score's segment e + 1 (vgmstream subsong; the event -> segment chain of the .mpf is not decoded)
+        mspec = dict(spec["music"])
+        mspec["segments"] = dict(mspec["segments"])
+        for e in vm.get("music_events", []):
+            mspec["segments"]["ev%d" % e] = e + 1
+        nmus = music(L, level, mspec, vgm, files, lines, log)
     lines += [f"\tlevel.ea_axis_n = {na}", f"\tlevel.ea_ally_n = {nl}", "\tlevel.ea_data_ok = 1", "}end", ""]
     files[f"maps/coop_ea_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     if mohaa_base:

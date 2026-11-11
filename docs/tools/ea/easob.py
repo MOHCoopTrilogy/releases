@@ -130,10 +130,16 @@ class Store:
             if typ != 6:
                 continue
             n = size // 6
-            run = [q for q, s2, t2 in st[k + 1:k + 4] if t2 == 4 and s2 // 4 == n]
+            run = []
+            for q, s2, t2 in st[k + 1:k + 5]:
+                if t2 != 4 or s2 // 4 != n:
+                    break
+                run.append(q)
             att = {}
             for q in run:
                 kind = eacpt.classify4(seg[q:q + 4 * n], n)
+                if kind == "uv" and "uv" in att:
+                    kind = "uv2"          # Texture2 meshes: a second UV set before the colour
                 att.setdefault(kind, q)
             # an indexed strip (index block between the previous mesh and this one), else the vertices ARE the strip
             ib = None
@@ -179,7 +185,7 @@ class Store:
         return None
 
 
-def placed(stream, db, skip_classes=()):
+def placed(stream, db, skip_classes=(), light=150.0):
     """every smart-object placement of the level as world-space meshes (eacore.meshes() dicts, metres) grouped by
     placement: [(record, sob name, [meshes])]"""
     S = Store(stream)
@@ -190,7 +196,18 @@ def placed(stream, db, skip_classes=()):
         path = r.s(15) or ""
         if not path.lower().endswith(".sob"):
             continue
-        sob = path.replace("\\", "/").split("/")[-1].rsplit(".", 1)[0]
+        sob0 = path.replace("\\", "/").split("/")[-1].rsplit(".", 1)[0]
+        for sob in (sob0, sob0 + "_D"):
+            # the destroyed variant (<sob>_D_Art_n) of the ones the mission blows up, placed with the same transform
+            if sob != sob0 and sob0 not in DYNAMIC:
+                continue
+            out += _placement(S, r, sob, light)
+    return out
+
+
+def _placement(S, r, sob, light):
+    out = []
+    if True:
         parts = S.parts(sob)
         ms = []
         for part in parts:
@@ -203,6 +220,15 @@ def placed(stream, db, skip_classes=()):
                            "verts": [world(v, r.rot, r.pos) for v in m["pos"]], "cols": cols, "uvs": m["uv"],
                            "uvs2": None, "tris": m["tris"], "sob": sob, "placement": r.name})
         if ms:
+            # EA lights smart objects at run time; their vertex colour is only a dark tint (mean ~30, x2 = 60 against
+            # the world's baked ~140): unlit they read as black masses (the railgun) - bring each placement to the
+            # level's light, keeping its own shading
+            allc = [c for m in ms for c in m["cols"]]
+            mean = sum(c[0] + c[1] + c[2] for c in allc) / (3.0 * max(1, len(allc)))
+            k = light / mean if mean > 1 else 1.0
+            for m in ms:
+                m["cols"] = [(min(255, int(c[0] * k)), min(255, int(c[1] * k)), min(255, int(c[2] * k)), c[3])
+                             for c in m["cols"]]
             out.append((r, sob, ms))
     return out
 
