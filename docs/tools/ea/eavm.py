@@ -271,7 +271,7 @@ def build(db, X, spot, ground, text, lines, log=print):
         if r.cls in TRIGGERS + ("DemoCharge", "SoundMusicTrigger") and r.pos != (0.0, 0.0, 0.0):
             gq = ground(q)
             # records at z 0 (several music and gag triggers) sit far above the floor: look further down
-            for dz in (300, 600, 900):
+            for dz in range(150, 1500, 150):
                 if gq:
                     break
                 gq = ground((q[0], q[1], q[2] - dz))
