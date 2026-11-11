@@ -101,4 +101,9 @@ Verified 2026-11-10 on converter 0.6.0 (the original's collision):
   off when the original's timer released it.
 - SP camera walks (stills local, H:\hzm_work\eapolish\shots\tour3, tour4): fires and smoke, tower and railgun wrecks,
   ammo dump blast, gates opening, subtitles in order, the church defence.
-Not verified on screen: trigger box sizes against the original, a Panzer driving its whole path.
+On screen 2026-11-10 (stills local, H:\hzm_work\eapolish\shots\trig6, tank12): every one of the 87 volume triggers
+marked at its corners from above (sizes and placements match the roads, doorways and yards they guard); Panzer 3
+(invulnerable for that test only) drove all 4 of its legs to their ends on the roads - after two fixes: legs routed over
+open ground (a straight leg ran it into a house) and a pivot to face each leg before driving it (MOHAA's autopilot
+cannot start a leg facing back along it).
+Not compared side by side with the original: trigger sizes are the original's numbers, not measured against EA play.
