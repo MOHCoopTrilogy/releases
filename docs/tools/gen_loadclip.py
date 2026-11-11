@@ -68,7 +68,7 @@ def cmd_clip(a):
             # i = 0 is the tail's own next frame (continues the clip's last frame); the blend reaches the head at i = blend
             im = Image.blend(tail, im, i / float(blend))
         buf = io.BytesIO()
-        im.save(buf, "JPEG", quality=a.quality, subsampling=2, optimize=False, progressive=False)
+        im.save(buf, "JPEG", quality=a.quality, subsampling=a.subsampling, optimize=False, progressive=False)
         out.append(buf.getvalue())
     hdr = (32 if a.once else 28) + 4 * (length + 1)
     offs, pos = [], hdr
@@ -122,6 +122,8 @@ def main():
     c.add_argument("--src-fps", type=float, default=30.0)
     c.add_argument("--size", default="1024x512")
     c.add_argument("--quality", type=int, default=62)
+    c.add_argument("--subsampling", type=int, default=2, choices=(0, 1, 2),
+                   help="JPEG chroma subsampling: 2 = 4:2:0 (default), 0 = 4:4:4 (thin red lines and small text stay crisp)")
     c.add_argument("--loop-blend", type=int, default=15)
     c.add_argument("--max-secs", type=float, default=0)
     c.add_argument("--once", action="store_true", help="play once then hold the last frame with a slow zoom (header v2, flag 1); implies --loop-blend 0")
