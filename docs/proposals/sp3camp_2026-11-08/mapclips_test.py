@@ -111,6 +111,11 @@ def main():
                 "set cl_loadCinematic %s\nset ui_dmmap %s\nexec coop_mod/start_server.cfg\n" % (on, m))
             n = len(read())
             c.post_key(F7)
+            t_k = time.time()
+            while time.time() - t_k < 30 and m not in read()[n:]:   # the menu may not take the first key (still loading)
+                time.sleep(1)
+            if m not in read()[n:]:
+                c.post_key(F7)
             out = os.path.join(run, key)
             if not nocap:
                 os.makedirs(out, exist_ok=True)
