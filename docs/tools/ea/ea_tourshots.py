@@ -17,16 +17,17 @@ sys.path.insert(0, HERE)
 import ea_aiaudit  # noqa: E402,F401  (client folder, user-clip filter)
 import byoclient   # noqa: E402
 
-STEP = re.compile(r"\^~\^~\^ (EATEST go \d+ \S+|EAOBJ [^\n]+|EAGAG start \S+|EATANK [^\n]+|EAPROP [^\n]+|EASQUAD [^\n]+)")
+STEP = re.compile(r"\^~\^~\^ (EATANKTEST [^\n]+|EATRIGMARK \d+ \S+|EATEST go \d+ \S+|EAOBJ [^\n]+|EAGAG start \S+|EATANK [^\n]+|EAPROP [^\n]+|EASQUAD [^\n]+)")
 
 
 def main():
     out = sys.argv[1]
     every = float(sys.argv[sys.argv.index("--every") + 1]) if "--every" in sys.argv else 10.0
     mins = float(sys.argv[sys.argv.index("--minutes") + 1]) if "--minutes" in sys.argv else 20.0
+    test = sys.argv[sys.argv.index("--test") + 1] if "--test" in sys.argv else "1"   # 5 tank drive, 6 trigger marks
     os.makedirs(out, exist_ok=True)
     n = 0
-    with byoclient.Client("coop_ea_1_11", sets=[("coop_eatest", "1"), ("coop_eatestPlayers", "1"), ("coop_health", "20000")],
+    with byoclient.Client("coop_ea_1_11", sets=[("coop_eatest", test), ("coop_eatestPlayers", "1"), ("coop_health", "20000")],
                           coop=False, w=960, h=540, port=int(os.environ.get("BYO_PORT", "12488"))) as c:
         if not c.wait(r"EAAI ", 300):
             raise RuntimeError("map never loaded")
@@ -42,7 +43,7 @@ def main():
             name = "t%03d_%s" % (n, tag)
             c.step(["screenshot " + name, "wait 4"])
             c.grab(name, out)
-            if "EAMISSION complete" in s:
+            if "EAMISSION complete" in s or "EATANKTEST end" in s or "EATRIGMARK end" in s:
                 break
             time.sleep(every)
         c.keep_log(os.path.join(out, "qconsole.log"))

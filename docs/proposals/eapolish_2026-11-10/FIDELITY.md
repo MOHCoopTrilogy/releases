@@ -26,7 +26,7 @@ area) and the props stood at the wrong places.
 | R3 | Route: start -> checkpoint -> partisan leader (west, -3500 -375) -> trenches / bridge / nebelwerfer (south-west) -> railgun (-941 -2463) -> village -> graveyard -> comm tower (4042 -2998) -> church (5140 -1935) | the same order emerges from the original's triggers in the self-test walk | M |
 | R4 | 137 logic objects (volume triggers, gag triggers, dialogue triggers, dispatchers, counters, timers, 5 demolition charges, a plunger) | all interpreted; trigger volumes from the record (sphere radius / box half-extents, rotated) | M (box extents' unit inferred: D until checked on screen) |
 | R5 | Gate to the graveyard opened by its dispatcher | the original's gate leaves (easob), each built around its hinge (the placement's origin) as a script_object: they swing open 100 deg in 2.5 s when the original's dispatcher fires | M (swing seen in the log; on camera pending) |
-| R6 | Collision blocker at the partisan leader (removed after his speech) | not placed (an invisible wall would break the zero-invisible-walls rule) | D |
+| R6 | Collision blocker at the partisan leader (removed after his speech) | the original's invisible blocker (InvisibleCollision3x3x0) at its placement, solid while its group is on, gone when the original's go-back timer deactivates it (seen in the co-op run) | M |
 | R7 | Bridge destroyed by the Germans (timer + effects package) | the original's bridge mesh with collision; when its group fires: the effects package's blast, then the original's destroyed bridge mesh (SMA_WoodBridge6_D) | M (not reached in the walks: the original stops it if the player is quick) |
 
 ## Encounters
@@ -63,36 +63,43 @@ area) and the props stood at the wrong places.
 | A1 | Scripted lines (27 cues in the level's scenes; 61 voiced lines on the disc) | the original's own voice (UBER event -> str.ast stream, decoded on the player's PC) with its subtitle, at the original's moment; the scene waits for the line | M |
 | A2 | Music: interactive score switched by 10 music triggers | the 10 triggers with their own volumes / groups and their own music EVENT (15-20, 35-37, 50); each event plays the score's segment of that number, converted on the player's PC | D (the .mpf event -> segment chain is not decoded) |
 
-## Geometry (byoaudit geoaudit, local pak)
+## Geometry and progression (local pak; basis since 2026-11-10: the ORIGINAL's collision)
 
-| measure | 0.3.0 (names fixed) | 0.4.0 + smart objects | 0.4.0 + clip sheets | 0.5.0 (clip_keep 38) | 0.6.0 (split walls) |
-|---|---:|---:|---:|---:|---:|
-| blocked moves with nothing drawn within 8u | 1,966 | 1,059 | 602 | 579 | 422 |
-| - of which thin drawn obstacles (ea_geothin: rays to 40u at 28-60u height) | - | - | - | 460 | 335 |
-| - truly invisible | - | - | - | 119 (41 clusters) | 87 (32 clusters) |
-| invisible brushes | 429 | 258 | 198 | 184 | 190 |
-| falls out of the world | 0 | 0 | 2 | 0 | 0 |
-| edge of world | 117 | 56 | 99 | 99 | 130 |
-| floor cells with nothing drawn under them | 462 | 421 | 670 | 562 | 481 |
-| walkable cells | 139,470 | 136,362 | 140,778 | 139,747 | 143,292 |
+User rule: invisible walls are fine where the original European Assault has them (1:1 is the bar); the concern is
+invisible walls that block progression, and blockers our conversion created. So the converter keeps the level's .cdb
+collision exactly as it is (the clip-sheet rebuild and its barbed wire are opt-in, EA_SHEETS=1, and off), and the audit
+splits invisible contacts by the collision that makes them (each brush names its source):
 
-The 35 smart-object placements (railgun, tower, ammo dump, bridge, 2 gates, 18 tombstones/crosses, crates, building
-corners) are the original's meshes now, with collision on what is drawn. Floating clip sheets standing in front of
-drawn geometry are dropped (403) and that geometry collides instead (flsheets, the Frontline polish rule); level-edge
-sheets stay (155) and are drawn as a barbed-wire edge, as are the flcliff edge walls. A look at the 8 biggest remaining
-invisible clusters on screen: barbed-wire runs, Czech hedgehogs, dragon's teeth, rails and house debris - thin drawn
-obstacles the 8u test does not see; the 2 remaining void falls are one spot on the west edge (open).
+| measure | converter 0.6.0 (sheet rebuild) | 0.6.0, original collision, own-collision smart objects |
+|---|---:|---:|
+| invisible contacts on the ORIGINAL's own collision (as in EA - fine) | 422 incl. ours | 1,057 (575 on routes) |
+| invisible contacts EXTRA vs the original (ours: target 0) | n/a | 0 (was 5: the railgun's collision doubled) |
+| falls out of the world | 0 | 0 |
+| floor cells with nothing drawn under them | 481 | 459 |
+| walkable cells | 143,292 | 139,532 |
+
+**Progression walk** (docs/tools/ea/ea_progwalk.py): from the original's player start, stand hull then crouch, every
+trigger and use point the co-op mission run fired, in that order: 90 points, from the start road and the checkpoint,
+the partisan cellar, the railgun ridge and its charges, the village, the graveyard and its gate, the crypts and the
+comm tower, the church square (the Nemesis squad), back across the bridge to the Nebelwerfer hill. 86 reached
+standing, 4 only crouched (the partisan cellar's two triggers, one at the church square, one by the haystacks), 0
+blocked. SoundDialogueTrigger02 (6555 -2003) is not on the walk: it is centred 500u past the end of the level's
+floor (no floor east of x 6050) with a 537u sphere, so in the original's identical geometry no player reaches it
+either; the church defence it would start comes from the original's other path (the counter on the Nemesis squad's
+deaths). The co-op run proved that: the trigger was skipped and the church defence still started. **Progression
+blocks: 0.**
 
 ## Score (1 player)
 
-**Matched 21 - Deviated 5 - Missing 0** (of 26 rows).
-Deviations: R6 the partisan leader's invisible blocker (left out: it is an invisible wall), E8 the Russian squad's
-follow logic, S6/S7 EA particle systems as stock emitters, A2 music events mapped to segments by number.
+**Matched 22 - Deviated 4 - Missing 0** (of 26 rows).
+Deviations: E8 the Russian squad's follow logic, S6/S7 EA particle systems as stock emitters, A2 music events mapped to
+segments by number.
 
-Verified 2026-11-10 on converter 0.6.0:
+Verified 2026-11-10 on converter 0.6.0 (the original's collision):
 - 2-player co-op self-test (private dedicated server + 2 clients): all 6 objectives, the mission end, 0 Script
-  Errors, 27 voice lines played, 0 idle AI, 0 of 101 deferred spawns in view; Germans 79 of 101 killed, 38 moved;
-  Russians 6 of 15 killed, 11 joined the squad.
+  Errors, 26 voice lines played, 5 idle AI, 0 of 109 deferred spawns in view; all 109 Germans killed (80 engaged,
+  60 moved); 4 of 15 Russians killed, 12 joined the squad. The partisan leader's blocker went on at the start and
+  off when the original's timer released it.
 - SP camera walks (stills local, H:\hzm_work\eapolish\shots\tour3, tour4): fires and smoke, tower and railgun wrecks,
   ammo dump blast, gates opening, subtitles in order, the church defence.
 Not verified on screen: trigger box sizes against the original, a Panzer driving its whole path.
