@@ -60,8 +60,11 @@ def edges(kept, ground, height=64.0, snap=16.0):
         if key in seen or math.hypot(b[0] - a[0], b[1] - a[1]) < 8:
             continue
         seen.add(key)
-        za = ground(a[0], a[1], zf + 96, zf - 256)
-        zb = ground(b[0], b[1], zf + 96, zf - 256)
+        # the sheets run from well below the ground to 450u up: look for the floor under the whole sheet, not just
+        # around its buried foot (most kept sheets got no fence that way)
+        zt = max(v[2] for v in t)
+        za = ground(a[0], a[1], zt + 8, zf - 256)
+        zb = ground(b[0], b[1], zt + 8, zf - 256)
         if za is None and zb is None:
             continue
         za = zb if za is None else za
