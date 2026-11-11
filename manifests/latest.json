@@ -1,7 +1,7 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.76",
-    "created":  "2026-11-11T15:58:55Z",
+    "version":  "1.10.77",
+    "created":  "2026-11-11T18:10:26Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
@@ -95,9 +95,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  32456171,
-                      "sha256":  "ba54afd83f836624bc80fe2add84184a377e332126e3e8b810c014053f4e4799",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.76/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  32456339,
+                      "sha256":  "42e0ee904912c83991991bc504c390eaf52ae043b602147e8bb26a0ae3b260f6",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.77/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzz_coop_terrain.pk3",
@@ -186,8 +186,8 @@
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_assets_tey.pk3",
                       "size":  145942304,
-                      "sha256":  "d38d3433a81911d8089af1c93e574dd6732728cfcf917e968fb1163e7a6e1a73",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.76/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+                      "sha256":  "a68b261a8e8a004cf4e108411601ab32f6f7628ad555047ed9c8e69859819deb",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.77/zzzzzz_co-op_hzm_mod_assets_tey.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzz_coop_maps.pk3",
@@ -407,9 +407,9 @@
                   },
                   {
                       "path":  "hzmconv.zip",
-                      "size":  30491903,
-                      "sha256":  "555a842645b369baefa70b7f3603eb3335e68fadb05a1f06bb5d1c97199f1585",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.70/hzmconv.zip"
+                      "size":  30606186,
+                      "sha256":  "e4ad7527812b774e29f8384eebc2dfb9bee213c4d8afde52a581b371eb6023a3",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.77/hzmconv.zip"
                   }
               ],
     "delete":  [
