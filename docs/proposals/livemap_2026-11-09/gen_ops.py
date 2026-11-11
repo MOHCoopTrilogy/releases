@@ -40,7 +40,10 @@ POOL = {
     "dm/mohdm7": {"TDM": (5, 9)},
     "dm/mp_brest_dm": {"TDM": (7, 11)},
     "obj/mp_montecassino_tow": {"TDM": (9, 13)},
-    "obj/mp_bologna_obj": {"TDM": (9, 13), "OBJ": (7, 11)},
+    # [opsfix2] Bologna OBJ out: the bot watch (tools/ops_botwatch.py, 180 s bots-only) had 10/10 bots stuck and 47 % idle
+    # with per-side markers as without - the defenders freeze against the HQ's script doors (BOTFROZEN swc=ScriptSlave) and the
+    # attackers never leave their spawn. Its TEAM MATCH is fine (20 kills, 0 stuck) and stays.
+    "obj/mp_bologna_obj": {"TDM": (9, 13)},
     # Phase 2 - objective, the player is the sapper (decision 2) AND Allied (user 2026-11-10): only maps whose planting side is
 # the Allies. The Bridge (obj_team4) and Palermo plant with the Axis and have no Allied-attack variant, so they are out;
 # Palermo's bots were also lost on it (user report, v1.10.73).

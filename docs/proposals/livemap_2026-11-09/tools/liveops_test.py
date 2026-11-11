@@ -62,18 +62,28 @@ def build_pak():
         print("no test pak")
         return out
     files = PAK_FILES if "--urconly" not in sys.argv else ["ui/hzm_newgame3d.urc"]
+    if "--armoryonly" in sys.argv:                 # the mod-only DEPLOY hotfix (b0627b2e) and nothing else
+        files = ["coop_mod/mp_armory.scr"]
+    if "--hotfix" in sys.argv:                     # the spawn hotfix: the armory class fix + the un-stalled MP poll
+        files = ["coop_mod/mp_armory.scr", "coop_mod/mp.scr"]
     os.makedirs(os.path.dirname(out), exist_ok=True)
     n = 0
-    with zipfile.ZipFile(out + ".tmp", "w", zipfile.ZIP_DEFLATED) as z:
+    # the temp file lives OUTSIDE maintt: the engine mounts any "*.pk3*" it finds there, so a failed rename once left a
+    # 72-file "...pk3.tmp" loaded beside a stale 2-file pak and a test ran against both (2026-11-10)
+    tmp = os.path.join(HOME, "liveops_pak.tmp")
+    for fn in os.listdir(os.path.dirname(out)):
+        if fn.startswith(PAK) and fn != PAK:
+            os.remove(os.path.join(os.path.dirname(out), fn))
+    with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as z:
         for rel in files:
             z.write(os.path.join(MOD, rel), rel)
             n += 1
         td = os.path.join(MOD, "textures", "menu")
-        for fn in (sorted(os.listdir(td)) if "--urconly" not in sys.argv else []):
+        for fn in (sorted(os.listdir(td)) if ("--urconly" not in sys.argv and "--armoryonly" not in sys.argv and "--hotfix" not in sys.argv) else []):
             if fn.startswith(("hzm_ng3c_", "hzm_ops_")):
                 z.write(os.path.join(td, fn), "textures/menu/" + fn)
                 n += 1
-    os.replace(out + ".tmp", out)
+    os.replace(tmp, out)
     print("pak", out, n, "files", os.path.getsize(out))
     return out
 
@@ -181,12 +191,12 @@ def case_mpplain(out, res, gt):
         press(c, "F6", 2)
         res["joined"] = wait_for(r"OpsTester has joined the Allies", 30, 0, c)
         press(c, "F8", 1)
-        time.sleep(5)
+        time.sleep(1.5 if "--fast" in sys.argv else 5)
         cmdfile("lo_c.cfg", ["hzm_ops testmouse %d %d" % (x, y)])
         press(c, "F7", 0.6)
         n0 = len(read(lp()))
         c.post_click(x, y)
-        res["first_press_spawned"] = wait_for(r"MPKIT e0 ", 25, n0, c)
+        res["first_press_spawned"] = wait_for(r"MPKIT e0 ", 12, n0, c)
         res["deploy_seen"] = "MPDEPLOY e0" in read(lp())[n0:]
         res["inmatch"] = shot(c, out, "in_match")
         if gt == 2:
@@ -321,12 +331,13 @@ def case_coop2(out, res):
             res["mate_spawned"] = wait_for(r"MPKIT e1 ", 20, n0, host)
             res["mate_shot"] = shot(mate, out, "mate_in_match") if False else None
             # try to defect: the operation must put him back on the Allies
+            time.sleep(12)                    # the engine refuses a team change within 10 s of the last one
             cmdfile2("lo_c.cfg", ["join_team axis"])
             n1 = len(read(lp()))
-            press(mate, "F7", 6)
+            press(mate, "F7", 8)
             L = read(lp())[n1:]
-            res["mate_forced_axis"] = "OpsMate has joined the Axis" in L
-            res["mate_moved_back"] = bool(re.search(r"OPS allies e\d+ was on the axis - moved", L)) and "OpsMate has joined the Allies" in L
+            res["mate_forced_axis"] = bool(re.search(r"OpsMate[^\n]* has joined the Axis", L))
+            res["mate_moved_back"] = bool(re.search(r"OPS allies e\d+ was on the axis - moved", L)) and bool(re.search(r"OpsMate[^\n]* has joined the Allies", L))
             guard(mate)
         guard(host)
     log = read(lp())
@@ -623,7 +634,7 @@ def case_spawn(out, res, mode):
         res["started"] = wait_for(r"\^~\^~\^ OPS start", 240, n1, c)
         res["joined"] = wait_for(r"OpsTester has joined the (Allies|Axis)", 60, n1, c)
         press(c, "F8", 1)
-        time.sleep(6)                         # the armory is up (E5 redirect)
+        time.sleep(1.5 if "--fast" in sys.argv else 6)   # --fast: press as soon as the armory is up (the user's race)
         res["armory_shot"] = shot(c, out, "armory")
         presses = []
         for k in range(5):                    # press DEPLOY until alive; the bar is ONE press
@@ -631,6 +642,8 @@ def case_spawn(out, res, mode):
             click_xy(596, 16)
             time.sleep(5)
             L = read(lp())[n2:]
+            if k == 0:
+                res["first_press_spawned"] = "MPKIT e0 " in L
             presses.append({"k6seen": "MPDEPLOY k6seen" in L, "deploy": bool(re.search(r"MPDEPLOY e0 cause", L)),
                             "gaveup": "GAVEUP" in L, "tries": len(re.findall(r"MPDEPLOYTRY e0", L))})
             cmdfile("lo_c.cfg", ["echo LOSTATE", "ui_opsResult"])
