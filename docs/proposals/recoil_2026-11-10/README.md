@@ -78,6 +78,28 @@ with the RELEASE dlls too (bug-10899, not this branch).
 * Remote clients see the server's kick one round trip late (as with the authored kick before it); not playtested in MP.
 * Not felt by a human yet. Tune knobs: `scale` in recoil_shape.tsv per gun, `coop_recoilCrouch/Prone/Hip/MaxClimb`.
 
+## Real rates of fire (user-approved 2026-11-10) - offline done, in-game verification pending the v1.10.74 launch hold
+
+* `docs/tools/gen_weapon_rof.py build|check` -> `coop_mod/weapon_rof.txt` (35 automatics + 5 turret MGs) and `ROF.md` (the
+  before / after table: rpm, damage, bullets, TTK at 100 and 50 HP, AI burst). Rates from the recoil research (measured beats
+  spec); `weapon_rof_tune.tsv` holds the judgement (MP40 500 not the 400 impression, AI burst lengths, MG42 / M1919 one bullet
+  a round, 'free' where today's TTK was an artifact); `weapon_rof_turrets.tsv` the turret MGs.
+* Engine (`coop_realRof` 1, default; 0 = the tiks exactly): `Weapon::FireDelay` primary = the table's delay; the shot carries
+  the TTK-holding damage scale and bullets per shot. AI: an animation `fire` command now stands for its slice of trigger time -
+  as many rounds as the real rate allows, the rest queued at the real interval, capped at the gun's real burst length
+  (`Sentient::CoopAiRofFire`). AI turret gunners (40 rounds a second before) fire at the gun's real rate with each round
+  carrying the rounds it replaces (x2 MG 42, x2.5 cap). `coop_recoilDebug 2` prints every AI round.
+* Damage: held inside +-20% of today's average TTK (100 HP) by the smallest integer per-shot change: MP40 24->29, Sten 20->26,
+  MP 28 20->25, PPSh 24->20, MAB 38 20->22, Type 100 25->24; everything else unchanged.
+* Armory: `gen_weapon_stats.py` applies the table, `gen_loadout.py build` regenerated the pages (rate / damage bars and
+  compare deltas: 1,949 changed + 279 new generated cfgs, `gen_loadout check` EXACT). MP isolation 22/0.
+* Recoil: the per-round pattern is unchanged (its climb build already used the real rate); per SECOND it now follows the real
+  cadence - the MP40 climbs slower, the PPSh faster. The M3 (450 rpm, 0.133 s) is now treated as an automatic by the
+  recovery (it recovered between rounds like a semi-auto at the old 0.125 s line).
+* Semi-autos and bolts keep their tik delay: they have no cyclic rate; their delay is the trigger cap.
+* To verify (harness ready: `tools/run_rof.py player|ai`): measured rpm from the server trace, player vs AI on the same gun,
+  AI burst lengths, a co-op fight on a campaign map.
+
 ## Merge
 
 Engine `recoil-eng` (C:\hzm-recoil\eng, off rel-1.10.38-engine) -> cgame.dll + game.dll. Mod `recoil-mod`
