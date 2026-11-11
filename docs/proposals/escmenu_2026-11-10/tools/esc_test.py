@@ -273,6 +273,22 @@ def case_buttons(mode, out, res):
             res["rows"][key]["log"] = [l[31:] for l in new.splitlines()
                                        if re.search(r"exec|menu|MENUDBG|Unknown|ERROR|COOPSAVE|disconnect|spectat|team",
                                                     l, re.I)][:12]
+            if key == "scores":
+                # the toggle: still up 4 s later (no key held); the first ESC closes it WITHOUT opening the board;
+                # toggled again, a USE press closes it
+                sc = res["rows"][key]
+                time.sleep(4)
+                sc["held"] = shot(c, cl, out, "%s_scores_held" % mode)
+                n2 = len(read(c.log()))
+                press(cl, "ESC", 2.5)
+                sc["esc_opened_board"] = bool(re.search(r"MENUDBG esc-open", read(c.log())[n2:]))
+                sc["after_esc"] = shot(c, cl, out, "%s_scores_after_esc" % mode)
+                c.cmd("es_d.cfg", ["togglescores", "wait 300", "cg_hzmScoresOpen", "+use", "wait 20", "-use", "wait 60",
+                                   "cg_hzmScoresOpen"])
+                n3 = len(read(c.log()))
+                press(cl, "F8", 4)
+                sc["use_mirror"] = re.findall(r'"cg_hzmScoresOpen" is:"(\d)"', read(c.log())[n3:])
+                sc["after_use"] = shot(c, cl, out, "%s_scores_after_use" % mode)
             if key == "leave":
                 # the confirm card is up: LEAVE for real
                 n1 = len(read(c.log()))
@@ -309,7 +325,9 @@ def start_dedicated(mode):
         # muffle volumes) into every client on spawn: a muted client becomes audible unless the SERVER's cvars are 0
         lines += ["seta coop_tinnitusBaseVol 0", "seta coop_tinnitusMuffle 0", "seta coop_woundMuffleVol 0", "map m1l1"]
     else:
-        lines += ["set g_gametype 2", "map dm/mohdm1"]
+        # [2nd guard trip 2026-11-10] the MP path stuffs it too (coop_mod/mp.scr:594 `s_volume <coop_tinnitusBaseVol>`)
+        lines += ["set g_gametype 2", "seta coop_tinnitusBaseVol 0", "seta coop_tinnitusMuffle 0",
+                  "seta coop_woundMuffleVol 0", "map dm/mohdm1"]
     open(os.path.join(mt, "es_ded.cfg"), "w", newline="\n").write("\n".join(lines) + "\n")
     args = [os.path.join(ROOT, "client", "omohaaded.exe"), "+set", "com_target_game", "2", "+set", "fs_basepath", GOG,
             "+set", "fs_homepath", SRV_HOME, "+set", "dedicated", "1", "+set", "net_port", str(SRV_PORT),
@@ -356,6 +374,72 @@ def case_dedjoin(mode, out, res):
         shutil.copyfile(slog, os.path.join(out, "server_qconsole.log")) if os.path.exists(slog) else None
 
 
+def case_listenjoin(mode, out, res):
+    """client 1 hosts (the real Apply path), client 2 joins it: the joiner's board (JOINED), its LEAVE confirm wording,
+    LEAVE for real (the host's log must show the joiner's save flush and the host keeps running)"""
+    w, h = [int(x) for x in opt("--res", "1600x900").split("x")]
+    host, joiner = C("client", 12971), C("client2", 12973)
+    build_pak(host)
+    build_pak(joiner)
+    with launch(host, use_exe(host, False), w=1280, h=720, extra=[("cheats", "1")]) as ch:
+        boot_mode(host, ch, mode, res)
+        if guard(ch):
+            return
+        START[mode + "_join"] = ["connect 127.0.0.1:%d" % host.port]
+        r2 = {}
+        with launch(joiner, use_exe(joiner, False), w=w, h=h) as cj:
+            boot_mode(joiner, cj, mode + "_join", r2)
+            res["joiner_loaded"] = r2.get("loaded")
+            press(cj, "ESC", 2.5)
+            res["esc"] = shot(joiner, cj, out, "%s_listenjoin_esc" % mode)
+            lv = [r for r in rows(mode) if r[0] == "leave"][0]
+            vclick(joiner, cj, lv[2], lv[3], w, h)
+            time.sleep(3)
+            res["confirm"] = shot(joiner, cj, out, "%s_listenjoin_confirm" % mode)
+            n1 = len(read(host.log()))
+            vclick(joiner, cj, 246, 276, w, h)
+            time.sleep(12)
+            res["after_leave"] = shot(joiner, cj, out, "%s_listenjoin_after_leave" % mode)
+            res["host_log"] = [l[31:] for l in read(host.log())[n1:].splitlines()
+                               if re.search(r"COOPSAVE|has left|disconnect", l, re.I)][:6]
+            guard(cj)
+        res["host_alive"] = shot(host, ch, out, "%s_listenjoin_host_after" % mode)
+        guard(ch)
+    shutil.copyfile(joiner.log(), os.path.join(out, "joiner_qconsole.log"))
+    shutil.copyfile(host.log(), os.path.join(out, "host_qconsole.log"))
+
+
+def case_volcheck(mode, out, res):
+    """T14 check: join the private dedicated server, spawn WITHOUT the client re-zeroing s_volume, wait, read s_volume
+    (and the guard's audio meter) - proves the server no longer pushes an audible volume"""
+    global SPAWN
+    SPAWN = [l for l in SPAWN if not l.startswith("set s_volume")]
+    w, h = 1280, 720
+    srv, slog = start_dedicated(mode)
+    res["server_pid"] = srv.pid
+    try:
+        t = time.time()
+        while time.time() - t < 240 and not re.search(r"Sound End Registration|Server Initialization Complete", read(slog)):
+            time.sleep(2)
+        time.sleep(20)
+        c = C()
+        build_pak(c)
+        START[mode + "_join"] = ["connect 127.0.0.1:%d" % SRV_PORT]
+        with launch(c, use_exe(c, False), w=w, h=h) as cl:
+            boot_mode(c, cl, mode + "_join", res)
+            time.sleep(20)
+            c.cmd("es_d.cfg", ["echo VOLCHECK", "s_volume", "coop_tinnitusBaseVol"])
+            n0 = len(read(c.log()))
+            press(cl, "F8", 3)
+            res["vol"] = re.findall(r'"(s_volume|coop_tinnitusBaseVol)" is:"([^"]*)"', read(c.log())[n0:])
+            res["pushed"] = re.findall(r"^.*s_volume.*$", read(c.log()), re.M)[-6:]
+            guard(cl)
+            res["report"] = repr(cl.report())[:200]
+        shutil.copyfile(c.log(), os.path.join(out, "qconsole.log"))
+    finally:
+        srv.kill()
+
+
 def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
@@ -371,7 +455,7 @@ def main():
     os.makedirs(out, exist_ok=True)
     res = {"case": case, "mode": mode}
     try:
-        {"shots": case_shots, "buttons": case_buttons, "dedjoin": case_dedjoin}[case](mode, out, res)
+        {"shots": case_shots, "buttons": case_buttons, "dedjoin": case_dedjoin, "volcheck": case_volcheck, "listenjoin": case_listenjoin}[case](mode, out, res)
     finally:
         res["tripped"] = TRIPPED
         json.dump(res, open(os.path.join(out, "result.json"), "w"), indent=1)
