@@ -51,8 +51,8 @@ area) and the props stood at the wrong places.
 | S3 | Railgun: 3 charges, counter, 8 s timer, destruction scene | same chain on the original's railgun mesh; its explosion package plays and the original's destroyed railgun mesh replaces it | M (wreck shown in the camera walk) |
 | S4 | Comm tower, ammo dump: charge -> objective -> destruction | same chain; the tower's own destroyed mesh replaces it, the ammo dump goes in its package's blast (it has no destroyed mesh in the original either) | M |
 | S5 | Church: secure, German counter-attack with PA announcements, waves counted, end camera, end of level | same chain to the original's EndTheLevel | M (static end camera: D) |
-| S6 | Nebelwerfer plunger | use point at the plunger fires its groups; the original's nebelwerfer packages play as stock snow-blast emitters | D (stock rocket effects) |
-| S7 | Ambient fires, smoke, fog, birds (45 effects packages) | every package at its placement: fires (19) burn from the start as stock fire emitters with fire sounds, smoke and fog linger, blasts play when their group fires; birds not placed | D (EA particle systems mapped to the closest stock emitters; engine particle import not written) |
+| S6 | Nebelwerfer plunger | use point at the plunger fires its groups; the launch and impact packages play as the original's own particle systems, converted on the player's PC (see S7); one system of the launch (the muzzle glow) is not in the level's effect stream and is left out | M (one glow system absent) |
+| S7 | Ambient fires, smoke, fog, birds (45 effects packages) | every package at its placement and with its placement's own turn (roof fires lie along their roof slope). Converter 0.7.0 (`eafx.py`) reads the level's particle systems and writes each one as an emitter: emission rate and burst size, life, size and growth, start and end colour and alpha with their per-particle ranges, spawn box, velocity, acceleration, spin, blend mode, view-distance clip and fade. What the stock emitter cannot say goes through the engine's `convfx` emitter command (converted maps only). 30 packages become 39 emitter files and 43 sprite shaders. Not carried: depth bias, noise, trails, the fog multiplier; one end scale is used where the original has separate X and Y; acceleration stays in world space; four systems are not in the level's effect stream (a house fire, the nebelwerfer muzzle glow, a tombstone dust puff, one tank-explosion layer); birds not placed. Sizes are the disc's own: the village fires are small (roof flames a hand to a forearm high, straw-roof flames up to half a metre under thin smoke) - the tall black columns of the earlier build were stock emitters of ours and are gone. Timing assumes a 30 Hz emission tick. No capture of the original was available here to compare against, so the look is checked against the data, not against footage | M (listed parameters not carried) |
 
 ## Objectives, pickups, audio
 
@@ -61,7 +61,7 @@ area) and the props stood at the wrong places.
 | O1 | 6 objectives, disc text, shown in the order the original activates them (railgun first, then partisans, Panzers, ammo dump, tower, church) | same | M |
 | P1 | 40 pickups: medkits, revive kits, stick grenades, bazookas, PPSh, Gewehr | at the original's points, appear when their group fires | M (revive kit -> health box: D) |
 | A1 | Scripted lines (27 cues in the level's scenes; 61 voiced lines on the disc) | the original's own voice (UBER event -> str.ast stream, decoded on the player's PC) with its subtitle, at the original's moment; the scene waits for the line | M |
-| A2 | Music: interactive score switched by 10 music triggers | the 10 triggers with their own volumes / groups and their own music EVENT (15-20, 35-37, 50); each event plays the section the score's own event table names (eamusic.py, read from the .mpf on the player's PC): intro samples in order, then the looping tail where the section loops (events 16 and 19), once and silent where it does not; the three stingers (35-37) play over and go back to the looping cue | M (the 2-3 s cross-fades between cues are cuts; the score's state events 0-12 - idle and combat beds the game itself raises - are not driven) |
+| A2 | Music: interactive score switched by 10 music triggers | the 10 triggers with their own volumes / groups and their own music EVENT (15-20, 35-37, 50); each event plays the section the score's own event table names (eamusic.py, read from the .mpf on the player's PC): intro samples in order, then the looping tail where the section loops (events 16 and 19), once and silent where it does not. Per the control file a cue event switches at once; here the old cue is faded over 1 s before the new one starts. The three stingers (35-37) play over, a cue that arrives while one plays is held until it ends (as the control file defers it), then the held or looping cue comes back | M (the score's state events 0-12 - fade-outs of 5 / 3 / 1 s, the held-cue return with a 2 s fade-in, the idle bed - are raised by the game program by rules that are not in the control file, so they are not driven; the control file has no cross-fade between cues - an earlier note here said 2-3 s) |
 
 ## Geometry and progression (local pak; basis since 2026-11-10: the ORIGINAL's collision)
 
@@ -91,8 +91,15 @@ blocks: 0.**
 
 ## Score (1 player)
 
-**Matched 23 - Deviated 3 - Missing 0** (of 26 rows).
-Deviations: E8 the Russian squad's follow logic, S6/S7 EA particle systems as stock emitters.
+**Matched 25 - Deviated 1 - Missing 0** (of 26 rows).
+Deviation: E8 the Russian squad's follow logic. S6/S7 now play the original's particle systems (converter 0.7.0 + engine `convfx`), with the uncarried parameters listed in the rows.
+
+Verified 2026-11-10 on converter 0.7.0 with the convfx engine build (private install only):
+- SP self-test walk (1 client): all 6 objectives, the mission end, 0 Script Errors, ~60 fps at 960x540; every music event in order (15-20, 36, 35, 50, 37, end) with the 1 s fade logged at each cue change.
+- Co-op self-test on a private dedicated server with 1 client (the 2-client run was not repeated for this round - the changes are client-side drawing and music): all 6 objectives, the mission end, 0 Script Errors, all 109 Germans killed, 0 of 109 deferred spawns in view, 7 idle AI.
+- Stills at 26 fixed views before and after (local, H:\hzm_work\eapolish\shots\fx_before, fx_after, fx_pairs_1.jpg, fx_pairs_2.jpg).
+- Partisan barn: 12 stills from the barn floor and the cellar (local, shots\barn2). The cellar is crouch-only in the original's collision; from crouch height and from the barn floor nothing outside shows. The earlier still that showed the outside under the walls came from the self-test standing a player in the cellar, eye level with the floor planks. Nothing capped, nothing blocked.
+
 
 Verified 2026-11-10 on converter 0.6.0 (the original's collision):
 - 2-player co-op self-test (private dedicated server + 2 clients): all 6 objectives, the mission end, 0 Script

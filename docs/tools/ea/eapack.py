@@ -389,6 +389,12 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
         # [eapolish] the original's music EVENTS (its music triggers, eavm) play the sections the .mpf's own
         # event table gives them (eamusic.py; converter 0.6.1)
         nmus = music(L, level, spec["music"], vgm, files, lines, log, events=vm.get("music_events", []))
+    # [eapolish] the level's own particle systems (fires, smoke, fog, blasts) as emitters (eafx.py; converter 0.7.0)
+    import collections
+    import eafx
+    fxused = collections.Counter(eavm.base(t) for r in db.of("EffectsPackage") for _k, t in r.strings()
+                                 if t.lower().endswith(".xpd"))
+    vm["fx"] = eafx.build(L.stream, db, X, level, files, lines, used=dict(fxused), log=log)
     lines += [f"\tlevel.ea_axis_n = {na}", f"\tlevel.ea_ally_n = {nl}", "\tlevel.ea_data_ok = 1", "}end", ""]
     files[f"maps/coop_ea_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     if mohaa_base:

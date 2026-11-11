@@ -38,8 +38,11 @@ def main():
                 "ui_hud 0"])
         for name, x, y, z, p, yw in views:
             c.check()
-            c.step(["tele %.0f %.0f %.0f" % (x, y, z), "wait 3", "face %.1f %.1f 0" % (p, yw), "wait 40",
-                    "screenshot ea_" + name, "wait 6"])
+            # the move and the still are separate steps: one cfg with both took the still a view late now and then
+            c.step(["tele %.0f %.0f %.0f" % (x, y, z), "wait 12", "tele %.0f %.0f %.0f" % (x, y, z), "wait 3",
+                    "face %.1f %.1f 0" % (p, yw), "wait 60"])
+            time.sleep(float(os.environ.get("EA_SHOT_SETTLE", "1.5")))
+            c.step(["screenshot ea_" + name, "wait 12"])
             c.grab("ea_" + name, out)
         c.keep_log(os.path.join(out, "qconsole.log"))
     print("stills:", len(views))

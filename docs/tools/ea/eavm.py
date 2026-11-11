@@ -426,6 +426,12 @@ def build(db, X, spot, ground, text, lines, log=print):
         gl = [x for k, v in lists(r, 15) if k == "g" for x in v]
         L(f"\tlevel.ea_fx_pos[{n}] = {P(X(r.pos))}")
         L(f"\tlevel.ea_fx_name[{n}] = {S(base(xp[0]))}")
+        # the placement's own turn (its systems lie along a roof slope): forward = row 0, up = row 2 of the record
+        f0, l0, u0 = r.rot[0:3], r.rot[3:6], r.rot[6:9]
+        pit = -math.degrees(math.asin(max(-1.0, min(1.0, f0[2]))))
+        yw = math.degrees(math.atan2(f0[1] * X.m, f0[0])) % 360
+        rl = math.degrees(math.atan2(l0[2] * X.m, u0[2]))
+        L(f"\tlevel.ea_fx_ang[{n}] = ( {pit:.1f} {yw:.1f} {rl:.1f} )")
         L(f"\tlevel.ea_fx_grp[{n}] = {gid(gl[0]) if gl else chr(34) * 2}")
     L(f"\tlevel.ea_fx_n = {n}")
     n = 0
