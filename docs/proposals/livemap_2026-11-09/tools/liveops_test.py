@@ -207,6 +207,8 @@ def case_board(out, res):
         cmdfile("lo_d.cfg", ["set ui_scene_hot 0", "hzm_ops card %d" % slot_no(card)] + (["set ui_opsCharset 1"] if "--charset" in sys.argv else []))
         press(c, "F8", 3)
         res["card_shot"] = shot(c, out, "card")
+        cmdfile("lo_a.cfg", ["set bot_manualmove 0", "set g_inactiveSpectate 60"])
+        press(c, "F5", 1)
         guard(c)
         res["peak"] = repr(c.report())[:300]
     log = read(lp())
@@ -261,6 +263,8 @@ def case_match(out, res, mode):
         time.sleep(6)
         if res["returned"] and not guard(c):
             res["return_shot"] = shot(c, out, "returned_card")
+        cmdfile("lo_a.cfg", ["set bot_manualmove 0", "set g_inactiveSpectate 60"])
+        press(c, "F5", 1)
         guard(c)
         res["peak"] = repr(c.report())[:300]
     log = read(lp())
@@ -350,6 +354,8 @@ def case_click(out, res):
         click("opsdp%s" % side)                             # DEPLOY
         res["deployed"] = wait_for(r"\^~\^~\^ OPS deploy", 15, n1, c)
         res["match_started"] = wait_for(r"\^~\^~\^ OPS start", 240, n1, c)
+        cmdfile("lo_a.cfg", ["set bot_manualmove 0", "set g_inactiveSpectate 60"])
+        press(c, "F5", 1)
         guard(c)
         res["peak"] = repr(c.report())[:300]
     res["steps"] = [repr(s_) for s_ in steps]
@@ -359,7 +365,7 @@ def case_click(out, res):
 
 # [LIBERATION] a distinctive co-op kit (the user's check): Thompson with the GOLD finish, Colt, frags, the leather gloves and
 # an engraving - archived exactly as the co-op Armory writes them (coop_lo<slot> = roster id, coop_loS<slot>F = finish id)
-KIT = ['seta coop_lo1 23', 'seta coop_loS1F 1', 'seta coop_lo2 ""', 'seta coop_lo3 46', 'seta coop_lo4 62',
+KIT = ['seta coop_lo1 24', 'seta coop_loS1F 1', 'seta coop_lo2 ""', 'seta coop_lo3 48', 'seta coop_lo4 64',
        'seta coop_loAGlove "append name ,gn2"', 'seta cl_engraveText LIBERTY', 'seta cl_engrave 1']
 MP_LOADOUT = ["coop_mpa_K1", "coop_mpa_K2", "coop_mpa_K3", "coop_mpaFin1", "coop_mp_glove"]
 
@@ -380,14 +386,19 @@ def case_lib(out, res):
     cmdfile("lo_a.cfg", KIT + ["echo LOMPKIT"] + MP_LOADOUT + ["set ui_opsFakeUtc %d" % utc, "seta ui_atticMain 1", "pushmenu hzm_newgame3d", "wait 1500",
                                "hzm_ops card %d" % slot_no(c0)])
     cmdfile("lo_b.cfg", ["hzm_ops deploy"])
-    cmdfile("lo_c.cfg", ["set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0"])
+    mute = ["set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0"]
+    cmdfile("lo_c.cfg", mute)
     # the end: every German dies (script *<entnum> kill, cheats on), or the player does, or the clock runs out
     if end == "win":
-        cmdfile("lo_d.cfg", ["script *%d kill" % i for i in range(1, 27)])
+        # "script *N kill" needs cheats, which a contract's own map start never has ("command not available"), so the
+        # Germans are taken off the server instead: the hunt then counts 0 living Germans, the same test a last kill passes
+        cmdfile("lo_d.cfg", ["set sv_numbots 0"])
     elif end == "lose":
         cmdfile("lo_d.cfg", ["kill"])
     else:
-        cmdfile("lo_d.cfg", ["echo LONOP"])
+        # the clock case needs the idle test client alive and on his side for the whole limit: the Germans are frozen
+        # (bot_manualmove, a stock bot debug cvar) and the engine's inactivity move to the spectators is off
+        cmdfile("lo_d.cfg", ["set bot_manualmove 1", "set g_inactiveSpectate 0"])
     c = client(BINDS, extra_sets=[("cheats", "1"), ("thereisnomonkey", "1")])
     with c:
         wait_for(r"UI_Init|CL_InitCGame|Sound|\^~\^~\^", 120, c=c)
@@ -407,10 +418,20 @@ def case_lib(out, res):
             res["spawn_shot"] = shot(c, out, "spawn")
             time.sleep(2)
             res["spawn_shot2"] = shot(c, out, "spawn_radio")
-            time.sleep(40 if end != "time" else 5)
+            if end == "time":
+                press(c, "F8", 1)
+            # win: inside the opening grace (the player cannot be hurt for 6 s), so no German gets to him first
+            time.sleep({"win": 0.5, "time": 5}.get(end, 40))
             res["hunt_shot"] = shot(c, out, "hunt")
         if end in ("win", "lose") and not guard(c):
             press(c, "F8", 2)
+        if end == "time":
+            # stills of the two warnings (2 min and 30 s left)
+            for tag, left in (("warn_2min", 118), ("warn_30s", 28)):
+                if wait_for(r"\^~\^~\^ LIB warn left=%d" % (120 if left > 60 else 30), 60 * (res["limit_min"] + 1), n0, c):
+                    time.sleep(1.0)
+                    if not guard(c):
+                        res[tag] = shot(c, out, tag)
         res["ended"] = wait_for(r"\^~\^~\^ OPS end mode=lib", 60 * (res["limit_min"] + 2), n0, c)
         time.sleep(1.0)
         if not guard(c):
@@ -424,6 +445,8 @@ def case_lib(out, res):
             cmdfile("lo_a.cfg", ["echo LOMPKIT"] + MP_LOADOUT + ["coop_lo1", "coop_loS1F", "coop_lo3", "coop_lo4"])
             press(c, "F5", 3)
             res["after_cvars"] = re.findall(r'"(coop_[A-Za-z0-9_]+)" is:"([^"]*)"', read(lp())[n1:])
+        cmdfile("lo_a.cfg", ["set bot_manualmove 0", "set g_inactiveSpectate 60"])
+        press(c, "F5", 1)
         guard(c)
         res["peak"] = repr(c.report())[:300]
     log = read(lp())
@@ -441,9 +464,9 @@ def main(cases):
         build_pak()
         cases = [c for c in cases if c != "pak"]
     os.makedirs(RUNS, exist_ok=True)
+    vals = [i + 1 for i, a in enumerate(cases) if a in ("--map", "--lane", "--end")]   # an option's value is not a case
+    cases = [a for i, a in enumerate(cases) if i not in vals and not a.startswith("--")]
     for case in cases:
-        if case.startswith("--") or case in (opt("--map", "\0"), opt("--lane", "\0"), opt("--end", "\0")):
-            continue
         if TRIPPED:
             print("GUARD TRIPPED - stopping all launches:", TRIPPED, flush=True)
             break
