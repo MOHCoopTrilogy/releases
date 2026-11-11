@@ -2,7 +2,7 @@
 """mapclips_test.py - in-game check of the map-zoom loading clips (gen_mapclips.py) on a PRIVATE client.
 
     python -P -E mapclips_test.py <pak> <run_dir> map [map ...] [--nocap] [--size WxH] [--exe NAME]
-        map@0 / map@1  that load with cl_loadCinematic 0 / 1 (default 1)
+        map@0 / map@1  that load with cl_loadCinematic 0 / 1 (default 1); map@1@0 = also cl_loadCineThread 0 (A/B)
         --nocap        no window captures (a load-time bench: PrintWindow during a load costs load time itself)
 
 Client: G:\\mohaa-mapclipshd (MAPCLIPS_SLOT; the release DLLs + the exe under test, --exe; basepath = the GOG tree read-only, home inside the folder,
@@ -104,11 +104,11 @@ def main():
         for li, mm in enumerate(maps):
             if c.watcher.violations:
                 break
-            m, on = (mm.split("@") + ["1"])[:2]
-            key = "%02d_%s_%s" % (li, m, on)
+            m, on, thr = (mm.split("@") + ["1", "1"])[:3]       # map[@cinematic[@decode thread]]
+            key = "%02d_%s_%s%s" % (li, m, on, "" if mm.count("@") < 2 else "_t" + thr)
             open(os.path.join(MT, "mc_go.cfg"), "w", newline="\n").write(
-                "set coop_tinnitusBaseVol 0\nset coop_tinnitusMuffle 0\nset coop_woundMuffleVol 0\n"
-                "set cl_loadCinematic %s\nset ui_dmmap %s\nexec coop_mod/start_server.cfg\n" % (on, m))
+                "set coop_tinnitusBaseVol 0\nset coop_tinnitusMuffle 0\nset coop_woundMuffleVol 0\nset cl_loadCineThread %s\n"
+                "set cl_loadCinematic %s\nset ui_dmmap %s\nexec coop_mod/start_server.cfg\n" % (thr, on, m))
             n = len(read())
             c.post_key(F7)
             t_k = time.time()
