@@ -33,6 +33,108 @@ MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
 
+
+def tank_route(grid, a, b, cell=48.0, half=64.0, wide=144.0, margin=480.0, only_check=False, room=True):
+    """[eapolish] waypoints (excluding a and b) for a tank driving from a to b over open ground: A* on a cell grid
+    of the collision (a cell is open when it has ground within a step of its neighbour and a tank-sized box above
+    it hits no triangle), then string-pulled to the fewest points a straight drive between keeps on open cells.
+    [] when the straight line is already open or no route is found (the leg then drives straight, as before)."""
+    import heapq
+    x0, x1 = min(a[0], b[0]) - margin, max(a[0], b[0]) + margin
+    y0, y1 = min(a[1], b[1]) - margin, max(a[1], b[1]) + margin
+    nx, ny = int((x1 - x0) / cell) + 1, int((y1 - y0) / cell) + 1
+    zref = (a[2] + b[2]) / 2.0
+    zc, wc = {}, {}
+
+    def clear(x, y, g, hw):
+        c = (x, y, g + 30 + 50)
+        return not any(flgeom.tri_box(c, (hw, hw, 50), *grid.tris[t]) for t in grid.near(x, y, hw + 4))
+
+    def gz(i, j):
+        if (i, j) not in zc:
+            x, y = x0 + i * cell, y0 + j * cell
+            g = grid.ground(x, y, zref + 200, zref - 300)
+            zc[(i, j)] = g if g is not None and clear(x, y, g, half) else None
+        return zc[(i, j)]
+
+    def roomy(i, j):
+        # a tank is ~300u long and swings wide on a turn: keep the route well off walls where the ground allows
+        if (i, j) not in wc:
+            g = gz(i, j)
+            wc[(i, j)] = g is not None and clear(x0 + i * cell, y0 + j * cell, g, wide)
+        return wc[(i, j)]
+
+    def cell_of(p):
+        return (min(nx - 1, max(0, int(round((p[0] - x0) / cell)))), min(ny - 1, max(0, int(round((p[1] - y0) / cell)))))
+
+    def open_line(p, q, need_room=True):
+        n = max(1, int(math.hypot(q[0] - p[0], q[1] - p[1]) / (cell / 2)))
+        last = None
+        for k in range(n + 1):
+            t = k / n
+            c = cell_of((p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t))
+            z = gz(*c)
+            if z is None or (last is not None and abs(z - last) > 40) or (need_room and not roomy(*c)):
+                return False
+            last = z
+        return True
+
+    if only_check:
+        return open_line(a, b, need_room=room)
+    if open_line(a, b):
+        return []
+    s0, s1 = cell_of(a), cell_of(b)
+    for c in (s0, s1):         # the placements themselves may sit against cover: let the search start and end there
+        if gz(*c) is None:
+            zc[c] = grid.ground(x0 + c[0] * cell, y0 + c[1] * cell, zref + 200, zref - 300) or zref
+    openl = [(0.0, s0)]
+    came, cost = {s0: None}, {s0: 0.0}
+    while openl:
+        _, c = heapq.heappop(openl)
+        if c == s1:
+            break
+        zc0 = gz(*c)
+        for di in (-1, 0, 1):
+            for dj in (-1, 0, 1):
+                if not (di or dj):
+                    continue
+                n2 = (c[0] + di, c[1] + dj)
+                if not (0 <= n2[0] < nx and 0 <= n2[1] < ny):
+                    continue
+                z2 = gz(*n2)
+                if z2 is None or abs(z2 - zc0) > 32:
+                    continue
+                nc = cost[c] + math.hypot(di, dj) * cell * (1.0 if roomy(*n2) else 4.0)
+                if nc < cost.get(n2, 1e18):
+                    cost[n2] = nc
+                    came[n2] = c
+                    h = math.hypot(n2[0] - s1[0], n2[1] - s1[1]) * cell
+                    heapq.heappush(openl, (nc + h, n2))
+    if s1 not in came:
+        return []
+    path = []
+    c = s1
+    while c is not None:
+        path.append((x0 + c[0] * cell, y0 + c[1] * cell, gz(*c) + 16))
+        c = came[c]
+    path.reverse()
+    out, cur, k = [], a, 1
+    while k < len(path) - 1:
+        # pull as far as a line keeps well off walls; only where the route itself runs close (a lane between
+        # houses) pull over merely open cells - never a 48u staircase of right-angle bends the autopilot cannot follow
+        j = k
+        while j + 1 < len(path) and open_line(cur, path[j + 1]):
+            j += 1
+        if j == k:
+            while j + 1 < len(path) and open_line(cur, path[j + 1], need_room=False):
+                j += 1
+        if j + 1 >= len(path):
+            break
+        out.append(path[j])
+        cur = path[j]
+        k = j + 1
+    return out
+
 def tga_bytes(w, h, rgba):
     """Uncompressed 32-bit TGA, bottom-up rows (origin lower-left)."""
     hdr = struct.pack("<BBBHHBHHHHBB", 0, 0, 2, 0, 0, 0, 0, 0, w, h, 32, 8)
@@ -745,9 +847,17 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 g = grid.ground(q[0], q[1], q[2] + 160, q[2] - 400)
                 q = (q[0], q[1], (g if g is not None else q[2]) + 16)
                 tn = "ea_tkp_%s_%d" % (sq, num)
-                B.entity([("classname", "info_vehiclepoint"), ("origin", "%.0f %.0f %.0f" % prev),
-                          ("targetname", tn), ("target", tn + "_e")])
-                B.entity([("classname", "info_vehiclepoint"), ("origin", "%.0f %.0f %.0f" % q), ("targetname", tn + "_e")])
+                # converter 0.6.1: the original's tanks drive its navmesh between the points (roads and open ground);
+                # a straight 2-node leg ran Panzer 3 into a house. Route each leg over open ground on the collision.
+                way = tank_route(grid, prev, q)
+                stats["tank_route_pts"] = stats.get("tank_route_pts", 0) + len(way)
+                chain = [prev] + way + [q]
+                names = [tn] + ["%s_w%d" % (tn, k + 1) for k in range(len(way))] + [tn + "_e"]
+                for k, (pt, nm) in enumerate(zip(chain, names)):
+                    kv = [("classname", "info_vehiclepoint"), ("origin", "%.0f %.0f %.0f" % pt), ("targetname", nm)]
+                    if k + 1 < len(names):
+                        kv.append(("target", names[k + 1]))
+                    B.entity(kv)
                 prev = q
                 stats["tank_legs"] = stats.get("tank_legs", 0) + 1
     for kv in sob_ents:
