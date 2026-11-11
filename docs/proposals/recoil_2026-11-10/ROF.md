@@ -41,3 +41,15 @@ Avg TTK = the continuous form (round count un-rounded: the average across hit lo
 | DP-28 | dp28 | 522 | 550 | spec (https://en.wikipedia.org/wiki/Degtyaryov_machine_gun) | 32 | 32 | 1/1 | 0.24 | 0.23 | 0.35 | 0.33 | 0.12 | 0.11 | 5 |
 | M1919 30cal | 30calportable | 667 | 500 | spec (https://en.wikipedia.org/wiki/M1919_Browning_machine_gun) | 45 | 45 | 2/1 | 0.01 | 0.15 (free) | 0.09 | 0.24 | 0.00 | 0.12 | 6 |
 | MG42 | mg42portable | 857 | 1200 | MEASURED (https://lonesentry.com/articles/ttt/mg42.html) | 60 | 60 | 2/1 | 0.00 | 0.03 (free) | 0.00 | 0.05 | 0.00 | 0.00 | 7 |
+
+## Turret machine guns (AI gunners)
+
+An AI on a turret fired every server frame (40 a second = 2,400 rpm). Now each round leaves at the gun's real rate and carries the rounds it replaces (frame rate / real rate, capped x2.5), so an MG 42 nest keeps its lethality in half the rounds and a .30 cal - slower for real - is about half as dangerous as before.
+
+| turret | rpm before (AI) | rpm after | per-round damage x | source |
+|---|---|---|---|---|
+| mg42_gun | 2400 | 1200 | 2.00 | MG 42, measured 1100-1350 (US Intelligence Bulletin 1943, lonesentry.com) |
+| 30cal | 2400 | 500 | 2.50 | M1919A4, 400-600 (en.wikipedia.org/wiki/M1919_Browning_machine_gun) |
+| coop_30cal_para | 2400 | 500 | 2.50 | as 30cal |
+| it_w_breda_gun | 2400 | 450 | 2.50 | Breda M37, 450 (en.wikipedia.org/wiki/Breda_M37) |
+| maxim_gun | 2400 | 600 | 2.50 | Maxim M1910, 520-600 (en.wikipedia.org/wiki/PM_M1910) |
