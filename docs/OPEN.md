@@ -158,6 +158,8 @@ carried by the **2026-09-20 session block below**. The MP framework engages on A
   (`docs/proposals/mpprog_2026-11-10/`); **still needs one real playtest** (kill, quit, rejoin: `MPPROG load VERIFIED`).
   **Open:** `win_buildabase` has no writer (basebuild has no win point) - Architect challenge unreachable, its skin
   stays earnable by kills; `mp_unlock_audit.py` lists it as a known WARN.
+  **Open:** the Armory FINISH padlocks read the old global `coop_mpUfin_*` cvars, but finishes now open per gun
+  (`mp_finish_map.scr::mpfin_open`) - the padlock can disagree with the server. Weapon-tile padlocks fixed (bug-10926).
 - **MP END-OF-ROUND RANK CARD — SHIPPED + code-path verified (bug-2751).** `xp.scr::xp_mp_roundcard` draws a debrief
   in the pre-next-round pause (emblem, +XP, bar, PROMOTED; HUD 160-167), wired into `push_win`+`rounds_win`. The
   rank-up **bar + ceremony already fired in MP** via `xp_award_mp`; this card was the missing visual. **VERIFY** the

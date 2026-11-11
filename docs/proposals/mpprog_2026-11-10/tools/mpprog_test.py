@@ -247,7 +247,8 @@ def stop_client(hm):
 def shot(hm, name, menu):
     sd = os.path.join(hm, "maintt", "screenshots")
     before = set(os.listdir(sd)) if os.path.isdir(sd) else set()
-    step(hm, ["pushmenu " + menu, "wait 400", "screenshotJPEG", "wait 300", "popmenu 0", "wait 100"])
+    pre = ["set coop_mpSrP%d %d" % (i, 1 if i == 0 else 0) for i in range(7)] if menu == "coop_mp_record" else []
+    step(hm, pre + ["pushmenu " + menu, "wait 400", "screenshotJPEG", "wait 300", "popmenu 0", "wait 100"])
     time.sleep(1.0)
     new = sorted((set(os.listdir(sd)) if os.path.isdir(sd) else set()) - before)
     if not new:
@@ -296,6 +297,7 @@ def mp_session(tag, code, test, hm, mt, kills):
         check("%s %d kills credited to the human" % (tag, kills), d, out["done"])
         time.sleep(4)        # the push throttle (3 s) - the forced flush in the hook covers the last kill
         out["shot_rec"] = shot(hm, tag + "_record", "coop_mp_record")
+        out["shot_arm"] = shot(hm, tag + "_armory", "coop_mpa_armory")
     finally:
         stop_client(hm)
         stop_server()
@@ -322,8 +324,10 @@ def mp_run(mod, k1, k2):
     check("S2 a fresh server process loaded the carried record (MPPROG load VERIFIED)", ld and ld[0] == "VERIFIED",
           (re.findall(r"MPPROG load [^\r\n]*", b["srv"]) or ["no load line"])[0][:200])
     found = re.findall(r"MPPROGTEST human found e[0-9]+ [^\r\n]*", b["srv"])
-    check("S2 total at join = S1 total", found and (" total=%d " % k1) in found[-1] + " ", found[-1] if found else "")
-    check("S2 total after more kills = S1 + S2", b["done"] and (" total=%d " % (k1 + k2)) in b["done"] + " ",
+    k1r = int((re.search(r"human done kills=\d+ total=(\d+)", a["srv"]) or [0, 0])[1])
+    check("S2 total at join = S1 credited total (%d)" % k1r, found and (" total=%d " % k1r) in found[-1] + " ", found[-1] if found else "")
+    k2r = int((re.search(r"human done kills=(\d+)", b["done"] or "") or [0, 0])[1])
+    check("S2 total after more kills = S1 + S2", b["done"] and (" total=%d " % (k1r + k2r)) in b["done"] + " ",
           b["done"])
     cv = b["cv"]
     check("S2 armory unlock cvars still set from persisted counts (class unlock + wt tier 2)",
