@@ -27,8 +27,33 @@ import flbsp   # noqa: E402
 import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
+import flclear
+import flsheets  # noqa: E402
+import flroutes  # noqa: E402
+import flscene  # noqa: E402
+import flfit  # noqa: E402
+import flcliff  # noqa: E402
 
-CONVERTER_VERSION = "0.2.1"
+CONVERTER_VERSION = "0.5.0"
+FL_STEP = 38                  # Frontline step height at 48 u/m: its characters walk the original routes over 35-37u lips (route audit 2026-11-10); 34 left 28 of them blocked
+
+# Frontline .cdb collision flag word (flcore.collision, decoded 2026-11-10 against the level's own AI nav graph):
+#   bits 0-10 surface material, bit 23 special surface, bit 22 VOLUME. Material 14 + bit 22 = 450u-tall boxes standing
+#   on trigger spots (the crawl hole into the town, the interrogation room): the original's AI navpoint links run
+#   straight through them, so they never blocked a character. Converted as solid they were the invisible walls of the
+#   user's playtest ("a lot of invisible walls everywhere, blocking progression"). Material 15 + bit 22 is the
+#   river's surface and stays.
+COLL_VOLUME = 1 << 22
+COLL_MAT_VOLUME = (14, 15)   # 14 trigger volumes; 15 the river's WATER volume (its surface was walkable)
+COLL_SPECIAL = 1 << 23
+TAG_CLIFF = 0x7FFFF001        # [flpolish] collision added by us: edge-of-world clip (flcliff) / lip ramps (flclear)
+TAG_RAMP = 0x7FFFF002
+TAG_RIVERBED = 0x7FFFF005    # [flpolish] the bed under the canal's water volume (a player who falls in lands and drowns)
+TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dropped player-clip sheet stood in front of
+
+
+def coll_is_volume(f):
+    return bool(f & COLL_VOLUME) and (f & 0x7FF) in COLL_MAT_VOLUME
 MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
@@ -136,6 +161,19 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     return False
         return False
 
+    # share of each texture's triangles that are NOT vertical (foliage cards vs wall decals)
+    _tf = {}
+    for m in meshes:
+        if not m["tex"]:
+            continue
+        for a, b, c in m["tris"]:
+            n = face_normal(m["verts"][a], m["verts"][b], m["verts"][c])
+            if n is None:
+                continue
+            t_ = _tf.setdefault(m["tex"], [0, 0])
+            t_[0] += 1
+            t_[1] += abs(n[2]) >= 0.3
+    tex_flat = {k: v[1] / v[0] for k, v in _tf.items() if v[0]}
     # textures whose meshes carry real vertex alpha (Frontline's water: 203)
     vtx_alpha = {m["tex"] for m in meshes if m["tex"] and m["tris"] and min(c[3] for c in m["cols"]) < 250}
     _lv = sorted(c[0] + c[1] + c[2] for m in meshes for c in m["cols"] if not (c[0] == c[1] == c[2] == 255))
@@ -172,7 +210,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if key is None:
             name = tdir + "untextured"
             if name not in files:
-                files[name + ".tga"] = tga_bytes(4, 4, bytes((40, 70, 90, 255)) * 16)
+                # [flpolish] white: Frontline draws these untextured (1974 tris on 1_1) in their vertex colour alone;
+                # the old blue-grey (40,70,90) stand-in tinted every one of them
+                files[name + ".tga"] = tga_bytes(4, 4, bytes((255, 255, 255, 255)) * 16)
                 shader_lines.append(f"{name}\n{{\n\tsurfaceparm nolightmap\n\tcull none\n\t{{\n\t\tmap {name}.tga\n\t\trgbGen vertex\n\t}}\n}}\n")
             tex_names[key] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
             return tex_names[key]
@@ -210,7 +250,16 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             return tex_names[key]
         has_alpha = any(a < 250 for a in rgba[3::4])
         n_px = max(1, len(rgba) // 4)
-        soft = sum(1 for a in rgba[3::4] if 0 < a < 250) / n_px > 0.10
+        part = sum(1 for a in rgba[3::4] if 0 < a < 250) / n_px
+        soft = part > 0.10
+        # [flpolish] FOLIAGE is cut out, not blended: the tree canopies near the drop (1e1a80 flat cards, 1e5c00 tilted
+        # cards) have antialiased leaf edges (10-17% partial alpha) and were drawn as blended surfaces - no depth write,
+        # unsorted, so the leaves behind showed through the leaves in front: the user's "tree billboards near the
+        # beginning are broken: open or see-through". A mostly-clear texture (>= 40% fully transparent) with few soft
+        # pixels (< 25%) used mainly on non-vertical cards is foliage -> alpha test with depth write.
+        if soft and part < 0.25 and sum(1 for a in rgba[3::4] if a == 0) / n_px >= 0.40 and tex_flat.get(key, 0) >= 0.5:
+            soft = False
+            stats["foliage_cutout"] = stats.get("foliage_cutout", 0) + 1
         if key in vtx_alpha or soft:
             # translucent: Frontline's water carries its opacity in the vertex alpha (203); soft-edged decals
             # (grass fringes along hedges) carry it in the texture - alpha-TEST turned their pale fringe opaque
@@ -397,7 +446,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     # seam bridges: close Frontline's hairline floor gaps that would show the sky (flseam.py has the rules)
     # collision grid: seam bridges only close gaps in WALKABLE floors; flpack places actors with it
-    grid = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
+    grid = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts
+                          if not coll_is_volume(_f)])
     if not os.environ.get("FL_NO_SEAMS"):
         draws = [(key[0], verts, tris) for key in sorted(batches) for verts, tris in batches[key]]
         def on_floor(x, y, z):
@@ -448,16 +498,286 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     clip = B.shader("textures/common/fl_collision", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
     nb = rejected = 0
+    wound = []
+    wtags = []
+    volumes = 0
+    idmap = {}                    # [flpolish] wound triangle -> (disc chunk, triangle index), for flsheets' keep list
+    riverbed = []
     for name, vs, ts in coll:
         if os.environ.get("FL_COLL_ONLY") and os.environ["FL_COLL_ONLY"] not in name:
             continue
         P = [X(v) for v in vs]
-        for a, b, c, _f in ts:
+        for ti_, (a, b, c, f) in enumerate(ts):
+            if coll_is_volume(f):
+                volumes += 1
+                if (f & 0x7FF) == 15:
+                    # [flpolish] the river: no walkable surface, but a bed 160u under it so a player who falls in
+                    # lands (the mission script drowns him there, fl_water) instead of falling out of the world
+                    a2, b2, c2 = wind(a, b, c, flip_coll)
+                    riverbed.append(tuple((q[0], q[1], q[2] - 160.0) for q in (P[a2], P[b2], P[c2])))
+                continue
             a2, b2, c2 = wind(a, b, c, flip_coll)
-            if B.add_prism(clip, P[a2], P[b2], P[c2], thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
-                rejected += 1
-            else:
-                nb += 1
+            wound.append((P[a2], P[b2], P[c2]))
+            wtags.append(f)
+            idmap[wound[-1]] = (name, ti_)
+    stats["coll_volumes_dropped"] = volumes
+    wound += riverbed
+    wtags += [TAG_RIVERBED] * len(riverbed)
+    stats["riverbed_tris"] = len(riverbed)
+    # invisible blocker columns (trees, posts) shrunk to what is drawn inside them (flfit.py)
+    colboxes = []
+    rtris = [(X(m["verts"][a]), X(m["verts"][b]), X(m["verts"][c])) for m in meshes if m["tris"]
+             and (m["cell"], m["draw"]) not in hidden for a, b, c in m["tris"]]
+    if not os.environ.get("FL_NO_FIT"):
+        # the floor under a column, measured WITHOUT the special-surface boxes themselves (their inner faces read as
+        # floors and floated the fitted box ~50u up: a crawl-height slab under the tree)
+        g_nm = flgeom.TriGrid([t for t, f in zip(wound, wtags) if (f & 0x7FF) != flfit.MAT_SPECIAL])
+        wound, wtags, colboxes, stats["columns"] = flfit.fit_columns(
+            wound, wtags, rtris, lambda x, y, zt, zb: g_nm.ground(x, y, zt - 4, zb))
+    # [flpolish] blocked only by what you can see (flsheets.py): Frontline's floating player-clip sheets are dropped
+    # (all but the reviewed level-boundary ones, fl_levels.json "clip_keep") and the drawn geometry they stood in front
+    # of gets collision of its own
+    if not os.environ.get("FL_NO_SHEETS"):
+        wound, wtags, drawn_coll, stats["sheets"] = flsheets.replace(
+            wound, wtags, [idmap.get(t) for t in wound], lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL),
+            rtris, keep=flpack.spec(level).get("clip_keep", []))
+        # the original's AI routes stay open (flroutes.py): no drawn-geometry collision across them, and the gaps the
+        # original's narrower body walks through are cut wide enough for MOHAA's box (collision only)
+        route_segs = flroutes.routes([X(n_["pos"]) for n_ in L.navpoints()], flgeom.TriGrid(wound))
+        drawn_coll, stats["sheets"]["drawn_kept_off_routes"] = flroutes.keep_drawn(drawn_coll, route_segs)
+        wound += drawn_coll
+        wtags += [TAG_DRAWN] * len(drawn_coll)
+        wound, wtags, stats["routes"] = flroutes.carve(
+            wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL) and f < TAG_CLIFF,
+            dense=flpack.spec(level).get("route_widen", ()))
+        # ...and the sheets that stay (the level's boundaries where nothing is drawn) get a VISIBLE edge: a barbed-wire
+        # fence along their foot (MOHAA's own textures/mohcommon/barbwire from the player's install)
+        gk_ = flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED])   # fences stand on land, not the canal bed
+        wire = B.shader("textures/mohcommon/barbwire", 0, 0)
+        nfe = 0
+        # user 2026-11-11: invisible walls are fine where the original had them; no fence the original did not draw
+        kept_ = stats["sheets"].pop("kept_tris")
+        for (x0, y0, z0), (x1, y1, z1) in (flsheets.edges(kept_, gk_.ground, drawn=flgeom.TriGrid(rtris, cell=128.0))
+                                           if flpack.spec(level).get("boundary_wire") else []):
+            L_ = math.hypot(x1 - x0, y1 - y0)
+            q = [((x0, y0, z0), (0.0, 1.0)), ((x1, y1, z1), (L_ / 64.0, 1.0)),
+                 ((x1, y1, z1 + 64.0), (L_ / 64.0, 0.0)), ((x0, y0, z0 + 64.0), (0.0, 0.0))]
+            B.add_soup(wire, [(pp, st, (0.0, 0.0, 1.0), med_light + (255,)) for pp, st in q], [0, 1, 2, 0, 2, 3])
+            nfe += 1
+        stats["sheets"]["visible_edges"] = nfe
+    # headroom: crawl holes / doorways sized for Frontline's smaller player get MOHAA crouch / stand clearance
+    # (flclear.py; collision only, the drawn walls are untouched)
+    caps = []
+    if not os.environ.get("FL_NO_CLEAR"):
+        wound, caps, hr = flclear.normalise(wound, flpack.spec(level).get("headroom"), wtags, rtris)
+        wtags = hr.pop("tags")
+        stats["headroom"] = hr
+    # lips 19-34u high get walkable clip ramps (flclear.ledge_ramps): Frontline steps over them, MOHAA (18) did not
+    # OFF by default (fl_levels.json "ramps": true opts in): measured on 1_1 they let the walk audit climb onto wall tops
+    # and out of the world (void falls 7 -> 239) while removing 5 of 146 route blocks
+    if flpack.spec(level).get("ramps") and not os.environ.get("FL_NO_RAMPS"):
+        rp, stats["ramps"] = flclear.ledge_ramps(wound, flpack.spec(level).get("headroom"))
+        wound += rp
+        wtags += [TAG_RAMP] * len(rp)
+    # the edges of the world: a clip wall wherever a walkable floor ends over nothing (flcliff.py)
+    if not os.environ.get("FL_NO_CLIFF"):
+        # against the collision AS BUILT (skins dropped, headroom carved), not the disc's: a dropped player-clip sheet
+        # still read as 'a wall already stands here' and the edge got no clip (walk audit: void falls 7 -> 25)
+        # the canal bed does not count as ground past an edge: the quays keep their edge (Frontline's player never
+        # entered the water either); the bed only catches someone who gets in anyway
+        cw, stats["cliffs"] = flcliff.walls(wound, flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED]))
+        wound += cw
+        wtags += [TAG_CLIFF] * len(cw)
+        pw, stats["parapets"] = flcliff.parapets(wound, flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED]))
+        wound += pw
+        wtags += [TAG_CLIFF] * len(pw)
+        # [flpolish] ...and a DRAWN skirt under the same edge: the floor's own texture and light carried 512u straight
+        # down, so a player at the edge sees a quay wall / bank instead of the white void under the level (visaudit:
+        # 287 rays into the void along the town's west edge; user: "floors open and expose the underside of the map")
+        rt_sh = []
+        for m in meshes:
+            if not m["tris"] or (m["cell"], m["draw"]) in hidden or not m["tex"]:
+                continue
+            P_ = [X(v) for v in m["verts"]]
+            for a, b, c in m["tris"]:
+                n_ = face_normal(P_[a], P_[b], P_[c])
+                if n_ is None or abs(n_[2]) < 0.7:
+                    continue
+                col = tuple(sum(m["cols"][i][k] for i in (a, b, c)) // 3 for k in range(3))
+                rt_sh.append((((P_[a][0] + P_[b][0] + P_[c][0]) / 3, (P_[a][1] + P_[b][1] + P_[c][1]) / 3,
+                               (P_[a][2] + P_[b][2] + P_[c][2]) / 3), m["tex"], col))
+        rgrid = {}
+        for cen, tex, col in rt_sh:
+            rgrid.setdefault((int(cen[0] // 64), int(cen[1] // 64)), []).append((cen, tex, col))
+        nsk = 0
+        for k_ in range(0, len(cw), 2):
+            a_, b_ = cw[k_][0], cw[k_][1]           # the wall's bottom edge = the floor edge (minus 8)
+            mx, my, mz = (a_[0] + b_[0]) / 2, (a_[1] + b_[1]) / 2, (a_[2] + b_[2]) / 2 + 8
+            best = None
+            for dx in (-1, 0, 1):
+                for dy in (-1, 0, 1):
+                    for cen, tex, col in rgrid.get((int(mx // 64) + dx, int(my // 64) + dy), ()):
+                        d2 = (cen[0] - mx) ** 2 + (cen[1] - my) ** 2 + 4 * (cen[2] - mz) ** 2
+                        if d2 < 96 * 96 and (best is None or d2 < best[0]):
+                            best = (d2, tex, col)
+            if best is None:
+                continue
+            sh_ = tex_shader(best[1])
+            L_ = math.hypot(b_[0] - a_[0], b_[1] - a_[1])
+            top_a, top_b = a_[2] + 7, b_[2] + 7
+            vs_ = [((a_[0], a_[1], top_a), (0.0, 0.0), (0.0, 0.0, 1.0), best[2] + (255,)),
+                   ((b_[0], b_[1], top_b), (L_ / 128.0, 0.0), (0.0, 0.0, 1.0), best[2] + (255,)),
+                   ((b_[0], b_[1], top_b - 512), (L_ / 128.0, 4.0), (0.0, 0.0, 1.0), best[2] + (255,)),
+                   ((a_[0], a_[1], top_a - 512), (0.0, 4.0), (0.0, 0.0, 1.0), best[2] + (255,))]
+            B.add_soup(sh_, vs_, [0, 1, 2, 0, 2, 3])
+            nsk += 1
+        stats["skirts"] = nsk
+        # ...and a drawn GROUND under the whole level, 512u under its lowest floor, in the level's most used floor
+        # texture at the level's median light: a look over the edge of the world, or through a gap in a floor, lands
+        # on ground instead of the white void (Frontline draws nothing there; its own player never stood at those edges)
+        if rt_sh:
+            cnt = {}
+            for _cen, tex, _col in rt_sh:
+                cnt[tex] = cnt.get(tex, 0) + 1
+            gtex = max(sorted(cnt), key=lambda t: cnt[t])
+            gz = min(c[2] for c, _t, _c in rt_sh) - 512.0
+            gx0, gy0 = [min(c[k] for c, _t, _c in rt_sh) - 4096 for k in (0, 1)]
+            gx1, gy1 = [max(c[k] for c, _t, _c in rt_sh) + 4096 for k in (0, 1)]
+            gx0, gy0, gx1, gy1 = max(gx0, -15800), max(gy0, -15800), min(gx1, 15800), min(gy1, 15800)
+            gcol = tuple(int(v * 0.7) for v in med_light) + (255,)
+            gsh = tex_shader(gtex)
+            T = 2048.0
+            ng = 0
+            yy = gy0
+            while yy < gy1:
+                xx = gx0
+                while xx < gx1:
+                    x2, y2 = min(xx + T, gx1), min(yy + T, gy1)
+                    q = [((xx, yy, gz), (xx / 128.0, yy / 128.0)), ((x2, yy, gz), (x2 / 128.0, yy / 128.0)),
+                         ((x2, y2, gz), (x2 / 128.0, y2 / 128.0)), ((xx, y2, gz), (xx / 128.0, y2 / 128.0))]
+                    B.add_soup(gsh, [(pp, st, (0.0, 0.0, 1.0), gcol) for pp, st in q], [0, 1, 2, 0, 2, 3])
+                    ng += 1
+                    xx += T
+                yy += T
+            stats["under_ground_tiles"] = ng
+    # [flpolish] each collision brush carries its SOURCE in its (nodraw) shader name, so the walk audit can tell an
+    # original player-clip boundary from a wall, a fitted column, a headroom cap or our edge-of-world clip
+    def clip_for(tag):
+        if tag == TAG_CLIFF:
+            nm = "cliff"
+        elif tag == TAG_RAMP:
+            nm = "ramp"
+        elif tag == TAG_DRAWN:
+            nm = "drawn"
+        elif tag == TAG_RIVERBED:
+            nm = "riverbed"
+        else:
+            nm = "m%d%s%s" % (tag & 0x7FF, "s" if tag & COLL_SPECIAL else "", "v" if tag & COLL_VOLUME else "")
+        return B.shader("textures/common/fl_coll_" + nm, flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
+    for (a2, b2, c2), tg in zip(wound, wtags):
+        if B.add_prism(clip_for(tg), a2, b2, c2, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
+            rejected += 1
+        else:
+            nb += 1
+    for lo_, hi_ in caps:
+        B.add_brush_planes(B.shader("textures/common/fl_coll_cap", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP,
+                                    flbsp.CONTENTS_SOLID), [], lo_, hi_)
+        nb += 1
+    for lo_, hi_ in colboxes:
+        B.add_brush_planes(B.shader("textures/common/fl_coll_column", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP,
+                                    flbsp.CONTENTS_SOLID), [], lo_, hi_)
+        nb += 1
+    if os.environ.get("FL_DEBUGCOLL"):
+        # QA aid (never shipped): draw every collision triangle, tinted by its Frontline material, so screenshots show
+        # where collision is and what kind it is (red = material 3 / special, cyan = caps excluded)
+        pal = {3: (255, 40, 40), 13: (255, 255, 0), 15: (0, 120, 255), 2047: (255, 140, 0)}
+        dbg = {}
+        for t, f in zip(wound, wtags):
+            m = f & 0x7FF
+            col = pal.get(m, (60, 255, 60))
+            nm = tdir + "dbgcoll_%d" % m
+            if nm not in tex_names:
+                files[nm + ".tga"] = tga_bytes(4, 4, bytes(col + (255,)) * 16)
+                shader_lines.append(nm + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm trans\n\tcull none\n\t{\n\t\tmap " + nm
+                                    + ".tga\n\t\tblendFunc add\n\t\trgbGen identity\n\t}\n}\n")
+                tex_names[nm] = B.shader(nm, flbsp.SURF_NOLIGHTMAP, 0)
+            key_ = (tex_names[nm], int(t[0][0] // MERGE_CELL), int(t[0][1] // MERGE_CELL))
+            bk = dbg.setdefault(key_, [])
+            if len(bk) >= 1998:
+                B.add_soup(key_[0], list(bk), list(range(len(bk))))
+                bk.clear()
+            bk.extend((p, (0.0, 0.0), (0.0, 0.0, 1.0), (255, 255, 255, 255)) for p in t)
+        for key_, bk in sorted(dbg.items()):
+            if bk:
+                B.add_soup(key_[0], list(bk), list(range(len(bk))))
+
+    # [flpolish] Frontline's own OBJECT MESHES (.msh: the door, the falling house chunks, the jeep's wheels, the
+    # planes, bombs, rockets, the U-boat) as inline brush models, each in its own local frame, so the mission script
+    # moves them by origin/angles (script_object $fl_om<k>). Which mesh goes where is fl_levels.json ("set_pieces"
+    # entries with "mesh", and "object_meshes" for the ones that stand on a record); converted on the player's PC.
+    om_ents = []
+    # local frame mirrored in y like the world; flscene.raw_angles conjugates the rotations to match
+    Xr = lambda q: (q[0] * X.s, q[1] * X.s * X.m, q[2] * X.s)          # noqa: E731 - local frame: no recentre
+    recs_ = {e.get("i"): e for e in L.entities()}
+    om_specs = []
+    for k_, spc in enumerate(flpack.spec(level).get("set_pieces", []), 1):
+        if spc.get("mesh"):
+            om_specs.append(("sp%d" % k_, spc, None))
+    for spc in flpack.spec(level).get("object_meshes", []):
+        if spc.get("class"):
+            # one per record of that class, numbered in record order (the order of the script's level.fl_list)
+            n_ = 0
+            for e_ in L.entities():
+                if spc["class"] in e_["strs"]:
+                    n_ += 1
+                    om_specs.append(("%s%d" % (spc["name"], n_), spc, e_))
+            continue
+        om_specs.append((spc["name"], spc, recs_.get(spc.get("object"))))
+    nom = 0
+    for tag_, spc, rec_ in om_specs:
+        draws = L.mesh(spc["mesh"])
+        if not draws:
+            continue
+        surf_ids = []
+        lo_ = [1e9] * 3
+        hi_ = [-1e9] * 3
+        for m in draws:
+            if not m["tris"]:
+                continue
+            P = [Xr(v) for v in m["verts"]]
+            tris = [wind(a, b, c, flip_render) for a, b, c in m["tris"]]
+            acc = [[0.0, 0.0, 0.0] for _ in P]
+            for a, b, c in tris:
+                n = face_normal(P[a], P[b], P[c])
+                if n:
+                    for i in (a, b, c):
+                        acc[i][0] += n[0]; acc[i][1] += n[1]; acc[i][2] += n[2]
+            verts = []
+            for i, p_ in enumerate(P):
+                l_ = math.sqrt(sum(x * x for x in acc[i])) or 1.0
+                r_, g_, b_, a_ = m["cols"][i]
+                # object meshes carry PS2-range vertex colour (0x80 = full): doubled, or they render near black
+                r_, g_, b_ = (min(255, 2 * c_) for c_ in (r_, g_, b_))
+                verts.append((p_, m["uvs"][i], tuple(x / l_ for x in acc[i]), (r_, g_, b_, 255)))
+                for q in range(3):
+                    lo_[q] = min(lo_[q], p_[q])
+                    hi_[q] = max(hi_[q], p_[q])
+            surf_ids.append(B.add_soup(tex_shader(m["tex"]), verts, [i for t in tris for i in t]))
+        if not surf_ids:
+            continue
+        brushes_ = []
+        if spc.get("solid"):
+            # the door blocks while it is shut: one box on its own bounds (moves with it)
+            brushes_.append(B.add_brush_planes(clip, [], lo_, hi_))
+        B.models.append({"surfaces": surf_ids, "brushes": brushes_})
+        nom += 1
+        kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)), ("targetname", "fl_om_" + tag_)]
+        if rec_ is not None:
+            o_ = X(rec_["pos"])
+            a_ = flscene.raw_angles(struct.unpack("<4f", struct.pack("<4I", *flscene.words(rec_)[7:11])))
+            kv += [("origin", "%.1f %.1f %.1f" % o_), ("angles", "%.1f %.1f %.1f" % a_)]
+        om_ents.append(kv)
+    stats["object_meshes"] = nom
 
     # ---- entities ----
     ents = L.entities()
@@ -465,8 +785,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     sp = flpack.spec(level)
     ws = [("classname", "worldspawn"), ("message", f"Frontline {level} (converted locally, converter {CONVERTER_VERSION})"),
           ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
-          ("ambientlight", "40 40 40")]
+          ("ambientlight", "40 40 40"),
+          # [flpolish] engine extensions this map opts into (HZM engine >= 1.10.73; older engines ignore the keys):
+          # entity coordinates past +-8192 (the jeep's start behind the gate) and Frontline's own step height (its body
+          # walks over the 19-34u lips and kerbs MOHAA's 18u step snags on). server/sv_init.c reads both.
+          ("hzm_widecoords", "1"), ("hzm_stepsize", str(sp.get("step_height", FL_STEP)))]
     B.entity(ws)
+    for kv in om_ents:
+        B.entity(kv)
     kept = []
     for n in L.navpoints():
         p = X(n["pos"])
@@ -492,7 +818,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             B.entity([("classname", "info_player_axis"), ("origin", f"{q[0]:.0f} {q[1]:.0f} {q[2] + 40:.0f}"), ("angle", f"{yaw:.0f}")])
 
     import flvis
-    B.vis_occluders = flvis.occluders([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
+    B.vis_occluders = flvis.occluders([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts
+                                       if not coll_is_volume(_f)])
     bsp_path = out_pk3 + ".bsp.tmp"
     info = B.write(bsp_path)
     with open(bsp_path, "rb") as f:

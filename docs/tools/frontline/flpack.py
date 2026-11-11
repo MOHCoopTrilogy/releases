@@ -15,18 +15,23 @@ import json
 import math
 import os
 import re
+import struct
 import subprocess
 import tempfile
 
 import flaudio
+import flscene
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 AXIS_RX = re.compile(r"^(Soldier[ABC]_|TransHangout_|Soldier_Say|InterrogationOfficer|SoldierA_MachineGunNest)")
 ALLY_RX = re.compile(r"^(AlliedSoldier_A$|InterrogationVictim$)")
 HEALTH = {"Health10": 10, "Health25": 25, "Health50": 50}
+# [flpolish] Frontline's ammo pickups -> the stock MOHAA ammo boxes (models/items/item_<kind>_ammobox.tik)
+AMMO = {"GrenadeAmmo": "grenade", "Colt45Ammo": "pistol", "M1GarandAmmo": "rifle"}
 # set-piece placements the mission script rebuilds with MOHAA recipes (level.fl_list[cls][1..n])
-LISTED = ("JeepBody_1_1", "LandMineTriggerParent", "ExplodingBarrelSwap_1_1", "FlyThrough_1_1", "Rocket_1_1",
+JEEP_CREW = {"Jeep_Driver": "driver", "Jeep_Gunner": "gunner", "Jeep_Passenger": "passenger"}
+LISTED = ("JeepBody_1_1", "LandMineTriggerParent", "ExplodingBarrelSwap_1_1", "BarrelMolotovSwap", "FlyThrough_1_1", "Rocket_1_1",
           "BuildingExplosionParent", "StartBeachExplosionBig")
 
 
@@ -147,14 +152,63 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
                 files[rel] = f.read()
             lines.append(f'\tlevel.fl_music["{name}"] = "{rel}"')
             lines.append(f'\tlevel.fl_music_len["{name}"] = {flaudio.wav_seconds(dst):.1f}')
+    # the order the original plays them in, read from the level's own music map (flaudio.music_map)
+    mm = flaudio.music_map(L.files.get(f"{level}M.mpf", b""))
+    if mm:
+        by_idx = {idx: name for name, idx in sp["music"]["segments"].items()}
+        order = [by_idx[i] for i in mm["order"] if i in by_idx]
+        if len(order) == len(mm["order"]):
+            for k, name in enumerate(order, 1):
+                lines.append(f'\tlevel.fl_music_order[{k}] = "{name}"')
+            lines.append(f'\tlevel.fl_music_loop = {0 if mm["loop"] is None else mm["loop"] + 1}')
+            log("music order", order, "loop to", mm["loop"], "alt", mm["alt"])
 
     # ---- placements ----
     na = nl = nh = nm = 0
+    n_ammo = 0
     nudged = []
     lists = {}
     _mm = os.path.join(HERE, "fl_modelmap.json")
     mm_props = json.load(open(_mm)).get(level, {}).get("props", {}) if os.path.exists(_mm) else {}
     mm_markers = json.load(open(_mm)).get(level, {}).get("markers", {}) if os.path.exists(_mm) else {}
+    # [flpolish] Frontline's named paths (.bpd section 0): the tank's route and the patrol soldiers' beats,
+    # grounded onto the collision floor (+2: the slab top)
+    npaths = L.named_paths()
+    for pid in sorted(npaths):
+        pts_ = []
+        for q in npaths[pid]:
+            g = X(q)
+            if grid is not None:
+                gz = grid.ground(g[0], g[1], g[2] + 64, g[2] - 128)
+                if gz is not None:
+                    g = (g[0], g[1], gz + 2.0)
+            pts_.append(g)
+        for k, g in enumerate(pts_, 1):
+            lines.append(f'\tlevel.fl_npath[{pid}][{k}] = ( {g[0]:.0f} {g[1]:.0f} {g[2]:.0f} )')
+        lines.append(f'\tlevel.fl_npath_n[{pid}] = {len(pts_)}')
+
+    def _nearest_path(pos, skip=()):
+        """the named path whose points pass closest to a record's position (Frontline units)"""
+        best = None
+        for pid_, pp in npaths.items():
+            if pid_ in skip:
+                continue
+            # a path shorter than 4 m is not a route (path 3 on 1_1: three points over 1.8 m beside the tank)
+            if sum(math.dist(pp[k][:2], pp[k + 1][:2]) for k in range(len(pp) - 1)) < 4.0:
+                continue
+            d = min((q[0] - pos[0]) ** 2 + (q[1] - pos[1]) ** 2 for q in pp)
+            if d < 12.0 ** 2 and (best is None or d < best[0]):
+                best = (d, pid_)
+        return None if best is None else best[1]
+
+    # the tank's route first: a patrol soldier standing near the tank's street must not take it as his beat
+    tank_paths = set()
+    for e in L.entities():
+        if "TankVehicle" in e["strs"]:
+            t_ = _nearest_path(e["pos"])
+            if t_ is not None:
+                tank_paths.add(t_)
+
     for e in L.entities():
         names = [s for s in e["strs"] if not s.lower().startswith("start")]
         if not names:
@@ -182,15 +236,58 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
                 p = (float(mv["to"][0]), float(mv["to"][1]), g if g is not None else p[2])
                 nudged.append((cls, -1))
         o = f"( {p[0]:.0f} {p[1]:.0f} {p[2] + 24:.0f} )"
-        if AXIS_RX.match(cls):
+        # [flpolish] the record's own team byte decides the side (flscene.team): four of Frontline's SoldierB_Roamer
+        # are ALLIED (the GIs at the MG nest) and were spawned as Germans by the class-name rule
+        k_ = flscene.kind(e)
+        tm_ = flscene.team(e) if k_ == 3 else 0
+        grp_ = (flscene.ids(e) or [0])[0]
+        yaw_ = flscene.yaw(e, X.m < 0)
+        if cls in JEEP_CREW:
+            lines.append(f'\tlevel.fl_jeepcrew["{JEEP_CREW[cls]}"] = {o}')
+            continue
+        if cls == "AlliedSoldier_DeadGuy":
+            nl_ = lists.get(cls, 0) + 1
+            lists[cls] = nl_
+            lines.append(f'\tlevel.fl_list["{cls}"][{nl_}] = {o}')
+            continue
+        if cls == "TankVehicle":
+            # [flpolish] the Panzer's record carries the AXIS team byte like a soldier's: classified by team it was
+            # spawned as a German rifleman where the tank should stand, and no tank was placed at all (and so no
+            # P-47 run over it either) - caught in the 2026-11-10 fidelity pass
+            lines.append(f'\tlevel.fl_pos["{cls}"] = {o}')
+            lines.append(f'\tlevel.fl_tank_yaw = {yaw_:.0f}')
+            pid_ = _nearest_path(e["pos"])
+            if pid_ is not None:
+                lines.append(f'\tlevel.fl_tank_path = {pid_}')
+            continue
+        is_axis = (tm_ == 2) if (k_ == 3 and tm_ in (1, 2)) else bool(AXIS_RX.match(cls))
+        is_ally = (tm_ == 1) if (k_ == 3 and tm_ in (1, 2)) else bool(ALLY_RX.match(cls))
+        if cls == "InterrogationVictim":
+            is_axis, is_ally = False, True
+        if is_axis:
             na += 1
             lines.append(f'\tlevel.fl_axis[{na}] = {o}')
             lines.append(f'\tlevel.fl_axis_cls[{na}] = "{cls}"')
             lines.append(f'\tlevel.fl_axis_alert[{na}] = {int(any("alert" in s.lower() or "ambush" in s.lower() for s in e["strs"]))}')
-        elif ALLY_RX.match(cls):
+            lines.append(f'\tlevel.fl_axis_grp[{na}] = {grp_}')
+            lines.append(f'\tlevel.fl_axis_state[{na}] = "{flscene.state(e)}"')
+            lines.append(f'\tlevel.fl_axis_yaw[{na}] = {yaw_:.0f}')
+            lines.append(f'\tlevel.fl_axis_ambush[{na}] = {int(any("DeathAmbush" in s for s in e["strs"]))}')
+            if any("StayOnPath" in s_ for s_ in e["strs"]):
+                pid_ = _nearest_path(e["pos"], tank_paths)
+                if pid_ is not None:
+                    lines.append(f'\tlevel.fl_axis_path[{na}] = {pid_}')
+        elif is_ally:
             nl += 1
             lines.append(f'\tlevel.fl_ally[{nl}] = {o}')
             lines.append(f'\tlevel.fl_ally_cls[{nl}] = "{cls}"')
+            lines.append(f'\tlevel.fl_ally_grp[{nl}] = {grp_}')
+            lines.append(f'\tlevel.fl_ally_state[{nl}] = "{flscene.state(e)}"')
+            lines.append(f'\tlevel.fl_ally_yaw[{nl}] = {yaw_:.0f}')
+        elif cls in AMMO:
+            n_ammo += 1
+            lines.append(f'\tlevel.fl_ammo[{n_ammo}] = {o}')
+            lines.append(f'\tlevel.fl_ammo_kind[{n_ammo}] = "{AMMO[cls]}"')
         elif cls in HEALTH:
             nh += 1
             lines.append(f'\tlevel.fl_health[{nh}] = {o}')
@@ -205,12 +302,157 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         elif cls == "MountedMachineGun":
             nm += 1
             lines.append(f'\tlevel.fl_mg[{nm}] = {o}')
+            # [flpolish] its facing and whether Frontline places it broken (the jeep's .30 cal on the wreck)
+            lines.append(f'\tlevel.fl_mg_yaw[{nm}] = {yaw_:.0f}')
+            lines.append(f'\tlevel.fl_mg_broken[{nm}] = {int(any("Broken" in s_ for s_ in e["strs"]))}')
         elif cls in ("TankVehicle", "Player"):
             lines.append(f'\tlevel.fl_pos["{cls}"] = {o}')
             if cls == "Player":
                 yaw = math.degrees(math.atan2(-p[1], -p[0])) % 360     # face the level centre
                 lines.append(f'\tlevel.fl_start = {o}')
                 lines.append(f'\tlevel.fl_start_yaw = {yaw:.0f}')
+    # [flpolish] activation: which group each trigger wakes (Frontline spawns most placements only when the player
+    # reaches a trigger - the "StartByIdObject" records), and the groups the set-piece objects answer to
+    nt = 0
+    for e in L.entities():
+        tr = flscene.trigger(e)
+        if not tr:
+            continue
+        r_m, sends, code = tr
+        if not sends:
+            continue
+        nt += 1
+        q = X(e["pos"])
+        lines.append(f'\tlevel.fl_trig[{nt}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+        lines.append(f'\tlevel.fl_trig_r[{nt}] = {r_m * X.s:.0f}')
+        lines.append(f'\tlevel.fl_trig_code[{nt}] = {code}')
+        for j, g in enumerate(sends, 1):
+            lines.append(f'\tlevel.fl_trig_send[{nt}][{j}] = {g}')
+        lines.append(f'\tlevel.fl_trig_nsend[{nt}] = {len(sends)}')
+    lines.append(f"\tlevel.fl_trig_n = {nt}")
+    for e in L.entities():
+        nm_ = [s for s in e["strs"] if not s.lower().startswith("start")]
+        g_ = flscene.ids(e)
+        if nm_ and g_ and flscene.kind(e) == 2:
+            lines.append(f'\tlevel.fl_obj_grp["{nm_[0]}"] = {g_[0]}')
+    # set-piece motion paths (fl_levels.json "motions": name -> .mvd member of level.viv)
+    for name, mv in sorted(sp.get("motions", {}).items()):
+        data = L.files.get(mv)
+        if data:
+            fr = flscene.mvd_frames(data)
+            # [flpolish] Frontline's body keys ride ~18u above the road (its origin is the chassis centre; MOHAA's jeep
+            # stands on its origin): every level key (pitch and roll under 10 deg) is set onto the collision floor + 5 (the slab top is +2).
+            # The origin must stay ABOVE the floor - under the road it sits in a leaf below the world and the entity is
+            # never sent to a client (the jeep drove invisible). Tumbling keys keep Frontline's own height.
+            ground = None
+            if grid is not None:
+                def ground(q, f):
+                    a = flscene.mohaa_angles(f[4:8], X.m < 0)
+                    if abs(a[0]) > 10 or abs(a[2]) > 10:
+                        return None
+                    g = grid.ground(q[0], q[1], q[2] + 64, q[2] - 96)   # +64: the keys beyond the gate ride 44u UNDER the road
+                    return None if g is None else g + 5.0     # the collision slab top is +2
+            pl = flscene.path_lines(name, fr, X, X.m < 0, step=int(sp.get("motion_step", 3)), ground=ground)
+            lines += pl
+            # the first key from which the vehicle's run is OPEN: walking back from the last key, the earliest key whose
+            # every following segment (at 40u) crosses no collision. Frontline starts the jeep off-map behind the
+            # closed farm gate; started there (or anywhere before the gate) the MOHAA entity was never drawn for the
+            # whole run (measured 2026-11-10: start keys 15-19 invisible, 20 drawn), and it would drive through the gate
+            import flclear
+            pts = [tuple(float(v) for v in re.search(r"\( (\S+) (\S+) (\S+) \)", q).groups())
+                   for q in pl if re.match(r"\s*level\.fl_path_\w+\[\d+\] = \(", q) and "_ang[" not in q]
+            first = 1
+            if grid is not None:
+                for k_ in range(len(pts) - 1, 0, -1):
+                    a2 = (pts[k_ - 1][0], pts[k_ - 1][1], pts[k_ - 1][2] + 40.0)
+                    b2 = (pts[k_][0], pts[k_][1], pts[k_][2] + 40.0)
+                    near = grid.near((a2[0] + b2[0]) / 2, (a2[1] + b2[1]) / 2,
+                                     abs(a2[0] - b2[0]) + abs(a2[1] - b2[1]) + 16)
+                    if flclear._seg_hits(grid.tris, near, a2, b2):
+                        first = k_ + 1
+                        break
+            # fl_levels.json "motion_first" names the start key outright (our reviewed choice), else the sweep
+            if name in sp.get("motion_first", {}):
+                first = int(sp["motion_first"][name])
+            lines.append(f"\tlevel.fl_path_{name}_first = {first}")
+            lines.append(f'\tlevel.fl_mot_first["{name}"] = {first}')
+    # [flpolish] set pieces (fl_levels.json "set_pieces"): our table of which Frontline motion plays as which stock
+    # MOHAA model, when. "trigger" / "object" are Frontline RECORD indexes (resolved here from the player's disc);
+    # "relative" motions (the U-boat's bob, the rockets' launch) play around their object's own spot and facing.
+    recs = {e.get("i"): e for e in L.entities()}
+    nsp = 0
+    for spk_, spc in enumerate(sp.get("set_pieces", []), 1):
+        mv_ = spc["motion"]
+        name = "sp_" + re.sub(r"\W", "_", mv_.rsplit(".", 1)[0]).lower()
+        data = L.files.get(mv_)
+        if not data:
+            continue
+        fr = flscene.mvd_frames(data)
+        rel = bool(spc.get("object"))
+        if rel:
+            o_ = recs.get(spc["object"])
+            if o_ is None:
+                continue
+            Xr = lambda q: (q[0] * X.s, q[1] * X.s * X.m, q[2] * X.s)      # noqa: E731 - offsets, no recentre
+            pl = flscene.path_lines(name, fr, Xr, X.m < 0, step=int(sp.get("motion_step", 3)),
+                                    raw=bool(spc.get("mesh")))
+        else:
+            pl = flscene.path_lines(name, fr, X, X.m < 0, step=int(sp.get("motion_step", 3)),
+                                    raw=bool(spc.get("mesh")))
+        # only the generic arrays (level.fl_mot*), not a per-name copy
+        lines += [q for q in pl if "level.fl_mot" in q]
+        nsp += 1
+        lines.append(f'\tlevel.fl_sp_motion[{nsp}] = "{name}"')
+        lines.append(f'\tlevel.fl_sp_model[{nsp}] = "{spc.get("model", "models/fx/dummy.tik")}"')
+        if spc.get("mesh"):
+            # Frontline's own mesh: flconvert builds it as the inline model $fl_om_sp<k> (k = its place in the table)
+            lines.append(f'\tlevel.fl_sp_om[{nsp}] = "fl_om_sp{spk_}"')
+        if spc.get("trigger") is not None:
+            t_ = recs.get(spc["trigger"])
+            tr_ = flscene.trigger(t_) if t_ is not None else None
+            if t_ is not None:
+                tp = X(t_["pos"])
+                r_ = max(192.0, (tr_[0] if tr_ else 4.0) * X.s)
+                lines.append(f'\tlevel.fl_sp_at[{nsp}] = ( {tp[0]:.0f} {tp[1]:.0f} {tp[2]:.0f} )')
+                lines.append(f'\tlevel.fl_sp_r[{nsp}] = {r_:.0f}')
+        if rel:
+            bp = X(o_["pos"])
+            lines.append(f'\tlevel.fl_sp_base[{nsp}] = ( {bp[0]:.0f} {bp[1]:.0f} {bp[2]:.0f} )')
+            q_ = struct.unpack("<4f", struct.pack("<4I", *flscene.words(o_)[7:11]))
+            y_ = flscene.raw_angles(q_)[1] if spc.get("mesh") else flscene.yaw(o_, X.m < 0)
+            lines.append(f'\tlevel.fl_sp_yaw[{nsp}] = {y_:.0f}')
+        for k_, key_ in (("delay", "delay"), ("snd", "snd"), ("fx", "fx"), ("loop", "loop"), ("yaw", "yaw"),
+                         ("scale", "scale"), ("sync", "sync")):
+            if spc.get(k_) is not None and not (k_ == "yaw" and rel):
+                v_ = spc[k_]
+                lines.append(f'\tlevel.fl_sp_{key_}[{nsp}] = ' + (f'"{v_}"' if isinstance(v_, str) else f"{v_}"))
+    if nsp:
+        lines.append(f"\tlevel.fl_sp_n = {nsp}")
+    # [flpolish] the river (material 15 water volume): its extent and surface, per collision chunk - the mission
+    # script drowns a player who falls in (there is no swimming in MOHAA; Frontline's river is not walkable either)
+    nw = 0
+    for _cn, vs_, ts_ in L.collision():
+        P_ = [X(v) for v in vs_]
+        wv = [P_[i] for a_, b_, c_, f_ in ts_ if (f_ & 0x7FF) == 15 and f_ & (1 << 22) for i in (a_, b_, c_)]
+        if not wv:
+            continue
+        nw += 1
+        lo_ = [min(q[k] for q in wv) for k in range(3)]
+        hi_ = [max(q[k] for q in wv) for k in range(3)]
+        lines.append(f"\tlevel.fl_water_lo[{nw}] = ( {lo_[0]:.0f} {lo_[1]:.0f} {lo_[2]:.0f} )")
+        lines.append(f"\tlevel.fl_water_hi[{nw}] = ( {hi_[0]:.0f} {hi_[1]:.0f} {hi_[2]:.0f} )")
+    if nw:
+        lines.append(f"\tlevel.fl_water_n = {nw}")
+    # the door's group (Frontline's DoorSwingCW swings open when it wakes)
+    for e in L.entities():
+        if "DoorSwingCW" in e["strs"] and flscene.ids(e):
+            lines.append(f"\tlevel.fl_door_grp = {flscene.ids(e)[0]}")
+            break
+    # the tank's group (it drives its path when the group wakes)
+    for e in L.entities():
+        if "TankVehicle" in e["strs"] and flscene.ids(e):
+            lines.append(f"\tlevel.fl_tank_grp = {flscene.ids(e)[0]}")
+            break
     navs = sorted(X(n["pos"]) for n in L.navpoints())
     if navs:
         w = navs[0]
@@ -231,6 +473,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
     lines.append(f"\tlevel.fl_prop_n = {npr}")
     for cls, sp in sorted(mm_markers.items()):
         lines.append(f'\tlevel.fl_marker_model["{cls}"] = "{sp["model"]}"')
+    lines.append(f"\tlevel.fl_ammo_n = {n_ammo}")
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
               "\tlevel.fl_data_ok = 1", "}end", ""]
     files[f"maps/coop_fl_{level}_data.scr"] = "\n".join(lines).encode("latin-1")

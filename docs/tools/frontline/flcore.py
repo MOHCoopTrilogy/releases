@@ -136,11 +136,60 @@ class Level:
                 yield {"cell": cell, "draw": i, "tex": resolve(tptr), "verts": verts,
                        "cols": cols, "uvs": uvs, "tris": tris}
 
+    # ---------------- object meshes ----------------
+    def mesh(self, name):
+        """[flpolish] an object mesh (.msh in level.viv: the door, the falling house chunks, the jeep wheel, the
+        planes, the U-boat ...) as draws in the cells' own shape: [dict(tex, verts, cols, uvs, tris)], in the mesh's
+        LOCAL frame (Frontline units). Layout (decoded 2026-11-10): u32 header[12]; header[6] = draw records,
+        header[7] = their count, 32 bytes each = (node, texture record, geometry, n); geometry + 12 = u32 vb, u32 ib,
+        u16 nv, u16 ni exactly as a cell draw (28-byte vertices, a triangle strip); the texture record is the cells'
+        128-byte one (word 28 = its SHPX image in this file, else word 31 indexes the level's base table)."""
+        if "#" in name:
+            # "<pack>.mpk#k": mesh k of a mesh pack (the swap objects: 0 = intact, 1 = destroyed). A pack is
+            # u32 0, size, 0x20, count, count, then at 0x20 the meshes' offsets; each is a plain .msh from there.
+            base, k = name.split("#")
+            pk = self.files.get(base)
+            if not pk or len(pk) < 0x28 or int(k) >= struct.unpack_from("<I", pk, 12)[0]:
+                return []
+            buf = pk[struct.unpack_from("<I", pk, 0x20 + 4 * int(k))[0]:]
+            name = base.rsplit(".", 1)[0] + "_p" + k
+        else:
+            buf = self.files.get(name)
+        if not buf or len(buf) < 48:
+            return []
+        h = struct.unpack_from("<12I", buf, 0)
+        out = []
+        for i in range(h[7]):
+            r = struct.unpack_from("<4I", buf, h[6] + 32 * i)
+            tptr, gptr = r[1], r[2]
+            if gptr + 24 > len(buf) or tptr + 128 > len(buf):
+                continue
+            vb, ib, nv, ni = struct.unpack_from("<IIHH", buf, gptr + 12)
+            if nv < 3 or ni < 3 or vb + nv * VSTRIDE > len(buf) or ib + 2 * ni > len(buf):
+                continue
+            rec = struct.unpack_from("<32I", buf, tptr)
+            tex = self._tex_from(name, buf, rec) if rec[28] else (self.resolve_base(rec[31]) if rec[25] else None)
+            verts, cols, uvs = [], [], []
+            for k in range(nv):
+                x, y, z, _nrm, col, u, v = struct.unpack_from("<3fII2f", buf, vb + k * VSTRIDE)
+                verts.append((x, y, z))
+                cols.append(((col >> 16) & 255, (col >> 8) & 255, col & 255, (col >> 24) & 255))
+                uvs.append((u, v))
+            idx = struct.unpack_from(f"<{ni}H", buf, ib)
+            tris = []
+            for t in range(ni - 2):
+                a, b, c = idx[t], idx[t + 1], idx[t + 2]
+                if a == b or b == c or a == c or max(a, b, c) >= nv:
+                    continue
+                tris.append((a, b, c) if t % 2 == 0 else (b, a, c))
+            out.append({"cell": name, "draw": i, "tex": tex, "verts": verts, "cols": cols, "uvs": uvs, "tris": tris})
+        return out
+
     # ---------------- collision ----------------
     def collision(self):
         """Yield (cell, verts, tris[(a,b,c,f)]) from the .cdb chunks.
         .cdb v7: u32 7, size, nverts, vert_off, ntris, ?, ?, ?, 0, tri_off, ...
-        tri = {u32 v0,v1,v2 byte offsets; u32/f32 extra}."""
+        tri = {u32 v0,v1,v2 byte offsets; u32 flags}."""
         for name in sorted(k for k in self.comp if k.endswith(".cdb")):
             d = self.comp[name]
             h = struct.unpack_from("<13I", d, 0)
@@ -150,7 +199,9 @@ class Level:
             verts = [struct.unpack_from("<3f", d, voff + 12 * i) for i in range(nv)]
             tris = []
             for i in range(nt):
-                a, b, c, f = struct.unpack_from("<3If", d, toff + 16 * i)
+                # 4th word = the triangle's flag word (decoded 2026-11-10, flconvert.COLL_*): low 11 bits = surface
+                # material, bit 22 = volume (non-solid), bit 23 = special surface
+                a, b, c, f = struct.unpack_from("<4I", d, toff + 16 * i)
                 ia, ib, ic = ((t - voff) // 12 for t in (a, b, c))
                 if 0 <= min(ia, ib, ic) and max(ia, ib, ic) < nv:
                     tris.append((ia, ib, ic, f))
@@ -163,6 +214,20 @@ class Level:
     def bpd_sections(self):
         d = self._bpd()
         return [struct.unpack_from("<2I", d, 16 + 8 * i) for i in range(12)]
+
+    def named_paths(self):
+        """[flpolish] .bpd section 0: named paths {id: [(x, y, z), ...]} - the routes Frontline's TankVehicle
+        (StartOnPath) and its StayOnPath patrol soldiers follow. Record = u32 id, u32 count, u32 offset of count
+        float xyz points in the same file."""
+        d = self._bpd()
+        off, cnt = self.bpd_sections()[0]
+        out = {}
+        for i in range(cnt):
+            pid, n, o = struct.unpack_from("<3I", d, off + 12 * i)
+            if n < 1 or n > 256 or o + 12 * n > len(d):
+                continue
+            out[pid] = [struct.unpack_from("<3f", d, o + 12 * k) for k in range(n)]
+        return out
 
     def navpoints(self):
         d = self._bpd()
