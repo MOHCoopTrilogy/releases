@@ -195,7 +195,7 @@ def boot_mode(c, cl, mode, res):
     res["loaded"] = wait_for(c, r"Sound End Registration Complete", 240, n0, cl)
     time.sleep(15)
     # into the game: close any join/briefing menu, pick a weapon (MP), fire once to spawn
-    c.cmd("es_b.cfg", SPAWN + ["popmenu 0", "wait 20", "popmenu 0", "wait 20", "join_team allies", "wait 300", "primarydmweapon rifle", "wait 20",
+    c.cmd("es_b.cfg", SPAWN + (["finishloadingscreen", "wait 60"] if mode == "sp" else []) + ["popmenu 0", "wait 20", "popmenu 0", "wait 20", "join_team allies", "wait 300", "primarydmweapon rifle", "wait 20",
                                "popmenu 0", "wait 20", "+attackprimary", "wait 10", "-attackprimary", "wait 30"] + SPAWN)
     press(cl, "F6", 6)
     press(cl, "F6", 6)
@@ -260,6 +260,17 @@ def case_buttons(mode, out, res):
     with launch(c, use_exe(c, False), w=w, h=h, extra=[("cheats", "1")]) as cl:
         boot_mode(c, cl, mode, res)
         c.cmd("es_e.cfg", RESET)
+        if mode == "sp":
+            # the engine's SP pause while the board is up (Com_FakePause -> paused 2), and none after RESUME
+            c.cmd("es_d.cfg", ["paused"])
+            press(cl, "ESC", 2.5)
+            n0 = len(read(c.log()))
+            press(cl, "F8", 2)
+            res["paused_board_up"] = re.findall(r'"paused" is:"(\d)"', read(c.log())[n0:])
+            press(cl, "ESC", 2.5)
+            n0 = len(read(c.log()))
+            press(cl, "F8", 2)
+            res["paused_after_resume"] = re.findall(r'"paused" is:"(\d)"', read(c.log())[n0:])
         res["rows"] = {}
         for key, title, vx, vy in rows(mode):
             if guard(cl) or key in skip or key in ("quit",):
