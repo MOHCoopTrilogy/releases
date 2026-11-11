@@ -42,3 +42,15 @@ The exe and the mod pak ship TOGETHER (the menu's `hzm_ops` command and `ui_ops*
   area loop, between the BASTOGNE tag and the printed FRANCE.
 - **OBJ result** = the engine's `allieswin`/`axiswin`/`draw` level event (the `g_temp*score` cvars are not readable after the
   restart). Bots are held until the player has joined, so the round he plays is the first.
+
+## opsfix / opsfix2 (2026-11-10)
+- **Clicks:** the dispatch card's DEPLOY / FILE AWAY buttons are emitted after the card's labels (the UI hit-test takes the
+  last widget under the cursor, Labels included) and make_ng3campaigns.py asserts it. `liveops_test.py click` proves it by a
+  real posted click.
+- **Spawn (shipped v1.10.74):** the MP armory set no class on round gametypes; the MP poll stalled on mp_deploy.
+- **Allies only:** every contract is Allied (engine roll + mp_ops.scr keeps humans on the Allies). OBJ pool = maps the Allies
+  plant: Bizerte Festung, The Hunt, V2 Facility. Out: The Bridge and Palermo (Axis plant), Bologna OBJ (bots frozen at the HQ
+  doors, 10/10 stuck with or without per-side markers; its TDM stays).
+- **Harness:** `liveops_test.py` cases board, tdm, obj, flat, click, spawn_tdm/spawn_obj (--fast early press), mp_tdm/mp_obj
+  (hosted), dedjoin (--gt2), coop2 (two humans); pak modes --nopak / --urconly / --armoryonly / --hotfix. Bot watch:
+  `ops_sweep.py --ops` + `ops_botwatch.py`. Dedicated runs zero the tinnitus cvars on the SERVER (TRAPS T14).

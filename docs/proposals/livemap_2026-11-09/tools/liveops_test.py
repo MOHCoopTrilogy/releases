@@ -38,7 +38,7 @@ MUTE = ["set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set i
         "set in_mouse 0", "set in_nograb 1", "set com_maxfps 60", "set con_notifytime -1", "set coop_joinCard 0",
         "set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0", "set coop_whatsNewSeen 99999",
         "set developer 1", "set logfile 2"]
-PAK_FILES = ["ui/hzm_newgame3d.urc", "ui/hzm_ngflat.urc", "scripts/hzm_ng3campaigns.shader", "coop_mod/mp.scr",
+PAK_FILES = ["ui/hzm_newgame3d.urc", "ui/hzm_ngflat.urc", "scripts/hzm_ng3campaigns.shader", "coop_mod/mp.scr", "coop_mod/mp_armory.scr",
              "coop_mod/mp_bots.scr", "coop_mod/mp_hardcore.scr", "coop_mod/mp_weather.scr", "coop_mod/mp_ops.scr",
              "coop_mod/mp_ops_table.scr"]
 
@@ -62,18 +62,28 @@ def build_pak():
         print("no test pak")
         return out
     files = PAK_FILES if "--urconly" not in sys.argv else ["ui/hzm_newgame3d.urc"]
+    if "--armoryonly" in sys.argv:                 # the mod-only DEPLOY hotfix (b0627b2e) and nothing else
+        files = ["coop_mod/mp_armory.scr"]
+    if "--hotfix" in sys.argv:                     # the spawn hotfix: the armory class fix + the un-stalled MP poll
+        files = ["coop_mod/mp_armory.scr", "coop_mod/mp.scr"]
     os.makedirs(os.path.dirname(out), exist_ok=True)
     n = 0
-    with zipfile.ZipFile(out + ".tmp", "w", zipfile.ZIP_DEFLATED) as z:
+    # the temp file lives OUTSIDE maintt: the engine mounts any "*.pk3*" it finds there, so a failed rename once left a
+    # 72-file "...pk3.tmp" loaded beside a stale 2-file pak and a test ran against both (2026-11-10)
+    tmp = os.path.join(HOME, "liveops_pak.tmp")
+    for fn in os.listdir(os.path.dirname(out)):
+        if fn.startswith(PAK) and fn != PAK:
+            os.remove(os.path.join(os.path.dirname(out), fn))
+    with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as z:
         for rel in files:
             z.write(os.path.join(MOD, rel), rel)
             n += 1
         td = os.path.join(MOD, "textures", "menu")
-        for fn in (sorted(os.listdir(td)) if "--urconly" not in sys.argv else []):
+        for fn in (sorted(os.listdir(td)) if ("--urconly" not in sys.argv and "--armoryonly" not in sys.argv and "--hotfix" not in sys.argv) else []):
             if fn.startswith(("hzm_ng3c_", "hzm_ops_")):
                 z.write(os.path.join(td, fn), "textures/menu/" + fn)
                 n += 1
-    os.replace(out + ".tmp", out)
+    os.replace(tmp, out)
     print("pak", out, n, "files", os.path.getsize(out))
     return out
 
@@ -121,6 +131,223 @@ def client(binds, extra_sets=(), tail=(), w=1600, h=900, env=None):
 
 def cmdfile(name, lines):
     open(os.path.join(HOME, "maintt", name), "w", newline="\n").write("\n".join(lines) + "\n")
+
+
+A2 = r"G:\mohaa-liveops2"
+HOME2 = os.path.join(A2, "home")
+
+
+def client2(binds, w, h, env, connect):
+    """a SECOND human (co-op squadmate): its own private install + home, the same test pak, connects to the host"""
+    mt = os.path.join(HOME2, "maintt")
+    os.makedirs(mt, exist_ok=True)
+    for fn in os.listdir(mt):
+        if fn.lower().endswith(".pid") or fn == "qconsole.log" or fn.startswith("zzzzzzzzzzzzzzzzzzzzzz_liveops"):
+            os.remove(os.path.join(mt, fn))
+    pk = os.path.join(HOME, "maintt", PAK)
+    if os.path.exists(pk):
+        shutil.copyfile(pk, os.path.join(mt, PAK))
+    base = [("com_target_game", "2"), ("fs_basepath", GOG), ("fs_homepath", HOME2), ("cl_renderer", "opengl2"),
+            ("r_fullscreen", "0"), ("developer", "1"), ("logfile", "2"), ("in_gamepad", "0"), ("in_joystick", "0"),
+            ("in_mouse", "0"), ("in_nograb", "1"), ("s_volume", "0"), ("name", "OpsMate"), ("net_port", str(PORT + 1))]
+    args = [os.path.join(A2, "openmohaa.exe")]
+    for k, v in base:
+        args += ["+set", k, v]
+    args += ["+exec", "lo_on.cfg", "+connect", connect]
+    d = hw.test_display()
+    args, late = hw.apply_policy(args, width=w, height=h, display=d)
+    open(os.path.join(mt, "lo_on.cfg"), "w", newline="\n").write("\n".join(MUTE + binds + late) + "\n")
+    return hw.launch_background(args[0], args[1:], A2, env=env, policy=False, display=d, below_normal=True, watch_audio=True,
+                                log=lambda *a: None)
+
+
+def cmdfile2(name, lines):
+    open(os.path.join(HOME2, "maintt", name), "w", newline="\n").write("\n".join(lines) + "\n")
+
+
+def case_mpplain(out, res, gt):
+    """a NORMAL MP host (no operation): the stock MP launch cfgs, join the Allies, armory DEPLOY by real click -> alive on
+    the first press; TDM also respawns. gt 2 = Team Match on Remagen, 4 = Objective on Bologna."""
+    w, h = (1600, 900) if "--wide" not in sys.argv else (1904, 816)
+    res["window"] = "%dx%d" % (w, h)
+    mp = "dm/mohdm3" if gt == 2 else "obj/mp_bologna_obj"
+    cmdfile("lo_a.cfg", ["set ui_opsLive 0", "set ui_dmmap " + mp, "exec ui/coop_mpmenu/mode_none.cfg", "exec ui/coop_mpmenu/bots_8.cfg",
+                         "exec ui/coop_mpmenu/launch_gt%d.cfg" % gt])
+    cmdfile("lo_b.cfg", ["popmenu 0", "join_team allies"])
+    cmdfile("lo_d.cfg", ["set coop_mpDeployDebug 1", "set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0"])
+    env = {"SDL_MOUSE_AUTO_CAPTURE": "0", "SDL_HINT_MOUSE_AUTO_CAPTURE": "0"}
+    c = client(BINDS, extra_sets=[("cheats", "1"), ("thereisnomonkey", "1")], w=w, h=h, env=env)
+    x, y = int(596 * w / 640.0), int(16 * h / 480.0)
+    with c:
+        wait_for(r"UI_Init|CL_InitCGame|Sound|\^~\^~\^", 120, c=c)
+        time.sleep(20)
+        for _k in range(6):
+            press(c, "F5", 5)
+            if "MP init" in read(lp()) or "CM_LoadMap" in read(lp()):
+                break
+        res["loaded"] = wait_for(r"\^~\^~\^ MP init", 240, 0, c)
+        wait_for(r"CS_ACTIVE for OpsTester|OpsTester has entered", 120, 0, c)
+        time.sleep(4)
+        press(c, "F6", 2)
+        res["joined"] = wait_for(r"OpsTester has joined the Allies", 30, 0, c)
+        press(c, "F8", 1)
+        time.sleep(1.5 if "--fast" in sys.argv else 5)
+        cmdfile("lo_c.cfg", ["hzm_ops testmouse %d %d" % (x, y)])
+        press(c, "F7", 0.6)
+        n0 = len(read(lp()))
+        c.post_click(x, y)
+        res["first_press_spawned"] = wait_for(r"MPKIT e0 ", 12, n0, c)
+        res["deploy_seen"] = "MPDEPLOY e0" in read(lp())[n0:]
+        res["inmatch"] = shot(c, out, "in_match")
+        if gt == 2:
+            time.sleep(8)                      # past spawn protection (it also stops the kill command)
+            cmdfile("lo_c.cfg", ["kill"])
+            press(c, "F7", 6)
+            res["died"] = bool(re.search(r"OpsTester (took himself|blew himself)|You killed yourself", read(lp())))
+            cmdfile("lo_c.cfg", ["hzm_ops testmouse %d %d" % (x, y)])
+            press(c, "F7", 0.6)
+            n1 = len(read(lp()))
+            c.post_click(x, y)
+            res["respawned"] = wait_for(r"MPKIT e0 ", 25, n1, c)
+        guard(c)
+    res["mp_lines"] = re.findall(r"\^~\^~\^ (MPDEPLOY[^\n]*|MP init[^\n]*|OPS[^\n]*)", read(lp()))[-12:]
+    shutil.copyfile(lp(), os.path.join(out, "qconsole.log"))
+    return read(lp())
+
+
+DMAP, DGT = ("dm/mohdm3", "2") if "--gt2" in sys.argv else ("obj/mp_bologna_obj", "4")
+
+
+def case_dedjoin(out, res):
+    """join a DEDICATED objective server (bots) as a remote client and DEPLOY from the armory by real click"""
+    w, h = 1600, 900
+    srv_home = r"H:\hzm_work\liveops-test\srvhome2"     # not the sweep's home: the bot watch may be running
+    mt = os.path.join(srv_home, "maintt")
+    os.makedirs(mt, exist_ok=True)
+    for fn in os.listdir(mt):
+        if fn.startswith("zzzzzzzzzzzzzzzzzzzzzz_liveops") or fn == "qconsole.log":
+            os.remove(os.path.join(mt, fn))
+    pk = os.path.join(HOME, "maintt", PAK)
+    if os.path.exists(pk) and "--nopak" not in sys.argv:
+        shutil.copyfile(pk, os.path.join(mt, PAK))
+    open(os.path.join(mt, "ded.cfg"), "w", newline="\n").write("\n".join([
+        # TRAPS T14: the SERVER stuffs s_volume <coop_tinnitusBaseVol> to every player at spawn - on a dedicated server the
+        # client's own mutes are overwritten, so they must be zeroed HERE (2026-11-10: a guard trip, peak 0.56, without them)
+        "set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0",
+        "set developer 1", "set sv_maxbots 12", "set coop_mpBotFill 8", "set coop_mpMode none", "set coop_mpDeployDebug 1",
+        "set ui_opsLive 0", "set sv_maplist " + DMAP, "map " + DMAP]) + "\n")
+    sargs = [os.path.join(A, "omohaaded.exe"), "+set", "com_target_game", "2", "+set", "fs_basepath", GOG, "+set", "fs_homepath", srv_home,
+             "+set", "dedicated", "1", "+set", "net_port", "12295", "+set", "sv_maxclients", "4", "+set", "g_gametype", DGT,
+             "+set", "logfile", "2", "+set", "sv_maxbots", "12", "+set", "developer", "1", "+exec", "ded.cfg"]
+    srv = subprocess.Popen(sargs, cwd=A, **hw.popen_kwargs())
+    res["server_pid"] = srv.pid
+    SL = os.path.join(mt, "qconsole.log")
+    try:
+        t = time.time()
+        while time.time() - t < 120 and "MP init" not in read(SL):
+            time.sleep(2)
+        res["server_up"] = "MP init" in read(SL)
+        cmdfile("lo_b.cfg", ["popmenu 0", "join_team allies"])
+        cmdfile("lo_d.cfg", ["set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0"])
+        env = {"SDL_MOUSE_AUTO_CAPTURE": "0", "SDL_HINT_MOUSE_AUTO_CAPTURE": "0"}
+        c = client(BINDS, w=w, h=h, env=env, tail=["+connect", "127.0.0.1:12295"])
+        x, y = int(596 * w / 640.0), int(16 * h / 480.0)
+        with c:
+            t = time.time()
+            while time.time() - t < 240 and "OpsTester has entered" not in read(SL):
+                if guard(c):
+                    break
+                time.sleep(3)
+            time.sleep(5)
+            press(c, "F6", 2)
+            t = time.time()
+            while time.time() - t < 30 and "OpsTester has joined the Allies" not in read(SL):
+                time.sleep(2)
+            res["joined"] = "OpsTester has joined the Allies" in read(SL)
+            press(c, "F8", 1)
+            # the server arms the armory hold when its MP poll reaches this player (measured, not assumed)
+            t = time.time()
+            while time.time() - t < 90 and not re.search(r"MPHOLD e\d+ side=a hold=1", read(SL)):
+                time.sleep(1)
+            res["hold_armed_after_s"] = round(time.time() - t, 1)
+            time.sleep(1)
+            cmdfile("lo_c.cfg", ["hzm_ops testmouse %d %d" % (x, y)])
+            press(c, "F7", 0.6)
+            n0 = len(read(SL))
+            c.post_click(x, y)
+            t = time.time()
+            while time.time() - t < 25 and not re.search(r"MPKIT e\d+ side=a [^\n]*cause=done", read(SL)[n0:]):
+                time.sleep(1)
+            res["first_press_spawned"] = bool(re.search(r"MPKIT e\d+ side=a [^\n]*cause=done", read(SL)[n0:]))
+            res["deploy_seen"] = "MPDEPLOY" in read(SL)[n0:]
+            res["inmatch"] = shot(c, out, "ded_in_match")
+            guard(c)
+    finally:
+        if srv.poll() is None:
+            srv.kill()
+            srv.wait(20)
+    shutil.copyfile(SL, os.path.join(out, "server_qconsole.log"))
+    shutil.copyfile(lp(), os.path.join(out, "client_qconsole.log"))
+    return read(SL)
+
+
+def case_coop2(out, res):
+    """host + a second human on one TDM contract: the squadmate must land on the ALLIES with no team choice, a forced
+    'join_team axis' must be undone, and his armory DEPLOY (real click) must spawn him on the first press"""
+    w, h = 960, 540
+    utc, live, groups = pick_utc(lambda L: any(gen_ops.ENTRIES[c["entry"]]["mode"] == "TDM" and c["left"] > 300 for c in L))
+    c0 = [c for c in live if gen_ops.ENTRIES[c["entry"]]["mode"] == "TDM" and c["left"] > 300][0]
+    res["contract"] = gen_ops.describe(c0)
+    cmdfile("lo_a.cfg", ["set ui_opsFakeUtc %d" % utc, "seta ui_atticMain 1", "pushmenu hzm_newgame3d", "wait 1500",
+                         "hzm_ops card %d" % slot_no(c0), "wait 1500", "hzm_ops deploy"])
+    cmdfile("lo_d.cfg", ["set coop_mpDeployDebug 1", "set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0"])
+    env = {"SDL_MOUSE_AUTO_CAPTURE": "0", "SDL_HINT_MOUSE_AUTO_CAPTURE": "0"}
+    host = client(BINDS, extra_sets=[("cheats", "1"), ("thereisnomonkey", "1")], w=w, h=h, env=env)
+    with host:
+        wait_for(r"UI_Init|CL_InitCGame|Sound|\^~\^~\^", 120, c=host)
+        time.sleep(25)
+        for _k in range(8):
+            press(host, "F5", 5)
+            if "OPS deploy" in read(lp()):
+                break
+        res["host_started"] = wait_for(r"\^~\^~\^ OPS start", 240, 0, host)
+        wait_for(r"OpsTester has joined the Allies", 60, 0, host)
+        press(host, "F8", 1)
+        time.sleep(4)
+        cmdfile("lo_c.cfg", ["hzm_ops testmouse %d %d" % (int(596 * w / 640.0), int(16 * h / 480.0))])
+        press(host, "F7", 0.6)
+        host.post_click(int(596 * w / 640.0), int(16 * h / 480.0))
+        res["host_spawned"] = wait_for(r"MPKIT e0 ", 20, 0, host)
+        mate = client2(BINDS, w, h, env, "127.0.0.1:%d" % PORT)
+        with mate:
+            res["mate_joined_allies"] = wait_for(r"OpsMate has joined the Allies", 180, 0, host)
+            res["mate_ever_axis_before_force"] = "OpsMate has joined the Axis" in read(lp())
+            time.sleep(6)
+            # his armory DEPLOY, by real click in HIS window
+            cmdfile2("lo_c.cfg", ["hzm_ops testmouse %d %d" % (int(596 * w / 640.0), int(16 * h / 480.0))])
+            press(mate, "F7", 0.6)
+            n0 = len(read(lp()))
+            mate.post_click(int(596 * w / 640.0), int(16 * h / 480.0))
+            res["mate_spawned"] = wait_for(r"MPKIT e1 ", 20, n0, host)
+            res["mate_shot"] = shot(mate, out, "mate_in_match") if False else None
+            # try to defect: the operation must put him back on the Allies
+            time.sleep(12)                    # the engine refuses a team change within 10 s of the last one
+            cmdfile2("lo_c.cfg", ["join_team axis"])
+            n1 = len(read(lp()))
+            press(mate, "F7", 8)
+            L = read(lp())[n1:]
+            res["mate_forced_axis"] = bool(re.search(r"OpsMate[^\n]* has joined the Axis", L))
+            res["mate_moved_back"] = bool(re.search(r"OPS allies e\d+ was on the axis - moved", L)) and bool(re.search(r"OpsMate[^\n]* has joined the Allies", L))
+            guard(mate)
+        guard(host)
+    log = read(lp())
+    res["teams"] = re.findall(r"(Ops\w+) has joined the (\w+)", log)
+    shutil.copyfile(lp(), os.path.join(out, "host_qconsole.log"))
+    try:
+        shutil.copyfile(os.path.join(HOME2, "maintt", "qconsole.log"), os.path.join(out, "mate_qconsole.log"))
+    except OSError:
+        pass
+    return log
 
 
 def press(c, key, settle=2.0):
@@ -294,7 +521,7 @@ def case_click(out, res):
     side = "1" if gen_ops.SLOTS[c0["slot"]]["pin"][1] < 20 else "2"
     res["contract"] = gen_ops.describe(c0)
     cmdfile("lo_a.cfg", ["set ui_opsFakeUtc %d" % utc, "seta ui_atticMain 1", "pushmenu hzm_newgame3d"])
-    cmdfile("lo_b.cfg", ["set ui_scene_hotdump 1", "wait 60", "set ui_scene_hotdump 0"])
+    cmdfile("lo_b.cfg", ["set ui_scene_hotdump 1", "wait 400", "set ui_scene_hotdump 0"])
     cmdfile("lo_d.cfg", ["echo LOCARD", "ui_opsCard"])
     env = {"SDL_MOUSE_AUTO_CAPTURE": "0", "SDL_HINT_MOUSE_AUTO_CAPTURE": "0"}
     c = client(BINDS, w=w, h=h, env=env)
@@ -344,6 +571,108 @@ def case_click(out, res):
     return read(lp())
 
 
+def case_spawn(out, res, mode):
+    """the user's path, all by REAL click: war map -> contract card (cfg) -> DEPLOY on the card (click) -> the match -> the
+    side armory opens -> DEPLOY in the armory (click, button rect 560 8 72 16 of 640x480, stretched) -> must be ALIVE after
+    the FIRST press. TDM also dies (kill) and must respawn through the armory again."""
+    w, h = (1600, 900) if "--wide" not in sys.argv else (1904, 816)
+    res["window"] = "%dx%d" % (w, h)
+    want = opt("--map", "")
+
+    def ok(L):
+        return [c for c in L if gen_ops.ENTRIES[c["entry"]]["mode"] == mode and c["left"] > 200
+                and (not want or gen_ops.ENTRIES[c["entry"]]["map"] == want)]
+    utc, live, groups = pick_utc(lambda L: bool(ok(L)))
+    c0 = ok(live)[0]
+    side = "1" if gen_ops.SLOTS[c0["slot"]]["pin"][1] < 20 else "2"
+    res["contract"] = gen_ops.describe(c0)
+    cmdfile("lo_a.cfg", ["set ui_opsFakeUtc %d" % utc, "seta ui_atticMain 1", "pushmenu hzm_newgame3d", "wait 1500",
+                         "hzm_ops card %d" % slot_no(c0)])
+    cmdfile("lo_b.cfg", ["set ui_scene_hotdump 1", "wait 400", "set ui_scene_hotdump 0"])
+    cmdfile("lo_d.cfg", ["set coop_mpDeployDebug 1", "set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0"])
+    env = {"SDL_MOUSE_AUTO_CAPTURE": "0", "SDL_HINT_MOUSE_AUTO_CAPTURE": "0"}
+    c = client(BINDS, extra_sets=[("cheats", "1"), ("thereisnomonkey", "1")], w=w, h=h, env=env)
+
+    def click_xy(vx, vy):                     # a point in the menu's 640x480 virtual space (stretched to the window)
+        x, y = int(vx * w / 640.0), int(vy * h / 480.0)
+        cmdfile("lo_c.cfg", ["hzm_ops testmouse %d %d" % (x, y)])
+        press(c, "F7", 0.6)
+        c.post_click(x, y)
+
+    def alive_after(n0, secs):
+        t = time.time()
+        while time.time() - t < secs:
+            L = read(lp())[n0:]
+            if re.search(r"MPDEPLOY e0 cause=done class=\S+", L) and not re.search(r"MPDEPLOYTRY e0 try=\d+ spec=1", L[-400:]):
+                if re.search(r"\^~\^~\^ MP(SPAWN|ONSPAWN)|giveKit|MPKIT", L) or "spec=0" in L:
+                    return True
+            time.sleep(1)
+        return False
+    with c:
+        wait_for(r"UI_Init|CL_InitCGame|Sound|\^~\^~\^", 120, c=c)
+        time.sleep(25)
+        for _k in range(8):                   # the attic can still be loading: press until the card is up
+            press(c, "F5", 4)
+            if "OPS card" in read(lp()):
+                break
+        m = None
+        for _k in range(6):
+            n0 = len(read(lp()))
+            press(c, "F6", 2)
+            m = re.findall(r"SCENEHOT opsdp" + side + r" sx=(-?\d+) sy=(-?\d+)", read(lp())[n0:])
+            if m:
+                break
+        if not m:
+            res["error"] = "no DEPLOY position"
+            return read(lp())
+        x, y = int(m[-1][0]), int(m[-1][1])
+        cmdfile("lo_c.cfg", ["hzm_ops testmouse %d %d" % (x, y)])
+        press(c, "F7", 0.6)
+        n1 = len(read(lp()))
+        c.post_click(x, y)
+        res["deployed"] = wait_for(r"\^~\^~\^ OPS deploy", 15, n1, c)
+        res["started"] = wait_for(r"\^~\^~\^ OPS start", 240, n1, c)
+        res["joined"] = wait_for(r"OpsTester has joined the (Allies|Axis)", 60, n1, c)
+        press(c, "F8", 1)
+        time.sleep(1.5 if "--fast" in sys.argv else 6)   # --fast: press as soon as the armory is up (the user's race)
+        res["armory_shot"] = shot(c, out, "armory")
+        presses = []
+        for k in range(5):                    # press DEPLOY until alive; the bar is ONE press
+            n2 = len(read(lp()))
+            click_xy(596, 16)
+            time.sleep(5)
+            L = read(lp())[n2:]
+            if k == 0:
+                res["first_press_spawned"] = "MPKIT e0 " in L
+            presses.append({"k6seen": "MPDEPLOY k6seen" in L, "deploy": bool(re.search(r"MPDEPLOY e0 cause", L)),
+                            "gaveup": "GAVEUP" in L, "tries": len(re.findall(r"MPDEPLOYTRY e0", L))})
+            cmdfile("lo_c.cfg", ["echo LOSTATE", "ui_opsResult"])
+            if re.search(r"MPDEPLOY e0 cause=\S+ class=", L) and not re.search(r"try=1[0-9] spec=1", L):
+                break
+        res["presses"] = presses
+        n4 = len(read(lp()))
+        time.sleep(3 if mode == "TDM" else 25)  # OBJ: the bots join and the round restarts - he must be alive in it
+        L = read(lp())[n4:]
+        res["after_release"] = {"restart": "OPS start" in L, "kit_again": len(re.findall(r"MPKIT e0 ", L)),
+                                "allies_moves": len(re.findall(r"OPS allies e", L))}
+        res["inmatch"] = shot(c, out, "in_match")
+        if mode == "TDM":                     # respawn: die, then DEPLOY in the armory again
+            cmdfile("lo_c.cfg", ["kill"])
+            press(c, "F7", 8)
+            n3 = len(read(lp()))
+            click_xy(596, 16)
+            time.sleep(6)
+            L = read(lp())[n3:]
+            res["respawn"] = {"deploy": bool(re.search(r"MPDEPLOY e0 cause", L)), "gaveup": "GAVEUP" in L}
+            res["respawn_shot"] = shot(c, out, "respawned")
+        guard(c)
+        res["peak"] = repr(c.report())[:200]
+    log = read(lp())
+    res["mp_lines"] = re.findall(r"\^~\^~\^ (MPDEPLOY[^\n]*|MPHOLD[^\n]*|OPS[^\n]*)", log)[-40:]
+    shutil.copyfile(lp(), os.path.join(out, "qconsole.log"))
+    return log
+
+
 def script_errors(log):
     return log.count("Script Error"), log.count("Couldn't compile")
 
@@ -378,6 +707,14 @@ def main(cases):
                 log = case_match(out, res, "TDM")
             elif case == "obj":
                 log = case_match(out, res, "OBJ")
+            elif case in ("mp_tdm", "mp_obj"):
+                log = case_mpplain(out, res, 2 if case == "mp_tdm" else 4)
+            elif case == "dedjoin":
+                log = case_dedjoin(out, res)
+            elif case == "coop2":
+                log = case_coop2(out, res)
+            elif case in ("spawn_tdm", "spawn_obj"):
+                log = case_spawn(out, res, case[-3:].upper())
             elif case == "click":
                 log = case_click(out, res)
             elif case == "flat":

@@ -27,6 +27,14 @@ KILL = re.compile(r"\] \S+ (was (shot|killed|gunned|blown|machine|sniped|clubbed
                   r"cut|knocked|bitten|hit|blasted|caught|shredded|nailed|put)|blew himself|took himself|pumped full|ate |tripped)", re.I)
 
 
+def OPS_EXTRA(mp, gt):
+    """--ops: run the map as a Live Operations contract (bots only): the ui_opsGo* contract the client would hand over,
+    ui_opsLive 1, and the per-bot position log (coop_mpOpsBotLog 1) read by tools/ops_botwatch.py"""
+    return ["set ui_opsLive 1", "set ui_opsPhase play", "set ui_opsGoMap " + mp, "set ui_opsGoGt %d" % gt, "set ui_opsGoFill 10",
+            "set ui_opsGoSkill REGULAR", 'set ui_opsGoMod ""', "set ui_opsGoSide allies", "set ui_opsGoName BOTWATCH",
+            "set ui_opsGoXp 100", "set ui_opsGoFrags 999", "set coop_mpOpsBotLog 1", "set sv_maxbots 16", "set timelimit 10"]
+
+
 def opt(n, d):
     return sys.argv[sys.argv.index(n) + 1] if n in sys.argv else d
 
@@ -40,7 +48,7 @@ def run(mp, gt, secs, extra):
     open(os.path.join(mt, "sweep.cfg"), "w", newline="\n").write("\n".join([
         "set developer 1", "set sv_maxbots 12", "set sv_numbots 0", "set coop_mpBotFill 10", "set coop_mpBotMax 12",
         "set coop_mpMode none", "set timelimit 0", "set fraglimit 0", "set g_teamdamage 0", "set sv_minPlayers 0"] + extra +
-        ["map " + mp]) + "\n")
+        (OPS_EXTRA(mp, gt) if "--ops" in sys.argv else []) + ["map " + mp]) + "\n")
     args = [os.path.join(INST, "omohaaded.exe"), "+set", "com_target_game", "2", "+set", "fs_basepath", GOG,
             "+set", "fs_homepath", HOME, "+set", "dedicated", "1", "+set", "net_port", str(PORT), "+set", "sv_maxclients", "4",
             "+set", "g_gametype", str(gt), "+set", "logfile", "2", "+set", "com_abnormalExit", "0", "+set", "sv_maxbots", "12",
