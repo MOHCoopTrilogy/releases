@@ -324,9 +324,20 @@ def shader(name, clamp=False, extra=""):
 
 ROOM = (0.42, 0.38, 0.37)              # the boards' level beside the opening, measured twice in-game against the lightmapped floor there
 LIT = (0.58, 0.51, 0.45)               # hover: ~1.35 x and warmer
+# the trapdoor (rain73, coordinator: "still reads a little like a crate panel standing upright"): seen from the opening it shows
+# its UNDERSIDE - years of the stairwell's dust and damp: darker, greyer, a grimy bloom towards its lower edge and fine streaks
+_r = np.random.default_rng(1945)
+_h, _w = ALB.shape[:2]
+_grey = ALB.mean(2, keepdims=True)
+_lid = ALB * 0.62 + _grey * 0.38                                         # weathered greyer
+_n = np.asarray(Image.fromarray((_r.random((_h // 16, _w // 16)) * 255).astype(np.uint8)).resize((_w, _h), Image.BICUBIC), np.float32) / 255
+_streak = np.asarray(Image.fromarray((_r.random((8, _w // 4)) * 255).astype(np.uint8)).resize((_w, _h), Image.BICUBIC), np.float32) / 255
+_lid = _lid * (0.78 + 0.16 * _n[..., None]) * (0.88 + 0.12 * _streak[..., None])
 for sfx, k in (("", ROOM), ("_lit", LIT)):
     bake("hzm_hatch_wood%s" % sfx, ALB, k)
     shader("hzm_hatch_wood%s" % sfx)
+    bake("hzm_hatch_lid%s" % sfx, _lid[::2, ::2], (k[0] * 0.78, k[1] * 0.78, k[2] * 0.80))      # half size: small on screen (menu VRAM, menuload)
+    shader("hzm_hatch_lid%s" % sfx)
     bake("hzm_hatch_iron%s" % sfx, ALB, (k[0] * 0.16, k[1] * 0.16, k[2] * 0.17))
     shader("hzm_hatch_iron%s" % sfx)
 plaster = np.asarray(Image.open(io.BytesIO(PAK2.read("textures/general_structure/plaster_wall2.jpg"))).convert("RGB"), np.float32)
@@ -346,7 +357,7 @@ open(os.path.join(sdir, "hzm_hatch73.shader"), "w", newline="\n").write(
     "// v1.10.73 the attic's ladder hatch (gen_hatch73.py v2): the attic floor's own boards, the room light baked in; a plastered,\n"
     "// warm-lit stairwell below\n\n" + "\n\n".join(SH) + "\n")
 for sfx in ("", "_lit"):
-    write_model("hzm_hatch" + sfx, [("hzm_hatch_wood" + sfx, frame + ladder_up + rail + lid), ("hzm_hatch_iron" + sfx, iron)])
+    write_model("hzm_hatch" + sfx, [("hzm_hatch_wood" + sfx, frame + ladder_up + rail), ("hzm_hatch_lid" + sfx, lid), ("hzm_hatch_iron" + sfx, iron)])
 write_model("hzm_hatch_below", [("hzm_hatch_shaft", shaft), ("hzm_hatch_ladlo", lad_below), ("hzm_hatch_landing", landing),
                                 ("hzm_hatch_pool", glow)])
 import json  # noqa: E402

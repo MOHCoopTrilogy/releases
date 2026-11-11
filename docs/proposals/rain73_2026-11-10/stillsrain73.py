@@ -32,7 +32,15 @@ def views(L, tag, fill):
 def script(which):
     L = ["set developer 0", "set ui_menuRoom 1", "set ui_atticMain 1", "set ui_camslow 1", "set coop_hardcore 0", "set ui_wxHour 12.5",
          "set ui_wxWeather 3", "set ui_wxForce \"0.1 0\"", "wait 12000", "wait 6000"]
-    if which == "storm":
+    if which == "perf":
+        # frame time: the storm at its peak, each view 14 s (the WXRAIN / SCENE3D prints come every 240 / 120 frames), rain on then off
+        L += ["set ui_wxDebug 1", "set ui_scene_debug 1", "set ui_wxWeather 4", "set ui_wxForce \"1.0 0.9\"", "wait 10000"]
+        for parts in (1, 0):
+            L += ["set ui_wxRainParts %d" % parts, "echo ^~^~^ PERF rainparts %d" % parts]
+            for vn, stop, pose in (("home", 0, HOME), ("out", 3, OUT), ("up", 4, UP)):
+                L += ["set ui_atcStop %d; globalwidgetcommand atticscene scenefly 0.4 %s" % (stop, pose), "echo ^~^~^ PERF view %s" % vn, "wait 14000"]
+        L += ["set ui_wxDebug 0", "set ui_scene_debug 0"]
+    elif which == "storm":
         for nm, I, F in (("4heavy", 0.78, 0.10), ("5storm", 1.0, 0.90)):
             L += ["set ui_wxWeather 4", "set ui_wxForce \"%.2f %.2f\"" % (I, F), "wait 12000"]
             views(L, nm, 2500)
