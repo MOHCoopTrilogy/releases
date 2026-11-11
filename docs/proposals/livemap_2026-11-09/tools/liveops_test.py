@@ -52,7 +52,7 @@ MUTE = ["set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set i
         "set developer 1", "set logfile 2"]
 PAK_FILES = ["ui/hzm_newgame3d.urc", "ui/hzm_ngflat.urc", "scripts/hzm_ng3campaigns.shader", "coop_mod/mp.scr",
              "coop_mod/mp_bots.scr", "coop_mod/mp_hardcore.scr", "coop_mod/mp_weather.scr", "coop_mod/mp_ops.scr",
-             "coop_mod/mp_ops_table.scr", "coop_mod/mp_dbno.scr", "coop_mod/mp_ops_text.scr", "coop_mod/libbridge.scr",
+             "coop_mod/mp_ops_table.scr", "coop_mod/mp_armory.scr", "coop_mod/mp_dbno.scr", "coop_mod/mp_ops_text.scr", "coop_mod/libbridge.scr",
              "ubersound/coop_audio.scr", "sound/coop_vo/den_coop_lib_briefing.wav"]
 
 
