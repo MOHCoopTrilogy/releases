@@ -1,0 +1,47 @@
+//=========================================================================
+// TEST OVERLAY ONLY (mpprog coop control, 2026-11-10) - replaces coop_mod/devprobe.scr inside the test pak
+// zzzzzzzzzzzz_mpprogtest.pk3. main.scr::main threads devprobe.scr::main on every coop map. With coop_mpptest 1:
+// wait for the human to be alive on a team, then make him the attacker of 5 real AI kills (the engine damage path,
+// the same death that chal_ai_killed hears), flush the coop records and print the weapon-kill stat.
+//=========================================================================
+main:{
+	if( getcvar( "coop_mpptest" ) != "1" ){ end }
+	local.h = NULL
+	local.t = 0
+	while( local.h == NULL && local.t < 300 ){
+		wait 1
+		local.t++
+		for( local.i = 1; local.i <= $player.size; local.i++ ){
+			local.q = $player[local.i]
+			if( local.q != NULL && local.q.health > 0 && local.q.dmteam != "spectator" && local.q.dmteam != "" ){ local.h = local.q }
+		}
+	}
+	if( local.h == NULL ){ println( "^~^~^ MPPCOOP abort nohuman" ) ; end }
+	wait 8
+	local.k0 = local.h.flags["coop_chal_kill"]
+	println( "^~^~^ MPPCOOP found e" + local.h.entnum + " chal_id=" + local.h.flags["coop_chal_id"] + " xp=" + local.h.flags["coop_xp_total"] )
+	local.n = 0
+	local.tries = 0
+	while( local.n < 5 && local.tries < 120 && local.h != NULL ){
+		local.tries++
+		local.best = NULL
+		if( $actor != NULL ){
+			for( local.i = 1; local.i <= $actor.size; local.i++ ){
+				local.a = $actor[local.i]
+				if( local.a != NULL && local.a.health > 0 && local.a.team == "german" ){ local.best = local.a }
+			}
+		}
+		if( local.best != NULL ){
+			local.best damage local.h 5000 local.h local.best.origin ( 0 0 1 ) ( 0 0 1 ) 0 0 18 3
+			local.n++
+		}
+		wait 1
+	}
+	wait 2
+	waitthread coop_mod/xp.scr::xp_flush
+	waitthread coop_mod/challenges.scr::chal_flush
+	println( "^~^~^ MPPCOOP done kills=" + local.n + " chal_id=" + local.h.flags["coop_chal_id"] + " xp=" + local.h.flags["coop_xp_total"] )
+}end
+
+stuckWatch:{
+}end

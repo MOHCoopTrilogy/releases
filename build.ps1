@@ -55,6 +55,11 @@ python "C:\mohaa-coop-dev\docs\tools\check_say_aliases.py" | Out-String | Write-
 # weeks). ads_audit = every aimable gun resolves to a sight tune (exact/strip/donor).
 python "C:\mohaa-coop-dev\docs\tools\unlock_audit.py"
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by unlock_audit" -ForegroundColor Red; exit 1 }
+# [mpprog, bug-10912] the MULTIPLAYER twin: every MP challenge stat has a writer and is persisted, every target is reachable,
+# every reward points at a real tile/finish, every non-starter MP tile has an unlock, the record page reads only live indices,
+# and the carried record's stufftext/userinfo channel can actually carry it (it was quoted + ';'-delimited and never survived).
+python "C:\mohaa-coop-dev\docs\tools\mp_unlock_audit.py"
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by mp_unlock_audit" -ForegroundColor Red; exit 1 }
 python "C:\mohaa-coop-dev\docs\tools\ads_audit.py"
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ads_audit" -ForegroundColor Red; exit 1 }
 # [user 2026-09-13, bug-2577] The armory pages are GENERATED from docs/tools/loadout_weapons.tsv plus MV_HOSTS. wire_mv2

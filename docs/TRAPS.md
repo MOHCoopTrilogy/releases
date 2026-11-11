@@ -392,8 +392,9 @@ a crc of the id list and wipe on mismatch; a generated lookup map is `set`, not 
 <a name="t8"></a>
 ## T8 - server->client stufftext is a lossy, filtered channel
 
-Ways a server->client message silently dies: an embedded quote truncates the wire argument, so send values UNQUOTED and one statement per
-stufftext; the filter silently drops unscoped server-stuffed `exec`, unsafe `vstr` and unlisted
+Ways a server->client message silently dies: an embedded quote truncates the wire argument (the client sets an EMPTY value: no MP
+record survived a session for weeks, bug-10912), so send values UNQUOTED, one statement per stufftext, with no `;` (splits the
+command; a userinfo value also refuses `\ ; "` - gate `mp_unlock_audit.py`); the filter silently drops unscoped server-stuffed `exec`, unsafe `vstr` and unlisted
 `set`; client `exec`/`vstr` INSERT at the buffer front while server stufftext APPENDS, so
 the last line of a client chain wins and a server echo lags a round trip (a cfg `wait` holds it, bug-3211); and the
 name bus dispatches ONE token per ~0.75s batch in BUS INDEX order, dropping other stacked tokens. A `.urc` widget below its menu's canvas height draws nothing, no error.

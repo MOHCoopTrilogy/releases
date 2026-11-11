@@ -641,6 +641,10 @@ entry points incl. pause menu → loadout) and **loadout re-open redisplays save
 progression ladder** (`gen_mp_armory.py::record_urc`; thresholds parsed from scripts): rank, each class
 with live `coop_mpCnt_<class>` / the N-kill unlock
 + an **UNLOCKED badge** (`enabledcvar coop_mpUnlockC_<class>`), plus the cosmetic ladder.
+progression ladder** (`gen_mp_armory.py::record_urc`; thresholds parsed from scripts; counts persist
+only since bug-10912): rank, each class with live `coop_mpCnt_<class>` / the N-kill unlock
++ an **UNLOCKED badge** (`enabledcvar coop_mpUnlockC_<class>`), plus the cosmetic ladder (answers "progression
+not clearly defined").
 
 **Field Settings (Coop Settings) + Host Rules sheets** - `SHIPPED-UNVERIFIED`; the 2026-09-13
 redesign (bug-2578) is deployed and **not yet opened in game**. `ui/coop_settings.urc` is a two-column

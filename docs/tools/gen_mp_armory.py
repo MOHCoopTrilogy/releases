@@ -946,6 +946,13 @@ def urc(side, rows, defaults=False):
         L += w_button("tab%d" % k, rect, tab, "exec ui/%s/tab%d.cfg" % (dir_, k))
         L += [""]
     # tiles, grouped by tab, in TSV order; padlock overlay for locked tiles
+    # [mpprog 2026-11-10, bug-10926] the tile's tier (1-based within its progression class, file order - the SAME
+    # rule roster_scr uses for the wt:<class>:<tier> token), so the padlock can hide once coop_mpUw_<class>_<tier>
+    # is set. The padlock used to be gated on the tab alone and showed on every non-starter tile forever.
+    _tc, tier_of = {}, {}
+    for w in srows:
+        _tc[w["pclass"]] = _tc.get(w["pclass"], 0) + 1
+        tier_of[id(w)] = _tc[w["pclass"]]
     for k, tab in enumerate(TABS):
         ws = [w for w in srows if w["tab"] == tab]
         for pos, w in enumerate(ws):
@@ -955,8 +962,10 @@ def urc(side, rows, defaults=False):
                           enabled=cvar(side, "Tab%d" % k),
                           hover="exec ui/%s/h%s.cfg" % (dir_, w["mpid"]))   # [bug-2779] coop-parity unlock hint
             if not w["starter"]:
+                # two AND-ed conditions (engine enabledcvar multi-token form, uiwidget.cpp isEnabled): its tab is
+                # showing AND the tier is not unlocked. The server still re-validates every pick (mp_armory.scr).
                 L += w_label("tilelk%s" % w["mpid"], (452, y + 1, 14, 14), order=8,
-                             enabled=cvar(side, "Tab%d" % k),
+                             enabled="%s !coop_mpUw_%s_%d" % (cvar(side, "Tab%d" % k), w["pclass"], tier_of[id(w)]),
                              shader="textures/mohmenu/coop_mp_lock.tga",
                              fg="1.00 1.00 1.00 1.00")
             L += [""]
