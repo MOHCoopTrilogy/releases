@@ -221,6 +221,7 @@ def rung(out, a, b, rad=1.05, n=8):
 
 
 frame, lid, ladder_up, rail, iron = [], [], [], [], []
+brace, rim = [], []        # rain73 v2: the leaf's battens + Z-brace in the lighter frame wood, a thin lit trim on its edges
 # the frame: four boards round the opening, flush with the floor (0.1 u proud), mitred lengths
 FW, FT = 5.5, 0.6
 for (c, a1, sz) in (((HC[0], HY0 - FW / 2, FT / 2 - 0.5), ex, (HX1 - HX0 + 2 * FW, FW, FT)),
@@ -249,10 +250,14 @@ for k in range(NP):
     xk = HX0 + 0.25 + pw * (k + 0.5) - HC[0]
     plank_box(lid, hinge + d_ * lw / 2 + n_ * lt / 2 + ex * xk, d_, ex, n_, (lw, pw - 0.35, lt))
 for f_ in (0.15, 0.85):
-    plank_box(lid, hinge + d_ * lw * f_ - n_ * 1.0, ex, d_, -n_, (ld - 3.0, 4.2, 2.0))
+    plank_box(brace, hinge + d_ * lw * f_ - n_ * 1.0, ex, d_, -n_, (ld - 3.0, 4.2, 2.0))
 zb = (ex * (ld / 2 - 4.0) + d_ * lw * 0.15) - (-ex * (ld / 2 - 4.0) + d_ * lw * 0.85)
 zl = np.linalg.norm(zb)
-plank_box(lid, hinge + d_ * lw * 0.5 - n_ * 1.0, zb / zl, np.cross(-n_, zb / zl), -n_, (zl, 3.6, 2.0))
+plank_box(brace, hinge + d_ * lw * 0.5 - n_ * 1.0, zb / zl, np.cross(-n_, zb / zl), -n_, (zl, 3.6, 2.0))
+# the rim light: the leaf's free edge and its two sides catch the room's light - a 0.8 u trim, proud of both faces by 0.2 u
+plank_box(rim, hinge + d_ * (lw + 0.3) + n_ * lt / 2, ex, d_, n_, (ld + 0.6, 0.8, lt + 0.4))
+for sx in (-1, 1):
+    plank_box(rim, hinge + d_ * lw / 2 + n_ * lt / 2 + ex * sx * (ld / 2 + 0.3), d_, ex, n_, (lw, 0.8, lt + 0.4))
 for sx in (-1, 1):                                   # strap hinges: across the hinge line, half on the leaf, half on the frame
     hc = hinge + ex * sx * (ld / 2 - 7.0) + d_ * 5.0 + n_ * (lt + 0.25)
     plank_box(iron, hc, d_, ex, n_, (11.0, 2.0, 0.5))
@@ -261,7 +266,7 @@ for sx in (-1, 1):                                   # strap hinges: across the 
 # the stop: a short post on the floor behind the frame, its top under the leaf's back face (where the leaf rests)
 s_rest = 24.0
 rest = hinge + d_ * s_rest + n_ * lt
-plank_box(lid, (HC[0], rest[1] + 2.2, rest[2] / 2), up, ex, ey, (rest[2], 4.4, 4.4))
+plank_box(brace, (HC[0], rest[1] + 2.2, rest[2] / 2), up, ex, ey, (rest[2], 4.4, 4.4))
 # the ladder: a loft ladder from the landing, leaning on the far wall at ~75 deg; two stiles (2.4 x 5.5), round rungs every
 # 10.5 u, the stiles run on 48 u above the floor (grab rails, rounded tops) - full size: 0.62 m between the stiles
 LX = (HC[0] - 16.5, HC[0] + 16.5)
@@ -336,7 +341,7 @@ _lid = _lid * (0.78 + 0.16 * _n[..., None]) * (0.88 + 0.12 * _streak[..., None])
 for sfx, k in (("", ROOM), ("_lit", LIT)):
     bake("hzm_hatch_wood%s" % sfx, ALB, k)
     shader("hzm_hatch_wood%s" % sfx)
-    bake("hzm_hatch_lid%s" % sfx, _lid[::2, ::2], (k[0] * 0.78, k[1] * 0.78, k[2] * 0.80))      # half size: small on screen (menu VRAM, menuload)
+    bake("hzm_hatch_lid%s" % sfx, _lid[::2, ::2], (k[0] * 0.98, k[1] * 0.97, k[2] * 0.99))      # half size: small on screen (menu VRAM, menuload)
     shader("hzm_hatch_lid%s" % sfx)
     bake("hzm_hatch_iron%s" % sfx, ALB, (k[0] * 0.16, k[1] * 0.16, k[2] * 0.17))
     shader("hzm_hatch_iron%s" % sfx)
@@ -357,7 +362,8 @@ open(os.path.join(sdir, "hzm_hatch73.shader"), "w", newline="\n").write(
     "// v1.10.73 the attic's ladder hatch (gen_hatch73.py v2): the attic floor's own boards, the room light baked in; a plastered,\n"
     "// warm-lit stairwell below\n\n" + "\n\n".join(SH) + "\n")
 for sfx in ("", "_lit"):
-    write_model("hzm_hatch" + sfx, [("hzm_hatch_wood" + sfx, frame + ladder_up + rail), ("hzm_hatch_lid" + sfx, lid), ("hzm_hatch_iron" + sfx, iron)])
+    write_model("hzm_hatch" + sfx, [("hzm_hatch_wood" + sfx, frame + ladder_up + rail + brace), ("hzm_hatch_lid" + sfx, lid), ("hzm_hatch_wood_lit", rim),
+                                    ("hzm_hatch_iron" + sfx, iron)])
 write_model("hzm_hatch_below", [("hzm_hatch_shaft", shaft), ("hzm_hatch_ladlo", lad_below), ("hzm_hatch_landing", landing),
                                 ("hzm_hatch_pool", glow)])
 import json  # noqa: E402
