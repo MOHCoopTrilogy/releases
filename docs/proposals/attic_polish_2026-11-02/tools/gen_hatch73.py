@@ -314,8 +314,8 @@ def shader(name, clamp=False, extra=""):
     SH.append("%s\n{\n\tnopicmip\n\tcull none\n\t{\n\t\t%s textures/menu/%s.jpg\n\t\trgbGen identity\n%s\t}\n}" % (name, "clampmap" if clamp else "map", name, extra))
 
 
-ROOM = (0.56, 0.51, 0.47)              # the boards' level beside the opening (measured in-game: the floor there is ~0.69 x the first cut)
-LIT = (0.78, 0.69, 0.58)               # hover: the lamp turned up, ~1.35 x and warmer (the first cut blew out)
+ROOM = (0.42, 0.38, 0.37)              # the boards' level beside the opening, measured twice in-game against the lightmapped floor there
+LIT = (0.58, 0.51, 0.45)               # hover: ~1.35 x and warmer
 for sfx, k in (("", ROOM), ("_lit", LIT)):
     bake("hzm_hatch_wood%s" % sfx, ALB, k)
     shader("hzm_hatch_wood%s" % sfx)

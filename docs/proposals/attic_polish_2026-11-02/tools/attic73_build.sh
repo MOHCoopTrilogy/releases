@@ -11,7 +11,7 @@
 #   (6) close_ring73.py hzm_atc_close (the attic's open back end), crack_backer73.py hzm_atc_cracks (the wing's corner crack:
 #       the user's 'white sliver'), gen_hatch73.py (the ladder hatch = QUIT GAME; the floor model gets its opening)
 # The mod side (ui/multiplayer.urc + the room copies via patch_mproom69.py, ui/coop_pb.urc + coop_mod/bests_table.scr via
-# gen_bests.py --mod) is committed on the mod branch; MOD= checks it is current. Result sha 37408ac8. Never deploys anything.
+# gen_bests.py --mod) is committed on the mod branch; MOD= checks it is current. Result sha 69e7c4cf. Never deploys anything.
 set -e
 W=/h/hzm_work/attic62; T=$(cd "$(dirname "$0")" && pwd); LB=$T/../../leaderboard_2026-11-10
 MOD=${MOD:-/h/hzm_work/polish73-mod}
