@@ -50,6 +50,18 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.75 - Real Steel
+
+- **Real recoil and fire rates** - every gun kicks and cycles like the real thing, for players and the AI alike. Sustained fire climbs; the MG42 is a buzzsaw, the BAR is slow and heavy
+- **USE key flipped** - tap to take ammo from a dropped weapon, hold to swap to it
+- **New Escape menu** - cleaner layout in co-op, multiplayer and single player, a SCOREBOARD row, and DISCONNECT asks first
+- **The attic has weather** - real rain and fog over the rooftops, rain you can hear, and a ladder hatch to quit. The main menu also opens faster, and every loading clip is now HD
+- **Multiplayer unlock progress saves**, and Field Operations always put you on the Allies
+- **Own-disc missions rebuilt** - Sealed Orders and Their Dying Breath follow the original levels much more closely
+- **Needs playtesting** - both disc missions end to end, and how the new recoil feels in long firefights
+
+<p align="center"><img src="docs/screenshots/v11075-escmenu.jpg" width="49%" alt="The new Escape menu with its SCOREBOARD row"> <img src="docs/screenshots/v11075-atticrain.jpg" width="49%" alt="Heavy rain over the rooftops from the attic window"></p>
+
 ### v1.10.72 - Live Fire
 
 - **Live Operations** - timed Team Deathmatch and Objective contracts pop up as pins on the New Game war map, Payday-style. Open a dispatch card, DEPLOY into a match against bots, and earn bonus XP (half if the operation fails). Contracts are seeded by the clock, so your friends see the same ones; no unlocks needed
