@@ -62,6 +62,7 @@ class BSP:
         self.entities = []         # list of ordered (key, value) lists
         self.vis_cell = 0          # >0: leafs no wider than this, clustered on a 2D grid of this size
         self.vis_radius = 0        # cluster sees cluster when their cell centres are within this distance
+        self.grid_light = 0.0      # >0: write an entity light grid from the world vertex colours, times this gain
 
     # ---------- tables ----------
     def shader(self, name, surface_flags=0, content_flags=0):
@@ -213,6 +214,98 @@ class BSP:
         return nodes, leafs, leafsurfs, leafbrushes, (lo, hi)
 
     # ---------- write ----------
+    def _light_grid(self, wlo, whi, gain):
+        """MOHAA light grid (palette, offsets, data lumps) for a map whose only light is baked vertex colour.
+
+        Without a grid the renderer lights every model at a fixed 150, which is daylight: on a night level the
+        tanks and soldiers glowed against the ground they stood on. One grid column per 32u cell, the same light
+        at every height, coloured from the world vertices around it (256u cells, smoothed), so a model takes the
+        light of the ground it is on, a fire's baked glow included."""
+        def f32(x):
+            return struct.unpack("<f", struct.pack("<f", x))[0]
+        org, bnd = [], []
+        for k in range(3):
+            o = 32.0 * math.ceil(f32(wlo[k]) / 32.0)
+            m = 32.0 * math.floor(f32(whi[k]) / 32.0)
+            org.append(o)
+            bnd.append(int((m - o) / 32.0 + 1))
+        bx, by = bnd[0], bnd[1]
+        if bx < 2 or by < 2 or bx * by > 6000000:
+            return None
+        C = 8                                    # coarse cell = 8 columns = 256u
+        cx, cy = bx // C + 2, by // C + 2
+        acc = [[0.0, 0.0, 0.0, 0] for _ in range(cx * cy)]
+        tot = [0.0, 0.0, 0.0, 0]
+        for srf in self.surfaces:
+            if "sky" in self.shaders[srf["shader"]][0].lower():
+                continue
+            for v in srf["verts"]:
+                x = int((v[0][0] - org[0]) / (32.0 * C))
+                y = int((v[0][1] - org[1]) / (32.0 * C))
+                if 0 <= x < cx and 0 <= y < cy:
+                    c = acc[x + y * cx]
+                    r, g, b = v[3][0], v[3][1], v[3][2]
+                    c[0] += r; c[1] += g; c[2] += b; c[3] += 1
+                    tot[0] += r; tot[1] += g; tot[2] += b; tot[3] += 1
+        if not tot[3]:
+            return None
+        mean = [tot[k] / tot[3] for k in range(3)]
+        cell = [([c[0] / c[3], c[1] / c[3], c[2] / c[3]] if c[3] else None) for c in acc]
+        for _pass in range(2):                   # empty cells take their neighbours' light, then one smoothing pass
+            out = []
+            for y in range(cy):
+                for x in range(cx):
+                    me = cell[x + y * cx]
+                    if _pass == 0 and me is not None:
+                        out.append(me)
+                        continue
+                    sm, n = [0.0, 0.0, 0.0], 0
+                    for dy in (-1, 0, 1):
+                        for dx in (-1, 0, 1):
+                            xx, yy = x + dx, y + dy
+                            if 0 <= xx < cx and 0 <= yy < cy and cell[xx + yy * cx] is not None:
+                                q = cell[xx + yy * cx]
+                                sm[0] += q[0]; sm[1] += q[1]; sm[2] += q[2]; n += 1
+                    out.append([sm[k] / n for k in range(3)] if n else (None if _pass == 0 else list(mean)))
+            cell = out
+        cell = [c if c is not None else list(mean) for c in cell]
+        cols = []                                # per column, bilinear between the coarse cells
+        for x in range(bx):
+            fx = (x + 0.5) / C - 0.5
+            x0 = max(0, min(cx - 2, int(math.floor(fx))))
+            tx = max(0.0, min(1.0, fx - x0))
+            for y in range(by):
+                fy = (y + 0.5) / C - 0.5
+                y0 = max(0, min(cy - 2, int(math.floor(fy))))
+                ty = max(0.0, min(1.0, fy - y0))
+                a_, b_ = cell[x0 + y0 * cx], cell[x0 + 1 + y0 * cx]
+                c_, d_ = cell[x0 + (y0 + 1) * cx], cell[x0 + 1 + (y0 + 1) * cx]
+                cols.append(tuple((a_[k] * (1 - tx) + b_[k] * tx) * (1 - ty) + (c_[k] * (1 - tx) + d_[k] * tx) * ty
+                                  for k in range(3)))
+        step = 1.0                               # coarsen until the map's colours fit the 255 palette slots
+        while True:
+            q = [(int(c[0] / step + 0.5), int(c[1] / step + 0.5), int(c[2] / step + 0.5)) for c in cols]
+            uniq = sorted(set(q))
+            if len(uniq) <= 255:
+                break
+            step *= 1.5
+        pal = bytearray(768)                     # index 0 = "no light here" to the renderer, never used
+        slot = {}
+        for i, u in enumerate(uniq, 1):
+            slot[u] = i
+            for k in range(3):
+                pal[i * 3 + k] = max(2, min(255, int(u[k] * step * gain + 0.5)))
+        data = bytearray()
+        for i in range(256):                     # a column: 64 runs of 129 cells of one colour (far taller than any map)
+            data += bytes([127, i]) * 64
+        offs = [0] * (bx + bx * by)
+        n = 0
+        for x in range(bx):
+            for y in range(by):
+                offs[bx + y + by * x] = slot[q[n]] * 128
+                n += 1
+        return bytes(pal), struct.pack("<%dH" % len(offs), *offs), bytes(data)
+
     def write(self, path):
         world_s = [i for i in range(len(self.surfaces)) if not any(i in m["surfaces"] for m in self.models)]
         world_b = [i for i in range(len(self.brushes)) if not any(i in m["brushes"] for m in self.models)]
@@ -339,6 +432,10 @@ class BSP:
             mods.append(struct.pack("<3f3f4i", *lo, *hi, so, len(m["surfaces"]), bo, len(m["brushes"])))
             so += len(m["surfaces"]); bo += len(m["brushes"])
         lumps[L_MODELS] = b"".join(mods)
+        if self.grid_light > 0:
+            _g = self._light_grid(wlo, whi, self.grid_light)
+            if _g:
+                lumps[16], lumps[17], lumps[18] = _g
 
         ent = ""
         for kv in self.entities:

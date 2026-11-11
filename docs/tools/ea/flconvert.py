@@ -28,7 +28,7 @@ import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
 
-CONVERTER_VERSION = "0.7.3"   # 0.7.2 particle sizes are half extents (quads twice as wide); 0.7.1 the level's own global fog record sets the far plane and its colour (the village is a night level), width and height end scales of a particle kept apart; 0.7.0 the level's own particle systems (eafx: emitters + sprite sheets from the disc's ProcParticleType records; engine convfx); 0.6.1 music events by the .mpf's own table (eamusic); [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
+CONVERTER_VERSION = "0.7.5"   # 0.7.5 an entity light grid from the baked vertex light (tanks and soldiers no longer daylit at night), silent panic bark; 0.7.4 baked light written for the mod's world gain (the night was near three times too bright), two-layer terrain upgrades graded (crater rims), far glows given back the fog share, silent bark aliases; 0.7.2 particle sizes are half extents (quads twice as wide); 0.7.1 the level's own global fog record sets the far plane and its colour (the village is a night level), width and height end scales of a particle kept apart; 0.7.0 the level's own particle systems (eafx: emitters + sprite sheets from the disc's ProcParticleType records; engine convfx); 0.6.1 music events by the .mpf's own table (eamusic); [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
 MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
@@ -263,8 +263,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     _mv = _lv[len(_lv) // 2] // 3 if _lv else 128
     med_light = (_mv, _mv, _mv)
     grade = {}     # upgraded texture key -> per-channel gain toward Frontline's own texture colour
+    grade2 = {}    # EA two-layer key -> (base layer gain, top layer gain); mixed per vertex by the layer weight
 
-    def grade_for(key, up):
+    def grade_for(key, up, hi=1.2):
         """deterministic grade: scale the vertex colours so the HD texture's mean colour lands on Frontline's"""
         import io as _io
         from statistics import fmean
@@ -280,7 +281,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     im = Image.open(_io.BytesIO(zipfile.ZipFile(pk).read(up["path"]))).convert("RGB").resize((64, 64))
                     px = im.tobytes()
                     hd = [fmean(px[c::3]) for c in range(3)]
-                    return tuple(max(0.3, min(1.2, round(f / max(1.0, h), 3))) for f, h in zip(fl, hd))
+                    return tuple(max(0.3, min(hi, round(f / max(1.0, h), 3))) for f, h in zip(fl, hd))
                 except Exception:
                     return None
         return None
@@ -346,6 +347,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 stats["upgraded"] = stats.get("upgraded", 0) + 1
             else:
                 files[name + "_l2.tga"] = tga_bytes(t2["w"], t2["h"], t2["rgba"])
+            # an upgraded layer is graded to the disc texture's own mean like a single upgraded texture is; without
+            # it the HD snow sat darker than the meshes beside it that keep the disc's snow in their own texture
+            # (the craters' rims showed as pale boxes on the ground)
+            _g1 = grade_for(k1, up1, 2.0) if (up1 and upgrade_ok(up1) and up1.get("grade", True)) else None
+            _g2 = grade_for(k2, up2, 2.0) if (up2 and upgrade_ok(up2) and up2.get("grade", True)) else None
+            if _g1 or _g2:
+                grade2[key] = (_g1 or (1.0, 1.0, 1.0), _g2 or (1.0, 1.0, 1.0))
+                stats.setdefault("grades2", {})[short_key(key)] = [list(grade2[key][0]), list(grade2[key][1])]
             stats["two_layer"] = stats.get("two_layer", 0) + 1
             shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tcull none\n\t{\n\t\tmap " + map1 + "\n" + tc1 +
                                 "\t\trgbGen vertex\n\t}\n\t{\n\t\tmap " + map2 + "\n\t\ttcGen lightmap\n" + tc2 +
@@ -484,10 +493,15 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             if r == g == b == 255:
                 # Frontline marks some draws "unlit" with pure-white vertex colour; under id Tech 3's vertex
                 # overbright that blows out (the white strip along the hedge alley) -> the level's median light
-                r, g, b = med_light
+                if not (game == "ea" and m["tex"] and m["tex"].split("#")[0] in texmap.get("additive", [])):
+                    r, g, b = med_light
             gr = grade.get(m["tex"])
             if gr:
                 r, g, b = (min(255, int(round(c * k))) for c, k in zip((r, g, b), gr))
+            g2_ = grade2.get(m["tex"])
+            if g2_:
+                _w = va / 255.0
+                r, g, b = (min(255, int(round(c * (ka * (1.0 - _w) + kb * _w)))) for c, ka, kb in zip((r, g, b), g2_[0], g2_[1]))
             u, v = m["uvs"][i]
             if m.get("uvs2") and m["tex"] and "+" in m["tex"]:
                 # EA two-layer terrain: vertex alpha = the top layer's weight, uv2 rides in the lightmap texcoords
@@ -853,7 +867,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 break
     ws = [("classname", "worldspawn"), ("message", f"{ {'fl': 'Frontline', 'ea': 'European Assault'}[game]} {level} (converted locally, converter {CONVERTER_VERSION})"),
           ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
-          ("ambientlight", "40 40 40")]
+          ("ambientlight", os.environ.get("EA_AMBIENT", "12 14 17") if game == "ea" else "40 40 40")]
     ws += [(k, sp[k]) for k in ("farplane_bias", "farplane_maxfog", "farplane_cull") if k in sp]
     B.entity(ws)
     if game == "ea":
@@ -969,6 +983,19 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             yaw = math.degrees(math.atan2(-q[1], -q[0])) % 360
             B.entity([("classname", "info_player_axis"), ("origin", f"{q[0]:.0f} {q[1]:.0f} {q[2] + 40:.0f}"), ("angle", f"{yaw:.0f}")])
 
+    if game == "ea" and not os.environ.get("EA_NO_VCGAIN"):
+        # EA's baked vertex light means texture x colour x 2 (colour 128 = 1.0; eacore doubles it already). The mod's
+        # renderer multiplies every world vertex colour again at map load by its world gain (r_mapOverBrightBits 2 with
+        # r_mapOverBrightScale 0.71 = 2.83, both pinned by the mod's autoexec), so the night village came out near
+        # three times as bright as the disc lights it and the snow clipped to white. Divide the gain back out.
+        _k = 1.0 / float(os.environ.get("EA_WORLD_GAIN", "2.83"))
+        for _s in B.surfaces:
+            _s["verts"] = [v[:3] + ((int(v[3][0] * _k + 0.5), int(v[3][1] * _k + 0.5), int(v[3][2] * _k + 0.5), v[3][3]),) + tuple(v[4:])
+                           for v in _s["verts"]]
+        stats["world_gain"] = round(1.0 / _k, 3)
+        # models take their light from a grid written out of the same vertex colours (see flbsp._light_grid)
+        B.grid_light = float(os.environ.get("EA_ENT_LIGHT", "1.0"))
+        stats["ent_light_gain"] = B.grid_light
     import flvis
     B.vis_occluders = flvis.occluders([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
     bsp_path = out_pk3 + ".bsp.tmp"

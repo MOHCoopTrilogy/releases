@@ -394,10 +394,23 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     import eafx
     fxused = collections.Counter(eavm.base(t) for r in db.of("EffectsPackage") for _k, t in r.strings()
                                  if t.lower().endswith(".xpd"))
-    vm["fx"] = eafx.build(L.stream, db, X, level, files, lines, used=dict(fxused), log=log)
+    vm["fx"] = eafx.build(L.stream, db, X, level, files, lines, used=dict(fxused), log=log,
+                          far_gain=float(spec.get("far_fx_gain", 1.0)))
     lines += [f"\tlevel.ea_axis_n = {na}", f"\tlevel.ea_ally_n = {nl}", "\tlevel.ea_data_ok = 1", "}end", ""]
     files[f"maps/coop_ea_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     if mohaa_base:
         import flpack      # stock aliases are map-filtered: re-declare the AA-campaign ones for coop_ea (Frontline recipe)
-        files["ubersound/ea_aliasbridge.scr"] = flpack.alias_bridge(mohaa_base, "coop_ea_" + level).encode("latin-1")
+        _br = flpack.alias_bridge(mohaa_base, "coop_ea_" + level)
+        # The allied riflemen use the stock Soviet models, which carry no generic combat head lines, so the AI's
+        # sighted / attack / spread shouts fall through to sound aliases no pak defines and the server log fills
+        # with missing-alias errors. The install has no Russian generic lines and American ones would be wrong on
+        # partisans, so the names are declared silent for coop_ea maps only (the wav is the install's own).
+        _sil = []
+        for _n in ("sighted", "attack", "spread"):
+            for _c in "abcdefghijklmnop":
+                _sil.append(f'alias dfr_head_{_n}_{_c} sound/null.wav soundparms 1.0 0 1 0 160 1600 dialog loaded maps "coop_ea"')
+        for _c in "abcdefghijklmnop":   # the panic bark has no head animation either
+            _sil.append(f'alias dfr_morphonly_panic_{_c} sound/null.wav soundparms 1.0 0 1 0 160 1600 dialog loaded maps "coop_ea"')
+        _sil.append('alias pain_generic sound/null.wav soundparms 1.0 0 1 0 160 1600 dialog loaded maps "coop_ea"')
+        files["ubersound/ea_aliasbridge.scr"] = (_br + "\n".join(_sil) + "\n").encode("latin-1")
     return {"vm": vm, "objects": sorted(found), "axis": na, "allies": nl, "text": len(spec.get("text", [])), "music": nmus}
