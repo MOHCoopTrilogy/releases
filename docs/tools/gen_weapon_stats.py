@@ -193,6 +193,27 @@ def spread_pair(v):
     n = [float(x) for x in v.split()[:4]]
     return (n[0] + n[1]) / 2, (n[2] + n[3]) / 2
 
+_ROF = None
+def rof_row(tikrel):
+    """the real-rate row of coop_mod/weapon_rof.txt for this tik (exact stem, then trailing _segments dropped)"""
+    global _ROF
+    if _ROF is None:
+        _ROF = {}
+        p = os.path.join(MOD, "coop_mod", "weapon_rof.txt")
+        if os.path.exists(p):
+            for line in open(p):
+                c = line.split()
+                if len(c) == 6 and not line.startswith("/"):
+                    _ROF[c[0].lower()] = {"rpm": float(c[1]), "delay": float(c[2]), "scale": float(c[3])}
+    k = os.path.splitext(os.path.basename(tikrel))[0].lower()
+    while True:
+        if k in _ROF:
+            return _ROF[k]
+        if "_" not in k:
+            return None
+        k = k.rsplit("_", 1)[0]
+
+
 def derive(tikrel):
     text = load_tik(tikrel)
     kv, head = server_values(text)
@@ -209,6 +230,15 @@ def derive(tikrel):
         r["dmg"] = round(total, 1)
         r["dmg_score"] = round(clamp(total / DMG_CAP * 100))
     fd = num(kv.get("firedelay", ""))
+    rof = rof_row(tikrel)
+    if rof:
+        # [real rof 2026-11-10] the engine fires this gun at its real rate with the retuned damage (coop_mod/weapon_rof.txt,
+        # gen_weapon_rof.py) - the Armory shows what the game does, not the tik line it overrides
+        fd = rof["delay"]
+        if dmg is not None:
+            total = round(dmg * rof["scale"] * (bc if pellets else 1), 1)
+            r["dmg"] = total
+            r["dmg_score"] = round(clamp(total / DMG_CAP * 100))
     if fd:
         r["rpm"] = round(60.0 / fd)
         r["rate_score"] = round(clamp(60.0 / fd / RPM_CAP * 100))

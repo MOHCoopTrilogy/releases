@@ -1,0 +1,28 @@
+# Real-rate tuning - the authored (judgement) input of gen_weapon_rof.py (user 2026-11-10: "set every gun's rate of fire to
+# its real-world value, and do the same for enemy and friendly AI").
+# The RATE itself is not typed here: it comes from recoil_research.tsv / recoil_measured.tsv (measured beats spec) through
+# the stem -> physics map in recoil_shape.tsv. A row here only (a) overrides a rate where the sources disagree and the
+# measured figure is not the defensible pick - with the reason, (b) sets the AI burst length, (c) forces a pellet count.
+#
+# stem      game tik stem (finish variants follow their base by suffix stripping, like the recoil patterns)
+# rpm       override rate, rounds/min ('-' = take the sources)
+# aiburst   rounds an AI fires per burst before it lets go of the trigger (period doctrine / manuals; '-' = class default)
+# count     bullets per shot ('-' = the tik's); MG42 / M1919 tiks fire 2 bullets a shot - one real round is one bullet
+# ttk       'free' = do not retune damage to hold today's TTK (the before value was an artifact - say why in note)
+# note      why
+stem	rpm	aiburst	count	ttk	note
+mp40	500	6	-	-	sources 400-550: the 400 is a Soviet lend-lease impression, not a timed test; 500 is the common manual figure (Wikipedia 500-550)
+mp40silenced	500	6	-	-	as mp40
+mp40_lv_mp75	500	6	-	-	as mp40
+thompsonsmg	-	6	-	-	Aberdeen 1942 measured 667 (622-746)
+thompsonsmg_tommy28	-	6	-	-	M1928A1 Ordnance 650 (600-725); the 800 figure is the M1921
+ppsh_smg	-	8	-	-	measured 1050 (1000-1250): fast, long bursts from the drum
+sten	-	5	-	-	measured 532
+mg42portable	-	7	1	free	2 bullets a shot was an artifact; Soviet manual for captured MG 42s: 5-7 round bursts; 1200 measured; one bullet a round
+30calportable	-	6	1	free	2 bullets a shot was an artifact; M1919A6 400-600, 500 mid; one bullet a round
+bar	-	4	-	-	fast mode 550 (500-650); BAR teams fired 2-4 round bursts
+mp44	-	5	-	-	550 (400-800 across trials)
+fg42	-	4	-	-	2nd pattern 750 (early 900)
+coop_bren	-	5	-	-	500-520
+coop_fg42_irons	-	4	-	-	as fg42
+mp44scoped	-	5	-	-	as mp44

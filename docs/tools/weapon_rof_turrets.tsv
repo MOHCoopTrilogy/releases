@@ -1,0 +1,10 @@
+# Real rates of the TURRET machine guns an AI gunner mans (models/statweapons/*.tik) - input of gen_weapon_rof.py.
+# Only the AI path reads these (TurretGun::AI_DoFiring fired every server frame = 2,400 rpm); a player on the gun keeps the
+# tik delay, which is already the real rate for mg42_gun (0.05 s = 1,200).
+# stem	rpm	source
+stem	rpm	note
+mg42_gun	1200	MG 42, measured 1100-1350 (US Intelligence Bulletin 1943, lonesentry.com)
+30cal	500	M1919A4, 400-600 (en.wikipedia.org/wiki/M1919_Browning_machine_gun)
+coop_30cal_para	500	as 30cal
+it_w_breda_gun	450	Breda M37, 450 (en.wikipedia.org/wiki/Breda_M37)
+maxim_gun	600	Maxim M1910, 520-600 (en.wikipedia.org/wiki/PM_M1910)
