@@ -1,0 +1,25 @@
+# check_anim_aliases.py baseline - statemap anim names that exist in NO player anim file of the shipped set (frozen 2026-11-10,
+# v1.10.73 + bug-10899). Stock rows the game never selects (death_back, pistol_stand_idle, ...), the SVT 40 rechamber rows
+# (a semi-auto never enters RECHAMBER) and turret rows (the turret's own model). Never ADD to this list to get a build
+# through: a name here is one the game would state-loop on if its row were ever selected.
+beretta_butt
+beretta_stand_idle
+bomba_stand_idle
+bombabreda_stand_idle
+death_back
+death_run
+grenade_stand_idle
+mg42tripod_crouch_aim_straight_straight
+mine_stand_idle
+mine_stand_idle_secondary
+minedetector_reload
+minedetector_stand_idle_secondary
+minedetectoraxis_reload
+minedetectoraxis_stand_idle_secondary
+pistol_butt
+pistol_stand_idle
+steilhandgranate_stand_idle
+svt_crouch_rechamber
+svt_stand_rechamber
+turret_idle
+unarmed_idle
