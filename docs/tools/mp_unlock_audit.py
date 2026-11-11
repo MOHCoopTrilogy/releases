@@ -207,6 +207,23 @@ for fn in sorted(os.listdir(ui)):
         if c not in stats:
             ERR.append("E: %s reads coop_mpS_%s - not a persisted stat" % (fn, c))
 
+# [bug-10926] every non-starter tile's padlock must hide once its tier is unlocked: a padlock gated on the tab alone
+# shows forever, so an earned gun still looks locked.
+for t in tiles:
+    if t["starter"] == "1":
+        continue
+    for scr in ("coop_mp%s_armory.urc" % t["side"], "coop_mp%s_defaults.urc" % t["side"]):
+        p = os.path.join(ui, scr)
+        if not os.path.isfile(p):
+            continue
+        m = re.search(r'name "tilelk%s"[^{}]*?enabledcvar "([^"]*)"' % t["id"], rd(p))
+        want = "!coop_mpUw_%s_%s" % (t["class"], t["tier"])
+        if not m:
+            ERR.append("E: %s has no padlock for locked tile %s (%s)" % (scr, t["id"], t["name"]))
+        elif want not in m.group(1).split():
+            ERR.append("E: %s padlock of tile %s (%s) is gated on %r - it never clears when %s unlocks"
+                       % (scr, t["id"], t["name"], m.group(1), want[1:]))
+
 print("mp_unlock_audit: %d challenges | %d classes | %d stats (%d written) | %d armory tiles (%d starters)"
       % (N, len(classes), len(stats), len([s for s in stats if s in written]), len(tiles),
          len([t for t in tiles if t["starter"] == "1"])))
