@@ -25,7 +25,7 @@ sys.path.insert(0, HERE)
 # [v1.10.69] the converter's own version. Bump it whenever a change alters what a conversion writes: the updater
 # (updater.ps1 BYO RE-CONVERT) re-converts every remembered disc silently when this differs from the version that
 # wrote the player's paks (maintt\byo_converted.txt). Unchanged = no work at all.
-HZMCONV_VERSION = "1.10.73.3"   # .73.3 [eapolish] (above flpolish .73.2): EA converter 0.3.0 - real object-DB names (eadb) + the mission logic tables (eavm) (bug-eap-dbnames)
+HZMCONV_VERSION = "1.10.73.4"   # .73.4 [eapolish] (above flpolish .73.3): EA converter 0.5.0 - destroyed variants, hinged gates, relit smart objects; .73.3 [eapolish]: EA converter 0.3.0 - real object-DB names (eadb) + the mission logic tables (eavm) (bug-eap-dbnames)
 TOOLS = os.path.join(os.path.dirname(os.path.abspath(sys.executable if getattr(sys, "frozen", False) else __file__)), "tools")
 
 
