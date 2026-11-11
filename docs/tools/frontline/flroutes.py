@@ -63,7 +63,7 @@ def routes(navs, grid, reach=200.0, rise=40.0):
     return out
 
 
-def keep_drawn(drawn, segs, heights=(24.0, 48.0, 72.0)):
+def keep_drawn(drawn, segs, heights=(24.0, 36.0, 48.0, 72.0)):
     """drop the drawn-geometry collision triangles an open route crosses"""
     if not drawn or not segs:
         return drawn, 0
@@ -81,7 +81,7 @@ def keep_drawn(drawn, segs, heights=(24.0, 48.0, 72.0)):
     return [t for i, t in enumerate(drawn) if i not in bad], len(bad)
 
 
-def carve(tris, tags, segs, step_h=34.0, top=96.0, half=19.0, spacing=12.0, keep=lambda f: False):
+def carve(tris, tags, segs, step_h=38.0, top=96.0, half=19.0, spacing=12.0, keep=lambda f: False):
     """cut the collision that keeps a MOHAA box off an open route, above the step height (collision only)"""
     G = flgeom.TriGrid(tris)
     boxes = []
@@ -94,7 +94,8 @@ def carve(tris, tags, segs, step_h=34.0, top=96.0, half=19.0, spacing=12.0, keep
             z = p[2] + (q[2] - p[2]) * f
             if G.box_free(x, y, z, lift=step_h, margin=3.0):   # 15u box + the 2u half-slab of each collision prism + 1
                 continue
-            boxes.append(((x - half, y - half, z + step_h), (x + half, y + half, z + top)))
+            # from 6u under the step: the cut piece below keeps a 2u half-slab, which must stay climbable
+            boxes.append(((x - half, y - half, z + step_h - 6.0), (x + half, y + half, z + top)))
     if not boxes:
         return tris, tags, {"routes": len(segs), "blocked_samples": 0, "tris_cut": 0}
     B = flgeom.TriGrid([((lo[0], lo[1], lo[2]), (hi[0], lo[1], lo[2]), (hi[0], hi[1], hi[2])) for lo, hi in boxes])

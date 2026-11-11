@@ -63,8 +63,19 @@ def edges(kept, ground, height=64.0, snap=16.0):
         # the sheets run from well below the ground to 450u up: look for the floor under the whole sheet, not just
         # around its buried foot (most kept sheets got no fence that way)
         zt = max(v[2] for v in t)
-        za = ground(a[0], a[1], zt + 8, zf - 256)
-        zb = ground(b[0], b[1], zt + 8, zf - 256)
+
+        def low_floor(x, y):
+            # the LOWEST floor from the buried foot upward: the highest one under the top was often a roof or an
+            # upper storey, and the fence hung there instead of on the street
+            h = zf + 48.0
+            while h <= zt + 8.0:
+                g = ground(x, y, h, zf - 256)
+                if g is not None:
+                    return g
+                h += 48.0
+            return None
+        za = low_floor(a[0], a[1])
+        zb = low_floor(b[0], b[1])
         if za is None and zb is None:
             continue
         za = zb if za is None else za

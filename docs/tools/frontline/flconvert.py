@@ -35,7 +35,7 @@ import flfit  # noqa: E402
 import flcliff  # noqa: E402
 
 CONVERTER_VERSION = "0.5.0"
-FL_STEP = 34                  # Frontline step height at 48 u/m (~0.7 m): the lips its player walks over
+FL_STEP = 38                  # Frontline step height at 48 u/m: its characters walk the original routes over 35-37u lips (route audit 2026-11-10); 34 left 28 of them blocked
 
 # Frontline .cdb collision flag word (flcore.collision, decoded 2026-11-10 against the level's own AI nav graph):
 #   bits 0-10 surface material, bit 23 special surface, bit 22 VOLUME. Material 14 + bit 22 = 450u-tall boxes standing
@@ -551,7 +551,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL) and f < TAG_CLIFF)
         # ...and the sheets that stay (the level's boundaries where nothing is drawn) get a VISIBLE edge: a barbed-wire
         # fence along their foot (MOHAA's own textures/mohcommon/barbwire from the player's install)
-        gk_ = flgeom.TriGrid(wound)
+        gk_ = flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED])   # fences stand on land, not the canal bed
         wire = B.shader("textures/mohcommon/barbwire", 0, 0)
         nfe = 0
         for (x0, y0, z0), (x1, y1, z1) in flsheets.edges(stats["sheets"].pop("kept_tris"), gk_.ground):
