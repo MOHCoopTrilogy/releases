@@ -53,7 +53,9 @@ MUTE = ["set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set i
 PAK_FILES = ["ui/hzm_newgame3d.urc", "ui/hzm_ngflat.urc", "scripts/hzm_ng3campaigns.shader", "coop_mod/mp.scr",
              "coop_mod/mp_bots.scr", "coop_mod/mp_hardcore.scr", "coop_mod/mp_weather.scr", "coop_mod/mp_ops.scr",
              "coop_mod/mp_ops_table.scr", "coop_mod/mp_armory.scr", "coop_mod/mp_dbno.scr", "coop_mod/mp_ops_text.scr", "coop_mod/libbridge.scr",
-             "ubersound/coop_audio.scr", "sound/coop_vo/den_coop_lib_briefing.wav"]
+             "ubersound/coop_audio.scr", "sound/coop_vo/den_coop_lib_briefing.wav",
+             "coop_mod/mp_medkits.scr", "coop_mod/mp_spawnprotect.scr", "global/localization_coop.txt",
+             "coop_mod/challenges.scr"]
 
 
 def opt(n, d):
@@ -395,6 +397,9 @@ def case_lib(out, res):
         cmdfile("lo_d.cfg", ["set sv_numbots 0"])
     elif end == "lose":
         cmdfile("lo_d.cfg", ["kill"])
+    elif end == "idle":
+        # the stationary hunter: Germans frozen, the inactivity cvars LEFT ALONE (the contract itself must switch them off)
+        cmdfile("lo_d.cfg", ["set bot_manualmove 1"])
     else:
         # the clock case needs the idle test client alive and on his side for the whole limit: the Germans are frozen
         # (bot_manualmove, a stock bot debug cvar) and the engine's inactivity move to the spectators is off
@@ -418,10 +423,16 @@ def case_lib(out, res):
             res["spawn_shot"] = shot(c, out, "spawn")
             time.sleep(2)
             res["spawn_shot2"] = shot(c, out, "spawn_radio")
-            if end == "time":
+            if end in ("time", "idle"):
                 press(c, "F8", 1)
+            if end == "idle":
+                time.sleep(100)
+                res["idle_ended_early"] = bool(re.search(r"OPS end mode=lib", read(lp())[n0:]))
+                res["idle_shot"] = shot(c, out, "idle100")
+                cmdfile("lo_d.cfg", ["set bot_manualmove 0", "set sv_numbots 0"])
+                press(c, "F8", 2)
             # win: inside the opening grace (the player cannot be hurt for 6 s), so no German gets to him first
-            time.sleep({"win": 0.5, "time": 5}.get(end, 40))
+            time.sleep({"win": 0.5, "time": 5, "idle": 0.5}.get(end, 40))
             res["hunt_shot"] = shot(c, out, "hunt")
         if end in ("win", "lose") and not guard(c):
             press(c, "F8", 2)
@@ -433,7 +444,7 @@ def case_lib(out, res):
                     if not guard(c):
                         res[tag] = shot(c, out, tag)
         res["ended"] = wait_for(r"\^~\^~\^ OPS end mode=lib", 60 * (res["limit_min"] + 2), n0, c)
-        time.sleep(1.0)
+        time.sleep(1.5)
         if not guard(c):
             res["result_shot"] = shot(c, out, "result")
         res["paid"] = wait_for(r"\^~\^~\^ OPS paid", 30, n0, c)
