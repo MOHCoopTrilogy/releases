@@ -44,6 +44,7 @@ if "--lane" in sys.argv and sys.argv[sys.argv.index("--lane") + 1] == "lib":
     RUNS = r"H:\hzm_work\liberacion\runs"
     PORT = 12953
     SLOT = "liberacion"
+MOD = os.environ.get("LIVEOPS_MOD", MOD)   # test a merged tree with a lane's client
 VK = {"F5": 0x74, "F6": 0x75, "F7": 0x76, "F8": 0x77, "F9": 0x78, "F10": 0x79, "F11": 0x7A}
 TRIPPED = []
 MUTE = ["set s_volume 0", "set s_musicvolume 0", "set s_ambientvolume 0", "set in_gamepad 0", "set in_joystick 0",

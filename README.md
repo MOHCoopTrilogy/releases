@@ -50,6 +50,16 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.76 - Liberation
+
+- **New contract: LIBERATION** - a solo hunt in Field Operations. You go in alone against 12 to 25 dug-in Germans who never respawn, with one life and a clock
+- **Your co-op kit comes with you** - weapons, finishes, gloves and engraving from the Armory
+- **Double XP for a win**, nothing for a loss, with a radio briefing to send you in
+- **The war map reaches 18 places** (it was 9), and 16 maps are in the Liberation pool
+- **Needs playtesting** - a full hunt won by real kills, the out-of-time ending, and whether the time limits feel fair
+
+<p align="center"><img src="docs/screenshots/v11076-liberation.jpg" width="70%" alt="A Liberation hunt begins: the objective and the radio caption on screen"></p>
+
 ### v1.10.75 - Real Steel
 
 - **Real recoil and fire rates** - every gun kicks and cycles like the real thing, for players and the AI alike. Sustained fire climbs; the MG42 is a buzzsaw, the BAR is slow and heavy
