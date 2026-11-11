@@ -43,34 +43,86 @@ def level_strings(disc, level):
     return out
 
 
-def music(L, level, mspec, vgm, files, lines, log=print):
+def music(L, level, mspec, vgm, files, lines, log=print, events=()):
     """EA interactive music: SOUND/mus_ctrl.mpf (xDFP v5 path map) + mus_str.mus (EALayer3 segments). vgmstream
-    (built with mpg123, LGPL) opens the pair when both share a base name; ea_levels.json picks the segments."""
+    (built with mpg123, LGPL) opens the pair when both share a base name; ea_levels.json picks the generic segments.
+    [eapolish] events: the level's music-trigger events. Each one plays what the original's own event -> section
+    table (eamusic.py, read from the .mpf) says: its intro samples in order (evN), the looping tail if the section
+    loops (evN_loop), and whether the score then stops or goes back to the cue before (a stinger)."""
     import os
     import shutil
     import subprocess
     import tempfile
+    import wave
+    import eamusic
     d = f"DATA/{level.split('_')[0]}/{level}/SOUND/"
     tmp = tempfile.mkdtemp(prefix="eamus_")
     n = 0
     try:
+        mpf = L.disc.read(d + mspec.get("mpf", "mus_ctrl.mpf"))
         with open(os.path.join(tmp, "m.mpf"), "wb") as f:
-            f.write(L.disc.read(d + mspec.get("mpf", "mus_ctrl.mpf")))
+            f.write(mpf)
         with open(os.path.join(tmp, "m.mus"), "wb") as f:
             f.write(L.disc.read(d + mspec.get("mus", "mus_str.mus")))
-        for name, idx in sorted(mspec["segments"].items()):
+        cache = {}
+
+        def sample(idx):
+            if idx not in cache:
+                out = os.path.join(tmp, f"s{idx}.wav")
+                r = subprocess.run([vgm, "-s", str(idx), "-o", out, os.path.join(tmp, "m.mpf")],
+                                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                                   creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
+                cache[idx] = out if r.returncode == 0 and os.path.exists(out) else None
+            return cache[idx]
+
+        def write(name, idxs):
+            """the samples back to back as one wav (they are cut from one score: same rate and channels)"""
+            parts = [sample(i) for i in idxs]
+            if not parts or None in parts:
+                log("eapack: music segment failed", name, idxs)
+                return None
             out = os.path.join(tmp, f"{name}.wav")
-            r = subprocess.run([vgm, "-s", str(idx), "-o", out, os.path.join(tmp, "m.mpf")],
-                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                               creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
-            if r.returncode != 0 or not os.path.exists(out):
-                log("eapack: music segment failed", name, idx)
-                continue
+            frames, prm = [], None
+            for pth in parts:
+                with wave.open(pth, "rb") as w:
+                    prm = prm or w.getparams()
+                    frames.append(w.readframes(w.getnframes()))
+            with wave.open(out, "wb") as w:
+                w.setparams(prm)
+                for fr in frames:
+                    w.writeframes(fr)
             rel = f"sound/music/ea_{level}_{name}.wav"
             with open(out, "rb") as f:
                 files[rel] = f.read()
             lines.append(f'\tlevel.ea_music["{name}"] = "{rel}"')
-            n += 1
+            secs = sum(len(fr) for fr in frames) / float(prm.framerate * prm.nchannels * prm.sampwidth)
+            lines.append(f'\tlevel.ea_music_len["{name}"] = {secs:.1f}')
+            return rel
+
+        for name, idx in sorted(mspec["segments"].items()):
+            if write(name, [idx]):
+                n += 1
+        try:
+            tab = eamusic.table(mpf)
+        except Exception as e:      # an unknown map layout: the generic segments still play
+            log("eapack: music table not read", e)
+            tab = {}
+        for e in sorted(set(events)):
+            t = tab.get(e)
+            if not t:
+                log("eapack: music event without a section", e)
+                continue
+            name = "ev%d" % e
+            head = t["intro"] or t["loop"]
+            if write(name, head):
+                n += 1
+            if t["intro"] and t["loop"] and write(name + "_loop", t["loop"]):
+                n += 1
+            lines.append(f'\tlevel.ea_music_cue["{name}"] = 1')
+            if t["loop"]:
+                lines.append(f'\tlevel.ea_music_loops["{name}"] = 1')
+            if t["after"] == "return":
+                lines.append(f'\tlevel.ea_music_stinger["{name}"] = 1')
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
     return n
@@ -334,13 +386,9 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     vm["voices"] = nvoice
     nmus = 0
     if vgm and spec.get("music"):
-        # [eapolish] the original's music EVENTS (its 10 music triggers, eavm) each get a segment too: event e ->
-        # the score's segment e + 1 (vgmstream subsong; the event -> segment chain of the .mpf is not decoded)
-        mspec = dict(spec["music"])
-        mspec["segments"] = dict(mspec["segments"])
-        for e in vm.get("music_events", []):
-            mspec["segments"]["ev%d" % e] = e + 1
-        nmus = music(L, level, mspec, vgm, files, lines, log)
+        # [eapolish] the original's music EVENTS (its music triggers, eavm) play the sections the .mpf's own
+        # event table gives them (eamusic.py; converter 0.6.1)
+        nmus = music(L, level, spec["music"], vgm, files, lines, log, events=vm.get("music_events", []))
     lines += [f"\tlevel.ea_axis_n = {na}", f"\tlevel.ea_ally_n = {nl}", "\tlevel.ea_data_ok = 1", "}end", ""]
     files[f"maps/coop_ea_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     if mohaa_base:

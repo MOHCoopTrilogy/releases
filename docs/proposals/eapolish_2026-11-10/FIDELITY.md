@@ -61,7 +61,7 @@ area) and the props stood at the wrong places.
 | O1 | 6 objectives, disc text, shown in the order the original activates them (railgun first, then partisans, Panzers, ammo dump, tower, church) | same | M |
 | P1 | 40 pickups: medkits, revive kits, stick grenades, bazookas, PPSh, Gewehr | at the original's points, appear when their group fires | M (revive kit -> health box: D) |
 | A1 | Scripted lines (27 cues in the level's scenes; 61 voiced lines on the disc) | the original's own voice (UBER event -> str.ast stream, decoded on the player's PC) with its subtitle, at the original's moment; the scene waits for the line | M |
-| A2 | Music: interactive score switched by 10 music triggers | the 10 triggers with their own volumes / groups and their own music EVENT (15-20, 35-37, 50); each event plays the score's segment of that number, converted on the player's PC | D (the .mpf event -> segment chain is not decoded) |
+| A2 | Music: interactive score switched by 10 music triggers | the 10 triggers with their own volumes / groups and their own music EVENT (15-20, 35-37, 50); each event plays the section the score's own event table names (eamusic.py, read from the .mpf on the player's PC): intro samples in order, then the looping tail where the section loops (events 16 and 19), once and silent where it does not; the three stingers (35-37) play over and go back to the looping cue | M (the 2-3 s cross-fades between cues are cuts; the score's state events 0-12 - idle and combat beds the game itself raises - are not driven) |
 
 ## Geometry and progression (local pak; basis since 2026-11-10: the ORIGINAL's collision)
 
@@ -91,9 +91,8 @@ blocks: 0.**
 
 ## Score (1 player)
 
-**Matched 22 - Deviated 4 - Missing 0** (of 26 rows).
-Deviations: E8 the Russian squad's follow logic, S6/S7 EA particle systems as stock emitters, A2 music events mapped to
-segments by number.
+**Matched 23 - Deviated 3 - Missing 0** (of 26 rows).
+Deviations: E8 the Russian squad's follow logic, S6/S7 EA particle systems as stock emitters.
 
 Verified 2026-11-10 on converter 0.6.0 (the original's collision):
 - 2-player co-op self-test (private dedicated server + 2 clients): all 6 objectives, the mission end, 0 Script
