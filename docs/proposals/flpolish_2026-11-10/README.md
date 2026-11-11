@@ -90,4 +90,13 @@ rockets, door, U-boat; 0 Script Errors. Two-client coop route walk (61/63 trigge
 Germans 63/74 engaged, 54 killed; Allies 22/29 engaged, 10 killed; 7 idle (5 of them death ambushers no player came
 within 420u of); 0 spawned in view; 17 squad joins; 42 groups; 0 Script Errors.
 
+## Round 4 (2026-11-10 late) - ship gates
+
+geoaudit v39: fall-outs **0**, route blocks 49 (the original's routes cut open to MOHAA's box by flroutes), unreachable
+16, invisible contacts on routes 105 (37 of them canal quays, 17 kept boundary sheets now with their barbed wire).
+SP camera run on the v1.10.74 base: all 17 set pieces that fired played Frontline's own mesh (log `FLSP start ... frontline mesh`),
+jeep drawn at the gate, 0 Script Errors. Two-client coop (30 min cap): all 63 triggers, 5/5 objectives,
+FLMISSION complete; 106 actors, Germans 67/76 engaged (49 killed), Allies 22/30 engaged (12 killed), 6 idle, 0 spawned
+in view, 0 Script Errors.
+
 ## Audits (docs/tools/byoaudit) - re-run with the commands in its README
