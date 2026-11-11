@@ -28,7 +28,7 @@ import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
 
-CONVERTER_VERSION = "0.7.0"   # 0.7.0 the level's own particle systems (eafx: emitters + sprite sheets from the disc's ProcParticleType records; engine convfx); 0.6.1 music events by the .mpf's own table (eamusic); [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
+CONVERTER_VERSION = "0.7.3"   # 0.7.2 particle sizes are half extents (quads twice as wide); 0.7.1 the level's own global fog record sets the far plane and its colour (the village is a night level), width and height end scales of a particle kept apart; 0.7.0 the level's own particle systems (eafx: emitters + sprite sheets from the disc's ProcParticleType records; engine convfx); 0.6.1 music events by the .mpf's own table (eamusic); [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
 MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
@@ -825,10 +825,36 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # ---- entities ----
     ents = L.entities()
     player = next((e for e in ents if "Player" in e["strs"]), None)
-    sp = flpack.spec(level, game)
+    sp = dict(flpack.spec(level, game))
+    if game == "ea" and not os.environ.get("EA_NO_DISCFOG"):
+        # the level's own global fog record: colour 0..255, where the fog starts and where it reaches its most (m),
+        # and that most in percent. MOHAA's far plane fog is a straight ramp from the eye to opaque, so the far
+        # plane goes where that ramp passes the record's most at the record's far distance.
+        import eadb as _eadbf
+        for _r in _eadbf.DB(L.stream).recs:
+            if _r.cls == "FogTrigger" and _r.name.upper().endswith("_GBL") and len(_r.w) >= 30:
+                _col = [_r.u(i) for i in (23, 24, 25)]
+                _far, _most = _r.f(28), _r.f(29)
+                if all(0 <= c <= 255 for c in _col) and 5.0 < _far < 2000.0 and 1.0 <= _most <= 100.0:
+                    # 0.7.3: the record's fog starts at its near distance, climbs to its most at its far distance
+                    # and stays there. The engine's fog is a ramp from farplane_bias to opaque at the far plane, so
+                    # the far plane goes where the same slope would reach opaque, and farplane_maxfog (engine
+                    # extension) stops the ramp at the record's most; the far plane then no longer culls.
+                    _st = _r.f(27)
+                    _st = _st * 48.0 if 0.0 <= _st < _far else 0.0
+                    sp["farplane"] = int(max(2400.0, min(16000.0, _st + (_far * 48.0 - _st) * 100.0 / _most)))
+                    sp["farplane_color"] = "%.3f %.3f %.3f" % tuple(c / 255.0 for c in _col)
+                    if _st > 1.0:
+                        sp["farplane_bias"] = "%d" % _st
+                    if _most < 99.0:
+                        sp["farplane_maxfog"] = "%.3f" % (_most / 100.0)
+                        sp["farplane_cull"] = "0"
+                    stats["disc_fog"] = [sp["farplane"], sp["farplane_color"], sp.get("farplane_bias"), sp.get("farplane_maxfog")]
+                break
     ws = [("classname", "worldspawn"), ("message", f"{ {'fl': 'Frontline', 'ea': 'European Assault'}[game]} {level} (converted locally, converter {CONVERTER_VERSION})"),
           ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
           ("ambientlight", "40 40 40")]
+    ws += [(k, sp[k]) for k in ("farplane_bias", "farplane_maxfog", "farplane_cull") if k in sp]
     B.entity(ws)
     if game == "ea":
         # [eapolish] the Panzers' driving paths: each tank squad's SquadObjective points in order (the original orders

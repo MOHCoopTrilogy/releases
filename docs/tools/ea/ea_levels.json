@@ -1,7 +1,7 @@
 {
  "1_11": {
   "story": "RUS1 The Road to Stalingrad",
-  "sky": "textures/sky/mohday1",
+  "sky": "textures/sky/mohnightfog",
   "farplane": 9000,
   "vis_radius": 0,
   "farplane_color": "0.58 0.60 0.64",

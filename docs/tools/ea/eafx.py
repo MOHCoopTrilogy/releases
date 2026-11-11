@@ -29,6 +29,7 @@ import shpx
 T_PARTICLE = 0x472c4c34
 T_TEXTURE = 0x1c1d93ac
 TICK = 30.0
+SIZE_K = float(__import__("os").environ.get("EA_FX_SIZEK", "2.0"))   # stored sizes are half extents
 BURST_ON = 0.25          # seconds the script keeps a one-burst part switched on
 BURST_MAX = 128
 
@@ -255,14 +256,29 @@ def emitter(d, idx, X, sprites, rate_scale=1.0):
         live = eps * n * (min(life, sys + 0.1) if sys > 0 else life)
     w0, w1 = abs(g("SizeMinWidth", 1.0)), abs(g("SizeMaxWidth", 1.0))
     h0, h1 = abs(g("SizeMinHeight", 1.0)), abs(g("SizeMaxHeight", 1.0))
+    # A particle's size is the half width and half height of its quad (corners at +-size). Read as the full
+    # width, every fire was a scatter of specks and every smoke column a string of beads; against footage of
+    # the level the flame masses and plumes are about twice that. EA_FX_SIZEK overrides for an A/B.
+    w0, w1, h0, h1 = (v * SIZE_K for v in (w0, w1, h0, h1))
     w0, w1 = min(w0, w1), max(w0, w1)
     wm, hm = max(1e-3, (w0 + w1) / 2), max(1e-3, (h0 + h1) / 2)
+    # Width and height each have their own end scale. A MOHAA sprite has one scale, so the picture is cut to the
+    # shape the particle has on average over its life and the one scale carries the growth of its area
+    # (exact when the two end scales are equal, which is most systems).
+    esx, esy = max(0.0, g("SizeEndScale", 1.0)), max(0.0, g("SizeEndScaleY", 1.0))
+    es = (esx + esy) / 2
+    if abs(esx - esy) > 0.15 * max(esx, esy, 1e-3):
+        asp0 = wm / hm
+        asp = (wm * (1.0 + esx)) / max(1e-3, hm * (1.0 + esy))
+        k = math.sqrt(asp / asp0)                  # width that keeps the starting area at the mean shape
+        w0, w1, wm = w0 * k, w1 * k, wm * k
+        hm = wm / asp
+        es = math.sqrt(max(1e-4, esx * esy))
     additive = int(g("RenderType", 0)) == 0
     shader, tw = sprites.shader(d.tex(), int(g("HorizCount", 1)), int(g("VertCount", 1)), g("UVAnimRate", 0.0),
                                 min(16.0, max(1 / 16.0, wm / hm)), additive)
     if shader is None:
         return None, on, life, 0
-    es = (g("SizeEndScale", 1.0) + g("SizeEndScaleY", 1.0)) / 2
     L = ["originemitter e%d" % idx, "\t\t("]
     A = L.append
     A("\t\t\tspawnrate %s" % _f(max(0.001, stock_rate)))

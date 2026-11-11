@@ -27,7 +27,7 @@ def main():
     views = json.load(open(vf))
     os.makedirs(out, exist_ok=True)
     with byoclient.Client("coop_ea_1_11", sets=[("coop_eatest", "0")] + sets, coop="--sp" not in sys.argv,
-                          w=960, h=540, port=int(os.environ.get("BYO_PORT", "12488"))) as c:
+                          w=int(os.environ.get("EA_SHOT_W", "960")), h=int(os.environ.get("EA_SHOT_H", "540")), port=int(os.environ.get("BYO_PORT", "12488"))) as c:
         if not c.wait(r"EAAI |Spawning Entities Done", 300):
             raise RuntimeError("map never loaded")
         time.sleep(10)
