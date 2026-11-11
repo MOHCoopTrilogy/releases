@@ -3,7 +3,7 @@
   "story": "RUS1 The Road to Stalingrad",
   "sky": "textures/sky/mohnightfog",
   "farplane": 9000,
-  "vis_radius": 0,
+  "vis_radius": 0, "far_fx_gain": 1.79,
   "farplane_color": "0.58 0.60 0.64",
   "date": "1943-01-28",
   "place": "Gorodishche, near Stalingrad, USSR",

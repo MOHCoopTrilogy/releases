@@ -238,7 +238,7 @@ def _lim(v):
     return max(-1.0e6, min(1.0e6, v))
 
 
-def emitter(d, idx, X, sprites, rate_scale=1.0):
+def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0):
     """-> (text of the originemitter block, on-time class, particle life, live particles)"""
     u, m = X.s, X.m
     g = d.g
@@ -286,6 +286,11 @@ def emitter(d, idx, X, sprites, rate_scale=1.0):
     c0 = [_c(g("ColorStart" + x, 128)) for x in "RGB"] + [_c(g("ColorStartMax" + x, 128)) for x in "RGB"]
     c1 = [_c(g("ColorEnd" + x, 128)) for x in "RGB"] + [_c(g("ColorEndMax" + x, 128)) for x in "RGB"]
     a0, a1, ae = _c(g("AlphaStart", 128)), _c(g("AlphaStartMax", 128)), _c(g("AlphaEnd", 128))
+    if additive and gain != 1.0:
+        # a far glow sits beyond the fog's far end: the mod's screen fog pass lays the level's most-fog share over it
+        # (the disc fogs geometry per vertex, a glow sprite over the sky keeps its light), so that share is given back
+        c0 = [min(1.0, v * gain) for v in c0]
+        c1 = [min(1.0, v * gain) for v in c1]
     fin, fout = min(1.0, max(0.0, g("FadeInStop", 0.0))), min(1.0, max(0.0, g("FadeOutStart", 1.0)))
     A("\t\t\tcolor %s %s %s" % tuple(_f((c0[i] + c0[i + 3] + c1[i] + c1[i + 3]) / 4) for i in range(3)))
     A("\t\t\talpha %s" % _f(max(0.02, (a0 + a1 + ae) / 3)))
@@ -381,7 +386,7 @@ animations
 """
 
 
-def build(stream, db, X, level, files, lines, used=None, log=print, budget=2600):
+def build(stream, db, X, level, files, lines, used=None, log=print, budget=2600, far_gain=1.0):
     """Write the emitters of every effects package into `files`; append the script table to `lines`.
     used: {package name as the script knows it: number of always-on placements} (None = every package once)"""
     defs, tex = parse(stream)
@@ -408,7 +413,7 @@ def build(stream, db, X, level, files, lines, used=None, log=print, budget=2600)
             d = defs.get(dn)
             if d is None:
                 continue
-            txt, on, life, _live = emitter(d, i, X, sprites, rate_scale)
+            txt, on, life, _live = emitter(d, i, X, sprites, rate_scale, far_gain if "distant" in low else 1.0)
             if txt is None:
                 continue
             p = parts.setdefault(on, {"txt": [], "names": [], "tail": 0.0})
