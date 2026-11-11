@@ -270,6 +270,11 @@ def build(db, X, spot, ground, text, lines, log=print):
         q = X(r.pos)
         if r.cls in TRIGGERS + ("DemoCharge", "SoundMusicTrigger") and r.pos != (0.0, 0.0, 0.0):
             gq = ground(q)
+            # records at z 0 (several music and gag triggers) sit far above the floor: look further down
+            for dz in (300, 600, 900):
+                if gq:
+                    break
+                gq = ground((q[0], q[1], q[2] - dz))
             if gq:
                 q = gq
         L(f'\tlevel.ea_lo_cls[{n}] = "{r.cls}"')
