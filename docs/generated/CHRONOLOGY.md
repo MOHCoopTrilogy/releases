@@ -13,336 +13,1074 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `07a99c6 2026-09-18 manifest 1.8.0` |
-| commits | 289 |
+| HEAD | `d96ed278 2026-11-10 manifest 1.10.74` |
+| commits | 1,026 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **19 modified, 2 untracked** |
-| unstaged diff | 19 files changed, 360 insertions(+), 137 deletions(-) |
+| **uncommitted** | **5274 modified, 2290 untracked** |
+| unstaged diff | 5274 files changed, 21041 insertions(+), 1492761 deletions(-) |
 
-> Working tree is dirty. Everything in those 21 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 7564 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 78 |
+| 2026-11 | 274 |
+| 2026-10 | 421 |
+| 2026-09 | 120 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (289)
+### Commits since 2026-01-01 (1026)
 
 | sha | date | author | subject |
 |---|---|---|---|
-| `07a99c6` | 2026-09-18 | joncurry94-tech | manifest 1.8.0 |
-| `0789744` | 2026-09-17 | joncurry94-tech | manifest 1.7.8 |
-| `17aed9a` | 2026-09-16 | joncurry94-tech | v1.7.7: Domination + Countdown + Assassination modes, objective-seeking MP bots |
-| `75230e5` | 2026-09-16 | joncurry94-tech | manifest 1.7.7 |
-| `67fdccb` | 2026-09-16 | joncurry94-tech | v1.7.6: Build-A-Base campaign-spawn fix + One-Shot / One-Ammo modifiers |
-| `8a7f07e` | 2026-09-16 | joncurry94-tech | manifest 1.7.6 |
-| `788ddc6` | 2026-09-16 | joncurry94-tech | v1.7.5 hotfix: coop-host crash fix + real UberMod bomb modes |
-| `a6d0870` | 2026-09-16 | joncurry94-tech | manifest 1.7.5 |
-| `39660e9` | 2026-09-16 | joncurry94-tech | publish: archive every shipped binary's PDB + linker MAP per release (bug-2666) |
-| `b23bf8b` | 2026-09-16 | joncurry94-tech | manifest 1.7.4 |
-| `2390245` | 2026-09-16 | joncurry94-tech | reporter: match overlay keywords against the DLL name, not the full path (bug-2665) |
-| `049e19e` | 2026-09-16 | joncurry94-tech | manifest 1.7.3 |
-| `7cb0176` | 2026-09-16 | joncurry94-tech | tooling: crash-report overlay detection + per-release PDB archiving (bug-2663) |
-| `5a69568` | 2026-09-16 | joncurry94-tech | manifest 1.7.2 |
-| `f12e045` | 2026-09-15 | joncurry94-tech | manifest 1.7.1 |
-| `360913a` | 2026-09-15 | joncurry94-tech | release v1.7.1 "Roll Out": Prop Hunt, vehicle system, campaign-map modes, spawn protection, two-way Demolition + Freeze Tag meltg… |
-| `c205202` | 2026-09-15 | joncurry94-tech | manifest 1.7.0 |
-| `41c54b2` | 2026-09-14 | joncurry94-tech | tools: drop the clause-7 lobby-armory exception - isolation back to strict |
-| `fe82bec` | 2026-09-14 | joncurry94-tech | tools: narrow clause-7 exception for the lobby closet's MP armory openers; drop the unused clause-12 one |
-| `6c56ef3` | 2026-09-14 | joncurry94-tech | tools: gen_service_record write-if-different .tga saves - stop the tex-pk3 churn (bug-2610) |
-| `a548798` | 2026-09-14 | joncurry94-tech | tools: narrow, user-approved clause-12 exception for the coop-loadout opener in the MP options menu |
-| `6ba4fb2` | 2026-09-14 | joncurry94-tech | docs: TRAPS - EV_SETTER events are property assignments, not commands (bug-2608) |
-| `9444e0f` | 2026-09-14 | joncurry94-tech | docs: TRAPS - a call in a }end <expr> return position is not evaluated (bug-2603) |
-| `a1df8a3` | 2026-09-14 | joncurry94-tech | tools: Gun Game ladder generator + isolation self-test mutation (MP slice 1) |
-| `af74572` | 2026-09-14 | joncurry94-tech | docs: v1.6.0 "The Long View" rollout - README, history, public pages, isolation clause 14 |
-| `e45a3fa` | 2026-09-14 | joncurry94-tech | manifest 1.6.0 |
-| `9ed1e02` | 2026-09-13 | joncurry94-tech | tools: gen_mapgrade.py - emit coop_mod/cfg/mapgrade.cfg from grade_profiles.tsv (build/check) |
-| `ae49adb` | 2026-09-13 | joncurry94-tech | tools: fog profile generator + fog/grade tables |
-| `c061ff8` | 2026-09-13 | joncurry94-tech | tools: MP armory generator, isolation clauses 16-18, build gate |
-| `a202083` | 2026-09-13 | joncurry94-tech | tools: security layer 2 self-test harness and guard-list generator |
-| `41bfea1` | 2026-09-13 | joncurry94-tech | docs: correct the stale bloom entry and the gl1-only Set2DWindow claim (gl2 render design) |
-| `dc6c51b` | 2026-09-13 | joncurry94-tech | tools: isolation clause 15 for the compass bar; Field Settings generator gets the Modern Compass row |
-| `9830748` | 2026-09-13 | joncurry94-tech | docs: security layer 2 approved as recommended (exe filters every server-origin line, refuse-list, API handshake) |
-| `ff86e2a` | 2026-09-13 | joncurry94-tech | docs: the 2026-09-13 round - stufftext split parity, isolation gate, Field Settings; pruned to budget |
-| `f324f93` | 2026-09-13 | joncurry94-tech | build+tools: isolation gate before packing with a self-test, release stops on a failed build, SEC1 filter self-test, Field Settin… |
-| `88ed1bf` | 2026-09-13 | joncurry94-tech | docs: trim the MP host settings record back under the DECISIONS budget |
-| `5e429b5` | 2026-09-13 | joncurry94-tech | docs: MP host settings are per-feature toggles now, not one switch (decision sheet 2026-09-13) |
-| `717c645` | 2026-09-13 | joncurry94-tech | build: block the deploy when the armory pages drift from their generator |
-| `35ab155` | 2026-09-13 | joncurry94-tech | docs: history line for the theme picker arrows and auto-advance |
-| `73026d5` | 2026-09-13 | joncurry94-tech | tools: draw the main-menu theme picker arrows |
-| `48faddc` | 2026-09-13 | joncurry94-tech | docs: test multiplayer with bots, and the PvP damage rule |
-| `c52bcab` | 2026-09-13 | joncurry94-tech | docs: which sound code is live, the exit audio reset, and a new way a check lies |
-| `ad39c75` | 2026-09-13 | joncurry94-tech | tools: MP may never touch the coop armory (isolation clause 10) |
-| `67385dd` | 2026-09-13 | joncurry94-tech | build: never pack .mp4 files |
-| `31c8926` | 2026-09-13 | joncurry94-tech | tools: the MP isolation contract covers the challenge and XP systems |
-| `ea51201` | 2026-09-09 | joncurry94-tech | build: abort if the MP loadout has leaked into coop |
-| `c8097df` | 2026-09-09 | joncurry94-tech | tools: make the MP/coop isolation a testable contract, not a promise |
-| `cb3212a` | 2026-09-09 | joncurry94-tech | docs: the 2026-09-09 m4l3 round, merged and pruned to budget |
-| `0530d2c` | 2026-09-09 | joncurry94-tech | docs: v1.5.3 released |
-| `33b6e17` | 2026-09-09 | joncurry94-tech | manifest 1.5.3 |
-| `a694fc9` | 2026-09-09 | joncurry94-tech | release: stage the two new HD paks, which would have shipped to nobody |
-| `963f112` | 2026-09-08 | joncurry94-tech | docs: regenerate after the shell-sink feature |
-| `3169548` | 2026-09-08 | joncurry94-tech | docs: regenerate after the round-3 batch |
-| `24a5457` | 2026-09-08 | joncurry94-tech | tools: the shore-wave envelope, the bore period, and the quick-draw pose |
-| `d4019b3` | 2026-09-08 | joncurry94-tech | gen_coop_sea: move the shoaling peak seaward for the beach fight |
-| `3432551` | 2026-09-08 | joncurry94-tech | tools: fix_dds_shadowing.py - 57 installed HD textures that never loaded |
-| `f5489b8` | 2026-09-08 | joncurry94-tech | docs: regenerate after the m3l1a pass |
-| `fe9f6a5` | 2026-09-08 | joncurry94-tech | m3l1a: a 4x texture pass, prosecheck, and the QTE/fire records |
-| `2dba4d7` | 2026-09-08 | joncurry94-tech | docs: the QTE and the Omaha realism pass, with the prunes that paid for them |
-| `41d367d` | 2026-09-08 | joncurry94-tech | docs: the drowning QTE and the smoke sequencing |
-| `c4152df` | 2026-09-08 | joncurry94-tech | docs: the drowning-QTE research and its input probe |
-| `1bd6a00` | 2026-09-07 | joncurry94-tech | docs: the trough-shadow generator |
-| `c51e390` | 2026-09-07 | joncurry94-tech | docs: the shoreline ocean pass |
-| `e642604` | 2026-09-07 | joncurry94-tech | docs: the surf-zone crest generator |
-| `751895f` | 2026-09-07 | joncurry94-tech | docs: the wave pass generator |
-| `507acd7` | 2026-09-07 | joncurry94-tech | docs: the realism pass generators |
-| `8519ede` | 2026-09-07 | joncurry94-tech | docs: the Omaha water pass and the cell-mask generator |
-| `3cb46de` | 2026-09-06 | joncurry94-tech | docs: sea-mesh site caveat (bug-2513), backups pruned from the pack (2512), regenerate |
-| `21d7224` | 2026-09-06 | joncurry94-tech | docs: ocean pass logged, evening fixes, six texture/mesh generators checked in |
-| `417ace8` | 2026-09-06 | joncurry94-tech | docs: ocean research filed, wet-sand generator checked in, drowning build logged |
-| `890c908` | 2026-09-06 | joncurry94-tech | docs: fourth Omaha build of 09-06, drowning research filed |
-| `d816d3e` | 2026-09-06 | joncurry94-tech | docs: regenerate after the v1.5.2 publish |
-| `fcc148a` | 2026-09-06 | joncurry94-tech | manifest 1.5.2 |
-| `0b982f0` | 2026-09-06 | joncurry94-tech | docs+tools: the Omaha 09-06 pass, three traps that hid for a week, two proposals |
-| `a92e6da` | 2026-09-04 | joncurry94-tech | manifest 1.5.1 |
-| `98d05e9` | 2026-09-04 | joncurry94-tech | gl2 for every player, on every path, plus the Omaha finish pass |
-| `349048b` | 2026-09-03 | joncurry94-tech | manifest 1.5.0 |
-| `3b86925` | 2026-09-03 | joncurry94-tech | docs+tools: the Omaha pass, and three traps that cost a day between them |
-| `6876e9d` | 2026-08-31 | joncurry94-tech | docs: regenerate after the v1.4.8 publish |
-| `da92586` | 2026-08-31 | joncurry94-tech | manifest 1.4.8 |
-| `ced258e` | 2026-08-31 | joncurry94-tech | docs+tools: gl2 renderer parity, the Omaha pass, and three generators that cannot rot |
-| `57e8074` | 2026-08-31 | joncurry94-tech | manifest 1.4.7 |
-| `c72d093` | 2026-08-31 | joncurry94-tech | installer: always offer the folder choice, and make the guidance actually visible |
-| `eb1f653` | 2026-08-31 | joncurry94-tech | installer: ask for the game first, guide the destination, require all three games |
-| `9865300` | 2026-08-31 | joncurry94-tech | docs: rewrap the install-folder note |
-| `6ee5150` | 2026-08-31 | joncurry94-tech | docs: the install folder is the player's choice, and say what setup refuses |
-| `9db2339` | 2026-08-31 | joncurry94-tech | installer: guard the destination folder; document that it is the player's choice |
-| `17f3a0c` | 2026-08-30 | joncurry94-tech | test: coop regression baseline - 85 families, 2-player m1l1, 180s window |
-| `6840d69` | 2026-08-30 | joncurry94-tech | tools: coop_regression.py - diff a coop run against a known-good baseline |
-| `d7db1a7` | 2026-08-30 | joncurry94-tech | fix: terrain pack never shipped; repair config_fossils.py; prune README |
-| `9bdf3ee` | 2026-08-30 | joncurry94-tech | docs: README current-release section was five releases stale |
-| `e21165d` | 2026-08-30 | joncurry94-tech | fix: make the "public docs cannot drift" claim true, and reclaim 21 GB |
-| `476b4f6` | 2026-08-30 | joncurry94-tech | docs: regenerate (final) |
-| `653eead` | 2026-08-30 | joncurry94-tech | docs: regenerate after the v1.4.6 installer publish |
-| `db5da8b` | 2026-08-30 | joncurry94-tech | docs: point the installer download table at v1.4.6 |
-| `69a71e9` | 2026-08-30 | joncurry94-tech | docs: regenerate after v1.4.6 (bug-2183 truck texture investigation) |
-| `350532b` | 2026-08-30 | joncurry94-tech | manifest 1.4.6 |
-| `54cb5f2` | 2026-08-30 | joncurry94-tech | chore: track .gitmessage so the short-commit style travels |
-| `bd91a66` | 2026-08-30 | joncurry94-tech | docs: inert-feature sweep, commit-style makeover, budget cleanup |
-| `40d6451` | 2026-08-26 | joncurry94-tech | fix: grenade kick vs German grenades, DBNO camera, per-variant unlocks, prone reload |
-| `9be284f` | 2026-08-26 | joncurry94-tech | docs: v1.4.5 released |
-| `0cc504e` | 2026-08-26 | joncurry94-tech | manifest 1.4.5 |
-| `b25bef8` | 2026-08-26 | joncurry94-tech | prone: fix crawl, exit model, ADS speed; stress drives weapon spread |
-| `036161c` | 2026-08-24 | joncurry94-tech | docs: MOH Trilogy Coop naming preference |
-| `3ad5aec` | 2026-08-24 | joncurry94-tech | manifest 1.4.4 |
-| `ec51766` | 2026-08-23 | joncurry94-tech | manifest 1.4.3 |
-| `bde9add` | 2026-08-23 | joncurry94-tech | docs: the notarget toggle, and four times I stated an inference as a measurement |
-| `8e5a32d` | 2026-08-22 | joncurry94-tech | docs: the four method lessons that cost 2026-08-22 |
-| `4f0945d` | 2026-08-22 | joncurry94-tech | tools: --aggro reports acquisition ORDER and who each actor picked |
-| `0711a70` | 2026-08-22 | joncurry94-tech | tools: probe_read.py - turn a probe log into an answer |
-| `c4c7679` | 2026-08-22 | joncurry94-tech | docs: three-marker scene guard table; correct a false gl2 claim that cost a wrong fix |
-| `6750d70` | 2026-08-22 | joncurry94-tech | docs: the dedicated boot is NOT broken - recipe recorded in SOURCE_OF_TRUTH |
-| `9bc26ca` | 2026-08-22 | joncurry94-tech | docs: freeze 62 legacy root documents; the root now holds only CLAUDE.md and README.md |
-| `6634e72` | 2026-08-22 | joncurry94-tech | docs: promote buglog knowledge into the authored docs; OPEN back under budget |
-| `445875d` | 2026-08-22 | joncurry94-tech | tools: scene-actor audit now covers the whole trilogy, not just top-level map scripts |
-| `0faa37a` | 2026-08-22 | joncurry94-tech | tools: audit_scene_actors.py - which maps have scripted actors the personality roll can break |
-| `d18372d` | 2026-08-22 | joncurry94-tech | manifest 1.4.2 |
-| `72dac0f` | 2026-08-22 | joncurry94-tech | fix: in-game Report a Bug was dead for every player - webhook written to a path that never existed |
-| `5950141` | 2026-08-22 | joncurry94-tech | docs: wall-cover research - it was never deleted, only switched off |
-| `ef14a33` | 2026-08-21 | joncurry94-tech | tools: player-skin resolution audit + upscale (52 textures, 2x) |
-| `4c22ee0` | 2026-08-21 | joncurry94-tech | tools: gen_cos_reqs.py - armory cosmetic hovers derived from the unlock tables |
-| `f54483f` | 2026-08-21 | joncurry94-tech | docs: public Challenges + Unlockables brought current; variants and finishes now first-class |
-| `fb96625` | 2026-08-21 | joncurry94-tech | docs: public README revamped - full feature inventory, early-testing callouts, known + fixed bugs |
-| `a296ba0` | 2026-08-21 | joncurry94-tech | docs+tools: explosion pool generators, menu audit, and the session's authored updates |
-| `db14e41` | 2026-08-21 | joncurry94-tech | docs: v1.4.0/v1.4.1 release record, two release-audit traps |
-| `c643801` | 2026-08-21 | joncurry94-tech | manifest 1.4.1 |
-| `5d14336` | 2026-08-21 | joncurry94-tech | manifest 1.4.0 |
-| `74d6e4e` | 2026-08-21 | joncurry94-tech | docs: prune TRAPS and preferences back under budget |
-| `4510c41` | 2026-08-21 | joncurry94-tech | tools: slice weapon-handling construction kits into game-ready takes |
-| `df442fd` | 2026-08-21 | joncurry94-tech | tools: join AI path failures back to the actors that caused them |
-| `4b86e70` | 2026-08-21 | joncurry94-tech | tools: ads_sweep - find per-gun tune rows that do not behave like their peers |
-| `27441d9` | 2026-08-19 | joncurry94-tech | tools: ragdoll P0 channel census |
-| `6175dd9` | 2026-08-19 | joncurry94-tech | docs: evening mega-wave recorded |
-| `1f203b3` | 2026-08-19 | joncurry94-tech | docs: bugs 1951-1953 logged |
-| `64d0c86` | 2026-08-19 | joncurry94-tech | docs: class-split trap; bugs 1948-1950 recorded |
-| `1fd6005` | 2026-08-19 | joncurry94-tech | docs: Leon wave + licensing decision recorded |
-| `3c74c45` | 2026-08-19 | joncurry94-tech | docs: MV wave 3 recorded |
-| `c5c0142` | 2026-08-19 | joncurry94-tech | tools: wire_mv2 wave-3 table; loadout_finish template retired (bug-1947) |
-| `af44ada` | 2026-08-19 | joncurry94-tech | docs: mid-playtest fix wave recorded (bugs 1942-1945); TRAPS actor-getter + anim-pack rules corrected in place |
-| `f3c9304` | 2026-08-19 | joncurry94-tech | docs: variant authorship resolved (acme313 = MOHPA porter; East = WW1 arsenal; DarkAngel/Deleto/FlakRider/Schutze/stlkid per vari… |
-| `6cc2d20` | 2026-08-19 | joncurry94-tech | tools: wire_mv2 preserved from scratchpad with variant credits |
-| `166db7b` | 2026-08-19 | joncurry94-tech | docs: bug-1940 manned-turret spread trap + playtest probe instructions |
-| `406284c` | 2026-08-19 | joncurry94-tech | docs: cut-VO restoration batch 1 recorded |
-| `e8a9525` | 2026-08-19 | joncurry94-tech | docs: cut-content deep scan indexed in OPEN |
-| `04ad6bd` | 2026-08-19 | joncurry94-tech | docs: animation wave 2 recorded |
-| `70dfe57` | 2026-08-18 | joncurry94-tech | docs: vehicle death fx awaiting playtest |
-| `b844654` | 2026-08-18 | joncurry94-tech | docs: loadout deep-trace fix wave recorded; gen_loadout emits FA-clearing commit cfgs; gen_skinbase build step |
-| `61a6e65` | 2026-08-18 | joncurry94-tech | tools: gen_skinbase.py (variant->base reverse map) wired as a build step |
-| `bd4ebba` | 2026-08-18 | joncurry94-tech | docs: exec INSERTS not appends (corrects d2e7084 rationale); one-token-per-batch bus trap |
-| `e4f2990` | 2026-08-18 | joncurry94-tech | docs: correct bug ids 1926-1927 |
-| `df42994` | 2026-08-18 | joncurry94-tech | docs: armory take-3 entries |
-| `4c6842e` | 2026-08-18 | joncurry94-tech | guard rails: ui_wiring_audit gate (exec/vstr/bus closure), SR deployed-truth stamp emission; DECISIONS updated |
-| `19322f0` | 2026-08-18 | joncurry94-tech | docs: positional-archived-state trap (bug-1926); SR generator emits cid map + generation stamp |
-| `c471e8f` | 2026-08-18 | joncurry94-tech | build: gen_service_record runs on every build - SR freshness is structural, not remembered |
-| `9c440c9` | 2026-08-18 | joncurry94-tech | docs: SR hover curation gate in check_challenges; 25 reward names curated from in-game tables |
-| `f76adf4` | 2026-08-18 | joncurry94-tech | docs: decision - cross-source invariants get deploy-blocking build gates |
-| `0a24d83` | 2026-08-18 | joncurry94-tech | build: unlock_audit + ads_audit are deploy-blocking drift gates; ads_audit gains the expected-miss allowlist |
-| `6387687` | 2026-08-18 | joncurry94-tech | docs: unlock_audit.py cross-checks roster vs challenge/rank/free enforcement; 7 hover texts corrected to the enforced path |
-| `3bd5324` | 2026-08-18 | joncurry94-tech | docs: correct ramsey bug id 1925->1924 |
-| `4f6f2f7` | 2026-08-18 | joncurry94-tech | docs: ramsey fix moved to awaiting-playtest |
-| `bca2550` | 2026-08-18 | joncurry94-tech | docs: ads_audit.py - lists every shipped gun that resolves to no ADS tune |
-| `fb15f53` | 2026-08-18 | joncurry94-tech | docs: OPEN.md synced - 08-18 evening batch awaiting playtest, MG42 request closed, prone entry current, CLEARED P0 history pruned |
-| `4461bf3` | 2026-08-18 | joncurry94-tech | docs: the foolproof-menus preference; gen_loadout per-slot chain arming |
-| `8852b77` | 2026-08-18 | joncurry94-tech | tools: gen_loadout emits offline finish previews |
-| `069ff3f` | 2026-08-18 | joncurry94-tech | docs: bug-1917 - the original armory bg recovered byte-exact from the v1.3.1 release via ranged fetch |
-| `a9b192b` | 2026-08-18 | joncurry94-tech | tools: gen_armory_bg --plain (the revert look) + the overwrite lesson in the buglog |
-| `c67df7d` | 2026-08-18 | joncurry94-tech | tools: the Field Requisition armory bake generator - overlap-refusing by design |
-| `5ead395` | 2026-08-18 | joncurry94-tech | docs: bug-1907 closed (panzerfaust removed); OPEN.md updated |
-| `ae866c6` | 2026-08-18 | joncurry94-tech | tools: service record gains the WEAPON FINISHES page; finish-table regen preserves the variant block |
-| `1bfb0a2` | 2026-08-18 | joncurry94-tech | tools: gen_loadout p-pages carry the VARIANT button state; wildcard surfaces verified against the mesh; OPEN.md skin status |
-| `2820baf` | 2026-08-18 | joncurry94-tech | tools: challenge validator learns the finish_* reward class; buglog |
-| `3ff2c3e` | 2026-08-18 | joncurry94-tech | three fixes the log had been reporting all along |
-| `2435d34` | 2026-08-17 | joncurry94-tech | docs: record the skin-variant architecture and what is awaiting a playtest |
-| `ff53624` | 2026-08-17 | joncurry94-tech | skins: generate weapon finish variants - one tik and shader set per gun per finish |
-| `fa6db7f` | 2026-08-17 | joncurry94-tech | loadout: the roster script was not compiling at all - an assignment with no value |
-| `3e0f7be` | 2026-08-17 | joncurry94-tech | docs: regenerate |
-| `9652599` | 2026-08-17 | joncurry94-tech | docs: regenerate; armory table gains give and tab columns |
-| `e052d2c` | 2026-08-17 | joncurry94-tech | docs: two traps from this session - pitch 0 is silence, ordernumber is not draw order |
-| `8fb513b` | 2026-08-17 | joncurry94-tech | docs: armory table complete at 75 weapons |
-| `398891f` | 2026-08-17 | joncurry94-tech | docs: armory table now carries the five added weapons |
-| `cf133e5` | 2026-08-17 | joncurry94-tech | tools: reconstruct the lost armory generator, proved by exact reproduction |
-| `45ad569` | 2026-08-17 | joncurry94-tech | docs: the weapon-skin generator, and regenerate |
-| `087ba24` | 2026-08-17 | joncurry94-tech | docs: regenerate after the Panzerfaust and M10 imports |
-| `66ae10a` | 2026-08-17 | joncurry94-tech | docs: regenerate after the DP-28 import |
-| `087511f` | 2026-08-17 | joncurry94-tech | audit: catch sound aliases that resolve and still make no noise |
-| `15140c3` | 2026-08-17 | joncurry94-tech | open: record the armory gap, and the publish entry for the bullet-impact pack |
-| `079256e` | 2026-08-17 | joncurry94-tech | open: close the m3l2 label, and correct the t2l2 error count by measurement |
-| `985236c` | 2026-08-17 | joncurry94-tech | open: close the stale e3l4 outro entry, verified against a running engine |
-| `e185298` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
-| `04ecc1a` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
-| `684371f` | 2026-08-17 | joncurry94-tech | manifest 1.3.1 |
-| `34eb9e0` | 2026-08-17 | joncurry94-tech | docs: two weapon auditors, and the traps they made testable |
-| `acf1323` | 2026-08-16 | joncurry94-tech | docs: regenerate after the v1.3.0 source commits |
-| `84daa23` | 2026-08-16 | joncurry94-tech | docs: record the v1.3.0 session - objective chain, AI accuracy, and three self-inflicted regressions |
-| `e5fe7c3` | 2026-08-16 | joncurry94-tech | manifest 1.3.0 |
-| `8bd3e8b` | 2026-08-14 | joncurry94-tech | readme: name the exact installer files, and test the links on every build |
-| `5ba6c59` | 2026-08-14 | joncurry94-tech | publish: stop mangling release notes, and drop the BOM |
-| `310e947` | 2026-08-14 | joncurry94-tech | manifest 1.2.9 |
-| `df90048` | 2026-08-14 | joncurry94-tech | skeletor: size the channel table for a whole playthrough, and fail soft |
-| `9507fac` | 2026-08-14 | joncurry94-tech | docs: record that vehicle maps are deliberately skipped for blueprints |
-| `cd55bd8` | 2026-08-14 | joncurry94-tech | docs: log bug-1802 (m5l1b weather inherited via an SP-only path) |
-| `f0d2fac` | 2026-08-14 | joncurry94-tech | tooling: do not count commented mentions as blueprint placements |
-| `9a4c269` | 2026-08-14 | joncurry94-tech | tooling: correct the texture->widget transform in the service-record generator |
-| `c6620b4` | 2026-08-14 | joncurry94-tech | tooling: assert the service-record header layout instead of trusting arithmetic |
-| `38e6482` | 2026-08-14 | joncurry94-tech | tooling: check blueprint supply against the bp_* ladder |
-| `940517b` | 2026-08-14 | joncurry94-tech | docs: regenerate; correct bug-1801 (ours, not pre-existing, now fixed) |
-| `408a0f7` | 2026-08-14 | joncurry94-tech | docs: regenerate challenge pages; log t2l1 nebelwerfer script errors (bug-1801) |
-| `871049a` | 2026-08-14 | joncurry94-tech | docs: regenerate public challenge pages after the wiring pass |
-| `0c202c9` | 2026-08-14 | joncurry94-tech | tooling: teach the checker about the chal_quiet_feat wrapper |
-| `65aa813` | 2026-08-14 | joncurry94-tech | tooling: check derived faction supply instead of exempting it |
-| `136a6f8` | 2026-08-14 | joncurry94-tech | tooling: prove at build time that every challenge can be earned |
-| `afea0c2` | 2026-08-14 | joncurry94-tech | publish: send the Discord body as UTF-8 bytes |
-| `2e11a4d` | 2026-08-14 | joncurry94-tech | docs: regenerate challenge pages after retune |
-| `952e830` | 2026-08-13 | joncurry94-tech | docs: unlockables chart, and be honest about state and debug tools |
-| `d6825bd` | 2026-08-13 | joncurry94-tech | publish: repair the updater fallback and the tooling that broke it |
-| `704cf13` | 2026-08-13 | joncurry94-tech | manifest 1.2.8 |
-| `4acd1e0` | 2026-08-13 | joncurry94-tech | docs: generate the public documentation set |
-| `aaa9876` | 2026-08-13 | joncurry94-tech | manifest 1.2.7 |
-| `bd69d65` | 2026-08-13 | joncurry94-tech | docs: m6l2a stealth session - traps, open items, and the generated sweep |
-| `e5e437c` | 2026-08-11 | joncurry94-tech | stealth: per-map gate, m6l1c opt-in, and papers for late joiners |
-| `91b337d` | 2026-08-11 | joncurry94-tech | docs: plan for carrying the m2l2a stealth layer to the other disguise maps |
-| `6a79f94` | 2026-08-11 | joncurry94-tech | postfx: re-enable DoF - the bug-1629 fix had never reached the live install |
-| `ea80cec` | 2026-08-11 | joncurry94-tech | publish: gate the release on the What's New card matching the version |
-| `4df7811` | 2026-08-11 | joncurry94-tech | Ship the m2l2a stealth route + Phase C contain ON by default |
-| `a0f6a33` | 2026-08-11 | joncurry94-tech | manifest 1.2.6 |
-| `2d1df98` | 2026-08-10 | joncurry94-tech | Phase C: player-initiated contain on m2l2a, plus the fixes it uncovered |
-| `42ad7cd` | 2026-08-10 | joncurry94-tech | docs: add the OpenWolf authored + generated doc set |
-| `0be41cf` | 2026-08-10 | joncurry94-tech | manifest 1.2.5 |
-| `a5c37b6` | 2026-08-09 | joncurry94-tech | manifest 1.2.4 |
-| `3b9ac62` | 2026-08-08 | joncurry94-tech | manifest 1.2.3 |
-| `180f0aa` | 2026-08-07 | joncurry94-tech | manifest 1.2.201 |
-| `0f3a0b1` | 2026-08-07 | joncurry94-tech | manifest 1.2.2 |
-| `a0d0cfb` | 2026-08-06 | joncurry94-tech | README: document Service Record/Challenges, v1.2.1 audio + e2l3 fixes |
-| `5d5efd4` | 2026-08-06 | joncurry94-tech | manifest 1.2.1 |
-| `40b21bb` | 2026-08-03 | joncurry94-tech | manifest 1.2.0 |
-| `216f7ca` | 2026-07-26 | joncurry94-tech | manifest 1.1.55 |
-| `5ce4f21` | 2026-07-23 | joncurry94-tech | manifest 1.1.54 |
-| `df769b8` | 2026-07-23 | joncurry94-tech | manifest 1.1.53 |
-| `7b76da4` | 2026-07-22 | joncurry94-tech | manifest 1.1.52 |
-| `49ab421` | 2026-07-21 | joncurry94-tech | publish: stage engine binaries from deployed GOG root (canonical tested set) |
-| `aa8a182` | 2026-07-21 | joncurry94-tech | manifest 1.1.51 |
-| `5ae6ace` | 2026-07-20 | joncurry94-tech | manifest 1.1.50 |
-| `52bcd68` | 2026-07-18 | joncurry94-tech | manifest 1.1.49 |
-| `78ce86a` | 2026-07-16 | joncurry94-tech | v1.1.48: publish script + wolf logs |
-| `c1ca958` | 2026-07-14 | joncurry94-tech | manifest 1.1.48 |
-| `3527472` | 2026-07-12 | joncurry94-tech | manifest 1.1.47 |
-| `01ba4da` | 2026-07-11 | joncurry94-tech | manifest 1.1.46 |
-| `a719d2c` | 2026-07-11 | joncurry94-tech | manifest 1.1.45 |
-| `9eefb00` | 2026-07-10 | joncurry94-tech | publish_release: drop the removed KUN weapons pack from the staging list |
-| `08bfad6` | 2026-07-10 | joncurry94-tech | manifest 1.1.44 |
-| `3600170` | 2026-07-10 | joncurry94-tech | updater: generate loose maintt/coop_reportwebhook.cfg from updater.ini for the in-game Report a Bug |
-| `f86b6de` | 2026-07-10 | joncurry94-tech | README: love-letter tagline + up to 16 players (4 for the true experience) |
-| `afbe0b0` | 2026-07-09 | joncurry94-tech | manifest 1.1.43 |
-| `381b4c5` | 2026-07-09 | joncurry94-tech | manifest 1.1.42 |
-| `d54f8c0` | 2026-07-07 | joncurry94-tech | rendezvous: one-paste Ubuntu installer (zero-Linux-knowledge path) |
-| `514b9bd` | 2026-07-07 | joncurry94-tech | NAT phase 1: rendezvous daemon (verified end-to-end locally) + Oracle Always-Free setup guide |
-| `a1bab3d` | 2026-07-07 | joncurry94-tech | README: full feature catalog incl. XP/ranks, cover, view modes, .30cal 3P + honest rough-edges section; roadmap refresh (NAT, ski… |
-| `f7012fb` | 2026-07-07 | joncurry94-tech | v1.1.41: cover 2.0 aim-follow, .30cal gunner overhaul, shoulder-aim raise+speed, officer player-count scaling, 1P FOV + persisten… |
-| `6f44cf9` | 2026-07-07 | joncurry94-tech | manifest 1.1.41 |
-| `a4fa47c` | 2026-07-06 | joncurry94-tech | manifest 1.1.40 |
-| `068ad54` | 2026-07-06 | joncurry94-tech | README: add Discord community links |
-| `74018ab` | 2026-07-06 | joncurry94-tech | manifest 1.1.39 |
-| `1e152f6` | 2026-07-06 | joncurry94-tech | manifest 1.1.38 |
-| `2393f45` | 2026-07-06 | joncurry94-tech | manifest 1.1.37 |
-| `4a09756` | 2026-07-06 | joncurry94-tech | manifest 1.1.36 |
-| `151bdb2` | 2026-07-05 | joncurry94-tech | manifest 1.1.35 |
-| `2dec3e0` | 2026-07-05 | joncurry94-tech | publish: upload assets under manifest name when source filename differs (v1.1.34 rollout 404) |
-| `6a77b3f` | 2026-07-05 | joncurry94-tech | manifest 1.1.34 + DXT hdmem pack staging/installer wiring |
-| `55ea360` | 2026-07-05 | joncurry94-tech | Updater v3: Update Complete popup, What's New card trigger + seed, path-traversal guard |
-| `a657c26` | 2026-07-05 | joncurry94-tech | manifest 1.1.33 |
-| `7ad9c38` | 2026-07-05 | joncurry94-tech | manifest 1.1.32 |
-| `6977b90` | 2026-07-05 | joncurry94-tech | manifest 1.1.31 |
-| `c2ef4f9` | 2026-07-05 | joncurry94-tech | Updater v2 (mutex, live progress, safe hash), deterministic pk3 builds, publish hardening |
-| `e9bd4d7` | 2026-07-05 | joncurry94-tech | manifest 1.1.3 |
-| `77a26f0` | 2026-07-05 | joncurry94-tech | manifest 1.1.2 |
-| `9170e5b` | 2026-07-04 | joncurry94-tech | publish: rename manifest asset post-undraft (draft tags do not resolve via /tags/) |
-| `2f36b7b` | 2026-07-04 | joncurry94-tech | manifest 1.1.1 |
-| `5c79410` | 2026-07-04 | joncurry94-tech | manifest 1.1.0 |
-| `859c3ff` | 2026-07-04 | joncurry94-tech | README: complete feature inventory + per-map fixes section, alpha SFX note |
-| `7e0e793` | 2026-07-04 | joncurry94-tech | Reporter joins the auto-update channel (secret-free) |
-| `4e5e307` | 2026-07-04 | joncurry94-tech | Reporter v2: tester description dialog, webhook via updater.ini (script now secret-free) |
-| `677b7df` | 2026-07-04 | joncurry94-tech | README: prominent early-alpha notice with bug-reporting paths |
-| `79e773b` | 2026-07-04 | joncurry94-tech | Badge: saturation-based checker removal (vignetted checkers survived the brightness mask) |
-| `fcda347` | 2026-07-04 | joncurry94-tech | Badge: true transparency (removed baked checker pockets) |
-| `874a9cb` | 2026-07-04 | joncurry94-tech | Allowlist resume_publish.ps1 |
-| `3fc43f2` | 2026-07-04 | joncurry94-tech | Project page: features, roadmap, credits, install guide + publish resume tool |
-| `97d9aed` | 2026-07-04 | joncurry94-tech | Phase 1 completion: updater + publisher in repo, webhook leak-proofing in packaging |
-| `2031916` | 2026-07-04 | joncurry94-tech | Phase 1 auto-update: pk3 3-way split, launch-time updater, release publisher, installer 1.1.0 |
-| `4d8e096` | 2026-07-04 | joncurry94-tech | Release pipeline: build script + Inno Setup installer sources |
+| `d96ed278` | 2026-11-10 | joncurry94-tech | manifest 1.10.74 |
+| `c0daacd4` | 2026-11-10 | joncurry94-tech | publish_release: write release zips to H:\hzm_archive\release_zips instead of TEMP (TEMP grew to 365 GB and filled C:) |
+| `034a2813` | 2026-11-10 | joncurry94-tech | manifest 1.10.73 |
+| `c5ea45a4` | 2026-11-10 | joncurry94-tech | Merge branch 'opsfix' |
+| `4ac140ac` | 2026-11-10 | joncurry94-tech | Merge branch 'benchfix-docs' |
+| `63ff0a21` | 2026-11-10 | joncurry94-tech | benchfix2 QA runner: user-path scenarios (save / equip / finish / ESC / in hand / restart with the kept config) |
+| `6195549f` | 2026-11-10 | joncurry94-tech | opsfix tools: card buttons emitted after the card's labels (asserted at generation); real-click harness case (liveops_test.py cli… |
+| `0ceba602` | 2026-11-10 | joncurry94-tech | benchfix2: gen_custom_urc - escapecommand + SAVE/BACK run hzmcust done |
+| `a56884d0` | 2026-11-10 | joncurry94-tech | README: v1.10.72 Live Operations, Advanced Training, bench, loading clips |
+| `3a1b1b75` | 2026-11-10 | joncurry94-tech | manifest 1.10.72 |
+| `4db2a9c2` | 2026-11-10 | joncurry94-tech | Merge main (v1.10.72) into benchfix-docs |
+| `f3f2e49e` | 2026-11-10 | joncurry94-tech | benchfix tools 2: new-gun camera scenario, unanchored-gun lister, measured cams + checked anchors report in the repo (data/), mer… |
+| `11f96023` | 2026-11-10 | joncurry94-tech | gfx gate: v1.10.72 renderer a09a17b3 (relink only) |
+| `a3663770` | 2026-11-10 | joncurry94-tech | v1.10.72 integration: attic72_build.sh (menus pak = AT pak + Live Ops war-map textures), Live Ops BUILD.md pak note (bug-10838) |
+| `5f8c7b13` | 2026-11-10 | joncurry94-tech | Merge mapclips70 (v1.10.72): loading clips re-rendered from the widened war map + the own-disc missions |
+| `eb3936cd` | 2026-11-10 | joncurry94-tech | Merge benchfix-docs (v1.10.72): bench face grids in the anchor solver, check_faces.py, bench_run tilt/move scenarios |
+| `c717f6f1` | 2026-11-10 | joncurry94-tech | Merge advtrain (v1.10.72): Advanced Training harness, attic TRAINING prop tools, m4l0at tile art |
+| `b183f16b` | 2026-11-10 | joncurry94-tech | Merge liveops (v1.10.72): gen_ops.py, Live Ops sweep + client harness, make_ng3campaigns hook, bt3 tag |
+| `2de0ea10` | 2026-11-10 | joncurry94-tech | advtrain: tilesrc takes AT_TILE_POS (re-shoot any station clean) |
+| `51efa086` | 2026-11-10 | joncurry94-tech | advtrain: BUILD.md ship path |
+| `57c317d9` | 2026-11-10 | joncurry94-tech | advtrain: BUILD.md path typo |
+| `c0007746` | 2026-11-10 | joncurry94-tech | advtrain: BUILD.md - user decisions, attic prop + tile art, final test matrix |
+| `be7a0dfd` | 2026-11-10 | joncurry94-tech | advtrain: Advanced Training tile art (m4l0at c/s + prints, from a clean Dig-in harness frame via build_set.py) in the tile-art as… |
+| `662c7c7c` | 2026-11-10 | joncurry94-tech | benchfix tools: face grids in the anchor solver, check_faces.py tile hand check, merge EG_TILEFAIL + coplanar anchor faces, bench… |
+| `20f11dd8` | 2026-11-10 | joncurry94-tech | advtrain: harness - local guard judgement (cursor clip ours only when our window is foreground; enforce=False, harness_window unt… |
+| `2d69ca2b` | 2026-11-10 | joncurry94-tech | advtrain attic tools: TRAINING practice-target prop (gen/patch/build/QA) |
+| `f08c328e` | 2026-11-10 | joncurry94-tech | mapclips70: loading clips re-rendered from the widened war map + the two own-disc missions |
+| `2504d337` | 2026-11-10 | joncurry94-tech | liveops tools: courier-16 type, parenthesis-free modifier text, --charset harness check |
+| `85d7c060` | 2026-11-10 | joncurry94-tech | liveops BUILD.md: final pool and tag moves |
+| `361ca92f` | 2026-11-10 | joncurry94-tech | liveops tools: sweep-pruned pool, France area slot, result stamp, slip order, harness fixes, BUILD.md |
+| `03aada4c` | 2026-11-10 | joncurry94-tech | advtrain: harness - clean HUD-off stills per station + strike still, tilesrc case, inactivity off for idle clients, merge-base pa… |
+| `4ec45ac9` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into liveops |
+| `0436f1a7` | 2026-11-10 | joncurry94-tech | manifest 1.10.71 |
+| `27da3d12` | 2026-11-10 | joncurry94-tech | advtrain: Advanced Training harness (at_test.py: boot, maptest, solo/coop2 self-test, tile source), BUILD.md (plan deviations, me… |
+| `64927c88` | 2026-11-10 | joncurry94-tech | liveops tools: gen_ops.py (pool, layout, reference roll, textures, engine/MP tables), make_ng3campaigns hook, bt2/bt3 tag nudges,… |
+| `88ff76ce` | 2026-11-10 | joncurry94-tech | Merge commit '6e0fab71' |
+| `6e0fab71` | 2026-11-10 | joncurry94-tech | rackfix (v1.10.71): card player studies his hand (actor_m1l1_cardidle02 whole loop, chest height - pose sweep of both quiet idles… |
+| `482d4ed9` | 2026-11-10 | joncurry94-tech | rackfix: the MP room's rack view is a scripted turn (no engine scenepeek) - hover < RACK turns to the rack, the right quarter tur… |
+| `1ebdcfe8` | 2026-11-10 | joncurry94-tech | README: v1.10.70 disc missions (needs playtesting), Castro challenge, film cans, war map to Stalingrad |
+| `951d02d6` | 2026-11-10 | joncurry94-tech | manifest 1.10.70 |
+| `ebd4f252` | 2026-11-10 | joncurry94-tech | Merge attic70-tools (v1.10.70): OWN DISCS film cans, war map to Stalingrad, own-disc leaders |
+| `c3208175` | 2026-11-10 | joncurry94-tech | Merge byo70 (v1.10.70): converter 1.10.70.1, web installer own-disc page, byo70 harness, TRAPS T14 |
+| `eaa41fa3` | 2026-11-10 | joncurry94-tech | byo70 harness: audio checks (listen + dedicated with a real tinnitus event), server cheats after autoexec, spawn press for two-cl… |
+| `6055bd60` | 2026-11-10 | joncurry94-tech | TRAPS T14: the server un-mutes test clients at spawn; the three ways cheats die (bug-10805). Pruned T10/T11 narrative to archive/… |
+| `a492b3d4` | 2026-11-10 | joncurry94-tech | attic70 tools: own-disc leaders - warmap.py leader() shared by the overlay and per-mission lead_<key>.png crops (+ lead_uv in the… |
+| `d2878890` | 2026-11-10 | joncurry94-tech | attic70 tools: OWN DISCS film cans, war map widened east to Stalingrad, wall push-pins cut (pak edaba3d2) |
+| `2a644fe2` | 2026-11-10 | joncurry94-tech | byo70: converter 1.10.70.1 (briefing-room step aliases, bug-10803), web installer rebuilt with the own-disc page, v1.10.70 test h… |
+| `dd180cfa` | 2026-11-10 | joncurry94-tech | README: v1.10.69 Bren, join-game room, projector screen, own-disc missions |
+| `1c16b2a5` | 2026-11-10 | joncurry94-tech | manifest 1.10.69 |
+| `af36b90b` | 2026-11-10 | joncurry94-tech | gfx gate: v1.10.69 renderer 222f669b (header recompile only) |
+| `2e694409` | 2026-11-10 | joncurry94-tech | Merge branch 'attic68-tools' |
+| `64e1185a` | 2026-11-10 | joncurry94-tech | attic69 tools: the card player holds his cards at chest height (actor_m1l1_11 loop, no cycles) - the card idles raised them to hi… |
+| `7183367e` | 2026-11-10 | joncurry94-tech | MP isolation: allow the MP hub room's PROMOTIONS notice to open the MP Service Record; patcher resets coop_mpSrP6 too |
+| `0c32d474` | 2026-11-10 | joncurry94-tech | MP isolation: allow the MP hub room's PROMOTIONS notice to open the MP Service Record; patcher resets coop_mpSrP6 too |
+| `0edb6fdb` | 2026-11-10 | joncurry94-tech | v1.10.69 integration: generators agree with the merged attic + byo trees, no-env defaults for the v1.10.69 finishes build, poster… |
+| `b294703b` | 2026-11-09 | joncurry94-tech | Merge byo69: Frontline / European Assault own-disc support (converter, updater re-convert, installer page, generators, test matri… |
+| `b17b1c57` | 2026-11-09 | joncurry94-tech | Merge attic68-tools (v1.10.69) |
+| `e37257c9` | 2026-11-09 | joncurry94-tech | Merge newguns2 (v1.10.69) |
+| `f0368aa2` | 2026-11-09 | joncurry94-tech | attic69 tools: coordinator QA round 2 - radio onto the footlocker, soldier turned (face shows) at a 0.70 m table moved forward-le… |
+| `f84526e4` | 2026-11-09 | joncurry94-tech | attic69 tools: the MP room lived in (gen_mproom69.py / patch_mproom69.py / attic69_build.sh / mp69_run.py) |
+| `e310f768` | 2026-11-09 | joncurry94-tech | newguns2: Bren sights textured - own surface + parkerized sheet with edge wear, chamfered aperture hole |
+| `49ad6185` | 2026-11-09 | joncurry94-tech | newguns2: Bren sights rebuilt on the model, own aim pose, aimed reloads; Bren back on |
+| `f9877a81` | 2026-11-09 | joncurry94-tech | byo v1.10.69: test matrix - campaign walks on the coop_chronoTest hook (production cfg recipe, single rcon per level end) |
+| `4e39b5ea` | 2026-11-09 | joncurry94-tech | attic68 tools: WWII posters in the MP room (gen_posters68.py: 4 PD-USGov OWI posters, aged paper, curl, pins, baked shadow; walls… |
+| `a8737d69` | 2026-11-09 | joncurry94-tech | README: v1.10.68 finishes, MP 28 / Panzerfaust, Customize bench, rebuilt town |
+| `53831dae` | 2026-11-09 | joncurry94-tech | manifest 1.10.68 |
+| `6ca8bb8d` | 2026-11-09 | joncurry94-tech | gfx gate: v1.10.68 renderer 3e13e7f1 (engrave dynamic image export; flip defaults unchanged) |
+| `38b72246` | 2026-11-09 | joncurry94-tech | attic68 tools: far town rows as uniform terraces, facade/window push scaled to real depth (no details through roofs), rack furthe… |
+| `49b51e29` | 2026-11-09 | joncurry94-tech | attic68 tools: horizon foliage cards from the game's HD sprites (no domes / hedge prisms), squash SPAN 21 (ridges inside the far… |
+| `4e808d05` | 2026-11-09 | joncurry94-tech | byo v1.10.69: make_mpui.py - locked own-disc sheet inside coop_start (centred, dim layer, fall-through-safe buttons); test matrix… |
+| `abbb5d98` | 2026-11-09 | joncurry94-tech | byo v1.10.69: test matrix for the own-disc menus and campaigns (byo69_test.py: menu stills, SP chrono stepping, coop Full / Chron… |
+| `a11b4b05` | 2026-11-09 | joncurry94-tech | v1.10.68 integration: re-lock coop_loadout.urc (finishes2 row + CUSTOMIZE), no-env defaults for the release engine and the newgun… |
+| `4336cafa` | 2026-11-09 | joncurry94-tech | byo v1.10.69: generators own the disc missions - missions.json rows fl1/ea1 (chrono 10 / 2, optional_cvar), warmap.py never bakes… |
+| `b9b66e71` | 2026-11-09 | joncurry94-tech | Merge attic68-tools: window-view town, distance rework |
+| `d9c96cb0` | 2026-11-09 | joncurry94-tech | Merge engrave-docs: Customize bench tools |
+| `b4f6c56e` | 2026-11-09 | joncurry94-tech | Merge sightalias-tools: finish-skin sight aliases + gate (bug-10724) |
+| `eef29582` | 2026-11-09 | joncurry94-tech | Merge newguns: MP 28 and Panzerfaust (Bren held, switched off) |
+| `b3885b9f` | 2026-11-09 | joncurry94-tech | Merge finishes2-tools (226c229c, 7cd052a2): second finish set through the generators |
+| `cd7ab84b` | 2026-11-09 | joncurry94-tech | bug-10724: ADS base-vs-finish stills (5 guns), run_ads.py (rcon, pid, join-card fixes) |
+| `c94a015b` | 2026-11-09 | joncurry94-tech | gen_sight_alias: finish-skin sight aliases + the build gate (bug-10724) |
+| `570957ff` | 2026-11-09 | joncurry94-tech | v1.10.68 cut: Bren off (loadout_weapons.tsv row 82 #OFF, bren_off.py switch, fs2_drop_bren.py), BREN_SIGHTS.md redo plan |
+| `342415d9` | 2026-11-09 | joncurry94-tech | newguns QA 4: Bren rear sight = thin ring on the sight line (~1/3 screen height, post centred), the source aperture leaf removed;… |
+| `3bd44dd2` | 2026-11-09 | joncurry94-tech | attic window: distance rework (ridges, fields, woods, church in town), slate breakup, moon 8 deg |
+| `6d78d7ec` | 2026-11-09 | joncurry94-tech | byo v1.10.69: European Assault in hzmconv (docs/tools/ea snapshot of the EA agent's converter, own module set loaded ahead of the… |
+| `1a9d327d` | 2026-11-09 | joncurry94-tech | newguns QA 3: Bren looks through its own aperture leaf (post at the crosshair, magazine outside the line; ghost ring removed), ai… |
+| `7dbaacdf` | 2026-11-09 | joncurry94-tech | attic polish tools (v1.10.62-68): window-view town, sky, stills harness, build chain |
+| `d1590fa0` | 2026-11-09 | joncurry94-tech | newguns QA pass: Bren reload re-posed (gun low/right, both hands riding, coverage <= 3.2 % hand / 9.1 % sleeve), Bren sights 0.7… |
+| `604bead3` | 2026-11-09 | joncurry94-tech | Customize bench tools: mesh bounds + short-words spots in the solver, spot hand-check drop list, cfg-only no-focus bench/in-game… |
+| `561c0072` | 2026-11-09 | joncurry94-tech | Customize bench tools: spots + free ranges in the anchor solver, decal pak builder, bench urc generator, spot merge; Armory CUSTO… |
+| `462663b6` | 2026-11-09 | joncurry94-tech | byo v1.10.68: converter window -Snapshot (QA still without showing the window), zips offered only when named for the game, layout… |
+| `f2829e95` | 2026-11-09 | joncurry94-tech | byo v1.10.68: ship the disc converter (hzmconv.zip + installer/byo_convert.ps1 in the updater payload), BYO guard in build.ps1 +… |
+| `c7b2becc` | 2026-11-09 | joncurry94-tech | newguns README: path fix |
+| `25e8425a` | 2026-11-09 | joncurry94-tech | newguns: finishing-pass status, in-game stills (m5l1a daylight, 3440x1440), clip / hand-distance checks |
+| `af68fc6f` | 2026-11-09 | joncurry94-tech | SKIN_CREDITS: the three CC BY new-gun models |
+| `96cc92ad` | 2026-11-09 | joncurry94-tech | newguns: the Bren's own reload hands (VB clips with the right hand retargeted ~5.7 u back onto the Bren magazine: coopr_bren_relo… |
+| `556fba73` | 2026-11-09 | joncurry94-tech | Merge finishes2-tools into newguns (finish_challenges: both GUN_NAME rows + the second set table; entries.json regenerated later) |
+| `3fa701f9` | 2026-11-09 | joncurry94-tech | Merge branch 'main' into newguns |
+| `36a62d66` | 2026-11-09 | joncurry94-tech | Merge branch 'frontline-tools' into byo68 |
+| `7cd052a2` | 2026-11-09 | joncurry94-tech | finishes2 media: in-game Armory (1080 / 3440 / locked), hip and viewer stills |
+| `226c229c` | 2026-11-09 | joncurry94-tech | finishes2-tools: wire the second finish set (fids 40-52) through the generators |
+| `439c741f` | 2026-11-09 | joncurry94-tech | README: v1.10.67 window view, skylight, town sounds, gun clipping fix |
+| `e3cb599e` | 2026-11-09 | joncurry94-tech | manifest 1.10.67 |
+| `fd7f0145` | 2026-11-09 | joncurry94-tech | gfx gate: v1.10.67 renderer 2324fce6 (viewclip near-plane fix) passed its clip gate |
+| `670a6a81` | 2026-11-09 | joncurry94-tech | finishes2 README: rebuilt size 188.2 MB, wiring plan for fids 40-48 (gen_skins, loadoutpick, finish ladder, gen_loadout / armory… |
+| `ae6cf3f7` | 2026-11-09 | joncurry94-tech | finishes2: whitewash hand-brushed (streak gaps + worn edges, no blocky chip patches, 16 cm tile), coats carry ~35% of the gun's m… |
+| `1a624a3a` | 2026-11-09 | joncurry94-tech | finishes2: full paint/camo build (70 guns, 126 sheets, 8 coats + Airborne 101st, ranks 1240+, fids 40-48): staging pak 177.2 MB a… |
+| `23710f80` | 2026-11-09 | joncurry94-tech | gen_weapon_viewer: the viewer's room copy skips the attic window's outside layers (hzm_wx_*) and keeps the gramophone record gates |
+| `337c73c9` | 2026-11-09 | joncurry94-tech | Live Operations plan: record approval of the three BT tag-label nudges (labels only) |
+| `eb828f51` | 2026-11-09 | joncurry94-tech | Live Operations plan: record user decisions (TDM then sapper OBJ; clock-seeded shared contracts; capped Service Record bonus; app… |
+| `f26fabfc` | 2026-11-09 | joncurry94-tech | finishes2: two-layer paint shader proven in game (Kar98k splitter + whitewash, hip + viewer): gun's own HD texture, per-gun mask… |
+| `60b10a38` | 2026-11-09 | joncurry94-tech | Live Operations plan: CRIME.NET-style bot-match contracts on the NEW GAME war map (plan + mocks + evidence-backed location table… |
+| `a3634463` | 2026-11-09 | joncurry94-tech | finishes2 README: finish slots 40+ (agreed), measured size of the masked paint/camo bakes by resolution cap |
+| `2f666610` | 2026-11-09 | joncurry94-tech | newguns README: finish slots 1-7 only (finishes2 owns 40+) |
+| `116b4de9` | 2026-11-09 | joncurry94-tech | viewclip: pass complete - all 70 guns at 3440x1440, no clipping beyond the fixed hip near-plane cut; revolver reruns with the cur… |
+| `77d15cef` | 2026-11-09 | joncurry94-tech | flcoop2: FL_MAP / FL_READY / FL_DONE / FL_WATCH so the two-client run can drive other maps (briefing film sync test) |
+| `4c5656ed` | 2026-11-09 | joncurry94-tech | Advanced Training plan: last question ref |
+| `9f3fec73` | 2026-11-09 | joncurry94-tech | Advanced Training plan: decisions, walkthrough, station map |
+| `a97f256b` | 2026-11-09 | joncurry94-tech | Advanced Training (m4l0) plan |
+| `1b9b4e2e` | 2026-11-09 | joncurry94-tech | flsp: stop the input loop when the client exits (EA agent's bug-10682) |
+| `e64704f9` | 2026-11-09 | joncurry94-tech | viewclip run_ab: exec the gun's real loadout slot (sidearms are w<gid>_s3.cfg; s1 never gave them, so the silenced Colt run captu… |
+| `3443fddf` | 2026-11-09 | joncurry94-tech | fl_levels 1_1 / INTEGRATION: join card SEALED ORDERS (user), St. Mathieu / 17 Aug 1944 0900 / OSS |
+| `b6fadfae` | 2026-11-09 | joncurry94-tech | finishes2 nose art v2: recreated from public-domain WWII photos (NARA 535531 AVG shark mouth, B-24D 41-23920 LIBERTY BELLE letter… |
+| `26b69d6e` | 2026-11-09 | joncurry94-tech | finishes2: Kriegsmarine in-game hip shots (Kar98k), nose art sheet |
+| `bbb10383` | 2026-11-09 | joncurry94-tech | finishes2 README: id ranges agreed with new-guns (ranks 1240+, coop_skinN 600+, Armory ids 85+), layout |
+| `074cf067` | 2026-11-09 | joncurry94-tech | newguns: Bren reload prop, brighter sheets, Panzerfaust aim exclusion notes, test runners, viewer stills |
+| `ce74daa1` | 2026-11-09 | joncurry94-tech | INTEGRATION: film layout finding, ffmpeg parity |
+| `525b56ce` | 2026-11-09 | joncurry94-tech | vc_queue: solo means solo on the ULTRAWIDE (a second-screen client does not block a full-width run); second-screen queue lines ig… |
+| `34fc0589` | 2026-11-09 | joncurry94-tech | flmovies: stock RoQ layout (512x256, no embedded audio, separate video/<name>.wav); INTEGRATION 10: bundled runtimes (shared MPEG… |
+| `4bc93e01` | 2026-11-09 | joncurry94-tech | finishes2: nose art set (shark mouth, Lucky Lady, ace of spades, bomb tally) as original painted-on-metal decals in the bench man… |
+| `899a9275` | 2026-11-09 | joncurry94-tech | finishes2 decals: manifest carries mirror_safe per decal, the finishes' default decals as Customize-bench presets (decal + spot p… |
+| `0260ad2b` | 2026-11-09 | joncurry94-tech | finishes2: sheet 2 re-shot the right way up (true frame), decal close-ups, gate rerun (70/70 Armory-side decals upright, 36 first… |
+| `065cdbf9` | 2026-11-09 | joncurry94-tech | newguns: Bren Mk I, MP 28 (coop_bergmann) and Panzerfaust 60 from CC BY models - meshes on the VB / Sten / Panzerschreck bones, b… |
+| `365fa925` | 2026-11-09 | joncurry94-tech | flgif: map-load wait bounded by FL_LOAD_TIMEOUT (150 s) so an outer timeout never kills the run before the log is kept |
+| `f951723c` | 2026-11-09 | joncurry94-tech | hzmconv: disc images inside a .zip (one streamed temp copy beside the destination, space-checked, always deleted) |
+| `55c0bb5b` | 2026-11-09 | joncurry94-tech | frontline: fl_modelmap 'hide' (render-only draw removal); 1_1 hides Frontline's interrogation stool for the stock chair |
+| `5e471193` | 2026-11-09 | joncurry94-tech | frontline: hzmconv.spec (PyInstaller one-folder, 61 MB; frozen add writes a pak byte-identical to the Python build) |
+| `25bae14c` | 2026-11-09 | joncurry94-tech | frontline: hzmconv.py - the shared BYO converter entry point (detect/verify/add, JSON-lines progress, per-game modules; EA plugs… |
+| `61ee1f24` | 2026-11-09 | joncurry94-tech | flgif: always keep the client log |
+| `68b6937a` | 2026-11-09 | joncurry94-tech | frontline: INTEGRATION.md 10 - release plan to v1.10.70 (shared hzmconv.exe BYO tool + interface for the EA converter, licences,… |
+| `69094f11` | 2026-11-09 | joncurry94-tech | frontline: hedge reskin keeps Frontline's bumpy top profile (crown raised from each top vertex's own height) |
+| `c53aa99a` | 2026-11-09 | joncurry94-tech | frontline: flgif trigger-start, real-click deploy, optional noclip; harness passes coop_* extras on the command line (coop resets… |
+| `80b3b35c` | 2026-11-09 | joncurry94-tech | finishes2: true gun frame (skd frame is the gun rolled 180 deg: guns drew upside down), decals per side (Armory = gun right, firs… |
+| `f51ec777` | 2026-11-09 | joncurry94-tech | harness_window from root main 092db93d (test display by resolution, ultrawide even while primary) |
+| `53a2d4ed` | 2026-11-09 | joncurry94-tech | harness_window: other-monitor list by device, so slotted test windows on the ultrawide aren't killed (bug-10666) |
+| `092db93d` | 2026-11-09 | joncurry94-tech | harness_window: test display picked by resolution (3440x1440 ultrawide, user's choice, even while primary); HZM_TEST_RES overrides |
+| `013e7b3b` | 2026-11-09 | joncurry94-tech | frontline: fl_modelmap.json props (20 Frontline breakable boxes -> stock MOHAA crates, breakable) and markers (resistance drop ->… |
+| `5d87028a` | 2026-11-09 | joncurry94-tech | finishes2 sheet 2: mesh-driven finishes (real-size camo, per-gun wear mask, trench-art brass plate + buttplate, worn whitewash, d… |
+| `ff49dd14` | 2026-11-09 | joncurry94-tech | frontline: cutscenes - flmovies.py (briefing films -> local RoQ + stock briefing room), INTEGRATION.md inventory and plan; hedge… |
+| `b1a1b951` | 2026-11-09 | joncurry94-tech | finishes2: standalone decal set for the Customize bench (14 decals x 3 sizes + manifest), US awards/badges and 101st patch drawn… |
+| `ef89843c` | 2026-11-09 | joncurry94-tech | frontline: INTEGRATION.md 8 - approved onboarding (installer page skip-by-default, one-time What's New button, attic prop with th… |
+| `ef88eb67` | 2026-11-09 | joncurry94-tech | frontline: fl_modelmap.json + render-only reskin (Frontline's opaque hedge boxes -> MOHAA bocage hedgerow card, per-column facade… |
+| `2e4c862a` | 2026-11-09 | joncurry94-tech | finishes2 (offline): shared camo / wear / engraving tiles, vector insignia decals, offline finish compositor + first sheet (Kar98… |
+| `4a708c0e` | 2026-11-09 | joncurry94-tech | frontline: INTEGRATION.md plans the 'Saving Private Castro' challenge (Phase 2, coop_flHave-gated); flgif crops the spectator-pro… |
+| `ac1089ac` | 2026-11-09 | joncurry94-tech | frontline: flgif.py - short local gameplay GIFs from the private client (our window only, <=12 s, <=8 MB); flharness FL_SETS hook |
+| `bf1228fb` | 2026-11-09 | joncurry94-tech | viewclip: 3440x1440 pass (clip guns A/B + after-only sweep, wall test), review sheet tools, Johnson 3440 before/after |
+| `6beda814` | 2026-11-09 | joncurry94-tech | frontline: upscaler keeps alpha-tested cut-out cards original, colour-matches ESRGAN output before the 12% drift check, worm limi… |
+| `5eb092c1` | 2026-11-09 | joncurry94-tech | frontline: placement nudge matches the engine's stuck test (feet lift 8, 4u slab margin, ring <=160u); 1_1 patches: out-of-bounds… |
+| `67b687b2` | 2026-11-09 | joncurry94-tech | run_fg42: WV_SCOPEDBG (per-frame scope debug for the scope-in flash check) |
+| `da936079` | 2026-11-09 | joncurry94-tech | viewclip: hand-into-camera survey (hand_survey.py), double-barrel shell reload worked further out (dbs_hands WORK hip, 4 clips vi… |
+| `3e04ab61` | 2026-11-09 | joncurry94-tech | frontline: seam patches grow under the floor; 1_1 third patch for the kerb-wall slit (floor-band coverage scan: no enclosed holes… |
+| `df3ece12` | 2026-11-09 | joncurry94-tech | frontline converter: per-level seam patches (fl_levels.json "patches": polygon + texture + reason) for corner holes no edge pair… |
+| `6046bb7f` | 2026-11-09 | joncurry94-tech | viewclip: findings - 40 hip clips cut by the world near plane (fixed by the weapon projection at the hip), hand-too-close clips l… |
+| `fbb3a634` | 2026-11-09 | joncurry94-tech | viewclip step 1: offline near-plane pass over every first-person clip (clip_survey.py) + A/B harness (run_ab.py, vc_go.py); Johns… |
+| `ffdcb158` | 2026-11-09 | joncurry94-tech | flcoop2: count a client as joined on 'has joined the <team>' (v1.10.66 prints 'entered the battle' at connect) |
+| `62ee938e` | 2026-11-09 | joncurry94-tech | README: v1.10.66 war map, loading screens, main menu, FG 42 |
+| `9e864f99` | 2026-11-09 | joncurry94-tech | manifest 1.10.66 |
+| `0de9dc1e` | 2026-11-09 | joncurry94-tech | gfx gate: v1.10.66 renderer_opengl2 2b2e113f (rc66 Norway smoke + menu/SP/coop final check passed) |
+| `34f8d60f` | 2026-11-09 | joncurry94-tech | check_mp_isolation: coop_loadout.urc lock eol crlf (checkout form after the v1.10.66 merges; content unchanged) |
+| `f11aec25` | 2026-11-09 | joncurry94-tech | build/publish: ship zzzzzzzzzz_coop_mapclips.pk3 (v1.10.66 map loading clips) |
+| `18731bed` | 2026-11-08 | joncurry94-tech | harness_window: match in_padtestscript lower-cased (the pad-script exemption never matched, bug-10646) |
+| `b4ffd418` | 2026-11-08 | joncurry94-tech | frontline: map name coop_fl_<c>_<l> (engine loads scripted anims by map-name prefix; mfl_* matched no TIKI includes block); seam… |
+| `1f5cce27` | 2026-11-08 | joncurry94-tech | viewclip: first-person gun-clipping audit plan (likely global causes, test matrix) - prep only, no code |
+| `e9e59d94` | 2026-11-08 | joncurry94-tech | frontline converter 0.2.1: seam bridges close floor gaps that showed the sky (the 1_1 hedge-bed white strip); SP real-input runne… |
+| `a9fe9b0b` | 2026-11-08 | joncurry94-tech | fg42hd README: the controller fix is re-applied (368e33b8); the 0-shot runs were an archived in_gamepad 0 |
+| `54999aeb` | 2026-11-08 | joncurry94-tech | harness_window: pad-script runs force in_gamepad 1 (an archived 0 in omconfig.cfg stalled them, bug-10635) |
+| `f24b02f2` | 2026-11-08 | joncurry94-tech | fg42hd README: note the scope-in retail overlay flash for the clipping audit; the pad-script harness hold |
+| `7e7322e7` | 2026-11-08 | joncurry94-tech | fg42hd QA #4 media: ADS vs Kar98k with the machined mount, hip + mount close-up, raise GIF, viewer/Armory |
+| `1cd5ce5e` | 2026-11-08 | joncurry94-tech | harness_window: keep the pad system for in_padTestScript runs (virtual pad needs it); force in_gamepad/in_joystick 0 only otherwi… |
+| `431410f4` | 2026-11-08 | joncurry94-tech | harness_window: force in_gamepad 0 / in_joystick 0 on test clients (pad Y opened osk.exe over the user's game, bug-10635) |
+| `f31d4d06` | 2026-11-08 | joncurry94-tech | frontline harnesses: test clients never open the controller (in_gamepad/in_joystick 0) - user's pad Y opened osk.exe via a backgr… |
+| `6fef59ca` | 2026-11-08 | joncurry94-tech | fg42hd QA #4: a machined steel mount seated on the receiver (no daylight), the stray fin removed |
+| `d9219d11` | 2026-11-08 | joncurry94-tech | frontline: lock mfl_1_1 location - St. Mathieu, France (Pointe Saint-Mathieu), 17 Aug 1944 0900, user-confirmed |
+| `c0f593a6` | 2026-11-08 | joncurry94-tech | frontline: Seaside Stowaway = St. Mathieu (Pointe Saint-Mathieu), 17 Aug 1944 0900, from the disc's briefing journal |
+| `2149f5da` | 2026-11-08 | joncurry94-tech | frontline INTEGRATION: never-hinder requirements + no-Frontline regression test |
+| `772094ee` | 2026-11-08 | joncurry94-tech | frontline: INTEGRATION.md (campaign/menu/chrono/war-map/join-card hooks, BYO installer flow), study note |
+| `60238d6b` | 2026-11-08 | joncurry94-tech | fg42hd: drop the stale in-house-scope before/after sheet |
+| `927675a8` | 2026-11-08 | joncurry94-tech | fg42hd QA #3: the scoped FG 42 wears the SHIPPED scope on the new body; front sight removed; in-house ZFG 42 retired |
+| `ba372c68` | 2026-11-08 | joncurry94-tech | frontline: placement nudge (flgeom), occluder PVS (flvis), translucent water + soft-alpha blends, unlit-white vertex fix, HD-swap… |
+| `f6db2a9e` | 2026-11-08 | joncurry94-tech | fg42hd QA #2: the scoped FG 42 on the riflescope recipe - eyepiece sized to the lens pass, ZFG 42 reticle, real eyecup, lighter s… |
+| `80817aa3` | 2026-11-08 | joncurry94-tech | frontline: S2 records index the base chunk's 2nd texture table (10% of draws were mis-textured), texture-upgrade table (1 reviewe… |
+| `59b76df4` | 2026-11-08 | joncurry94-tech | fg42hd: CC credits cover the scoped FG 42 too (its ZFG 42 is in-house, not part of the CC model) |
+| `e0843cb7` | 2026-11-08 | joncurry94-tech | fg42hd: scoped FG 42 on Shorty_Digitan's body with an in-house ZFG 42, plus the Irons QA fixes |
+| `18a8f26e` | 2026-11-08 | joncurry94-tech | frontline: surface merge + distance PVS (fps), kd-tree progress guard, 2-client coop harness, 2nd private client |
+| `e09f7a21` | 2026-11-08 | joncurry94-tech | fg42hd: the FG 42 Irons on Shorty_Digitan's FG42 (CC BY 4.0, modified) - mesh, sheet, finishes, sight rows, credits |
+| `fd0df5c0` | 2026-11-08 | joncurry94-tech | frontline: fix navmesh holes (no duplicate brush planes), drop speech-to-text, nav reach gate |
+| `fcdee597` | 2026-11-08 | joncurry94-tech | Frontline study: POC addendum, ommap note |
+| `24ccd13b` | 2026-11-08 | joncurry94-tech | Frontline BYO pilot: study, disc readers, converter (BSP writer, textures, collision, level pack), harness |
+| `a9b71700` | 2026-11-08 | joncurry94-tech | check_mp_isolation: re-lock ui/coop_loadout.urc for armoryfix (modelfitaspect on the Armory model widgets, deliberate coop change… |
+| `c54b143e` | 2026-11-08 | joncurry94-tech | armoryfix tools: Armory previews framed on the current models and at every screen aspect |
+| `1c1a0031` | 2026-11-08 | joncurry94-tech | SKIN_CREDITS: credit DaRKaNGeL for the FG42 rig and animations we ship (the line wrongly said in-house) |
+| `55986195` | 2026-11-08 | joncurry94-tech | README: v1.10.65 finishes |
+| `85e8cbc7` | 2026-11-08 | joncurry94-tech | manifest 1.10.65 |
+| `c5722d88` | 2026-11-08 | joncurry94-tech | gen_daily_orders: classes for the carbine and lewis wids |
+| `6ffa8a43` | 2026-11-08 | joncurry94-tech | camo65 tools: the standard seven finishes for the 27 Armory guns that had none (189), through gen_skins |
+| `842dc82b` | 2026-11-08 | joncurry94-tech | README: v1.10.64; gfx gate v1.10.64 gl2 sha; unlock_audit reads mvchal_gen |
+| `7721d5bf` | 2026-11-08 | joncurry94-tech | manifest 1.10.64 |
+| `283bf7e5` | 2026-11-08 | joncurry94-tech | wpnfix2 tools: Thompson Drum hosts the drum-fed variants + finishes, the two M38s become one BERETTA M38A |
+| `b3f3461e` | 2026-11-08 | joncurry94-tech | wpnfix proposal: README (bipod MG table, reskin audit, load-order trap), before/after stills, harness setup_fix / mg |
+| `d27f2647` | 2026-11-08 | joncurry94-tech | gen_weapon_viewer: a retired roster gun keeps its history row (the base roster still has 71 until wpnfix merges) |
+| `35739458` | 2026-11-08 | joncurry94-tech | gen_armory_urc: carry the v1.10.61 4:3 caption fit (84b33abe: PRI 1/2, FIRE RATE, cmpNow 534/92) so a build reproduces the locked… |
+| `ab02e5ba` | 2026-11-08 | joncurry94-tech | build/publish: ship zzzzzzzzzzzzzzzz_coop_wpnfix.pk3 with the out-of-band paks (built by docs/tools/gen_wpnfix_pak.py build) |
+| `d47e6a4b` | 2026-11-08 | joncurry94-tech | wpnfix sources: DP-28 tiks (base + 7 finishes) carry the 47-round pan; armory_stats follows |
+| `a2b361f6` | 2026-11-08 | joncurry94-tech | tools (v1.10.64 wpnfix): last-sorting weapon override pak, East WW1 exposure lift, Mills shader fix, Lewis split, Thompson gold f… |
+| `ee6f1b7c` | 2026-11-08 | joncurry94-tech | gen_skins: a silenced twin's body surfaces take the base gun's finish shaders (bug-10532); TT-33 SILENCED finish tiks fixed in th… |
+| `c00b3a13` | 2026-11-04 | joncurry94-tech | README: v1.10.63 (Daily Orders, weapon rack, 3D records/briefing, cover); gfx gate v1.10.63 gl2 sha |
+| `fc029d67` | 2026-11-04 | joncurry94-tech | manifest 1.10.63 |
+| `2035df2c` | 2026-11-04 | joncurry94-tech | tools: gen_weapon_viewer - truthful 'duplicate rack removed' message |
+| `01c8e3d7` | 2026-11-04 | joncurry94-tech | tools: gen_weapon_viewer - rack default moved to (2.90, 1.54, 1.56); our fallback rack re-placed from the defaults |
+| `5f553fcd` | 2026-11-04 | joncurry94-tech | tools: gen_weapon_viewer follows the attic rack (replaces only RACK_CMD, pose from their hotspot, --rack-pose / --main), list fit… |
+| `a3b41bee` | 2026-11-04 | joncurry94-tech | tools: gen_weapon_viewer.py + weapon_history.tsv, the attic weapon viewer proposal (harness, contact sheets) |
+| `cfc6040c` | 2026-11-04 | joncurry94-tech | gen_daily_orders: PHASE 2 (all 100 orders scheduled, check passes), targets calibrated from the user's career record (CAL table),… |
+| `25cf76b3` | 2026-11-03 | joncurry94-tech | Daily Orders (v1.10.63) tooling: gen_daily_orders.py, SR DAILY ORDERS tab, MP allowlist, build step |
+| `c4cb22bc` | 2026-11-03 | joncurry94-tech | publish_release: resolve -NotesFile to a full path (v1.10.62 shipped empty notes: .NET read it against the process cwd); fix the… |
+| `a480f8ea` | 2026-11-03 | joncurry94-tech | gfx_flip_gate: v1.10.62 gl2 renderer sha (boot-smoked on m2l3 final162) |
+| `891a92c9` | 2026-11-03 | joncurry94-tech | README: v1.10.62 (emotes, debrief, demo studio, cover, Norway, sounds, attic) + two stills |
+| `df2331fb` | 2026-11-03 | joncurry94-tech | manifest 1.10.62 |
+| `d6cdaed7` | 2026-11-03 | joncurry94-tech | Merge branch 'debrief2' |
+| `2e26d7e9` | 2026-11-03 | joncurry94-tech | debrief2: stamp/levels/challenges round - media re-shot (stamp inside the sheet at 4:3/16:9/21:9, CHALLENGES COMPLETED pages, Cha… |
+| `270498e2` | 2026-11-03 | joncurry94-tech | README: v1.10.59 - v1.10.61 (Norway finale, cover fixes, 3D multiplayer menus) |
+| `e6327589` | 2026-11-03 | joncurry94-tech | debrief2: art generator (vector rank insignia 256 px, category pictures, finish swatches, SR medals at 600 px, sheet pieces) -> f… |
+| `d41eb748` | 2026-11-03 | joncurry94-tech | manifest 1.10.61 |
+| `b3e5a400` | 2026-11-03 | joncurry94-tech | mpui: room exit -> main menu on every path (generator); harness exits A/B/C |
+| `c47abd42` | 2026-11-03 | joncurry94-tech | mphub3d: exit door pane dim frosted glass (graded albedo, no emission); MAIN MENU plaque 0.96 x 0.15 |
+| `57777a2e` | 2026-11-03 | joncurry94-tech | mphub3d/mpui: the room's exit is the attic MP door on the left wall |
+| `b783949d` | 2026-11-02 | joncurry94-tech | mpui: host-screen QA in the generator, check_mpui.py, README with the re-shoot command |
+| `5b8facb6` | 2026-11-02 | joncurry94-tech | mpui: generator + harness for the modern MP front-end; gen_service_record emits the room include |
+| `6e4a9e61` | 2026-11-02 | joncurry94-tech | roofcine README: bug id |
+| `975c1f21` | 2026-11-02 | joncurry94-tech | roofcine v10b: flat snow bank instead of the ramp (halftrack_winter stalled on it), README |
+| `ed700af2` | 2026-11-02 | joncurry94-tech | roofcine README: v10b pak md5 |
+| `a8ef0a3d` | 2026-11-02 | joncurry94-tech | roofcine: map v10b east gate (make_eastgate.py, spec), README |
+| `8f2d15d7` | 2026-11-02 | joncurry94-tech | roofcine README: v10 evidence |
+| `d37a7944` | 2026-11-02 | joncurry94-tech | roofcine part 3: map v10 (door breach, ledge/upper collapse spans, yard-wall holes, func_window panes), flames, idle-actor sweep;… |
+| `40e763df` | 2026-11-02 | joncurry94-tech | roofcine README: evidence paths |
+| `f82c410e` | 2026-11-02 | joncurry94-tech | roofcine proposal part 2: payoff, sound audit, chain sound generator, timeline, evidence |
+| `8d6338b4` | 2026-11-02 | joncurry94-tech | roofcine proposal: map v9 builder (notch / int_ceil / int_zmax), byte-exact v7b rebuild chain, README; OPEN entry |
+| `d3a01153` | 2026-11-02 | joncurry94-tech | build gate: fix the check_anim_aliases path (a \t escape had become a tab) |
+| `d952449b` | 2026-11-02 | joncurry94-tech | build gate: check_anim_aliases - legs statemap anims must exist in the winning anims_shared.txt (bug-10394, the v1.10.58-59 cover… |
+| `7c27a7d3` | 2026-11-02 | joncurry94-tech | manifest 1.10.60 |
+| `ea381ee0` | 2026-11-02 | joncurry94-tech | newgame3d QA fixes: tag/label overlap gate, labels inside the sheet, desk + projector out of the map view, wall map baked from th… |
+| `cf642819` | 2026-11-02 | joncurry94-tech | mphub3d + newgame3d generators: 3D multiplayer room and 3D new-game wall map (bake, models, urc splice, harness) |
+| `b668f5d7` | 2026-11-02 | joncurry94-tech | manifest 1.10.59 |
+| `b33e8762` | 2026-11-02 | joncurry94-tech | OPEN: 3D Join Game door closed - the MULTIPLAYER door already opens the multiplayer menu |
+| `b9e731b9` | 2026-11-02 | joncurry94-tech | v1.10.58 README (cover v3 + demo studio), field manual for every demo tool + F1 menu, gfx gate, TRAPS renderer-dlopen trap |
+| `2b16268e` | 2026-11-02 | joncurry94-tech | manifest 1.10.58 |
+| `378e085f` | 2026-11-02 | joncurry94-tech | manifest 1.10.57 |
+| `8a2851b5` | 2026-11-02 | joncurry94-tech | v1.10.56 README: Norway banner, Norway ending + hold stills, demo studio media, gun before/after; demo editor manual; gfx gate; d… |
+| `825f37e1` | 2026-11-02 | joncurry94-tech | manifest 1.10.56 |
+| `14373f3c` | 2026-11-01 | joncurry94-tech | weapon HD: CC0 wood/metal base sheets (1low, 2hd) and the re-baked finishes (4fin) for v1.10.56 |
+| `3b5097ba` | 2026-11-01 | joncurry94-tech | manifest 1.10.55 |
+| `7c7d6402` | 2026-11-01 | joncurry94-tech | Demo compatibility (bug-10330): version stamp generator + investigation, tools and A/B proof |
+| `e94113a1` | 2026-11-01 | joncurry94-tech | manifest 1.10.54 |
+| `1bda9509` | 2026-11-01 | joncurry94-tech | Steam Deck: feasibility report, staged plan, check_deck.py ratchet lint |
+| `3e025ee5` | 2026-11-01 | joncurry94-tech | gfx gate: v1.10.54 renderer_opengl2 passed its post-merge gate |
+| `48e0739e` | 2026-11-01 | joncurry94-tech | manifest 1.10.53 |
+| `92fbb599` | 2026-11-01 | joncurry94-tech | Film Room README: ghost scope at demo end fixed (negative frame time, bug-10323) |
+| `9bda4673` | 2026-11-01 | joncurry94-tech | Film Room hand-over: README, art generator, screenshots |
+| `5b30abf1` | 2026-11-01 | joncurry94-tech | manifest 1.10.52 |
+| `2b1ace78` | 2026-11-01 | joncurry94-tech | gfx gate: v1.10.52 renderer_opengl2 (demo editor filters) passed its post-merge gate |
+| `a9b2ee38` | 2026-11-01 | joncurry94-tech | README: v1.10.48 - v1.10.52 (demo editor, Norway rebuilt), demo editor field manual |
+| `4fe6b8a1` | 2026-11-01 | joncurry94-tech | manifest 1.10.51 |
+| `f7e698a2` | 2026-11-01 | joncurry94-tech | tools: fuel-tank clip generator (bug-10293) |
+| `369dc6b5` | 2026-11-01 | joncurry94-tech | manifest 1.10.50 |
+| `f9641846` | 2026-11-01 | joncurry94-tech | tools: crate + sandbag arc-clip generators (bug-10276, bug-10277) |
+| `b146c530` | 2026-11-01 | joncurry94-tech | manifest 1.10.49 |
+| `2210c87a` | 2026-10-28 | joncurry94-tech | manifest 1.10.48 |
+| `ada0755c` | 2026-10-28 | joncurry94-tech | README: v1.10.46 weapon wheel, v1.10.47 Norway holdout and controller feel |
+| `e6c0f145` | 2026-10-28 | joncurry94-tech | manifest 1.10.47 |
+| `a77b9325` | 2026-10-28 | joncurry94-tech | gen_menu_padaim: aim assist + auto dead zone toggles, two columns |
+| `eb60b532` | 2026-10-28 | joncurry94-tech | manifest 1.10.46 |
+| `7876b5a0` | 2026-10-28 | joncurry94-tech | manifest 1.10.45 |
+| `6fc9f1a0` | 2026-10-28 | joncurry94-tech | gen_menu_padlayout: numeric picture gate |
+| `1aca321d` | 2026-10-28 | joncurry94-tech | tools: controller layout page generators |
+| `8c6fccb1` | 2026-10-28 | joncurry94-tech | gen_pad_glyphs: --ps PlayStation variant |
+| `59bac276` | 2026-10-28 | joncurry94-tech | manifest 1.10.44 |
+| `5c4fbe62` | 2026-10-28 | joncurry94-tech | build: HZM_SPLIT_TEX=1 runs the assets_tey split right before the tex pak gate (generators can write art after a pre-build split) |
+| `0cbdb6d9` | 2026-10-28 | joncurry94-tech | manifest 1.10.43 |
+| `c83387a8` | 2026-10-28 | joncurry94-tech | README: v1.10.43 attic GIF + chalkboard captions |
+| `9ce6fffe` | 2026-10-28 | joncurry94-tech | README: What's new for v1.10.23 - v1.10.42 (finales, 3D attic menu, fixes), new Discord invite, newest-and-least-settled list |
+| `e800034a` | 2026-10-28 | joncurry94-tech | manifest 1.10.42 |
+| `1a6661f1` | 2026-10-28 | joncurry94-tech | manifest 1.10.41 |
+| `a4ebcf87` | 2026-10-28 | joncurry94-tech | manifest 1.10.40 |
+| `3c28b644` | 2026-10-28 | joncurry94-tech | manifest 1.10.39 |
+| `ec2aef2a` | 2026-10-28 | joncurry94-tech | manifest 1.10.38 |
+| `d00f9bd3` | 2026-10-28 | joncurry94-tech | v1.10.37 release: out-of-band paks (fixes2/fx/music/stress/late/menus3d + assets_tey side pak keeping the tex pak byte-identical)… |
+| `2ee57ed7` | 2026-10-28 | joncurry94-tech | manifest 1.10.37 |
+| `454a8026` | 2026-10-27 | joncurry94-tech | menus3d: actor life tooling v2 (stations, doors/lifefly/startmap/mpflow/cmdtest harness modes, stage_w6 default) |
+| `18200d6b` | 2026-10-27 | joncurry94-tech | menus3d: actor life tooling (anim candidates, stations, life capture mode) |
+| `9086f75a` | 2026-10-26 | joncurry94-tech | harness: overlay carries parasquad.scr |
+| `07108d6f` | 2026-10-26 | joncurry94-tech | m2l2c QA follow-ups: DESIGN.md, harness tools, media |
+| `981286fb` | 2026-10-26 | joncurry94-tech | m2l2c DESIGN.md v4 pass, harness tools, media |
+| `686d1e2b` | 2026-10-26 | joncurry94-tech | m2l2c harness: probe/off-wave tools |
+| `ab850cb6` | 2026-10-26 | joncurry94-tech | m2l2c: DESIGN.md (officer routing, radio, hold, scaling), harness tools, media |
+| `0ac106b6` | 2026-10-26 | joncurry94-tech | ice_1025: m3l1a ride tools + stills |
+| `2059f708` | 2026-10-26 | joncurry94-tech | ice_1025 DESIGN status |
+| `0f95e346` | 2026-10-25 | joncurry94-tech | manifest 1.10.36 |
+| `8cd5b6db` | 2026-10-21 | joncurry94-tech | manifest 1.10.35 |
+| `69a20db8` | 2026-10-21 | joncurry94-tech | manifest 1.10.34 |
+| `82d165d1` | 2026-10-21 | joncurry94-tech | objectives2: m1l3c airdrop + gate rework data, proof tools, GIFs, logs |
+| `76796a56` | 2026-10-21 | joncurry94-tech | objectives2: m1l2b data, GIFs, audit sheet |
+| `c7363cff` | 2026-10-21 | joncurry94-tech | objectives2: m1l2a data, overview + audit tools, GIFs |
+| `7cd2a1b9` | 2026-10-21 | joncurry94-tech | objectives2: m1l1 data, auto-player, audit sheet, GIFs |
+| `eeff3243` | 2026-10-21 | joncurry94-tech | objectives2: placement audit tool + sheet, spots/arrival evidence for m1l3c |
+| `f2f0aaa4` | 2026-10-20 | joncurry94-tech | objectives2: m1l3c data + generator fields, proof tools, GIFs and logs |
+| `dd814936` | 2026-10-19 | joncurry94-tech | manifest 1.10.33 |
+| `d458a691` | 2026-10-19 | joncurry94-tech | alarm halftrack: gunner stands at the MG42 with both hands on it - m3l3/m4l2 shots, t2l3 retest |
+| `b61f1ad2` | 2026-10-19 | joncurry94-tech | alarm halftrack: gunner mans the MG42 - new close shots driving and parked (m4l2, m3l3) |
+| `dc477284` | 2026-10-19 | joncurry94-tech | alarm halftrack: gunner mount proof (close shots driving and parked, GUNREL log), gun camera in the test driver |
+| `8a5e056b` | 2026-10-19 | joncurry94-tech | m3l3: floor-audited defenders/snipers, tree-perch guard, .30 cal gun proof frame, GIF refreshed |
+| `675b8af7` | 2026-10-19 | joncurry94-tech | m3 para run: gun scan, foe squad, firing frames |
+| `ad769b41` | 2026-10-19 | joncurry94-tech | m3l3 Nebelwerfer fight proof: GIFs, screenshots, log excerpt |
+| `5fbf8287` | 2026-10-19 | joncurry94-tech | avlib: slots hudfeed3/5 |
+| `2b30c42e` | 2026-10-19 | joncurry94-tech | m3 crate screenshot run |
+| `d785938b` | 2026-10-19 | joncurry94-tech | m3l3 para run: .30 cal team camera |
+| `6c3aa3ec` | 2026-10-19 | joncurry94-tech | m3 run: 30cal team + crate screenshots |
+| `df1eb880` | 2026-10-19 | joncurry94-tech | m3l3 guard routes: guard1 only |
+| `8530d701` | 2026-10-19 | joncurry94-tech | m3 run: trace on, extra cvars |
+| `5ba4d586` | 2026-10-19 | joncurry94-tech | m3l3 harness: damage accounting, plant arg, paraDebug |
+| `82771eb0` | 2026-10-19 | joncurry94-tech | m3l3 run: halftrack chase cam, approach, plant |
+| `944ae724` | 2026-10-19 | joncurry94-tech | m3l3 guard routes data |
+| `01bf9eef` | 2026-10-19 | joncurry94-tech | route planner for the guard uses overlook scores; find30 camera |
+| `92298930` | 2026-10-19 | joncurry94-tech | m3l3 guard stops: overlook scorer, plant command |
+| `43942dfe` | 2026-10-19 | joncurry94-tech | m3l3 full-sequence harness (church hold, paradrop, Nebelwerfer fight, officer reward check) |
+| `4111af71` | 2026-10-19 | joncurry94-tech | m3l3 guard halftrack routes (flood fill + planner) |
+| `4605a370` | 2026-10-19 | joncurry94-tech | crate proof refresh: t2l3 581 u, m4l1 762 u off the path |
+| `1172f0b6` | 2026-10-19 | joncurry94-tech | crate rule proof: screenshots from the crate toward the stop, distance log |
+| `29d02f07` | 2026-10-19 | joncurry94-tech | alarm vehicle routes: m3l3 dropped |
+| `a8d567e7` | 2026-10-19 | joncurry94-tech | alarm vehicle crate proof harness, squad anchors in the route data |
+| `4495f706` | 2026-10-19 | joncurry94-tech | alarm vehicle routes: auto-scout verdict for the six maps (none clean), planner width test |
+| `4c4f2956` | 2026-10-19 | joncurry94-tech | manifest 1.10.32 |
+| `fffdeeeb` | 2026-10-19 | joncurry94-tech | v1.10.32: Windows security notice (SmartScreen / Smart App Control) + release notes |
+| `2261187a` | 2026-10-19 | joncurry94-tech | alarm vehicle routes: planner cover proxy, e3l2 scout route |
+| `e8ba0e10` | 2026-10-19 | joncurry94-tech | fixes pak: repin coop_wounded.tik base to the released LF bytes (CRLF pin contradicted the tex pak baseline gate) |
+| `b5d23e48` | 2026-10-19 | joncurry94-tech | av harness: cover check at the stop |
+| `9dac09d8` | 2026-10-19 | joncurry94-tech | avlib: pick the first free private client slot |
+| `e8e91445` | 2026-10-19 | joncurry94-tech | route scout: ring seeds round the alarm switches |
+| `f5dd2b9a` | 2026-10-19 | joncurry94-tech | gen_armory_cos: assign Nx/Pv for pages outside the natural ring (h30-h32) |
+| `3f12d6d5` | 2026-10-19 | joncurry94-tech | alarm vehicle route scout: position-anchored flood fill, route planner |
+| `1323ca22` | 2026-10-19 | joncurry94-tech | alarm vehicle routes: in-engine drivable-area flood fill (driver + scout runner) |
+| `abd7afc1` | 2026-10-19 | joncurry94-tech | integ result: blockers closed |
+| `9493d6d9` | 2026-10-19 | joncurry94-tech | release checklist: aside_overrides.py (move loose server overrides aside), integ proof media (ring+icon+armory sheet, C96 fire/re… |
+| `f07af24d` | 2026-10-19 | joncurry94-tech | lobbyall: reserved-column brief panel proof screenshots |
+| `bff5111a` | 2026-10-19 | joncurry94-tech | v1.10.32 integration result, release notes and What's New drafts, release-set md5s |
+| `36b31a2e` | 2026-10-19 | joncurry94-tech | lobbyall: brief panel proof screenshots (720p/1080p/4:3) |
+| `4a4b3d68` | 2026-10-19 | joncurry94-tech | publish_release: NoInstaller zip (split <2 GB parts) every release, ModFilesOnly zip when engine binaries match the previous mani… |
+| `e1871c56` | 2026-10-19 | joncurry94-tech | fixes pak: C96 no12u model + ship2 hands/rows/Trench, 24 icon-prompt tgas, m1l1 load clip (563 members) |
+| `358bfe31` | 2026-10-19 | joncurry94-tech | alarm snipers: roof deck generator, in-engine roof pre-check, deck audit + sheets, README |
+| `fb1de1b2` | 2026-10-19 | joncurry94-tech | Armory B: proof ab12 on the armory-engine build, hero/card fit tables, fit tooling |
+| `99e6b96d` | 2026-10-19 | joncurry94-tech | alarm vehicle proof GIFs (truck m4l1, halftrack m4l2) |
+| `dfef45c7` | 2026-10-19 | joncurry94-tech | av harness: chase camera |
+| `10d71076` | 2026-10-19 | joncurry94-tech | objectives-next proof tools, logs and GIFs (m1l3c playthrough + gate, m2l1 radios/charge, escort) |
+| `329d7fbb` | 2026-10-18 | joncurry94-tech | av_run: AVCAM2 vantage after the hidden spawn |
+| `7a3983eb` | 2026-10-18 | joncurry94-tech | av_run: AVEXTRA env |
+| `6977dad4` | 2026-10-18 | joncurry94-tech | av harness: hp command, AVHP env |
+| `965c4ed3` | 2026-10-18 | joncurry94-tech | alarm snipers: vanilla-source candidates (actors, nests, elevated pathnodes) through the same in-engine audit; 11 spots on 5 maps… |
+| `e8f32e98` | 2026-10-18 | joncurry94-tech | Armory B pass 2: tall hero fit, deltas, counts, ledger, swatches, slot names; proof ab10; bugs 4052 4053 |
+| `a86d8b19` | 2026-10-18 | joncurry94-tech | objx data: wave entry fix |
+| `55bda8fe` | 2026-10-18 | joncurry94-tech | alarm vehicle harness: unpinned runs, m3l3 crate source |
+| `f406166d` | 2026-10-18 | joncurry94-tech | objx data: m1l3c landing zone, wave entries, log position |
+| `85fef113` | 2026-10-18 | joncurry94-tech | av_drv: build pin vectors component-wise (float() in a vector literal is a script error) |
+| `26a9797d` | 2026-10-18 | joncurry94-tech | objx tools: generator + data for the extra ch1-3 objectives, HUD side-line patcher |
+| `14c7ae8c` | 2026-10-18 | joncurry94-tech | alarm snipers: in-engine audit of every spot (asn_chk), side-view sheets, floater / invisible-surface fixes, final 7 spots |
+| `d77635ed` | 2026-10-18 | joncurry94-tech | alarm vehicle: import-dat route authoring, ROUTES_HOWTO.md, proof driver + runner |
+| `29279344` | 2026-10-18 | joncurry94-tech | alarm vehicle: route data, extractor, generator, harness driver + probe 1 results |
+| `4c732ea9` | 2026-10-18 | joncurry94-tech | Armory B: hero fit, text calibration, relock, proof tools |
+| `9eb9a019` | 2026-10-18 | joncurry94-tech | lobbyall proof tools, logs and GIFs |
+| `48de90bb` | 2026-10-18 | joncurry94-tech | carry-over proof scripts + harness logs (c1 apply/same-map clear, c11 alarm on start, c12 chapter clear) |
+| `c5fc1fcc` | 2026-10-18 | joncurry94-tech | c96 model: re-shot compare still (base lum 54 / sat 0.15 vs Colt 62 / 0.14, Luger 36, P38 102) and hip-fire GIF |
+| `886fb770` | 2026-10-18 | joncurry94-tech | alarm snipers: engine-side roof scan + widened outdoor spot search (102 spots / 8 per map max), settle check, new sheet |
+| `9152e53c` | 2026-10-18 | joncurry94-tech | c96 model: base steel near-neutral (lum ~ vanilla Colt/P38), blued finish slightly bluer |
+| `5402be72` | 2026-10-18 | joncurry94-tech | c96 model: side-by-side proof (old C96, vanilla P38/Luger/Colt), finishes sheet, README, FILES; build/ scratch ignored |
+| `18f5c7ec` | 2026-10-18 | joncurry94-tech | Armory Showroom: critique, mock-ups, build notes, proof media, runners; re-lock ui/coop_loadout.urc; HISTORY line |
+| `21e38037` | 2026-10-18 | joncurry94-tech | Armory Showroom generators: cards / finish chips / compare / progress / steppers (gen_armory*.py), stats from the .tik files, con… |
+| `847bd3d5` | 2026-10-18 | joncurry94-tech | c96 model: more contrast in the steel, comparison still (old C96, P38, Luger, Colt) |
+| `13c0d80e` | 2026-10-18 | joncurry94-tech | c96 model: normal-map lighting + edge darkening baked, walnut grips, finishes bake from the shaded sheet and keep the wood, later… |
+| `d51bfa5a` | 2026-10-18 | joncurry94-tech | searchlight proof run 3: calm without alarm, off-axis swing GIF |
+| `1d0851f8` | 2026-10-18 | joncurry94-tech | searchlight proof run 2: logs, frames, GIF |
+| `d6c2adda` | 2026-10-18 | joncurry94-tech | c96 model: steel gain tuned against engine frames, close third-person capture |
+| `1fa1c205` | 2026-10-18 | joncurry94-tech | gun fit: box-size parameter (BOXX/Y/W/H), faint-gun mask, final state + sheet |
+| `3d434cb6` | 2026-10-18 | joncurry94-tech | c96 model: brighter blued-steel sheet (old sheet mean 100, new 33 was near black in engine), runner for the private harness copie… |
+| `af8f5a43` | 2026-10-18 | joncurry94-tech | alarm placement + defend zone proofs: placements_v2 / zones_v2 sheets, GIFs, countdown log, buglog 4038-4040, TRAPS wall-prop rule |
+| `8c8fc475` | 2026-10-18 | joncurry94-tech | c96 model swap (no12u, CC BY 4.0): converter (Blender extract, fit to the mod's sight row, skd writer, clips, finishes, tiks, ove… |
+| `f7ba7f9b` | 2026-10-18 | joncurry94-tech | alarm snipers: no indoor snipers - interior fallback removed, 44 open-sky spots on 12 maps |
+| `bf18a5b2` | 2026-10-18 | joncurry94-tech | alarm snipers: elevation + open-sky rules, roof-first preference, new sheet (e3l1 roof, m4l2 outdoor-high, m2l1/m4l3 interior fal… |
+| `2dfa2231` | 2026-10-18 | joncurry94-tech | Text feed round 5: subtitle block above the item row, contact sheet re-shot |
+| `da085cb6` | 2026-10-18 | joncurry94-tech | mortar squads: research + status, harness drivers and probes (docs/proposals/mortar_squads_2026-10-18) |
+| `21b5cdcc` | 2026-10-18 | joncurry94-tech | Text feed round 5 (bugs 4006-4008): README route inventory, harness, contact sheet, GIF |
+| `aed17370` | 2026-10-18 | joncurry94-tech | gun fit v3: re-shot contact sheet, subset refit (MG42, DP-28, C96, Beretta silenced) |
+| `6791fa8a` | 2026-10-18 | joncurry94-tech | alarm snipers: BSP spot generator (104 spots / 26 maps), harness tools, proof README + contact sheet, FEATURES entry (unverified) |
+| `e355f4e4` | 2026-10-18 | joncurry94-tech | gun fit v2: contact sheet from the real armory, converged state, verify tooling |
+| `b5564527` | 2026-10-18 | joncurry94-tech | hdring: harness (hd_run/hd_probe/make_gifs/make_sheet), before/after contact sheet + GIFs, ramp texture fixed to bottom-up |
+| `719e5fa7` | 2026-10-18 | joncurry94-tech | alarm/counter BUILD notes 2026-10-18 + harness proof scripts |
+| `ff5bb51c` | 2026-10-18 | joncurry94-tech | cache GIF: lid seat + clear spot |
+| `646a4535` | 2026-10-18 | joncurry94-tech | gun fit redo tooling: per-model orientation, thumb/preview xfm columns, fair-queue harness loops |
+| `88bb1f9c` | 2026-10-18 | joncurry94-tech | Surrender proof tools and run logs (docs/proposals/surrender_2026-10-18) |
+| `bd83fa0b` | 2026-10-18 | joncurry94-tech | smoke cache: new GIF, indoor generator rule |
+| `0c8a68f5` | 2026-10-18 | joncurry94-tech | searchlight proof: run 1 logs/frames, purge step, two-stage GIF |
+| `c2d0c760` | 2026-10-18 | joncurry94-tech | searchlight chain: retry on the next harness copy when a slot is busy |
+| `814c563d` | 2026-10-18 | joncurry94-tech | smoke consume / one reward / indoor cache: proof, harness, indoor-map generator |
+| `e6012c87` | 2026-10-18 | joncurry94-tech | searchlight proof harness (driver, runner, fair-queue chain) |
+| `ee727ac7` | 2026-10-18 | joncurry94-tech | alarm placement + defend-zone tooling: bsptrace (BSP/terrain/surface tracer), alarm_place (flush wall placement), gen_counter_zon… |
+| `dd56d15a` | 2026-10-18 | joncurry94-tech | loadcine: gen_loadclip.py, harness runner, proposal notes + media, ENGINE.md section (pruned stale repo-state table) |
+| `7c20fef5` | 2026-10-18 | joncurry94-tech | fixes pak: coop_hd_ramp.tga (1024px AA ramp for the HD hold-progress ring/bars) + gen_hd_ramp.py |
+| `1236ea79` | 2026-10-18 | joncurry94-tech | NEXT_SESSION.md: what is left after v1.10.31 (v1.10.32 queue, open bugs, queued work, Opus-efficiency instructions, release check… |
+| `54ab71fe` | 2026-10-15 | joncurry94-tech | fixes pak: coop_wounded.tik with the downed-ally anims for bug-3984 (mod tree file stays as released) |
+| `7ad5cc4d` | 2026-10-15 | joncurry94-tech | manifest 1.10.31 |
+| `c9f2a098` | 2026-10-15 | joncurry94-tech | manifest 1.10.30 |
+| `bfde5bef` | 2026-10-15 | joncurry94-tech | STATE: v1.10.29 released; servers back up; desktop start shortcut |
+| `ccd41305` | 2026-10-15 | joncurry94-tech | manifest 1.10.29 |
+| `610764b7` | 2026-10-15 | joncurry94-tech | alarm/counter BUILD: radio fix proof, stealth regression, handover final |
+| `53357818` | 2026-10-15 | joncurry94-tech | mgteam proposal: README, harness tools, media (officer MG42 team) |
+| `2714e1be` | 2026-10-15 | joncurry94-tech | smoke screens: denser/bigger canister tik, proof media (GIF + stills), harness, README |
+| `0789dceb` | 2026-10-15 | joncurry94-tech | alarm points: generator, data, scout harness, BUILD steps 5-6 |
+| `82775b22` | 2026-10-15 | joncurry94-tech | smoke screens: fixes-pak canister tik + manifest + handover README + harness (WIP) |
+| `14734ec4` | 2026-10-15 | joncurry94-tech | alarm/counter BUILD: step 4 proof |
+| `2475d849` | 2026-10-15 | joncurry94-tech | alarm/counter BUILD: steps 2-3 proof |
+| `f81c086a` | 2026-10-15 | joncurry94-tech | alarm/counter BUILD: harness tools + step 1-2 proof |
+| `4a786149` | 2026-10-15 | joncurry94-tech | STATE: v1.10.29 deployed for the user's test (unreleased); alarm + counter-attack design next |
+| `b760d3c9` | 2026-10-15 | joncurry94-tech | Design: alarm state + final counter-attack (no code) |
+| `2bd36ad6` | 2026-10-15 | joncurry94-tech | MP isolation LOCKS: re-lock ui/coop_loadout.urc after the deliberate v1.10.29 armory gating edit (bug-3919/3920) |
+| `6f889a77` | 2026-10-15 | joncurry94-tech | Generators for v1.10.29: load-art rules (la_ship.py MAP_RULES), recreated lktab generator, armory gating patch |
+| `2c3678f7` | 2026-10-15 | joncurry94-tech | ai realism pass: PLAN for officer, bodyguards, reinforcements, paratroopers |
+| `726de389` | 2026-10-14 | joncurry94-tech | STATE: queue icon prompts for sandbag / ammo box / heal (user request) |
+| `72c213eb` | 2026-10-14 | joncurry94-tech | STATE: v1.10.28 shipped (lobby + debrief text size) |
+| `c5268958` | 2026-10-14 | joncurry94-tech | manifest 1.10.28 |
+| `ed0900ac` | 2026-10-14 | joncurry94-tech | STATE: oversized lobby + debrief text queued |
+| `173c4317` | 2026-10-14 | joncurry94-tech | v1.10.26 + v1.10.27 hotfixes shipped (SAS failsafe, lobby fixes, briefing flicker) |
+| `0be2cea1` | 2026-10-14 | joncurry94-tech | manifest 1.10.27 |
+| `15dbcec3` | 2026-10-14 | joncurry94-tech | STATE: v1.10.26 shipped; briefing flicker + uniform evidence queued for Sunday |
+| `0bd2e907` | 2026-10-14 | joncurry94-tech | manifest 1.10.26 |
+| `71adb501` | 2026-10-14 | joncurry94-tech | STATE: third public coop server (ports 12210 / 12211) |
+| `01fa7a86` | 2026-10-14 | joncurry94-tech | STATE: SAS escort stuck before the gate (soft-lock) logged with the sandstorm work for the same map |
+| `a2564963` | 2026-10-14 | joncurry94-tech | STATE: only player 1 can change uniform in the co-op lobby (logged, lobby batch) |
+| `a8ef4127` | 2026-10-14 | joncurry94-tech | STATE: co-op lobby bottom bar should be Loadout + Service Record (logged, batch with bug-3913) |
+| `3ab5fd65` | 2026-10-14 | joncurry94-tech | STATE: lobby mannequin left behind by a departed player (logged, not fixed - user asked to wait) |
+| `b021c2bd` | 2026-10-14 | joncurry94-tech | v1.10.25 hotfix shipped: join lag fixed at any settings |
+| `f73f121c` | 2026-10-14 | joncurry94-tech | manifest 1.10.25 |
+| `88a92240` | 2026-10-14 | joncurry94-tech | joinflood stage 2: proven (six runs + shipping-exe smoke), ship branch rel-1.10.25-netfix |
+| `0eaec310` | 2026-10-14 | joncurry94-tech | STATE: join-lag fix stopped at the weekly limit; repro + next step recorded |
+| `d82d5fc8` | 2026-10-14 | joncurry94-tech | joinflood stage 2: bug-3912 socket buffers, six-run proof driver, handover |
+| `e35dcc99` | 2026-10-14 | joncurry94-tech | joinflood stage 2 (bug-3911): root cause (preciseFps loop skips the network read), runs r1-r7, ship note |
+| `e4e05f72` | 2026-10-14 | joncurry94-tech | v1.10.24 hotfix shipped (remote join flood): STATE + joinflood handover |
+| `21da6fa4` | 2026-10-14 | joncurry94-tech | manifest 1.10.24 |
+| `6528aa7d` | 2026-10-14 | joncurry94-tech | joinflood: proof runs f2-f5, bound, ship steps, renderer-dlopen ship warning; holding for v1.10.24 deploy |
+| `4394ab07` | 2026-10-14 | joncurry94-tech | joinflood: baseline vs fix runs, analyzer, listen + briefing-skip harness modes |
+| `b77dea13` | 2026-10-14 | joncurry94-tech | joinflood: handover - root cause, fix commits, runs a1-c1 |
+| `d73f3950` | 2026-10-14 | joncurry94-tech | joinflood: fix patches (parkbytes, lobby src, client probe), harness fix variant |
+| `12da9096` | 2026-10-14 | joncurry94-tech | joinflood: reproduced on the harness (a4), probe v2, harness options |
+| `c1271d1c` | 2026-10-14 | joncurry94-tech | joinflood (bug-3909/3903): handover README, sv_netProbe patch, reproduction harness |
+| `f7e91595` | 2026-10-14 | joncurry94-tech | STATE: lobby command flood on the public servers patched server-only; must go into the mod next release |
+| `9e4d7ca4` | 2026-10-14 | joncurry94-tech | v1.10.23 hotfix shipped: README line, STATE (live = v1.10.23), progression sync handover |
+| `ae41459f` | 2026-10-14 | joncurry94-tech | manifest 1.10.23 |
+| `5dd283b3` | 2026-10-14 | joncurry94-tech | progression sync: README how-it-works updated to protocol 2 |
+| `5fafe577` | 2026-10-14 | joncurry94-tech | progression sync (bug-3903): handover - done, run r4 28/28, ship steps |
+| `ab26c0bb` | 2026-10-14 | joncurry94-tech | progression sync harness: v2 checks (handshake/upload lines, reconnect + map change upload nothing), fixes |
+| `c8f9a6cf` | 2026-10-14 | joncurry94-tech | progression sync: handover - run r3 findings (% escape, client fragment stall, flood protection), protocol v2 plan |
+| `11e00ed3` | 2026-10-14 | joncurry94-tech | progression sync: README - how it works, ship pair, what a player could edit |
+| `48b04953` | 2026-10-14 | joncurry94-tech | progression sync harness: devprobe.scr hook, rcon exec, IPv4-only sockets |
+| `5bb23cb0` | 2026-10-14 | joncurry94-tech | progression sync: README path fix |
+| `98afc575` | 2026-10-14 | joncurry94-tech | progression sync (bug-3903): handover update, merge self-test, in-game harness |
+| `2ed5df56` | 2026-10-14 | joncurry94-tech | progression sync (bug-3903): design + handover README |
+| `356fec6b` | 2026-10-14 | joncurry94-tech | STATE: user approved a hotfix release for the progression sync once proven |
+| `9504df29` | 2026-10-14 | joncurry94-tech | Kickoff: Stage 0b top priority - progression follows the player to any server (bug-3903), design points + decision rows 15-16 |
+| `4a47b233` | 2026-10-14 | joncurry94-tech | STATE: wording |
+| `2633318e` | 2026-10-14 | joncurry94-tech | STATE: progression does not follow players to the public servers (open, user decision) |
+| `1d79f8be` | 2026-10-14 | joncurry94-tech | STATE: public servers listed in the in-game browser (query ports inside the allowed firewall range) |
+| `b30b4f31` | 2026-10-14 | joncurry94-tech | STATE: public server names carry the Discord invite |
+| `d7c5b240` | 2026-10-14 | joncurry94-tech | STATE: public servers now rotate through the whole trilogy |
+| `64223747` | 2026-10-14 | joncurry94-tech | STATE: two public coop servers running; they block deploys until stopped |
+| `90420100` | 2026-10-14 | joncurry94-tech | README: wording in the testers call-out |
+| `a9be5491` | 2026-10-14 | joncurry94-tech | README: Discord button, testers-wanted call-out near the top, install facts corrected against the installer and the live manifest… |
+| `6aacc458` | 2026-10-14 | joncurry94-tech | README: consolidated to about a third of its length (one short What's New for v1.10.22, earlier releases folded into one collapsi… |
+| `666bc183` | 2026-10-13 | joncurry94-tech | STATE: v1.10.22 engine source pushed (release-1.10.22 = 0206e3c9) |
+| `5460a2dd` | 2026-10-13 | joncurry94-tech | Kickoff plan: Stage 2b aim audit ON HOLD (user) - text kept, not to be run or asked about |
+| `54d4c80f` | 2026-10-13 | joncurry94-tech | Kickoff plan: session handoff protocol (coordinator tells the user when to start fresh + one-line prompt), single overwritten STA… |
+| `7e455293` | 2026-10-13 | joncurry94-tech | Kickoff plan: Stage 2b aim audit - every weapon complete, not robotic, smooth in and out of aim, our own model work vetted; failu… |
+| `f3ef28bf` | 2026-10-13 | joncurry94-tech | Kickoff plan for the session after the 2026-10-18 weekly reset: token plan, work order, rules, decision sheet |
+| `ea9a9524` | 2026-10-13 | joncurry94-tech | officer reinforcements: self-contained brief for a cloud session (script drafts only: reinforcements S1-S6, m1 forced sandstorm +… |
+| `c4f06383` | 2026-10-13 | joncurry94-tech | officer reinforcements: user approved the design; coordinator note with the accepted answers and the user's radio addition (troop… |
+| `9ab07332` | 2026-10-13 | joncurry94-tech | Officer reinforcements: audit and design (phase 1 only, nothing built) - README + design summary page for the user |
+| `32542acd` | 2026-10-13 | joncurry94-tech | run_int.py unlock: no long wait in the client's command buffer (bug-3902; closes bug-3888 / bug-3898 as test artifacts) |
+| `16765c21` | 2026-10-13 | joncurry94-tech | Build gate: the 1.3 GB assets_tex pk3 cannot change by accident (bug-3901) |
+| `82e8a42b` | 2026-10-13 | joncurry94-tech | README: v1.10.22 - Eyes on Target; two stills for this release (two-handed pistol aim, Double Barrel shotgun) |
+| `33f5b654` | 2026-10-13 | joncurry94-tech | manifest 1.10.22 |
+| `08b18747` | 2026-10-13 | joncurry94-tech | v1.10.22 release prep: the scopes pak (zzzzzzzzzz_coop_scopes.pk3, bug-3462) is copied by build.ps1 and staged by publish_release… |
+| `303af1b1` | 2026-10-13 | joncurry94-tech | Integration pass 3: silencer repaint (step 8) + double-barrel shotgun (step 9) on top of pass 2; FG 42 pair NOT in. integrate_ads… |
+| `02ded3fd` | 2026-10-13 | joncurry94-tech | ADS rollout, integration pass 2: README (what is in: steps 4 pistols, 5 G 43 Irons, 7 shotgun pump in the aim, + the rain fix in… |
+| `7bf63789` | 2026-10-13 | joncurry94-tech | gun repaint: PAUSED on the coordinator's stop - item 2 (M3 grease gun) STAGED and partly checked: greaser.dds 4096 DXT1 baked in… |
+| `9503ee4d` | 2026-10-13 | joncurry94-tech | rainfix: rain streaks reach the ground (bug-3881) - cause, measurements, before / after evidence; engine rainfix-next 5376f59e (c… |
+| `373de87f` | 2026-10-13 | joncurry94-tech | gun repaint: item 1 DONE (staged) - shared silencer sheet colt45s2 repainted by script on the same UVs (2048 DXT1 dds, six silenc… |
+| `80d4a6b8` | 2026-10-13 | joncurry94-tech | C96 replacement model (no12u, Sketchfab, CC BY 4.0): look test only - source record, inspection + render tools, renders |
+| `d2d8295b` | 2026-10-13 | joncurry94-tech | ADS rollout, integration pass 2, step 7 (shotgun: the pump stroke in the aim; coordinator addition after the user's report on the… |
+| `fb469d7e` | 2026-10-13 | joncurry94-tech | ADS rollout, integration pass 2, step 5 (G 43 Irons, a new weapon) - fixes sources: 12 tiks coop_g43_irons* (base, 7 finishes, 4… |
+| `7e5bfb7b` | 2026-10-13 | joncurry94-tech | pistol lane: FOLLOW-UP CUT ship2 = Mauser C96 + Trench C96 on the mod's own stripper-clip prop (stopped on the budget stop; the r… |
+| `3b892df4` | 2026-10-13 | joncurry94-tech | dbshotgun: ship_manifest.py repaired (d0e21c5 committed it with a broken string: the heredoc escape trap, third time this pass) +… |
+| `d0e21c55` | 2026-10-13 | joncurry94-tech | dbshotgun: ship manifest reads text files' line ends as LF (a checkout with autocrlf is not a change) |
+| `3304b84e` | 2026-10-13 | joncurry94-tech | ads heavy lane: shotgun pump - the hull and the pull-back (user: do you see the shell eject when you pump) - measured: the hull l… |
+| `3689c2dd` | 2026-10-13 | joncurry94-tech | dbshotgun: fourth pass - READY TO SHIP, staged (DBS_SHIP.md = the ship cut, files frozen in DBS_SHIP.manifest.tsv). WORLD BEHAVIO… |
+| `42740bc7` | 2026-10-13 | joncurry94-tech | gun sources research: report on repainting our gun skins from CC0 material libraries (Route B), triage of weak gun families, shor… |
+| `0188d2bb` | 2026-10-13 | joncurry94-tech | ads smg lane: Thompson family, part 2 (stopped by the budget stop; nothing deployed, rows still held) - 27A1 Commando built and r… |
+| `5ca92bd3` | 2026-10-13 | joncurry94-tech | ads rifle lane: Springfield rb63 box measure complete (all twelve captures; emptied: hands 0.0-0.2 %, everything 0.0-0.7 %), rb63… |
+| `dd57cfa6` | 2026-10-13 | joncurry94-tech | rifles lane README: coordinator note - user decision on the reload path (straighter drop, no frame speed-up) and the next jobs (M… |
+| `e106277a` | 2026-10-13 | joncurry94-tech | ads rifle lane: Springfield aimed reload - the round loop closed at the server's 20 frames (keyed over 28 the hand popped in at e… |
+| `a78fd3fc` | 2026-10-13 | joncurry94-tech | ads heavy lane: SHOTGUN PUMP FIX cut (user report on the deployed build: no pump stroke in the aim) - reproduced without the lane… |
+| `ff293d14` | 2026-10-13 | joncurry94-tech | ADS rollout, integration pass 2, step 4 (pistols) - fixes sources + manifest from the pistol lane's frozen ship cut v2 (integrate… |
+| `ab23aa08` | 2026-10-13 | joncurry94-tech | ads rifle lane: aimed reloads of the Springfield M1903 (round by round: three chained clips, the loop re-timed so the round is se… |
+| `50c495fd` | 2026-10-13 | joncurry94-tech | ads rifle lane: aimed reloads of the Kar98 (redone), Mosin and Lee-Enfield - closed fist on the bolt knob (the bolt cycle's grasp… |
+| `7c3860f7` | 2026-10-13 | joncurry94-tech | ads heavy lane: handover - what the M1919 has today (audit gun clip with cover / handle bones, per-weapon hands row, torso timing… |
+| `bbea6250` | 2026-10-13 | joncurry94-tech | ads heavy lane: FG 42 pair to the rule - charging handle on its own bone in both meshes (fg42handle.py: coop_fg42_irons.skd, new… |
+| `76f7b15d` | 2026-10-13 | joncurry94-tech | ADS rollout, integration of the finished guns (steps 1-3 in, verified; nothing deployed): heavy lane - BAR + M1918 Classic / A1 /… |
+| `fd20c5ca` | 2026-10-13 | joncurry94-tech | dbshotgun: third pass, the armory side - FINISH SET (gold, chrome, blued, bloody, woodland, winter, desert: the mod's recipe on o… |
+| `2d08dec5` | 2026-10-13 | joncurry94-tech | ads smg lane: Thompson (M1A1 Remodel) built on its own handle (bone chamber, open bolt; per-weapon rows under the weapon's NAME k… |
+| `ddd502c9` | 2026-10-13 | joncurry94-tech | pistol lane: SHIP CUT v2 (ship/ frozen again). The two guns v1 shipped in a partial state are staged and run: webley_revolver_lv_… |
+| `a4764af2` | 2026-10-13 | joncurry94-tech | pistol lane: server-side blocker solved + SHIP CUT (PISTOLS_SHIP.md, ship/ - frozen). Server rows back to released: Welrod reload… |
+| `76132cc8` | 2026-10-13 | joncurry94-tech | ads smg lane: MP18 + Sten, the user's three open points - cocking hand = a closed fist from below with the index hooked across th… |
+| `a600bff6` | 2026-10-13 | joncurry94-tech | ads rifle lane: handover - run ids (rb49 next), where the runs are |
+| `529c2393` | 2026-10-13 | joncurry94-tech | ads rifle lane: Kar98 reload leftovers started - full-length emptied capture (rb48: the GIF ends on the settled aim, hands 0.6 /… |
+| `9447f72c` | 2026-10-13 | joncurry94-tech | ads rifle lane: G 43 Irons closed - server reload timing equal to the scoped G43 (the server-read reload row is the released 56-f… |
+| `cf4f6c13` | 2026-10-13 | joncurry94-tech | dbshotgun: second pass - reloads rebuilt hip + aimed (thumb on the lever, barrels drop with the gun turning only as far, selectiv… |
+| `1bb8e20f` | 2026-10-13 | joncurry94-tech | ads heavy lane: FG 42 Irons, a new weapon (look test) - coop_fg42_irons.skd (the scope, mount and lens out; rear aperture ring on… |
+| `806c4ae0` | 2026-10-13 | joncurry94-tech | ads rifle lane: handover - current overlay and next run id (rb39) |
+| `d0bfedc1` | 2026-10-13 | joncurry94-tech | ads rifle lane: G 43 Irons - armory tile in unlock order (between the M1 Carbine and the Kar98k) with ACC / MOB bars, all 12 tiks… |
+| `11743da6` | 2026-10-13 | joncurry94-tech | ads smg lane: Thompson retail mesh finished to the user's four decisions; MP18 reopened and rebuilt with the Sten as one family (… |
+| `e0d918e0` | 2026-10-13 | joncurry94-tech | ads rifle lane: iron-sight G43 as its OWN armory entry (user decision; the model-variant patch is superseded) - wire/stage_armory… |
+| `0a631183` | 2026-10-13 | joncurry94-tech | para squad fourth pass: proposal folder (README handover, pass4 tools + edit scripts + session logs, media p4_*) - hands on the g… |
+| `aa08dedb` | 2026-10-13 | joncurry94-tech | ads heavy lane: shotgun polish - break-off with a round chambered 0.40 s from the press to the shot (was 1.2 s): patch_sgbreak.py… |
+| `3c6d6398` | 2026-10-13 | joncurry94-tech | ads rifle lane: iron-sight G43 finished as a weapon - support hand = the G43's own hip grip cupped under the fore-end (was an ope… |
+| `0910dd4f` | 2026-10-13 | joncurry94-tech | pistol lane: handover + coverage after the sway-envelope re-measure (runs pa18-pa20). Stances (emptied reload, crouch / prone / b… |
+| `349d8148` | 2026-10-13 | joncurry94-tech | pistol lane checkpoint (runs pa18-pa20; cgame unchanged, ads-next 2627cb94): sway-envelope measure wired into run_2h.py (--tail,… |
+| `75e00e39` | 2026-10-12 | joncurry94-tech | ads heavy lane: handover refreshed for the shotgun (sight + reload sections, state table, engine commits and test DLLs, next list… |
+| `6ef8bad1` | 2026-10-12 | joncurry94-tech | ads heavy lane: shotgun reload - aimed set to the three rules (sgbake.py: the gun pitches down about the butt under the centre bo… |
+| `f5ccaefe` | 2026-10-12 | joncurry94-tech | dbshotgun: own texture + own hold and aim - (1) the 2048 sheet is now painted by tools/dbs_skin.py into our atlas (walnut from th… |
+| `94a0ff73` | 2026-10-12 | joncurry94-tech | ads rifle lane: iron-sight G43 handover - README top refreshed (what exists, measured, looked at, weak points, not done), how the… |
+| `7453b02b` | 2026-10-12 | joncurry94-tech | ads rifle lane: iron-sight G43, the coordinator's look-test refinements (run rb27, cgame_rifle7) - both sights rebuilt as their o… |
+| `f2dacd47` | 2026-10-12 | joncurry94-tech | dbshotgun: a working weapon in the harness (first pass) - tik with numbers / per-barrel fire / ejecting reload / own sound aliase… |
+| `ba7f3301` | 2026-10-12 | joncurry94-tech | ads rifle lane: iron-sight G43 built, look test (runs rb24-rb26) - staged mesh coop_g43_irons.skd (scope, mount, rings, turrets,… |
+| `2bd2958f` | 2026-10-12 | joncurry94-tech | dbshotgun: look test - Jean PFP's CC0 double-barrel shotgun converted (high mesh 12,965 tris / 13 surfaces / 9 bones, one 2048 sh… |
+| `4a4bc5df` | 2026-10-12 | joncurry94-tech | ads rifle lane: bolt-cycle clean-up + Kar98 aimed reload reworked - (1) NO BOLT BALLOONS: locked on the sights the retail full st… |
+| `0240bf5c` | 2026-10-12 | joncurry94-tech | ads heavy lane: shotgun sight DONE - brass bead r 0.27 u + the receiver's matted sighting groove as two new surfaces of the one s… |
+| `a959b379` | 2026-10-12 | joncurry94-tech | para squad third pass: proposal folder (README handover, pass3 tools + edit scripts + session logs, media) - tactical brain on te… |
+| `deb932dc` | 2026-10-12 | joncurry94-tech | pistol lane, list items D and E (runs pa7-pa17; cgame ads-next 2627cb94 = cgame_adsnext11): all fifteen magazine pistols measured… |
+| `75c77d52` | 2026-10-12 | joncurry94-tech | ads smg lane: README - the Thompson entries of commit b157d8e are bug-3682..3685 in the buglog (the commit message's 3667..3670 w… |
+| `b157d8ed` | 2026-10-12 | joncurry94-tech | ads smg lane: Thompson, retail mesh (ThompsonSMG.skd, 12 tiks): a cocking knob ADDED on the right of the receiver (open bolt, own… |
+| `e6ae1283` | 2026-10-12 | joncurry94-tech | ads heavy lane: handover - the shotgun sight entry is bug-3681 (commit 2039ca6 cites bug-3677, another lane's id taken in between… |
+| `2039ca69` | 2026-10-12 | joncurry94-tech | ads heavy lane: shotgun sight step STAGED, not finished - bead mesh (own surface coop_bead) + the line in 14 tiks + shader / text… |
+| `19e8cfaf` | 2026-10-12 | joncurry94-tech | ads heavy lane, third agent: measured AS PLAYED (sway + breath on), BAR / StG 44 finishes, DP-28 aimed reload |
+| `dec34c35` | 2026-10-12 | joncurry94-tech | ads smg lane: Silenced MP40 done (run se4, sway on, eight stances: rounds left 0.1-1.5 %, empty 0.1-0.7 %; the raised rear leaf s… |
+| `5404cbf8` | 2026-10-12 | joncurry94-tech | para .30 cal, the engine side of the left gun: README section (round 1 = engine game1-next 92944d37: per-gun belt / heat / rest k… |
+| `a41cafc5` | 2026-10-12 | joncurry94-tech | pistol lane, D in progress (runs pa7, pa8; cgame ads-next 2627cb94 = cgame_adsnext11): Welrod bolt action per shot and after an e… |
+| `515ecd15` | 2026-10-12 | joncurry94-tech | ads heavy lane, 3 (first gun): StG 44 aimed reload rebuilt to the three rules - replaces the shipped mp44_reload_ads (4.5 deg dri… |
+| `21d9a925` | 2026-10-12 | joncurry94-tech | ads smg lane: MP18 aim view with the approved skin at eye relief +4 u (run se3: the flat rear face becomes a readable receiver en… |
+| `c4220cb8` | 2026-10-12 | joncurry94-tech | ads rifle lane: USER DECISION variant A - bolt cycles of Kar98 / Springfield / Mosin / Lee-Enfield with the rifle LOCKED on the s… |
+| `15d43307` | 2026-10-12 | joncurry94-tech | ads smg lane: Silenced MP40 passes with aim sway ON in all eight stances (run se1: 0.0-1.0 %) - cause found: sway + breath transl… |
+| `1153841c` | 2026-10-12 | joncurry94-tech | ads rifle lane, step 2 first pass: Springfield / Mosin / Lee-Enfield aimed bolt cycles on target in six stances (run rb13: front… |
+| `9c5249ae` | 2026-10-12 | joncurry94-tech | ads smg lane: coordinator's decisions worked as far as the context allowed (runs sd1 / sd2) - hip-empty hand closes before the re… |
+| `6dff0af7` | 2026-10-12 | joncurry94-tech | para .30 cal second pass: proposal folder (README handover, pass2 tools, media) + gen_coop_mgbags.py (closed three-bag support me… |
+| `27b20496` | 2026-10-12 | joncurry94-tech | ads smg lane, 2b + step 3 start: MP40 leftovers closed (runs sc1-sc3: seat eased - fastest sight-line step 0.175 -> under 0.11 de… |
+| `d2deeec7` | 2026-10-12 | joncurry94-tech | ads rifle lane, step 1 redone ON TARGET after the user's correction ("bolt actions should ideally not move much from locking onto… |
+| `d88feb3a` | 2026-10-12 | joncurry94-tech | ads heavy lane, 2b: BAR aimed reload passes in all six stances, loaded + empty (runs hc1-hd3: box max 1.3 % loaded / 0.8 % empty… |
+| `dc7a8d1b` | 2026-10-12 | joncurry94-tech | fixes pak: MP18 skin (five diffuse sheets from docs/proposals/mp18_skin_2026-10-12; bases pinned from the mod tree) - user approv… |
+| `62555094` | 2026-10-12 | joncurry94-tech | pistol lane, D first pass (run pa6): the twelve pistols on shared clips measured in the engine for the first time - nine under th… |
+| `b5cbfa9c` | 2026-10-12 | joncurry94-tech | pistol lane: S&W M10 chambers fill one by one (m10rounds.py: six head surfaces, the loop clip indexes the cylinder, tik; cgame ad… |
+| `019d5563` | 2026-10-12 | joncurry94-tech | mp18 skin proposal (staged, not shipped): new diffuse sheets for the MP18 painted into the mesh's own UV islands - Kar98 stock wo… |
+| `ea99407a` | 2026-10-12 | joncurry94-tech | pistol lane: M10 cases - they do not vanish (the evidence GIF's crop cut the arc off on the left; 0.17-0.2 s in the full frame, p… |
+| `2a2505e4` | 2026-10-12 | joncurry94-tech | pistol lane, list item C (runs tl9-tl10, tn1-tn3, pa1-pa2; cgame ads-next 191f1879): Webley open and close 0.8 s each, hip and ai… |
+| `7003c2dc` | 2026-10-12 | joncurry94-tech | ads smg lane, step 2: MP40 reference reload, aimed + hip, rounds left + empty (run sb4, every stance + braced: centre box beyond… |
+| `e36c9977` | 2026-10-12 | joncurry94-tech | ads rifle lane, step 1 (Kar98 reference, UNFINISHED: engine centre box 3-6 % for 2-6 frames at the two ends of each clip): bolt c… |
+| `04fce03d` | 2026-10-12 | joncurry94-tech | ads heavy lane: BAR aimed reload rebuilt to the three rules (heavybake.py: sag under the box by gunphys class bar, work pose, mag… |
+| `ad1e4659` | 2026-10-12 | joncurry94-tech | pistol lane, list item B (runs tl1-tl8, cgame ads-next e889e68c): prone pistol reloads run the full clip (per-pistol prone torso… |
+| `75a9a400` | 2026-10-12 | joncurry94-tech | ads smg lane, step 1: SMG aim poses with the support hand where the hip has it (MP40 family on the magazine housing 2.4 -> 0.0 u,… |
+| `81cf955b` | 2026-10-12 | joncurry94-tech | shared tools: four lanes (coverage.py: heavy = mg + heavy on G:/mohaa-adsanim4, smg = smg only); runs folder from ADS_RUNS in cen… |
+| `f6b7533c` | 2026-10-12 | joncurry94-tech | ads heavy lane: folder, lane runner on G:\mohaa-adsanim4 (port 12598), aim poses with the support hand in the hip relation for BA… |
+| `3abe4419` | 2026-10-12 | joncurry94-tech | coverage.py: lanes - build merges rifles/ and smg/ coverage_status.json (their classes only, key by key over the base), their sta… |
+| `b3e64895` | 2026-10-12 | joncurry94-tech | harness_guard: adsanim4 (MG / heavy lane) |
+| `34ebc0b1` | 2026-10-12 | joncurry94-tech | harness_guard: adsanim2 / adsanim3 for the split ADS work |
+| `3fd23a56` | 2026-10-12 | joncurry94-tech | ads_twohand README: handover section (state after step A, the pipeline, known weak points, the list from here) + why the Hi-Stand… |
+| `02f39dbb` | 2026-10-12 | joncurry94-tech | revolver aimed reloads under the 2 % centre-box bar (runs tk11-tk13, cgame ads-next 94bb3dca): the gun leaves and re-enters the a… |
+| `a8c3193a` | 2026-10-12 | joncurry94-tech | revolver aimed reloads through gunphys (runs tj1, tj2): class revolver, impulses for break-open / snap-shut / round seat / cylind… |
+| `9ec278d9` | 2026-10-12 | joncurry94-tech | Hi-Standard rack: fingers open and the hand lifts as the slide starts forward (run ti2), slide travel marked on the eye and side… |
+| `8fcce6b1` | 2026-10-12 | joncurry94-tech | Hi-Standard rack: gun pitched muzzle-down for it so the eye looks onto the grasp (run ti1), hand-against-slide measured in gun sp… |
+| `bf1401e6` | 2026-10-12 | joncurry94-tech | revolver aimed reloads reworked to the on-target rule (user: 'rework revolvers'): Webley, Nagant, M10 worked LOW under the centre… |
+| `16bab06d` | 2026-10-12 | joncurry94-tech | Sten and Type 100 aim poses with the support hand on the magazine (run tg1, before / after stills, raise-fire-lower GIF; Type 100… |
+| `f4e65bcc` | 2026-10-12 | joncurry94-tech | reward icons (bombing run, paradrop smoke) in the item readout row: icon generator and stills |
+| `683a2f42` | 2026-10-12 | joncurry94-tech | harness_guard: hudfeed5 |
+| `19631e0f` | 2026-10-12 | joncurry94-tech | staged, NOT yet run in the engine (deploy window): Sten and Type 100 aim poses with the support hand on the side magazine as at t… |
+| `eb6ff093` | 2026-10-12 | joncurry94-tech | aimed reloads of P38, Hi-Standard and Beretta in the approved language (runs te1, te2, te5, te6, te7): on target (2.2-2.3 deg pea… |
+| `03d82a52` | 2026-10-12 | joncurry94-tech | aimed Colt reload, second pass (runs td8 loaded, td9 empty): the gun moves by physics - gunphys.py, a damped spring per weapon cl… |
+| `f65feea7` | 2026-10-12 | joncurry94-tech | feed round 3: the answers applied (exit refusal, killed-in-action, Hardcore refusals, held lines) - table and stills |
+| `b40c4529` | 2026-10-12 | joncurry94-tech | research: where the frame goes on v1.10.21 and a ranked plan for GPU and multicore work (measured, no code changed) |
+| `8cb093d1` | 2026-10-12 | joncurry94-tech | aimed reloads stay on target (user: 'you reload without losing your target'): Colt re-baked in the aim, support hand leaves low a… |
+| `e212f446` | 2026-10-12 | joncurry94-tech | feed round 3: per-map table of left-side messages (removed / feed / kept) and stills |
+| `4078d90e` | 2026-10-12 | joncurry94-tech | video-memory gauge on the Video panel (look A): panel generator, menu generator excludes, detection table and self-test |
+| `a484bed0` | 2026-10-12 | joncurry94-tech | launch memorial: one animated badge at the top - card art without the baked badge, a 512 px copy of the looping medal with its ow… |
+| `c9529b72` | 2026-10-12 | joncurry94-tech | revolvers, third pass (runs tm5, ts1, tu1): M10 cylinder gets a rear face (chamber mouths, extractor star) and six cartridge head… |
+| `2e3676c9` | 2026-10-12 | joncurry94-tech | revolver reloads: the slower per-round loop is the default for all three (user: 'B for webly'; Webley 0.77 s / round 5.6 s for si… |
+| `dff02353` | 2026-10-12 | joncurry94-tech | S&W M10 swing-out reload, hip and aimed (run tm3): the cylinder, crane and ejector rod are split onto their own bone and swing ou… |
+| `7a13e23c` | 2026-10-12 | joncurry94-tech | Nagant revolver reload, hip and aimed (run tn1): the gun is eased to a work pose cradled on its left side in the left hand with t… |
+| `f28f78be` | 2026-10-12 | joncurry94-tech | menu generator: video-memory block on Advanced Graphics (dormant by default); feed round 2 table; video-memory accounting measure… |
+| `a76046e9` | 2026-10-12 | joncurry94-tech | Webley reload, second pass (runs tx1-tx3, cgame ads-next 6e742186): the open gun is HELD in view the whole time (work pose with t… |
+| `fcccc707` | 2026-10-12 | joncurry94-tech | Webley reload hand-keyed, hip and aimed from one choreography (run tw6): the gun eases to one work pose in the view (lowered, muz… |
+| `bbf83e65` | 2026-10-12 | joncurry94-tech | Host Rules generator: LMS late-joiner row, sheet top edge up 18 px; harness_guard: one client slot per harness, hudfeed2 / hudfee… |
+| `6d97b473` | 2026-10-12 | joncurry94-tech | two-handed pistol aim: P38, Hi-Standard, Beretta pass in the engine (th4: 7 stances 0.0 deg, aimed reload stays in ADS <= 1.3 deg… |
+| `585de1d6` | 2026-10-12 | joncurry94-tech | ADS coverage matrix (generated: 87 weapons from the Armory table, own-mesh variants and script-given tiks; prefix, sight row, aim… |
+| `38c5f382` | 2026-10-12 | joncurry94-tech | scopes harness: MSAA-off plan, the Omaha layout probe (bug-3462 follow-up) |
+| `759be15b` | 2026-10-12 | joncurry94-tech | scopes (bug-3462, 3509-3514): the pak generator, the harness (run_scopes2.py, qa2.py, driver), and the stills of the 2026-10-12 i… |
+| `22ea2e48` | 2026-10-12 | joncurry94-tech | two-handed pistol aim, Colt .45 staged for approval: pose builder (support grip mirrored from the firing hand through the sight l… |
+| `873a554c` | 2026-10-11 | joncurry94-tech | README: v1.10.21 - All Cores Forward; banner without baked-in version text; stills for this release; gfx gate entry for the v1.10… |
+| `fe2ef220` | 2026-10-11 | joncurry94-tech | manifest 1.10.21 |
+| `f4c06f53` | 2026-10-11 | joncurry94-tech | graphics menu generator: presets cover Post-FX cost rows + texture detail, gate the VIDEO panel's quality knob and latch watchers… |
+| `0b5cdad0` | 2026-10-11 | joncurry94-tech | installer: rebuild the web-install stub for v1.10.20 (carries the updater with the first-install progress window and failure box,… |
+| `b348e706` | 2026-10-11 | joncurry94-tech | README: v1.10.20 - Clear the Beach; gfx gate entry for the v1.10.20 renderer; Omaha profile + menu stills |
+| `70fe6831` | 2026-10-11 | joncurry94-tech | manifest 1.10.20 |
+| `3188c2c5` | 2026-10-11 | joncurry94-tech | graphics menu generator: quality presets (generated gfx_preset_*.cfg, gate_presets) (bug-3484) |
+| `4bd9bdee` | 2026-10-11 | joncurry94-tech | graphics menu generator: Model Detail row (r_uselod + r_lodscale + r_lodcap), with the coop_lodRestore alias gated like the frame… |
+| `4773c729` | 2026-10-11 | joncurry94-tech | hud feed: before/after still of the counter overlap fix (bug-3464) |
+| `d93ee597` | 2026-10-11 | joncurry94-tech | updater: a failed first install now says why (no connection / disk space with numbers / failed download), that progress is saved,… |
+| `4a7e8f89` | 2026-10-11 | joncurry94-tech | updater: progress window is shown again after the hidden launch swallows the first Show() (bug-3471, player report: first install… |
+| `02a810a8` | 2026-10-06 | joncurry94-tech | pistol aimed reloads: fixed_right grip option in hold_bake; colt45/histandard/p38 rebaked (ab59: stays in ADS 1.3 deg, gun stays… |
+| `dd0180dd` | 2026-10-06 | joncurry94-tech | README: v1.10.19 - aimed reloads for most guns |
+| `08e214c5` | 2026-10-06 | joncurry94-tech | manifest 1.10.19 |
+| `993f7066` | 2026-10-06 | joncurry94-tech | fixes pak: aimed-reload clips + rows for MP40, MP44, Sten, Type100, BAR, DP28, Johnson, Colt45, HiStandard, P38, Beretta, Webley,… |
+| `7574e4c7` | 2026-10-06 | joncurry94-tech | README: v1.10.18 - ADS reload Thompson, Moschetto |
+| `7bb1c742` | 2026-10-06 | joncurry94-tech | manifest 1.10.18 |
+| `f6a00b65` | 2026-10-06 | joncurry94-tech | fixes pak: thompson_reload_ads + moschetto_reload_ads rows (first pass, ab55 stays in ADS 0.9 deg) |
+| `cec87a74` | 2026-10-06 | joncurry94-tech | README: v1.10.17 - ADS reloads and bolts |
+| `97d2b2e5` | 2026-10-06 | joncurry94-tech | manifest 1.10.17 |
+| `a6b63176` | 2026-10-06 | joncurry94-tech | fixes pak: ADS reload/bolt rows (garand, ppsh, springfield, enfield, mosin), verified ab53/ab54 on the shipped cgame; thompson/mo… |
+| `0a76f5fe` | 2026-10-06 | joncurry94-tech | ADS rollout attempt staged (not shipped): override rows + the finding that the rows alone do not engage on the shipped cgame |
+| `ef84ecc2` | 2026-10-06 | joncurry94-tech | Revert "fixes pak: ADS reload/bolt rows (garand, ppsh, springfield, enfield, mosin) on the v1.10.14-released anim lists; thompson… |
+| `b19c1df0` | 2026-10-06 | joncurry94-tech | fixes pak: ADS reload/bolt rows (garand, ppsh, springfield, enfield, mosin) on the v1.10.14-released anim lists; thompson/moschet… |
+| `c6e79f57` | 2026-10-06 | joncurry94-tech | README: v1.10.16 hotfix - Kar98 hip reload |
+| `38ef883d` | 2026-10-06 | joncurry94-tech | manifest 1.10.16 |
+| `bf4b737e` | 2026-10-06 | joncurry94-tech | bug-3451: rebase the hip-reload override on the v1.10.14-released fps_anims_rifle.txt (HEAD carries unverified _ads rows that mus… |
+| `26a4df79` | 2026-10-06 | joncurry94-tech | bug-3451: Kar98-family hip reload keeps the right hand out of the lens (new clip + 2 rows, fixes-pak override) |
+| `07658802` | 2026-10-06 | joncurry94-tech | bug-3453: original canvas wrap for the Mosin sniper scope (replaces CoD2 art), as a fixes-pak override |
+| `cd6c4e6c` | 2026-10-06 | joncurry94-tech | README: v1.10.15 hotfix - sky through fog |
+| `e0957d45` | 2026-10-06 | joncurry94-tech | manifest 1.10.15 |
+| `f943206a` | 2026-10-06 | joncurry94-tech | gfx_flip_gate: v1.10.15 renderer (sky fog model) |
+| `aa261432` | 2026-10-06 | joncurry94-tech | weapon HD: class 2 in-game verified; atomic build report (a session kill had truncated it) |
+| `e8ca2722` | 2026-10-05 | joncurry94-tech | weapon HD class 1+2: tooling, manifests, build/publish wiring (paks held out of the mod folder) |
+| `e900ca3a` | 2026-10-05 | joncurry94-tech | gore proposal: history, limb bone-collapse design, artery spurts, offline prototype |
+| `fa4fb0b2` | 2026-10-05 | joncurry94-tech | bug-3397: fix_skin_case.py + generator hooks keep finish shaders' texture spelling canonical |
+| `da77cfec` | 2026-10-05 | joncurry94-tech | README: v1.10.14 Quick Hands - what's new and in-game GIFs |
+| `c8fb2d11` | 2026-10-05 | joncurry94-tech | manifest 1.10.14 |
+| `fbb3d750` | 2026-10-05 | joncurry94-tech | tools: ads_audit expects the portable belt MGs (hip-fired, never tuned) |
+| `bcbc7ec0` | 2026-10-05 | joncurry94-tech | gfx flip gate: record the v1.10.14 renderer_opengl2.dll |
+| `3368ca08` | 2026-10-05 | joncurry94-tech | aircraft: build status, capture harness v2 (frame-chained shots, committed files only), batches b3-b12, GIF tool timing |
+| `1f1ae22f` | 2026-10-05 | joncurry94-tech | chatter prune: MP bot-sound A/B run (mp2) - foreign CHAN_LOCAL body sound now positional |
+| `15c66d9b` | 2026-10-05 | joncurry94-tech | reload polish: pcommit stores text with LF (autocrlf working copies) |
+| `109ecb0e` | 2026-10-05 | joncurry94-tech | reload polish: store the tools and AUDIT with LF line endings (c5dd07d committed CRLF working-tree bytes) |
+| `c5dd07d3` | 2026-10-05 | joncurry94-tech | reload polish: hand-keyed reload tools (keyclip, natik IK, jointqa, swapsched, worldanim), AUDIT polish section |
+| `94d0ee8d` | 2026-10-05 | joncurry94-tech | HUD declutter: ops for the two barrage alerts |
+| `0867ac2a` | 2026-10-05 | joncurry94-tech | HUD declutter: normal-mode before/after contact sheets (run 4) |
+| `67d2e4e6` | 2026-10-05 | joncurry94-tech | HUD declutter: build tools, in-engine harness (G:\mohaa-hudfeed), PLAN phase 2, contact sheets, HISTORY line |
+| `a2407c11` | 2026-10-05 | joncurry94-tech | chatter prune: voicefix run 4 - every sting fires at its event (new objective, objective complete, alarm edge, stealth intro, cle… |
+| `75f6661b` | 2026-10-05 | joncurry94-tech | tools: loadscreen_lint follows the 256-line tip table |
+| `f21e87bb` | 2026-10-05 | joncurry94-tech | tips_officer_ai: per-tip verdicts (code + one in-engine probe run), applied wording, bug-3416 |
+| `82f2941f` | 2026-10-05 | joncurry94-tech | chatter prune: sting builder, pain/distant pickers + picks, sting probe harness; ghost-verdict correction in manifest + cut list |
+| `1ed73ae3` | 2026-10-05 | joncurry94-tech | proposals/waterfix: the m4l2 GIF orb is the map's sweeping watchtower searchlight, not the waterfix (same-pose A/B) |
+| `dbdff06a` | 2026-10-05 | joncurry94-tech | proposal: HUD declutter phase 1 - inventory of gameplay-time text, KEEP/MERGE/ICON/MOVE/CUT classification, event-feed + debrief… |
+| `c72cc5b5` | 2026-10-05 | joncurry94-tech | proposals/waterfix_2026-10-05: water reflection + wet ground fix - causes, before/after evidence (stills, 4 GIFs), GPU, harness |
+| `51875c84` | 2026-10-05 | joncurry94-tech | chatter prune: voicefix in-engine run 1 + 2 analyses (run 2: all real checks pass with game.dll ea7a8026) |
+| `b313f747` | 2026-10-05 | joncurry94-tech | chatter prune: music/SFX audition list, voicefix run 2 (game.dll swap, nation expectations, sting + paradrop probes) |
+| `2120ad96` | 2026-10-05 | joncurry94-tech | reload audit phase B groups 4-8 + revolver cases: tools (beltgun cover bone, keyed hand paths, private-index commit), in-engine s… |
+| `d590441b` | 2026-10-05 | joncurry94-tech | chatter prune: voicefix in-engine proof harness (run_voicefix.py + test-only probe) |
+| `a4d0d3ff` | 2026-10-05 | joncurry94-tech | chatter prune: whisper manifest of every coop VO take, flvo/taunt generator, cut list, per-file nationality |
+| `9c9024fe` | 2026-10-05 | joncurry94-tech | aircraft: envelope generator, engine patch source, in-engine harness, doc entries |
+| `7371a07a` | 2026-10-05 | joncurry94-tech | proposals: aircraft call-ins plan (C-47 paradrop, binocular P-47, officer Stuka) |
+| `a8fc144f` | 2026-10-05 | joncurry94-tech | reload audit phase B: tools (per-gun reload retarget, skc slicer, pop scan, A/B gifs), apply scripts, progress (groups 1-3 done) |
+| `cf335bcf` | 2026-10-05 | joncurry94-tech | reload audit phase A: proposal results + phase B order, harness registration, label generators |
+| `bb6d081a` | 2026-10-05 | joncurry94-tech | reload audit: record user decisions |
+| `7143fac1` | 2026-10-05 | joncurry94-tech | proposals: reload authenticity audit + plan (58 contact sheets, routing/prop/timing findings, fix list) |
+| `35458e1d` | 2026-10-04 | joncurry94-tech | manifest 1.10.13 |
+| `0b906f77` | 2026-10-04 | joncurry94-tech | gfx flip gate: record the v1.10.13 renderer_opengl2.dll (gate passed on bc2c3072 source; exact DLL boot-smoked) |
+| `510279f8` | 2026-10-04 | joncurry94-tech | tools: gen_menu_graphics Footprints row (Advanced Graphics; cg_footprints) |
+| `c4ed4d79` | 2026-10-04 | joncurry94-tech | tools: gen_menu_graphics MSAA row (r_msaa Auto/Off/2x/4x/8x) for the gfx flip; installer omconfig seeds r_msaa -1 |
+| `bf62794a` | 2026-10-04 | joncurry94-tech | m3l2 ground: wide eye-height barn-front / courtyard before-after shots (bug-3340) |
+| `8931ca47` | 2026-10-04 | joncurry94-tech | updater: write home/maintt/coop_latest_seen.txt (newest release seen) for the in-game update notice |
+| `8600ee73` | 2026-10-04 | joncurry94-tech | m3l2 ground: out-of-band zzzzzzzzzz_coop_m3l2ground.pk3 generator, build/publish wiring (bug-3340) |
+| `6f9bc4a7` | 2026-10-04 | joncurry94-tech | manifest 1.10.12 |
+| `5f0bc771` | 2026-10-04 | joncurry94-tech | tools: audit_actor_surfaces identity-gear check (bug-3325); harness_guard test installs |
+| `e73f8ec9` | 2026-10-04 | joncurry94-tech | manifest 1.10.11 |
+| `f68bf3fa` | 2026-10-04 | joncurry94-tech | tools: track gen_menu_graphics.py (generates advanced_graphics/postfx menus; adds Ground Variety row, bug-3318) |
+| `2e80173c` | 2026-10-04 | joncurry94-tech | manifest 1.10.10 |
+| `fb343eb5` | 2026-10-04 | joncurry94-tech | tools: audit_actor_surfaces.py - regression check for actor weapon gives that drop the body (bug-3306) |
+| `499b2fe9` | 2026-10-04 | joncurry94-tech | mission tile art: gen_tileart_pak.py + 268 tile sources, build/publish wiring (bug-3274) |
+| `981afb3b` | 2026-09-29 | joncurry94-tech | manifest 1.10.9 |
+| `b398f852` | 2026-09-29 | joncurry94-tech | manifest 1.10.8 |
+| `5a153fb2` | 2026-09-29 | joncurry94-tech | bug report parity: desktop reporter v2 (no webhook/IP/name leak, bug-3277), updater launch marker, MP-isolation hook registry for… |
+| `f0319a60` | 2026-09-29 | joncurry94-tech | manifest 1.10.7 |
+| `527ebea7` | 2026-09-29 | joncurry94-tech | manifest 1.10.6 |
+| `32d7aebc` | 2026-09-29 | joncurry94-tech | manifest 1.10.5 |
+| `0d7977c6` | 2026-09-29 | joncurry94-tech | installer seed: drop developer ADS-tune numpad binds (bug-3299) |
+| `b7e5b50a` | 2026-09-29 | joncurry94-tech | readme: v1.10.4 - On Target (iron sights, briefing films for joiners, new loading art) |
+| `c3dade64` | 2026-09-29 | joncurry94-tech | manifest 1.10.4 |
+| `1c7ee3b0` | 2026-09-29 | joncurry94-tech | v1.10.4 release wiring: build.ps1 + publish_release.ps1 deploy/stage the loading-art, fixes and foliage-shadow paks; carries the… |
+| `caece5ef` | 2026-09-28 | joncurry94-tech | v1.10.4 follow-up: gen_fixes_pak.py - overrides pak so assets_tex keeps its v1.10.3 sha256 (bug-3251, bug-3196) |
+| `eccc39e8` | 2026-09-28 | joncurry94-tech | v1.10.4 follow-up: loading-art pak generator + sources, m3l3 rock-clip generator, doc archives (bug-3251, bug-3210) |
+| `c4e0321c` | 2026-09-28 | joncurry94-tech | readme: v1.10.3 - Storm Front (realistic lightning, water and wet ground, ragdolls) + in-game GIF showcase |
+| `5389bbbb` | 2026-09-28 | joncurry94-tech | manifest 1.10.3 |
+| `24baaac3` | 2026-09-28 | joncurry94-tech | readme: v1.10.2 - 116 flippable loading tips, medal morph, rank bar fix, drivers, Hands up, sound variety, graphics menu, bot mov… |
+| `46d2a2e6` | 2026-09-28 | joncurry94-tech | manifest 1.10.2 |
+| `8c38d16d` | 2026-09-27 | joncurry94-tech | readme: v1.10.1 - Vince Zampella tribute, loading screen medal + tips, headlights, HD skies, doors, room clearing |
+| `2c4baa28` | 2026-09-27 | joncurry94-tech | manifest 1.10.1 |
+| `c48b06b0` | 2026-09-26 | joncurry94-tech | readme: v1.10.0 - HD skies/clouds, texture repairs, dust storms, MP weather, Hardcore, bot pairs; Push no longer claims side swaps |
+| `f1aee507` | 2026-09-26 | joncurry94-tech | manifest 1.10.0 |
+| `dd2d30c7` | 2026-09-25 | joncurry94-tech | manifest 1.9.2 |
+| `77ddac9a` | 2026-09-23 | joncurry94-tech | manifest 1.9.1 |
+| `b2aabeee` | 2026-09-23 | joncurry94-tech | manifest 1.9.0 |
+| `01e157cf` | 2026-09-20 | joncurry94-tech | manifest 1.8.9 |
+| `53562f98` | 2026-09-20 | joncurry94-tech | manifest 1.8.8 |
+| `40ffd6ba` | 2026-09-20 | joncurry94-tech | readme: new captioned feature screenshots (combat, cinematics, progression, officers, challenges, loadout) |
+| `62424725` | 2026-09-20 | joncurry94-tech | manifest 1.8.7 |
+| `ad847857` | 2026-09-20 | joncurry94-tech | readme: update Discord invite to current link (discord.gg/cVjMYPBFZ) |
+| `1930dc1e` | 2026-09-19 | joncurry94-tech | installer: rebuild web-install stub for v1.8.6 (ammo on ; default) |
+| `e80ae36f` | 2026-09-19 | joncurry94-tech | readme banner + default binds: Dog Green is Open (v1.8.6), ammo on ; |
+| `dbaa3dcf` | 2026-09-19 | joncurry94-tech | readme: replace useless menu-backdrop screenshots; co-op "built for 4" |
+| `d08d33be` | 2026-09-19 | joncurry94-tech | readme: consolidate - collapse warnings, dev sections into <details> |
+| `056476c4` | 2026-09-19 | joncurry94-tech | install funnel: permanent from-scratch web installer + one-click README |
+| `e09a170b` | 2026-09-18 | joncurry94-tech | readme: add hero image + screenshot gallery |
+| `9bd54cc5` | 2026-09-18 | joncurry94-tech | manifest 1.8.6 |
+| `ec03269b` | 2026-09-18 | joncurry94-tech | manifest 1.8.5 |
+| `5e2aebdc` | 2026-09-18 | joncurry94-tech | manifest 1.8.4 |
+| `28dbd8c2` | 2026-09-18 | joncurry94-tech | manifest 1.8.3 |
+| `6f49915b` | 2026-09-18 | joncurry94-tech | manifest 1.8.2 |
+| `eb4dffff` | 2026-09-18 | joncurry94-tech | installer: add web installer (small stub that downloads the release from GitHub) |
+| `11860783` | 2026-09-18 | joncurry94-tech | manifest 1.8.1 |
+| `d1d64495` | 2026-09-18 | joncurry94-tech | v1.8.0: public README refresh + docs |
+| `07a99c67` | 2026-09-18 | joncurry94-tech | manifest 1.8.0 |
+| `07897447` | 2026-09-17 | joncurry94-tech | manifest 1.7.8 |
+| `17aed9a2` | 2026-09-16 | joncurry94-tech | v1.7.7: Domination + Countdown + Assassination modes, objective-seeking MP bots |
+| `75230e50` | 2026-09-16 | joncurry94-tech | manifest 1.7.7 |
+| `67fdccbf` | 2026-09-16 | joncurry94-tech | v1.7.6: Build-A-Base campaign-spawn fix + One-Shot / One-Ammo modifiers |
+| `8a7f07e5` | 2026-09-16 | joncurry94-tech | manifest 1.7.6 |
+| `788ddc6d` | 2026-09-16 | joncurry94-tech | v1.7.5 hotfix: coop-host crash fix + real UberMod bomb modes |
+| `a6d08700` | 2026-09-16 | joncurry94-tech | manifest 1.7.5 |
+| `39660e9f` | 2026-09-16 | joncurry94-tech | publish: archive every shipped binary's PDB + linker MAP per release (bug-2666) |
+| `b23bf8bf` | 2026-09-16 | joncurry94-tech | manifest 1.7.4 |
+| `23902455` | 2026-09-16 | joncurry94-tech | reporter: match overlay keywords against the DLL name, not the full path (bug-2665) |
+| `049e19e7` | 2026-09-16 | joncurry94-tech | manifest 1.7.3 |
+| `7cb01762` | 2026-09-16 | joncurry94-tech | tooling: crash-report overlay detection + per-release PDB archiving (bug-2663) |
+| `5a695681` | 2026-09-16 | joncurry94-tech | manifest 1.7.2 |
+| `f12e045e` | 2026-09-15 | joncurry94-tech | manifest 1.7.1 |
+| `360913a1` | 2026-09-15 | joncurry94-tech | release v1.7.1 "Roll Out": Prop Hunt, vehicle system, campaign-map modes, spawn protection, two-way Demolition + Freeze Tag meltg… |
+| `c2052021` | 2026-09-15 | joncurry94-tech | manifest 1.7.0 |
+| `41c54b26` | 2026-09-14 | joncurry94-tech | tools: drop the clause-7 lobby-armory exception - isolation back to strict |
+| `fe82bec0` | 2026-09-14 | joncurry94-tech | tools: narrow clause-7 exception for the lobby closet's MP armory openers; drop the unused clause-12 one |
+| `6c56ef38` | 2026-09-14 | joncurry94-tech | tools: gen_service_record write-if-different .tga saves - stop the tex-pk3 churn (bug-2610) |
+| `a548798d` | 2026-09-14 | joncurry94-tech | tools: narrow, user-approved clause-12 exception for the coop-loadout opener in the MP options menu |
+| `6ba4fb2a` | 2026-09-14 | joncurry94-tech | docs: TRAPS - EV_SETTER events are property assignments, not commands (bug-2608) |
+| `9444e0f0` | 2026-09-14 | joncurry94-tech | docs: TRAPS - a call in a }end <expr> return position is not evaluated (bug-2603) |
+| `a1df8a35` | 2026-09-14 | joncurry94-tech | tools: Gun Game ladder generator + isolation self-test mutation (MP slice 1) |
+| `af745723` | 2026-09-14 | joncurry94-tech | docs: v1.6.0 "The Long View" rollout - README, history, public pages, isolation clause 14 |
+| `e45a3fa2` | 2026-09-14 | joncurry94-tech | manifest 1.6.0 |
+| `9ed1e027` | 2026-09-13 | joncurry94-tech | tools: gen_mapgrade.py - emit coop_mod/cfg/mapgrade.cfg from grade_profiles.tsv (build/check) |
+| `ae49adbf` | 2026-09-13 | joncurry94-tech | tools: fog profile generator + fog/grade tables |
+| `c061ff8b` | 2026-09-13 | joncurry94-tech | tools: MP armory generator, isolation clauses 16-18, build gate |
+| `a2020837` | 2026-09-13 | joncurry94-tech | tools: security layer 2 self-test harness and guard-list generator |
+| `41bfea11` | 2026-09-13 | joncurry94-tech | docs: correct the stale bloom entry and the gl1-only Set2DWindow claim (gl2 render design) |
+| `dc6c51b4` | 2026-09-13 | joncurry94-tech | tools: isolation clause 15 for the compass bar; Field Settings generator gets the Modern Compass row |
+| `98307482` | 2026-09-13 | joncurry94-tech | docs: security layer 2 approved as recommended (exe filters every server-origin line, refuse-list, API handshake) |
+| `ff86e2a3` | 2026-09-13 | joncurry94-tech | docs: the 2026-09-13 round - stufftext split parity, isolation gate, Field Settings; pruned to budget |
+| `f324f939` | 2026-09-13 | joncurry94-tech | build+tools: isolation gate before packing with a self-test, release stops on a failed build, SEC1 filter self-test, Field Settin… |
+| `88ed1bf0` | 2026-09-13 | joncurry94-tech | docs: trim the MP host settings record back under the DECISIONS budget |
+| `5e429b52` | 2026-09-13 | joncurry94-tech | docs: MP host settings are per-feature toggles now, not one switch (decision sheet 2026-09-13) |
+| `717c645f` | 2026-09-13 | joncurry94-tech | build: block the deploy when the armory pages drift from their generator |
+| `35ab1559` | 2026-09-13 | joncurry94-tech | docs: history line for the theme picker arrows and auto-advance |
+| `73026d52` | 2026-09-13 | joncurry94-tech | tools: draw the main-menu theme picker arrows |
+| `48faddc6` | 2026-09-13 | joncurry94-tech | docs: test multiplayer with bots, and the PvP damage rule |
+| `c52bcab8` | 2026-09-13 | joncurry94-tech | docs: which sound code is live, the exit audio reset, and a new way a check lies |
+| `ad39c757` | 2026-09-13 | joncurry94-tech | tools: MP may never touch the coop armory (isolation clause 10) |
+| `67385dd4` | 2026-09-13 | joncurry94-tech | build: never pack .mp4 files |
+| `31c89267` | 2026-09-13 | joncurry94-tech | tools: the MP isolation contract covers the challenge and XP systems |
+| `ea51201e` | 2026-09-09 | joncurry94-tech | build: abort if the MP loadout has leaked into coop |
+| `c8097df5` | 2026-09-09 | joncurry94-tech | tools: make the MP/coop isolation a testable contract, not a promise |
+| `cb3212af` | 2026-09-09 | joncurry94-tech | docs: the 2026-09-09 m4l3 round, merged and pruned to budget |
+| `0530d2c8` | 2026-09-09 | joncurry94-tech | docs: v1.5.3 released |
+| `33b6e17e` | 2026-09-09 | joncurry94-tech | manifest 1.5.3 |
+| `a694fc9f` | 2026-09-09 | joncurry94-tech | release: stage the two new HD paks, which would have shipped to nobody |
+| `963f112f` | 2026-09-08 | joncurry94-tech | docs: regenerate after the shell-sink feature |
+| `31695483` | 2026-09-08 | joncurry94-tech | docs: regenerate after the round-3 batch |
+| `24a54578` | 2026-09-08 | joncurry94-tech | tools: the shore-wave envelope, the bore period, and the quick-draw pose |
+| `d4019b31` | 2026-09-08 | joncurry94-tech | gen_coop_sea: move the shoaling peak seaward for the beach fight |
+| `3432551d` | 2026-09-08 | joncurry94-tech | tools: fix_dds_shadowing.py - 57 installed HD textures that never loaded |
+| `f5489b8f` | 2026-09-08 | joncurry94-tech | docs: regenerate after the m3l1a pass |
+| `fe9f6a58` | 2026-09-08 | joncurry94-tech | m3l1a: a 4x texture pass, prosecheck, and the QTE/fire records |
+| `2dba4d79` | 2026-09-08 | joncurry94-tech | docs: the QTE and the Omaha realism pass, with the prunes that paid for them |
+| `41d367d6` | 2026-09-08 | joncurry94-tech | docs: the drowning QTE and the smoke sequencing |
+| `c4152dfa` | 2026-09-08 | joncurry94-tech | docs: the drowning-QTE research and its input probe |
+| `1bd6a00d` | 2026-09-07 | joncurry94-tech | docs: the trough-shadow generator |
+| `c51e3905` | 2026-09-07 | joncurry94-tech | docs: the shoreline ocean pass |
+| `e6426042` | 2026-09-07 | joncurry94-tech | docs: the surf-zone crest generator |
+| `751895fa` | 2026-09-07 | joncurry94-tech | docs: the wave pass generator |
+| `507acd7d` | 2026-09-07 | joncurry94-tech | docs: the realism pass generators |
+| `8519ede8` | 2026-09-07 | joncurry94-tech | docs: the Omaha water pass and the cell-mask generator |
+| `3cb46de5` | 2026-09-06 | joncurry94-tech | docs: sea-mesh site caveat (bug-2513), backups pruned from the pack (2512), regenerate |
+| `21d72249` | 2026-09-06 | joncurry94-tech | docs: ocean pass logged, evening fixes, six texture/mesh generators checked in |
+| `417ace8e` | 2026-09-06 | joncurry94-tech | docs: ocean research filed, wet-sand generator checked in, drowning build logged |
+| `890c908e` | 2026-09-06 | joncurry94-tech | docs: fourth Omaha build of 09-06, drowning research filed |
+| `d816d3e7` | 2026-09-06 | joncurry94-tech | docs: regenerate after the v1.5.2 publish |
+| `fcc148a0` | 2026-09-06 | joncurry94-tech | manifest 1.5.2 |
+| `0b982f05` | 2026-09-06 | joncurry94-tech | docs+tools: the Omaha 09-06 pass, three traps that hid for a week, two proposals |
+| `a92e6da2` | 2026-09-04 | joncurry94-tech | manifest 1.5.1 |
+| `98d05e9b` | 2026-09-04 | joncurry94-tech | gl2 for every player, on every path, plus the Omaha finish pass |
+| `349048b6` | 2026-09-03 | joncurry94-tech | manifest 1.5.0 |
+| `3b86925b` | 2026-09-03 | joncurry94-tech | docs+tools: the Omaha pass, and three traps that cost a day between them |
+| `6876e9db` | 2026-08-31 | joncurry94-tech | docs: regenerate after the v1.4.8 publish |
+| `da925867` | 2026-08-31 | joncurry94-tech | manifest 1.4.8 |
+| `ced258ec` | 2026-08-31 | joncurry94-tech | docs+tools: gl2 renderer parity, the Omaha pass, and three generators that cannot rot |
+| `57e80745` | 2026-08-31 | joncurry94-tech | manifest 1.4.7 |
+| `c72d0933` | 2026-08-31 | joncurry94-tech | installer: always offer the folder choice, and make the guidance actually visible |
+| `eb1f6538` | 2026-08-31 | joncurry94-tech | installer: ask for the game first, guide the destination, require all three games |
+| `9865300c` | 2026-08-31 | joncurry94-tech | docs: rewrap the install-folder note |
+| `6ee51504` | 2026-08-31 | joncurry94-tech | docs: the install folder is the player's choice, and say what setup refuses |
+| `9db23393` | 2026-08-31 | joncurry94-tech | installer: guard the destination folder; document that it is the player's choice |
+| `17f3a0c0` | 2026-08-30 | joncurry94-tech | test: coop regression baseline - 85 families, 2-player m1l1, 180s window |
+| `6840d69a` | 2026-08-30 | joncurry94-tech | tools: coop_regression.py - diff a coop run against a known-good baseline |
+| `d7db1a7e` | 2026-08-30 | joncurry94-tech | fix: terrain pack never shipped; repair config_fossils.py; prune README |
+| `9bdf3eef` | 2026-08-30 | joncurry94-tech | docs: README current-release section was five releases stale |
+| `e21165d4` | 2026-08-30 | joncurry94-tech | fix: make the "public docs cannot drift" claim true, and reclaim 21 GB |
+| `476b4f69` | 2026-08-30 | joncurry94-tech | docs: regenerate (final) |
+| `653eeadf` | 2026-08-30 | joncurry94-tech | docs: regenerate after the v1.4.6 installer publish |
+| `db5da8b8` | 2026-08-30 | joncurry94-tech | docs: point the installer download table at v1.4.6 |
+| `69a71e99` | 2026-08-30 | joncurry94-tech | docs: regenerate after v1.4.6 (bug-2183 truck texture investigation) |
+| `350532b9` | 2026-08-30 | joncurry94-tech | manifest 1.4.6 |
+| `54cb5f23` | 2026-08-30 | joncurry94-tech | chore: track .gitmessage so the short-commit style travels |
+| `bd91a667` | 2026-08-30 | joncurry94-tech | docs: inert-feature sweep, commit-style makeover, budget cleanup |
+| `40d64515` | 2026-08-26 | joncurry94-tech | fix: grenade kick vs German grenades, DBNO camera, per-variant unlocks, prone reload |
+| `9be284fd` | 2026-08-26 | joncurry94-tech | docs: v1.4.5 released |
+| `0cc504ee` | 2026-08-26 | joncurry94-tech | manifest 1.4.5 |
+| `b25bef8a` | 2026-08-26 | joncurry94-tech | prone: fix crawl, exit model, ADS speed; stress drives weapon spread |
+| `036161cd` | 2026-08-24 | joncurry94-tech | docs: MOH Trilogy Coop naming preference |
+| `3ad5aeca` | 2026-08-24 | joncurry94-tech | manifest 1.4.4 |
+| `ec51766a` | 2026-08-23 | joncurry94-tech | manifest 1.4.3 |
+| `bde9addf` | 2026-08-23 | joncurry94-tech | docs: the notarget toggle, and four times I stated an inference as a measurement |
+| `8e5a32d4` | 2026-08-22 | joncurry94-tech | docs: the four method lessons that cost 2026-08-22 |
+| `4f0945de` | 2026-08-22 | joncurry94-tech | tools: --aggro reports acquisition ORDER and who each actor picked |
+| `0711a70f` | 2026-08-22 | joncurry94-tech | tools: probe_read.py - turn a probe log into an answer |
+| `c4c76790` | 2026-08-22 | joncurry94-tech | docs: three-marker scene guard table; correct a false gl2 claim that cost a wrong fix |
+| `6750d700` | 2026-08-22 | joncurry94-tech | docs: the dedicated boot is NOT broken - recipe recorded in SOURCE_OF_TRUTH |
+| `9bc26ca1` | 2026-08-22 | joncurry94-tech | docs: freeze 62 legacy root documents; the root now holds only CLAUDE.md and README.md |
+| `6634e72d` | 2026-08-22 | joncurry94-tech | docs: promote buglog knowledge into the authored docs; OPEN back under budget |
+| `445875d3` | 2026-08-22 | joncurry94-tech | tools: scene-actor audit now covers the whole trilogy, not just top-level map scripts |
+| `0faa37a4` | 2026-08-22 | joncurry94-tech | tools: audit_scene_actors.py - which maps have scripted actors the personality roll can break |
+| `d18372dd` | 2026-08-22 | joncurry94-tech | manifest 1.4.2 |
+| `72dac0f5` | 2026-08-22 | joncurry94-tech | fix: in-game Report a Bug was dead for every player - webhook written to a path that never existed |
+| `5950141c` | 2026-08-22 | joncurry94-tech | docs: wall-cover research - it was never deleted, only switched off |
+| `ef14a337` | 2026-08-21 | joncurry94-tech | tools: player-skin resolution audit + upscale (52 textures, 2x) |
+| `4c22ee00` | 2026-08-21 | joncurry94-tech | tools: gen_cos_reqs.py - armory cosmetic hovers derived from the unlock tables |
+| `f54483f2` | 2026-08-21 | joncurry94-tech | docs: public Challenges + Unlockables brought current; variants and finishes now first-class |
+| `fb96625d` | 2026-08-21 | joncurry94-tech | docs: public README revamped - full feature inventory, early-testing callouts, known + fixed bugs |
+| `a296ba0f` | 2026-08-21 | joncurry94-tech | docs+tools: explosion pool generators, menu audit, and the session's authored updates |
+| `db14e41c` | 2026-08-21 | joncurry94-tech | docs: v1.4.0/v1.4.1 release record, two release-audit traps |
+| `c6438015` | 2026-08-21 | joncurry94-tech | manifest 1.4.1 |
+| `5d143362` | 2026-08-21 | joncurry94-tech | manifest 1.4.0 |
+| `74d6e4ec` | 2026-08-21 | joncurry94-tech | docs: prune TRAPS and preferences back under budget |
+| `4510c417` | 2026-08-21 | joncurry94-tech | tools: slice weapon-handling construction kits into game-ready takes |
+| `df442fd9` | 2026-08-21 | joncurry94-tech | tools: join AI path failures back to the actors that caused them |
+| `4b86e708` | 2026-08-21 | joncurry94-tech | tools: ads_sweep - find per-gun tune rows that do not behave like their peers |
+| `27441d9d` | 2026-08-19 | joncurry94-tech | tools: ragdoll P0 channel census |
+| `6175dd97` | 2026-08-19 | joncurry94-tech | docs: evening mega-wave recorded |
+| `1f203b3d` | 2026-08-19 | joncurry94-tech | docs: bugs 1951-1953 logged |
+| `64d0c86d` | 2026-08-19 | joncurry94-tech | docs: class-split trap; bugs 1948-1950 recorded |
+| `1fd6005a` | 2026-08-19 | joncurry94-tech | docs: Leon wave + licensing decision recorded |
+| `3c74c450` | 2026-08-19 | joncurry94-tech | docs: MV wave 3 recorded |
+| `c5c0142e` | 2026-08-19 | joncurry94-tech | tools: wire_mv2 wave-3 table; loadout_finish template retired (bug-1947) |
+| `af44adab` | 2026-08-19 | joncurry94-tech | docs: mid-playtest fix wave recorded (bugs 1942-1945); TRAPS actor-getter + anim-pack rules corrected in place |
+| `f3c93049` | 2026-08-19 | joncurry94-tech | docs: variant authorship resolved (acme313 = MOHPA porter; East = WW1 arsenal; DarkAngel/Deleto/FlakRider/Schutze/stlkid per vari… |
+| `6cc2d202` | 2026-08-19 | joncurry94-tech | tools: wire_mv2 preserved from scratchpad with variant credits |
+| `166db7bf` | 2026-08-19 | joncurry94-tech | docs: bug-1940 manned-turret spread trap + playtest probe instructions |
+| `406284c7` | 2026-08-19 | joncurry94-tech | docs: cut-VO restoration batch 1 recorded |
+| `e8a95253` | 2026-08-19 | joncurry94-tech | docs: cut-content deep scan indexed in OPEN |
+| `04ad6bd1` | 2026-08-19 | joncurry94-tech | docs: animation wave 2 recorded |
+| `70dfe574` | 2026-08-18 | joncurry94-tech | docs: vehicle death fx awaiting playtest |
+| `b8446546` | 2026-08-18 | joncurry94-tech | docs: loadout deep-trace fix wave recorded; gen_loadout emits FA-clearing commit cfgs; gen_skinbase build step |
+| `61a6e655` | 2026-08-18 | joncurry94-tech | tools: gen_skinbase.py (variant->base reverse map) wired as a build step |
+| `bd4ebba4` | 2026-08-18 | joncurry94-tech | docs: exec INSERTS not appends (corrects d2e7084 rationale); one-token-per-batch bus trap |
+| `e4f29905` | 2026-08-18 | joncurry94-tech | docs: correct bug ids 1926-1927 |
+| `df429943` | 2026-08-18 | joncurry94-tech | docs: armory take-3 entries |
+| `4c6842ea` | 2026-08-18 | joncurry94-tech | guard rails: ui_wiring_audit gate (exec/vstr/bus closure), SR deployed-truth stamp emission; DECISIONS updated |
+| `19322f08` | 2026-08-18 | joncurry94-tech | docs: positional-archived-state trap (bug-1926); SR generator emits cid map + generation stamp |
+| `c471e8fe` | 2026-08-18 | joncurry94-tech | build: gen_service_record runs on every build - SR freshness is structural, not remembered |
+| `9c440c97` | 2026-08-18 | joncurry94-tech | docs: SR hover curation gate in check_challenges; 25 reward names curated from in-game tables |
+| `f76adf4a` | 2026-08-18 | joncurry94-tech | docs: decision - cross-source invariants get deploy-blocking build gates |
+| `0a24d83b` | 2026-08-18 | joncurry94-tech | build: unlock_audit + ads_audit are deploy-blocking drift gates; ads_audit gains the expected-miss allowlist |
+| `6387687a` | 2026-08-18 | joncurry94-tech | docs: unlock_audit.py cross-checks roster vs challenge/rank/free enforcement; 7 hover texts corrected to the enforced path |
+| `3bd5324b` | 2026-08-18 | joncurry94-tech | docs: correct ramsey bug id 1925->1924 |
+| `4f6f2f79` | 2026-08-18 | joncurry94-tech | docs: ramsey fix moved to awaiting-playtest |
+| `bca25507` | 2026-08-18 | joncurry94-tech | docs: ads_audit.py - lists every shipped gun that resolves to no ADS tune |
+| `fb15f539` | 2026-08-18 | joncurry94-tech | docs: OPEN.md synced - 08-18 evening batch awaiting playtest, MG42 request closed, prone entry current, CLEARED P0 history pruned |
+| `4461bf35` | 2026-08-18 | joncurry94-tech | docs: the foolproof-menus preference; gen_loadout per-slot chain arming |
+| `8852b770` | 2026-08-18 | joncurry94-tech | tools: gen_loadout emits offline finish previews |
+| `069ff3f0` | 2026-08-18 | joncurry94-tech | docs: bug-1917 - the original armory bg recovered byte-exact from the v1.3.1 release via ranged fetch |
+| `a9b192bb` | 2026-08-18 | joncurry94-tech | tools: gen_armory_bg --plain (the revert look) + the overwrite lesson in the buglog |
+| `c67df7d8` | 2026-08-18 | joncurry94-tech | tools: the Field Requisition armory bake generator - overlap-refusing by design |
+| `5ead3952` | 2026-08-18 | joncurry94-tech | docs: bug-1907 closed (panzerfaust removed); OPEN.md updated |
+| `ae866c65` | 2026-08-18 | joncurry94-tech | tools: service record gains the WEAPON FINISHES page; finish-table regen preserves the variant block |
+| `1bfb0a2d` | 2026-08-18 | joncurry94-tech | tools: gen_loadout p-pages carry the VARIANT button state; wildcard surfaces verified against the mesh; OPEN.md skin status |
+| `2820baf6` | 2026-08-18 | joncurry94-tech | tools: challenge validator learns the finish_* reward class; buglog |
+| `3ff2c3eb` | 2026-08-18 | joncurry94-tech | three fixes the log had been reporting all along |
+| `2435d34d` | 2026-08-17 | joncurry94-tech | docs: record the skin-variant architecture and what is awaiting a playtest |
+| `ff53624e` | 2026-08-17 | joncurry94-tech | skins: generate weapon finish variants - one tik and shader set per gun per finish |
+| `fa6db7f9` | 2026-08-17 | joncurry94-tech | loadout: the roster script was not compiling at all - an assignment with no value |
+| `3e0f7be7` | 2026-08-17 | joncurry94-tech | docs: regenerate |
+| `96525993` | 2026-08-17 | joncurry94-tech | docs: regenerate; armory table gains give and tab columns |
+| `e052d2c9` | 2026-08-17 | joncurry94-tech | docs: two traps from this session - pitch 0 is silence, ordernumber is not draw order |
+| `8fb513bf` | 2026-08-17 | joncurry94-tech | docs: armory table complete at 75 weapons |
+| `398891fb` | 2026-08-17 | joncurry94-tech | docs: armory table now carries the five added weapons |
+| `cf133e59` | 2026-08-17 | joncurry94-tech | tools: reconstruct the lost armory generator, proved by exact reproduction |
+| `45ad569c` | 2026-08-17 | joncurry94-tech | docs: the weapon-skin generator, and regenerate |
+| `087ba244` | 2026-08-17 | joncurry94-tech | docs: regenerate after the Panzerfaust and M10 imports |
+| `66ae10ae` | 2026-08-17 | joncurry94-tech | docs: regenerate after the DP-28 import |
+| `087511fb` | 2026-08-17 | joncurry94-tech | audit: catch sound aliases that resolve and still make no noise |
+| `15140c3c` | 2026-08-17 | joncurry94-tech | open: record the armory gap, and the publish entry for the bullet-impact pack |
+| `079256e2` | 2026-08-17 | joncurry94-tech | open: close the m3l2 label, and correct the t2l2 error count by measurement |
+| `985236cb` | 2026-08-17 | joncurry94-tech | open: close the stale e3l4 outro entry, verified against a running engine |
+| `e1852987` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
+| `04ecc1a8` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
+| `684371fa` | 2026-08-17 | joncurry94-tech | manifest 1.3.1 |
+| `34eb9e0e` | 2026-08-17 | joncurry94-tech | docs: two weapon auditors, and the traps they made testable |
+| `acf1323e` | 2026-08-16 | joncurry94-tech | docs: regenerate after the v1.3.0 source commits |
+| `84daa23c` | 2026-08-16 | joncurry94-tech | docs: record the v1.3.0 session - objective chain, AI accuracy, and three self-inflicted regressions |
+| `e5fe7c32` | 2026-08-16 | joncurry94-tech | manifest 1.3.0 |
+| `8bd3e8bf` | 2026-08-14 | joncurry94-tech | readme: name the exact installer files, and test the links on every build |
+| `5ba6c59f` | 2026-08-14 | joncurry94-tech | publish: stop mangling release notes, and drop the BOM |
+| `310e9474` | 2026-08-14 | joncurry94-tech | manifest 1.2.9 |
+| `df90048f` | 2026-08-14 | joncurry94-tech | skeletor: size the channel table for a whole playthrough, and fail soft |
+| `9507fac7` | 2026-08-14 | joncurry94-tech | docs: record that vehicle maps are deliberately skipped for blueprints |
+| `cd55bd8b` | 2026-08-14 | joncurry94-tech | docs: log bug-1802 (m5l1b weather inherited via an SP-only path) |
+| `f0d2fac4` | 2026-08-14 | joncurry94-tech | tooling: do not count commented mentions as blueprint placements |
+| `9a4c2698` | 2026-08-14 | joncurry94-tech | tooling: correct the texture->widget transform in the service-record generator |
+| `c6620b4d` | 2026-08-14 | joncurry94-tech | tooling: assert the service-record header layout instead of trusting arithmetic |
+| `38e6482f` | 2026-08-14 | joncurry94-tech | tooling: check blueprint supply against the bp_* ladder |
+| `940517b4` | 2026-08-14 | joncurry94-tech | docs: regenerate; correct bug-1801 (ours, not pre-existing, now fixed) |
+| `408a0f7d` | 2026-08-14 | joncurry94-tech | docs: regenerate challenge pages; log t2l1 nebelwerfer script errors (bug-1801) |
+| `871049ae` | 2026-08-14 | joncurry94-tech | docs: regenerate public challenge pages after the wiring pass |
+| `0c202c9a` | 2026-08-14 | joncurry94-tech | tooling: teach the checker about the chal_quiet_feat wrapper |
+| `65aa813f` | 2026-08-14 | joncurry94-tech | tooling: check derived faction supply instead of exempting it |
+| `136a6f84` | 2026-08-14 | joncurry94-tech | tooling: prove at build time that every challenge can be earned |
+| `afea0c2e` | 2026-08-14 | joncurry94-tech | publish: send the Discord body as UTF-8 bytes |
+| `2e11a4d4` | 2026-08-14 | joncurry94-tech | docs: regenerate challenge pages after retune |
+| `952e8302` | 2026-08-13 | joncurry94-tech | docs: unlockables chart, and be honest about state and debug tools |
+| `d6825bd7` | 2026-08-13 | joncurry94-tech | publish: repair the updater fallback and the tooling that broke it |
+| `704cf137` | 2026-08-13 | joncurry94-tech | manifest 1.2.8 |
+| `4acd1e0a` | 2026-08-13 | joncurry94-tech | docs: generate the public documentation set |
+| `aaa9876f` | 2026-08-13 | joncurry94-tech | manifest 1.2.7 |
+| `bd69d653` | 2026-08-13 | joncurry94-tech | docs: m6l2a stealth session - traps, open items, and the generated sweep |
+| `e5e437c4` | 2026-08-11 | joncurry94-tech | stealth: per-map gate, m6l1c opt-in, and papers for late joiners |
+| `91b337de` | 2026-08-11 | joncurry94-tech | docs: plan for carrying the m2l2a stealth layer to the other disguise maps |
+| `6a79f94f` | 2026-08-11 | joncurry94-tech | postfx: re-enable DoF - the bug-1629 fix had never reached the live install |
+| `ea80cec4` | 2026-08-11 | joncurry94-tech | publish: gate the release on the What's New card matching the version |
+| `4df7811d` | 2026-08-11 | joncurry94-tech | Ship the m2l2a stealth route + Phase C contain ON by default |
+| `a0f6a335` | 2026-08-11 | joncurry94-tech | manifest 1.2.6 |
+| `2d1df983` | 2026-08-10 | joncurry94-tech | Phase C: player-initiated contain on m2l2a, plus the fixes it uncovered |
+| `42ad7cd7` | 2026-08-10 | joncurry94-tech | docs: add the OpenWolf authored + generated doc set |
+| `0be41cf3` | 2026-08-10 | joncurry94-tech | manifest 1.2.5 |
+| `a5c37b6e` | 2026-08-09 | joncurry94-tech | manifest 1.2.4 |
+| `3b9ac624` | 2026-08-08 | joncurry94-tech | manifest 1.2.3 |
+| `180f0aa8` | 2026-08-07 | joncurry94-tech | manifest 1.2.201 |
+| `0f3a0b1d` | 2026-08-07 | joncurry94-tech | manifest 1.2.2 |
+| `a0d0cfbb` | 2026-08-06 | joncurry94-tech | README: document Service Record/Challenges, v1.2.1 audio + e2l3 fixes |
+| `5d5efd4b` | 2026-08-06 | joncurry94-tech | manifest 1.2.1 |
+| `40b21bbb` | 2026-08-03 | joncurry94-tech | manifest 1.2.0 |
+| `216f7ca9` | 2026-07-26 | joncurry94-tech | manifest 1.1.55 |
+| `5ce4f21e` | 2026-07-23 | joncurry94-tech | manifest 1.1.54 |
+| `df769b8a` | 2026-07-23 | joncurry94-tech | manifest 1.1.53 |
+| `7b76da41` | 2026-07-22 | joncurry94-tech | manifest 1.1.52 |
+| `49ab4218` | 2026-07-21 | joncurry94-tech | publish: stage engine binaries from deployed GOG root (canonical tested set) |
+| `aa8a1825` | 2026-07-21 | joncurry94-tech | manifest 1.1.51 |
+| `5ae6ace7` | 2026-07-20 | joncurry94-tech | manifest 1.1.50 |
+| `52bcd680` | 2026-07-18 | joncurry94-tech | manifest 1.1.49 |
+| `78ce86a5` | 2026-07-16 | joncurry94-tech | v1.1.48: publish script + wolf logs |
+| `c1ca958e` | 2026-07-14 | joncurry94-tech | manifest 1.1.48 |
+| `35274721` | 2026-07-12 | joncurry94-tech | manifest 1.1.47 |
+| `01ba4da1` | 2026-07-11 | joncurry94-tech | manifest 1.1.46 |
+| `a719d2c1` | 2026-07-11 | joncurry94-tech | manifest 1.1.45 |
+| `9eefb008` | 2026-07-10 | joncurry94-tech | publish_release: drop the removed KUN weapons pack from the staging list |
+| `08bfad68` | 2026-07-10 | joncurry94-tech | manifest 1.1.44 |
+| `36001709` | 2026-07-10 | joncurry94-tech | updater: generate loose maintt/coop_reportwebhook.cfg from updater.ini for the in-game Report a Bug |
+| `f86b6de6` | 2026-07-10 | joncurry94-tech | README: love-letter tagline + up to 16 players (4 for the true experience) |
+| `afbe0b03` | 2026-07-09 | joncurry94-tech | manifest 1.1.43 |
+| `381b4c5e` | 2026-07-09 | joncurry94-tech | manifest 1.1.42 |
+| `d54f8c0a` | 2026-07-07 | joncurry94-tech | rendezvous: one-paste Ubuntu installer (zero-Linux-knowledge path) |
+| `514b9bdb` | 2026-07-07 | joncurry94-tech | NAT phase 1: rendezvous daemon (verified end-to-end locally) + Oracle Always-Free setup guide |
+| `a1bab3df` | 2026-07-07 | joncurry94-tech | README: full feature catalog incl. XP/ranks, cover, view modes, .30cal 3P + honest rough-edges section; roadmap refresh (NAT, ski… |
+| `f7012fb7` | 2026-07-07 | joncurry94-tech | v1.1.41: cover 2.0 aim-follow, .30cal gunner overhaul, shoulder-aim raise+speed, officer player-count scaling, 1P FOV + persisten… |
+| `6f44cf91` | 2026-07-07 | joncurry94-tech | manifest 1.1.41 |
+| `a4fa47c8` | 2026-07-06 | joncurry94-tech | manifest 1.1.40 |
+| `068ad542` | 2026-07-06 | joncurry94-tech | README: add Discord community links |
+| `74018ab3` | 2026-07-06 | joncurry94-tech | manifest 1.1.39 |
+| `1e152f6c` | 2026-07-06 | joncurry94-tech | manifest 1.1.38 |
+| `2393f452` | 2026-07-06 | joncurry94-tech | manifest 1.1.37 |
+| `4a09756c` | 2026-07-06 | joncurry94-tech | manifest 1.1.36 |
+| `151bdb29` | 2026-07-05 | joncurry94-tech | manifest 1.1.35 |
+| `2dec3e09` | 2026-07-05 | joncurry94-tech | publish: upload assets under manifest name when source filename differs (v1.1.34 rollout 404) |
+| `6a77b3fb` | 2026-07-05 | joncurry94-tech | manifest 1.1.34 + DXT hdmem pack staging/installer wiring |
+| `55ea3603` | 2026-07-05 | joncurry94-tech | Updater v3: Update Complete popup, What's New card trigger + seed, path-traversal guard |
+| `a657c266` | 2026-07-05 | joncurry94-tech | manifest 1.1.33 |
+| `7ad9c380` | 2026-07-05 | joncurry94-tech | manifest 1.1.32 |
+| `6977b909` | 2026-07-05 | joncurry94-tech | manifest 1.1.31 |
+| `c2ef4f92` | 2026-07-05 | joncurry94-tech | Updater v2 (mutex, live progress, safe hash), deterministic pk3 builds, publish hardening |
+| `e9bd4d73` | 2026-07-05 | joncurry94-tech | manifest 1.1.3 |
+| `77a26f0c` | 2026-07-05 | joncurry94-tech | manifest 1.1.2 |
+| `9170e5b9` | 2026-07-04 | joncurry94-tech | publish: rename manifest asset post-undraft (draft tags do not resolve via /tags/) |
+| `2f36b7b0` | 2026-07-04 | joncurry94-tech | manifest 1.1.1 |
+| `5c79410f` | 2026-07-04 | joncurry94-tech | manifest 1.1.0 |
+| `859c3ff2` | 2026-07-04 | joncurry94-tech | README: complete feature inventory + per-map fixes section, alpha SFX note |
+| `7e0e7939` | 2026-07-04 | joncurry94-tech | Reporter joins the auto-update channel (secret-free) |
+| `4e5e3077` | 2026-07-04 | joncurry94-tech | Reporter v2: tester description dialog, webhook via updater.ini (script now secret-free) |
+| `677b7df5` | 2026-07-04 | joncurry94-tech | README: prominent early-alpha notice with bug-reporting paths |
+| `79e773ba` | 2026-07-04 | joncurry94-tech | Badge: saturation-based checker removal (vignetted checkers survived the brightness mask) |
+| `fcda3477` | 2026-07-04 | joncurry94-tech | Badge: true transparency (removed baked checker pockets) |
+| `874a9cb6` | 2026-07-04 | joncurry94-tech | Allowlist resume_publish.ps1 |
+| `3fc43f29` | 2026-07-04 | joncurry94-tech | Project page: features, roadmap, credits, install guide + publish resume tool |
+| `97d9aed1` | 2026-07-04 | joncurry94-tech | Phase 1 completion: updater + publisher in repo, webhook leak-proofing in packaging |
+| `2031916c` | 2026-07-04 | joncurry94-tech | Phase 1 auto-update: pk3 3-way split, launch-time updater, release publisher, installer 1.1.0 |
+| `4d8e0969` | 2026-07-04 | joncurry94-tech | Release pipeline: build script + Inno Setup installer sources |
 
 ## `hzm-mohaa-coop-mod` — the mod: scripts, cfg, ui, assets
 
 | | |
 |---|---|
-| branch | `coop-wip` |
-| HEAD | `7a3e3f77 2026-09-14 mp: Gun Game death-reset, Hardcore speed fix, DBNO/Medkits default ON, closet 3-way loadout` |
-| commits | 1,684 |
+| branch | `hotfix-1.10.53` |
+| HEAD | `42d9d018 2026-11-10 v1.10.74 hotfix: What's New + version (MP DEPLOY spawn fix)` |
+| commits | 2,806 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **129 modified, 224 untracked** |
-| unstaged diff | 129 files changed, 7810 insertions(+), 2380 deletions(-) |
-
-> Working tree is dirty. Everything in those 353 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 93 |
+| 2026-11 | 372 |
+| 2026-10 | 727 |
+| 2026-09 | 116 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -383,10 +1121,1132 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (335)
+### Commits since 2026-01-01 (1457)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `42d9d018` | 2026-11-10 | joncurry94 | v1.10.74 hotfix: What's New + version (MP DEPLOY spawn fix) |
+| `e2127e96` | 2026-11-10 | joncurry94 | opsfix2-hotfix: the MP poll no longer stalls on mp_deploy (dedicated joiners' armory armed ~30 s late) |
+| `8539dd18` | 2026-11-10 | joncurry94 | opsfix2: MP armory DEPLOY never spawned the player on objective / round / TOW / LIB maps |
+| `3280c803` | 2026-11-10 | joncurry94 | v1.10.73 hotfix: What's New + version (Live Ops buttons, bench keeps work, all guns engravable) |
+| `3e473274` | 2026-11-10 | joncurry94 | Merge branch 'opsfix' into hotfix-1.10.53 |
+| `0dc1fec1` | 2026-11-10 | joncurry94 | opsfix: Field Operations card DEPLOY / FILE AWAY did nothing on a real click (v1.10.72) |
+| `2e34f9ad` | 2026-11-10 | joncurry94 | benchfix2: bench SAVE / BACK / ESC (escapecommand) all run hzmcust done - keep the work and return to the Armory; 'leaving keeps… |
+| `ef7b07ae` | 2026-11-10 | joncurry94 | Merge hotfix-1.10.53 (v1.10.72) into benchfix |
+| `9a4e16c6` | 2026-11-10 | joncurry94 | benchfix: engraving spots for the 21 newer armory guns (Bren, MP28, Panzerfaust, BAR / Lewis variants, Pacific / Trench / G98 / P… |
+| `768b0aa3` | 2026-11-10 | joncurry94 | v1.10.72 What's New card + version (Live Fire: Live Operations, Advanced Training, bench, loading clips) |
+| `959b9af2` | 2026-11-10 | joncurry94 | v1.10.72 integration: weapon viewer regenerated, m0.cfg browser-name comment |
+| `96213a1b` | 2026-11-10 | joncurry94 | benchfix: wood carvings cut through the stain - the blade's alpha takes the stain away and puts lit raw wood back, then the cut's… |
+| `680c79ec` | 2026-11-10 | joncurry94 | Merge mapclips70 (v1.10.72): loading clip rules for the own-disc missions |
+| `c0337003` | 2026-11-10 | joncurry94 | Merge benchfix (v1.10.72): bench face grids, use lines for every finish variant, widget tilt, MOVE steps |
+| `b064be64` | 2026-11-10 | joncurry94 | Merge advtrain (v1.10.72): Advanced Training on m4l0, attic TRAINING sheet, basic training fixes |
+| `3a90596f` | 2026-11-10 | joncurry94 | Merge liveops (v1.10.72): Live Operations contracts on the NEW GAME war map, mp_ops.scr TDM/OBJ |
+| `eb0570b5` | 2026-11-10 | joncurry94 | advtrain: range bash dummy (the hay bale) moved 170u behind the firing line, out of the range view; feed line says turn round |
+| `6faf6040` | 2026-11-10 | joncurry94 | benchfix: face grids per spot (MOVE limits, hand-checked), use lines for every finish variant, bench widget tilts (modeltiltcvar)… |
+| `7e98f62f` | 2026-11-10 | joncurry94 | advtrain: attic training cards go through the Apply path (coop_mod/cfg/mission_start.cfg: pre-mission lobby, then the map); basic… |
+| `b8fef898` | 2026-11-10 | joncurry94 | advtrain attic: TRAINING practice target (hotspot 20) + the two-card TRAINING sheet |
+| `46ebf55a` | 2026-11-10 | joncurry94 | mapclips70: ui/loadclips.txt rules for the own-disc missions (coop_fl_1_1, coop_ea_1_11) - regenerated by gen_mapclips.py pack |
+| `5e12b86b` | 2026-11-10 | joncurry94 | liveops: card and slip type in courier-16 (courier-20 scaled down clipped glyph edges: B read 3, f read 2) |
+| `0d2c96d4` | 2026-11-10 | joncurry94 | liveops: pool pruned by the 300 s sweep (Malta, Berlin TDM, Omaha OBJ out), SICILY tag back where v1.10.70 had it |
+| `b3a8fcaa` | 2026-11-10 | joncurry94 | advtrain: second harness pass - DBNO-safe wounding, PLAYERCLIP ground traces, medic yard, real team-heal self-test |
+| `9c0a4acb` | 2026-11-10 | joncurry94 | liveops: OBJ result from the allieswin/axiswin/draw event, bots held until the player joins, payout marker with the XP total; sli… |
+| `09353cf8` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into advtrain |
+| `8fba0334` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into liveops |
+| `167bffcc` | 2026-11-10 | joncurry94 | advtrain: Advanced Training on m4l0 (coop_advTraining 1) - eleven stations driving the real coop features |
+| `c7cc8867` | 2026-11-10 | joncurry94 | liveops: contracts on the NEW GAME war map + mp_ops.scr (TDM and sapper OBJ against bots) |
+| `6086783f` | 2026-11-10 | joncurry94 | v1.10.71 hotfix: What's New card + version (rack clickable, card player) |
+| `79085742` | 2026-11-10 | joncurry94 | rackfix: cue hold re-arms when the cursor enters the middle half of the screen (hzm_hubcuerearm) - a cfg-delayed uiafter could le… |
+| `746ee3cf` | 2026-11-10 | joncurry94 | rackfix: MP room rack clickable again - scripted rack view (hover < RACK turns, right quarter returns), no engine scenepeek; cue… |
+| `2294f3eb` | 2026-11-10 | joncurry94 | v1.10.70 What's New card + version |
+| `db28ac7d` | 2026-11-10 | joncurry94 | v1.10.70 integration: weapon viewer regenerated on the merged tree |
+| `a0a8a380` | 2026-11-10 | joncurry94 | Merge attic70 (v1.10.70): OWN DISCS film cans, war map to Stalingrad, own-disc leaders (pak 322799a5) |
+| `4fbee635` | 2026-11-10 | joncurry94 | Merge byo70 (v1.10.70): Saving Private Castro challenge, own-disc dialogue includes, SP replace.scr guard, counter hold fix |
+| `fecae30c` | 2026-11-10 | joncurry94 | byo70: counter hold ending before its first wave (bug-10806); rescue self-test also covers the released officer |
+| `4221682e` | 2026-11-10 | joncurry94 | hzm_ng3campaigns.shader: the two own-disc leader shaders (make_ng3campaigns.py, v1.10.70) |
+| `d5a7762b` | 2026-11-10 | joncurry94 | attic v1.10.70: own-disc tags get their dashed leaders (gated labels); ST. MATHIEU tag beside Brittany, BASTOGNE nudged (pak 3227… |
+| `e638df46` | 2026-11-10 | joncurry94 | attic v1.10.70: OWN DISCS film cans in the attic + the war map widened east to Stalingrad (pak edaba3d2) |
+| `ea4925f0` | 2026-11-10 | joncurry94 | byo70: Saving Private Castro challenge, own-disc dialogue includes, SP withinDistance guard, self-test exit/rescue hooks |
+| `1f584d04` | 2026-11-10 | joncurry94 | Merge branch 'attic-window' into hotfix-1.10.53 |
+| `9de8179c` | 2026-11-10 | joncurry94 | attic v1.10.69: MP room card player - one chest-height card loop, the face-raising cycles dropped (pak 78c03994) |
+| `b3989700` | 2026-11-10 | joncurry94 | multiplayer.urc: PROMOTIONS notice also resets coop_mpSrP6 |
+| `a4f4ae50` | 2026-11-10 | joncurry94 | multiplayer.urc: PROMOTIONS notice also resets coop_mpSrP6 |
+| `7a4b7c5e` | 2026-11-10 | joncurry94 | v1.10.69 What's New card + version |
+| `98a85619` | 2026-11-10 | joncurry94 | v1.10.69 integration: own-disc lock icon off the MP token, ea1/fl1 difficulty screens carry the attic window lines |
+| `ef64c3f4` | 2026-11-09 | joncurry94 | Merge byo69: Frontline / European Assault own-disc missions (locked tiles, campaigns, OWN DISCS sheet) |
+| `2368465b` | 2026-11-09 | joncurry94 | Merge attic-window: MP room lived in (posters, notice board, radio, card-table soldier, stove), rack on the MP wall, projector sc… |
+| `2aeb5fd8` | 2026-11-09 | joncurry94 | Merge newguns2: the Bren returns (sights rebuilt) |
+| `f241fb2d` | 2026-11-09 | joncurry94 | attic v1.10.69: MP room round 2 - radio hotspot on the footlocker, notice-board view raised (pak a550dbbb) |
+| `38a20dee` | 2026-11-09 | joncurry94 | attic v1.10.69: MP room props (scene lines) - notice board + its scripted peek, radio hotspot, card-table soldier |
+| `9d4e9c27` | 2026-11-09 | joncurry94 | newguns2: Bren back on (challenge, kill stat, roster case 82) + regenerated loadout / viewer / skins / finish ladders / service r… |
+| `5198c1e8` | 2026-11-09 | joncurry94 | attic v1.10.68: WWII posters in the MP room (scene lines) + credits |
+| `ba1ea142` | 2026-11-09 | joncurry94 | attic v1.10.68: MP room rack further left (hotspot, peek, viewer pose), town scene lines |
+| `2c00bfc0` | 2026-11-09 | joncurry94 | byo v1.10.69: chrono test walk (coop_chronoTest) also drives the Full Campaign; BYO_NEXT log line for the Full Campaign hand-off |
+| `8b339f79` | 2026-11-09 | joncurry94 | attic v1.10.68: rack hotspot moved to the MP room (scenepeek + < RACK cue, viewer room = hub), projector turned + pull-down scree… |
+| `67ac5c3b` | 2026-11-09 | joncurry94 | byo v1.10.69: the locked own-disc sheet is drawn inside the co-op map select, centred over it with a dim layer (was a pushed menu… |
+| `0f7f7362` | 2026-11-09 | joncurry94 | v1.10.68 What's New card + version |
+| `d0609e98` | 2026-11-09 | joncurry94 | byo v1.10.69: co-op map select - FRONTLINE and EUROPEAN ASSAULT campaigns listed with the others (make_mpui.py), tile locked with… |
+| `36e69714` | 2026-11-09 | joncurry94 | Merge attic-window: town rework + distance rework scene lines |
+| `777d1367` | 2026-11-09 | joncurry94 | Merge engrave: engraving + Customize bench |
+| `3200d228` | 2026-11-09 | joncurry94 | Merge newguns: MP 28 and Panzerfaust (Bren held, switched off) |
+| `f8cd16e7` | 2026-11-09 | joncurry94 | Merge finishes2: second finish set (fids 40-52) |
+| `5d9099f8` | 2026-11-09 | joncurry94 | byo v1.10.69: own-disc missions in every campaign - SP NEW GAME map (pins/tags gated, chrono order 14 missions), coop_mod/byo_cam… |
+| `dddee53b` | 2026-11-09 | joncurry94 | v1.10.68 cut: the Bren held back (switched off, nothing deleted): its unlock challenge and kill-stat token renamed _HELD in comme… |
+| `a2d98461` | 2026-11-09 | joncurry94 | attic window: scene lines for the distance rework (hills / trees two-pass models) |
+| `f15a7731` | 2026-11-09 | joncurry94 | byo v1.10.69: OWN DISCS sheet - European Assault row live (ADD / RE-CONVERT via coop_byoconvert ea); What's New line names both g… |
+| `5a04d767` | 2026-11-09 | joncurry94 | byo v1.10.69: European Assault pilot coop_ea_1_11 (THEIR DYING BREATH) tracked: map script, RUS1 intro briefing room, spawn slots… |
+| `cd9c25f6` | 2026-11-09 | joncurry94 | attic window v1.10.68: town rework scene lines (two-pass HD-textured town, chunked models, per-vertex banners) |
+| `cb1895c7` | 2026-11-09 | joncurry94 | Engraving: engrave_short spots (34 guns, hand-checked) + quad3 + wood3/metal3 shaders; 17 hand-covered emblem spots removed after… |
+| `c461f07e` | 2026-11-09 | joncurry94 | Merge hotfix-1.10.53 into engrave |
+| `0e4b3914` | 2026-11-09 | joncurry94 | Customize bench: ZOOM button, mesh bounds per gun in the anchor table (bench framing), gun name hidden without a gun |
+| `9660e54b` | 2026-11-09 | joncurry94 | Customize bench: named spots for all 72 guns (receiver_l 68, top 63, butt 18, stock_l 10, grip 8; 60 guns with an emblem-sized sp… |
+| `f54eaa8f` | 2026-11-09 | joncurry94 | byo v1.10.68: YOUR OWN DISCS - Settings -> OWN DISCS sheet (ui/coop_byodisc.urc: status, ADD / RE-CONVERT via coop_byoconvert), c… |
+| `8a3a3fd7` | 2026-11-09 | joncurry94 | credits: the Bren, MP 28 and Panzerfaust 60 CC BY models |
+| `45dc0884` | 2026-11-09 | joncurry94 | Customize bench: Armory CUSTOMIZE button + ui/coop_custom.urc (words field, emblem/spot steppers, move/tilt/size/mirror, save), e… |
+| `7c2c5fa1` | 2026-11-09 | joncurry94 | newguns: finishes2 coverage for the Bren / MP 28 / Panzerfaust (fids 40-52, ranks 2910-2948, 949 rows), finish ladders, Armory /… |
+| `3019d7ec` | 2026-11-09 | joncurry94 | attic v1.10.67: New Game scenes use the cut desk-prop models (nothing in front of the war map) |
+| `9179eaa1` | 2026-11-09 | joncurry94 | Merge finishes2 into newguns (viewer pages taken from finishes2; regenerated after) |
+| `36d0bf0f` | 2026-11-09 | joncurry94 | Merge branch 'hotfix-1.10.53' into newguns |
+| `a2ed52cc` | 2026-11-09 | joncurry94 | Merge branch 'frontline' into byo68 |
+| `580a4a40` | 2026-11-09 | joncurry94 | finishes2: second finish set wired (fids 40-52, v1.10.68) |
+| `f8b93bd8` | 2026-11-09 | joncurry94 | Merge attic-window: window SOUND tab (OFF/LOW/MED) |
+| `3a42effb` | 2026-11-09 | joncurry94 | attic v1.10.67: the window SOUND tab cycles OFF / LOW / MED (ui_wxAmbLevel) |
+| `954ff623` | 2026-11-09 | joncurry94 | v1.10.67 What's New card + version |
+| `2999a27d` | 2026-11-09 | joncurry94 | Merge viewclip: view weapon near plane r_weaponznear 0.6 |
+| `5c9892ce` | 2026-11-09 | joncurry94 | Merge attic-window: window view, skylight, LOOK UP, planes, banners, ambience, tank + chatter |
+| `f3412c82` | 2026-11-09 | joncurry94 | coop MP menu: dm/mohdm3 is Remagen, dm/mohdm7 is Algiers; drop uninstalled mp_castello_dm |
+| `631da8dc` | 2026-11-09 | joncurry94 | attic v1.10.67: town windows below the eaves, regenerated scene lists |
+| `b7f5e32c` | 2026-11-09 | joncurry94 | attic v1.10.67: two banners on the near facades in the look-out view, regenerated scene lists |
+| `573a38b8` | 2026-11-09 | joncurry94 | attic v1.10.67: banners face the eye, the skylight's cloud sky, regenerated scene lists |
+| `72775bcb` | 2026-11-09 | joncurry94 | engraving: anchors for all 72 guns (672 weapon tiks incl. finishes), hand-checked in game (0 fail), check shader |
+| `70c50923` | 2026-11-09 | joncurry94 | attic v1.10.67: LOOK UP (the skylight view) and the aircraft models in the scene lists |
+| `83192d3d` | 2026-11-09 | joncurry94 | coop_fl_1_1 execution: after the shot the officer holsters and returns to his stance (the torso pistol_aim made him re-raise the… |
+| `d64a4061` | 2026-11-09 | joncurry94 | coop_fl_1_1 execution: keep the ORIGINAL prisoner (a script_model copy has no head - headmodel is Actor-only); OSS_hit_3 then pau… |
+| `eda0b2d3` | 2026-11-09 | joncurry94 | coop_fl_1_1 execution: pistol anims on the officer's upper body over the German_hit_idle stance (as anim_scripted he stopped draw… |
+| `f075102b` | 2026-11-09 | joncurry94 | coop_fl_1_1: FLOFFPOS diagnostics for the officer's execution spot |
+| `242f3f2b` | 2026-11-09 | joncurry94 | coop_fl_1_1 execution: the officer steps in front of Castro (walkto 46u along his facing), then is locked (AI off, faced at him)… |
+| `a25adfda` | 2026-11-09 | joncurry94 | coop_fl_1_1: test room-clear compares against fl_castroSeat (a vector, not an entity: 58 Script Errors); NIL-safe removes |
+| `442b151d` | 2026-11-09 | joncurry94 | coop_fl_1_1 execution: no real death - inert script_model body plays OSS_hit_3 in the seat, actor hidden/nodamage/AI off, flagged… |
+| `b25edff8` | 2026-11-09 | joncurry94 | attic v1.10.67: the bigger gable window, the skylight, banners, ambience switch |
+| `cf940a54` | 2026-11-09 | joncurry94 | coop_fl_1_1: join card title SEALED ORDERS (user; RETURN TO SENDER clashed with daily #57) |
+| `2b617e33` | 2026-11-09 | joncurry94 | coop_fl_1_1: join card RETURN TO SENDER (user's title) with St. Mathieu, France / August 17, 1944 - 0900 hrs / OSS; comment no lo… |
+| `03ca2489` | 2026-11-09 | joncurry94 | newguns: Bren torso reloads use its own magazine prop; Panzerfaust joins the rocket-class AIM exclusion |
+| `03eab3bc` | 2026-11-09 | joncurry94 | coop_fl_1_1: physics_off on the prisoner before the shot so his corpse stays in the seat (it dropped and knelt beside the chair) |
+| `b51d7ede` | 2026-11-09 | joncurry94 | newguns: state rows (Bren on the VB rows with its own reload aliases, MP28 on the Sten rows, Panzerfaust on the rocket rows), Pan… |
+| `8be3364a` | 2026-11-09 | joncurry94 | coop_fl_1_1: executed prisoner dies with the interrogation set's OSS_hit_3 (ends slumped in the seat); chair_death_* is authored… |
+| `8c5f8178` | 2026-11-09 | joncurry94 | frontline: the stock interrogation chair is shown under the prisoner (Frontline's stool hidden) |
+| `c412990d` | 2026-11-09 | joncurry94 | frontline: test modes 6/7 ignore the approach release (GIF camera stands near the chair) |
+| `6f3f6b50` | 2026-11-09 | joncurry94 | frontline: place fl_modelmap props (breakable crates) and the supply-drop marker |
+| `a7c8f811` | 2026-11-09 | joncurry94 | attic v1.10.67: the gable window looks outside - live time of day and weather |
+| `97ee70a3` | 2026-11-09 | joncurry94 | frontline: briefing/briefingfl1 (Frontline mission 1 briefing film, the stock briefinge1 coop recipe) + its spawnlocations label |
+| `2515d230` | 2026-11-09 | joncurry94 | engraving: two-line quad + shaders (brighter steel), anchors regenerated (legibility score, 9 guns) |
+| `c190e3df` | 2026-11-09 | joncurry94 | engraving: quad model, wood/metal shaders, generated anchor table (9 guns measured) |
+| `e66f394c` | 2026-11-09 | joncurry94 | frontline: optional rescue of Pvt. Castro (m1l2a chair recipe) or a timed P38 execution between interrog_5 and interrog_6; office… |
+| `26a8440c` | 2026-11-09 | joncurry94 | frontline: patrol places the box at floor height (as the engine spawns); ally[14] spawn/move self-check |
+| `6af2212f` | 2026-11-09 | joncurry94 | frontline: patrol self-test prints FLPATROLDIAG for stuck points (world vs entity, +24u) |
+| `9bb365cf` | 2026-11-09 | joncurry94 | viewclip: r_weaponznear 0.6 - the view weapon's near plane (now used at the hip too) clears every aimed bolt/reload frame |
+| `a46352ce` | 2026-11-09 | joncurry94 | frontline: interrogation chair on the floor (officer spawn height), tag_oss aligned over Frontline's stool |
+| `29565549` | 2026-11-09 | joncurry94 | frontline: revert the pain.scr unarmed fallback - the real cause was the map name (bug-10645); coop_fl_* maps load the stock unar… |
+| `eb962bf5` | 2026-11-09 | joncurry94 | Merge hotfix-1.10.53 (v1.10.66) into frontline |
+| `4811fcef` | 2026-11-09 | joncurry94 | New Game: AA/SH difficulty scenes get the attic desk/blueprint models (merge renamed only the BT ones, bug-10647) |
+| `bd124bd7` | 2026-11-09 | joncurry94 | v1.10.66 What's New card + version |
+| `1884497c` | 2026-11-09 | joncurry94 | Merge fg42hd: wood-stock FG42 (irons + scoped), ZFG42 reticle, viewer credits |
+| `d6c82ece` | 2026-11-09 | joncurry94 | Merge attic-blueprint: blueprint, desk atlases, 3D records, phone dials, MP live clock, new war map |
+| `d4267838` | 2026-11-09 | joncurry94 | Merge spfix2: SP all-campaign New Game war map, chrono/vanilla locks, SP fixes, map loading clips |
+| `ec1e140f` | 2026-11-09 | joncurry94 | attic v1.10.66: crisp rotary dials on every phone (hzm_dial_* face models, one dedicated texture) |
+| `abf1ce85` | 2026-11-09 | joncurry94 | attic v1.10.66: the New Game scenes follow the desk / desk2 model lists |
+| `0595a9f8` | 2026-11-09 | joncurry94 | attic v1.10.66: desk props in two atlases (desk, desk2), satin metals, the ledger's cloth, the medal box's brass corners, 10-inch… |
+| `60506a43` | 2026-11-09 | joncurry94 | loading screens: the war-map zoom with the join card's lines for every map; live soldiers off by default |
+| `7a181357` | 2026-11-08 | joncurry94 | frontline: rename the pilot map to coop_fl_1_1 (TIKI includes prefix); drop the mfl_ case from isCoopEnabledMap (main.scr back to… |
+| `1d08bc96` | 2026-11-08 | joncurry94 | frontline: SP mission end returns to the main menu like the stock game (disconnect), never via co_lobby1 |
+| `67f4616b` | 2026-11-08 | joncurry94 | lobby: auto-spawn loop exits in single player (.dmteam invalid in SP, bug-10636) |
+| `0258e1b8` | 2026-11-08 | joncurry94 | frontline: interrogation staged on the stock m1l2a recipe (interrogation chair tags, OSS_hit_*/German_hit_*, release on hit or ap… |
+| `c8a7c781` | 2026-11-08 | joncurry94 | attic v1.10.66: the general's blueprint, the desk-prop quality pass, 3D gramophone records, the MP room's live clock |
+| `a4575e92` | 2026-11-08 | joncurry94 | frontline: mfl_ maps count as coop maps (isCoopEnabledMap) - fixes SP-branch missioncomplete Script Errors (bug-10631) |
+| `59738bbe` | 2026-11-08 | joncurry94 | mfl_1_1 real-input test: park closer to the objective |
+| `2b4c5ef3` | 2026-11-08 | joncurry94 | sp3camp: one mission table drives the map, locks, chooser and SP progress |
+| `4b163f06` | 2026-11-08 | joncurry94 | mfl_1_1: coop_fltest 3 = real-input test (players parked short of each objective; they walk in and press use) |
+| `ff9e5c25` | 2026-11-08 | joncurry94 | mfl_1_1: solid use triggers, seated prisoner, FLUSE trace prints |
+| `edc3d2ba` | 2026-11-08 | joncurry94 | fg42hd: viewer credit for the scoped FG 42 - the scope is the shipped one again (gen_weapon_viewer) |
+| `030d9385` | 2026-11-08 | joncurry94 | anim/pain.scr: unarmed (disarmed) actors use the rifle pain set - stock tiks lack unarmed_pain_* (Script Errors on mfl_1_1) |
+| `44b6f17c` | 2026-11-08 | joncurry94 | mfl_1_1: barrels go off on the first hit; one stand-in model |
+| `5b141555` | 2026-11-08 | joncurry94 | mfl_1_1: set pieces (tank + P-47 run, jeep, landmines, exploding barrels, field phone, interrogation pose), no sailor stand-ins |
+| `1e9dc06b` | 2026-11-08 | joncurry94 | feat: SP New Game - chronological by default; flat menus use the shared war map |
+| `64b5b6b0` | 2026-11-08 | joncurry94 | mfl_1_1: correct rifle name for stand-ins |
+| `62b33f51` | 2026-11-08 | joncurry94 | fg42hd: scoped FG 42 - Armory hero refit on the new body + ZFG 42 (armory_fit), viewer credits name Shorty_Digitan's model (gen_l… |
+| `29fd9bfb` | 2026-11-08 | joncurry94 | mfl_1_1 patrol: stuck needs in-solid and no movement |
+| `b0cba815` | 2026-11-08 | joncurry94 | mfl_1_1 patrol: stuck trace ignores entities |
+| `ebadf0bd` | 2026-11-08 | joncurry94 | mfl_1_1: coop_fltest 2 patrol (fall-through / stuck per Frontline placement point) |
+| `6a08b2e4` | 2026-11-08 | joncurry94 | spcampaign: bug id for the SP progress hooks (bug-10616) |
+| `17b65d93` | 2026-11-08 | joncurry94 | feat: SP New Game wall map - all 12 missions, VANILLA \| CHRONOLOGICAL, real unlocks |
+| `6fc7e7c9` | 2026-11-08 | joncurry94 | mfl_1_1: arm the stand-in soldiers (unarmed spawns died via missing unarmed_pain anims) |
+| `d527ef03` | 2026-11-08 | joncurry94 | feat: single-player NEW GAME offers Allied Assault, Spearhead and Breakthrough |
+| `6bef49a7` | 2026-11-08 | joncurry94 | fg42hd: credit Shorty_Digitan's FG42 (CC BY 4.0, modified) in hzm_credits.txt |
+| `1f88d3e6` | 2026-11-08 | joncurry94 | fg42hd: FG 42 Irons finishes regenerated on the new mesh's sheet (gen_skins add; tiks + bakes in the wpnfix pak) |
+| `be293f15` | 2026-11-08 | joncurry94 | mfl_1_1 self-test: wait for coop_fltestPlayers players |
+| `4384e090` | 2026-11-08 | joncurry94 | mfl_1_1: self-test stops before mission end (bot-only server is not coop mode) |
+| `edf74f6d` | 2026-11-08 | joncurry94 | Frontline pilot mfl_1_1: coop mission script (drop, roster, wall, dock, crate) + spawn label |
+| `3c2ec9e7` | 2026-11-08 | joncurry94 | Merge branch 'armoryfix' into hotfix-1.10.53 |
+| `3e4f2183` | 2026-11-08 | joncurry94 | armoryfix: the PRI 1 / PRI 2 / SIDE / NADE slot tiles carry modelfitaspect too |
+| `29fc137c` | 2026-11-08 | joncurry94 | fix: single-player new game reaches the first mission again |
+| `ba280541` | 2026-11-08 | joncurry94 | armoryfix: Armory framing re-measured on the current models (hero / card / slot tables, the M3 faced backwards in the hero), ever… |
+| `4d3fda83` | 2026-11-08 | joncurry94 | armoryfix: every Armory model widget carries modelfitaspect 1.7778 (the screen aspect its transforms were measured at; engine arm… |
+| `61414171` | 2026-11-08 | joncurry94 | daily orders: carbine (rifle) and lewis (mg) weapon classes for the new v1.10.65 kill stats |
+| `1a94d3bd` | 2026-11-08 | joncurry94 | v1.10.65 What's New card + version |
+| `b413357f` | 2026-11-08 | joncurry94 | camo65: the retail suppressor sheet (colt45s2) stays stock under camo / blood (a camo bake of it read as a dark smear on the can) |
+| `9316c433` | 2026-11-08 | joncurry94 | camo65: finishes regenerated - the diffuse, not the Soares93 gloss layer, is the base (garand_silenced, springfield_unscoped); ba… |
+| `334ddcbf` | 2026-11-08 | joncurry94 | camo65: the standard seven finishes for the 27 Armory guns that had none |
+| `4f626b47` | 2026-11-08 | joncurry94 | Armory: remove the leftover card-chain cfgs of the retired slots 34 (second M38) and 71 (gold Thompson) - they still exec'd the d… |
+| `c71cc49e` | 2026-11-08 | joncurry94 | v1.10.64 What's New: title cards line |
+| `d4cc2779` | 2026-11-08 | joncurry94 | Merge branch 'joincard' into hotfix-1.10.53 |
+| `a9f5c2d3` | 2026-11-08 | joncurry94 | joincard: Sicily levels show 82nd Airborne Division (the game's own dialogue) |
+| `463ee415` | 2026-11-08 | joncurry94 | t2l4: comment said Stavelot - the map is Bastogne |
+| `27a635e0` | 2026-11-08 | joncurry94 | t2l4: hotel death field shells the player who tripped it, not the host (the one KillThePlayer call bug-10584 missed) |
+| `c4abf17f` | 2026-11-08 | joncurry94 | joincard: exact date + time and the unit per level; card text adds the unit |
+| `7c00957f` | 2026-11-08 | joncurry94 | joincard: join card text per spectator + coop_specHold; m6l3c/d names follow the game |
+| `fd7fa591` | 2026-11-08 | joncurry94 | ARMORY screen BACK keeps the typed player name (ui_applyname); name now survives restarts |
+| `d2353324` | 2026-11-08 | joncurry94 | t2l4 health pass: threats no longer stack on the host, no respawn into the barrage (bug-10584) |
+| `e362d441` | 2026-11-08 | joncurry94 | Script Errors on e1l4 / e3l4 ending: stock coop loads now run clean (bug-10584) |
+| `4a76448f` | 2026-11-08 | joncurry94 | joincard: m2l3 is WHITEOUT; aliases prefer the level's own dialogue dir |
+| `24f4a2c3` | 2026-11-08 | joncurry94 | joincard: per-level title table + generator (titles pending approval) |
+| `00d152a2` | 2026-11-08 | joncurry94 | v1.10.64 What's New card + version |
+| `b914a8ed` | 2026-11-08 | joncurry94 | Merge branch 'wpnfix2' into hotfix-1.10.53 |
+| `39938f01` | 2026-11-08 | joncurry94 | Merge branch 'chrono' into hotfix-1.10.53 |
+| `896e3660` | 2026-11-08 | joncurry94 | feat: Begin Chronological Campaign (AA/BT/SH missions in history order) |
+| `6ad82563` | 2026-11-08 | joncurry94 | wpnfix2: the M38A variant is Soares93's Extra WW2 Weapons model (relabelled), card name BERETTA 38, Lewis unlock text/progress fr… |
+| `6a6cc3b8` | 2026-11-08 | joncurry94 | wpnfix2: drum Thompsons under the Thompson Drum, the two M38s merged into one BERETTA M38A |
+| `95414fdc` | 2026-11-08 | joncurry94 | Merge branch 'hotfix-1.10.53' into dailies64 |
+| `e09d5943` | 2026-11-08 | joncurry94 | v1.10.64 Daily Orders leftovers: grant burst fix (bug-10495), MP save flush id, MG/turret orders proven |
+| `4c95b3fd` | 2026-11-08 | joncurry94 | Merge branch 'wpnfix' into hotfix-1.10.53 |
+| `076a889b` | 2026-11-08 | joncurry94 | Merge branch 'coverlook2' into hotfix-1.10.53 |
+| `fc8ea791` | 2026-11-08 | joncurry94 | wpnfix: ui/coop_loadout.urc back to the locked v1.10.61 caption fit (a gen_loadout build had reverted it) |
+| `69b9cdf0` | 2026-11-08 | joncurry94 | wpnfix: Armory pages follow the DP-28's real 47-round pan (gen_loadout from armory_stats) |
+| `f6809b71` | 2026-11-08 | joncurry94 | wpnfix: Lewis gun = its own heavy gun (81), gold Thompson folded into the Thompson's GOLD finish (71 retired, picks migrate), BAR… |
+| `50674765` | 2026-11-08 | joncurry94 | m2l3: def_sn_squadfix stands down when the game.dll has the FriendlyInLineOfFire fix (coop_ffLine registered and on) |
+| `8a1a4512` | 2026-11-08 | joncurry94 | m2l3 defence: north-door men stalled inside the facility (20-60 s, card163c/los163c) are put through the door after ~10 s unseen |
+| `08321d67` | 2026-11-08 | joncurry94 | cover v1.10.64 WIP: COVER_WALL_THROW / COVER_LOW_THROW legs states + coop_cover_throw_* aliases (AI corner / crate / overhand thr… |
+| `916cb710` | 2026-11-08 | joncurry94 | grenexp_snow: carries the grenade flash, fireball and lights (the engine no longer plays the soot-laden HD base blast on snow, co… |
+| `91631122` | 2026-11-08 | joncurry94 | tt33silenced_<finish>.tik back to the pinned fixes base (the fix lives in docs/tools/assets/fixes, which the game loads; bug-1053… |
+| `08c3650c` | 2026-11-04 | joncurry94 | m2l3 TEST: snow fx kind 5 (the grenade blast effect with no damage) and coop_finEntDump (entities at the north door) |
+| `b4f53a1f` | 2026-11-04 | joncurry94 | East scoped variants: drop the lens surface lines (the pack skd has no lens surface; tik-surfaces gate) |
+| `9f8009ef` | 2026-11-04 | joncurry94 | v1.10.63 What's New card + version |
+| `a0934ff1` | 2026-11-04 | joncurry94 | wpnviewer: regenerated hzm_wpnview.urc after the merge |
+| `6d1dd111` | 2026-11-04 | joncurry94 | Merge wpnviewer: weapon viewer on the attic rack (main.urc = attic-63 + gen_weapon_viewer build) |
+| `24ca86f5` | 2026-11-04 | joncurry94 | Merge branch 'attic-63' into hotfix-1.10.53 |
+| `0c76b32b` | 2026-11-04 | joncurry94 | attic v1.10.63: projector hover, camera flies, 3D briefing, 3D records + medal box, rifle rack with peek, gramophone records 7-8 |
+| `a59be9c5` | 2026-11-04 | joncurry94 | m2l3 defence: route 6 skips the waypoint at the east hull's west end (card163d: 20 s stall) |
+| `daa29e15` | 2026-11-04 | joncurry94 | m2l3 defence: east routes 5/6 go round the south of the parked east halftrack (their waypoint sat at its nose, the next one behin… |
+| `e72f3d6d` | 2026-11-04 | joncurry94 | m2l3: the NEW OBJECTIVE card sits on a dark backing panel (pale text on the blizzard white-out read as nothing - card163b) and ho… |
+| `b17bc987` | 2026-11-04 | joncurry94 | m2l3 TEST: coop_finNavProbe 1 maps which west-yard points path to the platform (prep, hull cut, hull reconnected) |
+| `2e41f0c2` | 2026-11-04 | joncurry94 | m2l3 defence: the parked halftracks are reconnected to the path graph (av_arrive's disconnect_paths cut the west roadblock passag… |
+| `afc0ee55` | 2026-11-04 | joncurry94 | objectives: toast debug print without NIL concatenation |
+| `180728aa` | 2026-11-04 | joncurry94 | objectives: coop_objToastDbg 1 prints the card's ask / draw / done (TEST) |
+| `8724279e` | 2026-11-04 | joncurry94 | bug id 10540 (10535 taken) |
+| `a9afa46b` | 2026-11-04 | joncurry94 | F10 renders the newest recording (vstr cl_recordPlay): hosting, F9 recordings are now srv_<map>_<date> (bug-10535); autoexec note… |
+| `d4cda34f` | 2026-11-04 | joncurry94 | wpnviewer: rack moved to (2.90, 1.54) - hotspot, fly pose and viewer camera at 80.9 -63.0 81.9 |
+| `422c8eab` | 2026-11-04 | joncurry94 | wpnviewer QA: full gun names in the list, TT-33 SILENCED finishes skin the whole pistol |
+| `03e6f7bd` | 2026-11-04 | joncurry94 | attic: weapon viewer on the rifle rack (452 guns, finishes and model variants) |
+| `e1a810fe` | 2026-11-04 | joncurry94 | Revert "grenexp_snow: smaller, more powder sprites that grow slower (TEST: the big late plumes read as a dark billow)" |
+| `44382f85` | 2026-11-04 | joncurry94 | grenexp_snow: smaller, more powder sprites that grow slower (TEST: the big late plumes read as a dark billow) |
+| `f2fe328a` | 2026-11-04 | joncurry94 | m2l3 snow FX test: kind 4 = the grenexp_snow client effect alone on a script_model (no blast damage) |
+| `da3cdbbf` | 2026-11-04 | joncurry94 | grenexp_snow: the clumps unlit white, 1.2 s and fading (grid-lit, they lay on the snow as dark grey blobs for 1.5 s and popped -… |
+| `9134e5bd` | 2026-11-04 | joncurry94 | grenexp_snow: no dirt card, the snow card unlit white and fading (the grid-lit scrolling cards made a dark billow over the burst,… |
+| `dbc34183` | 2026-11-04 | joncurry94 | grenexp_snow: the cloud is white powder (coop_snowPlume) instead of the grey vsssource smoke puff that shrouded the burst (snowfx… |
+| `aa95284f` | 2026-11-04 | joncurry94 | Merge branch 'dailies' into hotfix-1.10.53 |
+| `59fe9440` | 2026-11-04 | joncurry94 | snow impacts: powder on coop_snowPlume (stock snowPlume_02 has no alphaGen vertex, so fade/alpha darkened it to a black smudge -… |
+| `e3b7efbf` | 2026-11-04 | joncurry94 | m2l3 snow FX test: call explosioneffect on the script-spawned grenade explosion, bullets without the cycle delay |
+| `6d67239e` | 2026-11-04 | joncurry94 | Merge branch 'hotfix-1.10.53' into dailies |
+| `09167580` | 2026-11-04 | joncurry94 | Daily Orders v1.10.63: phase 2 (all 100 orders), aspect-correct panel + toasts, MP class kills, calibrated targets |
+| `9288092f` | 2026-11-04 | joncurry94 | m2l3 squad fix: log only the hops that freed a sniper; LOS test coop_finLosMax (probes up to spot N, the rest left to the roof ne… |
+| `35f943dc` | 2026-11-04 | joncurry94 | m2l3 LOS test: coop_finLosKeep 1 keeps the perch probes through all three sweeps; squad fix skips an enemy past the fog distance… |
+| `b846b70f` | 2026-11-04 | joncurry94 | m2l3 defence: snipers whose squad blocks every shot get it cleared (engine FriendlyInLineOfFire counts any squadmate not 64 u ahe… |
+| `12753799` | 2026-11-04 | joncurry94 | Merge branch 'emotes-seek' into hotfix-1.10.53 |
+| `aa0619d9` | 2026-11-03 | joncurry94 | Daily Orders (v1.10.63): five rotating orders a day, real XP, lobby panel, Service Record tab |
+| `a8079904` | 2026-11-03 | joncurry94 | ubersound: fix_vo_pools rebuild - snd_pickup is now defined first by coop_pickup.scr (normguns), so the ubersound copies are plai… |
+| `88b159f2` | 2026-11-03 | joncurry94 | v1.10.62 What's New card + version |
+| `03517c16` | 2026-11-03 | joncurry94 | m2l3 defence: a sniper settling on a perch keeps the roof nest off it (and is withdrawn if the spot was taken meanwhile); terrace… |
+| `a91287d3` | 2026-11-03 | joncurry94 | Merge branch 'debrief2' into hotfix-1.10.53 |
+| `bc2234e3` | 2026-11-03 | joncurry94 | m2l3 defence: roof nests hold fire past 0.828 x farplane (as the engine's AI sight rule does for the snipers); asn_hold allows th… |
+| `fb4e7d75` | 2026-11-03 | joncurry94 | m2l3 defence: perches = west-arm high corner + nine on the facility's z960 terrace (engine CanShoot 0/9 on the rest of the west a… |
+| `daf4e788` | 2026-11-03 | joncurry94 | m2l3 TEST shootscan: probe snipers, cansee vs canshoot per roof point |
+| `5b796ad1` | 2026-11-03 | joncurry94 | Merge branch 'attic-62' into hotfix-1.10.53 |
+| `c8e9ebb5` | 2026-11-03 | joncurry94 | attic v1.10.62: FIELD REPORT board on the right-hand wall, REPORT A BUG toolbox on the near end of the long desk, the wall clock… |
+| `954d23cf` | 2026-11-03 | joncurry94 | m2l3 defence: roof MG42 nests get script fire control (rmg_fire recipe: the stock turret AI never fired at 3000-4700 u, heat 0 al… |
+| `a1d18470` | 2026-11-03 | joncurry94 | m2l3 defence: surveyed roof perches (west arm south end x4, facility terrace z960 x5, east wing x1) replace the blind v1.10.49 se… |
+| `4b4c73d3` | 2026-11-03 | joncurry94 | m2l3 TEST perchscan: survey the facility roofs (floor rule, line to the 9 defence grid points, chain-start visibility) |
+| `251ab016` | 2026-11-03 | joncurry94 | m2l3 defence: roof perches walk out to a clear line on the defence area (they sat behind their own roof edges: LOS 0/9); ground M… |
+| `b630115e` | 2026-11-03 | joncurry94 | m2l3 TEST lostest: per-shooter trace to the zone + farplane |
+| `9892b477` | 2026-11-03 | joncurry94 | m2l3 TEST lostest: nodamage instead of god (god is not a script command; it failed the whole file's compile) |
+| `e5d696f9` | 2026-11-03 | joncurry94 | Merge branch 'attic-62' into hotfix-1.10.53 |
+| `b5fb9475` | 2026-11-03 | joncurry94 | attic v1.10.62: MULTIPLAYER door glass the same from both sides (hzm_door_pane_attic / _hub: leaf-wood frame + one frosted glass;… |
+| `354eade6` | 2026-11-03 | joncurry94 | m2l3 TEST coop_finLosTest 1: every sniper / nest / MG team man asked cansee + canshoot over a 3x3 grid of the defence area, three… |
+| `dc88fa47` | 2026-11-03 | joncurry94 | attic v1.10.62: spinning wall fan (hzm_fan_rotor), MP door frosted pane like its MP-room side; scene lists follow the re-bake |
+| `b70f70b5` | 2026-11-03 | joncurry94 | m2l3 defence: the next ground MG team waits for the last to be wiped instead of giving up (reinf_mg runs one at a time) |
+| `34acd09a` | 2026-11-03 | joncurry94 | snow impacts: bullets and grenades on snow lift a real spray of powder and clumps (bh_snow_hard/lite, grenexp_snow overrides) |
+| `b5f2f817` | 2026-11-03 | joncurry94 | m2l3 defence: MG teams may go 6 over the rifle cap and keep trying (second team was starved by a full field) |
+| `4cd8a452` | 2026-11-03 | joncurry94 | Merge branch 'emotes' into hotfix-1.10.53 |
+| `a2882c09` | 2026-11-03 | joncurry94 | m2l3 defence: more roof snipers (near roof first), 2-3 ground MG teams, third roof nest, faster sniper top-up |
+| `f61a0de9` | 2026-11-03 | joncurry94 | emotes-seek: push-ups, jumping jacks, stretch, clean boots and lean on EMOTES III, started part-way |
+| `c012cf6e` | 2026-11-03 | joncurry94 | m2l3 siren starts when the blizzard hits (storm hold / Survive), quieter (0.6, 400-6500 u) so the music keeps its impact; m2l2a c… |
+| `ccf7820b` | 2026-11-03 | joncurry94 | m2l3 siren: a networked speaker on the facility front (script_origin loopsounds are never sent to clients - only the cutscene's l… |
+| `4bac66dc` | 2026-11-03 | joncurry94 | emotes: wheel pictograms for every emote (24 incl. the 7 awaiting the legs seek), vector-drawn by docs/tools/gen_emote_icons.py |
+| `9e690173` | 2026-11-03 | joncurry94 | Merge hotfix-1.10.53 into debrief2 (challenge XP); debrief2 tally gets the Challenges line from coop_xp_b_challenge |
+| `5edbdbf6` | 2026-11-03 | joncurry94 | emotes: Tab wheel EMOTES I/II pages, 17 rank / Service Record unlockable emotes (coop only) |
+| `874e18aa` | 2026-11-03 | joncurry94 | Challenges give XP on completion (user 2026-11-03): 100/150/250/400/600 by target size, +250 for an Elite; reason 'challenge' tal… |
+| `585d21e9` | 2026-11-03 | joncurry94 | Merge attic-62 12c2cc06 (attic rework: briefing door moved, stock props, FIELD REPORT board, REPORT A BUG toolbox, animated gramo… |
+| `12c2cc06` | 2026-11-03 | joncurry94 | attic v1.10.62: New Game map scene lists the props model set (make_newgame3d after the shade re-bake) |
+| `da13d0be` | 2026-11-03 | joncurry94 | debrief2: CHALLENGES COMPLETED - every challenge completed this mission (chal_grant records it) is sent with its Service Record t… |
+| `4a211220` | 2026-11-03 | joncurry94 | challenges: chal_toast_pump stops when the player left during a toast (Field applied to NULL listener at disconnect) |
+| `df579628` | 2026-11-03 | joncurry94 | Merge normguns 13fa424f (m2l3 placed guns on the drop-loot path, supplies on crates, pickup sounds on every coop map) (v1.10.62) |
+| `a82bfbdf` | 2026-11-03 | joncurry94 | debrief2: medal cards use the Service Record medal design redrawn at 600 px (coop_db2/medal_NN), not the 466x208 canvas |
+| `13fa424f` | 2026-11-03 | joncurry94 | m2l3 placed guns on the German-drop loot path; supplies on crates; pickup sounds on every map (v1.10.62) |
+| `e574154d` | 2026-11-03 | joncurry94 | attic v1.10.62: re-baked attic wiring + animated gramophone tone arm |
+| `b6331619` | 2026-11-03 | joncurry94 | Artery-hit impact sound coop_artery_hit (option E, user 2026-11-03; ships in zzzzzzzzzzzzz_coop_snd.pk3) |
+| `19ae7550` | 2026-11-03 | joncurry94 | debrief2: the server holds the map for the longest client's sequence (level.coop_db2Need, cap 40 s) |
+| `6fddbe77` | 2026-11-03 | joncurry94 | Hit / kill confirm sounds replaced (user picks 2026-11-03): hit = a real bullet-into-flesh impact (VisceralBulletImpacts take 4,… |
+| `84a16968` | 2026-11-03 | joncurry94 | debrief2: backfill opt-out is a chal_add_unlock argument, not a player flag (a flag raced with grants made during the backfill) |
+| `3f52e5a0` | 2026-11-03 | joncurry94 | debrief2: connect-time rank backfill grants stay off the unlock cards (owed, not earned this mission) |
+| `10658a90` | 2026-11-03 | joncurry94 | debrief2: log the capability decision per player (^~^~^ DB2 capable) |
+| `86e132f0` | 2026-11-03 | joncurry94 | debrief2: end-of-mission debrief drawn by cgame - data wire (debrief2.scr), per-map reveal list, generated picture table + nomip… |
+| `c0cd4909` | 2026-11-03 | joncurry94 | Merge srtopright a6d8c2bf (Service Record popups to the top-right column) (v1.10.62) |
+| `a6d8c2bf` | 2026-11-03 | joncurry94 | SR popups: CHALLENGE COMPLETE toast + quarter-progress popup move to a top-right column (srtopright) |
+| `097d5e4c` | 2026-11-03 | joncurry94 | m2l3 flak: drop duplicate aagun_snd_move* (ubersound.scr already loads them on every map) |
+| `35b166d9` | 2026-11-03 | joncurry94 | m2l3 flak: Spearhead's silent aagun_ placeholders + reload (stops 'needs an alias' spam on mount) (v1.10.62) |
+| `b8e24f85` | 2026-11-03 | joncurry94 | Merge branch 'hotfix-1.10.53' into attic-62 |
+| `b0cf296a` | 2026-11-03 | joncurry94 | Merge mpui-next f90b7df9 (MP room exit always lands on the main menu, no black veil) (v1.10.61) |
+| `f90b7df9` | 2026-11-03 | joncurry94 | ui: MP room exit lands on the main menu from any path, veil lifted |
+| `0aa20efb` | 2026-11-03 | joncurry94 | m2l3 allies: never spawn on the point the other ally took (final161c) |
+| `0bb21ff0` | 2026-11-03 | joncurry94 | m2l3 allies: spawn hidden just inside the two roadblock gates (one each) and hold the train platform cover - user 2026-11-03 (the… |
+| `9a227b6e` | 2026-11-03 | joncurry94 | m2l3: Survive (and the switch back) gets the NEW OBJECTIVE card (coop_obj_toast, own key - slot 7 is reused) - user 2026-11-03 |
+| `f2ed2f11` | 2026-11-03 | joncurry94 | m2l3 flak gun firing sounds: Spearhead's aagun_ set loaded on m2l3 (only t1l1/t2l4/obj had it, every shot was silent) - user 2026… |
+| `a08aace3` | 2026-11-03 | joncurry94 | m2l3: commander objective completes when he dies within a second of spawning (officer death latch coop_officerDied; user 2026-11-… |
+| `d6773dd5` | 2026-11-03 | joncurry94 | m2l3 defence-line MG42: press-Use pickup via fin_stw like the armory guns (user 2026-11-03: picking it up did not give it) |
+| `c35ba2fa` | 2026-11-03 | joncurry94 | m2l3: after the storm score the intro loop fades back in and plays to the mission end (user 2026-11-03); music lock kept on |
+| `522c8cf5` | 2026-11-03 | joncurry94 | m2l3 play-test fixes 2 (user 2026-11-03): Survive uses only the standard left-side New objective line; the two allies are tethere… |
+| `bad934f9` | 2026-11-03 | joncurry94 | Attic v1.10.62 prep: FIELD REPORT board + REPORT A BUG toolbox hotspots, idle chalk line, brown buttons hidden under the attic, t… |
+| `3ca5bf9c` | 2026-11-03 | joncurry94 | m2l3 play-test fixes (user 2026-11-03): Survive announced as a new objective (feed, sound, centre print; and the switch back); st… |
+| `5388ce66` | 2026-11-03 | joncurry94 | Merge mpui-next b5c4ce19 (MP room exit = the attic's MP door on the left wall, MAIN MENU plaque) (v1.10.61) |
+| `bb2d7069` | 2026-11-03 | joncurry94 | m2l3 flak gun on the defence line by the station entrance (user 2026-11-03); defence-line survey coop_finAirTest 5, relaxed crate… |
+| `b5c4ce19` | 2026-11-03 | joncurry94 | ui: MP room exit hotspot bounds follow the larger MAIN MENU plaque (regenerated) |
+| `8e575819` | 2026-11-03 | joncurry94 | Merge attic-polish 0247f3ef (gramophone hover box: playing track) (v1.10.61) |
+| `0247f3ef` | 2026-11-03 | joncurry94 | Attic gramophone: hover box naming the track that is playing (v1.10.61) |
+| `759699ca` | 2026-11-03 | joncurry94 | m2l3 radio call-in test start: coop_finTrainTest 2 now runs the station skip (fin_calltest was never reached); call-in wait 15 min |
+| `1f3f3d42` | 2026-11-03 | joncurry94 | ui: MP room exit = the attic's MULTIPLAYER door on the left wall (MAIN MENU plaque); dedicated status line full width |
+| `1a4cddf5` | 2026-11-02 | joncurry94 | coop_defaults.cfg: field-settings generator output after the attic merge |
+| `85c9da88` | 2026-11-02 | joncurry94 | Merge attic-polish (gramophone theme picker, New Game captions) into hotfix-1.10.53 (v1.10.61) |
+| `b8e529f9` | 2026-11-02 | joncurry94 | Service record regenerated (447 rows: + cc_seaside_stowaway; room include from mpui) |
+| `48dc99eb` | 2026-11-02 | joncurry94 | Merge mpui-next (3D MP browser / host / armory, host-screen fixes) into hotfix-1.10.53 (v1.10.61) |
+| `302dff76` | 2026-11-02 | joncurry94 | ui: HOST A CO-OP GAME QA - seeded fields, paper toggles, HOST RULES inside the column, no nomap |
+| `8991083f` | 2026-11-02 | joncurry94 | v1.10.61: What's New card + version cfg |
+| `ade6c8b2` | 2026-11-02 | joncurry94 | Attic gramophone, take 2 (user: 'make it personal ... interact with the gramophone itself not a menu') |
+| `8528d02d` | 2026-11-02 | joncurry94 | ui: modern MP front-end - server browser, host game, armory in the 3D room |
+| `13de2185` | 2026-11-02 | joncurry94 | Attic gramophone card: short title / game lines (ui_mmTitle / ui_mmGame) in facfont sized to read at 720p, larger card inside the… |
+| `a36cec9c` | 2026-11-02 | joncurry94 | Merge cover-seamless (cover v3.2: authored low-cover blind fire coop_blindfire_low_back) into hotfix-1.10.53 |
+| `27c2fcb6` | 2026-11-02 | joncurry94 | Merge finair-next (Norway flak gun + Stuka passes) into hotfix-1.10.53 |
+| `34dc1659` | 2026-11-02 | joncurry94 | m2l3 east road: route z on the flat snow bank behind the east gate (map v10c, bug-10434) |
+| `df51113d` | 2026-11-02 | joncurry94 | finair: storm gates on the live v1.10.61 storm state, readable Stuka, visible crash preference |
+| `a75ed485` | 2026-11-02 | joncurry94 | Merge roof-cine (Norway ending payoff, v10/v10b map scripts, east gate) into hotfix-1.10.53 |
+| `4af18afa` | 2026-11-02 | joncurry94 | v1.10.61 Norway finale + radio work |
+| `a0615302` | 2026-11-02 | joncurry94 | Attic main menu polish: gramophone theme picker (in place, persisted shuffle/record pick), New Game captions say the action |
+| `1f193db7` | 2026-11-02 | joncurry94 | East gate helper (map v10b): eg_open / eg_close for coop_fin_eastgate2, coop_finEastTest drive test from the hidden start through… |
+| `b0fba7ad` | 2026-11-02 | joncurry94 | cover v3.2: authored low-cover blind fire (back to the bags, gun over the head) - coop_blindfire_low_back |
+| `862a894a` | 2026-11-02 | joncurry94 | Norway finale: player-mannable Flakvierling + Stuka strafing passes over the station hold |
+| `584165d4` | 2026-11-02 | joncurry94 | Norway ending v10: door climax (breach 28), facade ledge + upper tiers collapse in six spans each (pieces carry their holes and f… |
+| `9c402b23` | 2026-11-02 | joncurry94 | Norway payoff: a real silence beat (rumble off under the chain, short-tailed roof layers, quiet hidden roof blasts, s_sfxduck), z… |
+| `c35b519f` | 2026-11-02 | joncurry94 | Norway ending payoff: fire in every hole (own fire pool, flickering dlights), rolling chain to the tank room, climax (silence, fl… |
+| `11f64347` | 2026-11-02 | joncurry94 | Norway ending: no slabs on the roofline, roof-edge eruptions with fireballs and real holes (map v9 notch sites 23-27) |
+| `c284cf7f` | 2026-11-02 | joncurry94 | Merge branch 'refs/heads/mphub3d' into hotfix-1.10.53 |
+| `320a86ea` | 2026-11-02 | joncurry94 | newgame3d QA: tags clear of printed names, map view hides the long desk/projector, clean wall map (no wear specks, pins, Corsica… |
+| `9d259144` | 2026-11-02 | joncurry94 | v1.10.60 hotfix: card + version (coop_stress pak anims_shared gains coop_cover_wall_r) |
+| `a2b760e2` | 2026-11-02 | joncurry94 | 3D multiplayer room (hub) + 3D new game map, behind ui_atticMain |
+| `8261357f` | 2026-11-02 | joncurry94 | v1.10.59: card + version; Norway train-finale test launcher (coop_finTrainTest + cfg/trainfinale.cfg); sniper log NIL fix |
+| `a60f315f` | 2026-11-02 | joncurry94 | cover v3: right-corner blind fire plays the real right-corner clip (gun in the left hand, engine-side) when the body has tag_weap… |
+| `b6ae1a56` | 2026-11-02 | joncurry94 | v1.10.58: card + version (cover v3, demo studio) |
+| `fe8fc0be` | 2026-11-02 | joncurry94 | Merge branch 'refs/heads/cover-seamless' into hotfix-1.10.53 |
+| `7b336a7b` | 2026-11-02 | joncurry94 | cover v3 statemaps: slide states, peek = standing aim, cover from any move state, right-side hold |
+| `a1ac756a` | 2026-11-02 | joncurry94 | v1.10.57 hotfix: card + version |
+| `f2c3f427` | 2026-11-02 | joncurry94 | v1.10.56: Norway second hull stops short of the first (def_n), test hooks (gun test, hold clear) |
+| `495e1659` | 2026-11-01 | joncurry94 | v1.10.56: card + version |
+| `0f1462dc` | 2026-11-01 | joncurry94 | v1.10.56 Norway: both halftracks come (seen-entry fallback, launch lock, second hull stops short), pitched-roof sniper perches, r… |
+| `2081ec95` | 2026-11-01 | joncurry94 | v1.10.55: Norway hold - Axis push the platform, peak as the train arrives, weaker allies by the train, west halftrack falls back… |
+| `fdb875b9` | 2026-11-01 | joncurry94 | Norway: hand-placed charges always stay where placed (the surface snap only sets the facing) |
+| `5346321f` | 2026-11-01 | joncurry94 | Norway armory: FG42 on the user's crate beside the explosives |
+| `5051c063` | 2026-11-01 | joncurry94 | v1.10.54: Norway one-shot ending (lingering fireballs, small buildings blow out, rubble), card |
+| `2b5211f8` | 2026-11-01 | joncurry94 | Merge branch 'rel-1.10.38' into hotfix-1.10.53 |
+| `a925bf45` | 2026-11-01 | joncurry94 | v1.10.54: hold waves push the zone, Norway one-shot ending, Mission 1 extras removed |
+| `f0cb4515` | 2026-11-01 | joncurry94 | Merge the Film Room into hotfix-1.10.53: the attic projector opens it (lights up when highlighted), HOME saves the instant replay |
+| `a7a205f0` | 2026-11-01 | joncurry94 | v1.10.53 hotfix: Mission 1 extra objectives removed, exit gate names what is left (150 s) |
+| `359446b0` | 2026-11-01 | joncurry94 | Film Room: the attic projector opens it (lights up and shines when highlighted); HOME saves the instant replay |
+| `6b7535a6` | 2026-11-01 | joncurry94 | Merge branch 'rel-1.10.38' into integ-1.10.36 |
+| `ab0c031d` | 2026-11-01 | joncurry94 | v1.10.52 card |
+| `146229a2` | 2026-11-01 | joncurry94 | Reapply "F9 note: hosting records the whole map (server recorder)" |
+| `2152a044` | 2026-11-01 | joncurry94 | Revert "F9 note: hosting records the whole map (server recorder)" |
+| `1b8dd3ba` | 2026-11-01 | joncurry94 | Merge branch 'rel-1.10.38' into integ-1.10.36 |
+| `26eab643` | 2026-11-01 | joncurry94 | v1.10.51 card |
+| `b4d11c61` | 2026-11-01 | joncurry94 | POW escort: freed prisoner runs off and is removed out of sight; MG heat test hook |
+| `cf46ea7e` | 2026-11-01 | joncurry94 | F9 note: hosting records the whole map (server recorder) |
+| `f7d012ae` | 2026-11-01 | joncurry94 | Norway: user-placed tanks, charges and armory; tank-shaped clip; spawns avoid props |
+| `031c49bc` | 2026-11-01 | joncurry94 | Type 100: fix server crash on equip/reload (missing torso alias) |
+| `8ea7135e` | 2026-11-01 | joncurry94 | v1.10.50 card |
+| `ef4492ae` | 2026-11-01 | joncurry94 | fix: MG nest sandbag clip follows the arc; tank build crates + items |
+| `0abe3a4c` | 2026-11-01 | joncurry94 | v1.10.49 card |
+| `47c0db95` | 2026-11-01 | joncurry94 | Norway fuel-tank build preset: coop_finTankBuild 1 + cfg/tankbuild.cfg -> no finale/tanks/markers/AI, host in the tank room, buil… |
+| `a9cc17f8` | 2026-11-01 | joncurry94 | Norway hold: six deep, out-of-sight spawn points per gate (round the corners off each road), every point tried before waiting - v… |
+| `f48268b4` | 2026-11-01 | joncurry94 | Norway storage room: FG42 on the tall west crate; given storage guns are made droppable + press-Use loot so a dead carrier's gun… |
+| `53c3ec0e` | 2026-11-01 | joncurry94 | Norway: sniper/MG perches moved onto the grey facility (west arm, the tier over the courtyard door, the upper west tier) - alarms… |
+| `123cba90` | 2026-11-01 | joncurry94 | coop_finPathLane test switch (1 west, 2 east, 8 station door): all three lanes verified pushing in the harness |
+| `32822cab` | 2026-11-01 | joncurry94 | Norway hold: attackers actually advance - tether each man to a goal marker his combat think follows (runto only drives the idle t… |
+| `712c36fa` | 2026-11-01 | joncurry94 | m1l1: remove the plaza counter-attack hold (attackers cannot get in past the destroyed wall); dump and POW renumbered |
+| `37bdfc67` | 2026-11-01 | joncurry94 | m1l2a: remove the extra objectives (east-gate hold, searchlight generator charges, fortress radios) - Grillo got stuck on them |
+| `8a3413e3` | 2026-10-28 | joncurry94 | v1.10.48 card |
+| `f382bb28` | 2026-10-28 | joncurry94 | Norway hold: every wave comes three ways (west gate, east gate, station door lane 8), +2 men per wave, cap +4; allies move betwee… |
+| `e613cd61` | 2026-10-28 | joncurry94 | Norway hold: wave men assault the line in bounds from cover to cover (engine cover fighting + grenades between bounds), storm wav… |
+| `063a3a48` | 2026-10-28 | joncurry94 | Norway storage room: guns are display models + press-Use watcher that gives the real gun (placed items only gave their ammo in MP) |
+| `54ba65c6` | 2026-10-28 | joncurry94 | v1.10.47 card |
+| `d360e32b` | 2026-10-28 | joncurry94 | Norway hold: gates follow the men through the hold, watched lanes fall back to another lane, wave men push the line then the boar… |
+| `7703cd33` | 2026-10-28 | joncurry94 | Norway: secure the line before the prep countdown (everyone back + zone clear), respawns behind cover on the line, allied trooper… |
+| `8837adb0` | 2026-10-28 | joncurry94 | Norway storage room guns: press Use to take (coopuseloot) |
+| `53a0e579` | 2026-10-28 | joncurry94 | Controller feel: one-time tuned defaults (exp curve 1.5, aim assist, auto dead zone); aim page toggles for both |
+| `94cba936` | 2026-10-28 | joncurry94 | No medkit / sandbags / ammo box in the lobby or briefing |
+| `fcbc2c03` | 2026-10-28 | joncurry94 | Weapon / ability wheel: Tab and pad Y hold, ring art, one-time binds (scores B, 8/9/0 quick keys), bind menu rows; v1.10.46 card |
+| `dc08ce75` | 2026-10-28 | joncurry94 | controller layout: gate the pad picture / icons on ui_padPicN - verified in harness (ps / xbox / generic, cycle) |
+| `8dda36f8` | 2026-10-28 | joncurry94 | stow: the dock hand's German line is the user's recording with a German subtitle (replaces the on-screen text) |
+| `c56a755a` | 2026-10-28 | joncurry94 | controller layout page: pad picture (CC0 OpenGameArt set, Xbox / PS / generic by Auto-detected type), per-button rows with the bu… |
+| `db54ecf8` | 2026-10-28 | joncurry94 | v1.10.45 card |
+| `3e1e5df3` | 2026-10-28 | joncurry94 | gamepad: PlayStation glyph sheet; one-time bind of the touchpad and Share button to the objectives toggle (vstr coop_obj) |
+| `59998738` | 2026-10-28 | joncurry94 | stow: award Seaside Stowaway 2.5 s after the fade-in so the popup is not drawn under the black / hidden HUD |
+| `ad010a22` | 2026-10-28 | joncurry94 | challenges: Seaside Stowaway defined LAST so no existing Service Record card is renumbered (keeps the tex pak byte-identical) |
+| `c1992fd1` | 2026-10-28 | joncurry94 | v1.10.44 card |
+| `059ae0db` | 2026-10-28 | joncurry94 | stow: dock hand's line as text over the black until a voice recording exists |
+| `d90f86ed` | 2026-10-28 | joncurry94 | stow_m2l2a: dev check switch coop_stowTest 1 |
+| `9bd73452` | 2026-10-28 | joncurry94 | m2l2a: radio objective (Broadcast to Assault team, voice line with radio static + subtitle) + hidden Seaside Stowaway crate skip… |
+| `d389c5be` | 2026-10-28 | joncurry94 | menu: Classic main menu removed (it could not return to the 3D attic) - Menu Style controls keep Remastered, autoexec puts the ro… |
+| `b002d472` | 2026-10-28 | joncurry94 | v1.10.43 card |
+| `001b2c5b` | 2026-10-28 | joncurry94 | attic: chalkboard writes the hovered spot's name as text on the existing lower board (one Label per caption) instead of the vanil… |
+| `d3af74f3` | 2026-10-28 | joncurry94 | attic: General 21 u off the table (no clipping), clipboards turned to face him - user-approved in harness capture |
+| `34880212` | 2026-10-28 | joncurry94 | attic: General Weathers leans over the upright simplerectable (tipped square_table and the hiding worktable dropped), hands on tw… |
+| `32445594` | 2026-10-28 | joncurry94 | card: new Discord invite |
+| `f61055ac` | 2026-10-28 | joncurry94 | v1.10.42 card |
+| `1edd877d` | 2026-10-28 | joncurry94 | attic: General Weathers leans over the square table with documents on it; Manon holds the clipboard in her right hand and a penci… |
+| `636f3c20` | 2026-10-28 | joncurry94 | m2l3 finale: storage room loot on the measured crate tops (2 Kar98 snipers, MG42, Panzerschreck, shotgun, 2 ammo crates); fuel ta… |
+| `f32c43d8` | 2026-10-28 | joncurry94 | reinf.scr: drop the duplicate rnf_near_player / rnf_unseen appended in v1.10.38 (the m2l2c merge brought the same pair) - 'Duplic… |
+| `67f4dd0e` | 2026-10-28 | joncurry94 | v1.10.42 card |
+| `a9b52f4c` | 2026-10-28 | joncurry94 | m2l3 finale: MG42 nests on the concrete roofs (officer.scr nest recipe, spotter on a fixed 48 u leash, only when def_seen clears… |
+| `ed9e60fd` | 2026-10-28 | joncurry94 | m2l3 finale snipers: the two wooden/snow roofs are gone from the table; 8 BSP-verified perches on the two concrete roofs (power-l… |
+| `95b9b7bd` | 2026-10-28 | joncurry94 | m2l3 finale: crates 50 u over the LOWEST ground beside them; 11_a and 13 removed (overlapped 5 / 7_a); building-roof sniper spots… |
+| `0fe35dbb` | 2026-10-28 | joncurry94 | v1.10.41 card |
+| `21335b05` | 2026-10-28 | joncurry94 | m2l3 finale: crates sit 54 u above the ground beside them (crouch cover: solid at 36, clear at 58), the _b crate of each two-crat… |
+| `4619eba9` | 2026-10-28 | joncurry94 | v1.10.41 card |
+| `590797c9` | 2026-10-28 | joncurry94 | v1.10.41: m2l3 coop finale owns the objective list from spawn (no vanilla 'Exfiltrate the base' toast or slot overwrite); one-tim… |
+| `d5c27fbc` | 2026-10-28 | joncurry94 | v1.10.41 card |
+| `04518d7c` | 2026-10-28 | joncurry94 | m3l1a: beach crowd beds down to retail's far-field level (0.4/600/8000 from 0.65/900/16000); ambient returns over 14 s after the… |
+| `f51a5eed` | 2026-10-28 | joncurry94 | t1l1 (Spearhead jump): holding USE in the barn cuts the harness even when the map trigger never fires (USE eaten by the fall's vi… |
+| `571af414` | 2026-10-28 | joncurry94 | v1.10.40 card |
+| `22b46bcc` | 2026-10-28 | joncurry94 | v1.10.40 Norway finale: officer + fuel tanks present from the start, troops withdraw out of sight after the officer dies, booms o… |
+| `8944b90e` | 2026-10-28 | joncurry94 | v1.10.40: New Objective toast follows the finale's own objective list on m2l2c / m2l3 (vanilla adds no longer toast stale text or… |
+| `0fba4671` | 2026-10-28 | joncurry94 | v1.10.39: What's New card + version |
+| `37217f3e` | 2026-10-28 | joncurry94 | v1.10.39: hzm_hot_glow shader + texture (the attic hover glow drew as a white square - the menus3d pak that should carry it was n… |
+| `170ddbb9` | 2026-10-28 | joncurry94 | v1.10.39: 3D attic main menu on by default (user 2026-10-28) |
+| `f5c14935` | 2026-10-28 | joncurry94 | v1.10.38: What's New card + version |
+| `52e4902d` | 2026-10-28 | joncurry94 | rel-1.10.38: coop_scopeglass.shader (hip coated-glass lens shaders referenced by the WIP scope tiks; was untracked) |
+| `cae79665` | 2026-10-28 | joncurry94 | rel-1.10.38: merge norway-finale-next |
+| `2cb27c6a` | 2026-10-28 | joncurry94 | rel-1.10.38: merge m2l2c-objectives (objx hold loop: hotfix failsafe + airdrop condition; coop_audio: louder stings + m2l2c radio… |
+| `91315bfa` | 2026-10-28 | joncurry94 | rel-1.10.38: merge attic-main-mod |
+| `42ea4a2c` | 2026-10-28 | joncurry94 | rel-1.10.38: merge scopes1025-mod WIP (arisaka: theirs + material7/8 refs dropped again) |
+| `c2ce7397` | 2026-10-28 | joncurry94 | finale: scaled props get a hull matching their visible size (0.4 fuel tanks kept full-size bboxes = invisible wall across the fue… |
+| `9ca46ce4` | 2026-10-28 | joncurry94 | scopes WIP (uncommitted when agents hit the usage limit) - UNTESTED |
+| `29b518f7` | 2026-10-28 | joncurry94 | attic-main WIP: main.urc gates on ui_atticActive / ui_menu3dActive, hover label/glow events, staged cast lines - UNTESTED |
+| `bc33c4c8` | 2026-10-28 | joncurry94 | v1.10.38: rnf_near_player / rnf_unseen helpers for the placed-MG gunner spawn (from m2l2c-objectives, unchanged) |
+| `919543f5` | 2026-10-26 | joncurry94 | mgspawn: straight-chain route (info_waypoint legs, no path graph), line-first ring, rmg_wave hidden-entry guard |
+| `f941c352` | 2026-10-26 | joncurry94 | mgspawn: placed MG42 nest gunners spawn hidden + grounded and run to the gun (rmg_nest_crew; shared rnf_entry picker + ring fallb… |
+| `810bb156` | 2026-10-28 | joncurry94 | v1.10.37: drop tik surface refs the coop scope meshes no longer have (arisakasniper material7/8, kar98snipersilenced Sheath2) - b… |
+| `8006305b` | 2026-10-28 | joncurry94 | v1.10.37: What's New card for the full release (3D menu, blast reactions, FX, bolts, water, fixes) |
+| `a86ae9d2` | 2026-10-28 | joncurry94 | rel-1.10.37: merge fix1025-mod (coop_counter.scr kept from the hotfix, which already carries 4f17fc65's deny list) |
+| `8f8426eb` | 2026-10-28 | joncurry94 | rel-1.10.37: merge scoped-bolt-mod (fps_anims_rifle.txt as on test-1025) |
+| `84826343` | 2026-10-28 | joncurry94 | rel-1.10.37: merge scopes1025-mod (player_torso.st resolved as on test-1025) |
+| `4a8d877a` | 2026-10-28 | joncurry94 | rel-1.10.37: merge e5-zoom |
+| `3a6ac2fe` | 2026-10-28 | joncurry94 | rel-1.10.37: merge blastreact1025-mod |
+| `6d5421c7` | 2026-10-28 | joncurry94 | rel-1.10.37: merge ring1025-mod |
+| `a8af906c` | 2026-10-28 | joncurry94 | rel-1.10.37: merge qte1025-mod |
+| `d45729f2` | 2026-10-28 | joncurry94 | rel-1.10.37: merge fx1025-mod |
+| `610c37c3` | 2026-10-28 | joncurry94 | rel-1.10.37: merge ice1025-mod |
+| `505cf485` | 2026-10-28 | joncurry94 | rel-1.10.37: merge music1025-mod |
+| `942918d5` | 2026-10-28 | joncurry94 | rel-1.10.37: merge stress-mod |
+| `b163063a` | 2026-10-28 | joncurry94 | v1.10.37 hotfix: What's New card + version string |
+| `76c98bb9` | 2026-10-28 | joncurry94 | hotfix 1.10.36.1: m5l2b tank boardable again (players drive, as M5L2A); m5l1a end defence off (gate soft-lock) |
+| `d89ef89f` | 2026-10-27 | joncurry94 | finale weather: calm ~50 s, staged 2-minute build via graded coop_wxNow targets (wxextreme eases to them), pattern steps, no tier… |
+| `0c353b5b` | 2026-10-27 | joncurry94 | finale: new step Kill the station commander (officer released at the station, escort/waves via the officer system, leftovers clea… |
+| `1a0344b2` | 2026-10-27 | joncurry94 | hotfix 1.10.36.1: drop the script-side dog loot exclusion (revert 0dacfb71) |
+| `c0ae0f00` | 2026-10-27 | joncurry94 | finale charges: slide along the face until all four corners touch the same surface; hit distance + corner spread logged |
+| `dd847cda` | 2026-10-27 | joncurry94 | finale charges: every comms and tank charge placed flush against the device surface (axis/diagonal ray search at chest height, 4-… |
+| `3f265521` | 2026-10-27 | joncurry94 | finale kit: actual explosive bundles on the crate (m1l2a recipe: explosive.tik, pickup_explosives, explosive inventory icon), no… |
+| `9cc314cb` | 2026-10-27 | joncurry94 | hotfix 1.10.36.1: merge armoryprev-1.10.36 (Armory loadout preview stuck on an old weapon/finish) |
+| `22206f8f` | 2026-10-27 | joncurry94 | finale cutscene: v6 wide facade shot (all yard-facing holes, rolling), softer breach fire, roof crane shot, hole shots pulled back |
+| `268cfc23` | 2026-10-27 | joncurry94 | armory: a new gun in a slot resets the slot's finish re-preview + chip label (stale BAR winter preview on STG44) |
+| `07c6f538` | 2026-10-27 | joncurry94 | hoist from stock parts (chain, hook block, spreader, slings, straps) instead of the U-boat deck gun; sway; sweep re-sized |
+| `88f5730b` | 2026-10-27 | joncurry94 | finale objectives: one table (fin_otext) feeds the objectives list, compass marker and New/Complete feed lines; counts final on c… |
+| `0dd3d1f3` | 2026-10-27 | joncurry94 | m2l2c: one objective table feeds the menu, HUD banner, done lines and feeds |
+| `0dacfb71` | 2026-10-27 | joncurry94 | hotfix 1.10.36.1 (bug-4433): no body search on dog / animal corpses |
+| `74fb3c9d` | 2026-10-27 | joncurry94 | radio hold waves: entry validation (graph or straight chain), distance log, stuck watchdog with hidden respawn (untested) |
+| `cd34582a` | 2026-10-27 | joncurry94 | radio hold: no duplicate 'Hold: zone' line under the title |
+| `eec7adc0` | 2026-10-27 | joncurry94 | hotfix 1.10.36.1 (bug-4431): hold/defend zones can never soft-lock |
+| `2b4e30d4` | 2026-10-27 | joncurry94 | finale cutscene: v5 breach wiring (real normals, explicit exterior shots per README, roof eruptions), v6 sites 13+ in a wide faca… |
+| `5b9eb70c` | 2026-10-27 | joncurry94 | finale cutscene: breach cap 32, four breaches per camera |
+| `3548ea37` | 2026-10-27 | joncurry94 | finale cutscene: massive roof eruptions with debris sprays, timed with the breach groups |
+| `835ee922` | 2026-10-27 | joncurry94 | finale cutscene: crumble chunks disabled (coop_finCrumble 1 re-enables), stock fog for the cutscene, landing audit + non-solid ch… |
+| `6ac3ec09` | 2026-10-27 | joncurry94 | finale cutscene: clear weather + far plane 12000 for the whole cutscene, shot A camera in line with the tanks |
+| `a6cbc14b` | 2026-10-27 | joncurry94 | finale cutscene: chunk landing traced where the slab lands (no hanging slabs), per-chunk fall log, shockwave column removed from… |
+| `af47a9be` | 2026-10-27 | joncurry94 | attic main menu: actor round (map right side, radio, window, desk, phone, clipboard), door hit boxes, map light |
+| `599b040d` | 2026-10-27 | joncurry94 | finale cutscene: exterior-only rewrite, physical chunk collapse (topple, gravity fall, impact, persistent wreck), breach-hole sys… |
+| `27979200` | 2026-10-27 | joncurry94 | finale: coop_finCine armed log line |
+| `8b7ceaa8` | 2026-10-27 | joncurry94 | attic main menu: actorhub/actorstation/actorbreak lines for the actor life round |
+| `ffc7c6ea` | 2026-10-27 | joncurry94 | finale cutscene: yard-wall shot from inside the yard |
+| `f237c589` | 2026-10-27 | joncurry94 | finale cutscene: no fireballs during the facade / booth / yard-wall close shots, better camera framing (facade from 2400 u, booth… |
+| `14083969` | 2026-10-27 | joncurry94 | finale cutscene: every effect keeps 130 u per unit of sprite scale from the lens, bigger exclusion for fireballs, seam dust/smoke… |
+| `323c8979` | 2026-10-27 | joncurry94 | finale: DESIGN addendum - coop_finCine console lines and the redesign's test cvars |
+| `d1a34911` | 2026-10-27 | joncurry94 | finale: coop_finCine 1 (straight to the ending, cvar resets), blizzard drives the native snow pattern (1 -> 2 -> 3, density 2.6)… |
+| `e1365400` | 2026-10-27 | joncurry94 | finale: rubble over crumble seams, extra health/ammo beside the v4 north and flank crates |
+| `31d1697a` | 2026-10-27 | joncurry94 | attic-main: briefing hotspot no longer overlaps the multiplayer one (smaller hit squares); ui/hzm_attic_go_<hotspot>.cfg cursor-f… |
+| `c48c5d90` | 2026-10-27 | joncurry94 | finale: cover counter for finale_cover_1..29 (map v4) |
+| `e2b34780` | 2026-10-27 | joncurry94 | finale: allies spawn from the three east pockets and log ARRIVED at cover (29 s / 33 s in the harness) |
+| `5552fb3b` | 2026-10-27 | joncurry94 | finale cutscene: columns halved and kept away from the failing chunk (hot zones), separate clean booth and yard-wall shots |
+| `5ee37c14` | 2026-10-27 | joncurry94 | attic-main: door/map approach poses, uiveil dip commands on the flat-menu hotspots |
+| `accaf603` | 2026-10-27 | joncurry94 | finale: ally arrival radius 650 |
+| `8863d255` | 2026-10-27 | joncurry94 | finale: remove the hull-trace pclip debug test (the defence-start freeze only ever happened with it), push players out of barrier… |
+| `dd3b706b` | 2026-10-27 | joncurry94 | attic-main: main.urc carries the live attic (ui_atticMain 1) with home hotspots + shelf radios; flat room gated off; ui_atticMain… |
+| `60ad052e` | 2026-10-27 | joncurry94 | finale: coop_finFixed hook in the blizzard thread (steady capture) |
+| `fbda31b0` | 2026-10-27 | joncurry94 | finale: prep/gather title placement, ally arrival radius |
+| `5115dde0` | 2026-10-27 | joncurry94 | finale: ally spots on real pathnodes, circleguy guard, pclip lane test (all six lanes HELD in the harness walk test) |
+| `6a2549d7` | 2026-10-27 | joncurry94 | finale: train-track indicator replaces the TRAIN ARRIVING bar (127-129, green/yellow/red train, scripted slow/stop events at 50/6… |
+| `8f52e576` | 2026-10-27 | joncurry94 | finale: prep phase (gather every living player, PREPARE THE DEFENCE countdown by skill, unseen enemies removed, player-clip hook)… |
+| `d579a270` | 2026-10-27 | joncurry94 | finale cutscene: no white flashes (steady fade only), coop_finFixed test hook for steady frame capture |
+| `13d03af2` | 2026-10-27 | joncurry94 | finale: map crates finale_cover_* replace the static cover (def_cover just counts them), exterior crumble animation against the v… |
+| `218e941a` | 2026-10-27 | joncurry94 | finale cutscene: wide shot back to a low front wide with timed facade/hangar blasts, interior debris reduced, exterior crumble an… |
+| `8ba2d99a` | 2026-10-27 | joncurry94 | finale cutscene QA: cameras keep 240 u from every blast / 450 u from debris bursts, room blasts 300 u in front of the lens, falli… |
+| `12651fe5` | 2026-10-27 | joncurry94 | finale cutscene: reverse (front-to-back) roll in the high wide shot, lower persistent fire budget, shorter wide shot |
+| `5a3adec5` | 2026-10-27 | joncurry94 | finale: halftrack drives in from the hidden west entry, raises the west boom, parks just inside it with the MG covering the stati… |
+| `c38e91ef` | 2026-10-27 | joncurry94 | finale: halftrack proof hooks (HTSTATE dump with hull/gun/gunner/player hp, coop_finKillHt rocket-damage test); halftrack MG42 re… |
+| `381bca4e` | 2026-10-27 | joncurry94 | finale cutscene: whole-compound blast roll (49 points comms -> hangar/tanks -> back -> sheds -> yard -> rail -> station), backgro… |
+| `1f919cf1` | 2026-10-27 | joncurry94 | finale: snipers pre-placed on their perches at chain start (players far), MG42 teams enter from hidden in-compound pockets and ar… |
+| `263eaacb` | 2026-10-27 | joncurry94 | finale: rail lane points moved off the cutting bank (y -2215, x -2700..-2400), watcher removes men the engine pops >100 u up |
+| `2c46b63b` | 2026-10-27 | joncurry94 | m2l3 placement audit: --points/--bsp options (applied to the base objectives2 tool, copy kept here), objx_points_m2l3.json + gene… |
+| `2d7f1c9d` | 2026-10-27 | joncurry94 | finale: coop_finDump test dump (positions + height over floor of halftrack, MG teams, snipers) |
+| `c9d1b60e` | 2026-10-27 | joncurry94 | finale: every squad man must stand within 16 u of the lane floor (world trace from +64), else re-placed or removed |
+| `5b2f7e3e` | 2026-10-27 | joncurry94 | finale: hold + boarding HUD are progress bars (Train arriving / Boarding), no digits |
+| `1c729e22` | 2026-10-27 | joncurry94 | finale: remove the vanilla wall-top guard (unreachable perch) |
+| `ad6a4c41` | 2026-10-27 | joncurry94 | finale: tank charge reach 90, guard vanilla chainspawnzone nil (m2l3.scr), alarmveh gunner re-read each tick |
+| `8f064a18` | 2026-10-27 | joncurry94 | finale: cover = long Wehrmacht crate copies (nazi_crate 1:1), Panzerschreck + rockets pre-placed when the station objective starts |
+| `1c309a05` | 2026-10-27 | joncurry94 | finale: all objectives PRIMARY (slots 1-6: explosives, comms n/5 with nearest-compass marker, tanks, reach station, defend, board… |
+| `78dc4a66` | 2026-10-27 | joncurry94 | finale: strict hidden-spawn rule (eye LOS any facing, min distance, grounded point tested), SPAWN visible=0 grounded=1 log, tight… |
+| `a151c2f4` | 2026-10-27 | joncurry94 | finale: wire the four stock boom arms (roll +80/-80, both arms together, ~2 s, connect/disconnect paths), remove gate/arm/clip fa… |
+| `b4037cad` | 2026-10-27 | joncurry94 | scoped bolt: Mosin row + clip removed for this release (swing on the v9 build not reproducible/fixable in one pass; the Mosin use… |
+| `347969dd` | 2026-10-27 | joncurry94 | iron Springfield aimed bolt (springfield_rechamber_ads): rebaked with the wrist clamp (knob offset -4, wrist x <= -5) - the hand… |
+| `9301cb42` | 2026-10-27 | joncurry94 | scoped: set coop_scopeKeepZoom 1 by default (a normal install dropped the scope on every reload); bolt clips keep only 20% of the… |
+| `27cb55de` | 2026-10-27 | joncurry94 | scoped reload (Springfield): keep the gun on the idle aim pose (dip 0.7, cant 2, no slide), hands clamped clean off the right edge |
+| `d6067026` | 2026-10-27 | joncurry94 | scoped reload pilot (Springfield): authored start/fill/end clips baked from the scoped idle pose + inert per-weapon rows (need th… |
+| `03ae3969` | 2026-10-26 | joncurry94 | scoped bolt: ship Springfield + Mosin only; Kar98 sniper/silenced/L42/Carcano/Arisaka/Enfield rows and clips removed (fall back t… |
+| `217a57fb` | 2026-10-26 | joncurry94 | scoped bolt: coopr_<weaponkey>_rechamber_ads rows for 8 scoped rifles (own clips, force-added), iron prefix rows restored, probe… |
+| `664b14e2` | 2026-10-26 | joncurry94 | scoped bolt: force-add the baked coop_scopedbolt_*.skc (gitignored by *.skc; the v7 merge had the rows but not the clips) + Mosin… |
+| `783adb8a` | 2026-10-26 | joncurry94 | scopes1025: force-add the mod-owned *_coop.skd scoped-rifle meshes (gitignored by *.skd) - Garand ring v13, discs, smoothed bells |
+| `83bc1eed` | 2026-10-26 | joncurry94 | scopes1025: Garand round eyepiece ring, tik surface lines in setup block |
+| `796fc769` | 2026-10-26 | joncurry94 | scoped bolt: Springfield + Kar98 sniper ADS rechamber rows use idle-pose scoped clips |
+| `34022169` | 2026-10-26 | joncurry94 | counter_fallback: hull/hidden/min-distance check; rnf_entry: parasquad mgLine straight-chain reachability as a second check |
+| `f112d4b0` | 2026-10-26 | joncurry94 | menus3d: OPTIONS door 3D twin (ui_menu3d 1 default) -> exec ui/hzm_attic_enter.cfg; flat radio room door only when ui_menu3d != 1 |
+| `71ffbf38` | 2026-10-26 | joncurry94 | scopes1025: double-sided lens discs for no-glass scoped meshes, v2 scoped bolt clips (not enabled) |
+| `a47bcc61` | 2026-10-26 | joncurry94 | radio aliases: min 450 / max 1700 (full across the room, fading in the corridor, gone at the far quay) |
+| `c2c677e7` | 2026-10-26 | joncurry94 | crane waves: path-validated quay rally points, hidden fallback spawns (always candidates), per-man distance log |
+| `437f2ad2` | 2026-10-26 | joncurry94 | radio sits on the traced bench top |
+| `432f6998` | 2026-10-26 | joncurry94 | blastreact: dbg prints for handler restore proof |
+| `cc8306cd` | 2026-10-26 | joncurry94 | objectives2 props: solid by default (T9); audit-only log |
+| `fc73d3e3` | 2026-10-26 | joncurry94 | solidify: symmetric integer box that turns with the model (TRAPS T9); panels solid |
+| `bdde472e` | 2026-10-26 | joncurry94 | prop audit log |
+| `89b0e610` | 2026-10-26 | joncurry94 | objectives2 scene props are solid (true bounds, yaw-aware box) + optional prop log |
+| `c6b5839f` | 2026-10-26 | joncurry94 | mesh wave: deeper hidden spots (path 2200-2600 u), gate opens 9 s in |
+| `9bce88b4` | 2026-10-26 | joncurry94 | sweep control |
+| `7a720bc1` | 2026-10-26 | joncurry94 | m2l2c crane: overhead bridge from stock posts over the slip, load pre-hung, path sweep audit (unverified) |
+| `2eec4434` | 2026-10-26 | joncurry94 | hud line 2 centred (left align, measured width) |
+| `f49ef0ff` | 2026-10-26 | joncurry94 | blastreact: arm/entry pain-handler swap (reaches allied AI), gates in arm, previous handler restored |
+| `ba6a9f9c` | 2026-10-26 | joncurry94 | sink debug samples |
+| `63b4f909` | 2026-10-26 | joncurry94 | rnf_entry: per-map curated candidates; m2l2c supplies both quay walkways |
+| `4f65eea1` | 2026-10-26 | joncurry94 | crane waves: squad hunt walks them in, arrival logged |
+| `bdcdd3a4` | 2026-10-26 | joncurry94 | crane wave men: slots on the room side of the panel at floor height |
+| `765a4712` | 2026-10-26 | joncurry94 | crane waves: spread along the walkway, grounded test from above |
+| `2338abf3` | 2026-10-26 | joncurry94 | m2l2c crane waves: officer picker first, own quay points second; no far-side entries |
+| `3058cc28` | 2026-10-26 | joncurry94 | all wave men: ground fix + 5 s ground watch with a GROUND log line per man (counter_squad and officer routing) |
+| `919ef39e` | 2026-10-26 | joncurry94 | blastreact: timed-cut anims (full knockdown chain is 13 s), hop slide, stage debug prints |
+| `235cf577` | 2026-10-26 | joncurry94 | m2l2c: player barrier now active whenever the real mesh gate is open |
+| `eee42568` | 2026-10-26 | joncurry94 | m2l2c: radio at native scale, facing the room, solid |
+| `da7d91ec` | 2026-10-26 | joncurry94 | m2l2c: U-622 / U-355 objective names + feeds, progress bars, compass marker re-issue, per-frame crane and sink motion (unverified) |
+| `cbcff22a` | 2026-10-26 | joncurry94 | m2l2c: remove the last hold countdown (the in-zone HUD branch still drew HOLD m:ss); crane waves use hidden, grounded, one-by-one… |
+| `492b75c1` | 2026-10-26 | joncurry94 | m2l2c: radio subtitles (g_subtitle, timed chunks, censored), voice clips on the dialog channel |
+| `02bf0c4e` | 2026-10-26 | joncurry94 | m2l2c: late radio clip at ~75 percent, static loop until the confirmation, louder/wider radio aliases; officer reinforcement deat… |
+| `11799d62` | 2026-10-26 | joncurry94 | Type 100: torso alias coop_reload_type100 (Sten side-magazine prop) in RELOAD_SMG |
+| `6948561b` | 2026-10-26 | joncurry94 | finale: cover, lanes, hill snipers, MG teams, equipment plants, silent charges, grounded spawns |
+| `4f4a1724` | 2026-10-26 | joncurry94 | officer reinforcements: global ring routing to the officer, officer-ring entry candidates (prefer walled-off), authored-zone maps… |
+| `94862c98` | 2026-10-26 | scopes1025 | scopes1025: scoped bolt rows |
+| `3f052602` | 2026-10-26 | joncurry94 | m2l2c: radio audio (call/mid/confirm/bursts, positional from the radio only), hidden 2-5 min hold scaled by players, no countdown… |
+| `5fe54027` | 2026-10-26 | joncurry94 | officer reinforcements: never spawn in view (all maps: path-to-officer entry, retry, drop); m2l2c hook routes them via the real m… |
+| `f3f829e0` | 2026-10-26 | joncurry94 | finale: grounded wave spawns, one player-count scale table |
+| `c86e983d` | 2026-10-26 | joncurry94 | blastreact: knockdown/stagger/flinch for live AI hit by explosions (blastreact.scr + pain hooks + cvar seeds) |
+| `7d85f14c` | 2026-10-26 | joncurry94 | tinnitus: ONE ring per player at a time (CHAN_LOCAL restart under a barrage), single duck owner per player [bug-4407] |
+| `b3e0ac7a` | 2026-10-26 | joncurry94 | m3l1a QTE: restore the 'Tap F to fight the current' HUD string (the icon alone is hidden by the cine HUD hold) [bug-4406] |
+| `896d1b6e` | 2026-10-26 | joncurry94 | m2l2c: HUD text fits 16:9/4:3/21:9 (centred rects, shorter lines) |
+| `e61c056d` | 2026-10-26 | fx1025 | fx_1025: HD fire/explosion/smoke pack - flipbooks (512 JPG fire, 256 smoke), cfx_ shaders, retail tik overrides (blasts, mortars,… |
+| `ce9d9a29` | 2026-10-26 | claude | norway finale: real checkpoint gates (edited map) with boom fallback, gate-spawn lanes, nav bake tool, collapse pieces choreograp… |
+| `f3229fa0` | 2026-10-26 | joncurry94 | m2l2c: U-boats sink after the crane drops (edited map 33eda311), deep mesh-wave spawns with guided run-in, lit hulls, precache fo… |
+| `f3f5712c` | 2026-10-26 | joncurry94 | m2l2c: real crane objects (lit gantry/hook/torpedo, all non-solid), auto-resuming jam state machine (alive+LOS), no gate/door clo… |
+| `0e557931` | 2026-10-26 | joncurry94 | m2l2c: mesh gate stays open after its first wave until the hold is won (no 20 s timer); test cvar for clean GIFs |
+| `5c7877f6` | 2026-10-26 | joncurry94 | m2l2c: real mesh gate ($mesh_gate, edited BSP + rebaked pth) wired into the finale: lift 180 + connect/disconnect_paths, mesh wav… |
+| `ba51f994` | 2026-10-26 | joncurry94 | m2l2c: door guide never repositions in any player's sight (LOS from every player to source and destination); localization entries… |
+| `1c12d422` | 2026-10-26 | joncurry94 | m2l2c: barrel-room door forced open by the first wave and stays open; door-wave men guided into the radio room |
+| `976f9761` | 2026-10-26 | joncurry94 | m2l2c: mesh gate left shut; that wave bursts through a sliding door clone in the barrel-room arch (spawn hidden in the corridor,… |
+| `630a6ba4` | 2026-10-26 | joncurry94 | m2l2c: mesh gate by the barrel room faked with gate2 clones (lift + men step out), 4 wave entries, wooden crate crane load, own c… |
+| `75d68f0c` | 2026-10-26 | claude | norway finale: low track-side cameras for the opening and the pass-by (z was absolute: previous cams were 500 u above the rails) |
+| `073b9f4d` | 2026-10-26 | claude | norway finale: striped boom barriers (own shader+texture), loco stack + smoke, bigger finale wide, clean full-run fixes |
+| `8c167321` | 2026-10-26 | scopes1025 | scopes1025: scopekeep probe |
+| `235badb2` | 2026-10-26 | claude | norway finale: boom-barrier gates, dusk grade, small debris, whole-train shots, finale wide, sniper race + assist fixes |
+| `fcccad36` | 2026-10-26 | claude | norway finale (m2l3): objective chain, station defence (clip roadblocks, sliding gates, waves, halftrack), train boarding, 7-shot… |
+| `0d5132a8` | 2026-10-26 | joncurry94-tech | gl1 fallback shaders for the cold harbour water and the frozenriver ice |
+| `b7dc9a1e` | 2026-10-25 | scopes1025 | scopes1025: scoped reload keeps the scope (coop_scopeKeepZoom) |
+| `128e8b6e` | 2026-10-25 | joncurry94 | m2l2c finale objectives: crane drops (control panels, defended cycle), radio hold with stairwell gate + 3 Axis entries, exfil; ge… |
+| `8ca1d5fb` | 2026-10-25 | joncurry94 | music1025: sting alias volumes 0.9 (match music), correct psx sting comment |
+| `db605a08` | 2026-10-25 | joncurry94 | stress reload: COOP_RELOAD_VAR lines for the remaining autospec guns |
+| `4a1599ff` | 2026-10-25 | joncurry94 | stress reload: COOP_RELOAD_VAR lines for 23 more guns (autospec) |
+| `dd6f572c` | 2026-10-25 | joncurry94 | stress reload: torso lines for the Thompson drums, MP18, Garand silenced / sniper |
+| `8cc3fb1d` | 2026-10-25 | joncurry94 | stress reload: COOP_RELOAD_VAR lines for Garand, Kar98k, BAR, StG44, Springfield, MP40, Colt, P38 |
+| `98e6aa43` | 2026-10-25 | joncurry94 | bug-4210: watchdog decides from the spec (owner flag reads back NULL), ring slots per action |
+| `da976866` | 2026-10-25 | joncurry94 | stress reload: coopreloadpick in RELOAD_SMG + COOP_RELOAD_VAR lines for the Thompson (smg_reload_s / _m) |
+| `cb82916d` | 2026-10-25 | joncurry94 | E5: radio room <-> radio close-up camera push (generated: gen_menu_radio.py zoomcam / uiafter / escapecommand wiring) |
+| `3fcfc165` | 2026-10-25 | joncurry94 | bug-4210: watchdog also drops the dead owner's hold-ring slots |
+| `4f17fc65` | 2026-10-25 | joncurry94 | bug-4210: icon prompt watchdog + self-revive success hide + counter-attack denied on escape/exfil/cutscene maps |
+| `de25b238` | 2026-10-25 | joncurry94 | v1.10.36: What's New card names the radio room |
+| `069fe1d8` | 2026-10-25 | joncurry94 | integ-1.10.36: regenerate ui/hzm_bind.scr (gen_menu_radio) so the radio Controls bind list carries padmod's Stick Peek (hold) row |
+| `e6645428` | 2026-10-25 | joncurry94 | Merge commit '521f9adb' into integ-1.10.36 |
+| `521f9adb` | 2026-10-25 | joncurry94 | Option radios: the remastered OPTIONS door opens a radio room of six real Signal Corps sets |
+| `b293d278` | 2026-10-22 | joncurry94 | spawnlocations: empty briefing_<map> labels for the 12 briefing maps (every briefing load logged a Script Error: label does not e… |
+| `00d3cb9b` | 2026-10-22 | joncurry94 | v1.10.36: What's New card + coop_version.cfg; coop_defaults blank line from gen_menu_fieldsettings |
+| `9ceac4d8` | 2026-10-22 | joncurry94 | Merge branch 'padmod-next' into integ-1.10.36 |
+| `f8f0d2b3` | 2026-10-22 | joncurry94 | integ-1.10.36: undo loadhold-fix 26e25502's CRLF re-commit of 570 ui files (blobs back to LF; content unchanged) |
+| `281a2a12` | 2026-10-22 | joncurry94 | Merge branch 'alarmhold-next' into integ-1.10.36 |
+| `20aea729` | 2026-10-22 | joncurry94 | Merge branch 'loadhold-fix' into integ-1.10.36 |
+| `72c8e6ea` | 2026-10-22 | joncurry94 | Merge branch 'lobfix-padbuttons' into integ-1.10.36 |
+| `d341db81` | 2026-10-22 | joncurry94-tech | padmod-next: gen_menu_padaim.py (generator of ui/coop_padaim.urc) |
+| `99d70623` | 2026-10-22 | joncurry94-tech | padmod-next: default binds are one-time (coop_defBinds1 alias one-shot, bug-4187) so custom binds survive restarts; lobby X/Y/L/J… |
+| `f6c5ba83` | 2026-10-21 | joncurry94 | loadhold-fix: loadclips.txt transit comment (target-mission logic) |
+| `26e25502` | 2026-10-21 | joncurry94 | loadhold-fix: ui/loadclips.txt transit rule (lobby/briefing loads keep a clip's last frame instead of the static art) |
+| `6472445d` | 2026-10-21 | joncurry94 | autoexec: lobby L/J binds after the one-time bind cleanups |
+| `fcae7a54` | 2026-10-21 | joncurry94 | alarmhold: hold USE at an alarm switch/siren to deactivate it (replaces shooting the panel); icon prompt + HD ring |
+| `096dec5a` | 2026-10-21 | joncurry94 | lobby-only binds: pad X/Y and keys L/J open LOADOUT / SERVICE RECORD in the lobby (vstr cvar swap, restored by cgame CG_Init); bu… |
+| `84fd1340` | 2026-10-21 | joncurry94 | coop_skins.shader: the 4 thompsite_<finish> sight surfaces named jpgs that never shipped; use the plain thompsite.tga |
+| `2acf75de` | 2026-10-21 | joncurry94 | v1.10.35: What's New card + coop_version.cfg |
+| `636dff72` | 2026-10-21 | joncurry94 | v1.10.35 integration: load-clip rules v3 (m1l1, m3l2, +m2l2b), room textures move to the fixes pak (tex pak untouched), coop_defa… |
+| `7fc9fd6c` | 2026-10-21 | joncurry94 | Merge branch 'menu-next' into integ-1.10.35 |
+| `33f69d67` | 2026-10-21 | joncurry94 | Merge snipers2-next d127f138: 25 LOS-audited alarm sniper spots (restores the spot commits reverted in 1.10.34) |
+| `84b33abe` | 2026-10-21 | joncurry94 | Armory: 4:3 fit of the static captions (FIRE RATE, PRI 1/2, NOW name offset) |
+| `23a737c4` | 2026-10-21 | joncurry94 | main menu: c3 also out of keyboard focus (ui_keyNavActive) |
+| `d761a728` | 2026-10-21 | joncurry94 | main menu: c3 easter-egg button out of the pad focus order (enabledcvar !in_padActive) |
+| `16daeeb3` | 2026-10-21 | joncurry94 | menu-next QA: BACK TO GAME fits at 4:3, What's New title and coop_start net label no longer clip at 4:3 |
+| `c5df50a0` | 2026-10-21 | joncurry94 | main menu room: no OPTIONS-door twin (hzm_options station is not in this ship; OPTIONS keeps options_main) |
+| `1b426e79` | 2026-10-21 | joncurry94 | main menu: remastered 3D attic room (ui_menuRoom 1 default), Menu Style row in Advanced Graphics |
+| `a03f3965` | 2026-10-21 | joncurry94 | objectives2: m1l3c airdrop + fence-gate engineer defence (generator repair removed); p07 tank fx; m1l3a/m1l3b data WIP (unverifie… |
+| `d127f138` | 2026-10-21 | joncurry94 | alarm snipers: line-of-sight audit (drop 4 weak spots: e3l1#2, e3l2#1, m1l1#1, m2l1#6), per-spot facing toward the visible route;… |
+| `2115e1b7` | 2026-10-21 | joncurry94 | v1.10.34 card: 53 loading-clip missions |
+| `aa444f70` | 2026-10-21 | joncurry94 | Revert "alarm snipers: 17 more audited roof-deck spots (m1l1 2, m2l1 8, t1l1 3 new; e3l1 +1, m4l3 +2, t3l1 +1): 33 spots on 9 map… |
+| `3a471c68` | 2026-10-21 | joncurry94 | Revert "alarm snipers: crouch stance; drop pitched-roof ridge-apex spots (m2l1 5 dropped to flat-roof set, t1l1 removed); 26 spot… |
+| `d5f9a02c` | 2026-10-21 | joncurry94 | v1.10.34: loading clip rules for all 53 clip missions (49 new) |
+| `8307f279` | 2026-10-21 | joncurry94 | Merge snipers2-next (5233f22d): crouched alarm snipers, 26 audited spots on 8 maps; no xp/challenge toasts in cutscene lock |
+| `3c967ef8` | 2026-10-21 | joncurry94 | objectives2 m1l2b: motorpool radios (replace vanilla sound sources), fuel depot charge chain, radio-yard hold; nodrop option |
+| `dfbddae8` | 2026-10-21 | joncurry94 | objectives2 m1l2a: east-gate hold, searchlight generator charges, fortress radios; bright option for unlit night props |
+| `bfd2e0d3` | 2026-10-21 | joncurry94 | objectives2 m1l1: village radios (2), plaza counter-attack hold, ammunition-dump charge chain, captured Ranger escort; props sett… |
+| `72dcf7c5` | 2026-10-21 | joncurry94 | objectives2 m1l3c: engineer + generator moved to the lighthouse shed (clear of the exit truck's stop point, vanilla guard and spa… |
+| `5233f22d` | 2026-10-21 | joncurry94 | alarm snipers: crouch stance; drop pitched-roof ridge-apex spots (m2l1 5 dropped to flat-roof set, t1l1 removed); 26 spots on 8 m… |
+| `f4c29f6a` | 2026-10-21 | joncurry94 | alarm snipers: 17 more audited roof-deck spots (m1l1 2, m2l1 8, t1l1 3 new; e3l1 +1, m4l3 +2, t3l1 +1): 33 spots on 9 maps |
+| `553305da` | 2026-10-21 | joncurry94 | v1.10.34 card: per-gun finishes line |
+| `c26ec424` | 2026-10-20 | joncurry94 | objectives2 m1l3c: fuel-depot charge chain (kit, hold-USE plant, staged blast), engineer repair with real wrench animation + defe… |
+| `c2990e16` | 2026-10-20 | joncurry94 | Merge killchal-next (aac8f28c): per-gun finish challenges, MP progression blob v4 |
+| `aac8f28c` | 2026-10-20 | joncurry94 | MP self-test waits for the bots |
+| `a893efd5` | 2026-10-20 | joncurry94 | armory: long gun names drop the word kills in the finish progress line |
+| `70a1f405` | 2026-10-20 | joncurry94 | armory: finish progress shows in the finish-name label (coop_loFinNm), the hero requirement panel only draws for locked guns |
+| `4a94a627` | 2026-10-20 | joncurry94 | cutscene lock: no XP rank bar / promotion / micro popup / challenge toast while locked (script ihuddraw is not hidden by the cine… |
+| `a0ba9670` | 2026-10-20 | joncurry94 | coop: finish challenges start from the kills the profile already has with that gun (chal_finSeed) |
+| `291d5fd3` | 2026-10-20 | joncurry94 | MP: mpBaseModel label + dev-only per-gun self-test (coop_mpProgGunTest) |
+| `95c7fa5d` | 2026-10-20 | joncurry94 | per-gun finish ladders (MP): per-gun kill counts persisted in the progression blob (v4), finishes open per gun (mpfin_open), lega… |
+| `182fa964` | 2026-10-20 | joncurry94 | per-gun finish challenges (coop): 38 guns x 7 finishes unlock by kills with THAT gun (25..500); per-slot chip locks + progress; F… |
+| `86f05f5b` | 2026-10-20 | joncurry94 | v1.10.34: What's New card + coop_version.cfg |
+| `9e67c6ba` | 2026-10-20 | joncurry94 | v1.10.34: loading clip rules for 20 more missions (clips ship in zzzzzzzzzz_coop_loadclips.pk3) |
+| `b5503c0a` | 2026-10-19 | joncurry94 | v1.10.33 card: loading screens line |
+| `c4150bfb` | 2026-10-19 | joncurry94 | v1.10.33: moving loading screens for m1l1, m3l1a, m3l1b, m3l2 (ui/loadclips.txt; clips ship in the fixes pak) |
+| `3735c478` | 2026-10-19 | joncurry94 | v1.10.33: generator outputs (coop_defaults seed block, coop_version.cfg) |
+| `a0e2a7e3` | 2026-10-19 | joncurry94 | v1.10.33: What's New card |
+| `f038c0ad` | 2026-10-19 | joncurry94 | Merge fg42-next (978dede3) into integ-1.10.33 |
+| `2f33ad93` | 2026-10-19 | joncurry94 | Merge adscover-next (f56c9b58) into integ-1.10.33 |
+| `058f5ca1` | 2026-10-19 | joncurry94 | Merge gamepad-next (3441a5d1) into integ-1.10.33 |
+| `eb6636cd` | 2026-10-19 | joncurry94 | Merge alarmveh-next (f8dc18cd) into integ-1.10.33 (M3L3: alarmveh CRLF file + textsweep church-label font facfont-20) |
+| `3d2f8b0a` | 2026-10-19 | joncurry94 | Merge airstrike-flak-next (6855fcab) into integ-1.10.33 |
+| `ffa2071d` | 2026-10-19 | joncurry94 | Merge textsweep-next (0b53d6b9) into integ-1.10.33 |
+| `08388c29` | 2026-10-19 | joncurry94 | Merge cutscene-lock-next (13b08376) into integ-1.10.33 |
+| `f8dc18cd` | 2026-10-19 | joncurry94 | alarmveh: halftrack gunner stands at the MG42 (fresh gunner, engine MG42 pose, seat = the engine's, gun raised 11 u) |
+| `bad8b7a0` | 2026-10-19 | joncurry94 | alarmveh: halftrack gunner mans a standalone MG42 TurretGun (turret + machinegunner thinks), gun follows the hull |
+| `978dede3` | 2026-10-19 | joncurry94 | FG 42 Iron Sights: armory entry id 79 (unlocks WITH the scoped FG 42 at rank 19), skin finishes, recoil rows, torso state row; ge… |
+| `2c0670a7` | 2026-10-19 | joncurry94 | m3l3_nebel: nb_keep capped at 3 lifts per man |
+| `eed58102` | 2026-10-19 | joncurry94 | m3l3_nebel: defenders kept off tree clip tops (leash 400, nb_keep puts a lifted man back on his audited floor) |
+| `ddd5c002` | 2026-10-19 | joncurry94 | m3l3_nebel: floor audit (alarm-sniper rule, 4 u) on every defender spot; own audited sniper spot instead of the far-anchor spawn… |
+| `6855fcab` | 2026-10-19 | joncurry94 | airstrike flak: crash never hurts the squad (blast skipped near players, crash point 1200 u from players and 1800 u from the stri… |
+| `9cd7d1a6` | 2026-10-19 | joncurry94 | alarmveh: Nebelwerfer guard halftracks are immune to explosion damage (the vanilla barrage field they park in); rockets still kil… |
+| `51f63e41` | 2026-10-19 | joncurry94 | airstrike flak: a P-47 falls through the sky brush (it flies above it), so the crash search and the fall reach the ground |
+| `07a0b380` | 2026-10-19 | joncurry94 | airstrike flak: a flak-hit P-47 falls in a steep nose-down spiral so the crash lands on the map |
+| `d995dd1d` | 2026-10-19 | joncurry94 | m3l3_nebel: skip a halftrack whose stop overlooks < 3 approach points; nest spread 90 (coop_nebelMgSpread); one guard route (seco… |
+| `1df93437` | 2026-10-19 | joncurry94 | airstrike flak: shot-down hit lands 60 percent into the dive (steep enough to reach the ground on the map) |
+| `8ad2944e` | 2026-10-19 | joncurry94 | m3l3_nebel: waves fall back to unseen Nebelwerfer/nest spots when no planned entry exists; player-count test override; safe debug… |
+| `3441a5d1` | 2026-10-19 | joncurry94 | polish: aim page value labels use the formatted mirrors, outer deadzone named/ranged 0-30% default 5% |
+| `9773e1a2` | 2026-10-19 | joncurry94 | alarmveh: entry hull test uses the fill's own box (64x52x64) |
+| `f56c9b58` | 2026-10-19 | joncurry94 | cover peek torso: view model plays the aim pose (charge) like AIM, so peek/lean-from-cover shows the ADS hands and the ADS clips |
+| `93856ec3` | 2026-10-19 | joncurry94 | airstrike flak: shot-down plane is hit just into its dive and carries on steeply, so it crashes on the map |
+| `c7c828d9` | 2026-10-19 | joncurry94 | prompts: briefing 'Ready Up' labels and loading tips use {key:use} (shows the pad button on a pad); controls header text |
+| `caff094f` | 2026-10-19 | joncurry94 | m3l3 guard routes: stop overlooking the whole approach (9/9), second hull 3 nodes back |
+| `0ed94b95` | 2026-10-19 | joncurry94 | alarmveh: players beyond 4500 u do not count as seeing an entry |
+| `289d760d` | 2026-10-19 | joncurry94 | airstrike flak: log the feed line in debug |
+| `2363b3b2` | 2026-10-19 | joncurry94 | airstrike flak: dev cvar coop_airstrikeFlakOnly + plane list for the proof camera |
+| `80b5ff08` | 2026-10-19 | joncurry94 | binocular airstrike: small per-plane chance of off-map flak (coop_airstrikeFlakChance, default 15): hit planes drop fewer bombs,… |
+| `4b3ea6f0` | 2026-10-19 | joncurry94 | mortar.scr: m3l3 German crew allowed after the church hold (asked for by m3l3_nebel.scr) |
+| `23b08d22` | 2026-10-19 | joncurry94 | M3L3.scr: one hook line after CHOBJ 7 complete -> m3l3_nebel.scr::nb_hold_done |
+| `2fd191fc` | 2026-10-19 | joncurry94 | m3l3_nebel.scr: Nebelwerfer fight hardening (nests manned + logged, scaled defenders, snipers, defend/counter-push waves, mortar,… |
+| `aa7c7f5a` | 2026-10-19 | joncurry94 | alarmveh: guard routes (event) for the m3l3 Nebelwerfer halftracks; guards never withdraw |
+| `405410bf` | 2026-10-19 | joncurry94 | alarmveh: crate scan grid 50 u by default (t2l3 crate 746 -> 581 u off the path, m4l1 902 -> 762) |
+| `0b53d6b9` | 2026-10-19 | joncurry94 | M3L3: HOLD THE CHURCH gets the headline face (facfont-20 -> verdana-14 headline tier) (bug-4097) |
+| `8aaaf89f` | 2026-10-19 | joncurry94 | alarmveh: coop_alarmVehCrateStep (grid step for the crate scan) |
+| `f0424eed` | 2026-10-19 | joncurry94 | alarmveh routes: m3l3 halftrack dropped (no hidden crate spot within 1300 u of the stop) |
+| `39723321` | 2026-10-19 | joncurry94 | alarmveh: crate reachability falls back to a straight foot walk when the path graph has no answer |
+| `ba25fa36` | 2026-10-19 | joncurry94 | Controls: pad in-game Auto/Off/On, new AIM / SENSITIVITY page (generated by docs/tools/gen_menu_padaim.py): sliders for look spee… |
+| `a0bda140` | 2026-10-19 | joncurry94 | alarmveh: crate pass 3 (wide) for open maps |
+| `971f518f` | 2026-10-19 | joncurry94 | alarmveh: crate path test targets the grounded way point; loop cannot spin when all candidates fail |
+| `c0be3a1d` | 2026-10-19 | joncurry94 | alarmveh: crate reachability by engine path (scout pathdist) instead of a straight walk |
+| `105243a6` | 2026-10-19 | joncurry94 | alarmveh: crate on the near side of the stop, two-pass range (1200/700/160 then 1300/800/220) |
+| `b69e917b` | 2026-10-19 | joncurry94 | alarmveh: crate rules - on the squad's way (<=700 u), within 1200 u of the stop, hidden from the cab/gunner/MG heights, foot-reac… |
+| `c8c29f20` | 2026-10-19 | joncurry94 | alarmveh: spawn ground trace starts 24 u above the entry node; e3l2 scout route removed (stuck in a real drive) |
+| `13b08376` | 2026-10-19 | joncurry94 | cutscene lock: bug id 4094 (4093 taken by another agent) |
+| `444d67e6` | 2026-10-19 | joncurry94 | Merge commit '42aa1272' into textsweep-next |
+| `ace33d65` | 2026-10-19 | joncurry94 | Merge commit '42aa1272' into alarmveh-next |
+| `ca354ee1` | 2026-10-19 | joncurry94 | Merge branch 'coop-wip' into cutscene-lock-next |
+| `9e7be9b9` | 2026-10-19 | joncurry94 | alarmveh: entry hull box matches the Opel (72x60), the way back stops 2 nodes short of the entry; e3l2 scout route (m2l1 dropped:… |
+| `0bea15ee` | 2026-10-19 | joncurry94 | cutscene lock: add freezeplayer (vanilla recipe) and a weapon pin (weapnext/prev are not gated by a freeze); release exactly |
+| `42aa1272` | 2026-10-19 | joncurry94 | armory: define helmet Nx/Pv for off-ring pages h30-h32 (fix DEAD VSTR in ui_wiring_audit) |
+| `a392654c` | 2026-10-19 | joncurry94 | objectives: the tracking-key hint goes to the feed as a once-per-profile hint (bug-4093) |
+| `fc74cfd0` | 2026-10-19 | joncurry94 | medkit: 'Cannot move' and 'bandaged yourself up' go to the feed (bug-4093) |
+| `7f754400` | 2026-10-19 | joncurry94 | m6l1c/m6l2a: brief and radio advisory rows merged into single feed lines (bug-4093) |
+| `30efc9af` | 2026-10-19 | joncurry94 | m2l2a: the Naxos wait hint goes to the feed (bug-4093) |
+| `2864eac2` | 2026-10-19 | joncurry94 | itemhandler: the 'Avoid the Officer' advisory goes to the feed (bug-4093) |
+| `73b7df75` | 2026-10-19 | joncurry94 | bust: the 'Situation Escalated' and contain banners go to the feed (bug-4093) |
+| `4c4fd59e` | 2026-10-19 | joncurry94 | e3l4 + e2l2 outros: shared cutscene lock (bug-4093) |
+| `21c453ca` | 2026-10-19 | joncurry94 | t3l2: scripted end/finale cutscene uses the shared cutscene lock (bug-4093) |
+| `376b6104` | 2026-10-19 | joncurry94 | t2l2: scripted end/finale cutscene uses the shared cutscene lock (bug-4093) |
+| `44da93ed` | 2026-10-19 | joncurry94 | m6l2a: scripted end/finale cutscene uses the shared cutscene lock (bug-4093) |
+| `95b0edba` | 2026-10-19 | joncurry94 | m2l2b: U-boat finale uses the shared cutscene lock (was a filtered ui_crosshair stufftext) |
+| `936af6dd` | 2026-10-19 | joncurry94 | cutscene: shared lock helper (freezecontrols + coop_cineHud + drawhud + nodamage, late-join safe, watchdog) |
+| `94914193` | 2026-10-19 | joncurry94 | v1.10.32: generator outputs regenerated (line endings) after merge |
+| `2ef5257e` | 2026-10-19 | joncurry94 | Merge integ-1.10.32-mod into coop-wip (v1.10.32 integration) |
+| `f62172f8` | 2026-10-19 | joncurry94 | pre-1.10.32 working-tree edits (included at user request) |
+| `23e8a5d2` | 2026-10-19 | joncurry94 | Merge lobbyall-next (3662aed5, lobby objectives column) into integ-1.10.32-mod |
+| `3662aed5` | 2026-10-19 | joncurry94 | lobby brief: final '+N more' line when objectives do not fit |
+| `f31920e7` | 2026-10-19 | joncurry94 | lobby brief panel: column offset -240 |
+| `8c4c2f2b` | 2026-10-19 | joncurry94 | lobby brief panel: fixed-width column anchored from the right edge |
+| `7052541f` | 2026-10-19 | joncurry94 | lobby brief panel: right-edge offset is negative |
+| `2f8c8d4d` | 2026-10-19 | joncurry94 | lobby brief panel: own reserved top-right column, facfont-20, up to 8 lines of whole objectives |
+| `85498e35` | 2026-10-19 | joncurry94 | Merge lobbyall-next (dc1d24a5, lobby objective lists) into integ-1.10.32-mod |
+| `dc1d24a5` | 2026-10-19 | joncurry94 | lobby brief panel: drop the backdrop (engine drew it as a strip); text alone is legible at 720p/1080p/4:3 |
+| `6b0ae2f8` | 2026-10-19 | joncurry94 | lobby brief backdrop: set the shader before the rect (as the rank emblem does) |
+| `c37cdac3` | 2026-10-19 | joncurry94 | lobby brief panel: slots 127-134 (clear of the NEW UNLOCKS list), verdana-14 on a dim backdrop, below the unlocks block |
+| `f1cf51e4` | 2026-10-19 | joncurry94 | Revert "lobby brief panel: verdana-14 on a dim backdrop (existing black shader)" |
+| `d76d33c1` | 2026-10-19 | joncurry94 | lobby brief panel: verdana-14 on a dim backdrop (existing black shader) |
+| `c7469b1e` | 2026-10-19 | joncurry94 | lobby briefing panel: next level's own vanilla objective text in the lobby (generated lobbybrief.scr + gen_lobby_briefs.py) |
+| `4313938b` | 2026-10-19 | joncurry94 | loadingbar.txt: fix the loadcine widget insert (a comment fragment had become a stray 'resource and BEFORE ...' line: 'Failed to… |
+| `2730be6e` | 2026-10-19 | joncurry94 | officer: coop_reinf_count no longer yields (carry_pen inlined) - exec callers got a thread pointer and every reinforcement squad… |
+| `0eecb680` | 2026-10-19 | joncurry94 | coop_defaults.cfg: match the gen_menu_fieldsettings output (one blank line after the generated seeds block) |
+| `156d613b` | 2026-10-19 | joncurry94 | What's New card + version cfg: v1.10.32 (lobby, armory, finale, alarm, prompts, pad, C96, officers) |
+| `3ae2b6bc` | 2026-10-19 | joncurry94 | missioncomplete: lobbyAlways branch reads level.coop_mpRun via the sanctioned '== 1' form (check_mp_isolation 7a) |
+| `d4820ef7` | 2026-10-19 | joncurry94 | hints: apply the 6 in-flight hint updates from the hints audit (smoke/rewards, surrender, snipers, defend zone, icon prompts, mor… |
+| `02ad3a0e` | 2026-10-19 | joncurry94 | loadcine mod hook: hzm_loadcine widget in loadingbar.txt, ui/loadclips.txt rule for m1l1_trailer2 |
+| `67651745` | 2026-10-19 | joncurry94 | Merge gamepad-next into integ-1.10.32-mod |
+| `88028df5` | 2026-10-19 | joncurry94 | Merge armory-next into integ-1.10.32-mod (coop_defaults.cfg: keep lobbyAlways + armory_defaults exec) |
+| `ac6a6609` | 2026-10-19 | joncurry94 | Merge gunfit2-next into integ-1.10.32-mod |
+| `565e137e` | 2026-10-19 | joncurry94 | Merge c96-next into integ-1.10.32-mod |
+| `fe8b777d` | 2026-10-19 | joncurry94 | Merge lobbyall-next into integ-1.10.32-mod |
+| `534b0800` | 2026-10-19 | joncurry94 | Merge searchlight-next into integ-1.10.32-mod |
+| `c5d3992d` | 2026-10-19 | joncurry94 | Merge mortar-next into integ-1.10.32-mod |
+| `6a804864` | 2026-10-19 | joncurry94 | Merge objectives-next into integ-1.10.32-mod |
+| `02043602` | 2026-10-19 | joncurry94 | Merge alarmveh-next into integ-1.10.32-mod |
+| `6267a34c` | 2026-10-19 | joncurry94 | Merge alarmsnipers-next into integ-1.10.32-mod |
+| `b160f894` | 2026-10-19 | joncurry94 | Merge alarmplace-next into integ-1.10.32-mod |
+| `79797900` | 2026-10-19 | joncurry94 | Merge textfeed-next into integ-1.10.32-mod |
+| `a2de2fb2` | 2026-10-19 | joncurry94 | Merge hdring-next into integ-1.10.32-mod |
+| `fee78ed2` | 2026-10-19 | joncurry94 | Merge iconprompts-next into integ-1.10.32-mod |
+| `91575095` | 2026-10-19 | joncurry94 | Merge hints-next into integ-1.10.32-mod |
+| `2de995f9` | 2026-10-19 | joncurry94 | Merge surrender-next into integ-1.10.32-mod |
+| `708e81f4` | 2026-10-19 | joncurry94 | Merge smoke-consume-next into integ-1.10.32-mod |
+| `5b59fbd1` | 2026-10-19 | joncurry94 | Merge gunner-rearm-next into integ-1.10.32-mod |
+| `add132d0` | 2026-10-19 | joncurry94 | Merge menu-debrief-next into integ-1.10.32-mod |
+| `a97376bb` | 2026-10-19 | joncurry94 | Merge debrief-next into integ-1.10.32-mod |
+| `eae14c18` | 2026-10-19 | joncurry94 | alarm snipers: roof decks (solid crate props on real roofs), 16 audited rooftop spots on 6 maps |
+| `2f456973` | 2026-10-19 | joncurry94 | Armory B: hero + card gun transforms re-solved on the square-pixel engine (armory-engine 9899e817) |
+| `710454ef` | 2026-10-19 | joncurry94 | alarmveh: drop the bomber-trigger hold (refuted: the damage was the mission's own halftrack on the same road) |
+| `ef2663a1` | 2026-10-19 | joncurry94 | alarmveh: debug line without nil strings |
+| `5ab6e724` | 2026-10-19 | joncurry94 | alarmveh: m3l3/t2l3 wait until the mission halftrack is dead (two hulls on one road crush each other); test-only coop_alarmVehFor… |
+| `c6349c1a` | 2026-10-19 | joncurry94 | objx escort: freed prisoner gets 400 hp (the first walk-through lost him to the landing guards) |
+| `6c55365d` | 2026-10-18 | joncurry94 | alarmveh: damage diagnostic (debug 1) |
+| `1fd45e1d` | 2026-10-18 | joncurry94 | objx escort: close to 120 u of the squad so he reaches a marker the squad stands on |
+| `cc16161e` | 2026-10-18 | joncurry94 | objx escort: position/distance tick in the log |
+| `f79ec9de` | 2026-10-18 | joncurry94 | alarmveh: hold m3l3's air-raid trigger sets while an alarm vehicle is out (the map bomber destroyed it at (-1325 4867) on every r… |
+| `dc6a3d1e` | 2026-10-18 | joncurry94 | alarmveh: coop_alarmVehNear (default 1800) for tests |
+| `b448b67f` | 2026-10-18 | joncurry94 | objx radio: spawn the set as an Animate (bullets register; script_model_realdamage took no gunfire in the m2l1 harness run) |
+| `5e2a68c4` | 2026-10-18 | joncurry94 | alarmveh: crate last resort on open ground without cover |
+| `40f921e1` | 2026-10-18 | joncurry94 | alarm snipers: vanilla-source candidates, 11 audited spots on 5 maps, dispatcher lists only audited maps |
+| `c2377c0c` | 2026-10-18 | joncurry94 | objx radio: wait 4 s before replacing the vanilla set (m2l1 loopsound lines ran on a removed entity) |
+| `7f833a2c` | 2026-10-18 | joncurry94 | alarmveh: small-volume crate placement for sloped ground (atsupply refuses the 40x40 volume) |
+| `d27c9ef4` | 2026-10-18 | joncurry94 | alarmveh: crate failure logs the pos0 ground trace |
+| `f05257d0` | 2026-10-18 | joncurry94 | alarmveh: crate cover test only within 1200 u of the stop, failure log counts |
+| `79510cb9` | 2026-10-18 | joncurry94 | objx data: second m1l3c wave entry on the same coast ramp (the lighthouse-door entry stalled) |
+| `6140b006` | 2026-10-18 | joncurry94 | Armory B pass 2: one join for compare bars + numeric deltas (-61 cvars, -720 files), ledger bar under the name |
+| `cc13550a` | 2026-10-18 | joncurry94 | Controls: ENABLE sets in_padGame 1 (in-game pad play is opt-in; menus always work); note text |
+| `691224d4` | 2026-10-18 | joncurry94 | alarmveh: m3l3 crate beside the coop player spawn, crate search radius 480 u |
+| `a10f6a27` | 2026-10-18 | joncurry94 | objx: hold waves from authored entry points (counter_squad), nearest-foe log, m1l3c zone moved onto the walkable landing (r 380) |
+| `8a1e27cb` | 2026-10-18 | joncurry94 | Armory B pass 2: cvar budget (engine limit 8192): clear-all selected mark, hero bar through the card progress command, trimmed sw… |
+| `804c6c53` | 2026-10-18 | joncurry94 | alarmveh.scr: crate search - nearest clear covered floor within 320 u (stored spots are flush to walls, atsupply refused them) |
+| `1b6056f9` | 2026-10-18 | joncurry94 | objx hooks: arm from main.scr, required-objective exit gate in missioncomplete.scr, cvar seeds |
+| `02aeb928` | 2026-10-18 | joncurry94 | objx: shared mechanics for the extra ch1-3 objectives (HUD side lines, hold timer on the counter-attack helpers, plantable charge… |
+| `ef659adf` | 2026-10-18 | joncurry94 | alarm snipers: every spot audited in-engine; 7 spots on 3 maps survive (floaters, roof-edge and invisible-surface spots dropped) |
+| `0fd6144d` | 2026-10-18 | joncurry94 | alarmveh.scr: av_cvar returns a plain local |
+| `530c25da` | 2026-10-18 | joncurry94 | alarm.scr: one hook line, thread alarmveh.scr::av_pull from alm_start |
+| `35f4b34c` | 2026-10-18 | joncurry94 | alarmveh.scr: alarm vehicle arrival (truck + MG halftrack), hidden-entry test, crate, scaling, withdraw (off unless coop_alarmVeh… |
+| `8b044d45` | 2026-10-18 | joncurry94 | alarmveh_routes.scr: generated vehicle routes for m3l3 t2l3 t3l1 m4l1 m4l2 (vanilla chains) |
+| `c44f816b` | 2026-10-18 | joncurry94 | objectives panel: 'Additional Objectives' header + side lines 3-5 (coop_so3..so5), pinned block moved down 80 px |
+| `857bb102` | 2026-10-18 | joncurry94 | ubersound: sdkfz_snd_* also on t2l3, opeltruck_snd_stop/off also on t3l1 (alarm vehicles would be silent there) |
+| `39eddfac` | 2026-10-18 | joncurry94 | Merge alarmplace-next (counter-attack zones/timer) into objectives-next for the shared hold timer |
+| `948161bb` | 2026-10-18 | joncurry94 | Armory B pass 2: hero transforms solved for the tall 332x128 box (75/75), short ledger names |
+| `e015b281` | 2026-10-18 | joncurry94 | gamepad: in_gamepad enable/disable in Controls, no in_restart; lean/sidearm/use on back paddles; docs in autoexec |
+| `c52f430c` | 2026-10-18 | joncurry94 | Armory B pass 2: tall hero (2.6:1), numeric compare deltas, tab counts, what-unlocks-next ledger, finish swatches + name, slot na… |
+| `bb1f7de1` | 2026-10-18 | joncurry94 | Armory B: text widths calibrated on real renders (0.69 units per sheet unit), card padding, chip pitch, hero progress cleared on… |
+| `f0ebf5b9` | 2026-10-18 | joncurry94 | Armory B: hero transforms solved for the wide hero box (armory_hero_fit.tsv, 74/75 converged) |
+| `a7f23b8b` | 2026-10-18 | joncurry94 | lobby timeout and empty-lobby skip also in campaign mode |
+| `54b55098` | 2026-10-18 | joncurry94 | carry: chapter helper fix, alarm-on-start diagnostics |
+| `10f5440f` | 2026-10-18 | joncurry94 | lobby between levels: chapter briefing after the lobby for chapter-opening maps; empty-lobby 15 s skip |
+| `0f02a5d1` | 2026-10-18 | joncurry94 | Armory B: wide hero (name / caliber / chips below the render), card bands with section labels above their own rows, single-line c… |
+| `03c9807c` | 2026-10-18 | joncurry94 | alarm snipers: drop the actor-mask floor test (monsterclip on roofs), keep the settle check |
+| `db9f38af` | 2026-10-18 | joncurry94 | lobby between every level: missioncomplete detours through co_lobby1 when coop_lobbyAlways (stash next map in coop_campaignNext);… |
+| `4fa40a5e` | 2026-10-18 | joncurry94 | Armory B: card names wrapped by the font's own glyph widths (docs/tools/ritualfont.py) |
+| `feadb402` | 2026-10-18 | joncurry94 | lobby for every mission: menu Apply routes a single-mission start through co_lobby1 (coop_lobbyAlways, default 1) |
+| `ddfb8ce6` | 2026-10-18 | joncurry94 | alarm snipers: actor-mask floor check and 0.7 s settle check at spawn (engine-scan roofs that actors fall through) |
+| `e12ffa74` | 2026-10-18 | joncurry94 | lost defend zone carries heavier reinforcements into the next level of the same mission (cvar carry-over, chapter rule, alarm-on-… |
+| `fb71efb8` | 2026-10-18 | joncurry94 | Armory B: card progress bar under the gun image, 75-unit cards, full-width card text |
+| `7547b329` | 2026-10-18 | joncurry94 | searchlights: log why detection is on (bug-4011) |
+| `b28c41f1` | 2026-10-18 | joncurry94 | alarm snipers: engine-side roof scan, widened spot search (102 spots, outdoor only) |
+| `587643d8` | 2026-10-18 | joncurry94 | Armory B: locked inspect hides the VARIANT button |
+| `097d0189` | 2026-10-18 | joncurry94 | Armory B: card text metrics (11-char lines, 4 lines, info on T3/T4), finish chip names, layout pass from the first real-engine ca… |
+| `f9e10f71` | 2026-10-18 | joncurry94 | Armory B: uniform / helmet / glove steppers step unlocked-first (page pointers, cosorder.scr, docs/tools/patch_armory_cos.py, gen… |
+| `f5416aad` | 2026-10-18 | joncurry94 | Armory B: Showroom screen - generated urc, unlocked-first card/finish chains, compare tables, defaults (gen_loadout.py, gen_armor… |
+| `fe3ecad5` | 2026-10-18 | joncurry94 | Armory B: server sort / progress / finish pushes (loadoutpick.scr) and the hand-file hooks (docs/tools/patch_armory_b.py) |
+| `553e3337` | 2026-10-18 | joncurry94 | Armory gun fit: re-solved transforms (70/76 converged) |
+| `5cc7c365` | 2026-10-18 | joncurry94 | Revert "Armory slot card: thumbnail widget widened 92->108 (cardthumb1-4)" |
+| `df30874e` | 2026-10-18 | joncurry94 | alarm MG: the alarm's cover anchor wins over the officer/radio anchor |
+| `b8fb26fa` | 2026-10-18 | joncurry94 | credits: Mauser C96 model by no12u (Sketchfab), CC BY 4.0 |
+| `b6fa6c19` | 2026-10-18 | joncurry94 | alarm snipers: no indoor snipers, 44 open-sky spots |
+| `c47c00fa` | 2026-10-18 | joncurry94 | mortar: final whitelist from the site probes - German m3l2 m1l3a t3l1; Allied also m1l3b e1l1 e3l2 t2l4 m3l3 t2l1 |
+| `ff73aeec` | 2026-10-18 | joncurry94 | mortar: whitelist from the site probe - both sides m3l2 m1l3a; Allied only m1l3b e1l1 e3l2 (e3l4 and the forest maps dropped); pe… |
+| `c12c83bd` | 2026-10-18 | joncurry94 | Armory slot card: thumbnail widget widened 92->108 (cardthumb1-4) |
+| `07c303b8` | 2026-10-18 | joncurry94 | alarm snipers: rooftop / open-sky first, interior only as fallback |
+| `5df0b378` | 2026-10-18 | joncurry94 | counter: defend-zone marker = compass diamond + faint dashed ground ring (func_beam), shown only while a defender is near/outside… |
+| `50c0c33e` | 2026-10-18 | joncurry94 | bug-4008: centre the challenge banner (ihuddraw center puts the text's left edge at the screen centre) |
+| `0bfde682` | 2026-10-18 | joncurry94 | Armory gun preview refit: fix MG42, DP-28, Beretta silenced, C96, G43 sniper, Arisaka framing; C96/Beretta silenced orientation |
+| `81f8e902` | 2026-10-18 | joncurry94 | alarm snipers: elevation rule (>=128 u above route ground), spots re-generated |
+| `fc48f04e` | 2026-10-18 | joncurry94 | mortar: Allied targets seen by the spotter or by the crew at the tube |
+| `e86f643c` | 2026-10-18 | joncurry94 | alarm snipers: m4l2 deny box, final spot list (104 spots) |
+| `de859994` | 2026-10-18 | joncurry94 | mortar: the Allied gunner asks for a second site when the first walk fails |
+| `d7c4ff48` | 2026-10-18 | joncurry94 | mortar: Allied shell occlusion by the traced world line (sighttrace reported hits=0) |
+| `0e332991` | 2026-10-18 | joncurry94 | reinf_mg: float duty division, no div-by-zero; MG team pacing now applies (bug-4036) |
+| `0d4b2ba6` | 2026-10-18 | joncurry94 | mortar: say why the Allied spotter has no target |
+| `68280d42` | 2026-10-18 | joncurry94 | m3l3 church barrage: damage hit location 3 (torso x1.0), not 0 (head x4) - the floor clamp on the AMOUNT was multiplied past the… |
+| `4e738885` | 2026-10-18 | joncurry94 | mortar: coop_mortarGap (seconds between fire missions, default 20) for tests |
+| `add69a63` | 2026-10-18 | joncurry94 | mortar: damage location 3 (torso x1.0), not 0 (head x4): the church call kills through its own floor; calibration probe removed |
+| `f72fa77a` | 2026-10-18 | joncurry94 | mortar: self-calibrating health floor (probe hit, read the engine damage scale, then the rest) - a 187 shell killed a 330 hp play… |
+| `7ba271d1` | 2026-10-18 | joncurry94 | Armory gun preview refit: more fit rounds (59/76 converged) |
+| `0a1f51f6` | 2026-10-18 | joncurry94 | alarm snipers: skip movers and vehicle paths, remove a sniper lifted off his floor, tighter leash |
+| `6974eb15` | 2026-10-18 | joncurry94 | mortar: log positions when the spotter has no line |
+| `85e27f3e` | 2026-10-18 | joncurry94 | mortar: the tube site must be walkable from the crew's entry and within 2400u of it |
+| `ae4fb9c5` | 2026-10-18 | joncurry94 | mortar: the spotter stands beside the tube, not 170u out |
+| `fa3d5eea` | 2026-10-18 | joncurry94 | mortar: the gunner counts as arrived within 260u; log the walk result |
+| `07203f2d` | 2026-10-18 | joncurry94 | Surrender: idle anim and a short wait before holster so no unarmed_shoot error |
+| `534558b9` | 2026-10-18 | joncurry94 | rewards: cache nudged to a clear floor spot (crate-sized box trace), medkit seated on the lid |
+| `befbfb1e` | 2026-10-18 | joncurry94 | mortar: spotter line of sight with the traced recipe (sighttrace never reported a clear line in the harness) |
+| `ebe666e1` | 2026-10-18 | joncurry94 | mortar: say why no target / no overwatch |
+| `fcf44947` | 2026-10-18 | joncurry94 | mortar: gunner leash 110, may fire within 280u of the tube |
+| `f66f3d91` | 2026-10-18 | joncurry94 | mortar: drop the forest maps m6l1a/m6l1b from the whitelist (no open-sky tube site) |
+| `aab21d6b` | 2026-10-18 | joncurry94 | mortar: tube reach 2400u (was 1900) |
+| `8a27bb23` | 2026-10-18 | joncurry94 | mortar: guard the site_g debug line against a NIL site |
+| `dd55d0e0` | 2026-10-18 | joncurry94 | counter: clock takes the wave spawn time, HUD positioned; alarm MG logs every refusal reason; alarm cover anchor |
+| `530c7534` | 2026-10-18 | joncurry94 | alarm snipers: high-place drop test spots (108 spots, 25 maps), spawn debug line |
+| `ce6f7274` | 2026-10-18 | joncurry94 | Armory gun preview refit: side profile, upright, muzzle right; slot thumb and preview transforms solved from measured renders (ge… |
+| `9613306f` | 2026-10-18 | joncurry94 | Surrender: recruit with no usable gun gets a Kar98k at conversion and from the watchdog |
+| `d7f11a68` | 2026-10-18 | joncurry94 | Surrender: recruit watchdog also walks to the nearest player when idle; death-path-skipped trace |
+| `d2c1000b` | 2026-10-18 | joncurry94 | mortar: overwatch only toward a contact the Germans already know (rule A), never toward the nearest unknown player |
+| `7b430db4` | 2026-10-18 | joncurry94 | mortar: spotter walks to an overwatch point with a line to the nearest player when blind |
+| `5366b435` | 2026-10-18 | joncurry94 | mortar: target knowledge - rule A (spotter or a German within 1500u has the target as enemy) else rule B (3000u, forward 120 degr… |
+| `4ff63a9c` | 2026-10-18 | joncurry94 | mortar: spotter line of sight by sighttrace (the AI cansee is FOV/range limited) |
+| `07954dc6` | 2026-10-18 | joncurry94 | mortar: debug why a mission is not started |
+| `9aa183d4` | 2026-10-18 | joncurry94 | mortar: German crew never spawns in view - entry, spawn spots and tube site must be unseen and 700u+ from players; retry 3x4s, el… |
+| `61a3421c` | 2026-10-18 | joncurry94 | rewards: indoor list = no-usable-sky maps only (m2l2c m6l3b m6l3c m6l3d); binoculars retarget to nearest open sky; bigger ammo cr… |
+| `c6390a72` | 2026-10-18 | joncurry94 | searchlights: lit spot rides the pursuit point (traced spot clamped on the tower), detection-change log line (bug-4011) |
+| `e50c7513` | 2026-10-18 | joncurry94 | mortar: looser tube-site ground test, wider Allied site search, fix mz_para_member self-call |
+| `676f01b0` | 2026-10-18 | joncurry94 | rewards: indoor cache restocks to the kit's default ammo (no 999 add); coop_cache_use test seam for a stand-in client slot |
+| `c3564e11` | 2026-10-18 | joncurry94 | searchlights: per-light detection-driven hunt (players + allied AI), MG42 gunner engages the lit target (bug-4011) |
+| `efde21f9` | 2026-10-18 | joncurry94 | HUD: hold labels sit just above the hold ring; holdbar.scr docs updated for the ring |
+| `52e06004` | 2026-10-18 | joncurry94 | medkit: drop the dead '[USE] Patch up <name>' string (the teamheal prompt is an icon now) |
+| `fe631b84` | 2026-10-18 | joncurry94 | Icon action prompts: coop_mod/actprompt.scr (one-call show/hide/hold helper over cgame CG_DrawCoopAct); heal, self-revive, resupp… |
+| `32400cb3` | 2026-10-18 | joncurry94 | hints audit 2026-10-18: fix 7 stale loading tips, add 14 missing tips, binoculars tutorial slot, What's New alarm + finale lines |
+| `b692f1f8` | 2026-10-18 | joncurry94 | alarm brings ONE MG42 team per pull (wave 1 or 2, officer's reinf_mg team, hidden rnf_entry, covers the switch; coop_alarmMg 1) |
+| `3bf5ec6b` | 2026-10-18 | joncurry94 | mortar squads: German Granatwerfer crew (type-5 variant) + Allied paratrooper mortar team, coop_paraHealthPct health nerf (first… |
+| `9b127297` | 2026-10-18 | joncurry94 | main menu: remove the DEBRIEF button (user 2026-10-18); WHAT'S NEW / REPORT A BUG keep their 24px spacing |
+| `41a89e6f` | 2026-10-18 | joncurry94 | HUD: hold-bar labels (revive / teammate heal / downed / MP) move up to y -80 so they no longer sit on the progress bar (same row… |
+| `618372e3` | 2026-10-18 | joncurry94 | alarm points v2c: headroom check over the stand spot (no panels under stairs / low beams) |
+| `25dd8d81` | 2026-10-18 | joncurry94 | Paratrooper .30 cal gunner: primary back in his hands when he leaves the gun (bug-4005) |
+| `354b229c` | 2026-10-18 | joncurry94 | alarm points v2b: reject decal windows/doors/vents on the mounting footprint (draw-surface check), per-bell wall shader; 18 switc… |
+| `507f369b` | 2026-10-18 | joncurry94 | Surrender: friendly AI ignore surrendered men, silent conversion, rarer gated surrender, recruit idle watchdog |
+| `494474cf` | 2026-10-18 | joncurry94 | HUD: every hold-progress bar (heal self/other, revive reviver+downed, sandbag hold, Naxos sabotage; MP revive/heal) uses the HD r… |
+| `945747e4` | 2026-10-18 | joncurry94 | rewards: thrown signal smoke is consumed for good (guardian no longer re-gives it); officer drops ONE of binoculars/smoke (coin f… |
+| `675148dc` | 2026-10-18 | joncurry94 | alarm snipers: high-position snipers on alarm (new alarmsnipers.scr + generated spots, one hook in alarm.scr, coop_alarmSnipers*… |
+| `73a71992` | 2026-10-18 | joncurry94 | counter-attack defend zones (bug-4006): BSP-vetted zone, compass diamond + smoke ring + Defend feed line, clock driven by level.t… |
+| `050b4214` | 2026-10-18 | joncurry94 | alarm points v2 (bug-4005): switches + bells re-placed by BSP trace - flush on a flat wall, yaw = wall normal, vanilla offsets, o… |
+| `139765c1` | 2026-10-18 | joncurry94 | bug-4007: CHALLENGE COMPLETE banner + typewriter restored (smaller: two lines, title typed in step with the key strokes); feed_ch… |
+| `f25f00bb` | 2026-10-18 | joncurry94 | bug-4004: promotion toast joins the centre-anchored stack (toast, tally, unlock list) so the layers cannot cross at any resolution |
+| `bb252d23` | 2026-10-18 | joncurry94 | bug-4004: debrief category tally + unlock list anchored to screen centre so they never overlap the rank-up progress bar at any re… |
+| `f23f4608` | 2026-10-15 | joncurry94 | Merge coop-wip (v1.10.31) into rewards-next |
+| `0ed1e8d0` | 2026-10-15 | joncurry94 | rewards: ONE airstrike per binoculars; dropped binoculars / signal smoke can no longer be lost (traced ground spot, walk-over pic… |
+| `4d321614` | 2026-10-15 | joncurry94 | bug-3984: keep coop_wounded.tik as released in the mod tree - the new anim entries ship via the fixes pak (no assets pak change) |
+| `fcd3d1cf` | 2026-10-15 | joncurry94 | bug-3984: allysquad.scr compiled never (unknown command 'crouch'); add DBNO collapse/idle aliases to AI models |
+| `d2765ea9` | 2026-10-15 | joncurry94 | What's New card + version cfg: v1.10.31 (re-ship of the v1.10.30 content - v1.10.30 published the previous code pak after a block… |
+| `b56ae0a8` | 2026-10-15 | joncurry94 | v1.10.30: alarms + counter-attacks on by default; MG42 team damage scales with players (50 hp/s solo, +15 per player, cap 95) via… |
+| `d064d7f5` | 2026-10-15 | joncurry94 | Merge branch 'alarm-next' into combo-1.10.29 |
+| `7a5e2649` | 2026-10-15 | joncurry94 | Merge branch 'mgteam-next' into combo-1.10.29 |
+| `6cd9373c` | 2026-10-15 | joncurry94 | Merge branch 'smoke-next' into combo-1.10.29 |
+| `866b462a` | 2026-10-15 | joncurry94 | Radio calls work after the officer corpse is removed (coop_call_reinforcements uses stored officer origin/angles) |
+| `66ac2729` | 2026-10-15 | joncurry94 | Smoke screens: real hold (enableEnemy 0 + scripted idle + coop_aiDisabled), 8 s build, hide the overhead star while hidden |
+| `64685ca0` | 2026-10-15 | joncurry94 | MG42 team: coop_reinfMgAim switch, last-seat penalty on relocation, cvars in autoexec; relocation proven |
+| `c4b55c48` | 2026-10-15 | joncurry94 | Alarm points: generated alarmpoints.scr for 10 maps (animate switches/bells), runner no longer plays a missing anim |
+| `e396f4b9` | 2026-10-15 | joncurry94 | MG42 team: staging walk (pathpoint fallback, re-issued orders), takeover walk, proven on m3l2 (call, set-up, fire, takeover, radi… |
+| `8ac5c64c` | 2026-10-15 | joncurry94 | Officer MG42 team: reinf_mg.scr + parasquad.scr/officer.scr/reinf.scr hooks (step 1, untested) |
+| `0a1e1976` | 2026-10-15 | joncurry94 | Reinforcement smoke screens: squad/grenadier throw between squad and players, hold for the cloud (smokescreen.scr) |
+| `4507e9f2` | 2026-10-15 | joncurry94 | Alarm state: alarm.scr runtime (runner, siren, waves via counter_squad, shoot-to-silence; m4l3 adopts the vanilla alarmer), alarm… |
+| `5d0152ca` | 2026-10-15 | joncurry94 | Counter-attack: exclusion list from the per-map ending audit, restart guard |
+| `be33a6a0` | 2026-10-15 | joncurry94 | Armory: DONE refuses to close while a locked item is selected (Equipment Pre-Requisite Not Met banner) |
+| `adc14f56` | 2026-10-15 | joncurry94 | Counter-attack: coop_counter.scr (150 s of waves via rnf_entry before the mission completes), hooked in missioncomplete.scr, coop… |
+| `4c10b581` | 2026-10-15 | joncurry94 | Regenerate MP armory tiles from the re-fitted gun transforms (gen_mp_armory build) |
+| `b50b0731` | 2026-10-15 | joncurry94 | What's New card + version cfg: v1.10.29 - HUD polish, armory locks + fast picks + gun fit, AI realism steps 1-4 + idle watchdog,… |
+| `2e3649ea` | 2026-10-15 | joncurry94 | Merge branch 'airealism-next' into combo-1.10.29 |
+| `c89cc338` | 2026-10-15 | joncurry94 | Merge branch 'lobbyanim-next' into combo-1.10.29 |
+| `1aec8013` | 2026-10-15 | joncurry94 | Merge branch 'loadout-next' into combo-1.10.29 |
+| `3a6ceed7` | 2026-10-15 | joncurry94 | Merge branch 'hudpolish-next' into combo-1.10.29 |
+| `bf7c9046` | 2026-10-15 | joncurry94 | Armory gun fit: final computed transforms (3 Newton passes, 76 guns, 2 residual outliers) |
+| `76c814b2` | 2026-10-15 | joncurry94 | Armory gun previews: per-gun transforms COMPUTED from measured renders (docs/proposals/loadout_review_2026-10-15/fit_*.py -> load… |
+| `b5f03cc6` | 2026-10-15 | joncurry94 | lobby mannequin: pose-family animation director (bug-3956/3957/3958) |
+| `4e6c4ce7` | 2026-10-15 | joncurry94 | loading art: briefing rules + catch-all 'map *' so no lobby/briefing/dm/obj/training map falls back to the retail loading_default… |
+| `cf5b0adb` | 2026-10-15 | joncurry94 | bug-3952: remaining mod text routed to the event feed (officer, holdout, disguise hints, turret, e1l4 alarm, name warning); lobby… |
+| `4487c15d` | 2026-10-15 | joncurry94 | bug-3951: briefing ready-up roster and prompts use the UI hi-res scale (small text like the lobby) |
+| `bc59778f` | 2026-10-15 | joncurry94 | bug-3954: no medkit / sandbag / ammo box / reward readout in the lobby or over a briefing |
+| `54cb579e` | 2026-10-15 | joncurry94 | Seed the radio / idle / react cvars |
+| `d7d0a2bb` | 2026-10-15 | joncurry94 | AI realism: S1 planned wave entry, R1 event voice + faces, step 4 radio call-ins, idle watchdog |
+| `af9c238e` | 2026-10-15 | joncurry94 | Armory state channel: a client with lp_v=1 has its armory name tokens consumed (they were stale and won the race against the fina… |
+| `f2e3f91c` | 2026-10-15 | joncurry94 | loadout_pickPoll: never quiet (a deliberate first pick must regive) |
+| `cd9f3e01` | 2026-10-15 | joncurry94 | Armory picks as userinfo state: lp_* cvars (pages, guns, finishes), server converges on the last value (loadout_pickPoll); legacy… |
+| `2fd7df66` | 2026-10-15 | joncurry94 | Armory: EQUIPPED weapon tile markers, per-gun mastery lock on finish chips, variant button lock; gen_lktab.py recreated (byte-ide… |
+| `d9c29794` | 2026-10-15 | joncurry94 | Armory: pages follow the server's gated list (59 skin pages could never unlock, 21 refused ones looked free), locked weapon click… |
+| `8eb302df` | 2026-10-15 | joncurry94 | Armory: client-gated uniform/helmet/glove sends, locked weapon click shows the requirement and previews nothing, EQUIPPED caption… |
+| `aaa6a695` | 2026-10-15 | joncurry94 | Officer men join squad/morale layers via coop_reinfSquad (coop_reinfLayers); cvars seeded |
+| `2ef4a381` | 2026-10-14 | joncurry94 | What's New card + version cfg: v1.10.28 hotfix - lobby and debrief text size (bug-3918) |
+| `c54372fb` | 2026-10-14 | joncurry94 | bug-3918: lobby + debrief text use the UI hi-res scale (virtualsize 0) instead of the 640x480 virtual screen |
+| `0ddb99bb` | 2026-10-14 | joncurry94 | What's New card + version cfg: v1.10.27 hotfix - briefing slide flicker for remote players (bug-3917) |
+| `6e53cbd6` | 2026-10-14 | joncurry94 | bug-3917: briefing slide flicker for remote clients - add new slide before removing old, never re-send an unchanged slide (UI_Add… |
+| `5066fabf` | 2026-10-14 | joncurry94 | What's New card + version cfg: v1.10.26 hotfix - SAS escort failsafe, lobby mannequin cleanup, lobby bar (bug-3913/3914/3916) |
+| `59f97938` | 2026-10-14 | joncurry94 | bug-3915: drop the entry trace; keep the apply trace (developer-gated) |
+| `4df3274d` | 2026-10-14 | joncurry94 | bug-3916: dev test mode 2 (no warp node) to exercise stage 3; bug-3915 diagnostics |
+| `ea9124a7` | 2026-10-14 | joncurry94 | bug-3913: log the reap on the owner-left path |
+| `c1e18098` | 2026-10-14 | joncurry94 | bug-3915: ARMSKIN apply trace (diagnostic) |
+| `08ab745c` | 2026-10-14 | joncurry94 | bug-3914: co-op lobby LOADOUT opens the co-op armory directly; drop Allied/Axis armory sub-bar, keep Service Record |
+| `0621420e` | 2026-10-14 | joncurry94 | bug-3913: remove a lobby mannequin when its owner disconnects |
+| `128d1656` | 2026-10-14 | joncurry94 | bug-3916: SAS gate/flak failsafe - re-issue move, warp to hidden node, then let the charge be used without him |
+| `d5d4f6ce` | 2026-10-14 | joncurry94 | What's New card + version cfg: v1.10.25 hotfix - client reads the network every frame + 4 MB socket buffers (bug-3911, bug-3912) |
+| `098f93eb` | 2026-10-14 | joncurry94 | What's New card + version cfg: v1.10.24 hotfix - remote join flood fixed (bug-3910) |
+| `84f71d6d` | 2026-10-14 | joncurry94 | Lobby command flood (bug-3909): one HUD-hide loop per player, its stufftexts every 5 s; cg_huddraw_force once; dm_playermodel onl… |
+| `7a5211a0` | 2026-10-14 | joncurry94 | What's New card + version cfg: v1.10.23 hotfix - progression follows the player to any server (bug-3903) |
+| `a513b08c` | 2026-10-14 | joncurry94 | Progression sync (bug-3903): script wait cap 60 s (first join uploads in paced chunks) |
+| `42fe688c` | 2026-10-14 | joncurry94 | Progression sync (bug-3903): wait (bounded) for the engine to merge the player's uploaded record before reading it |
+| `4f8a1019` | 2026-10-13 | joncurry94 | What's New card + version cfg: v1.10.22 - Eyes on Target (eight lines: two short rows added in the clear band under the six; the… |
+| `f58e211c` | 2026-10-13 | joncurry94 | Double-barrel shotgun (integration pass 3, step B): the new weapon's code-pak side - state-file rows for "Shotgun (Double Barrel)… |
+| `17761c3a` | 2026-10-13 | joncurry94 | G 43 Irons (ADS rollout step 5): the new weapon's armory side, through the generators - roster id 78 'GEWEHR 43 (IRON SIGHTS)' (l… |
+| `99ba8027` | 2026-10-13 | joncurry94 | pistols (ADS rollout step 4): the pistol lane's state file merged onto the current one (3-way, snapshot of 12e9faf6; integrate_ad… |
+| `02405cef` | 2026-10-13 | joncurry94 | shotgun: firing breaks the reload off (ADS rollout step 1, heavy lane tools/patch_sgbreak.py stage 1 + 2 applied as a patch on to… |
+| `237adcc2` | 2026-10-13 | joncurry94 | paratrooper .30 cal, fourth pass (4): the seat of an unmanned gun is kept free |
+| `60bc2ca7` | 2026-10-13 | joncurry94 | paratrooper squad, fourth pass (3): where no landing point has a path, the men still come down on tested ground |
+| `e277c9bb` | 2026-10-12 | joncurry94 | paratrooper squad, fourth pass (2): a grenade moves the whole squad, the gun is level while it is set down, a spectator is not th… |
+| `b8c330ff` | 2026-10-12 | joncurry94 | paratrooper .30 cal, fourth pass (1): hands on the grips under pitch, the gun lies back on its butt when nobody holds it, pitch u… |
+| `fd54ab32` | 2026-10-12 | joncurry94 | paratrooper squad, third pass (3 of n): land out of the enemy's sight, cover at once on first contact, fewer false rescues, no gu… |
+| `8ade3c9c` | 2026-10-12 | joncurry94 | paratrooper squad, third pass (2 of n): grease gun, the gun low on its rest, medic and landing-point fixes |
+| `7ca17790` | 2026-10-12 | joncurry94 | low gun: a player on a LOW ground turret crouches behind it (bug-3658; needs engine game1-next, condition COOP_TURRET_LOW - ship… |
+| `cd54b05a` | 2026-10-12 | joncurry94 | paratrooper squad, third pass (1 of n): the squad holds a line instead of rushing, lands on points that were tested, and the .30… |
+| `8a35ddcd` | 2026-10-12 | joncurry94 | paratrooper .30 cal, second pass: cover with the bipod first, else a small closed sandbag rest; the rifleman carries it; a gun he… |
+| `e40bfab8` | 2026-10-12 | joncurry94 | paratrooper .30 cal: the gun always stands on something that was traced, and it sounds like the .30 cal (bug-3562; user: 'he kind… |
+| `b12a41eb` | 2026-10-12 | joncurry94 | prone: every upright ground legs state has a row to PRONE_IDLE (bug-3560; user on m4l1: 'I hold down control and nothing'). Only… |
+| `97e45afc` | 2026-10-12 | joncurry94 | weather: the torrential downpour's density is setting (b), 5.6 x (the user's pick from the three true densities) |
+| `d4485ffe` | 2026-10-12 | joncurry94 | weather tier: TRUE density multipliers for the fixed rain engine (spawn by elapsed time at a 125 fps reference, a fresh seed per… |
+| `a39e035e` | 2026-10-12 | joncurry94 | officer rewards in the item readout row (user 2026-10-12: 'the new text on the left side also seems to overlap with the paradrop… |
+| `872118ea` | 2026-10-12 | joncurry94 | artery jet: the same colour as the mod's other blood (user 2026-10-12, playing the build: 'arterial blood isnt the same color as… |
+| `582823c4` | 2026-10-12 | joncurry94 | weather: the torrential downpour is thicker (user 2026-10-12: 'downpour should be thickened, blinding works') - sixteen times the… |
+| `f26cd077` | 2026-10-12 | joncurry94 | m4l1: officer re-sited to the user's in-game reading (183 -5343, facing 147) and his reinforcements 800 u further back, beyond hi… |
+| `5e4f3ed2` | 2026-10-12 | joncurry94 | feed round 3, the user's calls on the open questions ('whatever makes most sense', 2026-10-12): (2) the exit refusal is one amber… |
+| `f65310fa` | 2026-10-12 | joncurry94 | weather: BLIZZARD / TORRENTIAL DOWNPOUR - a tier above intensity 3 on snow and rain maps (coop_mod/wxextreme.scr; user 2026-10-12… |
+| `384a3697` | 2026-10-12 | joncurry94 | e3l3: the 'Stealth phase: weapons are secured ...' line stays on the left - it fires for the first living player, during the miss… |
+| `8dc7a200` | 2026-10-12 | joncurry94 | feed round 3, Spearhead and Breakthrough: sniper-rifle pickups (t2l1, t2l4), the t2l3 breach warning (amber, with the side), the… |
+| `a464b62e` | 2026-10-12 | joncurry94 | feed round 3, Allied Assault missions 4-6: M5L2A / m5l2b moved-player and tank-goal lines per player in the feed (one duplicate p… |
+| `3704ab07` | 2026-10-12 | joncurry94 | feed round 3, Allied Assault missions 1-3: left-side prints of the map scripts sorted - co-op narration the scene or the objectiv… |
+| `7a7ce336` | 2026-10-12 | joncurry94 | Video panel: the video-memory gauge (look A, user 2026-10-12: 'I like A') - 24 lamps round the dead dial under DISPLAY MODE: ambe… |
+| `afa1ae04` | 2026-10-12 | joncurry94 | launch memorial: shader for the animated badge at the top of the card (hzmMemorialMedalMorph, fades with the card); art in ui/hzm… |
+| `25517b33` | 2026-10-12 | joncurry94 | Video panel: the FIELD OF VIEW slider shows its value - a small black value plate under the slider with the fov cvar, live, in a… |
+| `91f9668a` | 2026-10-12 | joncurry94 | Omaha (m3l1a, m3l1b): the left-side story prints are gone - the scenes and the objectives carry them (user: 'let the scenes tell… |
+| `b304f9c4` | 2026-10-12 | joncurry94 | m3l1a: the drowning struggle prompt reads 'Tap F to fight the current' for the whole struggle, the swim included (user wording) |
+| `1aea1d0e` | 2026-10-12 | joncurry94 | Advanced Graphics: the VIDEO MEMORY block is taken off this sheet again and the rows get their standard spacing back (user 2026-1… |
+| `94a7341d` | 2026-10-12 | joncurry94 | rain: the twelve streak images textures/rain0..11 get real shaders (bug-3529) - they had none, so the engine built its 2D picture… |
+| `62e1fe81` | 2026-10-12 | joncurry94 | Advanced Graphics: VIDEO MEMORY block above the footer (graphics menu plan P2.1) - a bar (this game / after Apply / other program… |
+| `ded34c91` | 2026-10-12 | joncurry94 | feed round 2, the user's decisions of 2026-10-12: the alarm tip is a one-time hint in co-op (was a bold line every 30 s while an… |
+| `575565f2` | 2026-10-12 | joncurry94 | briefing films: every stuffsrv of the six SH/BT film briefings and mapgrade.scr ends its command with ';' (bug-3523) - stuffsrv a… |
+| `e7c32b07` | 2026-10-12 | joncurry94 | Last Man Standing: a player who is dropped and comes back keeps the lives he had instead of being locked in spectator (deaths rem… |
+| `74f2dc5f` | 2026-10-12 | joncurry94 | event feed, round 2: more of the informative text goes to the small feed (user 2026-10-06) - challenge pin feedback names the cha… |
+| `01e9f201` | 2026-10-12 | joncurry94 | gore: artery spurts - the jet's assets at the intensity the user picked (option C, heavier) and the four coop_artery* seeds |
+| `b511096b` | 2026-10-12 | joncurry94 | use-to-loot: coop_mod/loot.scr - the body-search table the engine calls once per searched enemy body (50 nothing / 30 ammo for on… |
+| `63cccfca` | 2026-10-11 | joncurry94 | version cfg: v1.10.21 (generated from the What's New card) |
+| `a7f6b429` | 2026-10-11 | joncurry94 | What's New card: v1.10.21 - All Cores Forward |
+| `4216d66e` | 2026-10-11 | joncurry94 | item counters: medkit, sandbag and ammo-box monitors publish their amount in a client cvar for cgame's new readout instead of dra… |
+| `32519e40` | 2026-10-11 | joncurry94 | Advanced Graphics: Frame Generation (beta) switch under Display, off by default, never set by a preset (r_hzmFrameGen) |
+| `01f4d761` | 2026-10-11 | joncurry94 | preload: rifle smoke model cached at map load; hzm_preload/_common.txt - the HUD icons, blood and bullet-hole decals and impact p… |
+| `5ce630e8` | 2026-10-11 | joncurry94 | bunker: enemies-remaining readout on the backline objective only; ready gate: a spectator who has pressed F counts as a ready vot… |
+| `0db724f0` | 2026-10-11 | joncurry94 | Advanced Graphics: Frame Rate Limit offers real display rates (60 / 90 / 120 / 144 / 165) and 3-under values for G-Sync and FreeS… |
+| `c65f9801` | 2026-10-11 | joncurry94 | Score HUD gated on the neutral cg_hudScore (cgame mirrors the session kind) so the shared menu names no MP cvar; bunker counter:… |
+| `90bae2a8` | 2026-10-11 | joncurry94 | AI crate blindfire: ask for <group>_crate_blindfire, not the 01/02 names the engine strips from weighted aliases - no more unknow… |
+| `f311bf60` | 2026-10-11 | joncurry94 | card games: a player who has not had an AI think yet (thinkstate void, g_ai 0) is not "alerted" - no stand-up at map start, no de… |
+| `3bdc62e3` | 2026-10-11 | joncurry94 | City Hall (m5l1b): a respawning bazooka by the rockets on the floor at the start - atsupply launcher-only spot, coop_atSupply_pla… |
+| `0fbd71bf` | 2026-10-11 | joncurry94 | precache: the wound model and the head lamp pair no longer load from disk mid-game (bug-3493) |
+| `fa127635` | 2026-10-11 | joncurry94 | Video panel: RECOMMENDED is a button that applies the preset the engine picked for this PC (vstr coop_gfxRecCmd), with a 'Best fo… |
+| `ac832814` | 2026-10-11 | joncurry94 | connection settings: best values for everyone at every launch (rate 90000, cl_maxpackets 100, snaps 40); the retail connection-sp… |
+| `0f2036b3` | 2026-10-11 | joncurry94 | enemies-remaining readout drawn by cgame in the event feed's small type (client cvar coop_ecLine); the retail Score readout is hi… |
+| `6a75cb0a` | 2026-10-11 | joncurry94 | enemies-remaining readout, top right, for kill-count objectives (bug-3485) |
+| `e7cb427a` | 2026-10-11 | joncurry94 | Options -> VIDEO: GRAPHICS QUALITY presets and RECOMMENDED replace the two dead 32-bit rows; presets now also set the cost rows o… |
+| `88d6d8d9` | 2026-10-11 | joncurry94 | What's New card: v1.10.20 - Clear the Beach |
+| `c9ad2eb1` | 2026-10-11 | joncurry94 | Omaha body and gore budget (both beach maps only); Advanced Graphics quality presets Low / Medium / High / Ultra (bug-3483, bug-3… |
+| `fc0b04c5` | 2026-10-11 | joncurry94 | Advanced Graphics: Model Detail row (Full / Reduced / Low) - the player can turn model level-of-detail back on; Full stays the de… |
+| `5a96919c` | 2026-10-11 | joncurry94 | Omaha: no standing fires on wrecks that are in the sea (boat hit by a shell burns 25 s, the player's own boat 45-60 s), and the c… |
+| `42499168` | 2026-10-11 | joncurry94 | paradrop: jumpers fall THROUGH the sky brush instead of landing on top of it, and are broadcast while above it (bug-3478: on clas… |
+| `80117394` | 2026-10-11 | joncurry94 | aircraft: C-47 flak bursts spawn as script_model (a bare spawn of exp_flak_near.tik is refused and killed the thread) (bug-3476) |
+| `7fb6f588` | 2026-10-11 | joncurry94 | clip recording keys made safe: F10 asks for a second press and refuses with no clip, F11 only finishes a running render (bug-3475… |
+| `85e4015c` | 2026-10-11 | joncurry94 | m2l2b: when the finale triggers, every player is warped to the exit under the black (playersWarpto + respawn point there) (bug-34… |
+| `f264ad9c` | 2026-10-11 | joncurry94 | m2l2b: respawn stays inside the boat on the escape route (spawn warper off, no dock spawn line) and surrender is off on this map… |
+| `3dce5065` | 2026-10-11 | joncurry94 | m3l1b: surrendered/recruited Germans no longer hold 'Clear the backline' (bug-3468); M3L3: lost church = mission failed, 30 s pre… |
+| `cc21a431` | 2026-10-06 | joncurry94 | What's New + coop_version: v1.10.20 (pistol aimed reload keeps the gun in the hand) |
+| `679bb731` | 2026-10-06 | joncurry94 | What's New + coop_version: v1.10.19 (ADS reload for 13 more guns) |
+| `412cd393` | 2026-10-06 | joncurry94 | What's New + coop_version: v1.10.18 (ADS reload Thompson, Moschetto) |
+| `6fcb8cb0` | 2026-10-06 | joncurry94 | Reapply "What's New + coop_version: v1.10.17 (ADS reloads: Garand, PPSh; ADS bolt: Springfield, Enfield, Mosin)" |
+| `f18791e9` | 2026-10-06 | joncurry94 | Revert "What's New + coop_version: v1.10.17 (ADS reloads: Garand, PPSh; ADS bolt: Springfield, Enfield, Mosin)" |
+| `7381584d` | 2026-10-06 | joncurry94 | What's New + coop_version: v1.10.17 (ADS reloads: Garand, PPSh; ADS bolt: Springfield, Enfield, Mosin) |
+| `43afdbab` | 2026-10-06 | joncurry94 | What's New + coop_version: v1.10.16 hotfix (Kar98-family hip reload) |
+| `bc619708` | 2026-10-06 | joncurry94 | What's New v1.10.15: drop the Stuka line (already shipped in v1.10.14) |
+| `a824949a` | 2026-10-06 | joncurry94 | What's New card + coop_version: v1.10.15 hotfix |
+| `0fe1c96b` | 2026-10-05 | joncurry94 | bug-3397: finish shaders name each weapon texture exactly as the gun's own shader does |
+| `b4ff997f` | 2026-10-05 | joncurry94 | aircraft: a downed Stuka looks for a safe crash over 18 headings/pull-outs, and the over-the-horizon fallback can no longer fly t… |
+| `e88533b2` | 2026-10-05 | joncurry94 | coop_version: v1.10.14 |
+| `9444253f` | 2026-10-05 | joncurry94 | What's New card: v1.10.14 |
+| `88fe42b8` | 2026-10-05 | joncurry94 | officer AT/grenade launchers back, owned by their carrier; reload.scr round-count errors (bug-3416, bug-3431) |
+| `ce7a1891` | 2026-10-05 | joncurry94 | aircraft: dive bombers drawn at scale >= 0.45-0.5 with a 60 deg Stuka dive (still read as specks at 0.35); shootable Stuka 300 hp |
+| `6cf61e58` | 2026-10-05 | joncurry94 | reload polish: hand-keyed phase B reloads with natural arms; M1919 belt prop replaces the ammo box |
+| `0d2a1eab` | 2026-10-05 | joncurry94 | HUD declutter: Stuka / artillery 'onto your position' warnings -> 6 s amber feed alert (kept bold they lingered ~45 s) |
+| `ab60fb63` | 2026-10-05 | joncurry94 | aircraft: tighter dive-bomber pull-out (8 g) and Stuka scale >= 0.35 so the bottom of the dive happens near the target and reads… |
+| `5c86d322` | 2026-10-05 | joncurry94 | coop_carrier moves into coop_mod/carrier.scr: officer.scr and anim/corner*.scr compile on the shipped game.dll (bug-3360) |
+| `bf0b5f1e` | 2026-10-05 | joncurry94 | HUD declutter: coop chatter moves from the left message box to the event feed (bugs 3426-3429) |
+| `44122aaa` | 2026-10-05 | joncurry94 | aircraft: trail puffs larger and growing faster so they merge into a dispersing plume (capture showed a string of beads) |
+| `b859f1b2` | 2026-10-05 | joncurry94 | icons: procedural surrender badge (star \| Balkenkreuz) and a point-up outlined allied star |
+| `f83c262f` | 2026-10-05 | joncurry94 | AI friendly fire: drop the redundant scripted AT/grenade launchers, script guns fire as their carrier (bug-3416, bug-3360) |
+| `8e142a24` | 2026-10-05 | joncurry94 | dbno: wordless bleed-out - ring + fading senses replace the BLEEDING OUT text; surrender icon |
+| `85a1d34d` | 2026-10-05 | joncurry94 | aircraft: puffy smoke trail + billowing wreck column (retail sprites, no VSS rope) |
+| `a37bc39a` | 2026-10-05 | joncurry94 | loading tips: officer, reinforcement waves, paratroopers and enemy AI (11 lines, each verified in code + one in-engine probe run) |
+| `3e437a3a` | 2026-10-05 | joncurry94 | flmusic: the scripted-music gate skips only one-shot scripted cues and cinematics, not looping map scores |
+| `5caf8c1b` | 2026-10-05 | joncurry94 | aircraft: readable dive bombers, C-47 lost to flak (coop_paraShootdownChance), review fixes |
+| `f6cb07b5` | 2026-10-05 | joncurry94 | music + sfx: the user's Frontline cues wired to their beats; pain/distant variety; ghost correction |
+| `4f95b1f3` | 2026-10-05 | joncurry94 | stealth late-join: joiners/respawners spawn in the squad's disguise state (bug-3399) |
+| `1f2d0e34` | 2026-10-05 | joncurry94 | music: area-cleared sting (Frontline stinger, same doctrine as the objective/wave stings) |
+| `ae27f734` | 2026-10-05 | joncurry94 | aivoice: Soviet and Italian models are their nation whatever team the engine gives them |
+| `7bed9b98` | 2026-10-05 | joncurry94 | paradrop squad voices: repoint ghost aliases to shipped US takes; medic kneel uses the heal line |
+| `12e9faf6` | 2026-10-05 | joncurry94 | reload phase B group 8: M1919 .30 cal and MG42 belt reloads with an opening top cover |
+| `806b0cf5` | 2026-10-05 | joncurry94 | reload phase B group 7: Mauser C96 (+Trench) loads from the top with a stripper clip |
+| `404acd73` | 2026-10-05 | joncurry94 | reload phase B group 6: drum reloads (Thompson 50rd, 1928 Tommy, MP18 snail drum) |
+| `eb40fadb` | 2026-10-05 | joncurry94 | voice pools: chatter prune, gender + nationality fixes, Frontline situational takes |
+| `a573e8a8` | 2026-10-05 | joncurry94 | aircraft: shared flight library for the C-47 paradrop, P-47 strike and Stuka dive (phases 1-4 + shoot-down) |
+| `1c8c3e30` | 2026-10-05 | joncurry94 | quick draw: retime 0.25/0.40/0.60 -> 0.18/0.25/0.30 (seeds + one-shot for existing profiles) |
+| `f2cf74f1` | 2026-10-05 | joncurry94 | loading tips: Quick Draw tip reworded (user: faster than switching weapons, in a pinch) |
+| `05d1d236` | 2026-10-05 | joncurry94 | reload phase B: revolvers drop their spent cases (Webleys at the break-open, M10 at the ejector rod) |
+| `ad10f762` | 2026-10-05 | joncurry94 | reload phase B group 4: Lewis Gun and DP-28 take their top pan off |
+| `b9f839e6` | 2026-10-05 | joncurry94 | autoexec: coop_sprintMult 1.12 -> 1.22 (user: sprint a tad faster; 3P clip rate follows via coop_sprintAnimRef, bug-3372) |
+| `a0a99baf` | 2026-10-05 | joncurry94 | reload phase B group 3: M1 Carbine reloads its 15-round box magazine |
+| `42cc8d19` | 2026-10-05 | joncurry94 | reload phase B group 2: Webley Mk VI reloads as a break-top revolver |
+| `f742cd3a` | 2026-10-05 | joncurry94 | reload phase B group 1: scoped bolt rifles load one round at a time |
+| `441e226e` | 2026-10-05 | joncurry94 | reload audit phase A: torso routing, own torso reloads for FG42/Johnson/DP-28/M10, Lewis/Webley renames |
+| `e171e520` | 2026-10-05 | joncurry94 | ADS reloads with weight: Garand, Thompson, PPSh-41, Moschetto (reviewed, run ab23) |
+| `7a9b2001` | 2026-10-05 | joncurry94 | prone shooter: muzzle outside the shooter's own box; never on a vehicle passenger (bug-3360) |
+| `d2cbd933` | 2026-10-05 | joncurry94 | smallfix: medkit pack truly consumed, stuck re-check throttled, tinnitus cvars cached, dev binds hidden |
+| `92648e5a` | 2026-10-04 | joncurry94 | coop_version: v1.10.13 |
+| `248a22ff` | 2026-10-04 | joncurry94 | What's New card: v1.10.13 |
+| `3c2e06d5` | 2026-10-04 | joncurry94 | footprints: shader, boot-print textures, cg_footprints seed and Advanced Graphics row |
+| `a03bdee7` | 2026-10-04 | joncurry94 | Lee-Enfield: hand-keyed bolt cycle while aiming (enfield_rechamber_ads) |
+| `fd2746cf` | 2026-10-04 | joncurry94 | Mosin-Nagant: hand-keyed bolt cycle while aiming (mosin_rechamber_ads) |
+| `6caf0fd5` | 2026-10-04 | joncurry94 | Springfield M1903: hand-keyed bolt cycle while aiming (springfield_rechamber_ads) |
+| `4e0b1b7d` | 2026-10-04 | joncurry94 | officer: precache his weapons and the AI handler scripts at load, alongside the existing model cache (srvperf, bug-3339) |
+| `86d51d64` | 2026-10-04 | joncurry94 | officer waves: one spawn per server frame (radio / officer / each bodyguard / battalion, squad, grenadier and death-battalion act… |
+| `8e19cc14` | 2026-10-04 | joncurry94 | gfx flip: Anti-Aliasing row = MSAA Auto/Off/2x/4x/8x on r_msaa (FXAA keeps its own "Edge Smoothing" row); seta r_msaa -1 |
+| `aff62b99` | 2026-10-04 | joncurry94 | server hitches: sliced medkit Health sweep, staggered XP autosave, skip unchanged save writes; main-menu update notice label (srv… |
+| `66ddeb31` | 2026-10-04 | joncurry94 | Kar98k: hand-keyed bolt cycle while aiming (kar98_rechamber_ads) |
+| `d29ac2d3` | 2026-10-04 | joncurry94 | coop_version: v1.10.12 |
+| `ef27be4f` | 2026-10-04 | joncurry94 | What's New card: v1.10.12 |
+| `a7f1f78e` | 2026-10-04 | joncurry94 | AI tiks: identity gear outside the weapon cases (bug-3306 follow-up, bug-3325) |
+| `f9975dc4` | 2026-10-04 | joncurry94 | dust storms: more full storms, moonlit night storms; m1l1 intro 0 left every player hidden (no veil, no gun) |
+| `4c720eaf` | 2026-10-04 | joncurry94 | coop_version: v1.10.11 |
+| `db9a1f2a` | 2026-10-04 | joncurry94 | What's New card: v1.10.11 - Steady Aim |
+| `56c9359e` | 2026-10-04 | joncurry94 | paratroopers: squad brain, cover, own prone/crouch, safe grenades, room clearing, mounted .30 cal (bug-3322) |
+| `06d3259d` | 2026-10-04 | joncurry94 | coop start screen: Dedicated works - its APPLY / BEGIN FULL CAMPAIGN start a separate dedicated server and join it (bug-3321) |
+| `bf73dea9` | 2026-10-04 | joncurry94 | Ground Variety: Advanced Graphics row (Off default / Subtle / Full) + generated per-map ground list |
+| `b642fb3c` | 2026-10-04 | joncurry94 | coop_version: v1.10.10 |
+| `35267a79` | 2026-10-04 | joncurry94 | What's New card: v1.10.10 - Supply Run |
+| `158f1d8d` | 2026-10-04 | joncurry94 | paratroopers: no prone-shooter gun on allies (invisible damage to players + troopers, bug-3309) |
+| `b9bf86d8` | 2026-10-04 | joncurry94 | Anti-tank supply points at armour fights that had no AT weapon (atsupply.scr) |
+| `8517f520` | 2026-10-04 | joncurry94 | Invisible enemies (bug-3306): arm actors without rebuilding their body |
+| `894a5758` | 2026-10-04 | joncurry94 | officer: no forced attackplayer before real contact |
+| `c3428856` | 2026-10-04 | joncurry94 | coop mission tiles: new art + retail names, both menu layouts (bug-3274) |
+| `3d7690bb` | 2026-10-04 | joncurry94 | Respawn weapon fix (bug-3305): kit on every respawn, picked-up weapons drop at the body |
+| `d89d04c6` | 2026-10-04 | joncurry94 | officer group: live-player HP scaling for every wave class, officer thresholds as fractions of max |
+| `b6b2b433` | 2026-09-29 | joncurry94 | coop_version: v1.10.9 |
+| `fefcae4a` | 2026-09-29 | joncurry94 | v1.10.9: armory padlocks default ON (blank coop_lockLoadout no longer exports every gun unlocked); High Ranking Officer HP scales… |
+| `f169b500` | 2026-09-29 | joncurry94 | coop_version: v1.10.8 |
+| `ce1b0aef` | 2026-09-29 | joncurry94 | v1.10.8: in-game bug report parity UI (category, review page, toggles) + What's New card |
+| `ab8b63fd` | 2026-09-29 | joncurry94 | coop_version: v1.10.7 |
+| `46122de1` | 2026-09-29 | joncurry94 | v1.10.7: never stuck on respawn - respawn/spawn placement uses game.dll coop_safespot (nudge to nearest clear floor, fallback spa… |
+| `23d43776` | 2026-09-29 | joncurry94 | coop_version: v1.10.6 |
+| `c703e318` | 2026-09-29 | joncurry94 | v1.10.6 hotfix: respawn arm watch - re-give the spawn kit if a respawned player holds no weapon 2.5s later (safety net for 'lose… |
+| `52afcee2` | 2026-09-29 | joncurry94 | coop_version: v1.10.5 |
+| `3833f18f` | 2026-09-29 | joncurry94 | v1.10.5 hotfix: green ADS-tune reticle stuck on (numpad binds + Armory DONE unbind, one-time cleanup, Toggle Crosshair bind; bug-… |
+| `ee2d6a30` | 2026-09-29 | joncurry94 | What's New card: v1.10.4 - On Target |
+| `8c6b3b67` | 2026-09-29 | joncurry94 | v1.10.4 item 10: briefing films for joiners (script half) + quiet notices in the briefing + weapon-ban print fix (bug-3234, bug-3… |
+| `f8b7cff8` | 2026-09-28 | joncurry94 | v1.10.4 follow-up: new_generic_human.tik back to its v1.10.3 bytes in the tree; the bug-3196 fix ships in zzzzzzzzzz_coop_fixes.p… |
+| `27bb914f` | 2026-09-28 | joncurry94 | v1.10.4 item 9: loading-screen art pool - random themed in-engine cards for AA/SH/BT maps (bug-3215, bug-3216, bug-3217) |
+| `a648b330` | 2026-09-28 | joncurry94 | v1.10.4 item 6: briefing slides + title cards for every player, not just the listen host (bug-3234) |
+| `a0514d6f` | 2026-09-28 | joncurry94 | v1.10.4 item 5: loadout given once per spawn + slow-server icon hidden by default (bug-3208, bug-3209) |
+| `f58c9eab` | 2026-09-28 | joncurry94 | v1.10.4 item 4: defect sweep #2, items 1/2/3/6/11 (bug-3194, bug-3195, bug-3196, bug-3197, bug-3198, bug-3200) |
+| `2960a801` | 2026-09-28 | joncurry94 | v1.10.4 item 3: Hardcore - enemies drop no medkits, only map-placed kits (bug-3187) |
+| `71670a69` | 2026-09-28 | joncurry94 | v1.10.4 item 2: m3l3 rock clips - fitted collision + path cut for the 11 baked rocks (bug-3210) |
+| `5178d4cb` | 2026-09-28 | joncurry94 | v1.10.4 item 1: storm darkness - forced-value fix, variable storm length, default ON (bug-3222, bug-3211) |
+| `4bcc88ac` | 2026-09-28 | joncurry94 | v1.10.3 Storm Front: realistic lightning scripts + menu row, water/wet menu rows (on by default), ragdoll cfgs, graphics menu fix… |
+| `d6647623` | 2026-09-27 | joncurry94 | working state 2026-09-27: v1.10.1 released (+ staged v1.10.2 changes and default-off WIP) |
+| `cb6aeeb8` | 2026-09-18 | joncurry94 | v1.8.0 release state |
 | `7a3e3f77` | 2026-09-14 | joncurry94 | mp: Gun Game death-reset, Hardcore speed fix, DBNO/Medkits default ON, closet 3-way loadout |
 | `43cef62c` | 2026-09-14 | joncurry94 | mp: Demolition + CTF modes — the last two HZM game modes on Select Game Type |
 | `7116ed59` | 2026-09-14 | joncurry94 | mp: DBNO + Medkits MP port - the last two Host Rules realism rows |
@@ -728,19 +2588,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `243d8ac2 2026-09-14 engine: MP realism host toggles - ADS/Prone/Cover/Third Person off via g_mpRealismOff serverinfo` |
-| commits | 5,117 |
+| HEAD | `277bdb9d 2026-10-12 fgame: (1) bug-3639 - the trigger held on an EMPTY belt no longer heats any belted gun: the empty test moved out of the firing branches (where the frame's heat had already been added, and P_UserAim raises m_iFiring again on every command) to one branch in front of them; a gun the ammo box refills keeps its centre print, re-sent while the trigger is held, as before. Measured on a retail mg42_gun.tik with a 300-round belt against the previous build: with rounds in the belt the same (cooks in 1.9-2.0 s / 30-31 rounds at 15.5-15.8 a second, dead 2.0 s, cold 9.0 s after the cook-off), on the empty belt heat 7-8 and falling where it was 98.75 and a cook-off. (2) bug-3658 - a player on a LOW ground turret crouches behind it. Low = the AI gunner's own test (Actor::ThinkHoldGun_TurretGun: crouch weight (71.8 - h) / 33.1 of 0.5 and over, a gun under 55.25 u over the ground he is held on), decided once per mount in Player::EnterTurret (TurretGun::CoopUserLow): hull 54, view height 48 (TurretMove runs no pmove, so what he had is kept and put back in ExitTurret - Use, killed on it, the gun removed under him all come through there), held on the AI's crouched seat (62.4 - 3.0 w back, 10.3 - 1.6 w left for 64 u of user distance) so the crouched clips' hands are on the gun, and the new condition COOP_TURRET_LOW for the state files (mod: player_Torso.st TURRET_IDLE / TURRET_FIRE_LOW, aliases coop_turret_crouch_idle / _fire). Coop missions only, never a vehicle or portable turret; coop_turretCrouch 0 switches it off; developer 1 prints TURRETSEAT enter / exit. A gun at 55.25 u or over is not touched: same seat, hull 94, view 82, same stills (m3l2 scene7_mg1, 61.9 u). The first-person view is the turret camera on the gun and does not change.` |
+| commits | 5,259 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **29 modified, 1 untracked** |
-| unstaged diff | 29 files changed, 1416 insertions(+), 15997 deletions(-) |
+| **uncommitted** | **0 modified, 3 untracked** |
 
-> Working tree is dirty. Everything in those 30 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 3 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 34 |
+| 2026-10 | 130 |
+| 2026-09 | 46 |
 | 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
@@ -802,10 +2662,152 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (152)
+### Commits since 2026-01-01 (294)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `277bdb9d` | 2026-10-12 | joncurry94 | fgame: (1) bug-3639 - the trigger held on an EMPTY belt no longer heats any belted gun: the empty test moved out of the firing br… |
+| `92944d37` | 2026-10-12 | joncurry94 | fgame: the paratroopers' left .30 cal - per-gun belt / heat / rest settings on TurretGun (all off or at the MG42's numbers unless… |
+| `a9a00da9` | 2026-10-12 | joncurry94 | Merge branch 'fg2-next' into integ-1.10.22 |
+| `6e90a59a` | 2026-10-12 | joncurry94 | renderergl2: frame generation - the first-person weapon stays unwarped (as before r_hzmFrameGenGun) in a generated picture when a… |
+| `76b6a871` | 2026-10-12 | joncurry94 | renderergl2: frame generation - r_hzmFrameGenVecBits (16, the default: half floats; 10 = the displacement texture kept with every… |
+| `de8222cb` | 2026-10-12 | joncurry94 | renderergl2: frame generation - r_hzmFrameGenShadows now defaults to 0, and fg_stats lists the camera steps the present thread sa… |
+| `d36a1f8d` | 2026-10-12 | joncurry94 | renderergl2: frame generation - movers are no longer cut up in the generated pictures (bug-3561's open item: a rifle held overhea… |
+| `a628c9ee` | 2026-10-12 | joncurry94 | Merge branch 'game1-next' into integ-1.10.22 |
+| `3a93ac09` | 2026-10-12 | joncurry94 | renderergl2: frame generation - the first-person weapon gets its own motion in the generated picture (r_hzmFrameGenGun, default 1… |
+| `026c5ddd` | 2026-10-12 | joncurry94 | perf1 A4: the skinning worker pass covers depth-only lists (r_hzmSkinDepth); census of what is skinned inline (r_hzmSkelCache 2,… |
+| `bbf25b83` | 2026-10-12 | joncurry94 | fgame: prone - a hold of the crouch key is never refused silently, and four ways it did nothing are closed (bug-3560; user on m4l… |
+| `06b51f29` | 2026-10-12 | joncurry94 | Merge branch 'integ-1.10.22' into perf1-next |
+| `d0d720e3` | 2026-10-12 | joncurry94 | perf1 A2: terrain pass skipped in shadow views once the detail has settled (r_hzmTerTessOnce), the terrain memo keyed by a change… |
+| `3b70b090` | 2026-10-12 | joncurry94 | cgame rain: every drop starts from a fresh seed (bug-3552) - coop_rainSeed 1 (default; 0 = one seed a frame, as before). The spaw… |
+| `5157350f` | 2026-10-12 | joncurry94 | Merge branch 'small-next' into integ-1.10.22 |
+| `6c221a1e` | 2026-10-12 | joncurry94 | cgame rain: spawn by elapsed time (bug-3558) and near-eye cull - the two fixes only, no debug code, on top of the end-gate commit… |
+| `8631d518` | 2026-10-12 | joncurry94 | Merge branch 'fg2-next' into integ-1.10.22 |
+| `c7645770` | 2026-10-12 | joncurry94 | renderergl2: frame generation no longer stops while the player aims. The first version treated any 2D quad over a tenth of the sc… |
+| `266000d8` | 2026-10-12 | joncurry94 | cgame item readout: the two officer rewards are entries of the row (user 2026-10-12: 'the new text on the left side also seems to… |
+| `0e9642ab` | 2026-10-12 | joncurry94 | perf1 A1: the linked-spawn emitter leak (cg_hzmEmitLeakFix) and the temp model's map leaf kept with it (cg_hzmTempLeaf) |
+| `3a0350af` | 2026-10-12 | joncurry94 | renderergl2: frame generation vectors, second step. Shadows (r_hzmFrameGenShadows, default 1; user 2026-10-12: movers' shadows mu… |
+| `efc937ad` | 2026-10-12 | joncurry94 | cgame: the medkit / sandbag / ammo-box readout fades with the rest of the HUD (it sat in the feed's fade-exempt file and never di… |
+| `dbd16716` | 2026-10-12 | joncurry94 | Merge branch 'integ-1.10.22' into fg2-next |
+| `9af0f327` | 2026-10-12 | joncurry94 | renderergl2: volumetric clouds are no longer a test build (marker HZM_VCL=on) - the user approved them on by default for the allo… |
+| `2ce111cd` | 2026-10-12 | joncurry94 | renderergl2: frame generation - motion vectors for what moves by itself (user 2026-10-12: 'when characters vibrate it looks super… |
+| `e30585a9` | 2026-10-12 | joncurry94 | Merge branch 'small-next' into integ-1.10.22 |
+| `2a5dfd6c` | 2026-10-12 | joncurry94 | coop feed: lines are held while the HUD is hidden, and an alert keeps its row (user 2026-10-12, feed round 3; bug-3543). Under dr… |
+| `e48a5b3a` | 2026-10-12 | joncurry94 | Merge branch 'small-next' into integ-1.10.22 |
+| `93bcd89b` | 2026-10-12 | joncurry94 | gl2 video-memory gauge: automatic = ON (user 2026-10-12: 'I like A' - the lamp gauge in the Video panel's dial is the chosen look… |
+| `df88f878` | 2026-10-12 | joncurry94 | Merge branch 'hzm-coop-working' into integ-1.10.22 |
+| `233b47cb` | 2026-10-12 | joncurry94 | client: cl_memorialShot - a test hook that takes engine screenshots at given offsets while the launch memorial is up (console com… |
+| `f01255e9` | 2026-10-12 | joncurry94 | Merge branch 'hzm-coop-working' into integ-1.10.22 |
+| `8f219ffa` | 2026-10-12 | joncurry94 | client: launch memorial - one badge, at the top, the animated one: the looping old <-> new medal is drawn in the card's badge slo… |
+| `e1d8653e` | 2026-10-12 | joncurry94 | gl2 video-memory readout: every number from a source chain that works on any PC, or left out (user 2026-10-12: 'on by default, as… |
+| `7275a599` | 2026-10-12 | joncurry94 | Merge branch 'small-next' into integ-1.10.22 |
+| `22c2b387` | 2026-10-12 | joncurry94 | gl2: video-memory accounting and the menu block's numbers (graphics menu plan P2, tr_hzm_vram.c). The count is a walk over the re… |
+| `f1211318` | 2026-10-12 | joncurry94 | cgame: a raindrop that ends under cover is not drawn - the column above where the drop lands must reach sky too, so slanted rain… |
+| `1c441313` | 2026-10-12 | joncurry94 | Merge branch 'gfx2-next' into integ-1.10.22 |
+| `e37ef35e` | 2026-10-12 | joncurry94 | Merge branch 'hzm-coop-working' into integ-1.10.22 |
+| `8e8f9edd` | 2026-10-12 | joncurry94 | cgame: the item readout clears the whole retail health cluster, not just the team badge (bug-3521) - the cluster is laid out in h… |
+| `9216df18` | 2026-10-12 | joncurry94 | fgame: a soldier who surrenders or is recruited after an artery hit stops bleeding and is not killed by the bleed-out |
+| `a6a4a656` | 2026-10-12 | joncurry94 | fgame: stuffsrv ends its text with a line end (bug-3523) - the script command put its text into the command buffer as an open lin… |
+| `b5a26ba9` | 2026-10-12 | joncurry94 | cgame: rain outside is drawn while you stand indoors - a roof over the player no longer switches every drop off (the per-drop sky… |
+| `bcef9d26` | 2026-10-12 | joncurry94 | Merge branch 'hzm-coop-working' into integ-1.10.22 |
+| `0563974b` | 2026-10-12 | joncurry94 | Merge branch 'gfx2-next' into integ-1.10.22 |
+| `eb929493` | 2026-10-12 | joncurry94 | event feed, round 2 (user 2026-10-06: more of the informative text in the small feed). cgame: a burst larger than the three rows… |
+| `71128b6b` | 2026-10-12 | joncurry94 | Merge branch 'hzm-coop-working' into integ-1.10.22 |
+| `4f9c2611` | 2026-10-12 | joncurry94 | renderergl2: volumetric clouds ON by default, but only on the allow list of skies (user: "only for skies where they look good") |
+| `f589b1ed` | 2026-10-12 | joncurry94 | client: the Dedicated launch forwards the new host rule coop_lmsLateJoin (Host Rules > LMS: Late Joiners Can Spawn) like the othe… |
+| `f4a523cd` | 2026-10-12 | joncurry94 | fgame: artery spurts - a bullet into an enemy's neck, thigh or upper arm can open an artery that pulses with his heartbeat and bl… |
+| `70afd45a` | 2026-10-12 | joncurry94 | Merge branch 'loot-next' into integ-1.10.22 |
+| `c9db7c68` | 2026-10-12 | joncurry94 | Merge branch 'scopes-next' into integ-1.10.22 |
+| `6d1f182f` | 2026-10-12 | joncurry94 | cgame: a call-in plane fades into the fog at the ends of its track instead of appearing in it (cg_hzmAcFogFade, default 1) |
+| `a8cc77f2` | 2026-10-12 | joncurry94 | renderergl2: volumetric clouds (r_hzmClouds, default OFF) ported onto the v1.10.21 renderer, with look-dev knobs and the shared O… |
+| `aa470443` | 2026-10-12 | joncurry94 | use-to-loot (co-op): an enemy's dropped gun is taken with the Use key, never by walking over it - tap = the gun with its loaded m… |
+| `92f0af77` | 2026-10-12 | joncurry94 | cgame: the item readout shows the keyboard / mouse binding when a gamepad control is bound to the same action too, and d-pad name… |
+| `17e118ad` | 2026-10-12 | joncurry94 | scope view (bug-3462) integrator pass: flat black housing, clean 2D fallback, pak-missing = retail, no ADS bounce, no giant-gun f… |
+| `8a4035f8` | 2026-10-11 | joncurry94 | cgame: declare the Score HUD mirror's read of coop_mp_session as an HZM-MP hook (mp_score_hud) - comment only, the isolation cont… |
+| `f8fd7b7b` | 2026-10-11 | joncurry94 | cgame: the medkit / sandbag / ammo-box readout - small icon, amount as a subscript, the bound key underneath; laid out from the s… |
+| `2987c001` | 2026-10-11 | joncurry94 | gore: wounds are composited on the GPU (r_goreGpu, default 1) - the wound texture is an FBO target, the base diffuse is drawn int… |
+| `406584d0` | 2026-10-11 | joncurry94 | renderergl2: frame generation prototype - a present thread shows a camera-reprojected picture between every two real frames (r_hz… |
+| `8d94c386` | 2026-10-11 | joncurry94 | renderergl2: a terrain patch drawn from unchanged lists copies the streams it built last time (r_hzmTerrainMemo) (render-perf 5) |
+| `4d704a57` | 2026-10-11 | joncurry94 | renderergl2: R_LightDirForPoint answers a repeated question from a memo instead of tracing again (r_hzmLightDirMemo) (render-perf… |
+| `14cf2755` | 2026-10-11 | joncurry94 | renderergl2: the tess stream is a persistently mapped buffer - a dynamic batch is written with memcpy, no driver call until the d… |
+| `2e48fc7f` | 2026-10-11 | joncurry94 | renderergl2: normals are packed without a call per vertex, and a static model's streams are packed once (r_hzmFastPack) (render-p… |
+| `d340e5a4` | 2026-10-11 | joncurry94 | renderergl2: a skeletal model whose pose inputs have not changed is not posed again, and one that is small on screen keeps its po… |
+| `db09b9b7` | 2026-10-11 | joncurry94 | renderergl2: r_hzmPerfStats (per-frame counters, GL call counts, GL errors polled every frame) and r_hzmAB (a live alternating A/… |
+| `01e39ef7` | 2026-10-11 | joncurry94 | renderergl2: learned shader preload - a shader a map had to create mid-play is remembered (hzm_preload/<map>.txt) and registered… |
+| `fc47aaf9` | 2026-10-11 | joncurry94 | gore: optional smaller wound copies (r_goreMaxSize, default 4096 = full detail, the user's choice) and readback timing in the deb… |
+| `1118ce30` | 2026-10-11 | joncurry94 | frame limiter paced in microseconds (com_preciseFps); gore: base pixels cached per uniform texture instead of read back from the… |
+| `aceeb0ed` | 2026-10-11 | joncurry94 | config: an audio fade is not a setting changing - volumes with a duck in flight no longer dirty the config, and the file always h… |
+| `2a6acdfa` | 2026-10-11 | joncurry94 | cgame: an entity whose model owns no emitter no longer walks the whole emitter list every frame; renderergl2: bone hash once per… |
+| `7691bc31` | 2026-10-11 | joncurry94 | client: engine defaults for rate / snaps / cl_maxpackets are the best values (90000 / 40 / 100), which is also what the original-… |
+| `c063c864` | 2026-10-11 | joncurry94 | renderergl2: skeletal models outside the view are no longer drawn (sphere test, 2x radius + 96 margin, colour views only; r_hzmSk… |
+| `10619573` | 2026-10-11 | joncurry94 | bug report: the host's answer to a joiner never gives other players' positions or health (bug-3486) |
+| `e560d445` | 2026-10-11 | joncurry94 | bug report: always-on diagnostics - frame-time split, hitch log, fps history, mission state, connection timeline, freeze watchdog… |
+| `ebf1a5bd` | 2026-10-11 | joncurry94 | cgame: pinned enemies-remaining line, top right, in the feed's own type (coop_ecLine; bug-3485) |
+| `502cb17e` | 2026-10-11 | joncurry94 | renderergl2: skeletal surfaces whose pose changed are skinned on worker threads before the draw loop (bug-3487) |
+| `eaf49179` | 2026-10-11 | joncurry94 | client: recommended graphics preset for this PC - a short single-core speed test plus video memory, published in read-only coop_g… |
+| `165ce945` | 2026-10-11 | joncurry94 | renderergl2: tess stream + skin cache - crowded scenes draw ~25% faster (bug-3483) |
+| `1434d5df` | 2026-10-11 | joncurry94 | server: a client that is slow to load is no longer dropped with 'Server command overflow' - commands beyond a 256 in-flight windo… |
+| `69ee92d0` | 2026-10-11 | joncurry94 | server: SVCMDQ - one line naming what fills a client's reliable-command queue at 256/512/768/1000 (bug-3480 diagnostic) |
+| `7a28a4f2` | 2026-10-11 | joncurry94 | cgame: tracer volley cap 32 -> 128 per frame and the overflow line no longer prints on every dropped volley (bug-3477) |
+| `3d1c9e00` | 2026-10-11 | joncurry94 | cgame: event feed anchored in the script HUD's virtual-480 space, clear of the medkit/ammo/sandbag counters at every resolution (… |
+| `5c3a584e` | 2026-10-11 | joncurry94 | client: 2D loop sound with a zero-length sfx no longer divides by zero (bug-3473, tester crash dump: 0xC0000094 in S_OPENAL_Start… |
+| `85e0858d` | 2026-10-06 | joncurry94 | cgame + gl2: modern scope view (bug-3462) - per-optic reticles, true magnification, eased scope in/out, scope shadow, gl2 optics… |
+| `a7b479c1` | 2026-10-06 | joncurry94 | fgame: a braced player's ejected magazine drops at his feet, not on the brace ledge (bug-3450) |
+| `2b84ab0d` | 2026-10-06 | joncurry94 | renderergl2: sky fog model - the sky no longer shows through thick fog (user report) |
+| `5cfef679` | 2026-10-05 | joncurry94 | cgame: ADS donor tunes for the renamed Lewis Gun (BAR) and Webley Mk VI (Colt 45) - keeps their pre-rename tune |
+| `e26bc1d8` | 2026-10-05 | joncurry94 | fgame: carried script guns stop when the carrier is gone and never splash him (bug-3416) |
+| `cd023bf5` | 2026-10-05 | joncurry94 | fix 70929044: take back the bug-3416 carrier hunks it swept up from another session's uncommitted work (they stay in the working… |
+| `70929044` | 2026-10-05 | joncurry94 | aircraft: shootable planes take MG damage from a player's held MG (the inflictor of a player's round is the player, so every BAR/… |
+| `e3eb3ae0` | 2026-10-05 | joncurry94 | cgame: foreign-local sound test keys on ET_PLAYER, not cgs.maxclients (bots sit above sv_maxclients) |
+| `b6e93137` | 2026-10-05 | joncurry94 | HUD declutter: feed default 12 units higher, clear of the item counters above the health panel (in-engine run 4) |
+| `85225087` | 2026-10-05 | joncurry94 | cgame: another player's CHAN_LOCAL one-shot no longer plays in your head map-wide |
+| `fa5cab0a` | 2026-10-05 | joncurry94 | HUD declutter: cgame event feed + coop join/health lines (bugs 3426-3429) |
+| `51b578cf` | 2026-10-05 | joncurry94 | aircraft: coop_acDebug 2 prints every allied round that passes near a shootable plane (AIRSHOT) |
+| `c42570ac` | 2026-10-05 | joncurry94 | cgame: bleed-out ring review fixes - 1px dark outline, radius clear of the crosshair, 0.3 s flare hold |
+| `f3400fba` | 2026-10-05 | joncurry94 | fgame: coop_carrier - a script strafing gun carried by an actor fires as that actor (bug-3360, bug-3416) |
+| `8f9fc6ac` | 2026-10-05 | joncurry94 | fgame+cgame: wordless bleed-out ring, fading senses, teammate medic icon; surrender overhead icon |
+| `b71eec98` | 2026-10-05 | joncurry94 | client: loading-tip table 128 -> 256 lines (ui/loadhints.txt reached the old cap) |
+| `d8dda7b7` | 2026-10-05 | joncurry94 | client: launch memorial shows the looping loading-screen medal (hzmLoadMedalMorph) under the art, fading with it |
+| `2a3132b3` | 2026-10-05 | joncurry94 | renderergl2 water/wet fix: no ruled cut-offs at object edges, reflections near banks, darker wet ground (user report) |
+| `a15618dc` | 2026-10-05 | joncurry94 | cgame: quick-draw release lead - the primary reaches the frame edge as the swap lands (aimed release 8 -> 1-2 empty frames) |
+| `3262ec7d` | 2026-10-05 | joncurry94 | fgame: a Manon (female) player model uses manon_pain/manon_death even under the BT protocol |
+| `cc2686fa` | 2026-10-05 | joncurry94 | cgame+fgame: quick-draw motion - primary pushed aside on the press, one-handed pistol snaps up, primary back from the support sid… |
+| `30ee0561` | 2026-10-05 | joncurry94 | aircraft: coop_aircraft flag, cgame Doppler + fog see-through, shootable German call-in planes |
+| `fcbfbb81` | 2026-10-05 | joncurry94 | fgame: coop_ejectcases - revolvers drop their spent cases on reload (fired count, capped) |
+| `fae49e72` | 2026-10-05 | joncurry94 | sprint: exhaustion ends the sprint (3P state + 1P gun-lower), per-usercmd drain fixed, sprint clip rate follows coop_sprintMult (… |
+| `d557cc86` | 2026-10-05 | joncurry94 | cgame: hide the crosshair while the gun is braced/mounted (brace envelope > 0.5); brace pip stays |
+| `7dbf3ca5` | 2026-10-05 | joncurry94 | fgame: ejected magazines rest lying on their side, not standing on end (coop_magRestFlat, default 1) |
+| `d154f251` | 2026-10-05 | joncurry94 | cgame: per-weapon reload clips (coopr_<weapon key>_<suffix>), Webley Mk VI -> Webley hands, test-only coop_vmPrefixTest |
+| `abdd06dc` | 2026-10-05 | joncurry94 | cgame: cg_adssights.h - renamed variants 'Lewis Gun' / 'Webley Mk VI' (were 'BAR (M1918 WWI)' / 'Colt 45 (M1911 WWI)'), regenerat… |
+| `7325d626` | 2026-10-05 | joncurry94 | ADS reloads: bolt-only right-tag hold, ammo prop waits for the reload clip, owner never sees its own eject flash |
+| `68bb8881` | 2026-10-04 | joncurry94 | cgame: footprints in snow, mud and soft dirt (players + AI, client-only) |
+| `f46312ff` | 2026-10-04 | joncurry94 | aimed bolt: mesh-guard rows for the Springfield M1903, Mosin-Nagant and Lee-Enfield prefixes (cgame only) |
+| `bc2c3072` | 2026-10-04 | joncurry94 | renderergl2: gfx FLIP - MSAA Auto (8x on strong cards) + stable sun shadows ON by default, alpha-to-coverage OFF |
+| `0fe952d1` | 2026-10-04 | joncurry94 | renderergl2: gfx track (MSAA core + stable sun shadows) merged with defaults OFF |
+| `b42ed92c` | 2026-10-04 | joncurry94 | client: main-menu "update available" line from the updater's local latest-seen file (srvperf 2026-10-04) |
+| `6321ce77` | 2026-10-04 | joncurry94 | aimed bolt cycle: play <gun>_rechamber_ads while aiming, gun stays on the right tag, clean ADS release (cgame only) |
+| `9f098349` | 2026-10-04 | joncurry94 | ui: menu-system remaster E3 + E4 (client exe only; Classic unchanged) |
+| `c0675de0` | 2026-10-04 | joncurry94 | ui: menu-system remaster E1 + E2 (client exe only; Classic unchanged) |
+| `23110d86` | 2026-10-04 | joncurry94 | cgame: prone eye ease (bug-3317); game: dead players evaluate death states while physics_off (bug-3324) |
+| `a6e9482e` | 2026-10-04 | joncurry94 | client: coop start screen "Dedicated" now works - launches omohaaded.exe and joins it (dedicated_launch, bug-3321) |
+| `38ce0bcf` | 2026-10-04 | joncurry94 | renderergl2 groundvar: list parser - no NULL deref on a truncated last line, free the buffer of an empty list file (review) |
+| `7d952435` | 2026-10-04 | joncurry94 | renderergl2: r_groundVariety - world-space hex anti-tiling + macro brightness for listed ground (gl2 only, OFF by default) |
+| `9a9e7fb5` | 2026-10-04 | joncurry94 | ironsights close-out: withdraw the M1919 30cal row (keeps today's tune) |
+| `6200b014` | 2026-10-04 | joncurry94 | hands during ADS: gun stays in the hands through ADS in/out, bolt, reload, leans, stances and rides (cgame only) |
+| `fbd12315` | 2026-10-04 | joncurry94 | pistol ADS kick: a real muzzle flip per pistol while aimed (cg_adsPistolKick, cgame only, visual only) |
+| `26407b4b` | 2026-10-04 | joncurry94 | ironsights close-out: C96 trim, Springfield M1903 + Vickers-Berthier + M1919 rows, bipod lean-right cant (cgame only) |
+| `3876fc44` | 2026-09-29 | joncurry94 | client: in-game Report a Bug = desktop parity (release line, category, host perf, weather, binds/HUD, scrubbed logs, preview) + S… |
+| `1ee2b875` | 2026-09-29 | joncurry94 | fgame: coop_safespot player getter - engine hull test + nearest clear floor within 96u (never stuck on respawn) |
+| `0774bdce` | 2026-09-29 | joncurry94 | v1.10.4 item 11: iron sights v4 - per-frame rig-level sight solve, every gun aligned in every stance (cgame only) (bug-3225..3230… |
+| `530c8c6f` | 2026-09-29 | joncurry94 | v1.10.4 item 10: briefing film overlay for every player (client exe only) (bug-3234) |
+| `1e885aa9` | 2026-09-28 | joncurry94 | v1.10.4 item 9: loading-screen art pool picker (exe only, cl_ui.cpp) (bug-3215, bug-3216, bug-3217) |
+| `fb4abb43` | 2026-09-28 | joncurry94 | v1.10.4 item 8: foliage shadows baked into the lightmap, trunk bars out of the sun cascades (bug-3224) |
+| `bbde90d2` | 2026-09-28 | joncurry94 | v1.10.4 item 7: StG 44 viewmodel pop under coop_weaponMass (bug-3207) |
+| `92b9caab` | 2026-09-28 | joncurry94 | storm darkness v1 (not in v1.10.3 binaries; off until coop_stormLight): per-storm light/moderate/dark cloud decks with roll-in/ou… |
+| `1b554be1` | 2026-09-28 | joncurry94 | v1.10.3 engine source (exactly the shipped v1103e set): realistic lightning + limiter/indoor fixes, water/wet (on), ragdoll phase… |
+| `18d2343f` | 2026-09-27 | joncurry94 | working state 2026-09-27: v1.10.1 released (+ staged v1.10.2 changes and default-off WIP) |
+| `1276a825` | 2026-09-18 | joncurry94 | engine: fix dedicated-server stack overflow on getstatus/getinfo (bug-2727) |
+| `494ff42b` | 2026-09-18 | joncurry94 | v1.8.0 release state |
 | `243d8ac2` | 2026-09-14 | joncurry94 | engine: MP realism host toggles - ADS/Prone/Cover/Third Person off via g_mpRealismOff serverinfo |
 | `dfaa5fcc` | 2026-09-14 | joncurry94 | cgame+fgame: Hardcore modifier - hide crosshair/health/stamina HUD on the g_mpHardcore serverinfo flag |
 | `8a8c92b5` | 2026-09-14 | joncurry94 | sdl: in_joystick 0 skips SDL joystick init - a bad controller no longer black-screens boot (bug-2606) |

@@ -48,13 +48,13 @@ The authored files carry judgement, so they cannot be generated - but they can s
 
 | authored file | size | ceiling | |
 |---|---:|---:|---|
-| `docs/21-user-preferences.md` | 12 KB | 12 KB | ok |
-| `docs/DECISIONS.md` | 45 KB | 45 KB | ok |
-| `docs/ENGINE.md` | 38 KB | 40 KB | ok |
-| `docs/FEATURES.md` | 90 KB | 90 KB | ok |
-| `docs/HISTORY.md` | 30 KB | 30 KB | ok |
-| `docs/OPEN.md` | 50 KB | 50 KB | ok |
+| `docs/21-user-preferences.md` | 13 KB | 12 KB | **OVER - prune** |
+| `docs/DECISIONS.md` | 46 KB | 45 KB | **OVER - prune** |
+| `docs/ENGINE.md` | 40 KB | 40 KB | ok |
+| `docs/FEATURES.md` | 92 KB | 90 KB | **OVER - prune** |
+| `docs/HISTORY.md` | 20 KB | 30 KB | ok |
+| `docs/OPEN.md` | 51 KB | 50 KB | **OVER - prune** |
 | `docs/SOURCE_OF_TRUTH.md` | 32 KB | 40 KB | ok |
-| `docs/TRAPS.md` | 70 KB | 70 KB | ok |
+| `docs/TRAPS.md` | 71 KB | 70 KB | **OVER - prune** |
 
-Input fingerprint of this generation: `1d387776841e61bc2534afa014483355147d6195932559d016be2e402d957843`
+Input fingerprint of this generation: `31be855a0233225bea6c3f2d07c337a7bd5c2fad8c47b079cdae2ede9b825f32`

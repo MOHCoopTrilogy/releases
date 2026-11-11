@@ -11,29 +11,22 @@ Anchors are bug ids or `file:line`. Cvars listed are the ones you would actually
 
 ## Gun Bracing (weapon mounting) - SHIPPED 2026-08-27, UNTESTED IN PLAY
 
-When the gun is physically supported by geometry the shot tightens and the weapon settles.
-AUTOMATIC (no bind, `coop_brace 0` opts out), buff-only - it never blocks firing.
+Automatic (`coop_brace 0` opts out), buff-only. Supports, cheapest first: cover-peek; a corner lean past 22 deg PLUS
+a confirming trace (never lean alone); a muzzle-support trace that must HIT below the gun line while the eye line
+stays CLEAR (you brace on what you can shoot OVER). Eased 0..1 envelope (rise 6/s, fall 3/s): spread x0.5, recoil
+x0.6, view-shove x0.5, ADS sway x0.35, weapon-lag x0.4, stress x0.7; stacks with crouch, stays behind prone; prone and
+blindfire never brace. Gated on stillness (20 in / 35 out u/s), ground, not dead/vehicle/turret/ladder; dwell 0.25s,
+grace 0.35s. Feedback: local rest thunk, sway dying, a procedural crosshair pip. Transport `coop_braceView` 0-100
+stufftext (no protocol change). **Third person too** (bug-2916, 2026-09-25): brace + over-the-shoulder camera + prompt.
 
-Three supports, cheapest first: cover-peek (free, reuses cover's own validated geometry);
-lean at a corner past 22 deg PLUS a confirming trace (never lean alone - vanilla lean does no
-geometry test, so raw lean would grant free accuracy in an open field); and a muzzle-support
-trace for the sills/crates/sandbags/fences cover never claims (support must HIT below the gun
-line while the eye line stays CLEAR - you brace on what you can shoot OVER).
+## v1.10.33 quick update (2026-10-19) - SHIPPED-UNVERIFIED (harness-proven per branch)
 
-Effects scale on an eased 0..1 envelope (rise 6/s, fall 3/s - the ramp IS the settle): spread
-x0.5, recoil x0.6, view-shove x0.5, ADS sway x0.35, weapon-lag gain x0.4 (damped, never frozen),
-suppression-stress x0.7. Stacks with crouch (0.40 of base spread) but stays behind prone's 0.35,
-so the stance ladder keeps its order; prone and blindfire never brace.
-
-Gated on stillness (20 u/s in, 35 out), ground, and the usual dead/vehicle/turret/ladder list.
-Enter dwell 0.25s, exit grace 0.35s - small enter threshold, generous exit.
-
-Feedback: a local-only rest thunk on the rising edge (synthesized, `sound/coop_brace/`), the
-sway dying (the strongest tell), and a crosshair pip drawn PROCEDURALLY - filled rects scaled off
-screen height, so it is pixel-sharp at any resolution instead of a texture resampled soft.
-
-Transport: `coop_braceView` 0-100 change-only stufftext (all pm_flags bits are allocated), so no
-protocol or exe change. game.dll + cgame.dll + pk3 ship together (the stress dampers are twins).
+- **Cutscene lock** (`cutscene.scr`, bug-4094): freezecontrols + coop_cineHud 1 + nodamage + weapon pin on 7 scenes (m2l2b, m6l2a, t2l2, t3l2, e3l4, e2l2).
+- **Text sweep** (engine `textsweep-engine`, bug-4097): one cgame rule sizes scripted huddraw text (`coop_hudTextStyle`); centerprints go to the feed.
+- **m3l3 rework** (`m3l3_nebel.scr`, `alarmveh.scr`): halftracks after the church hold, rockets, Nebelwerfer waves, shared-squad paratroopers; halftrack gunner mans the MG42.
+- **Airstrike flak** (`aircraft.scr`, bug-4123): `coop_airstrikeFlakChance` 15 per plane; hit planes crash away from players.
+- **Weapon animations** (docs ads*-next, engine `adsfx-next`): other players' fire/reload shown locally (`coop_vmAdsOthers`), aimed reloads, FG 42 Irons (armory id 79).
+- **Gamepad** (engine `gamepad-next`): `in_padGame -1` Auto, AIM page, `{key:use}` tokens.
 
 ## Domain index
 
@@ -48,6 +41,13 @@ protocol or exe change. game.dll + cgame.dll + pk3 ship together (the stress dam
 <a name="core"></a>
 ## Core coop
 
+**Coop HARDCORE** (Host Rules, `coop_hardcore`, latched per map) — `SHIPPED-UNVERIFIED` 2026-09-25, bug-2923.
+Health = min(Player Health, 250); DBNO threshold x health/750; half bleed-out (headshot 22s); no self-revive while a
+mate is up (USE hold gives up); 1 kit, no enemy drops; DDA floor 0.4, never saved; 20s respawn waves (game.dll hold of
+the dead, corpse revive / first deploy exempt); no crosshair / health bar (health-only alpha, exe) / stamina / hit
+markers / aim assist; MAGS only around a reload (MP Hardcore too); +100 XP unless vote-skipped. All in
+`coop_mod/hardcore.scr` + serverinfo `g_coopHardcore`. ST_HC harness passes; HUD needs eyes.
+
 **DBNO (Down-But-Not-Out)** — `SHIPPED-VERIFIED`. Downed state with bleedout timer, fade manager and
 a movement penalty applied via `dbno_pistol.tik movementspeed 0.55` (not `setspeed`). E tap = medic
 callout, E hold = give up, RMB hold = self-revive. Cinematic anim set added later
@@ -55,7 +55,7 @@ callout, E hold = give up, RMB hold = self-revive. Cinematic anim set added late
 crouch-walk overlay hack; torso is no longer forced so downed players can aim and fire.
 `DBNO_MEDIC` is aliased and stated but **unwired** — reserved for teammate-revive.
 Cvars `coop_dbno`, `coop_dbnoCorpseRevive` (10 s killed-while-downed window — **seeded nowhere**),
-per-map override `level.coop_dbno_disabled` (jeep maps, t2l2).
+per-map override `level.coop_dbno_disabled` (jeep maps, t2l2). **Bleed-out HUD** (2026-10-05, `SHIPPED-UNVERIFIED`, bug-3422): wordless ring (cg_coopbleed.c, data on `beam_entnum`), tunnel/desat ramp, slowing heart, teammate medic icon; no text.
 *Anchors:* `coop_mod/dbno.scr`; project_build_plan "PLAYER CONFIRMED ALL WORKING".
 ⚠️ Known open: the crawl animation plays **opposite** to movement — W crawls backward (bug-431).
 
@@ -274,14 +274,11 @@ pulls the gun out of the hands, bug-105). Cosmetic: never touches the aim vector
 was clamped from `.y`, discarding the computed roll, so `g_viewkick_roll` had never done anything.
 Fixed; default retuned 0.15 → 0.08 since 0.15 was untested author intent.
 
-**Sprint / walk / stamina** — `SHIPPED-UNVERIFIED` (game *feel* unverified). Shift (not aiming) =
-sprint at `sv_runspeed * coop_sprintMult`; Shift (aiming) = untouched vanilla breath-hold; Alt =
-walk. Adds an out-of-breath pant, a 3D gear-rattle loop, and a real `SPRINT_FORWARD` legs state.
-Cvars `coop_sprint 1`, `coop_sprintMult 1.3`, `coop_sprintStamina 5` (user runs 30),
-`coop_sprintRegen 0.6`, `coop_sprintBreath`/`BreathTime`, `coop_sprintGear`, `cg_sprintLower*`.
-The torso weapon-hold experiment is **CLOSED — structurally impossible to layer**; the proper fix is
-a Blender re-authored anim. *Anchors:* `player.cpp` `TickSprint ~11851`, `ClientMove ~4062`;
-`BUTTON_COOPWALK (1<<12)`.
+**Sprint / walk / stamina** — `SHIPPED-UNVERIFIED`. Shift (not aiming) = sprint at `sv_runspeed *
+coop_sprintMult` (autoexec 1.22); Shift aiming = breath-hold; Alt = walk. Pant, gear loop, `SPRINT_FORWARD`
+legs state (clip rate x mult/`coop_sprintAnimRef` 1.12). Empty pool latches to run until `coop_sprintReArm`
+0.2 + key release; latch = STAT_MGHEAT bit 128, drives the 1P gun-lower (bug-3372). Torso weapon-hold layering
+**CLOSED** (needs a Blender anim). *Anchors:* `Player::TickSprint`, `BUTTON_COOPWALK (1<<12)`.
 
 **ADS on its own button + bash restored** — `SHIPPED-UNVERIFIED`. ADS moved off secondary-fire onto
 its own networked bit so the vanilla rifle-butt **bash** (which the AIM state had shadowed) works
@@ -290,21 +287,19 @@ again. Defaults: RMB = `+button13` ADS, V = `+attacksecondary` bash, Shift = spr
 14=BUTTON_ANY, 15=MOUSE, 7–11=weapon commands). A second custom button needs a protocol change.
 *Anchor:* `BUTTON_COOPADS` bit 13; `player_conditionals.cpp CondCoopAds`.
 
-**ADS iron-sight port + per-gun tune table** — `SHIPPED-VERIFIED` (user dialled 45 guns by hand). Two
-layers on RMB: a gun-raise via the engine-recognised `charge` `viewmodelanim` token (**custom tokens
-silently fall through to idle** — `Player::ViewModelAnim` accepts only a fixed set) plus a cgame
-`CG_CalcFov` zoom (`cg_adsZoom 0.70`; server-side `fov`/`setfov` are dead ends). Per-gun
-stand/crouch pitch/yaw/roll/shiftX/shiftY baked into `cg_modelanim.c s_adsGunTune[]`.
-⚠️ **User rule: a crouch re-bake must edit ONLY the 5 crouch fields.**
+**ADS iron-sight port + per-gun tune table** - `SHIPPED-VERIFIED` (45 guns hand-dialled). RMB raises the gun
+via the fixed `charge` `viewmodelanim` token (**custom tokens fall through to idle**) + a cgame `CG_CalcFov`
+zoom (server `fov`/`setfov` are dead ends). Per-gun stand/crouch pose in `cg_modelanim.c s_adsGunTune[]`. ⚠️ **A crouch re-bake edits ONLY the 5 crouch fields.**
+**Aimed bolt** - Kar98k `COMMITTED, NOT DEPLOYED`: hand-keyed
+`kar98_rechamber_ads` while aiming (`coop_vmAdsAnims`). `proposals/ads_bolt_2026-10-04`.
 
-**Cover system** — `SHIPPED-UNVERIFIED`, shipped as EXPERIMENTAL with known bugs. Face a wall + press
-the bind → auto-turn back-to-wall; crouch low-cover; hold LMB = blindfire (anims pull their own TIKI
-trigger, spread × `coop_blindfireSpread 3.0`, steered around a detected corner); RMB = peek. Auto-3P
-via `PMF_COOP_COVER` (pm_flags bit 13). Final camera model: **no orbit capture while covered** —
-mouse aims directly. Cvars `coop_coverWallDist`/`LowDist`/`Grace`,
-`coop_blindfireSpread`/`Raise`/`Yaw`/`Out`, `coop_peekStep`/`Out`.
-⚠️ The file is `coop_mod/takecover.scr` — **`cover.scr` is the sandbag deployable.**
-*Anchors:* `Player::TickCoopCover`; bugs 303–329.
+**Cover system (v3.2)** - `BUILT+HARNESS-VERIFIED` on `cover-seamless`, not merged. Walk into a wall (or
+crouch at low cover) = auto cover; front camera, peeks past an edge. A/D
+glides and stops at the end/doorway; RMB at an edge pops out (low: rises); fire =
+blind fire, held until the barrel clears; S / stick back = step away. Probe `coop_coverProbe 1`
+(COVER*/NADE*). DECISIONS.md "Cover v3". **v1.10.63** (shipped, bugs 10546-48): view held in
+the blind-fire sector, full-auto holds, grenades land on the cue. *Anchors:* `PM_CoopCoverMove`,
+`Player::TickCoopCover`, `CG_CoopCoverHugCam`; bug-10357..10363. The file is `coop_mod/takecover.scr` - **`cover.scr` is the sandbag deployable.**
 
 **Player emotes** — `SHIPPED-UNVERIFIED`. `EMOTE_SALUTE`/`ATEASE`/`STRETCH` legs states reachable
 only via `forcelegsstate`, bus indices 23–25, bindable in `ui/BIND.SCR`. Zero engine changes.
@@ -428,6 +423,14 @@ swizzle — use OR folding, not XOR). 339 cues / 103 min + 175 ambience beds shi
 <a name="graphics"></a>
 ## Graphics & FX
 
+### Modern scope view - bug-3462, VERIFIED IN HARNESS 2026-10-12, NOT RELEASED (engine `scopes-next` 17e118ad)
+Every rifle scope (not binoculars) gets its optic's reticle (8 optics / 15 weapon names; `docs/tools/gen_scope_reticles.py`
+builds `zzzzzzzzzz_coop_scopes.pk3`), its real magnification (client fov only, `cg_scopeTrueMag`), an eased scope in/out
+and a scope shadow; gl2 adds the `RB_HZMScope` lens pass, housing flat black (`r_ppScopeOuter 1`; below 1 = the old
+blurred share that read as a grey smudge). gl1 / no post chain: opaque 2D masks. No pak or `cg_hzmScope 0` = retail,
+whole. Its rifles never run the iron-sight ADS view. Frame generation steps aside while scoped (the reticle quad).
+Evidence + harness: `docs/proposals/scopes_2026-10-05/` (`tools/run_scopes2.py`, `media/v2_*`).
+
 **gl1 post-process suite** — `SHIPPED-VERIFIED`. Bloom and SSAO on by default with user-tuned values
 baked (intensity 1.3, threshold 0.6); DoF, tonemap/grade and FXAA built and opt-in. **⭐ Root cause of
 two failed attempts:** the pass used raw `qgl*` calls that desynced the engine's `glState` **cache**
@@ -436,14 +439,13 @@ this DLOPEN renderer). ⚠️ **gl1 only:** the 3D→2D hook lives in `Set2DWind
 `RB_SetGL2D` - cgame enters 2D via `re.Set2DWindow`, so `RB_PostFxApply` effects are HUD-safe on gl1.
 gl2's post chain differs; see `_research/gl2_render_upgrades_design.md`. *Anchor:* `renderergl1/tr_postprocess_gl1.c`.
 
-**renderergl2 migration** — `PLANNED` / in progress in an isolated sandbox at `G:\mohaa-gl2` (own
-binaries, junctioned game data, separate homepath, forced `cl_renderer opengl2`). Empirically gl2 is
-**healthy** — boots, renders, 0 crashes, 0 real GLSL failures; "breaks everything" was overstated.
-Ported so far: bloom, HZM grade, character shadows, MSAA, dynamic-light shadows. **Not ported:**
-SSAO, DoF, god rays, FXAA, sharpen, heat haze, rain. See [OPEN.md § gl2](OPEN.md#gl2).
-⚠️ `cl_renderer` defaults to `opengl1` (`cl_main.cpp:3231`) — **but a v1.1.51-era
-`renderer_opengl2.dll` IS in the shipped manifest**, so a player who switches gets a build predating
-every 2026-07-28 gl2 fix.
+**renderergl2** — `SHIPPED`: the mod ships gl2 and `G:\mohaa-gl2` is the live install ([SOURCE_OF_TRUTH §3](SOURCE_OF_TRUTH.md)); the 2026-07 sandbox notes are history.
+
+**Footprints in snow, mud and soft dirt** — `COMMITTED, NOT DEPLOYED` (2026-10-04; harness-verified on m2l1/m5l3
+gl2, playtest pending). `cgame/cg_footprints.c`, off the footstep trace: no network, players and AI (Axis hobnail,
+Allied rubber). Flag + shader-name allowlist, Omaha refused; brushes via the bullet-mark clipper (also under m2l1's
+`common/snowclip`), LOD terrain via a traced grid; multiplicative, 200-print ring, 45 s, none prone.
+`cg_footprints` menu row. [Record](proposals/footprints_2026-10-04/README.md).
 
 **Directional decal shadows + auto-sun bridge** — `SHIPPED-VERIFIED`, user-approved. One elongated
 azimuth-rotated shadow decal per entity, with the renderer publishing each map's **real** sun
@@ -465,10 +467,9 @@ bone-attached wound props via `CM_GetHitLocationInfo`, cap 4. T4 renderer UV wou
 colour authority is `#150200`. Ships **exe + cgame + renderer + game.dll together** (refexport/
 refimport pairing). *Anchor:* `renderergl1/tr_gore.c` (836 lines, **untracked in git**).
 
-**Blast decapitation / dismemberment** — `REVERTED` (twice). v1 pulled "AI went all glitchy" (bug-861); v2
-re-added on the engine's dead-gated gib discipline (`ArmorDamage health<0.1`, bug-866), then reverted from
-SOURCE in the `MAX_MODELS` rebuild (bug-892), inert `.tik` kept. ⭐ The first-revert reason no longer holds —
-the glitching was the entity-pool stomp (bugs 914–927), now fixed; bug-866's pattern is the re-add template.
+**Blast decapitation** — `SHIPPED`. Reverted twice (bug-861, bug-892), re-added by bug-1875 on bug-866's
+safe pattern (dead-gated, per-frame budget, tracked stump slot). Heads land only with the `gibs.cpp` recipe
+verbatim (bugs 1903–1915). *Anchor:* `CoopGoreTryDecapitate`, `HeadGibObject`.
 
 **Gore intensity** — `REVERTED`. Round 4 over-cranked coverage; user: *"way too much."* Reverted to the
 moderate earlier coverage. ⭐ Lesson: **generated-asset intensity needs a user checkpoint per round, not per
@@ -622,24 +623,24 @@ seats, the resolution matrix.
 
 **MP armories (coop-clone)** — `SHIPPED-UNVERIFIED` (visual render playtest-gated). Generated MP-only armory
 screens (Allied/Axis) + rosters, the live dispatcher (`mp_armory.scr`: name-bus poll, unlock/ban validation,
-spawn-edge kit, 25s auto-deploy, bot branch), defaults screens, side picker (`ui/coop_mp_options.urc`), and
-engine hooks E1-E6 (`HZM-MP-BEGIN/END`, in `ENGINE_MP_HOOKS`; all gate on `coop_mpRun`/`coop_mp_session` so
-coop is byte-for-byte untouched — see ENGINE.md/OPEN.md). **2026-09-15 rebuilt "beat by beat" to the coop
-loadout** (`gen_mp_armory.py`): each armory + the appearance panel carry the **3D character viewer**, a clone
-of `coop_loadout.urc`'s `charRender` with per-side cvars (`coop_mp<side>_Char` body · `_Helm` @ `Bip01 Head`
-· `_Prev` @ `tag_weapon_right` · `_CharSpin` · `_CharAnim`); a weapon tile sets the hold pose (`coop_hold_*`,
-NOT the `coop_lo*`-banned idle), a skin/helmet tile updates the model live. Skin/helmet model paths are
-**parsed from `mp_cosmetics.scr`** so a preview can't show what the server won't wear. **Cosmetics are
-marker-free** — they ride the userinfo carry alone (no `,q` bus, no name pollution), so ONE appearance panel
+spawn-edge kit, auto-deploy, bot branch), defaults screens, side picker, and
+engine hooks E1-E6 (`coop_mpRun`-gated, in `ENGINE_MP_HOOKS`; coop untouched — see ENGINE.md). **Rebuilt to the coop
+loadout** (`gen_mp_armory.py`): each armory + appearance panel carry the **3D character viewer**, a clone
+of `coop_loadout.urc` with per-side cvars (`coop_mp<side>_Char/Helm/Prev/CharSpin/CharAnim`);
+a weapon tile sets the hold pose (`coop_hold_*`, not the `coop_lo*`-banned idle), a skin/helmet tile updates
+the model (paths parsed from `mp_cosmetics.scr` so a preview can't show what the server won't wear).
+**Cosmetics are marker-free** — they ride the userinfo carry alone, so ONE appearance panel
 works in-match AND **disconnected from Multiplayer Options** (defaults screen gained APPEARANCE); the server
 enforces the earned gate at spawn (`mp_cosmetics.scr::apply` checks `cosUnlocked` on the carried id —
-bug-2633, closing the userinfo bypass). **No vstr, no exe change.**
+bug-2633, closing the userinfo bypass). **No vstr.** **2026-09-20**: modern **Team Select**
+(`ui/SelectTeam.urc`/`ObjSelectTeam.urc` — Allies/Axis + Spectate + faction icons; overrides stock, all
+entry points incl. pause menu → loadout) and **loadout re-open redisplays saved state** (bug-2777: finish
+`ACTIVE:` label, persisted cosmetic name, 3D preview shows saved skin/helmet via `mp_preview_defaults`).
 
 **MP Service Record (coop-clone)** — `SHIPPED-UNVERIFIED`. `ui/coop_mp_record.urc` rebuilt as a **generated
-progression ladder** (`gen_mp_armory.py::record_urc`; thresholds parsed from the scripts so they can't
-drift): rank, each class with live `coop_mpCnt_<class>` / the N-kill unlock
-+ an **UNLOCKED badge** (`enabledcvar coop_mpUnlockC_<class>`), plus the cosmetic ladder (answers "progression
-not clearly defined").
+progression ladder** (`gen_mp_armory.py::record_urc`; thresholds parsed from scripts): rank, each class
+with live `coop_mpCnt_<class>` / the N-kill unlock
++ an **UNLOCKED badge** (`enabledcvar coop_mpUnlockC_<class>`), plus the cosmetic ladder.
 
 **Field Settings (Coop Settings) + Host Rules sheets** - `SHIPPED-UNVERIFIED`; the 2026-09-13
 redesign (bug-2578) is deployed and **not yet opened in game**. `ui/coop_settings.urc` is a two-column
@@ -685,6 +686,19 @@ the sheet as `gfx/fonts/<name>@3x.tga`. The shipped @3x atlases were **ESRGAN up
 bitmaps** (invented detail, uneven strokes) and were regenerated from a real vector font (Bahnschrift)
 into the existing cell rects. *Anchors:* bug-1182, bug-1185; cf. bug-157.
 
+**Loading screen** - `SHIPPED-UNVERIFIED` (v1.10.1, bug-3013/3015; user check pending). `ui/loadingbar.txt`
+overrides the retail file every loading menu includes: no bar; a medal looping old MOHAA icon <-> compass (next update:
+`hzmLoadMedalMorph`, 6 layers, shader-only, 45 deg/s, 16 s, bug-3059) on a dark strip; 116 hints from `ui/loadhints.txt`
+(`[C]`/`[M]`/`[G]`, a new one every `ui_loadHintSecs` 7). `ui_loadClassic 1` = stock bar; `ui_loadHints` -1/0/1;
+`cl_loadProbe 1` = `^~^~^ LOADDRAW/GAP/HINT`. gl2 ticks per image, cgame per 64 aliases, redraw every
+`ui_loadRedrawMs` 100: m3l2 frozen 10.3 -> 1.5 s, no load cost; loading draws stay out of renderer registration
+(bug-3015). Tools `loadscreen_lint.py`, `loadscreen_preview.py`; research `docs/proposals/loading_screen_2026-09-26/`.
+
+**Launch memorial** - `SHIPPED-UNVERIFIED` (built 2026-09-27, exe 13b1749b). "In Memory of Vince Zampella" on black
+before the main menu, once per launch: an exe intro stage, so the menu, its music and the What's New card wait for it.
+`cl_memorial` 1/0, `cl_memorialSkip` 1 (key/click after `cl_memorialSkipAfter` 1 s), `cl_memorialTimes "1 4 1"`;
+`^~^~^ MEMORIAL` log lines. Text baked into the art (en dash, italics): `gen_memorial.py`, shader `hzmMemorial`.
+
 ---
 
 <a name="progression"></a>
@@ -729,12 +743,9 @@ remaining strikes, a red under-glow beacon on the binoc pickup, radio chatter ro
 **⭐ MP AUDIO RULE: for a sound EVERY player must hear regardless of position, use
 `loopsound <alias> <vol> levelwide`** — normal minDist emitters are PVS-culled per client.
 
-**Signal smoke stripping German grenades** — `SHIPPED-VERIFIED`. Not a TIK problem: the smoke was
-spawned as a **world `Weapon` entity**, so walking over it hit `PickupWeapon`'s MP grenade-class
-branch, which forces grenade reselection and **drops** the player's other grenade-class weapon. Fixed
-purely in script by spawning a `script_model` + `trigger_multiple` and giving via `item` (the
-giveItem path, same as binoculars), which never enters that branch. The earlier
-`removeAdditionalStartAmmo` theory was a **red herring**. *Anchor:* `weapon.cpp:2954`.
+**Signal smoke stripping German grenades** - `SHIPPED-VERIFIED`, see `archive/features-dated-2026-08.md`.
+
+**Paratrooper squad brain + .30 cal** - `SHIPPED-UNVERIFIED` (bug-3322, mod 56c9359e). `coop_mod/parasquad.scr`: formation/bounding, cover, prone/crouch, gated grenades, room clearing, a manned `30cal.tik`. **Safety = the same-team filter in `Sentient::ArmorDamage`, which does NOT cover attacker == self or an ownerless grenade**; both are closed in script. Test: 0 friendly damage; grenade/prone/covered gun not yet seen. See `proposals/smart_paratroopers_2026-10-04/`.
 
 **Deployable ammo box** — `SHIPPED-UNVERIFIED` (builds; gameplay test pending). One `50cal_crate` per
 player per **match** (tracked on the level by entnum so respawns don't reset it), hold USE to
@@ -920,7 +931,7 @@ engine 30ee0561). `coop_mod/aircraft.scr`: scaled-down planes at scaled real spe
 moved every server frame, `+broadcast` (above-sky planes were never sent), heights from the generated
 `aircraft_envelope.scr`, C-47 V of three with jumpers from the doors, P-47 pair / 70-deg Stuka dive with
 ballistic bombs, shootable Stukas that crash. cgame: Doppler, fog see-through. In engine: smooth (0 still
-frames, was 22-61%); shoot-down, Doppler, fog maps not yet seen. Traps: `archive/traps-aircraft.md`.
+frames, was 22-61%); shoot-down seen (m2l3 flak, finair); Doppler, fog maps not yet. Traps: `archive/traps-aircraft.md`.
 
 **Cut-content restoration wave 1** — `SHIPPED-UNVERIFIED`. Inventory of ~2,600 unused dialogue aliases,
 317 never-aliased MP voice-command wavs, 7 unused music tracks, a cut player-mannable FLAK-88, a cut BT
@@ -1013,8 +1024,8 @@ approach. Needs **no** new usercmd bit (RMB is bit 13 already), no new PMF (budg
 (`STAT_MGHEAT` took the last slot). **⭐ Free future unlock:** retail `CarryableTurret`/`PortableTurret`
 ships complete in maintt pak1, and the SH `mg42tripod_*` 3P mounted-pose anim grid is already there.
 
-**Limb dismemberment** — `PLANNED`. ⚠️ Read bug-861 and bug-892 **first** — its phase-0 precursor
-shipped and was pulled the same week, and the source-level revert was deliberate and thorough.
+**Limb dismemberment** — `IN PROGRESS`. Renderer bone-chain collapse, no per-model art; plan, phases and
+gates in `docs/proposals/gore_2026-10-05/PLAN.md`.
 
 ---
 
@@ -1124,9 +1135,9 @@ into each mode's script through three seam labels (`mp_modeGiveKit`, `mp_modeTic
 | Prop Hunt | `mp_prophunt.scr` | SHIPPED-UNVERIFIED | AXIS hide as statics ([USE] cycles), ALLIES hunt after a hide phase (bug-2641) |
 
 **Shared infrastructure:** `mp_bots.scr` (bot seeding), `mp_rounds.scr` (round manager for
-round-based modes), `mp_hardcore.scr` (Hardcore modifier — 200 HP, slower pace), `mp_medkits.scr`
-(medkit self-heal; ceiling fixed to real max_health, no full-health channel / DBNO-pool refill, bug-2642),
-`mp_dbno.scr` (DBNO in MP), `mp_spawnprotect.scr` (post-spawn invulnerability, drops
+round-based modes), `mp_hardcore.scr` (Hardcore modifier — 50 HP, no crosshair/stamina/HUD, MAGS on reload), `mp_medkits.scr`
+(medkit self-heal, ceiling = real max_health, bug-2642),
+`mp_dbno.scr` (DBNO in MP: **never downs anyone**, Host Rules row hidden, bug-3092), `mp_spawnprotect.scr` (post-spawn invulnerability, drops
 on fire; default-on `coop_mpSpawnProtect`, bug-2640), `mp_vehicles.scr` (vehicle/emplacement framework,
 below), `mp_realism.scr` (realism settings). **Build-A-Base** is a faithful port of the real AlienX
 `basebuild.scr` (bug-2635, `SHIPPED-UNVERIFIED`): spinning pickup stations → carry a ghost → USE-aim a
@@ -1151,56 +1162,21 @@ arena maps it script-spawns authored spawns + hand-placed bases (generated `mp_b
 
 ---
 
-## Inert-feature sweep - six built-but-never-running systems (2026-08-30)
-
-`SHIPPED, UNTESTED IN PLAY`. Bugs 2176-2182 carry the full mechanism of each. Six built-and-forgotten
-features; "seed the gate cvar" was the wrong answer four times out of six. Fixed-on: **MP voice-command
-wheel** (retail DM-only scope → `always`, V freed from the bash), **teammate radar** (`SV_PackNonPVSClient`
-now clamps instead of unit-normalising the delta; range 1024→6144), **objective bonus drop** (re-enabled,
-9 BSP coords + ground snap + beacon), **bounding overwatch** `coop_aiBound` (re-gated on squad-brain
-ownership; ~3.5% fewer repositions). Deleted-as-harmful: **aggressive advance** `coop_aiAggrMove` (would
-ship the `runto` bug-1812 stall) and **stealth arm-on-hurt** `coop_stealthArmOnHurt` (no caller ever;
-would make e1l3 unwinnable).
 ## Archived feature records (2026-08-02 to 08-07)
 
-Low-health limp, AI voice nationality, the covtrace/covwalk coverage sweep and the m1l1 corkboard
-loading screen: full write-ups in [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md).
+Low-health limp, AI voice nationality, the covtrace/covwalk coverage sweep, the m1l1 corkboard
+loading screen and the 2026-08-30 inert-feature sweep (bugs 2176-2182): full write-ups in [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md).
 All four still ship; none is superseded.
 
-## Omaha (m3l1a) 2026-09-05 -> 09-08 batch - SHIPPED, AWAITING PLAYTEST
+## Omaha batch and m2l2a Phase C contain (2026-08/09) - SHIPPED
 
-Bugs 2473-2529. Every beat has a kill switch (`level.coop_*On`) and a `^~^~^` marker; acceptance
-lines in OPEN.md. Highlights: flank MG42 crews, radioman rework, underwater cinematic with a
-drowning QTE (tap-Use, per-player death, LMS-exempt, knobs in OPEN.md), ocean and surf realism
-(Airy mesh, bore layer, trough shadow, wet-sand swash), beach medics, quick-draw parked primary,
-obstacle wash, the smoke barrage holding for the shore-party radio exchange.
-
-## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
-
-`coop_mod/bust.scr` + `itemhandler.scr`. Gated on `coop_stealthStart` (ships ON from the next
-release, bug-1698). Full design: `docs/proposals/m2l2a_coop_stealth_master_plan_v2.md`, bugs
-1682-1691. An officer encounter is now a quiet fight: USE to stun (4.5s window), silenced pistol
-force-drawn, kill unseen = papers back + 10s clean = "Situation Contained"; seen = full alarm;
-corpse stays findable, 15s loiter = cover blown. VERIFIED: contain loop, escalation loadout, body
-investigation. UNVERIFIED: loiter escalation, stun-witness route, Naxos prompts/sabotage bar.
+Moved to [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md) (2026-10-19). Nothing in it is superseded.
 
 ## m2l2a stealth foundations (v1.2.5, 2026-08-10) - SHIPPED, verified in play
 
-Not the stealth *feature* (that is Phase C, still on paper) - the layer underneath it, which was broken:
-
-- **Papers checkers no longer freeze.** `coop_paperPassAll` was swapping the guard's disguise think 50ms into his
-  ACCEPT state, into a think with no functions. Deleted; the engine already demotes an accepting sentry.
-- **Five disguise gates that were always true.** `thread <label>` in a boolean returns a HANDLE, so every
-  `anim/disguise_*.scr` coop gate passed unconditionally - and four statements below them were unreachable,
-  including the squad-wide papers pass. All six now read the engine's per-target `is_disguised`.
-- **Latch-free aggro.** `attackentity` replaces `attackplayer` wherever a real target exists; the latter sets a
-  one-way flag that blinds an actor to disguises for the rest of the map and blames the host, not the offender.
-- **Scene actors protected** from the AI-personality system (card players, welders, dock crews, scientists, the 14
-  alarm runners). Measured, not guessed: A3 instrumentation caught the prone roll landing on the card man, a Naxos
-  watcher and an alarm runner. Path-failure warnings went 138 -> 0.
-- **Engine:** unguarded NULL deref in the disguise sight trace (a real crash), and the obstacle-bump branch now
-  resolves the player who actually bumped, plus holds off rewriting a scripted-animation actor's think map.
-- **Quiet Naxos sabotage** (hold USE) no longer strands the scientist mid-scene.
+The fixed layer under the stealth feature (papers checkers, five always-true disguise gates, latch-free
+`attackentity`, scene-actor protection, the disguise sight-trace NULL deref): moved 2026-09-27 to
+[`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md). Nothing in it is superseded.
 
 ## Ragdoll physics (v1.4.0 opt-in, v1.4.1 ON by default) - SHIPPED, NEWEST SYSTEM
 
@@ -1211,18 +1187,7 @@ what stopped bodies looking like dropped puppets. Shoot a corpse and the struck 
 KEEPS where the bullet put it (`coop_ragdollStick`, bounded by `coop_ragdollStickMax`);
 explosions vary per limb rather than translating the whole body.
 
-Built over six review rounds (r8-r13) across 2026-08-19..21, ~30 commits. The hard-won ones:
-bullet impulses must ROTATE a limb, not translate it; the flesh-hit "direction" was never a
-direction until it was torque-coupled; a correction that moves `pt` without `ptPrev` INJECTS
-velocity, because in Verlet velocity *is* `pt - ptPrev` (this caused a universal slow spin and
-forced the torso-twist limit to be reverted outright); and a wall must not latch the body
-rotation.
-
-**Default flip was migration-free, and the reason is worth keeping:** `coop_ragdoll` is
-CVAR_ARCHIVE, so a saved config normally beats a changed engine default. It did not here only
-because the cvar first existed 2026-08-19, two days AFTER v1.3.1 was cut - no shipped client
-had ever registered it. Any future default flip on an already-shipped archive cvar needs a
-one-shot migration instead (see `docs/TRAPS.md` T7, and bugs 1940 / 2017).
+Hard-won ragdoll lessons (Verlet impulses, torso twist, wall latch, why the default flip needed no migration, TRAPS T7): [`archive/features-ragdoll-lessons.md`](archive/features-ragdoll-lessons.md).
 
 Status: `SHIPPED` and on by default, but the least-settled system in the mod - odd poses and
 occasional over-spin are expected. `coop_ragdoll 0` reverts to retail death animations cleanly.

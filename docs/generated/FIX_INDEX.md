@@ -8,58 +8,60 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-1,329 distinct file paths, 4,575 distinct tags.
+3,912 distinct file paths, 6,794 distinct tags.
 
 ## Files with the most history
 
 | file | entries | bug ids (oldest first) |
 |---|---:|---|
-| `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | 147 | `bug-2187` `bug-2195` `bug-2196` `bug-2200` `bug-2205` `bug-2208` `bug-2209` `bug-2211` `bug-2213` `bug-2215` `bug-2216` `bug-2219` `bug-2220` `bug-2231` `bug-2232` `bug-2235` `bug-2244` `bug-2246` `bug-2248` `bug-2251` `bug-2252` `bug-2253` `bug-2254` `bug-2255` `bug-2256` `bug-2257` `bug-2258` `bug-2259` `bug-2260` `bug-2261` `bug-2262` `bug-2264` `bug-2265` `bug-2266` `bug-2268` `bug-2272` `bu… |
-| `openmohaa-hzm/code/cgame/cg_view.c` | 51 | `bug-074` `bug-105` `bug-110` `bug-168` `bug-165` `bug-lean-ads-wrong-branch` `bug-229` `bug-015` `bug-022` `bug-026` `bug-071` `bug-296` `bug-256` `bug-288` `bug-289` `bug-303` `bug-308` `bug-321` `bug-327` `bug-329` `bug-270` `bug-271` `bug-1290` `bug-1306` `bug-1502` `bug-1508` `bug-1547` `bug-1942` `bug-1983` `bug-1984` `bug-1985` `bug-1998` `bug-2004` `bug-2005` `bug-2012` `bug-2016` `bug-20… |
+| `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | 150 | `bug-2187` `bug-2195` `bug-2196` `bug-2200` `bug-2205` `bug-2208` `bug-2209` `bug-2211` `bug-2213` `bug-2215` `bug-2216` `bug-2219` `bug-2220` `bug-2231` `bug-2232` `bug-2235` `bug-2244` `bug-2246` `bug-2248` `bug-2251` `bug-2252` `bug-2253` `bug-2254` `bug-2255` `bug-2256` `bug-2257` `bug-2258` `bug-2259` `bug-2260` `bug-2261` `bug-2262` `bug-2264` `bug-2265` `bug-2266` `bug-2268` `bug-2272` `bu… |
+| `openmohaa-hzm/code/cgame/cg_view.c` | 59 | `bug-074` `bug-105` `bug-110` `bug-168` `bug-165` `bug-lean-ads-wrong-branch` `bug-229` `bug-015` `bug-022` `bug-026` `bug-071` `bug-296` `bug-256` `bug-288` `bug-289` `bug-303` `bug-308` `bug-321` `bug-327` `bug-329` `bug-270` `bug-271` `bug-1290` `bug-1306` `bug-1502` `bug-1508` `bug-1547` `bug-1942` `bug-1983` `bug-1984` `bug-1985` `bug-1998` `bug-2004` `bug-2005` `bug-2012` `bug-2016` `bug-20… |
+| `openmohaa-hzm/code/fgame/player.cpp` | 54 | `bug-164` `bug-221` `bug-319` `bug-379` `bug-380` `bug-463` `bug-947` `bug-1291` `bug-1292` `bug-1324` `bug-1560` `bug-1565` `bug-1638` `bug-1712` `bug-1978` `bug-2086` `bug-2101` `bug-2102` `bug-2104` `bug-2105` `bug-2107` `bug-2108` `bug-2110` `bug-2111` `bug-2112` `bug-2124` `bug-2128` `bug-2129` `bug-2130` `bug-2136` `bug-2137` `bug-2139` `bug-2146` `bug-2152` `bug-2155` `bug-2157` `bug-2158`… |
 | `hzm-mohaa-coop-mod/maps/m6l2a.scr` | 47 | `bug-1715` `bug-1716` `bug-1717` `bug-1718` `bug-1719` `bug-1721` `bug-1740` `bug-1741` `bug-1742` `bug-1744` `bug-1746` `bug-1747` `bug-1748` `bug-1749` `bug-1750` `bug-1751` `bug-1752` `bug-1753` `bug-1754` `bug-1755` `bug-1756` `bug-1757` `bug-1758` `bug-1759` `bug-1760` `bug-1761` `bug-1762` `bug-1763` `bug-1764` `bug-1765` `bug-1766` `bug-1767` `bug-1768` `bug-1769` `bug-1770` `bug-1774` `bu… |
-| `openmohaa-hzm/code/fgame/player.cpp` | 46 | `bug-164` `bug-221` `bug-319` `bug-379` `bug-380` `bug-463` `bug-947` `bug-1291` `bug-1292` `bug-1324` `bug-1560` `bug-1565` `bug-1638` `bug-1712` `bug-1978` `bug-2086` `bug-2101` `bug-2102` `bug-2104` `bug-2105` `bug-2107` `bug-2108` `bug-2110` `bug-2111` `bug-2112` `bug-2124` `bug-2128` `bug-2129` `bug-2130` `bug-2136` `bug-2137` `bug-2139` `bug-2146` `bug-2152` `bug-2155` `bug-2157` `bug-2158`… |
+| `hzm-mohaa-coop-mod/autoexec.cfg` | 35 | `bug-166` `bug-postfx-intensity-clobbered` `bug-002` `bug-006` `bug-008` `bug-012` `bug-013` `bug-017` `bug-018` `bug-047` `bug-258` `bug-849` `bug-846` `bug-861` `bug-1063` `bug-1231` `bug-1550` `bug-1698` `bug-1884` `bug-1961` `bug-2151` `bug-2172` `bug-2218` `bug-2238` `bug-2388` `bug-2446` `bug-2492` `bug-2556` `bug-3077` `bug-3193` `bug-3299` `bug-3372` `bug-3483` `bug-4187-fix` `bug-4187` |
+| `hzm-mohaa-coop-mod/coop_mod/challenges.scr` | 33 | `bug-493` `bug-462` `bug-628` `bug-681` `bug-848` `bug-748` `bug-751` `bug-807` `bug-808` `bug-1351` `bug-1362` `bug-1363` `bug-1364` `bug-1371` `bug-1503` `bug-1508` `bug-1509` `bug-1512` `bug-1514` `bug-1521` `bug-1522` `bug-1523` `bug-1536` `bug-1537` `bug-1543` `bug-1598` `bug-1670` `bug-1773` `bug-1895` `bug-2079` `bug-2389` `bug-2544` `bug-3520` |
+| `hzm-mohaa-coop-mod/coop_mod/officer.scr` | 33 | `bug-officer-instant-spawn-order` `bug-070` `bug-318` `bug-789` `bug-1103` `bug-1514` `bug-1571` `bug-1648` `bug-1649` `bug-1650` `bug-1653` `bug-1720` `bug-1779` `bug-1852` `bug-1939` `bug-1955` `bug-1980` `bug-1989` `bug-2023` `bug-2047` `bug-2051` `bug-2054` `bug-2074` `bug-2076` `bug-2077` `bug-2185` `bug-3309` `bug-3381` `bug-3360` `bug-3416` `bug-3430` `bug-3572` `bug-4090` |
 | `hzm-mohaa-coop-mod/maps/M3L3.scr` | 33 | `bug-1828` `bug-1829` `bug-1830` `bug-1831` `bug-1832` `bug-1833` `bug-1834` `bug-1837` `bug-1838` `bug-1822` `bug-1840` `bug-1841` `bug-1842` `bug-1824` `bug-1845` `bug-1846` `bug-1847` `bug-1854` `bug-1855` `bug-1856` `bug-1858` `bug-1861` `bug-1862` `bug-1863` `bug-1865` `bug-1867` `bug-1877` `bug-1879` `bug-1904` `bug-1920` `bug-1924` `bug-2015` `bug-2022` |
-| `hzm-mohaa-coop-mod/coop_mod/challenges.scr` | 32 | `bug-493` `bug-462` `bug-628` `bug-681` `bug-848` `bug-748` `bug-751` `bug-807` `bug-808` `bug-1351` `bug-1362` `bug-1363` `bug-1364` `bug-1371` `bug-1503` `bug-1508` `bug-1509` `bug-1512` `bug-1514` `bug-1521` `bug-1522` `bug-1523` `bug-1536` `bug-1537` `bug-1543` `bug-1598` `bug-1670` `bug-1773` `bug-1895` `bug-2079` `bug-2389` `bug-2544` |
+| `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr` | 28 | `bug-627` `bug-798` `bug-897` `bug-939` `bug-1269` `bug-1604` `bug-1631` `bug-1662` `bug-1677` `bug-1683` `bug-1685` `bug-1688` `bug-1692` `bug-1693` `bug-1701` `bug-1703` `bug-1701b` `bug-1706` `bug-1723` `bug-1729` `bug-1730` `bug-1732` `bug-1735` `bug-1928` `bug-1929` `bug-2178` `bug-3249` `bug-3813` |
 | `openmohaa-hzm/code/fgame/sentient.cpp` | 28 | `bug-230` `bug-135` `bug-615` `bug-730` `bug-763` `bug-797` `bug-861` `bug-915` `bug-919` `bug-920` `bug-1320` `bug-1874` `bug-1875` `bug-1876` `bug-1880` `bug-1883` `bug-1890` `bug-2160` `bug-2161` `bug-2170` `bug-2191` `bug-2193` `bug-2202` `bug-2546` `bug-2550` `bug-2574` `bug-2661` `bug-2713` |
-| `hzm-mohaa-coop-mod/autoexec.cfg` | 27 | `bug-166` `bug-postfx-intensity-clobbered` `bug-002` `bug-006` `bug-008` `bug-012` `bug-013` `bug-017` `bug-018` `bug-047` `bug-258` `bug-849` `bug-846` `bug-861` `bug-1063` `bug-1231` `bug-1550` `bug-1698` `bug-1884` `bug-1961` `bug-2151` `bug-2172` `bug-2218` `bug-2238` `bug-2388` `bug-2446` `bug-2492` |
-| `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr` | 26 | `bug-627` `bug-798` `bug-897` `bug-939` `bug-1269` `bug-1604` `bug-1631` `bug-1662` `bug-1677` `bug-1683` `bug-1685` `bug-1688` `bug-1692` `bug-1693` `bug-1701` `bug-1703` `bug-1701b` `bug-1706` `bug-1723` `bug-1729` `bug-1730` `bug-1732` `bug-1735` `bug-1928` `bug-1929` `bug-2178` |
-| `hzm-mohaa-coop-mod/coop_mod/officer.scr` | 26 | `bug-officer-instant-spawn-order` `bug-070` `bug-318` `bug-789` `bug-1103` `bug-1514` `bug-1571` `bug-1648` `bug-1649` `bug-1650` `bug-1653` `bug-1720` `bug-1779` `bug-1852` `bug-1939` `bug-1955` `bug-1980` `bug-1989` `bug-2023` `bug-2047` `bug-2051` `bug-2054` `bug-2074` `bug-2076` `bug-2077` `bug-2185` |
-| `hzm-mohaa-coop-mod/coop_mod/aihandler.scr` | 23 | `bug-822` `bug-891` `bug-1199` `bug-1201` `bug-1256` `bug-1274` `bug-1514` `bug-1639` `bug-1647` `bug-1686` `bug-1700` `bug-1702` `bug-1704` `bug-1733` `bug-1794` `bug-1868` `bug-1944` `bug-1949` `bug-1957` `bug-2038` `bug-2039` `bug-2174` `bug-2237` |
+| `tr_local.h` | 27 | `bug-159` `bug-868` `bug-gl2-texgen` `bug-gl2-modellight` `bug-gl2-nextbundle2` `bug-1132` `bug-1149` `bug-1150` `bug-1151` `bug-1158` `bug-1177` `bug-1237` `bug-1239` `bug-2159` `bug-2166` `bug-2556` `bug-2946` `bug-2969` `bug-3061` `bug-3148` `bug-3156` `bug-3170` `bug-3224` `bug-3406` `bug-3462` `bug-4390` `bug-10308` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py` | 25 | `bug-3606` `bug-3607` `bug-3624` `bug-3626` `bug-3628` `bug-3635` `bug-3642` `bug-3643` `bug-3659` `bug-3660` `bug-3661` `bug-3663` `bug-3683` `bug-3721` `bug-3724` `bug-3760` `bug-3762` `bug-3798` `bug-3802` `bug-3803` `bug-3806` `bug-3865` `bug-3866` `bug-3868` `bug-3869` |
+| `hzm-mohaa-coop-mod/coop_mod/aihandler.scr` | 24 | `bug-822` `bug-891` `bug-1199` `bug-1201` `bug-1256` `bug-1274` `bug-1514` `bug-1639` `bug-1647` `bug-1686` `bug-1700` `bug-1702` `bug-1704` `bug-1733` `bug-1794` `bug-1868` `bug-1944` `bug-1949` `bug-1957` `bug-2038` `bug-2039` `bug-2174` `bug-2237` `bug-3077` |
+| `openmohaa-hzm/code/fgame/playerbot_movement.cpp` | 23 | `bug-2696` `bug-2714` `bug-2814` `bug-2815` `bug-2821` `bug-2824` `bug-2825` `bug-2827` `bug-2879` `bug-2880` `bug-2881` `bug-2882` `bug-2883` `bug-2885` `bug-2886` `bug-2888` `bug-2889` `bug-2891` `bug-2892` `bug-2897` `bug-2899` `bug-3066` `bug-3086` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c` | 22 | `bug-093` `bug-094` `bug-042` `bug-301` `bug-315` `bug-332` `bug-863` `bug-1209` `bug-1901` `bug-2010` `bug-2013` `bug-2458` `bug-2480` `bug-2491` `bug-2499` `bug-2542` `bug-2569` `bug-3310` `bug-3311` `bug-3335` `bug-3442` `bug-3856` |
+| `hzm-mohaa-coop-mod/maps/m3l1a.scr` | 21 | `bug-1501` `bug-1502` `bug-2188` `bug-2192` `bug-2194` `bug-2197` `bug-2199` `bug-2204` `bug-2206` `bug-2233` `bug-2236` `bug-2251` `bug-2276` `bug-2353` `bug-2356` `bug-2371` `bug-2378` `bug-2490` `bug-2513` `bug-2539` `bug-3570` |
+| `build.ps1` | 20 | `bug-1633` `bug-1634` `bug-1724` `bug-1796` `bug-1798` `bug-2097` `bug-2164` `bug-2224` `bug-2512` `bug-2615` `bug-2741` `bug-2748` `bug-2930` `bug-2937` `bug-2943` `bug-3206` `bug-3340` `bug-3900` `bug-4437` `bug-10740` |
 | `hzm-mohaa-coop-mod/coop_mod/bust.scr` | 20 | `bug-1674` `bug-1676` `bug-1682` `bug-1684` `bug-1687` `bug-1691` `bug-1695` `bug-1696` `bug-1722` `bug-1726` `bug-1727` `bug-1728` `bug-1731` `bug-1734` `bug-1736` `bug-1737` `bug-1738` `bug-1739` `bug-1743` `bug-1792` |
-| `hzm-mohaa-coop-mod/maps/m3l1a.scr` | 20 | `bug-1501` `bug-1502` `bug-2188` `bug-2192` `bug-2194` `bug-2197` `bug-2199` `bug-2204` `bug-2206` `bug-2233` `bug-2236` `bug-2251` `bug-2276` `bug-2353` `bug-2356` `bug-2371` `bug-2378` `bug-2490` `bug-2513` `bug-2539` |
+| `docs/tools/gen_service_record.py` | 19 | `bug-1503` `bug-1510` `bug-1511` `bug-1519` `bug-1521` `bug-1523` `bug-1525` `bug-1528` `bug-1529` `bug-1531` `bug-1532` `bug-1535` `bug-1537` `bug-1541` `bug-1544` `bug-2116` `bug-3365` `bug-10518` `bug-10817` |
+| `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | 19 | `bug-666` `bug-1205` `bug-1675` `bug-1678` `bug-1918` `bug-1919` `bug-1923` `bug-1926` `bug-1931` `bug-1933` `bug-1934` `bug-1935` `bug-1936` `bug-2067` `bug-2114` `bug-2557` `bug-3888` `bug-3898` `bug-4046` |
 | `hzm-mohaa-coop-mod/coop_mod/lobby.scr` | 18 | `bug-348` `bug-349` `bug-350` `bug-355` `bug-356` `bug-363` `bug-366` `bug-367` `bug-368` `bug-369` `bug-370` `bug-362` `bug-364` `bug-365` `bug-378` `bug-400` `bug-401` `bug-402` |
-| `openmohaa-hzm/code/cgame/cg_modelanim.c` | 17 | `bug-093` `bug-094` `bug-042` `bug-301` `bug-315` `bug-332` `bug-863` `bug-1209` `bug-1901` `bug-2010` `bug-2013` `bug-2458` `bug-2480` `bug-2491` `bug-2499` `bug-2542` `bug-2569` |
-| `docs/tools/gen_service_record.py` | 16 | `bug-1503` `bug-1510` `bug-1511` `bug-1519` `bug-1521` `bug-1523` `bug-1525` `bug-1528` `bug-1529` `bug-1531` `bug-1532` `bug-1535` `bug-1537` `bug-1541` `bug-1544` `bug-2116` |
-| `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | 16 | `bug-666` `bug-1205` `bug-1675` `bug-1678` `bug-1918` `bug-1919` `bug-1923` `bug-1926` `bug-1931` `bug-1933` `bug-1934` `bug-1935` `bug-1936` `bug-2067` `bug-2114` `bug-2557` |
-| `openmohaa-hzm/code/client/snd_openal_new.cpp` | 15 | `bug-099` `bug-1556` `bug-1797` `bug-1979` `bug-2234` `bug-2250` `bug-2276` `bug-2298` `bug-2344` `bug-2420` `bug-2444` `bug-2454` `bug-2457` `bug-2572` `bug-2576` |
-| `tr_local.h` | 15 | `bug-159` `bug-868` `bug-gl2-texgen` `bug-gl2-modellight` `bug-gl2-nextbundle2` `bug-1132` `bug-1149` `bug-1150` `bug-1151` `bug-1158` `bug-1177` `bug-1237` `bug-1239` `bug-2159` `bug-2166` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_push.scr` | 18 | `bug-2611` `bug-2684` `bug-2686` `bug-2698` `bug-2703` `bug-2704` `bug-2707` `bug-2711` `bug-2745` `bug-2746` `bug-2747` `bug-2766` `bug-2832` `bug-2843` `bug-2854` `bug-2855` `bug-2895` `bug-3079` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp` | 18 | `bug-2682` `bug-2687` `bug-2690` `bug-2691` `bug-2693` `bug-2791` `bug-2840` `bug-2841` `bug-2866` `bug-2873` `bug-2874` `bug-2875` `bug-2877` `bug-2884` `bug-2890` `bug-2900` `bug-2915` `bug-2947` |
+| `hzm-mohaa-coop-mod/coop_mod/mp.scr` | 17 | `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2597` `bug-2599` `bug-2602` `bug-2605` `bug-2667` `bug-2670` `bug-2689` `bug-2706` `bug-2712` `bug-2732` `bug-2936` `bug-3080` `bug-3198` |
+| `hzm-mohaa-coop-mod/ubersound/ubersound.scr` | 17 | `bug-116` `bug-1161` `bug-1188` `bug-1272` `bug-1548` `bug-1885` `bug-1886` `bug-1898` `bug-2161` `bug-2198` `bug-2280` `bug-2297` `bug-2394` `bug-2780` `bug-2800` `bug-3088` `bug-3402` |
+| `openmohaa-hzm/code/cgame/cg_ragdoll.c` | 17 | `bug-1962` `bug-1964` `bug-1986` `bug-1965` `bug-1966` `bug-1967` `bug-1969` `bug-1970` `bug-1981` `bug-3127` `bug-3128` `bug-3129` `bug-3130` `bug-3131` `bug-3132` `bug-3133` `bug-3134` |
+| `openmohaa-hzm/code/fgame/weapturret.cpp` | 17 | `bug-089` `bug-091` `bug-229` `bug-005` `bug-011` `bug-014` `bug-016` `bug-1265` `bug-1843` `bug-1850` `bug-1866` `bug-1851` `bug-1940` `bug-3636` `bug-3637` `bug-3638` `bug-3639` |
+| `tr_init.c` | 17 | `bug-905` `bug-868` `bug-gl2-modellight` `bug-1132` `bug-1209` `bug-1237` `bug-1249` `bug-2159` `bug-2166` `bug-2556` `bug-2946` `bug-2969` `bug-3061` `bug-3148` `bug-3530` `bug-3536` `bug-10900` |
+| `coop_mod/challenges.scr` | 16 | `bug-495` `bug-713` `bug-714` `bug-718` `bug-721` `bug-722` `bug-739` `bug-750` `bug-1523` `bug-1528` `bug-3339` `bug-4143` `bug-4454` `bug-10592` `bug-10739` `bug-537` |
+| `coop_mod/officer.scr` | 16 | `bug-251` `bug-450` `bug-717` `bug-723` `bug-1645` `bug-3302` `bug-3303` `bug-3304` `bug-3921` `bug-3922` `bug-3952` `bug-3978` `bug-3983` `bug-4003` `bug-4012` `bug-4409` |
+| `openmohaa-hzm/code/client/snd_openal_new.cpp` | 16 | `bug-099` `bug-1556` `bug-1797` `bug-1979` `bug-2234` `bug-2250` `bug-2276` `bug-2298` `bug-2344` `bug-2420` `bug-2444` `bug-2454` `bug-2457` `bug-2572` `bug-2576` `bug-10352` |
+| `hzm-mohaa-coop-mod/coop_mod/finale_m2l3_def.scr` | 14 | `bug-4439` `bug-4440` `bug-4449` `bug-10399` `bug-10404` `bug-10405` `bug-10415` `bug-10509` `bug-10510` `bug-10511` `bug-10523` `bug-10525` `bug-10545` `bug-10566` |
 | `hzm-mohaa-coop-mod/maps/e2l1/gliderride.scr` | 14 | `bug-1297` `bug-1322` `bug-1328` `bug-1328b` `bug-1302` `bug-1308` `bug-1309` `bug-1328c` `bug-1332` `bug-1341` `bug-1344` `bug-1347` `bug-1348` `bug-1350` |
 | `hzm-mohaa-coop-mod/maps/t2l2.scr` | 14 | `bug-034` `bug-041` `bug-044` `bug-045` `bug-046` `bug-048` `bug-049` `bug-050` `bug-051` `bug-052` `bug-053` `bug-054` `bug-056` `bug-062` |
-| `hzm-mohaa-coop-mod/coop_mod/mp.scr` | 13 | `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2597` `bug-2599` `bug-2602` `bug-2605` `bug-2667` `bug-2670` `bug-2689` `bug-2706` `bug-2712` |
-| `hzm-mohaa-coop-mod/ubersound/ubersound.scr` | 13 | `bug-116` `bug-1161` `bug-1188` `bug-1272` `bug-1548` `bug-1885` `bug-1886` `bug-1898` `bug-2161` `bug-2198` `bug-2280` `bug-2297` `bug-2394` |
-| `openmohaa-hzm/code/fgame/weapturret.cpp` | 13 | `bug-089` `bug-091` `bug-229` `bug-005` `bug-011` `bug-014` `bug-016` `bug-1265` `bug-1843` `bug-1850` `bug-1866` `bug-1851` `bug-1940` |
-| `hzm-mohaa-coop-mod/maps/m3l1b.scr` | 12 | `bug-532` `bug-1549` `bug-1552` `bug-1553` `bug-1555` `bug-1557` `bug-1558` `bug-1568` `bug-1574` `bug-1575` `bug-2075` `bug-2087` |
-| `coop_mod/challenges.scr` | 11 | `bug-495` `bug-713` `bug-714` `bug-718` `bug-721` `bug-722` `bug-739` `bug-750` `bug-1523` `bug-1528` `bug-537` |
-| `hzm-mohaa-coop-mod/coop_mod/dbno.scr` | 11 | `bug-dbno-medkit-letgo-same-key` `bug-618` `bug-1660` `bug-1661` `bug-1668` `bug-1679` `bug-1930` `bug-2169` `bug-2175` `bug-2432` `bug-2539` |
-| `hzm-mohaa-coop-mod/coop_mod/main.scr` | 11 | `bug-359` `bug-358` `bug-898` `bug-871` `bug-893` `bug-940` `bug-1251` `bug-1337` `bug-1937` `bug-2207` `bug-2595` |
-| `openmohaa-hzm/code/fgame/actor.cpp` | 11 | `bug-795` `bug-1321` `bug-1640` `bug-1655` `bug-1657` `bug-1882` `bug-1943` `bug-1948` `bug-1960` `bug-2450` `bug-2484` |
-| `player.cpp` | 11 | `bug-920` `bug-2120` `bug-2125` `bug-2126` `bug-2127` `bug-2132` `bug-2133` `bug-2134` `bug-2135` `bug-2143` `bug-2623` |
-| `build.ps1` | 10 | `bug-1633` `bug-1634` `bug-1724` `bug-1796` `bug-1798` `bug-2097` `bug-2164` `bug-2224` `bug-2512` `bug-2615` |
-| `hzm-mohaa-coop-mod/coop_mod/xp.scr` | 10 | `bug-553` `bug-848` `bug-806` `bug-819` `bug-1264` `bug-1514` `bug-1520` `bug-1870` `bug-1872` `bug-2699` |
-| `openmohaa-hzm/code/cgame/cg_drawtools.cpp` | 10 | `bug-139` `bug-gl2-dbnofx` `bug-gl2-suppressfx` `bug-1663` `bug-1878` `bug-1996` `bug-2008` `bug-2555` `bug-2619` `bug-2688` |
-| `openmohaa-hzm/code/client/cl_main.cpp` | 10 | `bug-317` `bug-527` `bug-1180` `bug-1503` `bug-1523` `bug-1537` `bug-1541` `bug-1546` `bug-1925` `bug-2573` |
-| `hzm-mohaa-coop-mod/ubersound/coop_audio.scr` | 9 | `bug-1697` `bug-1711` `bug-1783` `bug-2153` `bug-2436` `bug-2452` `bug-2455` `bug-2494` `bug-2505` |
-| `openmohaa-hzm/code/cgame/cg_ragdoll.c` | 9 | `bug-1962` `bug-1964` `bug-1986` `bug-1965` `bug-1966` `bug-1967` `bug-1969` `bug-1970` `bug-1981` |
-| `openmohaa-hzm/code/fgame/weapon.cpp` | 9 | `bug-623` `bug-928` `bug-1551` `bug-1881` `bug-2106` `bug-2138` `bug-2140` `bug-2141` `bug-2153` |
-| `openmohaa-hzm/code/renderergl2/tr_shader.c` | 9 | `bug-gl2-01` `bug-gl2-cullfront` `bug-gl2-texmods-null` `bug-1191` `bug-1295` `bug-2186` `bug-2227` `bug-2228` `bug-2486` |
-| `player.h` | 9 | `bug-1622` `bug-2125` `bug-2129` `bug-2132` `bug-2134` `bug-2143` `bug-2152` `bug-2156` `bug-2623` |
-| `tr_backend.c` | 9 | `bug-159` `bug-gl2-modellight` `bug-gl2-e2l2-fog-verified-correct` `bug-1132` `bug-1149` `bug-1150` `bug-1158` `bug-1177` `bug-1209` |
+| `openmohaa-hzm/code/client/cl_main.cpp` | 14 | `bug-317` `bug-527` `bug-1180` `bug-1503` `bug-1523` `bug-1537` `bug-1541` `bug-1546` `bug-1925` `bug-2573` `bug-2749` `bug-2777` `bug-2981` `bug-10300` |
+| `tr_backend.c` | 14 | `bug-159` `bug-gl2-modellight` `bug-gl2-e2l2-fog-verified-correct` `bug-1132` `bug-1149` `bug-1150` `bug-1158` `bug-1177` `bug-1209` `bug-3148` `bug-3222` `bug-3462` `bug-4390` `bug-4391` |
+| `tr_glsl.c` | 14 | `bug-gl2-texgen` `bug-gl2-nextbundle2` `bug-1149` `bug-1150` `bug-1151` `bug-1158` `bug-1239` `bug-1249` `bug-2946` `bug-2969` `bug-3148` `bug-3462` `bug-4273` `bug-4390` |
+| `cg_view.c` | 13 | `bug-2132` `bug-2133` `bug-2623` `bug-2969` `bug-3148` `bug-3222` `bug-3422` `bug-3462` `bug-4217` `bug-4390` `bug-10304` `bug-10416` `bug-10740` |
+| `coop_defaults.cfg` | 13 | `bug-2578` `bug-2919` `bug-2923` `bug-2934` `bug-3193` `bug-3299` `bug-3518` `bug-3539` `bug-4050` `bug-4123` `bug-4187-fix` `bug-10441` `bug-10450` |
+| `coop_mod/finale_m2l3_def.scr` | 13 | `bug-4391` `bug-4393` `bug-4408` `bug-4409` `bug-4411` `bug-norway-1027-booms-chain` `bug-norway-1027-shoot-timeout` `bug-10267` `bug-10331` `bug-10332` `bug-10457` `bug-10458` `bug-10474` |
 
 ## All files
 
 | file | entries | bug ids (oldest first) |
 |---|---:|---|
+| `#version 120 path) / glsl/lightall_fp.glsl` | 1 | `bug-2974` |
 | `(ad-hoc PowerShell launcher)` | 1 | `bug-2414` |
+| `(agent wait loop` | 1 | `bug-3805` |
 | `(analysis)` | 1 | `bug-1564` |
 | `(audit finding` | 1 | `bug-2428` |
 | `(content) G:/GOG/Medal of Honor - Allied Assault War Chest/main/Pak4.pk3` | 1 | `bug-2336` |
@@ -69,8 +71,16 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `(investigation) renderergl2/tr_backend.c (RB_StretchPic/RB_SwapBuffers/RB_PostProcess)` | 1 | `bug-gl2-viewmodel-over-menu` |
 | `(investigation) renderergl2/tr_postprocess.c` | 1 | `bug-gl2-e2l2-fog-verified-correct` |
 | `(measurement technique)` | 1 | `bug-2422` |
+| `(not localised) Omaha m3l1a/m3l1b client performance` | 1 | `bug-3477` |
+| `(open) navmesh / playerbot pathing` | 1 | `bug-2926` |
+| `(ops) C:/hzm-root-* doc worktrees` | 1 | `bug-4216` |
 | `(PowerShell -> native git/gh)` | 1 | `bug-425` |
+| `(process)` | 1 | `bug-3596` |
+| `(process) G:/mohaa-adsanim/runs` | 1 | `bug-3616` |
+| `(root merge)` | 1 | `bug-10780` |
 | `(tooling)` | 1 | `bug-1566` |
+| `(unknown caller) ui/coop_objectives/*.cfg` | 1 | `bug-2869` |
+| `+22p` | 1 | `bug-3023` |
 | `+TB_SCREENDEPTH)` | 1 | `bug-2594` |
 | `../Users/curry/.claude/projects/C--mohaa-coop-dev/memory/loadtga_crash_fix.md` | 1 | `bug-058` |
 | `../Users/curry/.claude/projects/C--mohaa-coop-dev/memory/m1l2b_coop_notes.md` | 1 | `bug-029` |
@@ -83,22 +93,45 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `../Users/curry/AppData/Local/Temp/claude/C--mohaa-coop-dev/84218d0b-6bab-4623-95e8-5bf2fb76f358/scratchpad/ge…` | 3 | `bug-781` `bug-782` `bug-799` |
 | `../Users/curry/AppData/Local/Temp/claude/C--mohaa-coop-dev/84218d0b-6bab-4623-95e8-5bf2fb76f358/scratchpad/gl…` | 1 | `bug-1122` |
 | `.gitconfig / workflow` | 1 | `bug-2453` |
-| `.wolf/buglog.json` | 3 | `bug-buglog-dataloss` `bug-1227` `bug-2399` |
+| `.github/workflows/branches-build.yml (engine` | 1 | `bug-10312` |
+| `.github/workflows/shared-build-linux.yml` | 1 | `bug-10312` |
+| `.github/workflows/shared-build-{linux` | 1 | `bug-10308` |
+| `.wolf/buglog.json` | 4 | `bug-buglog-dataloss` `bug-1227` `bug-2399` `bug-4088` |
 | `.wolf/buglog.json (bug-2385 reason) + hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | 1 | `bug-2398` |
 | `.wolf/buglog.json (characterisation of bugs 2348/2368/2370)` | 1 | `bug-2409` |
 | `.wolf/buglog.json (characterisation)` | 1 | `bug-2418` |
 | `.wolf/buglog.json (measurement method)` | 1 | `bug-2469` |
 | `1 fixed as bug-1613)` | 1 | `bug-1614` |
+| `159 weapon tiks (casings.py)` | 1 | `bug-4263` |
+| `2` | 1 | `bug-3951` |
+| `2240-2273` | 1 | `bug-2998` |
 | `2546 (fixed)` | 1 | `bug-1586` |
+| `2nd-ranger_medic` | 1 | `bug-3325` |
 | `2} (93 pairs)` | 1 | `bug-828` |
 | `2}.jpg/tga` | 1 | `bug-817` |
+| `30calportable sights` | 1 | `bug-4131` |
+| `30calportable.tik` | 2 | `bug-4268` `bug-10920` |
+| `30calportable/30cal.skd (+ mod tik copies` | 1 | `bug-3391` |
+| `3}.scr` | 1 | `bug-3951` |
+| `4 call sites)` | 1 | `bug-2922` |
 | `549` | 1 | `bug-1473` |
 | `596` | 1 | `bug-1473` |
 | `601)` | 1 | `bug-1473` |
 | `854` | 1 | `bug-2617` |
 | `89` | 1 | `bug-1492` |
+| `:177` | 1 | `bug-3168` |
+| `:2092` | 1 | `bug-3111` |
+| `:220` | 1 | `bug-3168` |
 | `:2259)` | 1 | `bug-2585` |
+| `:310 (r_hzmFlareIntensity 0.25` | 1 | `bug-2999` |
+| `:603` | 1 | `bug-3142` |
+| `:629-661)` | 1 | `bug-3011` |
+| `:7348 default "1.0")` | 1 | `bug-3229` |
+| `:93-94 (glow/flare texture profile` | 1 | `bug-2999` |
+| `_ads}` | 1 | `bug-3729` |
 | `_blender_kit/sprint/` | 1 | `bug-294` |
+| `_end` | 2 | `bug-3727` `bug-10650` |
+| `_end_loaded}_ads.skc)` | 1 | `bug-3727` |
 | `_frontline extraction pipeline` | 1 | `bug-599` |
 | `_frontline pipeline / scratchpad/frontline_eaxa.py` | 1 | `bug-600` |
 | `_kun_weapons/zzzzz_kun_weapons.pk3` | 1 | `bug-494` |
@@ -107,160 +140,574 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `_research/cov_manifests.json` | 2 | `bug-1446` `bug-1475` |
 | `_research/cov_manifests.json (generator)` | 1 | `bug-1468` |
 | `_research/fontgen/gen_hidpi_fonts.py` | 1 | `bug-1130` |
-| `_research/hud_slot_map.md` | 1 | `bug-1402` |
+| `_research/hud_slot_map.md` | 4 | `bug-1402` `bug-2906` `bug-3234` `bug-10473` |
+| `_research/nohat/gen_axis_nohat.py` | 2 | `bug-2754` `bug-2762` |
 | `_research/regression/hzmreg/analyze.py` | 1 | `bug-1222` |
 | `_research/regression/hzmreg/capture.py` | 1 | `bug-1221` |
 | `_research/xp_system.md` | 2 | `bug-267` `bug-269` |
+| `_sel.tga` | 1 | `bug-2935` |
+| `_single` | 2 | `bug-3727` `bug-10650` |
+| `_single_l}.skc` | 1 | `bug-10650` |
 | `_xw_weapons/zzzzz_xw_weapons.pk3` | 3 | `bug-494` `bug-500` `bug-483` |
 | `_xw_weapons/zzzzz_xw_weapons.pk3 :: scripts/carbine.shader` | 1 | `bug-809` |
+| `A6)` | 1 | `bug-3121` |
+| `ab/lt_ab.py (phase_bolt)` | 1 | `bug-3181` |
 | `actor.cpp` | 2 | `bug-1813` `bug-1815` |
 | `actor.cpp (precache)` | 1 | `bug-1142` |
 | `actor.h` | 2 | `bug-1813` `bug-1815` |
+| `actor.h (m_fMaxDistanceWant` | 1 | `bug-2989` |
+| `add_part.py` | 1 | `bug-4139` |
+| `admin.scr` | 1 | `bug-3520` |
+| `ADS SWAY + RECOIL block)` | 1 | `bug-3262` |
+| `ads_anims_2026-10-04)` | 1 | `bug-3319` |
+| `adsfg42-next` | 1 | `bug-4133` |
+| `adsheavy-next` | 1 | `bug-4133` |
+| `adssmg-next` | 1 | `bug-4133` |
+| `adsthompson-next` | 1 | `bug-4133` |
+| `adstune.cfg + adstune_off.cfg + ui/loadout/fitunbind_now.cfg (new)` | 1 | `bug-3299` |
+| `affects any PERF/GLSL gate run on the private client (gfx plan P5` | 1 | `bug-3062` |
 | `after R_Sphere_InitLights)` | 1 | `bug-1154` |
+| `AimAtPath` | 1 | `bug-2986` |
+| `alarm.scr` | 1 | `bug-4051` |
+| `alarm_place.py)` | 1 | `bug-4038` |
+| `alarmsnipers_spots.scr` | 1 | `bug-4166` |
 | `alienx/basebuild.scr` | 1 | `bug-2669` |
+| `ammobox.scr` | 2 | `bug-2906` `bug-3954` |
+| `ammobox.scr (coop_ammobox_heavy)` | 1 | `bug-norway-1027-prep-blizzard-train` |
 | `and the wait-1 follow-up in mg42)` | 1 | `bug-1580` |
 | `anim/overattack.scr` | 1 | `bug-1489` |
+| `anim/pain.scr (frontline branch)` | 1 | `bug-10634` |
+| `anims_pistol.txt` | 1 | `bug-3613` |
 | `anims_shared.txt` | 3 | `bug-2120` `bug-2125` `bug-2126` |
 | `anims_shared.txt + player_Legs.st (+ deploy timing)` | 1 | `bug-307` |
 | `anims_shared.txt / player_Legs.st COVER_WALL_FIRE` | 1 | `bug-310` |
 | `anims_shared.txt)` | 1 | `bug-2123` |
+| `any PrintWindow capture (scratchpad p3/capwin.ps1` | 1 | `bug-3114` |
+| `apply_fg42irons.py` | 1 | `bug-3769` |
+| `apply_phase3.py (gen_menu_graphics ROOM row)` | 1 | `bug-3329` |
+| `apply_sgbreak.py (cgame cg_viewmodelanim.c)` | 1 | `bug-3755` |
+| `Archive loading)` | 1 | `bug-2989` |
 | `armory_helmet_set gate message)` | 1 | `bug-1578` |
-| `autoexec.cfg` | 6 | `bug-089` `bug-t2l2-f5bind` `bug-757` `bug-2578` `bug-2629` `bug-2678` |
+| `assets/models/player/base/anims_shared.txt` | 2 | `bug-3613` `bug-3788` |
+| `assets/models/weapons/colt45_coltpa.tik` | 1 | `bug-3650` |
+| `assets/models/weapons/coop_c96/*` | 1 | `bug-3655` |
+| `assets/models/weapons/coop_coltpa/coop_coltpa_reload_ads_*.skc` | 1 | `bug-3650` |
+| `assets/models/weapons/coop_m10/m10.skd` | 1 | `bug-3617` |
+| `assets/models/weapons/luger/*` | 1 | `bug-3656` |
+| `assets/models/weapons/m10_revolver.tik` | 1 | `bug-3617` |
+| `assets/models/weapons/mauser_c96*.tik` | 1 | `bug-3655` |
+| `assets/models/weapons/tt33*.tik` | 1 | `bug-3651` |
+| `assets/models/weapons/tt33/coop_tt33_*.skc` | 1 | `bug-3651` |
+| `assets/models/weapons/webley_revolver.tik` | 1 | `bug-3613` |
+| `assets/models/weapons/welrod/*` | 1 | `bug-3654` |
+| `assets/textures/models/weapons/Beretta/It_W_Beretta.dds` | 1 | `bug-3678` |
+| `assets/textures/models/weapons/welrod/*.tga` | 1 | `bug-3654` |
+| `atlas.py` | 1 | `bug-10629` |
+| `attic_stage.py)` | 1 | `bug-4195` |
+| `auto-fit layout)` | 1 | `bug-2757` |
+| `autoexec.cfg` | 9 | `bug-089` `bug-t2l2-f5bind` `bug-757` `bug-2578` `bug-2629` `bug-2678` `bug-2932` `bug-3978` `bug-10855` |
+| `autoexec.cfg)` | 1 | `bug-4051` |
+| `autoexec.cfg:1425` | 1 | `bug-3117` |
+| `autoexec.cfg:1688 (seta r_hzmGenNormals 1)` | 1 | `bug-2997` |
+| `autoexec.cfg:960-1044` | 1 | `bug-3116` |
+| `autoTarget` | 1 | `bug-2973` |
 | `bazooka.tik` | 1 | `bug-095` |
+| `Beretta}/coop_*_fire.skc` | 1 | `bug-4124` |
 | `bg_pmove.cpp` | 2 | `bug-2099` `bug-2126` |
 | `bison_source.txt:159` | 1 | `bug-1497` |
+| `blender/radios.py` | 1 | `bug-4185` |
 | `blowupthenaxos)` | 1 | `bug-1623` |
+| `bolts_1025 tools` | 1 | `bug-4264` |
+| `bonefit.py` | 3 | `bug-3655` `bug-3656` `bug-3657` |
+| `bot_cornerFix)` | 1 | `bug-2956` |
+| `bot_doorFace` | 1 | `bug-3043` |
+| `bot_doorSwing)` | 1 | `bug-3043` |
+| `bot_linkReachLearn)` | 1 | `bug-2957` |
+| `bot_nadeDrill)` | 1 | `bug-2925` |
+| `BOTACQ in CheckCondition_Attack` | 1 | `bug-2986` |
+| `BOTBLOCK dst=)` | 1 | `bug-3042` |
+| `BOTBLOCK ent=)` | 1 | `bug-2986` |
+| `BotBreachOp s_ops[8] with OpForm / OpThink / OpLeave / OpAim / OpThrown` | 1 | `bug-3024` |
+| `BotDoorList/BotClosedDoorNear)` | 1 | `bug-2986` |
+| `BOTFFHARM nade=` | 1 | `bug-2925` |
 | `both fast-path and main-path conditions` | 1 | `bug-gl2-invisible-live-char-depthprepass` |
+| `both paths)` | 1 | `bug-2948` |
+| `both skip qer*)` | 1 | `bug-2979` |
+| `BotNadeOnSpawn/OnExplode` | 1 | `bug-2925` |
+| `BOTPROBE yaw= oy= vwhy= fields` | 1 | `bug-2922` |
+| `BotSep m_iSepT` | 1 | `bug-2986` |
+| `boxeng.py` | 1 | `bug-3731` |
+| `BRACEMOUNT/BRACEUSE probes under coop_braceProbe)` | 1 | `bug-3042` |
+| `BrainThink back-to-back` | 1 | `bug-3000` |
+| `BrainThink)` | 1 | `bug-2921` |
+| `branch ea-tools)` | 1 | `bug-10666` |
+| `branch gfx` | 1 | `bug-2979` |
+| `branch hzm-lightning): fgame/bg_public.h` | 1 | `bug-3148` |
+| `branch lobbyanim-next)` | 1 | `bug-3956` |
+| `branch mgspawn-1025 (based on m2l2c-objectives)` | 1 | `bug-mgspawn1025` |
+| `branch scopes1025-engine): renderergl2/tr_hzm_lens.c + glsl/hzmlens_fp.glsl (new)` | 1 | `bug-4390` |
+| `BreachSuspect sightings` | 1 | `bug-3024` |
+| `briefing/briefing1 on a dedicated server (coop_mod/menumirror.scr briefing card mirroring for remote clients` | 1 | `bug-3917` |
+| `bsptrace.py` | 1 | `bug-4038` |
+| `BuddySectorAim` | 1 | `bug-3000` |
+| `BuddySplit` | 1 | `bug-3000` |
+| `BuddyThink` | 1 | `bug-3000` |
+| `BuddyTraveling` | 1 | `bug-3000` |
+| `bug-1248` | 1 | `bug-3916` |
+| `bug-1485` | 1 | `bug-3916` |
+| `bug-1627` | 1 | `bug-3916` |
+| `bug-2247 / bug-2547 code)` | 1 | `bug-3573` |
+| `bug-3234 lineage) - not investigated` | 1 | `bug-3917` |
+| `build` | 1 | `bug-4214` |
 | `build tooling / engine target names` | 1 | `bug-2620` |
-| `build.ps1` | 10 | `bug-1633` `bug-1634` `bug-1724` `bug-1796` `bug-1798` `bug-2097` `bug-2164` `bug-2224` `bug-2512` `bug-2615` |
+| `build.ps1` | 20 | `bug-1633` `bug-1634` `bug-1724` `bug-1796` `bug-1798` `bug-2097` `bug-2164` `bug-2224` `bug-2512` `bug-2615` `bug-2741` `bug-2748` `bug-2930` `bug-2937` `bug-2943` `bug-3206` `bug-3340` `bug-3900` `bug-4437` `bug-10740` |
 | `build.ps1 (+ docs/tools/check_mp_isolation.py` | 1 | `bug-2579` |
+| `build.ps1 (CFG SIZE GATE)` | 1 | `bug-2908` |
+| `build.ps1 (deploys openmohaa-hzm/.cmake/.../fgame/Release/game.dll unconditionally` | 1 | `bug-2961` |
+| `build.ps1 (integration build)` | 1 | `bug-4148` |
 | `build.ps1 / packer (3-way split) + publish_release asset-change detection` | 1 | `bug-2610` |
+| `build.ps1 bucket rules` | 1 | `bug-3251` |
+| `build.ps1/publish_release.ps1 lines proposed` | 1 | `bug-2984` |
+| `build_mesh.py` | 1 | `bug-10624` |
 | `buildmode.scr + bunker.scr` | 1 | `bug-962` |
+| `bust.scr` | 1 | `bug-2906` |
+| `C:/hzm-ea/mod/maps/coop_ea_1_11.scr` | 1 | `bug-10695` |
+| `C:/hzm-root-ea/docs/tools/ea/ea_queue_run.py` | 1 | `bug-10688` |
+| `C:/hzm-root-ea/docs/tools/ea/eamovies.py` | 2 | `bug-10691` `bug-10692` |
+| `C:/hzm-root-ea/docs/tools/ea/flharness.py` | 3 | `bug-10689` `bug-10690` `bug-10694` |
 | `C:/mohaa-coop-dev/stealth_autotest.ps1` | 1 | `bug-1619` |
+| `C:/Users/curry/AppData/Local/Temp/claude/.../scratchpad/adsbolt/chain6.sh` | 1 | `bug-3414` |
+| `C:/Users/curry/AppData/Local/Temp/claude/gen_waiter.sh` | 1 | `bug-4417` |
+| `C:/Users/curry/AppData/Local/Temp/claude/heavy.lock` | 1 | `bug-4267` |
 | `call + gate added in RB_PostProcess)` | 1 | `bug-1211` |
-| `cg_drawtools.cpp` | 1 | `bug-2132` |
-| `cg_local.h` | 5 | `bug-256` `bug-2132` `bug-2429` `bug-2619` `bug-2623` |
-| `cg_modelanim.c` | 3 | `bug-2142` `bug-2143` `bug-2429` |
+| `called before both 'Update poly flags from areas' loops` | 1 | `bug-2988` |
+| `carbine.tik` | 1 | `bug-4262` |
+| `centrebox.py` | 1 | `bug-3593` |
+| `cfg` | 1 | `bug-3047` |
+| `cg_adssights_alias.h (generated)` | 1 | `bug-10740` |
+| `cg_adssights_scope.h (new)` | 1 | `bug-4390` |
+| `cg_beam.cpp` | 1 | `bug-3881` |
+| `cg_commands.cpp` | 1 | `bug-2969` |
+| `cg_commands.h (branch rainfix-next)` | 1 | `bug-3881` |
+| `cg_coopbleed.c` | 1 | `bug-4035` |
+| `cg_coopfeed.c` | 1 | `bug-4035` |
+| `CG_CoopHeadlights` | 1 | `bug-2977` |
+| `cg_demoedit.c CG_DemoEdNeutralLens / cg_view.c hit + health lens setters)` | 1 | `bug-10344` |
+| `cg_demopip.c` | 1 | `bug-10428` |
+| `CG_DrawCoopFeed)` | 1 | `bug-4006` |
+| `cg_drawtools.cpp` | 4 | `bug-2132` `bug-3422` `bug-3462` `bug-4035` |
+| `cg_drawtools.cpp CG_DrawCrosshair` | 1 | `bug-scopes1025-reticle-inlens` |
+| `CG_HL_AddBeam` | 1 | `bug-2977` |
+| `CG_HL_BeamHit` | 1 | `bug-2977` |
+| `CG_HL_BeamStop` | 1 | `bug-2977` |
+| `CG_HL_RegisterCvars)` | 1 | `bug-2977` |
+| `CG_HL_SkyBeamShader` | 1 | `bug-2962` |
+| `CG_HL_UpdateFrame` | 1 | `bug-2977` |
+| `cg_hzmHeadlightsGlowSize defaults)` | 1 | `bug-3008` |
+| `cg_local.h` | 11 | `bug-256` `bug-2132` `bug-2429` `bug-2619` `bug-2623` `bug-2946` `bug-2969` `bug-3148` `bug-3422` `bug-3462` `bug-4035` |
+| `cg_local.h (heavy/tools/apply_sgpump.py)` | 1 | `bug-3729` |
+| `cg_main.c` | 3 | `bug-3148` `bug-3222` `bug-3572` |
+| `cg_modelanim.c` | 10 | `bug-2142` `bug-2143` `bug-2429` `bug-2946` `bug-3222` `bug-3462` `bug-3729` `bug-4390` `bug-10288` `bug-10302` |
 | `cg_modelanim.c}` | 1 | `bug-2623` |
 | `cg_parsemsg.cpp` | 1 | `bug-2161` |
+| `cg_parsemsg.cpp (CG_CoopNoteOtherShot)` | 1 | `bug-4130` |
 | `cg_predict.c + g_utils.cpp + player.cpp + maps/e1l2.scr` | 1 | `bug-950` |
-| `cg_public.h` | 2 | `bug-934` `bug-2285` |
-| `cg_servercmds.c` | 1 | `bug-2619` |
+| `cg_public.h` | 3 | `bug-934` `bug-2285` `bug-4035` |
+| `cg_servercmds.c` | 2 | `bug-2619` `bug-4007` |
+| `CG_Shutdown ~:1021) + hzm-mohaa-coop-mod/coop_mod/mapgrade.scr coop_mapgrade_publish` | 1 | `bug-3048` |
 | `cg_ui.cpp` | 1 | `bug-256` |
-| `cg_view.c` | 3 | `bug-2132` `bug-2133` `bug-2623` |
-| `cgame/cg_drawtools.cpp` | 2 | `bug-254` `bug-2161` |
+| `cg_view.c` | 13 | `bug-2132` `bug-2133` `bug-2623` `bug-2969` `bug-3148` `bug-3222` `bug-3422` `bug-3462` `bug-4217` `bug-4390` `bug-10304` `bug-10416` `bug-10740` |
+| `cg_view.c (branch scopehold-engine` | 1 | `bug-10286` |
+| `cg_view.c (CG_CalcFov r_weaponshiftx/y)` | 1 | `bug-3225` |
+| `cg_viewmodelanim.c` | 1 | `bug-10305` |
+| `cgame CG_HzmArmory_f` | 1 | `bug-3162` |
+| `cgame cg_hzmscope.c` | 1 | `bug-4391` |
+| `cgame cg_local.h/cg_servercmds.c/cg_drawtools.cpp` | 1 | `bug-2923` |
+| `cgame cg_servercmds.c` | 1 | `bug-10863` |
+| `cgame/cg_demoedit.c` | 2 | `bug-10265` `bug-10290` |
+| `cgame/cg_drawtools.cpp` | 3 | `bug-254` `bug-2161` `bug-10559` |
+| `cgame/cg_engrave.c` | 1 | `bug-10887` |
+| `cgame/cg_ents.c` | 1 | `bug-10275` |
+| `cgame/cg_hzmlightning.c (new)` | 1 | `bug-3148` |
+| `cgame/cg_hzmscope.c` | 2 | `bug-4390` `bug-scopes1025-reticle-inlens` |
+| `cgame/cg_hzmspot.c (new)` | 1 | `bug-2969` |
+| `cgame/cg_hzmstorm.c (new)` | 1 | `bug-3222` |
 | `cgame/cg_main.c` | 1 | `bug-gl2-e2l2-fog-verified-correct` |
 | `cgame/cg_main.c:303-313 (client _sml choice)` | 1 | `bug-2585` |
+| `cgame/cg_modelanim.c` | 2 | `bug-4217` `bug-10270` |
+| `cgame/cg_nature.cpp` | 1 | `bug-10275` |
 | `cgame/cg_public.h+cg_snapshot.c` | 1 | `bug-780` |
 | `cgame/cg_tempmodels.cpp` | 1 | `bug-1417` |
-| `cgame/cg_view.c` | 5 | `bug-1158` `bug-1238` `bug-1250` `bug-2152` `bug-2160` |
+| `cgame/cg_view.c` | 9 | `bug-1158` `bug-1238` `bug-1250` `bug-2152` `bug-2160` `bug-2556` `bug-2946` `bug-10260` `bug-10275` |
+| `chain7.sh` | 1 | `bug-3414` |
+| `chain8.sh` | 1 | `bug-3414` |
+| `chal_progress_popup` | 1 | `bug-10473` |
+| `chal_typewriter` | 1 | `bug-10473` |
+| `chal_typewriter)` | 1 | `bug-4008` |
+| `challenges.scr` | 3 | `bug-2906` `bug-4142` `bug-4152` |
+| `check_mp_isolation(.py/_selftest)` | 1 | `bug-2923` |
+| `CheckCondition_Attack mutual alert` | 1 | `bug-3000` |
+| `CheckCondition_Grenade` | 1 | `bug-2921` |
+| `CheckFriendlyBlastSafe op nades` | 1 | `bug-3024` |
+| `CheckUse` | 1 | `bug-2921` |
 | `chromab` | 1 | `bug-1158` |
+| `cl_demoedit.cpp` | 1 | `bug-10386` |
+| `cl_demorender.cpp` | 1 | `bug-10386` |
 | `cl_input.cpp` | 1 | `bug-2133` |
+| `cl_main.cpp` | 3 | `bug-3234` `bug-4170` `bug-4429` |
 | `cl_scrn.cpp` | 1 | `bug-gl2-viewmodel-over-menu` |
-| `client.h` | 2 | `bug-934` `bug-2285` |
-| `client/cl_cgame.cpp` | 1 | `bug-780` |
-| `client/cl_ui.cpp` | 1 | `bug-255` |
+| `cl_ui.cpp` | 2 | `bug-2981` `bug-10906` |
+| `cl_ui.h` | 1 | `bug-4429` |
+| `cl_uiview3d.cpp` | 1 | `bug-3234` |
+| `clearof)` | 1 | `bug-2912` |
+| `client cl_ui.cpp` | 1 | `bug-2923` |
+| `client.h` | 5 | `bug-934` `bug-2285` `bug-2981` `bug-3234` `bug-4170` |
+| `client/cl_cgame.cpp` | 2 | `bug-780` `bug-4035` |
+| `client/cl_demoedit.cpp` | 5 | `bug-10261` `bug-10263` `bug-10266` `bug-10271` `bug-10291` |
+| `client/cl_keys.cpp` | 1 | `bug-10259` |
+| `client/cl_main.cpp` | 2 | `bug-10262` `bug-10272` |
+| `client/cl_main.cpp (coop_discord)` | 1 | `bug-2933` |
+| `client/cl_parse.cpp (branch flpolish-eng)` | 1 | `bug-10862` |
+| `client/cl_ui.cpp` | 4 | `bug-255` `bug-4196` `bug-10264` `bug-10292` |
 | `client/cl_uiview3d.cpp` | 1 | `bug-gl2-viewmodel-over-menu` |
+| `client/snd_openal_new.cpp` | 1 | `bug-3077` |
+| `clobber probe` | 1 | `bug-2925` |
+| `close_ring73.py` | 1 | `bug-10871` |
 | `cm_load.c` | 1 | `bug-960` |
 | `cm_load.c + cmpatch/e1l2.txt + maps/e1l2.scr` | 1 | `bug-951` |
+| `CMakeLists.txt` | 2 | `bug-10308` `bug-10308` |
+| `CMakeLists.txt (comment)` | 1 | `bug-2969` |
+| `CMakeLists.txt (openmohaa target)` | 1 | `bug-10312` |
 | `cmpatch loose file + cm_load.c` | 1 | `bug-958` |
 | `cmpatch/e1l2.txt` | 1 | `bug-956` |
 | `cmpatch/e1l2.txt + player.cpp + cm_trace.c` | 1 | `bug-952` |
+| `co_lobby3.bsp` | 1 | `bug-2960` |
+| `co_lobby7.bsp` | 1 | `bug-2960` |
+| `co_lobby8.bsp` | 1 | `bug-2960` |
+| `code/cgame (free-camera lens neutralising` | 1 | `bug-10344` |
+| `code/cgame/cg_adssights.h` | 2 | `bug-10720` `bug-10733` |
+| `code/cgame/cg_consolecmds.c` | 1 | `bug-10496` |
+| `code/cgame/cg_coopbleed.c (new)` | 1 | `bug-3422` |
+| `code/cgame/cg_coopfeed.c` | 1 | `bug-4077` |
+| `code/cgame/cg_coopfeed.c (CG_DrawCoopItems)` | 1 | `bug-3953` |
+| `code/cgame/cg_coopjoincard.c` | 1 | `bug-10587` |
+| `code/cgame/cg_demoedit.c` | 1 | `bug-10370` |
+| `code/cgame/cg_demoedit.c (CG_DemoHudMode)` | 1 | `bug-10371` |
+| `code/cgame/cg_drawtools.cpp` | 3 | `bug-3372` `bug-3950` `bug-10360` |
+| `code/cgame/cg_drawtools.cpp (cue)` | 1 | `bug-10546` |
 | `code/cgame/cg_ents.c` | 1 | `bug-935` |
+| `code/cgame/cg_hzmscope.c` | 3 | `bug-10287` `bug-10403` `bug-10428` |
+| `code/cgame/cg_modelanim.c` | 3 | `bug-4215` `bug-10361` `bug-10724` |
+| `code/cgame/cg_modelanim.c (CG_ActorOverheadIcon)` | 1 | `bug-10396` |
+| `code/cgame/cg_predict.c` | 1 | `bug-10358` |
+| `code/cgame/cg_ragdoll.c (CG_RagdollClearAll)` | 1 | `bug-10541` |
+| `code/cgame/cg_view.c` | 4 | `bug-3372` `bug-4215` `bug-10357` `bug-10361` |
+| `code/cgame/cg_view.c (CG_CoopCoverJudgeDoorway)` | 1 | `bug-10408` |
+| `code/cgame/cg_view.c (CG_CoopCoverViewLift)` | 1 | `bug-10360` |
+| `code/cgame/cg_view.c (CG_OffsetThirdPersonView)` | 1 | `bug-10373` |
+| `code/cgame/cg_view.c (hug cam` | 1 | `bug-10413` |
+| `code/cgame/cg_view.c (view arc publisher` | 1 | `bug-10546` |
 | `code/cgame/{cg_servercmds.c` | 1 | `bug-2623` |
+| `code/client/cl_bugreport.cpp` | 1 | `bug-3536` |
+| `code/client/cl_bugreport.cpp (engine release tree H:/hzm_work/eng-hotfix13661` | 1 | `bug-10281` |
 | `code/client/cl_cgame.cpp` | 1 | `bug-2591` |
+| `code/client/cl_demoedit.cpp (CL_DemoEd_KeyEvent / TL_CutKey)` | 1 | `bug-10364` |
+| `code/client/cl_demoedit.cpp (DE_LoadCam)` | 1 | `bug-10356` |
+| `code/client/cl_demoedit.cpp (F1 menu)` | 1 | `bug-10540` |
+| `code/client/cl_demoedit.cpp (TL_ClipJobFrame)` | 1 | `bug-10365` |
+| `code/client/cl_demoedit.cpp (TL_CutHover)` | 1 | `bug-10366` |
+| `code/client/cl_demomenu.cpp` | 1 | `bug-10370` |
+| `code/client/cl_filmroom.cpp (CL_FR_PipFrame rect) / cgame letterbox order` | 1 | `bug-10343` |
+| `code/client/cl_input.cpp` | 1 | `bug-4077` |
+| `code/client/cl_input.cpp (CL_CoopCoverSteer arc clamp)` | 1 | `bug-10546` |
+| `code/client/cl_invrender.cpp` | 1 | `bug-10596` |
 | `code/client/cl_main.cpp` | 1 | `bug-2591` |
+| `code/client/cl_uifilmroom.cpp (grid card)` | 1 | `bug-10540` |
+| `code/client/cl_uiscene.cpp` | 1 | `bug-10900` |
+| `code/client/cl_uiserverlist.cpp` | 3 | `bug-10444` `bug-10446` `bug-10447` |
+| `code/client/snd_openal_new.cpp` | 1 | `bug-10308` |
+| `code/fgame/bg_misc.cpp (BG_CoopHandHeatPerRound)` | 1 | `bug-10674` |
+| `code/fgame/bg_pmove.cpp` | 2 | `bug-10357` `bug-10389` |
+| `code/fgame/bg_pmove.cpp (BG_CoopClampPitch arc)` | 1 | `bug-10465` |
+| `code/fgame/bg_pmove.cpp (BG_CoopCoverLateral)` | 1 | `bug-10413` |
+| `code/fgame/bg_pmove.cpp (PM_CoopCoverProbe)` | 1 | `bug-10374` |
+| `code/fgame/player.cpp` | 1 | `bug-10388` |
+| `code/fgame/player.cpp (CoopCoverOffhandTick)` | 1 | `bug-10372` |
+| `code/fgame/player.cpp (SetMoveInfo)` | 1 | `bug-10358` |
+| `code/fgame/player.cpp (TickCoopBrace)` | 1 | `bug-10363` |
+| `code/fgame/player.cpp (TickCoopCover probe)` | 1 | `bug-10359` |
+| `code/fgame/player.cpp (TickCoopCover)` | 1 | `bug-10357` |
+| `code/fgame/weapon.cpp (Weapon::Shoot FT_PROJECTILE)` | 1 | `bug-10548` |
+| `code/fgame/weapon.cpp (Weapon::Shoot)` | 1 | `bug-10546` |
 | `code/fgame/{gamecvars.cpp` | 1 | `bug-2623` |
+| `code/null/null_client.c` | 1 | `bug-4135` |
+| `code/qcommon/common.c` | 1 | `bug-10308` |
+| `code/qcommon/q_shared.c (SkipRestOfLine)` | 1 | `bug-10356` |
+| `code/renderergl1+2/tr_main.c (SetFarClip) / gen_window_view.py` | 1 | `bug-10652` |
+| `code/renderergl1/tr_main.c` | 1 | `bug-10649` |
 | `code/renderergl1/tr_scene.c` | 1 | `bug-935` |
 | `code/renderergl2/tr_backend.c` | 1 | `bug-1223` |
+| `code/renderergl2/tr_hzm_demopip.c` | 1 | `bug-10402` |
 | `code/renderergl2/tr_image.c` | 1 | `bug-1225` |
+| `code/renderergl2/tr_postprocess.c (RB_HZMFilter)` | 1 | `bug-10378` |
 | `code/renderergl2/tr_scene.c` | 1 | `bug-1226` |
 | `code/renderergl2/tr_shade.c` | 1 | `bug-1224` |
+| `code/renderergl2/{glsl/shaders.cmake` | 1 | `bug-10308` |
+| `code/sdl/sdl_input.c` | 2 | `bug-4170` `bug-10738` |
+| `code/server/sv_demo.c (SVR_Record_f)` | 1 | `bug-10540` |
+| `code/server/sv_main.c` | 1 | `bug-3910` |
+| `code/sys/sys_main.c` | 1 | `bug-10281` |
+| `code/uilib/uiwidget.h` | 1 | `bug-2941` |
+| `code/uilib/uiwinman.cpp` | 2 | `bug-4077` `bug-4169` |
+| `collectible.scr` | 1 | `bug-2906` |
+| `colt45_colt1911w.tik` | 1 | `bug-3365` |
+| `Com_BeginRedirect :717) + qcommon/common.c (Com_Printf redirect branch :246-256)` | 1 | `bug-3033` |
+| `com_preciseFps loop)` | 1 | `bug-3911` |
+| `commit 3757f197 on 39982eb8): code/renderergl2/tr_main.c (R_RenderDlightShadowMaps` | 1 | `bug-2980` |
+| `commit 39982eb8 on 370244dd): code/renderergl2/tr_shader.c (qer_hzmSoftEdge)` | 1 | `bug-2979` |
+| `commit_cfg` | 1 | `bug-2763` |
+| `confirm) - earlier m1l2a fixes: bug-842` | 1 | `bug-3916` |
 | `consumed by tr_model.cpp R_UpdatePoseInternal @1614` | 1 | `bug-gl2-invisible-friendly-actor` |
-| `coop_defaults.cfg` | 1 | `bug-2578` |
+| `consumers: scratchpad gfx harness ctl.py 'map'` | 1 | `bug-3033` |
+| `coop reload skc` | 1 | `bug-3391` |
+| `coop_ally_icon.tga` | 1 | `bug-3425` |
+| `coop_apply_personality now uses the shared test)` | 1 | `bug-2976` |
+| `coop_arrival_slide` | 1 | `bug-2976` |
+| `COOP_ART_BLEEDOUT)` | 1 | `bug-3502` |
+| `coop_artery_drop.tga` | 1 | `bug-3565` |
+| `coop_artery_splat.tga` | 1 | `bug-3565` |
+| `coop_bar1918/BAR.skd` | 1 | `bug-4267` |
+| `coop_c96_stripper_*.tik` | 1 | `bug-3390` |
+| `coop_churchBarSetup label 'HOLD THE CHURCH')` | 1 | `bug-3470` |
+| `coop_counter.scr` | 1 | `bug-4051` |
+| `COOP_COVER_ATEDGE)` | 1 | `bug-10561` |
+| `coop_defaults.cfg` | 13 | `bug-2578` `bug-2919` `bug-2923` `bug-2934` `bug-3193` `bug-3299` `bug-3518` `bug-3539` `bug-4050` `bug-4123` `bug-4187-fix` `bug-10441` `bug-10450` |
+| `coop_defaults.cfg (3 seeds)` | 1 | `bug-3237` |
+| `coop_defaults.cfg (coop-wip f65310fa)` | 1 | `bug-3548` |
+| `coop_defaults.cfg (seta coop_dust 1)` | 1 | `bug-2963` |
+| `coop_devrcon.cfg (loose` | 1 | `bug-3071` |
 | `coop_ensureInArray)` | 1 | `bug-1810` |
+| `coop_fg42_irons}*.tik (16) + fg42/coop_fg42_fire.skc` | 1 | `bug-4261` |
 | `coop_flvo` | 1 | `bug-1141` |
-| `coop_mod/aihandler.scr` | 1 | `bug-450` |
+| `coop_grenade_lob_loop)` | 1 | `bug-3975` |
+| `coop_headbeam.tik` | 1 | `bug-2946` |
+| `coop_m10/m10.skd` | 1 | `bug-4267` |
+| `coop_m10_single_slow.skc` | 1 | `bug-3617` |
+| `coop_mod/actprompt.scr` | 1 | `bug-4210` |
+| `coop_mod/actprompt.scr (new) + cgame cg_coopfeed.c CG_DrawCoopAct + 15 scripts` | 1 | `bug-4013` |
+| `coop_mod/aihandler.scr` | 2 | `bug-450` `bug-blastreact-1` |
+| `coop_mod/aihandler.scr (coop_stealthBlocksAggro)` | 1 | `bug-3399` |
+| `coop_mod/aihandler.scr (death path + coop_noLootAnimal)` | 1 | `bug-4433` |
 | `coop_mod/aimaneuver.scr` | 1 | `bug-1069` |
+| `coop_mod/aisquad.scr` | 1 | `bug-3921` |
 | `coop_mod/aisquad.scr:110` | 1 | `bug-1618` |
+| `coop_mod/alarm.scr` | 1 | `bug-3982` |
+| `coop_mod/alarm.scr (alm_waves)` | 1 | `bug-4040` |
+| `coop_mod/alarm.scr (branch alarmhold-next)` | 1 | `bug-4169` |
+| `coop_mod/alarmpoints.scr (docs/tools/alarm_points.json` | 1 | `bug-4038` |
+| `coop_mod/alarmpoints.scr (gen_alarm_points.py)` | 1 | `bug-3981` |
+| `coop_mod/alarmsnipers.scr (asn_floor / asn_spawn)` | 1 | `bug-10348` |
+| `coop_mod/allysquad.scr` | 2 | `bug-3984` `bug-10819` |
+| `coop_mod/ambience.scr (coop_ambience_pick: no bed on co_/br maps)` | 1 | `bug-2963` |
+| `coop_mod/ammobox.scr` | 1 | `bug-10854` |
+| `coop_mod/blastreact.scr` | 2 | `bug-blastreact-1` `bug-blastreact-2` |
 | `coop_mod/buildmode.scr` | 3 | `bug-1001` `bug-1416` `bug-1581` |
 | `coop_mod/buildmode.scr (understanding)` | 1 | `bug-1248` |
 | `coop_mod/buildmode.scr / cgame/cg_commands.cpp` | 1 | `bug-1421` |
 | `coop_mod/buildmode.scr / coop_mod/props.scr` | 1 | `bug-1404` |
 | `coop_mod/buildmode_catalog.scr` | 3 | `bug-853` `bug-854` `bug-1581` |
+| `coop_mod/carry.scr (+ main.scr` | 1 | `bug-4051` |
+| `coop_mod/cfg/coop_bindfix1.cfg` | 1 | `bug-3193` |
+| `coop_mod/cfg/coop_bindfix2.cfg (new)` | 1 | `bug-3299` |
+| `coop_mod/cfg/coop_defbinds1.cfg` | 1 | `bug-4187-fix` |
+| `coop_mod/cfg/coop_fielddefaults.cfg` | 1 | `bug-2919` |
 | `coop_mod/cfg/coop_fielddefaults.cfg new)` | 1 | `bug-2578` |
-| `coop_mod/challenges.scr` | 11 | `bug-495` `bug-713` `bug-714` `bug-718` `bug-721` `bug-722` `bug-739` `bug-750` `bug-1523` `bug-1528` `bug-537` |
+| `coop_mod/cfg/dusttest.cfg (new)` | 1 | `bug-2963` |
+| `coop_mod/cfg/hltest.cfg` | 1 | `bug-2946` |
+| `coop_mod/cfg/lttest.cfg (new)` | 1 | `bug-3148` |
+| `coop_mod/cfg/mission_start.cfg` | 1 | `bug-4050` |
+| `coop_mod/cfg/skytest.cfg` | 1 | `bug-2937` |
+| `coop_mod/cfg/skytest.cfg (sky4)` | 1 | `bug-2938` |
+| `coop_mod/cfg/wwtest.cfg` | 1 | `bug-3161` |
+| `coop_mod/challenges.scr` | 16 | `bug-495` `bug-713` `bug-714` `bug-718` `bug-721` `bug-722` `bug-739` `bug-750` `bug-1523` `bug-1528` `bug-3339` `bug-4143` `bug-4454` `bug-10592` `bug-10739` `bug-537` |
+| `coop_mod/challenges.scr (chal_add_unlock)` | 1 | `bug-10480` |
+| `coop_mod/challenges.scr (challenge list bars)` | 1 | `bug-3076` |
+| `coop_mod/coop_counter.scr` | 2 | `bug-4039` `bug-4436` |
+| `coop_mod/coop_counter.scr (counter_denied` | 2 | `bug-4431` `bug-4432` |
+| `coop_mod/coop_counter.scr (counter_denied)` | 1 | `bug-4210b` |
+| `coop_mod/coop_counter_zones.scr (docs/tools/gen_counter_zones.py)` | 1 | `bug-4039` |
 | `coop_mod/coop_placements.scr` | 1 | `bug-910` |
 | `coop_mod/coop_selftest_dbno.scr` | 1 | `bug-1067` |
+| `coop_mod/coop_selftest_hardcore.scr + coop_mod/coop_selftest.scr (the scripted `respawn` deploy)` | 1 | `bug-2928` |
 | `coop_mod/cov/scr_census.txt` | 1 | `bug-1445` |
-| `coop_mod/cover.scr` | 1 | `bug-536` |
+| `coop_mod/cover.scr` | 2 | `bug-10854` `bug-536` |
 | `coop_mod/covwalk.scr` | 6 | `bug-1442` `bug-1450` `bug-1451` `bug-1453` `bug-1455` `bug-1456` |
 | `coop_mod/dbno.scr` | 3 | `bug-893` `bug-913` `bug-1236` |
+| `coop_mod/dbno.scr (dbno_ai_revive)` | 1 | `bug-3305` |
+| `coop_mod/dbno_bleed.scr (new)` | 2 | `bug-3422` `bug-3423` |
+| `coop_mod/debrief2.scr (new)` | 1 | `bug-10479` |
+| `coop_mod/finale_m2l3.scr` | 5 | `bug-4392` `bug-4410` `bug-norway-1027-booms-chain` `bug-norway-1027-fincine-harness` `bug-10258` |
+| `coop_mod/finale_m2l3_cine.scr` | 3 | `bug-10397` `bug-10412` `bug-10417` |
+| `coop_mod/finale_m2l3_cine.scr (cin_winbreak)` | 1 | `bug-10418` |
+| `coop_mod/finale_m2l3_data.scr` | 2 | `bug-norway-1027-booms-chain` `bug-10333` |
+| `coop_mod/finale_m2l3_def.scr` | 13 | `bug-4391` `bug-4393` `bug-4408` `bug-4409` `bug-4411` `bug-norway-1027-booms-chain` `bug-norway-1027-shoot-timeout` `bug-10267` `bug-10331` `bug-10332` `bug-10457` `bug-10458` `bug-10474` |
+| `coop_mod/finale_m2l3_def.scr (def_crate_place)` | 1 | `bug-10477` |
+| `coop_mod/finale_m2l3_def.scr (def_gate)` | 1 | `bug-10349` |
+| `coop_mod/finale_m2l3_def.scr (def_halftrack / def_halftrack_east / def_ht_assist)` | 1 | `bug-10346` |
+| `coop_mod/finale_m2l3_def.scr (def_halftrack)` | 1 | `bug-10345` |
+| `coop_mod/finale_m2l3_def.scr / finale_m2l3_prep.scr` | 1 | `bug-norway-1027-defence-start-hang` |
+| `coop_mod/finale_m2l3_prep.scr` | 5 | `bug-norway-1027-prep-blizzard-train` `bug-norway-1027-defence-start-hang-cause` `bug-10460` `bug-10462` `bug-10474` |
 | `coop_mod/flchatter.scr + maps/m2l1.scr` | 1 | `bug-725` |
+| `coop_mod/fogmode.scr (coop_fog_lateAsserts keeper stand-down)` | 1 | `bug-2963` |
+| `coop_mod/fogmode.scr (coop_fog_lateAsserts: the three startup applies stand down while the storm owns the fog)` | 1 | `bug-2973` |
+| `coop_mod/gen_sr_stamp.scr` | 1 | `bug-10705` |
+| `coop_mod/gloves.scr (armory_glove_exportLocks)` | 1 | `bug-3919` |
+| `coop_mod/hardcore.scr (::init freq 0 + level.nodrophealth 1` | 1 | `bug-3187` |
+| `coop_mod/hardcore.scr (new)` | 1 | `bug-2923` |
 | `coop_mod/helmet.scr` | 5 | `bug-1246` `bug-1521` `bug-1523` `bug-1543` `bug-535` |
 | `coop_mod/helmet.scr (armory_skin_build) + scratchpad gen_loadout3.py (SKIN_LIST) + generated ui/loadout/skin/…` | 1 | `bug-armory-roster76` |
+| `coop_mod/helmet.scr (armory_skin_exportLocks / armory_helmet_exportLocks)` | 1 | `bug-3919` |
 | `coop_mod/helmet.scr + coop_mod/loadoutpick.scr + coop_mod/lobby.scr + ui/loadout/helm/hclear.cfg (new) + scra…` | 1 | `bug-773` |
+| `coop_mod/holdbar.scr (new)` | 1 | `bug-4035` |
 | `coop_mod/holdout.scr` | 2 | `bug-1418` `bug-1422` |
-| `coop_mod/itemhandler.scr` | 4 | `bug-909` `bug-913` `bug-1051` `bug-1052` |
+| `coop_mod/indoor_maps.scr (generated)` | 1 | `bug-4012` |
+| `coop_mod/itemhandler.scr` | 5 | `bug-909` `bug-913` `bug-1051` `bug-1052` `bug-10474` |
 | `coop_mod/itemhandler.scr (coop_stealthHoldDisguise)` | 1 | `bug-1617` |
+| `coop_mod/itemhandler.scr (handleHealthDrop gate + ::main Hardcore drop removal)` | 1 | `bug-3187` |
+| `coop_mod/keyitems.scr` | 1 | `bug-4012` |
 | `coop_mod/ladder.scr / buildmode.scr` | 1 | `bug-1419` |
 | `coop_mod/ladder.scr / ladder_state.scr / player_Torso.st / buildmode.scr / props.scr` | 1 | `bug-1415` |
 | `coop_mod/ladder.scr / props.scr` | 1 | `bug-1424` |
-| `coop_mod/loadoutpick.scr` | 4 | `bug-591` `bug-707` `bug-716` `bug-758` |
+| `coop_mod/loadoutpick.scr` | 6 | `bug-591` `bug-707` `bug-716` `bug-758` `bug-4142` `bug-4146` |
 | `coop_mod/loadoutpick.scr (diagnosis ongoing)` | 1 | `bug-595` |
+| `coop_mod/loadoutpick.scr (loadout_ui_exportUnlocks)` | 1 | `bug-3920` |
 | `coop_mod/loadoutpick.scr / coop_mod/player.scr` | 1 | `bug-592` |
-| `coop_mod/lobby.scr` | 2 | `bug-1521` `bug-1523` |
-| `coop_mod/main.scr` | 3 | `bug-1427` `bug-1466` `bug-1528` |
+| `coop_mod/loadoutroster.scr` | 1 | `bug-10578` |
+| `coop_mod/loadoutskins.scr` | 1 | `bug-10588` |
+| `coop_mod/lobby.scr` | 4 | `bug-1521` `bug-1523` `bug-4050` `bug-10636` |
+| `coop_mod/lobby.scr (lobbyHideHud` | 1 | `bug-3909` |
+| `coop_mod/lobby.scr (lobbyInputPoll ~l.240-260: A/D no longer cycles skins` | 1 | `bug-3915` |
+| `coop_mod/lobby.scr (lobbySpawnMannequin` | 1 | `bug-3913` |
+| `coop_mod/lobby.scr (roster / help ihuddraw layer` | 1 | `bug-3918` |
+| `coop_mod/lobby.scr lobbySpawnMannequin` | 1 | `bug-3956` |
+| `coop_mod/main.scr` | 6 | `bug-1427` `bug-1466` `bug-1528` `bug-3339` `bug-3518` `bug-10595` |
+| `coop_mod/main.scr (frontline branch)` | 1 | `bug-10631` |
 | `coop_mod/main.scr (inCoopMode` | 1 | `bug-1491` |
+| `coop_mod/main.scr (playerDeathEvent)` | 1 | `bug-3305` |
+| `coop_mod/mapgrade.scr` | 1 | `bug-3526` |
 | `coop_mod/maptest.scr` | 1 | `bug-1440` |
 | `coop_mod/maptest.scr:84 (end-of-list check ordering)` | 1 | `bug-1500` |
-| `coop_mod/medkit.scr` | 3 | `bug-893` `bug-913` `bug-1236` |
-| `coop_mod/missioncomplete.scr` | 1 | `bug-1452` |
+| `coop_mod/medkit.scr` | 4 | `bug-893` `bug-913` `bug-1236` `bug-3954` |
+| `coop_mod/medkit.scr (self-revive)` | 1 | `bug-3305` |
+| `coop_mod/missioncomplete.scr` | 2 | `bug-1452` `bug-4431` |
+| `coop_mod/morale.scr` | 1 | `bug-3921` |
 | `coop_mod/morale.scr:67` | 1 | `bug-1618` |
-| `coop_mod/mp.scr` | 8 | `bug-2604` `bug-2607` `bug-2611` `bug-2616` `bug-2619` `bug-2623` `bug-2625` `bug-2629` |
+| `coop_mod/mp.scr` | 12 | `bug-2604` `bug-2607` `bug-2611` `bug-2616` `bug-2619` `bug-2623` `bug-2625` `bug-2629` `bug-2731` `bug-2794` `bug-2797` `bug-2968` |
+| `coop_mod/mp.scr (mp_onSpawn stufftext set coop_mp_session 1)` | 1 | `bug-3162` |
+| `coop_mod/mp.scr (mp_onSpawn)` | 1 | `bug-3075` |
+| `coop_mod/mp_ambience.scr` | 1 | `bug-2794` |
+| `coop_mod/mp_arenafix.scr (new)` | 1 | `bug-2797` |
+| `coop_mod/mp_armory.scr` | 3 | `bug-2724` `bug-2731` `bug-2795` |
+| `coop_mod/mp_armory.scr (applyMarker)` | 1 | `bug-2765` |
+| `coop_mod/mp_armory.scr (readMarkers)` | 1 | `bug-2759` |
 | `coop_mod/mp_baseassault.scr` | 1 | `bug-2631` |
 | `coop_mod/mp_buildabase.scr` | 2 | `bug-2631` `bug-2657` |
 | `coop_mod/mp_buildabase.scr + coop_mod/mp_baseassault.scr + coop_mod/mp_demolition.scr` | 1 | `bug-2660` |
+| `coop_mod/mp_challenges.scr (derive) + docs/tools/gen_mp_armory.py (record_urc) -> ui/coop_mp_record.urc` | 1 | `bug-2756` |
+| `coop_mod/mp_cosmetics.scr (helmGet)` | 1 | `bug-2761` |
+| `coop_mod/mp_cosmetics.scr (skinGet)` | 1 | `bug-2762` |
+| `coop_mod/mp_cosmetics.scr (skinGet) + _research/nohat/gen_axis_nohat.py + docs/tools/gen_mp_armory.py (SKIN_S…` | 1 | `bug-2757` |
 | `coop_mod/mp_countdown.scr` | 1 | `bug-2675` |
 | `coop_mod/mp_ctf.scr` | 1 | `bug-2628` |
+| `coop_mod/mp_dbno.scr (unchanged)` | 1 | `bug-3092` |
 | `coop_mod/mp_demolition.scr` | 3 | `bug-2627` `bug-2654` `bug-2655` |
+| `coop_mod/mp_domination.scr` | 2 | `bug-2730` `bug-2731` |
 | `coop_mod/mp_freezetag.scr` | 1 | `bug-2650` |
 | `coop_mod/mp_gungame.scr` | 1 | `bug-2651` |
+| `coop_mod/mp_hudresend.scr (new)` | 1 | `bug-2906` |
 | `coop_mod/mp_koth.scr` | 1 | `bug-2652` |
 | `coop_mod/mp_lms.scr` | 1 | `bug-2604` |
 | `coop_mod/mp_medkits.scr` | 2 | `bug-2625` `bug-2720` |
+| `coop_mod/mp_ops.scr` | 1 | `bug-10916` |
+| `coop_mod/mp_progression.scr` | 1 | `bug-4144` |
+| `coop_mod/mp_progression.scr (stPromo)` | 1 | `bug-3076` |
 | `coop_mod/mp_prophunt.scr` | 1 | `bug-2659` |
-| `coop_mod/mp_push.scr` | 4 | `bug-2653` `bug-2716` `bug-2718` `bug-2719` |
-| `coop_mod/mp_rounds.scr` | 1 | `bug-2607` |
+| `coop_mod/mp_push.scr` | 6 | `bug-2653` `bug-2716` `bug-2718` `bug-2719` `bug-2723` `bug-2751` |
+| `coop_mod/mp_push.scr (push_groundSnapAll/push_snapOne)` | 1 | `bug-2760` |
+| `coop_mod/mp_push.scr (push_hud)` | 1 | `bug-3076` |
+| `coop_mod/mp_push.scr (timing` | 1 | `bug-2912` |
+| `coop_mod/mp_rounds.scr` | 4 | `bug-2607` `bug-2730` `bug-2731` `bug-2751` |
 | `coop_mod/mp_rounds.scr + coop_mod/mp_progression.scr` | 1 | `bug-2649` |
 | `coop_mod/mp_snd.scr` | 2 | `bug-2604` `bug-2656` |
 | `coop_mod/mp_spawnprotect.scr` | 1 | `bug-2658` |
+| `coop_mod/mp_weather.scr` | 4 | `bug-2796` `bug-2972` `bug-2936` `bug-2968` |
+| `coop_mod/mp_weather.scr (coop_mpStorm)` | 1 | `bug-3222` |
+| `coop_mod/objective_drop.scr` | 2 | `bug-4003` `bug-4012` |
 | `coop_mod/objectives.scr` | 1 | `bug-539` |
-| `coop_mod/officer.scr` | 5 | `bug-251` `bug-450` `bug-717` `bug-723` `bug-1645` |
+| `coop_mod/objx.scr` | 1 | `bug-4082` |
+| `coop_mod/objx.scr (ox_hold_run)` | 1 | `bug-4431` |
+| `coop_mod/objx_m2l2c.scr` | 11 | `bug-4274` `bug-4275` `bug-4276` `bug-4277` `bug-4396` `bug-4397` `bug-4405` `bug-4413` `bug-4401` `bug-4402` `bug-4403` |
+| `coop_mod/officer.scr` | 16 | `bug-251` `bug-450` `bug-717` `bug-723` `bug-1645` `bug-3302` `bug-3303` `bug-3304` `bug-3921` `bug-3922` `bug-3952` `bug-3978` `bug-3983` `bug-4003` `bug-4012` `bug-4409` |
+| `coop_mod/officer.scr (24 gun sites)` | 1 | `bug-3306` |
+| `coop_mod/officer.scr (coop_radio_init)` | 1 | `bug-3923` |
 | `coop_mod/officer.scr:1754` | 1 | `bug-1479` |
 | `coop_mod/officer.scr:3074` | 1 | `bug-1490` |
 | `coop_mod/officer_positions.scr` | 2 | `bug-944` `bug-1319` |
-| `coop_mod/paradrop.scr` | 1 | `bug-941` |
-| `coop_mod/player.scr` | 3 | `bug-1430` `bug-1449` `bug-1457` |
+| `coop_mod/paradrop.scr` | 4 | `bug-941` `bug-3750` `bug-3751` `bug-4012` |
+| `coop_mod/paradrop.scr (medic)` | 1 | `bug-3306` |
+| `coop_mod/parasquad.scr` | 7 | `bug-3746` `bug-3747` `bug-3748` `bug-3749` `bug-3752` `bug-3978` `bug-10347` |
+| `coop_mod/parasquad_gun.scr` | 1 | `bug-3978` |
+| `coop_mod/player.scr` | 4 | `bug-1430` `bug-1449` `bug-1457` `bug-10584` |
 | `coop_mod/player.scr (bug-803 locked-skin heal)` | 1 | `bug-1595` |
+| `coop_mod/player.scr (manageAliveSpawning)` | 2 | `bug-3269` `bug-3399` |
+| `coop_mod/player.scr (manageDead` | 1 | `bug-3305` |
+| `coop_mod/player.scr (manageDead)` | 1 | `bug-2924` |
 | `coop_mod/player.scr + coop_mod/loadoutpick.scr` | 1 | `bug-715` |
 | `coop_mod/player.scr + global/objectives.scr` | 1 | `bug-538` |
-| `coop_mod/player_legs.st` | 1 | `bug-260` |
+| `coop_mod/player_legs.st` | 4 | `bug-260` `bug-10357` `bug-10391` `bug-10431` |
+| `coop_mod/player_legs.st (COVER_WALL_FIRE)` | 1 | `bug-10372` |
 | `coop_mod/player_Legs.st (VEHICLE_TURRET_START/USING entry edges)` | 1 | `bug-309` |
 | `coop_mod/player_Legs.st + openmohaa-hzm exe` | 1 | `bug-299` |
 | `coop_mod/player_Torso.st` | 1 | `bug-313` |
+| `coop_mod/player_torso.st` | 2 | `bug-4213` `bug-10278` |
+| `coop_mod/player_torso.st (coop_reload_fg42 row) / models/player/*.tik` | 1 | `bug-10899` |
+| `coop_mod/player_Torso.st (COVER_PEEK_TORSO entrycommands)` | 1 | `bug-4126` |
+| `coop_mod/player_Torso.st)` | 1 | `bug-3755` |
 | `coop_mod/props.scr` | 1 | `bug-1407` |
-| `coop_mod/readygate.scr` | 3 | `bug-641` `bug-684` `bug-736` |
-| `coop_mod/replace.scr` | 1 | `bug-1054` |
+| `coop_mod/readygate.scr` | 4 | `bug-641` `bug-684` `bug-736` `bug-3951` |
+| `coop_mod/reinf.scr` | 2 | `bug-3922` `bug-3978` |
+| `coop_mod/reinf_mg.scr` | 2 | `bug-3979` `bug-10608` |
+| `coop_mod/reinf_mg.scr (NEW)` | 1 | `bug-3978` |
+| `coop_mod/reinf_mg.scr (rmg_wave pos force cover)` | 1 | `bug-4040` |
+| `coop_mod/replace.scr` | 3 | `bug-1054` `bug-10593` `bug-10595` |
+| `coop_mod/replace.scr (unholster)` | 1 | `bug-3306` |
 | `coop_mod/server.cfg + start_server.cfg (maxentities)` | 1 | `bug-927` |
 | `coop_mod/spawnlocations.scr` | 2 | `bug-1028` `bug-1054` |
-| `coop_mod/start_server.cfg` | 2 | `bug-2629` `bug-2630` |
+| `coop_mod/spcampaign.scr (new)` | 1 | `bug-10616` |
+| `coop_mod/start_server.cfg` | 3 | `bug-2629` `bug-2630` `bug-3321` |
+| `coop_mod/surrender.scr` | 1 | `bug-3306` |
 | `coop_mod/tracescan.scr` | 1 | `bug-943` |
 | `coop_mod/wallgun.scr` | 1 | `bug-1397` |
-| `coop_mod/wounded.scr` | 1 | `bug-1644` |
-| `coop_mod/xp.scr` | 3 | `bug-300` `bug-302` `bug-1065` |
+| `coop_mod/weather.scr` | 3 | `bug-2968` `bug-3161` `bug-3551` |
+| `coop_mod/weather.scr (2 hooks in coop_weather_randomDriver)` | 1 | `bug-3237` |
+| `coop_mod/weather.scr (comment)` | 1 | `bug-2972` |
+| `coop_mod/weather.scr (coop_lt_level)` | 1 | `bug-3151` |
+| `coop_mod/weather.scr (coop_lt_strike)` | 1 | `bug-3148` |
+| `coop_mod/weather.scr (coop_weather_init boot call + sand-branch start` | 1 | `bug-2963` |
+| `coop_mod/weather.scr (exec global/weather.scr)` | 1 | `bug-3107` |
+| `coop_mod/weather.scr (sand branch: default-on map holds its streaks at 3)` | 1 | `bug-2973` |
+| `coop_mod/weather.scr (start + 2 driver hooks)` | 1 | `bug-3222` |
+| `coop_mod/weather.scr coop_weather_flash` | 1 | `bug-3108` |
+| `coop_mod/wounded.scr` | 2 | `bug-1644` `bug-3921` |
+| `coop_mod/xp.scr` | 4 | `bug-300` `bug-302` `bug-1065` `bug-3339` |
+| `coop_mod/xp.scr (new xp_mp_roundcard)` | 1 | `bug-2751` |
+| `coop_mod/xp.scr (persistence design)` | 1 | `bug-3903` |
+| `coop_mod/xp.scr (xp_teamDeaths` | 1 | `bug-2924` |
 | `coop_mod/xp.scr + openmohaa-hzm/code/fgame/g_client.cpp` | 1 | `bug-298` |
 | `coop_mod/xp.scr xp_hud_popup` | 1 | `bug-314` |
+| `coop_mod/xp.scr)` | 1 | `bug-10568` |
+| `coop_mp[ax]_defaults.urc (generator docs/tools/gen_mp_armory.py)` | 1 | `bug-10926` |
+| `coop_mp{a` | 1 | `bug-2753` |
 | `coop_naxosCaught` | 1 | `bug-1623` |
 | `coop_obj_officer_done)` | 1 | `bug-1589` |
 | `coop_obj_push)` | 1 | `bug-1588` |
@@ -268,74 +715,766 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `coop_obj_repush_player` | 1 | `bug-1589` |
 | `coop_postfx2.urc` | 1 | `bug-1165` |
 | `coop_postfx3.urc` | 1 | `bug-1165` |
+| `coop_prone_shooter` | 1 | `bug-2976` |
+| `coop_reload/*drum*` | 1 | `bug-3389` |
+| `coop_reload/carbine_reload.skc` | 1 | `bug-3369` |
+| `coop_reload/mg42\|m1919_reload.skc)` | 1 | `bug-3391` |
+| `coop_respawnArmWatch)` | 1 | `bug-3305` |
+| `coop_selftest_hardcore.scr` | 1 | `bug-2923` |
+| `coop_shermanShelled clip + brew-up swap` | 1 | `bug-3219` |
+| `coop_squad_surrender` | 1 | `bug-2976` |
+| `coop_weaponMass block) - STAGED in docs/proposals/stg44_viewmodel_2026-09-28/apply_engine_patch.py` | 1 | `bug-3207` |
+| `coop_weather_sound wind scale)` | 1 | `bug-2963` |
+| `coop_wheel_hl9_7.tga` | 1 | `bug-10497` |
+| `CoopArteryEnterStage) - gfx2-next 9216df18` | 1 | `bug-3528` |
+| `CoopBfMuzzleClear` | 1 | `bug-10406` |
+| `CoopBraceUseTargetInView + coop_braceUseFirst` | 1 | `bug-3042` |
+| `CoopCoverBodyYaw)` | 1 | `bug-10561` |
+| `CoopCoverThrowSolve/Apply` | 1 | `bug-10561` |
+| `CoopCrouchSignal)` | 1 | `bug-3560` |
+| `CoopDirectThrow)` | 1 | `bug-10548` |
+| `CoopFindRecoilPattern)` | 1 | `bug-10897` |
+| `CoopLootTakeAmmo)` | 1 | `bug-10475` |
+| `CornerCorners` | 1 | `bug-2986` |
+| `CornerThink` | 1 | `bug-2986` |
+| `cos_option_cfg` | 1 | `bug-2755` |
+| `countdeaths/gateopen) + coop_mod/spawnlocations.scr m2l2b_update1` | 1 | `bug-3469` |
+| `counter_run)` | 2 | `bug-4431` `bug-4432` |
+| `cover.scr` | 2 | `bug-2906` `bug-3954` |
+| `COVER_LOW_THROW)` | 1 | `bug-10561` |
+| `cover}.scr` | 1 | `bug-4035` |
+| `covstances.py` | 1 | `bug-3680` |
+| `CrossBegin/CrossEnd` | 1 | `bug-2986` |
+| `ctor)` | 1 | `bug-2989` |
+| `curiousidle}.skc` | 1 | `bug-3958` |
+| `cyclebake.py` | 1 | `bug-3593` |
+| `dbno` | 1 | `bug-4035` |
+| `dbno.scr` | 2 | `bug-2906` `bug-2923` |
+| `dday_engineer` | 1 | `bug-3325` |
+| `dday_navy_beachbt_radio (new)` | 1 | `bug-3325` |
+| `dday_ranger_medic` | 1 | `bug-3325` |
+| `DE_Publish` | 1 | `bug-10392` |
+| `DE_ToggleFreecam)` | 1 | `bug-10392` |
+| `Deathless` | 1 | `bug-2924` |
+| `default OFF)` | 1 | `bug-3247` |
+| `defaults_commit_cfg)` | 1 | `bug-2763` |
+| `defaults_open_cfg) -> ui/coop_mp{a` | 1 | `bug-2752` |
+| `DefendThink)` | 1 | `bug-3024` |
+| `deploy procedure` | 1 | `bug-2961` |
+| `determinedidle` | 1 | `bug-3958` |
 | `diagnosis only - NO fix applied yet` | 1 | `bug-924` |
+| `diagrun.py` | 1 | `bug-3154` |
 | `dialogue/multiplayer/g (+ missing sound/dialogue/generic/g/den_death_N.wav x16/session)` | 1 | `bug-1141` |
+| `director.scr` | 1 | `bug-2923` |
+| `dlight_fp.glsl` | 1 | `bug-2969` |
+| `dlight_vp.glsl` | 1 | `bug-2969` |
+| `docs (harness recipe) - no code change` | 1 | `bug-10362` |
+| `docs repo root: hzm-mohaa-coop-mod (the mod repo itself)` | 1 | `bug-4147` |
 | `docs/DECISIONS.md` | 1 | `bug-2029` |
-| `docs/OPEN.md` | 2 | `bug-1889` `bug-2647` |
+| `docs/DECISIONS.md:390 (records only` | 1 | `bug-3138` |
+| `docs/FEATURES.md` | 2 | `bug-3138` `bug-4037` |
+| `docs/HISTORY.md` | 1 | `bug-3248` |
+| `docs/OPEN.md` | 4 | `bug-1889` `bug-2647` `bug-3138` `bug-3248` |
+| `docs/proposals/ads_anims_2026-10-04/tools/build_overlay.py` | 1 | `bug-3320` |
+| `docs/proposals/ads_bolt_2026-10-04/engine/apply_adsbolt.py` | 1 | `bug-3338` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/bake_class.py` | 2 | `bug-3405` `bug-3450` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/build_overlay.py` | 1 | `bug-3379` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/cock.py` | 6 | `bug-3403` `bug-3404` `bug-3413` `bug-3415` `bug-3445` `bug-3447` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/gen_fire.py` | 1 | `bug-3443` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/handclear.py` | 1 | `bug-3451` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/handle_qa.py` | 1 | `bug-3412` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/hold_bake.py` | 6 | `bug-3354` `bug-3361` `bug-3467` `bug-3499` `bug-3531` `bug-3563` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/key_bolt.py` | 1 | `bug-3348` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/renat.py` | 1 | `bug-3446` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/run_adsbolt.py` | 1 | `bug-3444` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/run_adsbolt.py (procedure)` | 1 | `bug-3355` |
+| `docs/proposals/ads_bolt_2026-10-04/tools/vmcam.py` | 1 | `bug-3334` |
+| `docs/proposals/ads_twohand_2026-10-11/assets/coop_mod/player_Torso.st` | 1 | `bug-3788` |
+| `docs/proposals/ads_twohand_2026-10-11/assets/coop_mod/player_Torso.st (RELOAD_*_BREAK_FIRE)` | 1 | `bug-3594` |
+| `docs/proposals/ads_twohand_2026-10-11/assets/models/weapons/*_revolver_*.tik` | 1 | `bug-3787` |
+| `docs/proposals/ads_twohand_2026-10-11/assets/models/weapons/nagant_revolver.tik` | 1 | `bug-3580` |
+| `docs/proposals/ads_twohand_2026-10-11/assets/models/weapons/welrod.tik` | 1 | `bug-3736` |
+| `docs/proposals/ads_twohand_2026-10-11/evidence/m10_reload_aimed_c.gif` | 1 | `bug-3618` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/assets/models/player/base/anims_shotgun.txt (stage_sgreload.py)` | 1 | `bug-3730` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/README.md` | 2 | `bug-3669` `bug-3675` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/sights_override.json` | 3 | `bug-3697` `bug-10610` `bug-10617` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/apply_cyclewpn.py` | 1 | `bug-3847` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/apply_vmtrace.py (cgame cvar coop_vmTrace)` | 1 | `bug-3773` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/barskin.py` | 1 | `bug-3589` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/beltbake.py` | 2 | `bug-3872` `bug-3873` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/boxeng.py` | 7 | `bug-3619` `bug-3621` `bug-3648` `bug-3667` `bug-3668` `bug-3829` `bug-3848` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/fg42bake.py` | 3 | `bug-3824` `bug-3826` `bug-3828` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/fg42handle.py` | 1 | `bug-3832` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/fg42irons.py` | 2 | `bug-3769` `bug-3770` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/fg42irons.py (texture)` | 1 | `bug-3771` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/handpose.py` | 1 | `bug-3590` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/heavybake.py` | 6 | `bug-3588` `bug-3620` `bug-3646` `bug-3647` `bug-3671` `bug-3676` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/hv.py` | 1 | `bug-3871` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/m1919sights.py` | 2 | `bug-3870` `bug-3874` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/moveruns.py (new)` | 1 | `bug-3758` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/patch_sgbreak.py (coop_mod/player_Torso.st` | 1 | `bug-3728` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/patch_sgbreak.py (stage 2` | 1 | `bug-3755` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/patch_tik_h.py` | 4 | `bug-3623` `bug-3649` `bug-3670` `bug-3672` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/run_h.py` | 3 | `bug-3674` `bug-3698` `bug-3731` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/run_h.py (ground` | 1 | `bug-3759` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/sgbake.py` | 2 | `bug-3732` `bug-3757` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/sgbake.py (clips viewmodel/shotgun/shotgun_reload{` | 1 | `bug-3727` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/sgpump.py` | 1 | `bug-3844` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/stage_bead.py` | 1 | `bug-3681` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/stage_rows.py` | 1 | `bug-3827` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/stage_sgreload.py (models/player/base/anims_shotgun.txt)` | 1 | `bug-3756` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/tools/stage_sgsight.py (shader coop_shotgun_sight.shader` | 1 | `bug-3696` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/wire/README.md` | 2 | `bug-3772` `bug-3831` |
+| `docs/proposals/ads_twohand_2026-10-11/heavy/wire/stage_armory_fg42irons.py` | 1 | `bug-3830` |
+| `docs/proposals/ads_twohand_2026-10-11/integrate/integrate_ads.py` | 11 | `bug-3815` `bug-3817` `bug-3819` `bug-3820` `bug-3821` `bug-3822` `bug-3885` `bug-3886` `bug-3887` `bug-3890` `bug-3894` |
+| `docs/proposals/ads_twohand_2026-10-11/integrate/intlib.py` | 1 | `bug-3823` |
+| `docs/proposals/ads_twohand_2026-10-11/integrate/rowlen_check.py` | 1 | `bug-3896` |
+| `docs/proposals/ads_twohand_2026-10-11/integrate/run_int.py` | 3 | `bug-3889` `bug-3897` `bug-3902` |
+| `docs/proposals/ads_twohand_2026-10-11/README.md` | 1 | `bug-3783` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/README.md` | 3 | `bug-3836` `bug-3839` `bug-3843` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/boltcap.py` | 3 | `bug-3699` `bug-3701` `bug-3764` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/boltphys.py` | 3 | `bug-3631` `bug-3644` `bug-3700` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/chargerclip.py` | 2 | `bug-3834` `bug-3838` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43irons.py` | 4 | `bug-3711` `bug-3712` `bug-3717` `bug-3745` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43pose.py` | 1 | `bug-3716` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43reload.py` | 2 | `bug-3741` `bug-3743` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43state.py` | 1 | `bug-3740` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43tik.py` | 2 | `bug-3715` `bug-3789` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/rbox.py` | 6 | `bug-3600` `bug-3632` `bug-3645` `bug-3702` `bug-3742` `bug-3835` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/riflereload.py` | 7 | `bug-3599` `bug-3703` `bug-3833` `bug-3837` `bug-3840` `bug-3841` `bug-3849` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/rows_rifle.py` | 1 | `bug-3842` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/run_armory.py` | 1 | `bug-3766` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/run_rifle.py` | 2 | `bug-3744` `bug-3850` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/tools/srvtime_ov.py` | 3 | `bug-3790` `bug-3791` `bug-3795` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/wire/recoil_table_g43irons.txt` | 1 | `bug-3714` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/wire/stage_armory_g43irons.py` | 3 | `bug-3765` `bug-3767` `bug-3768` |
+| `docs/proposals/ads_twohand_2026-10-11/rifles/wire/stage_armory_gen.py` | 1 | `bug-3793` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/assets/models/human/animation/viewmodel/sten/coop_sten_ads_mag.skc` | 1 | `bug-3585` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/assets/models/weapons/mp40/mp40silenced.skd` | 1 | `bug-3640` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/README.md` | 2 | `bug-3682` `bug-3763` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/aimpair.py` | 1 | `bug-3601` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/drumsound.py` | 1 | `bug-3867` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/endpose.py` | 1 | `bug-3634` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/eyezoom.py` | 1 | `bug-3801` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/measure_run.py` | 1 | `bug-3629` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/midframe.py` | 1 | `bug-3685` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/mkov_smg.py` | 3 | `bug-3608` `bug-3799` `bug-3862` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/reloadbox.py` | 6 | `bug-3605` `bug-3665` `bug-3684` `bug-3718` `bug-3719` `bug-3726` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/run_smg.py` | 1 | `bug-3761` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/sidehold.py` | 4 | `bug-3722` `bug-3723` `bug-3800` `bug-4215` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/sightshape.py` | 1 | `bug-3664` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/sighttry.py` | 1 | `bug-3662` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/smg_block.py` | 2 | `bug-3604` `bug-3666` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py` | 25 | `bug-3606` `bug-3607` `bug-3624` `bug-3626` `bug-3628` `bug-3635` `bug-3642` `bug-3643` `bug-3659` `bug-3660` `bug-3661` `bug-3663` `bug-3683` `bug-3721` `bug-3724` `bug-3760` `bug-3762` `bug-3798` `bug-3802` `bug-3803` `bug-3806` `bug-3865` `bug-3866` `bug-3868` `bug-3869` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/smggun.py` | 5 | `bug-3625` `bug-3627` `bug-3725` `bug-3863` `bug-3864` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/smgpose.py` | 2 | `bug-3584` `bug-3602` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/stage_rows.py` | 1 | `bug-3807` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/stage_slot.py` | 1 | `bug-3720` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/swaybox.py` | 2 | `bug-3633` `bug-3641` |
+| `docs/proposals/ads_twohand_2026-10-11/smg/tools/takeover.py` | 1 | `bug-3587` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/c96.py` | 4 | `bug-3655` `bug-3735` `bug-3875` `bug-3876` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/centrebox.json` | 1 | `bug-3680` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/centrebox.py` | 5 | `bug-3547` `bug-3579` `bug-3677` `bug-3733` `bug-3734` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/coverage.py` | 1 | `bug-3591` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/dgif.py` | 1 | `bug-3582` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/finlift.py` | 1 | `bug-3880` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/gamtex.py` | 1 | `bug-3678` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/luger.py` | 1 | `bug-3656` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/m10rounds.py` | 1 | `bug-3617` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/mk6.py` | 1 | `bug-3804` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/mkbase.py` | 1 | `bug-3500` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/mkov.py` | 1 | `bug-3877` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/p12.py` | 5 | `bug-3650` `bug-3651` `bug-3737` `bug-3738` `bug-3782` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/padskc.py` | 1 | `bug-3657` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/patch_tik_ads.py` | 1 | `bug-3581` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/pistolbake.py` | 4 | `bug-3545` `bug-3556` `bug-3652` `bug-3653` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/pistolgun.py` | 1 | `bug-3555` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/pistolgun.py (rack_hand)` | 1 | `bug-3593` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/retime.py` | 1 | `bug-3532` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/revbake.py` | 2 | `bug-3531` `bug-3578` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/revbake.py (nagant` | 1 | `bug-3614` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/revstate.py` | 1 | `bug-3546` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/run_2h.py` | 2 | `bug-3679` `bug-3879` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/run_break2.py` | 1 | `bug-3595` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/run_ded.py` | 1 | `bug-3784` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/slidesplit.py` | 1 | `bug-3564` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/srvrows.py` | 2 | `bug-3786` `bug-3878` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/webslow.py` | 1 | `bug-3613` |
+| `docs/proposals/ads_twohand_2026-10-11/tools/welrod.py` | 1 | `bug-3654` |
+| `docs/proposals/advanced_training_2026-11-09/attic/tools/gen_target_at.py` | 1 | `bug-10833` |
+| `docs/proposals/advanced_training_2026-11-09/tools/at_test.py` | 1 | `bug-10824` |
+| `docs/proposals/ai_realism_2026-10-15/tools/ai_drv.scr` | 1 | `bug-3924` |
+| `docs/proposals/ai_realism_2026-10-15/tools/ailib.py` | 1 | `bug-3923` |
+| `docs/proposals/aircraft_2026-10-05/tools/batch.py` | 1 | `bug-3384` |
+| `docs/proposals/alarm_halftrack_2026-10-18/tools/av_drv.scr` | 1 | `bug-4080` |
+| `docs/proposals/alarm_snipers2_2026-10-20/tools/asn_drv.scr` | 1 | `bug-4153` |
+| `docs/proposals/alarm_snipers_2026-10-18/tools/asnlib.py` | 1 | `bug-4031` |
+| `docs/proposals/ao_sunrays_2026-09-27/lookdev/tools/ao.py` | 1 | `bug-3143` |
+| `docs/proposals/armory_redesign_2026-10-18/tools/run_armory_proof.py` | 1 | `bug-4045` |
+| `docs/proposals/armoryfix_2026-11-08/tools/fit_render.py` | 1 | `bug-10598` |
+| `docs/proposals/attic_polish_2026-11-02/tools/*` | 1 | `bug-10748` |
+| `docs/proposals/attic_polish_2026-11-02/tools/attic62_edit.py` | 8 | `bug-10467` `bug-10490` `bug-10500` `bug-10534` `bug-10535` `bug-10549` `bug-10637` `bug-10639` |
+| `docs/proposals/attic_polish_2026-11-02/tools/attic67_build.sh` | 1 | `bug-10732` |
+| `docs/proposals/attic_polish_2026-11-02/tools/attic68_build.sh + make_attic_polish.py` | 1 | `bug-10753` |
+| `docs/proposals/attic_polish_2026-11-02/tools/attic_run.py` | 4 | `bug-10503` `bug-10550` `bug-10551` `bug-10727` |
+| `docs/proposals/attic_polish_2026-11-02/tools/close_hub73.py (+ patch_close73.py: multiplayer.urc` | 1 | `bug-10870` |
+| `docs/proposals/attic_polish_2026-11-02/tools/crack_backer73.py` | 1 | `bug-10876` |
+| `docs/proposals/attic_polish_2026-11-02/tools/crack_backer73.py (crack_backer73.json)` | 1 | `bug-10871` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_attic68_props.py` | 2 | `bug-10756` `bug-10761` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_clock.py` | 2 | `bug-10505` `bug-10640` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_clock.py + openmohaa-hzm cl_uiscene.cpp (branch menu-clock e…` | 1 | `bug-10504` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_door_pane.py` | 1 | `bug-10502` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_fan_rotor.py` | 1 | `bug-10501` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_gram_model.py` | 3 | `bug-10470` `bug-10491` `bug-10536` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_gram_model.py -> models/menu/hzm_gram.{skd` | 1 | `bug-10439` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_hatch73.py` | 2 | `bug-10883` `bug-10932` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_mproom69.py` | 6 | `bug-10769` `bug-10770` `bug-10771` `bug-10782` `bug-10812` `bug-10842` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_ng_cut.py (+ attic67_build.sh)` | 1 | `bug-10703` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_posters68.py` | 2 | `bug-10767` `bug-10768` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_rain73.py` | 2 | `bug-10873` `bug-10884` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_wallpins70.py` | 1 | `bug-10786` |
+| `docs/proposals/attic_polish_2026-11-02/tools/gen_window_view.py` | 4 | `bug-10653` `bug-10655` `bug-10726` `bug-10730` |
+| `docs/proposals/attic_polish_2026-11-02/tools/make_attic_polish.py` | 3 | `bug-10538` `bug-10638` `bug-10752` |
+| `docs/proposals/attic_polish_2026-11-02/tools/patch_attic68.py` | 2 | `bug-10755` `bug-10778` |
+| `docs/proposals/attic_polish_2026-11-02/tools/patch_attic70.py` | 1 | `bug-10784` |
+| `docs/proposals/attic_polish_2026-11-02/tools/patch_mproom69.py` | 1 | `bug-10811` |
+| `docs/proposals/attic_polish_2026-11-02/tools/patch_mproom69.py (patched via a scratch script)` | 1 | `bug-10844` |
+| `docs/proposals/attic_polish_2026-11-02/tools/retouch.py` | 2 | `bug-10469` `bug-10641` |
+| `docs/proposals/attic_polish_2026-11-02/tools/rotor_visible.py` | 1 | `bug-10499` |
+| `docs/proposals/attic_polish_2026-11-02/tools/shade73.py` | 1 | `bug-10841` |
+| `docs/proposals/attic_polish_2026-11-02/tools/voidraster.py` | 1 | `bug-10872` |
+| `docs/proposals/attic_polish_2026-11-02/tools/wx_town.py` | 7 | `bug-10654` `bug-10704` `bug-10725` `bug-10728` `bug-10729` `bug-10731` `bug-10736` |
+| `docs/proposals/attic_polish_2026-11-02/tools/wx_town.py (Mesh.squash_each)` | 1 | `bug-10759` |
+| `docs/proposals/attic_polish_2026-11-02/tools/wx_town.py (SPAN) + gen_window_view.py (squash_m)` | 1 | `bug-10751` |
+| `docs/proposals/attic_polish_2026-11-02/tools/wx_town.py + gen_window_view.py` | 2 | `bug-10656` `bug-10750` |
+| `docs/proposals/briefing_joiners_2026-09-28/apply.py` | 1 | `bug-3250` |
+| `docs/proposals/bt_loadscreens_2026-09-28 (mod/textures/mohmenu/hzmload)` | 1 | `bug-3251` |
+| `docs/proposals/bt_loadscreens_2026-09-28/tools/la_client.py` | 1 | `bug-3217` |
+| `docs/proposals/bt_loadscreens_2026-09-28/tools/la_overlay.py` | 2 | `bug-3215` `bug-3216` |
+| `docs/proposals/bt_loadscreens_2026-09-28/tools/la_ship.py MAP_RULES` | 1 | `bug-3955` |
+| `docs/proposals/bugreport_parity_2026-09-29/tools/test_uploader.py` | 1 | `bug-3279` |
+| `docs/proposals/byo68_2026-11-09/byo68_test.py` | 1 | `bug-10713` |
+| `docs/proposals/byo70_2026-11-10/byo70_test.py (cause: hzm-mohaa-coop-mod/coop_mod/player.scr spawn safety net)` | 1 | `bug-10805` |
+| `docs/proposals/c96_model_2026-10-18/tools/mkov_c96.py` | 1 | `bug-4041` |
+| `docs/proposals/c96_model_2026-10-18/tools/paint_sheet.py` | 1 | `bug-4042` |
+| `docs/proposals/c96_model_2026-10-18/tools/run_c96.py` | 1 | `bug-4043` |
+| `docs/proposals/console_quiet_2026-09-27/report.md (record)` | 1 | `bug-3152` |
+| `docs/proposals/dbshotgun_2026-10-12/rows/tps_rows_coop_dbshotgun.txt` | 1 | `bug-3855` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/_fix_torso_patch.py` | 1 | `bug-3858` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/archive_sort.py` | 1 | `bug-3808` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/bl_build.py` | 1 | `bug-3706` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/dbs_build.py` | 1 | `bug-3705` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/dbs_finish.py` | 1 | `bug-3809` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/dbs_hands.py` | 3 | `bug-3709` `bug-3779` `bug-3780` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/dbs_hands.py (WORK hip)` | 1 | `bug-10650` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/dbs_skin.py` | 1 | `bug-3774` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/dbs_tik.py` | 1 | `bug-3810` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/dbs_world.scr` | 2 | `bug-3853` `bug-3860` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/dbslib.py` | 1 | `bug-3777` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/mkbase_dbs.py` | 1 | `bug-3857` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/mkov_dbs.py` | 2 | `bug-3707` `bug-3812` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/run_dbs.py` | 1 | `bug-3710` |
+| `docs/proposals/dbshotgun_2026-10-12/tools/run_dbsh.py` | 1 | `bug-3781` |
+| `docs/proposals/dbshotgun_2026-10-12/wiring/patch_torso_dbs.py` | 1 | `bug-3854` |
+| `docs/proposals/dbshotgun_2026-10-12/wiring/stage_armory_dbs.py` | 2 | `bug-3811` `bug-3859` |
+| `docs/proposals/debrief2_2026-11-03/tools/run_db2.py` | 1 | `bug-10482` |
+| `docs/proposals/emotes_2026-11-03/tools/em_run.py` | 1 | `bug-10489` |
+| `docs/proposals/escmenu_2026-11-10/tools/esc_test.py` | 1 | `bug-10930` |
+| `docs/proposals/fg42hd_2026-11-08/tools/atlas.py` | 3 | `bug-10609` `bug-10618` `bug-10627` |
+| `docs/proposals/fg42hd_2026-11-08/tools/build_mesh.py` | 2 | `bug-10617` `bug-10629` |
+| `docs/proposals/fg42hd_2026-11-08/tools/build_mesh.py (old_scope` | 1 | `bug-10630` |
+| `docs/proposals/fg42hd_2026-11-08/tools/scope_mesh.py` | 1 | `bug-10624` |
+| `docs/proposals/finishes2_2026-11-09/tools/finishlib.py` | 5 | `bug-10662` `bug-10663` `bug-10664` `bug-10665` `bug-10666` |
+| `docs/proposals/finishes2_2026-11-09/tools/fs2_finish2.py (rerank) + docs/tools/gen_skins.py (fs2_pak_audit)` | 1 | `bug-10698` |
+| `docs/proposals/finishes2_2026-11-09/tools/patterns.py (splitter)` | 1 | `bug-10699` |
+| `docs/proposals/finishes2_2026-11-09/tools/run_ads.py` | 1 | `bug-10741` |
+| `docs/proposals/fog_lod_pop_2026-09-27/tools/fogtest_run.py` | 2 | `bug-3182` `bug-3185` |
+| `docs/proposals/foliage_grass_2026-09-27/lookdev/data/alpha_inventory.json` | 1 | `bug-3167` |
+| `docs/proposals/foliage_grass_2026-09-27/lookdev/src/inventory.py (usage census)` | 1 | `bug-3165` |
+| `docs/proposals/foliage_grass_2026-09-27/lookdev/src/raster.py (sample_tex)` | 1 | `bug-3163` |
+| `docs/proposals/foliage_grass_2026-09-27/plan.md F2.3` | 1 | `bug-3164` |
+| `docs/proposals/footprints_2026-10-04/tools/run_footprints.py` | 2 | `bug-3350` `bug-3351` |
+| `docs/proposals/framegen_2026-10-11/2026-10-12b_weapon_motion/README.md` | 1 | `bug-3612` |
+| `docs/proposals/gore_2026-10-05/engine/apply_phaseA.py (Sentient::CoopArteryEnterStage` | 1 | `bug-3502` |
+| `docs/proposals/gore_2026-10-05/tools/gen_artery.py` | 1 | `bug-3565` |
+| `docs/proposals/gore_2026-10-05/tools/gen_artery.py (generated models/fx/coop_artery.tik) + engine/apply_phase…` | 1 | `bug-3452` |
+| `docs/proposals/gore_2026-10-05/tools/gen_artery.py (generated staged models/fx/coop_artery.tik` | 1 | `bug-3501` |
+| `docs/proposals/gun_repaint_2026-10-13/tools/greasegun.py` | 3 | `bug-3891` `bug-3892` `bug-3893` |
+| `docs/proposals/gun_repaint_2026-10-13/tools/run_rp.py` | 1 | `bug-3884` |
+| `docs/proposals/gun_repaint_2026-10-13/tools/silencer.py` | 2 | `bug-3882` `bug-3883` |
+| `docs/proposals/hud_declutter_2026-10-05/tools/run_hudfeed.py` | 1 | `bug-3428` |
+| `docs/proposals/ironsights_2026-09-28/blender/skc_io.py (write)` | 1 | `bug-3532` |
+| `docs/proposals/ironsights_2026-09-28/engine/adsrig_solve.c.inc` | 2 | `bug-3240` `bug-3272` |
+| `docs/proposals/ironsights_2026-09-28/engine/gen_sights_header.py` | 1 | `bug-3271` |
+| `docs/proposals/ironsights_2026-09-28/engine/rebuild_worktree.py` | 1 | `bug-3270` |
+| `docs/proposals/ironsights_2026-09-28/sights.json (mauser_c96 F)` | 1 | `bug-3293` |
+| `docs/proposals/ironsights_2026-09-28/tools/analyze_trace.py` | 1 | `bug-3292` |
+| `docs/proposals/ironsights_2026-09-28/tools/gungeo.py` | 2 | `bug-3228` `bug-3411` |
+| `docs/proposals/ironsights_2026-09-28/tools/gungeo.py (root strip)` | 1 | `bug-3242` |
+| `docs/proposals/ironsights_2026-09-28/tools/run_ironsights.py` | 1 | `bug-3230` |
+| `docs/proposals/ironsights_2026-09-28/tools/run_sweep.py (APPLY crouchL/crouchR` | 1 | `bug-3273` |
+| `docs/proposals/ironsights_2026-09-28/tools/run_sweep.py (SCEN reload)` | 1 | `bug-3291` |
+| `docs/proposals/ironsights_2026-09-28/tools/skdlib.py` | 1 | `bug-3241` |
+| `docs/proposals/kickoff_2026-10-18/blastreact_1025/tools/br_ingame.py` | 1 | `bug-blastreact-3` |
+| `docs/proposals/kickoff_2026-10-18/fx_1025/tools/*` | 1 | `bug-fx1025-4` |
+| `docs/proposals/kickoff_2026-10-18/fx_1025/tools/build_proto.py` | 1 | `bug-fx1025-2` |
+| `docs/proposals/kickoff_2026-10-18/fx_1025/tools/build_proto.py (fxp_gren.tik)` | 1 | `bug-fx1025-3` |
+| `docs/proposals/kickoff_2026-10-18/i135/i135_menu.py (harness_window.post_key)` | 1 | `bug-4168` |
+| `docs/proposals/kickoff_2026-10-18/m2l2c_1025/tools/dedicated.py` | 1 | `bug-4399` |
+| `docs/proposals/kickoff_2026-10-18/m2l2c_1025/tools/m2run.py (visual runs)` | 1 | `bug-4274` |
+| `docs/proposals/kickoff_2026-10-18/maprebuild_1025/tools/make_chunks3.py (and make_chunks2.py caps)` | 1 | `bug-4430` |
+| `docs/proposals/kickoff_2026-10-18/menus3d/attic_hots.json` | 1 | `bug-4425` |
+| `docs/proposals/kickoff_2026-10-18/menus3d/build_models2.py` | 2 | `bug-4423` `bug-10436` |
+| `docs/proposals/kickoff_2026-10-18/menus3d/gl2env.py (harness client G:/mohaa-hudfeed3/e5pn)` | 1 | `bug-4427` |
+| `docs/proposals/kickoff_2026-10-18/menus3d/m3d_run.py` | 3 | `bug-4415` `bug-4418` `bug-4428` |
+| `docs/proposals/kickoff_2026-10-18/menus3d/make_main3d.py` | 1 | `bug-4426` |
+| `docs/proposals/kickoff_2026-10-18/menus3d/make_stage2.py` | 1 | `bug-4424` |
+| `docs/proposals/kickoff_2026-10-18/menus3d/make_stage3.py` | 1 | `bug-4414` |
+| `docs/proposals/kickoff_2026-10-18/norway_finale_1025/tools` | 1 | `bug-4394` |
+| `docs/proposals/kickoff_2026-10-18/norway_finale_1025/tools/ox_los.py` | 1 | `bug-4395` |
+| `docs/proposals/killchal_2026-10-20/*.py` | 1 | `bug-4145` |
+| `docs/proposals/leaderboard_2026-11-10/gen_bests.py` | 1 | `bug-10843` |
+| `docs/proposals/liberacion_2026-11-10/tools/lib_sweep.py` | 1 | `bug-10915` |
+| `docs/proposals/lightning_2026-09-27/ab/lt_ab.py (Game.launch` | 1 | `bug-3169` |
+| `docs/proposals/lightning_2026-09-27/ab/lt_ab.py (phase_old)` | 1 | `bug-3178` |
+| `docs/proposals/lightning_2026-09-27/ab/tools/bolt_views.py` | 1 | `bug-3181` |
+| `docs/proposals/livemap_2026-11-09/BUILD.md` | 1 | `bug-10838` |
+| `docs/proposals/livemap_2026-11-09/gen_ops.py` | 2 | `bug-10910` `bug-10917` |
+| `docs/proposals/livemap_2026-11-09/gen_ops.py (_stamp)` | 1 | `bug-10814` |
+| `docs/proposals/livemap_2026-11-09/gen_ops.py (POOL)` | 1 | `bug-10927` |
+| `docs/proposals/livemap_2026-11-09/gen_ops.py (ui/hzm_newgame3d.urc)` | 3 | `bug-10813` `bug-10828` `bug-10832` |
+| `docs/proposals/livemap_2026-11-09/tools/liveops_test.py (build_pak)` | 1 | `bug-10928` |
+| `docs/proposals/livemap_2026-11-09/tools/liveops_test.py (case_dedjoin)` | 1 | `bug-10911` |
+| `docs/proposals/livemap_2026-11-09/tools/ops_sweep.py (H:/hzm_work/liveops-test/sweep.json)` | 1 | `bug-10816` |
+| `docs/proposals/loadcine_2026-10-18/tools/run_loadcine.py` | 1 | `bug-4010` |
+| `docs/proposals/loadscreens_2026-10-18/tools/cine.py` | 1 | `bug-4154` |
+| `docs/proposals/loadscreens_2026-10-18/tools/edit2.py` | 1 | `bug-4155` |
+| `docs/proposals/loadscreens_2026-10-18/tools/render_plan.py` | 1 | `bug-4156` |
+| `docs/proposals/m3l3_rocks_2026-09-28/apply_m3l3_rocks.py` | 1 | `bug-3246` |
+| `docs/proposals/menu_attic_restage_2026-10-25 (remaster_room.py` | 1 | `bug-4195` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/ingame/mn_client.py` | 1 | `bug-4161` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/ingame/mr_client.py` | 1 | `bug-3253` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/ingame/mr_report.py` | 1 | `bug-3255` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/scripts/apply_mod.py` | 1 | `bug-4158` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/scripts/cut_assets.py` | 2 | `bug-3254` `bug-3288` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/scripts/gen_main_urc.py` | 4 | `bug-3221` `bug-3258` `bug-3289` `bug-4157` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/scripts/make_textures.py` | 2 | `bug-3236` `bug-3261` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/scripts/remaster_room.py` | 7 | `bug-3220` `bug-3231` `bug-3232` `bug-3233` `bug-3238` `bug-3259` `bug-3260` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/scripts/run_blender.py` | 1 | `bug-3218` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/stage/patches/patch_menu_room_row.py` | 1 | `bug-4159` |
+| `docs/proposals/menu_redesign_2026-09-28/remaster_test/stage/pk3/ui/main.urc (read only)` | 1 | `bug-3282` |
+| `docs/proposals/menu_system_remaster_2026-09-29/blender/stations.py` | 2 | `bug-3281` `bug-3287` |
+| `docs/proposals/menu_system_remaster_2026-09-29/blender/stations.py (--ultra)` | 1 | `bug-3332` |
+| `docs/proposals/menu_system_remaster_2026-09-29/ia/old_to_new.tsv (tools/ia_after.py)` | 1 | `bug-3330` |
+| `docs/proposals/menu_system_remaster_2026-09-29/IA_PLAN.md (design)` | 1 | `bug-3328` |
+| `docs/proposals/menu_system_remaster_2026-09-29/phase3/engine/e4_patch.py` | 1 | `bug-3327` |
+| `docs/proposals/menu_system_remaster_2026-09-29/phase3/tools/gen_menu_theme.py` | 3 | `bug-3329` `bug-3331` `bug-3333` |
+| `docs/proposals/menu_system_remaster_2026-09-29/phase3/tools/gen_menu_theme.py (fonts/verdana-12wr` | 1 | `bug-3326` |
+| `docs/proposals/menu_system_remaster_2026-09-29/theme/compose_stations.py` | 1 | `bug-3283` |
+| `docs/proposals/menu_system_remaster_2026-09-29/theme/radio_faces.py` | 1 | `bug-4193` |
+| `docs/proposals/menu_system_remaster_2026-09-29/theme/sheets_stations.py` | 1 | `bug-3282` |
+| `docs/proposals/menuload_2026-11-10/tools/ml_rooms.py` | 1 | `bug-10905` |
+| `docs/proposals/mgteam_2026-10-15/tools/mg_drv.scr` | 1 | `bug-3980` |
+| `docs/proposals/mission_tile_art_2026-09-29 (tools/tile_treat.py` | 1 | `bug-3290` |
+| `docs/proposals/mission_tile_art_2026-09-29/staging/tileart_run.py` | 1 | `bug-3301` |
+| `docs/proposals/mission_tile_art_2026-09-29/tools/samples.py` | 1 | `bug-3286` |
+| `docs/proposals/mortar_squads_2026-10-18/tools/mz_drv.scr` | 1 | `bug-4034` |
+| `docs/proposals/mphub3d_2026-11-02/hub_bake.py` | 1 | `bug-10379` |
+| `docs/proposals/mphub3d_2026-11-02/hub_prep.py` | 1 | `bug-10380` |
+| `docs/proposals/mphub3d_2026-11-02/hub_prep.py (+ hub_bake.py` | 1 | `bug-10456` |
+| `docs/proposals/mphub3d_2026-11-02/newgame/gen_theatremap.py` | 1 | `bug-10395` |
+| `docs/proposals/mphub3d_2026-11-02/newgame/make_newgame3d.py` | 6 | `bug-10381` `bug-10382` `bug-10383` `bug-10384` `bug-10440` `bug-10468` |
+| `docs/proposals/mphub3d_2026-11-02/newgame/ng_bake.py` | 1 | `bug-10785` |
+| `docs/proposals/mpui_2026-11-02/make_mpui.py` | 6 | `bug-10574` `bug-10711` `bug-10742` `bug-10773` `bug-10774` `bug-10809` |
+| `docs/proposals/mpui_2026-11-02/make_mpui.py (-> ui/coop_chronoresume.urc)` | 1 | `bug-10572` |
+| `docs/proposals/mpui_2026-11-02/make_mpui.py (-> ui/coop_start.urc)` | 1 | `bug-10571` |
+| `docs/proposals/mpui_2026-11-02/make_mpui.py (ui/coop_start.urc)` | 1 | `bug-10757` |
+| `docs/proposals/mpui_2026-11-02/make_mpui.py (ui/hzm_mapnames.txt)` | 1 | `bug-10445` |
+| `docs/proposals/newguns_2026-11-09/tools/bl_extract.py` | 1 | `bug-10671` |
+| `docs/proposals/newguns_2026-11-09/tools/bren_sights.py` | 1 | `bug-10766` |
+| `docs/proposals/newguns_2026-11-09/tools/build_bren.py` | 3 | `bug-10737` `bug-10762` `bug-10765` |
+| `docs/proposals/newguns_2026-11-09/tools/fs2_ng.py` | 1 | `bug-10707` |
+| `docs/proposals/newguns_2026-11-09/tools/pzf_decal.py` | 1 | `bug-10670` |
+| `docs/proposals/newguns_2026-11-09/tools/run_cfg.py` | 2 | `bug-10723` `bug-10735` |
+| `docs/proposals/newguns_2026-11-09/tools/stage_bren.py` | 1 | `bug-10764` |
+| `docs/proposals/newguns_2026-11-09/tools/stage_mp28.py` | 1 | `bug-10669` |
 | `docs/proposals/objective_challenges.md (proposals)` | 1 | `bug-1599` |
+| `docs/proposals/objectives_ch1-3_2026-10-18/DESIGN.md` | 1 | `bug-4085` |
+| `docs/proposals/objectives_ch1-3_2026-10-18/tools/ox_shot.py` | 1 | `bug-4084` |
+| `docs/proposals/para_30cal_2026-10-12/tools/pass3/edits/ed3.py` | 1 | `bug-3695` |
+| `docs/proposals/para_30cal_2026-10-12/tools/pass4/p3lib.py` | 2 | `bug-3753` `bug-3754` |
+| `docs/proposals/pistol_ads_recoil_2026-09-29/engine/apply_pistolkick.py (cg_view.c hunks)` | 1 | `bug-3263` |
+| `docs/proposals/progression_sync_2026-10-14/tools/run_progsync.py (harness launch args)` | 1 | `bug-3908` |
+| `docs/proposals/rain73_2026-11-10/gen_fog73.py` | 1 | `bug-10885` |
+| `docs/proposals/recoil_2026-11-10/tools/run_recoil.py` | 1 | `bug-10880` |
+| `docs/proposals/reload_authenticity_2026-10-05/tools/keyclip.py` | 1 | `bug-3433` |
+| `docs/proposals/reload_authenticity_2026-10-05/tools/natik.py` | 1 | `bug-3435` |
+| `docs/proposals/reload_authenticity_2026-10-05/tools/pcommit.py` | 1 | `bug-3438` |
+| `docs/proposals/reload_authenticity_2026-10-05/tools/recipes_keyed.py` | 3 | `bug-3434` `bug-3436` `bug-3437` |
+| `docs/proposals/reload_authenticity_2026-10-05/tools/run_reloadauth.py` | 1 | `bug-3366` |
+| `docs/proposals/reload_variety_2026-09-29/engine/rv_vmanim_block.c` | 1 | `bug-3295` |
+| `docs/proposals/renderer_reinit_2026-09-26` | 1 | `bug-3033` |
+| `docs/proposals/renderer_reinit_2026-09-26/p0_results.md` | 1 | `bug-3062` |
+| `docs/proposals/roofcine_2026-11-02)` | 1 | `bug-10397` |
+| `docs/proposals/roofcine_2026-11-02/tools/make_eastgate.py (map m2l3 v10b coop_fin_eastramp)` | 1 | `bug-10434` |
 | `docs/proposals/skin_batch.md (staging only` | 1 | `bug-1357` |
+| `docs/proposals/smoke_2026-10-15/tools (smokelib.py` | 1 | `bug-3977` |
+| `docs/proposals/sp3camp_2026-11-08/gen_mapclips.py` | 3 | `bug-10834` `bug-10835` `bug-10867` |
+| `docs/proposals/sp3camp_2026-11-08/make_ng3campaigns.py` | 1 | `bug-10742` |
+| `docs/proposals/sp3camp_2026-11-08/warmap.py` | 3 | `bug-10783` `bug-10787` `bug-10868` |
+| `docs/proposals/storm_darkness_2026-09-28/engine/src)` | 1 | `bug-3212` |
+| `docs/proposals/storm_darkness_2026-09-28/ingame/storm_ingame.py` | 2 | `bug-3211` `bug-3214` |
 | `docs/proposals/surgical_operation_v10_analysis.md` | 1 | `bug-1576` |
+| `docs/proposals/usefix_2026-11-10/usefix_run.py` | 1 | `bug-10895` |
+| `docs/proposals/viewclip_2026-11-09/tools/run_ab.py` | 1 | `bug-10667` |
+| `docs/proposals/viewclip_2026-11-09/tools/vc_with_pak.py` | 1 | `bug-10668` |
+| `docs/proposals/volumetric_clouds_2026-09-26/p0_stills/tools (vc_realism.py` | 1 | `bug-3157` |
+| `docs/proposals/volumetric_clouds_2026-09-26/p0_stills/tools (vc_render.py` | 1 | `bug-3082` |
+| `docs/proposals/volumetric_clouds_2026-09-26/p0_stills/tools/vc_noisechoice.py` | 1 | `bug-3158` |
+| `docs/proposals/volumetric_clouds_2026-09-26/plan.md (design)` | 1 | `bug-3083` |
+| `docs/proposals/volumetric_clouds_2026-09-26/v11/tools/v11_run.py` | 1 | `bug-3457` |
+| `docs/proposals/water_wetness_2026-09-27/ingame/make_overlay.py` | 1 | `bug-3173` |
+| `docs/proposals/water_wetness_2026-09-27/ingame/ww_ingame.py` | 2 | `bug-3174` `bug-3175` |
+| `docs/proposals/water_wetness_2026-09-27/tools/ww_inventory.py` | 1 | `bug-3105` |
+| `docs/proposals/weapon_hd_2026-10-05/tools/inventory.py` | 1 | `bug-3377` |
+| `docs/proposals/weapon_hd_2026-10-05/tools/weaponhd.py` | 3 | `bug-3374` `bug-3375` `bug-3376` |
+| `docs/proposals/weaponview_2026-10-04/tools/run_wv.py` | 1 | `bug-3314` |
+| `docs/proposals/wpnviewer_2026-11-04/tools/wpnview_run.py` | 2 | `bug-10583` `bug-10628` |
 | `docs/SOURCE_OF_TRUTH.md (record vs code)` | 1 | `bug-2036` |
+| `docs/SOURCE_OF_TRUTH.md build section` | 1 | `bug-3247` |
+| `docs/tools` | 1 | `bug-4081` |
+| `docs/tools harness launch` | 1 | `bug-10274` |
+| `docs/tools/ads_audit.py` | 2 | `bug-3442` `bug-4136` |
+| `docs/tools/armory_hero_fit.tsv` | 1 | `bug-10597` |
+| `docs/tools/armory_hero_fit.tsv -> ui/loadout/p39.cfg` | 1 | `bug-10621` |
+| `docs/tools/armory_unlocks.py` | 1 | `bug-10580` |
+| `docs/tools/assets/fixes/fixes_manifest.json` | 2 | `bug-4149` `bug-4165` |
+| `docs/tools/assets/fixes/models/fx/coop_screensmoke.tik` | 1 | `bug-3975` |
+| `docs/tools/assets/fixes/models/human/animation/viewmodel/pistol/{colt45` | 1 | `bug-3467` |
+| `docs/tools/assets/fixes/models/player/base/anims_shared.txt` | 1 | `bug-3956` |
+| `docs/tools/assets/fixes/models/weapons/*.tik (fire rows)` | 1 | `bug-4124` |
+| `docs/tools/assets/fixes/models/weapons/coop_g43_irons*.tik (12)` | 1 | `bug-4260` |
+| `docs/tools/assets/fixes/models/weapons/mp40.tik` | 1 | `bug-3818` |
+| `docs/tools/assets/fixes/models/weapons/tt33silenced_*.tik` | 1 | `bug-10553` |
+| `docs/tools/assets/fixes/models/weapons/{fg42` | 1 | `bug-4261` |
+| `docs/tools/assets/fixes/textures/hud/coop_padglyphs.tga (fixes pak)` | 1 | `bug-4171` |
+| `docs/tools/assets/fixes_base/*` | 1 | `bug-4191` |
+| `docs/tools/assets/wpnfix/models/human/animation/viewmodel/coop_bren/coop_bren_reload_fps.skc` | 1 | `bug-10721` |
+| `docs/tools/assets/wpnfix/models/player/base/fps_anims_mg.txt` | 2 | `bug-10706` `bug-10734` |
+| `docs/tools/assets/wpnfix/models/player/base/fps_anims_smg.txt` | 1 | `bug-10722` |
+| `docs/tools/assets/wpnfix/models/weapons/fg42/coop_fg42_fire.skc (eject_tag.py)` | 1 | `bug-10619` |
+| `docs/tools/audit_actor_surfaces.py` | 1 | `bug-3325` |
 | `docs/tools/audit_menu_cvars.py` | 2 | `bug-1994` `bug-2582` |
+| `docs/tools/bake_skins.py` | 1 | `bug-10314` |
+| `docs/tools/bot_soak.ps1` | 1 | `bug-2826` |
 | `docs/tools/build_terrain_pack.py` | 1 | `bug-2164` |
+| `docs/tools/byoaudit/aiaudit.py` | 1 | `bug-10896` |
+| `docs/tools/byoaudit/byoclient.py` | 1 | `bug-10852` |
+| `docs/tools/check_challenges.py` | 3 | `bug-3895` `bug-4150` `bug-10815` |
+| `docs/tools/check_deck.py` | 1 | `bug-10280` |
 | `docs/tools/check_download_links.py` | 1 | `bug-1805` |
 | `docs/tools/check_map_anims.py` | 2 | `bug-2278` `bug-2280` |
-| `docs/tools/check_map_compiles.py` | 1 | `bug-2421` |
-| `docs/tools/check_mp_isolation.py` | 3 | `bug-2618` `bug-2622` `bug-2680` |
+| `docs/tools/check_map_compiles.py` | 3 | `bug-2421` `bug-3125` `bug-3112` |
+| `docs/tools/check_mp_isolation.py` | 7 | `bug-2618` `bug-2622` `bug-2680` `bug-2751` `bug-10749` `bug-10781` `bug-10918` |
+| `docs/tools/check_mp_isolation.py (allowlist comment)` | 1 | `bug-3222` |
 | `docs/tools/check_mp_isolation.py (clauses 7 + 12)` | 1 | `bug-2614` |
+| `docs/tools/check_mp_isolation.py (hook registered)` | 1 | `bug-2917` |
+| `docs/tools/check_mp_isolation.py LOCKS` | 1 | `bug-4167` |
 | `docs/tools/check_mp_isolation_selftest.py` | 3 | `bug-2598` `bug-2618` `bug-2622` |
 | `docs/tools/check_mp_isolation_selftest.py new` | 1 | `bug-2579` |
+| `docs/tools/check_tex_pak_baseline.py` | 1 | `bug-4148` |
 | `docs/tools/depthscan2.py` | 1 | `bug-1559` |
 | `docs/tools/docgen.py` | 1 | `bug-1860` |
+| `docs/tools/ea/ea_aiaudit.py` | 1 | `bug-eap-portclash` |
+| `docs/tools/ea/ea_queue_run.py (branch ea-tools)` | 1 | `bug-10680` |
+| `docs/tools/ea/eacore.py` | 1 | `bug-10668` |
+| `docs/tools/ea/eaents.py` | 1 | `bug-eap-dbnames` |
+| `docs/tools/ea/eamovies.py` | 1 | `bug-10803` |
+| `docs/tools/ea/eapack.py` | 5 | `bug-10678` `bug-10686` `bug-10687` `bug-eap-dbnames` `bug-eap-voices` |
+| `docs/tools/ea/easob.py` | 2 | `bug-eap-sobmeshes` `bug-eap-sobdark` |
+| `docs/tools/ea/eavm.py` | 1 | `bug-eap-counters` |
+| `docs/tools/ea/eavoice.py` | 1 | `bug-eap-voices` |
+| `docs/tools/ea/flconvert.py` | 4 | `bug-10677` `bug-10683` `bug-eap-sobmeshes` `bug-eap-longclip` |
+| `docs/tools/ea/flconvert.py (branch ea-tools)` | 1 | `bug-10667` |
+| `docs/tools/ea/flcoop2.py (branch ea-tools)` | 1 | `bug-10679` |
+| `docs/tools/ea/flsp.py (branch ea-tools` | 1 | `bug-10682` |
+| `docs/tools/ea/flsp.py (branch ea-tools)` | 1 | `bug-10681` |
+| `docs/tools/ea/rez.py (branch ea-tools)` | 1 | `bug-10661` |
+| `docs/tools/engrave/*` | 1 | `bug-10748` |
+| `docs/tools/engrave/gen_custom_urc.py` | 1 | `bug-10840` |
+| `docs/tools/engrave/gen_engrave_anchors.py` | 2 | `bug-10710` `bug-10830` |
+| `docs/tools/engrave/gunmesh.py` | 1 | `bug-10714` |
+| `docs/tools/engrave/merge_engrave_spots.py` | 1 | `bug-10719` |
+| `docs/tools/engrave/qa/bench_run.py` | 1 | `bug-10718` |
+| `docs/tools/finishes2.py` | 1 | `bug-10746` |
+| `docs/tools/fix_vo_pools.py` | 2 | `bug-3087` `bug-3160` |
+| `docs/tools/frontline/flbsp.py` | 2 | `bug-10605` `bug-10612` |
+| `docs/tools/frontline/flclear.py` | 1 | `bug-10846` |
+| `docs/tools/frontline/flcliff.py` | 2 | `bug-10848` `bug-10865` |
+| `docs/tools/frontline/flconvert.py` | 10 | `bug-10599` `bug-10602` `bug-10603` `bug-10604` `bug-10613` `bug-10633` `bug-10642` `bug-10645` `bug-10845` `bug-10892` |
+| `docs/tools/frontline/flcoop2.py` | 1 | `bug-10635` |
+| `docs/tools/frontline/flcore.py` | 1 | `bug-10622` |
+| `docs/tools/frontline/flfit.py` | 1 | `bug-10847` |
+| `docs/tools/frontline/flgif.py` | 1 | `bug-10676` |
+| `docs/tools/frontline/flharness.py` | 1 | `bug-10635` |
+| `docs/tools/frontline/flmovies.py` | 2 | `bug-10677` `bug-10803` |
+| `docs/tools/frontline/flpack.py` | 3 | `bug-10601` `bug-10864` `bug-10891` |
+| `docs/tools/frontline/flroutes.py` | 2 | `bug-10923` `bug-10924` |
+| `docs/tools/frontline/flseam.py` | 1 | `bug-10642` |
+| `docs/tools/frontline/flsheets.py` | 2 | `bug-10888` `bug-10925` |
+| `docs/tools/frontline/flskin.py` | 1 | `bug-10866` |
+| `docs/tools/frontline/hzmconv.py` | 2 | `bug-10712` `bug-10744` |
+| `docs/tools/gen_armory.py` | 1 | `bug-4052` |
 | `docs/tools/gen_armory_bg.py` | 1 | `bug-1917` |
+| `docs/tools/gen_armory_cos.py` | 1 | `bug-10702` |
+| `docs/tools/gen_armory_urc.py` | 2 | `bug-4044` `bug-4163` |
 | `docs/tools/gen_bloodslick_tint.py` | 1 | `bug-2263` |
 | `docs/tools/gen_bloodwash.py` | 1 | `bug-2249` |
 | `docs/tools/gen_boreshade.py` | 1 | `bug-2525` |
 | `docs/tools/gen_breakfoam.py` | 1 | `bug-2519` |
-| `docs/tools/gen_chatter_pools.py` | 1 | `bug-2021` |
+| `docs/tools/gen_chatter_pools.py` | 2 | `bug-2021` `bug-3387` |
+| `docs/tools/gen_coop_headlights.py (+ lampflare.tga` | 1 | `bug-2969` |
+| `docs/tools/gen_coop_headlights.py (FLARE_CORE) -> hzm-mohaa-coop-mod/textures/coop_fx/lampflare.tga` | 1 | `bug-3008` |
+| `docs/tools/gen_coop_headlights.py (HL_BEAM_VISIBLE cross-reference comment only)` | 1 | `bug-2977` |
+| `docs/tools/gen_coop_headlights.py (new)` | 1 | `bug-2946` |
+| `docs/tools/gen_coop_headlights.py:75-77` | 1 | `bug-2999` |
 | `docs/tools/gen_coop_sea.py` | 2 | `bug-2520` `bug-2538` |
 | `docs/tools/gen_coop_surf.py` | 2 | `bug-2521` `bug-2541` |
 | `docs/tools/gen_coop_vo_override.py` | 2 | `bug-2307` `bug-2461` |
+| `docs/tools/gen_debrief2.py` | 1 | `bug-10483` |
+| `docs/tools/gen_east_lift.py` | 1 | `bug-10560` |
+| `docs/tools/gen_emotes.py` | 3 | `bug-10484` `bug-10485` `bug-10487` |
+| `docs/tools/gen_finale.py` | 1 | `bug-4412` |
+| `docs/tools/gen_finish_ui.py` | 1 | `bug-10700` |
+| `docs/tools/gen_fixes_pak.py` | 1 | `bug-3814` |
+| `docs/tools/gen_fixes_pak.py restore` | 1 | `bug-4164` |
 | `docs/tools/gen_gore_skins.py` | 1 | `bug-2229` |
-| `docs/tools/gen_loadout.py` | 1 | `bug-1908` |
+| `docs/tools/gen_loadout.py` | 4 | `bug-1908` `bug-3189` `bug-4047` `bug-10558` |
+| `docs/tools/gen_loadout.py (tile/eqfile/lkwfile) -> ui/loadout/t\|eq\|lkw<id>.cfg` | 1 | `bug-3920` |
+| `docs/tools/gen_loadscreen_medal.py` | 1 | `bug-3538` |
+| `docs/tools/gen_loadscreen_medal.py (--morph) -> hzm-mohaa-coop-mod/ui/hzm_loadscreen/morph_*.tga` | 1 | `bug-3059` |
+| `docs/tools/gen_loadscreen_medal.py (tga_bytes) -> hzm-mohaa-coop-mod/ui/hzm_loadscreen/*.tga` | 1 | `bug-3019` |
 | `docs/tools/gen_m3l1a_obstacles.py` | 3 | `bug-2262` `bug-2267` `bug-2282` |
+| `docs/tools/gen_m3l3_rock_clips.py` | 1 | `bug-3246` |
+| `docs/tools/gen_memorial.py` | 1 | `bug-3538` |
+| `docs/tools/gen_memorial_medal.py (new)` | 1 | `bug-3538` |
+| `docs/tools/gen_menu_attic.py` | 1 | `bug-4195` |
+| `docs/tools/gen_menu_fieldsettings.py` | 4 | `bug-3518` `bug-4136` `bug-10742` `bug-10775` |
+| `docs/tools/gen_menu_fieldsettings.py (row + T_PITCH 24->22) -> ui/coop_settings.urc` | 1 | `bug-2919` |
+| `docs/tools/gen_menu_graphics.py` | 3 | `bug-3484` `bug-3530` `bug-3536` |
+| `docs/tools/gen_menu_graphics.py (lay_graphics pulldown display) -> hzm-mohaa-coop-mod/ui/advanced_graphics.urc` | 1 | `bug-3155` |
 | `docs/tools/gen_menu_graphics.py (NEW)` | 1 | `bug-2615` |
+| `docs/tools/gen_menu_graphics.py (recovered from worktree competent-cohen-0de4b2)` | 1 | `bug-2930` |
+| `docs/tools/gen_menu_graphics.py + generated ui/*.urc` | 1 | `bug-3038` |
+| `docs/tools/gen_menu_graphics.py -> hzm-mohaa-coop-mod/ui/advanced_graphics.urc` | 1 | `bug-3099` |
+| `docs/tools/gen_menu_graphics.py -> hzm-mohaa-coop-mod/ui/coop_postfx3.urc` | 1 | `bug-3145` |
+| `docs/tools/gen_menu_graphics.py:177-178` | 1 | `bug-3119` |
+| `docs/tools/gen_menu_graphics.py:476-487` | 1 | `bug-3123` |
+| `docs/tools/gen_menu_radio.py` | 3 | `bug-4185` `bug-4194` `bug-4196` |
+| `docs/tools/gen_menu_radioset.py` | 1 | `bug-4192` |
+| `docs/tools/gen_menu_slider.py` | 1 | `bug-2822` |
+| `docs/tools/gen_menu_theme.py` | 1 | `bug-4181` |
+| `docs/tools/gen_mp_ambience.py` | 2 | `bug-2780` `bug-2786` |
+| `docs/tools/gen_mp_armory.py` | 11 | `bug-2761` `bug-2762` `bug-2775` `bug-2776` `bug-2777` `bug-2778` `bug-2779` `bug-2785` `bug-2793` `bug-2816` `bug-10673` |
+| `docs/tools/gen_mp_armory.py (cos_panel_urc` | 1 | `bug-2755` |
+| `docs/tools/gen_mp_armory.py (cos_panel_urc -> urc) -> ui/coop_mp{a` | 1 | `bug-2753` |
+| `docs/tools/gen_mp_armory.py (finish_map_scr resolve)` | 1 | `bug-2765` |
+| `docs/tools/gen_mp_armory.py (generated ui/coop_mp_armory*.urc)` | 1 | `bug-2788` |
+| `docs/tools/gen_mp_armory.py (generated ui/coop_mp_record.urc)` | 1 | `bug-2790` |
+| `docs/tools/gen_mp_armory.py (locked_req` | 1 | `bug-2763` |
+| `docs/tools/gen_mp_armory.py (open_cfg` | 1 | `bug-2752` |
+| `docs/tools/gen_mp_armory.py (record_urc + srhov cfgs) -> ui/coop_mp_record.urc + ui/coop_mp_record/srhov*.cfg` | 1 | `bug-2764` |
+| `docs/tools/gen_mp_armory.py (record_urc)` | 1 | `bug-2758` |
+| `docs/tools/gen_mp_armory.py check` | 1 | `bug-3985` |
+| `docs/tools/gen_mp_challenges.py` | 1 | `bug-2911` |
+| `docs/tools/gen_mp_challenges.py (finUnlocked)` | 1 | `bug-2765` |
+| `docs/tools/gen_mp_challenges.py (TEMPLATE_FOOTER derive) -> hzm-mohaa-coop-mod/coop_mod/mp_challenges.scr (re…` | 1 | `bug-3001` |
 | `docs/tools/gen_mp_gungame.py` | 1 | `bug-2599` |
-| `docs/tools/gen_service_record.py` | 16 | `bug-1503` `bug-1510` `bug-1511` `bug-1519` `bug-1521` `bug-1523` `bug-1525` `bug-1528` `bug-1529` `bug-1531` `bug-1532` `bug-1535` `bug-1537` `bug-1541` `bug-1544` `bug-2116` |
-| `docs/tools/gen_skins.py` | 1 | `bug-1913` |
+| `docs/tools/gen_navheat.py` | 1 | `bug-2870` |
+| `docs/tools/gen_navheat.py (len>=7)` | 1 | `bug-2912` |
+| `docs/tools/gen_push_from_bsp.py` | 4 | `bug-2742` `bug-2835` `bug-2870` `bug-2872` |
+| `docs/tools/gen_push_gates.py` | 1 | `bug-2828` |
+| `docs/tools/gen_push_pinned.py` | 1 | `bug-2838` |
+| `docs/tools/gen_push_pinned.py + hzm-mohaa-coop-mod/coop_mod/mp_push.scr` | 1 | `bug-2857` |
+| `docs/tools/gen_push_pinned.py + hzm-mohaa-coop-mod/navlinks/e3l2_mp.txt` | 1 | `bug-2863` |
+| `docs/tools/gen_reward_icons.py (new)` | 1 | `bug-3572` |
+| `docs/tools/gen_scope_reticles.py` | 2 | `bug-3462` `bug-10626` |
+| `docs/tools/gen_service_record.py` | 19 | `bug-1503` `bug-1510` `bug-1511` `bug-1519` `bug-1521` `bug-1523` `bug-1525` `bug-1528` `bug-1529` `bug-1531` `bug-1532` `bug-1535` `bug-1537` `bug-1541` `bug-1544` `bug-2116` `bug-3365` `bug-10518` `bug-10817` |
+| `docs/tools/gen_sight_alias.py` | 2 | `bug-10740` `bug-10745` |
+| `docs/tools/gen_skins.py` | 7 | `bug-1913` `bug-10582` `bug-10589` `bug-10590` `bug-10591` `bug-10611` `bug-10620` |
+| `docs/tools/gen_sky_hd.py` | 2 | `bug-2937` `bug-3027` |
+| `docs/tools/gen_sky_hd.py (cloud layer)` | 1 | `bug-2938` |
+| `docs/tools/gen_sky_hd.py (staged pak + manifest: session scratchpad skyhd/` | 1 | `bug-2987` |
+| `docs/tools/gen_teamselect_icons.py` | 3 | `bug-2812` `bug-2813` `bug-2823` |
+| `docs/tools/gen_terrain_pak_v2.py (new)` | 1 | `bug-2953` |
+| `docs/tools/gen_terrain_pak_v3.py (new)` | 1 | `bug-2985` |
+| `docs/tools/gen_terrain_pak_v4.py (new)` | 1 | `bug-2994` |
+| `docs/tools/gen_tileart_pak.py` | 1 | `bug-3300` |
+| `docs/tools/gen_tilefix_pak.py` | 1 | `bug-2991` |
+| `docs/tools/gen_tilefix_pak.py (new)` | 1 | `bug-2984` |
+| `docs/tools/gen_tilefix_pak.py (not changed)` | 1 | `bug-3109` |
+| `docs/tools/gen_version_cfg.py` | 2 | `bug-2932` `bug-10330` |
+| `docs/tools/gen_vram_panel.py` | 1 | `bug-3539` |
+| `docs/tools/gen_vram_panel.py (new)` | 1 | `bug-3536` |
+| `docs/tools/gen_weapon_stats.py (txt_index / load_tik)` | 1 | `bug-10921` |
+| `docs/tools/gen_weapon_viewer.py` | 3 | `bug-10527` `bug-10531` `bug-10772` |
+| `docs/tools/gen_wheel_art.py` | 1 | `bug-10488` |
+| `docs/tools/gen_wpnfix_pak.py` | 1 | `bug-10702` |
+| `docs/tools/gfx_flip_gate.json` | 1 | `bug-3353` |
+| `docs/tools/glsl_glslang.py (new)` | 1 | `bug-3137` |
+| `docs/tools/glsl_post_baseline.json (new)` | 1 | `bug-3137` |
+| `docs/tools/glsl_variant_lint.py` | 2 | `bug-3137` `bug-3179` |
+| `docs/tools/glsl_variant_lint.py (new)` | 1 | `bug-2969` |
+| `docs/tools/harness_guard.py` | 4 | `bug-3112` `bug-3525` `bug-4089` `bug-4272` |
+| `docs/tools/harness_guard.py (G:/mohaa-stormtest)` | 1 | `bug-3222` |
+| `docs/tools/harness_guard.py (rankbar client registered)` | 1 | `bug-3076` |
+| `docs/tools/harness_turn.py` | 1 | `bug-4188` |
+| `docs/tools/harness_window.py` | 1 | `bug-10646` |
+| `docs/tools/harness_window.py (design constraints)` | 1 | `bug-3113` |
+| `docs/tools/harness_window.py (launch/placement) + the private client G:/mohaa-gfxtest/openmohaa_loadtest.exe…` | 1 | `bug-3147` |
+| `docs/tools/harness_window.py (new)` | 1 | `bug-3112` |
+| `docs/tools/harness_window.py (Watcher.__init__` | 1 | `bug-10666` |
+| `docs/tools/harness_window.py apply_policy (engine cause: openmohaa-hzm/code/sdl/sdl_glimp.c GLimp_SetMode fir…` | 1 | `bug-3153` |
+| `docs/tools/harness_window.py BackgroundClient.capture_png` | 1 | `bug-3114` |
+| `docs/tools/hzm_spot_selftest/ (new)` | 1 | `bug-2969` |
+| `docs/tools/hzm_spot_selftest/hzm_spot_selftest.c` | 1 | `bug-2978` |
 | `docs/tools/linecheck.py` | 1 | `bug-1725` |
+| `docs/tools/loadout_weapons.tsv` | 1 | `bug-3797` |
+| `docs/tools/loadscreen_lint.py (retail_shader_names)` | 1 | `bug-3005` |
+| `docs/tools/mgnest_headless/mgnest_boot.ps1` | 1 | `bug-3077` |
+| `docs/tools/mp_axis_skins.tsv + mp_allied_skins.tsv` | 1 | `bug-2762` |
+| `docs/tools/mp_bot_damage_test.ps1` | 1 | `bug-3112` |
 | `docs/tools/mp_gungame_tiers.tsv` | 1 | `bug-2599` |
+| `docs/tools/objx_points.json + coop_mod/objx.scr` | 1 | `bug-4083` |
+| `docs/tools/prep_finish_sources.py` | 1 | `bug-10317` |
+| `docs/tools/push_blockers.json` | 2 | `bug-2830` `bug-2839` |
+| `docs/tools/push_blockers.json + hzm-mohaa-coop-mod/coop_mod/mp_push.scr` | 1 | `bug-2844` |
+| `docs/tools/push_spawns.json` | 1 | `bug-2834` |
+| `docs/tools/push_zones.json (m1l2b)` | 1 | `bug-2872` |
 | `docs/tools/rcon.py` | 1 | `bug-2411` |
+| `docs/tools/rkeep/rkeep_client.py` | 2 | `bug-3112` `bug-3183` |
+| `docs/tools/rkeep/rkeep_p0.py` | 1 | `bug-3112` |
 | `docs/tools/sec1_filter_selftest/build.bat` | 1 | `bug-2587` |
 | `docs/tools/sec1_filter_selftest/gen.py` | 1 | `bug-2586` |
 | `docs/tools/sec2_filter_selftest (arms)` | 1 | `bug-2592` |
 | `docs/tools/sec2_filter_selftest/build.bat` | 1 | `bug-2587` |
 | `docs/tools/sec2_guardlist.py` | 1 | `bug-2590` |
 | `docs/tools/skc_flip.py` | 2 | `bug-2122` `bug-2135` |
+| `docs/tools/sky_hd_manifest.json` | 1 | `bug-2937` |
 | `docs/tools/slice_gunfoley.py + docs/20-decisions.md` | 1 | `bug-2002` |
 | `docs/tools/stcheck.py` | 1 | `bug-2162` |
-| `docs/tools/wire_mv2.py` | 1 | `bug-1947` |
+| `docs/tools/strip_lobby_axis.py (new)` | 1 | `bug-2960` |
+| `docs/tools/vcl/vcl_run.py` | 1 | `bug-3184` |
+| `docs/tools/vcl/vcl_run.py (QUIET_BOOT g_ai 0) used by the clouds runs on DISPLAY2` | 1 | `bug-3461` |
+| `docs/tools/vcl_selftest/mutate.py` | 1 | `bug-3159` |
+| `docs/tools/vram_pick_selftest (new)` | 1 | `bug-3536` |
+| `docs/tools/weapon_hd/build_finishes.py` | 1 | `bug-10318` |
+| `docs/tools/weapon_hd/build_sheets.py` | 4 | `bug-3419` `bug-3421` `bug-10315` `bug-10319` |
+| `docs/tools/weapon_hd/cc0_detail.py` | 1 | `bug-10316` |
+| `docs/tools/weapon_hd/jobs.py (pick_source)` | 1 | `bug-3418` |
+| `docs/tools/weapon_hd/run_batch.ps1` | 1 | `bug-3420` |
+| `docs/tools/wire_mv2.py` | 6 | `bug-1947` `bug-3365` `bug-3794` `bug-3796` `bug-10577` `bug-10581` |
 | `docs/TRAPS.md` | 1 | `bug-2396` |
 | `docs/TRAPS.md (via a scratchpad prune script)` | 1 | `bug-1600` |
+| `doors.cpp/.h (g_doorProbe DOORBLK/DOORUSE/DOORSTATE)` | 1 | `bug-3042` |
+| `dopen.cfg` | 1 | `bug-2752` |
+| `driver first-tick start` | 1 | `bug-2973` |
+| `duststorm.scr` | 1 | `bug-3548` |
+| `e1l1-only guarded fog zones)` | 1 | `bug-2963` |
 | `e1l4.scr` | 1 | `bug-1625` |
+| `e1l4/Intro.scr` | 1 | `bug-3542` |
+| `e1l4alarm.scr` | 1 | `bug-3952` |
+| `e2l1.scr` | 1 | `bug-3553` |
+| `e2l2/cinematic` | 1 | `bug-4094` |
+| `e3` | 1 | `bug-10593` |
+| `e3.cfg` | 1 | `bug-3280` |
 | `e3l1.scr` | 1 | `bug-1625` |
+| `e3l3/scene1.scr` | 2 | `bug-3542` `bug-3553` |
+| `e3l4/Outro` | 1 | `bug-4094` |
+| `ea_texmap.json (branch ea-tools)` | 1 | `bug-10677` |
+| `eapack.py (branch ea-tools)` | 1 | `bug-10683` |
+| `eartc.py` | 1 | `bug-10668` |
+| `edits proposed` | 1 | `bug-3138` |
+| `engine client: cl_cin.cpp` | 1 | `bug-3234` |
+| `engine code/cgame/cg_coopdebrief.c (DB_DrawSheet stamp)` | 1 | `bug-10492` |
+| `engine code/cgame/cg_coopdebrief.c (DB_Promote / DB_Tick)` | 1 | `bug-10493` |
+| `engine code/cgame/cg_coopdebrief.c (DB_Sound and its callers)` | 1 | `bug-10498` |
+| `engine code/cgame/cg_coopdebrief.c (DB_Start)` | 1 | `bug-10494` |
+| `engine code/cgame/cg_coopdebrief.c (new)` | 1 | `bug-10479` |
+| `engine code/renderercommon/tr_public.h REF_API_VERSION 15)` | 1 | `bug-10466` |
+| `engine rel-1.10.38-engine 59c28f5d (suspect: cover-seamless merge 29e90d34/7acba2cc - cg_view CG_CoopCoverFor…` | 1 | `bug-10368` |
+| `engine side is bug-2958 (player.cpp Player::Init` | 1 | `bug-2928` |
 | `engine sound configstring pool / coop sound content` | 1 | `bug-1219` |
 | `entity.cpp (attach guard)` | 1 | `bug-927` |
+| `EntityBlocks_Apply)` | 1 | `bug-3026` |
 | `EntityCleanup.scr` | 1 | `bug-1051` |
+| `EventSetMaxDistance` | 1 | `bug-2989` |
+| `EventSetMinDistance` | 1 | `bug-2989` |
 | `exe side)` | 1 | `bug-2588` |
+| `exit)` | 1 | `bug-10413` |
+| `fdeny<f>.cfg` | 1 | `bug-3920` |
+| `feed.scr (feed_chalList)` | 1 | `bug-4008` |
+| `fg42pose.py` | 1 | `bug-3769` |
+| `fg42pose.py (--roll)` | 1 | `bug-3771` |
+| `fg42tik.py` | 1 | `bug-3769` |
+| `fgame gamecvars.cpp/g_main.cpp/player.cpp/player.h/sentient.cpp` | 1 | `bug-2923` |
 | `fgame sound-callback / SV_FindIndex call sites (suspected)` | 1 | `bug-1167` |
 | `fgame/actor.cpp)` | 1 | `bug-780` |
+| `fgame/g_main.cpp` | 1 | `bug-3148` |
+| `fgame/g_utils.cpp (+doors/trigger/misc/scriptthread)` | 1 | `bug-4097` |
 | `fgame/gamecvars.cpp` | 1 | `bug-2619` |
-| `fgame/player.cpp` | 1 | `bug-2156` |
+| `fgame/player.cpp` | 2 | `bug-2156` `bug-10877` |
+| `fgame/player.cpp)` | 1 | `bug-3077` |
 | `fgame/sentient.cpp` | 1 | `bug-1241` |
+| `fgame/weapturret.cpp` | 1 | `bug-10416` |
 | `fgame/worldspawn.cpp` | 1 | `bug-gl2-e2l2-fog-verified-correct` |
+| `fglib.py` | 1 | `bug-10617` |
 | `filmgrain}_fp.glsl` | 1 | `bug-1158` |
+| `fin_droptest)` | 1 | `bug-10478` |
+| `finale_m2l3_cine.scr` | 1 | `bug-4391` |
+| `finale_m2l3_def.scr` | 1 | `bug-norway-1027-prep-blizzard-train` |
+| `finale_m2l3_wx.scr` | 1 | `bug-norway-1027-prep-blizzard-train` |
+| `finchal_gen.scr` | 1 | `bug-4142` |
+| `finish_sheet.py (tile_cm)` | 1 | `bug-10699` |
 | `fix pending)` | 1 | `bug-1586` |
+| `fix1025 harness fxlib.py configure()` | 1 | `bug-4400` |
+| `fixes pak` | 1 | `bug-4172` |
+| `fixes pak textures/hud/coop_hd_ramp.tga (docs/tools/gen_hd_ramp.py)` | 1 | `bug-4035` |
+| `fixes sources: coop_johnson/johnson.skd` | 1 | `bug-4267` |
+| `fixes tiks colt45*` | 1 | `bug-4132` |
+| `fl_levels.json clip_keep` | 1 | `bug-10888` |
 | `FLAGGED not applied)` | 1 | `bug-647` |
+| `flash` | 1 | `bug-3106` |
+| `flcliff.py` | 1 | `bug-10924` |
+| `flconvert.py` | 5 | `bug-10847` `bug-10848` `bug-10865` `bug-10888` `bug-10923` |
+| `flconvert.py (branch ea-tools)` | 1 | `bug-10668` |
+| `flconvert.py riverbed` | 1 | `bug-10893` |
+| `flpack.py` | 2 | `bug-10645` `bug-10850` |
+| `flpack.py (both copies)` | 1 | `bug-10803` |
+| `flpack.py/flscene.py` | 1 | `bug-10849` |
+| `flscene.py` | 1 | `bug-10892` |
+| `fogStep drift re-assert + per-look fog-start floor` | 1 | `bug-2973` |
+| `footprint phase flip)` | 1 | `bug-2912` |
+| `fp_box)` | 1 | `bug-10477` |
+| `fp_site_ent` | 1 | `bug-10477` |
+| `fps_anims_smg.txt (packed into zzzzzz_co-op_hzm_mod_assets_tex.pk3)` | 1 | `bug-3463` |
 | `friendly.scr` | 1 | `bug-1051` |
+| `from rel-1.10.38-engine)` | 1 | `bug-10286` |
+| `frontline/flconvert.py` | 1 | `bug-10863` |
 | `frost` | 1 | `bug-1158` |
+| `g1 menuclose) and gfxtests.py g1` | 1 | `bug-3031` |
+| `G43 Irons coop_g43_irons.skd + 12 tiks` | 1 | `bug-4131` |
 | `G:/GOG/.../maintt/` | 1 | `bug-1893` |
 | `G:/GOG/.../maintt/zzzzzzzz_hd_fxfix.pk3 -> models/fx/bh_*.tik` | 1 | `bug-1892` |
+| `G:/GOG/.../maintt/zzzzzzzz_hd_seamfix.pk3 (448 MB)` | 1 | `bug-2952` |
+| `G:/GOG/Medal of Honor - Allied Assault War Chest/maintt/whatsnew_pending.cfg (dev machine basepath)` | 1 | `bug-3057` |
+| `G:/mohaa-adsanim3/game.dll` | 1 | `bug-3861` |
+| `G:/mohaa-adsanim4/game.dll` | 1 | `bug-3846` |
+| `G:/mohaa-adsanim4/runs` | 1 | `bug-3758` |
+| `G:/mohaa-ea home setup` | 1 | `bug-10681` |
+| `G:/mohaa-gfxtest (private client)` | 1 | `bug-3062` |
+| `G:/mohaa-gfxtest/user_test/gfx_1.cfg` | 1 | `bug-2995` |
+| `G:/mohaa-gfxtest/user_test/PLAY_gfx_test.bat (and the agent harness` | 1 | `bug-2996` |
 | `G:/mohaa-gl2/home/maintt/autoexec.cfg (deployed copy` | 1 | `bug-2145` |
 | `G:/mohaa-gl2/home/maintt/configs/omconfig.cfg` | 5 | `bug-1138` `bug-1153` `bug-1178` `bug-1864` `bug-1869` |
 | `G:/mohaa-gl2/home/maintt/configs/omconfig.cfg (+home/main)` | 1 | `bug-1134` |
@@ -343,67 +1482,203 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `G:/mohaa-gl2/home/maintt/qconsole.log` | 1 | `bug-2413` |
 | `G:/mohaa-gl2/maintt/y_hzm_maptour.pk3` | 1 | `bug-1428` |
 | `G:/mohaa-gl2/maintt/zzzzzzzz_hd_fxfix.pk3 (new)` | 1 | `bug-1190` |
+| `G:/mohaa-gl2/PLAY-GL2.bat` | 1 | `bug-3124` |
+| `G:/mohaa-gl2/PLAY-GL2.bat (user launcher)` | 1 | `bug-3041` |
+| `G:/mohaa-gl2/renderer_opengl2flip.dll / user omconfig.cfg` | 1 | `bug-3058` |
 | `G:/mohaa-gl2/SWEEP-4P.ps1` | 2 | `bug-1441` `bug-1459` |
 | `G:/mohaa-gl2/SWEEP-4P.ps1 (harness)` | 1 | `bug-1492` |
+| `G:/mohaa-hudfeed/pristine/omconfig.cfg (private test install)` | 1 | `bug-3507` |
+| `G:/mohaa-hudfeed2/pristine/coop_defaults.cfg (test harness only)` | 1 | `bug-3541` |
+| `G:/mohaa-test/home/maintt (test paks)` | 1 | `bug-4398` |
+| `G:/mohaa-vcltest/home/maintt/vclboot.cfg (test harness` | 1 | `bug-3449` |
+| `g_client.cpp` | 1 | `bug-3520` |
+| `g_main.cpp` | 1 | `bug-10568` |
 | `g_main.cpp (probe tick)` | 1 | `bug-1142` |
 | `g_main.cpp:427` | 1 | `bug-2617` |
+| `g_phys.cpp` | 1 | `bug-4211` |
+| `g_spawnMoveFix)` | 1 | `bug-2928` |
 | `g_utils.cpp + player.cpp + actor.cpp + maps/e1l2.scr` | 1 | `bug-949` |
+| `gags/t1l3_bridge.scr` | 1 | `bug-10616` |
 | `gags/t2l3_friendly.scr (retail mainta/pak1.pk3` | 1 | `bug-1493` |
+| `gags/t2l4_captain.scr` | 1 | `bug-10616` |
+| `gags/t2l4_start.scr` | 2 | `bug-10576` `bug-10584` |
 | `gags/t3l1_*` | 1 | `bug-1054` |
 | `game.dll build state (no source defect found)` | 1 | `bug-961` |
 | `gamecvars.cpp)` | 1 | `bug-2285` |
+| `gen_attic68_props.py` | 1 | `bug-10841` |
+| `gen_clip_art.py)` | 1 | `bug-3397` |
+| `gen_gram_art.py)` | 1 | `bug-10442` |
+| `gen_menu_graphics.py` | 1 | `bug-3539` |
+| `gen_shadows73.py` | 1 | `bug-10841` |
+| `gen_srboard.py)` | 1 | `bug-10456` |
+| `GENERATED - never hand-edit)` | 1 | `bug-3087` |
 | `generator at scratchpad/mkfxfix.py` | 1 | `bug-1190` |
-| `generic_fp.glsl` | 1 | `bug-2594` |
+| `generic_fp.glsl` | 2 | `bug-2594` `bug-3148` |
 | `generic_vp.glsl` | 1 | `bug-gl2-texgen` |
+| `GetElevatorLink` | 1 | `bug-2912` |
+| `GetTraversingLink)` | 1 | `bug-2913` |
+| `gfx/ctl.py` | 1 | `bug-3154` |
 | `gfx/fonts/*@3x.tga` | 1 | `bug-1129b` |
+| `gfx/p2a_gate.py` | 1 | `bug-3154` |
+| `gfx/smoke.py` | 1 | `bug-3154` |
+| `gfx/smoke.py grab)` | 1 | `bug-3114` |
+| `gfx_5.cfg (P0/P1 user test package` | 1 | `bug-2995` |
+| `gitignored) x3` | 1 | `bug-3071` |
+| `giveWeaponLoadout)` | 1 | `bug-3305` |
 | `global/ai.scr` | 2 | `bug-1471` `bug-1480` |
-| `global/alarm_system.scr` | 2 | `bug-1641` `bug-1642` |
+| `global/alarm_system.scr` | 3 | `bug-1641` `bug-1642` `bug-3520` |
 | `global/alarmer.scr` | 1 | `bug-1469` |
+| `global/alarmer.scr (spawnerthink hard-skill canteen)` | 1 | `bug-3187` |
 | `global/alarmlight.scr` | 1 | `bug-1461` |
+| `global/ambience.scr` | 1 | `bug-2725` |
+| `global/autotruck.scr` | 1 | `bug-10584` |
 | `global/EntityCleanup.scr` | 1 | `bug-1052` |
+| `global/fadein.scr (new override)` | 1 | `bug-3234` |
 | `global/friendly.scr` | 1 | `bug-1052` |
-| `global/landmine_sp.scr` | 1 | `bug-899` |
-| `global/missioncomplete.scr` | 1 | `bug-1463` |
+| `global/landmine_sp.scr` | 2 | `bug-899` `bug-3520` |
+| `global/loadout.scr` | 1 | `bug-3520` |
+| `global/localization_coop.txt` | 1 | `bug-10448` |
+| `global/missioncomplete.scr` | 4 | `bug-1463` `bug-4050` `bug-10594` `bug-10616` |
 | `global/moveto.scr` | 2 | `bug-1051` `bug-1052` |
 | `global/objectives.scr` | 1 | `bug-450` |
+| `global/pain.scr` | 1 | `bug-blastreact-1` |
+| `global/parade.scr` | 1 | `bug-10584` |
 | `global/shutter.scr(new override)` | 1 | `bug-1052` |
-| `global/turret.scr` | 3 | `bug-1053` `bug-1472` `bug-1481` |
+| `global/turret.scr` | 5 | `bug-1053` `bug-1472` `bug-1481` `bug-3952` `bug-10595` |
 | `global/vehicle_warning.scr (called from gags/t3l1_enemyspawn.scr:544` | 1 | `bug-1473` |
 | `global/vehicles_thinkers.scr` | 2 | `bug-1052` `bug-1053` |
 | `global/vehicles_thinkers.scr:947` | 1 | `bug-t2l2-flak` |
 | `global/vehicles_thinkers\|bomber\|friendly\|autotruck.scr` | 1 | `bug-1054` |
-| `global/weather.scr` | 2 | `bug-1052` `bug-1053` |
+| `global/weather.scr` | 4 | `bug-1052` `bug-1053` `bug-2968` `bug-3548` |
+| `global/weather.scr flash/unflash` | 1 | `bug-3108` |
+| `GLOW_TIK_SCALE)` | 1 | `bug-2999` |
 | `glsl/bloom_blur_fp.glsl` | 1 | `bug-1149` |
+| `glsl/generic_fp.glsl + lightall_fp.glsl (HzmFogDist)` | 1 | `bug-3454` |
 | `glsl/generic_fp.glsl)` | 1 | `bug-gl2-nextbundle2` |
-| `glsl/generic_vp.glsl` | 2 | `bug-gl2-nextbundle2` `bug-1249` |
+| `glsl/generic_vp.glsl` | 3 | `bug-gl2-nextbundle2` `bug-1249` `bug-2946` |
+| `glsl/generic_vp.glsl (comment)` | 1 | `bug-2962` |
 | `glsl/globalfog_fp.glsl` | 1 | `bug-1132` |
+| `glsl/hzmlens_fp.glsl` | 2 | `bug-10287` `bug-10302` |
+| `glsl/hzmlt_sky_vp.glsl + hzmlt_sky_fp.glsl (new)` | 1 | `bug-3148` |
+| `glsl/hzmwater_fp.glsl` | 3 | `bug-3407` `bug-4273` `bug-4290` |
+| `glsl/lightall_fp.glsl` | 4 | `bug-3222` `bug-3177` `bug-3406` `bug-3409` |
+| `glsl/lightall_fp.glsl (staged)` | 1 | `bug-3213` |
+| `glsl/lightall_vp.glsl` | 1 | `bug-2969` |
+| `glsl/pshadow_fp.glsl (HzmSpotShadowMask)` | 1 | `bug-2980` |
+| `glsl/ssao_fp.glsl` | 1 | `bug-3084` |
 | `glsl/ssao_fp.glsl}` | 1 | `bug-1177` |
+| `glsl/stringify.cmake` | 1 | `bug-10308` |
+| `glsl/tonemap_hzm_fp.glsl` | 1 | `bug-3222` |
+| `glsl/tonemap_hzm_fp.glsl (storm darkness)` | 1 | `bug-3223` |
+| `glsl/vclouds_trace_fp.glsl (gfx2-next a8cc77f2` | 1 | `bug-3517` |
+| `GLSL_LoadGPUShaderText)` | 1 | `bug-3179` |
+| `glue)` | 1 | `bug-2969` |
+| `guards in coop_suppress_react` | 1 | `bug-2976` |
+| `gunskc.py` | 1 | `bug-3532` |
+| `H:/hzm_work est1025_eng build dir` | 1 | `bug-4419` |
+| `H:/hzm_work/ea_tools_dl/vgmstream_mpeg (local build)` | 1 | `bug-10678` |
+| `H:/hzm_work/eng-attic68 code/client/cl_main.cpp + cl_cin.cpp` | 1 | `bug-10760` |
+| `H:/hzm_work/eng-attic68/build68.sh` | 1 | `bug-10754` |
+| `H:/hzm_work/eng-benchfix/.cmake (test build only)` | 1 | `bug-10836` |
+| `H:/hzm_work/eng-hf57/.cmake (fresh configure)` | 1 | `bug-10367` |
+| `H:/hzm_work/eng-mpui (rel-1.10.38-engine HEAD 7f97f22e)` | 1 | `bug-10443` |
+| `H:/hzm_work/eng-sceneanim (build)` | 1 | `bug-10539` |
+| `H:/hzm_work/ffline_eng)` | 1 | `bug-10564` |
+| `H:/hzm_work/frontline_study/scratch (gpurun.sh / batch11.sh)` | 1 | `bug-10660` |
+| `H:/hzm_work/frontline_tools/ffmpeg_src/build.sh (tracked copy docs/tools/frontline/ffmpeg_build.sh)` | 1 | `bug-10743` |
+| `H:/hzm_work/rel1037/split_tex.py` | 1 | `bug-4453` |
+| `H:/hzm_work/rel1037/split_tex.py (via build.ps1 HZM_SPLIT_TEX=1)` | 1 | `bug-10472` |
+| `H:/hzm_work/sceneanim_client (test client setup` | 1 | `bug-10466` |
+| `H:/hzm_work/test1025_eng (build)` | 1 | `bug-4267` |
+| `Handle)` | 1 | `bug-2955` |
 | `handle-23}@3x.tga` | 1 | `bug-1185` |
+| `harness (run_guns.py) + coop_mod/finale_m2l3.scr fin_guntest` | 1 | `bug-10350` |
+| `harness: docs/proposals/ads_twohand_2026-10-11/tools/run_chk.py via i134_h.py` | 1 | `bug-4151` |
+| `headbeam.tga` | 1 | `bug-2946` |
+| `header)` | 1 | `bug-3187` |
+| `HealThink gate` | 1 | `bug-3024` |
+| `heat decay)` | 1 | `bug-4125` |
 | `heathaze_fp.glsl` | 1 | `bug-1151` |
+| `heavy lane FG 42 meshes + tiks` | 1 | `bug-4131` |
+| `heavy/tools/stage_sgsight.py` | 1 | `bug-3697` |
 | `helper RB_IsCharacterSkelEntity)` | 1 | `bug-gl2-invisible-live-char-depthprepass` |
+| `hintnav/verify_nav.py` | 1 | `bug-3154` |
+| `histandard` | 1 | `bug-3467` |
+| `hlS2)` | 1 | `bug-2962` |
+| `hlW2)` | 1 | `bug-2977` |
+| `holdout.scr` | 3 | `bug-2906` `bug-3520` `bug-3952` |
+| `holdout.scr)` | 1 | `bug-3195` |
+| `hooks in UpdateBotStates` | 1 | `bug-3000` |
+| `hs_pistol00.skc)` | 1 | `bug-3498` |
+| `hug camera swivel)` | 1 | `bug-10546` |
 | `hzm autoexec.cfg` | 1 | `bug-919` |
 | `hzm autoexec.cfg (g_droppeditemlife)` | 1 | `bug-926` |
+| `hzm-frontline/mod/maps/coop_fl_1_1.scr` | 4 | `bug-10675` `bug-10678` `bug-10683` `bug-10684` |
+| `hzm-mod-alarmsnipers/coop_mod/alarmsnipers.scr + docs/tools/gen_sniper_spots.py` | 1 | `bug-4030` |
+| `hzm-mod-alarmveh/coop_mod/alarmveh.scr (av_crate)` | 1 | `bug-4078` |
+| `hzm-mod-alarmveh/coop_mod/alarmveh.scr (av_guard)` | 1 | `bug-4079` |
+| `hzm-mod-alarmveh/coop_mod/m3l3_nebel.scr` | 1 | `bug-4129` |
+| `hzm-mod-cover models/player/base/anims_shared.txt` | 2 | `bug-10391` `bug-10431` |
+| `hzm-mod-finair/coop_mod/aircraft.scr` | 1 | `bug-10424` |
+| `hzm-mod-finair/coop_mod/finale_m2l3_air.scr` | 6 | `bug-10420` `bug-10421` `bug-10422` `bug-10425` `bug-10432` `bug-10433` |
+| `hzm-mod-hotfix13661/coop_mod/coop_counter.scr` | 1 | `bug-10313` |
+| `hzm-mod-loadhold/ui/loadclips.txt` | 1 | `bug-4174` |
+| `hzm-mod-lobfix autoexec.cfg coop_mod/lobbyui.scr player.scr scripts/coop_skins.shader` | 1 | `bug-4172` |
+| `hzm-mod-smoke: coop_mod/officer.scr (coop_elite_smoke_barrage` | 1 | `bug-3975` |
+| `hzm-mod-smoke: coop_mod/smokescreen.scr (ss_hold1)` | 1 | `bug-3976` |
 | `hzm-mohaa-coop-mod (39 sites across 11 files)` | 1 | `bug-1374` |
+| `hzm-mohaa-coop-mod (branch lobbyall-next): coop_mod/main.scr` | 1 | `bug-4050` |
+| `hzm-mohaa-coop-mod (git index` | 1 | `bug-3540` |
+| `hzm-mohaa-coop-mod (textures/` | 1 | `bug-3901` |
+| `hzm-mohaa-coop-mod (working tree line endings)` | 1 | `bug-4164` |
+| `hzm-mohaa-coop-mod (working tree)` | 1 | `bug-10451` |
+| `hzm-mohaa-coop-mod anims_shared.txt` | 1 | `bug-3388` |
+| `hzm-mohaa-coop-mod autoexec.cfg + coop_mod/cfg/clip_f10_go.cfg` | 1 | `bug-10540` |
+| `hzm-mohaa-coop-mod coop_mod/alarmsnipers.scr` | 1 | `bug-4166` |
+| `hzm-mohaa-coop-mod coop_mod/mp.scr (mp_tickPlayer team-flip edge)` | 1 | `bug-10908` |
+| `hzm-mohaa-coop-mod coop_mod/mp_armory.scr (deploy)` | 1 | `bug-10907` |
+| `hzm-mohaa-coop-mod coop_mod/mp_ops.scr` | 1 | `bug-10826` |
+| `hzm-mohaa-coop-mod coop_mod/mp_ops.scr (obj_nodes)` | 1 | `bug-10910` |
+| `hzm-mohaa-coop-mod coop_mod/mp_ops.scr (tdm_watch)` | 1 | `bug-10909` |
+| `hzm-mohaa-coop-mod coop_reload/c96_reload.skc` | 1 | `bug-3390` |
 | `hzm-mohaa-coop-mod HD skybox pack (zzzzzz_hd_skybox.pk3` | 1 | `bug-2583` |
+| `hzm-mohaa-coop-mod hzm-mod-flak (airstrike-flak-next): coop_mod/aircraft.scr` | 1 | `bug-4123` |
+| `hzm-mohaa-coop-mod models/fx/coop_artery.tik + assets + coop_defaults.cfg (coop-wip 01e9f201)` | 1 | `bug-3524` |
+| `hzm-mohaa-coop-mod scripts/hzm_engrave.shader (engrave_wood` | 1 | `bug-10837` |
+| `hzm-mohaa-coop-mod textsweep-next` | 1 | `bug-4097` |
+| `hzm-mohaa-coop-mod textures/menu main_a.tga` | 1 | `bug-3205` |
+| `hzm-mohaa-coop-mod textures/mohmenu/hzm_room` | 1 | `bug-4165` |
+| `hzm-mohaa-coop-mod/.git/index.lock` | 2 | `bug-3392` `bug-3544` |
+| `hzm-mohaa-coop-mod/_callvote/callvote.cfg` | 1 | `bug-10586` |
 | `hzm-mohaa-coop-mod/_research/composure_and_ads_plan.md` | 1 | `bug-2089` |
 | `hzm-mohaa-coop-mod/_research/limb_dismemberment_plan.md` | 1 | `bug-862` |
-| `hzm-mohaa-coop-mod/anim/attack.scr` | 3 | `bug-1922` `bug-1954` `bug-2240` |
+| `hzm-mohaa-coop-mod/_research/mp_coexistence_plan.md` | 1 | `bug-3071` |
+| `hzm-mohaa-coop-mod/_research/weapon_weight_plan.md` | 1 | `bug-3297` |
+| `hzm-mohaa-coop-mod/anim/attack.scr` | 4 | `bug-1922` `bug-1954` `bug-2240` `bug-3492` |
 | `hzm-mohaa-coop-mod/anim/attack.scr:1246-1254` | 1 | `bug-2071` |
 | `hzm-mohaa-coop-mod/anim/cornerleft.scr` | 1 | `bug-1921` |
 | `hzm-mohaa-coop-mod/anim/disguise_accept.scr` | 1 | `bug-1646` |
-| `hzm-mohaa-coop-mod/autoexec.cfg` | 27 | `bug-166` `bug-postfx-intensity-clobbered` `bug-002` `bug-006` `bug-008` `bug-012` `bug-013` `bug-017` `bug-018` `bug-047` `bug-258` `bug-849` `bug-846` `bug-861` `bug-1063` `bug-1231` `bug-1550` `bug-1698` `bug-1884` `bug-1961` `bug-2151` `bug-2172` `bug-2218` `bug-2238` `bug-2388` `bug-2446` `bug-2492` |
+| `hzm-mohaa-coop-mod/anim/reload.scr` | 2 | `bug-3431` `bug-eap-ppshreload` |
+| `hzm-mohaa-coop-mod/autoexec.cfg` | 35 | `bug-166` `bug-postfx-intensity-clobbered` `bug-002` `bug-006` `bug-008` `bug-012` `bug-013` `bug-017` `bug-018` `bug-047` `bug-258` `bug-849` `bug-846` `bug-861` `bug-1063` `bug-1231` `bug-1550` `bug-1698` `bug-1884` `bug-1961` `bug-2151` `bug-2172` `bug-2218` `bug-2238` `bug-2388` `bug-2446` `bug-2492` `bug-2556` `bug-3077` `bug-3193` `bug-3299` `bug-3372` `bug-3483` `bug-4187-fix` `bug-4187` |
 | `hzm-mohaa-coop-mod/autoexec.cfg (@436 cvars)` | 1 | `bug-866` |
+| `hzm-mohaa-coop-mod/autoexec.cfg (bind F9/F10/F11) + coop_mod/cfg/clip_*.cfg` | 1 | `bug-3475` |
 | `hzm-mohaa-coop-mod/autoexec.cfg (coop_headshotFx* setas)` | 1 | `bug-1142` |
+| `hzm-mohaa-coop-mod/autoexec.cfg (coop_netFix one-shot)` | 1 | `bug-2909` |
 | `hzm-mohaa-coop-mod/autoexec.cfg (coop_unsponge default)` | 1 | `bug-1212` |
 | `hzm-mohaa-coop-mod/autoexec.cfg (decap cvars)` | 1 | `bug-892` |
+| `hzm-mohaa-coop-mod/autoexec.cfg (RAGDOLL / RELOAD-FEEL TEST HOTKEYS block)` | 1 | `bug-3190` |
 | `hzm-mohaa-coop-mod/autoexec.cfg + coop_defaults.cfg` | 2 | `bug-2018` `bug-2303` |
 | `hzm-mohaa-coop-mod/autoexec.cfg + coop_defaults.cfg (new) + openmohaa-hzm/code/qcommon/common.c` | 1 | `bug-710` |
-| `hzm-mohaa-coop-mod/coop_defaults.cfg` | 8 | `bug-1268` `bug-1629` `bug-1699` `bug-1975` `bug-1997` `bug-2017` `bug-2446` `bug-2721` |
+| `hzm-mohaa-coop-mod/autoexec.cfg:1370` | 1 | `bug-3108` |
+| `hzm-mohaa-coop-mod/cmpatch/m4l2_mp.txt` | 2 | `bug-2845` `bug-2853` |
+| `hzm-mohaa-coop-mod/coop_defaults.cfg` | 12 | `bug-1268` `bug-1629` `bug-1699` `bug-1975` `bug-1997` `bug-2017` `bug-2446` `bug-2721` `bug-2909` `bug-3077` `bug-3899` `bug-4447` |
+| `hzm-mohaa-coop-mod/coop_defaults.cfg (alias coop_bindFix1 after coop_gfxFix1)` | 1 | `bug-3190` |
 | `hzm-mohaa-coop-mod/coop_defaults.cfg -> autoexec.cfg` | 1 | `bug-2093` |
+| `hzm-mohaa-coop-mod/coop_defaults.cfg:67 (r_ext_compressed_textures 1)` | 1 | `bug-3111` |
 | `hzm-mohaa-coop-mod/coop_mod/admin.scr` | 2 | `bug-2678` `bug-2709` |
 | `hzm-mohaa-coop-mod/coop_mod/ads.scr` | 2 | `bug-073` `bug-089` |
-| `hzm-mohaa-coop-mod/coop_mod/aibehav.scr` | 1 | `bug-1106` |
-| `hzm-mohaa-coop-mod/coop_mod/aihandler.scr` | 23 | `bug-822` `bug-891` `bug-1199` `bug-1201` `bug-1256` `bug-1274` `bug-1514` `bug-1639` `bug-1647` `bug-1686` `bug-1700` `bug-1702` `bug-1704` `bug-1733` `bug-1794` `bug-1868` `bug-1944` `bug-1949` `bug-1957` `bug-2038` `bug-2039` `bug-2174` `bug-2237` |
+| `hzm-mohaa-coop-mod/coop_mod/aibehav.scr` | 2 | `bug-1106` `bug-2967` |
+| `hzm-mohaa-coop-mod/coop_mod/aihandler.scr` | 24 | `bug-822` `bug-891` `bug-1199` `bug-1201` `bug-1256` `bug-1274` `bug-1514` `bug-1639` `bug-1647` `bug-1686` `bug-1700` `bug-1702` `bug-1704` `bug-1733` `bug-1794` `bug-1868` `bug-1944` `bug-1949` `bug-1957` `bug-2038` `bug-2039` `bug-2174` `bug-2237` `bug-3077` |
 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr (+ maps/m1l1.scr` | 1 | `bug-2032` |
 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr (actorHandler` | 1 | `bug-1810` |
 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr (actorHandler)` | 1 | `bug-2100` |
@@ -412,169 +1687,271 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr (coop_spawnReplica)` | 1 | `bug-1618` |
 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr (coop_trooper_canteen)` | 1 | `bug-1175` |
 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr (coop_variantRoll) + maps/m1l1.scr` | 1 | `bug-2035` |
+| `hzm-mohaa-coop-mod/coop_mod/aihandler.scr (new coop_actorArm + coop_variantRoll + coop_spawnReplica)` | 1 | `bug-3306` |
 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr + aimaneuver.scr + officer.scr` | 1 | `bug-2037` |
 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr coop_hitReact` | 1 | `bug-1976` |
-| `hzm-mohaa-coop-mod/coop_mod/aimaneuver.scr` | 3 | `bug-1812` `bug-1814` `bug-2180` |
+| `hzm-mohaa-coop-mod/coop_mod/aimaneuver.scr` | 4 | `bug-1812` `bug-1814` `bug-2180` `bug-3200` |
+| `hzm-mohaa-coop-mod/coop_mod/aircraft.scr` | 1 | `bug-3383` |
+| `hzm-mohaa-coop-mod/coop_mod/aircraft.scr (flakBursts)` | 1 | `bug-3476` |
 | `hzm-mohaa-coop-mod/coop_mod/aisquad.scr` | 2 | `bug-1105` `bug-1815` |
-| `hzm-mohaa-coop-mod/coop_mod/aivoice.scr` | 3 | `bug-1276` `bug-1288` `bug-2324` |
+| `hzm-mohaa-coop-mod/coop_mod/aivoice.scr` | 4 | `bug-1276` `bug-1288` `bug-2324` `bug-3401` |
+| `hzm-mohaa-coop-mod/coop_mod/alarmsnipers.scr` | 2 | `bug-10508` `bug-10512` |
+| `hzm-mohaa-coop-mod/coop_mod/alarmveh.scr` | 2 | `bug-4128` `bug-10419` |
 | `hzm-mohaa-coop-mod/coop_mod/ambience.scr (new barrage)` | 1 | `bug-1586` |
+| `hzm-mohaa-coop-mod/coop_mod/atsupply.scr` | 2 | `bug-3307` `bug-3308` |
+| `hzm-mohaa-coop-mod/coop_mod/atsupply.scr (map m5l1b)` | 1 | `bug-3465` |
 | `hzm-mohaa-coop-mod/coop_mod/blueprint.scr` | 1 | `bug-1567` |
 | `hzm-mohaa-coop-mod/coop_mod/buildmode.scr` | 4 | `bug-829` `bug-1261` `bug-1283` `bug-1554` |
 | `hzm-mohaa-coop-mod/coop_mod/buildmode.scr (basetext session marker)` | 1 | `bug-1602` |
 | `hzm-mohaa-coop-mod/coop_mod/buildmode_actors.scr` | 1 | `bug-417` |
 | `hzm-mohaa-coop-mod/coop_mod/buildmode_catalog.scr` | 3 | `bug-417` `bug-418` `bug-840` |
-| `hzm-mohaa-coop-mod/coop_mod/bunker.scr` | 2 | `bug-1572` `bug-1573` |
+| `hzm-mohaa-coop-mod/coop_mod/bunker.scr` | 3 | `bug-1572` `bug-1573` `bug-10276` |
 | `hzm-mohaa-coop-mod/coop_mod/bunker.scr (flak_emplacement carriage + new aagun_emplacement / flak88_manned)` | 1 | `bug-1581` |
+| `hzm-mohaa-coop-mod/coop_mod/bunker.scr (mg_nest_manned)` | 1 | `bug-2934` |
+| `hzm-mohaa-coop-mod/coop_mod/bunker.scr (mg_nest_manned) + coop_mod/reinf_mg.scr (new rmg_nest_* labels)` | 1 | `bug-mgspawn1025` |
 | `hzm-mohaa-coop-mod/coop_mod/bust.scr` | 20 | `bug-1674` `bug-1676` `bug-1682` `bug-1684` `bug-1687` `bug-1691` `bug-1695` `bug-1696` `bug-1722` `bug-1726` `bug-1727` `bug-1728` `bug-1731` `bug-1734` `bug-1736` `bug-1737` `bug-1738` `bug-1739` `bug-1743` `bug-1792` |
 | `hzm-mohaa-coop-mod/coop_mod/bust.scr (coop_bustWitnessed)` | 1 | `bug-1810` |
 | `hzm-mohaa-coop-mod/coop_mod/cfg/buildmode.cfg` | 2 | `bug-333` `bug-413` |
+| `hzm-mohaa-coop-mod/coop_mod/cfg/coop_bindfix1.cfg (new)` | 1 | `bug-3190` |
 | `hzm-mohaa-coop-mod/coop_mod/cfg/coop_fxdefaults.cfg + coop_gfxdefaults.cfg (NEW)` | 1 | `bug-2615` |
+| `hzm-mohaa-coop-mod/coop_mod/cfg/coop_hudfix1.cfg (new) + coop_defaults.cfg + autoexec.cfg + installer/omconfi…` | 1 | `bug-3209` |
 | `hzm-mohaa-coop-mod/coop_mod/cfg/fogmode.cfg` | 1 | `bug-1262` |
-| `hzm-mohaa-coop-mod/coop_mod/cfg/lobbytest.cfg` | 1 | `bug-551` |
+| `hzm-mohaa-coop-mod/coop_mod/cfg/hltest.cfg` | 2 | `bug-2969` `bug-2982` |
+| `hzm-mohaa-coop-mod/coop_mod/cfg/hltest.cfg (hlS1` | 1 | `bug-2962` |
+| `hzm-mohaa-coop-mod/coop_mod/cfg/hltest.cfg (Test W = hlW` | 1 | `bug-2977` |
+| `hzm-mohaa-coop-mod/coop_mod/cfg/lobbytest.cfg` | 2 | `bug-551` `bug-2729` |
 | `hzm-mohaa-coop-mod/coop_mod/cfg/mapgrade.cfg` | 1 | `bug-2595` |
 | `hzm-mohaa-coop-mod/coop_mod/cfg/maptest_*.cfg` | 1 | `bug-166` |
+| `hzm-mohaa-coop-mod/coop_mod/cfg/rag_hard.cfg` | 1 | `bug-3134` |
+| `hzm-mohaa-coop-mod/coop_mod/cfg/rag_off.cfg` | 1 | `bug-3136` |
+| `hzm-mohaa-coop-mod/coop_mod/cfg/skytest.cfg (staged pak + manifest: session scratchpad skyhd2/` | 1 | `bug-3027` |
 | `hzm-mohaa-coop-mod/coop_mod/cfg/voprobe.cfg` | 1 | `bug-2400` |
-| `hzm-mohaa-coop-mod/coop_mod/challenges.scr` | 32 | `bug-493` `bug-462` `bug-628` `bug-681` `bug-848` `bug-748` `bug-751` `bug-807` `bug-808` `bug-1351` `bug-1362` `bug-1363` `bug-1364` `bug-1371` `bug-1503` `bug-1508` `bug-1509` `bug-1512` `bug-1514` `bug-1521` `bug-1522` `bug-1523` `bug-1536` `bug-1537` `bug-1543` `bug-1598` `bug-1670` `bug-1773` `bug-1895` `bug-2079` `bug-2389` `bug-2544` |
+| `hzm-mohaa-coop-mod/coop_mod/challenges.scr` | 33 | `bug-493` `bug-462` `bug-628` `bug-681` `bug-848` `bug-748` `bug-751` `bug-807` `bug-808` `bug-1351` `bug-1362` `bug-1363` `bug-1364` `bug-1371` `bug-1503` `bug-1508` `bug-1509` `bug-1512` `bug-1514` `bug-1521` `bug-1522` `bug-1523` `bug-1536` `bug-1537` `bug-1543` `bug-1598` `bug-1670` `bug-1773` `bug-1895` `bug-2079` `bug-2389` `bug-2544` `bug-3520` |
 | `hzm-mohaa-coop-mod/coop_mod/challenges.scr (cc_objFeat` | 1 | `bug-1597` |
+| `hzm-mohaa-coop-mod/coop_mod/challenges.scr (chal_finSeed)` | 1 | `bug-10701` |
+| `hzm-mohaa-coop-mod/coop_mod/challenges.scr (chal_grant -> chal_add_unlock dedup via main.scr::containsText)` | 1 | `bug-10495` |
+| `hzm-mohaa-coop-mod/coop_mod/challenges.scr (chal_toast_pump)` | 1 | `bug-10481` |
+| `hzm-mohaa-coop-mod/coop_mod/challenges.scr (chal_toast_show` | 2 | `bug-4008` `bug-10473` |
 | `hzm-mohaa-coop-mod/coop_mod/challenges.scr (obj_* and evt_* families` | 1 | `bug-1596` |
 | `hzm-mohaa-coop-mod/coop_mod/challenges.scr + helmet.scr + ui/coop_sr.urc` | 1 | `bug-1356` |
 | `hzm-mohaa-coop-mod/coop_mod/challenges.scr + maps/m3l1a/coopified.scr` | 1 | `bug-2337` |
 | `hzm-mohaa-coop-mod/coop_mod/challenges.scr + ui/coop_sr.urc` | 1 | `bug-1346` |
+| `hzm-mohaa-coop-mod/coop_mod/challenges.scr + unlockset.scr + loadoutpick/helmet/emotes/collectible` | 1 | `bug-10567` |
+| `hzm-mohaa-coop-mod/coop_mod/chrono.scr` | 2 | `bug-10573` `bug-10575` |
 | `hzm-mohaa-coop-mod/coop_mod/collectible.scr` | 3 | `bug-1632` `bug-1658` `bug-1665` |
+| `hzm-mohaa-coop-mod/coop_mod/collectible.scr (coop_bp_collect)` | 1 | `bug-3527` |
+| `hzm-mohaa-coop-mod/coop_mod/coop_counter.scr` | 1 | `bug-10806` |
 | `hzm-mohaa-coop-mod/coop_mod/coop_placements.scr + hzm-mohaa-coop-mod/coop_mod/buildmode.scr` | 1 | `bug-865` |
 | `hzm-mohaa-coop-mod/coop_mod/coop_placements.scr + hzm-mohaa-coop-mod/maps/e1l2.scr` | 1 | `bug-896` |
 | `hzm-mohaa-coop-mod/coop_mod/coop_selftest.scr + coop_mod/main.scr` | 1 | `bug-2415` |
-| `hzm-mohaa-coop-mod/coop_mod/dbno.scr` | 11 | `bug-dbno-medkit-letgo-same-key` `bug-618` `bug-1660` `bug-1661` `bug-1668` `bug-1679` `bug-1930` `bug-2169` `bug-2175` `bug-2432` `bug-2539` |
+| `hzm-mohaa-coop-mod/coop_mod/cutscene.scr (new) + maps/m2l2b` | 1 | `bug-4094` |
+| `hzm-mohaa-coop-mod/coop_mod/daily.scr` | 6 | `bug-10515` `bug-10516` `bug-10517` `bug-10519` `bug-10569` `bug-10570` |
+| `hzm-mohaa-coop-mod/coop_mod/dbno.scr` | 13 | `bug-dbno-medkit-letgo-same-key` `bug-618` `bug-1660` `bug-1661` `bug-1668` `bug-1679` `bug-1930` `bug-2169` `bug-2175` `bug-2432` `bug-2539` `bug-3422` `bug-3423` |
+| `hzm-mohaa-coop-mod/coop_mod/dbno.scr (revive message) / localization` | 1 | `bug-3192` |
 | `hzm-mohaa-coop-mod/coop_mod/deathvox.scr` | 1 | `bug-1517` |
 | `hzm-mohaa-coop-mod/coop_mod/developer.scr` | 4 | `bug-098` `bug-1666` `bug-2184` `bug-2245` |
 | `hzm-mohaa-coop-mod/coop_mod/developer.scr (give_all_weapons) + itemhandler.scr` | 1 | `bug-484` |
+| `hzm-mohaa-coop-mod/coop_mod/duststorm.scr` | 1 | `bug-2972` |
+| `hzm-mohaa-coop-mod/coop_mod/duststorm.scr (coop_dust_defaultOn table + coop_dust_setLook` | 1 | `bug-2973` |
+| `hzm-mohaa-coop-mod/coop_mod/duststorm.scr (new)` | 1 | `bug-2963` |
+| `hzm-mohaa-coop-mod/coop_mod/duststorm.scr (whole file)` | 1 | `bug-3237` |
+| `hzm-mohaa-coop-mod/coop_mod/emotes.scr` | 1 | `bug-10486` |
+| `hzm-mohaa-coop-mod/coop_mod/enemycount.scr` | 1 | `bug-3485` |
+| `hzm-mohaa-coop-mod/coop_mod/feed.scr` | 2 | `bug-3426` `bug-3553` |
+| `hzm-mohaa-coop-mod/coop_mod/finale_m2l3.scr` | 2 | `bug-10277` `bug-10293` |
+| `hzm-mohaa-coop-mod/coop_mod/finale_m2l3.scr (fin_storage` | 1 | `bug-10478` |
+| `hzm-mohaa-coop-mod/coop_mod/finale_m2l3.scr (fin_stw)` | 1 | `bug-10474` |
+| `hzm-mohaa-coop-mod/coop_mod/finale_m2l3_data.scr` | 2 | `bug-10506` `bug-10507` |
+| `hzm-mohaa-coop-mod/coop_mod/finale_m2l3_def.scr` | 14 | `bug-4439` `bug-4440` `bug-4449` `bug-10399` `bug-10404` `bug-10405` `bug-10415` `bug-10509` `bug-10510` `bug-10511` `bug-10523` `bug-10525` `bug-10545` `bug-10566` |
+| `hzm-mohaa-coop-mod/coop_mod/finale_m2l3_prep.scr` | 1 | `bug-4441` |
+| `hzm-mohaa-coop-mod/coop_mod/finale_m2l3_prep.scr (fp_supply` | 1 | `bug-10477` |
 | `hzm-mohaa-coop-mod/coop_mod/flchatter.scr` | 5 | `bug-837` `bug-839` `bug-726` `bug-774` `bug-taunt-intro` |
 | `hzm-mohaa-coop-mod/coop_mod/flchatter.scr + models/human/animation/dialogue/*Generic_dialogue_german*.tik` | 1 | `bug-1203` |
 | `hzm-mohaa-coop-mod/coop_mod/flmusic.scr` | 1 | `bug-2271` |
 | `hzm-mohaa-coop-mod/coop_mod/fogmode.scr` | 7 | `bug-1343` `bug-1345` `bug-1349` `bug-1352` `bug-1353` `bug-1538` `bug-1542` |
 | `hzm-mohaa-coop-mod/coop_mod/gurgle.scr` | 2 | `bug-849` `bug-836` |
-| `hzm-mohaa-coop-mod/coop_mod/helmet.scr` | 7 | `bug-533` `bug-1284` `bug-1359` `bug-1526` `bug-1533` `bug-1540` `bug-1545` |
+| `hzm-mohaa-coop-mod/coop_mod/helmet.scr` | 8 | `bug-533` `bug-1284` `bug-1359` `bug-1526` `bug-1533` `bug-1540` `bug-1545` `bug-3094` |
 | `hzm-mohaa-coop-mod/coop_mod/helmet.scr (helmet_apply wear-time re-validation` | 1 | `bug-1578` |
 | `hzm-mohaa-coop-mod/coop_mod/helmet.scr (helmet_apply wear-time re-validation)` | 1 | `bug-1595` |
 | `hzm-mohaa-coop-mod/coop_mod/helmet.scr + xp.scr + challenges.scr + ui/loadout/skin/*.cfg` | 1 | `bug-1358` |
 | `hzm-mohaa-coop-mod/coop_mod/helmet.scr:407-433 (armory_helmet_set dead gate)` | 1 | `bug-1208` |
-| `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr` | 26 | `bug-627` `bug-798` `bug-897` `bug-939` `bug-1269` `bug-1604` `bug-1631` `bug-1662` `bug-1677` `bug-1683` `bug-1685` `bug-1688` `bug-1692` `bug-1693` `bug-1701` `bug-1703` `bug-1701b` `bug-1706` `bug-1723` `bug-1729` `bug-1730` `bug-1732` `bug-1735` `bug-1928` `bug-1929` `bug-2178` |
+| `hzm-mohaa-coop-mod/coop_mod/hudresend.scr (new)` | 1 | `bug-2906` |
+| `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr` | 28 | `bug-627` `bug-798` `bug-897` `bug-939` `bug-1269` `bug-1604` `bug-1631` `bug-1662` `bug-1677` `bug-1683` `bug-1685` `bug-1688` `bug-1692` `bug-1693` `bug-1701` `bug-1703` `bug-1701b` `bug-1706` `bug-1723` `bug-1729` `bug-1730` `bug-1732` `bug-1735` `bug-1928` `bug-1929` `bug-2178` `bug-3249` `bug-3813` |
 | `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr (+ dbno.scr` | 1 | `bug-1204` |
+| `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr (coop_ammoSnapshotLoop` | 1 | `bug-3305` |
 | `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr (coop_stealthStripWeapons)` | 1 | `bug-1606` |
 | `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr (LEADING HYPOTHESIS - NOT PROVEN)` | 1 | `bug-2049` |
+| `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr (managePlayerInventory` | 1 | `bug-3399` |
 | `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr (managePlayerInventory)` | 1 | `bug-1624` |
 | `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr (stealth-start branch + enableClickablePapers)` | 1 | `bug-1603` |
 | `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr (the trigger)` | 1 | `bug-2066` |
 | `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr + dbno.scr + maps/e1l2/Intro.scr` | 1 | `bug-620` |
+| `hzm-mohaa-coop-mod/coop_mod/joincard.scr` | 1 | `bug-10587` |
 | `hzm-mohaa-coop-mod/coop_mod/keyitems.scr` | 1 | `bug-1339` |
 | `hzm-mohaa-coop-mod/coop_mod/keyitems.scr + medkit.scr + loadoutpick.scr` | 1 | `bug-625` |
 | `hzm-mohaa-coop-mod/coop_mod/ladder.scr` | 3 | `bug-1835` `bug-1836` `bug-1839` |
 | `hzm-mohaa-coop-mod/coop_mod/loadout.scr` | 3 | `bug-132` `bug-133` `bug-1252` |
-| `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | 16 | `bug-666` `bug-1205` `bug-1675` `bug-1678` `bug-1918` `bug-1919` `bug-1923` `bug-1926` `bug-1931` `bug-1933` `bug-1934` `bug-1935` `bug-1936` `bug-2067` `bug-2114` `bug-2557` |
+| `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | 19 | `bug-666` `bug-1205` `bug-1675` `bug-1678` `bug-1918` `bug-1919` `bug-1923` `bug-1926` `bug-1931` `bug-1933` `bug-1934` `bug-1935` `bug-1936` `bug-2067` `bug-2114` `bug-2557` `bug-3888` `bug-3898` `bug-4046` |
+| `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr (loadout_regiveWatch` | 1 | `bug-3208` |
 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr + player.scr + itemhandler.scr` | 2 | `bug-800` `bug-802` |
-| `hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr` | 2 | `bug-1902` `bug-1906` |
+| `hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr` | 3 | `bug-1902` `bug-1906` `bug-10556` |
 | `hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr` | 1 | `bug-1916` |
 | `hzm-mohaa-coop-mod/coop_mod/lobby.scr` | 18 | `bug-348` `bug-349` `bug-350` `bug-355` `bug-356` `bug-363` `bug-366` `bug-367` `bug-368` `bug-369` `bug-370` `bug-362` `bug-364` `bug-365` `bug-378` `bug-400` `bug-401` `bug-402` |
+| `hzm-mohaa-coop-mod/coop_mod/lobbyanim.scr` | 2 | `bug-3957` `bug-3958` |
+| `hzm-mohaa-coop-mod/coop_mod/lobbyanim.scr (new` | 1 | `bug-3956` |
 | `hzm-mohaa-coop-mod/coop_mod/lobbyui.scr` | 2 | `bug-588` `bug-2622` |
-| `hzm-mohaa-coop-mod/coop_mod/main.scr` | 11 | `bug-359` `bug-358` `bug-898` `bug-871` `bug-893` `bug-940` `bug-1251` `bug-1337` `bug-1937` `bug-2207` `bug-2595` |
+| `hzm-mohaa-coop-mod/coop_mod/m3l3_nebel.scr` | 1 | `bug-4127` |
+| `hzm-mohaa-coop-mod/coop_mod/main.scr` | 12 | `bug-359` `bug-358` `bug-898` `bug-871` `bug-893` `bug-940` `bug-1251` `bug-1337` `bug-1937` `bug-2207` `bug-2595` `bug-3357` |
+| `hzm-mohaa-coop-mod/coop_mod/main.scr (coop_launcherRespawnSweep)` | 1 | `bug-3004` |
+| `hzm-mohaa-coop-mod/coop_mod/main.scr (launcher-respawn sweep` | 1 | `bug-2998` |
+| `hzm-mohaa-coop-mod/coop_mod/main.scr (new coop_primaryRifleQuiet` | 1 | `bug-3269` |
 | `hzm-mohaa-coop-mod/coop_mod/main.scr + replace.scr + player.scr + officer.scr` | 1 | `bug-2060` |
 | `hzm-mohaa-coop-mod/coop_mod/main.scr:2080-2081 (launcher-respawn sweep)` | 1 | `bug-1585` |
 | `hzm-mohaa-coop-mod/coop_mod/mapgrade.scr` | 1 | `bug-2595` |
 | `hzm-mohaa-coop-mod/coop_mod/medals.scr (new)` | 1 | `bug-1528` |
-| `hzm-mohaa-coop-mod/coop_mod/medkit.scr` | 5 | `bug-088` `bug-1263` `bug-1293` `bug-1659` `bug-1871` |
+| `hzm-mohaa-coop-mod/coop_mod/medkit.scr` | 7 | `bug-088` `bug-1263` `bug-1293` `bug-1659` `bug-1871` `bug-3339` `bug-3356` |
+| `hzm-mohaa-coop-mod/coop_mod/menumirror.scr (new)` | 1 | `bug-3234` |
 | `hzm-mohaa-coop-mod/coop_mod/missioncomplete.scr` | 2 | `bug-788` `bug-818` |
-| `hzm-mohaa-coop-mod/coop_mod/mp.scr` | 13 | `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2597` `bug-2599` `bug-2602` `bug-2605` `bug-2667` `bug-2670` `bug-2689` `bug-2706` `bug-2712` |
-| `hzm-mohaa-coop-mod/coop_mod/mp_armory.scr` | 2 | `bug-2597` `bug-2602` |
+| `hzm-mohaa-coop-mod/coop_mod/mortar.scr` | 1 | `bug-4033` |
+| `hzm-mohaa-coop-mod/coop_mod/mp.scr` | 17 | `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2597` `bug-2599` `bug-2602` `bug-2605` `bug-2667` `bug-2670` `bug-2689` `bug-2706` `bug-2712` `bug-2732` `bug-2936` `bug-3080` `bug-3198` |
+| `hzm-mohaa-coop-mod/coop_mod/mp.scr (45 -> 300 lift)` | 1 | `bug-2917` |
+| `hzm-mohaa-coop-mod/coop_mod/mp.scr (coop_mpWeather default)` | 1 | `bug-2939` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_ambience.scr` | 3 | `bug-2780` `bug-2786` `bug-2817` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_ambience_bsp.scr` | 1 | `bug-2744` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_arenafix.scr` | 1 | `bug-2983` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_armory.scr` | 11 | `bug-2597` `bug-2602` `bug-2733` `bug-2767` `bug-2768` `bug-2769` `bug-2771` `bug-2772` `bug-2784` `bug-2789` `bug-2808` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_armory.scr (deploy` | 1 | `bug-2804` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_assassination.scr` | 1 | `bug-2676` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_baseassault.scr` | 1 | `bug-2639` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_botdirector.scr` | 1 | `bug-2694` |
-| `hzm-mohaa-coop-mod/coop_mod/mp_botobj.scr` | 1 | `bug-2677` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_botobj.scr` | 2 | `bug-2677` `bug-2781` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_bots.scr (new)` | 1 | `bug-2616` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_buildabase.scr` | 2 | `bug-2635` `bug-2672` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_challenges.scr` | 1 | `bug-2648` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_cosmetics.scr` | 2 | `bug-2633` `bug-2634` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_cybersnd.scr` | 1 | `bug-2669` |
-| `hzm-mohaa-coop-mod/coop_mod/mp_dbno.scr` | 1 | `bug-2625` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_dbno.scr` | 2 | `bug-2625` `bug-2801` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_dbno.scr (mp_dbno_bleedout` | 1 | `bug-2626` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_demolition.scr` | 1 | `bug-2645` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_domination.scr` | 1 | `bug-2674` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_finish_map.scr` | 1 | `bug-2770` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_freezetag.scr` | 3 | `bug-2607` `bug-2608` `bug-2644` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_gungame.scr` | 1 | `bug-2599` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_gungame.scr (mode_onDeath seam)` | 1 | `bug-2601` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_gungame_tiers.scr` | 1 | `bug-2599` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_hardcore.scr (new)` | 1 | `bug-2619` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_koth.scr` | 1 | `bug-2605` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_maptitles.scr` | 1 | `bug-2851` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_medkits.scr` | 1 | `bug-2642` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_oneshot.scr` | 1 | `bug-2673` |
-| `hzm-mohaa-coop-mod/coop_mod/mp_progression.scr` | 1 | `bug-2632` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_progression.scr` | 4 | `bug-2632` `bug-10521` `bug-10912` `bug-10913` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_prophunt.scr` | 1 | `bug-2641` |
-| `hzm-mohaa-coop-mod/coop_mod/mp_push.scr` | 8 | `bug-2611` `bug-2684` `bug-2686` `bug-2698` `bug-2703` `bug-2704` `bug-2707` `bug-2711` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_push.scr` | 18 | `bug-2611` `bug-2684` `bug-2686` `bug-2698` `bug-2703` `bug-2704` `bug-2707` `bug-2711` `bug-2745` `bug-2746` `bug-2747` `bug-2766` `bug-2832` `bug-2843` `bug-2854` `bug-2855` `bug-2895` `bug-3079` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_push.scr (OPEN)` | 1 | `bug-2858` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_push.scr (target maps)` | 1 | `bug-2612` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_push.scr + docs/tools/gen_push_gates.py` | 1 | `bug-2859` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_push.scr + navlinks/m4l2_mp.txt` | 2 | `bug-2847` `bug-2852` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_push.scr + navlinks/m4l2_mp.txt + docs/tools/gen_push_pinned.py` | 1 | `bug-2846` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_push_bsp.scr` | 3 | `bug-2739` `bug-2740` `bug-2743` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_realism.scr` | 1 | `bug-2623` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_rotate.scr` | 2 | `bug-2731` `bug-2782` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_rotate.scr (new)` | 1 | `bug-2730` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_rounds.scr` | 1 | `bug-2604` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_rounds.scr (rounds_i)` | 1 | `bug-2603` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_spawnprotect.scr` | 1 | `bug-2640` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_vehicles.scr` | 2 | `bug-2643` `bug-2646` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_weather.scr` | 2 | `bug-2708` `bug-2710` |
 | `hzm-mohaa-coop-mod/coop_mod/objective_drop.scr` | 1 | `bug-2179` |
-| `hzm-mohaa-coop-mod/coop_mod/objectives.scr` | 2 | `bug-1680` `bug-2168` |
+| `hzm-mohaa-coop-mod/coop_mod/objectives.scr` | 4 | `bug-1680` `bug-2168` `bug-2904` `bug-10544` |
+| `hzm-mohaa-coop-mod/coop_mod/objectives.scr (coop_obj_reconcile)` | 1 | `bug-3093` |
+| `hzm-mohaa-coop-mod/coop_mod/objectives.scr (coop_obj_reconcileHide) + global/objectives.scr (coop_objectivesR…` | 1 | `bug-3191` |
 | `hzm-mohaa-coop-mod/coop_mod/objectives.scr (coop_obj_register` | 1 | `bug-1589` |
+| `hzm-mohaa-coop-mod/coop_mod/objectives.scr (coop_obj_toast gate)` | 1 | `bug-2919` |
 | `hzm-mohaa-coop-mod/coop_mod/objectives.scr (coop_obj_toast_all` | 1 | `bug-1588` |
-| `hzm-mohaa-coop-mod/coop_mod/officer.scr` | 26 | `bug-officer-instant-spawn-order` `bug-070` `bug-318` `bug-789` `bug-1103` `bug-1514` `bug-1571` `bug-1648` `bug-1649` `bug-1650` `bug-1653` `bug-1720` `bug-1779` `bug-1852` `bug-1939` `bug-1955` `bug-1980` `bug-1989` `bug-2023` `bug-2047` `bug-2051` `bug-2054` `bug-2074` `bug-2076` `bug-2077` `bug-2185` |
+| `hzm-mohaa-coop-mod/coop_mod/objx.scr` | 2 | `bug-10306` `bug-10325` |
+| `hzm-mohaa-coop-mod/coop_mod/officer.scr` | 33 | `bug-officer-instant-spawn-order` `bug-070` `bug-318` `bug-789` `bug-1103` `bug-1514` `bug-1571` `bug-1648` `bug-1649` `bug-1650` `bug-1653` `bug-1720` `bug-1779` `bug-1852` `bug-1939` `bug-1955` `bug-1980` `bug-1989` `bug-2023` `bug-2047` `bug-2051` `bug-2054` `bug-2074` `bug-2076` `bug-2077` `bug-2185` `bug-3309` `bug-3381` `bug-3360` `bug-3416` `bug-3430` `bug-3572` `bug-4090` |
+| `hzm-mohaa-coop-mod/coop_mod/officer.scr (+ aihandler.scr` | 1 | `bug-3195` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr (+ coop_mod/coop_selftest_officer.scr)` | 1 | `bug-1215` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr (coop_arrival_slide)` | 1 | `bug-2065` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr (coop_officer_policy)` | 1 | `bug-1590` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr (coop_prone_shooter)` | 1 | `bug-2057` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr (coop_radio_init)` | 1 | `bug-1816` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr (coop_stuka_mg_strafe)` | 1 | `bug-1174` |
+| `hzm-mohaa-coop-mod/coop_mod/officer.scr (new coop_isMannedGunner` | 1 | `bug-2976` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr + aihandler.scr` | 1 | `bug-2045` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr + aihandler.scr + aimaneuver.scr + surrender.scr + openmohaa-hzm/code…` | 1 | `bug-2024` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr + docs/tools/audit_scene_actors.py` | 1 | `bug-2033` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr + global/disable_ai.scr` | 1 | `bug-2034` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr + mg42_hack.scr` | 1 | `bug-1971` |
+| `hzm-mohaa-coop-mod/coop_mod/officer.scr + surrender.scr + aihandler.scr` | 4 | `bug-4014` `bug-4015` `bug-4016` `bug-4017` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr:4271 (coop_radio_bomb_enable)` | 1 | `bug-1583` |
 | `hzm-mohaa-coop-mod/coop_mod/officer_positions.scr` | 2 | `bug-895` `bug-1853` |
 | `hzm-mohaa-coop-mod/coop_mod/painbreath.scr` | 1 | `bug-2685` |
-| `hzm-mohaa-coop-mod/coop_mod/paradrop.scr` | 4 | `bug-paradrop-medic-idle` `bug-027` `bug-1260` `bug-1848` |
-| `hzm-mohaa-coop-mod/coop_mod/player.scr` | 7 | `bug-097` `bug-360` `bug-361` `bug-1267` `bug-1360` `bug-1501` `bug-2063` |
+| `hzm-mohaa-coop-mod/coop_mod/paradrop.scr` | 8 | `bug-paradrop-medic-idle` `bug-027` `bug-1260` `bug-1848` `bug-3380` `bug-3687` `bug-3693` `bug-3694` |
+| `hzm-mohaa-coop-mod/coop_mod/paradrop.scr (coop_paradrop_actor descent loop)` | 1 | `bug-3478` |
+| `hzm-mohaa-coop-mod/coop_mod/parasquad.scr` | 8 | `bug-3322` `bug-3686` `bug-3688` `bug-3689` `bug-3690` `bug-3691` `bug-3692` `bug-4086` |
+| `hzm-mohaa-coop-mod/coop_mod/parasquad.scr (gunner / mgSetup / mgPackup)` | 1 | `bug-3562` |
+| `hzm-mohaa-coop-mod/coop_mod/player.scr` | 10 | `bug-097` `bug-360` `bug-361` `bug-1267` `bug-1360` `bug-1501` `bug-2063` `bug-3077` `bug-3518` `bug-3778` |
+| `hzm-mohaa-coop-mod/coop_mod/player.scr (coop_limpWarn / coop_limpWarnShow)` | 1 | `bug-3075` |
 | `hzm-mohaa-coop-mod/coop_mod/player.scr (coop_notargetWatch) + probe.scr` | 1 | `bug-2068` |
 | `hzm-mohaa-coop-mod/coop_mod/player.scr (~1589` | 1 | `bug-2609` |
 | `hzm-mohaa-coop-mod/coop_mod/player.scr + probe.scr` | 1 | `bug-2064` |
 | `hzm-mohaa-coop-mod/coop_mod/player.scr + replace.scr` | 1 | `bug-2062` |
-| `hzm-mohaa-coop-mod/coop_mod/player_legs.st` | 1 | `bug-137` |
+| `hzm-mohaa-coop-mod/coop_mod/player_legs.st` | 2 | `bug-137` `bug-3560` |
 | `hzm-mohaa-coop-mod/coop_mod/player_Legs.st` | 1 | `bug-382` |
-| `hzm-mohaa-coop-mod/coop_mod/player_Torso.st` | 7 | `bug-074` `bug-320` `bug-323` `bug-2109` `bug-2113` `bug-2157` `bug-2162` |
+| `hzm-mohaa-coop-mod/coop_mod/player_Torso.st` | 8 | `bug-074` `bug-320` `bug-323` `bug-2109` `bug-2113` `bug-2157` `bug-2162` `bug-3775` |
+| `hzm-mohaa-coop-mod/coop_mod/player_torso.st` | 3 | `bug-3363` `bug-3367` `bug-3739` |
 | `hzm-mohaa-coop-mod/coop_mod/player_Torso.st (+player_legs.st` | 1 | `bug-2120` |
-| `hzm-mohaa-coop-mod/coop_mod/probe.scr` | 6 | `bug-2041` `bug-2042` `bug-2043` `bug-2061` `bug-2083` `bug-2417` |
+| `hzm-mohaa-coop-mod/coop_mod/player_Torso.st (AIM action block + 5 aim-fire action blocks)` | 1 | `bug-2931` |
+| `hzm-mohaa-coop-mod/coop_mod/player_Torso.st (AIM state)` | 1 | `bug-3239` |
+| `hzm-mohaa-coop-mod/coop_mod/player_Torso.st (not edited)` | 1 | `bug-3772` |
+| `hzm-mohaa-coop-mod/coop_mod/player_Torso.st (RELOAD_PISTOL)` | 1 | `bug-3592` |
+| `hzm-mohaa-coop-mod/coop_mod/probe.scr` | 7 | `bug-2041` `bug-2042` `bug-2043` `bug-2061` `bug-2083` `bug-2417` `bug-3077` |
 | `hzm-mohaa-coop-mod/coop_mod/probe.scr (+1 boot line in coop_mod/main.scr)` | 1 | `bug-1311` |
 | `hzm-mohaa-coop-mod/coop_mod/props.scr + coop_mod/holdout.scr` | 1 | `bug-1381` |
 | `hzm-mohaa-coop-mod/coop_mod/readygate.scr` | 2 | `bug-531` `bug-712` |
-| `hzm-mohaa-coop-mod/coop_mod/replace.scr` | 2 | `bug-1279` `bug-1502` |
+| `hzm-mohaa-coop-mod/coop_mod/readygate.scr + maps/briefing/*.scr (+ fgame Player::TickCoopLobbyInput)` | 1 | `bug-3474` |
+| `hzm-mohaa-coop-mod/coop_mod/reinf.scr` | 1 | `bug-4450` |
+| `hzm-mohaa-coop-mod/coop_mod/reinf_mg.scr` | 1 | `bug-4036` |
+| `hzm-mohaa-coop-mod/coop_mod/reinf_mg.scr (rmg_nest_route / rmg_nest_ring / rmg_nest_run / rmg_wave guard)` | 1 | `bug-mgspawn1025b` |
+| `hzm-mohaa-coop-mod/coop_mod/replace.scr` | 6 | `bug-1279` `bug-1502` `bug-2736` `bug-2738` `bug-2968` `bug-10804` |
 | `hzm-mohaa-coop-mod/coop_mod/sndcache.scr` | 1 | `bug-1672` |
 | `hzm-mohaa-coop-mod/coop_mod/sound.scr` | 1 | `bug-2189` |
-| `hzm-mohaa-coop-mod/coop_mod/spawnlocations.scr` | 4 | `bug-552` `bug-874` `bug-1859` `bug-2044` |
-| `hzm-mohaa-coop-mod/coop_mod/start_server.cfg` | 2 | `bug-1326` `bug-2671` |
+| `hzm-mohaa-coop-mod/coop_mod/spawnlocations.scr` | 5 | `bug-552` `bug-874` `bug-1859` `bug-2044` `bug-4190` |
+| `hzm-mohaa-coop-mod/coop_mod/start_server.cfg` | 4 | `bug-1326` `bug-2671` `bug-3017` `bug-3104` |
+| `hzm-mohaa-coop-mod/coop_mod/stormlight.scr (new)` | 1 | `bug-3222` |
 | `hzm-mohaa-coop-mod/coop_mod/surrender.scr` | 2 | `bug-1958` `bug-2088` |
 | `hzm-mohaa-coop-mod/coop_mod/surrender.scr + maps/m3l1b.scr` | 1 | `bug-2091` |
 | `hzm-mohaa-coop-mod/coop_mod/surrender.scr + officer.scr` | 1 | `bug-1973` |
 | `hzm-mohaa-coop-mod/coop_mod/thirdperson.scr` | 1 | `bug-331` |
-| `hzm-mohaa-coop-mod/coop_mod/tinnitus.scr` | 2 | `bug-846` `bug-1941` |
-| `hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr` | 1 | `bug-2078` |
-| `hzm-mohaa-coop-mod/coop_mod/variables.scr` | 2 | `bug-2080` `bug-2081` |
+| `hzm-mohaa-coop-mod/coop_mod/tinnitus.scr` | 4 | `bug-846` `bug-1941` `bug-3358` `bug-4407` |
+| `hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr` | 2 | `bug-2078` `bug-3792` |
+| `hzm-mohaa-coop-mod/coop_mod/variables.scr` | 3 | `bug-2080` `bug-2081` `bug-10586` |
+| `hzm-mohaa-coop-mod/coop_mod/variables.scr (coop_mapDescription` | 1 | `bug-3285` |
 | `hzm-mohaa-coop-mod/coop_mod/wallgun.scr` | 2 | `bug-1380` `bug-1382` |
 | `hzm-mohaa-coop-mod/coop_mod/wallgun.scr + coop_mod/props.scr` | 1 | `bug-1384` |
 | `hzm-mohaa-coop-mod/coop_mod/weaponstate.scr` | 1 | `bug-1694` |
 | `hzm-mohaa-coop-mod/coop_mod/weaponstate.scr:56` | 1 | `bug-1617` |
-| `hzm-mohaa-coop-mod/coop_mod/weather.scr` | 8 | `bug-231` `bug-001` `bug-003` `bug-004` `bug-430` `bug-1280` `bug-1281` `bug-1857` |
+| `hzm-mohaa-coop-mod/coop_mod/weather.scr` | 10 | `bug-231` `bug-001` `bug-003` `bug-004` `bug-430` `bug-1280` `bug-1281` `bug-1857` `bug-2735` `bug-2737` |
 | `hzm-mohaa-coop-mod/coop_mod/weather.scr (3 setcvar r_ppRainDrops stomps removed)` | 1 | `bug-1206` |
+| `hzm-mohaa-coop-mod/coop_mod/weather.scr (coop-wip f65310fa)` | 1 | `bug-3549` |
+| `hzm-mohaa-coop-mod/coop_mod/weather.scr (coop_weather_flash` | 1 | `bug-3106` |
 | `hzm-mohaa-coop-mod/coop_mod/weather.scr + coop_mod/ambience.scr` | 1 | `bug-1383` |
 | `hzm-mohaa-coop-mod/coop_mod/wounded.scr` | 3 | `bug-638` `bug-1104` `bug-2009` |
-| `hzm-mohaa-coop-mod/coop_mod/xp.scr` | 10 | `bug-553` `bug-848` `bug-806` `bug-819` `bug-1264` `bug-1514` `bug-1520` `bug-1870` `bug-1872` `bug-2699` |
+| `hzm-mohaa-coop-mod/coop_mod/wxextreme.scr` | 1 | `bug-3551` |
+| `hzm-mohaa-coop-mod/coop_mod/wxextreme.scr (new)` | 1 | `bug-3548` |
+| `hzm-mohaa-coop-mod/coop_mod/xp.scr` | 11 | `bug-553` `bug-848` `bug-806` `bug-819` `bug-1264` `bug-1514` `bug-1520` `bug-1870` `bug-1872` `bug-2699` `bug-3199` |
+| `hzm-mohaa-coop-mod/coop_mod/xp.scr (xp_card_categories` | 1 | `bug-4004` |
+| `hzm-mohaa-coop-mod/coop_mod/xp.scr (xp_hud_popup` | 1 | `bug-3076` |
+| `hzm-mohaa-coop-mod/coop_mod/xp.scr (xp_rank_unlock)` | 1 | `bug-10480` |
+| `hzm-mohaa-coop-mod/coop_mod/xp.scr (xp_summary_card)` | 1 | `bug-10479` |
 | `hzm-mohaa-coop-mod/coop_mod/xp.scr + challenges.scr` | 1 | `bug-805` |
 | `hzm-mohaa-coop-mod/coop_mod/xp.scr + textures/hud/xpbar/` | 1 | `bug-1977` |
+| `hzm-mohaa-coop-mod/docs/tools/gen_escmenu.py (ui/hzm_escconfirm.urc)` | 1 | `bug-10929` |
 | `hzm-mohaa-coop-mod/docs/tools/gen_mapgrade.py` | 1 | `bug-2595` |
 | `hzm-mohaa-coop-mod/fonts/*@3x.RitualFont` | 1 | `bug-1129b` |
 | `hzm-mohaa-coop-mod/gags/*.scr` | 1 | `bug-1023` |
+| `hzm-mohaa-coop-mod/gags/t1l1_barn_crash.scr` | 1 | `bug-4443` |
 | `hzm-mohaa-coop-mod/gags/t1l1_falling.scr` | 1 | `bug-1285` |
 | `hzm-mohaa-coop-mod/gags/T1L3_BoatRide.Scr` | 1 | `bug-121` |
 | `hzm-mohaa-coop-mod/gags/T1L3_BoatRide.Scr + global/weather.scr` | 1 | `bug-123` |
@@ -592,28 +1969,37 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/global/alarmer.scr` | 1 | `bug-2545` |
 | `hzm-mohaa-coop-mod/global/ambience.scr` | 1 | `bug-1612` |
 | `hzm-mohaa-coop-mod/global/autoplane.scr` | 1 | `bug-1373` |
-| `hzm-mohaa-coop-mod/global/cardgame.scr` | 2 | `bug-1636` `bug-1637` |
+| `hzm-mohaa-coop-mod/global/cardgame.scr` | 3 | `bug-1636` `bug-1637` `bug-3479` |
 | `hzm-mohaa-coop-mod/global/friendly.scr` | 1 | `bug-122` |
 | `hzm-mohaa-coop-mod/global/friendly.scr:2528` | 1 | `bug-1586` |
 | `hzm-mohaa-coop-mod/global/giveall.scr` | 3 | `bug-464` `bug-495` `bug-500` |
+| `hzm-mohaa-coop-mod/global/loadout.scr - NOT changed` | 1 | `bug-3557` |
 | `hzm-mohaa-coop-mod/global/mg42_active.scr` | 1 | `bug-1951` |
 | `hzm-mohaa-coop-mod/global/mg42_active.scr (mg42_spawn entry` | 1 | `bug-1580` |
 | `hzm-mohaa-coop-mod/global/minefield.scr` | 1 | `bug-1562` |
+| `hzm-mohaa-coop-mod/global/missioncomplete.scr` | 1 | `bug-4087` |
 | `hzm-mohaa-coop-mod/global/objectives.scr` | 2 | `bug-2349` `bug-2352` |
 | `hzm-mohaa-coop-mod/global/objectives.scr (add_objectives)` | 1 | `bug-1588` |
 | `hzm-mohaa-coop-mod/global/pain.scr` | 1 | `bug-1275` |
 | `hzm-mohaa-coop-mod/global/parade.scr` | 1 | `bug-1372` |
 | `hzm-mohaa-coop-mod/global/RoomTransform.scr` | 1 | `bug-1502` |
 | `hzm-mohaa-coop-mod/global/searchlight.scr` | 1 | `bug-1520` |
-| `hzm-mohaa-coop-mod/global/spotlight.scr` | 4 | `bug-1520` `bug-1705` `bug-2046` `bug-2548` |
+| `hzm-mohaa-coop-mod/global/spotlight.scr` | 6 | `bug-1520` `bug-1705` `bug-2046` `bug-2548` `bug-3194` `bug-4011` |
 | `hzm-mohaa-coop-mod/global/stickybomb.scr` | 1 | `bug-1271` |
 | `hzm-mohaa-coop-mod/global/vehicle_warning.scr` | 1 | `bug-1050` |
 | `hzm-mohaa-coop-mod/global/vehicles_thinkers.scr` | 2 | `bug-1277` `bug-1336` |
 | `hzm-mohaa-coop-mod/global/weapon.scr` | 1 | `bug-1952` |
+| `hzm-mohaa-coop-mod/global/weapon.scr (STAGED` | 1 | `bug-3051` |
 | `hzm-mohaa-coop-mod/global/weather.scr` | 1 | `bug-1051` |
+| `hzm-mohaa-coop-mod/global/weather.scr (coop-wip f65310fa)` | 1 | `bug-3550` |
+| `hzm-mohaa-coop-mod/global/weather.scr (singlethunder` | 1 | `bug-3106` |
 | `hzm-mohaa-coop-mod/htr/*` | 1 | `bug-2675` |
+| `hzm-mohaa-coop-mod/hzm_credits.txt` | 1 | `bug-3126` |
 | `hzm-mohaa-coop-mod/maps/ (24 files` | 1 | `bug-1614` |
+| `hzm-mohaa-coop-mod/maps/briefing/briefinge1-3.scr + briefingt1-3.scr` | 1 | `bug-3526` |
 | `hzm-mohaa-coop-mod/maps/briefing/briefinge1.scr` | 1 | `bug-1259` |
+| `hzm-mohaa-coop-mod/maps/co_lobby2.bsp` | 1 | `bug-2960` |
+| `hzm-mohaa-coop-mod/maps/coop_ea_1_11.scr` | 5 | `bug-eap-counters` `bug-eap-friendly` `bug-eap-ownernull` `bug-eap-aikills` `bug-eap-officerrestart` |
 | `hzm-mohaa-coop-mod/maps/e1l1/playerTank.scr (mitigation)` | 1 | `bug-647` |
 | `hzm-mohaa-coop-mod/maps/e1l1/thinktank.scr` | 1 | `bug-1777` |
 | `hzm-mohaa-coop-mod/maps/e1l2.scr` | 1 | `bug-874` |
@@ -629,32 +2015,39 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/maps/e2l1/gliderride.scr` | 14 | `bug-1297` `bug-1322` `bug-1328` `bug-1328b` `bug-1302` `bug-1308` `bug-1309` `bug-1328c` `bug-1332` `bug-1341` `bug-1344` `bug-1347` `bug-1348` `bug-1350` |
 | `hzm-mohaa-coop-mod/maps/e2l1/light_e2l1.scr` | 2 | `bug-1294` `bug-1331` |
 | `hzm-mohaa-coop-mod/maps/e2l1/objectives.scr` | 1 | `bug-1340` |
+| `hzm-mohaa-coop-mod/maps/e2l2.scr` | 1 | `bug-3202` |
 | `hzm-mohaa-coop-mod/maps/e2l2.scr (or a coop_mod thread running on e2l2)` | 1 | `bug-1220` |
 | `hzm-mohaa-coop-mod/maps/e2l2/briefing.scr (cinematic)` | 1 | `bug-gl2-e2l2-briefing-npc-invisible` |
 | `hzm-mohaa-coop-mod/maps/e2l3/FinalHouse.scr` | 1 | `bug-1504` |
 | `hzm-mohaa-coop-mod/maps/e2l3/Town.scr` | 1 | `bug-1504` |
 | `hzm-mohaa-coop-mod/maps/e3l2/final_section_pows.scr` | 1 | `bug-1278` |
+| `hzm-mohaa-coop-mod/maps/e3l3/scene1.scr` | 2 | `bug-2878` `bug-3543` |
 | `hzm-mohaa-coop-mod/maps/e3l4.scr` | 1 | `bug-1379` |
 | `hzm-mohaa-coop-mod/maps/e3l4/Bunker1.scr` | 7 | `bug-1258` `bug-1361` `bug-1366` `bug-1367` `bug-1368` `bug-1369` `bug-1370` |
 | `hzm-mohaa-coop-mod/maps/e3l4/Bunker2.scr` | 1 | `bug-1377` |
 | `hzm-mohaa-coop-mod/maps/ho_battaglia.scr` | 1 | `bug-1385` |
-| `hzm-mohaa-coop-mod/maps/m1l1.scr` | 4 | `bug-1162` `bug-1173` `bug-1184` `bug-2040` |
+| `hzm-mohaa-coop-mod/maps/m1l1.scr` | 5 | `bug-1162` `bug-1173` `bug-1184` `bug-2040` `bug-3323` |
+| `hzm-mohaa-coop-mod/maps/m1l1.scr (staged: docs/proposals/m1l1_trooper_2026-09-28/` | 1 | `bug-3188` |
 | `hzm-mohaa-coop-mod/maps/m1l1.scr (unconfirmed)` | 1 | `bug-2031` |
 | `hzm-mohaa-coop-mod/maps/m1l1.scr:61-63 (and maps/m5l1a.scr:36-38)` | 1 | `bug-2050` |
-| `hzm-mohaa-coop-mod/maps/m1l2a.scr` | 1 | `bug-842` |
+| `hzm-mohaa-coop-mod/maps/m1l2a.scr` | 2 | `bug-842` `bug-3542` |
 | `hzm-mohaa-coop-mod/maps/m1l2b.scr` | 2 | `bug-1513` `bug-1612` |
 | `hzm-mohaa-coop-mod/maps/m1l3b.scr` | 1 | `bug-031` |
 | `hzm-mohaa-coop-mod/maps/m1l3c.scr` | 1 | `bug-842` |
 | `hzm-mohaa-coop-mod/maps/M1L3c.scr` | 1 | `bug-1516` |
-| `hzm-mohaa-coop-mod/maps/m2l1.scr` | 5 | `bug-837` `bug-839` `bug-1517` `bug-1518` `bug-1539` |
+| `hzm-mohaa-coop-mod/maps/m2l1.scr` | 7 | `bug-837` `bug-839` `bug-1517` `bug-1518` `bug-1539` `bug-10410` `bug-10411` |
 | `hzm-mohaa-coop-mod/maps/m2l2a.scr` | 7 | `bug-1604` `bug-1630` `bug-1654` `bug-1656` `bug-1671` `bug-1689` `bug-1690` |
 | `hzm-mohaa-coop-mod/maps/m2l2a.scr (coop_naxosSabotage` | 1 | `bug-1623` |
 | `hzm-mohaa-coop-mod/maps/m2l2a.scr (main coop branch + likeynorway)` | 1 | `bug-1624` |
 | `hzm-mohaa-coop-mod/maps/m2l2b.scr` | 2 | `bug-1613` `bug-1628` |
+| `hzm-mohaa-coop-mod/maps/m2l2b.scr (coop_exfilReinforce` | 1 | `bug-3469` |
 | `hzm-mohaa-coop-mod/maps/m2l2b.scr (plantthebomb / plantthebomb2)` | 2 | `bug-1608` `bug-1620` |
-| `hzm-mohaa-coop-mod/maps/m3l1a.scr` | 20 | `bug-1501` `bug-1502` `bug-2188` `bug-2192` `bug-2194` `bug-2197` `bug-2199` `bug-2204` `bug-2206` `bug-2233` `bug-2236` `bug-2251` `bug-2276` `bug-2353` `bug-2356` `bug-2371` `bug-2378` `bug-2490` `bug-2513` `bug-2539` |
+| `hzm-mohaa-coop-mod/maps/m2l3.scr` | 1 | `bug-4446` |
+| `hzm-mohaa-coop-mod/maps/m3l1a.scr` | 21 | `bug-1501` `bug-1502` `bug-2188` `bug-2192` `bug-2194` `bug-2197` `bug-2199` `bug-2204` `bug-2206` `bug-2233` `bug-2236` `bug-2251` `bug-2276` `bug-2353` `bug-2356` `bug-2371` `bug-2378` `bug-2490` `bug-2513` `bug-2539` `bug-3570` |
 | `hzm-mohaa-coop-mod/maps/m3l1a.scr + maps/m3l1a/coopified.scr` | 2 | `bug-2319` `bug-2322` |
-| `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | 147 | `bug-2187` `bug-2195` `bug-2196` `bug-2200` `bug-2205` `bug-2208` `bug-2209` `bug-2211` `bug-2213` `bug-2215` `bug-2216` `bug-2219` `bug-2220` `bug-2231` `bug-2232` `bug-2235` `bug-2244` `bug-2246` `bug-2248` `bug-2251` `bug-2252` `bug-2253` `bug-2254` `bug-2255` `bug-2256` `bug-2257` `bug-2258` `bug-2259` `bug-2260` `bug-2261` `bug-2262` `bug-2264` `bug-2265` `bug-2266` `bug-2268` `bug-2272` `bug-2274` `bug-2275` `bug-2277` `bug-2278` `bug-2279` `bug-2281` `bug-2282` `bug-2284` `bug-2294` `bug-2295` `bug-2305` `bug-2308` `bug-2310` `bug-2311` `bug-2317` `bug-2320` `bug-2323` `bug-2326` `bug-… |
+| `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | 150 | `bug-2187` `bug-2195` `bug-2196` `bug-2200` `bug-2205` `bug-2208` `bug-2209` `bug-2211` `bug-2213` `bug-2215` `bug-2216` `bug-2219` `bug-2220` `bug-2231` `bug-2232` `bug-2235` `bug-2244` `bug-2246` `bug-2248` `bug-2251` `bug-2252` `bug-2253` `bug-2254` `bug-2255` `bug-2256` `bug-2257` `bug-2258` `bug-2259` `bug-2260` `bug-2261` `bug-2262` `bug-2264` `bug-2265` `bug-2266` `bug-2268` `bug-2272` `bug-2274` `bug-2275` `bug-2277` `bug-2278` `bug-2279` `bug-2281` `bug-2282` `bug-2284` `bug-2294` `bug-2295` `bug-2305` `bug-2308` `bug-2310` `bug-2311` `bug-2317` `bug-2320` `bug-2323` `bug-2326` `bug-… |
+| `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr (coop_beachWrecks header + clip block` | 1 | `bug-3219` |
+| `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr (coop_qteBar)` | 1 | `bug-4406` |
 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr + coop_mod/probe.scr` | 1 | `bug-2419` |
 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr + docs/tools/check_map_compiles.py` | 1 | `bug-2335` |
 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr + hzm-mohaa-coop-mod/coop_mod/replace.scr` | 1 | `bug-2425` |
@@ -663,9 +2056,13 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/maps/m3l1a/obstacles.scr` | 1 | `bug-2262` |
 | `hzm-mohaa-coop-mod/maps/m3l1a_precache.scr` | 2 | `bug-2341` `bug-2362` |
 | `hzm-mohaa-coop-mod/maps/m3l1b.scr` | 12 | `bug-532` `bug-1549` `bug-1552` `bug-1553` `bug-1555` `bug-1557` `bug-1558` `bug-1568` `bug-1574` `bug-1575` `bug-2075` `bug-2087` |
+| `hzm-mohaa-coop-mod/maps/m3l1b.scr (coop_rear_headcount` | 1 | `bug-3468` |
 | `hzm-mohaa-coop-mod/maps/m3l2.scr` | 1 | `bug-1218` |
 | `hzm-mohaa-coop-mod/maps/M3L3.scr` | 33 | `bug-1828` `bug-1829` `bug-1830` `bug-1831` `bug-1832` `bug-1833` `bug-1834` `bug-1837` `bug-1838` `bug-1822` `bug-1840` `bug-1841` `bug-1842` `bug-1824` `bug-1845` `bug-1846` `bug-1847` `bug-1854` `bug-1855` `bug-1856` `bug-1858` `bug-1861` `bug-1862` `bug-1863` `bug-1865` `bug-1867` `bug-1877` `bug-1879` `bug-1904` `bug-1920` `bug-1924` `bug-2015` `bug-2022` |
+| `hzm-mohaa-coop-mod/maps/M3L3.scr (+ coop_mod/mortar.scr)` | 1 | `bug-4032` |
+| `hzm-mohaa-coop-mod/maps/M3L3.scr (coop_baked_0816: 11 rock placements bsol 1 -> 2` | 1 | `bug-3210` |
 | `hzm-mohaa-coop-mod/maps/M3L3.scr (coop_churchMgUnlimited)` | 1 | `bug-1826` |
+| `hzm-mohaa-coop-mod/maps/M3L3.scr (coop_churchPhase ~l.8185-8218` | 1 | `bug-3470` |
 | `hzm-mohaa-coop-mod/maps/M3L3.scr (coop_fence_*)` | 1 | `bug-1820` |
 | `hzm-mohaa-coop-mod/maps/M3L3.scr (halftrack_mg_targeting)` | 1 | `bug-1806` |
 | `hzm-mohaa-coop-mod/maps/M3L3.scr (scene4_tank_targeting)` | 1 | `bug-1817` |
@@ -673,13 +2070,16 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/maps/m4l0_precache.scr` | 1 | `bug-2173` |
 | `hzm-mohaa-coop-mod/maps/m4l1.scr` | 1 | `bug-842` |
 | `hzm-mohaa-coop-mod/maps/m4l3.scr` | 1 | `bug-842` |
+| `hzm-mohaa-coop-mod/maps/m5l1a.scr:64` | 1 | `bug-3107` |
 | `hzm-mohaa-coop-mod/maps/m5l1b.scr` | 1 | `bug-1802` |
 | `hzm-mohaa-coop-mod/maps/M5L2A.scr` | 1 | `bug-1625` |
+| `hzm-mohaa-coop-mod/maps/m5l2b.scr (coop_teleportMaster) - not changed` | 1 | `bug-3176` |
 | `hzm-mohaa-coop-mod/maps/m6l1c.scr` | 3 | `bug-1710` `bug-1709` `bug-1713` |
 | `hzm-mohaa-coop-mod/maps/m6l1c.scr (sciencesayto` | 1 | `bug-1579` |
 | `hzm-mohaa-coop-mod/maps/m6l2a.scr` | 47 | `bug-1715` `bug-1716` `bug-1717` `bug-1718` `bug-1719` `bug-1721` `bug-1740` `bug-1741` `bug-1742` `bug-1744` `bug-1746` `bug-1747` `bug-1748` `bug-1749` `bug-1750` `bug-1751` `bug-1752` `bug-1753` `bug-1754` `bug-1755` `bug-1756` `bug-1757` `bug-1758` `bug-1759` `bug-1760` `bug-1761` `bug-1762` `bug-1763` `bug-1764` `bug-1765` `bug-1766` `bug-1767` `bug-1768` `bug-1769` `bug-1770` `bug-1774` `bug-1775` `bug-1776` `bug-1778` `bug-1781` `bug-1782` `bug-1784` `bug-1785` `bug-1786` `bug-1787` `bug-1791` `bug-1793` |
 | `hzm-mohaa-coop-mod/maps/m6l2a.scr (scene3_spawner1_initialize)` | 1 | `bug-1809` |
 | `hzm-mohaa-coop-mod/maps/m6l2a_precache.scr` | 1 | `bug-1745` |
+| `hzm-mohaa-coop-mod/maps/mfl_1_1.scr` | 3 | `bug-10606` `bug-10615` `bug-10623` |
 | `hzm-mohaa-coop-mod/maps/t1l2.scr` | 2 | `bug-023` `bug-024` |
 | `hzm-mohaa-coop-mod/maps/t2l1.scr` | 1 | `bug-1801` |
 | `hzm-mohaa-coop-mod/maps/t2l2.scr` | 14 | `bug-034` `bug-041` `bug-044` `bug-045` `bug-046` `bug-048` `bug-049` `bug-050` `bug-051` `bug-052` `bug-053` `bug-054` `bug-056` `bug-062` |
@@ -687,7 +2087,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/maps/t2l2.scr + openmohaa-hzm/code/fgame/player_conditionals.cpp` | 1 | `bug-055` |
 | `hzm-mohaa-coop-mod/maps/t2l3.scr` | 1 | `bug-1022` |
 | `hzm-mohaa-coop-mod/maps/t3l1.scr` | 3 | `bug-1286` `bug-1287` `bug-1289` |
-| `hzm-mohaa-coop-mod/maps/t3l2.scr` | 1 | `bug-1266` |
+| `hzm-mohaa-coop-mod/maps/t3l2.scr` | 2 | `bug-1266` `bug-3197` |
 | `hzm-mohaa-coop-mod/models/coop_build/shapes/*.skd (+.skc regenerated)` | 1 | `bug-1002` |
 | `hzm-mohaa-coop-mod/models/coop_helmets/*.skd+*.tik (12 new pairs)` | 1 | `bug-1540` |
 | `hzm-mohaa-coop-mod/models/coop_helmets/coop_helmet_brit_beret.tik` | 1 | `bug-2085` |
@@ -698,42 +2098,74 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/models/fx/coop_blooddrip_slow.tik` | 1 | `bug-794` |
 | `hzm-mohaa-coop-mod/models/fx/coop_gunsmoke.tik` | 1 | `bug-1176` |
 | `hzm-mohaa-coop-mod/models/fx/coop_tank_explosion.tik` | 1 | `bug-2244` |
+| `hzm-mohaa-coop-mod/models/fx/grenexp_snow.tik` | 2 | `bug-10524` `bug-10565` |
 | `hzm-mohaa-coop-mod/models/fx/muzflash/flashnode1.tga` | 1 | `bug-092` |
 | `hzm-mohaa-coop-mod/models/human/` | 1 | `bug-2203` |
 | `hzm-mohaa-coop-mod/models/human/2nd-ranger_private.tik` | 1 | `bug-1228` |
 | `hzm-mohaa-coop-mod/models/human/allied_oss_man_disguised.tik (new override)` | 1 | `bug-1539` |
-| `hzm-mohaa-coop-mod/models/human/animation/scripted/coop_wounded.tik` | 1 | `bug-1956` |
+| `hzm-mohaa-coop-mod/models/human/animation/dialogue/Generic_dialogue_german.tik + Generic_dialogue_US.tik` | 1 | `bug-10802` |
+| `hzm-mohaa-coop-mod/models/human/animation/scripted/coop_wounded.tik` | 2 | `bug-1956` `bug-4191` |
 | `hzm-mohaa-coop-mod/models/human/animation/scripted/coop_wounded.tik (new)` | 1 | `bug-1818` |
-| `hzm-mohaa-coop-mod/models/human/new_generic_human.tik` | 2 | `bug-1945` `bug-2274` |
+| `hzm-mohaa-coop-mod/models/human/animation/viewmodel/coop_reload/*.skc` | 1 | `bug-3432` |
+| `hzm-mohaa-coop-mod/models/human/new_generic_human.tik` | 3 | `bug-1945` `bug-2274` `bug-3196` |
+| `hzm-mohaa-coop-mod/models/human/{dday_29th_private_radio` | 1 | `bug-3325` |
 | `hzm-mohaa-coop-mod/models/miscobj/welding_torch.tik` | 1 | `bug-2408` |
 | `hzm-mohaa-coop-mod/models/player` | 1 | `bug-2081` |
+| `hzm-mohaa-coop-mod/models/player/*_nohat.tik (12 axis)` | 1 | `bug-2754` |
 | `hzm-mohaa-coop-mod/models/player/allied_Airborne_101E_Col_Sink.tik` | 1 | `bug-1891` |
 | `hzm-mohaa-coop-mod/models/player/allied_British_Tank.tik` | 1 | `bug-1216` |
-| `hzm-mohaa-coop-mod/models/player/base/anims_shared.txt` | 5 | `bug-259` `bug-260` `bug-417` `bug-381` `bug-1325` |
+| `hzm-mohaa-coop-mod/models/player/base/anims_shared.txt` | 6 | `bug-259` `bug-260` `bug-417` `bug-381` `bug-1325` `bug-3364` |
+| `hzm-mohaa-coop-mod/models/player/base/anims_shared.txt (coop_prone_reload_pistol)` | 1 | `bug-3592` |
+| `hzm-mohaa-coop-mod/models/player/base/anims_shared.txt (coop_reload_webley_start)` | 1 | `bug-3533` |
 | `hzm-mohaa-coop-mod/models/player/base/anims_shared.txt (new override)` | 1 | `bug-257` |
 | `hzm-mohaa-coop-mod/models/player/base/fps_anims_*.txt` | 2 | `bug-072` `bug-074` |
-| `hzm-mohaa-coop-mod/models/player/base/fps_anims_rifle.txt` | 2 | `bug-106` `bug-107` |
+| `hzm-mohaa-coop-mod/models/player/base/fps_anims_pistol.txt (the <gun>_charge rows: viewmodel/coltpose00.skc` | 1 | `bug-3498` |
+| `hzm-mohaa-coop-mod/models/player/base/fps_anims_rifle.txt` | 3 | `bug-106` `bug-107` `bug-3463` |
+| `hzm-mohaa-coop-mod/models/player/base/fps_anims_smg.txt` | 2 | `bug-3296` `bug-3586` |
 | `hzm-mohaa-coop-mod/models/vehicles/CG4Aglider.tik` | 2 | `bug-1303` `bug-1338` |
 | `hzm-mohaa-coop-mod/models/vehicles/CG4Aglider.tik + maps/e2l1/gliderride.scr` | 1 | `bug-1301` |
 | `hzm-mohaa-coop-mod/models/vehicles/halftrack_driveable.tik` | 3 | `bug-033` `bug-037` `bug-040` |
-| `hzm-mohaa-coop-mod/models/weapons/dp28.tik` | 1 | `bug-1899` |
+| `hzm-mohaa-coop-mod/models/weapons/30calportable.tik` | 1 | `bug-3622` |
+| `hzm-mohaa-coop-mod/models/weapons/bar_bar1918.tik` | 1 | `bug-3365` |
+| `hzm-mohaa-coop-mod/models/weapons/carbine.tik (mod copy of xw)` | 1 | `bug-3369` |
+| `hzm-mohaa-coop-mod/models/weapons/colt45_colt1911w.tik (+ coop_colt1911w/webley_reload_*.skc)` | 1 | `bug-3368` |
+| `hzm-mohaa-coop-mod/models/weapons/dp28.tik` | 2 | `bug-1899` `bug-3371` |
+| `hzm-mohaa-coop-mod/models/weapons/FG42.tik` | 1 | `bug-3673` |
 | `hzm-mohaa-coop-mod/models/weapons/g43sniper.tik` | 1 | `bug-648` |
 | `hzm-mohaa-coop-mod/models/weapons/It_W_Carcano.tik` | 1 | `bug-494` |
 | `hzm-mohaa-coop-mod/models/weapons/johnson_m1941.tik` | 1 | `bug-1911` |
-| `hzm-mohaa-coop-mod/models/weapons/m10_revolver.tik` | 1 | `bug-1905` |
+| `hzm-mohaa-coop-mod/models/weapons/m10_revolver.tik` | 2 | `bug-1905` `bug-3534` |
 | `hzm-mohaa-coop-mod/models/weapons/m1_garand.tik` | 1 | `bug-095` |
 | `hzm-mohaa-coop-mod/models/weapons/mauser_c96.tik` | 2 | `bug-1894` `bug-1897` |
+| `hzm-mohaa-coop-mod/models/weapons/mg42portable/mg42.skd` | 1 | `bug-3391` |
+| `hzm-mohaa-coop-mod/models/weapons/mp40.tik` | 1 | `bug-10882` |
 | `hzm-mohaa-coop-mod/models/weapons/panzerfaust.tik` | 3 | `bug-1900` `bug-1907` `bug-1912` |
 | `hzm-mohaa-coop-mod/models/weapons/silencedpistol.tik` | 1 | `bug-1714` |
+| `hzm-mohaa-coop-mod/models/weapons/springfield_m1903.tik` | 1 | `bug-10526` |
+| `hzm-mohaa-coop-mod/models/weapons/thompson50.tik (mod copy)` | 1 | `bug-3389` |
 | `hzm-mohaa-coop-mod/models/weapons/tt33.tik` | 1 | `bug-1887` |
+| `hzm-mohaa-coop-mod/models/weapons/tt33silenced_*.tik` | 2 | `bug-10530` `bug-10532` |
+| `hzm-mohaa-coop-mod/navlinks/e1l1_mp.txt` | 1 | `bug-2965` |
+| `hzm-mohaa-coop-mod/navlinks/e1l1_mp.txt (block -1180 3146 200 -1130 3216 250)` | 1 | `bug-3065` |
+| `hzm-mohaa-coop-mod/navlinks/m2l1_mp.txt` | 1 | `bug-2872` |
+| `hzm-mohaa-coop-mod/navlinks/m4l2_mp.txt` | 3 | `bug-2856` `bug-2867` `bug-3066` |
+| `hzm-mohaa-coop-mod/navlinks/m4l2_mp.txt (cab=/gate1=/gate2=)` | 1 | `bug-2912` |
+| `hzm-mohaa-coop-mod/navlinks/{e1l1` | 1 | `bug-2870` |
 | `hzm-mohaa-coop-mod/scripts/allied_bob_pack.shader` | 1 | `bug-530` |
 | `hzm-mohaa-coop-mod/scripts/commando.shader` | 1 | `bug-2243` |
 | `hzm-mohaa-coop-mod/scripts/coop_blood.shader` | 2 | `bug-230` `bug-764` |
+| `hzm-mohaa-coop-mod/scripts/coop_blood.shader:22-30` | 1 | `bug-3110` |
 | `hzm-mohaa-coop-mod/scripts/coop_enigma.shader` | 2 | `bug-1610` `bug-1611` |
 | `hzm-mohaa-coop-mod/scripts/coop_fonts_hi3x.shader (new)` | 1 | `bug-1130` |
+| `hzm-mohaa-coop-mod/scripts/coop_g98.shader (and the other coop_<east> shaders)` | 1 | `bug-10529` |
 | `hzm-mohaa-coop-mod/scripts/coop_gore_gen.shader` | 1 | `bug-2225` |
 | `hzm-mohaa-coop-mod/scripts/coop_hdfx_missing.shader` | 1 | `bug-2403` |
+| `hzm-mohaa-coop-mod/scripts/coop_memorial.shader` | 1 | `bug-3538` |
+| `hzm-mohaa-coop-mod/scripts/coop_mohaaru_props.shader` | 1 | `bug-3085` |
+| `hzm-mohaa-coop-mod/scripts/coop_searchlights.shader (new)` | 1 | `bug-2962` |
+| `hzm-mohaa-coop-mod/scripts/coop_skins.shader / coop_clip_skins.shader (generated by docs/tools/gen_skins.py` | 1 | `bug-3397` |
 | `hzm-mohaa-coop-mod/scripts/coop_sunflare.shader (NEW - data-only fix` | 1 | `bug-1207` |
+| `hzm-mohaa-coop-mod/scripts/coop_teamselect.shader` | 1 | `bug-2813` |
 | `hzm-mohaa-coop-mod/scripts/coop_water_overrides.shader` | 1 | `bug-1515` |
 | `hzm-mohaa-coop-mod/scripts/equipment.shader (new whole-file coop override of HRRTM's)` | 1 | `bug-921` |
 | `hzm-mohaa-coop-mod/scripts/zz_coop_geometry_fixes.shader` | 1 | `bug-2549` |
@@ -745,10 +2177,17 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/sound/weapons/fire/colt45fire1.wav` | 1 | `bug-1987` |
 | `hzm-mohaa-coop-mod/textures/coop_fx/bloodslick.tga` | 2 | `bug-2210` `bug-2263` |
 | `hzm-mohaa-coop-mod/textures/coop_fx/bloodwash.tga` | 1 | `bug-2249` |
+| `hzm-mohaa-coop-mod/textures/coop_fx/coop_artery_streak.tga` | 1 | `bug-3565` |
+| `hzm-mohaa-coop-mod/textures/coop_fx/headlamp_glow.tga` | 1 | `bug-2946` |
 | `hzm-mohaa-coop-mod/textures/coop_fx/surfcell.tga` | 1 | `bug-2518` |
 | `hzm-mohaa-coop-mod/textures/coop_fx/wetsand_swash.tga` | 1 | `bug-2493` |
+| `hzm-mohaa-coop-mod/textures/coop_mp18/body.jpg` | 1 | `bug-3603` |
 | `hzm-mohaa-coop-mod/textures/hud/coop_bar_white.tga` | 1 | `bug-088` |
 | `hzm-mohaa-coop-mod/textures/hud/coop_rank_00..21.tga` | 1 | `bug-622` |
+| `hzm-mohaa-coop-mod/textures/hud/coop_scope/*` | 1 | `bug-3462` |
+| `hzm-mohaa-coop-mod/textures/hud/coop_surrender_icon.tga` | 1 | `bug-3425` |
+| `hzm-mohaa-coop-mod/textures/hud/coop_surrender_icon.tga (new)` | 1 | `bug-3424` |
+| `hzm-mohaa-coop-mod/textures/hud/coop_wheel_hl8_7.tga` | 1 | `bug-10497` |
 | `hzm-mohaa-coop-mod/textures/hud/xpbar/*.tga` | 1 | `bug-312` |
 | `hzm-mohaa-coop-mod/textures/models/human/faces/` | 1 | `bug-1873` |
 | `hzm-mohaa-coop-mod/textures/models/human/faces/Bensonazi_blood2.jpg` | 1 | `bug-1327` |
@@ -756,26 +2195,42 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/textures/models/vehicles/higgins/higgins.dds` | 1 | `bug-2533` |
 | `hzm-mohaa-coop-mod/textures/mohmenu/` | 1 | `bug-144` |
 | `hzm-mohaa-coop-mod/textures/mohmenu/*.tga` | 1 | `bug-157` |
+| `hzm-mohaa-coop-mod/textures/mohmenu/coop_mp_lock.tga` | 1 | `bug-2783` |
+| `hzm-mohaa-coop-mod/textures/mohmenu/pulldownarrow(.tga` | 1 | `bug-2935` |
 | `hzm-mohaa-coop-mod/textures/wilderness/m3l3grass_set2.jpg (+ set2rad)` | 1 | `bug-m3l2-ground-seams` |
 | `hzm-mohaa-coop-mod/ubersound/* + sound/dialogue/*` | 1 | `bug-2020` |
+| `hzm-mohaa-coop-mod/ubersound/coop_aivoice.scr` | 1 | `bug-3410` |
 | `hzm-mohaa-coop-mod/ubersound/coop_aivoice.scr + coop_chatter.scr` | 1 | `bug-2316` |
 | `hzm-mohaa-coop-mod/ubersound/coop_aivoice.scr + maps/m3l1a/coopified.scr` | 1 | `bug-2321` |
-| `hzm-mohaa-coop-mod/ubersound/coop_audio.scr` | 9 | `bug-1697` `bug-1711` `bug-1783` `bug-2153` `bug-2436` `bug-2452` `bug-2455` `bug-2494` `bug-2505` |
+| `hzm-mohaa-coop-mod/ubersound/coop_audio.scr` | 10 | `bug-1697` `bug-1711` `bug-1783` `bug-2153` `bug-2436` `bug-2452` `bug-2455` `bug-2494` `bug-2505` `bug-4444` |
+| `hzm-mohaa-coop-mod/ubersound/coop_chatter.scr` | 1 | `bug-2728` |
+| `hzm-mohaa-coop-mod/ubersound/coop_chatter.scr (NOT edited)` | 1 | `bug-3098` |
+| `hzm-mohaa-coop-mod/ubersound/coop_flvo.scr` | 1 | `bug-3385` |
 | `hzm-mohaa-coop-mod/ubersound/coop_gurgle.scr` | 1 | `bug-849` |
 | `hzm-mohaa-coop-mod/ubersound/coop_headshot.scr` | 1 | `bug-099` |
+| `hzm-mohaa-coop-mod/ubersound/coop_pain.scr` | 1 | `bug-3386` |
+| `hzm-mohaa-coop-mod/ubersound/coop_pickup.scr` | 1 | `bug-10476` |
 | `hzm-mohaa-coop-mod/ubersound/coop_taunt.scr` | 1 | `bug-775` |
-| `hzm-mohaa-coop-mod/ubersound/uberdialog.scr` | 4 | `bug-2176` `bug-2296` `bug-2299` `bug-2387` |
-| `hzm-mohaa-coop-mod/ubersound/ubersound.scr` | 13 | `bug-116` `bug-1161` `bug-1188` `bug-1272` `bug-1548` `bug-1885` `bug-1886` `bug-1898` `bug-2161` `bug-2198` `bug-2280` `bug-2297` `bug-2394` |
+| `hzm-mohaa-coop-mod/ubersound/coop_vehsounds.scr` | 1 | `bug-10398` |
+| `hzm-mohaa-coop-mod/ubersound/uberdialog.scr` | 5 | `bug-2176` `bug-2296` `bug-2299` `bug-2387` `bug-2728` |
+| `hzm-mohaa-coop-mod/ubersound/ubersound.scr` | 17 | `bug-116` `bug-1161` `bug-1188` `bug-1272` `bug-1548` `bug-1885` `bug-1886` `bug-1898` `bug-2161` `bug-2198` `bug-2280` `bug-2297` `bug-2394` `bug-2780` `bug-2800` `bug-3088` `bug-3402` |
+| `hzm-mohaa-coop-mod/ubersound/ubersound.scr (398 name tokens` | 1 | `bug-3087` |
 | `hzm-mohaa-coop-mod/ubersound/ubersound.scr (generated tail block)` | 1 | `bug-2304` |
 | `hzm-mohaa-coop-mod/ubersound/ubersound.scr + docs/tools/gen_coop_vo_override.py` | 1 | `bug-2401` |
 | `hzm-mohaa-coop-mod/ubersound/ubersound.scr + maps/m3l1a/coopified.scr` | 1 | `bug-2313` |
 | `hzm-mohaa-coop-mod/ubersound/ubersound.scr + ubersound/uberdialog.scr` | 1 | `bug-1202` |
 | `hzm-mohaa-coop-mod/ui/*.urc (analysis` | 1 | `bug-2098` |
+| `hzm-mohaa-coop-mod/ui/advanced_graphics.urc` | 3 | `bug-3161` `bug-3530` `bug-3536` |
 | `hzm-mohaa-coop-mod/ui/advanced_graphics.urc (aadisplay label)` | 1 | `bug-1152` |
 | `hzm-mohaa-coop-mod/ui/advanced_graphics.urc + G:/mohaa-gl2/home/maintt/configs/omconfig.cfg` | 1 | `bug-1990` |
+| `hzm-mohaa-coop-mod/ui/BIND.SCR` | 1 | `bug-3359` |
 | `hzm-mohaa-coop-mod/ui/briefing1a-g.urc (new overrides)` | 1 | `bug-641` |
 | `hzm-mohaa-coop-mod/ui/coop_loadout.urc` | 3 | `bug-1527` `bug-1530` `bug-1896` |
 | `hzm-mohaa-coop-mod/ui/coop_loadout.urc + models/player/base/anims_shared.txt` | 1 | `bug-626` |
+| `hzm-mohaa-coop-mod/ui/coop_maps.inc` | 1 | `bug-3300` |
+| `hzm-mohaa-coop-mod/ui/coop_mp[ax]_armory.urc` | 1 | `bug-10926` |
+| `hzm-mohaa-coop-mod/ui/coop_mp_options.urc` | 2 | `bug-3080` `bug-10585` |
+| `hzm-mohaa-coop-mod/ui/coop_mphostrules.urc (row hidden)` | 1 | `bug-3092` |
 | `hzm-mohaa-coop-mod/ui/coop_mpmenu.urc` | 2 | `bug-2614` `bug-2618` |
 | `hzm-mohaa-coop-mod/ui/coop_mpmenu.urc (new)` | 1 | `bug-2613` |
 | `hzm-mohaa-coop-mod/ui/coop_mpmenu/start_*.cfg + ui/multiplayerstart_{ffa` | 1 | `bug-2636` |
@@ -785,56 +2240,168 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/ui/coop_postfx.urc (trigger)` | 1 | `bug-1181` |
 | `hzm-mohaa-coop-mod/ui/coop_postfx.urc + coop_postfx2/3/4.urc + advanced_graphics.urc` | 1 | `bug-2615` |
 | `hzm-mohaa-coop-mod/ui/coop_postfx2.urc` | 1 | `bug-1170` |
-| `hzm-mohaa-coop-mod/ui/coop_settings.urc` | 1 | `bug-menu-shader-label-invisible` |
+| `hzm-mohaa-coop-mod/ui/coop_settings.urc` | 2 | `bug-menu-shader-label-invisible` `bug-10808` |
 | `hzm-mohaa-coop-mod/ui/coop_settings.urc (+ ui/coop_hostrules.urc new` | 1 | `bug-2578` |
 | `hzm-mohaa-coop-mod/ui/coop_settings.urc + docs/tools/audit_menu_cvars.py` | 1 | `bug-1993` |
 | `hzm-mohaa-coop-mod/ui/coop_sr.urc` | 1 | `bug-461` |
 | `hzm-mohaa-coop-mod/ui/coop_sr_weapon.urc` | 1 | `bug-459` |
+| `hzm-mohaa-coop-mod/ui/coop_start.urc` | 1 | `bug-2929` |
+| `hzm-mohaa-coop-mod/ui/coop_start.urc (addpopup labels 142-154)` | 1 | `bug-3280` |
+| `hzm-mohaa-coop-mod/ui/coop_start.urc (coop_serverNetConfigurationBtn)` | 1 | `bug-3264` |
+| `hzm-mohaa-coop-mod/ui/coop_start.urc (dropdown addpopup labels)` | 1 | `bug-3284` |
+| `hzm-mohaa-coop-mod/ui/coop_start/e1.cfg e2.cfg e3.cfg t1.cfg t2.cfg t3.cfg` | 1 | `bug-3274` |
+| `hzm-mohaa-coop-mod/ui/coop_start/m0.cfg` | 1 | `bug-10839` |
 | `hzm-mohaa-coop-mod/ui/coop_start/t1.cfg` | 1 | `bug-025` |
 | `hzm-mohaa-coop-mod/ui/coop_start/t2.cfg` | 1 | `bug-028` |
 | `hzm-mohaa-coop-mod/ui/coop_whatsnew.urc` | 1 | `bug-423` |
+| `hzm-mohaa-coop-mod/ui/coop_whatsnew.urc (header names 'scratchpad gen_fieldreport.py') -> textures/mohmenu/co…` | 1 | `bug-3267` |
 | `hzm-mohaa-coop-mod/ui/dm_scoreboard.urc` | 2 | `bug-2701` `bug-2705` |
+| `hzm-mohaa-coop-mod/ui/hd_texel_scale.cfg` | 1 | `bug-2941` |
 | `hzm-mohaa-coop-mod/ui/hud_ammo_*.urc` | 1 | `bug-138` |
+| `hzm-mohaa-coop-mod/ui/hzm_wpnview.urc` | 1 | `bug-10807` |
+| `hzm-mohaa-coop-mod/ui/joininternetgame.urc (coop_clientNetConfigurationBtn)` | 1 | `bug-3264` |
+| `hzm-mohaa-coop-mod/ui/loadart.txt (branch loadscr-next)` | 1 | `bug-3955` |
+| `hzm-mohaa-coop-mod/ui/loadingbar.txt` | 1 | `bug-4091` |
+| `hzm-mohaa-coop-mod/ui/loadout/*` | 1 | `bug-4189` |
 | `hzm-mohaa-coop-mod/ui/loadout/fin1_s1.cfg` | 1 | `bug-1927` |
 | `hzm-mohaa-coop-mod/ui/loadout/helm/h35..h47.cfg (13 new pages)` | 1 | `bug-1540` |
 | `hzm-mohaa-coop-mod/ui/loadout/init.cfg` | 1 | `bug-1932` |
 | `hzm-mohaa-coop-mod/ui/loadout/p03.cfg (+10 more p-pages)` | 1 | `bug-2577` |
 | `hzm-mohaa-coop-mod/ui/loadout/p48.cfg` | 1 | `bug-1938` |
-| `hzm-mohaa-coop-mod/ui/main.urc` | 2 | `bug-460` `bug-2575` |
+| `hzm-mohaa-coop-mod/ui/loadout/w<id>_s<n>.cfg (docs/tools/gen_loadout.py slotfile)` | 1 | `bug-4434` |
+| `hzm-mohaa-coop-mod/ui/main.urc` | 6 | `bug-460` `bug-2575` `bug-2932` `bug-2933` `bug-4005` `bug-10319` |
+| `hzm-mohaa-coop-mod/ui/main.urc (test setup)` | 1 | `bug-10318` |
 | `hzm-mohaa-coop-mod/ui/missionbriefingback.inc + coop_mod/readygate.scr` | 1 | `bug-526` |
+| `hzm-mohaa-coop-mod/ui/multiplayer.urc` | 1 | `bug-2722` |
 | `hzm-mohaa-coop-mod/ui/multiplayeroptions.urc (new override)` | 1 | `bug-1524` |
 | `hzm-mohaa-coop-mod/ui/multiplayerstart.urc` | 3 | `bug-2613` `bug-2621` `bug-2679` |
+| `hzm-mohaa-coop-mod/ui/multiplayerstart_ffa\|team\|round\|obj\|tow\|lib.urc (ui_healthdrop` | 1 | `bug-3275` |
 | `hzm-mohaa-coop-mod/ui/multiplayerstart_{ffa` | 2 | `bug-2624` `bug-2638` |
 | `hzm-mohaa-coop-mod/ui/proto/coop_proto_b_board.urc` | 1 | `bug-2222` |
-| `hzm-mohaa-coop-mod/ui/video options.urc` | 4 | `bug-753` `bug-756` `bug-761` `bug-754` |
+| `hzm-mohaa-coop-mod/ui/SelectTeam.urc` | 1 | `bug-2812` |
+| `hzm-mohaa-coop-mod/ui/video options.urc` | 7 | `bug-753` `bug-756` `bug-761` `bug-754` `bug-3144` `bug-3537` `bug-3539` |
 | `hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3` | 2 | `bug-2164` `bug-2223` |
-| `installer/report_problem.ps1` | 2 | `bug-1799` `bug-2665` |
+| `hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3 (candidates STAGED in the session scratchpad terrain_v2` | 1 | `bug-2953` |
+| `hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3 (v3 STAGED in the session scratchpad terrain_v3` | 1 | `bug-2985` |
+| `hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3 (v4 STAGED in the session scratchpad terrain_v4` | 1 | `bug-2994` |
+| `hzm-mohaa-coop-mod/zzzzzzzzzzzzz_coop_stress.pk3 (models/player/base/anims_shared.txt)` | 1 | `bug-10513` |
+| `hzm-mohaa-coop-mod/zzzzzzzzzzzzzzz_coop_scopeglass.pk3 (out-of-band)` | 1 | `bug-10552` |
+| `HZM_FLARE_PEAK` | 1 | `bug-3008` |
+| `HZM_FLARE_PEAK 0.25)` | 1 | `bug-2999` |
+| `hzm_mpui_scene_*.inc` | 1 | `bug-10870` |
+| `HZM_SOFTEDGE_AUTO)` | 1 | `bug-2979` |
+| `hzm_wpnview.urc)` | 1 | `bug-10870` |
+| `hzmLampFlare in scripts/coop_headlights.shader)` | 1 | `bug-2969` |
+| `i.e. before the link generators)` | 1 | `bug-2988` |
+| `IdleHoldFront holder flag)` | 1 | `bug-2993` |
+| `IdleLane lane side` | 1 | `bug-2993` |
+| `ingame/ms_client.py` | 1 | `bug-3331` |
+| `installer/MOHCoopTrilogy-WebSetup.exe` | 1 | `bug-2734` |
+| `installer/omconfig_default.cfg` | 3 | `bug-2909` `bug-3116` `bug-3299` |
+| `installer/omconfig_default.cfg:160-163` | 1 | `bug-3142` |
+| `installer/report_problem.ps1` | 3 | `bug-1799` `bug-2665` `bug-3277` |
 | `installer/report_problem.ps1 + publish_release.ps1` | 1 | `bug-2663` |
+| `installer/webinstall.iss` | 2 | `bug-3116` `bug-10779` |
 | `io_scene_md5_28.py (user Blender addon)` | 1 | `bug-295` |
+| `it prints "Change your uniform in the ARMORY"` | 1 | `bug-3915` |
+| `it_w_beretta*` | 1 | `bug-4132` |
 | `It_W_Breda.tik` | 1 | `bug-494` |
+| `item.cpp` | 1 | `bug-4211` |
+| `itemhandler.scr` | 2 | `bug-2906` `bug-3952` |
+| `johnson_m1941*.tik (fixes sources)` | 1 | `bug-4262` |
+| `KAR98sniper/KAR98sniperSilenced.skd + clips + tiks` | 1 | `bug-4267` |
 | `key m5l1b:4)` | 1 | `bug-1597` |
+| `Killed/Spawned/GotKill)` | 1 | `bug-3000` |
+| `knob_mesh.py / add_part.py / smggun.py / detail_existing.py` | 1 | `bug-4137` |
 | `launch_dedicated_2player.ps1` | 3 | `bug-1681` `bug-2410` `bug-2446` |
 | `launch_dedicated_2player.ps1 (harness limitation)` | 1 | `bug-2412` |
+| `LaunchGame` | 1 | `bug-3472` |
+| `level.cpp)` | 1 | `bug-3520` |
 | `lib}.urc` | 1 | `bug-2624` |
-| `lightall_fp.glsl` | 1 | `bug-2594` |
+| `lift protocol)` | 1 | `bug-2949` |
+| `lightall_fp.glsl` | 3 | `bug-2594` `bug-2969` `bug-3148` |
+| `lightall_fp/generic_fp)` | 1 | `bug-3344` |
 | `lightall_vp.glsl)` | 1 | `bug-gl2-texgen` |
 | `likely NOT the true origin)` | 1 | `bug-1167` |
+| `line ~427)` | 1 | `bug-2961` |
+| `live_graphics_settings P3 costs)` | 1 | `bug-3062` |
+| `lkfin.cfg` | 1 | `bug-3920` |
+| `loadout_hostSeed) + itemhandler.scr (spawnInventory) + helmet.scr (armory_skin_set)` | 1 | `bug-3208` |
+| `loadout_setBody` | 1 | `bug-3208` |
+| `lobby.scr` | 2 | `bug-2906` `bug-3952` |
+| `lobbyCountdownHud) and the end-of-mission debrief (coop_mod/xp.scr debrief / unlock + progress bar ihuddraw)` | 1 | `bug-3918` |
+| `lobbyui.scr` | 1 | `bug-2906` |
+| `lookdev/src/raster.py (M_QDITHERC)` | 1 | `bug-3164` |
+| `luger` | 1 | `bug-4124` |
+| `m10)` | 1 | `bug-3614` |
 | `m1_garand_lite.tik` | 1 | `bug-095` |
+| `m1l1.scr` | 1 | `bug-3553` |
+| `m1l2a.scr` | 1 | `bug-3553` |
 | `m1l2b` | 1 | `bug-1245` |
-| `M3L3.scr` | 1 | `bug-1625` |
+| `m1l2b.scr` | 1 | `bug-3553` |
+| `m2l1}_mp.txt` | 1 | `bug-2870` |
+| `m2l2a.scr` | 2 | `bug-3542` `bug-3553` |
+| `m2l2b.scr` | 2 | `bug-3542` `bug-3553` |
+| `m2l2c.scr` | 1 | `bug-3542` |
+| `m3l1a.scr` | 1 | `bug-3542` |
+| `m3l2.scr` | 2 | `bug-3542` `bug-3553` |
+| `M3L3.scr` | 3 | `bug-1625` `bug-3542` `bug-3553` |
+| `m4l0.scr` | 1 | `bug-3553` |
+| `m4l1.scr` | 1 | `bug-3553` |
+| `m4l3.scr` | 1 | `bug-3553` |
+| `m5l1b.scr` | 1 | `bug-3553` |
+| `M5L2A.scr` | 1 | `bug-3542` |
+| `m5l2b.scr` | 1 | `bug-3542` |
+| `m6l1a.scr` | 1 | `bug-3553` |
+| `m6l1c.scr` | 2 | `bug-3542` `bug-3553` |
+| `m6l2a` | 1 | `bug-4094` |
+| `m6l2a.scr` | 2 | `bug-3542` `bug-3553` |
+| `m6l3b.scr` | 1 | `bug-3553` |
+| `m6l3d.scr` | 1 | `bug-3553` |
 | `m6l3e.scr` | 1 | `bug-1625` |
+| `m_bEngageLogged` | 1 | `bug-2989` |
+| `m_fMinDistanceFogCut` | 1 | `bug-2989` |
+| `m_iLiftBlockT)` | 1 | `bug-2955` |
+| `macos}.yml` | 1 | `bug-10308` |
+| `MAIN tree: docs/tools/gen_coop_headlights.py + hzm-mohaa-coop-mod/scripts/coop_headlights.shader (coop_headbe…` | 1 | `bug-2979` |
+| `MAIN tree: docs/tools/glsl_variant_lint.py (now also rebuilds + lints the pshadow program` | 1 | `bug-2980` |
+| `main.scr` | 1 | `bug-2923` |
+| `main_b.tga` | 1 | `bug-3205` |
 | `maintt/maps/ho_battaglia.bsp (analysis only - no edit made)` | 1 | `bug-1386` |
+| `make_mphub3d.py` | 1 | `bug-10456` |
+| `managePlayerInventory` | 1 | `bug-3305` |
 | `manifests/*.json` | 1 | `bug-1523` |
 | `manifests/manifest-1.2.4.json` | 1 | `bug-1635` |
+| `map v10 fin_win_*` | 1 | `bug-10418` |
 | `maps/<the 7>.scr` | 1 | `bug-2612` |
+| `maps/briefing/briefing1-6.scr` | 1 | `bug-3234` |
+| `maps/briefing/briefinge1-3+briefingt1-3.scr` | 1 | `bug-3234` |
+| `maps/briefing/briefinge1.scr (+ e2` | 1 | `bug-10593` |
+| `maps/briefing/briefing{e` | 1 | `bug-3951` |
 | `maps/co_lobby4.bsp` | 1 | `bug-429` |
+| `maps/coop_ea_1_11.scr` | 2 | `bug-10686` `bug-10687` |
+| `maps/coop_ea_1_11.scr (mod branch ea)` | 1 | `bug-10685` |
+| `maps/coop_fl_1_1.scr` | 3 | `bug-10850` `bug-10851` `bug-10889` |
+| `maps/coop_fl_1_1.scr (frontline branch)` | 3 | `bug-10657` `bug-10658` `bug-10659` |
+| `maps/coop_fl_1_1.scr (mod)` | 1 | `bug-10849` |
+| `maps/coop_fl_1_1.scr (was mfl_1_1.scr)` | 1 | `bug-10645` |
+| `maps/coop_fl_1_1.scr + docs/tools/frontline (hzmconv)` | 1 | `bug-10825` |
+| `maps/coop_fl_1_1.scr fl_water` | 1 | `bug-10893` |
 | `maps/cov/*_force.scr (generator)` | 1 | `bug-1464` |
 | `maps/cov/*_walk.scr (generator)` | 2 | `bug-1467` `bug-1470` |
+| `maps/e1l1.scr` | 1 | `bug-10595` |
+| `maps/e1l1.scr + maps/e1l1/coop_fogtrigger.scr (new` | 1 | `bug-2963` |
 | `maps/e1l1/objectives.scr` | 1 | `bug-1626` |
+| `maps/e1l1/scene2.scr` | 1 | `bug-10595` |
 | `maps/e1l1/scene2axis\|scene2\|scene3\|thinktank.scr` | 1 | `bug-1054` |
+| `maps/e1l1/scene3.scr` | 1 | `bug-10595` |
 | `maps/e1l2/Artillery.scr` | 1 | `bug-942` |
 | `maps/e1l3*` | 1 | `bug-1054` |
 | `maps/e1l3/Conquest.scr` | 1 | `bug-1474` |
+| `maps/e1l4/Intro.scr` | 1 | `bug-10584` |
+| `maps/e1l4/light_e1l4.scr` | 2 | `bug-10576` `bug-10584` |
+| `maps/e1l4/preship.scr` | 1 | `bug-10576` |
+| `maps/e1l4/PreShip.scr` | 1 | `bug-10584` |
 | `maps/e2l1.scr + maps/e2l1/objectives.scr + maps/e2l1/FinalBattle.scr + maps/e2l1/paraBattle.scr` | 1 | `bug-1330` |
 | `maps/e2l1/objectives.scr` | 2 | `bug-1329` `bug-1627` |
 | `maps/e2l2/guardPost.scr` | 1 | `bug-1433` |
@@ -849,100 +2416,439 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `maps/e3l3/e3l3_AB41.scr` | 1 | `bug-251` |
 | `maps/e3l3/scene1.scr` | 1 | `bug-240` |
 | `maps/e3l4.scr` | 1 | `bug-1435` |
-| `maps/e3l4/outro.scr` | 1 | `bug-1027` |
+| `maps/e3l4/outro.scr` | 2 | `bug-1027` `bug-10576` |
+| `maps/e3l4/Outro.scr` | 2 | `bug-10584` `bug-10616` |
 | `maps/e3l4_arena.scr` | 6 | `bug-1396` `bug-1398` `bug-1401` `bug-1405` `bug-1406` `bug-1426` |
-| `maps/m1l2a.scr` | 2 | `bug-1485` `bug-1627` |
+| `maps/m1l2a.scr` | 3 | `bug-1485` `bug-1627` `bug-4012` |
 | `maps/m1l2a.scr (fix)` | 1 | `bug-1248` |
+| `maps/m1l2a.scr (probably - the SAS rescue / escort map with the explosives gate` | 1 | `bug-3916` |
 | `maps/m1l2a.scr:742` | 1 | `bug-1484` |
 | `maps/M1L3a.scr` | 2 | `bug-1460` `bug-1627` |
 | `maps/m1l3b.scr` | 1 | `bug-1437` |
 | `maps/m2l1.scr:297` | 1 | `bug-1486` |
-| `maps/m2l2a.scr` | 3 | `bug-1458` `bug-1599` `bug-1643` |
+| `maps/m2l2a.scr` | 4 | `bug-1458` `bug-1599` `bug-1643` `bug-4035` |
+| `maps/m2l3.bsp (map v9` | 1 | `bug-10397` |
+| `maps/m3l1a.scr` | 1 | `bug-3234` |
+| `maps/m3l1a/coopified.scr (coop_uwRingLate)` | 1 | `bug-4407` |
 | `maps/m3l1b.scr` | 1 | `bug-1626` |
 | `maps/m3l2.scr` | 1 | `bug-1599` |
-| `maps/m4l0.scr` | 1 | `bug-1626` |
+| `maps/M3L3.scr` | 1 | `bug-4134` |
+| `maps/m4l0.scr` | 2 | `bug-1626` `bug-10858` |
+| `maps/m4l0/at_course.scr` | 2 | `bug-10821` `bug-10822` |
+| `maps/m4l0/at_st_final.scr` | 1 | `bug-10858` |
+| `maps/m4l0/at_st_medic.scr` | 1 | `bug-10819` |
+| `maps/m4l0/at_st_support.scr` | 3 | `bug-10818` `bug-10855` `bug-10859` |
+| `maps/m4l0/at_targets.scr` | 2 | `bug-10820` `bug-10823` |
 | `maps/m5l1a.scr` | 1 | `bug-1627` |
 | `maps/m5l1b.scr` | 1 | `bug-541` |
-| `maps/m5l2b.scr` | 1 | `bug-1627` |
+| `maps/m5l1b.scr:49` | 1 | `bug-3107` |
+| `maps/m5l2b.scr` | 2 | `bug-1627` `bug-4435` |
+| `maps/M6L1b.scr` | 1 | `bug-3553` |
 | `maps/m6l3a.scr` | 1 | `bug-1438` |
 | `maps/m6l3c.scr` | 1 | `bug-1626` |
+| `maps/m6l3e.scr` | 2 | `bug-3234` `bug-10616` |
+| `maps/mfl_1_1.scr (frontline branch)` | 3 | `bug-10632` `bug-10643` `bug-10644` |
 | `maps/t1l3.scr` | 2 | `bug-1598` `bug-1626` |
-| `maps/t2l1.scr` | 2 | `bug-1598` `bug-1627` |
+| `maps/t2l1.scr` | 3 | `bug-1598` `bug-1627` `bug-3234` |
 | `maps/t2l2.scr` | 1 | `bug-t2l2-onfoot` |
 | `maps/t2l2.scr + addon MG42/vehicle spawns` | 1 | `bug-1026` |
-| `maps/t3l2.scr` | 2 | `bug-1434` `bug-1626` |
+| `maps/t2l3.scr` | 1 | `bug-3234` |
+| `maps/t2l4.scr` | 1 | `bug-10584` |
+| `maps/t3l1.scr` | 1 | `bug-3234` |
+| `maps/t3l2.scr` | 3 | `bug-1434` `bug-1626` `bug-10616` |
 | `maptest_watchdog.ps1` | 1 | `bug-2579` |
+| `measurement/tooling: docs/tools/rkeep/rkeep_p0.py runs` | 1 | `bug-3062` |
+| `medkit.scr` | 2 | `bug-2906` `bug-2923` |
+| `medkit.scr (dbno_selfrevive success path)` | 1 | `bug-4210` |
 | `medkit.scr)` | 1 | `bug-1204` |
+| `menumirror.scr (coop_noGameplayHud)` | 1 | `bug-3954` |
+| `menus3d pak (gen_gram_model.py` | 1 | `bug-10442` |
+| `menus3d pk3 hzm_ng_tag_*.tga + hzm_newgame3d.shader` | 1 | `bug-10440` |
+| `menus3d pk3 scripts/hzm_atcscene.shader` | 1 | `bug-10436` |
+| `menus3d pk3 textures/menu/hzm_atc_bg.jpg (docs/proposals/attic_polish_2026-11-02/tools/retouch.py bakelite)` | 1 | `bug-10435` |
+| `menus3d pk3 textures/menu/hzm_atc_bg.jpg (docs/proposals/attic_polish_2026-11-02/tools/retouch.py keylamp_res…` | 1 | `bug-10438` |
+| `menus3d pk3 textures/menu/hzm_atc_bg.jpg (docs/proposals/attic_polish_2026-11-02/tools/retouch.py wall_silhou…` | 1 | `bug-10437` |
+| `menus3d pk3 textures/menu/hzm_atc_floor_lm.jpg (docs/proposals/attic_polish_2026-11-02/tools/retouch.py floor…` | 1 | `bug-10449` |
+| `merge_batches.py (root-applied alternates)` | 1 | `bug-3242` |
 | `method not shipped code` | 1 | `bug-1601` |
+| `mg42portable.tik` | 1 | `bug-4268` |
+| `ml_run.py` | 1 | `bug-10905` |
+| `mod autoexec.cfg (r_weaponznear)` | 1 | `bug-10649` |
+| `mod coop_defaults.cfg + generated menu` | 1 | `bug-3347` |
+| `mod coop_mod/lobby.scr` | 1 | `bug-3910` |
+| `mod coop_mod/player_legs.st (COVER_WALL_THROW` | 1 | `bug-10561` |
+| `mod coop_mod/{medkit` | 1 | `bug-4035` |
+| `mod fg42-next` | 1 | `bug-4133` |
+| `mod folder still v3 0551ae73)` | 1 | `bug-2994` |
+| `mod hzm-mod-gamepad ui/coop_controls.urc` | 1 | `bug-4077` |
 | `mod textures/coop_gore/coop_bloodsplash.tga (scratchpad gen_woundstamp.py)` | 1 | `bug-780` |
+| `mod tree frozen for v1.10.3` | 1 | `bug-3237` |
+| `mod-folder pak and docs/tools/sky_hd_manifest.json NOT replaced)` | 2 | `bug-2987` `bug-3027` |
+| `mod: global/weather.scr` | 2 | `bug-3148` `bug-3151` |
+| `models/ = the assets_tex bucket)` | 1 | `bug-3901` |
 | `models/**` | 1 | `bug-853` |
+| `models/ammo/coop_dp28_clip.tik` | 1 | `bug-3371` |
 | `models/coop_build/ladder_*.tik` | 1 | `bug-1425` |
 | `models/coop_build/light_*.tik` | 2 | `bug-1408` `bug-1414` |
 | `models/coop_build/light_*.tik / coop_mod/props.scr / coop_mod/buildmode.scr` | 1 | `bug-1423` |
+| `models/emitters/coop_dustveil_day.tik + coop_dustveil_night.tik (new)` | 1 | `bug-2963` |
+| `models/emitters/coop_dustveil_night.tik` | 1 | `bug-3237` |
+| `models/emitters/coop_dustveil_snow*.tik / coop_dustveil_rain*.tik` | 1 | `bug-3548` |
+| `models/fx/coop_headbeam/coop_headbeam.skd/.skc` | 1 | `bug-2946` |
+| `models/fx/coop_headlamp.tik` | 1 | `bug-2946` |
 | `models/human/*.tik` | 1 | `bug-817` |
+| `models/human/animation/coop_cover/coop_blindfire_low_back.skc` | 1 | `bug-10431` |
+| `models/human/animation/misc/{neutralidle01` | 1 | `bug-3958` |
+| `models/human/animation/viewmodel/mg/coop_tps_reload_fg42.skc` | 1 | `bug-3364` |
+| `models/human/generic_dialogue_german.tik (mod copy in zzzzzz_co-op_hzm_mod_assets_tex.pk3) and the american o…` | 1 | `bug-10648` |
 | `models/human/german_afrika_private.tik` | 1 | `bug-1476` |
 | `models/human/german_wehrmact_grenadier.tik (anim set incomplete for MG42 use)` | 1 | `bug-1621` |
 | `models/human/new_generic_human.tik` | 2 | `bug-1818` `bug-2275` |
 | `models/human/new_generic_human.tik:343` | 1 | `bug-1487` |
-| `models/player/*.tik` | 1 | `bug-1521` |
+| `models/player/*.tik` | 2 | `bug-1521` `bug-10672` |
 | `models/player/allied_Airborne*.tik x8` | 1 | `bug-922` |
-| `models/player/base/anims_shared.txt` | 3 | `bug-306` `bug-431` `bug-2099` |
+| `models/player/base/anims_shared.txt` | 4 | `bug-306` `bug-431` `bug-2099` `bug-3367` |
+| `models/player/base/anims_shared.txt (coop_cover_throw_*)` | 1 | `bug-10561` |
+| `models/player/base/anims_shared.txt (coop_reload_dp28)` | 1 | `bug-3371` |
+| `models/statweapons/30cal.tik (retail)` | 1 | `bug-3562` |
 | `models/weapons/bar.tik` | 1 | `bug-1420` |
+| `models/weapons/dp28*.tik (stress copies)` | 1 | `bug-10557` |
+| `models/weapons/mg42portable.tik` | 1 | `bug-10920` |
+| `models/weapons/nagant_snipersilenced.tik (zzzzz_xw_weapons / stress pak)` | 1 | `bug-10533` |
+| `models/weapons/{colt45` | 1 | `bug-4124` |
+| `morale.scr` | 1 | `bug-3195` |
+| `mount_corners)` | 1 | `bug-10630` |
+| `MovementLocked for stackers` | 1 | `bug-3024` |
+| `mp40_mp18.tik` | 1 | `bug-3389` |
 | `mp_buildabase.scr` | 1 | `bug-2669` |
+| `mp_challenges.scr` | 1 | `bug-2906` |
+| `mp_dbno` | 1 | `bug-4035` |
+| `mp_dbno.scr` | 1 | `bug-2906` |
 | `mp_dbno_present)` | 1 | `bug-2626` |
+| `mp_medkits` | 1 | `bug-4035` |
+| `mp_medkits.scr` | 1 | `bug-2906` |
 | `mp_oneammo.scr` | 1 | `bug-2673` |
+| `mp_push.scr` | 1 | `bug-2906` |
+| `mp_weather.scr` | 1 | `bug-2939` |
 | `multiple` | 1 | `bug-1462` |
 | `N/A - process/deployment error` | 1 | `bug-1172` |
+| `nav_fitprobe)` | 1 | `bug-2956` |
+| `nav_straightDebug / nav_straightTrace)` | 1 | `bug-2964` |
+| `NavExcludeSlivers` | 1 | `bug-2988` |
+| `navigation_path.h + navigation_recast_path.h (GetSteerMode)` | 1 | `bug-2956` |
+| `navigation_recast_load.cpp (clear)` | 1 | `bug-2912` |
+| `navigation_recast_load.cpp (MarkHeadClearance/bot_navHeadClear` | 1 | `bug-2956` |
+| `navigation_recast_load.cpp (nav_fitprobe)` | 1 | `bug-2964` |
+| `navigation_recast_load_ext.cpp/.h (NavLift table)` | 1 | `bug-2912` |
+| `navigation_recast_load_ext.h` | 1 | `bug-3026` |
+| `navigation_recast_obstacle.cpp (NavigationObstacleMap::IsValidEntity)` | 1 | `bug-3026` |
+| `navigation_recast_path.cpp/.h (elevatorStart` | 1 | `bug-2912` |
+| `navigation_recast_path.cpp/.h (linkStart/linkEnd` | 1 | `bug-2913` |
+| `NAVSTRAIGHT line` | 1 | `bug-2964` |
+| `neutralidle02` | 1 | `bug-3958` |
+| `never shipped)` | 1 | `bug-3503` |
+| `new CG_ModelHandleShared)` | 1 | `bug-10543` |
+| `new chal_sr_col/chal_sr_w/chal_sr_split/chal_sub)` | 1 | `bug-10473` |
+| `new coop_heldSnapshot / coop_respawnKit / coop_deathDropExcluded / coop_deathDropPickups` | 1 | `bug-3305` |
+| `new coop_lt_quickFog)` | 1 | `bug-3106` |
+| `new coop_mod/smokescreen.scr` | 1 | `bug-3975` |
+| `new coop_stealthLive / coop_stealthSpawnGuard / coop_stealthSpawnRelease)` | 1 | `bug-3399` |
+| `new cos_need) -> ui/coop_mp{a` | 1 | `bug-2755` |
 | `new helmet_lockNotice` | 1 | `bug-1578` |
-| `no code change)` | 1 | `bug-2098` |
+| `NEW label coop_shermanClips) + maps/M3L3.scr:7665 comment. STAGED ONLY (v1.10.3 freeze): docs/proposals/m3l1a…` | 1 | `bug-3219` |
+| `new RELOAD_SHOTGUN_BREAK_END / _BREAK_FIRE)` | 1 | `bug-3728` |
+| `new tr_hzm_lodfog.c + tr_hzm_lodfog_rb.c` | 1 | `bug-3139` |
+| `new/snd_main_new.cpp` | 1 | `bug-3234` |
+| `new/snd_public_new.h` | 1 | `bug-3234` |
+| `no code change)` | 2 | `bug-2098` `bug-10369` |
 | `no engine edit)` | 1 | `bug-1207` |
 | `no mod files touched)` | 1 | `bug-1357` |
 | `no Release PDB` | 1 | `bug-2666` |
+| `Nobody Went Down` | 1 | `bug-2924` |
+| `none (behaviour change explained` | 1 | `bug-10369` |
 | `not a code defect` | 1 | `bug-1172` |
+| `not a tool)` | 1 | `bug-3805` |
+| `not an engine defect` | 1 | `bug-3034` |
+| `NOT applied (v1.10.3 freeze)` | 1 | `bug-3207` |
+| `not applied)` | 1 | `bug-3138` |
+| `not built - see docs/proposals/drivers_rifle_2026-09-27/diagnosis.md)` | 1 | `bug-3052` |
+| `NOT built): 19 files per docs/proposals/lightning_2026-09-27/engine_patch/lightning_v1_onto_main.patch` | 1 | `bug-3151` |
+| `not changed)` | 1 | `bug-3543` |
 | `not code)` | 2 | `bug-2427` `bug-2428` |
+| `not committed)` | 1 | `bug-10651` |
+| `NOT deployed` | 2 | `bug-2984` `bug-2991` |
+| `not deployed` | 1 | `bug-2994` |
+| `not deployed)` | 2 | `bug-2953` `bug-2985` |
+| `NOT deployed)` | 1 | `bug-4265` |
+| `not edited by this agent)` | 1 | `bug-3529` |
+| `not edited)` | 1 | `bug-2984` |
 | `NOT FIXED` | 1 | `bug-2069` |
+| `not installed - see docs/proposals/drivers_rifle_2026-09-27/diagnosis.md)` | 1 | `bug-3051` |
+| `not shipped)` | 2 | `bug-3149` `bug-3449` |
+| `not shown)` | 1 | `bug-3677` |
+| `not the game` | 1 | `bug-10455` |
+| `not yet applied - v1.10.3 release freeze)` | 1 | `bug-3188` |
 | `NOT yet applied)` | 1 | `bug-2032` |
+| `not yet in the tree` | 1 | `bug-3187` |
+| `nothing in the repo or the shipped paks)` | 1 | `bug-2995` |
+| `now the default after exec` | 1 | `bug-2977` |
 | `nvoglv64.dll (NVIDIA OpenGL driver) - NOT project code` | 1 | `bug-1968` |
 | `obj` | 1 | `bug-2624` |
 | `object.cpp` | 2 | `bug-861` `bug-892` |
 | `object.cpp (@448 HeadGibObject class)` | 1 | `bug-866` |
+| `object.cpp (HelmetObject)` | 1 | `bug-4211` |
 | `object.h` | 1 | `bug-861` |
 | `object.h (@90 decl)` | 1 | `bug-866` |
+| `objective thread ~l.7865-7873` | 1 | `bug-3470` |
 | `objective2` | 1 | `bug-1623` |
+| `objectives.scr` | 1 | `bug-2906` |
 | `obj}.urc` | 2 | `bug-2636` `bug-2638` |
+| `observation - nothing changed)` | 1 | `bug-3081` |
+| `occz[3])` | 1 | `bug-3408` |
+| `off release-1.10.36` | 1 | `bug-4265` |
+| `officer.scr` | 2 | `bug-2906` `bug-4051` |
+| `officer.scr (coop_reward_hud_start)` | 1 | `bug-3954` |
+| `openmohaa engine: code/cgame/cg_demopip.c` | 1 | `bug-10403` |
+| `openmohaa engine: code/renderergl2/tr_backend.c` | 1 | `bug-10402` |
+| `openmohaa-hzm (branch loot-next) code/fgame/player.cpp` | 1 | `bug-3508` |
+| `openmohaa-hzm (branch loot-next) code/fgame/player.cpp (Player::CoopLootSelect)` | 1 | `bug-3504` |
+| `openmohaa-hzm (branch loot-next) code/fgame/weapon.cpp (Weapon::CoopLootPickup / CoopLootTakeAmmo)` | 1 | `bug-3506` |
+| `openmohaa-hzm (branch loot-next) code/fgame/weapon.cpp (Weapon::PickupWeapon)` | 1 | `bug-3505` |
+| `openmohaa-hzm (demo-markers): code/client/cl_demoedit.cpp` | 3 | `bug-10339` `bug-10340` `bug-10341` |
+| `openmohaa-hzm (demo-timeline): code/cgame/cg_demoedit.c` | 1 | `bug-10311` |
+| `openmohaa-hzm (demo-timeline): code/client/cl_avi.cpp` | 1 | `bug-10297` |
+| `openmohaa-hzm (demo-timeline): code/client/cl_demoedit.cpp` | 11 | `bug-10282` `bug-10283` `bug-10284` `bug-10294` `bug-10295` `bug-10296` `bug-10309` `bug-10310` `bug-10326` `bug-10327` `bug-10328` |
+| `openmohaa-hzm (demo-timeline): code/sdl/sdl_input.c` | 1 | `bug-10329` |
 | `openmohaa-hzm (gl2 renderer or its callers - tag 12 alloc)` | 1 | `bug-gl2-ztagmalloc` |
 | `openmohaa-hzm (renderer / nvoglv64 driver interaction)` | 1 | `bug-2131` |
+| `openmohaa-hzm (staged` | 1 | `bug-3151` |
+| `openmohaa-hzm (unknown: cgame or gl2 screen-space tint leaking into the free/follow camera)` | 1 | `bug-10400` |
+| `openmohaa-hzm (worktree H:/hzm_work/scopes1025_eng` | 1 | `bug-4390` |
 | `openmohaa-hzm cg_main.c + cl_ui.cpp` | 1 | `bug-258` |
-| `openmohaa-hzm/.cmake` | 1 | `bug-1909` |
+| `openmohaa-hzm cgame CG_RainGlobal (the coordinator's change` | 1 | `bug-3529` |
+| `openmohaa-hzm cgame/cg_drawtools.cpp (branch snipers2-engine) + coop_mod/xp.scr` | 1 | `bug-4152` |
+| `openmohaa-hzm cgame/cg_hdprogress.c (new)` | 1 | `bug-4035` |
+| `openmohaa-hzm cgame/cg_tempmodels.cpp (branch bolts1025-engine` | 1 | `bug-4265` |
+| `openmohaa-hzm cgame/cg_tempmodels.cpp (TempModelPhysics stop branch)` | 1 | `bug-4266` |
+| `openmohaa-hzm client/cl_engrave.cpp` | 2 | `bug-10861` `bug-10887` |
+| `openmohaa-hzm client/cl_ui.cpp UI_MenuEscape` | 1 | `bug-10857` |
+| `openmohaa-hzm code/cgame/cg_adssights.h` | 1 | `bug-10617` |
+| `openmohaa-hzm code/cgame/cg_demoedit.c (CG_DemoEdReset_f)` | 1 | `bug-10541` |
+| `openmohaa-hzm code/cgame/cg_demopip.c CG_DemoPipDraw2D` | 1 | `bug-10427` |
+| `openmohaa-hzm code/cgame/cg_drawtools.cpp (CG_DrawCrosshair call site)` | 1 | `bug-10496` |
+| `openmohaa-hzm code/cgame/cg_hzmscope.c` | 1 | `bug-10626` |
+| `openmohaa-hzm code/cgame/cg_hzmscope.c (CG_HzmScopeEyeHide defaults)` | 1 | `bug-10625` |
+| `openmohaa-hzm code/cgame/cg_hzmscope.c (CG_HzmScopeEyeHide)` | 1 | `bug-10302` |
+| `openmohaa-hzm code/cgame/cg_hzmscope.c CG_HzmScopeFrame` | 1 | `bug-10429` |
+| `openmohaa-hzm code/cgame/cg_main.c (CG_ProcessConfigString` | 1 | `bug-10543` |
+| `openmohaa-hzm code/cgame/cg_modelanim.c` | 1 | `bug-10740` |
+| `openmohaa-hzm code/cgame/cg_modelanim.c (attached weapon draw) - not changed` | 1 | `bug-10542` |
+| `openmohaa-hzm code/cgame/cg_nature.cpp` | 1 | `bug-3881` |
+| `openmohaa-hzm code/cgame/cg_parsemsg.cpp` | 1 | `bug-10565` |
+| `openmohaa-hzm code/cgame/cg_ragdoll.c` | 1 | `bug-4212` |
+| `openmohaa-hzm code/cgame/cg_view.c` | 1 | `bug-10389` |
+| `openmohaa-hzm code/cgame/cg_view.c (CG_CoopCoverHugCam` | 1 | `bug-10465` |
+| `openmohaa-hzm code/cgame/cg_view.c (CG_CoopCoverHugCam mid-wall aim camera)` | 1 | `bug-10562` |
+| `openmohaa-hzm code/cgame/cg_view.c (CG_CoopCoverHugCam)` | 3 | `bug-10390` `bug-10414` `bug-10430` |
+| `openmohaa-hzm code/cgame/cg_view.c (CG_ScopeBoltJolt)` | 1 | `bug-10305` |
+| `openmohaa-hzm code/cgame/cg_view.c (CG_ScopeOcularGun)` | 1 | `bug-10288` |
+| `openmohaa-hzm code/cgame/cg_view.c (reverted` | 1 | `bug-10651` |
+| `openmohaa-hzm code/cgame/cg_viewmodelanim.c` | 4 | `bug-10286` `bug-10289` `bug-10303` `bug-10304` |
+| `openmohaa-hzm code/client/cl_demoedit.cpp (AR_Init)` | 1 | `bug-10452` |
+| `openmohaa-hzm code/client/cl_demoedit.cpp (AR_NoteHeadshot` | 1 | `bug-10453` |
+| `openmohaa-hzm code/client/cl_engrave.cpp (eng-engrave)` | 4 | `bug-10708` `bug-10709` `bug-10715` `bug-10716` |
+| `openmohaa-hzm code/client/cl_hzm_ops.cpp` | 3 | `bug-10813` `bug-10827` `bug-10832` |
+| `openmohaa-hzm code/client/cl_invrender.cpp (wpnviewer-eng)` | 1 | `bug-10528` |
+| `openmohaa-hzm code/client/cl_loadcine.cpp` | 2 | `bug-10869` `bug-10914` |
+| `openmohaa-hzm code/client/cl_main.cpp (CL_Record_f host branch)` | 1 | `bug-10540` |
+| `openmohaa-hzm code/client/cl_main.cpp CL_Disconnect_f` | 1 | `bug-10901` |
+| `openmohaa-hzm code/client/cl_main.cpp CL_Disconnect_f (cl_menuKeepRenderer` | 1 | `bug-10902` |
+| `openmohaa-hzm code/client/cl_net_chan.cpp` | 1 | `bug-3910` |
+| `openmohaa-hzm code/client/cl_net_chan.cpp (engine limitation) -> worked around in code/cgame/cg_coopsync.c +…` | 1 | `bug-3905` |
+| `openmohaa-hzm code/client/cl_ui.cpp` | 1 | `bug-10585` |
+| `openmohaa-hzm code/client/cl_ui.cpp (H:/hzm_work/eng-hotfix13661)` | 1 | `bug-10747` |
+| `openmohaa-hzm code/client/cl_uiscene.cpp` | 1 | `bug-10903` |
+| `openmohaa-hzm code/client/cl_uiscene.cpp (branch menu-attic63)` | 1 | `bug-10537` |
+| `openmohaa-hzm code/client/cl_uiscene.cpp (menu-sceneanim ff5e9b4f) - NOT fixed here` | 1 | `bug-10471` |
+| `openmohaa-hzm code/client/cl_uiscene.cpp (polish73-eng 109175a3)` | 1 | `bug-10874` |
+| `openmohaa-hzm code/client/cl_uiscene.cpp (rain73-eng WxRainDraw)` | 1 | `bug-10931` |
+| `openmohaa-hzm code/client/cl_uiscene.cpp (SceneBack` | 1 | `bug-10696` |
+| `openmohaa-hzm code/client/cl_uiscene.cpp (WxAmbience) + H:/hzm_work/wx/amb/tools/post.py` | 1 | `bug-10697` |
+| `openmohaa-hzm code/client/cl_uistd.cpp + cl_engrave.cpp` | 1 | `bug-10829` |
+| `openmohaa-hzm code/client/snd_openal_new.cpp` | 1 | `bug-10459` |
+| `openmohaa-hzm code/fgame/actor.cpp (branch ffline-eng` | 1 | `bug-10564` |
+| `openmohaa-hzm code/fgame/bg_coopsync.h (CoopSync_Encode/Decode)` | 1 | `bug-3904` |
+| `openmohaa-hzm code/fgame/bg_pmove.cpp` | 1 | `bug-10388` |
+| `openmohaa-hzm code/fgame/bg_pmove.cpp (BG_CoopBlindfireAimEx)` | 1 | `bug-10546` |
+| `openmohaa-hzm code/fgame/bg_pmove.cpp (BG_CoopCoverLateral/BG_CoopCoverExitInput)` | 1 | `bug-10387` |
+| `openmohaa-hzm code/fgame/bg_pmove.cpp (PM_CoopCoverPopTarget)` | 1 | `bug-10408` |
+| `openmohaa-hzm code/fgame/g_coopsync.cpp` | 1 | `bug-3906` |
+| `openmohaa-hzm code/fgame/g_coopsync.cpp (G_CoopSync_OnWrite / G_CoopSync_Frame)` | 1 | `bug-3907` |
+| `openmohaa-hzm code/fgame/player.cpp` | 1 | `bug-10587` |
+| `openmohaa-hzm code/fgame/player.cpp (CoopBlindfireAllowShot` | 1 | `bug-10407` |
+| `openmohaa-hzm code/fgame/player.cpp (CoopCoverBodyYaw` | 1 | `bug-10413` |
+| `openmohaa-hzm code/fgame/player.cpp (CoopCoverThrowSolve)` | 1 | `bug-10563` |
+| `openmohaa-hzm code/fgame/player.cpp (CoopCoverThrowSolve/Apply` | 1 | `bug-10548` |
+| `openmohaa-hzm code/fgame/player.cpp (FireWeapon` | 1 | `bug-10406` |
+| `openmohaa-hzm code/fgame/player.cpp (StartCoopCoverThrow` | 1 | `bug-10561` |
+| `openmohaa-hzm code/fgame/player.cpp (TickCoopCover blind-fire pose block` | 1 | `bug-10547` |
+| `openmohaa-hzm code/fgame/weapon.cpp` | 2 | `bug-4211` `bug-10559` |
+| `openmohaa-hzm code/fgame/worldspawn.cpp/.h` | 1 | `bug-10890` |
+| `openmohaa-hzm code/qcommon/common.c (Com_Frame` | 1 | `bug-3911` |
+| `openmohaa-hzm code/qcommon/hzm_engrave_table.h` | 2 | `bug-10830` `bug-10831` |
+| `openmohaa-hzm code/qcommon/hzm_engrave_table.h + cl_engrave.cpp` | 1 | `bug-10717` |
+| `openmohaa-hzm code/qcommon/msg.cpp` | 1 | `bug-10862` |
+| `openmohaa-hzm code/qcommon/net_ip.c` | 1 | `bug-3912` |
+| `openmohaa-hzm code/renderergl2/tr_hzm_demopip.c` | 1 | `bug-10428` |
+| `openmohaa-hzm code/renderergl2/tr_hzm_preload.c` | 1 | `bug-10904` |
+| `openmohaa-hzm code/renderergl2/tr_hzm_scope.c` | 1 | `bug-10287` |
+| `openmohaa-hzm code/renderergl2/tr_image.c` | 1 | `bug-10900` |
+| `openmohaa-hzm code/renderergl2/tr_main.c` | 1 | `bug-10649` |
+| `openmohaa-hzm code/renderergl2/tr_msaa.c` | 1 | `bug-3347` |
+| `openmohaa-hzm code/server/sv_demo.c (SVR_WriteExtension` | 1 | `bug-10454` |
+| `openmohaa-hzm code/server/sv_init.c (SV_GetUserinfo / SV_SetUserinfo)` | 1 | `bug-10426` |
+| `openmohaa-hzm fgame bg_slidemove/bg_pmove/g_mmove/player.cpp` | 1 | `bug-10863` |
+| `openmohaa-hzm padlean-next: code/client/cl_input.cpp` | 1 | `bug-4170` |
+| `openmohaa-hzm padnav-fix: code/sdl/sdl_input.c IN_GamepadUI` | 1 | `bug-4169` |
+| `openmohaa-hzm qcommon/hzm_engrave_table.h + client/cl_engrave.cpp` | 1 | `bug-10886` |
+| `openmohaa-hzm renderergl2 (r_skyHD / r_skyHDCompare)` | 1 | `bug-2937` |
+| `openmohaa-hzm renderergl2 tr_hzm_lens.c` | 1 | `bug-4391` |
+| `openmohaa-hzm textsweep-engine: cgame/cg_drawtools.cpp` | 1 | `bug-4097` |
+| `openmohaa-hzm uilib/uibind.cpp (menu2-engine)` | 1 | `bug-4180` |
+| `openmohaa-hzm uilib/uiwidget.cpp DeliverEventByName (menu2-engine)` | 1 | `bug-4179` |
+| `openmohaa-hzm uilib/uiwinman.cpp` | 1 | `bug-4178` |
+| `openmohaa-hzm worktree H:/hzm_work/ice1025_eng: renderergl2/tr_hzm_water.c` | 1 | `bug-4273` |
+| `openmohaa-hzm(-gfx)/code/renderergl2/tr_hzm_spot_rb.c RB_HZM_SpotFlares (fades) + the lobby's refdef time sou…` | 1 | `bug-3072` |
+| `openmohaa-hzm-ads-heavy/code/cgame/cg_adssights.h (14 shotgun rows)` | 1 | `bug-3697` |
+| `openmohaa-hzm-ads-heavy/code/cgame/cg_viewmodelanim.c` | 2 | `bug-3729` `bug-3825` |
+| `openmohaa-hzm-ads-rifle/.cmake` | 1 | `bug-3704` |
+| `openmohaa-hzm-ads-rifle/code/cgame/cg_modelanim.c` | 1 | `bug-3598` |
+| `openmohaa-hzm-ads-rifle/code/cgame/cg_viewmodelanim.c` | 1 | `bug-3713` |
+| `openmohaa-hzm-ads/code/cgame/cg_modelanim.c` | 4 | `bug-3554` `bug-3617` `bug-3782` `bug-3785` |
+| `openmohaa-hzm-ads/code/cgame/cg_view.c (CG_AdsRigSolve)` | 1 | `bug-3615` |
+| `openmohaa-hzm-ads/code/cgame/cg_view.c (suspected` | 1 | `bug-3677` |
+| `openmohaa-hzm-ads/code/cgame/cg_viewmodelanim.c` | 2 | `bug-3531` `bug-3654` |
+| `openmohaa-hzm-adsanim/.cmake (isolated cgame build` | 1 | `bug-3319` |
+| `openmohaa-hzm-adsfx code/cgame/cg_modelanim.c` | 1 | `bug-4130` |
+| `openmohaa-hzm-adsfx code/cgame/cg_view.c (CG_AddMuzzleHeat` | 1 | `bug-4125` |
+| `openmohaa-hzm-dbs/code/cgame/cg_viewmodelanim.c` | 1 | `bug-3708` |
+| `openmohaa-hzm-democams/code/cgame/cg_modelanim.c` | 1 | `bug-10336` |
+| `openmohaa-hzm-democams/code/client/cl_cgame.cpp` | 1 | `bug-10342` |
+| `openmohaa-hzm-democams/code/client/cl_demoedit.cpp` | 1 | `bug-10338` |
+| `openmohaa-hzm-demoed/.cmake/CMakeCache.txt` | 1 | `bug-10269` |
+| `openmohaa-hzm-gamepad (branch gamepad-next): code/sdl/sdl_input.c` | 1 | `bug-4077` |
+| `openmohaa-hzm-gfx (branch gfx` | 1 | `bug-2980` |
+| `openmohaa-hzm-gfx (isolated gfx tree` | 1 | `bug-2979` |
+| `openmohaa-hzm-gfx code/renderergl2 (A2C selection tr_shade.c` | 1 | `bug-3344` |
+| `openmohaa-hzm-gfx/code/cgame/cg_modelanim.c (branch gfx-B)` | 1 | `bug-3256` |
+| `openmohaa-hzm-gfx/code/renderergl2/glsl/lightall_fp.glsl` | 2 | `bug-3180` `bug-3252` |
+| `openmohaa-hzm-gfx/code/renderergl2/tr_gfxprobe.c:695-701 (R_GfxProbe_FreezeTime)` | 1 | `bug-3091` |
+| `openmohaa-hzm-gfx/code/renderergl2/tr_glsl.c (via main-snap-8)` | 1 | `bug-3180` |
+| `openmohaa-hzm-gfx/code/renderergl2/tr_hzm_spot_rb.c (queries) / tr_backend.c (post-opaque depth resolve)` | 1 | `bug-3073` |
+| `openmohaa-hzm-gfx/code/renderergl2/tr_msaa.c` | 1 | `bug-3021` |
+| `openmohaa-hzm-gfx/code/renderergl2/tr_postprocess.c RB_HZMDof` | 1 | `bug-3067` |
+| `openmohaa-hzm-gfx/code/renderergl2/tr_shade.c (ComputeDeformValues` | 1 | `bug-3244` |
+| `openmohaa-hzm-gfx/code/renderergl2/tr_world.c (R_MarkLeaves)` | 1 | `bug-3235` |
+| `openmohaa-hzm-gfx2 code/fgame/sentient.cpp` | 1 | `bug-3524` |
+| `openmohaa-hzm-gfx2/code/cgame/cg_hzm_aircraft.c (CG_HZM_AircraftView)` | 1 | `bug-3515` |
+| `openmohaa-hzm-gfx2/code/fgame/sentient.cpp (CoopArteryPulse` | 1 | `bug-3528` |
+| `openmohaa-hzm-gfx2/code/renderergl2/tr_hzm_clouds.c` | 1 | `bug-3517` |
+| `openmohaa-hzm-gfx2/code/renderergl2/tr_hzm_clouds_pure.h` | 1 | `bug-3523` |
+| `openmohaa-hzm-keynav code/uilib/uiwinman.cpp` | 1 | `bug-4163` |
+| `openmohaa-hzm-loadcine/code/client/cl_loadcine.cpp` | 1 | `bug-4010` |
+| `openmohaa-hzm-loadhold/code/client/cl_loadcine.cpp` | 2 | `bug-4173` `bug-4174` |
+| `openmohaa-hzm-loadplayer/code/client/cl_loadplayer.cpp` | 3 | `bug-4120` `bug-4122` `bug-4123` |
+| `openmohaa-hzm-loadplayer/code/client/snd_openal_new.cpp` | 1 | `bug-4121` |
+| `openmohaa-hzm-lobfix cgame cg_coopfeed.c` | 1 | `bug-4172` |
+| `openmohaa-hzm-lt (isolated worktree @18d2343f` | 1 | `bug-3148` |
+| `openmohaa-hzm-menu2 code/uilib/uiwidget.cpp` | 1 | `bug-4196` |
+| `openmohaa-hzm-menu2/.cmake-m2 (build config)` | 1 | `bug-4421` |
+| `openmohaa-hzm-menu2/code/client/cl_uiscene.cpp` | 2 | `bug-4416` `bug-4429` |
+| `openmohaa-hzm-menu2/code/client/CMakeLists.txt` | 1 | `bug-4422` |
+| `openmohaa-hzm-menu2/code/renderergl2/tr_model.cpp` | 1 | `bug-4420` |
+| `openmohaa-hzm-padlean/code/client/cl_input.cpp` | 5 | `bug-4175` `bug-4176` `bug-4177` `bug-4183` `bug-4184` |
+| `openmohaa-hzm-padlean/code/sdl/sdl_input.c` | 1 | `bug-4186` |
+| `openmohaa-hzm-vcl/code/renderergl2/tr_hzm_clouds.c` | 1 | `bug-3156` |
+| `openmohaa-hzm-vcl2/code/renderergl2/glsl/vclouds_trace_fp.glsl (VCL_PROC)` | 1 | `bug-3458` |
+| `openmohaa-hzm-vcl2/code/renderergl2/tr_glsl.c (uniformsInfo[])` | 1 | `bug-3456` |
+| `openmohaa-hzm-vcl2/code/renderergl2/tr_hzm_clouds.c (R_HZM_CloudsFingerprint)` | 1 | `bug-3455` |
+| `openmohaa-hzm-vcl2/code/renderergl2/tr_hzm_clouds.c (R_HZM_VclDecideRes)` | 1 | `bug-3459` |
+| `openmohaa-hzm-vcl2/code/renderergl2/tr_shade.c` | 1 | `bug-3460` |
+| `openmohaa-hzm/.cmake` | 2 | `bug-1909` `bug-3352` |
+| `openmohaa-hzm/.cmake (CMake project files)` | 1 | `bug-3298` |
+| `openmohaa-hzm/CMakeLists.txt (option USE_RENDERER_DLOPEN` | 1 | `bug-3247` |
+| `openmohaa-hzm/code (patch tooling)` | 1 | `bug-10324` |
+| `openmohaa-hzm/code (ter_* / sound cvar registration)` | 1 | `bug-3039` |
+| `openmohaa-hzm/code (terrain restart command)` | 1 | `bug-3040` |
 | `openmohaa-hzm/code/cgame (3P/ADS scroll handling) - exact site NOT yet identified` | 1 | `bug-2053` |
-| `openmohaa-hzm/code/cgame/cg_commands.cpp` | 1 | `bug-2426` |
-| `openmohaa-hzm/code/cgame/cg_consolecmds.c` | 2 | `bug-104` `bug-2460` |
-| `openmohaa-hzm/code/cgame/cg_drawtools.cpp` | 10 | `bug-139` `bug-gl2-dbnofx` `bug-gl2-suppressfx` `bug-1663` `bug-1878` `bug-1996` `bug-2008` `bug-2555` `bug-2619` `bug-2688` |
+| `openmohaa-hzm/code/cgame (incremental MSBuild) + docs/proposals/kickoff_2026-10-18/fx_1025/tools/fx_ingame.py` | 1 | `bug-fx1025-5` |
+| `openmohaa-hzm/code/cgame/cg_adssights.h` | 3 | `bug-3316` `bug-3365` `bug-3816` |
+| `openmohaa-hzm/code/cgame/cg_commands.cpp` | 4 | `bug-2426` `bug-2970` `bug-3491` `bug-3567` |
+| `openmohaa-hzm/code/cgame/cg_commands.cpp (CG_Command_ProcessFile)` | 1 | `bug-3013` |
+| `openmohaa-hzm/code/cgame/cg_commands.cpp (EventViewKick)` | 2 | `bug-10416` `bug-10877` |
+| `openmohaa-hzm/code/cgame/cg_commands.h` | 1 | `bug-3568` |
+| `openmohaa-hzm/code/cgame/cg_consolecmds.c` | 3 | `bug-104` `bug-2460` `bug-4445` |
+| `openmohaa-hzm/code/cgame/cg_coopbleed.c` | 1 | `bug-3425` |
+| `openmohaa-hzm/code/cgame/cg_coopfeed.c` | 6 | `bug-3427` `bug-3495` `bug-3519` `bug-3553` `bug-3572` `bug-4007` |
+| `openmohaa-hzm/code/cgame/cg_coopfeed.c (behaviour` | 1 | `bug-3543` |
+| `openmohaa-hzm/code/cgame/cg_coopfeed.c (CG_DrawCoopItems / CG_CoopItemsTopPx)` | 1 | `bug-3521` |
+| `openmohaa-hzm/code/cgame/cg_coopfeed.c (CG_DrawCoopPinned)` | 1 | `bug-3522` |
+| `openmohaa-hzm/code/cgame/cg_coopfeed.c (CG_FeedSubtitleBlock` | 1 | `bug-4006` |
+| `openmohaa-hzm/code/cgame/cg_coopfeed.c (coop_feedX 22 / coop_feedY 116` | 1 | `bug-3464` |
+| `openmohaa-hzm/code/cgame/cg_drawtools.cpp` | 12 | `bug-139` `bug-gl2-dbnofx` `bug-gl2-suppressfx` `bug-1663` `bug-1878` `bug-1996` `bug-2008` `bug-2555` `bug-2619` `bug-2688` `bug-2814` `bug-2819` |
 | `openmohaa-hzm/code/cgame/cg_drawtools.cpp (CG_CompassBarVisible)` | 1 | `bug-2581` |
+| `openmohaa-hzm/code/cgame/cg_drawtools.cpp (CG_DrawBracePip)` | 1 | `bug-2810` |
 | `openmohaa-hzm/code/cgame/cg_drawtools.cpp (CG_DrawStaminaArc) and/or hzm-mohaa-coop-mod/ui/hud_health.urc via…` | 1 | `bug-2593` |
+| `openmohaa-hzm/code/cgame/cg_drawtools.cpp (CG_HudDrawElements)` | 1 | `bug-4406` |
 | `openmohaa-hzm/code/cgame/cg_ents.c` | 1 | `bug-2429` |
 | `openmohaa-hzm/code/cgame/cg_ents.c + cg_modelanim.c` | 1 | `bug-2090` |
-| `openmohaa-hzm/code/cgame/cg_main.c` | 3 | `bug-074` `bug-1508` `bug-2595` |
-| `openmohaa-hzm/code/cgame/cg_modelanim.c` | 17 | `bug-093` `bug-094` `bug-042` `bug-301` `bug-315` `bug-332` `bug-863` `bug-1209` `bug-1901` `bug-2010` `bug-2013` `bug-2458` `bug-2480` `bug-2491` `bug-2499` `bug-2542` `bug-2569` |
+| `openmohaa-hzm/code/cgame/cg_footprints.c` | 1 | `bug-3349` |
+| `openmohaa-hzm/code/cgame/cg_hzmlightning.c (limiter) + renderergl2 bolt in the sky pass` | 1 | `bug-3172` |
+| `openmohaa-hzm/code/cgame/cg_hzmscope.c` | 2 | `bug-3510` `bug-3511` |
+| `openmohaa-hzm/code/cgame/cg_hzmscope.c (new)` | 1 | `bug-3462` |
+| `openmohaa-hzm/code/cgame/cg_main.c` | 4 | `bug-074` `bug-1508` `bug-2595` `bug-3060` |
+| `openmohaa-hzm/code/cgame/cg_main.c (CG_Init ~:899` | 1 | `bug-3048` |
+| `openmohaa-hzm/code/cgame/cg_main.c (CG_RegisterSounds)` | 1 | `bug-3097` |
+| `openmohaa-hzm/code/cgame/cg_marks.c CG_AddMarks` | 1 | `bug-fx1025-7` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c` | 22 | `bug-093` `bug-094` `bug-042` `bug-301` `bug-315` `bug-332` `bug-863` `bug-1209` `bug-1901` `bug-2010` `bug-2013` `bug-2458` `bug-2480` `bug-2491` `bug-2499` `bug-2542` `bug-2569` `bug-3310` `bug-3311` `bug-3335` `bug-3442` `bug-3856` |
 | `openmohaa-hzm/code/cgame/cg_modelanim.c (2 fixes)` | 1 | `bug-1217` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c (ADS off-hand hide)` | 1 | `bug-3243` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c (CG_ActorOverheadIcon iconType 3)` | 1 | `bug-3424` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c (CG_FindAdsTune / CoopStripSkinSuffix)` | 1 | `bug-3227` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c (CG_ModelAnim veil branch)` | 1 | `bug-2963` |
 | `openmohaa-hzm/code/cgame/cg_modelanim.c (CoopFingerLife` | 1 | `bug-2070` |
 | `openmohaa-hzm/code/cgame/cg_modelanim.c (diagnosis)` | 1 | `bug-2066` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c (s_adsGunTune ADS block)` | 1 | `bug-3225` |
 | `openmohaa-hzm/code/cgame/cg_modelanim.c + cg_commands.cpp` | 1 | `bug-324` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c + cg_view.c (ADS table path)` | 1 | `bug-3239` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c + cg_viewmodelanim.c (engine/apply_adsprop.py)` | 1 | `bug-3361` |
 | `openmohaa-hzm/code/cgame/cg_modelanim.c + hzm-mohaa-coop-mod/autoexec.cfg` | 1 | `bug-2011` |
 | `openmohaa-hzm/code/cgame/cg_modelanim.c:1655-1656 (attached-model nodraw block)` | 1 | `bug-1208` |
-| `openmohaa-hzm/code/cgame/cg_nature.cpp` | 1 | `bug-134` |
-| `openmohaa-hzm/code/cgame/cg_parsemsg.cpp` | 1 | `bug-1200` |
+| `openmohaa-hzm/code/cgame/cg_nature.cpp` | 2 | `bug-134` `bug-3583` |
+| `openmohaa-hzm/code/cgame/cg_nature.cpp (CG_Rain` | 1 | `bug-3466` |
+| `openmohaa-hzm/code/cgame/cg_nature.cpp (CG_RainGlobal / CG_Rain) - NOT changed` | 2 | `bug-3552` `bug-3558` |
+| `openmohaa-hzm/code/cgame/cg_parsemsg.cpp` | 2 | `bug-1200` `bug-10279` |
+| `openmohaa-hzm/code/cgame/cg_parsemsg.cpp CG_MakeExplosionEffect` | 1 | `bug-fx1025-6` |
 | `openmohaa-hzm/code/cgame/cg_predict.c` | 2 | `bug-316` `bug-2171` |
-| `openmohaa-hzm/code/cgame/cg_ragdoll.c` | 9 | `bug-1962` `bug-1964` `bug-1986` `bug-1965` `bug-1966` `bug-1967` `bug-1969` `bug-1970` `bug-1981` |
+| `openmohaa-hzm/code/cgame/cg_qdrawmotion.c` | 3 | `bug-3393` `bug-3396` `bug-3398` |
+| `openmohaa-hzm/code/cgame/cg_ragdoll.c` | 17 | `bug-1962` `bug-1964` `bug-1986` `bug-1965` `bug-1966` `bug-1967` `bug-1969` `bug-1970` `bug-1981` `bug-3127` `bug-3128` `bug-3129` `bug-3130` `bug-3131` `bug-3132` `bug-3133` `bug-3134` |
 | `openmohaa-hzm/code/cgame/cg_ragdoll.c + renderergl1/renderergl2 tr_ragdoll.cpp` | 1 | `bug-1963` |
 | `openmohaa-hzm/code/cgame/cg_scoreboard.cpp` | 3 | `bug-2683` `bug-2692` `bug-2697` |
+| `openmohaa-hzm/code/cgame/cg_servercmds.c` | 1 | `bug-3394` |
 | `openmohaa-hzm/code/cgame/cg_servercmds_filter.cpp` | 4 | `bug-sfx-duck-filtered` `bug-597` `bug-1502` `bug-1991` |
 | `openmohaa-hzm/code/cgame/cg_servercmds_filter.cpp (+ docs/tools/sec1_filter_selftest/ new)` | 1 | `bug-2580` |
 | `openmohaa-hzm/code/cgame/cg_snapshot.c` | 1 | `bug-733` |
-| `openmohaa-hzm/code/cgame/cg_tempmodels.cpp` | 1 | `bug-2217` |
-| `openmohaa-hzm/code/cgame/cg_view.c` | 51 | `bug-074` `bug-105` `bug-110` `bug-168` `bug-165` `bug-lean-ads-wrong-branch` `bug-229` `bug-015` `bug-022` `bug-026` `bug-071` `bug-296` `bug-256` `bug-288` `bug-289` `bug-303` `bug-308` `bug-321` `bug-327` `bug-329` `bug-270` `bug-271` `bug-1290` `bug-1306` `bug-1502` `bug-1508` `bug-1547` `bug-1942` `bug-1983` `bug-1984` `bug-1985` `bug-1998` `bug-2004` `bug-2005` `bug-2012` `bug-2016` `bug-2073` `bug-2129` `bug-2141` `bug-2142` `bug-2156` `bug-2163` `bug-2165` `bug-2300` `bug-2459` `bug-2462` `bug-2463` `bug-2502` `bug-2551` `bug-2562` `bug-2595` |
+| `openmohaa-hzm/code/cgame/cg_sound.cpp` | 1 | `bug-3441` |
+| `openmohaa-hzm/code/cgame/cg_tempmodels.cpp` | 2 | `bug-2217` `bug-3569` |
+| `openmohaa-hzm/code/cgame/cg_view.c` | 59 | `bug-074` `bug-105` `bug-110` `bug-168` `bug-165` `bug-lean-ads-wrong-branch` `bug-229` `bug-015` `bug-022` `bug-026` `bug-071` `bug-296` `bug-256` `bug-288` `bug-289` `bug-303` `bug-308` `bug-321` `bug-327` `bug-329` `bug-270` `bug-271` `bug-1290` `bug-1306` `bug-1502` `bug-1508` `bug-1547` `bug-1942` `bug-1983` `bug-1984` `bug-1985` `bug-1998` `bug-2004` `bug-2005` `bug-2012` `bug-2016` `bug-2073` `bug-2129` `bug-2141` `bug-2142` `bug-2156` `bug-2163` `bug-2165` `bug-2300` `bug-2459` `bug-2462` `bug-2463` `bug-2502` `bug-2551` `bug-2562` `bug-2595` `bug-3313` `bug-3315` `bug-3317` `bug-3395… |
+| `openmohaa-hzm/code/cgame/cg_view.c (:1887 default "0"` | 1 | `bug-3229` |
+| `openmohaa-hzm/code/cgame/cg_view.c (CG_HL_BeamAxis` | 1 | `bug-2977` |
+| `openmohaa-hzm/code/cgame/cg_view.c (CG_HL_IsSkyBeam` | 1 | `bug-2962` |
+| `openmohaa-hzm/code/cgame/cg_view.c (cg_hzmHeadlightsColor` | 1 | `bug-3008` |
+| `openmohaa-hzm/code/cgame/cg_view.c (CG_OffsetFirstPersonView` | 2 | `bug-3207` `bug-3262` |
 | `openmohaa-hzm/code/cgame/cg_view.c (CG_OffsetThirdPersonView)` | 1 | `bug-2000` |
 | `openmohaa-hzm/code/cgame/cg_view.c (coop daylight / night grade block)` | 1 | `bug-2584` |
+| `openmohaa-hzm/code/cgame/cg_view.c (headlight manager) / cg_hzmspot.c / renderergl2 tr_hzm_spot*.c` | 1 | `bug-2990` |
 | `openmohaa-hzm/code/cgame/cg_view.c (idle inspect rotation` | 1 | `bug-2069` |
 | `openmohaa-hzm/code/cgame/cg_view.c (new CG_CoopPrecipType + both lens gates)` | 1 | `bug-1206` |
 | `openmohaa-hzm/code/cgame/cg_view.c + cg_drawtools.cpp` | 1 | `bug-2003` |
@@ -951,36 +2857,71 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `openmohaa-hzm/code/cgame/cg_view.c + cg_ui.cpp` | 1 | `bug-1992` |
 | `openmohaa-hzm/code/cgame/cg_view.c + client/cl_input.cpp` | 1 | `bug-326` |
 | `openmohaa-hzm/code/cgame/cg_view.c + hzm-mohaa-coop-mod/ubersound/coop_gunfoley.scr` | 1 | `bug-2001` |
-| `openmohaa-hzm/code/cgame/cg_viewmodelanim.c` | 3 | `bug-1888` `bug-1999` `bug-2014` |
+| `openmohaa-hzm/code/cgame/cg_view.c CG_AdsRigSolve` | 1 | `bug-scopes1025-hip-lens` |
+| `openmohaa-hzm/code/cgame/cg_view.c:5610/5614 (cg_hzmHeadlightsColor / GlowSize defaults)` | 1 | `bug-2999` |
+| `openmohaa-hzm/code/cgame/cg_viewmodelanim.c` | 13 | `bug-1888` `bug-1999` `bug-2014` `bug-3294` `bug-3312` `bug-3336` `bug-3337` `bug-3354` `bug-3367` `bug-3630` `bug-3776` `bug-3845` `bug-scopes1025-fire-hip-snap` |
+| `openmohaa-hzm/code/cgame/cg_viewmodelanim.c (CG_CalcViewModelMovement)` | 1 | `bug-3226` |
+| `openmohaa-hzm/code/client (CL map-change path` | 1 | `bug-3015` |
+| `openmohaa-hzm/code/client/cl_avi.cpp` | 1 | `bug-10353` |
+| `openmohaa-hzm/code/client/cl_avi_audio.cpp` | 2 | `bug-10351` `bug-10355` |
+| `openmohaa-hzm/code/client/cl_avi_mp4.cpp` | 1 | `bug-10334` |
+| `openmohaa-hzm/code/client/cl_cgame.cpp` | 1 | `bug-10323` |
+| `openmohaa-hzm/code/client/cl_cin.cpp` | 1 | `bug-10693` |
+| `openmohaa-hzm/code/client/cl_dedicated.cpp` | 2 | `bug-3321` `bug-3518` |
+| `openmohaa-hzm/code/client/cl_demoedit.cpp` | 1 | `bug-10354` |
+| `openmohaa-hzm/code/client/cl_filmroom.cpp` | 1 | `bug-10320` |
+| `openmohaa-hzm/code/client/cl_filmroom.cpp (test)` | 1 | `bug-10322` |
 | `openmohaa-hzm/code/client/cl_input.cpp` | 4 | `bug-287` `bug-297` `bug-328` `bug-2128` |
 | `openmohaa-hzm/code/client/cl_input.cpp + cgame/cg_view.c` | 1 | `bug-325` |
-| `openmohaa-hzm/code/client/cl_main.cpp` | 10 | `bug-317` `bug-527` `bug-1180` `bug-1503` `bug-1523` `bug-1537` `bug-1541` `bug-1546` `bug-1925` `bug-2573` |
+| `openmohaa-hzm/code/client/cl_invrender.cpp` | 1 | `bug-4053` |
+| `openmohaa-hzm/code/client/cl_keys.cpp (console key)` | 1 | `bug-2910` |
+| `openmohaa-hzm/code/client/cl_keys.cpp (coop_hideObjCards registration)` | 1 | `bug-2919` |
+| `openmohaa-hzm/code/client/cl_loadcine.cpp` | 1 | `bug-4092` |
+| `openmohaa-hzm/code/client/cl_main.cpp` | 14 | `bug-317` `bug-527` `bug-1180` `bug-1503` `bug-1523` `bug-1537` `bug-1541` `bug-1546` `bug-1925` `bug-2573` `bug-2749` `bug-2777` `bug-2981` `bug-10300` |
 | `openmohaa-hzm/code/client/cl_main.cpp (CL_Init)` | 1 | `bug-2590` |
+| `openmohaa-hzm/code/client/cl_main.cpp (CL_InitRef)` | 1 | `bug-2975` |
+| `openmohaa-hzm/code/client/cl_main.cpp (CL_SendReport_f) + hzm-mohaa-coop-mod/ui/coop_report.urc` | 2 | `bug-2907` `bug-3278` |
 | `openmohaa-hzm/code/client/cl_main.cpp (CL_Vid_Restart_f)` | 1 | `bug-1145` |
+| `openmohaa-hzm/code/client/cl_parse.cpp` | 1 | `bug-10801` |
 | `openmohaa-hzm/code/client/cl_parse.cpp (CL_SystemInfoSetCvars)` | 1 | `bug-2589` |
-| `openmohaa-hzm/code/client/cl_ui.cpp` | 4 | `bug-253` `bug-502` `bug-766` `bug-770` |
+| `openmohaa-hzm/code/client/cl_parse.cpp CL_ParseGamestate / cl_main.cpp CL_FlushMemory (renderer kept) vs rend…` | 1 | `bug-3030` |
+| `openmohaa-hzm/code/client/cl_ui.cpp` | 6 | `bug-253` `bug-502` `bug-766` `bug-770` `bug-4442` `bug-4452` |
+| `openmohaa-hzm/code/client/cl_ui.cpp (CL_EndRegistration)` | 1 | `bug-3103` |
 | `openmohaa-hzm/code/client/cl_ui.cpp (CL_ShutdownUI hudList clear + UI_Update pre-draw) + openmohaa-hzm/code/u…` | 1 | `bug-767` |
+| `openmohaa-hzm/code/client/cl_ui.cpp (CL_TryStartIntro)` | 1 | `bug-2910` |
 | `openmohaa-hzm/code/client/cl_ui.cpp (read-only investigation)` | 1 | `bug-1524` |
+| `openmohaa-hzm/code/client/cl_ui.cpp (UI_DrawIntro)` | 1 | `bug-3037` |
+| `openmohaa-hzm/code/client/cl_ui.cpp (UI_LoadProbe_Report)` | 1 | `bug-3002` |
+| `openmohaa-hzm/code/client/cl_ui.cpp (UI_LoadScreenPrimeFrame) + cl_main.cpp (CL_StartHunkUsers)` | 1 | `bug-3035` |
+| `openmohaa-hzm/code/client/cl_ui.cpp (UI_MemorialDraw)` | 1 | `bug-3538` |
 | `openmohaa-hzm/code/client/cl_ui.cpp (UI_MultiplayerMainMenuWidgetsUpdate) + ui/dm_main.urc` | 1 | `bug-709` |
 | `openmohaa-hzm/code/client/cl_ui.cpp + ui/coop_dm_main.urc (was ui/dm_main.urc)` | 1 | `bug-720` |
+| `openmohaa-hzm/code/client/cl_ui.cpp or cl_main.cpp (CL_EndRegistration)` | 1 | `bug-3016` |
+| `openmohaa-hzm/code/client/cl_uifilmroom.cpp` | 1 | `bug-10321` |
+| `openmohaa-hzm/code/client/cl_uiscene.cpp` | 1 | `bug-4451` |
 | `openmohaa-hzm/code/client/cl_uistd.cpp` | 1 | `bug-254` |
 | `openmohaa-hzm/code/client/cl_uistd.cpp / gen_loadout.py` | 1 | `bug-590` |
 | `openmohaa-hzm/code/client/cl_uistd.cpp\|.h / gen_loadout.py` | 1 | `bug-596` |
+| `openmohaa-hzm/code/client/CMakeLists.txt` | 1 | `bug-10335` |
 | `openmohaa-hzm/code/client/new/snd_main_new.cpp` | 1 | `bug-2570` |
 | `openmohaa-hzm/code/client/snd_dma_new.cpp` | 1 | `bug-1508` |
 | `openmohaa-hzm/code/client/snd_info.cpp` | 1 | `bug-1194` |
 | `openmohaa-hzm/code/client/snd_local_new.h` | 3 | `bug-1163` `bug-2309` `bug-2392` |
-| `openmohaa-hzm/code/client/snd_openal_new.cpp` | 15 | `bug-099` `bug-1556` `bug-1797` `bug-1979` `bug-2234` `bug-2250` `bug-2276` `bug-2298` `bug-2344` `bug-2420` `bug-2444` `bug-2454` `bug-2457` `bug-2572` `bug-2576` |
+| `openmohaa-hzm/code/client/snd_openal_new.cpp` | 16 | `bug-099` `bug-1556` `bug-1797` `bug-1979` `bug-2234` `bug-2250` `bug-2276` `bug-2298` `bug-2344` `bug-2420` `bug-2444` `bug-2454` `bug-2457` `bug-2572` `bug-2576` `bug-10352` |
 | `openmohaa-hzm/code/client/snd_openal_new.cpp (diagnosis)` | 2 | `bug-153` `bug-156` |
+| `openmohaa-hzm/code/client/snd_openal_new.cpp (S_OPENAL_Start2DLoopSound)` | 1 | `bug-3473` |
 | `openmohaa-hzm/code/client/snd_openal_new.cpp + snd_dma_new.cpp` | 1 | `bug-2318` |
 | `openmohaa-hzm/code/client/snd_openal_new.cpp + snd_dma_new.cpp + hzm-mohaa-coop-mod/maps/m3l1a.scr` | 1 | `bug-2369` |
 | `openmohaa-hzm/code/client/snd_openal_new.cpp + snd_local_new.h` | 1 | `bug-2315` |
+| `openmohaa-hzm/code/fgame` | 1 | `bug-3203` |
 | `openmohaa-hzm/code/fgame (unlocated)` | 1 | `bug-330` |
 | `openmohaa-hzm/code/fgame/` | 1 | `bug-2695` |
 | `openmohaa-hzm/code/fgame/actor.cpp` | 11 | `bug-795` `bug-1321` `bug-1640` `bug-1655` `bug-1657` `bug-1882` `bug-1943` `bug-1948` `bug-1960` `bug-2450` `bug-2484` |
 | `openmohaa-hzm/code/fgame/actor.cpp (Actor::SoundSayAnim and Actor::EventSayAnim)` | 1 | `bug-1807` |
 | `openmohaa-hzm/code/fgame/actor.cpp (analysis note)` | 1 | `bug-2420` |
+| `openmohaa-hzm/code/fgame/actor.cpp (FixAIParameters` | 1 | `bug-2989` |
 | `openmohaa-hzm/code/fgame/actor.cpp (mechanism) + hzm-mohaa-coop-mod/coop_mod/cfg/voprobe.cfg + docs/TRAPS.md` | 1 | `bug-2395` |
+| `openmohaa-hzm/code/fgame/actor.cpp + actor.h + actor_machinegunner.cpp (STAGED` | 1 | `bug-3052` |
 | `openmohaa-hzm/code/fgame/actor.cpp + hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | 1 | `bug-2302` |
 | `openmohaa-hzm/code/fgame/actor.h` | 2 | `bug-096` `bug-100` |
 | `openmohaa-hzm/code/fgame/actor_cover.cpp` | 3 | `bug-1813` `bug-1815` `bug-2181` |
@@ -992,16 +2933,21 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `openmohaa-hzm/code/fgame/bg_pmove.cpp` | 2 | `bug-2103` `bug-2149` |
 | `openmohaa-hzm/code/fgame/bg_pmove.cpp + g_mmove.cpp + g_vmove.cpp` | 1 | `bug-954` |
 | `openmohaa-hzm/code/fgame/bg_public.h` | 1 | `bug-1179` |
+| `openmohaa-hzm/code/fgame/body.cpp` | 2 | `bug-2806` `bug-2809` |
+| `openmohaa-hzm/code/fgame/body.cpp (mp_corpse_cap block + linger default)` | 1 | `bug-2917` |
 | `openmohaa-hzm/code/fgame/decals.cpp + code/cgame/cg_ents.c + hzm-mohaa-coop-mod/autoexec.cfg (+ both deployed…` | 1 | `bug-776` |
 | `openmohaa-hzm/code/fgame/dm_manager.cpp` | 2 | `bug-2681` `bug-2700` |
 | `openmohaa-hzm/code/fgame/entity.cpp` | 2 | `bug-917` `bug-2241` |
 | `openmohaa-hzm/code/fgame/entity.cpp (Entity::AttachModelEvent)` | 1 | `bug-1217` |
 | `openmohaa-hzm/code/fgame/entity.cpp + hzm-mohaa-coop-mod/coop_mod/wallgun.scr` | 1 | `bug-1378` |
 | `openmohaa-hzm/code/fgame/entity.cpp:3704 (the COV SND probe)` | 1 | `bug-1496` |
-| `openmohaa-hzm/code/fgame/g_main.cpp` | 4 | `bug-931b` `bug-1669` `bug-1811` `bug-2291` |
+| `openmohaa-hzm/code/fgame/g_coopsync.cpp (+ g_client.cpp` | 1 | `bug-10568` |
+| `openmohaa-hzm/code/fgame/g_main.cpp` | 5 | `bug-931b` `bug-1669` `bug-1811` `bug-2291` `bug-10520` |
 | `openmohaa-hzm/code/fgame/g_phys.cpp` | 2 | `bug-914` `bug-2552` |
 | `openmohaa-hzm/code/fgame/g_phys.cpp (G_Physics_Toss) + weapon.cpp (Weapon::Drop` | 1 | `bug-923` |
 | `openmohaa-hzm/code/fgame/g_utils.cpp` | 1 | `bug-1465` |
+| `openmohaa-hzm/code/fgame/g_utils.cpp (+ ammo.cpp` | 1 | `bug-3520` |
+| `openmohaa-hzm/code/fgame/gamescript.cpp` | 1 | `bug-2868` |
 | `openmohaa-hzm/code/fgame/level.cpp` | 2 | `bug-1988` `bug-2293` |
 | `openmohaa-hzm/code/fgame/level.cpp (AllocEdict)` | 1 | `bug-927` |
 | `openmohaa-hzm/code/fgame/level.cpp (Level::ServerSpawned)` | 1 | `bug-2597` |
@@ -1009,19 +2955,44 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `openmohaa-hzm/code/fgame/level.cpp + coop_mod/mp_push_maps.scr + coop_mod/mp_push.scr + coop_mod/mp.scr + ui/…` | 1 | `bug-2637` |
 | `openmohaa-hzm/code/fgame/level.cpp + hzm-mohaa-coop-mod/anim/attack.scr` | 1 | `bug-2662` |
 | `openmohaa-hzm/code/fgame/navigate.cpp` | 3 | `bug-1561` `bug-1563` `bug-2677` |
-| `openmohaa-hzm/code/fgame/navigation_recast_load.cpp` | 1 | `bug-2702` |
-| `openmohaa-hzm/code/fgame/navigation_recast_path.cpp` | 1 | `bug-2715` |
+| `openmohaa-hzm/code/fgame/navigation_recast_config.h` | 2 | `bug-2787` `bug-2829` |
+| `openmohaa-hzm/code/fgame/navigation_recast_load.cpp` | 7 | `bug-2702` `bug-2831` `bug-2833` `bug-2850` `bug-2860` `bug-2861` `bug-2887` |
+| `openmohaa-hzm/code/fgame/navigation_recast_load.cpp (NavPolyShape` | 1 | `bug-2988` |
+| `openmohaa-hzm/code/fgame/navigation_recast_load.cpp + hzm-mohaa-coop-mod/coop_mod/mp_push.scr` | 1 | `bug-2864` |
+| `openmohaa-hzm/code/fgame/navigation_recast_load_ext.cpp` | 10 | `bug-2837` `bug-2842` `bug-2848` `bug-2871` `bug-2893` `bug-2896` `bug-2898` `bug-2901` `bug-2902` `bug-2903` |
+| `openmohaa-hzm/code/fgame/navigation_recast_load_ext.cpp (CanConnectJumpOverLedgePoint` | 1 | `bug-2955` |
+| `openmohaa-hzm/code/fgame/navigation_recast_load_ext.cpp (CanConnectStraightPoint` | 1 | `bug-2964` |
+| `openmohaa-hzm/code/fgame/navigation_recast_load_ext.cpp (NavEntity_IsSlab` | 1 | `bug-3026` |
+| `openmohaa-hzm/code/fgame/navigation_recast_load_ext.cpp (NavLearn_DisableJumpLink)` | 1 | `bug-2913` |
+| `openmohaa-hzm/code/fgame/navigation_recast_load_ext.cpp + navigation_recast_config_ext.h + docs/tools/gen_nav…` | 1 | `bug-2865` |
+| `openmohaa-hzm/code/fgame/navigation_recast_obstacle.cpp` | 2 | `bug-2792` `bug-2894` |
+| `openmohaa-hzm/code/fgame/navigation_recast_obstacle.cpp (NavigationObstacleMap::IsValidEntity)` | 1 | `bug-2803` |
+| `openmohaa-hzm/code/fgame/navigation_recast_path.cpp` | 2 | `bug-2715` `bug-3146` |
+| `openmohaa-hzm/code/fgame/navigation_recast_path.cpp (UpdatePos corner block` | 1 | `bug-2956` |
+| `openmohaa-hzm/code/fgame/navigation_recast_path.cpp (UpdatePos corner rounding)` | 1 | `bug-2914` |
+| `openmohaa-hzm/code/fgame/navigation_recast_path.h` | 1 | `bug-3146` |
 | `openmohaa-hzm/code/fgame/object.cpp` | 8 | `bug-614` `bug-1903` `bug-1910` `bug-1914` `bug-1915` `bug-2566` `bug-2567` `bug-2568` |
+| `openmohaa-hzm/code/fgame/object.cpp (CoopMagObject::CoopMagStop)` | 1 | `bug-3370` |
 | `openmohaa-hzm/code/fgame/object.h` | 1 | `bug-860` |
-| `openmohaa-hzm/code/fgame/player.cpp` | 46 | `bug-164` `bug-221` `bug-319` `bug-379` `bug-380` `bug-463` `bug-947` `bug-1291` `bug-1292` `bug-1324` `bug-1560` `bug-1565` `bug-1638` `bug-1712` `bug-1978` `bug-2086` `bug-2101` `bug-2102` `bug-2104` `bug-2105` `bug-2107` `bug-2108` `bug-2110` `bug-2111` `bug-2112` `bug-2124` `bug-2128` `bug-2129` `bug-2130` `bug-2136` `bug-2137` `bug-2139` `bug-2146` `bug-2152` `bug-2155` `bug-2157` `bug-2158` `bug-2167` `bug-2221` `bug-2247` `bug-2301` `bug-2431` `bug-2464` `bug-2465` `bug-2547` `bug-2560` |
+| `openmohaa-hzm/code/fgame/player.cpp` | 54 | `bug-164` `bug-221` `bug-319` `bug-379` `bug-380` `bug-463` `bug-947` `bug-1291` `bug-1292` `bug-1324` `bug-1560` `bug-1565` `bug-1638` `bug-1712` `bug-1978` `bug-2086` `bug-2101` `bug-2102` `bug-2104` `bug-2105` `bug-2107` `bug-2108` `bug-2110` `bug-2111` `bug-2112` `bug-2124` `bug-2128` `bug-2129` `bug-2130` `bug-2136` `bug-2137` `bug-2139` `bug-2146` `bug-2152` `bug-2155` `bug-2157` `bug-2158` `bug-2167` `bug-2221` `bug-2247` `bug-2301` `bug-2431` `bug-2464` `bug-2465` `bug-2547` `bug-2560` `bug-3422` `bug-3372` `bug-3400` `bug-3429` `bug-3658` `bug-3852` `bug-10522` `bug-10894` |
 | `openmohaa-hzm/code/fgame/player.cpp (+actor.cpp` | 1 | `bug-1062` |
 | `openmohaa-hzm/code/fgame/player.cpp (+player_animation.cpp` | 1 | `bug-2123` |
+| `openmohaa-hzm/code/fgame/player.cpp (ClientThink publish)` | 1 | `bug-10878` |
+| `openmohaa-hzm/code/fgame/player.cpp (ClientThink)` | 1 | `bug-3574` |
 | `openmohaa-hzm/code/fgame/player.cpp (cover entry turn)` | 1 | `bug-2094` |
 | `openmohaa-hzm/code/fgame/player.cpp (Player::DamageFeedback)` | 1 | `bug-2092` |
+| `openmohaa-hzm/code/fgame/player.cpp (Player::EvaluateState` | 1 | `bug-3324` |
+| `openmohaa-hzm/code/fgame/player.cpp (Player::Init)` | 1 | `bug-2958` |
+| `openmohaa-hzm/code/fgame/player.cpp (Player::Killed)` | 1 | `bug-2802` |
 | `openmohaa-hzm/code/fgame/player.cpp (Player::UserSelectWeapon)` | 1 | `bug-2597` |
+| `openmohaa-hzm/code/fgame/player.cpp (TickCoopBrace gate)` | 1 | `bug-2916` |
+| `openmohaa-hzm/code/fgame/player.cpp (TickCoopBrace gate: bot_noBrace + G_IsBot` | 1 | `bug-3042` |
+| `openmohaa-hzm/code/fgame/player.cpp (TickCoopBrace)` | 1 | `bug-2811` |
 | `openmohaa-hzm/code/fgame/player.cpp (TickCoopCover open-side solver + COVERSIDE probe)` | 1 | `bug-2072` |
 | `openmohaa-hzm/code/fgame/player.cpp (TickCoopCover open-side solver)` | 1 | `bug-2055` |
 | `openmohaa-hzm/code/fgame/player.cpp (TickCoopCover)` | 1 | `bug-1622` |
+| `openmohaa-hzm/code/fgame/player.cpp (TickCoopProne` | 1 | `bug-3560` |
+| `openmohaa-hzm/code/fgame/player.cpp (TickCoopProne stand-up path` | 1 | `bug-3573` |
 | `openmohaa-hzm/code/fgame/player.cpp + autoexec.cfg` | 1 | `bug-937b` |
 | `openmohaa-hzm/code/fgame/player.cpp + coop_mod/server.scr + maps/e1l2.scr` | 1 | `bug-946` |
 | `openmohaa-hzm/code/fgame/player.cpp + entity.cpp + entity.h` | 1 | `bug-2064` |
@@ -1033,55 +3004,113 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `openmohaa-hzm/code/fgame/player_combat.cpp` | 1 | `bug-1504` |
 | `openmohaa-hzm/code/fgame/player_conditionals.cpp` | 1 | `bug-554` |
 | `openmohaa-hzm/code/fgame/player_conditionals.cpp Player::CondWeaponActive` | 1 | `bug-1982` |
-| `openmohaa-hzm/code/fgame/playerbot.cpp` | 5 | `bug-2682` `bug-2687` `bug-2690` `bug-2691` `bug-2693` |
-| `openmohaa-hzm/code/fgame/playerbot_movement.cpp` | 2 | `bug-2696` `bug-2714` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp` | 18 | `bug-2682` `bug-2687` `bug-2690` `bug-2691` `bug-2693` `bug-2791` `bug-2840` `bug-2841` `bug-2866` `bug-2873` `bug-2874` `bug-2875` `bug-2877` `bug-2884` `bug-2890` `bug-2900` `bug-2915` `bug-2947` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (BotController hold-the-front` | 1 | `bug-2959` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (BotController::SendCommand)` | 1 | `bug-3025` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (BotController::VisionDistance` | 1 | `bug-2922` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (BotTeamRolesOn` | 1 | `bug-2993` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (BrainThink bot B3 danger walk)` | 1 | `bug-2920` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (BrainThink crouch block)` | 1 | `bug-2918` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (BrainThink D2 glance: movement.SetLookComp(300) under bot_glanceComp)` | 1 | `bug-2992` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (BuddyCtl` | 1 | `bug-3000` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (FindFragGrenade` | 1 | `bug-2948` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (HealThink/HealSafe/HealEnd` | 1 | `bug-2921` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (OnNadeSpawn` | 1 | `bug-2927` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (room-clear steps 3-5: CheckBreach intel gate + gap openings + reroll/…` | 1 | `bug-3024` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp (ScanOpening` | 1 | `bug-2986` |
+| `openmohaa-hzm/code/fgame/playerbot.cpp + playerbot_movement.cpp` | 1 | `bug-2849` |
+| `openmohaa-hzm/code/fgame/playerbot.h` | 1 | `bug-3086` |
+| `openmohaa-hzm/code/fgame/playerbot_movement.cpp` | 23 | `bug-2696` `bug-2714` `bug-2814` `bug-2815` `bug-2821` `bug-2824` `bug-2825` `bug-2827` `bug-2879` `bug-2880` `bug-2881` `bug-2882` `bug-2883` `bug-2885` `bug-2886` `bug-2888` `bug-2889` `bug-2891` `bug-2892` `bug-2897` `bug-2899` `bug-3066` `bug-3086` |
+| `openmohaa-hzm/code/fgame/playerbot_movement.cpp (A4 door section: bot_doorLeaf go-around` | 1 | `bug-3043` |
+| `openmohaa-hzm/code/fgame/playerbot_movement.cpp (BotMovement::LeafDeflect)` | 1 | `bug-3201` |
+| `openmohaa-hzm/code/fgame/playerbot_movement.cpp (BotMovement::MoveThink)` | 1 | `bug-2805` |
+| `openmohaa-hzm/code/fgame/playerbot_movement.cpp (LiftThink/LiftAbort/GetLiftState)` | 1 | `bug-2912` |
+| `openmohaa-hzm/code/fgame/playerbot_movement.cpp (steering / bot_cornerPad` | 1 | `bug-2949` |
+| `openmohaa-hzm/code/fgame/playerbot_movement.cpp (take-off learner` | 1 | `bug-2957` |
+| `openmohaa-hzm/code/fgame/playerbot_movement.cpp + navigation_recast_* + hzm-mohaa-coop-mod/coop_mod/mp_push.s…` | 1 | `bug-2862` |
+| `openmohaa-hzm/code/fgame/playerbot_movement.cpp / t2l1 navmesh (undiagnosed)` | 1 | `bug-2966` |
+| `openmohaa-hzm/code/fgame/playerbot_rotation.cpp` | 1 | `bug-2876` |
+| `openmohaa-hzm/code/fgame/scriptmaster.cpp (ScriptMaster::RegisterAlias)` | 1 | `bug-3098` |
+| `openmohaa-hzm/code/fgame/scriptslave.cpp` | 2 | `bug-3439` `bug-3440` |
 | `openmohaa-hzm/code/fgame/scriptthread.cpp` | 3 | `bug-911` `bug-945` `bug-2717` |
 | `openmohaa-hzm/code/fgame/scriptthread.cpp (forcealltriggers` | 1 | `bug-1494` |
 | `openmohaa-hzm/code/fgame/scriptthread.cpp (ForceAllTriggers) + maps/e1l1/scene6.scr:120` | 1 | `bug-1499` |
+| `openmohaa-hzm/code/fgame/scriptthread.cpp (ScriptThread::ServerStufftext)` | 1 | `bug-3526` |
 | `openmohaa-hzm/code/fgame/sentient.cpp` | 28 | `bug-230` `bug-135` `bug-615` `bug-730` `bug-763` `bug-797` `bug-861` `bug-915` `bug-919` `bug-920` `bug-1320` `bug-1874` `bug-1875` `bug-1876` `bug-1880` `bug-1883` `bug-1890` `bug-2160` `bug-2161` `bug-2170` `bug-2191` `bug-2193` `bug-2202` `bug-2546` `bug-2550` `bug-2574` `bug-2661` `bug-2713` |
 | `openmohaa-hzm/code/fgame/sentient.cpp (ArmorDamage confirmed-kill hook + Sentient::CoopHeadshotKillFx)` | 1 | `bug-1142` |
 | `openmohaa-hzm/code/fgame/sentient.cpp (ArmorDamage dead branch + new Sentient::CoopGoreCorpseDamage)` | 1 | `bug-1975` |
 | `openmohaa-hzm/code/fgame/sentient.cpp (CoopGoreTryDecapitate def @2366 + call @1690 in ArmorDamage death bran…` | 1 | `bug-866` |
+| `openmohaa-hzm/code/fgame/sentient.cpp (CoopGoreTryWoundProp)` | 1 | `bug-2807` |
+| `openmohaa-hzm/code/fgame/sentient.cpp (game.dll)` | 2 | `bug-2798` `bug-2799` |
+| `openmohaa-hzm/code/fgame/sentient.cpp (Sentient::CoopEjectMagazine) via docs/proposals/ads_bolt_2026-10-04/en…` | 1 | `bug-3362` |
 | `openmohaa-hzm/code/fgame/sentient.cpp (walks)` | 1 | `bug-924` |
 | `openmohaa-hzm/code/fgame/sentient.cpp + code/renderergl1/tr_gore.c` | 1 | `bug-828` |
 | `openmohaa-hzm/code/fgame/sentient.cpp + renderergl1/tr_gore.c + scratchpad gen_gore_skins.py/gen_woundstamp.p…` | 1 | `bug-747` |
+| `openmohaa-hzm/code/fgame/sentient.cpp/.h (coop_ejectcases)` | 1 | `bug-3388` |
 | `openmohaa-hzm/code/fgame/sentient.cpp:1544 (diagnosed` | 1 | `bug-1586` |
 | `openmohaa-hzm/code/fgame/sentient_combat.cpp` | 1 | `bug-619` |
 | `openmohaa-hzm/code/fgame/sentient_combat.cpp (8 sites)` | 1 | `bug-925` |
+| `openmohaa-hzm/code/fgame/sentient_combat.cpp (Sentient::FireWeapon` | 1 | `bug-3095` |
 | `openmohaa-hzm/code/fgame/trigger.cpp (TriggerLandmine::SetDamageable) + autoexec.cfg (revert)` | 1 | `bug-938` |
 | `openmohaa-hzm/code/fgame/vehicle.cpp` | 6 | `bug-032` `bug-035` `bug-039` `bug-252` `bug-1323` `bug-1514` |
 | `openmohaa-hzm/code/fgame/vehicle.cpp (DrivableVehicle::Killed)` | 1 | `bug-724` |
 | `openmohaa-hzm/code/fgame/vehicleturret.cpp` | 6 | `bug-036` `bug-038` `bug-322` `bug-1946` `bug-1950` `bug-2048` |
 | `openmohaa-hzm/code/fgame/vehicleturret.cpp:988-995 (root` | 1 | `bug-647` |
-| `openmohaa-hzm/code/fgame/weapon.cpp` | 9 | `bug-623` `bug-928` `bug-1551` `bug-1881` `bug-2106` `bug-2138` `bug-2140` `bug-2141` `bug-2153` |
+| `openmohaa-hzm/code/fgame/weapon.cpp` | 11 | `bug-623` `bug-928` `bug-1551` `bug-1881` `bug-2106` `bug-2138` `bug-2140` `bug-2141` `bug-2153` `bug-3851` `bug-10307` |
+| `openmohaa-hzm/code/fgame/weapon.cpp (CoopApplyPatternKick hold)` | 1 | `bug-10922` |
+| `openmohaa-hzm/code/fgame/weapon.cpp (CoopApplyPatternKick)` | 2 | `bug-10879` `bug-10898` |
+| `openmohaa-hzm/code/fgame/weapon.cpp (CoopFindRecoil` | 1 | `bug-10897` |
+| `openmohaa-hzm/code/fgame/weapon.cpp (Weapon::PickupWeapon` | 1 | `bug-10475` |
 | `openmohaa-hzm/code/fgame/weapon.cpp + 37 mod weapon TIKs + xw pack` | 1 | `bug-616` |
-| `openmohaa-hzm/code/fgame/weapturret.cpp` | 13 | `bug-089` `bug-091` `bug-229` `bug-005` `bug-011` `bug-014` `bug-016` `bug-1265` `bug-1843` `bug-1850` `bug-1866` `bug-1851` `bug-1940` |
-| `openmohaa-hzm/code/fgame/weaputils.cpp` | 6 | `bug-007` `bug-617` `bug-846` `bug-948` `bug-1974` `bug-2439` |
+| `openmohaa-hzm/code/fgame/weapturret.cpp` | 17 | `bug-089` `bug-091` `bug-229` `bug-005` `bug-011` `bug-014` `bug-016` `bug-1265` `bug-1843` `bug-1850` `bug-1866` `bug-1851` `bug-1940` `bug-3636` `bug-3637` `bug-3638` `bug-3639` |
+| `openmohaa-hzm/code/fgame/weapturret.cpp (TurretGun::AI_DoFiring)` | 1 | `bug-10919` |
+| `openmohaa-hzm/code/fgame/weaputils.cpp` | 8 | `bug-007` `bug-617` `bug-846` `bug-948` `bug-1974` `bug-2439` `bug-blastreact-4` `bug-10881` |
 | `openmohaa-hzm/code/fgame/weaputils.cpp (BulletAttack)` | 1 | `bug-2095` |
 | `openmohaa-hzm/code/fgame/weaputils.cpp (CoopHeadshotTestTick target filter + tag-divergence fallback)` | 1 | `bug-1143` |
 | `openmohaa-hzm/code/fgame/weaputils.cpp + gamecmds.cpp` | 1 | `bug-2096` |
+| `openmohaa-hzm/code/fgame/weaputils.h/.cpp (Projectile m_fExplodeAt/m_iBotNadeId` | 1 | `bug-2925` |
 | `openmohaa-hzm/code/fgame/{object.h` | 1 | `bug-892` |
 | `openmohaa-hzm/code/fgame/{player.cpp` | 1 | `bug-2099` |
 | `openmohaa-hzm/code/navigation_recast_load.cpp:729` | 1 | `bug-2617` |
 | `openmohaa-hzm/code/null/null_client.c:136 (dedicated CL_UseLargeLightmap)` | 1 | `bug-2585` |
 | `openmohaa-hzm/code/parser/lex_source.txt:315` | 1 | `bug-1497` |
+| `openmohaa-hzm/code/qcommon/cm_load.c` | 1 | `bug-2836` |
 | `openmohaa-hzm/code/qcommon/cm_load.c + docs/tools/gen_metal_brushes.py` | 1 | `bug-2314` |
 | `openmohaa-hzm/code/qcommon/cm_test.c` | 1 | `bug-955` |
+| `openmohaa-hzm/code/qcommon/cm_trace_lbd.cpp` | 1 | `bug-3135` |
 | `openmohaa-hzm/code/qcommon/cmd.c` | 1 | `bug-2591` |
+| `openmohaa-hzm/code/qcommon/cmd.c (MAX_CMD_BUFFER)` | 1 | `bug-2908` |
 | `openmohaa-hzm/code/qcommon/cmd_filter.c (SHADOW rule` | 1 | `bug-2588` |
-| `openmohaa-hzm/code/qcommon/common.c` | 1 | `bug-1664` |
+| `openmohaa-hzm/code/qcommon/cmd_srvguard.h` | 1 | `bug-3206` |
+| `openmohaa-hzm/code/qcommon/cmd_srvguard.h (generated by docs/tools/sec2_guardlist.py)` | 1 | `bug-3012` |
+| `openmohaa-hzm/code/qcommon/common.c` | 2 | `bug-1664` `bug-3494` |
+| `openmohaa-hzm/code/qcommon/common.c Com_Printf (rd_buffer redirect` | 1 | `bug-3034` |
+| `openmohaa-hzm/code/qcommon/cvar.c` | 1 | `bug-3490` |
 | `openmohaa-hzm/code/qcommon/cvar.c (MAX_CVARS + new high-water warning)` | 1 | `bug-1582` |
 | `openmohaa-hzm/code/qcommon/cvar.c / common.c` | 1 | `bug-598` |
+| `openmohaa-hzm/code/qcommon/hzm_diag.c` | 1 | `bug-3486` |
+| `openmohaa-hzm/code/qcommon/msg.cpp` | 1 | `bug-3382` |
 | `openmohaa-hzm/code/qcommon/msg.cpp (entityStateFields_ver_15)` | 1 | `bug-1187` |
+| `openmohaa-hzm/code/qcommon/net_chan.c` | 1 | `bug-2727` |
 | `openmohaa-hzm/code/qcommon/q_shared.h` | 7 | `bug-1179` `bug-1180` `bug-1183` `bug-1198` `bug-2080` `bug-2449` `bug-2623` |
 | `openmohaa-hzm/code/qcommon/q_shared.h (+ sv_snapshot.c` | 1 | `bug-2285` |
 | `openmohaa-hzm/code/qcommon/q_shared.h (MAX_MODELS)` | 1 | `bug-892` |
 | `openmohaa-hzm/code/qcommon/q_shared.h + coop_mod/server.cfg + start_server.cfg` | 1 | `bug-929` |
 | `openmohaa-hzm/code/qcommon/q_shared.h + server/sv_snapshot.c + cgame/cg_public.h + client/client.h + fgame/ga…` | 1 | `bug-2283` |
+| `openmohaa-hzm/code/qcommon/qcommon.h` | 1 | `bug-10299` |
 | `openmohaa-hzm/code/qcommon/tiki.h` | 1 | `bug-2082` |
 | `openmohaa-hzm/code/qcommon/tiki_main.cpp` | 1 | `bug-1953` |
+| `openmohaa-hzm/code/renderercommon/CMakeLists.txt:8 (code)` | 1 | `bug-3152` |
+| `openmohaa-hzm/code/renderercommon/hzm_light_restore.h` | 1 | `bug-2969` |
+| `openmohaa-hzm/code/renderercommon/hzm_light_restore.h (HZM_BEAMSTOP_AUTO)` | 1 | `bug-2977` |
+| `openmohaa-hzm/code/renderercommon/hzm_light_restore.h (new)` | 1 | `bug-2946` |
+| `openmohaa-hzm/code/renderercommon/hzm_storm.h` | 1 | `bug-3223` |
+| `openmohaa-hzm/code/renderercommon/hzm_storm.h (new)` | 1 | `bug-3222` |
+| `openmohaa-hzm/code/renderercommon/hzm_storm.h (staged` | 1 | `bug-3212` |
 | `openmohaa-hzm/code/renderercommon/new/tr_types_new.h` | 2 | `bug-1168` `bug-2242` |
 | `openmohaa-hzm/code/renderercommon/qgl.h` | 1 | `bug-734` |
+| `openmohaa-hzm/code/renderergl1` | 1 | `bug-3514` |
+| `openmohaa-hzm/code/renderergl1 (model registration)` | 1 | `bug-3018` |
 | `openmohaa-hzm/code/renderergl1/tr_backend.c` | 2 | `bug-108` `bug-152` |
 | `openmohaa-hzm/code/renderergl1/tr_bsp.c` | 1 | `bug-1197` |
 | `openmohaa-hzm/code/renderergl1/tr_draw.c` | 1 | `bug-159` |
@@ -1090,6 +3119,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `openmohaa-hzm/code/renderergl1/tr_gore.c (+tr_local.h/tr_init.c` | 1 | `bug-780` |
 | `openmohaa-hzm/code/renderergl1/tr_gore.c + renderer rebuild` | 1 | `bug-930` |
 | `openmohaa-hzm/code/renderergl1/tr_gore.c + renderergl2/tr_gore.c (R_GoreDiffuseIsHeadgear + bestHeadgear + ad…` | 1 | `bug-1142` |
+| `openmohaa-hzm/code/renderergl1/tr_grass_gl1.c:26` | 1 | `bug-3168` |
 | `openmohaa-hzm/code/renderergl1/tr_image.c` | 2 | `bug-059` `bug-2445` |
 | `openmohaa-hzm/code/renderergl1/tr_init.c` | 1 | `bug-1849` |
 | `openmohaa-hzm/code/renderergl1/tr_init.c + maintt/configs/omconfig.cfg` | 1 | `bug-918` |
@@ -1097,12 +3127,19 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `openmohaa-hzm/code/renderergl1/tr_local.h + code/cgame/CMakeLists.txt` | 1 | `bug-932b` |
 | `openmohaa-hzm/code/renderergl1/tr_main.c` | 1 | `bug-1193` |
 | `openmohaa-hzm/code/renderergl1/tr_postprocess_gl1.c` | 4 | `bug-lowhealth-scene-dependent` `bug-009` `bug-010` `bug-708` |
+| `openmohaa-hzm/code/renderergl1/tr_scene.c` | 1 | `bug-3010` |
 | `openmohaa-hzm/code/renderergl1/tr_scene.c (RE_GetRenderEntity)` | 1 | `bug-1217` |
 | `openmohaa-hzm/code/renderergl1/tr_shade.c` | 2 | `bug-732` `bug-916` |
+| `openmohaa-hzm/code/renderergl1/tr_surface.c` | 2 | `bug-10600` `bug-10614` |
 | `openmohaa-hzm/code/renderergl2 (8 files)` | 1 | `bug-1304` |
+| `openmohaa-hzm/code/renderergl2 (hzm lightning R2 world light via the sun shadow mask) - candidate gl2 5a949ac…` | 1 | `bug-3171` |
+| `openmohaa-hzm/code/renderergl2 (MAX_STATIC_MODELS_SURFS / MAX_DRAWSURFS)` | 1 | `bug-2945` |
 | `openmohaa-hzm/code/renderergl2 (MSAA + alpha-tested cutouts)` | 1 | `bug-1298` |
 | `openmohaa-hzm/code/renderergl2 (no change shipped)` | 1 | `bug-2596` |
+| `openmohaa-hzm/code/renderergl2 (RB_DrawTerrainTris per-patch R_LightDirForPoint` | 1 | `bug-3064` |
 | `openmohaa-hzm/code/renderergl2 (renderer_opengl2.dll) - exact fn unknown` | 1 | `bug-2666` |
+| `openmohaa-hzm/code/renderergl2 (s_sun bridge` | 1 | `bug-3014` |
+| `openmohaa-hzm/code/renderergl2 (shadow/character path` | 1 | `bug-2944` |
 | `openmohaa-hzm/code/renderergl2 (tr_backend.c` | 1 | `bug-2594` |
 | `openmohaa-hzm/code/renderergl2/ (NEW tr_gore.c + tr_local.h + tr_init.c + tr_cmds.c + tr_shade.c + tr_model.c…` | 1 | `bug-gl2-gore` |
 | `openmohaa-hzm/code/renderergl2/ (poly path) - NOT YET FIXED` | 1 | `bug-1133` |
@@ -1113,67 +3150,120 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `openmohaa-hzm/code/renderergl2/glsl/bloom_bright_fp.glsl` | 2 | `bug-1156` `bug-1149` |
 | `openmohaa-hzm/code/renderergl2/glsl/generic_vp.glsl` | 1 | `bug-2226` |
 | `openmohaa-hzm/code/renderergl2/glsl/globalfog_fp.glsl` | 1 | `bug-1296` |
-| `openmohaa-hzm/code/renderergl2/glsl/lightall_fp.glsl` | 1 | `bug-2159` |
+| `openmohaa-hzm/code/renderergl2/glsl/hzmscope_fp.glsl` | 1 | `bug-3509` |
+| `openmohaa-hzm/code/renderergl2/glsl/hzmwater_fp.glsl` | 3 | `bug-3177` `bug-3406` `bug-3409` |
+| `openmohaa-hzm/code/renderergl2/glsl/lightall_fp.glsl` | 2 | `bug-2159` `bug-2971` |
+| `openmohaa-hzm/code/renderergl2/glsl/lightall_fp.glsl (HzmWet + composite)` | 1 | `bug-3408` |
+| `openmohaa-hzm/code/renderergl2/glsl/lightall_fp.glsl (HzmWet)` | 1 | `bug-3407` |
+| `openmohaa-hzm/code/renderergl2/glsl/shadowmask_fp.glsl` | 2 | `bug-2818` `bug-2820` |
+| `openmohaa-hzm/code/renderergl2/glsl/ssao_fp.glsl` | 1 | `bug-3140` |
 | `openmohaa-hzm/code/renderergl2/glsl/tonemap_hzm_fp.glsl` | 1 | `bug-1148` |
+| `openmohaa-hzm/code/renderergl2/glsl/tonemap_hzm_fp.glsl (proposed site)` | 1 | `bug-3083` |
 | `openmohaa-hzm/code/renderergl2/glsl/underwater_fp.glsl + tr_postprocess.c` | 1 | `bug-2355` |
 | `openmohaa-hzm/code/renderergl2/tr_backend.c` | 4 | `bug-1166` `bug-1229` `bug-1230` `bug-1299` |
 | `openmohaa-hzm/code/renderergl2/tr_backend.c (generation removed from RB_DrawSurfs` | 1 | `bug-1211` |
+| `openmohaa-hzm/code/renderergl2/tr_backend.c (RB_DepthFillSkip lets world geometry cast into the sun cascades)…` | 1 | `bug-3006` |
+| `openmohaa-hzm/code/renderergl2/tr_backend.c (RB_PostProcess SSAO composite :2210-2227)` | 1 | `bug-3084` |
 | `openmohaa-hzm/code/renderergl2/tr_backend.c (RB_RenderDrawSurfList depth-prepass skip` | 1 | `bug-gl2-invisible-live-char-depthprepass` |
-| `openmohaa-hzm/code/renderergl2/tr_bsp.c` | 1 | `bug-2559` |
+| `openmohaa-hzm/code/renderergl2/tr_backend.c RB_RenderSpriteSurfList` | 1 | `bug-fx1025-1` |
+| `openmohaa-hzm/code/renderergl2/tr_bsp.c` | 2 | `bug-2559` `bug-3036` |
 | `openmohaa-hzm/code/renderergl2/tr_bsp.c (RE_LoadWorldMap` | 1 | `bug-1154` |
 | `openmohaa-hzm/code/renderergl2/tr_draw.c` | 3 | `bug-gl2-introfade` `bug-gl2-compass` `bug-gl2-hudsegments` |
 | `openmohaa-hzm/code/renderergl2/tr_draw.c (+tr_backend.c` | 1 | `bug-1140` |
 | `openmohaa-hzm/code/renderergl2/tr_draw.c (Set2DWindow)` | 1 | `bug-1147` |
 | `openmohaa-hzm/code/renderergl2/tr_font.cpp + tr_shader.c (underlying)` | 1 | `bug-1181` |
-| `openmohaa-hzm/code/renderergl2/tr_gore.c` | 1 | `bug-2212` |
+| `openmohaa-hzm/code/renderergl2/tr_glsl.c` | 1 | `bug-3020` |
+| `openmohaa-hzm/code/renderergl2/tr_glsl.c (GLSL header` | 1 | `bug-2974` |
+| `openmohaa-hzm/code/renderergl2/tr_glsl.c (GLSL_InitGPUShader` | 1 | `bug-3179` |
+| `openmohaa-hzm/code/renderergl2/tr_gore.c` | 3 | `bug-2212` `bug-2807` `bug-3493` |
+| `openmohaa-hzm/code/renderergl2/tr_hzm_framegen.c` | 8 | `bug-3496` `bug-3535` `bug-3559` `bug-3561` `bug-3571` `bug-3609` `bug-3610` `bug-3611` |
+| `openmohaa-hzm/code/renderergl2/tr_hzm_groundvar.c` | 1 | `bug-3318` |
+| `openmohaa-hzm/code/renderergl2/tr_hzm_lodfog_rb.c (R_HZM_LodFogMapExcluded)` | 1 | `bug-3170` |
+| `openmohaa-hzm/code/renderergl2/tr_hzm_vram.c` | 2 | `bug-3536` `bug-3539` |
+| `openmohaa-hzm/code/renderergl2/tr_hzm_vram.c (new)` | 1 | `bug-3530` |
+| `openmohaa-hzm/code/renderergl2/tr_hzm_wet.c (+ the new tr_hzm_water.c)` | 1 | `bug-3150` |
 | `openmohaa-hzm/code/renderergl2/tr_image.c` | 2 | `bug-2147` `bug-2154` |
+| `openmohaa-hzm/code/renderergl2/tr_image.c (R_FindImageFile)` | 1 | `bug-3013` |
+| `openmohaa-hzm/code/renderergl2/tr_image.c:1747-1782 (RawImage_GetFormat)` | 1 | `bug-3111` |
+| `openmohaa-hzm/code/renderergl2/tr_image.c:3353-3365` | 1 | `bug-3167` |
 | `openmohaa-hzm/code/renderergl2/tr_init.c` | 7 | `bug-143` `bug-1124` `bug-1125` `bug-1128` `bug-1178` `bug-1254` `bug-2190` |
+| `openmohaa-hzm/code/renderergl2/tr_init.c (R_Init)` | 1 | `bug-3089` |
 | `openmohaa-hzm/code/renderergl2/tr_init.c (r_specularMapping default)` | 1 | `bug-1155` |
 | `openmohaa-hzm/code/renderergl2/tr_init.c (RE_BeginRegistration)` | 1 | `bug-1146` |
+| `openmohaa-hzm/code/renderergl2/tr_init.c (RE_Shutdown)` | 1 | `bug-3102` |
 | `openmohaa-hzm/code/renderergl2/tr_light.c` | 3 | `bug-gl2-reddecals` `bug-1126` `bug-2554` |
-| `openmohaa-hzm/code/renderergl2/tr_local.h` | 1 | `bug-gl2-maxpolys` |
+| `openmohaa-hzm/code/renderergl2/tr_local.h` | 2 | `bug-gl2-maxpolys` `bug-2942` |
+| `openmohaa-hzm/code/renderergl2/tr_local.h (MAX_DRAWIMAGES)` | 1 | `bug-3003` |
 | `openmohaa-hzm/code/renderergl2/tr_local.h (trGlobals_t.skel_index)` | 1 | `bug-gl2-invisible-friendly-actor` |
 | `openmohaa-hzm/code/renderergl2/tr_local.h:1816` | 1 | `bug-1137` |
+| `openmohaa-hzm/code/renderergl2/tr_local.h:2044 (MAX_DRAWIMAGES 2048)` | 1 | `bug-2997` |
 | `openmohaa-hzm/code/renderergl2/tr_main.c` | 2 | `bug-1196` `bug-1253` |
 | `openmohaa-hzm/code/renderergl2/tr_main.c (R_AddEntitySurface)` | 1 | `bug-1189` |
 | `openmohaa-hzm/code/renderergl2/tr_marks_permanent.c (R_LevelMarksFree)` | 1 | `bug-1146` |
+| `openmohaa-hzm/code/renderergl2/tr_model.cpp` | 5 | `bug-3009` `bug-3487` `bug-3488` `bug-3576` `bug-3577` |
 | `openmohaa-hzm/code/renderergl2/tr_model.cpp (entityNumIndexes size fix + SKELDIAG/SKELDRAW instrumentation)` | 1 | `bug-gl2-invisible-friendly-actor-2nd` |
 | `openmohaa-hzm/code/renderergl2/tr_model.cpp (R_AddSkelSurfaces pose gate` | 1 | `bug-gl2-forcepose-skips-composite-ally` |
 | `openmohaa-hzm/code/renderergl2/tr_model.cpp (R_AddSkelSurfaces pose site` | 1 | `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `openmohaa-hzm/code/renderergl2/tr_model.cpp (R_AllocModel)` | 1 | `bug-1135` |
 | `openmohaa-hzm/code/renderergl2/tr_postprocess.c` | 2 | `bug-1132` `bug-2595` |
 | `openmohaa-hzm/code/renderergl2/tr_postprocess.c (new RB_HZMSsao)` | 1 | `bug-1211` |
+| `openmohaa-hzm/code/renderergl2/tr_postprocess.c (RB_SunRays :539-652)` | 1 | `bug-3141` |
 | `openmohaa-hzm/code/renderergl2/tr_postprocess.c (RB_SunRays)` | 1 | `bug-1169` |
 | `openmohaa-hzm/code/renderergl2/tr_postprocess.c (RB_ToneMap)` | 1 | `bug-1171` |
-| `openmohaa-hzm/code/renderergl2/tr_scene.c` | 1 | `bug-2553` |
+| `openmohaa-hzm/code/renderergl2/tr_scene.c` | 3 | `bug-2553` `bug-3010` `bug-3213` |
 | `openmohaa-hzm/code/renderergl2/tr_scene.c (+tr_light.c` | 1 | `bug-1131` |
 | `openmohaa-hzm/code/renderergl2/tr_scene.c (cascade dispatch in RE_RenderScene)` | 1 | `bug-1210` |
+| `openmohaa-hzm/code/renderergl2/tr_scene.c (publisher` | 1 | `bug-3011` |
 | `openmohaa-hzm/code/renderergl2/tr_shade.c` | 5 | `bug-gl2-introhud` `bug-gl2-modellight` `bug-1164` `bug-1300` `bug-2166` |
+| `openmohaa-hzm/code/renderergl2/tr_shade.c (ComputeShaderColors default branch` | 1 | `bug-3166` |
 | `openmohaa-hzm/code/renderergl2/tr_shade.c (RB_IterateStagesGeneric)` | 1 | `bug-1144` |
+| `openmohaa-hzm/code/renderergl2/tr_shade.c (RB_SetGlobalFogUniforms` | 1 | `bug-3454` |
 | `openmohaa-hzm/code/renderergl2/tr_shade.c (RB_StageIteratorGeneric cull setup` | 1 | `bug-gl2-invisible-friendly-actor-root` |
 | `openmohaa-hzm/code/renderergl2/tr_shade.c + tr_shader.c` | 1 | `bug-gl2-hudcolor` |
 | `openmohaa-hzm/code/renderergl2/tr_shade_calc.c` | 1 | `bug-gl2-autosprite2-swim` |
-| `openmohaa-hzm/code/renderergl2/tr_shader.c` | 9 | `bug-gl2-01` `bug-gl2-cullfront` `bug-gl2-texmods-null` `bug-1191` `bug-1295` `bug-2186` `bug-2227` `bug-2228` `bug-2486` |
+| `openmohaa-hzm/code/renderergl2/tr_shade_calc.c (R_HZM_AlphaDotToRgb)` | 1 | `bug-2962` |
+| `openmohaa-hzm/code/renderergl2/tr_shader.c` | 10 | `bug-gl2-01` `bug-gl2-cullfront` `bug-gl2-texmods-null` `bug-1191` `bug-1295` `bug-2186` `bug-2227` `bug-2228` `bug-2486` `bug-3204` |
 | `openmohaa-hzm/code/renderergl2/tr_shader.c (FixRenderCommandList)` | 2 | `bug-1136` `bug-1139` |
 | `openmohaa-hzm/code/renderergl2/tr_shader.c (R_ShaderSystemReady guards)` | 1 | `bug-1145` |
 | `openmohaa-hzm/code/renderergl2/tr_shader.c + tr_shade.c + tr_local.h` | 1 | `bug-gl2-foliage` |
+| `openmohaa-hzm/code/renderergl2/tr_sky.c (FillCloudBox` | 1 | `bug-3081` |
 | `openmohaa-hzm/code/renderergl2/tr_sky_portal.cpp` | 1 | `bug-1273` |
+| `openmohaa-hzm/code/renderergl2/tr_sphere_shade.cpp` | 1 | `bug-2556` |
+| `openmohaa-hzm/code/renderergl2/tr_sphere_shade.cpp (R_Sphere_InitLights)` | 1 | `bug-3101` |
+| `openmohaa-hzm/code/renderergl2/tr_staticmodels.cpp (coarse culls)` | 1 | `bug-3139` |
 | `openmohaa-hzm/code/renderergl2/tr_surface.c` | 4 | `bug-141` `bug-142` `bug-2144` `bug-2150` |
+| `openmohaa-hzm/code/renderergl2/tr_surface.c (RB_DrawTerrainTris` | 1 | `bug-3007` |
+| `openmohaa-hzm/code/renderergl2/tr_surface.c (RB_DrawTerrainTris + R_HZM_TerrainLightGrid*/R_HZM_TerrainVertLi…` | 1 | `bug-3061` |
+| `openmohaa-hzm/code/renderergl2/tr_surface.c (RB_DrawTerrainTris)` | 1 | `bug-2905` |
+| `openmohaa-hzm/code/renderergl2/tr_terrain.c` | 2 | `bug-3090` `bug-3575` |
+| `openmohaa-hzm/code/renderergl2/tr_vbo.c` | 1 | `bug-3497` |
+| `openmohaa-hzm/code/renderergl2/tr_world.c` | 1 | `bug-4438` |
 | `openmohaa-hzm/code/renderergl2/{tr_init.c` | 1 | `bug-1177` |
 | `openmohaa-hzm/code/renderergl2/{tr_local.h` | 1 | `bug-1209` |
+| `openmohaa-hzm/code/rong. coop_idleBolt 1 brings it back if it is ever worth revisiting with better clips.` | 1 | `bug-3023` |
+| `openmohaa-hzm/code/script/scriptvm.cpp` | 1 | `bug-3078` |
 | `openmohaa-hzm/code/script/scriptvm.cpp:1915-1933` | 1 | `bug-1495` |
 | `openmohaa-hzm/code/sdl/sdl_glimp.c` | 1 | `bug-1795` |
+| `openmohaa-hzm/code/sdl/sdl_glimp.c (patch proposed only)` | 1 | `bug-3112` |
 | `openmohaa-hzm/code/sdl/sdl_input.c (IN_InitJoystick)` | 1 | `bug-2606` |
-| `openmohaa-hzm/code/server/sv_client.c` | 1 | `bug-1180` |
+| `openmohaa-hzm/code/server/ (inbound packet handling)` | 1 | `bug-2726` |
+| `openmohaa-hzm/code/server/sv_client.c` | 2 | `bug-1180` `bug-3489` |
+| `openmohaa-hzm/code/server/sv_demo.c` | 2 | `bug-10298` `bug-10301` |
 | `openmohaa-hzm/code/server/sv_init.c` | 1 | `bug-2290` |
+| `openmohaa-hzm/code/server/sv_init.c:410 (SV_GetUserinfo` | 1 | `bug-botslot-userinfo` |
 | `openmohaa-hzm/code/server/sv_init.c:937` | 1 | `bug-1478` |
-| `openmohaa-hzm/code/server/sv_main.c` | 1 | `bug-1673` |
+| `openmohaa-hzm/code/server/sv_main.c` | 3 | `bug-1673` `bug-2727` `bug-3480` |
+| `openmohaa-hzm/code/server/sv_main.c (SVC_RemoteCommand` | 1 | `bug-3033` |
+| `openmohaa-hzm/code/server/sv_net_chan.c` | 1 | `bug-2727` |
 | `openmohaa-hzm/code/server/sv_snapshot.c` | 3 | `bug-1186` `bug-2177` `bug-2182` |
 | `openmohaa-hzm/code/skeletor/bonetable.cpp` | 1 | `bug-1803` |
 | `openmohaa-hzm/code/skeletor/skeletor_name_lists.h` | 1 | `bug-1803` |
 | `openmohaa-hzm/code/sys/con_win32.c` | 1 | `bug-2404` |
 | `openmohaa-hzm/code/sys/con_win32.c + docs/tools/check_map_compiles.py` | 1 | `bug-2397` |
+| `openmohaa-hzm/code/sys/sys_main.c (Sys_OpenURL)` | 1 | `bug-2933` |
 | `openmohaa-hzm/code/sys/sys_win32.c` | 2 | `bug-528` `bug-1667` |
+| `openmohaa-hzm/code/sys/sys_win32.c (Sys_SendReport) + code/client/cl_main.cpp (CL_SendReport_f) + code/qcommo…` | 1 | `bug-3276` |
+| `openmohaa-hzm/code/sys/win_localization.cpp (cLocalization::ConvertString)` | 1 | `bug-3096` |
 | `openmohaa-hzm/code/tiki/tiki_cache.cpp` | 1 | `bug-2292` |
 | `openmohaa-hzm/code/tiki/tiki_files.cpp` | 1 | `bug-2214` |
 | `openmohaa-hzm/code/tiki/tiki_mesh.h` | 1 | `bug-1214` |
@@ -1182,72 +3272,241 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `openmohaa-hzm/code/tools/md5_2_skX/md5_2_skX.c` | 1 | `bug-021` |
 | `openmohaa-hzm/code/tools/md5_2_skX/md5_2_skX.h` | 1 | `bug-019` |
 | `openmohaa-hzm/code/tools/md5_2_skX/skx_format.h` | 1 | `bug-020` |
+| `openmohaa-hzm/code/uilib/uibindlist.cpp + hzm-mohaa-coop-mod/ui/BIND.SCR` | 1 | `bug-3265` |
 | `openmohaa-hzm/code/uilib/uiconsole.cpp` | 1 | `bug-334` |
-| `openmohaa-hzm/code/uilib/uipulldownmenu.cpp` | 1 | `bug-762` |
-| `openmohaa-hzm/code/uilib/uiwidget.cpp` | 4 | `bug-261` `bug-587` `bug-593` `bug-1127` |
+| `openmohaa-hzm/code/uilib/uimenu.cpp (Menu::CheckRestart)` | 1 | `bug-3100` |
+| `openmohaa-hzm/code/uilib/uimenu.cpp (Menu::PassEventToWidget 374-385)` | 1 | `bug-3268` |
+| `openmohaa-hzm/code/uilib/uipulldownmenu.cpp` | 2 | `bug-762` `bug-2941` |
+| `openmohaa-hzm/code/uilib/uiwidget.cpp` | 5 | `bug-261` `bug-587` `bug-593` `bug-1127` `bug-2774` |
 | `openmohaa-hzm/code/uilib/uiwidget.cpp (UIWidget::Display guard) + uilib/uimenu.h/.cpp (DumpVisibleMenus) + cl…` | 1 | `bug-777` |
+| `openmohaa-hzm/code/uilib/uiwidget.cpp (UIWidgetContainer bgfill parse ~2762-2765)` | 1 | `bug-3266` |
 | `openmohaa-hzm/code/uilib/uiwidget.h/.cpp` | 1 | `bug-255` |
 | `openmohaa-hzm/code/uilib/uiwinman.cpp` | 1 | `bug-771` |
-| `player.cpp` | 11 | `bug-920` `bug-2120` `bug-2125` `bug-2126` `bug-2127` `bug-2132` `bug-2133` `bug-2134` `bug-2135` `bug-2143` `bug-2623` |
+| `openmohaa-hzm: cl_demophoto.cpp` | 1 | `bug-10386` |
+| `openmohaa-hzm: code/cgame/cg_demoedit.c (CG_DemoHudMode)` | 1 | `bug-10375` |
+| `openmohaa-hzm: code/client/cl_avi.cpp` | 1 | `bug-10285` |
+| `openmohaa-hzm: code/client/cl_demoedit.cpp` | 1 | `bug-10370` |
+| `openmohaa-hzm: code/client/cl_demoedit.cpp (CL_DemoEd_HudMode)` | 1 | `bug-10371` |
+| `openmohaa-hzm: code/client/cl_demoedit.cpp (DC_ death camera` | 1 | `bug-10392` |
+| `openmohaa-hzm: code/client/cl_demoedit.cpp (FW_Apply)` | 1 | `bug-10377` |
+| `openmohaa-hzm: code/client/cl_demoedit.cpp (WX_Override)` | 1 | `bug-10385` |
+| `openmohaa-hzm: code/client/cl_demoedit.cpp (WX_Raw)` | 1 | `bug-10393` |
+| `openmohaa-hzm: code/client/cl_demorender.cpp (CL_DemoRender_AviStep)` | 1 | `bug-10376` |
+| `openmohaa-hzm: code/renderergl2/glsl/hzmfilter_fp.glsl` | 1 | `bug-10378` |
+| `p3/loadtest.py (+ matrix.py` | 1 | `bug-3154` |
+| `P38` | 1 | `bug-4124` |
+| `p38pose00.skc` | 1 | `bug-3498` |
+| `p38}_reload_ads.skc` | 1 | `bug-3467` |
+| `paradrop.scr` | 1 | `bug-2906` |
+| `patch_wx73.py` | 1 | `bug-10873` |
+| `per-look veil peak` | 1 | `bug-2973` |
+| `per-patch light direction) + tr_light.c R_LightDirForPoint` | 1 | `bug-3007` |
+| `phase_old)` | 1 | `bug-3169` |
+| `pistolbake.py` | 1 | `bug-3593` |
+| `player placement` | 1 | `bug-3909` |
+| `player.cpp` | 12 | `bug-920` `bug-2120` `bug-2125` `bug-2126` `bug-2127` `bug-2132` `bug-2133` `bug-2134` `bug-2135` `bug-2143` `bug-2623` `bug-3520` |
+| `player.cpp (CoopCoverFace)` | 1 | `bug-10374` |
 | `player.cpp + player.h + cm_load.c` | 1 | `bug-953` |
 | `player.cpp TickCoopCover (peek) + possibly cgame shoulder cam` | 1 | `bug-311` |
 | `player.cpp/player.h/player_conditionals.cpp/weapon.cpp + player_Legs.st/player_Torso.st/anims_shared.txt` | 1 | `bug-305` |
-| `player.h` | 9 | `bug-1622` `bug-2125` `bug-2129` `bug-2132` `bug-2134` `bug-2143` `bug-2152` `bug-2156` `bug-2623` |
+| `player.h` | 11 | `bug-1622` `bug-2125` `bug-2129` `bug-2132` `bug-2134` `bug-2143` `bug-2152` `bug-2156` `bug-2623` `bug-3042` `bug-3422` |
+| `player.h (GetTorsoStateName/GetLegsStateName)` | 1 | `bug-2921` |
+| `player.scr` | 4 | `bug-2906` `bug-2923` `bug-3952` `bug-4210` |
+| `Player::FireWeapon)` | 1 | `bug-10547` |
+| `Player::PhysicsOff)` | 1 | `bug-3324` |
 | `player_animation.cpp` | 3 | `bug-2125` `bug-2126` `bug-2127` |
 | `player_animation.cpp)` | 1 | `bug-2120` |
 | `player_conditionals.cpp` | 3 | `bug-915` `bug-2120` `bug-2123` |
+| `player_conditionals.cpp (CondCrouch)` | 1 | `bug-3560` |
+| `player_conditionals.cpp (COOP_COVER_THROW` | 1 | `bug-10561` |
 | `player_conditionals.cpp} + hzm-mohaa-coop-mod/coop_mod/player_legs.st` | 1 | `bug-2099` |
 | `player_legs.st` | 1 | `bug-2127` |
 | `player_Legs.st + anims_shared.txt + weapturret.cpp/vehicleturret.cpp/g_client.cpp/player.h/.cpp + cg_view.c` | 1 | `bug-304` |
 | `player_Torso.st` | 5 | `bug-2099` `bug-2123` `bug-2125` `bug-2126` `bug-2127` |
+| `player_torso.st` | 4 | `bug-3369` `bug-3388` `bug-3389` `bug-3390` |
 | `playerbot.cpp` | 1 | `bug-920` |
+| `playerbot.cpp (BotNadeSim` | 1 | `bug-2925` |
+| `playerbot.cpp (BrainThink door face)` | 1 | `bug-3043` |
+| `playerbot.cpp (spawn reset)` | 1 | `bug-2912` |
+| `playerbot.h` | 5 | `bug-2912` `bug-2921` `bug-2947` `bug-3024` `bug-3043` |
+| `playerbot.h (BotOpening)` | 1 | `bug-2986` |
+| `playerbot.h (GetLiftSlot` | 1 | `bug-2955` |
+| `playerbot.h (m_iCrouchTapNext)` | 1 | `bug-2918` |
+| `playerbot.h (m_pBuddy ... m_iOverwatchLogT)` | 1 | `bug-3000` |
+| `playerbot.h (m_vLinkReachA / m_fLinkReachBest / m_iLinkReachT)` | 1 | `bug-2957` |
+| `playerbot_movement.cpp` | 1 | `bug-2947` |
+| `playerbot_movement.cpp (BOTBLOCK2 / BOTLOOP probes)` | 1 | `bug-2956` |
+| `playerbot_movement.cpp (hold branch resets m_iProgT/m_iSolidN)` | 1 | `bug-2921` |
+| `playerbot_movement.cpp (hop counter in CheckJump)` | 1 | `bug-2913` |
+| `playerbot_movement.cpp (LiftThink WAIT/ALIGN)` | 1 | `bug-2955` |
+| `playerbot_movement.cpp (SetLookComp input rescale)` | 1 | `bug-2992` |
+| `playerbot_movement.cpp (SetLookComp rescale` | 1 | `bug-2986` |
+| `playerbot_movement.cpp + playerbot.h (BOTLINK probe)` | 1 | `bug-2964` |
+| `playerSpawnEvent + skipTeamAndWeaponSelect)` | 1 | `bug-3269` |
 | `plus cc_static_line / cc_desert_fox / cc_enemy_mine)` | 1 | `bug-1596` |
-| `publish_release.ps1` | 5 | `bug-424` `bug-1804` `bug-1805` `bug-2500` `bug-2579` |
+| `possibly the menu the co-op lobby shows on a dedicated server` | 1 | `bug-3914` |
+| `ppk` | 2 | `bug-4124` `bug-4132` |
+| `ppsh_smg.tik` | 1 | `bug-10882` |
+| `probes: coop_mod/coop_selftest_xp.scr (mode promo)` | 1 | `bug-3076` |
+| `probes: playerbot_movement.cpp (BOTDOOR` | 1 | `bug-3042` |
+| `process (graphics agent test client G:/mohaa-gfxtest/openmohaa_gfxtest.exe) - no source file` | 1 | `bug-2940` |
+| `ProjectileAttack/HeavyAttack/Explode hooks)` | 1 | `bug-2925` |
+| `promotion toast slot 69)` | 1 | `bug-4004` |
+| `prototype docs/proposals/textures_decals_2026-09-27/scripts/` | 1 | `bug-3109` |
+| `prototypes)` | 1 | `bug-2979` |
+| `pshadow_t.hzmSpotApex / hzmSpotCone)` | 1 | `bug-2980` |
+| `psx_gallery_b.mp3` | 1 | `bug-4270` |
+| `public_servers/ (server homes)` | 1 | `bug-3903` |
+| `public_servers/start_servers.ps1` | 2 | `bug-4271` `bug-10758` |
+| `publish_release.ps1` | 9 | `bug-424` `bug-1804` `bug-1805` `bug-2500` `bug-2579` `bug-2734` `bug-2937` `bug-3340` `bug-10514` |
+| `publish_release.ps1 -SkipBuild` | 1 | `bug-3985` |
+| `pure)` | 1 | `bug-2969` |
+| `pushpose.py` | 3 | `bug-3654` `bug-3656` `bug-3657` |
 | `qcommon/common.c Com_Error ERR_DROP + setjmp sites (:1740` | 1 | `bug-2585` |
 | `qcommon/msg.cpp` | 1 | `bug-1198` |
+| `qcommon/qcommon.h` | 1 | `bug-2933` |
+| `R_FinalizeDlightPshadow)` | 1 | `bug-2980` |
+| `R_HZM_SoftEdgeOn` | 1 | `bug-2979` |
+| `R_HZM_SpotShadowsOn)` | 1 | `bug-2980` |
+| `r_hzmClouds default off)` | 1 | `bug-3517` |
+| `r_hzmFlareBudget)` | 1 | `bug-3008` |
+| `r_hzmFlareIntensity` | 1 | `bug-3008` |
+| `r_hzmSoftEdgeScale` | 1 | `bug-2979` |
+| `r_hzmSpotShadowCasters` | 1 | `bug-2980` |
+| `r_hzmSpotShadowReach` | 1 | `bug-2980` |
+| `R_Sphere_InitLights)` | 1 | `bug-3014` |
 | `raindrops_fp.glsl` | 1 | `bug-1150` |
-| `README.md` | 1 | `bug-1805` |
+| `RB_DistFadeConstAlpha)` | 1 | `bug-3139` |
+| `RB_HZM_BindSceneDepth` | 1 | `bug-2979` |
+| `RB_HZM_SkyFogUniforms)` | 1 | `bug-3454` |
+| `RB_HZM_SoftEdgeDistance)` | 1 | `bug-2979` |
+| `RB_HZM_SoftEdgeSnapshotAt` | 1 | `bug-2979` |
+| `RB_RenderDrawSurfList hoist` | 1 | `bug-2979` |
+| `RB_SpriteSurfs / RB_RenderSpriteSurfList now call the helpers)` | 1 | `bug-2979` |
+| `RB_StageIteratorGeneric)` | 1 | `bug-3244` |
+| `read by coop_mod/server.scr:97)` | 1 | `bug-3285` |
+| `README.md` | 2 | `bug-1805` `bug-2734` |
+| `readygate.scr` | 1 | `bug-3520` |
 | `recoil_table.txt` | 1 | `bug-2143` |
 | `regenerated mod cloth *_blood{1` | 1 | `bug-828` |
 | `regenerated mod textures/models/human/**/*_blood{1` | 1 | `bug-817` |
+| `reinf_mg.scr` | 1 | `bug-4051` |
+| `rel-1.10.38-engine)` | 2 | `bug-10281` `bug-10312` |
+| `release paks: coopr_springfield_03_sniper_{rechamber` | 1 | `bug-10289` |
+| `reload` | 1 | `bug-10289` |
+| `reload_end}_ads` | 1 | `bug-10289` |
+| `RELOAD_SHOTGUN_SINGLE` | 1 | `bug-3728` |
+| `reload_single` | 1 | `bug-10289` |
 | `REMOVED head/hand *_blood textures + TIK skin lines` | 1 | `bug-828` |
+| `removed)` | 1 | `bug-10902` |
+| `renderer re-init paths)` | 1 | `bug-3064` |
+| `renderer unchanged` | 1 | `bug-3049` |
+| `renderercommon/hzm_light_restore.h (comment)` | 1 | `bug-2962` |
+| `renderercommon/hzm_light_restore.h (HZM_SPOTSHADOW_AUTO)` | 1 | `bug-2980` |
+| `renderercommon/hzm_light_restore.h (section 4` | 1 | `bug-2979` |
+| `renderercommon/hzm_lightning.h (new)` | 1 | `bug-3148` |
+| `renderercommon/hzm_waterwet.h (+tr_local.h` | 1 | `bug-4273` |
+| `renderercommon/new/tr_types_new.h` | 1 | `bug-2946` |
 | `renderercommon/tr_public.h` | 1 | `bug-780` |
+| `renderergl1 tr_bsp.c)` | 1 | `bug-3224` |
+| `renderergl1/2 tr_hzm_dynimage.c` | 1 | `bug-10887` |
+| `renderergl1/tr_init.c (R_Init)` | 1 | `bug-3102` |
 | `renderergl1/tr_local.h` | 1 | `bug-1193` |
 | `renderergl1/tr_main.c` | 1 | `bug-1192` |
 | `renderergl1/tr_model.cpp` | 1 | `bug-1214` |
+| `renderergl1/tr_postprocess_gl1.c` | 3 | `bug-4215` `bug-4217` `bug-10268` |
 | `renderergl1/tr_scene.c` | 1 | `bug-1193` |
 | `renderergl1/tr_shader.c` | 1 | `bug-1192` |
+| `renderergl1/tr_terrain.c (R_TerrainRestart_f)` | 1 | `bug-3090` |
 | `renderergl2 (no code change)` | 1 | `bug-gl2-e2l2-briefing-npc-invisible` |
+| `renderergl2 r_skyHD/r_skyHDCompare sky-layer path` | 1 | `bug-2938` |
+| `renderergl2 RE_Shutdown` | 1 | `bug-3011` |
+| `renderergl2 tr_hzm_lens.c` | 1 | `bug-10302` |
+| `renderergl2 water pass (branch ice1025-engine f8f8ff40)` | 1 | `bug-4404` |
 | `renderergl2/glsl/bloom_bright_fp.glsl` | 1 | `bug-1159` |
 | `renderergl2/glsl/fxaa_fp.glsl` | 1 | `bug-1150` |
+| `renderergl2/glsl/heathaze_fp.glsl` | 2 | `bug-4215` `bug-4217` |
+| `renderergl2/glsl/hzmlens_fp.glsl` | 2 | `bug-scopes1025-hip-lens` `bug-scopes1025-reticle-inlens` |
 | `renderergl2/glsl/lowhealth_fp.glsl` | 1 | `bug-1151` |
 | `renderergl2/glsl/motionblur_fp.glsl` | 1 | `bug-1239` |
 | `renderergl2/glsl/shaders.cmake` | 1 | `bug-1240` |
 | `renderergl2/glsl/{underwater` | 1 | `bug-1158` |
 | `renderergl2/tr_backend.c + tr_shader.c + tr_local.h` | 1 | `bug-gl2-foliage-white` |
+| `renderergl2/tr_backend.c:2218-2228 (composite)` | 1 | `bug-3140` |
 | `renderergl2/tr_bsp.c` | 2 | `bug-1197` `bug-1237` |
 | `renderergl2/tr_font.cpp` | 2 | `bug-1129b` `bug-1195` |
+| `renderergl2/tr_glsl.c` | 1 | `bug-4217` |
+| `renderergl2/tr_hzm_lightning.c (new)` | 1 | `bug-3148` |
+| `renderergl2/tr_hzm_scope.c + glsl/hzmscope_fp.glsl (new)` | 1 | `bug-3462` |
+| `renderergl2/tr_hzm_spot.c (new` | 1 | `bug-2969` |
+| `renderergl2/tr_hzm_spot_rb.c (HZM_FLARE_PULL` | 1 | `bug-3008` |
+| `renderergl2/tr_hzm_spot_rb.c:72` | 1 | `bug-2999` |
+| `renderergl2/tr_hzm_water.c` | 1 | `bug-4290` |
+| `renderergl2/tr_init.c:1486` | 1 | `bug-3119` |
 | `renderergl2/tr_local.h` | 4 | `bug-1192` `bug-1193` `bug-1242` `bug-1249` |
 | `renderergl2/tr_main.c` | 2 | `bug-1192` `bug-1193` |
 | `renderergl2/tr_model.cpp` | 1 | `bug-1153` |
-| `renderergl2/tr_postprocess.c` | 1 | `bug-1233` |
+| `renderergl2/tr_postprocess.c` | 5 | `bug-1233` `bug-3222` `bug-3223` `bug-4215` `bug-4217` |
+| `renderergl2/tr_postprocess.c (RB_HZMSsao)` | 1 | `bug-3140` |
 | `renderergl2/tr_scene.c` | 1 | `bug-1193` |
+| `renderergl2/tr_scene.c (same lines in renderergl1)` | 1 | `bug-3036` |
+| `renderergl2/tr_shade_calc.c` | 1 | `bug-2946` |
 | `renderergl2/tr_shader.c` | 1 | `bug-1192` |
 | `repo copy hzm-mohaa-coop-mod/autoexec.cfg already correct)` | 1 | `bug-2145` |
 | `resilience` | 1 | `bug-1064` |
 | `resume_publish.ps1` | 1 | `bug-1800` |
 | `root behaviour in coop_mod/variables.scr:38` | 1 | `bug-1492` |
 | `round` | 1 | `bug-2624` |
+| `rows shotgun_reload_end_loaded{` | 1 | `bug-3729` |
+| `run hj24` | 1 | `bug-3773` |
+| `run_chk.py prop / mkprop.py / mkmark.py` | 1 | `bug-4140` |
+| `s_hlSkyGate)` | 1 | `bug-2962` |
+| `same code in frontline-tools)` | 1 | `bug-10682` |
+| `sc_al_us_claus_disguised}.tik` | 1 | `bug-3325` |
 | `sciencechatsequence)` | 1 | `bug-1579` |
+| `scratch rig sky.py (op maprestart) - not a mod file` | 1 | `bug-3566` |
+| `SCRATCH/deploy_window.ps1 (coordinator deploy wrapper)` | 1 | `bug-3985` |
+| `SCRATCH/sprintfix/build.sh (isolated engine build under %TEMP%)` | 1 | `bug-3373` |
+| `scratchpad (session 7ee3b4ee): gfx/gfxrun.py` | 1 | `bug-3154` |
 | `scratchpad checker (chalcheck.py / orphans.py)` | 1 | `bug-1601` |
+| `scratchpad cover harness (scenarios.py vid/vid3/play)` | 1 | `bug-10409` |
 | `scratchpad extract region defs + bsp2bp.py verification gate` | 1 | `bug-1009` |
 | `scratchpad gen_gore_skins.py -> models/player\|human/*.tik overrides` | 1 | `bug-731` |
+| `scratchpad gfx/build_gfx.py (harness)` | 1 | `bug-3257` |
+| `scratchpad gfx/ctl.py)` | 1 | `bug-2996` |
+| `scratchpad gfx/gfxrun.py (rcon` | 1 | `bug-3047` |
+| `scratchpad gfx/gfxrun.py (Session) + gfx/p2b_gate.py freeze_prep` | 1 | `bug-3044` |
+| `scratchpad gfx/gfxrun.py (Session.start) - the private-client harness` | 1 | `bug-3028` |
+| `scratchpad gfx/gfxrun.py Session.wait_ready + gfx/p2b_extra.py flare` | 1 | `bug-3050` |
+| `scratchpad gfx/gfxtests.py map_change (used by g1 and sweep_maps)` | 1 | `bug-3032` |
+| `scratchpad gfx/p2a.py (patch file written with the Write tool)` | 1 | `bug-3022` |
+| `scratchpad gfx/p2a_gate.py (a7 SURF_STEPS` | 1 | `bug-3031` |
+| `scratchpad gfx/p2a_gate.py (q0)` | 1 | `bug-3029` |
+| `scratchpad gfx/p2b_gate.py b1 (gfxtests.compare_freeze)` | 1 | `bug-3046` |
+| `scratchpad gfx/p2b_gate.py flash_burst / gfx/p2b_extra.py` | 1 | `bug-3045` |
+| `scratchpad gfx/p2b_gate.py freeze_prep (harness)` | 1 | `bug-3049` |
+| `scratchpad gfx/p2b_open.py` | 1 | `bug-3070` |
+| `scratchpad gfx/p2b_open.py flare / flare_live` | 1 | `bug-3068` |
+| `scratchpad gfx/p2b_open.py halo_noise (observation)` | 1 | `bug-3074` |
+| `scratchpad gfx/p2b_open.py leak (observation)` | 1 | `bug-3069` |
+| `scratchpad gfx/p2b_open.py session()` | 1 | `bug-3063` |
+| `scratchpad gfx/p3_gate.py (t3_one) - harness only` | 1 | `bug-3245` |
+| `scratchpad gfx/smoke.py (key/type_text/click)` | 1 | `bug-3054` |
+| `scratchpad gfx/smoke.py grab()` | 1 | `bug-3053` |
+| `scratchpad gfx/smoke.py hl() / p2b_extra.flare` | 1 | `bug-3056` |
+| `scratchpad gfx/smoke.py use_harness() BASE_SETS` | 1 | `bug-3055` |
+| `scratchpad gfx2art/driver_artery.scr (test overlay driver` | 1 | `bug-3503` |
+| `scratchpad gfx2art/sky.py (test rig)` | 1 | `bug-3516` |
 | `scratchpad hstest/rcon.py (direction byte)` | 1 | `bug-1143` |
+| `scratchpad patch_play.py` | 1 | `bug-10463` |
+| `scratchpad run_demoed.py (test tooling)` | 1 | `bug-10273` |
+| `scratchpad twp/sdl_dummy.pyw + cbt_probe.py (test code` | 1 | `bug-3149` |
 | `scratchpad upscale pipeline -> hzm-mohaa-coop-mod/textures/misc_outside/*` | 1 | `bug-1247` |
 | `scratchpad/build_fonts.py -> hzm-mohaa-coop-mod/gfx/fonts/facfont-20.tga` | 1 | `bug-font-bleed` |
 | `scratchpad/coopaudit/reconnect_sweep.ps1` | 1 | `bug-1066` |
 | `scratchpad/coopaudit/st_run.ps1 + player1_home/maintt/configs/omconfig.cfg` | 1 | `bug-1068` |
 | `scratchpad/coopaudit/transition_chain.ps1 (+reconnect_sweep` | 1 | `bug-1064` |
+| `scratchpad/finair/run_finair.py` | 1 | `bug-10423` |
 | `scratchpad/frontline_eaxa.py` | 1 | `bug-601` |
 | `scratchpad/gen_gore_skins.py + gen_woundstamp.py` | 1 | `bug-828` |
 | `scratchpad/gen_gore_skins.py + renderergl1/tr_gore.c` | 1 | `bug-796` |
@@ -1267,127 +3526,451 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `scratchpad/gen_sr.py` | 1 | `bug-458` |
 | `scratchpad/gen_sr4.py -> coop_sr_p*.tga` | 1 | `bug-501` |
 | `scratchpad/gen_sr4.py -> ui/coop_sr.urc + textures/mohmenu/coop_sr_p*.tga` | 1 | `bug-534` |
+| `scratchpad/gfx/gfxrun.py` | 1 | `bug-3343` |
+| `scratchpad/gfx/p4_gate.py` | 1 | `bug-3345` |
+| `scratchpad/gfx/p5_gate.py` | 1 | `bug-3343` |
+| `scratchpad/gfx/p5_quiet.py` | 1 | `bug-3342` |
+| `scratchpad/gfx/p6_gate.py` | 1 | `bug-3345` |
+| `scratchpad/gfx/run_s2.sh` | 1 | `bug-3341` |
+| `scratchpad/gfx/ship_mod.py` | 1 | `bug-3346` |
 | `scratchpad/gl2test/*.ps1` | 1 | `bug-ps-home-var` |
 | `scratchpad/gl2test/fogdbg.ps1 (forced cvars)` | 1 | `bug-1148` |
 | `scratchpad/gl2test/gl2_ab.ps1 (harness)` | 1 | `bug-gl2-sweep-crash` |
+| `scratchpad/rc1102/rc_lib.py (start_ded/stop_ded) + scratchpad/medalrm/medal_run.py` | 1 | `bug-3186` |
 | `scratchpad/rcon.py (tooling)` | 1 | `bug-2148` |
+| `scratchpad/run_cams.py (test only)` | 1 | `bug-10337` |
 | `scratchpad/shapekit/bsp2bp.py + coop_mod/bp/depot.dat + casemate.dat` | 1 | `bug-1003` |
 | `scratchpad/stage_all.py (session tooling)` | 1 | `bug-2482` |
 | `scratchpad/surgop10/so10.zip :: zzzzzzzzz_KUN Texture4.pk3 :: textures/models/items/armchairposh.tga` | 1 | `bug-1577` |
 | `script/scriptexception.cpp:30` | 1 | `bug-1495` |
+| `scripted/smoking/{inhale` | 1 | `bug-3958` |
 | `scripts/coop_airborne_fix.shader` | 1 | `bug-922` |
+| `scripts/coop_artery.shader` | 1 | `bug-3501` |
+| `scripts/coop_artery.shader (coop-wip 872118ea)` | 1 | `bug-3565` |
+| `scripts/coop_duststorm.shader` | 1 | `bug-3237` |
+| `scripts/coop_duststorm.shader (new)` | 1 | `bug-2963` |
 | `scripts/coop_gore.shader` | 1 | `bug-817` |
 | `scripts/coop_gore.shader (232 blocks)` | 1 | `bug-828` |
 | `scripts/coop_gore3.shader + textures/coop_gore3/ (3 regenerated)` | 1 | `bug-936b` |
+| `scripts/coop_headlights.shader` | 1 | `bug-2946` |
+| `scripts/coop_hud_sprites.shader` | 2 | `bug-3424` `bug-3425` |
 | `scripts/coop_mohaaru_imports.shader` | 1 | `bug-853` |
+| `scripts/coop_scope.shader` | 1 | `bug-3462` |
+| `scripts/coop_wxextreme.shader` | 1 | `bug-3548` |
+| `scripts/hzm_engrave_slots.shader` | 1 | `bug-10887` |
+| `scripts/hzm_room.shader + fixes-pak fan_0001..0018.tga` | 1 | `bug-4182` |
+| `scripts/weapons_english.shader mills_grenade (pak1)` | 1 | `bug-10555` |
+| `see scratchpad gfx report)` | 1 | `bug-2944` |
 | `sentient.cpp (armor scan + inventory print)` | 1 | `bug-925` |
+| `sentient.cpp (CoopGoreCorpseDamage)` | 1 | `bug-2802` |
 | `sentient.cpp} (decap revert)` | 1 | `bug-892` |
-| `sentient.h` | 6 | `bug-861` `bug-892` `bug-1142` `bug-1241` `bug-1975` `bug-2170` |
+| `sentient.h` | 7 | `bug-861` `bug-892` `bug-1142` `bug-1241` `bug-1975` `bug-2170` `bug-2947` |
 | `sentient.h (@156 decl)` | 1 | `bug-866` |
+| `sentient.h (gfx2-next f4a523cd)` | 1 | `bug-3524` |
+| `Sentient::StopFireWeapon)` | 1 | `bug-3095` |
 | `sentient_combat.cpp (ActivateNewWeapon/useWeapon)` | 1 | `bug-924` |
+| `server launch (omohaaded.exe) / server_push` | 1 | `bug-2750` |
+| `server reliable-command volume on (re)spawn` | 1 | `bug-3477` |
+| `server.scr` | 1 | `bug-2923` |
 | `server/sv_client.c` | 1 | `bug-1198` |
+| `server/sv_init.c` | 1 | `bug-10862` |
 | `server_home/maintt/coop_devrcon.cfg` | 1 | `bug-2239` |
+| `server_pushtier1 home dirs` | 1 | `bug-2750` |
+| `Session.snapshot_prior` | 1 | `bug-3047` |
+| `set_respawn at 2266-2267)` | 1 | `bug-2998` |
+| `sgbake.py (brk clips)` | 1 | `bug-3755` |
 | `shapekit gen_md5.py UV baking + bsp2bp.py` | 1 | `bug-1016` |
+| `shared checkout)` | 1 | `bug-3540` |
+| `shared probe reinf.scr::rnf_entry NOT changed` | 1 | `bug-mgspawn1025b` |
 | `sharpen_fp.glsl` | 1 | `bug-1150` |
+| `sheet hidden/shown markers)` | 1 | `bug-2973` |
+| `ship/models/weapons/colt45_colt1911w.tik` | 1 | `bug-3804` |
+| `ship/models/weapons/webley_revolver_lv_ttwebley.tik` | 1 | `bug-3804` |
+| `shot)` | 1 | `bug-3047` |
 | `shutter.scr` | 1 | `bug-1051` |
+| `sights_override.json (fg42_irons)` | 1 | `bug-3769` |
+| `skc` | 1 | `bug-10439` |
+| `skin apply + mannequin model swap ~l.536-552) and the Armory/name-bus skin route` | 1 | `bug-3915` |
+| `skin apply)` | 1 | `bug-3909` |
+| `slidesplit.py` | 1 | `bug-3654` |
+| `slots ~100-126` | 1 | `bug-3918` |
+| `small.tga` | 1 | `bug-2935` |
+| `small_sel.tga)` | 1 | `bug-2935` |
+| `smgbake.py` | 1 | `bug-4215` |
+| `smggun.py hide_bone_verts` | 1 | `bug-4138` |
+| `smggun.py story=closed` | 1 | `bug-4141` |
+| `smileidle` | 1 | `bug-3958` |
 | `snd_mem_new.cpp (cosmetic print bug)` | 2 | `bug-153` `bug-156` |
+| `snd_openal_new.cpp` | 1 | `bug-3234` |
+| `snd_public.h` | 1 | `bug-3234` |
 | `so retail runs)` | 1 | `bug-1493` |
 | `soak_test)` | 1 | `bug-1064` |
 | `soldiersayto` | 1 | `bug-1579` |
 | `sound pools: coop_deathvox (334)` | 1 | `bug-1141` |
+| `sound/amb/coop_thunder_0[1-3].wav (renamed)` | 1 | `bug-3148` |
 | `sound/coop_amb/*.wav` | 1 | `bug-933b` |
 | `sound/coop_brace/` | 1 | `bug-2132` |
-| `sound/frontline/sting_*.wav` | 1 | `bug-933b` |
+| `sound/frontline/sting_*.wav` | 2 | `bug-933b` `bug-4269` |
+| `sound/music/frontline_m*.mp3` | 1 | `bug-4269` |
+| `sound/music/psx_gallery_a.mp3` | 1 | `bug-4270` |
+| `sound/psx/sting_psx*.wav` | 1 | `bug-4269` |
+| `sound/psx/sting_psx1.wav` | 1 | `bug-4270` |
+| `ss_drv.scr` | 1 | `bug-3977` |
+| `ss_fxrun.py)` | 1 | `bug-3977` |
+| `stage_morph/record_morph.py)` | 1 | `bug-3154` |
+| `stage_rows.py (coopr_fg_42_irons_charge)` | 1 | `bug-3769` |
+| `stage_scoped.py` | 2 | `bug-10624` `bug-10629` |
+| `stage_sgreload.py (anims_shotgun.txt row shotgun_reload_break)` | 1 | `bug-3755` |
+| `stage_sgreload.py (anims_shotgun.txt)` | 1 | `bug-3727` |
+| `STAGED docs/proposals/foliage_shadows_2026-09-28/: engine/hzm_lmpatch.h + engine/apply.py (renderergl2 tr_bsp…` | 1 | `bug-3224` |
+| `STAGED engine: docs/proposals/console_quiet_2026-09-27/apply_engine_patch.py (renderergl2/tr_glsl.c` | 1 | `bug-3077` |
 | `staged from _hd_staging)` | 1 | `bug-2583` |
+| `start_server.cfg` | 1 | `bug-2923` |
+| `State_Attack` | 1 | `bug-2921` |
+| `states RELOAD_SHOTGUN` | 1 | `bug-3728` |
+| `steer publisher)` | 1 | `bug-10465` |
+| `steer)` | 1 | `bug-10413` |
+| `sten.tik` | 1 | `bug-10882` |
+| `sting_psx3-6.wav` | 1 | `bug-4270` |
+| `stormlight.scr` | 1 | `bug-3548` |
+| `streak)` | 1 | `bug-2924` |
 | `suppression_fp.glsl` | 1 | `bug-1151` |
+| `surrender.scr` | 1 | `bug-2906` |
 | `sv_init.c` | 1 | `bug-934` |
+| `SV_SetUserinfo at :387 has the same check) vs fgame/g_main.cpp:434 (game.maxclients = maxclients + sv_maxbots)` | 1 | `bug-botslot-userinfo` |
+| `SVR_ClientPs)` | 1 | `bug-10454` |
+| `t1` | 1 | `bug-10593` |
+| `t1.cfg` | 1 | `bug-3280` |
+| `t1.cfg tile titles 't1l2 Verviers' / 't1l3 Malmedy'` | 1 | `bug-3280` |
+| `t2` | 1 | `bug-10593` |
+| `t2.cfg` | 1 | `bug-3280` |
+| `t2l1.scr` | 2 | `bug-3542` `bug-3553` |
+| `t2l2` | 1 | `bug-4094` |
+| `t2l3.scr` | 1 | `bug-3542` |
+| `t2l4.scr` | 1 | `bug-3542` |
+| `t3)` | 1 | `bug-10593` |
+| `t3.cfg (coop_missionName titles)` | 1 | `bug-3280` |
 | `t3l1.scr` | 1 | `bug-1625` |
+| `t3l2` | 1 | `bug-4094` |
+| `t3l2.scr` | 1 | `bug-3542` |
 | `TBD - openmohaa-hzm/code/renderergl2/tr_sphere_shade.cpp (crash site only` | 1 | `bug-1167` |
 | `team` | 3 | `bug-2624` `bug-2636` `bug-2638` |
 | `test harness (dedicated server bot + logging)` | 1 | `bug-2600` |
+| `test harness (in_padTestScript steps)` | 1 | `bug-10455` |
+| `test paks` | 1 | `bug-4419` |
+| `test rig` | 1 | `bug-3551` |
 | `textures/**` | 1 | `bug-853` |
+| `textures/coop_<east>/*.jpg` | 1 | `bug-10554` |
+| `textures/coop_dust/moonveil0001-0030.tga (new) - STAGED in docs/proposals/duststorm_2026-09-28 (apply_dust.py)` | 1 | `bug-3237` |
+| `textures/coop_fx/coop_artery_*.tga)` | 1 | `bug-3501` |
 | `textures/coop_gore/coop_woundstamp.tga + coop_bloodsplash.tga` | 1 | `bug-828` |
+| `textures/hud/coop_scope/*.tga` | 1 | `bug-3463` |
+| `textures/hud/vram/*.tga` | 1 | `bug-3530` |
 | `textures/hud/xpbar/xpbar_glow.tga` | 1 | `bug-957` |
 | `textures/models/coop_dmedipack.tga` | 1 | `bug-922` |
+| `textures/mohmenu/coop_brace_mount.tga` | 1 | `bug-2810` |
+| `textures/mohmenu/coop_discord(_h).tga` | 1 | `bug-2933` |
 | `textures/sprites/coop_bloodpool.tga` | 1 | `bug-817` |
+| `the func_rain brush path)` | 1 | `bug-3466` |
+| `the harness camera moved` | 1 | `bug-3176` |
 | `the mod ships NO override` | 1 | `bug-1493` |
-| `tiki/tiki_files.cpp` | 1 | `bug-1244` |
-| `tiki/tiki_mesh.cpp` | 1 | `bug-1214` |
+| `the seven LaunchGame fallback sites)` | 1 | `bug-3472` |
+| `theme/compose_stations.py` | 2 | `bug-3281` `bug-3287` |
+| `theme/decals.py` | 2 | `bug-3281` `bug-3287` |
+| `theme/station_layouts.py` | 1 | `bug-3287` |
+| `theme/wr_font.py` | 1 | `bug-3287` |
+| `thompsonsmg_tommy1928d.tik` | 1 | `bug-3389` |
+| `throwaway}.skc` | 1 | `bug-3958` |
+| `TickCoopCover` | 1 | `bug-3560` |
+| `TickCoopCover)` | 2 | `bug-10406` `bug-10407` |
+| `TickCoopCoverThrow` | 1 | `bug-10561` |
+| `TickCoopNade states 4/5` | 1 | `bug-10561` |
+| `tickPlayer)` | 1 | `bug-2804` |
+| `tik row reload_end_loaded` | 1 | `bug-3729` |
+| `tiki/tiki_files.cpp` | 2 | `bug-1244` `bug-3077` |
+| `tiki/tiki_mesh.cpp` | 2 | `bug-1214` `bug-3077` |
+| `tik}` | 1 | `bug-10439` |
+| `TL_NoteKill)` | 1 | `bug-10453` |
+| `tools/finishclone.py` | 1 | `bug-3804` |
+| `tools/gen_foliage_lm.py + batch_foliage_lm.py (pack zzzzzzzzzz_coop_foliage_lm.pk3)` | 1 | `bug-3224` |
+| `tools/gen_menu_theme.py (ui/hzm_bind.scr)` | 1 | `bug-3327` |
+| `tools/gen_slide_overlay.py` | 1 | `bug-3250` |
+| `tools/gungeo.py` | 1 | `bug-3241` |
+| `tools/overlay/coop_mod/coop_selftest_xp.scr` | 1 | `bug-10482` |
+| `tools/revbake.py (webley)` | 1 | `bug-3613` |
+| `tools/revstate.py` | 1 | `bug-3594` |
+| `tools/rows_m10.txt` | 1 | `bug-3614` |
+| `tools/samples.py)` | 1 | `bug-3290` |
+| `tools/selftest_scrub.py` | 1 | `bug-3279` |
 | `tow` | 1 | `bug-2624` |
-| `tr_backend.c` | 9 | `bug-159` `bug-gl2-modellight` `bug-gl2-e2l2-fog-verified-correct` `bug-1132` `bug-1149` `bug-1150` `bug-1158` `bug-1177` `bug-1209` |
+| `tp_reload)` | 1 | `bug-3759` |
+| `tr_backend.c` | 14 | `bug-159` `bug-gl2-modellight` `bug-gl2-e2l2-fog-verified-correct` `bug-1132` `bug-1149` `bug-1150` `bug-1158` `bug-1177` `bug-1209` `bug-3148` `bug-3222` `bug-3462` `bug-4390` `bug-4391` |
+| `tr_backend.c (RB_HZM_SceneDepthSnapshot` | 1 | `bug-2979` |
+| `tr_backend.c (rb_hzmSkyFogLatch)` | 1 | `bug-3454` |
+| `tr_backend.c:1790-1810 (mask)` | 1 | `bug-3141` |
+| `tr_bsp.c` | 1 | `bug-3061` |
+| `tr_cmds.c` | 1 | `bug-3530` |
 | `tr_draw.c` | 1 | `bug-1166` |
+| `tr_extensions.c` | 1 | `bug-3156` |
 | `tr_fbo.c` | 1 | `bug-1132` |
 | `tr_fbo.c/.h` | 1 | `bug-1151` |
+| `tr_flares.c` | 1 | `bug-2969` |
 | `tr_font.cpp` | 2 | `bug-1140` `bug-1166` |
-| `tr_glsl.c` | 8 | `bug-gl2-texgen` `bug-gl2-nextbundle2` `bug-1149` `bug-1150` `bug-1151` `bug-1158` `bug-1239` `bug-1249` |
+| `tr_glsl.c` | 14 | `bug-gl2-texgen` `bug-gl2-nextbundle2` `bug-1149` `bug-1150` `bug-1151` `bug-1158` `bug-1239` `bug-1249` `bug-2946` `bug-2969` `bug-3148` `bug-3462` `bug-4273` `bug-4390` |
 | `tr_glsl.c (comment)` | 1 | `bug-1148` |
+| `tr_glsl.c (GLSL_GetGenericShaderProgram)` | 1 | `bug-2962` |
+| `tr_glsl.c + tr_local.h (UNIFORM_HZMPSHADOWSPOT / u_HzmPshadowSpot appended last` | 1 | `bug-2980` |
 | `tr_gore.c (suspected)` | 1 | `bug-1167` |
+| `tr_hzm_clouds.c` | 1 | `bug-3523` |
+| `tr_hzm_clouds_pure.h (hzmCloudFamilies)` | 1 | `bug-3458` |
+| `tr_hzm_framegen.c` | 1 | `bug-4390` |
+| `tr_hzm_lens.c` | 2 | `bug-scopes1025-reticle-inlens` `bug-10287` |
+| `tr_hzm_lodfog.c` | 1 | `bug-3170` |
+| `tr_hzm_scope.c` | 1 | `bug-4390` |
+| `tr_hzm_spot_rb.c (new` | 1 | `bug-2969` |
+| `tr_hzm_spot_rb.c (r_hzmSoftEdge` | 1 | `bug-2979` |
+| `tr_hzm_spot_rb.c (r_hzmSpotShadows` | 1 | `bug-2980` |
+| `tr_hzm_sunstable.c` | 1 | `bug-3347` |
+| `tr_hzm_sunstable.c (R_SunWorld_Bake)` | 1 | `bug-3235` |
+| `tr_hzm_vram_pick.h (new)` | 1 | `bug-3536` |
+| `tr_hzm_water.c` | 3 | `bug-3222` `bug-3177` `bug-3406` |
+| `tr_hzm_wet.c` | 3 | `bug-3222` `bug-3406` `bug-4273` |
+| `tr_hzm_wet.c (HZM_OccBlurred)` | 1 | `bug-3409` |
+| `tr_hzm_wet.c (s_hzmClassMat` | 1 | `bug-3408` |
 | `tr_image.c` | 1 | `bug-1177` |
+| `tr_image.c (R_CreateImage)` | 1 | `bug-3003` |
+| `tr_image.c:2231 (the ERR_DROP)` | 1 | `bug-2997` |
 | `tr_image_dds.c` | 1 | `bug-gl2-decal-red-dds` |
-| `tr_init.c` | 9 | `bug-905` `bug-868` `bug-gl2-modellight` `bug-1132` `bug-1209` `bug-1237` `bug-1249` `bug-2159` `bug-2166` |
-| `tr_light.c` | 1 | `bug-gl2-modellight` |
-| `tr_local.h` | 15 | `bug-159` `bug-868` `bug-gl2-texgen` `bug-gl2-modellight` `bug-gl2-nextbundle2` `bug-1132` `bug-1149` `bug-1150` `bug-1151` `bug-1158` `bug-1177` `bug-1237` `bug-1239` `bug-2159` `bug-2166` |
+| `tr_init.c` | 17 | `bug-905` `bug-868` `bug-gl2-modellight` `bug-1132` `bug-1209` `bug-1237` `bug-1249` `bug-2159` `bug-2166` `bug-2556` `bug-2946` `bug-2969` `bug-3061` `bug-3148` `bug-3530` `bug-3536` `bug-10900` |
+| `tr_light.c` | 3 | `bug-gl2-modellight` `bug-2969` `bug-3061` |
+| `tr_local.h` | 27 | `bug-159` `bug-868` `bug-gl2-texgen` `bug-gl2-modellight` `bug-gl2-nextbundle2` `bug-1132` `bug-1149` `bug-1150` `bug-1151` `bug-1158` `bug-1177` `bug-1237` `bug-1239` `bug-2159` `bug-2166` `bug-2556` `bug-2946` `bug-2969` `bug-3061` `bug-3148` `bug-3156` `bug-3170` `bug-3224` `bug-3406` `bug-3462` `bug-4390` `bug-10308` |
 | `tr_local.h (backEndState_t::ssaoValid)` | 1 | `bug-1211` |
+| `tr_local.h (gfx2-next 4f9c2611)` | 1 | `bug-3523` |
+| `tr_local.h (prototype + shader_t.hzmDotToRgbNoted)` | 1 | `bug-2962` |
+| `tr_local.h (shader_t.hzmSoftEdge` | 1 | `bug-2979` |
 | `tr_local.h (skel_index fix retained)` | 1 | `bug-gl2-invisible-friendly-actor-2nd` |
 | `tr_local.h)` | 1 | `bug-1140` |
-| `tr_main.c` | 2 | `bug-gl2-e2l2-fog-verified-correct` `bug-1209` |
-| `tr_model.cpp` | 2 | `bug-gl2-modellight` `bug-1209` |
+| `tr_main.c` | 6 | `bug-gl2-e2l2-fog-verified-correct` `bug-1209` `bug-2946` `bug-3077` `bug-4273` `bug-4390` |
+| `tr_main.c}` | 1 | `bug-10308` |
+| `tr_marks.c` | 1 | `bug-10308` |
+| `tr_model.cpp` | 3 | `bug-gl2-modellight` `bug-1209` `bug-3077` |
+| `tr_model.cpp:790-800` | 1 | `bug-3117` |
+| `tr_model_iqm.c` | 1 | `bug-10308` |
 | `tr_postprocess.c` | 3 | `bug-1149` `bug-1151` `bug-1239` |
+| `tr_postprocess.c (RB_HZMDof)` | 1 | `bug-4391` |
 | `tr_postprocess.c (RB_HZMExtraFx)` | 1 | `bug-1158` |
 | `tr_postprocess.c/.h` | 1 | `bug-1150` |
-| `tr_postprocess.h` | 2 | `bug-1149` `bug-1211` |
-| `tr_scene.c` | 3 | `bug-gl2-modellight` `bug-gl2-e2l2-fog-verified-correct` `bug-1209` |
-| `tr_shade.c` | 4 | `bug-1242` `bug-1249` `bug-2159` `bug-2594` |
+| `tr_postprocess.h` | 4 | `bug-1149` `bug-1211` `bug-3462` `bug-10287` |
+| `tr_scene.c` | 7 | `bug-gl2-modellight` `bug-gl2-e2l2-fog-verified-correct` `bug-1209` `bug-2969` `bug-3148` `bug-3222` `bug-4390` |
+| `tr_scene.c (publisher)` | 1 | `bug-3102` |
+| `tr_scene.c (RE_AddTerrainMarkToScene)` | 1 | `bug-3089` |
+| `tr_scene.c)` | 1 | `bug-4273` |
+| `tr_scene.c:428 (gfx tree only)` | 1 | `bug-3091` |
+| `tr_shade.c` | 8 | `bug-1242` `bug-1249` `bug-2159` `bug-2594` `bug-2946` `bug-2969` `bug-3148` `bug-3222` |
+| `tr_shade.c (ProjectPshadowVBOGLSL)` | 1 | `bug-2980` |
+| `tr_shade.c (RB_FillDistFadeAlpha` | 1 | `bug-3139` |
+| `tr_shade.c (RB_IterateStagesGeneric colour/alpha-gen upload)` | 1 | `bug-2962` |
+| `tr_shade.c (RB_SetSoftParticleUniforms)` | 1 | `bug-2979` |
+| `tr_shade.c R_BindAnimatedImageToTMU` | 1 | `bug-fx1025-1` |
 | `tr_shade.c RB_IterateStagesGeneric` | 1 | `bug-gl2-nextbundle2` |
+| `tr_shade.c:1450 (mask unfogged)` | 1 | `bug-3141` |
 | `tr_shade.c}` | 1 | `bug-1209` |
 | `tr_shade_calc.c` | 1 | `bug-1242` |
-| `tr_shader.c` | 2 | `bug-gl2-modellight` `bug-1242` |
-| `tr_sphere_shade.cpp` | 1 | `bug-gl2-modellight` |
+| `tr_shader.c` | 6 | `bug-gl2-modellight` `bug-1242` `bug-2946` `bug-2942` `bug-2969` `bug-10904` |
+| `tr_sky.c` | 2 | `bug-3148` `bug-3222` |
+| `tr_sphere_shade.cpp` | 3 | `bug-gl2-modellight` `bug-2946` `bug-2969` |
+| `tr_sphere_shade.cpp R_Sphere_InitLights s_sun` | 1 | `bug-3064` |
 | `tr_sphere_shade.cpp)` | 1 | `bug-1131` |
+| `tr_staticmodels.cpp` | 2 | `bug-2969` `bug-3224` |
+| `tr_staticmodels.cpp (MAX_STATIC_MODELS_SURFS)` | 1 | `bug-3003` |
+| `tr_terrain.c` | 1 | `bug-3061` |
+| `tr_world.c` | 1 | `bug-2969` |
 | `trigger.cpp` | 1 | `bug-914` |
+| `TryBound overwatch` | 1 | `bug-3000` |
+| `TryEscape)` | 1 | `bug-10696` |
+| `tt33` | 1 | `bug-4124` |
+| `t}{1` | 1 | `bug-3951` |
+| `u_AlphaTest modes 4/5` | 1 | `bug-3344` |
+| `ubersound/coop_audio.scr` | 1 | `bug-4269` |
+| `ubersound/coop_audio.scr (coop_lt_* bands)` | 1 | `bug-3148` |
 | `ubersound/coop_buildsounds.scr` | 1 | `bug-1399` |
-| `ubersound/ubersound.scr` | 3 | `bug-500` `bug-1488` `bug-2275` |
+| `ubersound/coop_finale_m2l3.scr` | 1 | `bug-10412` |
+| `ubersound/coop_vehsounds.scr` | 2 | `bug-10461` `bug-10584` |
+| `ubersound/ubersound.scr` | 7 | `bug-500` `bug-1488` `bug-2275` `bug-2968` `bug-3422` `bug-4269` `bug-4270` |
 | `ubersound/ubersound.scr:1043` | 1 | `bug-1477` |
+| `ui/*.urc (570 files)` | 1 | `bug-4189` |
 | `ui/advanced_graphics.urc` | 1 | `bug-1123` |
 | `ui/advanced_graphics.urc + memory index MEMORY.md` | 1 | `bug-1995` |
-| `ui/BIND.SCR` | 1 | `bug-757` |
-| `ui/coop_loadout.urc` | 1 | `bug-666` |
+| `ui/advancedoptions.urc` | 1 | `bug-3118` |
+| `ui/advancedoptions.urc (A2)` | 1 | `bug-3120` |
+| `ui/advancedoptions.urc (A5` | 1 | `bug-3121` |
+| `ui/advancedoptions.urc (not changed)` | 1 | `bug-3099` |
+| `ui/advancedoptions.urc:377` | 1 | `bug-3115` |
+| `ui/BIND.SCR` | 2 | `bug-757` `bug-3299` |
+| `ui/briefing2a..6d2.urc (36 new)` | 1 | `bug-3234` |
+| `ui/coop_custom.urc` | 1 | `bug-10886` |
+| `ui/coop_custom.urc (gen_custom_urc.py)` | 1 | `bug-10829` |
+| `ui/coop_custom.urc (gen_custom_urc.py) + openmohaa-hzm client/cl_engrave.cpp` | 2 | `bug-10856` `bug-10906` |
+| `ui/coop_hostrules.urc (gen_menu_fieldsettings.py)` | 1 | `bug-2923` |
+| `ui/coop_hostrules.urc (generated)` | 1 | `bug-3518` |
+| `ui/coop_hostrules.urc via docs/tools/gen_menu_fieldsettings.py HOST_NOTES` | 1 | `bug-3187` |
+| `ui/coop_loadout.urc` | 2 | `bug-666` `bug-3919` |
+| `ui/coop_loadout.urc (closeBtn) + ui/loadout/done.cfg + coop_mod/loadoutpick.scr` | 1 | `bug-3959` |
+| `ui/coop_menumusic/*.cfg` | 1 | `bug-10442` |
+| `ui/coop_menumusic/*.cfg (gen_menumusic.py)` | 1 | `bug-10441` |
 | `ui/coop_mphostrules.urc` | 2 | `bug-2623` `bug-2625` |
 | `ui/coop_mpmenu.urc` | 2 | `bug-2621` `bug-2624` |
+| `ui/coop_mpmenu.urc (likely - the multiplayer in-game menu that links coop_mpa_armory / coop_mpx_armory)` | 1 | `bug-3914` |
 | `ui/coop_mpmenu/*.cfg` | 2 | `bug-2621` `bug-2624` |
 | `ui/coop_postfx2.urc` | 1 | `bug-1158` |
 | `ui/coop_postfx3.urc (new)` | 1 | `bug-1158` |
 | `ui/coop_settings.urc` | 1 | `bug-2161` |
-| `ui/coop_start.urc` | 1 | `bug-2578` |
+| `ui/coop_sr_pinclear.cfg` | 1 | `bug-2869` |
+| `ui/coop_start.urc` | 5 | `bug-2578` `bug-3300` `bug-3321` `bug-4050` `bug-4160` |
+| `ui/coop_start.urc (generated by docs/proposals/mpui_2026-11-02/make_mpui.py)` | 1 | `bug-10450` |
+| `ui/coop_start/*.cfg` | 1 | `bug-3300` |
+| `ui/coop_start/e1.cfg` | 1 | `bug-3280` |
+| `ui/coop_start/e1.cfg e3.cfg t1.cfg t2.cfg t3.cfg (coop_missionName + tile titles)` | 1 | `bug-3284` |
+| `ui/coop_training.urc (docs/proposals/advanced_training_2026-11-09/attic/tools/gen_training_urc.py)` | 1 | `bug-10853` |
+| `ui/coop_whatsnew.urc` | 1 | `bug-4160` |
 | `ui/coopAdmin.urc` | 1 | `bug-2678` |
+| `ui/hzm_memorial/*.tga` | 1 | `bug-3538` |
+| `ui/hzm_newgame3d.urc` | 3 | `bug-10440` `bug-10607` `bug-10616` |
+| `ui/hzm_newgame3d.urc (generated by docs/proposals/sp3camp_2026-11-08/make_ng3campaigns.py + livemap_2026-11-0…` | 1 | `bug-10860` |
+| `ui/hzm_ng3d_*diff.urc` | 2 | `bug-10607` `bug-10647` |
+| `ui/hzm_ng3d_ea1diff.urc` | 1 | `bug-10776` |
+| `ui/hzm_ngflat*.urc` | 1 | `bug-10607` |
+| `ui/hzm_ngflat.urc` | 1 | `bug-10616` |
+| `ui/loadhints.txt` | 1 | `bug-3075` |
+| `ui/loadhints.txt - STAGED in docs/proposals/hardcore_nodrops_2026-09-28 (apply.py)` | 1 | `bug-3187` |
+| `ui/loadingbar.txt (hzm_loadmedal rect)` | 1 | `bug-3059` |
 | `ui/loadout/*` | 1 | `bug-666` |
+| `ui/loadout/fitunbind.cfg` | 1 | `bug-3299` |
+| `ui/loadout/init.cfg` | 1 | `bug-3920` |
+| `ui/loadout/lktab3.cfg` | 1 | `bug-10579` |
 | `ui/loadout/open.cfg / gen_loadout.py / ui/main.urc / lobbyui.scr` | 1 | `bug-589` |
+| `ui/loadout/req*.cfg` | 1 | `bug-3193` |
+| `ui/loadout/skin\|helm\|glove/*.cfg (patched by docs/tools/patch_armory_gating.py)` | 1 | `bug-3919` |
+| `ui/main.urc (docs/proposals/attic_polish_2026-11-02/tools/make_attic_polish.py + corner_layout.py)` | 1 | `bug-10442` |
+| `ui/main.urc (generated by docs/proposals/sp3camp_2026-11-08/make_ng3campaigns.py)` | 1 | `bug-10607` |
+| `ui/main.urc (generator FONT_OVERRIDE)` | 1 | `bug-4160` |
+| `ui/main.urc (generator gen_main_urc.py)` | 1 | `bug-4162` |
+| `ui/main.urc (make_attic_polish.py)` | 1 | `bug-10441` |
+| `ui/main.urc + ui/hzm_quitconfirm.urc (patch_hatch73.py)` | 1 | `bug-10875` |
 | `ui/missionbriefingback.inc` | 1 | `bug-641` |
+| `ui/multiplayer.urc` | 2 | `bug-10777` `bug-10810` |
+| `ui/multiplayer.urc (make_mpui.py) + engine client/cl_main.cpp` | 1 | `bug-10464` |
+| `ui/proto/*` | 1 | `bug-4189` |
+| `ui/SelectTeam.urc` | 1 | `bug-2813` |
+| `ui/video options.urc` | 2 | `bug-3118` `bug-3536` |
+| `ui/video options.urc (V8)` | 1 | `bug-3122` |
+| `ui/video options.urc:510` | 1 | `bug-3115` |
+| `UI_BeginLoad ordering)` | 1 | `bug-3015` |
+| `ui_realismmode` | 1 | `bug-3275` |
+| `ui_roundlimit` | 1 | `bug-3275` |
+| `ui_sprinton` | 1 | `bug-3275` |
+| `ui_team_spawn_interval)` | 1 | `bug-3275` |
 | `UI_Update zombie-hide breadcrumb)` | 1 | `bug-777` |
+| `uibindlist.cpp` | 1 | `bug-4169` |
+| `uilib/uifont.cpp` | 1 | `bug-2981` |
+| `uilib/uimenu.cpp` | 1 | `bug-3328` |
 | `uilib/uiwidget.cpp` | 1 | `bug-254` |
+| `uilib/uiwidget.cpp (menu2-engine)` | 1 | `bug-4178` |
+| `uilib/uiwidget.cpp (UIWidget::PassEventToWidget 2574-2596)` | 1 | `bug-3268` |
+| `uilistbox.cpp` | 1 | `bug-4169` |
+| `uimenu.cpp:359-371` | 1 | `bug-3115` |
+| `uipulldownmenu.cpp` | 1 | `bug-4169` |
+| `uiwinman.cpp` | 1 | `bug-4196` |
+| `unflash)` | 1 | `bug-3106` |
+| `units from uiHiResScale)` | 1 | `bug-3464` |
 | `UNRESOLVED - renderer/engine` | 1 | `bug-1245` |
+| `UpdateBotStates clobber probe)` | 1 | `bug-2927` |
 | `updater/updater.ps1` | 1 | `bug-2030` |
+| `updater/updater.ps1 (progress form` | 1 | `bug-3471` |
+| `updater/updater.ps1 (Show-InstallFailure` | 1 | `bug-3472` |
+| `v1 kept there as zzzzzzzzzz_coop_hd_a_tilefix.v1.pk3)` | 1 | `bug-2991` |
+| `v11_overlay.py` | 1 | `bug-3457` |
+| `VANISH marks in State_Attack` | 1 | `bug-3024` |
+| `vc_finaldither.py` | 1 | `bug-3157` |
+| `vc_j1mag.py)` | 1 | `bug-3157` |
+| `vc_j1t.py` | 1 | `bug-3157` |
+| `vc_post.py` | 1 | `bug-3082` |
+| `vc_scene.py` | 1 | `bug-3082` |
+| `vc_v2.py` | 1 | `bug-3082` |
+| `vc_v2run.py)` | 1 | `bug-3082` |
+| `vcl_selftest.c` | 1 | `bug-3159` |
 | `vehicles_thinkers.scr` | 1 | `bug-1051` |
 | `verdana-12` | 1 | `bug-1185` |
 | `verdana-14` | 1 | `bug-1185` |
+| `verdana-14wr)` | 1 | `bug-3326` |
 | `VERIFICATION ONLY - no mod asset changed` | 1 | `bug-1213` |
+| `verify3060/vrun.py` | 1 | `bug-3154` |
+| `verify_p5.py` | 1 | `bug-3154` |
+| `verify_p5b.py` | 1 | `bug-3154` |
+| `waitthread after the solidify loop) + NEW hzm-mohaa-coop-mod/maps/m3l3/rockclips.scr (generated) + NEW docs/t…` | 1 | `bug-3210` |
+| `want())` | 1 | `bug-3273` |
+| `was weapon_hd_2026-10-05/bead/scripts/coop_shotgun_bead.shader)` | 1 | `bug-3696` |
 | `watchdog/auto_audit_recover.ps1)` | 1 | `bug-2579` |
-| `weapon.cpp` | 4 | `bug-1062` `bug-2132` `bug-2139` `bug-2143` |
+| `weapon.cpp` | 5 | `bug-1062` `bug-2132` `bug-2139` `bug-2143` `bug-3520` |
+| `weapon.cpp (OnOverCooked)` | 1 | `bug-2925` |
 | `weapon.cpp}` | 1 | `bug-2623` |
 | `weapon.h` | 1 | `bug-2153` |
 | `Weapon::FallingAngleAdjust)` | 1 | `bug-923` |
 | `weaputils.cpp (old hook removed + coop_hstest dev probe)` | 1 | `bug-1142` |
 | `weaputils.cpp)` | 1 | `bug-1062` |
+| `weather.scr` | 2 | `bug-2906` `bug-3548` |
+| `welrod.py` | 1 | `bug-3782` |
+| `weltex.py` | 1 | `bug-3654` |
+| `windows` | 1 | `bug-10308` |
+| `with 2 pshadow mutants in --selftest)` | 1 | `bug-2980` |
+| `wood2` | 1 | `bug-10837` |
+| `wood3)` | 1 | `bug-10837` |
+| `wounded.scr` | 1 | `bug-3195` |
 | `wounded/limp monitor)` | 1 | `bug-2609` |
+| `wpnfix sources models/human/animation/viewmodel/coop_dbshotgun/dbs_reload{` | 1 | `bug-10650` |
+| `wpnview_run.py setup_fix` | 1 | `bug-10621` |
+| `written from the session scratchpad` | 1 | `bug-2995` |
+| `ww_look.py` | 1 | `bug-3105` |
+| `ww_scope.py` | 1 | `bug-3105` |
+| `wxextreme.scr (coop_wxFogMin)` | 1 | `bug-norway-1027-prep-blizzard-train` |
+| `xp.scr` | 2 | `bug-2906` `bug-2923` |
+| `xp_card_unlocks` | 1 | `bug-4004` |
+| `xp_mp_roundcard` | 1 | `bug-3076` |
+| `xp_push_own_cvars)` | 1 | `bug-3076` |
+| `xp_summary_card` | 1 | `bug-3076` |
+| `x}_appearance.urc` | 1 | `bug-2753` |
+| `x}_appearance.urc + k/h/v cfgs` | 1 | `bug-2755` |
+| `x}_armory.urc` | 1 | `bug-2753` |
+| `x}_armory/open.cfg` | 1 | `bug-2752` |
 | `zzzzz_xw_weapons.pk3 (shaders) + global/giveall.scr` | 1 | `bug-481` |
+| `zzzzz_xw_weapons.pk3 (third-party imports) -> weapon HD paks` | 1 | `bug-3417` |
+| `zzzzz_xw_weapons.pk3 :: textures/models/weapons/mosin_nagant/weas.jpg -> override in zzzzzzzzzz_coop_fixes.pk3` | 1 | `bug-3453` |
+| `zzzzzz-HRRTM_Pak4_Weapons.pk3 :: models/weapons/p38 - Copy.tik` | 1 | `bug-3378` |
+| `zzzzzzz_dds_hdmem.pk3 / AA_HD_Project_Pak4 cathedarchlrg (third-party)` | 1 | `bug-2954` |
+| `zzzzzzz_dds_hdmem.pk3 textures/mohtest/conctrmdrk.dds (third-party)` | 1 | `bug-2951` |
 | `zzzzzzz_dds_override.pk3 textures/wilderness/m3l3grass_bocroad_new.dds (also zzzzzz_hd_world.pk3 same-name .j…` | 1 | `bug-1129` |
+| `zzzzzzzz_hd_groundfix.pk3` | 1 | `bug-2952` |
+| `zzzzzzzzz_coop_terrain.pk3 (docs/tools/build_terrain_pack.py match_levels)` | 1 | `bug-2950` |
+| `zzzzzzzzzz_coop_hd_a_tilefix.pk3 (STAGED in the session scratchpad tilefix/` | 2 | `bug-2984` `bug-2991` |
+| `zzzzzzzzzz_coop_hd_m3l1a.pk3 (ships textures/sprites/coop_bloodpool.dds and textures/coop_fx/bloodslick.dds)` | 1 | `bug-3110` |
+| `zzzzzzzzzz_coop_hd_skies.pk3` | 1 | `bug-2937` |
+| `zzzzzzzzzz_coop_hd_skies.pk3 (env/hzmhd/clouds/sky/talonclouds.tga)` | 1 | `bug-2938` |
+| `zzzzzzzzzz_coop_m3l2ground.pk3 (docs/proposals/m3l2_ground_2026-09-29/tools/gen_m3l2ground_pak.py)` | 1 | `bug-3340` |
+| `zzzzzzzzzzzzz_coop_stress.pk3 (models/player/base/anims_shared.txt)` | 1 | `bug-10394` |
+| `zzzzzzzzzzzzz_coop_stress.pk3 models/weapons/mg42portable.tik` | 1 | `bug-4448` |
 | `~1513)` | 1 | `bug-2070` |
 | `~2534-2620) - RESEARCH` | 1 | `bug-2069` |
+| `~3324-3368: m_vHoldPos / m_iHoldCheck)` | 1 | `bug-2959` |
+| `~:246) - a harness/diagnosis trap` | 1 | `bug-3034` |
+| `~:807)` | 1 | `bug-3166` |
+| `~l.2775-2810)` | 1 | `bug-3468` |
+| `~l.287) + installer/MOHCoopTrilogy-WebSetup.exe (bundles its own copy of updater.ps1)` | 1 | `bug-3471` |
 | `~line 1786)` | 1 | `bug-gl2-invisible-friendly-actor-root` |
 | `~line 1897)` | 1 | `bug-1491` |
 | `~line 7465)` | 1 | `bug-1494` |
 | `~line 933)` | 1 | `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `~line 996)` | 1 | `bug-gl2-forcepose-skips-composite-ally` |
+| `~lines 470-505)` | 1 | `bug-3913` |
 
 ## Tags
 
@@ -1404,241 +3987,354 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `0xc0000005` | 5 | `bug-1145` `bug-2341` `bug-2362` `bug-2397` `bug-2404` |
 | `0xc00000ff` | 1 | `bug-1864` |
 | `120s-gate` | 2 | `bug-1919` `bug-1926` |
+| `14f` | 1 | `bug-10747` |
+| `1928` | 1 | `bug-3863` |
 | `2-player` | 1 | `bug-1660` |
-| `2d` | 3 | `bug-1144` `bug-1147` `bug-gl2-introfade` |
+| `21:9` | 4 | `bug-10437` `bug-10870` `bug-3332` `bug-4415` |
+| `2d` | 5 | `bug-10265` `bug-1144` `bug-1147` `bug-3510` `bug-gl2-introfade` |
 | `2d-3d-interleave` | 1 | `bug-gl2-viewmodel-over-menu` |
 | `2d-draw` | 2 | `bug-gl2-compass` `bug-gl2-hudsegments` |
+| `2d-shader` | 1 | `bug-3462` |
 | `2d-transition` | 2 | `bug-152` `bug-159` |
 | `2nd-ranger_private` | 1 | `bug-1213` |
-| `30cal` | 4 | `bug-296` `bug-301` `bug-322` `bug-324` |
+| `30cal` | 14 | `bug-10307` `bug-10416` `bug-296` `bug-301` `bug-322` `bug-324` `bug-3322` `bug-3562` `bug-3636` `bug-3637` `bug-3638` `bug-3658` `bug-4086` `bug-4129` |
+| `32-char-cap` | 1 | `bug-2767` |
+| `3440x1440` | 1 | `bug-10596` |
 | `3d-path` | 2 | `bug-2452` `bug-2455` |
 | `3d-vs-2d` | 1 | `bug-1689` |
 | `3p` | 3 | `bug-2053` `bug-2101` `bug-256` |
 | `3p-camera` | 1 | `bug-2073` |
 | `4-player` | 7 | `bug-1049` `bug-1051` `bug-1052` `bug-1053` `bug-1054` `bug-1062` `bug-1106` |
+| `4:3` | 3 | `bug-10571` `bug-4160` `bug-4163` |
+| `4fin` | 1 | `bug-10318` |
 | `4p` | 4 | `bug-1640` `bug-1657` `bug-1658` `bug-1659` |
 | `5-8-players` | 1 | `bug-2044` |
 | `58-bone` | 1 | `bug-gl2-invisible-friendly-actor-root` |
+| `720p` | 1 | `bug-10440` |
+| `8-bit` | 1 | `bug-3083` |
 | `@3x` | 2 | `bug-1182` `bug-1185` |
+| `a-b` | 1 | `bug-3134` |
 | `a-b-test` | 1 | `bug-2054` |
+| `a-setting-is-a-promise` | 3 | `bug-10528` `bug-2929` `bug-2936` |
+| `a/b` | 1 | `bug-3171` |
+| `a2c` | 1 | `bug-3344` |
 | `a3` | 1 | `bug-1648` |
 | `a4` | 1 | `bug-1653` |
+| `a7` | 1 | `bug-3047` |
+| `aa_hd` | 1 | `bug-3027` |
 | `aa_hd_project` | 1 | `bug-m3l2-ground-seams` |
-| `aagun` | 2 | `bug-1307` `bug-1581` |
+| `aagun` | 3 | `bug-1307` `bug-1581` `bug-3051` |
 | `ab41` | 3 | `bug-1436` `bug-251` `bug-252` |
 | `abi` | 1 | `bug-1803` |
 | `abnormal-exit` | 2 | `bug-1064` `bug-1066` |
 | `abort` | 1 | `bug-931b` |
 | `absent-geometry` | 1 | `bug-1386` |
+| `acceptance-criteria` | 1 | `bug-3545` |
 | `acceptance-test-added` | 1 | `bug-2068` |
 | `access-violation` | 3 | `bug-1062` `bug-1565` `bug-2292` |
-| `accuracy` | 4 | `bug-1851` `bug-1881` `bug-1950` `bug-2106` |
+| `accessibility` | 1 | `bug-3108` |
+| `accuracy` | 7 | `bug-1851` `bug-1881` `bug-1950` `bug-2106` `bug-2791` `bug-2840` `bug-2851` |
+| `aces` | 1 | `bug-3223` |
 | `acne` | 1 | `bug-1164` |
+| `acquire` | 1 | `bug-2922` |
 | `action-vs-motion-slot` | 1 | `bug-2481` |
 | `action-vs-movement` | 1 | `bug-2122` |
 | `actionweight` | 1 | `bug-2109` |
 | `activateweapon` | 1 | `bug-619` |
-| `actor` | 15 | `bug-096` `bug-100` `bug-1199` `bug-1640` `bug-1655` `bug-1657` `bug-1807` `bug-1943` `bug-1948` `bug-2246` `bug-2302` `bug-2484` `bug-2546` `bug-355` `bug-795` |
+| `activeaction` | 1 | `bug-10342` |
+| `actor` | 23 | `bug-096` `bug-100` `bug-10564` `bug-10615` `bug-10658` `bug-10782` `bug-10812` `bug-1199` `bug-1640` `bug-1655` `bug-1657` `bug-1807` `bug-1943` `bug-1948` `bug-2246` `bug-2302` `bug-2484` `bug-2546` `bug-2989` `bug-355` `bug-3853` `bug-4424` `bug-795` |
 | `actor-anims` | 1 | `bug-323` |
 | `actor-array` | 2 | `bug-1831` `bug-2088` |
 | `actor-churn` | 1 | `bug-2348` |
+| `actor-gun-getter` | 1 | `bug-3194` |
 | `actor-owner-zero-spread` | 1 | `bug-1940` |
-| `actor-pathing` | 3 | `bug-1361` `bug-1366` `bug-1368` |
+| `actor-pathing` | 4 | `bug-1361` `bug-1366` `bug-1368` `bug-3210` |
 | `actor-remove` | 2 | `bug-638` `bug-822` |
 | `actor-setmodel` | 1 | `bug-2075` |
 | `actor-think` | 2 | `bug-1682` `bug-1695` |
+| `actor.cpp` | 1 | `bug-3052` |
 | `actor::remove` | 1 | `bug-822` |
 | `actor_cover` | 2 | `bug-1813` `bug-2181` |
-| `actors` | 11 | `bug-2220` `bug-2236` `bug-2252` `bug-2255` `bug-2272` `bug-2281` `bug-2294` `bug-2367` `bug-2368` `bug-2370` `bug-429` |
+| `actors` | 13 | `bug-10374` `bug-2220` `bug-2236` `bug-2252` `bug-2255` `bug-2272` `bug-2281` `bug-2294` `bug-2367` `bug-2368` `bug-2370` `bug-429` `bug-4451` |
+| `actprompt` | 4 | `bug-4013` `bug-4169` `bug-4210` `bug-4406` |
 | `add-on-packs` | 1 | `bug-1523` |
 | `add_objectives` | 1 | `bug-1862` |
+| `add_part` | 2 | `bug-3737` `bug-4267` |
+| `addbot` | 1 | `bug-10426` |
 | `addon` | 3 | `bug-1022` `bug-1026` `bug-295` |
 | `addon-class` | 1 | `bug-240` |
 | `addon-entity` | 1 | `bug-942` |
 | `admin` | 2 | `bug-2678` `bug-2709` |
-| `ads` | 27 | `bug-072` `bug-073` `bug-074` `bug-089` `bug-105` `bug-106` `bug-107` `bug-108` `bug-110` `bug-1292` `bug-1881` `bug-1901` `bug-2000` `bug-2011` `bug-2012` `bug-2053` `bug-2089` `bug-2104` `bug-2146` `bug-2152` `bug-2157` `bug-2560` `bug-2563` `bug-2564` `bug-2623` `bug-863` `bug-lean-ads-wrong-branch` |
+| `admin.scr` | 1 | `bug-2868` |
+| `ads` | 228 | `bug-072` `bug-073` `bug-074` `bug-089` `bug-10260` `bug-10286` `bug-10303` `bug-10305` `bug-105` `bug-106` `bug-10610` `bug-10617` `bug-107` `bug-10720` `bug-10722` `bug-10724` `bug-10733` `bug-10734` `bug-10737` `bug-10740` `bug-10762` `bug-10763` `bug-108` `bug-110` `bug-1292` `bug-1881` `bug-1901` `bug-2000` `bug-2011` `bug-2012` `bug-2053` `bug-2089` `bug-2104` `bug-2146` `bug-2152` `bug-215… |
 | `ads-handoff` | 1 | `bug-2128` |
+| `ads-next` | 1 | `bug-3554` |
+| `ads-rollout` | 13 | `bug-3814` `bug-3815` `bug-3816` `bug-3817` `bug-3818` `bug-3819` `bug-3820` `bug-3821` `bug-3823` `bug-3885` `bug-3886` `bug-3888` `bug-3890` |
 | `ads-safe` | 1 | `bug-1887` |
+| `ads-smg` | 9 | `bug-3861` `bug-3862` `bug-3863` `bug-3864` `bug-3865` `bug-3866` `bug-3867` `bug-3868` `bug-3869` |
+| `ads_audit` | 1 | `bug-3442` |
+| `ads_twohand_2026-10-11` | 5 | `bug-3894` `bug-3895` `bug-3896` `bug-3897` `bug-3898` |
+| `adsanim` | 2 | `bug-3320` `bug-3354` |
+| `adsbolt` | 10 | `bug-3335` `bug-3336` `bug-3337` `bug-3348` `bug-3443` `bug-3444` `bug-3445` `bug-3446` `bug-3447` `bug-3450` |
+| `adsreload` | 4 | `bug-3354` `bug-3361` `bug-3362` `bug-3379` |
 | `adssave` | 1 | `bug-863` |
+| `adstune` | 1 | `bug-3299` |
 | `advanced-graphics` | 2 | `bug-1149` `bug-1151` |
 | `advanced-settings` | 1 | `bug-1145` |
-| `advanced_graphics` | 3 | `bug-1123` `bug-1152` `bug-2615` |
+| `advanced_graphics` | 4 | `bug-1123` `bug-1152` `bug-2615` `bug-4159` |
 | `adversarial-review` | 13 | `bug-2000` `bug-2003` `bug-2006` `bug-2045` `bug-2046` `bug-2125` `bug-2126` `bug-2127` `bug-2130` `bug-2133` `bug-2139` `bug-2167` `bug-638` |
 | `adversarial-verify` | 2 | `bug-2124` `bug-2550` |
+| `advtrain` | 12 | `bug-10817` `bug-10818` `bug-10819` `bug-10820` `bug-10821` `bug-10822` `bug-10823` `bug-10824` `bug-10833` `bug-10839` `bug-10858` `bug-10859` |
+| `africanight` | 1 | `bug-3081` |
 | `agency-probe` | 1 | `bug-1451` |
 | `agent-authored` | 1 | `bug-1067` |
 | `agent-citation` | 1 | `bug-298` |
+| `agent-error` | 2 | `bug-3596` `bug-3616` |
 | `agent-race` | 1 | `bug-299` |
 | `agent-research` | 3 | `bug-2115` `bug-2122` `bug-2123` |
+| `agentradius` | 1 | `bug-2787` |
+| `agents` | 2 | `bug-2940` `bug-2961` |
 | `aggr` | 1 | `bug-2180` |
 | `aggro` | 10 | `bug-1615` `bug-1618` `bug-1639` `bug-1647` `bug-1686` `bug-1700` `bug-1728` `bug-1808` `bug-2040` `bug-2057` |
-| `ai` | 51 | `bug-1069` `bug-1103` `bug-1104` `bug-1255` `bug-1260` `bug-1274` `bug-1350` `bug-1418` `bug-1513` `bug-1562` `bug-1569` `bug-1574` `bug-1720` `bug-1733` `bug-1811` `bug-1812` `bug-1813` `bug-1814` `bug-1815` `bug-1818` `bug-1843` `bug-1852` `bug-1971` `bug-1973` `bug-1976` `bug-1980` `bug-2024` `bug-2074` `bug-2100` `bug-2170` `bug-2197` `bug-2407` `bug-2409` `bug-2418` `bug-2419` `bug-2450` `bu… |
+| `ai` | 77 | `bug-10267` `bug-10294` `bug-10399` `bug-10404` `bug-10458` `bug-10460` `bug-10564` `bug-10634` `bug-1069` `bug-10695` `bug-10825` `bug-10850` `bug-10919` `bug-1103` `bug-1104` `bug-1255` `bug-1260` `bug-1274` `bug-1350` `bug-1418` `bug-1513` `bug-1562` `bug-1569` `bug-1574` `bug-1720` `bug-1733` `bug-1811` `bug-1812` `bug-1813` `bug-1814` `bug-1815` `bug-1818` `bug-1843` `bug-1852` `bug-1971` `b… |
 | `ai-advance` | 1 | `bug-1834` |
 | `ai-behavior` | 1 | `bug-1922` |
 | `ai-busy` | 1 | `bug-2451` |
-| `ai-dynamics` | 1 | `bug-2054` |
+| `ai-dynamics` | 2 | `bug-2054` `bug-2976` |
 | `ai-only` | 1 | `bug-866` |
+| `ai-path` | 2 | `bug-4275` `bug-4397` |
 | `ai-personality` | 2 | `bug-2032` `bug-2033` |
+| `ai-push` | 1 | `bug-10313` |
 | `ai-regression` | 1 | `bug-861` |
+| `ai-slop` | 3 | `bug-10750` `bug-3376` `bug-3421` |
+| `ai-slop-qa` | 2 | `bug-10765` `bug-10766` |
 | `ai-sound` | 1 | `bug-1714` |
 | `ai-spawner` | 1 | `bug-1480` |
 | `ai-spread-average` | 1 | `bug-1920` |
 | `ai-targeting` | 1 | `bug-885` |
 | `ai-twitch` | 1 | `bug-1701` |
+| `ai-visibility` | 1 | `bug-3975` |
 | `ai-vs-ai` | 1 | `bug-135` |
 | `ai.scr` | 1 | `bug-1471` |
-| `aibehav` | 2 | `bug-1106` `bug-taunt-intro` |
+| `aibehav` | 3 | `bug-1106` `bug-2967` `bug-taunt-intro` |
 | `aibuffer` | 2 | `bug-1733` `bug-1734` |
 | `aibulletspread` | 1 | `bug-1940` |
 | `aicombat` | 1 | `bug-1231` |
 | `aihandler` | 21 | `bug-1175` `bug-1199` `bug-1201` `bug-1212` `bug-1256` `bug-1274` `bug-1275` `bug-1615` `bug-1639` `bug-1647` `bug-1702` `bug-1704` `bug-1794` `bug-1808` `bug-1868` `bug-1944` `bug-1976` `bug-2174` `bug-2237` `bug-822` `bug-891` |
 | `aihandler-5000-buffer` | 1 | `bug-1142` |
-| `aim` | 2 | `bug-1573` `bug-2693` |
+| `aim` | 9 | `bug-10546` `bug-10548` `bug-10562` `bug-1573` `bug-2693` `bug-2791` `bug-2840` `bug-2876` `bug-2915` |
 | `aim-offset` | 2 | `bug-1851` `bug-1950` |
-| `aim-pose` | 2 | `bug-320` `bug-323` |
+| `aim-pose` | 12 | `bug-10762` `bug-320` `bug-323` `bug-3584` `bug-3585` `bug-3586` `bug-3601` `bug-3602` `bug-3656` `bug-3669` `bug-3716` `bug-3771` |
 | `aim-safe` | 1 | `bug-168` |
-| `aimaneuver` | 3 | `bug-1812` `bug-1814` `bug-2180` |
+| `aim-sway` | 1 | `bug-3640` |
+| `aimaneuver` | 4 | `bug-1812` `bug-1814` `bug-2180` `bug-3200` |
+| `aimed-reload` | 10 | `bug-3588` `bug-3597` `bug-3650` `bug-3651` `bug-3652` `bug-3653` `bug-3654` `bug-3655` `bug-3676` `bug-3741` |
+| `air-raid` | 1 | `bug-4079` |
 | `air-spawn` | 1 | `bug-940` |
 | `airborne` | 5 | `bug-1848` `bug-1891` `bug-530` `bug-921` `bug-922` |
-| `airstrike` | 1 | `bug-1514` |
-| `aisquad` | 4 | `bug-1105` `bug-1618` `bug-1815` `bug-2181` |
-| `aivoice` | 2 | `bug-1276` `bug-1288` |
+| `aircraft` | 12 | `bug-10424` `bug-10425` `bug-10433` `bug-3380` `bug-3381` `bug-3382` `bug-3383` `bug-3440` `bug-3476` `bug-3478` `bug-3515` `bug-4123` |
+| `airealism` | 4 | `bug-3921` `bug-3922` `bug-3923` `bug-3924` |
+| `airstrike` | 4 | `bug-1514` `bug-3572` `bug-4003` `bug-4123` |
+| `airtight` | 1 | `bug-2732` |
+| `aisquad` | 5 | `bug-1105` `bug-1618` `bug-1815` `bug-2181` `bug-3921` |
+| `aivoice` | 5 | `bug-1276` `bug-1288` `bug-3098` `bug-3387` `bug-3401` |
 | `al_max_gain` | 1 | `bug-099` |
-| `alarm` | 7 | `bug-1616` `bug-1641` `bug-1642` `bug-1652` `bug-1722` `bug-1757` `bug-2545` |
+| `alarm` | 18 | `bug-10415` `bug-1616` `bug-1641` `bug-1642` `bug-1652` `bug-1722` `bug-1757` `bug-2545` `bug-3981` `bug-3982` `bug-4030` `bug-4038` `bug-4040` `bug-4051` `bug-4153` `bug-4166` `bug-4169` `bug-4210b` |
+| `alarm-snipers` | 1 | `bug-4031` |
+| `alarm-vehicle` | 3 | `bug-4078` `bug-4079` `bug-4080` |
 | `alarm_system` | 2 | `bug-1616` `bug-1639` |
 | `alarmer` | 2 | `bug-1469` `bug-1722` |
 | `alarmlight` | 1 | `bug-1461` |
+| `alarmplace` | 1 | `bug-4090` |
+| `alarmsnipers` | 4 | `bug-10333` `bug-10348` `bug-10508` `bug-10512` |
+| `alarmveh` | 4 | `bug-10331` `bug-10419` `bug-10434` `bug-4393` |
+| `albedo` | 1 | `bug-10549` |
 | `alert-scan` | 2 | `bug-1945` `bug-1955` |
-| `alias` | 29 | `bug-116` `bug-1548` `bug-1697` `bug-1857` `bug-1863` `bug-1956` `bug-2001` `bug-2198` `bug-2232` `bug-2248` `bug-2277` `bug-2280` `bug-2296` `bug-2299` `bug-2316` `bug-2387` `bug-2394` `bug-2401` `bug-2430` `bug-2431` `bug-2436` `bug-2494` `bug-2505` `bug-2517` `bug-257` `bug-260` `bug-306` `bug-307` `bug-775` |
+| `alias` | 48 | `bug-10412` `bug-10431` `bug-10461` `bug-10476` `bug-10584` `bug-10601` `bug-10802` `bug-10803` `bug-116` `bug-1548` `bug-1697` `bug-1857` `bug-1863` `bug-1956` `bug-2001` `bug-2198` `bug-2232` `bug-2248` `bug-2277` `bug-2280` `bug-2296` `bug-2299` `bug-2316` `bug-2387` `bug-2394` `bug-2401` `bug-2430` `bug-2431` `bug-2436` `bug-2494` `bug-2505` `bug-2517` `bug-257` `bug-260` `bug-2728` `bug-2780… |
 | `alias-audit` | 1 | `bug-1921` |
 | `alias-load-filter` | 1 | `bug-2461` |
+| `alias-map-filter` | 2 | `bug-10398` `bug-10415` |
+| `alias-mask` | 1 | `bug-2963` |
 | `alias-override` | 2 | `bug-1188` `bug-2297` |
 | `alias-prefix` | 1 | `bug-2019` |
 | `alias-prefix-pool` | 1 | `bug-2428` |
 | `alias-scope` | 2 | `bug-1202` `bug-2176` |
 | `alias-table` | 1 | `bug-1478` |
 | `alias-volume` | 2 | `bug-2452` `bug-2455` |
-| `aliascache` | 3 | `bug-1399` `bug-1672` `bug-717` |
+| `alias_loop_count` | 1 | `bug-3045` |
+| `aliascache` | 4 | `bug-1399` `bug-1672` `bug-3555` `bug-717` |
 | `aliases` | 1 | `bug-1272` |
 | `aliasing` | 2 | `bug-2159` `bug-622` |
 | `alienx` | 1 | `bug-2635` |
-| `alignment` | 2 | `bug-314` `bug-535` |
-| `all-maps` | 4 | `bug-1371` `bug-1478` `bug-1479` `bug-910` |
+| `alignment` | 3 | `bug-314` `bug-3953` `bug-535` |
+| `all-maps` | 6 | `bug-1371` `bug-1478` `bug-1479` `bug-2760` `bug-2865` `bug-910` |
 | `all-types-spawn-verified` | 1 | `bug-2643` |
 | `allied-actor` | 1 | `bug-2071` |
-| `allied-ai` | 2 | `bug-1586` `bug-2037` |
+| `allied-ai` | 3 | `bug-1586` `bug-2037` `bug-4011` |
+| `allied-assault` | 1 | `bug-10607` |
 | `allied_british_tank` | 1 | `bug-1216` |
-| `allies` | 3 | `bug-1282` `bug-1287` `bug-541` |
+| `allies` | 6 | `bug-10460` `bug-1282` `bug-1287` `bug-2864` `bug-541` `bug-norway-1027-prep-blizzard-train` |
 | `alloc` | 1 | `bug-927` |
 | `allocedict` | 1 | `bug-2293` |
+| `allow-list` | 1 | `bug-3523` |
 | `allowactivate` | 1 | `bug-683` |
 | `allsolid` | 2 | `bug-1915` `bug-923` |
-| `ally` | 1 | `bug-1568` |
+| `ally` | 2 | `bug-1568` `bug-blastreact-1` |
 | `ally-surrender` | 1 | `bug-2045` |
+| `allysquad` | 2 | `bug-10819` `bug-3984` |
 | `along-shore` | 1 | `bug-2518` |
-| `alpha` | 3 | `bug-1611` `bug-254` `bug-gl2-introhud` |
+| `alpha` | 4 | `bug-10555` `bug-1611` `bug-254` `bug-gl2-introhud` |
 | `alpha-channel` | 1 | `bug-2154` |
 | `alpha-convergence` | 1 | `bug-828` |
-| `alpha-test` | 1 | `bug-1298` |
+| `alpha-test` | 2 | `bug-1298` `bug-3139` |
 | `alpha-to-coverage` | 1 | `bug-2596` |
 | `alphafunc` | 2 | `bug-gl2-foliage` `bug-gl2-foliage-white` |
-| `alphagen` | 10 | `bug-1249` `bug-1300` `bug-2008` `bug-2226` `bug-2230` `bug-2485` `bug-2486` `bug-2514` `bug-gl2-compass` `bug-gl2-hudsegments` |
+| `alphagen` | 13 | `bug-10524` `bug-1249` `bug-1300` `bug-2008` `bug-2226` `bug-2230` `bug-2485` `bug-2486` `bug-2514` `bug-3166` `bug-3462` `bug-gl2-compass` `bug-gl2-hudsegments` |
+| `alphagen-dot` | 1 | `bug-2962` |
+| `alphashadow` | 1 | `bug-3224` |
 | `alphatest` | 1 | `bug-gl2-foliage-white` |
+| `already-fixed` | 1 | `bug-3204` |
 | `already-shipped` | 1 | `bug-1782` |
+| `always` | 2 | `bug-2728` `bug-3098` |
 | `always-keyword` | 1 | `bug-2176` |
 | `always-true-guard` | 1 | `bug-1944` |
 | `always-vs-cache` | 1 | `bug-2304` |
-| `ambience` | 7 | `bug-1383` `bug-1586` `bug-1612` `bug-2213` `bug-2220` `bug-2716` `bug-933b` |
-| `ambient` | 2 | `bug-2636` `bug-2716` |
+| `ambience` | 18 | `bug-10697` `bug-10874` `bug-1383` `bug-1586` `bug-1612` `bug-2213` `bug-2220` `bug-2716` `bug-2725` `bug-2744` `bug-2748` `bug-2780` `bug-2786` `bug-2794` `bug-2800` `bug-2817` `bug-2963` `bug-933b` |
+| `ambient` | 3 | `bug-2636` `bug-2716` `bug-4444` |
 | `ambient-collision` | 1 | `bug-2675` |
 | `ambient-hook` | 1 | `bug-2558` |
-| `ambient-occlusion` | 2 | `bug-1171` `bug-1177` |
+| `ambient-occlusion` | 4 | `bug-1171` `bug-1177` `bug-3140` `bug-3220` |
 | `american-team` | 1 | `bug-1260` |
 | `americanselectionidle` | 1 | `bug-350` |
-| `ammo` | 6 | `bug-1293` `bug-138` `bug-139` `bug-1683` `bug-1692` `bug-1865` |
+| `ammo` | 9 | `bug-10894` `bug-1293` `bug-138` `bug-139` `bug-1683` `bug-1692` `bug-1865` `bug-2819` `bug-3305` |
+| `ammo-cache` | 1 | `bug-4012` |
 | `ammo-pools` | 1 | `bug-586` |
+| `ammo-prop` | 8 | `bug-3354` `bug-3361` `bug-3362` `bug-3363` `bug-3364` `bug-3371` `bug-3389` `bug-3599` |
+| `ammobox` | 1 | `bug-10854` |
 | `ammotype` | 1 | `bug-484` |
+| `anachronism` | 1 | `bug-10435` |
 | `analysis` | 2 | `bug-1576` `bug-2420` |
 | `analysis-error` | 1 | `bug-1564` |
 | `analyze` | 1 | `bug-1222` |
 | `anchor` | 1 | `bug-895` |
-| `angles` | 1 | `bug-2542` |
-| `anim` | 7 | `bug-1162` `bug-2197` `bug-2233` `bug-2235` `bug-2240` `bug-2498` `bug-854` |
+| `anchors` | 3 | `bug-10710` `bug-10714` `bug-10719` |
+| `angles` | 2 | `bug-10263` `bug-2542` |
+| `anim` | 12 | `bug-10643` `bug-10657` `bug-1162` `bug-2197` `bug-2233` `bug-2235` `bug-2240` `bug-2498` `bug-3982` `bug-4123` `bug-854` `bug-blastreact-2` |
+| `anim-commands` | 1 | `bug-3756` |
 | `anim-event` | 1 | `bug-1256` |
 | `anim-handedness` | 1 | `bug-310` |
+| `anim-index` | 1 | `bug-10330` |
 | `anim-mode-dest` | 1 | `bug-2302` |
 | `anim-pack` | 1 | `bug-1945` |
+| `anim-quality` | 1 | `bug-3446` |
+| `anim-rate` | 1 | `bug-3372` |
 | `anim-root-delta` | 1 | `bug-2311` |
 | `anim-scripts` | 3 | `bug-1646` `bug-1948` `bug-1960` |
 | `anim_noaction` | 1 | `bug-2109` |
-| `animate` | 1 | `bug-1553` |
+| `anim_scripted` | 3 | `bug-10683` `bug-2976` `bug-3976` |
+| `animal` | 1 | `bug-4433` |
+| `animate` | 3 | `bug-1553` `bug-3452` `bug-3981` |
 | `animated-pose` | 1 | `bug-905` |
-| `animation` | 35 | `bug-1187` `bug-1291` `bug-1476` `bug-1485` `bug-1487` `bug-1489` `bug-1490` `bug-1749` `bug-1754` `bug-1818` `bug-1887` `bug-1888` `bug-1905` `bug-1976` `bug-2014` `bug-2099` `bug-2109` `bug-2113` `bug-2120` `bug-2253` `bug-2266` `bug-2274` `bug-2275` `bug-2278` `bug-2295` `bug-2300` `bug-2323` `bug-2328` `bug-2481` `bug-2523` `bug-2526` `bug-257` `bug-417` `bug-431` `bug-554` |
+| `animation` | 62 | `bug-10330` `bug-10372` `bug-10391` `bug-10406` `bug-10431` `bug-10470` `bug-10484` `bug-10485` `bug-10501` `bug-10561` `bug-10615` `bug-10645` `bug-10675` `bug-10683` `bug-10782` `bug-10812` `bug-1187` `bug-1291` `bug-1476` `bug-1485` `bug-1487` `bug-1489` `bug-1490` `bug-1749` `bug-1754` `bug-1818` `bug-1887` `bug-1888` `bug-1905` `bug-1976` `bug-2014` `bug-2099` `bug-2109` `bug-2113` `bug-2120… |
 | `animation-alias` | 1 | `bug-381` |
+| `animation-lod` | 1 | `bug-3497` |
 | `animation-weight` | 1 | `bug-2115` |
 | `animation-window` | 1 | `bug-2301` |
 | `animations` | 2 | `bug-482` `bug-483` |
-| `animdone` | 2 | `bug-1579` `bug-2113` |
+| `animdone` | 3 | `bug-10657` `bug-1579` `bug-2113` |
+| `animmap` | 1 | `bug-fx1025-1` |
+| `animmaponce` | 1 | `bug-fx1025-1` |
 | `anims` | 1 | `bug-1818` |
-| `anims_shared` | 6 | `bug-257` `bug-259` `bug-260` `bug-306` `bug-381` `bug-417` |
+| `anims_shared` | 11 | `bug-10394` `bug-10513` `bug-10668` `bug-257` `bug-259` `bug-260` `bug-306` `bug-3364` `bug-381` `bug-3868` `bug-417` |
+| `anims_shotgun.txt` | 1 | `bug-3855` |
+| `anisotropy` | 2 | `bug-3140` `bug-3163` |
 | `annihilation` | 2 | `bug-1321` `bug-1975` |
+| `annotation` | 1 | `bug-3293` |
 | `answered` | 1 | `bug-1663` |
 | `answers-sp-vs-coop` | 1 | `bug-2050` |
 | `anti-aliasing` | 1 | `bug-1123` |
 | `anti-pattern` | 1 | `bug-1284` |
+| `anti-tank` | 1 | `bug-3307` |
+| `antialiasing` | 1 | `bug-4035` |
 | `append` | 1 | `bug-306` |
+| `applied-unreleased` | 10 | `bug-3464` `bug-3468` `bug-3469` `bug-3470` `bug-3471` `bug-3472` `bug-3473` `bug-3475` `bug-3476` `bug-3478` |
+| `arc` | 1 | `bug-10563` |
 | `architecture` | 3 | `bug-1423` `bug-350` `bug-356` |
-| `archive` | 4 | `bug-1577` `bug-2218` `bug-258` `bug-postfx-intensity-clobbered` |
+| `archive` | 8 | `bug-1577` `bug-2218` `bug-258` `bug-3808` `bug-3897` `bug-4089` `bug-4147` `bug-postfx-intensity-clobbered` |
 | `archive-clobber` | 1 | `bug-1935` |
 | `archive-wipe` | 1 | `bug-1932` |
 | `archived-cvar` | 6 | `bug-1864` `bug-2017` `bug-2324` `bug-2388` `bug-2551` `bug-2584` |
 | `archived-cvar-latch` | 1 | `bug-2069` |
 | `archived-override` | 1 | `bug-1699` |
 | `archived-preference-respected` | 1 | `bug-2073` |
-| `arena` | 9 | `bug-1383` `bug-1384` `bug-1385` `bug-1396` `bug-1397` `bug-1398` `bug-1401` `bug-1405` `bug-1406` |
+| `areamask` | 1 | `bug-3235` |
+| `areasconnected` | 1 | `bug-10507` |
+| `arena` | 12 | `bug-1383` `bug-1384` `bug-1385` `bug-1396` `bug-1397` `bug-1398` `bug-1401` `bug-1405` `bug-1406` `bug-2725` `bug-2781` `bug-2797` |
 | `arena_spawns` | 1 | `bug-2684` |
 | `arithmetic` | 5 | `bug-1690` `bug-1739` `bug-1826` `bug-2424` `bug-2425` |
+| `arity` | 1 | `bug-2768` |
 | `armonblown` | 1 | `bug-1630` |
 | `armordamage` | 4 | `bug-1142` `bug-1975` `bug-2713` `bug-861` |
-| `armory` | 73 | `bug-1204` `bug-1205` `bug-1208` `bug-1246` `bug-1279` `bug-1356` `bug-1357` `bug-1358` `bug-1359` `bug-1360` `bug-1521` `bug-1523` `bug-1524` `bug-1526` `bug-1527` `bug-1530` `bug-1533` `bug-1540` `bug-1545` `bug-1578` `bug-1675` `bug-1678` `bug-1896` `bug-1902` `bug-1917` `bug-1927` `bug-1932` `bug-1933` `bug-1934` `bug-1935` `bug-1936` `bug-1938` `bug-2067` `bug-2078` `bug-2079` `bug-2080` `bu… |
-| `array` | 2 | `bug-1105` `bug-909` |
+| `armory` | 159 | `bug-10529` `bug-10554` `bug-10556` `bug-10558` `bug-10577` `bug-10578` `bug-10579` `bug-10580` `bug-10585` `bug-10588` `bug-10596` `bug-10597` `bug-10621` `bug-10700` `bug-10702` `bug-10861` `bug-10907` `bug-10912` `bug-10913` `bug-10921` `bug-10926` `bug-1204` `bug-1205` `bug-1208` `bug-1246` `bug-1279` `bug-1356` `bug-1357` `bug-1358` `bug-1359` `bug-1360` `bug-1521` `bug-1523` `bug-1524` `bug… |
+| `armoryfix` | 3 | `bug-10596` `bug-10597` `bug-10598` |
+| `arms` | 1 | `bug-10336` |
+| `array` | 3 | `bug-10410` `bug-1105` `bug-909` |
 | `array-bounds` | 1 | `bug-1214` |
 | `array-cast` | 2 | `bug-1049` `bug-1050` |
 | `array-index` | 1 | `bug-2138` |
-| `art` | 3 | `bug-2440` `bug-2448` `bug-2575` |
+| `arrow` | 1 | `bug-2822` |
+| `art` | 11 | `bug-10656` `bug-2440` `bug-2448` `bug-2575` `bug-2935` `bug-2941` `bug-3205` `bug-3501` `bug-3565` `bug-4193` `bug-4195` |
+| `art-qa` | 6 | `bug-10435` `bug-10437` `bug-10449` `bug-10842` `bug-10843` `bug-10932` |
+| `artery` | 6 | `bug-3452` `bug-3501` `bug-3502` `bug-3524` `bug-3528` `bug-3565` |
 | `artillery` | 2 | `bug-1856` `bug-948` |
+| `asn_hold` | 1 | `bug-10512` |
+| `asn_pick` | 1 | `bug-10508` |
+| `aspect` | 4 | `bug-10492` `bug-10538` `bug-10867` `bug-4053` |
+| `aspect-ratio` | 1 | `bug-3225` |
 | `assassination` | 1 | `bug-2676` |
+| `assault` | 4 | `bug-10267` `bug-10458` `bug-10545` `bug-10566` |
 | `assert-vs-revoke` | 1 | `bug-2068` |
 | `asset-audit` | 2 | `bug-2396` `bug-2398` |
 | `asset-pipeline` | 1 | `bug-1534` |
 | `asset-registration` | 1 | `bug-2173` |
 | `asset-shadowing` | 1 | `bug-2516` |
-| `assets` | 2 | `bug-1155` `bug-1873` |
+| `assets` | 6 | `bug-1155` `bug-1873` `bug-2754` `bug-2812` `bug-2822` `bug-2823` |
+| `assets_tex` | 1 | `bug-3901` |
+| `assumption` | 1 | `bug-3760` |
 | `assumption-cascade` | 1 | `bug-1787` |
+| `astar` | 1 | `bug-2864` |
 | `asymmetric-cleanup` | 1 | `bug-2048` |
-| `asymmetry` | 1 | `bug-2301` |
+| `asymmetry` | 2 | `bug-2301` `bug-2993` |
 | `async` | 2 | `bug-1271` `bug-1442` |
 | `async-fix` | 1 | `bug-132` |
 | `atease` | 1 | `bug-381` |
-| `atlas` | 1 | `bug-font-bleed` |
+| `atlas` | 8 | `bug-10379` `bug-10435` `bug-10437` `bug-10438` `bug-10469` `bug-10637` `bug-10729` `bug-font-bleed` |
 | `atmosphere` | 1 | `bug-836` |
 | `atoi` | 1 | `bug-1377` |
-| `attach` | 5 | `bug-1175` `bug-2191` `bug-2546` `bug-2550` `bug-535` |
+| `atomic-write` | 1 | `bug-10712` |
+| `atsupply` | 2 | `bug-3465` `bug-4078` |
+| `attach` | 7 | `bug-1175` `bug-2191` `bug-2546` `bug-2550` `bug-2963` `bug-3323` `bug-535` |
 | `attachgun` | 2 | `bug-616` `bug-623` |
-| `attachmodel` | 9 | `bug-1199` `bug-1208` `bug-1217` `bug-1236` `bug-1256` `bug-2085` `bug-2241` `bug-2634` `bug-917` |
+| `attachmodel` | 11 | `bug-1199` `bug-1208` `bug-1217` `bug-1236` `bug-1256` `bug-2085` `bug-2241` `bug-2634` `bug-3361` `bug-3756` `bug-917` |
+| `attachtohand` | 2 | `bug-10372` `bug-3311` |
 | `attachtoholster` | 1 | `bug-379` |
 | `attachturretslot` | 1 | `bug-1429` |
-| `attack.scr` | 4 | `bug-1922` `bug-1954` `bug-2240` `bug-2662` |
+| `attack.scr` | 5 | `bug-1922` `bug-1954` `bug-2240` `bug-2662` `bug-3492` |
 | `attackentity` | 1 | `bug-1647` |
-| `attackplayer` | 4 | `bug-1479` `bug-1615` `bug-1700` `bug-1808` |
+| `attackplayer` | 6 | `bug-1479` `bug-1615` `bug-1700` `bug-1808` `bug-3195` `bug-3303` |
 | `attackplayer-latch` | 1 | `bug-1644` |
+| `attic` | 85 | `bug-10318` `bug-10319` `bug-10435` `bug-10436` `bug-10437` `bug-10438` `bug-10439` `bug-10441` `bug-10442` `bug-10449` `bug-10467` `bug-10468` `bug-10469` `bug-10490` `bug-10499` `bug-10500` `bug-10501` `bug-10502` `bug-10504` `bug-10534` `bug-10535` `bug-10536` `bug-10538` `bug-10549` `bug-10550` `bug-10637` `bug-10638` `bug-10639` `bug-10652` `bug-10653` `bug-10654` `bug-10655` `bug-10656` `bu… |
+| `attic-main` | 5 | `bug-4425` `bug-4426` `bug-4427` `bug-4428` `bug-4429` |
+| `attract-node` | 1 | `bug-2826` |
+| `attractive-node` | 2 | `bug-2821` `bug-2880` |
 | `attractivenode` | 1 | `bug-2677` |
 | `attribution` | 2 | `bug-1868` `bug-719` |
 | `attribution-corrected` | 2 | `bug-1473` `bug-1474` |
-| `audio` | 95 | `bug-1138` `bug-1264` `bug-1324` `bug-1325` `bug-1501` `bug-1502` `bug-1509` `bug-1516` `bug-1517` `bug-153` `bug-1556` `bug-156` `bug-1797` `bug-1808` `bug-1857` `bug-1894` `bug-1899` `bug-1979` `bug-1987` `bug-2001` `bug-2019` `bug-2020` `bug-2153` `bug-2160` `bug-2161` `bug-2232` `bug-2250` `bug-2254` `bug-2276` `bug-2296` `bug-2297` `bug-2298` `bug-2304` `bug-2307` `bug-2309` `bug-2313` `bug-… |
-| `audit` | 20 | `bug-1288` `bug-1290` `bug-1399` `bug-1885` `bug-1886` `bug-1888` `bug-1993` `bug-1994` `bug-2033` `bug-2203` `bug-2428` `bug-2550` `bug-2582` `bug-2647` `bug-2672` `bug-721` `bug-722` `bug-723` `bug-724` `bug-874` |
+| `audio` | 127 | `bug-10351` `bug-10352` `bug-10353` `bug-10459` `bug-10461` `bug-10493` `bug-10678` `bug-10692` `bug-10697` `bug-10805` `bug-10874` `bug-10911` `bug-10930` `bug-1138` `bug-1264` `bug-1324` `bug-1325` `bug-1501` `bug-1502` `bug-1509` `bug-1516` `bug-1517` `bug-153` `bug-1556` `bug-156` `bug-1797` `bug-1808` `bug-1857` `bug-1894` `bug-1899` `bug-1979` `bug-1987` `bug-2001` `bug-2019` `bug-2020` `bu… |
+| `audio-duck` | 1 | `bug-3490` |
+| `audit` | 29 | `bug-1288` `bug-1290` `bug-1399` `bug-1885` `bug-1886` `bug-1888` `bug-1993` `bug-1994` `bug-2033` `bug-2203` `bug-2428` `bug-2550` `bug-2582` `bug-2647` `bug-2672` `bug-2765` `bug-2906` `bug-3306` `bug-3325` `bug-4150` `bug-4153` `bug-4210b` `bug-4260` `bug-721` `bug-722` `bug-723` `bug-724` `bug-874` `bug-eap-aikills` |
 | `audit-caught` | 1 | `bug-1900` |
-| `audit-correction` | 1 | `bug-2098` |
+| `audit-correction` | 2 | `bug-2098` `bug-3371` |
 | `audit-gap` | 4 | `bug-1009` `bug-1898` `bug-1905` `bug-1911` |
 | `audit-methodology` | 1 | `bug-1523` |
 | `audit-scaffolding` | 1 | `bug-1550` |
@@ -1650,181 +4346,267 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `authored-vs-generated` | 1 | `bug-2166` |
 | `authoring` | 1 | `bug-2203` |
 | `authoring-tool` | 1 | `bug-1397` |
-| `auto-cover` | 2 | `bug-1622` `bug-1635` |
+| `auto-cover` | 3 | `bug-10388` `bug-1622` `bug-1635` |
 | `auto-cover-crouch-only` | 1 | `bug-2055` |
+| `auto-define` | 1 | `bug-2978` |
 | `auto-detected` | 120 | `bug-001` `bug-002` `bug-003` `bug-004` `bug-005` `bug-006` `bug-007` `bug-008` `bug-009` `bug-010` `bug-011` `bug-012` `bug-013` `bug-014` `bug-015` `bug-016` `bug-017` `bug-018` `bug-019` `bug-023` `bug-024` `bug-025` `bug-026` `bug-027` `bug-028` `bug-029` `bug-030` `bug-031` `bug-032` `bug-033` `bug-034` `bug-035` `bug-036` `bug-037` `bug-038` `bug-039` `bug-040` `bug-041` `bug-042` `bug-043`… |
 | `auto-fill` | 1 | `bug-2616` |
 | `auto-fit` | 1 | `bug-596` |
+| `auto-off` | 6 | `bug-2946` `bug-2969` `bug-2977` `bug-2979` `bug-2980` `bug-3061` |
 | `auto-spawn` | 1 | `bug-349` |
-| `autocrlf` | 2 | `bug-2081` `bug-2453` |
+| `auto-update` | 1 | `bug-3251` |
+| `autocrlf` | 8 | `bug-10808` `bug-2081` `bug-2453` `bug-3819` `bug-4037` `bug-4148` `bug-4164` `bug-4191` |
 | `autodeploy` | 1 | `bug-2415` |
-| `autoexec` | 16 | `bug-1063` `bug-1231` `bug-1550` `bug-1698` `bug-1884` `bug-2018` `bug-2083` `bug-2145` `bug-2172` `bug-2218` `bug-2238` `bug-2578` `bug-258` `bug-2629` `bug-710` `bug-t2l2-f5bind` |
+| `autoexec` | 26 | `bug-1063` `bug-10855` `bug-1231` `bug-1550` `bug-1698` `bug-1884` `bug-2018` `bug-2083` `bug-2145` `bug-2172` `bug-2218` `bug-2238` `bug-2556` `bug-2578` `bug-258` `bug-2629` `bug-2729` `bug-2908` `bug-2909` `bug-3108` `bug-3190` `bug-3475` `bug-4187` `bug-4187-fix` `bug-710` `bug-t2l2-f5bind` |
+| `automatic-variable` | 1 | `bug-3420` |
 | `autonomous-test` | 1 | `bug-1104` |
 | `autoplane` | 1 | `bug-1373` |
 | `autosprite2` | 1 | `bug-gl2-autosprite2-swim` |
 | `autotest` | 1 | `bug-1619` |
 | `avelocity` | 1 | `bug-923` |
+| `avi` | 6 | `bug-10285` `bug-10296` `bug-10297` `bug-10338` `bug-10351` `bug-10353` |
+| `avoidance` | 1 | `bug-2824` |
 | `avoidplayer` | 1 | `bug-621` |
 | `awaiting-verification` | 3 | `bug-2091` `bug-2092` `bug-2095` |
-| `axis` | 2 | `bug-2557` `bug-429` |
+| `axis` | 7 | `bug-2557` `bug-2754` `bug-2759` `bug-2784` `bug-2826` `bug-2960` `bug-429` |
 | `axis-disparity` | 1 | `bug-2714` |
 | `axis-progression` | 1 | `bug-2711` |
 | `b0` | 1 | `bug-1655` |
+| `back-to-back` | 1 | `bug-3000` |
 | `backface-cull` | 1 | `bug-gl2-invisible-friendly-actor-root` |
-| `backfill` | 1 | `bug-1929` |
+| `backfill` | 3 | `bug-10480` `bug-1929` `bug-2556` |
+| `background` | 2 | `bug-2823` `bug-3836` |
+| `background-input` | 1 | `bug-10635` |
+| `background-window-policy` | 3 | `bug-3147` `bug-3153` `bug-3154` |
 | `backpedal` | 1 | `bug-2149` |
-| `backslash` | 1 | `bug-1205` |
+| `backreference` | 1 | `bug-4414` |
+| `backslash` | 4 | `bug-1205` `bug-3581` `bug-3587` `bug-4273` |
 | `backslash-escape` | 1 | `bug-2081` |
+| `backstop` | 1 | `bug-10486` |
 | `backup` | 2 | `bug-1893` `bug-2097` |
 | `backwards` | 1 | `bug-623` |
+| `badge` | 1 | `bug-3538` |
+| `badplace` | 1 | `bug-2873` |
 | `bak-hazard` | 1 | `bug-2695` |
-| `bake` | 4 | `bug-1248` `bug-1310` `bug-1398` `bug-896` |
+| `bake` | 24 | `bug-10379` `bug-10382` `bug-10456` `bug-10467` `bug-10490` `bug-10499` `bug-10534` `bug-10549` `bug-10590` `bug-10637` `bug-10639` `bug-10641` `bug-10654` `bug-10729` `bug-10770` `bug-10785` `bug-1248` `bug-1310` `bug-1398` `bug-3499` `bug-3706` `bug-3732` `bug-3828` `bug-896` |
+| `bake-noise` | 1 | `bug-10449` |
+| `bake_skins` | 1 | `bug-10314` |
 | `baked-data` | 1 | `bug-2314` |
 | `baked-vs-live` | 1 | `bug-534` |
-| `balance` | 13 | `bug-1174` `bug-1215` `bug-1287` `bug-1514` `bug-1733` `bug-1806` `bug-1829` `bug-1833` `bug-1834` `bug-2441` `bug-2442` `bug-2703` `bug-2704` |
+| `balance` | 17 | `bug-10882` `bug-1174` `bug-1215` `bug-1287` `bug-1514` `bug-1733` `bug-1806` `bug-1829` `bug-1833` `bug-1834` `bug-2441` `bug-2442` `bug-2703` `bug-2704` `bug-2740` `bug-2743` `bug-2826` |
 | `balance-change` | 1 | `bug-2109` |
 | `balconyguy` | 1 | `bug-1212` |
 | `ballistics` | 2 | `bug-2095` `bug-2096` |
 | `ban` | 1 | `bug-2678` |
+| `bandage` | 1 | `bug-2921` |
+| `banded-match` | 2 | `bug-2985` `bug-2994` |
+| `banding` | 5 | `bug-2813` `bug-2823` `bug-3082` `bug-3083` `bug-3157` |
 | `bangalore` | 2 | `bug-2075` `bug-2192` |
-| `bar` | 1 | `bug-1420` |
-| `barbed-wire` | 2 | `bug-2302` `bug-2311` |
+| `banner` | 3 | `bug-10730` `bug-3075` `bug-4008` |
+| `bar` | 13 | `bug-1420` `bug-3470` `bug-3588` `bug-3589` `bug-3619` `bug-3620` `bug-3623` `bug-3667` `bug-3669` `bug-3670` `bug-3671` `bug-3814` `bug-3815` |
+| `barbed-wire` | 5 | `bug-2302` `bug-2311` `bug-2836` `bug-2845` `bug-2853` |
 | `bare-status-flip` | 1 | `bug-1625` |
 | `bare-status2` | 1 | `bug-1627` |
 | `bare-token` | 1 | `bug-772` |
-| `barrage` | 5 | `bug-1586` `bug-1824` `bug-1856` `bug-2015` `bug-2022` |
+| `barks` | 1 | `bug-10648` |
+| `barrage` | 6 | `bug-1586` `bug-1824` `bug-1856` `bug-2015` `bug-2022` `bug-4128` |
 | `barrel` | 2 | `bug-714` `bug-719` |
+| `barrel_guy` | 1 | `bug-3188` |
 | `barricade` | 2 | `bug-1861` `bug-1879` |
 | `barrier` | 1 | `bug-1378` |
+| `base-drift` | 1 | `bug-3249` |
 | `baseassault` | 4 | `bug-2631` `bug-2639` `bug-2660` `bug-2694` |
 | `basebuild` | 1 | `bug-2635` |
-| `baseline` | 1 | `bug-1576` |
+| `baseline` | 2 | `bug-1576` `bug-3877` |
 | `baseline-unverified` | 1 | `bug-1907` |
+| `basename` | 1 | `bug-3419` |
+| `basepath` | 1 | `bug-3057` |
 | `bash` | 1 | `bug-458` |
 | `bat` | 1 | `bug-2587` |
 | `battle-chatter` | 1 | `bug-taunt-intro` |
 | `battle-line` | 1 | `bug-2698` |
-| `bazooka` | 4 | `bug-1489` `bug-2126` `bug-2481` `bug-2643` |
-| `bbox` | 3 | `bug-1756` `bug-1766` `bug-2187` |
+| `bazooka` | 6 | `bug-1489` `bug-2126` `bug-2481` `bug-2643` `bug-3307` `bug-3465` |
+| `bbox` | 5 | `bug-10868` `bug-1756` `bug-1766` `bug-2187` `bug-3210` |
+| `bc7` | 1 | `bug-2994` |
 | `beach` | 7 | `bug-2441` `bug-2489` `bug-2495` `bug-2497` `bug-2501` `bug-2511` `bug-2522` |
-| `beam` | 1 | `bug-134` |
+| `bead` | 3 | `bug-3681` `bug-3696` `bug-3697` |
+| `beam` | 2 | `bug-134` `bug-3881` |
+| `beam_entnum` | 1 | `bug-3422` |
 | `beating` | 1 | `bug-2004` |
 | `becometurretguy` | 1 | `bug-1640` |
-| `belt` | 1 | `bug-1878` |
+| `belt` | 5 | `bug-1878` `bug-3636` `bug-3638` `bug-3639` `bug-3872` |
+| `belt-fed` | 1 | `bug-3391` |
+| `beretta` | 2 | `bug-3563` `bug-3678` |
 | `best-effort` | 2 | `bug-2656` `bug-2659` |
 | `best-of-3` | 1 | `bug-2718` |
+| `beta` | 1 | `bug-3496` |
+| `bevel` | 1 | `bug-10612` |
 | `bg-shared` | 1 | `bug-2149` |
-| `bias` | 1 | `bug-2721` |
+| `bgfill` | 1 | `bug-3266` |
+| `bias` | 2 | `bug-2721` `bug-2818` |
 | `big-endian` | 1 | `bug-600` |
 | `billboard` | 1 | `bug-gl2-autosprite2-swim` |
+| `binary-attribution` | 1 | `bug-3152` |
 | `binary-shadowing` | 1 | `bug-1634` |
-| `bind` | 3 | `bug-2093` `bug-2532` `bug-413` |
+| `bind` | 8 | `bug-2093` `bug-2532` `bug-3327` `bug-3359` `bug-413` `bug-4172` `bug-4186` `bug-4187` |
 | `bind.scr` | 1 | `bug-757` |
 | `bindable` | 1 | `bug-757` |
+| `binding` | 1 | `bug-10622` |
+| `bindlist` | 1 | `bug-3265` |
+| `binds` | 7 | `bug-10364` `bug-10482` `bug-2908` `bug-3190` `bug-3299` `bug-3475` `bug-4187-fix` |
 | `binoc` | 1 | `bug-059` |
-| `binoculars` | 2 | `bug-1996` `bug-2179` |
-| `bip01-pos` | 1 | `bug-2481` |
-| `bischaracter` | 3 | `bug-1223` `bug-1224` `bug-gl2-forcepose-skips-composite-ally` |
+| `binoculars` | 7 | `bug-1996` `bug-2179` `bug-3886` `bug-4003` `bug-4012` `bug-4086` `bug-4123` |
+| `bip01-pos` | 2 | `bug-2481` `bug-3958` |
+| `bischaracter` | 4 | `bug-1223` `bug-1224` `bug-3009` `bug-gl2-forcepose-skips-composite-ally` |
 | `bisect` | 2 | `bug-1298` `bug-2715` |
 | `bisect-undone-by-build` | 1 | `bug-2116` |
 | `bit-collision` | 1 | `bug-2449` |
 | `bitfield` | 3 | `bug-1192` `bug-1196` `bug-1197` |
 | `bitte` | 1 | `bug-1201` |
+| `black` | 2 | `bug-2951` `bug-2954` |
 | `black-screen` | 2 | `bug-1211` `bug-2606` |
 | `black-text` | 1 | `bug-1130` |
 | `black-texture` | 3 | `bug-530` `bug-921` `bug-922` |
+| `blank` | 1 | `bug-4420` |
 | `blast-proximity` | 1 | `bug-846` |
 | `blast-shield` | 1 | `bug-1586` |
+| `blastreact1025` | 4 | `bug-blastreact-1` `bug-blastreact-2` `bug-blastreact-3` `bug-blastreact-4` |
 | `blastshield` | 1 | `bug-2193` |
-| `bleed-out` | 1 | `bug-836` |
-| `bleedout` | 1 | `bug-2626` |
-| `blend` | 1 | `bug-2553` |
-| `blender` | 2 | `bug-293` `bug-295` |
+| `bleed-out` | 3 | `bug-3502` `bug-3528` `bug-836` |
+| `bleedout` | 3 | `bug-2626` `bug-3422` `bug-3425` |
+| `blend` | 2 | `bug-2553` `bug-2950` |
+| `blender` | 16 | `bug-10380` `bug-10654` `bug-10785` `bug-293` `bug-295` `bug-3218` `bug-3220` `bug-3231` `bug-3232` `bug-3259` `bug-3332` `bug-3705` `bug-3706` `bug-4182` `bug-4185` `bug-fx1025-4` |
 | `blender-kit` | 1 | `bug-294` |
-| `blindfire` | 7 | `bug-2028` `bug-2055` `bug-2071` `bug-305` `bug-307` `bug-310` `bug-325` |
+| `blendfunc` | 2 | `bug-10768` `bug-10841` |
+| `blind-spot` | 1 | `bug-3238` |
+| `blindfire` | 15 | `bug-10372` `bug-10389` `bug-10406` `bug-10407` `bug-10465` `bug-10546` `bug-10547` `bug-10562` `bug-2028` `bug-2055` `bug-2071` `bug-305` `bug-307` `bug-310` `bug-325` |
+| `blizzard` | 3 | `bug-10544` `bug-3548` `bug-norway-1027-prep-blizzard-train` |
 | `bloadformap` | 1 | `bug-1885` |
+| `blob` | 1 | `bug-2770` |
 | `blob-decal` | 1 | `bug-1209` |
+| `block` | 3 | `bug-2856` `bug-2965` `bug-3065` |
+| `block-detection` | 1 | `bug-2881` |
 | `blockdlight` | 1 | `bug-1414` |
 | `blocked` | 2 | `bug-2412` `bug-2487` |
+| `blocker-probe` | 2 | `bug-2827` `bug-2828` |
+| `blockers` | 2 | `bug-2830` `bug-2839` |
 | `blocking` | 2 | `bug-1854` `bug-1858` |
-| `blood` | 10 | `bug-1241` `bug-1320` `bug-2219` `bug-2230` `bug-2249` `bug-2263` `bug-230` `bug-2359` `bug-2391` `bug-gl2-maxpolys` |
+| `blockline` | 1 | `bug-2848` |
+| `blood` | 16 | `bug-10311` `bug-10314` `bug-1241` `bug-1320` `bug-2219` `bug-2230` `bug-2249` `bug-2263` `bug-230` `bug-2359` `bug-2391` `bug-2799` `bug-2825` `bug-2841` `bug-3110` `bug-gl2-maxpolys` |
 | `blood-burst` | 1 | `bug-1142` |
 | `blood-pool` | 6 | `bug-747` `bug-776` `bug-795` `bug-797` `bug-817` `bug-828` |
 | `blood-splash` | 1 | `bug-780` |
 | `blood_model` | 1 | `bug-795` |
 | `bloodleak` | 1 | `bug-849` |
-| `bloom` | 5 | `bug-1149` `bug-1156` `bug-1159` `bug-152` `bug-159` |
+| `bloom` | 6 | `bug-1149` `bug-1156` `bug-1159` `bug-152` `bug-159` `bug-3067` |
 | `blown` | 1 | `bug-1729` |
-| `blueprint` | 8 | `bug-1001` `bug-1003` `bug-1009` `bug-1567` `bug-1632` `bug-1658` `bug-1665` `bug-1872` |
+| `blueprint` | 10 | `bug-1001` `bug-1003` `bug-1009` `bug-10639` `bug-1567` `bug-1632` `bug-1658` `bug-1665` `bug-1872` `bug-3527` |
 | `bluff` | 1 | `bug-2282` |
 | `blur` | 1 | `bug-2223` |
+| `bmodel` | 1 | `bug-4438` |
 | `boat` | 1 | `bug-123` |
 | `boats` | 2 | `bug-2209` `bug-2379` |
 | `bocroad` | 1 | `bug-1129` |
 | `bodies` | 1 | `bug-2488` |
-| `body` | 4 | `bug-1738` `bug-1740` `bug-1742` `bug-1743` |
+| `body` | 6 | `bug-1738` `bug-1740` `bug-1742` `bug-1743` `bug-2806` `bug-2809` |
 | `body-awareness` | 1 | `bug-2569` |
 | `body-draw` | 1 | `bug-332` |
 | `body-investigation` | 3 | `bug-1687` `bug-1695` `bug-1696` |
+| `body-search` | 1 | `bug-4433` |
+| `body-swap` | 1 | `bug-2754` |
 | `body-yaw` | 2 | `bug-2128` `bug-2129` |
 | `bodycam` | 2 | `bug-2458` `bug-2459` |
+| `bodyguard` | 2 | `bug-3302` `bug-3922` |
 | `bodyqueue` | 1 | `bug-096` |
 | `bogusnametable-red-herring` | 1 | `bug-1184` |
+| `bolt` | 18 | `bug-10286` `bug-10288` `bug-10304` `bug-10305` `bug-3172` `bug-3311` `bug-3313` `bug-3630` `bug-3631` `bug-3644` `bug-3654` `bug-3699` `bug-3700` `bug-3743` `bug-4137` `bug-4260` `bug-4261` `bug-4267` |
+| `bolt-action` | 2 | `bug-10879` `bug-2733` |
+| `bolt-bone` | 1 | `bug-3670` |
+| `bolt-cycle` | 1 | `bug-3764` |
+| `bolts` | 2 | `bug-3151` `bug-4398` |
 | `bom` | 1 | `bug-1804` |
 | `bomb` | 2 | `bug-1549` `bug-1620` |
-| `bomber` | 1 | `bug-1259` |
-| `bombing-run` | 2 | `bug-070` `bug-717` |
+| `bomber` | 2 | `bug-1259` `bug-4079` |
+| `bombing-run` | 3 | `bug-070` `bug-3381` `bug-717` |
 | `bombs` | 1 | `bug-1748` |
 | `bone-chain` | 1 | `bug-1540` |
-| `bone-controller` | 4 | `bug-2010` `bug-2013` `bug-2101` `bug-2105` |
+| `bone-controller` | 5 | `bug-2010` `bug-2013` `bug-2101` `bug-2105` `bug-3334` |
 | `bone-controllers` | 2 | `bug-2070` `bug-2134` |
 | `bone-driver` | 1 | `bug-1966` |
 | `bone-frame-inversion` | 1 | `bug-2123` |
-| `boot` | 1 | `bug-2606` |
+| `bone-split` | 1 | `bug-3564` |
+| `bones` | 1 | `bug-10270` |
+| `bonus` | 1 | `bug-2924` |
+| `booms` | 1 | `bug-norway-1027-booms-chain` |
+| `boot` | 6 | `bug-2606` `bug-3326` `bug-3327` `bug-3839` `bug-3846` `bug-3861` |
 | `boot-errors` | 1 | `bug-1939` |
 | `boot-hang` | 1 | `bug-gl2-texmods-null` |
 | `borderless` | 2 | `bug-1795` `bug-753` |
 | `boss` | 4 | `bug-1215` `bug-1422` `bug-1980` `bug-895` |
+| `bot` | 21 | `bug-2815` `bug-2821` `bug-2824` `bug-2825` `bug-2826` `bug-2827` `bug-2828` `bug-2837` `bug-2988` `bug-2992` `bug-2993` `bug-3000` `bug-3024` `bug-3025` `bug-3026` `bug-3042` `bug-3043` `bug-3065` `bug-3066` `bug-3086` `bug-3146` |
+| `bot-brain` | 2 | `bug-2874` `bug-2875` |
+| `bot-goals` | 1 | `bug-2838` |
 | `bot-nav` | 1 | `bug-2715` |
+| `bot-traversal` | 1 | `bug-2830` |
 | `botdirector` | 1 | `bug-2693` |
+| `both-sides` | 1 | `bug-2765` |
+| `both-teams` | 1 | `bug-2724` |
 | `botobj` | 1 | `bug-2694` |
-| `bots` | 13 | `bug-2574` `bug-2600` `bug-2616` `bug-2617` `bug-2630` `bug-2677` `bug-2689` `bug-2700` `bug-2703` `bug-2704` `bug-2711` `bug-2714` `bug-2715` |
+| `bots` | 72 | `bug-10426` `bug-10454` `bug-10603` `bug-10605` `bug-10606` `bug-10816` `bug-10910` `bug-10916` `bug-10927` `bug-2574` `bug-2600` `bug-2616` `bug-2617` `bug-2630` `bug-2677` `bug-2689` `bug-2700` `bug-2703` `bug-2704` `bug-2711` `bug-2714` `bug-2715` `bug-2731` `bug-2740` `bug-2781` `bug-2787` `bug-2791` `bug-2792` `bug-2795` `bug-2797` `bug-2801` `bug-2803` `bug-2805` `bug-2814` `bug-2840` `bug-… |
 | `bounded-retry` | 1 | `bug-1701b` |
 | `bounding-box` | 1 | `bug-1785` |
 | `bounding-overwatch` | 2 | `bug-1815` `bug-2181` |
 | `bounds-check` | 3 | `bug-1194` `bug-1198` `bug-1890` |
-| `brace` | 4 | `bug-2107` `bug-2152` `bug-2157` `bug-2158` |
-| `breakthrough` | 7 | `bug-106` `bug-107` `bug-1252` `bug-1259` `bug-1468` `bug-2585` `bug-940` |
+| `box-magazine` | 1 | `bug-3369` |
+| `boxeng` | 3 | `bug-3667` `bug-3731` `bug-3829` |
+| `brace` | 15 | `bug-10307` `bug-10363` `bug-10416` `bug-2107` `bug-2152` `bug-2157` `bug-2158` `bug-2810` `bug-2811` `bug-2814` `bug-2819` `bug-2916` `bug-2931` `bug-3042` `bug-3444` |
+| `braced` | 2 | `bug-3450` `bug-3684` |
+| `brass` | 1 | `bug-10619` |
+| `breach` | 6 | `bug-10397` `bug-2876` `bug-2879` `bug-2925` `bug-3024` `bug-4430` |
+| `break-off` | 5 | `bug-3546` `bug-3594` `bug-3728` `bug-3755` `bug-3854` |
+| `breakthrough` | 11 | `bug-106` `bug-107` `bug-1252` `bug-1259` `bug-1468` `bug-2585` `bug-2780` `bug-2895` `bug-3242` `bug-3411` `bug-940` |
 | `breakthrough-override` | 1 | `bug-font-bleed` |
 | `breath` | 1 | `bug-110` |
 | `breath-hold` | 2 | `bug-1881` `bug-2560` |
+| `bren` | 13 | `bug-10671` `bug-10674` `bug-10706` `bug-10720` `bug-10721` `bug-10733` `bug-10734` `bug-10737` `bug-10739` `bug-10762` `bug-10763` `bug-10765` `bug-10766` |
 | `bridge` | 1 | `bug-227` |
 | `bridge-cfg` | 1 | `bug-2631` |
-| `briefing` | 9 | `bug-526` `bug-641` `bug-684` `bug-712` `bug-722` `bug-736` `bug-788` `bug-789` `bug-gl2-e2l2-briefing-npc-invisible` |
+| `brief-vs-code` | 1 | `bug-3673` |
+| `briefing` | 26 | `bug-10593` `bug-10676` `bug-10677` `bug-10691` `bug-10693` `bug-10694` `bug-10803` `bug-3234` `bug-3250` `bug-3474` `bug-3526` `bug-3917` `bug-3951` `bug-3954` `bug-3955` `bug-4174` `bug-4190` `bug-526` `bug-641` `bug-684` `bug-712` `bug-722` `bug-736` `bug-788` `bug-789` `bug-gl2-e2l2-briefing-npc-invisible` |
 | `briefings` | 1 | `bug-1259` |
-| `brightness` | 2 | `bug-2509` `bug-2559` |
+| `brightness` | 4 | `bug-2509` `bug-2559` `bug-3375` `bug-4042` |
+| `bringtofront` | 1 | `bug-10853` |
 | `british` | 1 | `bug-1216` |
 | `broadcast` | 1 | `bug-2160` |
 | `broken` | 1 | `bug-495` |
 | `broken-link` | 1 | `bug-1805` |
+| `browser` | 1 | `bug-2729` |
 | `brush-bounds` | 1 | `bug-1470` |
 | `brush-id` | 1 | `bug-952` |
 | `brush-surgery` | 1 | `bug-951` |
-| `bsp` | 4 | `bug-1386` `bug-1396` `bug-2209` `bug-429` |
+| `bsp` | 17 | `bug-10397` `bug-10599` `bug-10612` `bug-10667` `bug-1386` `bug-1396` `bug-2209` `bug-2739` `bug-2742` `bug-2743` `bug-2744` `bug-2960` `bug-3105` `bug-3165` `bug-4038` `bug-429` `bug-4430` |
 | `bsp-format` | 1 | `bug-1468` |
 | `bsp-measured` | 3 | `bug-2320` `bug-2470` `bug-2478` |
+| `bsp-patch` | 1 | `bug-3340` |
 | `bsp-scan` | 1 | `bug-2549` |
+| `bsp-trace` | 1 | `bug-4030` |
 | `bsp-trigger` | 1 | `bug-1858` |
 | `bsp2bp` | 2 | `bug-1003` `bug-1009` |
 | `bsptransition` | 1 | `bug-818` |
-| `budget` | 2 | `bug-2217` `bug-2261` |
+| `bt` | 1 | `bug-3955` |
+| `buddy` | 1 | `bug-3000` |
+| `budget` | 6 | `bug-10931` `bug-2217` `bug-2261` `bug-3248` `bug-3459` `bug-4052` |
+| `buffer` | 3 | `bug-10310` `bug-3179` `bug-3180` |
 | `buffer-overflow` | 2 | `bug-1228` `bug-2082` |
 | `buffer-overrun` | 1 | `bug-1195` |
+| `buffers` | 1 | `bug-3497` |
 | `bug-1002` | 1 | `bug-1002` |
+| `bug-10635` | 1 | `bug-10646` |
 | `bug-1127` | 1 | `bug-1129b` |
 | `bug-1154-followup` | 1 | `bug-1169` |
 | `bug-1156-followup` | 1 | `bug-1164` |
 | `bug-1283` | 1 | `bug-1602` |
+| `bug-1321-mp` | 1 | `bug-2802` |
 | `bug-1533` | 1 | `bug-1545` |
 | `bug-1540` | 1 | `bug-1545` |
 | `bug-1578` | 1 | `bug-1595` |
@@ -1842,9 +4624,19 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `bug-2298-class` | 1 | `bug-2344` |
 | `bug-2362` | 1 | `bug-2397` |
 | `bug-2574-related` | 1 | `bug-2713` |
+| `bug-2606-guard` | 1 | `bug-4077` |
 | `bug-2706-related` | 1 | `bug-2712` |
+| `bug-2868-trigger` | 1 | `bug-2869` |
 | `bug-309-family` | 1 | `bug-322` |
+| `bug-3093-residual` | 1 | `bug-3191` |
+| `bug-3147-followup` | 1 | `bug-3154` |
+| `bug-3274` | 1 | `bug-3300` |
 | `bug-330` | 1 | `bug-2182` |
+| `bug-3488` | 2 | `bug-4420` `bug-4427` |
+| `bug-3597` | 1 | `bug-3620` |
+| `bug-3888` | 1 | `bug-3898` |
+| `bug-3903` | 4 | `bug-3904` `bug-3905` `bug-3906` `bug-3907` |
+| `bug-3918-followup` | 1 | `bug-4004` |
 | `bug-461-recurrence` | 1 | `bug-1165` |
 | `bug-535` | 1 | `bug-2634` |
 | `bug-618` | 1 | `bug-1204` |
@@ -1853,6 +4645,8 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `bug-73` | 1 | `bug-1144` |
 | `bug-73-cleanup` | 1 | `bug-1166` |
 | `bug-735-family` | 1 | `bug-2202` |
+| `bug-785-mp` | 1 | `bug-2807` |
+| `bug-792-mp-exception` | 1 | `bug-2799` |
 | `bug-803` | 1 | `bug-1578` |
 | `bug-804` | 1 | `bug-818` |
 | `bug-805` | 1 | `bug-819` |
@@ -1864,108 +4658,165 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `bug-934-family` | 1 | `bug-1186` |
 | `bug-939` | 1 | `bug-1204` |
 | `bug-in-fix` | 1 | `bug-2665` |
-| `buglog` | 3 | `bug-1227` `bug-2399` `bug-buglog-dataloss` |
-| `build` | 15 | `bug-020` `bug-089` `bug-1240` `bug-1724` `bug-1796` `bug-1798` `bug-1909` `bug-2097` `bug-2224` `bug-2453` `bug-2500` `bug-2512` `bug-2579` `bug-2620` `bug-2695` |
+| `bug-report` | 1 | `bug-3486` |
+| `buglog` | 4 | `bug-1227` `bug-2399` `bug-4088` `bug-buglog-dataloss` |
+| `bugreport` | 1 | `bug-10281` |
+| `build` | 54 | `bug-020` `bug-089` `bug-10266` `bug-10269` `bug-10299` `bug-10335` `bug-10355` `bug-10367` `bug-10539` `bug-10708` `bug-10732` `bug-10835` `bug-10836` `bug-1240` `bug-1724` `bug-1796` `bug-1798` `bug-1909` `bug-2097` `bug-2224` `bug-2453` `bug-2500` `bug-2512` `bug-2579` `bug-2620` `bug-2695` `bug-2748` `bug-2820` `bug-2943` `bug-2961` `bug-3021` `bug-3036` `bug-3152` `bug-3156` `bug-3247` `bug-… |
+| `build-blocker` | 1 | `bug-10777` |
 | `build-break` | 2 | `bug-2137` `bug-2315` |
+| `build-chain` | 2 | `bug-10752` `bug-10753` |
 | `build-error` | 1 | `bug-2107` |
-| `build-gate` | 2 | `bug-2577` `bug-2615` |
+| `build-failure` | 1 | `bug-3037` |
+| `build-gate` | 15 | `bug-10513` `bug-10662` `bug-10745` `bug-10918` `bug-2577` `bug-2615` `bug-2874` `bug-2911` `bug-2930` `bug-3160` `bug-3179` `bug-3189` `bug-3206` `bug-3442` `bug-3899` |
 | `build-guard` | 1 | `bug-1864` |
-| `build-mode` | 9 | `bug-1353` `bug-1718` `bug-1744` `bug-1745` `bug-1749` `bug-1756` `bug-1774` `bug-333` `bug-418` |
+| `build-mode` | 10 | `bug-1353` `bug-1718` `bug-1744` `bug-1745` `bug-1749` `bug-1756` `bug-1774` `bug-333` `bug-418` `bug-mgspawn1025` |
 | `build-order` | 1 | `bug-1610` |
 | `build-passed-code-absent` | 1 | `bug-2572` |
-| `build.ps1` | 3 | `bug-1633` `bug-1634` `bug-2610` |
+| `build.ps1` | 4 | `bug-1633` `bug-1634` `bug-2610` `bug-3900` |
 | `buildabase` | 8 | `bug-2631` `bug-2635` `bug-2657` `bug-2660` `bug-2668` `bug-2669` `bug-2670` `bug-2672` |
-| `buildmode` | 40 | `bug-1001` `bug-1248` `bug-1261` `bug-1262` `bug-1269` `bug-1283` `bug-1310` `bug-1378` `bug-1379` `bug-1380` `bug-1381` `bug-1382` `bug-1398` `bug-1399` `bug-1404` `bug-1408` `bug-1414` `bug-1415` `bug-1418` `bug-1419` `bug-1423` `bug-1425` `bug-1538` `bug-1554` `bug-1567` `bug-1572` `bug-1580` `bug-1581` `bug-1602` `bug-1791` `bug-1828` `bug-2068` `bug-413` `bug-417` `bug-829` `bug-853` `bug-85… |
+| `buildmode` | 44 | `bug-1001` `bug-10277` `bug-10293` `bug-1248` `bug-1261` `bug-1262` `bug-1269` `bug-1283` `bug-1310` `bug-1378` `bug-1379` `bug-1380` `bug-1381` `bug-1382` `bug-1398` `bug-1399` `bug-1404` `bug-1408` `bug-1414` `bug-1415` `bug-1418` `bug-1419` `bug-1423` `bug-1425` `bug-1538` `bug-1554` `bug-1567` `bug-1572` `bug-1580` `bug-1581` `bug-1602` `bug-1791` `bug-1828` `bug-2068` `bug-2934` `bug-2976` `… |
 | `buildmode-capture` | 1 | `bug-1842` |
 | `builtin-call-convention` | 1 | `bug-2632` |
 | `bulknavmemory` | 1 | `bug-1561` |
-| `bullet-holes` | 3 | `bug-1876` `bug-1892` `bug-gl2-reddecals` |
-| `bullet-impact` | 1 | `bug-1190` |
-| `bullet-sponge` | 3 | `bug-1212` `bug-1274` `bug-1275` |
+| `bullet-holes` | 4 | `bug-1876` `bug-1892` `bug-2807` `bug-gl2-reddecals` |
+| `bullet-impact` | 2 | `bug-10524` `bug-1190` |
+| `bullet-sponge` | 5 | `bug-1212` `bug-1274` `bug-1275` `bug-3188` `bug-3302` |
+| `bulletcount` | 1 | `bug-10920` |
+| `bullethit` | 1 | `bug-3853` |
 | `bullethole` | 1 | `bug-gl2-decal-red-dds` |
 | `bulletrange-is-not-range` | 1 | `bug-2095` |
 | `bulletspread` | 2 | `bug-1806` `bug-1920` |
+| `bunker` | 2 | `bug-10276` `bug-mgspawn1025` |
 | `bunker2` | 1 | `bug-1377` |
-| `burst` | 2 | `bug-1843` `bug-1850` |
+| `burst` | 3 | `bug-1843` `bug-1850` `bug-3907` |
 | `bust` | 23 | `bug-1674` `bug-1676` `bug-1682` `bug-1683` `bug-1684` `bug-1685` `bug-1686` `bug-1687` `bug-1691` `bug-1692` `bug-1722` `bug-1726` `bug-1732` `bug-1734` `bug-1735` `bug-1736` `bug-1737` `bug-1738` `bug-1739` `bug-1792` `bug-1794` `bug-1810` `bug-1872` |
 | `button-removal` | 1 | `bug-786` |
 | `button_coopwalk` | 1 | `bug-164` |
-| `button_run` | 2 | `bug-110` `bug-319` |
+| `button_run` | 3 | `bug-110` `bug-2920` `bug-319` |
 | `buttons` | 1 | `bug-1712` |
+| `byo` | 41 | `bug-10599` `bug-10661` `bug-10711` `bug-10712` `bug-10742` `bug-10743` `bug-10744` `bug-10757` `bug-10773` `bug-10774` `bug-10775` `bug-10776` `bug-10779` `bug-10783` `bug-10784` `bug-10787` `bug-10801` `bug-10802` `bug-10803` `bug-10825` `bug-10834` `bug-10845` `bug-10846` `bug-10847` `bug-10848` `bug-10849` `bug-10850` `bug-10851` `bug-10862` `bug-10863` `bug-10864` `bug-10865` `bug-10866` `bu… |
+| `byoaudit` | 2 | `bug-10852` `bug-10896` |
 | `c` | 25 | `bug-009` `bug-010` `bug-015` `bug-026` `bug-042` `bug-093` `bug-094` `bug-104` `bug-141` `bug-142` `bug-152` `bug-159` `bug-270` `bug-271` `bug-288` `bug-289` `bug-528` `bug-708` `bug-732` `bug-733` `bug-760` `bug-779` `bug-792` `bug-867` `bug-868` |
+| `c-string` | 1 | `bug-3002` |
 | `c0000005` | 1 | `bug-1002` |
+| `c2001` | 1 | `bug-3508` |
 | `c4133` | 1 | `bug-1253` |
 | `c47` | 1 | `bug-1848` |
-| `c96` | 3 | `bug-1894` `bug-1897` `bug-1905` |
+| `c96` | 12 | `bug-1894` `bug-1897` `bug-1905` `bug-3293` `bug-3390` `bug-3434` `bug-3655` `bug-3735` `bug-3875` `bug-3876` `bug-4041` `bug-4042` |
+| `cache` | 2 | `bug-10663` `bug-3170` |
 | `cache-scope` | 2 | `bug-1229` `bug-1230` |
 | `caching` | 1 | `bug-2683` |
-| `cadence` | 2 | `bug-1843` `bug-1856` |
-| `caliber` | 1 | `bug-2095` |
+| `cadence` | 3 | `bug-10898` `bug-1843` `bug-1856` |
+| `caliber` | 2 | `bug-2095` `bug-4263` |
+| `calibration` | 2 | `bug-3334` `bug-3348` |
 | `callback` | 3 | `bug-1429` `bug-1430` `bug-1434` |
 | `calling-convention` | 1 | `bug-2185` |
 | `callsign` | 2 | `bug-1741` `bug-1746` |
-| `camera` | 30 | `bug-1238` `bug-1250` `bug-1291` `bug-1328c` `bug-168` `bug-1752` `bug-1984` `bug-1992` `bug-1998` `bug-2000` `bug-2003` `bug-2006` `bug-2007` `bug-2086` `bug-2094` `bug-2112` `bug-2129` `bug-229` `bug-2300` `bug-2306` `bug-2320` `bug-2350` `bug-2470` `bug-2581` `bug-296` `bug-321` `bug-326` `bug-327` `bug-349` `bug-363` |
+| `camera` | 55 | `bug-10357` `bug-10360` `bug-10361` `bug-10373` `bug-10377` `bug-10387` `bug-10390` `bug-10413` `bug-10414` `bug-10430` `bug-10465` `bug-10503` `bug-10546` `bug-10562` `bug-10696` `bug-10877` `bug-1238` `bug-1250` `bug-1291` `bug-1328c` `bug-168` `bug-1752` `bug-1984` `bug-1992` `bug-1998` `bug-2000` `bug-2003` `bug-2006` `bug-2007` `bug-2086` `bug-2094` `bug-2112` `bug-2129` `bug-229` `bug-2300`… |
+| `camera-collision` | 1 | `bug-3451` |
+| `camera-cut` | 1 | `bug-3612` |
+| `camera-path` | 1 | `bug-10356` |
 | `camera-relative` | 1 | `bug-297` |
 | `camera-rotation` | 1 | `bug-1230` |
+| `camo` | 4 | `bug-10314` `bug-10588` `bug-10590` `bug-10699` |
 | `camo-helmet` | 1 | `bug-530` |
-| `campaign` | 3 | `bug-2670` `bug-2672` `bug-681` |
+| `camo65` | 5 | `bug-10588` `bug-10589` `bug-10590` `bug-10591` `bug-10592` |
+| `campaign` | 6 | `bug-10594` `bug-2670` `bug-2672` `bug-4050` `bug-4190` `bug-681` |
+| `campaign-arena` | 2 | `bug-2738` `bug-2968` |
 | `campaign-chain` | 1 | `bug-552` |
 | `campaign-map-arena` | 1 | `bug-2713` |
 | `campaign-safety` | 1 | `bug-1384` |
+| `campaign-script-in-mp` | 1 | `bug-2878` |
 | `campaign-session` | 1 | `bug-1163` |
+| `campaign-start` | 1 | `bug-2868` |
+| `cancel` | 1 | `bug-10486` |
+| `candidate` | 1 | `bug-3201` |
+| `canmoveto` | 1 | `bug-3322` |
 | `cannonthink` | 1 | `bug-1265` |
-| `canteen` | 4 | `bug-1175` `bug-1199` `bug-1256` `bug-944` |
-| `capacity` | 5 | `bug-1180` `bug-1864` `bug-2362` `bug-2555` `bug-929` |
+| `canshoot` | 3 | `bug-10507` `bug-10523` `bug-10564` |
+| `canteen` | 5 | `bug-1175` `bug-1199` `bug-1256` `bug-3303` `bug-944` |
+| `capacity` | 11 | `bug-10726` `bug-1180` `bug-1864` `bug-2362` `bug-2555` `bug-2996` `bug-2997` `bug-3003` `bug-3179` `bug-3180` `bug-929` |
 | `capacity-limit` | 1 | `bug-1186` |
 | `capacity-wall` | 1 | `bug-1582` |
+| `caps` | 1 | `bug-4430` |
 | `captain` | 4 | `bug-1049` `bug-2299` `bug-2395` `bug-2490` |
-| `capture` | 3 | `bug-1221` `bug-1795` `bug-2646` |
+| `captions` | 1 | `bug-10366` |
+| `capture` | 9 | `bug-10409` `bug-1221` `bug-1795` `bug-2646` `bug-3131` `bug-3186` `bug-3761` `bug-3850` `bug-4121` |
+| `capture-contamination` | 1 | `bug-3182` |
 | `capture-point` | 1 | `bug-1829` |
-| `carbine` | 2 | `bug-500` `bug-809` |
+| `carbine` | 4 | `bug-3369` `bug-4262` `bug-500` `bug-809` |
 | `card-players` | 1 | `bug-1648` |
-| `cardgame` | 2 | `bug-1636` `bug-1637` |
+| `cardgame` | 3 | `bug-1636` `bug-1637` `bug-3479` |
+| `carrier` | 1 | `bug-2969` |
 | `carriers` | 1 | `bug-2313` |
-| `carry-over` | 3 | `bug-592` `bug-595` `bug-597` |
-| `cascade` | 3 | `bug-1951` `bug-2035` `bug-533` |
+| `carry` | 1 | `bug-4090` |
+| `carry-over` | 4 | `bug-4051` `bug-592` `bug-595` `bug-597` |
+| `carve` | 2 | `bug-2792` `bug-2894` |
+| `cascade` | 4 | `bug-1951` `bug-2035` `bug-3006` `bug-533` |
 | `cascade-shadows` | 1 | `bug-1164` |
-| `case-sensitivity` | 5 | `bug-1542` `bug-1916` `bug-1960` `bug-2400` `bug-482` |
-| `case-weapon` | 1 | `bug-731` |
+| `case` | 4 | `bug-10895` `bug-3397` `bug-3415` `bug-3820` |
+| `case-quirk` | 1 | `bug-3087` |
+| `case-sensitive` | 1 | `bug-3144` |
+| `case-sensitivity` | 6 | `bug-1542` `bug-1916` `bug-1960` `bug-2400` `bug-3887` `bug-482` |
+| `case-weapon` | 3 | `bug-3306` `bug-3325` `bug-731` |
 | `casemate` | 1 | `bug-1003` |
-| `catalog` | 6 | `bug-1567` `bug-1581` `bug-417` `bug-418` `bug-853` `bug-854` |
+| `casing` | 6 | `bug-4262` `bug-4263` `bug-4264` `bug-4265` `bug-4266` `bug-4268` |
+| `catalog` | 7 | `bug-10277` `bug-1567` `bug-1581` `bug-417` `bug-418` `bug-853` `bug-854` |
 | `categorization` | 1 | `bug-1536` |
+| `cathedarchlrg` | 1 | `bug-2984` |
 | `catlabel` | 1 | `bug-718` |
 | `caught-before-shipping` | 3 | `bug-1779` `bug-2003` `bug-2008` |
+| `caught-in-verification` | 1 | `bug-3035` |
 | `caught-pre-ship` | 1 | `bug-1916` |
 | `caustics` | 1 | `bug-2509` |
-| `cbuf` | 3 | `bug-1664` `bug-2580` `bug-2591` |
-| `cc0` | 1 | `bug-2164` |
+| `caveat` | 2 | `bug-3062` `bug-3801` |
+| `cbuf` | 9 | `bug-10342` `bug-10857` `bug-1664` `bug-2580` `bug-2591` `bug-2908` `bug-3175` `bug-3186` `bug-3394` |
+| `cbuf-wait-starvation` | 1 | `bug-3321` |
+| `cc0` | 7 | `bug-10314` `bug-10315` `bug-10316` `bug-2164` `bug-2950` `bug-2953` `bug-2985` |
 | `cdb` | 2 | `bug-1566` `bug-598` |
 | `celerity` | 1 | `bug-2524` |
-| `census` | 2 | `bug-1445` `bug-946` |
+| `cellsize` | 2 | `bug-2829` `bug-2833` |
+| `census` | 4 | `bug-1445` `bug-3052` `bug-3165` `bug-946` |
 | `census-gap` | 1 | `bug-1956` |
-| `cfg` | 18 | `bug-002` `bug-006` `bug-008` `bug-012` `bug-013` `bug-017` `bug-018` `bug-025` `bug-028` `bug-047` `bug-1326` `bug-2093` `bug-2218` `bug-2222` `bug-2238` `bug-2492` `bug-413` `bug-551` |
-| `cfg-exec-order` | 1 | `bug-2043` |
+| `centerprint` | 1 | `bug-4097` |
+| `centre box` | 1 | `bug-3843` |
+| `centre-box` | 30 | `bug-3578` `bug-3579` `bug-3584` `bug-3593` `bug-3600` `bug-3605` `bug-3614` `bug-3624` `bug-3630` `bug-3631` `bug-3633` `bug-3640` `bug-3645` `bug-3652` `bug-3665` `bug-3677` `bug-3682` `bug-3684` `bug-3718` `bug-3733` `bug-3734` `bug-3742` `bug-3762` `bug-3798` `bug-3802` `bug-3828` `bug-3848` `bug-3866` `bug-3869` `bug-3876` |
+| `centrebox` | 6 | `bug-3619` `bug-3646` `bug-3647` `bug-3648` `bug-3667` `bug-3668` |
+| `cfg` | 31 | `bug-002` `bug-006` `bug-008` `bug-012` `bug-013` `bug-017` `bug-018` `bug-025` `bug-028` `bug-047` `bug-10700` `bug-10713` `bug-10718` `bug-10727` `bug-10905` `bug-1326` `bug-2093` `bug-2218` `bug-2222` `bug-2238` `bug-2492` `bug-2869` `bug-2995` `bug-3017` `bug-3104` `bug-3134` `bug-3136` `bug-3175` `bug-413` `bug-4426` `bug-551` |
+| `cfg-cannot-branch` | 1 | `bug-3959` |
+| `cfg-comment` | 1 | `bug-10839` |
+| `cfg-exec-order` | 2 | `bug-2043` `bug-3077` |
 | `cfg-load-order` | 1 | `bug-333` |
 | `cfg-seed` | 1 | `bug-2017` |
 | `cfg-shadowing` | 1 | `bug-1633` |
+| `cfg-wait` | 1 | `bug-3211` |
+| `cg_adssights` | 1 | `bug-3870` |
+| `cg_drawsvlag` | 1 | `bug-3209` |
 | `cg_marks` | 1 | `bug-gl2-reddecals` |
-| `cg_modelanim` | 1 | `bug-863` |
-| `cg_nature` | 1 | `bug-1383` |
+| `cg_modelanim` | 2 | `bug-3856` `bug-863` |
+| `cg_nature` | 2 | `bug-1383` `bug-3881` |
 | `cg_predict` | 1 | `bug-316` |
-| `cg_view` | 5 | `bug-1158` `bug-1290` `bug-168` `bug-1942` `bug-229` |
-| `cgame` | 92 | `bug-022` `bug-071` `bug-074` `bug-105` `bug-110` `bug-1200` `bug-1206` `bug-1208` `bug-1217` `bug-1238` `bug-1250` `bug-1291` `bug-1305` `bug-1306` `bug-134` `bug-139` `bug-1408` `bug-1417` `bug-1449` `bug-1496` `bug-1547` `bug-159` `bug-165` `bug-168` `bug-1878` `bug-1888` `bug-1901` `bug-1942` `bug-1962` `bug-1963` `bug-1964` `bug-1965` `bug-1966` `bug-1967` `bug-1969` `bug-1970` `bug-1983` `b… |
+| `cg_view` | 6 | `bug-1158` `bug-1290` `bug-168` `bug-1942` `bug-229` `bug-3395` |
+| `cgame` | 211 | `bug-022` `bug-071` `bug-074` `bug-10279` `bug-10286` `bug-10288` `bug-10303` `bug-10336` `bug-10396` `bug-10403` `bug-10416` `bug-10479` `bug-10496` `bug-105` `bug-10565` `bug-10587` `bug-10740` `bug-10801` `bug-10877` `bug-10878` `bug-10894` `bug-110` `bug-1200` `bug-1206` `bug-1208` `bug-1217` `bug-1238` `bug-1250` `bug-1291` `bug-1305` `bug-1306` `bug-134` `bug-139` `bug-1408` `bug-1417` `bug… |
+| `cgame-bridge` | 1 | `bug-3080` |
 | `cgame-only` | 2 | `bug-2010` `bug-2014` |
 | `cgame-pdb` | 1 | `bug-932b` |
+| `cgame-reload` | 1 | `bug-3060` |
 | `cgame-symbols` | 1 | `bug-934` |
+| `cgame-version` | 1 | `bug-3068` |
+| `cgame-vs-server` | 1 | `bug-2728` |
 | `cgame.dll` | 2 | `bug-2464` `bug-892` |
-| `cgm` | 1 | `bug-2161` |
+| `cgm` | 3 | `bug-2161` `bug-2904` `bug-2906` |
+| `chain` | 2 | `bug-3414` `bug-3840` |
 | `chain-break` | 1 | `bug-1854` |
+| `chair` | 1 | `bug-10675` |
 | `chal_ensure` | 2 | `bug-1595` `bug-808` |
 | `chal_ui_export` | 1 | `bug-681` |
-| `challenge` | 3 | `bug-1508` `bug-1904` `bug-2337` |
-| `challenges` | 54 | `bug-1264` `bug-1346` `bug-1351` `bug-1356` `bug-1362` `bug-1509` `bug-1511` `bug-1512` `bug-1521` `bug-1522` `bug-1523` `bug-1536` `bug-1543` `bug-1546` `bug-1596` `bug-1597` `bug-1598` `bug-1599` `bug-1601` `bug-1670` `bug-1773` `bug-1870` `bug-1894` `bug-1895` `bug-1899` `bug-1979` `bug-2078` `bug-2079` `bug-2114` `bug-2389` `bug-2544` `bug-2564` `bug-2648` `bug-2649` `bug-2651` `bug-2652` `bu… |
+| `chalk` | 1 | `bug-3236` |
+| `challenge` | 4 | `bug-1508` `bug-1904` `bug-2337` `bug-4008` |
+| `challenges` | 69 | `bug-10473` `bug-10481` `bug-10495` `bug-10567` `bug-10592` `bug-10701` `bug-10705` `bug-10807` `bug-1264` `bug-1346` `bug-1351` `bug-1356` `bug-1362` `bug-1509` `bug-1511` `bug-1512` `bug-1521` `bug-1522` `bug-1523` `bug-1536` `bug-1543` `bug-1546` `bug-1596` `bug-1597` `bug-1598` `bug-1599` `bug-1601` `bug-1670` `bug-1773` `bug-1870` `bug-1894` `bug-1895` `bug-1899` `bug-1979` `bug-2078` `bug-2… |
 | `chan-local` | 1 | `bug-2540` |
-| `chan_local` | 2 | `bug-1556` `bug-2505` |
+| `chan_local` | 4 | `bug-1556` `bug-2505` `bug-3441` `bug-4407` |
 | `change` | 1 | `bug-757` |
 | `change-only-publish` | 1 | `bug-2133` |
 | `changegametype` | 3 | `bug-1701b` `bug-893` `bug-898` |
@@ -1974,54 +4825,77 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `channel-ownership` | 1 | `bug-2271` |
 | `channel-pool` | 1 | `bug-2457` |
 | `channel-table` | 1 | `bug-1803` |
-| `channels` | 2 | `bug-2309` `bug-2313` |
+| `channels` | 3 | `bug-10498` `bug-2309` `bug-2313` |
 | `chaos` | 1 | `bug-2235` |
+| `chapter` | 1 | `bug-4051` |
+| `char` | 1 | `bug-10515` |
 | `character-exclusion` | 1 | `bug-gl2-invisible-live-char-depthprepass` |
 | `character-skin` | 1 | `bug-gl2-invisible-friendly-actor-root` |
 | `characterisation` | 2 | `bug-2409` `bug-2418` |
-| `charge` | 3 | `bug-106` `bug-107` `bug-2272` |
+| `characters` | 1 | `bug-3576` |
+| `charge` | 4 | `bug-10303` `bug-106` `bug-107` `bug-2272` |
+| `charge-clip` | 1 | `bug-3348` |
 | `charge-token` | 1 | `bug-074` |
+| `charger` | 2 | `bug-3834` `bug-3837` |
+| `charging-handle` | 1 | `bug-3824` |
 | `charrender` | 1 | `bug-683` |
 | `charshadows` | 1 | `bug-1230` |
 | `chat` | 1 | `bug-261` |
-| `chatter` | 3 | `bug-1578` `bug-2021` `bug-725` |
-| `cheat` | 1 | `bug-2184` |
-| `cheats` | 1 | `bug-2238` |
+| `chatter` | 4 | `bug-1578` `bug-2021` `bug-3385` `bug-725` |
+| `cheat` | 3 | `bug-2184` `bug-3183` `bug-3184` |
+| `cheats` | 9 | `bug-10264` `bug-10362` `bug-10880` `bug-10895` `bug-2238` `bug-3055` `bug-3174` `bug-3185` `bug-3608` |
 | `check` | 1 | `bug-1860` |
-| `check_map_compiles` | 1 | `bug-2421` |
+| `check_challenges` | 1 | `bug-3895` |
+| `check_map_compiles` | 2 | `bug-2421` `bug-3125` |
+| `check_mp_isolation` | 1 | `bug-10747` |
 | `checkbox` | 1 | `bug-2578` |
-| `checker` | 2 | `bug-1601` `bug-1765` |
+| `checker` | 3 | `bug-1601` `bug-1765` `bug-3878` |
 | `checker-gap` | 1 | `bug-1751` |
+| `checkout` | 1 | `bug-4037` |
 | `checkpoint` | 2 | `bug-1793` `bug-1859` |
 | `checksum` | 1 | `bug-2585` |
+| `checksum-lock` | 1 | `bug-3959` |
 | `checkteams` | 1 | `bug-617` |
 | `children` | 1 | `bug-917` |
 | `chips` | 1 | `bug-1933` |
 | `chokepoint` | 1 | `bug-2703` |
+| `choreography` | 1 | `bug-3721` |
 | `chromatic-aberration` | 2 | `bug-1158` `bug-1233` |
+| `chrono` | 4 | `bug-10571` `bug-10572` `bug-10573` `bug-10575` |
+| `chronological` | 1 | `bug-10616` |
 | `chunks` | 1 | `bug-2191` |
-| `church` | 13 | `bug-1828` `bug-1829` `bug-1831` `bug-1832` `bug-1833` `bug-1834` `bug-1837` `bug-1840` `bug-1846` `bug-1855` `bug-1904` `bug-2015` `bug-2022` |
+| `church` | 15 | `bug-10736` `bug-1828` `bug-1829` `bug-1831` `bug-1832` `bug-1833` `bug-1834` `bug-1837` `bug-1840` `bug-1846` `bug-1855` `bug-1904` `bug-2015` `bug-2022` `bug-3470` |
 | `church-defense` | 1 | `bug-1824` |
 | `church-garrison` | 1 | `bug-1842` |
-| `churn` | 1 | `bug-891` |
+| `churn` | 3 | `bug-2883` `bug-2888` `bug-891` |
 | `chute` | 1 | `bug-1309` |
+| `ci` | 3 | `bug-10281` `bug-10308` `bug-10312` |
 | `cid` | 1 | `bug-1925` |
-| `cinematic` | 29 | `bug-1259` `bug-1286` `bug-1289` `bug-1349` `bug-2306` `bug-2308` `bug-2319` `bug-2320` `bug-2339` `bug-2342` `bug-2343` `bug-2345` `bug-2350` `bug-2358` `bug-2360` `bug-2361` `bug-2443` `bug-2447` `bug-2470` `bug-2475` `bug-2476` `bug-2477` `bug-2488` `bug-2503` `bug-2507` `bug-2530` `bug-2561` `bug-2565` `bug-gl2-e2l2-briefing-npc-invisible` |
+| `cinehud` | 1 | `bug-4406` |
+| `cinematic` | 33 | `bug-10677` `bug-10760` `bug-1259` `bug-1286` `bug-1289` `bug-1349` `bug-2306` `bug-2308` `bug-2319` `bug-2320` `bug-2339` `bug-2342` `bug-2343` `bug-2345` `bug-2350` `bug-2358` `bug-2360` `bug-2361` `bug-2443` `bug-2447` `bug-2470` `bug-2475` `bug-2476` `bug-2477` `bug-2488` `bug-2503` `bug-2507` `bug-2530` `bug-2561` `bug-2565` `bug-3234` `bug-3543` `bug-gl2-e2l2-briefing-npc-invisible` |
+| `cl_cleanupuserinfo` | 1 | `bug-10575` |
 | `cl_guid` | 1 | `bug-298` |
-| `cl_input` | 1 | `bug-297` |
-| `cl_main` | 4 | `bug-1145` `bug-1546` `bug-1925` `bug-317` |
+| `cl_input` | 2 | `bug-297` `bug-4175` |
+| `cl_main` | 5 | `bug-1145` `bug-1546` `bug-1925` `bug-2749` `bug-317` |
 | `cl_main.cpp` | 1 | `bug-1503` |
+| `cl_ui` | 1 | `bug-3037` |
 | `cl_uistd` | 1 | `bug-254` |
-| `clamp` | 1 | `bug-1985` |
+| `clamp` | 2 | `bug-1985` `bug-3134` |
 | `clamp-order` | 1 | `bug-2141` |
 | `clamp-saturation` | 1 | `bug-2016` |
-| `clampmap` | 1 | `bug-2227` |
+| `clampmap` | 2 | `bug-2227` `bug-3059` |
 | `clampmapy` | 1 | `bug-2227` |
+| `clang` | 1 | `bug-10308` |
+| `clarity` | 1 | `bug-2763` |
 | `class-api-mismatch` | 1 | `bug-1585` |
+| `class-c` | 1 | `bug-3478` |
 | `class-not-instance` | 2 | `bug-2326` `bug-2348` |
 | `class-split` | 2 | `bug-1946` `bug-1950` |
+| `classic` | 1 | `bug-3329` |
 | `classifier-blindspot` | 1 | `bug-956` |
-| `classname` | 2 | `bug-2215` `bug-355` |
+| `classname` | 4 | `bug-2215` `bug-2797` `bug-2854` `bug-355` |
+| `claude-restart` | 1 | `bug-4271` |
+| `clause-18` | 1 | `bug-2754` |
 | `clause-7` | 1 | `bug-2622` |
 | `clause10` | 1 | `bug-2680` |
 | `clause12` | 2 | `bug-2614` `bug-2618` |
@@ -2029,137 +4903,199 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `clause7a` | 1 | `bug-2680` |
 | `clavicle` | 1 | `bug-2134` |
 | `clean-rebuild` | 1 | `bug-961` |
-| `cleanup` | 6 | `bug-1153` `bug-1776` `bug-2080` `bug-2437` `bug-2438` `bug-2532` |
+| `clean-shot` | 1 | `bug-10336` |
+| `cleanhud` | 1 | `bug-10292` |
+| `cleanup` | 10 | `bug-10306` `bug-1153` `bug-1776` `bug-2080` `bug-2437` `bug-2438` `bug-2532` `bug-2773` `bug-3168` `bug-3913` |
+| `clearance` | 3 | `bug-2914` `bug-3259` `bug-3395` |
+| `click` | 1 | `bug-10860` |
 | `click-eater` | 1 | `bug-767` |
 | `click-to-spawn` | 1 | `bug-369` |
-| `client` | 7 | `bug-1194` `bug-2570` `bug-2572` `bug-2573` `bug-2576` `bug-2585` `bug-2606` |
+| `client` | 12 | `bug-1194` `bug-2570` `bug-2572` `bug-2573` `bug-2576` `bug-2585` `bug-2606` `bug-3015` `bug-3016` `bug-3035` `bug-3103` `bug-4399` |
+| `client-commands` | 1 | `bug-3452` |
 | `client-cvar` | 2 | `bug-2416` `bug-666` |
-| `client-exe` | 4 | `bug-1523` `bug-1537` `bug-1541` `bug-1798` |
+| `client-exe` | 7 | `bug-1523` `bug-1537` `bug-1541` `bug-1798` `bug-3910` `bug-3911` `bug-3912` |
+| `client-prediction` | 2 | `bug-3210` `bug-3219` |
 | `client-server-parity` | 1 | `bug-2171` |
 | `client-side` | 2 | `bug-2710` `bug-707` |
+| `client-zero` | 1 | `bug-3195` |
+| `client0` | 1 | `bug-2928` |
 | `clientmove` | 1 | `bug-164` |
 | `climb` | 1 | `bug-1835` |
 | `climbwall` | 1 | `bug-1415` |
-| `clip` | 3 | `bug-1405` `bug-1982` `bug-624` |
+| `clip` | 8 | `bug-10276` `bug-10289` `bug-10293` `bug-10304` `bug-10653` `bug-1405` `bug-1982` `bug-624` |
+| `clip-brush` | 1 | `bug-3349` |
+| `clip-length` | 2 | `bug-3683` `bug-3826` |
+| `clip-name-collision` | 1 | `bug-3627` |
 | `clip-strip-zones` | 3 | `bug-946` `bug-949` `bug-950` |
+| `clip_add` | 1 | `bug-3730` |
 | `clipboard` | 1 | `bug-334` |
 | `clipmap` | 1 | `bug-2314` |
-| `clipmask` | 1 | `bug-1910` |
-| `clipping` | 2 | `bug-1365` `bug-1985` |
+| `clipmask` | 2 | `bug-1910` `bug-4211` |
+| `clipping` | 6 | `bug-10361` `bug-10373` `bug-10751` `bug-10769` `bug-1365` `bug-1985` |
+| `clips` | 1 | `bug-10365` |
+| `clipsize` | 1 | `bug-3534` |
+| `clobber` | 1 | `bug-2776` |
+| `clock` | 4 | `bug-10296` `bug-10504` `bug-10505` `bug-10640` |
 | `close-commit` | 2 | `bug-1936` `bug-773` |
 | `closed` | 1 | `bug-1907` |
 | `closed-2026-09-09` | 2 | `bug-2456` `bug-2513` |
+| `closed-test-artifact` | 2 | `bug-3888` `bug-3898` |
+| `closeout` | 1 | `bug-3316` |
 | `closer` | 1 | `bug-gl2-forcepose-skips-composite-ally` |
 | `closet` | 1 | `bug-2622` |
+| `closure` | 2 | `bug-10870` `bug-10871` |
+| `clouds` | 9 | `bug-2938` `bug-2942` `bug-3081` `bug-3455` `bug-3458` `bug-3459` `bug-3516` `bug-3517` `bug-3523` |
+| `clouds-v11` | 1 | `bug-3454` |
 | `cm_killbrush` | 1 | `bug-953` |
 | `cm_killbrush-guard` | 1 | `bug-958` |
 | `cm_load` | 1 | `bug-951` |
 | `cm_pointbrushnum` | 1 | `bug-955` |
-| `cmake` | 4 | `bug-1240` `bug-1909` `bug-2620` `bug-2695` |
+| `cmake` | 17 | `bug-10269` `bug-10299` `bug-10308` `bug-10335` `bug-10367` `bug-10754` `bug-10836` `bug-1240` `bug-1909` `bug-2620` `bug-2695` `bug-3247` `bug-3298` `bug-3352` `bug-4267` `bug-4419` `bug-4422` |
 | `cmd` | 1 | `bug-2587` |
 | `cmd_argsfrom` | 1 | `bug-1364` |
+| `cmd_filter` | 1 | `bug-3321` |
+| `cmd_srvguard` | 1 | `bug-3012` |
 | `cmd_wait` | 1 | `bug-1664` |
 | `cmdtrace` | 1 | `bug-1166` |
-| `cmpatch` | 6 | `bug-1820` `bug-2314` `bug-951` `bug-952` `bug-956` `bug-960` |
+| `cmpatch` | 9 | `bug-1820` `bug-2314` `bug-2836` `bug-2845` `bug-2853` `bug-951` `bug-952` `bug-956` `bug-960` |
 | `co_lobby1` | 10 | `bug-355` `bug-356` `bug-359` `bug-363` `bug-366` `bug-367` `bug-368` `bug-369` `bug-370` `bug-681` |
 | `co_lobby4` | 1 | `bug-429` |
 | `co_lobby7` | 1 | `bug-552` |
+| `co_lobby8` | 7 | `bug-2960` `bug-2998` `bug-3004` `bug-3050` `bug-3056` `bug-3068` `bug-3072` |
+| `cock` | 6 | `bug-3403` `bug-3412` `bug-3413` `bug-3415` `bug-3606` `bug-3607` |
 | `code-contradicted-its-own-comment` | 1 | `bug-2354` |
 | `coincidence-constant` | 2 | `bug-2292` `bug-2315` |
 | `coincident-surfaces` | 1 | `bug-2549` |
 | `collapse` | 1 | `bug-2145` |
 | `collapse-map` | 1 | `bug-1002` |
-| `collectible` | 3 | `bug-1632` `bug-1658` `bug-1665` |
-| `collision` | 11 | `bug-1407` `bug-1640` `bug-1680` `bug-1756` `bug-1766` `bug-1962` `bug-1970` `bug-1986` `bug-2515` `bug-829` `bug-942` |
+| `collectible` | 4 | `bug-1632` `bug-1658` `bug-1665` `bug-3527` |
+| `collision` | 30 | `bug-10276` `bug-10377` `bug-10390` `bug-10825` `bug-10845` `bug-10846` `bug-10847` `bug-10863` `bug-10865` `bug-10866` `bug-10888` `bug-10923` `bug-10924` `bug-1407` `bug-1640` `bug-1680` `bug-1756` `bug-1766` `bug-1962` `bug-1970` `bug-1986` `bug-2515` `bug-2723` `bug-3210` `bug-3219` `bug-3419` `bug-4402` `bug-829` `bug-942` `bug-eap-longclip` |
+| `collision-epsilon` | 1 | `bug-3128` |
 | `collision-proxy` | 1 | `bug-056` |
 | `color` | 1 | `bug-747` |
 | `color-modulate` | 1 | `bug-088` |
 | `color-multiplier` | 1 | `bug-2201` |
 | `color2d` | 1 | `bug-gl2-hudcolor` |
+| `colour` | 3 | `bug-2985` `bug-2994` `bug-3565` |
 | `colour-domain` | 2 | `bug-1156` `bug-1159` |
 | `colour-grade` | 1 | `bug-2595` |
 | `colour-space` | 2 | `bug-1299` `bug-1304` |
-| `colt` | 2 | `bug-1987` `bug-2661` |
+| `colt` | 3 | `bug-10319` `bug-1987` `bug-2661` |
+| `colt45s2` | 1 | `bug-3882` |
 | `com_abnormalexit` | 1 | `bug-1143` |
 | `com_error` | 1 | `bug-598` |
+| `com_maxfps` | 1 | `bug-3494` |
+| `com_precisefps` | 1 | `bug-3911` |
 | `com_radar_range` | 1 | `bug-2177` |
-| `combat` | 1 | `bug-2706` |
+| `combat` | 2 | `bug-2706` `bug-2866` |
 | `combat-balance` | 1 | `bug-2106` |
 | `combat-gate` | 1 | `bug-taunt-intro` |
 | `command-argument` | 1 | `bug-1826` |
+| `command-buffer` | 3 | `bug-2908` `bug-3211` `bug-3526` |
 | `command-form` | 1 | `bug-401` |
-| `command-overflow` | 1 | `bug-1493` |
-| `comment` | 2 | `bug-1715` `bug-2531` |
+| `command-injection` | 1 | `bug-3276` |
+| `command-line` | 2 | `bug-2996` `bug-3028` |
+| `command-name-clash` | 1 | `bug-10452` |
+| `command-overflow` | 5 | `bug-1493` `bug-2983` `bug-3001` `bug-3078` `bug-3477` |
+| `commanddelay` | 1 | `bug-3501` |
+| `comment` | 3 | `bug-1715` `bug-2531` `bug-3404` |
 | `comment-lied` | 1 | `bug-2256` |
 | `comment-prefix` | 1 | `bug-2162` |
 | `comment-swallow` | 1 | `bug-2107` |
 | `comment-swallows-brace` | 1 | `bug-2137` |
 | `comment-vs-code` | 1 | `bug-2094` |
+| `comments` | 1 | `bug-3079` |
 | `commit` | 1 | `bug-425` |
+| `commit-hygiene` | 1 | `bug-3439` |
 | `commitment` | 1 | `bug-2024` |
-| `compass` | 6 | `bug-1862` `bug-2581` `bug-2605` `bug-2688` `bug-2717` `bug-gl2-compass` |
-| `compile` | 1 | `bug-348` |
+| `compass` | 7 | `bug-1862` `bug-2581` `bug-2605` `bug-2688` `bug-2717` `bug-4039` `bug-gl2-compass` |
+| `compat` | 2 | `bug-10520` `bug-3327` |
+| `compatibility` | 1 | `bug-10330` |
+| `compile` | 4 | `bug-3423` `bug-3430` `bug-348` `bug-3984` |
+| `compile-ceiling` | 1 | `bug-2762` |
 | `compile-check` | 2 | `bug-1069` `bug-1105` |
-| `compile-error` | 5 | `bug-1067` `bug-1283` `bug-2709` `bug-402` `bug-910` |
+| `compile-error` | 7 | `bug-1067` `bug-1283` `bug-2709` `bug-2868` `bug-3150` `bug-402` `bug-910` |
 | `complete` | 1 | `bug-2648` |
+| `composite-model` | 1 | `bug-3306` |
 | `composite-tiki` | 1 | `bug-gl2-forcepose-skips-composite-ally` |
+| `composites` | 1 | `bug-2985` |
 | `comprehensive` | 1 | `bug-1052` |
+| `compression` | 2 | `bug-2938` `bug-3111` |
 | `con_win32` | 2 | `bug-2397` `bug-2404` |
 | `concatenation` | 1 | `bug-1377` |
 | `concurrency` | 1 | `bug-1227` |
 | `condcheckheight` | 1 | `bug-055` |
+| `conditional` | 1 | `bug-4213` |
+| `conditioning` | 1 | `bug-10664` |
 | `conditions` | 1 | `bug-299` |
 | `condrun` | 1 | `bug-554` |
-| `config` | 4 | `bug-1869` `bug-2151` `bug-2446` `bug-2721` |
+| `config` | 10 | `bug-1869` `bug-2151` `bug-2446` `bug-2721` `bug-2729` `bug-3116` `bug-3142` `bug-3209` `bug-3490` `bug-4447` |
 | `config-archive` | 1 | `bug-1427` |
 | `config-drift` | 2 | `bug-1063` `bug-2145` |
 | `config-erosion` | 1 | `bug-1138` |
 | `config-latch` | 1 | `bug-2388` |
 | `config-pair` | 1 | `bug-944` |
 | `config-pollution` | 1 | `bug-166` |
-| `configstring` | 8 | `bug-1179` `bug-1180` `bug-1219` `bug-2173` `bug-2589` `bug-464` `bug-891` `bug-892` |
+| `configstring` | 15 | `bug-10261` `bug-10385` `bug-10393` `bug-10543` `bug-1179` `bug-1180` `bug-1219` `bug-2173` `bug-2589` `bug-3148` `bug-3151` `bug-4122` `bug-464` `bug-891` `bug-892` |
 | `configstrings` | 1 | `bug-1864` |
+| `configure` | 1 | `bug-4422` |
 | `conflict` | 1 | `bug-2233` |
+| `confusion` | 1 | `bug-2879` |
+| `congestion` | 1 | `bug-2826` |
 | `connectionless` | 1 | `bug-1143` |
-| `connectivity` | 1 | `bug-1009` |
+| `connectivity` | 2 | `bug-1009` `bug-2858` |
 | `conquest` | 1 | `bug-1474` |
+| `consistency` | 3 | `bug-10500` `bug-10502` `bug-3289` |
 | `consistency-check` | 1 | `bug-1596` |
-| `console` | 4 | `bug-2346` `bug-2366` `bug-334` `bug-502` |
-| `console-spam` | 6 | `bug-1166` `bug-1272` `bug-1352` `bug-1550` `bug-1551` `bug-2426` |
+| `console` | 12 | `bug-10274` `bug-10329` `bug-2346` `bug-2366` `bug-2910` `bug-3040` `bug-3054` `bug-3090` `bug-3191` `bug-3192` `bug-334` `bug-502` |
+| `console-noise` | 5 | `bug-3093` `bug-3094` `bug-3095` `bug-3096` `bug-3097` |
+| `console-quiet` | 1 | `bug-3152` |
+| `console-spam` | 8 | `bug-1166` `bug-1272` `bug-1352` `bug-1550` `bug-1551` `bug-2426` `bug-2982` `bug-3077` |
+| `console-subsystem` | 1 | `bug-3112` |
 | `console-warning` | 1 | `bug-1207` |
+| `console-window` | 1 | `bug-3154` |
 | `const-string` | 1 | `bug-1377` |
 | `constant-space-confusion` | 1 | `bug-935` |
 | `constantlight` | 1 | `bug-1423` |
 | `constraint` | 2 | `bug-2054` `bug-2431` |
 | `constructor` | 1 | `bug-2167` |
+| `contact-check` | 3 | `bug-3231` `bug-3238` `bug-3259` |
+| `contact-foam` | 1 | `bug-4290` |
 | `contain` | 16 | `bug-1709` `bug-1721` `bug-1723` `bug-1726` `bug-1727` `bug-1728` `bug-1730` `bug-1731` `bug-1732` `bug-1734` `bug-1735` `bug-1736` `bug-1737` `bug-1738` `bug-1739` `bug-1810` |
 | `container-1-based` | 1 | `bug-767` |
 | `container-cast` | 1 | `bug-2194` |
 | `containment` | 1 | `bug-955` |
-| `containstext` | 1 | `bug-1937` |
+| `containstext` | 3 | `bug-10495` `bug-10567` `bug-1937` |
 | `contamination` | 1 | `bug-1068` |
-| `content` | 3 | `bug-1310` `bug-2336` `bug-2337` |
+| `content` | 5 | `bug-1310` `bug-2336` `bug-2337` `bug-3417` `bug-3453` |
 | `content-fix` | 3 | `bug-1301` `bug-1303` `bug-1307` |
 | `content-only` | 1 | `bug-1185` |
+| `contents` | 1 | `bug-10374` |
+| `contents_bbox` | 1 | `bug-10293` |
 | `contents_ladder` | 1 | `bug-1839` |
 | `continue` | 1 | `bug-1497` |
+| `continuity` | 1 | `bug-10456` |
 | `continuous-pool` | 1 | `bug-817` |
 | `contract` | 1 | `bug-2680` |
 | `contradictory-flags` | 1 | `bug-2294` |
+| `contrast` | 1 | `bug-10544` |
 | `control-group` | 1 | `bug-2468` |
 | `control-had-no-effect` | 1 | `bug-2016` |
 | `control-point` | 1 | `bug-1787` |
-| `controller` | 1 | `bug-2606` |
+| `controller` | 2 | `bug-2606` `bug-4077` |
+| `controls` | 2 | `bug-3359` `bug-4180` |
 | `controls-menu` | 1 | `bug-757` |
 | `convention-not-enforced` | 1 | `bug-2097` |
 | `convergence` | 1 | `bug-2714` |
 | `conversation` | 1 | `bug-1575` |
 | `conversation-guard` | 1 | `bug-1579` |
 | `conversion` | 2 | `bug-1022` `bug-1023` |
-| `convert` | 4 | `bug-1972` `bug-1973` `bug-2088` `bug-2091` |
+| `convert` | 7 | `bug-1972` `bug-1973` `bug-2088` `bug-2091` `bug-3468` `bug-4015` `bug-4017` |
+| `converter` | 16 | `bug-10599` `bug-10602` `bug-10633` `bug-10642` `bug-10667` `bug-10668` `bug-10677` `bug-10683` `bug-10686` `bug-10803` `bug-10845` `bug-10846` `bug-10847` `bug-10848` `bug-eap-dbnames` `bug-eap-sobmeshes` |
 | `convoy` | 2 | `bug-1435` `bug-240` |
+| `cook` | 1 | `bug-10855` |
 | `cooldown` | 1 | `bug-091` |
-| `coop` | 78 | `bug-071` `bug-1022` `bug-1023` `bug-1026` `bug-1027` `bug-1028` `bug-1049` `bug-1050` `bug-1051` `bug-1052` `bug-1053` `bug-1054` `bug-1062` `bug-1063` `bug-1065` `bug-121` `bug-122` `bug-123` `bug-1241` `bug-1255` `bug-1301` `bug-1309` `bug-1361` `bug-1366` `bug-1367` `bug-166` `bug-1806` `bug-1809` `bug-1817` `bug-1924` `bug-2155` `bug-2160` `bug-2187` `bug-2188` `bug-2193` `bug-2194` `bug-219… |
+| `coop` | 93 | `bug-071` `bug-1022` `bug-1023` `bug-1026` `bug-1027` `bug-1028` `bug-1049` `bug-1050` `bug-1051` `bug-1052` `bug-1053` `bug-1054` `bug-1062` `bug-1063` `bug-1065` `bug-10657` `bug-10685` `bug-10880` `bug-121` `bug-122` `bug-123` `bug-1241` `bug-1255` `bug-1301` `bug-1309` `bug-1361` `bug-1366` `bug-1367` `bug-166` `bug-1806` `bug-1809` `bug-1817` `bug-1924` `bug-2155` `bug-2160` `bug-2187` `bug-… |
 | `coop+mp` | 2 | `bug-2701` `bug-2705` |
 | `coop-4p` | 2 | `bug-1473` `bug-1498` |
 | `coop-armory` | 1 | `bug-2571` |
@@ -2169,20 +5105,28 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `coop-integration` | 1 | `bug-1858` |
 | `coop-isolation` | 16 | `bug-2574` `bug-2597` `bug-2599` `bug-2602` `bug-2604` `bug-2605` `bug-2607` `bug-2611` `bug-2612` `bug-2613` `bug-2616` `bug-2617` `bug-2619` `bug-2623` `bug-2625` `bug-2630` |
 | `coop-latch` | 1 | `bug-1574` |
-| `coop-leak` | 1 | `bug-2712` |
+| `coop-leak` | 3 | `bug-2712` `bug-2939` `bug-2968` |
 | `coop-lobby` | 14 | `bug-355` `bug-356` `bug-359` `bug-363` `bug-366` `bug-367` `bug-368` `bug-369` `bug-370` `bug-378` `bug-379` `bug-380` `bug-381` `bug-382` |
 | `coop-map-name` | 1 | `bug-2713` |
+| `coop-maps` | 1 | `bug-10648` |
 | `coop-only` | 2 | `bug-2168` `bug-2169` |
+| `coop-parity` | 1 | `bug-2779` |
 | `coop-respawn-churn` | 1 | `bug-1286` |
-| `coop-safe` | 10 | `bug-1752` `bug-2675` `bug-2677` `bug-2693` `bug-2694` `bug-2696` `bug-2698` `bug-2700` `bug-2702` `bug-2708` |
+| `coop-safe` | 12 | `bug-1752` `bug-2675` `bug-2677` `bug-2693` `bug-2694` `bug-2696` `bug-2698` `bug-2700` `bug-2702` `bug-2708` `bug-2735` `bug-2737` |
 | `coop-scale` | 1 | `bug-2545` |
+| `coop-shared-path` | 1 | `bug-2958` |
 | `coop-shim` | 2 | `bug-1294` `bug-1637` |
+| `coop-test` | 1 | `bug-10679` |
+| `coop-weather` | 1 | `bug-3174` |
 | `coop_act` | 1 | `bug-417` |
 | `coop_actoractualhealth` | 1 | `bug-1212` |
 | `coop_actorarray` | 2 | `bug-1794` `bug-638` |
+| `coop_ads_vignette` | 2 | `bug-3561` `bug-3571` |
+| `coop_aibehav` | 1 | `bug-3077` |
 | `coop_aibound` | 2 | `bug-1815` `bug-2181` |
 | `coop_aibuffer` | 1 | `bug-1274` |
 | `coop_aicoverrelocatems` | 1 | `bug-1813` |
+| `coop_aidisabled` | 1 | `bug-3976` |
 | `coop_aidynamic` | 5 | `bug-1571` `bug-1653` `bug-1811` `bug-2032` `bug-2074` |
 | `coop_aipronechance` | 2 | `bug-1852` `bug-2076` |
 | `coop_airetailprone` | 1 | `bug-1922` |
@@ -2195,18 +5139,22 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `coop_bloodleak` | 1 | `bug-849` |
 | `coop_buildmap` | 1 | `bug-1427` |
 | `coop_chzone` | 1 | `bug-1829` |
+| `coop_cinehud` | 1 | `bug-4094` |
 | `coop_corpsegore` | 1 | `bug-1975` |
 | `coop_corpseshootable` | 1 | `bug-1882` |
 | `coop_coverfaceopen` | 1 | `bug-2094` |
+| `coop_covertype` | 1 | `bug-4184` |
 | `coop_decap` | 1 | `bug-861` |
 | `coop_decapbudget` | 1 | `bug-866` |
-| `coop_defaults` | 5 | `bug-1629` `bug-2093` `bug-2172` `bug-2218` `bug-2615` |
-| `coop_dev` | 1 | `bug-333` |
+| `coop_defaults` | 6 | `bug-1629` `bug-2093` `bug-2172` `bug-2218` `bug-2615` `bug-3899` |
+| `coop_dev` | 2 | `bug-10573` `bug-333` |
 | `coop_dm_main` | 2 | `bug-767` `bug-777` |
 | `coop_forcepapersequip` | 1 | `bug-880` |
 | `coop_fxdefaults` | 1 | `bug-2615` |
 | `coop_gate` | 1 | `bug-712` |
+| `coop_gfxpreset` | 1 | `bug-3541` |
 | `coop_goreskinwoundscale` | 1 | `bug-868` |
+| `coop_hardcore` | 1 | `bug-3507` |
 | `coop_headshotfx` | 1 | `bug-1142` |
 | `coop_health` | 1 | `bug-2489` |
 | `coop_helmets` | 1 | `bug-1540` |
@@ -2215,10 +5163,13 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `coop_inventoryweapons` | 1 | `bug-897` |
 | `coop_isactive` | 2 | `bug-2412` `bug-2415` |
 | `coop_isdisguised` | 1 | `bug-1606` |
+| `coop_isprotectedactor` | 1 | `bug-3188` |
 | `coop_ladderbox` | 1 | `bug-1839` |
 | `coop_limpview` | 1 | `bug-1291` |
-| `coop_loadout` | 1 | `bug-2614` |
+| `coop_lmslatejoin` | 1 | `bug-3518` |
+| `coop_loadout` | 2 | `bug-10749` `bug-2614` |
 | `coop_loahelm` | 1 | `bug-772` |
+| `coop_lobbyalways` | 1 | `bug-4050` |
 | `coop_locmt` | 1 | `bug-707` |
 | `coop_locoslk` | 1 | `bug-787` |
 | `coop_lohelmn` | 1 | `bug-772` |
@@ -2226,16 +5177,22 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `coop_lolka` | 1 | `bug-682` |
 | `coop_lolkv` | 1 | `bug-682` |
 | `coop_loopenskin` | 1 | `bug-755` |
+| `coop_lootrange` | 1 | `bug-3504` |
 | `coop_loskinn` | 1 | `bug-759` |
 | `coop_losklka` | 1 | `bug-787` |
 | `coop_loweapons` | 3 | `bug-618` `bug-627` `bug-897` |
 | `coop_lowho` | 1 | `bug-707` |
+| `coop_mapgrade` | 2 | `bug-3048` `bug-3060` |
 | `coop_mg42aiburst` | 1 | `bug-1843` |
 | `coop_missionitems` | 1 | `bug-893` |
+| `coop_mod` | 1 | `bug-3285` |
+| `coop_mpboltonly` | 1 | `bug-2733` |
+| `coop_mpbotweapon` | 1 | `bug-2731` |
 | `coop_mpmenu` | 3 | `bug-2613` `bug-2618` `bug-2621` |
 | `coop_mpmode` | 1 | `bug-2613` |
-| `coop_mppreset` | 1 | `bug-2613` |
-| `coop_mprun` | 1 | `bug-2680` |
+| `coop_mppreset` | 2 | `bug-2613` `bug-2730` |
+| `coop_mprotate` | 2 | `bug-2730` `bug-2731` |
+| `coop_mprun` | 2 | `bug-2680` `bug-2968` |
 | `coop_navalgunfire` | 1 | `bug-2393` |
 | `coop_nochatter` | 3 | `bug-837` `bug-839` `bug-842` |
 | `coop_noweapon` | 1 | `bug-880` |
@@ -2246,47 +5203,74 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `coop_playeritem` | 1 | `bug-625` |
 | `coop_playerjustspawned` | 1 | `bug-349` |
 | `coop_postfx` | 1 | `bug-2615` |
+| `coop_probe` | 1 | `bug-3077` |
 | `coop_pronerollbank` | 1 | `bug-2300` |
+| `coop_ragdoll` | 1 | `bug-3132` |
+| `coop_rainseeout` | 1 | `bug-3529` |
 | `coop_regt` | 1 | `bug-1810` |
 | `coop_reinf_count` | 1 | `bug-1855` |
+| `coop_reinf_scale` | 1 | `bug-3302` |
 | `coop_reissuemissionitems` | 1 | `bug-898` |
 | `coop_setdbno` | 1 | `bug-1265` |
 | `coop_settings` | 1 | `bug-menu-shader-label-invisible` |
+| `coop_shadowauto` | 1 | `bug-3010` |
 | `coop_shotdump` | 1 | `bug-2096` |
+| `coop_spechold` | 1 | `bug-10587` |
+| `coop_spread_pos` | 1 | `bug-4397` |
 | `coop_sr` | 2 | `bug-739` `bug-750` |
+| `coop_start` | 9 | `bug-10450` `bug-10711` `bug-10774` `bug-3274` `bug-3280` `bug-3284` `bug-3300` `bug-3321` `bug-4179` |
 | `coop_unsponge` | 1 | `bug-1212` |
+| `coop_wave_hunt` | 1 | `bug-4276` |
+| `coop_weaponmass` | 1 | `bug-3207` |
 | `coopammo` | 2 | `bug-1865` `bug-1866` |
+| `coopboss` | 1 | `bug-3304` |
+| `coopbv` | 1 | `bug-10693` |
 | `coopgorecorpsedamage` | 1 | `bug-1975` |
 | `coopgoretrydecapitate` | 1 | `bug-866` |
 | `coopmpplayerhit` | 1 | `bug-2713` |
-| `coordinates` | 1 | `bug-2179` |
+| `coopr` | 1 | `bug-3367` |
+| `coopstripskinsuffix` | 1 | `bug-3809` |
+| `coopuseloot` | 1 | `bug-10474` |
+| `coord` | 1 | `bug-3185` |
+| `coordinates` | 2 | `bug-2179` `bug-3382` |
+| `coordination` | 1 | `bug-10707` |
 | `coords` | 1 | `bug-139` |
 | `copied-recipe-wrong-context` | 1 | `bug-1367` |
 | `copy-paste` | 2 | `bug-2080` `bug-2092` |
 | `copy-the-recipe` | 1 | `bug-1903` |
 | `copy-the-working-recipe` | 2 | `bug-1910` `bug-1914` |
-| `corner` | 1 | `bug-1921` |
-| `corpse` | 10 | `bug-096` `bug-100` `bug-1229` `bug-1256` `bug-1321` `bug-1882` `bug-1974` `bug-1975` `bug-836` `bug-849` |
+| `corner` | 4 | `bug-1921` `bug-2949` `bug-2966` `bug-3146` |
+| `corner-check` | 1 | `bug-2986` |
+| `corner-rounding` | 1 | `bug-2956` |
+| `corners` | 2 | `bug-2914` `bug-3027` |
+| `corpse` | 17 | `bug-096` `bug-100` `bug-10541` `bug-10543` `bug-1229` `bug-1256` `bug-1321` `bug-1882` `bug-1974` `bug-1975` `bug-2802` `bug-2806` `bug-2809` `bug-2917` `bug-3983` `bug-836` `bug-849` |
+| `corpse-budget` | 1 | `bug-3483` |
 | `corpses` | 2 | `bug-1230` `bug-2510` |
-| `correction` | 1 | `bug-2439` |
+| `correction` | 2 | `bug-2439` `bug-3273` |
 | `corrupt` | 1 | `bug-1577` |
 | `cos` | 1 | `bug-2660` |
-| `cosmetic` | 7 | `bug-1028` `bug-1621` `bug-1656` `bug-1867` `bug-2552` `bug-801` `bug-803` |
+| `cosmetic` | 10 | `bug-1028` `bug-1621` `bug-1656` `bug-1867` `bug-2552` `bug-2728` `bug-3016` `bug-3103` `bug-801` `bug-803` |
 | `cosmetic-but-misleading` | 1 | `bug-1453` |
-| `cosmetics` | 12 | `bug-1236` `bug-1356` `bug-1524` `bug-1540` `bug-1543` `bug-1578` `bug-1595` `bug-1901` `bug-2080` `bug-2633` `bug-2634` `bug-2648` |
+| `cosmetics` | 22 | `bug-10912` `bug-1236` `bug-1356` `bug-1524` `bug-1540` `bug-1543` `bug-1578` `bug-1595` `bug-1901` `bug-2080` `bug-2633` `bug-2634` `bug-2648` `bug-2754` `bug-2755` `bug-2757` `bug-2761` `bug-2762` `bug-2768` `bug-2774` `bug-2777` `bug-2778` |
+| `cost` | 1 | `bug-3128` |
 | `cough` | 1 | `bug-2689` |
 | `count-scaling` | 7 | `bug-1618` `bug-1794` `bug-1809` `bug-2039` `bug-2174` `bug-2237` `bug-891` |
+| `countasdead` | 1 | `bug-4015` |
 | `countdown` | 2 | `bug-2675` `bug-773` |
 | `counter` | 2 | `bug-1195` `bug-1557` |
+| `counter-attack` | 4 | `bug-10313` `bug-4039` `bug-4051` `bug-4436` |
 | `counter-leak` | 1 | `bug-1641` |
+| `counter_zones` | 1 | `bug-10313` |
+| `counterattack` | 4 | `bug-10806` `bug-4210b` `bug-4431` `bug-4432` |
 | `counters` | 1 | `bug-1599` |
 | `counts` | 1 | `bug-2222` |
 | `coupling` | 1 | `bug-1734` |
-| `cover` | 34 | `bug-1260` `bug-1407` `bug-1622` `bug-1813` `bug-1815` `bug-1870` `bug-1992` `bug-2028` `bug-2029` `bug-2086` `bug-2127` `bug-2157` `bug-2211` `bug-2497` `bug-2501` `bug-2623` `bug-2687` `bug-303` `bug-305` `bug-308` `bug-310` `bug-311` `bug-313` `bug-321` `bug-323` `bug-325` `bug-326` `bug-327` `bug-329` `bug-463` `bug-536` `bug-829` `bug-854` `bug-896` |
+| `cover` | 75 | `bug-10357` `bug-10358` `bug-10359` `bug-10360` `bug-10361` `bug-10363` `bug-10368` `bug-10369` `bug-10372` `bug-10373` `bug-10374` `bug-10387` `bug-10388` `bug-10389` `bug-10390` `bug-10391` `bug-10394` `bug-10406` `bug-10407` `bug-10408` `bug-10413` `bug-10414` `bug-10430` `bug-10431` `bug-10465` `bug-10546` `bug-10547` `bug-10548` `bug-10561` `bug-10562` `bug-10563` `bug-1260` `bug-1407` `bug-… |
 | `cover-blown` | 1 | `bug-1677` |
+| `cover-bone` | 1 | `bug-3391` |
 | `cover-nodes` | 1 | `bug-1812` |
 | `cover-peek` | 1 | `bug-320` |
-| `coverage` | 4 | `bug-1442` `bug-1475` `bug-1969` `bug-2260` |
+| `coverage` | 8 | `bug-1442` `bug-1475` `bug-1969` `bug-2260` `bug-3591` `bug-3645` `bug-3680` `bug-3764` |
 | `coverage-accuracy` | 1 | `bug-1470` |
 | `coverlean` | 1 | `bug-2171` |
 | `coverside` | 1 | `bug-2221` |
@@ -2294,60 +5278,77 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `covwalk` | 4 | `bug-1442` `bug-1451` `bug-1467` `bug-1470` |
 | `cp1252` | 1 | `bug-1227` |
 | `cpp` | 23 | `bug-005` `bug-007` `bug-011` `bug-014` `bug-016` `bug-032` `bug-035` `bug-036` `bug-038` `bug-039` `bug-164` `bug-165` `bug-221` `bug-287` `bug-527` `bug-702` `bug-730` `bug-762` `bug-763` `bug-766` `bug-770` `bug-771` `bug-928` |
-| `crash` | 62 | `bug-059` `bug-1002` `bug-1062` `bug-1063` `bug-1124` `bug-1139` `bug-1145` `bug-1163` `bug-1167` `bug-1178` `bug-1179` `bug-1181` `bug-1193` `bug-121` `bug-122` `bug-123` `bug-1253` `bug-1493` `bug-1494` `bug-1499` `bug-1565` `bug-1655` `bug-1803` `bug-1864` `bug-1968` `bug-2082` `bug-2131` `bug-2283` `bug-2285` `bug-2292` `bug-2293` `bug-2315` `bug-2341` `bug-2362` `bug-2397` `bug-2404` `bug-24… |
+| `cpt` | 2 | `bug-10622` `bug-10661` |
+| `cpu-skinning` | 1 | `bug-3483` |
+| `crack` | 1 | `bug-10871` |
+| `crane` | 4 | `bug-4274` `bug-4401` `bug-4403` `bug-4413` |
+| `crash` | 87 | `bug-059` `bug-1002` `bug-10278` `bug-10328` `bug-10356` `bug-10394` `bug-10424` `bug-10426` `bug-10446` `bug-1062` `bug-1063` `bug-10801` `bug-10899` `bug-1124` `bug-1139` `bug-1145` `bug-1163` `bug-1167` `bug-1178` `bug-1179` `bug-1181` `bug-1193` `bug-121` `bug-122` `bug-123` `bug-1253` `bug-1493` `bug-1494` `bug-1499` `bug-1565` `bug-1655` `bug-1803` `bug-1864` `bug-1968` `bug-2082` `bug-2131… |
 | `crash-dump` | 1 | `bug-1566` |
 | `crash-family` | 1 | `bug-927` |
+| `crash-report` | 1 | `bug-2868` |
+| `crash-risk` | 1 | `bug-3089` |
 | `crash-site` | 1 | `bug-1310` |
-| `crate` | 1 | `bug-2274` |
+| `crate` | 4 | `bug-10277` `bug-10477` `bug-2274` `bug-4078` |
+| `crate-blindfire` | 1 | `bug-3492` |
 | `crate-carriers` | 1 | `bug-2317` |
 | `crate-cover` | 1 | `bug-2071` |
-| `crates` | 1 | `bug-2284` |
+| `crates` | 3 | `bug-2284` `bug-3482` `bug-4449` |
 | `crawl` | 2 | `bug-2103` `bug-431` |
 | `createmenus-dedup` | 1 | `bug-767` |
 | `createpaths` | 1 | `bug-1560` |
 | `credential` | 1 | `bug-2239` |
-| `credits` | 3 | `bug-1358` `bug-1894` `bug-1899` |
+| `credits` | 4 | `bug-1358` `bug-1894` `bug-1899` `bug-3126` |
 | `crew` | 1 | `bug-1277` |
-| `critical` | 4 | `bug-2133` `bug-2139` `bug-2143` `bug-2706` |
-| `crlf` | 5 | `bug-1600` `bug-2081` `bug-2399` `bug-259` `bug-480` |
+| `critical` | 6 | `bug-2133` `bug-2139` `bug-2143` `bug-2706` `bug-2759` `bug-2760` |
+| `crlf` | 13 | `bug-10582` `bug-10749` `bug-10764` `bug-10808` `bug-1600` `bug-2081` `bug-2399` `bug-259` `bug-3899` `bug-4164` `bug-4189` `bug-4191` `bug-480` |
+| `crop` | 1 | `bug-3618` |
+| `cross-compile` | 2 | `bug-10308` `bug-10312` |
 | `cross-map` | 3 | `bug-1279` `bug-1653` `bug-2425` |
 | `cross-model` | 1 | `bug-1880` |
 | `cross-wire` | 1 | `bug-1938` |
-| `crossblend` | 3 | `bug-1999` `bug-2125` `bug-2126` |
-| `crosshair` | 3 | `bug-1504` `bug-1628` `bug-258` |
-| `crouch` | 7 | `bug-052` `bug-055` `bug-105` `bug-108` `bug-2136` `bug-2157` `bug-370` |
+| `crossblend` | 10 | `bug-10303` `bug-1999` `bug-2125` `bug-2126` `bug-3311` `bug-3313` `bug-3335` `bug-3336` `bug-3404` `bug-3956` |
+| `crossfade` | 1 | `bug-3164` |
+| `crosshair` | 8 | `bug-10360` `bug-10496` `bug-1504` `bug-1628` `bug-258` `bug-3299` `bug-4094` `bug-scopes1025-reticle-inlens` |
+| `crouch` | 16 | `bug-052` `bug-055` `bug-105` `bug-108` `bug-10846` `bug-2136` `bug-2157` `bug-2900` `bug-2918` `bug-3225` `bug-3226` `bug-3230` `bug-3273` `bug-370` `bug-4177` `bug-4183` |
 | `crowd` | 3 | `bug-2495` `bug-2498` `bug-2506` |
 | `crush` | 2 | `bug-056` `bug-2487` |
 | `cs_models` | 2 | `bug-891` `bug-892` |
+| `cs_skyinfo` | 1 | `bug-3212` |
 | `csm` | 1 | `bug-1154` |
 | `ctf` | 2 | `bug-2628` `bug-2694` |
-| `cubemap` | 1 | `bug-1237` |
+| `cubemap` | 2 | `bug-1237` `bug-2974` |
 | `cue` | 1 | `bug-2234` |
 | `cue-tier` | 1 | `bug-2369` |
 | `cuecamera` | 2 | `bug-356` `bug-363` |
-| `cull` | 1 | `bug-gl2-cullfront` |
+| `cull` | 4 | `bug-10599` `bug-10769` `bug-4430` `bug-gl2-cullfront` |
 | `cull-none` | 1 | `bug-2549` |
-| `culling` | 1 | `bug-1849` |
+| `culling` | 2 | `bug-1849` `bug-3488` |
 | `curation` | 1 | `bug-2307` |
+| `curiosity` | 1 | `bug-2849` |
 | `curious` | 1 | `bug-1636` |
 | `current` | 1 | `bug-2519` |
-| `cursor` | 1 | `bug-588` |
+| `cursor` | 4 | `bug-4442` `bug-4445` `bug-4452` `bug-588` |
 | `curtain` | 2 | `bug-1401` `bug-1406` |
 | `custom-maps` | 1 | `bug-853` |
+| `customize-bench` | 12 | `bug-10708` `bug-10709` `bug-10715` `bug-10716` `bug-10717` `bug-10829` `bug-10830` `bug-10856` `bug-10861` `bug-10886` `bug-10887` `bug-10906` |
+| `customshader` | 1 | `bug-2962` |
+| `cut-box` | 1 | `bug-10382` |
 | `cut-content` | 10 | `bug-1302` `bug-1303` `bug-1330` `bug-1344` `bug-1350` `bug-1475` `bug-1611` `bug-2428` `bug-2474` `bug-775` |
 | `cut-timing` | 1 | `bug-1307` |
-| `cutscene` | 8 | `bug-054` `bug-1628` `bug-1752` `bug-1757` `bug-1763` `bug-1768` `bug-1769` `bug-227` |
-| `cvar` | 27 | `bug-1125` `bug-1200` `bug-1215` `bug-1261` `bug-1268` `bug-1364` `bug-1546` `bug-1582` `bug-166` `bug-1669` `bug-1698` `bug-1699` `bug-1884` `bug-1994` `bug-2017` `bug-2218` `bug-2221` `bug-2318` `bug-258` `bug-2582` `bug-2589` `bug-2631` `bug-598` `bug-710` `bug-937b` `bug-postfx-intensity-clobbered` `bug-sfx-duck-filtered` |
-| `cvar-archive` | 10 | `bug-1206` `bug-1501` `bug-2090` `bug-2165` `bug-2298` `bug-2491` `bug-2573` `bug-317` `bug-747` `bug-918` |
+| `cutout` | 1 | `bug-3167` |
+| `cutscene` | 12 | `bug-054` `bug-10397` `bug-10412` `bug-1628` `bug-1752` `bug-1757` `bug-1763` `bug-1768` `bug-1769` `bug-227` `bug-4094` `bug-4152` |
+| `cvar` | 44 | `bug-10537` `bug-1125` `bug-1200` `bug-1215` `bug-1261` `bug-1268` `bug-1364` `bug-1546` `bug-1582` `bug-166` `bug-1669` `bug-1698` `bug-1699` `bug-1884` `bug-1994` `bug-2017` `bug-2218` `bug-2221` `bug-2318` `bug-258` `bug-2582` `bug-2589` `bug-2631` `bug-2749` `bug-2816` `bug-3011` `bug-3039` `bug-3041` `bug-3066` `bug-3078` `bug-3086` `bug-3100` `bug-3102` `bug-3108` `bug-3146` `bug-3229` `bug… |
+| `cvar-archive` | 13 | `bug-1206` `bug-1501` `bug-2090` `bug-2165` `bug-2298` `bug-2491` `bug-2573` `bug-2772` `bug-2840` `bug-317` `bug-4217` `bug-747` `bug-918` |
 | `cvar-archive-poisoning` | 2 | `bug-1148` `bug-1178` |
 | `cvar-bridge` | 4 | `bug-526` `bug-712` `bug-736` `bug-758` |
 | `cvar-clamp` | 1 | `bug-1152` |
 | `cvar-collision` | 1 | `bug-2041` |
-| `cvar-default` | 1 | `bug-2171` |
+| `cvar-default` | 2 | `bug-2171` `bug-3077` |
 | `cvar-executor` | 1 | `bug-2590` |
 | `cvar-fossil` | 1 | `bug-2076` |
 | `cvar-latch` | 2 | `bug-2159` `bug-2551` |
 | `cvar-leak` | 3 | `bug-1258` `bug-2629` `bug-2630` |
+| `cvar-limit` | 1 | `bug-4052` |
 | `cvar-override` | 1 | `bug-1063` |
 | `cvar-pollution` | 1 | `bug-1134` |
 | `cvar-precedence` | 1 | `bug-2083` |
@@ -2362,56 +5363,84 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `cvar_latch` | 2 | `bug-1177` `bug-2617` |
 | `cvar_systeminfo` | 1 | `bug-2177` |
 | `cvarfade` | 1 | `bug-2425` |
+| `cvars` | 1 | `bug-10450` |
+| `cwd` | 1 | `bug-10514` |
 | `cyberattack` | 2 | `bug-2668` `bug-2669` |
-| `damage` | 13 | `bug-055` `bug-1174` `bug-1323` `bug-135` `bug-1630` `bug-2441` `bug-2489` `bug-2497` `bug-2501` `bug-2574` `bug-2706` `bug-2712` `bug-899` |
+| `cycle` | 2 | `bug-3593` `bug-3844` |
+| `cycles` | 2 | `bug-10467` `bug-10785` |
+| `cylinder` | 1 | `bug-3573` |
+| `d7` | 1 | `bug-3168` |
+| `dailies` | 9 | `bug-10515` `bug-10516` `bug-10517` `bug-10518` `bug-10519` `bug-10520` `bug-10521` `bug-10569` `bug-10570` |
+| `damage` | 19 | `bug-055` `bug-10420` `bug-1174` `bug-1323` `bug-135` `bug-1630` `bug-2441` `bug-2489` `bug-2497` `bug-2501` `bug-2574` `bug-2706` `bug-2712` `bug-2928` `bug-3440` `bug-3923` `bug-3981` `bug-4032` `bug-899` |
 | `damage-falloff` | 1 | `bug-2095` |
 | `damage-feedback` | 1 | `bug-2092` |
 | `damage-indicator` | 2 | `bug-2003` `bug-2015` |
 | `damage-scale` | 1 | `bug-1950` |
+| `damage-trigger` | 1 | `bug-3188` |
 | `damageable` | 1 | `bug-961` |
+| `danger` | 1 | `bug-2920` |
 | `dangling-pointer` | 1 | `bug-767` |
 | `data` | 1 | `bug-1714` |
 | `data-exonerated` | 1 | `bug-1213` |
-| `data-fix` | 1 | `bug-1207` |
-| `data-loss` | 7 | `bug-1381` `bug-1404` `bug-1538` `bug-1935` `bug-2009` `bug-2413` `bug-buglog-dataloss` |
+| `data-file-split` | 1 | `bug-2762` |
+| `data-fix` | 2 | `bug-1207` `bug-2965` |
+| `data-loss` | 11 | `bug-10856` `bug-1381` `bug-1404` `bug-1538` `bug-1935` `bug-2009` `bug-2413` `bug-3616` `bug-3808` `bug-4037` `bug-buglog-dataloss` |
+| `data-loss-near-miss` | 1 | `bug-4216` |
 | `data-loss-scare` | 1 | `bug-1248` |
 | `day-night` | 1 | `bug-2156` |
 | `daylight` | 3 | `bug-2163` `bug-2165` `bug-2584` |
-| `dbno` | 53 | `bug-088` `bug-1065` `bug-1067` `bug-1204` `bug-1208` `bug-1217` `bug-1236` `bug-1238` `bug-1241` `bug-1246` `bug-1250` `bug-1265` `bug-1290` `bug-1293` `bug-133` `bug-1339` `bug-1347` `bug-1450` `bug-166` `bug-1660` `bug-1661` `bug-1668` `bug-1679` `bug-1680` `bug-1870` `bug-1930` `bug-2112` `bug-2123` `bug-2168` `bug-2169` `bug-2174` `bug-2175` `bug-2429` `bug-2432` `bug-2465` `bug-2539` `bug-2… |
+| `daylight-gap` | 1 | `bug-10630` |
+| `dbno` | 71 | `bug-088` `bug-10290` `bug-10291` `bug-1065` `bug-1067` `bug-10689` `bug-10819` `bug-10822` `bug-1204` `bug-1208` `bug-1217` `bug-1236` `bug-1238` `bug-1241` `bug-1246` `bug-1250` `bug-1265` `bug-1290` `bug-1293` `bug-133` `bug-1339` `bug-1347` `bug-1450` `bug-166` `bug-1660` `bug-1661` `bug-1668` `bug-1679` `bug-1680` `bug-1870` `bug-1930` `bug-2112` `bug-2123` `bug-2168` `bug-2169` `bug-2174` `… |
 | `dbno-recipe` | 1 | `bug-2607` |
+| `dbshotgun` | 35 | `bug-10650` `bug-3705` `bug-3706` `bug-3707` `bug-3708` `bug-3709` `bug-3710` `bug-3774` `bug-3775` `bug-3776` `bug-3777` `bug-3778` `bug-3779` `bug-3780` `bug-3781` `bug-3808` `bug-3809` `bug-3810` `bug-3811` `bug-3812` `bug-3813` `bug-3851` `bug-3852` `bug-3853` `bug-3854` `bug-3855` `bug-3856` `bug-3857` `bug-3858` `bug-3859` `bug-3860` `bug-3894` `bug-3895` `bug-3896` `bug-3898` |
 | `dday_camo_hel` | 1 | `bug-530` |
-| `dds` | 8 | `bug-1129` `bug-1225` `bug-2164` `bug-2183` `bug-2445` `bug-2533` `bug-gl2-decal-red-dds` `bug-m3l2-ground-seams` |
+| `dds` | 21 | `bug-10318` `bug-10367` `bug-1129` `bug-1225` `bug-2164` `bug-2183` `bug-2445` `bug-2533` `bug-2951` `bug-2953` `bug-2954` `bug-2984` `bug-2985` `bug-2991` `bug-2994` `bug-3111` `bug-3167` `bug-3678` `bug-3882` `bug-gl2-decal-red-dds` `bug-m3l2-ground-seams` |
+| `dds-first` | 1 | `bug-3110` |
 | `dds-shadowing` | 1 | `bug-2164` |
+| `dead-asset` | 1 | `bug-3205` |
 | `dead-assets` | 1 | `bug-2098` |
 | `dead-branch` | 2 | `bug-1147` `bug-1942` |
 | `dead-brush-shadowing` | 1 | `bug-955` |
+| `dead-button` | 1 | `bug-4157` |
 | `dead-code` | 11 | `bug-1174` `bug-1637` `bug-1688` `bug-1735` `bug-1739` `bug-1780` `bug-1975` `bug-2141` `bug-2178` `bug-2435` `bug-2572` |
 | `dead-code-path` | 1 | `bug-2371` |
 | `dead-compile-guard` | 1 | `bug-1179` |
 | `dead-content` | 1 | `bug-1596` |
-| `dead-control` | 1 | `bug-1993` |
+| `dead-control` | 2 | `bug-1993` `bug-3275` |
 | `dead-cvar` | 2 | `bug-1647` `bug-2128` |
+| `dead-end` | 1 | `bug-2826` |
+| `dead-feature` | 1 | `bug-3092` |
 | `dead-flag` | 2 | `bug-1746` `bug-1770` |
 | `dead-guard` | 4 | `bug-1643` `bug-1931` `bug-2039` `bug-2237` |
 | `dead-guard-sweep` | 1 | `bug-2044` |
 | `dead-read` | 1 | `bug-2042` |
+| `dead-setting` | 3 | `bug-3038` `bug-3099` `bug-3117` |
 | `dead-sound` | 4 | `bug-1477` `bug-1478` `bug-1486` `bug-1488` |
 | `dead-weight` | 1 | `bug-2097` |
 | `deadflag` | 1 | `bug-1975` |
-| `deadlock` | 4 | `bug-1450` `bug-1459` `bug-1732` `bug-1850` |
+| `deadlock` | 6 | `bug-1450` `bug-1459` `bug-1732` `bug-1850` `bug-2897` `bug-4188` |
 | `deadweight` | 1 | `bug-2224` |
-| `death-anim` | 1 | `bug-1965` |
+| `death` | 1 | `bug-3324` |
+| `death-anim` | 3 | `bug-1965` `bug-3132` `bug-3502` |
 | `death-battalion` | 1 | `bug-895` |
+| `death-cam` | 1 | `bug-3181` |
+| `death-camera` | 1 | `bug-10392` |
+| `death-drop` | 3 | `bug-10474` `bug-3305` `bug-3813` |
 | `death-notify` | 1 | `bug-1336` |
 | `death-only` | 1 | `bug-797` |
 | `death-path` | 1 | `bug-638` |
 | `death-rattle` | 1 | `bug-836` |
+| `death-spectate` | 1 | `bug-3305` |
 | `death-voices` | 1 | `bug-822` |
-| `deathvox` | 4 | `bug-1141` `bug-1517` `bug-2254` `bug-822` |
+| `deathanim` | 2 | `bug-10675` `bug-10678` |
+| `deaths` | 1 | `bug-2924` |
+| `deathvox` | 6 | `bug-1141` `bug-1517` `bug-2254` `bug-3386` `bug-4015` `bug-822` |
 | `deathvox-pattern` | 1 | `bug-836` |
 | `debounce-narrower-than-the-burst` | 1 | `bug-2067` |
-| `debrief` | 5 | `bug-553` `bug-622` `bug-788` `bug-818` `bug-848` |
-| `debug` | 4 | `bug-1311` `bug-2221` `bug-2238` `bug-t2l2-f5bind` |
+| `debrief` | 10 | `bug-10479` `bug-10480` `bug-3918` `bug-4004` `bug-4005` `bug-553` `bug-622` `bug-788` `bug-818` `bug-848` |
+| `debrief2` | 7 | `bug-10479` `bug-10480` `bug-10482` `bug-10492` `bug-10493` `bug-10494` `bug-10498` |
+| `debris` | 1 | `bug-10397` |
+| `debug` | 5 | `bug-1311` `bug-2221` `bug-2238` `bug-2860` `bug-t2l2-f5bind` |
 | `debug-bind` | 1 | `bug-098` |
 | `debug-flag` | 1 | `bug-2018` |
 | `debug-instrumentation` | 1 | `bug-776` |
@@ -2421,47 +5450,71 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `debug-scaffolding` | 1 | `bug-1166` |
 | `debug-text` | 3 | `bug-1777` `bug-1779` `bug-1780` |
 | `debugging` | 1 | `bug-911` |
-| `decal` | 6 | `bug-230` `bug-776` `bug-828` `bug-gl2-01` `bug-gl2-decal-red-dds` `bug-gl2-nextbundle2` |
-| `decals` | 2 | `bug-gl2-maxpolys` `bug-gl2-reddecals` |
+| `decal` | 13 | `bug-10662` `bug-10664` `bug-10666` `bug-10768` `bug-10841` `bug-230` `bug-4038` `bug-776` `bug-828` `bug-fx1025-7` `bug-gl2-01` `bug-gl2-decal-red-dds` `bug-gl2-nextbundle2` |
+| `decal-shadow` | 3 | `bug-3010` `bug-3011` `bug-3102` |
+| `decals` | 5 | `bug-3110` `bug-3111` `bug-3349` `bug-gl2-maxpolys` `bug-gl2-reddecals` |
 | `decap` | 7 | `bug-1889` `bug-1903` `bug-1906` `bug-1910` `bug-1914` `bug-1915` `bug-2017` |
 | `decap-absent-bug-892` | 1 | `bug-1142` |
 | `decap-revert` | 1 | `bug-892` |
-| `decapitation` | 5 | `bug-1875` `bug-1880` `bug-1883` `bug-861` `bug-866` |
+| `decapitation` | 6 | `bug-1875` `bug-1880` `bug-1883` `bug-3135` `bug-861` `bug-866` |
 | `decay` | 1 | `bug-1987` |
 | `decision` | 2 | `bug-2596` `bug-2614` |
 | `decision-s7` | 1 | `bug-2630` |
+| `declaration` | 1 | `bug-10355` |
+| `declaration-order` | 1 | `bug-3037` |
+| `declutter` | 1 | `bug-3426` |
 | `decoder` | 2 | `bug-600` `bug-601` |
 | `decompile` | 1 | `bug-021` |
-| `dedicated` | 16 | `bug-1664` `bug-1667` `bug-1681` `bug-1811` `bug-2036` `bug-2182` `bug-2397` `bug-2404` `bug-2412` `bug-2415` `bug-2416` `bug-2460` `bug-2585` `bug-2600` `bug-2671` `bug-330` |
+| `decoy-log` | 1 | `bug-3202` |
+| `dedicated` | 38 | `bug-10281` `bug-10298` `bug-10301` `bug-10575` `bug-10908` `bug-10911` `bug-10930` `bug-1664` `bug-1667` `bug-1681` `bug-1811` `bug-2036` `bug-2182` `bug-2397` `bug-2404` `bug-2412` `bug-2415` `bug-2416` `bug-2460` `bug-2585` `bug-2600` `bug-2671` `bug-2869` `bug-2928` `bug-3077` `bug-3195` `bug-3203` `bug-330` `bug-3321` `bug-3782` `bug-3784` `bug-3903` `bug-3909` `bug-3910` `bug-3913` `bug-391… |
 | `dedicated-developer` | 1 | `bug-2637` |
 | `dedicated-listen-parity` | 1 | `bug-2043` |
+| `dedicated-log` | 1 | `bug-2730` |
 | `dedicated-map` | 1 | `bug-1385` |
 | `dedicated-parity` | 3 | `bug-1670` `bug-2124` `bug-2127` |
-| `dedicated-server` | 1 | `bug-2715` |
+| `dedicated-server` | 12 | `bug-2715` `bug-2726` `bug-2727` `bug-2728` `bug-2729` `bug-2730` `bug-2731` `bug-2732` `bug-2733` `bug-2741` `bug-2750` `bug-3178` |
 | `dedup` | 2 | `bug-484` `bug-808` |
 | `deep-research` | 1 | `bug-2060` |
-| `default` | 1 | `bug-1155` |
+| `def_clear` | 1 | `bug-norway-1027-shoot-timeout` |
+| `def_seen` | 1 | `bug-10509` |
+| `default` | 4 | `bug-1155` `bug-2936` `bug-2942` `bug-3229` |
 | `default-change` | 1 | `bug-2110` |
+| `default-changed` | 1 | `bug-3611` |
 | `default-image` | 2 | `bug-754` `bug-756` |
+| `default-off` | 3 | `bug-3106` `bug-3148` `bug-3318` |
+| `default-on` | 4 | `bug-2968` `bug-2973` `bug-3523` `bug-3539` |
+| `default-path` | 3 | `bug-10745` `bug-10746` `bug-10840` |
 | `default-shader` | 1 | `bug-2423` |
 | `default-value` | 1 | `bug-1178` |
-| `defaults` | 3 | `bug-1231` `bug-1675` `bug-1678` |
+| `default-weapon` | 1 | `bug-2752` |
+| `defaults` | 8 | `bug-10450` `bug-1231` `bug-1675` `bug-1678` `bug-2776` `bug-3115` `bug-3142` `bug-4045` |
 | `defaults-divergence` | 1 | `bug-2615` |
+| `defect-sweep` | 16 | `bug-3089` `bug-3090` `bug-3091` `bug-3092` `bug-3093` `bug-3094` `bug-3095` `bug-3096` `bug-3097` `bug-3098` `bug-3099` `bug-3100` `bug-3101` `bug-3102` `bug-3103` `bug-3104` |
+| `defence` | 1 | `bug-4127` |
 | `defence-in-depth` | 1 | `bug-1814` |
+| `defend` | 1 | `bug-2890` |
+| `defend-zone` | 3 | `bug-4039` `bug-4431` `bug-4432` |
 | `defense-in-depth` | 1 | `bug-1065` |
-| `deferred` | 8 | `bug-1890` `bug-1896` `bug-2100` `bug-2596` `bug-2601` `bug-2609` `bug-2610` `bug-2612` |
+| `deferred` | 9 | `bug-1890` `bug-1896` `bug-2100` `bug-2596` `bug-2601` `bug-2609` `bug-2610` `bug-2612` `bug-2754` |
 | `deferred-deploy` | 4 | `bug-1578` `bug-1579` `bug-1580` `bug-1581` |
-| `deform` | 5 | `bug-2478` `bug-2520` `bug-2521` `bug-2538` `bug-gl2-autosprite2-swim` |
+| `define-order` | 1 | `bug-3256` |
+| `deform` | 6 | `bug-2478` `bug-2520` `bug-2521` `bug-2538` `bug-3244` `bug-gl2-autosprite2-swim` |
 | `degrees` | 1 | `bug-2660` |
 | `delegate_damage` | 1 | `bug-2682` |
 | `delivery` | 1 | `bug-595` |
 | `delta-angles` | 1 | `bug-2133` |
 | `delta_angles` | 1 | `bug-328` |
+| `demo` | 19 | `bug-10259` `bug-10260` `bug-10261` `bug-10262` `bug-10268` `bug-10272` `bug-10285` `bug-10298` `bug-10300` `bug-10301` `bug-10330` `bug-10342` `bug-10343` `bug-10423` `bug-10454` `bug-10540` `bug-10541` `bug-10542` `bug-10543` |
+| `demo-editor` | 57 | `bug-10259` `bug-10260` `bug-10261` `bug-10262` `bug-10263` `bug-10270` `bug-10271` `bug-10275` `bug-10282` `bug-10283` `bug-10284` `bug-10290` `bug-10291` `bug-10292` `bug-10294` `bug-10295` `bug-10296` `bug-10298` `bug-10309` `bug-10310` `bug-10311` `bug-10323` `bug-10326` `bug-10327` `bug-10328` `bug-10329` `bug-10330` `bug-10336` `bug-10337` `bug-10338` `bug-10339` `bug-10340` `bug-10341` `bu… |
+| `demo-mode` | 2 | `bug-10334` `bug-10351` |
+| `demo-parse` | 1 | `bug-10339` |
+| `demo_pov` | 1 | `bug-10322` |
 | `demolition` | 6 | `bug-2627` `bug-2645` `bug-2654` `bug-2655` `bug-2660` `bug-2694` |
 | `den_alarm_12a` | 1 | `bug-1808` |
+| `denied-list` | 1 | `bug-4210b` |
 | `density` | 1 | `bug-1016` |
 | `deny-revert` | 1 | `bug-758` |
-| `deploy` | 11 | `bug-089` `bug-1633` `bug-1634` `bug-1724` `bug-1796` `bug-1798` `bug-1893` `bug-1909` `bug-2145` `bug-2697` `bug-299` |
+| `deploy` | 31 | `bug-089` `bug-10907` `bug-10908` `bug-1633` `bug-1634` `bug-1724` `bug-1796` `bug-1798` `bug-1893` `bug-1909` `bug-2145` `bug-2697` `bug-2724` `bug-2741` `bug-2748` `bug-2759` `bug-2767` `bug-2772` `bug-2784` `bug-2789` `bug-2804` `bug-2816` `bug-2928` `bug-2940` `bug-2943` `bug-2961` `bug-299` `bug-3839` `bug-3846` `bug-3861` `bug-3877` |
 | `deploy-discipline` | 1 | `bug-930` |
 | `deploy-gap` | 1 | `bug-2100` |
 | `deploy-race` | 1 | `bug-307` |
@@ -2469,32 +5522,42 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `deployment` | 1 | `bug-1172` |
 | `deployment-verified` | 1 | `bug-777` |
 | `depot` | 1 | `bug-1003` |
+| `depth` | 5 | `bug-10728` `bug-10759` `bug-2757` `bug-2762` `bug-4391` |
+| `depth-fade` | 1 | `bug-2979` |
+| `depth-mask` | 1 | `bug-4217` |
 | `depth-precision` | 1 | `bug-1296` |
 | `depth-prepass` | 1 | `bug-gl2-invisible-live-char-depthprepass` |
 | `depth-reconstruction` | 1 | `bug-1132` |
 | `depth-scan-insufficient` | 1 | `bug-1069` |
 | `depth-test` | 3 | `bug-1144` `bug-gl2-forcepose-skips-composite-ally` `bug-gl2-invisible-live-char-depthprepass` |
 | `depthfill` | 1 | `bug-gl2-foliage-white` |
-| `depthhack` | 1 | `bug-108` |
+| `depthhack` | 3 | `bug-108` `bug-3609` `bug-4265` |
 | `depthprepass` | 4 | `bug-1209` `bug-1223` `bug-1224` `bug-gl2-foliage-white` |
 | `depthscan` | 2 | `bug-1559` `bug-2279` |
 | `depthscan-blind-spot` | 1 | `bug-2531` |
 | `derived-state` | 1 | `bug-1546` |
 | `description-mismatch` | 1 | `bug-1597` |
-| `design` | 8 | `bug-1422` `bug-1762` `bug-1820` `bug-1837` `bug-1901` `bug-2488` `bug-2503` `bug-311` |
+| `design` | 14 | `bug-1422` `bug-1762` `bug-1820` `bug-1837` `bug-1901` `bug-2488` `bug-2503` `bug-3083` `bug-3084` `bug-311` `bug-3139` `bug-3328` `bug-3903` `bug-4085` |
 | `design-call` | 1 | `bug-1738` |
 | `design-error` | 2 | `bug-1721` `bug-1829` |
 | `design-not-symptom` | 1 | `bug-2108` |
 | `design-reversal` | 1 | `bug-787` |
-| `despawn` | 2 | `bug-096` `bug-100` |
+| `design-rule` | 1 | `bug-3268` |
+| `desktop-reporter` | 1 | `bug-3277` |
+| `despawn` | 3 | `bug-096` `bug-100` `bug-4440` |
+| `destructibles` | 1 | `bug-2828` |
 | `desync` | 1 | `bug-591` |
 | `detachturretslot` | 3 | `bug-1367` `bug-1370` `bug-252` |
+| `detail` | 1 | `bug-4137` |
 | `detect` | 1 | `bug-597` |
 | `detectcoop` | 1 | `bug-592` |
+| `detection` | 4 | `bug-10859` `bug-2811` `bug-3536` `bug-4011` |
 | `detector-calibration` | 2 | `bug-1445` `bug-1446` |
 | `detector-win` | 3 | `bug-1449` `bug-1460` `bug-1469` |
-| `determinism` | 1 | `bug-2610` |
+| `determinism` | 7 | `bug-10835` `bug-2610` `bug-3074` `bug-3233` `bug-3235` `bug-3244` `bug-3245` |
 | `detonation` | 1 | `bug-1768` |
+| `detour` | 1 | `bug-2850` |
+| `dev` | 2 | `bug-3124` `bug-3359` |
 | `dev-config` | 1 | `bug-2239` |
 | `dev-cvar` | 1 | `bug-1840` |
 | `dev-gate` | 2 | `bug-1261` `bug-333` |
@@ -2502,152 +5565,209 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `dev-instrumentation` | 1 | `bug-1062` |
 | `dev-only` | 1 | `bug-2020` |
 | `dev-tool` | 1 | `bug-945` |
-| `developer` | 5 | `bug-1550` `bug-1666` `bug-2184` `bug-2245` `bug-2426` |
+| `dev-vs-player` | 1 | `bug-2952` |
+| `developer` | 6 | `bug-1550` `bug-1666` `bug-2184` `bug-2245` `bug-2426` `bug-2910` |
 | `developer-1-names-file` | 2 | `bug-739` `bug-750` |
 | `developer-cvar` | 1 | `bug-911` |
 | `developer-gate` | 2 | `bug-1807` `bug-2410` |
-| `developer-gated` | 1 | `bug-1953` |
+| `developer-gated` | 2 | `bug-1953` `bug-3019` |
+| `developer-test` | 1 | `bug-3190` |
 | `developer.scr` | 1 | `bug-484` |
 | `device-routing` | 2 | `bug-153` `bug-156` |
+| `df_weapon_no` | 1 | `bug-2732` |
 | `dfruk` | 1 | `bug-1203` |
 | `dfrus` | 1 | `bug-1203` |
 | `diagnosed-not-fixed` | 1 | `bug-2212` |
-| `diagnosis` | 7 | `bug-1050` `bug-153` `bug-156` `bug-1812` `bug-464` `bug-595` `bug-924` |
+| `diagnosis` | 9 | `bug-10419` `bug-1050` `bug-153` `bug-156` `bug-1812` `bug-2999` `bug-464` `bug-595` `bug-924` |
 | `diagnosis-closed` | 1 | `bug-1955` |
 | `diagnosis-complete` | 1 | `bug-2055` |
 | `diagnosis-open` | 1 | `bug-1953` |
-| `diagnostic` | 6 | `bug-165` `bug-229` `bug-2685` `bug-2692` `bug-898` `bug-gl2-invisible-friendly-actor-2nd` |
+| `diagnostic` | 8 | `bug-165` `bug-229` `bug-2685` `bug-2692` `bug-2730` `bug-3615` `bug-898` `bug-gl2-invisible-friendly-actor-2nd` |
 | `diagnostic-answered` | 1 | `bug-1472` |
-| `diagnostics` | 8 | `bug-1244` `bug-1645` `bug-1702` `bug-1883` `bug-1884` `bug-2438` `bug-2663` `bug-2665` |
+| `diagnostics` | 12 | `bug-1244` `bug-1645` `bug-1702` `bug-1883` `bug-1884` `bug-2438` `bug-2663` `bug-2665` `bug-2956` `bug-3077` `bug-3486` `bug-4092` |
 | `dial-back` | 2 | `bug-817` `bug-828` |
 | `dialog` | 3 | `bug-837` `bug-839` `bug-842` |
 | `dialog-channel` | 1 | `bug-1276` |
-| `dialogue` | 35 | `bug-1201` `bug-1202` `bug-1203` `bug-1276` `bug-1302` `bug-1330` `bug-1335` `bug-1340` `bug-1344` `bug-1350` `bug-1475` `bug-1486` `bug-1496` `bug-1516` `bug-1517` `bug-1807` `bug-2250` `bug-2296` `bug-2298` `bug-2299` `bug-2318` `bug-2336` `bug-2395` `bug-2427` `bug-2433` `bug-2434` `bug-2444` `bug-2449` `bug-2451` `bug-2474` `bug-2483` `bug-2490` `bug-2511` `bug-2529` `bug-2565` |
+| `dialogue` | 36 | `bug-1201` `bug-1202` `bug-1203` `bug-1276` `bug-1302` `bug-1330` `bug-1335` `bug-1340` `bug-1344` `bug-1350` `bug-1475` `bug-1486` `bug-1496` `bug-1516` `bug-1517` `bug-1807` `bug-2250` `bug-2296` `bug-2298` `bug-2299` `bug-2318` `bug-2336` `bug-2395` `bug-2427` `bug-2433` `bug-2434` `bug-2444` `bug-2449` `bug-2451` `bug-2474` `bug-2483` `bug-2490` `bug-2511` `bug-2529` `bug-2565` `bug-4270` |
+| `did-not-deliver` | 1 | `bug-3583` |
 | `did-not-fix` | 1 | `bug-2549` |
-| `difficulty` | 2 | `bug-1806` `bug-1855` |
+| `diegetic` | 1 | `bug-10442` |
+| `difficulty` | 3 | `bug-1806` `bug-1855` `bug-2791` |
 | `difflib` | 1 | `bug-2482` |
+| `digest-cache` | 1 | `bug-3251` |
 | `digit-strip` | 1 | `bug-2328` |
 | `dimensions` | 1 | `bug-144` |
+| `diopter` | 1 | `bug-10617` |
+| `dip` | 1 | `bug-3405` |
 | `direction` | 1 | `bug-1754` |
 | `direction-byte` | 1 | `bug-1143` |
 | `directional-speed` | 1 | `bug-2149` |
 | `director` | 1 | `bug-2174` |
 | `disable_ai` | 2 | `bug-123` `bug-1682` |
-| `disarm` | 1 | `bug-2661` |
+| `disarm` | 2 | `bug-2661` `bug-3051` |
 | `disarmed-actor` | 1 | `bug-2046` |
-| `disconnect` | 7 | `bug-1183` `bug-1254` `bug-1430` `bug-1433` `bug-1670` `bug-2573` `bug-2591` |
+| `disconnect` | 15 | `bug-10464` `bug-10481` `bug-10901` `bug-10902` `bug-10929` `bug-1183` `bug-1254` `bug-1430` `bug-1433` `bug-1670` `bug-2573` `bug-2591` `bug-3475` `bug-3480` `bug-3913` |
+| `disconnect_paths` | 1 | `bug-3210` |
 | `disconnected-menu` | 1 | `bug-1503` |
-| `discord` | 2 | `bug-1799` `bug-1804` |
+| `discord` | 7 | `bug-10514` `bug-1799` `bug-1804` `bug-2933` `bug-3114` `bug-3277` `bug-3278` |
 | `discoverability` | 1 | `bug-2720` |
 | `discriminating-fields` | 1 | `bug-2072` |
 | `disembark` | 1 | `bug-2252` |
-| `disguise` | 30 | `bug-1498` `bug-1533` `bug-1603` `bug-1604` `bug-1606` `bug-1615` `bug-1617` `bug-1624` `bug-1630` `bug-1638` `bug-1646` `bug-1651` `bug-1655` `bug-1657` `bug-1662` `bug-1686` `bug-1693` `bug-1700` `bug-1701` `bug-1701b` `bug-1703` `bug-1704` `bug-1714` `bug-1719` `bug-1720` `bug-1727` `bug-1737` `bug-2057` `bug-2178` `bug-880` |
+| `disguise` | 31 | `bug-1498` `bug-1533` `bug-1603` `bug-1604` `bug-1606` `bug-1615` `bug-1617` `bug-1624` `bug-1630` `bug-1638` `bug-1646` `bug-1651` `bug-1655` `bug-1657` `bug-1662` `bug-1686` `bug-1693` `bug-1700` `bug-1701` `bug-1701b` `bug-1703` `bug-1704` `bug-1714` `bug-1719` `bug-1720` `bug-1727` `bug-1737` `bug-2057` `bug-2178` `bug-3399` `bug-880` |
 | `disguise_range` | 1 | `bug-1721` |
+| `disk` | 3 | `bug-3753` `bug-3777` `bug-4216` |
+| `disk-space` | 4 | `bug-3744` `bug-3758` `bug-3761` `bug-4089` |
 | `dismemberment` | 3 | `bug-2231` `bug-861` `bug-866` |
 | `dismount` | 2 | `bug-1367` `bug-1370` |
 | `dispatcher` | 1 | `bug-2597` |
+| `display` | 6 | `bug-10551` `bug-10628` `bug-2776` `bug-2777` `bug-2778` `bug-3301` |
 | `display-mode` | 2 | `bug-754` `bug-756` |
 | `display-name` | 1 | `bug-1948` |
 | `display-name-vs-path` | 1 | `bug-1943` |
-| `distance` | 1 | `bug-1838` |
+| `display-queue` | 5 | `bug-10660` `bug-10666` `bug-10680` `bug-10682` `bug-10688` |
+| `display2` | 1 | `bug-3147` |
+| `distance` | 3 | `bug-10736` `bug-1838` `bug-3200` |
 | `distance-falloff` | 1 | `bug-2159` |
-| `distfade` | 1 | `bug-1300` |
+| `distfade` | 2 | `bug-1300` `bug-3139` |
 | `distraction` | 1 | `bug-1740` |
+| `dither` | 3 | `bug-2823` `bug-3083` `bug-3157` |
+| `divide-by-zero` | 1 | `bug-3473` |
 | `dizziness` | 2 | `bug-1941` `bug-1942` |
 | `dizzy` | 2 | `bug-1233` `bug-2358` |
-| `dlight` | 3 | `bug-1223` `bug-1408` `bug-2553` |
+| `dlight` | 7 | `bug-1223` `bug-1408` `bug-2553` `bug-2556` `bug-2946` `bug-2969` `bug-2970` |
+| `dlight-shadows` | 2 | `bug-2980` `bug-3009` |
+| `dll` | 2 | `bug-2975` `bug-fx1025-5` |
 | `dll-boundary` | 1 | `bug-931b` |
+| `dll-install` | 1 | `bug-3063` |
 | `dll-reload` | 1 | `bug-1146` |
 | `dll-unload` | 1 | `bug-2585` |
-| `dm-maps` | 1 | `bug-330` |
+| `dlopen` | 1 | `bug-10269` |
+| `dm` | 1 | `bug-2786` |
+| `dm-maps` | 2 | `bug-2736` `bug-330` |
+| `dm-primary-rule` | 1 | `bug-3505` |
 | `dm_main` | 4 | `bug-709` `bug-720` `bug-767` `bug-777` |
 | `dm_manager` | 3 | `bug-2681` `bug-2683` `bug-2700` |
 | `dm_playermodel` | 2 | `bug-801` `bug-803` |
 | `dmbox` | 1 | `bug-261` |
+| `dmflags` | 2 | `bug-2732` `bug-3269` |
+| `dmteam` | 2 | `bug-10608` `bug-10636` |
+| `do-not-ship` | 1 | `bug-3736` |
 | `doc-rot` | 1 | `bug-2256` |
-| `docgen` | 1 | `bug-1860` |
-| `docs` | 5 | `bug-1600` `bug-1860` `bug-2029` `bug-2089` `bug-2647` |
+| `docgen` | 2 | `bug-1860` `bug-4412` |
+| `docs` | 10 | `bug-1600` `bug-1860` `bug-2029` `bug-2089` `bug-2647` `bug-3136` `bug-3138` `bug-3248` `bug-3831` `bug-4037` |
 | `documentation` | 2 | `bug-1495` `bug-1805` |
 | `documented` | 1 | `bug-gl2-e2l2-briefing-npc-invisible` |
-| `dof` | 2 | `bug-1629` `bug-1699` |
-| `dog` | 2 | `bug-1476` `bug-1490` |
-| `domination` | 1 | `bug-2674` |
-| `done-button` | 1 | `bug-1923` |
+| `dof` | 4 | `bug-1629` `bug-1699` `bug-3067` `bug-4391` |
+| `dog` | 6 | `bug-1476` `bug-1490` `bug-3182` `bug-3183` `bug-3184` `bug-4433` |
+| `domination` | 4 | `bug-2674` `bug-2730` `bug-2731` `bug-2732` |
+| `done` | 1 | `bug-2816` |
+| `done-button` | 3 | `bug-1923` `bug-2784` `bug-3959` |
 | `dontdraw` | 3 | `bug-1417` `bug-2259` `bug-2423` |
-| `door` | 2 | `bug-1396` `bug-873` |
-| `doors` | 2 | `bug-1382` `bug-2702` |
-| `doorway` | 1 | `bug-621` |
-| `dormant` | 1 | `bug-2028` |
+| `door` | 8 | `bug-10456` `bug-10500` `bug-10502` `bug-10566` `bug-1396` `bug-3201` `bug-3612` `bug-873` |
+| `doors` | 12 | `bug-10927` `bug-1382` `bug-2702` `bug-2827` `bug-2828` `bug-2854` `bug-2855` `bug-2857` `bug-2859` `bug-3024` `bug-3042` `bug-3043` |
+| `doorway` | 6 | `bug-10408` `bug-2811` `bug-2912` `bug-3146` `bug-4038` `bug-621` |
+| `dormant` | 2 | `bug-2028` `bug-3530` |
 | `dormant-actors` | 1 | `bug-1143` |
 | `double-application` | 1 | `bug-327` |
+| `double-armed` | 1 | `bug-3341` |
 | `double-award` | 1 | `bug-1705` |
+| `double-barrel` | 1 | `bug-3845` |
 | `double-fire` | 2 | `bug-1340` `bug-818` |
-| `double-give` | 1 | `bug-2067` |
-| `double-init` | 1 | `bug-1877` |
+| `double-free` | 1 | `bug-2868` |
+| `double-give` | 2 | `bug-2067` `bug-3208` |
+| `double-init` | 3 | `bug-1877` `bug-2735` `bug-3107` |
+| `double-shadow` | 1 | `bug-3006` |
 | `double-thread` | 1 | `bug-1705` |
 | `douse` | 1 | `bug-1258` |
-| `download` | 1 | `bug-1805` |
-| `download-size` | 1 | `bug-2097` |
+| `download` | 2 | `bug-10320` `bug-1805` |
+| `download-funnel` | 1 | `bug-2734` |
+| `download-size` | 2 | `bug-2097` `bug-3901` |
+| `downpour` | 2 | `bug-3548` `bug-3881` |
 | `downstream` | 1 | `bug-1278` |
-| `dp28` | 1 | `bug-1899` |
+| `dp28` | 4 | `bug-1899` `bug-3364` `bug-3371` `bug-3676` |
+| `dpad` | 1 | `bug-4418` |
 | `draft` | 1 | `bug-424` |
 | `drag-rotate` | 1 | `bug-683` |
+| `draw` | 1 | `bug-10265` |
 | `draw-distance` | 1 | `bug-1125` |
 | `draw-level-guard` | 1 | `bug-777` |
+| `draw-order` | 4 | `bug-10496` `bug-10518` `bug-10828` `bug-10860` |
+| `draw_stretchpic` | 1 | `bug-3076` |
 | `drawbox` | 1 | `bug-gl2-introfade` |
-| `drawhud` | 2 | `bug-349` `bug-684` |
+| `drawhud` | 5 | `bug-10516` `bug-349` `bug-3543` `bug-3553` `bug-684` |
 | `drawsurf-sort-packing` | 1 | `bug-1136` |
 | `drawtrianglepic` | 1 | `bug-gl2-compass` |
-| `drift` | 1 | `bug-1678` |
+| `drawviewmodel` | 1 | `bug-3314` |
+| `drift` | 6 | `bug-10834` `bug-1678` `bug-2911` `bug-3012` `bug-3189` `bug-3792` |
+| `drift-check` | 1 | `bug-3246` |
 | `drip` | 1 | `bug-797` |
 | `drivenowait` | 1 | `bug-1266` |
-| `driver` | 1 | `bug-1968` |
+| `driver` | 4 | `bug-1968` `bug-3051` `bug-3052` `bug-3062` |
 | `droop` | 1 | `bug-2458` |
+| `drop` | 1 | `bug-4003` |
+| `dropdown` | 2 | `bug-2935` `bug-2941` |
 | `dropped-ask` | 1 | `bug-2345` |
 | `dropped-weapons` | 1 | `bug-926` |
-| `droptofloor` | 10 | `bug-1565` `bug-1784` `bug-1785` `bug-1882` `bug-2246` `bug-2255` `bug-2262` `bug-2264` `bug-2391` `bug-940` |
+| `dropped_item` | 1 | `bug-10474` |
+| `droptofloor` | 12 | `bug-1565` `bug-1784` `bug-1785` `bug-1882` `bug-2246` `bug-2255` `bug-2262` `bug-2264` `bug-2391` `bug-4392` `bug-4408` `bug-940` |
 | `droptofloor-silent-failure` | 1 | `bug-1787` |
 | `drowning` | 2 | `bug-2527` `bug-2528` |
+| `drum` | 5 | `bug-3389` `bug-3800` `bug-3866` `bug-3867` `bug-3868` |
+| `dry-gun` | 1 | `bug-3719` |
+| `dry-run` | 1 | `bug-3063` |
 | `dryfire` | 1 | `bug-2461` |
 | `dsa` | 1 | `bug-gl2-gore` |
-| `duck` | 11 | `bug-1979` `bug-2234` `bug-2298` `bug-2318` `bug-2319` `bug-2344` `bug-2369` `bug-2406` `bug-2454` `bug-2551` `bug-2573` |
+| `duck` | 13 | `bug-10459` `bug-1979` `bug-2234` `bug-2298` `bug-2318` `bug-2319` `bug-2344` `bug-2369` `bug-2406` `bug-2454` `bug-2551` `bug-2573` `bug-4444` |
 | `duckableglue` | 2 | `bug-052` `bug-055` |
 | `ducking` | 2 | `bug-2250` `bug-2276` |
 | `dud` | 1 | `bug-617` |
 | `dummy3` | 1 | `bug-2423` |
-| `duplicate` | 4 | `bug-1476` `bug-1598` `bug-1778` `bug-2316` |
+| `duplicate` | 6 | `bug-1476` `bug-1598` `bug-1778` `bug-2316` `bug-3087` `bug-3414` |
 | `duplicate-code` | 1 | `bug-1974` |
 | `duplicate-declaration` | 1 | `bug-2080` |
 | `duplicate-definition` | 1 | `bug-1188` |
 | `duplicate-entnum` | 1 | `bug-920` |
+| `duplicate-label` | 3 | `bug-10417` `bug-10440` `bug-4450` |
+| `duplicate-row` | 1 | `bug-3875` |
+| `duplicate-targetname` | 1 | `bug-10410` |
 | `duplicate-text` | 1 | `bug-534` |
-| `dust` | 1 | `bug-1206` |
+| `duplicate-work` | 1 | `bug-3735` |
+| `duplication` | 1 | `bug-3506` |
+| `dust` | 2 | `bug-1206` `bug-3323` |
+| `dust-storm` | 3 | `bug-2963` `bug-2973` `bug-3237` |
+| `duststorm` | 2 | `bug-2972` `bug-2989` |
 | `dwell` | 2 | `bug-1922` `bug-2295` |
 | `dwm` | 1 | `bug-1795` |
 | `dx10` | 1 | `bug-m3l2-ground-seams` |
-| `dxt1` | 2 | `bug-1295` `bug-2183` |
+| `dxgi` | 1 | `bug-3536` |
+| `dxt1` | 6 | `bug-1295` `bug-2183` `bug-2938` `bug-2984` `bug-2985` `bug-2994` |
+| `dxt5` | 1 | `bug-2953` |
 | `dynamic-ai` | 2 | `bug-1103` `bug-1104` |
 | `e-02` | 1 | `bug-885` |
 | `e-03` | 1 | `bug-885` |
 | `e-04` | 1 | `bug-874` |
-| `e1` | 1 | `bug-1657` |
-| `e1l1` | 5 | `bug-1499` `bug-1626` `bug-2186` `bug-2189` `bug-647` |
+| `e1` | 2 | `bug-1657` `bug-4179` |
+| `e1l1` | 17 | `bug-10595` `bug-1499` `bug-1626` `bug-2186` `bug-2189` `bug-2871` `bug-2888` `bug-2926` `bug-2956` `bug-2957` `bug-2963` `bug-2964` `bug-2965` `bug-2973` `bug-3065` `bug-3216` `bug-647` |
 | `e1l2` | 36 | `bug-2585` `bug-620` `bug-624` `bug-871` `bug-872` `bug-873` `bug-874` `bug-885` `bug-891` `bug-892` `bug-893` `bug-895` `bug-896` `bug-897` `bug-898` `bug-899` `bug-909` `bug-914` `bug-915` `bug-916` `bug-917` `bug-919` `bug-924` `bug-926` `bug-937b` `bug-938` `bug-942` `bug-944` `bug-946` `bug-947` `bug-948` `bug-949` `bug-950` `bug-951` `bug-952` `bug-956` |
-| `e1l3` | 4 | `bug-1474` `bug-2178` `bug-2189` `bug-880` |
-| `e1l4` | 1 | `bug-1625` |
-| `e2l1` | 37 | `bug-1251` `bug-1294` `bug-1295` `bug-1296` `bug-1297` `bug-1299` `bug-1300` `bug-1301` `bug-1302` `bug-1303` `bug-1305` `bug-1307` `bug-1308` `bug-1309` `bug-1310` `bug-1311` `bug-1319` `bug-1322` `bug-1323` `bug-1327` `bug-1328` `bug-1328b` `bug-1328c` `bug-1329` `bug-1330` `bug-1331` `bug-1332` `bug-1335` `bug-1336` `bug-1338` `bug-1340` `bug-1341` `bug-1344` `bug-1347` `bug-1348` `bug-1350` `… |
-| `e2l2` | 9 | `bug-1220` `bug-1343` `bug-1345` `bug-1349` `bug-1433` `bug-1803` `bug-gl2-e2l2-briefing-npc-invisible` `bug-gl2-e2l2-fog-verified-correct` `bug-gl2-foliage-white` |
+| `e1l3` | 6 | `bug-1474` `bug-2178` `bug-2189` `bug-3216` `bug-3399` `bug-880` |
+| `e1l4` | 6 | `bug-10576` `bug-10584` `bug-1625` `bug-2997` `bug-3003` `bug-3399` |
+| `e2l1` | 42 | `bug-1251` `bug-1294` `bug-1295` `bug-1296` `bug-1297` `bug-1299` `bug-1300` `bug-1301` `bug-1302` `bug-1303` `bug-1305` `bug-1307` `bug-1308` `bug-1309` `bug-1310` `bug-1311` `bug-1319` `bug-1322` `bug-1323` `bug-1327` `bug-1328` `bug-1328b` `bug-1328c` `bug-1329` `bug-1330` `bug-1331` `bug-1332` `bug-1335` `bug-1336` `bug-1338` `bug-1340` `bug-1341` `bug-1344` `bug-1347` `bug-1348` `bug-1350` `… |
+| `e2l2` | 10 | `bug-1220` `bug-1343` `bug-1345` `bug-1349` `bug-1433` `bug-1803` `bug-3202` `bug-gl2-e2l2-briefing-npc-invisible` `bug-gl2-e2l2-fog-verified-correct` `bug-gl2-foliage-white` |
 | `e2l3` | 7 | `bug-1259` `bug-1260` `bug-1266` `bug-1482` `bug-1483` `bug-1504` `bug-1626` |
 | `e3a873b4` | 1 | `bug-954` |
-| `e3l1` | 4 | `bug-1429` `bug-1431` `bug-1432` `bug-1625` |
-| `e3l2` | 4 | `bug-1212` `bug-1251` `bug-1252` `bug-1278` |
-| `e3l3` | 4 | `bug-1436` `bug-240` `bug-251` `bug-252` |
-| `e3l4` | 27 | `bug-1027` `bug-1258` `bug-1267` `bug-1361` `bug-1366` `bug-1367` `bug-1368` `bug-1369` `bug-1370` `bug-1371` `bug-1372` `bug-1373` `bug-1377` `bug-1379` `bug-1382` `bug-1383` `bug-1384` `bug-1385` `bug-1396` `bug-1398` `bug-1401` `bug-1405` `bug-1427` `bug-1435` `bug-1471` `bug-1480` `bug-1889` |
+| `e3l1` | 5 | `bug-1429` `bug-1431` `bug-1432` `bug-1625` `bug-2885` |
+| `e3l2` | 11 | `bug-1212` `bug-1251` `bug-1252` `bug-1278` `bug-2827` `bug-2830` `bug-2836` `bug-2857` `bug-2861` `bug-2863` `bug-2899` |
+| `e3l3` | 7 | `bug-1436` `bug-240` `bug-251` `bug-252` `bug-2834` `bug-2878` `bug-3543` |
+| `e3l4` | 30 | `bug-1027` `bug-10576` `bug-10584` `bug-1258` `bug-1267` `bug-1361` `bug-1366` `bug-1367` `bug-1368` `bug-1369` `bug-1370` `bug-1371` `bug-1372` `bug-1373` `bug-1377` `bug-1379` `bug-1382` `bug-1383` `bug-1384` `bug-1385` `bug-1396` `bug-1398` `bug-1401` `bug-1405` `bug-1427` `bug-1435` `bug-1471` `bug-1480` `bug-1889` `bug-3216` |
 | `e3l4_arena` | 1 | `bug-1426` |
+| `e4` | 1 | `bug-3327` |
+| `e5` | 1 | `bug-4196` |
+| `ea` | 32 | `bug-10661` `bug-10666` `bug-10667` `bug-10668` `bug-10677` `bug-10678` `bug-10679` `bug-10680` `bug-10681` `bug-10682` `bug-10683` `bug-10685` `bug-10686` `bug-10687` `bug-10688` `bug-10689` `bug-10690` `bug-10691` `bug-10692` `bug-10693` `bug-10694` `bug-10695` `bug-eap-aikills` `bug-eap-counters` `bug-eap-dbnames` `bug-eap-friendly` `bug-eap-longclip` `bug-eap-officerrestart` `bug-eap-ownernul… |
 | `ea-r1` | 1 | `bug-601` |
 | `ea-xa` | 1 | `bug-600` |
 | `ea-xas` | 1 | `bug-599` |
 | `eala` | 1 | `bug-1468` |
+| `eapolish` | 12 | `bug-eap-aikills` `bug-eap-counters` `bug-eap-dbnames` `bug-eap-friendly` `bug-eap-longclip` `bug-eap-officerrestart` `bug-eap-ownernull` `bug-eap-portclash` `bug-eap-ppshreload` `bug-eap-sobdark` `bug-eap-sobmeshes` `bug-eap-voices` |
 | `early-end` | 1 | `bug-1743` |
 | `early-out` | 1 | `bug-261` |
 | `early-return-hole` | 1 | `bug-2166` |
@@ -2655,52 +5775,79 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `easing-chain` | 1 | `bug-2152` |
 | `east` | 2 | `bug-1894` `bug-1900` |
 | `easter-egg` | 1 | `bug-1612` |
+| `eastgate` | 1 | `bug-10434` |
+| `edge-case` | 1 | `bug-2769` |
 | `edge-trigger` | 1 | `bug-2108` |
+| `edges` | 1 | `bug-3407` |
 | `edit` | 1 | `bug-450` |
+| `edited-many-times` | 1 | `bug-3663` |
+| `edited-more-than-twice` | 1 | `bug-3694` |
 | `editor-range` | 1 | `bug-1353` |
 | `ef_dead` | 1 | `bug-780` |
+| `ef_linkangles` | 2 | `bug-3210` `bug-3219` |
 | `ef_unarmed` | 3 | `bug-2049` `bug-2066` `bug-2067` |
 | `effects` | 4 | `bug-1294` `bug-2215` `bug-2217` `bug-2219` |
 | `efx` | 1 | `bug-2444` |
+| `eject` | 1 | `bug-3780` |
+| `elbow` | 1 | `bug-3446` |
+| `elevated-ledge` | 1 | `bug-2831` |
 | `elevated-severity` | 1 | `bug-1483` |
+| `elevator` | 5 | `bug-2862` `bug-2864` `bug-2866` `bug-2886` `bug-2912` |
 | `elimination-bridge` | 1 | `bug-2625` |
 | `emitter` | 3 | `bug-1303` `bug-2201` `bug-2504` |
-| `emitters` | 2 | `bug-1774` `bug-1781` |
+| `emitter-scale` | 1 | `bug-10397` |
+| `emitters` | 6 | `bug-1774` `bug-1781` `bug-3481` `bug-3491` `bug-3567` `bug-3568` |
 | `emote` | 3 | `bug-259` `bug-260` `bug-757` |
 | `emote_atease` | 4 | `bug-356` `bug-359` `bug-368` `bug-380` |
 | `emote_lobby_select` | 1 | `bug-382` |
+| `emotes` | 5 | `bug-10484` `bug-10485` `bug-10486` `bug-10487` `bug-10513` |
 | `empty-assignment` | 1 | `bug-1908` |
+| `empty-give` | 1 | `bug-3051` |
+| `empty-reload` | 1 | `bug-3719` |
 | `empty-set` | 1 | `bug-773` |
-| `enabledcvar` | 5 | `bug-587` `bug-589` `bug-593` `bug-709` `bug-736` |
-| `enableenemy` | 1 | `bug-2037` |
+| `enabledcvar` | 8 | `bug-10813` `bug-2774` `bug-4192` `bug-587` `bug-589` `bug-593` `bug-709` `bug-736` |
+| `enableenemy` | 2 | `bug-2037` `bug-3976` |
 | `enableenemy-bounce` | 1 | `bug-2024` |
 | `enablepain` | 1 | `bug-1212` |
 | `enablespawn` | 1 | `bug-2698` |
-| `encoding` | 3 | `bug-1227` `bug-1804` `bug-259` |
-| `end` | 1 | `bug-1497` |
+| `encoder-bias` | 2 | `bug-2953` `bug-2994` |
+| `encoding` | 4 | `bug-1227` `bug-1804` `bug-259` `bug-3904` |
+| `end` | 2 | `bug-10858` `bug-1497` |
+| `end-of-demo` | 1 | `bug-10262` |
+| `end-of-round` | 1 | `bug-2751` |
 | `end-return` | 1 | `bug-2603` |
 | `endianness` | 1 | `bug-601` |
 | `ending` | 3 | `bug-1750` `bug-1757` `bug-1762` |
 | `endspectator` | 1 | `bug-380` |
+| `enemies-remaining` | 1 | `bug-3485` |
+| `enemy-count` | 1 | `bug-3522` |
 | `enemy-only` | 1 | `bug-2111` |
 | `enemy-target` | 1 | `bug-1104` |
 | `energy-injection` | 1 | `bug-1981` |
+| `enfield` | 1 | `bug-3838` |
+| `engage-distance` | 1 | `bug-2989` |
+| `engagement` | 1 | `bug-2884` |
 | `engagement-distance` | 1 | `bug-2096` |
-| `engine` | 163 | `bug-059` `bug-073` `bug-074` `bug-1062` `bug-1136` `bug-1137` `bug-1163` `bug-1214` `bug-1217` `bug-1244` `bug-1265` `bug-1320` `bug-1321` `bug-1323` `bug-1324` `bug-1368` `bug-1371` `bug-1417` `bug-1478` `bug-1494` `bug-1495` `bug-1498` `bug-1514` `bug-1560` `bug-1561` `bug-1563` `bug-1565` `bug-1569` `bug-1570` `bug-1582` `bug-1622` `bug-1638` `bug-1640` `bug-1655` `bug-1657` `bug-1658` `bug-1… |
+| `engine` | 245 | `bug-059` `bug-073` `bug-074` `bug-10367` `bug-10443` `bug-10444` `bug-10446` `bug-10447` `bug-10459` `bug-10471` `bug-10475` `bug-10504` `bug-10520` `bug-10528` `bug-10537` `bug-10559` `bug-10564` `bug-10568` `bug-10575` `bug-10587` `bug-10596` `bug-1062` `bug-10638` `bug-10693` `bug-10747` `bug-10754` `bug-10760` `bug-10763` `bug-10801` `bug-10827` `bug-10862` `bug-10863` `bug-10869` `bug-10874… |
 | `engine-actor.cpp` | 1 | `bug-1212` |
 | `engine-already-covers` | 1 | `bug-1693` |
 | `engine-behavior` | 1 | `bug-052` |
 | `engine-behaviour` | 2 | `bug-1552` `bug-1651` |
+| `engine-bug` | 1 | `bug-10523` |
 | `engine-callback` | 1 | `bug-1616` |
+| `engine-command` | 1 | `bug-3430` |
 | `engine-event` | 2 | `bug-1374` `bug-1378` |
 | `engine-exe-only` | 1 | `bug-1186` |
 | `engine-field` | 1 | `bug-1719` |
 | `engine-flagged` | 1 | `bug-647` |
+| `engine-followup` | 2 | `bug-10849` `bug-4433` |
 | `engine-getter` | 1 | `bug-2601` |
 | `engine-guard` | 1 | `bug-1465` |
 | `engine-hook` | 3 | `bug-2597` `bug-2598` `bug-846` |
+| `engine-limit` | 1 | `bug-3905` |
 | `engine-limits` | 8 | `bug-1137` `bug-1192` `bug-1193` `bug-1194` `bug-1195` `bug-1196` `bug-1197` `bug-1198` |
 | `engine-limits-audit` | 2 | `bug-1168` `bug-1187` |
+| `engine-mod-skew` | 1 | `bug-10583` |
 | `engine-parity` | 2 | `bug-1639` `bug-1686` |
 | `engine-pending` | 1 | `bug-1586` |
 | `engine-quirk` | 1 | `bug-2319` |
@@ -2708,17 +5855,22 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `engine-rule` | 1 | `bug-2712` |
 | `engine-script-gap` | 1 | `bug-1839` |
 | `engine-semantics` | 2 | `bug-1620` `bug-2316` |
+| `engine-skew` | 1 | `bug-3423` |
 | `engine-source` | 1 | `bug-1682` |
 | `engine-verified` | 1 | `bug-822` |
 | `engine-veto` | 1 | `bug-1703` |
 | `engineers` | 1 | `bug-2466` |
+| `engrave` | 18 | `bug-10708` `bug-10709` `bug-10710` `bug-10714` `bug-10715` `bug-10716` `bug-10717` `bug-10719` `bug-10829` `bug-10830` `bug-10831` `bug-10837` `bug-10840` `bug-10856` `bug-10861` `bug-10886` `bug-10887` `bug-10906` |
 | `enigma` | 2 | `bug-1610` `bug-1611` |
 | `ensure_ascii` | 1 | `bug-1227` |
-| `entities` | 1 | `bug-2268` |
+| `enter` | 2 | `bug-3452` `bug-fx1025-3` |
+| `entities` | 2 | `bug-2268` `bug-2917` |
+| `entity` | 1 | `bug-2824` |
 | `entity-aliasing` | 1 | `bug-927` |
 | `entity-binding` | 1 | `bug-1632` |
 | `entity-budget` | 2 | `bug-1876` `bug-1975` |
 | `entity-comparison` | 1 | `bug-1660` |
+| `entity-decode` | 1 | `bug-10294` |
 | `entity-identification` | 1 | `bug-1832` |
 | `entity-key` | 1 | `bug-1555` |
 | `entity-leak` | 3 | `bug-1259` `bug-1419` `bug-2532` |
@@ -2727,6 +5879,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `entity-limit` | 1 | `bug-096` |
 | `entity-load` | 1 | `bug-866` |
 | `entity-lump` | 1 | `bug-429` |
+| `entity-number-shared` | 1 | `bug-3559` |
 | `entity-numbers` | 1 | `bug-2449` |
 | `entity-pool` | 8 | `bug-1167` `bug-2207` `bug-2283` `bug-2284` `bug-2285` `bug-2291` `bug-2293` `bug-926` |
 | `entity-pool-2048` | 1 | `bug-gl2-invisible-friendly-actor` |
@@ -2737,211 +5890,325 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `entitynum-world` | 1 | `bug-1396` |
 | `entitynumber-aliasing` | 1 | `bug-1167` |
 | `entitynumindexes` | 1 | `bug-gl2-invisible-friendly-actor-2nd` |
-| `entitystate` | 1 | `bug-1988` |
+| `entitystate` | 2 | `bug-1988` `bug-3422` |
+| `entry-command` | 1 | `bug-3554` |
 | `entry-edges` | 1 | `bug-309` |
 | `entry-guard` | 1 | `bug-1440` |
 | `entry-guard-vs-exit-guard` | 1 | `bug-2047` |
+| `entry-guard-vs-point-of-effect` | 1 | `bug-2976` |
+| `entry-test` | 1 | `bug-10331` |
 | `entry-vs-eviction` | 1 | `bug-2062` |
 | `enum-order` | 1 | `bug-2484` |
 | `env-mapped-shader` | 1 | `bug-936b` |
-| `envelope` | 1 | `bug-1987` |
-| `environment` | 2 | `bug-2182` `bug-2587` |
+| `envelope` | 3 | `bug-10425` `bug-1987` `bug-3718` |
+| `environment` | 3 | `bug-2182` `bug-2587` `bug-3878` |
 | `environmentmodel` | 1 | `bug-gl2-texgen` |
+| `envmap` | 1 | `bug-10314` |
+| `eol` | 4 | `bug-10775` `bug-3985` `bug-4134` `bug-4189` |
 | `epsilon` | 1 | `bug-1296` |
+| `equipped-marker` | 1 | `bug-4046` |
+| `erosion` | 1 | `bug-2833` |
 | `err_drop` | 2 | `bug-299` `bug-382` |
-| `err_fatal` | 1 | `bug-1582` |
+| `err_fatal` | 2 | `bug-1582` `bug-3137` |
 | `errand` | 1 | `bug-1742` |
 | `error-handling` | 4 | `bug-032` `bug-033` `bug-528` `bug-733` |
 | `error-spam` | 1 | `bug-2517` |
 | `error-storm` | 1 | `bug-1473` |
-| `esc` | 1 | `bug-588` |
+| `esc` | 2 | `bug-3329` `bug-588` |
 | `esc-menu` | 4 | `bug-709` `bug-720` `bug-767` `bug-777` |
 | `escalation` | 2 | `bug-1692` `bug-1722` |
-| `escort` | 2 | `bug-1049` `bug-1597` |
+| `escape` | 10 | `bug-10324` `bug-10522` `bug-10857` `bug-10881` `bug-3002` `bug-3377` `bug-3508` `bug-3808` `bug-3847` `bug-3858` |
+| `escapecommand` | 1 | `bug-4196` |
+| `escmenu` | 1 | `bug-10929` |
+| `escort` | 4 | `bug-10306` `bug-1049` `bug-1597` `bug-3916` |
 | `escort-npc` | 1 | `bug-gl2-invisible-friendly-actor` |
-| `esrgan` | 2 | `bug-1129` `bug-2533` |
+| `eshots` | 1 | `bug-3879` |
+| `esrgan` | 4 | `bug-1129` `bug-2533` `bug-3374` `bug-3375` |
 | `esrgan-artifacts` | 1 | `bug-1185` |
+| `european-assault` | 4 | `bug-10661` `bug-10743` `bug-10744` `bug-10802` |
 | `ev-getter` | 1 | `bug-2548` |
 | `ev_getter` | 1 | `bug-910` |
 | `ev_setter` | 3 | `bug-2205` `bug-2417` `bug-2608` |
 | `ev_stop` | 2 | `bug-1914` `bug-614` |
 | `evaluatestate` | 1 | `bug-379` |
 | `evasive-roll` | 1 | `bug-2127` |
+| `event-feed` | 4 | `bug-3426` `bug-3427` `bug-3519` `bug-3520` |
 | `event-name-collision` | 1 | `bug-2064` |
 | `event-registry` | 1 | `bug-961` |
 | `eviction` | 1 | `bug-2303` |
-| `exact-ammo` | 1 | `bug-913` |
+| `evidence` | 4 | `bug-3163` `bug-3165` `bug-3582` `bug-3618` |
+| `exact-ammo` | 2 | `bug-3305` `bug-913` |
 | `exact-equality` | 1 | `bug-2293` |
 | `exact-fit` | 1 | `bug-2634` |
 | `exception-storm` | 1 | `bug-914` |
-| `exe` | 10 | `bug-099` `bug-1556` `bug-2588` `bug-2589` `bug-2591` `bug-297` `bug-502` `bug-709` `bug-710` `bug-720` |
+| `exe` | 15 | `bug-099` `bug-1556` `bug-2588` `bug-2589` `bug-2591` `bug-2933` `bug-2941` `bug-297` `bug-2975` `bug-2981` `bug-3538` `bug-502` `bug-709` `bug-710` `bug-720` |
 | `exe+cgame+game` | 1 | `bug-929` |
 | `exe-only` | 1 | `bug-1582` |
 | `exe-ship` | 5 | `bug-2128` `bug-2344` `bug-2355` `bug-2360` `bug-2369` |
+| `exec` | 1 | `bug-3791` |
 | `exec-order` | 7 | `bug-1698` `bug-1699` `bug-1884` `bug-2018` `bug-2093` `bug-2172` `bug-710` |
 | `exec-vs-variable` | 1 | `bug-1760` |
-| `exec-vs-waitthread` | 1 | `bug-2185` |
+| `exec-vs-waitthread` | 2 | `bug-2185` `bug-4090` |
 | `exhaustion` | 1 | `bug-926` |
-| `existence-check` | 1 | `bug-2021` |
-| `exit` | 1 | `bug-1761` |
+| `existence-check` | 2 | `bug-2021` `bug-3410` |
+| `exit` | 2 | `bug-10388` `bug-1761` |
 | `exit-code` | 1 | `bug-1909` |
 | `exit-guard-vs-effect-site` | 1 | `bug-2065` |
 | `expectation-4` | 1 | `bug-1652` |
 | `expectation-7` | 1 | `bug-1652` |
-| `exploder` | 2 | `bug-1270` `bug-2719` |
-| `exploit` | 2 | `bug-2642` `bug-2658` |
-| `explosion` | 2 | `bug-1586` `bug-846` |
+| `experiment` | 1 | `bug-10651` |
+| `exploder` | 8 | `bug-1270` `bug-2719` `bug-2723` `bug-2834` `bug-2836` `bug-2839` `bug-2844` `bug-2901` |
+| `exploit` | 3 | `bug-2642` `bug-2658` `bug-3356` |
+| `explore` | 1 | `bug-2805` |
+| `explosion` | 7 | `bug-10525` `bug-10565` `bug-1586` `bug-3130` `bug-3133` `bug-846` `bug-fx1025-6` |
 | `export-vs-save` | 1 | `bug-1381` |
+| `export_stock` | 1 | `bug-10536` |
 | `exportchain` | 2 | `bug-759` `bug-772` |
 | `exportlocks` | 1 | `bug-787` |
+| `extension` | 1 | `bug-10322` |
 | `extension-mismatch` | 1 | `bug-481` |
+| `extern-c` | 1 | `bug-10299` |
 | `extract-and-patch` | 1 | `bug-1294` |
 | `extraction` | 1 | `bug-599` |
 | `extraction-region` | 1 | `bug-1009` |
-| `eye-height` | 1 | `bug-1784` |
+| `eye-alignment` | 1 | `bug-3207` |
+| `eye-angles` | 1 | `bug-10877` |
+| `eye-height` | 2 | `bug-1784` `bug-3504` |
+| `eye-position` | 1 | `bug-2877` |
+| `eyecup` | 1 | `bug-10624` |
+| `eyehide` | 1 | `bug-10625` |
+| `eyes-bone` | 1 | `bug-2963` |
+| `f1-menu` | 2 | `bug-10370` `bug-10371` |
+| `f10` | 5 | `bug-10285` `bug-10296` `bug-10297` `bug-10338` `bug-10342` |
 | `f3-deploy` | 1 | `bug-378` |
+| `f7` | 3 | `bug-3080` `bug-3162` `bug-3198` |
+| `f9` | 3 | `bug-10298` `bug-10300` `bug-10540` |
 | `fa` | 1 | `bug-1932` |
-| `face` | 1 | `bug-1874` |
+| `face` | 2 | `bug-10880` `bug-1874` |
 | `face-shots` | 1 | `bug-905` |
 | `face-spatter` | 1 | `bug-817` |
 | `faces` | 1 | `bug-1873` |
+| `facesign` | 1 | `bug-3127` |
 | `facewrap` | 1 | `bug-936b` |
 | `facfont-20` | 1 | `bug-font-bleed` |
-| `facing` | 1 | `bug-2466` |
+| `facing` | 3 | `bug-10413` `bug-10511` `bug-2466` |
 | `faction` | 1 | `bug-2661` |
 | `factions` | 2 | `bug-1346` `bug-1351` |
-| `fade` | 5 | `bug-2155` `bug-2308` `bug-2443` `bug-2593` `bug-gl2-introfade` |
+| `fade` | 7 | `bug-2155` `bug-2308` `bug-2443` `bug-2593` `bug-3427` `bug-3950` `bug-gl2-introfade` |
 | `fadein` | 2 | `bug-255` `bug-gl2-introfade` |
 | `fail-closed` | 2 | `bug-759` `bug-772` |
 | `fail-locked` | 1 | `bug-682` |
 | `fail-open` | 1 | `bug-1595` |
-| `failsafe` | 8 | `bug-1251` `bug-1336` `bug-1361` `bug-1366` `bug-1537` `bug-2060` `bug-2302` `bug-2498` |
+| `failed-approach` | 2 | `bug-10866` `bug-3568` |
+| `failsafe` | 13 | `bug-1251` `bug-1336` `bug-1361` `bug-1366` `bug-1537` `bug-2060` `bug-2302` `bug-2498` `bug-2805` `bug-2814` `bug-3478` `bug-4431` `bug-4432` |
+| `failure` | 1 | `bug-3472` |
 | `failure-path` | 1 | `bug-1736` |
 | `fairness` | 1 | `bug-1810` |
-| `fall-damage` | 2 | `bug-1347` `bug-940` |
+| `fall-damage` | 3 | `bug-1347` `bug-3181` `bug-940` |
+| `fall-through` | 1 | `bug-2747` |
 | `fall-through-switch` | 1 | `bug-1266` |
+| `fallback` | 4 | `bug-2765` `bug-3020` `bug-3151` `bug-3510` |
+| `fallback-prefix` | 1 | `bug-3886` |
 | `fallingangleadjust` | 1 | `bug-923` |
 | `falloff` | 1 | `bug-1282` |
-| `false-alarm` | 1 | `bug-1830` |
+| `fallthrough` | 1 | `bug-10572` |
+| `false-alarm` | 5 | `bug-10836` `bug-1830` `bug-2750` `bug-3541` `bug-3851` |
 | `false-attribution` | 1 | `bug-1492` |
 | `false-blocker` | 1 | `bug-2398` |
 | `false-completion` | 2 | `bug-1557` `bug-2252` |
 | `false-confirmation` | 1 | `bug-2400` |
+| `false-defect` | 1 | `bug-3516` |
+| `false-fail` | 2 | `bug-3255` `bug-3412` |
+| `false-finding` | 2 | `bug-3034` `bug-3641` |
 | `false-green` | 1 | `bug-2114` |
 | `false-lead` | 1 | `bug-1246` |
-| `false-negative` | 8 | `bug-1064` `bug-1066` `bug-1068` `bug-1564` `bug-1610` `bug-2396` `bug-2406` `bug-2410` |
+| `false-negative` | 10 | `bug-1064` `bug-1066` `bug-1068` `bug-1564` `bug-1610` `bug-2396` `bug-2406` `bug-2410` `bug-3033` `bug-3507` |
 | `false-negative-check` | 1 | `bug-2081` |
-| `false-positive` | 18 | `bug-1221` `bug-1222` `bug-1290` `bug-1329` `bug-1445` `bug-1496` `bug-1523` `bug-1559` `bug-1601` `bug-1673` `bug-1994` `bug-2102` `bug-2240` `bug-2421` `bug-2422` `bug-2427` `bug-2428` `bug-2582` |
+| `false-pass` | 3 | `bug-3253` `bug-3878` `bug-4151` |
+| `false-positive` | 29 | `bug-10280` `bug-10775` `bug-10808` `bug-10815` `bug-1221` `bug-1222` `bug-1290` `bug-1329` `bug-1445` `bug-1496` `bug-1523` `bug-1559` `bug-1601` `bug-1673` `bug-1994` `bug-2102` `bug-2240` `bug-2421` `bug-2422` `bug-2427` `bug-2428` `bug-2582` `bug-2995` `bug-3046` `bug-3049` `bug-3325` `bug-3410` `bug-3547` `bug-3685` |
 | `false-premise` | 1 | `bug-2129` |
 | `false-segfault` | 1 | `bug-021` |
 | `false-soft-lock` | 1 | `bug-1549` |
 | `false-terrain-hypothesis` | 1 | `bug-2103` |
+| `false-trigger` | 1 | `bug-2825` |
+| `fan` | 4 | `bug-10499` `bug-10501` `bug-4182` `bug-4423` |
 | `far-cascade` | 1 | `bug-2721` |
+| `far-plane` | 1 | `bug-10751` |
+| `farbattle` | 1 | `bug-2773` |
 | `farplane` | 4 | `bug-1132` `bug-1847` `bug-gl2-e2l2-fog-verified-correct` `bug-gl2-fog` |
+| `farplane_color` | 1 | `bug-3106` |
 | `farr-clamped` | 1 | `bug-2096` |
 | `fastfail` | 1 | `bug-2131` |
-| `fbo` | 1 | `bug-gl2-viewmodel-over-menu` |
+| `fatal` | 4 | `bug-2971` `bug-3179` `bug-3180` `bug-3326` |
+| `fatal-startup` | 1 | `bug-3252` |
+| `favourites` | 1 | `bug-10447` |
+| `fbo` | 2 | `bug-4390` `bug-gl2-viewmodel-over-menu` |
+| `fbx` | 1 | `bug-10671` |
 | `feasibility` | 1 | `bug-1599` |
-| `feature` | 79 | `bug-1291` `bug-1309` `bug-1322` `bug-1378` `bug-1508` `bug-1622` `bug-1623` `bug-1824` `bug-1870` `bug-1871` `bug-1872` `bug-1874` `bug-1875` `bug-1881` `bug-1904` `bug-2095` `bug-2099` `bug-2132` `bug-2153` `bug-2156` `bug-2161` `bug-2170` `bug-2208` `bug-2213` `bug-2214` `bug-2231` `bug-2232` `bug-2235` `bug-2306` `bug-2337` `bug-2338` `bug-2340` `bug-2342` `bug-2343` `bug-2345` `bug-2361` `bu… |
+| `feather` | 1 | `bug-2987` |
+| `feature` | 105 | `bug-10305` `bug-10326` `bug-10341` `bug-10357` `bug-10441` `bug-1291` `bug-1309` `bug-1322` `bug-1378` `bug-1508` `bug-1622` `bug-1623` `bug-1824` `bug-1870` `bug-1871` `bug-1872` `bug-1874` `bug-1875` `bug-1881` `bug-1904` `bug-2095` `bug-2099` `bug-2132` `bug-2153` `bug-2156` `bug-2161` `bug-2170` `bug-2208` `bug-2213` `bug-2214` `bug-2231` `bug-2232` `bug-2235` `bug-2306` `bug-2337` `bug-2338… |
 | `feature-batch` | 1 | `bug-2120` |
 | `feature-disabled` | 1 | `bug-2135` |
-| `feedback` | 3 | `bug-1840` `bug-2015` `bug-2526` |
+| `feature-gap` | 1 | `bug-3278` |
+| `features.md` | 1 | `bug-4037` |
+| `feed` | 13 | `bug-10411` `bug-10457` `bug-3464` `bug-3507` `bug-3527` `bug-3542` `bug-3543` `bug-3553` `bug-3636` `bug-3952` `bug-4006` `bug-4007` `bug-4097` |
+| `feedback` | 4 | `bug-1840` `bug-2015` `bug-2526` `bug-2798` |
 | `feedback-loop` | 2 | `bug-1132` `bug-1984` |
-| `feel` | 16 | `bug-1843` `bug-1848` `bug-1856` `bug-1992` `bug-2003` `bug-2004` `bug-2005` `bug-2006` `bug-2007` `bug-2010` `bug-2014` `bug-2092` `bug-2204` `bug-2492` `bug-2502` `bug-2554` |
-| `feel-budget` | 2 | `bug-2016` `bug-2142` |
+| `feel` | 18 | `bug-10305` `bug-1843` `bug-1848` `bug-1856` `bug-1992` `bug-2003` `bug-2004` `bug-2005` `bug-2006` `bug-2007` `bug-2010` `bug-2014` `bug-2092` `bug-2204` `bug-2492` `bug-2502` `bug-2554` `bug-3262` |
+| `feel-budget` | 3 | `bug-2016` `bug-2142` `bug-3263` |
 | `feel-rig` | 1 | `bug-1106` |
 | `feelers` | 1 | `bug-2714` |
-| `fence` | 3 | `bug-1820` `bug-1822` `bug-949` |
-| `ffmpeg` | 2 | `bug-2342` `bug-599` |
-| `fg42` | 4 | `bug-481` `bug-484` `bug-495` `bug-666` |
-| `fgame` | 17 | `bug-1217` `bug-135` `bug-164` `bug-1974` `bug-1988` `bug-2221` `bug-2560` `bug-2566` `bug-2568` `bug-2574` `bug-2620` `bug-2695` `bug-614` `bug-615` `bug-617` `bug-619` `bug-623` |
-| `fidelity` | 2 | `bug-1016` `bug-2644` |
+| `fence` | 4 | `bug-10422` `bug-1820` `bug-1822` `bug-949` |
+| `fencepost` | 2 | `bug-2893` `bug-2903` |
+| `ffmpeg` | 5 | `bug-10334` `bug-10677` `bug-10743` `bug-2342` `bug-599` |
+| `fg42` | 18 | `bug-10899` `bug-3364` `bug-3673` `bug-3769` `bug-3770` `bug-3773` `bug-3824` `bug-3825` `bug-3828` `bug-3830` `bug-3832` `bug-4133` `bug-4143` `bug-4261` `bug-481` `bug-484` `bug-495` `bug-666` |
+| `fg42-irons` | 3 | `bug-3769` `bug-3771` `bug-3772` |
+| `fg42hd` | 14 | `bug-10609` `bug-10610` `bug-10611` `bug-10617` `bug-10618` `bug-10619` `bug-10620` `bug-10621` `bug-10624` `bug-10625` `bug-10626` `bug-10627` `bug-10629` `bug-10630` |
+| `fgame` | 38 | `bug-10877` `bug-1217` `bug-135` `bug-164` `bug-1974` `bug-1988` `bug-2221` `bug-2560` `bug-2566` `bug-2568` `bug-2574` `bug-2620` `bug-2695` `bug-2947` `bug-2948` `bug-2955` `bug-2956` `bug-2957` `bug-2958` `bug-2959` `bug-2964` `bug-3095` `bug-3362` `bug-3370` `bug-3388` `bug-3393` `bug-3400` `bug-3422` `bug-3520` `bug-3526` `bug-3851` `bug-3852` `bug-3906` `bug-614` `bug-615` `bug-617` `bug-61… |
+| `fidelity` | 4 | `bug-1016` `bug-2644` `bug-eap-counters` `bug-eap-dbnames` |
+| `field` | 1 | `bug-10716` |
 | `field-name` | 1 | `bug-1362` |
+| `field-report` | 1 | `bug-2908` |
 | `field-settings` | 3 | `bug-1993` `bug-2578` `bug-2582` |
+| `fieldsettings` | 1 | `bug-10775` |
 | `fifth-attempt` | 1 | `bug-1915` |
+| `file-lock` | 1 | `bug-2750` |
 | `file-wide` | 1 | `bug-1283` |
+| `files` | 1 | `bug-10297` |
+| `film` | 4 | `bug-10593` `bug-10691` `bug-10692` `bug-3526` |
 | `film-grain` | 1 | `bug-1158` |
-| `filter` | 2 | `bug-2580` `bug-597` |
+| `film-room` | 3 | `bug-10320` `bug-10321` `bug-10342` |
+| `filmroom` | 1 | `bug-10540` |
+| `films` | 1 | `bug-10743` |
+| `filter` | 3 | `bug-10378` `bug-2580` `bug-597` |
 | `filter-reuse` | 1 | `bug-1687` |
 | `filter-too-narrow` | 1 | `bug-2267` |
 | `fin-cfg` | 1 | `bug-1927` |
-| `finale` | 1 | `bug-1858` |
+| `finair` | 7 | `bug-10420` `bug-10421` `bug-10422` `bug-10424` `bug-10425` `bug-10432` `bug-10433` |
+| `finale` | 28 | `bug-10293` `bug-10331` `bug-10332` `bug-10333` `bug-10345` `bug-10346` `bug-10349` `bug-10397` `bug-10399` `bug-10404` `bug-10412` `bug-10415` `bug-10417` `bug-10418` `bug-10506` `bug-10523` `bug-10545` `bug-10566` `bug-1858` `bug-4408` `bug-4409` `bug-4410` `bug-4411` `bug-4438` `bug-4439` `bug-4440` `bug-4441` `bug-norway-1027-booms-chain` |
+| `fincine` | 1 | `bug-norway-1027-fincine-harness` |
+| `finding` | 2 | `bug-3030` `bug-3064` |
 | `finding-corrected-by-user` | 1 | `bug-2054` |
 | `findtrigger` | 1 | `bug-1483` |
+| `fingerprint` | 1 | `bug-3455` |
 | `fingers` | 3 | `bug-2010` `bug-2013` `bug-2070` |
-| `finish` | 2 | `bug-1919` `bug-1923` |
+| `finish` | 11 | `bug-10317` `bug-1919` `bug-1923` `bug-2770` `bug-2775` `bug-2777` `bug-3809` `bug-3920` `bug-4131` `bug-4144` `bug-4434` |
 | `finish-deny` | 1 | `bug-1933` |
 | `finish-leak` | 1 | `bug-1934` |
 | `finish-preview` | 1 | `bug-1927` |
 | `finish-strip` | 1 | `bug-1918` |
 | `finishedanimation_anim` | 1 | `bug-2419` |
-| `finishes` | 1 | `bug-2241` |
+| `finishes` | 16 | `bug-10530` `bug-10532` `bug-10553` `bug-10588` `bug-10620` `bug-10912` `bug-2241` `bug-2765` `bug-2793` `bug-3189` `bug-3763` `bug-3764` `bug-3787` `bug-3831` `bug-3880` `bug-4142` |
+| `finishes2` | 13 | `bug-10662` `bug-10663` `bug-10664` `bug-10665` `bug-10666` `bug-10698` `bug-10699` `bug-10700` `bug-10701` `bug-10707` `bug-10724` `bug-10740` `bug-10746` |
+| `finprevs` | 1 | `bug-4434` |
 | `finresolve` | 1 | `bug-1928` |
-| `fire` | 3 | `bug-1755` `bug-1775` `bug-2504` |
-| `fire-rate` | 1 | `bug-2125` |
-| `firedelay` | 1 | `bug-648` |
+| `fire` | 9 | `bug-1755` `bug-1775` `bug-2504` `bug-2773` `bug-3481` `bug-3775` `bug-4124` `bug-4141` `bug-scopes1025-fire-hip-snap` |
+| `fire-rate` | 2 | `bug-10547` `bug-2125` |
+| `fire_empty` | 2 | `bug-3818` `bug-4262` |
+| `firedelay` | 4 | `bug-3604` `bug-3629` `bug-3638` `bug-648` |
 | `fires` | 4 | `bug-2213` `bug-2313` `bug-2532` `bug-2536` |
+| `firing-hand` | 1 | `bug-3586` |
 | `firing-line` | 1 | `bug-2305` |
 | `first-boot` | 1 | `bug-1128` |
-| `first-person` | 7 | `bug-1238` `bug-2080` `bug-2081` `bug-2562` `bug-2569` `bug-316` `bug-647` |
-| `first-wins` | 2 | `bug-2387` `bug-2401` |
+| `first-install` | 2 | `bug-3471` `bug-3472` |
+| `first-person` | 8 | `bug-1238` `bug-2080` `bug-2081` `bug-2562` `bug-2569` `bug-316` `bug-3362` `bug-647` |
+| `first-person-weapon` | 1 | `bug-3609` |
+| `first-wins` | 3 | `bug-2387` `bug-2401` `bug-3087` |
+| `fit-table` | 1 | `bug-10597` |
 | `fit-tune` | 1 | `bug-786` |
 | `fitter` | 1 | `bug-1003` |
+| `fitunbind` | 1 | `bug-3299` |
 | `five-fixes` | 1 | `bug-1467` |
+| `fix` | 3 | `bug-3003` `bug-3004` `bug-3008` |
 | `fix-exposed-by-fix` | 1 | `bug-1573` |
-| `fixed` | 60 | `bug-1028` `bug-1473` `bug-1474` `bug-1479` `bug-1480` `bug-1481` `bug-1482` `bug-1484` `bug-1485` `bug-1486` `bug-1488` `bug-1489` `bug-1490` `bug-1491` `bug-1492` `bug-1493` `bug-1494` `bug-1498` `bug-1499` `bug-1500` `bug-1501` `bug-1502` `bug-1503` `bug-1504` `bug-1508` `bug-1664` `bug-1667` `bug-1669` `bug-1670` `bug-1671` `bug-1672` `bug-1673` `bug-1675` `bug-1681` `bug-1682` `bug-1683` `bu… |
+| `fix-methodology` | 1 | `bug-3735` |
+| `fix_vo_pools` | 1 | `bug-3160` |
+| `fixed` | 79 | `bug-1028` `bug-10400` `bug-1473` `bug-1474` `bug-1479` `bug-1480` `bug-1481` `bug-1482` `bug-1484` `bug-1485` `bug-1486` `bug-1488` `bug-1489` `bug-1490` `bug-1491` `bug-1492` `bug-1493` `bug-1494` `bug-1498` `bug-1499` `bug-1500` `bug-1501` `bug-1502` `bug-1503` `bug-1504` `bug-1508` `bug-1664` `bug-1667` `bug-1669` `bug-1670` `bug-1671` `bug-1672` `bug-1673` `bug-1675` `bug-1681` `bug-1682` `b… |
 | `fixed-2026-09-08` | 1 | `bug-2442` |
 | `fixed-a-different-real-bug` | 1 | `bug-2048` |
+| `fixed-awaiting-ship` | 3 | `bug-3913` `bug-3914` `bug-3916` |
+| `fixed-in-source` | 1 | `bug-3170` |
+| `fixed-on-branch` | 1 | `bug-3984` |
+| `fixed-unmerged` | 2 | `bug-3552` `bug-3558` |
+| `fixedtime` | 1 | `bug-3457` |
 | `fixedturret` | 2 | `bug-1581` `bug-942` |
-| `fixer` | 1 | `bug-2531` |
+| `fixer` | 2 | `bug-2531` `bug-4145` |
+| `fixes-pak` | 16 | `bug-10483` `bug-3814` `bug-3819` `bug-3820` `bug-3885` `bug-3890` `bug-3895` `bug-3975` `bug-4035` `bug-4124` `bug-4149` `bug-4165` `bug-4171` `bug-4172` `bug-4191` `bug-4398` |
 | `fixrendercommandlist` | 2 | `bug-1136` `bug-1139` |
-| `fl_immobile` | 1 | `bug-379` |
+| `fl_immobile` | 2 | `bug-3324` `bug-379` |
 | `flag` | 1 | `bug-2628` |
 | `flags-dict` | 1 | `bug-318` |
 | `flags-vs-property` | 1 | `bug-2042` |
-| `flak` | 5 | `bug-1301` `bug-1581` `bug-1863` `bug-2087` `bug-t2l2-flak` |
+| `flak` | 7 | `bug-1301` `bug-1581` `bug-1863` `bug-2087` `bug-3476` `bug-4123` `bug-t2l2-flak` |
 | `flak88` | 7 | `bug-116` `bug-1307` `bug-1548` `bug-1549` `bug-1552` `bug-1553` `bug-1555` |
 | `flakvierling` | 1 | `bug-1581` |
 | `flaky` | 1 | `bug-2421` |
 | `flank` | 3 | `bug-2398` `bug-2473` `bug-2691` |
 | `flank-metric` | 1 | `bug-1106` |
 | `flanks` | 1 | `bug-2220` |
+| `flap` | 1 | `bug-3244` |
+| `flares` | 7 | `bug-2999` `bug-3008` `bug-3050` `bug-3068` `bug-3072` `bug-3073` `bug-3091` |
 | `flashnode1` | 1 | `bug-092` |
-| `flchatter` | 7 | `bug-1203` `bug-1276` `bug-775` `bug-837` `bug-839` `bug-842` `bug-taunt-intro` |
+| `flat-look` | 1 | `bug-3892` |
+| `flchatter` | 9 | `bug-1203` `bug-1276` `bug-3385` `bug-3387` `bug-775` `bug-837` `bug-839` `bug-842` `bug-taunt-intro` |
 | `flesh-gate` | 1 | `bug-795` |
-| `flicker` | 4 | `bug-2049` `bug-2066` `bug-2067` `bug-230` |
-| `flip` | 2 | `bug-2129` `bug-2718` |
+| `flicker` | 5 | `bug-2049` `bug-2066` `bug-2067` `bug-230` `bug-2905` |
+| `flip` | 4 | `bug-2129` `bug-2718` `bug-2745` `bug-3347` |
 | `flip-timing` | 1 | `bug-2123` |
 | `flip-window` | 2 | `bug-2125` `bug-2126` |
+| `flipbook` | 1 | `bug-fx1025-1` |
 | `float` | 3 | `bug-302` `bug-380` `bug-923` |
 | `float-cast` | 1 | `bug-1951` |
+| `float-compare-deadband` | 1 | `bug-2963` |
+| `floating` | 4 | `bug-10725` `bug-10767` `bug-4408` `bug-4409` |
 | `floating-items` | 1 | `bug-939` |
-| `floor` | 1 | `bug-2557` |
+| `floating-object` | 1 | `bug-10438` |
+| `flood` | 1 | `bug-3909` |
+| `flood-protect` | 1 | `bug-3905` |
+| `floor` | 3 | `bug-10449` `bug-2557` `bug-4032` |
+| `floor-audit` | 1 | `bug-4129` |
 | `floor-sheets` | 1 | `bug-958` |
 | `floorcrawl` | 2 | `bug-1945` `bug-1956` |
-| `fluidity` | 1 | `bug-2120` |
-| `fog` | 15 | `bug-1132` `bug-1196` `bug-1296` `bug-1297` `bug-1299` `bug-1304` `bug-1343` `bug-1345` `bug-1349` `bug-1352` `bug-1353` `bug-2186` `bug-2583` `bug-gl2-e2l2-fog-verified-correct` `bug-gl2-fog` |
+| `flpolish` | 21 | `bug-10845` `bug-10846` `bug-10847` `bug-10848` `bug-10849` `bug-10850` `bug-10851` `bug-10862` `bug-10863` `bug-10864` `bug-10865` `bug-10866` `bug-10888` `bug-10889` `bug-10890` `bug-10891` `bug-10892` `bug-10893` `bug-10923` `bug-10924` `bug-10925` |
+| `fluidity` | 3 | `bug-2120` `bug-3393` `bug-3398` |
+| `flush` | 1 | `bug-10272` |
+| `focus` | 4 | `bug-10735` `bug-10738` `bug-10906` `bug-3112` |
+| `focus-steal` | 1 | `bug-10758` |
+| `focus-theft` | 3 | `bug-3147` `bug-3149` `bug-3154` |
+| `fog` | 36 | `bug-10385` `bug-10396` `bug-10458` `bug-10885` `bug-1132` `bug-1196` `bug-1296` `bug-1297` `bug-1299` `bug-1304` `bug-1343` `bug-1345` `bug-1349` `bug-1352` `bug-1353` `bug-2186` `bug-2583` `bug-2922` `bug-2963` `bug-2973` `bug-2989` `bug-3084` `bug-3106` `bug-3139` `bug-3141` `bug-3145` `bug-3170` `bug-3212` `bug-3222` `bug-3237` `bug-3454` `bug-3515` `bug-3548` `bug-3551` `bug-gl2-e2l2-fog-ver… |
+| `fog-beam` | 2 | `bug-2977` `bug-2979` |
+| `fog-lod` | 2 | `bug-3182` `bug-3185` |
 | `fog-parity` | 1 | `bug-1148` |
-| `fogmode` | 3 | `bug-1262` `bug-1538` `bug-1542` |
+| `fogmode` | 5 | `bug-1262` `bug-1538` `bug-1542` `bug-2963` `bug-2973` |
 | `fold` | 1 | `bug-325` |
 | `fold-grace` | 1 | `bug-326` |
 | `foley` | 2 | `bug-2001` `bug-2464` |
-| `foliage` | 6 | `bug-1298` `bug-1300` `bug-2596` `bug-2721` `bug-gl2-foliage` `bug-gl2-foliage-white` |
+| `foliage` | 15 | `bug-10622` `bug-10750` `bug-10847` `bug-1298` `bug-1300` `bug-2596` `bug-2721` `bug-3139` `bug-3163` `bug-3164` `bug-3165` `bug-3224` `bug-3344` `bug-gl2-foliage` `bug-gl2-foliage-white` |
+| `follow` | 2 | `bug-10377` `bug-10386` |
+| `follow-cam` | 1 | `bug-10400` |
 | `follow-up` | 1 | `bug-1743` |
-| `font` | 2 | `bug-1181` `bug-628` |
-| `fonts` | 8 | `bug-1124` `bug-1127` `bug-1129b` `bug-1130` `bug-1182` `bug-1185` `bug-1195` `bug-font-bleed` |
+| `font` | 11 | `bug-10444` `bug-10519` `bug-10527` `bug-10832` `bug-1181` `bug-3287` `bug-3289` `bug-3918` `bug-3951` `bug-4193` `bug-628` |
+| `font-metrics` | 1 | `bug-4044` |
+| `fonts` | 11 | `bug-1124` `bug-1127` `bug-1129b` `bug-1130` `bug-1182` `bug-1185` `bug-1195` `bug-2940` `bug-2981` `bug-3326` `bug-font-bleed` |
+| `foot-skate` | 1 | `bug-10391` |
 | `footgun` | 1 | `bug-2229` |
+| `footprints` | 3 | `bug-3349` `bug-3350` `bug-3351` |
 | `footstep-style` | 1 | `bug-2566` |
 | `footsteps` | 1 | `bug-1325` |
 | `force-arena` | 5 | `bug-2639` `bug-2668` `bug-2669` `bug-2670` `bug-2672` |
 | `force-attack-latch` | 2 | `bug-1640` `bug-1647` |
 | `force-pose` | 1 | `bug-gl2-forcepose-skips-composite-ally` |
 | `force-pose-interaction` | 1 | `bug-gl2-invisible-live-char-depthprepass` |
+| `force32bit` | 1 | `bug-2813` |
 | `forcealltriggers` | 4 | `bug-1452` `bug-1463` `bug-1494` `bug-1499` |
 | `forceattackplayer` | 1 | `bug-1704` |
+| `forcedrophealth` | 1 | `bug-3187` |
 | `forcefire` | 1 | `bug-1464` |
-| `forcesubtitle` | 1 | `bug-1697` |
+| `forcesubtitle` | 2 | `bug-1697` `bug-3098` |
 | `forcetorsostate` | 3 | `bug-1836` `bug-368` `bug-370` |
+| `foreground` | 1 | `bug-3147` |
+| `foreground-rights` | 1 | `bug-3149` |
+| `format` | 1 | `bug-10661` |
 | `forward` | 1 | `bug-1304` |
 | `forward-removal-loop` | 1 | `bug-767` |
 | `fossil` | 1 | `bug-2171` |
@@ -2955,52 +6222,90 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `four-binaries` | 1 | `bug-1864` |
 | `four-doors` | 1 | `bug-1465` |
 | `fourth-attempt` | 2 | `bug-1767` `bug-1914` |
-| `fov` | 4 | `bug-073` `bug-074` `bug-2690` `bug-316` |
+| `fov` | 11 | `bug-073` `bug-074` `bug-10428` `bug-10596` `bug-2690` `bug-316` `bug-3225` `bug-3503` `bug-3512` `bug-3513` `bug-3537` |
+| `fps` | 3 | `bug-10613` `bug-10690` `bug-3384` |
+| `fps-cap` | 1 | `bug-3343` |
 | `fps-tik` | 1 | `bug-2081` |
-| `fps_anims` | 3 | `bug-072` `bug-106` `bug-107` |
+| `fps_anims` | 6 | `bug-072` `bug-106` `bug-107` `bug-3463` `bug-3723` `bug-3815` |
+| `fraglimit` | 1 | `bug-10909` |
+| `fragment` | 1 | `bug-3905` |
+| `fragmentation` | 2 | `bug-3910` `bug-3912` |
+| `frame` | 2 | `bug-10666` `bug-4139` |
 | `frame-command` | 6 | `bug-1301` `bug-1887` `bug-1900` `bug-2280` `bug-2395` `bug-2408` |
-| `frame-commands` | 3 | `bug-1912` `bug-315` `bug-324` |
+| `frame-commands` | 4 | `bug-1912` `bug-315` `bug-324` `bug-3790` |
+| `frame-generation` | 8 | `bug-3496` `bug-3559` `bug-3561` `bug-3571` `bug-3609` `bug-3610` `bug-3611` `bug-3612` |
+| `frame-limiter` | 2 | `bug-3494` `bug-3911` |
 | `frame-mismatch` | 1 | `bug-2086` |
-| `frame-order` | 1 | `bug-1250` |
-| `frame-rate` | 1 | `bug-2535` |
+| `frame-order` | 2 | `bug-1250` `bug-3554` |
+| `frame-rate` | 2 | `bug-2535` `bug-3558` |
 | `framedefer` | 2 | `bug-865` `bug-896` |
+| `framegen` | 1 | `bug-3535` |
 | `framerate-dependence` | 1 | `bug-2139` |
+| `frametime` | 2 | `bug-10323` `bug-3372` |
 | `framework` | 2 | `bug-1430` `bug-2643` |
-| `framing` | 2 | `bug-2308` `bug-594` |
+| `framing` | 7 | `bug-10597` `bug-10715` `bug-10771` `bug-2308` `bug-4140` `bug-4424` `bug-594` |
+| `free-camera` | 1 | `bug-10344` |
+| `free-look` | 1 | `bug-10465` |
+| `free-roam` | 1 | `bug-10587` |
 | `free-starters` | 1 | `bug-1902` |
-| `freecam` | 9 | `bug-1991` `bug-2053` `bug-2128` `bug-297` `bug-303` `bug-317` `bug-321` `bug-325` `bug-328` |
+| `free_tag` | 1 | `bug-3599` |
+| `freecam` | 17 | `bug-10259` `bug-10260` `bug-10270` `bug-10275` `bug-10290` `bug-10541` `bug-10542` `bug-10543` `bug-1991` `bug-2053` `bug-2128` `bug-297` `bug-303` `bug-317` `bug-321` `bug-325` `bug-328` |
 | `freecam-only` | 1 | `bug-2053` |
 | `freepathnode` | 1 | `bug-1563` |
-| `freeze` | 1 | `bug-2715` |
-| `freezecontrols` | 4 | `bug-1286` `bug-1289` `bug-356` `bug-367` |
+| `freeze` | 3 | `bug-10446` `bug-2715` `bug-4123` |
+| `freeze_prep` | 1 | `bug-3044` |
+| `freezecontrols` | 6 | `bug-1286` `bug-1289` `bug-3050` `bug-356` `bug-367` `bug-4094` |
 | `freezeplayer` | 1 | `bug-370` |
-| `freezetag` | 4 | `bug-2607` `bug-2608` `bug-2644` `bug-2650` |
+| `freezetag` | 9 | `bug-2607` `bug-2608` `bug-2644` `bug-2650` `bug-2730` `bug-2731` `bug-2732` `bug-2782` `bug-2786` |
 | `french` | 1 | `bug-1288` |
+| `frequency` | 1 | `bug-3237` |
+| `fresh-homepath` | 1 | `bug-3153` |
 | `fresh-name` | 1 | `bug-922` |
+| `fresnel` | 1 | `bug-3407` |
 | `friction` | 1 | `bug-2103` |
+| `friendly` | 1 | `bug-eap-friendly` |
 | `friendly-ai` | 1 | `bug-gl2-invisible-friendly-actor` |
-| `friendly-fire` | 5 | `bug-1513` `bug-1562` `bug-2574` `bug-721` `bug-885` |
+| `friendly-fire` | 10 | `bug-1513` `bug-1562` `bug-2574` `bug-2929` `bug-3309` `bug-3322` `bug-3360` `bug-3416` `bug-721` `bug-885` |
 | `friendly-node` | 1 | `bug-122` |
 | `friendly-protection` | 1 | `bug-135` |
-| `frontline` | 4 | `bug-2271` `bug-599` `bug-600` `bug-601` |
+| `friendly.scr` | 1 | `bug-10659` |
+| `friendlyinlineoffire` | 2 | `bug-10523` `bug-10564` |
+| `front-sight` | 1 | `bug-10629` |
+| `frontend-gate` | 1 | `bug-3009` |
+| `frontline` | 66 | `bug-10599` `bug-10600` `bug-10601` `bug-10602` `bug-10603` `bug-10604` `bug-10605` `bug-10606` `bug-10612` `bug-10613` `bug-10615` `bug-10622` `bug-10623` `bug-10631` `bug-10632` `bug-10633` `bug-10634` `bug-10642` `bug-10643` `bug-10644` `bug-10645` `bug-10657` `bug-10658` `bug-10659` `bug-10660` `bug-10667` `bug-10675` `bug-10676` `bug-10677` `bug-10678` `bug-10679` `bug-10682` `bug-10683` `bu… |
 | `frost` | 1 | `bug-1158` |
+| `frozen` | 1 | `bug-3827` |
+| `frozen-files` | 1 | `bug-3807` |
 | `frustum` | 2 | `bug-2475` `bug-2480` |
 | `fs-index` | 1 | `bug-1428` |
 | `fs-shadowing` | 1 | `bug-960` |
 | `fs_homepath` | 1 | `bug-2413` |
+| `fs_write_content` | 1 | `bug-3339` |
+| `fsr` | 1 | `bug-3020` |
+| `fuel_tanks` | 1 | `bug-10293` |
+| `full-auto` | 1 | `bug-10547` |
 | `full-health` | 1 | `bug-1263` |
+| `full-roster` | 1 | `bug-2762` |
+| `fullbright` | 1 | `bug-4274` |
 | `fullscreen` | 1 | `bug-1864` |
 | `func_beam` | 3 | `bug-1415` `bug-1424` `bug-2635` |
 | `func_door` | 1 | `bug-1494` |
 | `func_ladder` | 1 | `bug-1839` |
+| `func_rain` | 1 | `bug-3466` |
+| `func_window` | 1 | `bug-10418` |
 | `function-call` | 1 | `bug-348` |
-| `fx` | 26 | `bug-1176` `bug-1190` `bug-1200` `bug-1301` `bug-1303` `bug-1755` `bug-1774` `bug-1775` `bug-1776` `bug-1781` `bug-1892` `bug-2195` `bug-2201` `bug-2210` `bug-2213` `bug-2303` `bug-2338` `bug-2339` `bug-2343` `bug-2345` `bug-2359` `bug-2447` `bug-2477` `bug-2479` `bug-2532` `bug-2536` |
+| `fx` | 31 | `bug-10524` `bug-10565` `bug-1176` `bug-1190` `bug-1200` `bug-1301` `bug-1303` `bug-1755` `bug-1774` `bug-1775` `bug-1776` `bug-1781` `bug-1892` `bug-2195` `bug-2201` `bug-2210` `bug-2213` `bug-2303` `bug-2338` `bug-2339` `bug-2343` `bug-2345` `bug-2359` `bug-2447` `bug-2477` `bug-2479` `bug-2532` `bug-2536` `bug-2773` `bug-3452` `bug-3501` |
 | `fx-idiom-on-actor` | 1 | `bug-1485` |
 | `fx-placement` | 1 | `bug-2257` |
 | `fx-scale` | 1 | `bug-2258` |
+| `fx_1025` | 7 | `bug-fx1025-1` `bug-fx1025-2` `bug-fx1025-3` `bug-fx1025-4` `bug-fx1025-5` `bug-fx1025-6` `bug-fx1025-7` |
 | `fxaa` | 1 | `bug-1150` |
-| `g43` | 1 | `bug-1943` |
+| `g-drive` | 2 | `bug-3761` `bug-4089` |
+| `g43` | 9 | `bug-10302` `bug-1943` `bug-3711` `bug-3712` `bug-3713` `bug-3714` `bug-3716` `bug-3717` `bug-4260` |
+| `g43-irons` | 9 | `bug-3739` `bug-3740` `bug-3741` `bug-3743` `bug-3765` `bug-3767` `bug-3789` `bug-3794` `bug-3888` |
 | `g43sniper` | 2 | `bug-1898` `bug-648` |
+| `g6` | 1 | `bug-3178` |
+| `g_ai` | 5 | `bug-3182` `bug-3183` `bug-3449` `bug-3461` `bug-3479` |
 | `g_corpseimpulse` | 2 | `bug-1974` `bug-923` |
 | `g_droppeditemlife` | 1 | `bug-926` |
 | `g_getentity` | 1 | `bug-1255` |
@@ -3010,143 +6315,219 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `g_phys` | 1 | `bug-1915` |
 | `g_physics_toss` | 1 | `bug-923` |
 | `g_statefile` | 1 | `bug-359` |
+| `g_subtitle` | 1 | `bug-10411` |
 | `gags` | 3 | `bug-1023` `bug-1257` `bug-1584` |
 | `gain-clamp` | 1 | `bug-099` |
-| `game-dll` | 1 | `bug-1551` |
+| `game` | 1 | `bug-3148` |
+| `game-dll` | 3 | `bug-1551` `bug-3846` `bug-3861` |
 | `game-vars` | 1 | `bug-1802` |
-| `game.dll` | 21 | `bug-055` `bug-1062` `bug-1378` `bug-1622` `bug-1634` `bug-1635` `bug-1807` `bug-1813` `bug-1975` `bug-2464` `bug-2597` `bug-2620` `bug-379` `bug-380` `bug-463` `bug-719` `bug-724` `bug-846` `bug-861` `bug-866` `bug-892` |
+| `game.dll` | 27 | `bug-055` `bug-10520` `bug-1062` `bug-1378` `bug-1622` `bug-1634` `bug-1635` `bug-1807` `bug-1813` `bug-1975` `bug-2464` `bug-2597` `bug-2620` `bug-2866` `bug-2868` `bug-2961` `bug-3429` `bug-379` `bug-380` `bug-3839` `bug-463` `bug-719` `bug-724` `bug-846` `bug-861` `bug-866` `bug-892` |
+| `gamepad` | 16 | `bug-10635` `bug-10646` `bug-4077` `bug-4135` `bug-4161` `bug-4162` `bug-4169` `bug-4170` `bug-4171` `bug-4172` `bug-4175` `bug-4178` `bug-4180` `bug-4186` `bug-4187-fix` |
+| `gameplay` | 1 | `bug-3730` |
+| `gameplay-change` | 2 | `bug-3592` `bug-3613` |
 | `gameplay-critical` | 3 | `bug-gl2-forcepose-skips-composite-ally` `bug-gl2-invisible-live-char-depthprepass` `bug-gl2-invisible-live-enemies-prepass-pose` |
-| `gamescript` | 1 | `bug-533` |
-| `gamespy` | 1 | `bug-2624` |
-| `gametype` | 4 | `bug-1491` `bug-1492` `bug-2621` `bug-2636` |
+| `gamescript` | 2 | `bug-2868` `bug-533` |
+| `gamespy` | 3 | `bug-10446` `bug-2624` `bug-2726` |
+| `gamestate` | 2 | `bug-10271` `bug-3912` |
+| `gametype` | 7 | `bug-10907` `bug-10916` `bug-1491` `bug-1492` `bug-2621` `bug-2636` `bug-2782` |
 | `gametype-gate` | 2 | `bug-1258` `bug-1806` |
 | `gametype-hack` | 1 | `bug-1498` |
-| `garand` | 3 | `bug-092` `bug-095` `bug-2304` |
-| `gate` | 12 | `bug-1405` `bug-1578` `bug-1608` `bug-2278` `bug-2295` `bug-2296` `bug-2335` `bug-2481` `bug-2498` `bug-2579` `bug-2581` `bug-2707` |
+| `garand` | 4 | `bug-092` `bug-095` `bug-2304` `bug-3842` |
+| `garbled-text` | 1 | `bug-10670` |
+| `gate` | 31 | `bug-10325` `bug-10558` `bug-10740` `bug-10775` `bug-10781` `bug-10813` `bug-10815` `bug-10840` `bug-10912` `bug-1405` `bug-1578` `bug-1608` `bug-2278` `bug-2295` `bug-2296` `bug-2335` `bug-2481` `bug-2498` `bug-2579` `bug-2581` `bug-2707` `bug-2746` `bug-2842` `bug-2857` `bug-3099` `bug-3247` `bug-3330` `bug-3375` `bug-4167` `bug-4275` `bug-4397` |
+| `gate-added` | 1 | `bug-3901` |
+| `gate-artefact` | 1 | `bug-2985` |
 | `gate-blind-spot` | 1 | `bug-2328` |
 | `gate-caught` | 1 | `bug-1947` |
 | `gate-design` | 2 | `bug-1450` `bug-1456` |
+| `gate-fail` | 1 | `bug-3171` |
 | `gate-on-both` | 1 | `bug-2127` |
 | `gate-too-narrow` | 1 | `bug-gl2-forcepose-skips-composite-ally` |
+| `gated-client-side` | 1 | `bug-3919` |
 | `gated-debug` | 1 | `bug-898` |
 | `gated-output` | 1 | `bug-911` |
-| `gates` | 1 | `bug-1978` |
+| `gates` | 11 | `bug-1978` `bug-2846` `bug-2847` `bug-2852` `bug-2987` `bug-2991` `bug-3109` `bug-4136` `bug-4192` `bug-4437` `bug-4439` |
 | `gating` | 5 | `bug-1384` `bug-1589` `bug-1857` `bug-539` `bug-789` |
+| `gdigrab` | 1 | `bug-10423` |
 | `ge128` | 1 | `bug-gl2-foliage-white` |
-| `gen_loadout` | 1 | `bug-2577` |
+| `gear` | 1 | `bug-3325` |
+| `gen_axis_nohat` | 1 | `bug-2757` |
+| `gen_fire` | 1 | `bug-3443` |
+| `gen_fixes_pak` | 1 | `bug-4164` |
+| `gen_loadout` | 3 | `bug-2577` `bug-3920` `bug-4434` |
 | `gen_loadout3` | 7 | `bug-755` `bug-759` `bug-772` `bug-786` `bug-787` `bug-801` `bug-803` |
-| `gen_menu_graphics` | 1 | `bug-2615` |
+| `gen_menu_fieldsettings` | 1 | `bug-3899` |
+| `gen_menu_graphics` | 2 | `bug-2615` `bug-4159` |
+| `gen_menu_theme` | 1 | `bug-4181` |
+| `gen_mp_armory` | 6 | `bug-2752` `bug-2753` `bug-2755` `bug-2756` `bug-2757` `bug-3985` |
+| `gen_navheat` | 1 | `bug-2867` |
 | `gen_push_maps` | 1 | `bug-2698` |
 | `gen_service_record` | 3 | `bug-1510` `bug-1511` `bug-1519` |
+| `gen_sight_alias` | 1 | `bug-10745` |
 | `gen_skinbase` | 1 | `bug-1929` |
+| `gen_skins` | 6 | `bug-10582` `bug-10588` `bug-10589` `bug-10611` `bug-10620` `bug-10746` |
+| `gen_sky_hd` | 2 | `bug-2987` `bug-3027` |
 | `gen_sr4` | 1 | `bug-534` |
+| `gender` | 2 | `bug-3386` `bug-3400` |
 | `general-fix` | 1 | `bug-2352` |
 | `general-rule` | 1 | `bug-1575` |
-| `generated` | 5 | `bug-2019` `bug-2114` `bug-2173` `bug-2461` `bug-2615` |
+| `generated` | 9 | `bug-10647` `bug-2019` `bug-2114` `bug-2173` `bug-2461` `bug-2615` `bug-3001` `bug-3012` `bug-3484` |
 | `generated-content` | 1 | `bug-2080` |
 | `generated-docs` | 1 | `bug-2078` |
 | `generated-edit` | 1 | `bug-2107` |
+| `generated-files` | 2 | `bug-3765` `bug-3792` |
 | `generated-normals` | 3 | `bug-2147` `bug-2150` `bug-2154` |
 | `generated-table` | 1 | `bug-2479` |
 | `generation-stamp` | 1 | `bug-1925` |
-| `generator` | 37 | `bug-1247` `bug-1416` `bug-1464` `bug-1896` `bug-1902` `bug-1908` `bug-1916` `bug-2021` `bug-2116` `bug-2203` `bug-2225` `bug-2229` `bug-2241` `bug-2249` `bug-2262` `bug-2263` `bug-2267` `bug-2282` `bug-2297` `bug-2314` `bug-2359` `bug-2518` `bug-2519` `bug-2520` `bug-2521` `bug-2538` `bug-2541` `bug-2578` `bug-2639` `bug-2643` `bug-2648` `bug-586` `bug-666` `bug-731` `bug-796` `bug-817` `bug-arm… |
+| `generator` | 105 | `bug-10468` `bug-10483` `bug-10488` `bug-10522` `bug-10527` `bug-10531` `bug-10532` `bug-10558` `bug-10571` `bug-10574` `bug-10579` `bug-10580` `bug-10581` `bug-10582` `bug-10620` `bug-10626` `bug-10673` `bug-10698` `bug-10700` `bug-10702` `bug-10707` `bug-10739` `bug-10740` `bug-10772` `bug-10773` `bug-10807` `bug-10808` `bug-10809` `bug-10814` `bug-10817` `bug-10833` `bug-10834` `bug-10839` `bu… |
+| `generator-corruption` | 2 | `bug-3002` `bug-3019` |
 | `generator-corrupts` | 1 | `bug-2399` |
-| `generator-drift` | 2 | `bug-2577` `bug-755` |
+| `generator-drift` | 4 | `bug-10711` `bug-10742` `bug-2577` `bug-755` |
 | `generator-misfire` | 1 | `bug-936b` |
 | `generator-snapshot` | 1 | `bug-1947` |
+| `generators` | 3 | `bug-3793` `bug-3794` `bug-4164` |
 | `gentitynum-bits` | 3 | `bug-2291` `bug-2292` `bug-2293` |
 | `gentitynum_bits` | 5 | `bug-2283` `bug-2285` `bug-929` `bug-930` `bug-gl2-invisible-friendly-actor` |
-| `geometry` | 10 | `bug-070` `bug-1365` `bug-1370` `bug-2129` `bug-2134` `bug-2135` `bug-2537` `bug-805` `bug-819` `bug-829` |
+| `geography` | 1 | `bug-3261` |
+| `geometry` | 13 | `bug-070` `bug-10704` `bug-10825` `bug-1365` `bug-1370` `bug-2129` `bug-2134` `bug-2135` `bug-2537` `bug-2742` `bug-805` `bug-819` `bug-829` |
+| `geomorph` | 1 | `bug-3061` |
 | `get_camera_offset` | 1 | `bug-308` |
 | `getammotype` | 1 | `bug-1929` |
 | `getcontainerwidget` | 1 | `bug-253` |
-| `getcvar` | 5 | `bug-1669` `bug-2438` `bug-800` `bug-802` `bug-943` |
+| `getcvar` | 7 | `bug-1669` `bug-2438` `bug-2808` `bug-3358` `bug-800` `bug-802` `bug-943` |
 | `getcvar-string` | 1 | `bug-1951` |
-| `getentbyentnum` | 1 | `bug-1382` |
+| `getentbyentnum` | 2 | `bug-1382` `bug-3339` |
 | `getmins` | 2 | `bug-865` `bug-910` |
 | `getnameappendcommands` | 1 | `bug-2080` |
+| `getstatus` | 1 | `bug-2727` |
 | `gettagangles` | 1 | `bug-1173` |
 | `gettagposition` | 1 | `bug-1369` |
 | `getter-added` | 1 | `bug-2064` |
 | `getter-vs-setter` | 1 | `bug-2038` |
+| `gfx` | 29 | `bug-3021` `bug-3022` `bug-3028` `bug-3029` `bug-3031` `bug-3032` `bug-3044` `bug-3045` `bug-3046` `bug-3047` `bug-3049` `bug-3050` `bug-3067` `bug-3068` `bug-3069` `bug-3180` `bug-3235` `bug-3244` `bug-3245` `bug-3252` `bug-3256` `bug-3257` `bug-3341` `bug-3342` `bug-3343` `bug-3344` `bug-3345` `bug-3347` `bug-3353` |
+| `gfx-probe` | 1 | `bug-3091` |
+| `gfx-test` | 2 | `bug-2995` `bug-2996` |
+| `gfx-tree` | 2 | `bug-2979` `bug-2980` |
 | `gh` | 2 | `bug-424` `bug-425` |
 | `ghost` | 7 | `bug-1001` `bug-1189` `bug-1397` `bug-1414` `bug-1425` `bug-1629` `bug-1699` |
+| `ghost-alias` | 2 | `bug-3402` `bug-3410` |
 | `ghost-frame` | 1 | `bug-1140` |
 | `ghost-subtitle` | 1 | `bug-775` |
+| `ghosting` | 1 | `bug-10287` |
+| `gibs` | 1 | `bug-2799` |
+| `gif` | 4 | `bug-10676` `bug-3582` `bug-3618` `bug-4405` |
+| `gigantic-limbs` | 1 | `bug-3131` |
 | `gimbal-lock` | 1 | `bug-1173` |
-| `git` | 2 | `bug-2453` `bug-425` |
+| `git` | 11 | `bug-10451` `bug-2453` `bug-3392` `bug-3438` `bug-3439` `bug-3540` `bug-3544` `bug-3887` `bug-4037` `bug-4081` `bug-425` |
+| `git-bash` | 12 | `bug-3508` `bug-3675` `bug-3704` `bug-3715` `bug-3726` `bug-3745` `bug-3768` `bug-3803` `bug-3808` `bug-3822` `bug-3858` `bug-3893` |
 | `git-checkout` | 1 | `bug-2081` |
 | `git-ref` | 1 | `bug-2586` |
 | `github` | 1 | `bug-1804` |
 | `github-release` | 1 | `bug-1917` |
 | `gitignore` | 2 | `bug-1873` `bug-1917` |
 | `gitignore-blindspot` | 1 | `bug-2239` |
-| `give` | 1 | `bug-098` |
+| `give` | 3 | `bug-098` `bug-10880` `bug-4041` |
 | `give-all` | 5 | `bug-1897` `bug-482` `bug-483` `bug-484` `bug-494` |
 | `giveall` | 1 | `bug-464` |
 | `givedisguisetoall` | 1 | `bug-1701` |
-| `gl1` | 15 | `bug-1168` `bug-1172` `bug-1192` `bug-1193` `bug-1195` `bug-1197` `bug-1206` `bug-1629` `bug-1990` `bug-1995` `bug-2445` `bug-734` `bug-868` `bug-lowhealth-scene-dependent` `bug-postfx-intensity-clobbered` |
+| `givekit` | 1 | `bug-2733` |
+| `gl-error` | 1 | `bug-3514` |
+| `gl1` | 32 | `bug-10268` `bug-10600` `bug-10614` `bug-10836` `bug-1168` `bug-1172` `bug-1192` `bug-1193` `bug-1195` `bug-1197` `bug-1206` `bug-1629` `bug-1990` `bug-1995` `bug-2445` `bug-3010` `bug-3011` `bug-3018` `bug-3036` `bug-3076` `bug-3090` `bug-3102` `bug-3151` `bug-3168` `bug-3462` `bug-3510` `bug-3514` `bug-4421` `bug-734` `bug-868` `bug-lowhealth-scene-dependent` `bug-postfx-intensity-clobbered` |
 | `gl1-gl2-divergence` | 1 | `bug-1191` |
 | `gl1-gl2-port` | 1 | `bug-1230` |
 | `gl1-only` | 1 | `bug-2615` |
-| `gl1-parity` | 14 | `bug-1137` `bug-1144` `bug-1147` `bug-1149` `bug-1150` `bug-1151` `bug-1189` `bug-1242` `bug-1249` `bug-1295` `bug-2186` `bug-2227` `bug-2228` `bug-gl2-invisible-friendly-actor-root` |
-| `gl2` | 144 | `bug-1123` `bug-1124` `bug-1125` `bug-1126` `bug-1128` `bug-1130` `bug-1131` `bug-1132` `bug-1133` `bug-1134` `bug-1135` `bug-1136` `bug-1137` `bug-1138` `bug-1139` `bug-1140` `bug-1144` `bug-1145` `bug-1146` `bug-1147` `bug-1148` `bug-1149` `bug-1150` `bug-1151` `bug-1152` `bug-1153` `bug-1154` `bug-1155` `bug-1156` `bug-1158` `bug-1159` `bug-1164` `bug-1166` `bug-1167` `bug-1168` `bug-1169` `bu… |
+| `gl1-parity` | 15 | `bug-1137` `bug-1144` `bug-1147` `bug-1149` `bug-1150` `bug-1151` `bug-1189` `bug-1242` `bug-1249` `bug-1295` `bug-2186` `bug-2227` `bug-2228` `bug-3013` `bug-gl2-invisible-friendly-actor-root` |
+| `gl2` | 254 | `bug-10287` `bug-10308` `bug-10312` `bug-10402` `bug-10436` `bug-10528` `bug-10900` `bug-10901` `bug-10902` `bug-1123` `bug-1124` `bug-1125` `bug-1126` `bug-1128` `bug-1130` `bug-1131` `bug-1132` `bug-1133` `bug-1134` `bug-1135` `bug-1136` `bug-1137` `bug-1138` `bug-1139` `bug-1140` `bug-1144` `bug-1145` `bug-1146` `bug-1147` `bug-1148` `bug-1149` `bug-1150` `bug-1151` `bug-1152` `bug-1153` `bug-… |
 | `gl2-cascade` | 1 | `bug-1214` |
 | `gl2-root` | 1 | `bug-1634` |
 | `gl2-sandbox` | 1 | `bug-1143` |
 | `gl2-sandbox-verified` | 1 | `bug-1142` |
 | `gl_cull` | 1 | `bug-gl2-invisible-friendly-actor-root` |
+| `glance` | 1 | `bug-2992` |
 | `gle` | 1 | `bug-734` |
 | `glgetteximage` | 1 | `bug-734` |
-| `glider` | 14 | `bug-1294` `bug-1297` `bug-1301` `bug-1302` `bug-1303` `bug-1305` `bug-1309` `bug-1322` `bug-1328` `bug-1328b` `bug-1328c` `bug-1338` `bug-1341` `bug-1347` |
+| `glider` | 15 | `bug-1294` `bug-1297` `bug-1301` `bug-1302` `bug-1303` `bug-1305` `bug-1309` `bug-1322` `bug-1328` `bug-1328b` `bug-1328c` `bug-1338` `bug-1341` `bug-1347` `bug-3052` |
 | `gliderride` | 1 | `bug-1308` |
 | `gliderride-precedent` | 1 | `bug-1518` |
 | `glindex_t` | 1 | `bug-1253` |
-| `glob` | 1 | `bug-1601` |
+| `glob` | 6 | `bug-10299` `bug-10335` `bug-10497` `bug-1601` `bug-3298` `bug-4422` |
 | `glob-case` | 1 | `bug-1446` |
 | `global-script` | 3 | `bug-1461` `bug-1462` `bug-1469` |
 | `global/mike` | 1 | `bug-350` |
 | `globalalpha` | 1 | `bug-gl2-introhud` |
 | `globalfog` | 1 | `bug-1299` |
-| `gloves` | 2 | `bug-2080` `bug-2082` |
+| `globalwidgetcommand` | 2 | `bug-10471` `bug-10696` |
+| `gloves` | 3 | `bug-2080` `bug-2082` `bug-3919` |
+| `glow` | 1 | `bug-4453` |
 | `glow-texture` | 1 | `bug-957` |
-| `glsl` | 9 | `bug-1148` `bug-1149` `bug-1159` `bug-1240` `bug-1304` `bug-2226` `bug-gl2-fog` `bug-gl2-nextbundle2` `bug-gl2-texgen` |
-| `glue` | 10 | `bug-052` `bug-071` `bug-1429` `bug-1436` `bug-1437` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-917` |
-| `gmbox` | 2 | `bug-261` `bug-font-bleed` |
+| `glsl` | 28 | `bug-1148` `bug-1149` `bug-1159` `bug-1240` `bug-1304` `bug-2226` `bug-2818` `bug-2820` `bug-2969` `bug-2971` `bug-2974` `bug-2980` `bug-3020` `bug-3062` `bug-3077` `bug-3137` `bug-3179` `bug-3180` `bug-3252` `bug-3318` `bug-3406` `bug-3407` `bug-3408` `bug-3409` `bug-3456` `bug-gl2-fog` `bug-gl2-nextbundle2` `bug-gl2-texgen` |
+| `glslang` | 2 | `bug-2974` `bug-3137` |
+| `glue` | 12 | `bug-052` `bug-071` `bug-1429` `bug-1436` `bug-1437` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-3216` `bug-4432` `bug-917` |
+| `glyph` | 1 | `bug-4171` |
+| `gmbox` | 8 | `bug-261` `bug-3182` `bug-3217` `bug-3426` `bug-3428` `bug-3952` `bug-4007` `bug-font-bleed` |
 | `gmcinside` | 1 | `bug-2183` |
-| `godmode` | 1 | `bug-2184` |
+| `goal-churn` | 1 | `bug-2959` |
+| `god-mode` | 1 | `bug-3182` |
+| `god-rays` | 1 | `bug-3141` |
+| `godmode` | 3 | `bug-2184` `bug-3183` `bug-3184` |
 | `godrays` | 1 | `bug-1154` |
 | `gog-repack` | 1 | `bug-854` |
-| `gore` | 53 | `bug-1142` `bug-1167` `bug-1216` `bug-1241` `bug-1320` `bug-1321` `bug-1327` `bug-1332` `bug-1518` `bug-1539` `bug-1586` `bug-1873` `bug-1874` `bug-1875` `bug-1876` `bug-1880` `bug-1883` `bug-1903` `bug-1906` `bug-1910` `bug-1914` `bug-1915` `bug-1975` `bug-1988` `bug-2080` `bug-2191` `bug-2202` `bug-2203` `bug-2212` `bug-2225` `bug-2229` `bug-2231` `bug-2260` `bug-2423` `bug-2433` `bug-2440` `bu… |
+| `gore` | 67 | `bug-10541` `bug-1142` `bug-1167` `bug-1216` `bug-1241` `bug-1320` `bug-1321` `bug-1327` `bug-1332` `bug-1518` `bug-1539` `bug-1586` `bug-1873` `bug-1874` `bug-1875` `bug-1876` `bug-1880` `bug-1883` `bug-1903` `bug-1906` `bug-1910` `bug-1914` `bug-1915` `bug-1975` `bug-1988` `bug-2080` `bug-2191` `bug-2202` `bug-2203` `bug-2212` `bug-2225` `bug-2229` `bug-2231` `bug-2260` `bug-2423` `bug-2433` `b… |
 | `gore-entnum` | 1 | `bug-930` |
+| `gore-gate` | 1 | `bug-2798` |
 | `gore-props` | 1 | `bug-2552` |
 | `gore-tiers` | 1 | `bug-1228` |
 | `gore_hot` | 1 | `bug-828` |
 | `goredebug-evidence` | 1 | `bug-795` |
 | `gotcha` | 3 | `bug-1240` `bug-425` `bug-ps-home-var` |
-| `grade` | 5 | `bug-1148` `bug-1171` `bug-2156` `bug-2163` `bug-2584` |
+| `gpu` | 1 | `bug-3459` |
+| `gpu-process-memory` | 1 | `bug-3069` |
+| `grade` | 7 | `bug-1148` `bug-1171` `bug-2156` `bug-2163` `bug-2584` `bug-3222` `bug-4155` |
+| `gradient` | 1 | `bug-2823` |
+| `grain` | 1 | `bug-3421` |
 | `grammar` | 1 | `bug-1497` |
-| `graphics` | 1 | `bug-1990` |
-| `grass` | 1 | `bug-1993` |
-| `grenade` | 6 | `bug-1202` `bug-1978` `bug-2125` `bug-2460` `bug-617` `bug-921` |
+| `gramophone` | 6 | `bug-10442` `bug-10466` `bug-10470` `bug-10471` `bug-10491` `bug-10638` |
+| `grant` | 1 | `bug-3506` |
+| `graphics` | 12 | `bug-1990` `bug-2930` `bug-2937` `bug-2950` `bug-2951` `bug-2952` `bug-2953` `bug-2954` `bug-2984` `bug-2985` `bug-2991` `bug-2994` |
+| `graphics-menu` | 22 | `bug-3038` `bug-3039` `bug-3041` `bug-3099` `bug-3100` `bug-3115` `bug-3116` `bug-3117` `bug-3118` `bug-3119` `bug-3120` `bug-3121` `bug-3122` `bug-3123` `bug-3124` `bug-3144` `bug-3145` `bug-3155` `bug-3161` `bug-3483` `bug-3484` `bug-3530` |
+| `grass` | 2 | `bug-1993` `bug-3168` |
+| `greasegun` | 3 | `bug-10922` `bug-3891` `bug-3892` |
+| `greaser` | 1 | `bug-3891` |
+| `grenade` | 20 | `bug-10524` `bug-10525` `bug-10548` `bug-10561` `bug-10563` `bug-10565` `bug-10855` `bug-10859` `bug-1202` `bug-1978` `bug-2125` `bug-2460` `bug-2875` `bug-2876` `bug-2925` `bug-3024` `bug-3416` `bug-3748` `bug-617` `bug-921` |
 | `grenade-kick` | 1 | `bug-2111` |
-| `grenades` | 1 | `bug-586` |
+| `grenades` | 4 | `bug-2947` `bug-2948` `bug-3322` `bug-586` |
 | `grep` | 1 | `bug-2422` |
 | `grillo` | 6 | `bug-1518` `bug-1539` `bug-725` `bug-837` `bug-839` `bug-842` |
-| `groove` | 2 | `bug-805` `bug-819` |
-| `ground` | 1 | `bug-1129` |
+| `grip` | 2 | `bug-3403` `bug-3833` |
+| `groove` | 3 | `bug-3697` `bug-805` `bug-819` |
+| `ground` | 4 | `bug-1129` `bug-2950` `bug-3318` `bug-3340` |
 | `ground-height` | 1 | `bug-2268` |
+| `ground-seam` | 2 | `bug-3006` `bug-3007` |
+| `ground-snap` | 5 | `bug-2760` `bug-2766` `bug-2835` `bug-2843` `bug-2859` |
+| `grounding` | 1 | `bug-10851` |
 | `gs-cookie` | 1 | `bug-935` |
 | `gsc` | 1 | `bug-2632` |
 | `gt2` | 1 | `bug-2628` |
-| `gt4` | 1 | `bug-2627` |
-| `guard` | 5 | `bug-1575` `bug-2207` `bug-2216` `bug-2229` `bug-2476` |
+| `gt4` | 2 | `bug-10826` `bug-2627` |
+| `gtao` | 1 | `bug-3143` |
+| `guard` | 13 | `bug-10666` `bug-10805` `bug-10911` `bug-10930` `bug-1575` `bug-2207` `bug-2216` `bug-2229` `bug-2476` `bug-2943` `bug-3214` `bug-3353` `bug-4272` |
 | `guard-sweep` | 1 | `bug-925` |
+| `guardian` | 1 | `bug-4012` |
 | `guardlist` | 1 | `bug-2590` |
+| `gully` | 2 | `bug-2896` `bug-2898` |
+| `gun clip` | 2 | `bug-3834` `bug-3838` |
 | `gun-bracing` | 2 | `bug-2132` `bug-2133` |
+| `gun-holster` | 1 | `bug-3051` |
+| `gun-space-bake` | 1 | `bug-3891` |
+| `gun_repaint_2026-10-13` | 6 | `bug-3882` `bug-3883` `bug-3884` `bug-3891` `bug-3892` `bug-3893` |
+| `gunfire` | 1 | `bug-4084` |
 | `gungame` | 4 | `bug-2599` `bug-2600` `bug-2601` `bug-2651` |
-| `gunner` | 2 | `bug-1861` `bug-2385` |
+| `gungeo` | 1 | `bug-3411` |
+| `gunmesh` | 1 | `bug-10769` |
+| `gunner` | 5 | `bug-1861` `bug-2385` `bug-2934` `bug-2976` `bug-mgspawn1025` |
+| `gunner-rearm` | 1 | `bug-4088` |
 | `gunners` | 1 | `bug-2405` |
+| `gunphys` | 9 | `bug-3580` `bug-3624` `bug-3631` `bug-3644` `bug-3647` `bug-3653` `bug-3660` `bug-3721` `bug-3866` |
 | `guntarget` | 1 | `bug-1504` |
 | `gurgle` | 2 | `bug-836` `bug-849` |
 | `h` | 2 | `bug-019` `bug-860` |
@@ -3157,180 +6538,303 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `half-fix` | 1 | `bug-1742` |
 | `half-fix-corrected` | 1 | `bug-2368` |
 | `half-shipped-fix` | 1 | `bug-2193` |
-| `halftrack` | 4 | `bug-054` `bug-1806` `bug-1950` `bug-t2l2-onfoot` |
+| `halftrack` | 15 | `bug-054` `bug-10331` `bug-10345` `bug-10346` `bug-10398` `bug-10405` `bug-10419` `bug-10434` `bug-10461` `bug-10545` `bug-1806` `bug-1950` `bug-3196` `bug-4128` `bug-t2l2-onfoot` |
+| `hallucination` | 1 | `bug-3374` |
+| `halo` | 3 | `bug-3067` `bug-3074` `bug-3140` |
 | `halt-state` | 1 | `bug-1651` |
+| `hand` | 4 | `bug-10650` `bug-10651` `bug-3447` `bug-3606` |
+| `hand-check` | 1 | `bug-10719` |
+| `hand-over` | 1 | `bug-3598` |
+| `hand-pose` | 4 | `bug-3663` `bug-3671` `bug-3724` `bug-3763` |
 | `hand-rolled-lost-a-guarantee` | 1 | `bug-2022` |
 | `hand-rolled-math` | 1 | `bug-1838` |
 | `hand-smear` | 1 | `bug-817` |
+| `handedness` | 1 | `bug-10602` |
+| `handheat` | 1 | `bug-10674` |
+| `handle` | 2 | `bug-3671` `bug-4261` |
+| `handle_qa` | 2 | `bug-3403` `bug-3412` |
 | `handoff` | 1 | `bug-1965` |
-| `hands` | 1 | `bug-2502` |
-| `hang` | 4 | `bug-1064` `bug-2082` `bug-227` `bug-2715` |
+| `handover` | 1 | `bug-3783` |
+| `hands` | 11 | `bug-10706` `bug-10721` `bug-2502` `bug-3243` `bug-3310` `bug-3700` `bug-3757` `bug-3798` `bug-3865` `bug-3872` `bug-4215` |
+| `handshake` | 1 | `bug-2969` |
+| `hang` | 8 | `bug-10338` `bug-1064` `bug-2082` `bug-227` `bug-2715` `bug-4120` `bug-norway-1027-defence-start-hang` `bug-norway-1027-defence-start-hang-cause` |
 | `hardcoded-1024` | 1 | `bug-932b` |
 | `hardcoded-constant` | 1 | `bug-1733` |
 | `hardcoded-height` | 1 | `bug-2367` |
 | `hardcoded-index` | 1 | `bug-1567` |
-| `hardcore` | 2 | `bug-2619` `bug-2629` |
-| `hardening` | 1 | `bug-2207` |
-| `harness` | 21 | `bug-1064` `bug-1066` `bug-1067` `bug-1068` `bug-1134` `bug-1138` `bug-1441` `bug-1459` `bug-1492` `bug-1494` `bug-1499` `bug-1500` `bug-1619` `bug-1664` `bug-1681` `bug-2182` `bug-2410` `bug-2412` `bug-2415` `bug-gl2-sweep-crash` `bug-ps-home-var` |
-| `harness-gap` | 1 | `bug-1063` |
+| `hardcore` | 8 | `bug-10340` `bug-2619` `bug-2629` `bug-2923` `bug-3187` `bug-3422` `bug-3507` `bug-3553` |
+| `hardening` | 2 | `bug-2207` `bug-2970` |
+| `harmful-setting` | 1 | `bug-3118` |
+| `harmonic` | 1 | `bug-2984` |
+| `harness` | 264 | `bug-10264` `bug-10269` `bug-10273` `bug-10274` `bug-10318` `bug-10334` `bug-10337` `bug-10350` `bug-10352` `bug-10362` `bug-10409` `bug-10421` `bug-10423` `bug-10443` `bug-10455` `bug-10478` `bug-10482` `bug-10484` `bug-10489` `bug-10503` `bug-10525` `bug-10550` `bug-10551` `bug-10573` `bug-10583` `bug-10598` `bug-10621` `bug-10628` `bug-10635` `bug-1064` `bug-10646` `bug-1066` `bug-10660` `bug-… |
+| `harness-artifact` | 1 | `bug-3479` |
+| `harness-gap` | 3 | `bug-1063` `bug-10860` `bug-4450` |
 | `harness-limit` | 1 | `bug-2096` |
+| `harness-metric` | 1 | `bug-10399` |
+| `harness-profile` | 1 | `bug-10544` |
+| `harness-verified` | 3 | `bug-4210` `bug-4210b` `bug-4211` |
+| `harvest` | 1 | `bug-2830` |
+| `harvester` | 1 | `bug-2742` |
 | `has_weapon` | 2 | `bug-379` `bug-380` |
 | `hasalphatest` | 1 | `bug-gl2-foliage-white` |
+| `hasclass` | 1 | `bug-3505` |
 | `hash-collision` | 1 | `bug-2001` |
 | `hash-mismatch` | 1 | `bug-1800` |
+| `hatch` | 3 | `bug-10875` `bug-10883` `bug-10932` |
 | `hatless` | 1 | `bug-1545` |
+| `hd` | 1 | `bug-10689` |
 | `hd-fx-import` | 1 | `bug-2403` |
 | `hd-model` | 1 | `bug-095` |
 | `hd-pack` | 4 | `bug-1129` `bug-1190` `bug-1225` `bug-2583` |
+| `hd-packs` | 1 | `bug-3126` |
+| `hd-ui` | 1 | `bug-2941` |
+| `hd_fx` | 1 | `bug-10565` |
+| `hd_texel_scale` | 1 | `bug-3254` |
+| `hdmem` | 4 | `bug-2951` `bug-2953` `bug-2954` `bug-2984` |
 | `hdr` | 2 | `bug-1156` `bug-1159` |
+| `hdring` | 3 | `bug-4013` `bug-4035` `bug-4169` |
+| `head-clearance` | 1 | `bug-2956` |
 | `head-glint` | 1 | `bug-819` |
+| `head-multiplier` | 1 | `bug-4032` |
 | `head-tracking` | 2 | `bug-2101` `bug-2110` |
 | `headcount` | 1 | `bug-1557` |
-| `header` | 2 | `bug-2692` `bug-2701` |
+| `header` | 3 | `bug-10353` `bug-2692` `bug-2701` |
 | `header-dependency` | 1 | `bug-100` |
+| `header-deps` | 1 | `bug-3373` |
 | `headgibobject` | 2 | `bug-861` `bug-866` |
+| `headless-ab` | 1 | `bug-3210` |
 | `headless-probe` | 1 | `bug-2714` |
-| `headmodel` | 1 | `bug-891` |
-| `headshot` | 4 | `bug-099` `bug-1142` `bug-1874` `bug-2160` |
+| `headless-rig` | 1 | `bug-botslot-userinfo` |
+| `headless-verified` | 2 | `bug-2972` `bug-3219` |
+| `headlights` | 9 | `bug-2946` `bug-2969` `bug-2977` `bug-2979` `bug-2980` `bug-2990` `bug-2999` `bug-3008` `bug-3072` |
+| `headmodel` | 2 | `bug-10684` `bug-891` |
+| `headshot` | 7 | `bug-099` `bug-10453` `bug-1142` `bug-1874` `bug-2160` `bug-2798` `bug-2799` |
 | `headskin` | 1 | `bug-891` |
-| `heal` | 2 | `bug-1215` `bug-1871` |
+| `heal` | 3 | `bug-1215` `bug-1871` `bug-2921` |
 | `heal-bar` | 1 | `bug-088` |
 | `heal-retreat` | 1 | `bug-944` |
 | `healing` | 2 | `bug-2522` `bug-2625` |
-| `health` | 5 | `bug-1287` `bug-1731` `bug-1733` `bug-1734` `bug-2685` |
+| `health` | 8 | `bug-10478` `bug-10822` `bug-1287` `bug-1731` `bug-1733` `bug-1734` `bug-2685` `bug-3356` |
+| `health-drop` | 1 | `bug-3187` |
 | `health.cpp` | 1 | `bug-1263` |
 | `healthbar` | 1 | `bug-gl2-hudsegments` |
-| `healthonly` | 1 | `bug-1290` |
+| `healthonly` | 3 | `bug-10822` `bug-1290` `bug-3092` |
 | `heap` | 2 | `bug-2341` `bug-2362` |
 | `heap-corruption` | 2 | `bug-1561` `bug-1563` |
 | `hearing` | 1 | `bug-2691` |
-| `heartbeat` | 1 | `bug-2454` |
+| `heartbeat` | 2 | `bug-2454` `bug-3422` |
+| `heat` | 2 | `bug-2903` `bug-4125` |
 | `heat-cycle` | 1 | `bug-1946` |
-| `heathaze` | 1 | `bug-1151` |
+| `heathaze` | 3 | `bug-1151` `bug-4215` `bug-4217` |
+| `heatmap` | 3 | `bug-2865` `bug-2867` `bug-2870` |
+| `heavy-lane` | 65 | `bug-3588` `bug-3589` `bug-3590` `bug-3591` `bug-3597` `bug-3619` `bug-3620` `bug-3621` `bug-3622` `bug-3623` `bug-3646` `bug-3647` `bug-3648` `bug-3649` `bug-3667` `bug-3668` `bug-3669` `bug-3670` `bug-3671` `bug-3672` `bug-3673` `bug-3674` `bug-3676` `bug-3681` `bug-3696` `bug-3697` `bug-3698` `bug-3717` `bug-3727` `bug-3728` `bug-3729` `bug-3730` `bug-3731` `bug-3732` `bug-3755` `bug-3756` `bu… |
+| `heavy-lock` | 2 | `bug-4267` `bug-4417` |
+| `heavybake` | 1 | `bug-3646` |
 | `hedgehog` | 1 | `bug-2495` |
-| `heft` | 2 | `bug-2140` `bug-2141` |
+| `hedgerow-patch` | 1 | `bug-3224` |
+| `heft` | 3 | `bug-10897` `bug-2140` `bug-2141` |
 | `height` | 1 | `bug-536` |
-| `helmet` | 27 | `bug-1205` `bug-1208` `bug-1236` `bug-1246` `bug-1284` `bug-1359` `bug-1360` `bug-1578` `bug-1595` `bug-1731` `bug-1889` `bug-1890` `bug-1903` `bug-1988` `bug-2243` `bug-2567` `bug-2568` `bug-2634` `bug-533` `bug-535` `bug-614` `bug-615` `bug-666` `bug-757` `bug-772` `bug-773` `bug-787` |
+| `height-map` | 1 | `bug-3409` |
+| `heightfade` | 1 | `bug-3166` |
+| `helmet` | 35 | `bug-1205` `bug-1208` `bug-1236` `bug-1246` `bug-1284` `bug-1359` `bug-1360` `bug-1578` `bug-1595` `bug-1731` `bug-1889` `bug-1890` `bug-1903` `bug-1988` `bug-2243` `bug-2567` `bug-2568` `bug-2634` `bug-2748` `bug-2754` `bug-2768` `bug-3094` `bug-3208` `bug-3325` `bug-3919` `bug-4211` `bug-533` `bug-535` `bug-614` `bug-615` `bug-666` `bug-757` `bug-772` `bug-773` `bug-787` |
 | `helmet-pop` | 1 | `bug-1142` |
 | `helmet-switcher` | 7 | `bug-1208` `bug-1526` `bug-1533` `bug-1534` `bug-1540` `bug-1545` `bug-1578` |
 | `helmet.scr` | 1 | `bug-armory-roster76` |
 | `helmetobject` | 1 | `bug-614` |
-| `helmets` | 2 | `bug-1543` `bug-2085` |
+| `helmets` | 3 | `bug-1543` `bug-2085` `bug-2761` |
 | `helper` | 1 | `bug-2255` |
-| `heredoc` | 3 | `bug-1381` `bug-2081` `bug-458` |
+| `heredoc` | 42 | `bug-10266` `bug-10324` `bug-10522` `bug-10665` `bug-10732` `bug-10844` `bug-10881` `bug-1381` `bug-2081` `bug-3002` `bug-3279` `bug-3283` `bug-3286` `bug-3333` `bug-3338` `bug-3377` `bug-3508` `bug-3581` `bug-3587` `bug-3596` `bug-3612` `bug-3621` `bug-3657` `bug-3675` `bug-3695` `bug-3715` `bug-3726` `bug-3738` `bug-3745` `bug-3754` `bug-3768` `bug-3785` `bug-3803` `bug-3822` `bug-3847` `bug-38… |
 | `heredoc-mangling` | 1 | `bug-331` |
+| `hero-fit` | 1 | `bug-10621` |
+| `hero-prop` | 1 | `bug-3260` |
+| `hex` | 1 | `bug-3318` |
 | `hi-dpi` | 3 | `bug-1129b` `bug-1130` `bug-1182` |
+| `hidden` | 1 | `bug-mgspawn1025` |
+| `hidden-launch` | 1 | `bug-3471` |
+| `hide` | 2 | `bug-3323` `bug-4410` |
+| `hidemenu` | 1 | `bug-3234` |
 | `hideout` | 2 | `bug-872` `bug-873` |
-| `higgins` | 13 | `bug-2220` `bug-2424` `bug-2447` `bug-2470` `bug-2478` `bug-2487` `bug-2496` `bug-2504` `bug-2510` `bug-2515` `bug-2533` `bug-2537` `bug-2543` |
-| `high` | 1 | `bug-2167` |
+| `higgins` | 14 | `bug-2220` `bug-2424` `bug-2447` `bug-2470` `bug-2478` `bug-2487` `bug-2496` `bug-2504` `bug-2510` `bug-2515` `bug-2533` `bug-2537` `bug-2543` `bug-2773` |
+| `high` | 3 | `bug-2167` `bug-3115` `bug-3116` |
+| `high-fall` | 1 | `bug-2988` |
+| `highlights` | 2 | `bug-10341` `bug-10453` |
+| `hills` | 1 | `bug-10736` |
+| `hints` | 2 | `bug-3075` `bug-4007` |
+| `hip` | 6 | `bug-3451` `bug-3607` `bug-3626` `bug-3635` `bug-3868` `bug-scopes1025-hip-lens` |
+| `hip-reload` | 1 | `bug-3672` |
+| `hires` | 1 | `bug-2822` |
+| `histandard` | 2 | `bug-3564` `bug-3593` |
 | `histogram` | 1 | `bug-2096` |
-| `history` | 1 | `bug-2340` |
-| `hit-location` | 1 | `bug-828` |
-| `hit-test` | 4 | `bug-587` `bug-593` `bug-754` `bug-756` |
-| `hitch` | 1 | `bug-1672` |
-| `hitloc` | 1 | `bug-2170` |
-| `hitmarker` | 1 | `bug-2161` |
+| `history` | 2 | `bug-2340` `bug-3284` |
+| `history.md` | 1 | `bug-3248` |
+| `hit-flash` | 1 | `bug-10344` |
+| `hit-location` | 2 | `bug-3135` `bug-828` |
+| `hit-test` | 5 | `bug-10860` `bug-587` `bug-593` `bug-754` `bug-756` |
+| `hitch` | 6 | `bug-1672` `bug-3097` `bug-3208` `bug-3339` `bug-3486` `bug-3493` |
+| `hitloc` | 3 | `bug-2170` `bug-3502` `bug-4032` |
+| `hitmarker` | 3 | `bug-10340` `bug-2161` `bug-2798` |
 | `hitreact` | 3 | `bug-1944` `bug-1945` `bug-1976` |
+| `hltest` | 1 | `bug-2982` |
 | `ho_battaglia` | 1 | `bug-1386` |
+| `hold` | 10 | `bug-10313` `bug-10494` `bug-3722` `bug-3800` `bug-3976` `bug-4083` `bug-4169` `bug-4173` `bug-4215` `bug-4431` |
 | `hold-accumulator` | 1 | `bug-2136` |
+| `hold-at-end` | 1 | `bug-10323` |
 | `hold-objective` | 1 | `bug-1834` |
-| `holdout` | 12 | `bug-1378` `bug-1380` `bug-1381` `bug-1382` `bug-1385` `bug-1396` `bug-1397` `bug-1398` `bug-1401` `bug-1418` `bug-1422` `bug-1426` |
+| `hold-use` | 1 | `bug-10894` |
+| `hold_bake` | 8 | `bug-3467` `bug-3556` `bug-3563` `bug-3578` `bug-3590` `bug-3599` `bug-3716` `bug-3833` |
+| `holdfront` | 2 | `bug-2959` `bug-2993` |
+| `holdout` | 13 | `bug-1378` `bug-1380` `bug-1381` `bug-1382` `bug-1385` `bug-1396` `bug-1397` `bug-1398` `bug-1401` `bug-1418` `bug-1422` `bug-1426` `bug-3463` |
 | `holdout-testmap` | 1 | `bug-1361` |
-| `holster` | 10 | `bug-1891` `bug-1971` `bug-2467` `bug-370` `bug-378` `bug-616` `bug-619` `bug-623` `bug-921` `bug-923` |
+| `holster` | 14 | `bug-10658` `bug-1891` `bug-1971` `bug-2467` `bug-3051` `bug-3052` `bug-370` `bug-3779` `bug-378` `bug-616` `bug-619` `bug-623` `bug-921` `bug-923` |
 | `holstered` | 2 | `bug-1674` `bug-1677` |
+| `holsterhold` | 1 | `bug-10658` |
 | `holsteroffset` | 1 | `bug-616` |
 | `holstertoggle` | 1 | `bug-378` |
 | `home-variable` | 1 | `bug-ps-home-var` |
 | `homepath` | 2 | `bug-1248` `bug-1633` |
+| `homogeneous-w` | 1 | `bug-3610` |
 | `honesty` | 1 | `bug-1770` |
-| `hook` | 1 | `bug-buglog-dataloss` |
-| `host` | 2 | `bug-1453` `bug-2245` |
-| `host-rules` | 1 | `bug-2582` |
+| `hook` | 5 | `bug-3663` `bug-3724` `bug-3798` `bug-3802` `bug-buglog-dataloss` |
+| `hop` | 1 | `bug-10303` |
+| `horizon` | 1 | `bug-3081` |
+| `host` | 3 | `bug-10450` `bug-1453` `bug-2245` |
+| `host-only-threat` | 1 | `bug-10584` |
+| `host-rules` | 4 | `bug-2582` `bug-2923` `bug-3092` `bug-3518` |
 | `host-seed` | 2 | `bug-800` `bug-802` |
+| `host-setting` | 1 | `bug-2782` |
 | `host-toggle` | 1 | `bug-2720` |
-| `hover` | 1 | `bug-1532` |
+| `hostseed` | 1 | `bug-3208` |
+| `hotfix` | 11 | `bug-10356` `bug-10394` `bug-10810` `bug-10811` `bug-10907` `bug-3299` `bug-4431` `bug-4432` `bug-4433` `bug-4435` `bug-4436` |
+| `hotspot` | 3 | `bug-10811` `bug-4425` `bug-4428` |
+| `hotspots` | 1 | `bug-3282` |
+| `housing` | 1 | `bug-3509` |
+| `hover` | 6 | `bug-10853` `bug-1532` `bug-2779` `bug-2785` `bug-3189` `bug-3232` |
+| `hover-text` | 1 | `bug-3796` |
+| `hovercommand` | 1 | `bug-2764` |
 | `hrrtm` | 1 | `bug-095` |
 | `htr` | 1 | `bug-2675` |
-| `hud` | 67 | `bug-088` `bug-1001` `bug-1147` `bug-1185` `bug-1364` `bug-138` `bug-139` `bug-1402` `bug-1457` `bug-152` `bug-1522` `bug-1588` `bug-159` `bug-1659` `bug-1661` `bug-1679` `bug-1689` `bug-1691` `bug-1753` `bug-1758` `bug-1759` `bug-1764` `bug-1792` `bug-1847` `bug-1862` `bug-1866` `bug-1878` `bug-1977` `bug-1978` `bug-1996` `bug-2132` `bug-2161` `bug-2168` `bug-2169` `bug-2322` `bug-2352` `bug-252… |
-| `hud-fade` | 9 | `bug-1661` `bug-1668` `bug-1871` `bug-253` `bug-254` `bug-255` `bug-2555` `bug-2559` `bug-261` |
+| `hud` | 122 | `bug-088` `bug-1001` `bug-10265` `bug-10292` `bug-10368` `bug-10369` `bug-10371` `bug-10375` `bug-10396` `bug-10473` `bug-10479` `bug-10496` `bug-10517` `bug-10519` `bug-1147` `bug-1185` `bug-1364` `bug-138` `bug-139` `bug-1402` `bug-1457` `bug-152` `bug-1522` `bug-1588` `bug-159` `bug-1659` `bug-1661` `bug-1679` `bug-1689` `bug-1691` `bug-1753` `bug-1758` `bug-1759` `bug-1764` `bug-1792` `bug-18… |
+| `hud-declutter` | 2 | `bug-3542` `bug-3553` |
+| `hud-fade` | 10 | `bug-10369` `bug-1661` `bug-1668` `bug-1871` `bug-253` `bug-254` `bug-255` `bug-2555` `bug-2559` `bug-261` |
 | `hud-hint` | 1 | `bug-2720` |
 | `hud-slot` | 8 | `bug-1668` `bug-1676` `bug-1680` `bug-1691` `bug-1711` `bug-1871` `bug-2024` `bug-2530` |
 | `hud-slots` | 2 | `bug-2175` `bug-808` |
+| `hud-text` | 1 | `bug-3046` |
 | `hud_items` | 1 | `bug-255` |
-| `huddraw` | 2 | `bug-254` `bug-314` |
+| `huddraw` | 7 | `bug-10473` `bug-10544` `bug-254` `bug-3076` `bug-314` `bug-4097` `bug-4406` |
+| `hudfeed4` | 1 | `bug-3977` |
 | `hudlist` | 1 | `bug-767` |
+| `hudresend` | 2 | `bug-2911` `bug-3422` |
 | `huffman` | 1 | `bug-1540` |
 | `hull-sweep` | 1 | `bug-2055` |
-| `hygiene` | 1 | `bug-2512` |
+| `human-ux` | 1 | `bug-3042` |
+| `hunt` | 2 | `bug-2884` `bug-2890` |
+| `hybrid-gpu` | 1 | `bug-3536` |
+| `hygiene` | 2 | `bug-2512` `bug-3044` |
 | `hypothesis` | 1 | `bug-1986` |
 | `hypothesis-confirmed` | 1 | `bug-2066` |
 | `hypothesis-disproved` | 1 | `bug-1852` |
 | `hypothesis-not-proven` | 1 | `bug-2049` |
 | `hypothesis-refuted` | 2 | `bug-1296` `bug-2407` |
+| `hysteresis` | 1 | `bug-10811` |
+| `hzlc` | 1 | `bug-4173` |
+| `hzlc-v2` | 1 | `bug-4092` |
 | `hzm-gl2-re-port` | 1 | `bug-gl2-modellight` |
-| `icons` | 1 | `bug-1422` |
-| `idempotent` | 1 | `bug-1936` |
-| `idle` | 5 | `bug-1406` `bug-2014` `bug-2281` `bug-2294` `bug-381` |
+| `hzm_mod` | 1 | `bug-10702` |
+| `hzm_preload` | 1 | `bug-10904` |
+| `hzm_water` | 1 | `bug-4273` |
+| `hzmconv` | 2 | `bug-10712` `bug-10744` |
+| `ia` | 1 | `bug-3330` |
+| `ice` | 1 | `bug-4273` |
+| `icon` | 5 | `bug-2810` `bug-2814` `bug-2819` `bug-4047` `bug-4169` |
+| `icon-prompts` | 1 | `bug-4013` |
+| `icons` | 4 | `bug-1422` `bug-3572` `bug-3953` `bug-3954` |
+| `id-clash` | 1 | `bug-4088` |
+| `idempotency` | 4 | `bug-10574` `bug-10700` `bug-10778` `bug-3270` |
+| `idempotent` | 3 | `bug-1936` `bug-3208` `bug-3738` |
+| `idle` | 8 | `bug-1406` `bug-2014` `bug-2281` `bug-2294` `bug-3637` `bug-381` `bug-3922` `bug-4017` |
 | `idle-actors` | 2 | `bug-2295` `bug-2326` |
 | `idleturn` | 1 | `bug-1368` |
 | `idtech3` | 1 | `bug-413` |
 | `ifcvar` | 1 | `bug-gl2-foliage` |
 | `ignored-a-warning` | 1 | `bug-2378` |
-| `ihuddraw` | 22 | `bug-088` `bug-1401` `bug-1402` `bug-1659` `bug-1661` `bug-1679` `bug-1792` `bug-1847` `bug-2686` `bug-350` `bug-366` `bug-401` `bug-493` `bug-526` `bug-553` `bug-641` `bug-684` `bug-712` `bug-713` `bug-805` `bug-819` `bug-848` |
-| `ik` | 1 | `bug-2481` |
+| `ihuddraw` | 34 | `bug-088` `bug-10517` `bug-10519` `bug-1401` `bug-1402` `bug-1659` `bug-1661` `bug-1679` `bug-1792` `bug-1847` `bug-2686` `bug-2751` `bug-2904` `bug-2906` `bug-3106` `bug-3234` `bug-350` `bug-366` `bug-3918` `bug-3951` `bug-4004` `bug-401` `bug-4013` `bug-4396` `bug-493` `bug-526` `bug-553` `bug-641` `bug-684` `bug-712` `bug-713` `bug-805` `bug-819` `bug-848` |
+| `ik` | 9 | `bug-2481` `bug-3433` `bug-3435` `bug-3446` `bug-3607` `bug-3628` `bug-3643` `bug-3709` `bug-3779` |
 | `ik-targets` | 1 | `bug-2122` |
+| `image-orientation` | 1 | `bug-3019` |
 | `immersion` | 1 | `bug-2197` |
+| `immortal` | 1 | `bug-3188` |
 | `immune-falling` | 1 | `bug-940` |
 | `immunity` | 2 | `bug-1307` `bug-941` |
 | `impact` | 2 | `bug-1176` `bug-2314` |
-| `import` | 13 | `bug-1357` `bug-1894` `bug-1899` `bug-1900` `bug-1911` `bug-1912` `bug-2675` `bug-295` `bug-482` `bug-483` `bug-494` `bug-500` `bug-853` |
+| `implemented` | 1 | `bug-2754` |
+| `implicit-declaration` | 3 | `bug-3021` `bug-3036` `bug-4390` |
+| `import` | 14 | `bug-10671` `bug-1357` `bug-1894` `bug-1899` `bug-1900` `bug-1911` `bug-1912` `bug-2675` `bug-295` `bug-482` `bug-483` `bug-494` `bug-500` `bug-853` |
 | `import-normals` | 1 | `bug-921` |
 | `imported-pack` | 1 | `bug-2243` |
+| `impostor` | 1 | `bug-3164` |
+| `in-engine` | 2 | `bug-3177` `bug-3254` |
+| `in-engine-proof` | 2 | `bug-3400` `bug-3401` |
 | `in-frame` | 1 | `bug-2475` |
+| `in-game-qa` | 5 | `bug-10883` `bug-10884` `bug-10885` `bug-10931` `bug-10932` |
+| `in-model-lens` | 1 | `bug-4391` |
 | `in_joystick` | 1 | `bug-2606` |
-| `includes` | 1 | `bug-1487` |
+| `inactivity` | 1 | `bug-10824` |
+| `inbound-packet` | 1 | `bug-2726` |
+| `incident` | 2 | `bug-10735` `bug-10738` |
+| `include` | 2 | `bug-10708` `bug-3906` |
+| `includes` | 4 | `bug-10645` `bug-10648` `bug-10802` `bug-1487` |
 | `includes-block` | 1 | `bug-1945` |
 | `incomplete-fix` | 3 | `bug-1570` `bug-1892` `bug-2536` |
 | `incomplete-port` | 1 | `bug-1189` |
 | `incomplete-sweep` | 1 | `bug-2239` |
-| `incoopmode` | 2 | `bug-1491` `bug-359` |
+| `incoopmode` | 3 | `bug-10631` `bug-1491` `bug-359` |
 | `incremental-build` | 2 | `bug-100` `bug-961` |
 | `incremental-verification` | 1 | `bug-1824` |
 | `independent-flip` | 1 | `bug-1795` |
+| `index` | 2 | `bug-10319` `bug-3540` |
 | `index-cache` | 1 | `bug-2070` |
 | `index-drift` | 1 | `bug-1925` |
+| `index-lock` | 1 | `bug-3392` |
 | `index-restamp` | 1 | `bug-1135` |
 | `index-underflow` | 1 | `bug-1642` |
 | `index-vs-name` | 1 | `bug-1797` |
+| `index.lock` | 1 | `bug-3544` |
 | `indicator` | 1 | `bug-1673` |
+| `indoor` | 2 | `bug-3171` `bug-4012` |
 | `indoor-rain` | 1 | `bug-134` |
+| `indoors` | 1 | `bug-3529` |
 | `inert-feature` | 5 | `bug-2101` `bug-2171` `bug-2176` `bug-2179` `bug-2181` |
 | `inert-fix` | 1 | `bug-2083` |
 | `infinite-loop` | 4 | `bug-1493` `bug-2662` `bug-307` `bug-313` |
 | `infinite-retry` | 1 | `bug-1701` |
 | `info_pathnode` | 2 | `bug-1237` `bug-1710` |
+| `info_waypoint` | 1 | `bug-mgspawn1025b` |
+| `infra` | 1 | `bug-4147` |
 | `infrastructure` | 1 | `bug-buglog-dataloss` |
 | `inherited` | 1 | `bug-2385` |
 | `init` | 1 | `bug-589` |
 | `init-crash` | 1 | `bug-2116` |
 | `init-death` | 1 | `bug-302` |
-| `init-order` | 4 | `bug-1343` `bug-1345` `bug-1853` `bug-officer-instant-spawn-order` |
+| `init-order` | 5 | `bug-10659` `bug-1343` `bug-1345` `bug-1853` `bug-officer-instant-spawn-order` |
 | `init-server-commands` | 1 | `bug-2244` |
 | `init.cfg` | 1 | `bug-1932` |
+| `initialiseitem` | 1 | `bug-3308` |
 | `initmodel` | 2 | `bug-801` `bug-803` |
 | `injail` | 1 | `bug-2608` |
 | `injection` | 1 | `bug-2588` |
-| `injury` | 1 | `bug-1233` |
-| `input` | 9 | `bug-110` `bug-1685` `bug-2053` `bug-2136` `bug-2158` `bug-2460` `bug-2527` `bug-2528` `bug-dbno-medkit-letgo-same-key` |
+| `injured` | 1 | `bug-2825` |
+| `injury` | 2 | `bug-1233` `bug-3075` |
+| `input` | 16 | `bug-10329` `bug-10387` `bug-10735` `bug-10738` `bug-110` `bug-1685` `bug-2053` `bug-2136` `bug-2158` `bug-2460` `bug-2527` `bug-2528` `bug-3054` `bug-3560` `bug-4077` `bug-dbno-medkit-letgo-same-key` |
 | `input-jitter` | 1 | `bug-2099` |
 | `input-model` | 1 | `bug-2108` |
 | `insert-between-read-and-guard` | 1 | `bug-1941` |
-| `insignia` | 1 | `bug-622` |
+| `insignia` | 2 | `bug-10479` `bug-622` |
 | `inspect` | 3 | `bug-2016` `bug-2462` `bug-2463` |
 | `inspects` | 1 | `bug-1932` |
 | `instagib` | 1 | `bug-2673` |
-| `install` | 2 | `bug-2336` `bug-2386` |
-| `installer` | 2 | `bug-1799` `bug-1805` |
+| `install` | 3 | `bug-2336` `bug-2386` `bug-2734` |
+| `installer` | 8 | `bug-10779` `bug-1799` `bug-1805` `bug-2909` `bug-3116` `bug-3142` `bug-3471` `bug-3472` |
 | `instamsg` | 1 | `bug-2176` |
 | `instance-table` | 1 | `bug-780` |
 | `instant` | 2 | `bug-800` `bug-802` |
@@ -3339,18 +6843,28 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `instrumentation` | 12 | `bug-1496` `bug-1812` `bug-1831` `bug-1833` `bug-1835` `bug-2012` `bug-2096` `bug-2363` `bug-2457` `bug-777` `bug-947` `bug-gl2-invisible-friendly-actor-2nd` |
 | `instrumented` | 3 | `bug-1753` `bug-1957` `bug-1958` |
 | `int` | 1 | `bug-2603` |
-| `integer-division` | 2 | `bug-2424` `bug-2425` |
-| `intensity` | 1 | `bug-postfx-intensity-clobbered` |
-| `intermittent` | 5 | `bug-1245` `bug-1282` `bug-1739` `bug-2341` `bug-2362` |
-| `interpolation` | 1 | `bug-071` |
+| `integ-ads` | 1 | `bug-3856` |
+| `integer-division` | 4 | `bug-2424` `bug-2425` `bug-3527` `bug-4036` |
+| `integrate_ads` | 1 | `bug-3894` |
+| `integrated-gpu` | 1 | `bug-3536` |
+| `integration` | 37 | `bug-10772` `bug-10773` `bug-10774` `bug-10775` `bug-10776` `bug-10777` `bug-10778` `bug-10779` `bug-10780` `bug-10807` `bug-10808` `bug-10809` `bug-10838` `bug-10839` `bug-10840` `bug-3154` `bug-3246` `bug-3249` `bug-3250` `bug-3788` `bug-3807` `bug-3827` `bug-3862` `bug-3885` `bug-3886` `bug-3887` `bug-3888` `bug-3889` `bug-3890` `bug-4087` `bug-4088` `bug-4090` `bug-4091` `bug-4092` `bug-4133`… |
+| `integration-pass3` | 5 | `bug-3894` `bug-3895` `bug-3896` `bug-3897` `bug-3898` |
+| `integrator` | 1 | `bug-3315` |
+| `intensity` | 2 | `bug-3524` `bug-postfx-intensity-clobbered` |
+| `intermittent` | 6 | `bug-1245` `bug-1282` `bug-1739` `bug-2341` `bug-2362` `bug-2831` |
+| `internet-exposure` | 1 | `bug-2726` |
+| `interpolation` | 4 | `bug-071` `bug-10270` `bug-3630` `bug-3659` |
+| `interrogation` | 5 | `bug-10643` `bug-10675` `bug-10678` `bug-10683` `bug-10684` |
 | `interrupted` | 1 | `bug-424` |
 | `interrupted-anim` | 1 | `bug-1175` |
-| `intro` | 5 | `bug-1286` `bug-1289` `bug-gl2-introfade` `bug-gl2-introhud` `bug-taunt-intro` |
+| `intersection` | 2 | `bug-3231` `bug-3238` |
+| `intro` | 6 | `bug-1286` `bug-1289` `bug-3323` `bug-gl2-introfade` `bug-gl2-introhud` `bug-taunt-intro` |
+| `invalid-waittill` | 1 | `bug-10584` |
 | `invalidated-tuning` | 1 | `bug-1838` |
-| `invariant` | 4 | `bug-1814` `bug-2544` `bug-2546` `bug-2550` |
+| `invariant` | 6 | `bug-1814` `bug-2544` `bug-2546` `bug-2550` `bug-3052` `bug-3188` |
 | `invented-command` | 1 | `bug-1067` |
 | `invented-offset` | 1 | `bug-1370` |
-| `inventory` | 7 | `bug-098` `bug-909` `bug-915` `bug-919` `bug-920` `bug-924` `bug-925` |
+| `inventory` | 8 | `bug-098` `bug-4012` `bug-909` `bug-915` `bug-919` `bug-920` `bug-924` `bug-925` |
 | `inventory-item` | 1 | `bug-1617` |
 | `inverted` | 1 | `bug-110` |
 | `inverted-comment` | 1 | `bug-2358` |
@@ -3361,232 +6875,386 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `investigate` | 4 | `bug-1740` `bug-1742` `bug-1743` `bug-2610` |
 | `investigation` | 2 | `bug-1386` `bug-923` |
 | `invincible` | 1 | `bug-1371` |
-| `invisible` | 12 | `bug-106` `bug-107` `bug-1988` `bug-481` `bug-647` `bug-gl2-e2l2-briefing-npc-invisible` `bug-gl2-forcepose-skips-composite-ally` `bug-gl2-invisible-friendly-actor` `bug-gl2-invisible-friendly-actor-2nd` `bug-gl2-invisible-friendly-actor-root` `bug-gl2-invisible-live-char-depthprepass` `bug-gl2-invisible-live-enemies-prepass-pose` |
+| `invisible` | 13 | `bug-106` `bug-10683` `bug-107` `bug-1988` `bug-481` `bug-647` `bug-gl2-e2l2-briefing-npc-invisible` `bug-gl2-forcepose-skips-composite-ally` `bug-gl2-invisible-friendly-actor` `bug-gl2-invisible-friendly-actor-2nd` `bug-gl2-invisible-friendly-actor-root` `bug-gl2-invisible-live-char-depthprepass` `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `invisible-actor` | 2 | `bug-1131` `bug-1135` |
-| `invisible-damage` | 2 | `bug-2015` `bug-2076` |
-| `invisible-enemies` | 2 | `bug-891` `bug-892` |
-| `invisible-wall` | 11 | `bug-1405` `bug-1756` `bug-1820` `bug-624` `bug-873` `bug-942` `bug-946` `bug-947` `bug-949` `bug-950` `bug-951` |
-| `invisible-walls` | 2 | `bug-937b` `bug-938` |
+| `invisible-damage` | 3 | `bug-2015` `bug-2076` `bug-3309` |
+| `invisible-enemies` | 3 | `bug-3306` `bug-891` `bug-892` |
+| `invisible-label` | 1 | `bug-3264` |
+| `invisible-wall` | 12 | `bug-1405` `bug-1756` `bug-1820` `bug-2723` `bug-624` `bug-873` `bug-942` `bug-946` `bug-947` `bug-949` `bug-950` `bug-951` |
+| `invisible-walls` | 5 | `bug-10845` `bug-10888` `bug-937b` `bug-938` `bug-eap-longclip` |
 | `invisible-weapon` | 1 | `bug-2009` |
 | `invuln` | 1 | `bug-2706` |
-| `invulnerability` | 2 | `bug-2712` `bug-2713` |
+| `invulnerability` | 3 | `bug-2712` `bug-2713` `bug-2928` |
 | `invulnerable` | 2 | `bug-1257` `bug-1763` |
 | `invulnerable-ai` | 1 | `bug-1212` |
 | `inzoom` | 2 | `bug-329` `bug-332` |
 | `io_scene_md5` | 1 | `bug-293` |
 | `ioq3-parity` | 1 | `bug-1136` |
-| `iprint` | 1 | `bug-1374` |
-| `iprintlnbold` | 1 | `bug-1374` |
+| `iprint` | 3 | `bug-1374` `bug-3426` `bug-3952` |
+| `iprintlnbold` | 2 | `bug-1374` `bug-3542` |
+| `ipv6` | 1 | `bug-3908` |
 | `iron-sight` | 2 | `bug-072` `bug-074` |
+| `iron-sights` | 2 | `bug-10762` `bug-3225` |
+| `irons` | 2 | `bug-10617` `bug-4260` |
+| `ironsights` | 12 | `bug-3270` `bug-3271` `bug-3272` `bug-3273` `bug-3291` `bug-3292` `bug-3293` `bug-3310` `bug-3316` `bug-3711` `bug-3712` `bug-3713` |
 | `is_disguised` | 3 | `bug-1701` `bug-1701b` `bug-1703` |
-| `isalive` | 1 | `bug-1251` |
+| `isalive` | 3 | `bug-1251` `bug-3208` `bug-3468` |
 | `isalive-null` | 1 | `bug-1579` |
 | `ischaracter` | 1 | `bug-gl2-forcepose-skips-composite-ally` |
-| `iscoopenabledmap` | 1 | `bug-359` |
-| `isolation` | 19 | `bug-2558` `bug-2564` `bug-2571` `bug-2579` `bug-2598` `bug-2614` `bug-2618` `bug-2621` `bug-2633` `bug-2634` `bug-2635` `bug-2636` `bug-2640` `bug-2641` `bug-2643` `bug-2648` `bug-2668` `bug-2680` `bug-922` |
+| `iscoopenabledmap` | 2 | `bug-10631` `bug-359` |
+| `island` | 1 | `bug-2988` |
+| `isolated-tree` | 1 | `bug-3148` |
+| `isolation` | 26 | `bug-10913` `bug-10918` `bug-2558` `bug-2564` `bug-2571` `bug-2579` `bug-2598` `bug-2614` `bug-2618` `bug-2621` `bug-2633` `bug-2634` `bug-2635` `bug-2636` `bug-2640` `bug-2641` `bug-2643` `bug-2648` `bug-2668` `bug-2680` `bug-2751` `bug-2780` `bug-2917` `bug-2972` `bug-3430` `bug-922` |
 | `isolation-hook` | 1 | `bug-2688` |
 | `isolation-pending` | 1 | `bug-2710` |
 | `isspectator` | 1 | `bug-1455` |
 | `isteammate` | 1 | `bug-123` |
+| `item-readout` | 2 | `bug-3521` `bug-3572` |
 | `item_name` | 1 | `bug-1982` |
 | `itemgetall` | 3 | `bug-625` `bug-871` `bug-880` |
-| `itemhandler` | 12 | `bug-1204` `bug-1267` `bug-1269` `bug-1337` `bug-1624` `bug-1701` `bug-1703` `bug-2178` `bug-484` `bug-800` `bug-802` `bug-939` |
+| `itemhandler` | 19 | `bug-1204` `bug-1267` `bug-1269` `bug-1337` `bug-1624` `bug-1701` `bug-1703` `bug-2178` `bug-3187` `bug-3249` `bug-3307` `bug-3308` `bug-3765` `bug-3813` `bug-3851` `bug-484` `bug-800` `bug-802` `bug-939` |
+| `items` | 1 | `bug-3495` |
 | `iterate-while-deleting` | 1 | `bug-2050` |
 | `iviewmodelanim` | 2 | `bug-165` `bug-168` |
-| `jeep` | 8 | `bug-1258` `bug-1367` `bug-1429` `bug-1433` `bug-1437` `bug-1457` `bug-296` `bug-301` |
+| `jam` | 2 | `bug-3026` `bug-4403` |
+| `jeep` | 10 | `bug-10849` `bug-10862` `bug-1258` `bug-1367` `bug-1429` `bug-1433` `bug-1437` `bug-1457` `bug-296` `bug-301` |
 | `jeep-passengers` | 1 | `bug-1460` |
 | `jeep-sequence` | 1 | `bug-1513` |
-| `jeepanim` | 1 | `bug-1366` |
-| `jitter` | 1 | `bug-1983` |
-| `johnson` | 4 | `bug-1894` `bug-1897` `bug-1905` `bug-1911` |
+| `jeepanim` | 2 | `bug-1366` `bug-3051` |
+| `jitter` | 6 | `bug-10288` `bug-1983` `bug-3128` `bug-3272` `bug-3292` `bug-3630` |
+| `job-object` | 1 | `bug-10334` |
+| `johnson` | 7 | `bug-1894` `bug-1897` `bug-1905` `bug-1911` `bug-3364` `bug-4262` `bug-4267` |
+| `join` | 4 | `bug-10701` `bug-3050` `bug-3429` `bug-3778` |
+| `joincard` | 3 | `bug-10586` `bug-10587` `bug-10690` |
+| `joiner` | 3 | `bug-3234` `bug-3474` `bug-3526` |
+| `joint-limits` | 2 | `bug-3127` `bug-3129` |
 | `jolt` | 1 | `bug-2000` |
 | `joystick` | 1 | `bug-2606` |
+| `jpeg` | 3 | `bug-10867` `bug-10869` `bug-3880` |
 | `jq` | 2 | `bug-1800` `bug-425` |
-| `jump` | 1 | `bug-367` |
-| `junction` | 1 | `bug-2396` |
+| `judder` | 1 | `bug-3381` |
+| `jump` | 11 | `bug-2837` `bug-2879` `bug-2885` `bug-2887` `bug-2889` `bug-2892` `bug-2896` `bug-2898` `bug-2988` `bug-3086` `bug-367` |
+| `jump-link` | 2 | `bug-2913` `bug-2957` |
+| `jump-over-ledge` | 1 | `bug-2955` |
+| `junction` | 3 | `bug-2396` `bug-4147` `bug-4216` |
+| `k5` | 1 | `bug-2775` |
+| `kabsch` | 1 | `bug-3663` |
+| `kar98` | 8 | `bug-3451` `bug-3598` `bug-3599` `bug-3703` `bug-3817` `bug-3833` `bug-3834` `bug-4267` |
+| `kept-animations` | 1 | `bug-3132` |
 | `key-conflict` | 1 | `bug-dbno-medkit-letgo-same-key` |
 | `keybind` | 2 | `bug-2176` `bug-t2l2-f5bind` |
+| `keybind-bus` | 1 | `bug-10427` |
 | `keybind-collision` | 1 | `bug-1262` |
-| `keyitems` | 1 | `bug-1339` |
+| `keybinds` | 1 | `bug-3495` |
+| `keyboard` | 2 | `bug-4163` `bug-4168` |
+| `keycatch` | 1 | `bug-4442` |
+| `keyframes` | 1 | `bug-3222` |
+| `keyitems` | 2 | `bug-10695` `bug-1339` |
 | `keyname` | 1 | `bug-413` |
+| `keynav` | 1 | `bug-4169` |
+| `keypad` | 3 | `bug-10309` `bug-10326` `bug-10329` |
+| `keys` | 3 | `bug-10259` `bug-10274` `bug-10364` |
 | `keyvalue` | 1 | `bug-1372` |
 | `kick` | 2 | `bug-1978` `bug-2678` |
+| `kill-attribution` | 1 | `bug-10340` |
+| `kill-credit` | 1 | `bug-3528` |
 | `kill-splash` | 4 | `bug-780` `bug-796` `bug-817` `bug-828` |
+| `kill-stat` | 1 | `bug-10592` |
 | `kill-tracking` | 1 | `bug-1346` |
-| `killed` | 1 | `bug-382` |
+| `killchal` | 4 | `bug-4142` `bug-4143` `bug-4144` `bug-4146` |
+| `killchal-next` | 1 | `bug-4145` |
+| `killed` | 2 | `bug-3324` `bug-382` |
 | `killed-while-down` | 1 | `bug-2626` |
-| `kills` | 1 | `bug-1868` |
+| `killed.scr` | 1 | `bug-3502` |
+| `kills` | 2 | `bug-10294` `bug-1868` |
 | `killwall` | 4 | `bug-953` `bug-955` `bug-958` `bug-960` |
 | `king-tiger` | 1 | `bug-1597` |
+| `kit` | 1 | `bug-2771` |
 | `kneel` | 1 | `bug-417` |
 | `knife` | 1 | `bug-921` |
+| `knob` | 1 | `bug-3720` |
 | `known-gap` | 1 | `bug-1662` |
 | `known-issue` | 1 | `bug-330` |
 | `known-limit-shipped-anyway` | 1 | `bug-2062` |
 | `koth` | 2 | `bug-2605` `bug-2652` |
 | `koth-derived` | 1 | `bug-2611` |
 | `koth-reuse` | 2 | `bug-2674` `bug-2676` |
+| `kp_pgdn` | 1 | `bug-3299` |
 | `kun` | 1 | `bug-482` |
 | `kun-weapons` | 1 | `bug-480` |
-| `label` | 1 | `bug-1218` |
-| `ladder` | 12 | `bug-1415` `bug-1419` `bug-1421` `bug-1424` `bug-1425` `bug-1828` `bug-1831` `bug-1832` `bug-1835` `bug-1836` `bug-1839` `bug-1842` |
+| `l4` | 1 | `bug-3177` |
+| `lab-baseline` | 1 | `bug-3163` |
+| `label` | 3 | `bug-10383` `bug-10818` `bug-1218` |
+| `label-missing` | 1 | `bug-3197` |
+| `labels` | 1 | `bug-10395` |
+| `ladder` | 14 | `bug-1415` `bug-1419` `bug-1421` `bug-1424` `bug-1425` `bug-1828` `bug-1831` `bug-1832` `bug-1835` `bug-1836` `bug-1839` `bug-1842` `bug-2871` `bug-2897` |
+| `ladder-queue` | 1 | `bug-2871` |
+| `lag` | 2 | `bug-3911` `bug-4175` |
 | `lag-spike` | 1 | `bug-1141` |
 | `lag-spring` | 1 | `bug-2141` |
 | `lagometer` | 1 | `bug-1663` |
-| `landing` | 1 | `bug-2006` |
+| `lamp` | 1 | `bug-10490` |
+| `landing` | 4 | `bug-2006` `bug-3687` `bug-3694` `bug-3751` |
 | `landmine` | 8 | `bug-2028` `bug-2126` `bug-898` `bug-899` `bug-914` `bug-919` `bug-924` `bug-938` |
+| `lane-folders` | 1 | `bug-3885` |
+| `lanes` | 1 | `bug-2993` |
+| `last-man-standing` | 1 | `bug-3518` |
 | `last-map` | 1 | `bug-1500` |
 | `last-wins` | 1 | `bug-2297` |
 | `lastangles` | 1 | `bug-623` |
-| `latch` | 9 | `bug-1275` `bug-1666` `bug-1700` `bug-1704` `bug-1796` `bug-2124` `bug-2175` `bug-2463` `bug-2573` |
+| `latch` | 13 | `bug-10362` `bug-1275` `bug-1666` `bug-1700` `bug-1704` `bug-1796` `bug-2124` `bug-2175` `bug-2463` `bug-2573` `bug-3039` `bug-3100` `bug-3104` |
 | `latch-too-early` | 1 | `bug-1768` |
-| `latched-cvar` | 3 | `bug-1123` `bug-143` `bug-1492` |
+| `latched-cvar` | 5 | `bug-1123` `bug-143` `bug-1492` `bug-2729` `bug-3321` |
 | `latched-state` | 1 | `bug-2298` |
-| `late-join` | 1 | `bug-1662` |
-| `latent` | 19 | `bug-1197` `bug-1223` `bug-1224` `bug-1225` `bug-1226` `bug-1285` `bug-1561` `bug-1602` `bug-1680` `bug-1734` `bug-1737` `bug-1890` `bug-2070` `bug-2198` `bug-2207` `bug-2226` `bug-2290` `bug-2484` `bug-2486` |
+| `late-join` | 2 | `bug-1662` `bug-3399` |
+| `latency` | 1 | `bug-10908` |
+| `latent` | 28 | `bug-1197` `bug-1223` `bug-1224` `bug-1225` `bug-1226` `bug-1285` `bug-1561` `bug-1602` `bug-1680` `bug-1734` `bug-1737` `bug-1890` `bug-2070` `bug-2198` `bug-2207` `bug-2226` `bug-2290` `bug-2484` `bug-2486` `bug-2873` `bug-2971` `bug-3009` `bug-3011` `bug-3020` `bug-3036` `bug-3089` `bug-3135` `bug-3263` |
 | `latent-defect` | 3 | `bug-1217` `bug-1306` `bug-2160` |
 | `lattice` | 1 | `bug-1766` |
-| `launch` | 2 | `bug-2315` `bug-502` |
-| `launcher` | 2 | `bug-1337` `bug-1907` |
-| `launcher-respawn` | 1 | `bug-1801` |
-| `layout` | 6 | `bug-1003` `bug-1160` `bug-1510` `bug-2679` `bug-459` `bug-460` |
+| `launch` | 4 | `bug-2315` `bug-2910` `bug-3538` `bug-502` |
+| `launch-hold` | 1 | `bug-10915` |
+| `launch-race` | 1 | `bug-2750` |
+| `launcher` | 5 | `bug-1337` `bug-1907` `bug-2996` `bug-3041` `bug-3124` |
+| `launcher-respawn` | 3 | `bug-1801` `bug-2998` `bug-3004` |
+| `layout` | 17 | `bug-1003` `bug-10473` `bug-10492` `bug-10535` `bug-10757` `bug-10771` `bug-10917` `bug-1160` `bug-1510` `bug-2679` `bug-2757` `bug-2785` `bug-2819` `bug-2934` `bug-4006` `bug-459` `bug-460` |
 | `lazy-load` | 1 | `bug-1595` |
+| `lbd` | 1 | `bug-3135` |
 | `ldr` | 1 | `bug-1159` |
+| `leaderboard` | 1 | `bug-10843` |
 | `leading-logical-operator` | 2 | `bug-739` `bug-750` |
-| `leak` | 2 | `bug-1254` `bug-2571` |
-| `lean` | 2 | `bug-2126` `bug-lean-ads-wrong-branch` |
+| `leaf` | 1 | `bug-3043` |
+| `leafdeflect` | 1 | `bug-3201` |
+| `leak` | 6 | `bug-10344` `bug-1254` `bug-2571` `bug-2894` `bug-3069` `bug-3567` |
+| `lean` | 11 | `bug-10358` `bug-2126` `bug-2877` `bug-3225` `bug-3229` `bug-3273` `bug-3312` `bug-3869` `bug-4170` `bug-4175` `bug-lean-ads-wrong-branch` |
 | `lean-roll` | 1 | `bug-2073` |
-| `leash` | 2 | `bug-2074` `bug-2180` |
+| `learn` | 2 | `bug-2898` `bug-2899` |
+| `learning` | 1 | `bug-2913` |
+| `leash` | 3 | `bug-2074` `bug-2180` `bug-3686` |
+| `leave-as-is` | 1 | `bug-3266` |
 | `ledermantel` | 1 | `bug-936b` |
 | `ledger` | 1 | `bug-1868` |
 | `leftover-campaign` | 1 | `bug-1426` |
 | `leftover-entities` | 1 | `bug-939` |
+| `legs` | 1 | `bug-2918` |
 | `legs-statemap` | 1 | `bug-554` |
+| `lens` | 5 | `bug-10290` `bug-10311` `bug-10344` `bug-3447` `bug-3451` |
+| `lens-flare` | 1 | `bug-2969` |
+| `lens-pass` | 1 | `bug-10624` |
 | `lequal` | 2 | `bug-gl2-forcepose-skips-composite-ally` `bug-gl2-invisible-live-char-depthprepass` |
+| `letterbox` | 1 | `bug-10343` |
+| `level` | 1 | `bug-10354` |
 | `level-array` | 1 | `bug-1632` |
+| `level-change` | 4 | `bug-10271` `bug-10282` `bug-10309` `bug-10327` |
 | `level-design-stomp` | 1 | `bug-2074` |
 | `level-start` | 1 | `bug-822` |
-| `levelwide` | 1 | `bug-2545` |
+| `level-variables` | 1 | `bug-3795` |
+| `level.script` | 1 | `bug-2725` |
+| `levels` | 3 | `bug-10493` `bug-10498` `bug-10697` |
+| `levelwide` | 3 | `bug-2545` `bug-2786` `bug-2817` |
 | `lever` | 1 | `bug-2462` |
-| `licensing` | 2 | `bug-2002` `bug-2164` |
+| `lewis` | 3 | `bug-10580` `bug-3365` `bug-4267` |
+| `lgpl` | 1 | `bug-10743` |
+| `liberacion` | 4 | `bug-10915` `bug-10916` `bug-10917` `bug-10918` |
+| `licence` | 2 | `bug-10317` `bug-3774` |
+| `licensing` | 4 | `bug-2002` `bug-2164` `bug-3126` `bug-3453` |
 | `lifecycle` | 1 | `bug-2272` |
 | `lifetime` | 1 | `bug-1793` |
+| `lift` | 6 | `bug-2879` `bug-2886` `bug-2912` `bug-2949` `bug-2955` `bug-3612` |
+| `light` | 1 | `bug-4401` |
+| `light-direction` | 3 | `bug-3007` `bug-3061` `bug-3064` |
 | `light-grid` | 1 | `bug-2554` |
+| `light-linking` | 1 | `bug-3232` |
 | `light-sphere` | 2 | `bug-1229` `bug-1230` |
-| `lightall` | 5 | `bug-1224` `bug-143` `bug-2145` `bug-2485` `bug-2486` |
+| `lightall` | 9 | `bug-1224` `bug-143` `bug-2145` `bug-2485` `bug-2486` `bug-3179` `bug-3180` `bug-3213` `bug-3252` |
 | `lightdir` | 1 | `bug-2144` |
-| `lighting` | 7 | `bug-1126` `bug-1131` `bug-1229` `bug-1294` `bug-2144` `bug-918` `bug-gl2-modellight` |
+| `lightglow` | 3 | `bug-2946` `bug-2999` `bug-3008` |
+| `lighting` | 15 | `bug-10528` `bug-10529` `bug-10627` `bug-1126` `bug-1131` `bug-1229` `bug-1294` `bug-2144` `bug-2556` `bug-2905` `bug-3085` `bug-4122` `bug-918` `bug-eap-sobdark` `bug-gl2-modellight` |
+| `lightingdiffuse` | 1 | `bug-3696` |
 | `lightinggrid` | 1 | `bug-gl2-modellight` |
-| `lightingspherical` | 3 | `bug-530` `bug-921` `bug-gl2-modellight` |
-| `lightmap` | 4 | `bug-2151` `bug-2190` `bug-2549` `bug-gl2-nextbundle2` |
+| `lightingspherical` | 5 | `bug-10618` `bug-3696` `bug-530` `bug-921` `bug-gl2-modellight` |
+| `lightmap` | 7 | `bug-10449` `bug-2151` `bug-2190` `bug-2549` `bug-3006` `bug-3224` `bug-gl2-nextbundle2` |
+| `lightning` | 10 | `bug-3106` `bug-3108` `bug-3148` `bug-3151` `bug-3161` `bug-3169` `bug-3171` `bug-3172` `bug-3178` `bug-3181` |
 | `lights` | 5 | `bug-1408` `bug-1414` `bug-1417` `bug-1421` `bug-1423` |
 | `lightstyle` | 1 | `bug-1331` |
 | `limbs` | 1 | `bug-2231` |
-| `limitation` | 1 | `bug-2416` |
-| `limits` | 1 | `bug-2242` |
-| `limp` | 7 | `bug-1291` `bug-1292` `bug-1324` `bug-1325` `bug-1669` `bug-2104` `bug-2689` |
-| `line-endings` | 6 | `bug-1363` `bug-1600` `bug-2081` `bug-2399` `bug-2422` `bug-2453` |
+| `limit-cycle` | 1 | `bug-3129` |
+| `limitation` | 2 | `bug-2416` `bug-4426` |
+| `limiter` | 2 | `bug-3172` |
+| `limits` | 3 | `bug-10831` `bug-2242` `bug-2945` |
+| `limp` | 8 | `bug-1291` `bug-1292` `bug-1324` `bug-1325` `bug-1669` `bug-2104` `bug-2689` `bug-3075` |
+| `line-endings` | 10 | `bug-10742` `bug-1363` `bug-1600` `bug-2081` `bug-2399` `bug-2422` `bug-2453` `bug-3438` `bug-3819` `bug-3821` |
 | `line-layout` | 1 | `bug-293` |
+| `line-length` | 1 | `bug-10455` |
+| `linear-copy` | 1 | `bug-3067` |
 | `linecheck` | 1 | `bug-1269` |
+| `link` | 2 | `bug-10335` `bug-4135` |
+| `link-error` | 2 | `bug-3156` `bug-3298` |
+| `linkage` | 1 | `bug-10299` |
 | `linkcvar` | 1 | `bug-2615` |
-| `linkcvartoshader` | 2 | `bug-1546` `bug-462` |
+| `linkcvartoshader` | 4 | `bug-1546` `bug-2756` `bug-3300` `bug-462` |
 | `linker` | 1 | `bug-020` |
+| `linkstring` | 1 | `bug-3144` |
+| `lint` | 8 | `bug-10280` `bug-2971` `bug-3005` `bug-3019` `bug-3059` `bug-3137` `bug-3184` `bug-3456` |
+| `linux` | 3 | `bug-10281` `bug-10308` `bug-10312` |
 | `listen` | 1 | `bug-1673` |
+| `listen-host` | 2 | `bug-2808` `bug-2816` |
 | `listen-only` | 1 | `bug-2460` |
-| `listen-server` | 4 | `bug-2710` `bug-595` `bug-712` `bug-715` |
+| `listen-server` | 8 | `bug-10426` `bug-10801` `bug-2710` `bug-3339` `bug-3526` `bug-595` `bug-712` `bug-715` |
 | `listener` | 1 | `bug-1612` |
 | `live-audit` | 3 | `bug-1026` `bug-1027` `bug-1028` |
+| `live-bug` | 1 | `bug-3048` |
 | `live-cvar-as-slider` | 1 | `bug-1170` |
 | `live-enemy` | 1 | `bug-gl2-invisible-live-enemies-prepass-pose` |
+| `live-install` | 1 | `bug-3058` |
 | `live-mutation` | 1 | `bug-1428` |
 | `live-recheck` | 1 | `bug-231` |
 | `live-regression` | 1 | `bug-1941` |
+| `live-release` | 2 | `bug-4431` `bug-4432` |
 | `live-tunable` | 3 | `bug-1200` `bug-1754` `bug-1833` |
+| `livelock` | 1 | `bug-10914` |
+| `liveops` | 14 | `bug-10813` `bug-10814` `bug-10816` `bug-10826` `bug-10827` `bug-10828` `bug-10832` `bug-10838` `bug-10860` `bug-10909` `bug-10910` `bug-10916` `bug-10917` `bug-10927` |
 | `living-enemy` | 1 | `bug-905` |
-| `lktab` | 1 | `bug-682` |
-| `lms` | 2 | `bug-2604` `bug-2624` |
+| `lktab` | 3 | `bug-10579` `bug-3830` `bug-682` |
+| `lms` | 5 | `bug-2604` `bug-2624` `bug-2924` `bug-3324` `bug-3518` |
+| `load` | 1 | `bug-3078` |
+| `load-crash` | 1 | `bug-2997` |
 | `load-in` | 1 | `bug-1401` |
+| `load-order` | 3 | `bug-10552` `bug-10553` `bug-3110` |
+| `load-time-draw` | 1 | `bug-4120` |
 | `load_scale` | 1 | `bug-1228` |
+| `loadart` | 2 | `bug-3955` `bug-4174` |
+| `loadcine` | 11 | `bug-10869` `bug-10914` `bug-4010` `bug-4091` `bug-4092` `bug-4120` `bug-4121` `bug-4122` `bug-4123` `bug-4173` `bug-4174` |
+| `loadclips` | 5 | `bug-10647` `bug-10834` `bug-10835` `bug-10867` `bug-10868` |
 | `loaddds` | 1 | `bug-m3l2-ground-seams` |
-| `loadout` | 54 | `bug-1204` `bug-1252` `bug-1279` `bug-133` `bug-1675` `bug-1677` `bug-1678` `bug-1692` `bug-1729` `bug-1896` `bug-1902` `bug-1906` `bug-1908` `bug-1916` `bug-1918` `bug-1919` `bug-1923` `bug-1926` `bug-1928` `bug-1929` `bug-1930` `bug-1931` `bug-2067` `bug-2078` `bug-2557` `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2577` `bug-2618` `bug-2648` `bug-2667` `bug-586` `bug-587` `bug-588` `bug-58… |
+| `loadhold` | 1 | `bug-4189` |
+| `loading-screen` | 11 | `bug-3002` `bug-3005` `bug-3013` `bug-3015` `bug-3019` `bug-3035` `bug-3059` `bug-3075` `bug-3186` `bug-4173` `bug-4174` |
+| `loadingbar` | 1 | `bug-4091` |
+| `loadout` | 73 | `bug-10667` `bug-1204` `bug-1252` `bug-1279` `bug-133` `bug-1675` `bug-1677` `bug-1678` `bug-1692` `bug-1729` `bug-1896` `bug-1902` `bug-1906` `bug-1908` `bug-1916` `bug-1918` `bug-1919` `bug-1923` `bug-1926` `bug-1928` `bug-1929` `bug-1930` `bug-1931` `bug-2067` `bug-2078` `bug-2557` `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2577` `bug-2618` `bug-2648` `bug-2667` `bug-2722` `bug-2776` `bu… |
 | `loadout-chooser` | 1 | `bug-2622` |
 | `loadout-ui` | 2 | `bug-1358` `bug-armory-roster76` |
 | `loadout_finish` | 2 | `bug-1923` `bug-1947` |
 | `loadoutlocked` | 1 | `bug-1926` |
-| `loadoutpick` | 2 | `bug-1205` `bug-1919` |
+| `loadoutpick` | 3 | `bug-1205` `bug-1919` `bug-4046` |
+| `loadscreen` | 5 | `bug-3215` `bug-3216` `bug-3217` `bug-3251` `bug-3955` |
+| `loadscreens` | 3 | `bug-4154` `bug-4155` `bug-4156` |
 | `loadtga` | 1 | `bug-059` |
-| `lobby` | 19 | `bug-1248` `bug-1258` `bug-2622` `bug-348` `bug-349` `bug-350` `bug-401` `bug-402` `bug-429` `bug-552` `bug-588` `bug-739` `bug-750` `bug-755` `bug-773` `bug-788` `bug-789` `bug-808` `bug-armory-roster76` |
+| `lobby` | 51 | `bug-10516` `bug-10517` `bug-10575` `bug-10594` `bug-10636` `bug-10644` `bug-10858` `bug-1248` `bug-1258` `bug-2622` `bug-2724` `bug-2960` `bug-3050` `bug-3056` `bug-3072` `bug-3091` `bug-3457` `bug-348` `bug-349` `bug-350` `bug-3909` `bug-3910` `bug-3913` `bug-3914` `bug-3915` `bug-3918` `bug-3919` `bug-3954` `bug-3955` `bug-3956` `bug-3958` `bug-401` `bug-402` `bug-4050` `bug-4171` `bug-4172` `… |
 | `lobby-button` | 1 | `bug-597` |
 | `lobby-mannequin` | 1 | `bug-1533` |
 | `lobby-pattern` | 1 | `bug-1385` |
 | `lobby.scr` | 8 | `bug-355` `bug-356` `bug-363` `bug-366` `bug-367` `bug-368` `bug-369` `bug-370` |
+| `lobbyall` | 1 | `bug-4087` |
+| `lobbyanim` | 1 | `bug-3956` |
+| `lobbytest` | 1 | `bug-2729` |
 | `lobbyui` | 2 | `bug-2622` `bug-588` |
 | `localisation` | 1 | `bug-2111` |
-| `localization` | 1 | `bug-1867` |
+| `localization` | 6 | `bug-10448` `bug-10571` `bug-10574` `bug-1867` `bug-3096` `bug-3192` |
+| `localserver` | 1 | `bug-3234` |
+| `lock` | 5 | `bug-10749` `bug-3328` `bug-3919` `bug-3920` `bug-4167` |
+| `lock-export` | 1 | `bug-3766` |
 | `lock-gate` | 1 | `bug-758` |
 | `lock-leak` | 2 | `bug-801` `bug-803` |
+| `locked` | 1 | `bug-3959` |
 | `locked-cosmetic` | 4 | `bug-755` `bug-759` `bug-772` `bug-787` |
 | `locked-toast` | 1 | `bug-1931` |
-| `lockstep` | 3 | `bug-1217` `bug-332` `bug-armory-roster76` |
+| `lockstep` | 5 | `bug-10260` `bug-10361` `bug-1217` `bug-332` `bug-armory-roster76` |
 | `lockstep-refuted-pmflags` | 1 | `bug-2066` |
 | `locomotion` | 1 | `bug-1490` |
-| `lod` | 2 | `bug-1300` `bug-1332` |
+| `lod` | 8 | `bug-1300` `bug-1332` `bug-2905` `bug-3061` `bug-3139` `bug-3164` `bug-3170` `bug-3483` |
 | `lodscale` | 1 | `bug-1125` |
+| `log` | 2 | `bug-10332` `bug-3549` |
 | `log-flood` | 1 | `bug-1803` |
 | `log-is-the-oracle` | 1 | `bug-1614` |
+| `log-noise` | 3 | `bug-10672` `bug-2728` `bug-2869` |
 | `log-rotation` | 1 | `bug-1221` |
-| `log-spam` | 2 | `bug-1807` `bug-2018` |
+| `log-spam` | 3 | `bug-10310` `bug-1807` `bug-2018` |
+| `log-truncation` | 1 | `bug-3125` |
 | `logfile` | 1 | `bug-2238` |
-| `logging` | 1 | `bug-1153` |
+| `logging` | 5 | `bug-1153` `bug-3016` `bug-3033` `bug-3034` `bug-3103` |
 | `logic-fix` | 9 | `bug-026` `bug-036` `bug-048` `bug-221` `bug-271` `bug-287` `bug-288` `bug-360` `bug-726` |
 | `logs` | 1 | `bug-2413` |
 | `logspam` | 2 | `bug-2221` `bug-2238` |
+| `long-soak` | 1 | `bug-2743` |
 | `long-standing` | 3 | `bug-1663` `bug-1712` `bug-2168` |
 | `long-tail` | 1 | `bug-1054` |
 | `longjmp` | 1 | `bug-2585` |
+| `look` | 1 | `bug-3458` |
+| `look-compensation` | 2 | `bug-2986` `bug-2992` |
+| `look-dev` | 1 | `bug-3517` |
+| `lookahead` | 1 | `bug-2824` |
 | `lookaroundangle` | 1 | `bug-2077` |
+| `lookdev` | 5 | `bug-3105` `bug-3143` `bug-3163` `bug-3165` `bug-3458` |
 | `looked-downstream-not-upstream` | 1 | `bug-1767` |
-| `loop-protection` | 1 | `bug-2662` |
-| `loopsound` | 12 | `bug-1857` `bug-2232` `bug-2235` `bug-2408` `bug-2429` `bug-2432` `bug-2437` `bug-2454` `bug-2465` `bug-2545` `bug-2551` `bug-849` |
-| `loose-files` | 2 | `bug-1385` `bug-2020` |
+| `lookup` | 3 | `bug-10897` `bug-3227` `bug-3271` |
+| `loop` | 2 | `bug-2890` `bug-3849` |
+| `loop-guard` | 1 | `bug-3001` |
+| `loop-protection` | 3 | `bug-2662` `bug-2983` `bug-3078` |
+| `loopback` | 1 | `bug-10351` |
+| `loops` | 1 | `bug-2883` |
+| `loopsound` | 15 | `bug-1857` `bug-2232` `bug-2235` `bug-2408` `bug-2429` `bug-2432` `bug-2437` `bug-2454` `bug-2465` `bug-2545` `bug-2551` `bug-2737` `bug-2817` `bug-3473` `bug-849` |
+| `loose-files` | 3 | `bug-1385` `bug-2020` `bug-3410` |
 | `loose-files-vs-pk3` | 1 | `bug-2386` |
 | `loose-vs-pk3` | 1 | `bug-960` |
+| `loot` | 5 | `bug-10258` `bug-10474` `bug-10475` `bug-10894` `bug-4433` |
+| `los` | 3 | `bug-10506` `bug-4277` `bug-4395` |
+| `los-test` | 1 | `bug-10523` |
+| `lost-generator` | 1 | `bug-3267` |
 | `loud-to-quiet` | 2 | `bug-1700` `bug-1701` |
 | `loud-trigger` | 1 | `bug-1652` |
+| `loudness` | 1 | `bug-4269` |
+| `low` | 4 | `bug-2974` `bug-3120` `bug-3121` `bug-3122` |
+| `low-cover` | 2 | `bug-10413` `bug-10431` |
 | `low-health` | 2 | `bug-1291` `bug-lowhealth-scene-dependent` |
 | `low-impact` | 1 | `bug-gl2-e2l2-briefing-npc-invisible` |
+| `lower` | 1 | `bug-10287` |
 | `lowhealth` | 2 | `bug-1151` `bug-gl2-dbnofx` |
 | `lowpass` | 1 | `bug-2444` |
 | `lru-steal` | 1 | `bug-780` |
+| `lstsq` | 1 | `bug-10664` |
 | `lt-pato` | 1 | `bug-1899` |
+| `lufs` | 1 | `bug-4269` |
+| `luger` | 2 | `bug-3656` `bug-3738` |
+| `lzss` | 1 | `bug-10661` |
 | `m1-garand` | 1 | `bug-133` |
-| `m10` | 3 | `bug-1900` `bug-1905` `bug-1911` |
+| `m10` | 10 | `bug-1900` `bug-1905` `bug-1911` `bug-3364` `bug-3534` `bug-3578` `bug-3614` `bug-3617` `bug-3618` `bug-4267` |
 | `m19` | 1 | `bug-2612` |
-| `m1l1` | 24 | `bug-1161` `bug-1162` `bug-1173` `bug-1174` `bug-1175` `bug-1184` `bug-1213` `bug-1228` `bug-1476` `bug-2031` `bug-2032` `bug-2037` `bug-2040` `bug-2047` `bug-2050` `bug-2057` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-2065` `bug-2067` `bug-2183` `bug-2237` |
+| `m1919` | 11 | `bug-10920` `bug-3391` `bug-3432` `bug-3436` `bug-3622` `bug-3870` `bug-3871` `bug-3872` `bug-3873` `bug-3874` `bug-4268` |
+| `m1928` | 2 | `bug-3865` `bug-3869` |
+| `m1l1` | 30 | `bug-10306` `bug-10325` `bug-1161` `bug-1162` `bug-1173` `bug-1174` `bug-1175` `bug-1184` `bug-1213` `bug-1228` `bug-1476` `bug-2031` `bug-2032` `bug-2037` `bug-2040` `bug-2047` `bug-2050` `bug-2057` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-2065` `bug-2067` `bug-2183` `bug-2237` `bug-3052` `bug-3188` `bug-3323` `bug-3339` |
 | `m1l1-walkers` | 1 | `bug-822` |
-| `m1l2a` | 4 | `bug-1248` `bug-1484` `bug-1485` `bug-842` |
-| `m1l2b` | 3 | `bug-1245` `bug-1513` `bug-1612` |
-| `m1l3a` | 1 | `bug-1460` |
-| `m1l3b` | 1 | `bug-1437` |
-| `m1l3c` | 4 | `bug-1277` `bug-1515` `bug-1516` `bug-842` |
-| `m2l1` | 8 | `bug-1486` `bug-1517` `bug-1518` `bug-1539` `bug-2707` `bug-2710` `bug-837` `bug-839` |
-| `m2l2a` | 48 | `bug-1458` `bug-1498` `bug-1603` `bug-1604` `bug-1606` `bug-1615` `bug-1616` `bug-1617` `bug-1618` `bug-1623` `bug-1624` `bug-1630` `bug-1631` `bug-1636` `bug-1637` `bug-1638` `bug-1639` `bug-1640` `bug-1643` `bug-1644` `bug-1646` `bug-1648` `bug-1649` `bug-1650` `bug-1651` `bug-1652` `bug-1654` `bug-1656` `bug-1662` `bug-1671` `bug-1674` `bug-1676` `bug-1677` `bug-1682` `bug-1683` `bug-1685` `bu… |
+| `m1l2a` | 6 | `bug-1248` `bug-1484` `bug-1485` `bug-3479` `bug-3916` `bug-842` |
+| `m1l2b` | 4 | `bug-1245` `bug-1513` `bug-1612` `bug-2872` |
+| `m1l3a` | 4 | `bug-1460` `bug-2883` `bug-2884` `bug-4034` |
+| `m1l3b` | 2 | `bug-1437` `bug-4085` |
+| `m1l3c` | 6 | `bug-1277` `bug-1515` `bug-1516` `bug-4083` `bug-4085` `bug-842` |
+| `m2l1` | 15 | `bug-10410` `bug-1486` `bug-1517` `bug-1518` `bug-1539` `bug-2707` `bug-2710` `bug-2872` `bug-3146` `bug-3349` `bug-3751` `bug-4082` `bug-4085` `bug-837` `bug-839` |
+| `m2l2a` | 49 | `bug-1458` `bug-1498` `bug-1603` `bug-1604` `bug-1606` `bug-1615` `bug-1616` `bug-1617` `bug-1618` `bug-1623` `bug-1624` `bug-1630` `bug-1631` `bug-1636` `bug-1637` `bug-1638` `bug-1639` `bug-1640` `bug-1643` `bug-1644` `bug-1646` `bug-1648` `bug-1649` `bug-1650` `bug-1651` `bug-1652` `bug-1654` `bug-1656` `bug-1662` `bug-1671` `bug-1674` `bug-1676` `bug-1677` `bug-1682` `bug-1683` `bug-1685` `bu… |
 | `m2l2a-recipe` | 1 | `bug-1627` |
 | `m2l2a-risk` | 1 | `bug-1700` |
-| `m2l2b` | 7 | `bug-1608` `bug-1610` `bug-1611` `bug-1613` `bug-1620` `bug-1621` `bug-1628` |
-| `m3l1a` | 254 | `bug-1249` `bug-1501` `bug-1502` `bug-2187` `bug-2188` `bug-2192` `bug-2193` `bug-2194` `bug-2195` `bug-2196` `bug-2197` `bug-2199` `bug-2200` `bug-2201` `bug-2203` `bug-2204` `bug-2205` `bug-2206` `bug-2208` `bug-2209` `bug-2210` `bug-2211` `bug-2213` `bug-2214` `bug-2215` `bug-2216` `bug-2217` `bug-2219` `bug-2220` `bug-2223` `bug-2227` `bug-2230` `bug-2231` `bug-2232` `bug-2233` `bug-2234` `bu… |
-| `m3l1b` | 18 | `bug-1548` `bug-1549` `bug-1552` `bug-1553` `bug-1554` `bug-1555` `bug-1557` `bug-1558` `bug-1560` `bug-1562` `bug-1568` `bug-1574` `bug-1575` `bug-1626` `bug-2075` `bug-2087` `bug-2091` `bug-2485` |
-| `m3l2` | 9 | `bug-059` `bug-1129` `bug-1218` `bug-1219` `bug-2074` `bug-2076` `bug-2100` `bug-2190` `bug-m3l2-ground-seams` |
-| `m3l3` | 50 | `bug-1625` `bug-1806` `bug-1816` `bug-1817` `bug-1820` `bug-1822` `bug-1824` `bug-1826` `bug-1828` `bug-1829` `bug-1831` `bug-1832` `bug-1833` `bug-1834` `bug-1835` `bug-1836` `bug-1837` `bug-1838` `bug-1839` `bug-1840` `bug-1841` `bug-1842` `bug-1845` `bug-1846` `bug-1847` `bug-1848` `bug-1849` `bug-1853` `bug-1854` `bug-1855` `bug-1856` `bug-1858` `bug-1859` `bug-1861` `bug-1862` `bug-1863` `bu… |
-| `m4l0` | 2 | `bug-1626` `bug-2173` |
-| `m4l1` | 1 | `bug-842` |
-| `m4l3` | 5 | `bug-2545` `bug-2546` `bug-2548` `bug-2549` `bug-842` |
-| `m5l1a` | 1 | `bug-2050` |
-| `m5l1b` | 3 | `bug-1597` `bug-1802` `bug-541` |
+| `m2l2b` | 11 | `bug-1608` `bug-1610` `bug-1611` `bug-1613` `bug-1620` `bug-1621` `bug-1628` `bug-3399` `bug-3469` `bug-4094` `bug-4154` |
+| `m2l2c` | 13 | `bug-4274` `bug-4275` `bug-4276` `bug-4277` `bug-4396` `bug-4397` `bug-4399` `bug-4401` `bug-4402` `bug-4403` `bug-4405` `bug-4409` `bug-4413` |
+| `m2l3` | 63 | `bug-10258` `bug-10267` `bug-10277` `bug-10293` `bug-10331` `bug-10332` `bug-10333` `bug-10345` `bug-10346` `bug-10348` `bug-10349` `bug-10368` `bug-10369` `bug-10397` `bug-10398` `bug-10399` `bug-10404` `bug-10405` `bug-10412` `bug-10415` `bug-10417` `bug-10418` `bug-10419` `bug-10420` `bug-10424` `bug-10432` `bug-10434` `bug-10457` `bug-10458` `bug-10459` `bug-10460` `bug-10462` `bug-10474` `bu… |
+| `m38` | 1 | `bug-10578` |
+| `m3l1a` | 264 | `bug-1249` `bug-1501` `bug-1502` `bug-2187` `bug-2188` `bug-2192` `bug-2193` `bug-2194` `bug-2195` `bug-2196` `bug-2197` `bug-2199` `bug-2200` `bug-2201` `bug-2203` `bug-2204` `bug-2205` `bug-2206` `bug-2208` `bug-2209` `bug-2210` `bug-2211` `bug-2213` `bug-2214` `bug-2215` `bug-2216` `bug-2217` `bug-2219` `bug-2220` `bug-2223` `bug-2227` `bug-2230` `bug-2231` `bug-2232` `bug-2233` `bug-2234` `bu… |
+| `m3l1b` | 25 | `bug-1548` `bug-1549` `bug-1552` `bug-1553` `bug-1554` `bug-1555` `bug-1557` `bug-1558` `bug-1560` `bug-1562` `bug-1568` `bug-1574` `bug-1575` `bug-1626` `bug-2075` `bug-2087` `bug-2091` `bug-2485` `bug-2742` `bug-2871` `bug-2897` `bug-3468` `bug-3477` `bug-3483` `bug-3492` |
+| `m3l1b-tuning` | 1 | `bug-2740` |
+| `m3l2` | 13 | `bug-059` `bug-1129` `bug-1218` `bug-1219` `bug-2074` `bug-2076` `bug-2100` `bug-2190` `bug-3106` `bug-3340` `bug-3977` `bug-3980` `bug-m3l2-ground-seams` |
+| `m3l3` | 64 | `bug-1625` `bug-1806` `bug-1816` `bug-1817` `bug-1820` `bug-1822` `bug-1824` `bug-1826` `bug-1828` `bug-1829` `bug-1831` `bug-1832` `bug-1833` `bug-1834` `bug-1835` `bug-1836` `bug-1837` `bug-1838` `bug-1839` `bug-1840` `bug-1841` `bug-1842` `bug-1845` `bug-1846` `bug-1847` `bug-1848` `bug-1849` `bug-1853` `bug-1854` `bug-1855` `bug-1856` `bug-1858` `bug-1859` `bug-1861` `bug-1862` `bug-1863` `bu… |
+| `m4l0` | 3 | `bug-1626` `bug-2173` `bug-3557` |
+| `m4l1` | 6 | `bug-2953` `bug-2954` `bug-2984` `bug-3560` `bug-4431` `bug-842` |
+| `m4l2` | 34 | `bug-2746` `bug-2827` `bug-2834` `bug-2835` `bug-2837` `bug-2838` `bug-2843` `bug-2844` `bug-2845` `bug-2846` `bug-2847` `bug-2852` `bug-2853` `bug-2856` `bug-2858` `bug-2862` `bug-2864` `bug-2866` `bug-2867` `bug-2879` `bug-2880` `bug-2886` `bug-2887` `bug-2912` `bug-2913` `bug-2949` `bug-2955` `bug-2958` `bug-2983` `bug-2988` `bug-3066` `bug-3086` `bug-3201` `bug-4432` |
+| `m4l3` | 10 | `bug-10804` `bug-2545` `bug-2546` `bug-2548` `bug-2549` `bug-3006` `bug-3029` `bug-3478` `bug-3479` `bug-842` |
+| `m5l1a` | 9 | `bug-2050` `bug-2834` `bug-2835` `bug-2838` `bug-2839` `bug-2842` `bug-3107` `bug-3349` `bug-4436` |
+| `m5l1b` | 7 | `bug-1597` `bug-1802` `bug-2817` `bug-2830` `bug-3107` `bug-3465` `bug-541` |
 | `m5l2a` | 1 | `bug-1625` |
-| `m6l1c` | 13 | `bug-1579` `bug-1700` `bug-1701` `bug-1701b` `bug-1703` `bug-1704` `bug-1706` `bug-1709` `bug-1710` `bug-1711` `bug-1713` `bug-1720` `bug-1872` |
-| `m6l2a` | 72 | `bug-1714` `bug-1715` `bug-1716` `bug-1717` `bug-1718` `bug-1719` `bug-1720` `bug-1721` `bug-1722` `bug-1723` `bug-1726` `bug-1727` `bug-1728` `bug-1729` `bug-1730` `bug-1731` `bug-1732` `bug-1734` `bug-1735` `bug-1736` `bug-1737` `bug-1738` `bug-1739` `bug-1740` `bug-1741` `bug-1742` `bug-1743` `bug-1744` `bug-1745` `bug-1746` `bug-1747` `bug-1748` `bug-1749` `bug-1750` `bug-1751` `bug-1752` `bu… |
+| `m5l2b` | 3 | `bug-2747` `bug-3176` `bug-4435` |
+| `m5l3` | 3 | `bug-2832` `bug-3307` `bug-3351` |
+| `m6` | 1 | `bug-3285` |
+| `m6l1a` | 2 | `bug-2945` `bug-3003` |
+| `m6l1c` | 14 | `bug-1579` `bug-1700` `bug-1701` `bug-1701b` `bug-1703` `bug-1704` `bug-1706` `bug-1709` `bug-1710` `bug-1711` `bug-1713` `bug-1720` `bug-1872` `bug-3399` |
+| `m6l2a` | 73 | `bug-1714` `bug-1715` `bug-1716` `bug-1717` `bug-1718` `bug-1719` `bug-1720` `bug-1721` `bug-1722` `bug-1723` `bug-1726` `bug-1727` `bug-1728` `bug-1729` `bug-1730` `bug-1731` `bug-1732` `bug-1734` `bug-1735` `bug-1736` `bug-1737` `bug-1738` `bug-1739` `bug-1740` `bug-1741` `bug-1742` `bug-1743` `bug-1744` `bug-1745` `bug-1746` `bug-1747` `bug-1748` `bug-1749` `bug-1750` `bug-1751` `bug-1752` `bu… |
 | `m6l2b` | 1 | `bug-1773` |
+| `m6l3` | 1 | `bug-10586` |
 | `m6l3a` | 1 | `bug-1438` |
 | `m6l3c` | 1 | `bug-1626` |
 | `m6l3e` | 1 | `bug-1625` |
@@ -3597,62 +7265,95 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `m_enemy` | 1 | `bug-1727` |
 | `m_iteam` | 1 | `bug-617` |
 | `m_lock` | 1 | `bug-461` |
+| `m_screenframe` | 1 | `bug-4416` |
 | `m_team` | 1 | `bug-2713` |
 | `m_vaibulletspread` | 1 | `bug-1940` |
-| `machinegunner` | 3 | `bug-1569` `bug-1570` `bug-1571` |
-| `magazine` | 3 | `bug-2552` `bug-2566` `bug-2567` |
+| `machinegunner` | 5 | `bug-1569` `bug-1570` `bug-1571` `bug-2976` `bug-4086` |
+| `mag-eject` | 1 | `bug-3362` |
+| `magazine` | 6 | `bug-2552` `bug-2566` `bug-2567` `bug-3445` `bug-3450` `bug-3721` |
+| `magazine-eject` | 1 | `bug-3370` |
 | `magic-number` | 2 | `bug-1194` `bug-1198` |
-| `main-menu` | 5 | `bug-2570` `bug-2575` `bug-2576` `bug-460` `bug-666` |
+| `mags` | 1 | `bug-2819` |
+| `main-menu` | 7 | `bug-2570` `bug-2575` `bug-2576` `bug-3282` `bug-4157` `bug-460` `bug-666` |
 | `main-thread-death` | 1 | `bug-1458` |
-| `main.scr` | 2 | `bug-1585` `bug-359` |
+| `main.scr` | 4 | `bug-1585` `bug-2998` `bug-3004` `bug-359` |
+| `main.urc` | 1 | `bug-4005` |
 | `maintt-pak1` | 1 | `bug-font-bleed` |
 | `majority-fixed` | 1 | `bug-1477` |
+| `make_chunks3` | 1 | `bug-4430` |
+| `managedead` | 1 | `bug-3324` |
 | `manageplayerinventory` | 1 | `bug-1703` |
-| `manifest` | 5 | `bug-1446` `bug-1468` `bug-1523` `bug-1800` `bug-424` |
+| `manifest` | 8 | `bug-10483` `bug-1446` `bug-1468` `bug-1523` `bug-1800` `bug-2991` `bug-4149` `bug-424` |
 | `mannable` | 1 | `bug-1581` |
-| `mannequin` | 2 | `bug-755` `bug-773` |
+| `mannequin` | 5 | `bug-3913` `bug-3915` `bug-3956` `bug-755` `bug-773` |
 | `manning-anim` | 1 | `bug-304` |
 | `manning-pose` | 1 | `bug-309` |
-| `manon` | 1 | `bug-842` |
-| `map-change` | 2 | `bug-1457` `bug-2573` |
+| `manon` | 2 | `bug-3386` `bug-842` |
+| `map` | 4 | `bug-3465` `bug-3468` `bug-3469` `bug-3470` |
+| `map-change` | 8 | `bug-10301` `bug-10801` `bug-1457` `bug-2573` `bug-3030` `bug-3032` `bug-3811` `bug-3912` |
+| `map-filter` | 1 | `bug-10476` |
 | `map-gated-alias` | 3 | `bug-1834` `bug-2567` `bug-2568` |
 | `map-gating` | 1 | `bug-2668` |
 | `map-load` | 2 | `bug-2585` `bug-931b` |
+| `map-load-path` | 1 | `bug-3064` |
+| `map-name` | 2 | `bug-10631` `bug-10645` |
+| `map-names` | 2 | `bug-10586` `bug-3285` |
+| `map-pool` | 1 | `bug-2832` |
+| `map-prefix` | 1 | `bug-10601` |
+| `map-restart` | 3 | `bug-10878` `bug-3174` `bug-3566` |
+| `map-rotation` | 2 | `bug-2730` `bug-2731` |
 | `map-scope` | 2 | `bug-1188` `bug-1783` |
-| `map-scripts` | 1 | `bug-2612` |
+| `map-scripts` | 3 | `bug-2612` `bug-3542` `bug-3553` |
 | `map-spec` | 1 | `bug-1711` |
 | `map-transition` | 2 | `bug-1802` `bug-2190` |
+| `map-v10` | 1 | `bug-10418` |
+| `map-v10b` | 1 | `bug-10434` |
+| `map-v9` | 1 | `bug-10397` |
 | `map_entities` | 1 | `bug-2179` |
-| `maps` | 3 | `bug-1614` `bug-2636` `bug-2638` |
+| `mapnames` | 1 | `bug-10445` |
+| `maps` | 5 | `bug-1614` `bug-2636` `bug-2638` `bug-2728` `bug-2782` |
 | `maps-field` | 5 | `bug-2296` `bug-2297` `bug-2304` `bug-2307` `bug-2394` |
 | `maps-filter` | 3 | `bug-1863` `bug-1885` `bug-2248` |
 | `maps-gate` | 1 | `bug-116` |
+| `maps-scope` | 1 | `bug-10412` |
 | `maps-spec` | 1 | `bug-1548` |
 | `maptest` | 3 | `bug-1440` `bug-1500` `bug-166` |
 | `maptour` | 1 | `bug-1428` |
 | `mark-poly` | 1 | `bug-828` |
+| `marker` | 1 | `bug-10712` |
 | `marker-absence` | 1 | `bug-2427` |
 | `marker-collision` | 1 | `bug-1645` |
 | `marker-race` | 1 | `bug-2051` |
-| `marks` | 2 | `bug-gl2-maxpolys` `bug-gl2-reddecals` |
+| `markings` | 1 | `bug-3417` |
+| `marks` | 4 | `bug-3089` `bug-fx1025-7` `bug-gl2-maxpolys` `bug-gl2-reddecals` |
 | `markwall` | 1 | `bug-953` |
+| `mask` | 3 | `bug-10422` `bug-10823` `bug-4155` |
 | `masking-vs-fixing` | 1 | `bug-2046` |
 | `master-plan-d1` | 1 | `bug-1624` |
+| `master-switch` | 1 | `bug-3859` |
 | `mastering` | 1 | `bug-1987` |
-| `math` | 3 | `bug-1963` `bug-1983` `bug-2660` |
+| `mastery` | 1 | `bug-2770` |
+| `material` | 2 | `bug-10315` `bug-10490` |
+| `material_mask` | 1 | `bug-10319` |
+| `math` | 4 | `bug-1963` `bug-1983` `bug-2660` `bug-3383` |
 | `matrixtoeulerangles` | 1 | `bug-1173` |
+| `max-console-lines` | 1 | `bug-3028` |
 | `max-models` | 1 | `bug-892` |
 | `max-payne-3` | 1 | `bug-2128` |
 | `max-sounds` | 1 | `bug-2019` |
 | `max_bodyqueue` | 2 | `bug-096` `bug-100` |
 | `max_configstrings` | 1 | `bug-1180` |
+| `max_console_lines` | 1 | `bug-2996` |
 | `max_cvars` | 2 | `bug-1582` `bug-598` |
+| `max_drawimages` | 2 | `bug-2997` `bug-3003` |
 | `max_entities` | 1 | `bug-1168` |
 | `max_entities-vs-max_gentities` | 1 | `bug-935` |
 | `max_gamestate_chars` | 1 | `bug-1864` |
 | `max_gentities` | 1 | `bug-929` |
-| `max_health` | 2 | `bug-1584` `bug-2685` |
+| `max_health` | 3 | `bug-1584` `bug-2685` `bug-3092` |
 | `max_mod_known` | 1 | `bug-1137` |
+| `max_model_surfaces` | 1 | `bug-10726` |
+| `max_msglen` | 1 | `bug-2727` |
 | `max_npolys` | 1 | `bug-2715` |
 | `max_number_playing` | 1 | `bug-2408` |
 | `max_polys` | 1 | `bug-gl2-maxpolys` |
@@ -3663,11 +7364,12 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `max_skeletor_channels` | 1 | `bug-1803` |
 | `max_skelmorph` | 1 | `bug-1214` |
 | `max_sounds` | 7 | `bug-1179` `bug-1180` `bug-1183` `bug-1198` `bug-1219` `bug-1672` `bug-2173` |
+| `max_static_models_surfs` | 1 | `bug-3003` |
 | `max_stats` | 1 | `bug-1866` |
 | `max_tiki_aliases` | 1 | `bug-1168` |
 | `max_tiki_shader` | 2 | `bug-2082` `bug-731` |
 | `max_weapons` | 1 | `bug-464` |
-| `maxdist` | 1 | `bug-2338` |
+| `maxdist` | 3 | `bug-10458` `bug-2338` `bug-2989` |
 | `maxentities` | 2 | `bug-2290` `bug-927` |
 | `maxyawoffset` | 1 | `bug-1573` |
 | `md` | 10 | `bug-029` `bug-030` `bug-043` `bug-058` `bug-267` `bug-268` `bug-269` `bug-273` `bug-529` `bug-862` |
@@ -3675,9 +7377,10 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `md5_2_skx` | 4 | `bug-020` `bug-021` `bug-1002` `bug-293` |
 | `md5anim` | 1 | `bug-293` |
 | `meansofdeath` | 1 | `bug-2601` |
+| `measure` | 19 | `bug-3547` `bug-3563` `bug-3579` `bug-3600` `bug-3605` `bug-3641` `bug-3665` `bug-3677` `bug-3680` `bug-3684` `bug-3702` `bug-3718` `bug-3719` `bug-3742` `bug-3781` `bug-3835` `bug-3843` `bug-3848` `bug-3850` |
 | `measure-before-acting` | 1 | `bug-2098` |
 | `measure-first` | 1 | `bug-2013` |
-| `measured` | 40 | `bug-1648` `bug-1649` `bug-1650` `bug-1651` `bug-1652` `bug-1654` `bug-1663` `bug-1664` `bug-1665` `bug-1667` `bug-1668` `bug-1669` `bug-1670` `bug-1672` `bug-1673` `bug-1680` `bug-1681` `bug-1682` `bug-1684` `bug-1686` `bug-1687` `bug-1690` `bug-1695` `bug-1696` `bug-1697` `bug-1698` `bug-1699` `bug-1700` `bug-1720` `bug-1784` `bug-1785` `bug-1813` `bug-2050` `bug-2064` `bug-2357` `bug-2370` `bu… |
+| `measured` | 43 | `bug-1648` `bug-1649` `bug-1650` `bug-1651` `bug-1652` `bug-1654` `bug-1663` `bug-1664` `bug-1665` `bug-1667` `bug-1668` `bug-1669` `bug-1670` `bug-1672` `bug-1673` `bug-1680` `bug-1681` `bug-1682` `bug-1684` `bug-1686` `bug-1687` `bug-1690` `bug-1695` `bug-1696` `bug-1697` `bug-1698` `bug-1699` `bug-1700` `bug-1720` `bug-1784` `bug-1785` `bug-1813` `bug-2050` `bug-2064` `bug-2357` `bug-2370` `bu… |
 | `measured-2p` | 6 | `bug-1657` `bug-1658` `bug-1659` `bug-1660` `bug-1661` `bug-1662` |
 | `measured-a-b` | 1 | `bug-2057` |
 | `measured-across-all-bsps` | 1 | `bug-2150` |
@@ -3685,59 +7388,100 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `measured-in-game` | 1 | `bug-2147` |
 | `measured-live` | 1 | `bug-2551` |
 | `measured-not-guessed` | 1 | `bug-2363` |
-| `measurement` | 27 | `bug-1442` `bug-1787` `bug-1812` `bug-1833` `bug-1836` `bug-1838` `bug-1977` `bug-2012` `bug-2054` `bug-2096` `bug-2101` `bug-2102` `bug-2103` `bug-2148` `bug-2392` `bug-2395` `bug-2406` `bug-2407` `bug-2409` `bug-2417` `bug-2418` `bug-2419` `bug-2421` `bug-2422` `bug-2427` `bug-2428` `bug-2469` |
-| `measurement-artifact` | 1 | `bug-1496` |
+| `measurement` | 39 | `bug-10598` `bug-1442` `bug-1787` `bug-1812` `bug-1833` `bug-1836` `bug-1838` `bug-1977` `bug-2012` `bug-2054` `bug-2096` `bug-2101` `bug-2102` `bug-2103` `bug-2148` `bug-2392` `bug-2395` `bug-2406` `bug-2407` `bug-2409` `bug-2417` `bug-2418` `bug-2419` `bug-2421` `bug-2422` `bug-2427` `bug-2428` `bug-2469` `bug-3062` `bug-3291` `bug-3292` `bug-3619` `bug-3644` `bug-3645` `bug-3667` `bug-3668` `b… |
+| `measurement-artefact` | 1 | `bug-2987` |
+| `measurement-artifact` | 2 | `bug-1496` `bug-3091` |
 | `measurement-correction` | 1 | `bug-2115` |
 | `measurement-error` | 2 | `bug-2386` `bug-2439` |
+| `measurement-gap` | 1 | `bug-3593` |
 | `mechanism-verified` | 1 | `bug-2095` |
-| `medals` | 3 | `bug-1528` `bug-1529` `bug-1541` |
-| `medic` | 7 | `bug-1568` `bug-2188` `bug-2522` `bug-2523` `bug-2526` `bug-2534` `bug-paradrop-medic-idle` |
+| `medal` | 1 | `bug-3186` |
+| `medal-box` | 1 | `bug-10535` |
+| `medals` | 4 | `bug-10550` `bug-1528` `bug-1529` `bug-1541` |
+| `medic` | 8 | `bug-1568` `bug-2188` `bug-2522` `bug-2523` `bug-2526` `bug-2534` `bug-3693` `bug-paradrop-medic-idle` |
 | `medipack` | 1 | `bug-922` |
-| `medkit` | 7 | `bug-088` `bug-1263` `bug-1293` `bug-1871` `bug-2720` `bug-880` `bug-dbno-medkit-letgo-same-key` |
+| `medkit` | 13 | `bug-088` `bug-10477` `bug-10822` `bug-1263` `bug-1293` `bug-1871` `bug-2720` `bug-2921` `bug-2968` `bug-3187` `bug-3356` `bug-880` `bug-dbno-medkit-letgo-same-key` |
 | `medkits` | 2 | `bug-2625` `bug-2642` |
 | `mefy` | 2 | `bug-2627` `bug-2628` |
 | `melee` | 1 | `bug-2126` |
 | `meltgun` | 2 | `bug-2644` `bug-2650` |
 | `meminfo` | 1 | `bug-1146` |
-| `memory` | 2 | `bug-1254` `bug-gl2-ztagmalloc` |
+| `memo` | 1 | `bug-3575` |
+| `memorial` | 3 | `bug-3037` `bug-3054` `bug-3538` |
+| `memory` | 3 | `bug-1254` `bug-3096` `bug-gl2-ztagmalloc` |
 | `memory-corruption` | 2 | `bug-1167` `bug-1245` |
-| `memory-leak` | 1 | `bug-1146` |
+| `memory-leak` | 2 | `bug-1146` `bug-3025` |
 | `memset` | 1 | `bug-1191` |
-| `menu` | 30 | `bug-1127` `bug-1140` `bug-1144` `bug-1147` `bug-1158` `bug-1259` `bug-144` `bug-157` `bug-1990` `bug-1991` `bug-1993` `bug-2098` `bug-2222` `bug-253` `bug-2570` `bug-2572` `bug-2576` `bug-2578` `bug-2678` `bug-2679` `bug-317` `bug-459` `bug-460` `bug-461` `bug-462` `bug-493` `bug-587` `bug-gl2-viewmodel-over-menu` `bug-gl2-ztagmalloc` `bug-menu-shader-label-invisible` |
+| `menu` | 86 | `bug-10364` `bug-10607` `bug-10784` `bug-10813` `bug-10827` `bug-10843` `bug-10875` `bug-1127` `bug-1140` `bug-1144` `bug-1147` `bug-1158` `bug-1259` `bug-144` `bug-157` `bug-1990` `bug-1991` `bug-1993` `bug-2098` `bug-2222` `bug-253` `bug-2570` `bug-2572` `bug-2576` `bug-2578` `bug-2678` `bug-2679` `bug-2812` `bug-2822` `bug-2823` `bug-2929` `bug-2930` `bug-2932` `bug-2933` `bug-2935` `bug-2941`… |
+| `menu-generator` | 1 | `bug-3530` |
 | `menu-layer` | 1 | `bug-641` |
-| `menu-music` | 1 | `bug-2575` |
-| `menu-override` | 2 | `bug-1524` `bug-720` |
+| `menu-lighting` | 1 | `bug-10609` |
+| `menu-music` | 3 | `bug-10441` `bug-10442` `bug-2575` |
+| `menu-next2` | 2 | `bug-4185` `bug-4188` |
+| `menu-override` | 3 | `bug-1524` `bug-3104` `bug-720` |
+| `menu-parity` | 8 | `bug-2753` `bug-2755` `bug-2756` `bug-2757` `bug-2761` `bug-2762` `bug-2763` `bug-2764` |
 | `menu-persistence` | 1 | `bug-2172` |
+| `menu-remaster` | 35 | `bug-3218` `bug-3220` `bug-3221` `bug-3231` `bug-3232` `bug-3233` `bug-3236` `bug-3238` `bug-3253` `bug-3254` `bug-3255` `bug-3258` `bug-3259` `bug-3260` `bug-3261` `bug-3264` `bug-3265` `bug-3266` `bug-3267` `bug-3268` `bug-3274` `bug-3275` `bug-3280` `bug-3281` `bug-3282` `bug-3287` `bug-3288` `bug-3289` `bug-3326` `bug-3327` `bug-3328` `bug-3329` `bug-3330` `bug-3331` `bug-3332` |
+| `menu-stack` | 1 | `bug-10464` |
+| `menu-test` | 1 | `bug-10713` |
+| `menu3d` | 1 | `bug-4419` |
 | `menu_button_trans` | 2 | `bug-754` `bug-756` |
 | `menudbg` | 1 | `bug-777` |
-| `menus` | 2 | `bug-2621` `bug-2624` |
-| `mesh` | 5 | `bug-2519` `bug-2520` `bug-2521` `bug-2524` `bug-2538` |
-| `method` | 1 | `bug-2102` |
+| `menuload` | 6 | `bug-10900` `bug-10901` `bug-10902` `bug-10903` `bug-10904` `bug-10905` |
+| `menus` | 4 | `bug-10681` `bug-2621` `bug-2624` `bug-3328` |
+| `menus3d` | 22 | `bug-10318` `bug-10379` `bug-10380` `bug-10381` `bug-10382` `bug-10383` `bug-10384` `bug-10395` `bug-10435` `bug-10436` `bug-10456` `bug-10838` `bug-4414` `bug-4415` `bug-4416` `bug-4418` `bug-4420` `bug-4421` `bug-4423` `bug-4424` `bug-4425` `bug-4426` |
+| `merge` | 16 | `bug-10451` `bug-10472` `bug-10578` `bug-10647` `bug-10748` `bug-10780` `bug-3151` `bug-3252` `bug-3788` `bug-3856` `bug-4134` `bug-4164` `bug-4166` `bug-4189` `bug-4398` `bug-4419` |
+| `mesh` | 22 | `bug-10302` `bug-10737` `bug-10892` `bug-2519` `bug-2520` `bug-2521` `bug-2524` `bug-2538` `bug-3376` `bug-3564` `bug-3640` `bug-3664` `bug-3697` `bug-3705` `bug-3712` `bug-3720` `bug-3737` `bug-3769` `bug-3824` `bug-3832` `bug-3863` `bug-3870` |
+| `mesh-tools` | 1 | `bug-3770` |
+| `messagebox` | 1 | `bug-3472` |
+| `metal` | 1 | `bug-10315` |
+| `metallic` | 1 | `bug-10499` |
+| `method` | 2 | `bug-2102` `bug-3568` |
 | `method-error` | 1 | `bug-2209` |
 | `methodology` | 1 | `bug-1576` |
+| `metric` | 3 | `bug-3157` `bug-3158` `bug-3292` |
 | `metric-flaw` | 1 | `bug-1053` |
-| `mg42` | 34 | `bug-091` `bug-1026` `bug-1255` `bug-1481` `bug-1569` `bug-1570` `bug-1571` `bug-1572` `bug-1573` `bug-1580` `bug-1621` `bug-1841` `bug-1843` `bug-1845` `bug-1850` `bug-1851` `bug-1861` `bug-1865` `bug-1866` `bug-1877` `bug-1878` `bug-1920` `bug-1940` `bug-1946` `bug-1950` `bug-1961` `bug-2206` `bug-229` `bug-2384` `bug-2385` `bug-2398` `bug-2405` `bug-2473` `bug-885` |
+| `mg` | 7 | `bug-10559` `bug-10570` `bug-3688` `bug-3689` `bug-3690` `bug-3691` `bug-3692` |
+| `mg42` | 54 | `bug-091` `bug-1026` `bug-10307` `bug-10416` `bug-10462` `bug-10510` `bug-10608` `bug-10919` `bug-10920` `bug-1255` `bug-1481` `bug-1569` `bug-1570` `bug-1571` `bug-1572` `bug-1573` `bug-1580` `bug-1621` `bug-1841` `bug-1843` `bug-1845` `bug-1850` `bug-1851` `bug-1861` `bug-1865` `bug-1866` `bug-1877` `bug-1878` `bug-1920` `bug-1940` `bug-1946` `bug-1950` `bug-1961` `bug-2206` `bug-229` `bug-2384… |
 | `mg42_active` | 4 | `bug-1572` `bug-1580` `bug-1841` `bug-1951` |
 | `mg42init` | 1 | `bug-1845` |
+| `mg_nest` | 1 | `bug-10276` |
+| `mgleg` | 1 | `bug-3979` |
+| `mgline` | 1 | `bug-mgspawn1025b` |
+| `mgspawn1025` | 2 | `bug-mgspawn1025` `bug-mgspawn1025b` |
+| `mgteam` | 1 | `bug-3979` |
 | `mid-life` | 1 | `bug-1958` |
 | `mid-log-error` | 1 | `bug-2116` |
 | `mid-map-relaunch` | 1 | `bug-1066` |
 | `mid-mission` | 1 | `bug-1919` |
-| `migration` | 1 | `bug-2218` |
+| `midframe` | 2 | `bug-3659` `bug-3685` |
+| `migration` | 4 | `bug-10556` `bug-10577` `bug-10578` `bug-2218` |
+| `milliseconds` | 1 | `bug-3175` |
+| `mills` | 1 | `bug-4047` |
+| `mine-detector` | 1 | `bug-2948` |
 | `minedetector` | 10 | `bug-620` `bug-871` `bug-893` `bug-898` `bug-914` `bug-915` `bug-919` `bug-920` `bug-924` `bug-934` |
 | `minefield` | 2 | `bug-1562` `bug-899` |
-| `minidump` | 9 | `bug-121` `bug-122` `bug-1565` `bug-1566` `bug-1864` `bug-1968` `bug-2131` `bug-2663` `bug-598` |
-| `mipmaps` | 1 | `bug-2164` |
+| `minidump` | 10 | `bug-121` `bug-122` `bug-1565` `bug-1566` `bug-1864` `bug-1968` `bug-2131` `bug-2663` `bug-2727` `bug-598` |
+| `minor` | 3 | `bug-3162` `bug-3191` `bug-3192` |
+| `mipmap` | 1 | `bug-3059` |
+| `mipmaps` | 2 | `bug-2164` `bug-3167` |
+| `mips` | 1 | `bug-10318` |
+| `mirror` | 1 | `bug-10602` |
 | `mirrored` | 1 | `bug-gl2-invisible-friendly-actor-root` |
+| `mirrored-frame` | 1 | `bug-3127` |
+| `mirrored-text` | 1 | `bug-10833` |
 | `misattribution` | 1 | `bug-1050` |
-| `misdiagnosis` | 4 | `bug-1571` `bug-1903` `bug-2145` `bug-2663` |
+| `misdiagnosis` | 7 | `bug-1571` `bug-1903` `bug-2145` `bug-2663` `bug-3490` `bug-3493` `bug-4184` |
+| `misleading` | 1 | `bug-3549` |
+| `misleading-message` | 1 | `bug-2907` |
 | `misread` | 1 | `bug-1599` |
 | `misread-buglog` | 1 | `bug-1997` |
 | `misread-requirement` | 1 | `bug-1832` |
+| `missed-step` | 1 | `bug-10579` |
 | `missing-alias` | 2 | `bug-1782` `bug-1783` |
-| `missing-anim` | 3 | `bug-1621` `bug-1921` `bug-2071` |
+| `missing-anim` | 5 | `bug-10278` `bug-1621` `bug-1921` `bug-2071` `bug-3196` |
 | `missing-animation` | 1 | `bug-1297` |
-| `missing-asset` | 1 | `bug-1399` |
+| `missing-asset` | 2 | `bug-1399` `bug-2783` |
 | `missing-audio` | 1 | `bug-2336` |
 | `missing-content` | 2 | `bug-2296` `bug-2321` |
 | `missing-enemies` | 1 | `bug-1471` |
@@ -3755,21 +7499,28 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `mission-end` | 1 | `bug-553` |
 | `mission-item` | 1 | `bug-898` |
 | `mission-items` | 5 | `bug-620` `bug-625` `bug-871` `bug-893` `bug-909` |
+| `mission-names` | 1 | `bug-3280` |
+| `mission-script` | 2 | `bug-10685` `bug-10686` |
+| `mission-select` | 2 | `bug-3274` `bug-3284` |
 | `missionbriefingback` | 1 | `bug-526` |
-| `missioncomplete` | 8 | `bug-1452` `bug-1463` `bug-1516` `bug-1763` `bug-227` `bug-788` `bug-818` `bug-872` |
+| `missioncomplete` | 18 | `bug-10325` `bug-10594` `bug-10606` `bug-10616` `bug-10631` `bug-10636` `bug-10644` `bug-10858` `bug-1452` `bug-1463` `bug-1516` `bug-1763` `bug-227` `bug-4050` `bug-4087` `bug-788` `bug-818` `bug-872` |
 | `missionfailed` | 3 | `bug-054` `bug-056` `bug-1465` |
 | `missions` | 1 | `bug-722` |
 | `missiontransition` | 1 | `bug-227` |
+| `mitigation` | 1 | `bug-2724` |
 | `mixer` | 2 | `bug-1138` `bug-1556` |
+| `mkov` | 1 | `bug-3877` |
+| `mod` | 1 | `bug-3658` |
 | `mod-regression` | 1 | `bug-1477` |
 | `mod_vehicle` | 1 | `bug-941` |
-| `modal-dialog` | 1 | `bug-1441` |
-| `mode` | 5 | `bug-2641` `bug-2645` `bug-2674` `bug-2676` `bug-2711` |
+| `modal-dialog` | 2 | `bug-1441` `bug-3169` |
+| `mode` | 6 | `bug-2641` `bug-2645` `bug-2674` `bug-2676` `bug-2711` `bug-2895` |
 | `mode-aware` | 1 | `bug-2624` |
 | `mode-scaffold` | 1 | `bug-2599` |
-| `model` | 1 | `bug-1716` |
+| `model` | 3 | `bug-10491` `bug-10533` `bug-1716` |
+| `model-aware` | 1 | `bug-3094` |
 | `model-frame` | 1 | `bug-2499` |
-| `model-handle` | 1 | `bug-1135` |
+| `model-handle` | 3 | `bug-10543` `bug-1135` `bug-4429` |
 | `model-name` | 1 | `bug-2111` |
 | `model-only-match` | 1 | `bug-1801` |
 | `model-origin` | 1 | `bug-2257` |
@@ -3777,12 +7528,15 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `model-pool` | 1 | `bug-1137` |
 | `model-reset` | 1 | `bug-1360` |
 | `model-swap` | 3 | `bug-1420` `bug-1744` `bug-2496` |
+| `model-variants` | 3 | `bug-3793` `bug-3794` `bug-3796` |
+| `model-widget` | 2 | `bug-10709` `bug-10715` |
 | `modelindex-16bit` | 1 | `bug-892` |
-| `models` | 2 | `bug-1545` `bug-2346` |
+| `models` | 6 | `bug-10786` `bug-1545` `bug-2346` `bug-3018` `bug-4274` `bug-4401` |
 | `modern` | 1 | `bug-2705` |
 | `modes` | 3 | `bug-2627` `bug-2628` `bug-2667` |
 | `modifier` | 1 | `bug-2673` |
 | `modifydrive` | 1 | `bug-1266` |
+| `modulate` | 1 | `bug-3213` |
 | `mohaa-script` | 1 | `bug-348` |
 | `mohaaru` | 1 | `bug-853` |
 | `mohdm` | 1 | `bug-2638` |
@@ -3790,62 +7544,107 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `mojibake` | 1 | `bug-1804` |
 | `monitor` | 1 | `bug-1440` |
 | `monsterclip` | 1 | `bug-949` |
-| `morale` | 1 | `bug-1618` |
+| `morale` | 2 | `bug-1618` `bug-3921` |
 | `more-blood` | 1 | `bug-780` |
 | `morfuscript` | 1 | `bug-943` |
 | `morlang` | 8 | `bug-1069` `bug-1105` `bug-1690` `bug-1715` `bug-1717` `bug-1725` `bug-1830` `bug-1838` |
-| `morph` | 2 | `bug-1214` `bug-2641` |
-| `morpheus` | 6 | `bug-1497` `bug-2185` `bug-2335` `bug-2603` `bug-2608` `bug-402` |
+| `morph` | 3 | `bug-1214` `bug-2641` `bug-3059` |
+| `morpheus` | 7 | `bug-10515` `bug-1497` `bug-2185` `bug-2335` `bug-2603` `bug-2608` `bug-402` |
+| `morpheus-switch-limit` | 1 | `bug-2762` |
 | `morpheus-syntax` | 1 | `bug-1751` |
-| `mortar` | 1 | `bug-2126` |
-| `motion` | 1 | `bug-255` |
+| `mortar` | 5 | `bug-2126` `bug-3131` `bug-4032` `bug-4033` `bug-4034` |
+| `moschetto` | 4 | `bug-3411` `bug-3413` `bug-3447` `bug-3586` |
+| `mosin` | 1 | `bug-3837` |
+| `motion` | 2 | `bug-255` `bug-3393` |
 | `motion-blur` | 1 | `bug-1239` |
+| `motion-vectors` | 4 | `bug-3559` `bug-3561` `bug-3609` `bug-3610` |
+| `mount` | 6 | `bug-10416` `bug-10630` `bug-2810` `bug-2811` `bug-2819` `bug-2931` |
 | `mount-window` | 1 | `bug-1432` |
 | `mounting` | 2 | `bug-2152` `bug-2158` |
 | `mouse-responder` | 1 | `bug-683` |
 | `mouse3` | 1 | `bug-1992` |
 | `mouselook` | 1 | `bug-356` |
+| `mouseover` | 1 | `bug-2764` |
 | `movecontrol` | 1 | `bug-2105` |
-| `movement` | 6 | `bug-164` `bug-2146` `bug-2149` `bug-2696` `bug-2714` `bug-297` |
+| `movement` | 12 | `bug-164` `bug-2146` `bug-2149` `bug-2696` `bug-2714` `bug-2881` `bug-2949` `bug-2966` `bug-297` `bug-2992` `bug-3066` `bug-3086` |
 | `mover` | 2 | `bug-2361` `bug-2496` |
+| `movers` | 1 | `bug-4030` |
 | `movespeedscale` | 1 | `bug-089` |
 | `movetopos` | 1 | `bug-363` |
+| `movetype` | 1 | `bug-2958` |
 | `movetype_noclip` | 1 | `bug-380` |
 | `movetype_toss` | 1 | `bug-923` |
-| `mp` | 93 | `bug-2557` `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2574` `bug-2579` `bug-2597` `bug-2598` `bug-2599` `bug-2602` `bug-2603` `bug-2604` `bug-2605` `bug-2607` `bug-2608` `bug-2609` `bug-2611` `bug-2612` `bug-2613` `bug-2614` `bug-2616` `bug-2617` `bug-2618` `bug-2619` `bug-2621` `bug-2623` `bug-2624` `bug-2625` `bug-2626` `bug-2627` `bug-2628` `bug-2629` `bug-2630` `bug-2631` `bug-2633` `bu… |
+| `mp` | 212 | `bug-10521` `bug-10568` `bug-10816` `bug-10826` `bug-10907` `bug-10908` `bug-10912` `bug-10913` `bug-10916` `bug-10926` `bug-2557` `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2574` `bug-2579` `bug-2597` `bug-2598` `bug-2599` `bug-2602` `bug-2603` `bug-2604` `bug-2605` `bug-2607` `bug-2608` `bug-2609` `bug-2611` `bug-2612` `bug-2613` `bug-2614` `bug-2616` `bug-2617` `bug-2618` `bug-2619` `bug… |
 | `mp-arena` | 1 | `bug-2700` |
+| `mp-armory` | 1 | `bug-10673` |
 | `mp-armory-chooser` | 1 | `bug-2614` |
 | `mp-bots` | 4 | `bug-2693` `bug-2694` `bug-2696` `bug-2702` |
-| `mp-isolation` | 1 | `bug-2622` |
+| `mp-framework` | 1 | `bug-2750` |
+| `mp-isolation` | 11 | `bug-10669` `bug-10774` `bug-10777` `bug-10781` `bug-2622` `bug-2874` `bug-2973` `bug-3429` `bug-3914` `bug-4087` `bug-4167` |
 | `mp-mode` | 3 | `bug-2698` `bug-2703` `bug-2704` |
+| `mp-modes` | 1 | `bug-2730` |
+| `mp-pickup` | 1 | `bug-10258` |
 | `mp-progression` | 1 | `bug-2632` |
+| `mp-push` | 1 | `bug-2878` |
+| `mp-room` | 13 | `bug-10755` `bug-10761` `bug-10767` `bug-10769` `bug-10770` `bug-10771` `bug-10782` `bug-10810` `bug-10811` `bug-10812` `bug-10841` `bug-10842` `bug-10870` |
 | `mp-shim` | 2 | `bug-1613` `bug-1614` |
+| `mp18` | 17 | `bug-3389` `bug-3603` `bug-3642` `bug-3643` `bug-3659` `bug-3660` `bug-3661` `bug-3662` `bug-3663` `bug-3722` `bug-3723` `bug-3724` `bug-3763` `bug-3798` `bug-3799` `bug-3800` `bug-3816` |
+| `mp28` | 2 | `bug-10669` `bug-10722` |
 | `mp3` | 1 | `bug-2120` |
+| `mp4` | 1 | `bug-10334` |
+| `mp40` | 9 | `bug-3450` `bug-3604` `bug-3606` `bug-3607` `bug-3624` `bug-3625` `bug-3626` `bug-3815` `bug-3818` |
+| `mp44` | 7 | `bug-3207` `bug-3646` `bug-3647` `bug-3649` `bug-3668` `bug-3671` `bug-3672` |
 | `mp44scoped` | 1 | `bug-1898` |
-| `mp_armory` | 1 | `bug-2602` |
+| `mp_arenafix` | 1 | `bug-2983` |
+| `mp_armory` | 2 | `bug-2602` `bug-2731` |
+| `mp_challenges` | 2 | `bug-2756` `bug-2911` |
 | `mp_force_arena` | 1 | `bug-2637` |
+| `mp_push` | 2 | `bug-2886` `bug-2895` |
+| `mp_rotate` | 1 | `bug-2730` |
 | `mp_rounds` | 1 | `bug-2603` |
-| `msaa` | 8 | `bug-1123` `bug-1145` `bug-1152` `bug-1298` `bug-1990` `bug-1995` `bug-1997` `bug-2596` |
-| `msbuild` | 1 | `bug-1909` |
+| `mpg123` | 1 | `bug-10678` |
+| `mphub` | 2 | `bug-10500` `bug-10502` |
+| `mphub3d` | 3 | `bug-10379` `bug-10380` `bug-10456` |
+| `mpui` | 18 | `bug-10443` `bug-10444` `bug-10445` `bug-10446` `bug-10447` `bug-10448` `bug-10450` `bug-10456` `bug-10464` `bug-10574` `bug-10585` `bug-10640` `bug-10711` `bug-10742` `bug-10757` `bug-10773` `bug-10809` `bug-10839` |
+| `msaa` | 22 | `bug-1123` `bug-1145` `bug-1152` `bug-1298` `bug-1990` `bug-1995` `bug-1997` `bug-2596` `bug-3030` `bug-3045` `bug-3046` `bug-3049` `bug-3067` `bug-3068` `bug-3069` `bug-3073` `bug-3074` `bug-3119` `bug-3164` `bug-3344` `bug-3347` `bug-3353` |
+| `msaa-aware` | 1 | `bug-2979` |
+| `msaa-p2b` | 1 | `bug-3072` |
+| `msb8029` | 1 | `bug-3373` |
+| `msbuild` | 7 | `bug-1909` `bug-3319` `bug-3342` `bug-3373` `bug-3726` `bug-4214` `bug-fx1025-4` |
+| `msg` | 1 | `bug-3904` |
 | `msg-netfields` | 1 | `bug-1187` |
 | `msg_packscale` | 1 | `bug-776` |
 | `msg_writebits` | 1 | `bug-1228` |
+| `msvc` | 2 | `bug-3021` `bug-3036` |
+| `msys` | 2 | `bug-10754` `bug-4214` |
 | `msys-path` | 1 | `bug-1564` |
+| `msys-path-conversion` | 2 | `bug-3257` `bug-3319` |
+| `mtime` | 2 | `bug-3251` `bug-3463` |
+| `multi-agent` | 1 | `bug-4272` |
 | `multi-line-string` | 1 | `bug-1283` |
 | `multi-player-only` | 1 | `bug-2169` |
+| `multi-process-render` | 1 | `bug-3233` |
 | `multi-root` | 1 | `bug-295` |
+| `multiclient` | 1 | `bug-10273` |
+| `multicore` | 1 | `bug-3487` |
+| `multiline` | 1 | `bug-10571` |
 | `multiline-condition` | 2 | `bug-739` `bug-750` |
-| `multiplayer` | 2 | `bug-1206` `bug-1255` |
+| `multiplayer` | 4 | `bug-1206` `bug-1255` `bug-2994` `bug-3275` |
+| `multiplayer-client` | 1 | `bug-3915` |
+| `multiplayer.urc` | 1 | `bug-2722` |
 | `multiplayerstart` | 3 | `bug-2621` `bug-2636` `bug-2679` |
 | `multiplier-stacking` | 1 | `bug-1292` |
+| `multiply` | 2 | `bug-10768` `bug-10841` |
 | `multiply-side` | 1 | `bug-2122` |
 | `multitexture` | 1 | `bug-gl2-nextbundle2` |
-| `music` | 9 | `bug-1426` `bug-2023` `bug-2271` `bug-2276` `bug-2319` `bug-2354` `bug-2570` `bug-2572` `bug-2576` |
+| `music` | 12 | `bug-10459` `bug-1426` `bug-2023` `bug-2271` `bug-2276` `bug-2319` `bug-2354` `bug-2570` `bug-2572` `bug-2576` `bug-4173` `bug-4269` |
+| `mutation` | 1 | `bug-3159` |
+| `mute` | 2 | `bug-10352` `bug-10930` |
 | `mutual-crush` | 1 | `bug-057` |
 | `muzmodel` | 1 | `bug-092` |
-| `muzzle` | 1 | `bug-1151` |
+| `muzzle` | 3 | `bug-1151` `bug-4215` `bug-4217` |
 | `muzzle-droop` | 1 | `bug-2142` |
-| `muzzle-flash` | 1 | `bug-324` |
+| `muzzle-flash` | 2 | `bug-3045` `bug-324` |
 | `muzzle-heat` | 1 | `bug-1170` |
 | `muzzle-smoke` | 1 | `bug-1200` |
 | `muzzleflash` | 3 | `bug-092` `bug-108` `bug-2186` |
@@ -3855,85 +7654,120 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `my-regression` | 3 | `bug-2045` `bug-2068` `bug-2093` |
 | `my-wrong-diagnosis` | 2 | `bug-2386` `bug-2387` |
 | `my-wrong-diagnosis-corrected` | 1 | `bug-2362` |
+| `nadesafe` | 1 | `bug-2947` |
+| `nagant` | 3 | `bug-3578` `bug-3580` `bug-3614` |
+| `name` | 2 | `bug-10427` `bug-10585` |
 | `name-append-bus` | 4 | `bug-2080` `bug-533` `bug-757` `bug-772` |
-| `name-bus` | 4 | `bug-1936` `bug-1937` `bug-2564` `bug-773` |
-| `name-collision` | 4 | `bug-1612` `bug-2041` `bug-2096` `bug-2483` |
+| `name-bus` | 12 | `bug-1936` `bug-1937` `bug-2564` `bug-2724` `bug-2759` `bug-2767` `bug-2769` `bug-3778` `bug-3811` `bug-3902` `bug-3959` `bug-773` |
+| `name-collision` | 5 | `bug-1612` `bug-2041` `bug-2096` `bug-2483` `bug-3085` |
 | `name-command-bus` | 1 | `bug-2184` |
+| `name-length` | 1 | `bug-3776` |
 | `name-mismatch` | 1 | `bug-2473` |
+| `name-strip` | 1 | `bug-3845` |
 | `name-table` | 1 | `bug-2484` |
-| `naming` | 1 | `bug-1519` |
+| `names` | 1 | `bug-3284` |
+| `naming` | 6 | `bug-10540` `bug-10669` `bug-1519` `bug-3714` `bug-3809` `bug-3852` |
 | `naming-discipline` | 1 | `bug-2002` |
 | `naming-mismatch` | 1 | `bug-2631` |
+| `nan` | 1 | `bug-3396` |
 | `nan-velocity` | 1 | `bug-954` |
 | `narrowed-by-user` | 1 | `bug-2053` |
-| `nationality` | 2 | `bug-1203` `bug-1288` |
+| `natik` | 1 | `bug-3446` |
+| `nationality` | 4 | `bug-1203` `bug-1288` `bug-3387` `bug-3401` |
 | `native-bots` | 1 | `bug-2616` |
+| `native-size` | 1 | `bug-3076` |
 | `native-vo` | 3 | `bug-837` `bug-839` `bug-842` |
-| `nav` | 7 | `bug-1560` `bug-1561` `bug-1563` `bug-1565` `bug-1568` `bug-2600` `bug-2617` |
+| `naturalearth` | 1 | `bug-10868` |
+| `nav` | 9 | `bug-10545` `bug-10923` `bug-1560` `bug-1561` `bug-1563` `bug-1565` `bug-1568` `bug-2600` `bug-2617` |
+| `nav-gap` | 1 | `bug-2827` |
+| `nav-gen` | 1 | `bug-2829` |
 | `naval` | 3 | `bug-2393` `bug-2402` `bug-2516` |
-| `navigation` | 2 | `bug-1535` `bug-2715` |
-| `navmesh` | 1 | `bug-2702` |
+| `navigation` | 14 | `bug-10687` `bug-10910` `bug-1535` `bug-2715` `bug-2781` `bug-2787` `bug-2792` `bug-2797` `bug-2805` `bug-2815` `bug-2821` `bug-2824` `bug-2826` `bug-3146` |
+| `navlinks` | 5 | `bug-2866` `bug-2870` `bug-2965` `bug-3065` `bug-3066` |
+| `navmesh` | 50 | `bug-10605` `bug-10612` `bug-2702` `bug-2797` `bug-2803` `bug-2827` `bug-2828` `bug-2829` `bug-2830` `bug-2831` `bug-2833` `bug-2837` `bug-2842` `bug-2845` `bug-2846` `bug-2847` `bug-2848` `bug-2850` `bug-2852` `bug-2855` `bug-2856` `bug-2858` `bug-2860` `bug-2861` `bug-2862` `bug-2863` `bug-2865` `bug-2867` `bug-2870` `bug-2871` `bug-2872` `bug-2887` `bug-2893` `bug-2894` `bug-2896` `bug-2898` `… |
 | `naxos` | 5 | `bug-1623` `bug-1654` `bug-1671` `bug-1689` `bug-1691` |
 | `near-miss` | 5 | `bug-1384` `bug-1736` `bug-2279` `bug-2420` `bug-2482` |
-| `near-plane` | 2 | `bug-1985` `bug-2462` |
-| `nebelwerfer` | 3 | `bug-1854` `bug-1856` `bug-1858` |
+| `near-plane` | 3 | `bug-10649` `bug-1985` `bug-2462` |
+| `nebelwerfer` | 5 | `bug-1854` `bug-1856` `bug-1858` `bug-4127` `bug-4129` |
 | `needs-authored-animation` | 1 | `bug-2135` |
 | `needs-boot-test` | 1 | `bug-gl2-decal-red-dds` |
 | `needs-boot-trace` | 1 | `bug-gl2-viewmodel-over-menu` |
+| `needs-debugger` | 1 | `bug-2726` |
+| `needs-decision` | 1 | `bug-3474` |
 | `needs-full-sequence-audit` | 1 | `bug-1483` |
 | `needs-instrumentation` | 1 | `bug-2212` |
-| `needs-playtest` | 3 | `bug-2191` `bug-2208` `bug-2678` |
+| `needs-playtest` | 4 | `bug-2191` `bug-2208` `bug-2678` `bug-3135` |
 | `needs-regression-test` | 1 | `bug-1700` |
 | `needs-reporter-info` | 1 | `bug-2183` |
 | `needs-repro` | 2 | `bug-2031` `bug-2190` |
 | `needs-retest` | 1 | `bug-2192` |
 | `needs-screenshot` | 1 | `bug-2549` |
-| `needs-user-decision` | 1 | `bug-1733` |
+| `needs-user-decision` | 2 | `bug-1733` `bug-3611` |
 | `needs-visual-verify` | 1 | `bug-2721` |
-| `nest` | 2 | `bug-1572` `bug-1573` |
+| `nest` | 3 | `bug-10510` `bug-1572` `bug-1573` |
 | `nested-quotes` | 2 | `bug-736` `bug-758` |
-| `netcode` | 1 | `bug-776` |
-| `network` | 1 | `bug-2152` |
-| `networking` | 1 | `bug-1663` |
+| `netchan` | 2 | `bug-2727` `bug-3905` |
+| `netcode` | 4 | `bug-2904` `bug-2906` `bug-3480` `bug-776` |
+| `network` | 12 | `bug-10862` `bug-2152` `bug-2909` `bug-3382` `bug-3489` `bug-3904` `bug-3905` `bug-3908` `bug-3909` `bug-3910` `bug-3911` `bug-3912` |
+| `networking` | 2 | `bug-1663` `bug-2726` |
 | `never-cleared` | 1 | `bug-1743` |
 | `never-executed` | 1 | `bug-2039` |
 | `never-fired` | 2 | `bug-1786` `bug-2490` |
 | `never-implemented` | 1 | `bug-2073` |
+| `never-joinable` | 1 | `bug-3169` |
 | `never-played` | 1 | `bug-933b` |
+| `never-ran` | 1 | `bug-3455` |
+| `never-shipped` | 1 | `bug-3681` |
+| `never-verified-at-runtime` | 1 | `bug-3076` |
 | `never-worked` | 9 | `bug-2451` `bug-2454` `bug-2460` `bug-2473` `bug-2476` `bug-2483` `bug-2487` `bug-2496` `bug-2497` |
 | `new-feature` | 4 | `bug-1158` `bug-1239` `bug-1520` `bug-1528` |
+| `new-files` | 1 | `bug-3352` |
+| `new-game` | 3 | `bug-10593` `bug-10607` `bug-10616` |
 | `new-generic-human` | 1 | `bug-1487` |
-| `new-player` | 2 | `bug-1675` `bug-1678` |
+| `new-player` | 4 | `bug-1675` `bug-1678` `bug-2734` `bug-2909` |
 | `new-trigger` | 1 | `bug-1826` |
 | `new-user` | 1 | `bug-1805` |
+| `new-weapon` | 2 | `bug-3769` `bug-3896` |
 | `new_weapon` | 1 | `bug-379` |
+| `newgame` | 3 | `bug-10703` `bug-10783` `bug-10787` |
+| `newgame3d` | 8 | `bug-10381` `bug-10382` `bug-10383` `bug-10384` `bug-10395` `bug-10440` `bug-10468` `bug-10647` |
+| `newguns` | 14 | `bug-10669` `bug-10670` `bug-10671` `bug-10674` `bug-10705` `bug-10706` `bug-10707` `bug-10720` `bug-10721` `bug-10722` `bug-10733` `bug-10734` `bug-10737` `bug-10739` |
+| `newguns2` | 3 | `bug-10762` `bug-10764` `bug-10766` |
 | `newline` | 1 | `bug-1602` |
 | `newline-collapse` | 1 | `bug-1465` |
 | `newline-in-string` | 2 | `bug-1416` `bug-962` |
 | `nextbundle` | 4 | `bug-2145` `bug-2518` `bug-gl2-nextbundle2` `bug-gl2-texmods-null` |
 | `nextdemo` | 1 | `bug-2590` |
 | `nextweapon` | 1 | `bug-925` |
+| `ng3campaigns` | 2 | `bug-10742` `bug-10776` |
+| `night` | 4 | `bug-2556` `bug-3172` `bug-3223` `bug-3237` |
+| `night-grade` | 1 | `bug-3006` |
 | `night-map` | 1 | `bug-1169` |
 | `night-maps` | 1 | `bug-2553` |
-| `nil` | 2 | `bug-2216` `bug-300` |
+| `nil` | 5 | `bug-10806` `bug-2216` `bug-2794` `bug-2967` `bug-300` |
 | `nil-compare` | 1 | `bug-1939` |
 | `nil-concat` | 1 | `bug-1284` |
-| `nil-guard` | 7 | `bug-1051` `bug-1065` `bug-1483` `bug-1493` `bug-1816` `bug-1941` `bug-2609` |
+| `nil-guard` | 8 | `bug-1051` `bug-1065` `bug-1483` `bug-1493` `bug-1816` `bug-1941` `bug-2609` `bug-2878` |
+| `nil-increment` | 1 | `bug-10347` |
 | `nil-throw` | 1 | `bug-1542` |
 | `nil-trap` | 1 | `bug-2061` |
 | `nil-vs-null` | 2 | `bug-1583` `bug-1603` |
 | `no-archive` | 1 | `bug-1802` |
 | `no-behaviour-change` | 1 | `bug-2072` |
 | `no-body-gore` | 1 | `bug-797` |
+| `no-build` | 1 | `bug-3150` |
 | `no-changes-made` | 1 | `bug-2069` |
 | `no-defect-found` | 1 | `bug-1487` |
+| `no-error-printed` | 1 | `bug-2750` |
 | `no-getter` | 1 | `bug-2417` |
 | `no-guess` | 1 | `bug-2395` |
+| `no-jank` | 2 | `bug-3157` `bug-3269` |
 | `no-music` | 1 | `bug-2716` |
 | `no-op` | 1 | `bug-2548` |
 | `no-op-change` | 1 | `bug-1182` |
 | `no-op-guard` | 1 | `bug-2294` |
 | `no-op-reward` | 1 | `bug-2079` |
+| `no-pad` | 1 | `bug-10723` |
 | `no-protocol-bump` | 1 | `bug-1305` |
 | `no-reload` | 1 | `bug-2718` |
 | `no-repro` | 1 | `bug-2131` |
@@ -3942,95 +7776,139 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `no-version-control` | 1 | `bug-1873` |
 | `no_idle` | 3 | `bug-1949` `bug-2419` `bug-2420` |
 | `no_modern_dma` | 1 | `bug-2572` |
-| `noclip` | 5 | `bug-1666` `bug-2184` `bug-2245` `bug-2302` `bug-380` |
-| `nodamage` | 3 | `bug-1260` `bug-2305` `bug-2468` |
+| `noclip` | 7 | `bug-1666` `bug-2184` `bug-2245` `bug-2302` `bug-2928` `bug-2958` `bug-380` |
+| `nodamage` | 5 | `bug-1260` `bug-2305` `bug-2468` `bug-3188` `bug-3812` |
+| `node-pool` | 1 | `bug-2850` |
 | `nodraw` | 10 | `bug-1208` `bug-1359` `bug-1360` `bug-1386` `bug-1533` `bug-1545` `bug-1988` `bug-2075` `bug-533` `bug-949` |
+| `nodrophealth` | 1 | `bug-3187` |
 | `nofog` | 1 | `bug-2186` |
+| `nohat` | 4 | `bug-2748` `bug-2754` `bug-2757` `bug-2762` |
 | `nohup` | 1 | `bug-gl2-sweep-crash` |
 | `nolongpain` | 1 | `bug-1212` |
+| `nomipmaps` | 1 | `bug-3163` |
 | `non-ascii` | 2 | `bug-1190` `bug-2245` |
+| `non-fatal` | 1 | `bug-2738` |
+| `nondeterministic` | 1 | `bug-10897` |
 | `none-cast` | 6 | `bug-1051` `bug-1052` `bug-1053` `bug-1054` `bug-1065` `bug-1106` |
 | `none-concat` | 1 | `bug-1702` |
 | `none-int` | 1 | `bug-2719` |
 | `none-to-int` | 1 | `bug-1371` |
 | `nonexistent-flag` | 1 | `bug-1779` |
 | `noparentclip` | 1 | `bug-1365` |
-| `normal-maps` | 1 | `bug-2166` |
+| `nordic-layout` | 1 | `bug-10329` |
+| `normal-map` | 3 | `bug-2905` `bug-3007` `bug-3061` |
+| `normal-maps` | 4 | `bug-2166` `bug-2950` `bug-2953` `bug-2984` |
 | `normal_damage` | 1 | `bug-2497` |
 | `normalheight` | 1 | `bug-2154` |
-| `not-a-bug` | 2 | `bug-153` `bug-156` |
+| `normals` | 4 | `bug-10380` `bug-10467` `bug-10654` `bug-3105` |
+| `norway` | 11 | `bug-10258` `bug-10267` `bug-10397` `bug-10398` `bug-10399` `bug-10404` `bug-10405` `bug-10419` `bug-10474` `bug-10477` `bug-norway-1027-booms-chain` |
+| `norway-finale` | 5 | `bug-4391` `bug-4392` `bug-4393` `bug-4394` `bug-4395` |
+| `not-a-bug` | 6 | `bug-10309` `bug-153` `bug-156` `bug-3091` `bug-3449` `bug-3461` |
 | `not-a-code-bug` | 1 | `bug-2336` |
 | `not-a-defect` | 1 | `bug-1217` |
 | `not-a-regression` | 3 | `bug-2182` `bug-2467` `bug-2671` |
-| `not-deployed` | 5 | `bug-089` `bug-1975` `bug-866` `bug-868` `bug-892` |
+| `not-built` | 7 | `bug-3127` `bug-3128` `bug-3129` `bug-3130` `bug-3131` `bug-3132` `bug-3133` |
+| `not-confirmed` | 1 | `bug-3615` |
+| `not-deployed` | 7 | `bug-089` `bug-1975` `bug-3148` `bug-3151` `bug-866` `bug-868` `bug-892` |
 | `not-diagnosed` | 1 | `bug-1674` |
 | `not-enabled` | 1 | `bug-1688` |
-| `not-fixed` | 4 | `bug-1226` `bug-2070` `bug-2071` `bug-gl2-e2l2-briefing-npc-invisible` |
+| `not-fixed` | 9 | `bug-1226` `bug-2070` `bug-2071` `bug-3048` `bug-3057` `bug-3058` `bug-3068` `bug-3736` `bug-gl2-e2l2-briefing-npc-invisible` |
 | `not-found` | 1 | `bug-381` |
 | `not-fully-root-caused` | 1 | `bug-1753` |
 | `not-investigated` | 1 | `bug-2053` |
 | `not-our-bug` | 1 | `bug-1968` |
 | `not-reachable` | 1 | `bug-1890` |
-| `not-reproduced` | 1 | `bug-2183` |
+| `not-reproduced` | 4 | `bug-10542` `bug-2183` `bug-3915` `bug-4173` |
+| `not-reproducing` | 1 | `bug-3203` |
+| `not-verified` | 1 | `bug-3888` |
 | `not-yet-fixed` | 2 | `bug-2048` `bug-2066` |
 | `not-yet-visually-confirmed` | 1 | `bug-1189` |
-| `notarget` | 6 | `bug-1418` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-2068` |
+| `notarget` | 8 | `bug-1418` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-2068` `bug-3182` `bug-3399` |
+| `notes` | 1 | `bug-10514` |
 | `notetrack` | 1 | `bug-2099` |
 | `notetrack-alias-trap` | 2 | `bug-2125` `bug-2126` |
 | `notetracks` | 2 | `bug-2115` `bug-2120` |
+| `notice-board` | 1 | `bug-10770` |
+| `noticeevent` | 1 | `bug-2873` |
+| `notices` | 1 | `bug-10842` |
+| `notify` | 1 | `bug-2982` |
 | `notsolid` | 2 | `bug-055` `bug-057` |
+| `npot` | 1 | `bug-3882` |
 | `ntdll` | 2 | `bug-2341` `bug-2362` |
-| `null` | 2 | `bug-1373` `bug-2216` |
+| `null` | 3 | `bug-10481` `bug-1373` `bug-2216` |
 | `null-cvar` | 2 | `bug-1128` `bug-1145` |
 | `null-delete` | 1 | `bug-1954` |
-| `null-deref` | 3 | `bug-1054` `bug-1655` `bug-308` |
+| `null-deref` | 6 | `bug-1054` `bug-1655` `bug-2873` `bug-308` `bug-3089` `bug-3090` |
 | `null-entity` | 1 | `bug-914` |
 | `null-guard` | 4 | `bug-1433` `bug-1659` `bug-2087` `bug-2548` |
-| `null-listener` | 6 | `bug-1204` `bug-1220` `bug-1474` `bug-1482` `bug-1694` `bug-2188` |
+| `null-listener` | 8 | `bug-10584` `bug-1204` `bug-1220` `bug-1474` `bug-1482` `bug-1694` `bug-2188` `bug-3194` |
 | `null-offset-guard` | 1 | `bug-1139` |
 | `null-pointer` | 2 | `bug-334` `bug-gl2-texmods-null` |
 | `null.wav` | 1 | `bug-1161` |
 | `numbers` | 1 | `bug-501` |
-| `numpad` | 1 | `bug-1262` |
+| `numpad` | 2 | `bug-1262` `bug-3299` |
 | `nvgpucomp64` | 1 | `bug-2671` |
 | `nvidia` | 2 | `bug-1968` `bug-2671` |
 | `nvoglv64` | 1 | `bug-2131` |
 | `nvspcap` | 1 | `bug-2663` |
+| `obituary` | 1 | `bug-10283` |
 | `obj_dm` | 2 | `bug-1549` `bug-1555` |
-| `objective` | 16 | `bug-1329` `bug-1549` `bug-1557` `bug-1671` `bug-1741` `bug-1746` `bug-1748` `bug-1816` `bug-1820` `bug-1824` `bug-1829` `bug-1831` `bug-1972` `bug-2088` `bug-2091` `bug-2717` |
+| `obj_team1` | 1 | `bug-3203` |
+| `objective` | 31 | `bug-10410` `bug-10457` `bug-10544` `bug-10826` `bug-10910` `bug-10927` `bug-1329` `bug-1549` `bug-1557` `bug-1671` `bug-1741` `bug-1746` `bug-1748` `bug-1816` `bug-1820` `bug-1824` `bug-1829` `bug-1831` `bug-1972` `bug-2088` `bug-2091` `bug-2717` `bug-2880` `bug-2883` `bug-2884` `bug-2888` `bug-3468` `bug-3469` `bug-3470` `bug-3916` `bug-4270` |
 | `objective-audit` | 2 | `bug-1625` `bug-1626` |
 | `objective-chain` | 1 | `bug-1379` |
 | `objective-drop` | 1 | `bug-2179` |
 | `objective-gate` | 1 | `bug-1840` |
 | `objective-integrity` | 1 | `bug-1770` |
 | `objective-marker` | 1 | `bug-2605` |
+| `objective-node` | 1 | `bug-2781` |
 | `objective-order` | 1 | `bug-1837` |
 | `objective-spread` | 1 | `bug-2690` |
 | `objective-stall` | 1 | `bug-638` |
 | `objective-stuck` | 1 | `bug-948` |
-| `objectives` | 26 | `bug-1251` `bug-1271` `bug-1278` `bug-1504` `bug-1588` `bug-1589` `bug-1625` `bug-1626` `bug-1627` `bug-1680` `bug-1854` `bug-1859` `bug-1862` `bug-1867` `bug-2168` `bug-2175` `bug-2200` `bug-2322` `bug-2349` `bug-2352` `bug-2433` `bug-2435` `bug-2677` `bug-2694` `bug-538` `bug-539` |
+| `objectives` | 34 | `bug-1251` `bug-1271` `bug-1278` `bug-1504` `bug-1588` `bug-1589` `bug-1625` `bug-1626` `bug-1627` `bug-1680` `bug-1854` `bug-1859` `bug-1862` `bug-1867` `bug-2168` `bug-2175` `bug-2200` `bug-2322` `bug-2349` `bug-2352` `bug-2433` `bug-2435` `bug-2677` `bug-2694` `bug-2904` `bug-2919` `bug-3093` `bug-3191` `bug-3199` `bug-3485` `bug-4446` `bug-538` `bug-539` `bug-norway-1027-booms-chain` |
 | `objectives-hud` | 1 | `bug-2544` |
+| `objectives2` | 2 | `bug-4274` `bug-4275` |
 | `objmgr` | 1 | `bug-1504` |
+| `objx` | 8 | `bug-10306` `bug-10313` `bug-10325` `bug-4082` `bug-4083` `bug-4084` `bug-4085` `bug-4431` |
 | `obs` | 1 | `bug-1795` |
 | `observability` | 1 | `bug-2457` |
+| `observation` | 4 | `bug-3058` `bug-3069` `bug-3074` `bug-3081` |
+| `observed` | 1 | `bug-3570` |
+| `obstacle` | 5 | `bug-2792` `bug-2803` `bug-2824` `bug-2893` `bug-2894` |
 | `obstacles` | 6 | `bug-2256` `bug-2262` `bug-2264` `bug-2267` `bug-2282` `bug-2479` |
-| `occlusion` | 1 | `bug-2022` |
-| `occlusion-query` | 1 | `bug-gl2-invisible-live-char-depthprepass` |
-| `ocean` | 5 | `bug-1247` `bug-2478` `bug-2508` `bug-2513` `bug-2538` |
+| `occlusion` | 4 | `bug-2022` `bug-3008` `bug-3406` `bug-3466` |
+| `occlusion-query` | 3 | `bug-2969` `bug-3073` `bug-gl2-invisible-live-char-depthprepass` |
+| `ocean` | 7 | `bug-1247` `bug-2478` `bug-2508` `bug-2513` `bug-2538` `bug-2773` `bug-3481` |
+| `ocular` | 1 | `bug-scopes1025-hip-lens` |
 | `odometer-caught` | 2 | `bug-1943` `bug-1944` |
-| `off-by-one` | 5 | `bug-1500` `bug-1976` `bug-2206` `bug-2699` `bug-909` |
+| `off-by-one` | 6 | `bug-1500` `bug-1976` `bug-2206` `bug-2699` `bug-3172` `bug-909` |
 | `off-hand` | 1 | `bug-2011` |
-| `officer` | 31 | `bug-070` `bug-1103` `bug-1215` `bug-1319` `bug-1422` `bug-1479` `bug-1488` `bug-1490` `bug-1583` `bug-1589` `bug-1590` `bug-1645` `bug-1653` `bug-1816` `bug-1840` `bug-1853` `bug-1980` `bug-1988` `bug-1989` `bug-2023` `bug-2174` `bug-2185` `bug-251` `bug-318` `bug-539` `bug-717` `bug-723` `bug-789` `bug-895` `bug-944` `bug-officer-instant-spawn-order` |
+| `off-mesh` | 1 | `bug-2888` |
+| `offbox` | 1 | `bug-3600` |
+| `officer` | 52 | `bug-070` `bug-1103` `bug-1215` `bug-1319` `bug-1422` `bug-1479` `bug-1488` `bug-1490` `bug-1583` `bug-1589` `bug-1590` `bug-1645` `bug-1653` `bug-1816` `bug-1840` `bug-1853` `bug-1980` `bug-1988` `bug-1989` `bug-2023` `bug-2174` `bug-2185` `bug-251` `bug-3046` `bug-318` `bug-3195` `bug-3302` `bug-3303` `bug-3306` `bug-3309` `bug-3360` `bug-3416` `bug-3424` `bug-3430` `bug-3572` `bug-3921` `bug-3… |
 | `officer-wave` | 1 | `bug-1174` |
 | `officer-waves` | 1 | `bug-1870` |
 | `officer.scr` | 3 | `bug-2074` `bug-2076` `bug-2077` |
 | `officer_positions` | 1 | `bug-895` |
+| `offline` | 1 | `bug-3732` |
 | `offline-menu` | 1 | `bug-707` |
-| `offmesh` | 1 | `bug-2715` |
-| `omaha` | 43 | `bug-2215` `bug-2216` `bug-2217` `bug-2219` `bug-2220` `bug-2223` `bug-2227` `bug-2230` `bug-2231` `bug-2232` `bug-2233` `bug-2235` `bug-2244` `bug-2246` `bug-2249` `bug-2251` `bug-2252` `bug-2253` `bug-2254` `bug-2255` `bug-2256` `bug-2257` `bug-2258` `bug-2259` `bug-2260` `bug-2261` `bug-2262` `bug-2263` `bug-2391` `bug-2393` `bug-2394` `bug-2395` `bug-2398` `bug-2403` `bug-2405` `bug-2406` `bu… |
+| `offline-preview` | 1 | `bug-3334` |
+| `offline-render` | 2 | `bug-3661` `bug-3801` |
+| `offline-tools` | 1 | `bug-3871` |
+| `offmesh` | 8 | `bug-2715` `bug-2831` `bug-2837` `bug-2862` `bug-2883` `bug-2892` `bug-2896` `bug-2898` |
+| `offmesh-link` | 1 | `bug-2988` |
+| `offmesh-links` | 3 | `bug-2955` `bug-2957` `bug-2964` |
+| `old-client` | 1 | `bug-3151` |
+| `old-dll` | 1 | `bug-3430` |
+| `omaha` | 62 | `bug-2215` `bug-2216` `bug-2217` `bug-2219` `bug-2220` `bug-2223` `bug-2227` `bug-2230` `bug-2231` `bug-2232` `bug-2233` `bug-2235` `bug-2244` `bug-2246` `bug-2249` `bug-2251` `bug-2252` `bug-2253` `bug-2254` `bug-2255` `bug-2256` `bug-2257` `bug-2258` `bug-2259` `bug-2260` `bug-2261` `bug-2262` `bug-2263` `bug-2391` `bug-2393` `bug-2394` `bug-2395` `bug-2398` `bug-2403` `bug-2405` `bug-2406` `bu… |
+| `omaha-excluded` | 1 | `bug-3318` |
+| `omaha-protected` | 3 | `bug-2946` `bug-2962` `bug-2969` |
+| `omaha-scope` | 2 | `bug-2985` `bug-2994` |
 | `omconfig` | 4 | `bug-1068` `bug-1134` `bug-1138` `bug-1582` |
 | `omission-pattern` | 1 | `bug-1466` |
-| `omohaaded` | 1 | `bug-2182` |
+| `omohaaded` | 2 | `bug-2182` `bug-2726` |
+| `on-target` | 2 | `bug-3545` `bug-3631` |
 | `onboarding` | 1 | `bug-2684` |
 | `one-cause-three-reports` | 1 | `bug-2309` |
 | `one-directional-guard` | 1 | `bug-2175` |
@@ -4040,300 +7918,450 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `one-line` | 2 | `bug-2234` `bug-2553` |
 | `one-per-class` | 3 | `bug-707` `bug-716` `bug-758` |
 | `one-shared-test` | 2 | `bug-2057` `bug-2060` |
-| `one-shot` | 4 | `bug-1793` `bug-2253` `bug-2266` `bug-2295` |
+| `one-shot` | 10 | `bug-1793` `bug-2253` `bug-2266` `bug-2295` `bug-2908` `bug-2909` `bug-3012` `bug-3190` `bug-3209` `bug-4187-fix` |
+| `one-shot-alias` | 1 | `bug-3299` |
 | `one-shot-cvar` | 1 | `bug-1427` |
 | `one-shot-migration` | 1 | `bug-2303` |
 | `one-way-latch` | 3 | `bug-1736` `bug-1738` `bug-1743` |
 | `oneammo` | 1 | `bug-2673` |
 | `oneminusvertex` | 2 | `bug-gl2-compass` `bug-gl2-hudsegments` |
-| `oneshot` | 1 | `bug-2673` |
+| `oneshot` | 2 | `bug-2673` `bug-4447` |
 | `oob` | 2 | `bug-gl2-invisible-friendly-actor` `bug-gl2-invisible-friendly-actor-2nd` |
 | `opel` | 1 | `bug-1270` |
 | `opelcollision` | 1 | `bug-056` |
-| `open` | 48 | `bug-1184` `bug-1213` `bug-1245` `bug-1471` `bug-1472` `bug-1483` `bug-1585` `bug-1619` `bug-1621` `bug-1631` `bug-1635` `bug-1658` `bug-1663` `bug-1666` `bug-1674` `bug-1680` `bug-1688` `bug-1690` `bug-1896` `bug-1907` `bug-1957` `bug-1958` `bug-1986` `bug-2031` `bug-2069` `bug-2075` `bug-2077` `bug-2079` `bug-2081` `bug-2151` `bug-2190` `bug-2212` `bug-2226` `bug-2301` `bug-2362` `bug-2432` `bu… |
+| `open` | 182 | `bug-10285` `bug-10289` `bug-10317` `bug-10333` `bug-10354` `bug-10471` `bug-10495` `bug-10529` `bug-10530` `bug-10576` `bug-10605` `bug-10614` `bug-10623` `bug-10648` `bug-10678` `bug-10693` `bug-10724` `bug-10735` `bug-10777` `bug-10779` `bug-10816` `bug-10882` `bug-10899` `bug-10921` `bug-1184` `bug-1213` `bug-1245` `bug-1471` `bug-1472` `bug-1483` `bug-1585` `bug-1619` `bug-1621` `bug-1631` `… |
+| `open-bolt` | 3 | `bug-3625` `bug-3665` `bug-3868` |
+| `open-hand` | 1 | `bug-3872` |
 | `open-side-solver` | 1 | `bug-2055` |
 | `open-until-playtested` | 1 | `bug-2388` |
-| `openal` | 8 | `bug-099` `bug-153` `bug-156` `bug-1797` `bug-2309` `bug-2392` `bug-2420` `bug-2576` |
+| `open.md` | 1 | `bug-3248` |
+| `openal` | 13 | `bug-099` `bug-10312` `bug-10351` `bug-10498` `bug-153` `bug-156` `bug-1797` `bug-2309` `bug-2392` `bug-2420` `bug-2576` `bug-3473` `bug-4121` |
 | `openers` | 1 | `bug-2707` |
 | `opengl` | 1 | `bug-1795` |
 | `opengl2` | 2 | `bug-1968` `bug-2131` |
+| `opengl2flip` | 1 | `bug-3058` |
 | `openmohaa` | 1 | `bug-1064` |
-| `openmohaa.exe` | 1 | `bug-892` |
+| `openmohaa.exe` | 3 | `bug-4169` `bug-4170` `bug-892` |
 | `openwolf` | 2 | `bug-1227` `bug-buglog-dataloss` |
+| `operational` | 2 | `bug-2741` `bug-2748` |
+| `operator-error` | 1 | `bug-3879` |
 | `operator-fix` | 4 | `bug-027` `bug-044` `bug-094` `bug-782` |
-| `opt-in` | 1 | `bug-1720` |
-| `options` | 1 | `bug-710` |
-| `order` | 2 | `bug-1299` `bug-494` |
-| `ordering` | 7 | `bug-1271` `bug-1478` `bug-1737` `bug-2130` `bug-2470` `bug-329` `bug-officer-instant-spawn-order` |
+| `ops` | 2 | `bug-4216` `bug-4271` |
+| `opt-in` | 2 | `bug-1720` `bug-3199` |
+| `options` | 3 | `bug-2919` `bug-4181` `bug-710` |
+| `order` | 5 | `bug-1299` `bug-2903` `bug-3793` `bug-3895` `bug-494` |
+| `ordering` | 10 | `bug-1271` `bug-1478` `bug-1737` `bug-2130` `bug-2470` `bug-3035` `bug-329` `bug-3574` `bug-4082` `bug-officer-instant-spawn-order` |
 | `ordernumber` | 1 | `bug-1530` |
+| `orientation` | 1 | `bug-10662` |
+| `orphan` | 1 | `bug-10660` |
 | `orphan-paren` | 1 | `bug-1892` |
 | `oscillation` | 1 | `bug-1631` |
 | `oscillator` | 3 | `bug-1983` `bug-2004` `bug-2005` |
+| `osk` | 1 | `bug-10635` |
 | `our-regression` | 1 | `bug-1228` |
-| `out-of-bounds` | 1 | `bug-956` |
+| `out-of-band-pak` | 3 | `bug-3251` `bug-3900` `bug-3901` |
+| `out-of-bounds` | 2 | `bug-2847` `bug-956` |
 | `outro` | 2 | `bug-1027` `bug-1379` |
 | `over-broad-guard` | 1 | `bug-1277` |
 | `over-restriction` | 1 | `bug-2638` |
-| `overbright` | 2 | `bug-2151` `bug-2559` |
+| `overbright` | 3 | `bug-10633` `bug-2151` `bug-2559` |
 | `overclaim` | 1 | `bug-2181` |
 | `overcorrection` | 2 | `bug-1766` `bug-2011` |
-| `overflow` | 8 | `bug-1193` `bug-1219` `bug-1670` `bug-2242` `bug-2290` `bug-2679` `bug-493` `bug-892` |
+| `overflow` | 14 | `bug-10495` `bug-10567` `bug-1193` `bug-1219` `bug-1670` `bug-2242` `bug-2290` `bug-2679` `bug-2758` `bug-2785` `bug-2908` `bug-3480` `bug-493` `bug-892` |
 | `overflow-guard` | 1 | `bug-1180` |
-| `overhead-icon` | 1 | `bug-2024` |
-| `overheat` | 3 | `bug-091` `bug-1255` `bug-1946` |
-| `overlap` | 6 | `bug-1160` `bug-1196` `bug-1711` `bug-1744` `bug-1764` `bug-1785` |
-| `overlay` | 4 | `bug-1996` `bug-2663` `bug-2665` `bug-gl2-hudsegments` |
+| `overhang` | 1 | `bug-2956` |
+| `overhead-icon` | 4 | `bug-10396` `bug-2024` `bug-3424` `bug-3425` |
+| `overheat` | 8 | `bug-091` `bug-10307` `bug-10559` `bug-10674` `bug-1255` `bug-1946` `bug-3636` `bug-3639` |
+| `overlap` | 13 | `bug-10370` `bug-10371` `bug-10725` `bug-10731` `bug-1160` `bug-1196` `bug-1711` `bug-1744` `bug-1764` `bug-1785` `bug-3521` `bug-3522` `bug-4425` |
+| `overlay` | 16 | `bug-10572` `bug-10621` `bug-1996` `bug-2663` `bug-2665` `bug-3114` `bug-3173` `bug-3185` `bug-3320` `bug-3379` `bug-3740` `bug-3799` `bug-3857` `bug-3862` `bug-4041` `bug-gl2-hudsegments` |
+| `overlay-rule` | 1 | `bug-3571` |
 | `overloaded-flag` | 2 | `bug-2105` `bug-2112` |
-| `override` | 3 | `bug-1280` `bug-1373` `bug-2228` |
+| `override` | 5 | `bug-1280` `bug-1373` `bug-2228` `bug-3453` `bug-fx1025-2` |
+| `overrides-pak` | 1 | `bug-3251` |
+| `overshoot` | 1 | `bug-3272` |
+| `overwatch` | 1 | `bug-3000` |
 | `overwrite` | 3 | `bug-1853` `bug-1873` `bug-2009` |
 | `overwrite-without-backup` | 1 | `bug-1917` |
 | `overwrite-without-reading` | 1 | `bug-2041` |
 | `overwritten-by-cleanup` | 1 | `bug-2390` |
+| `own-discs` | 1 | `bug-10784` |
+| `own-regression` | 1 | `bug-3693` |
 | `own3mall` | 1 | `bug-2698` |
-| `p0` | 2 | `bug-1022` `bug-872` |
-| `p2` | 1 | `bug-873` |
-| `p38` | 1 | `bug-2661` |
+| `owner` | 1 | `bug-3957` |
+| `p0` | 5 | `bug-1022` `bug-3081` `bug-3082` `bug-3083` `bug-872` |
+| `p1` | 1 | `bug-3177` |
+| `p2` | 2 | `bug-3177` `bug-873` |
+| `p2b` | 9 | `bug-3045` `bug-3046` `bug-3047` `bug-3049` `bug-3050` `bug-3067` `bug-3068` `bug-3073` `bug-3074` |
+| `p3` | 3 | `bug-3235` `bug-3244` `bug-3245` |
+| `p38` | 2 | `bug-2661` `bug-3564` |
+| `p38silenced` | 2 | `bug-3737` `bug-3738` |
+| `p4` | 1 | `bug-3345` |
+| `p47` | 1 | `bug-4123` |
+| `p5` | 2 | `bug-3342` `bug-3343` |
+| `p6` | 1 | `bug-3345` |
 | `p_thinkactive` | 1 | `bug-229` |
-| `pacing` | 2 | `bug-1289` `bug-2503` |
-| `packaging` | 2 | `bug-2224` `bug-2512` |
+| `pace` | 1 | `bug-2992` |
+| `pacing` | 4 | `bug-1289` `bug-2503` `bug-2959` `bug-3494` |
+| `packaging` | 3 | `bug-2224` `bug-2512` `bug-3378` |
 | `packer` | 2 | `bug-2177` `bug-2610` |
-| `padlock` | 2 | `bug-666` `bug-682` |
-| `pagination` | 1 | `bug-493` |
+| `packet-loss` | 2 | `bug-2904` `bug-2906` |
+| `pad` | 1 | `bug-4418` |
+| `padlean` | 7 | `bug-4175` `bug-4176` `bug-4177` `bug-4183` `bug-4184` `bug-4186` `bug-4187` |
+| `padlock` | 9 | `bug-10926` `bug-2755` `bug-2774` `bug-2778` `bug-2783` `bug-2793` `bug-3898` `bug-666` `bug-682` |
+| `padnav` | 2 | `bug-4169` `bug-4178` |
+| `padnavigate` | 1 | `bug-4418` |
+| `pagination` | 2 | `bug-2762` `bug-493` |
 | `pain` | 4 | `bug-1682` `bug-1739` `bug-2019` `bug-2682` |
 | `pain-flip-window` | 1 | `bug-2127` |
-| `pain-handler` | 7 | `bug-1104` `bug-1212` `bug-1275` `bug-1733` `bug-1734` `bug-1868` `bug-318` |
+| `pain-handler` | 9 | `bug-1104` `bug-1212` `bug-1275` `bug-1733` `bug-1734` `bug-1868` `bug-318` `bug-3302` `bug-3853` |
 | `pain-locations` | 1 | `bug-2126` |
+| `pain.scr` | 1 | `bug-10634` |
 | `painbreath` | 2 | `bug-2685` `bug-2689` |
-| `painhandler` | 1 | `bug-1944` |
-| `pak` | 1 | `bug-809` |
+| `painhandler` | 2 | `bug-1944` `bug-blastreact-1` |
+| `pairing` | 1 | `bug-10358` |
+| `pak` | 5 | `bug-3300` `bug-3340` `bug-3419` `bug-3511` `bug-809` |
 | `pak-audit` | 2 | `bug-1533` `bug-1540` |
+| `pak-hash` | 1 | `bug-3463` |
 | `pak-load-order` | 1 | `bug-1357` |
-| `pak-order` | 2 | `bug-1893` `bug-2533` |
+| `pak-order` | 5 | `bug-10394` `bug-10838` `bug-1893` `bug-2533` `bug-3814` |
 | `pak-ordering` | 1 | `bug-648` |
 | `pak-precedence` | 3 | `bug-1272` `bug-1539` `bug-font-bleed` |
 | `pak-priority` | 2 | `bug-2164` `bug-m3l2-ground-seams` |
-| `paks` | 1 | `bug-1307` |
-| `pan` | 1 | `bug-2420` |
+| `paks` | 3 | `bug-10552` `bug-10553` `bug-1307` |
+| `pan` | 3 | `bug-2420` `bug-3371` `bug-3676` |
 | `panzer` | 1 | `bug-647` |
-| `panzerfaust` | 3 | `bug-1900` `bug-1907` `bug-1912` |
+| `panzerfaust` | 4 | `bug-10670` `bug-1900` `bug-1907` `bug-1912` |
+| `panzerschreck` | 2 | `bug-2752` `bug-3416` |
 | `papers` | 17 | `bug-1603` `bug-1604` `bug-1624` `bug-1662` `bug-1685` `bug-1693` `bug-1709` `bug-1719` `bug-1729` `bug-1732` `bug-1736` `bug-1765` `bug-1872` `bug-2127` `bug-2178` `bug-625` `bug-880` |
 | `papers-check` | 1 | `bug-1631` |
 | `papers-restore` | 1 | `bug-1736` |
+| `parachute` | 1 | `bug-4443` |
 | `parade` | 1 | `bug-1372` |
 | `parade-rest` | 2 | `bug-378` `bug-379` |
-| `paradrop` | 6 | `bug-1260` `bug-1309` `bug-135` `bug-1848` `bug-1864` `bug-paradrop-medic-idle` |
-| `parallax` | 4 | `bug-2154` `bug-2159` `bug-2164` `bug-2166` |
-| `paratrooper` | 2 | `bug-621` `bug-941` |
+| `paradrop` | 19 | `bug-1260` `bug-1309` `bug-135` `bug-1848` `bug-1864` `bug-3309` `bug-3322` `bug-3380` `bug-3402` `bug-3478` `bug-3562` `bug-3572` `bug-3687` `bug-3693` `bug-3694` `bug-3750` `bug-3751` `bug-4012` `bug-paradrop-medic-idle` |
+| `parallax` | 5 | `bug-2154` `bug-2159` `bug-2164` `bug-2166` `bug-2971` |
+| `parallel-agents` | 2 | `bug-10896` `bug-3392` |
+| `parallel-session` | 1 | `bug-3346` |
+| `parallel-sessions` | 4 | `bug-10539` `bug-3439` `bug-4043` `bug-4081` |
+| `parallel-tests` | 1 | `bug-3525` |
+| `parameters` | 1 | `bug-4033` |
+| `parasquad` | 19 | `bug-10347` `bug-3562` `bug-3636` `bug-3637` `bug-3638` `bug-3658` `bug-3686` `bug-3688` `bug-3689` `bug-3690` `bug-3691` `bug-3692` `bug-3746` `bug-3747` `bug-3748` `bug-3749` `bug-3752` `bug-3978` `bug-4086` |
+| `paratrooper` | 9 | `bug-3746` `bug-3747` `bug-3748` `bug-3749` `bug-3750` `bug-3751` `bug-3752` `bug-621` `bug-941` |
+| `paratroopers` | 2 | `bug-3309` `bug-3322` |
 | `parententity` | 1 | `bug-1131` |
 | `parentlink` | 3 | `bug-1414` `bug-1417` `bug-1421` |
-| `parity` | 7 | `bug-1132` `bug-1156` `bug-1168` `bug-1177` `bug-1300` `bug-1304` `bug-1638` |
+| `parity` | 11 | `bug-1132` `bug-1156` `bug-1168` `bug-1177` `bug-1300` `bug-1304` `bug-1638` `bug-2946` `bug-2962` `bug-3166` `bug-3278` |
 | `parm3` | 1 | `bug-2236` |
-| `parse` | 7 | `bug-1027` `bug-1205` `bug-1301` `bug-2162` `bug-2196` `bug-2225` `bug-943` |
+| `parse` | 11 | `bug-1027` `bug-10417` `bug-1205` `bug-1301` `bug-2162` `bug-2196` `bug-2225` `bug-3215` `bug-4391` `bug-4450` `bug-943` |
+| `parse-adjacent` | 1 | `bug-4087` |
 | `parse-check` | 1 | `bug-1559` |
 | `parse-entities` | 1 | `bug-934` |
 | `parse-error` | 4 | `bug-1069` `bug-1269` `bug-2335` `bug-533` |
 | `parse-kill` | 2 | `bug-1713` `bug-962` |
-| `parse-killer` | 23 | `bug-1105` `bug-1190` `bug-1283` `bug-1285` `bug-1308` `bug-1416` `bug-1715` `bug-1725` `bug-1751` `bug-1822` `bug-1826` `bug-1830` `bug-1895` `bug-1908` `bug-2531` `bug-2632` `bug-2709` `bug-331` `bug-348` `bug-402` `bug-739` `bug-750` `bug-910` |
+| `parse-killer` | 27 | `bug-10889` `bug-10895` `bug-1105` `bug-1190` `bug-1283` `bug-1285` `bug-1308` `bug-1416` `bug-1715` `bug-1725` `bug-1751` `bug-1822` `bug-1826` `bug-1830` `bug-1895` `bug-1908` `bug-2531` `bug-2632` `bug-2709` `bug-331` `bug-3350` `bug-3423` `bug-348` `bug-402` `bug-739` `bug-750` `bug-910` |
 | `parse-safe` | 1 | `bug-707` |
 | `parse-safety` | 1 | `bug-2080` |
 | `parsec` | 1 | `bug-2663` |
-| `parser` | 1 | `bug-480` |
+| `parser` | 2 | `bug-10356` `bug-480` |
 | `parsevector` | 1 | `bug-1913` |
 | `partial` | 2 | `bug-2085` `bug-2385` |
+| `partial-apply` | 1 | `bug-3250` |
 | `partial-fix` | 3 | `bug-1171` `bug-2035` `bug-2263` |
 | `partial-fix-completed` | 1 | `bug-2389` |
+| `partial-path` | 2 | `bug-2849` `bug-2850` |
+| `partial-update` | 1 | `bug-3511` |
 | `partially-fixed` | 1 | `bug-1477` |
-| `partially-verified` | 2 | `bug-1784` `bug-2558` |
-| `particles` | 1 | `bug-1190` |
+| `partially-verified` | 3 | `bug-1784` `bug-2558` `bug-4212` |
+| `particles` | 2 | `bug-10931` `bug-1190` |
 | `pass1-confirmed` | 14 | `bug-1477` `bug-1478` `bug-1479` `bug-1480` `bug-1481` `bug-1482` `bug-1483` `bug-1484` `bug-1485` `bug-1486` `bug-1487` `bug-1488` `bug-1489` `bug-1490` |
 | `pass2-confirmed` | 5 | `bug-1493` `bug-1494` `bug-1495` `bug-1496` `bug-1497` |
 | `pass3-confirmed` | 1 | `bug-1498` |
+| `password` | 1 | `bug-3071` |
 | `paste` | 1 | `bug-334` |
+| `patch` | 1 | `bug-3022` |
 | `patch-anchor` | 1 | `bug-1421` |
-| `path` | 1 | `bug-1905` |
+| `patch-border` | 2 | `bug-3007` `bug-3061` |
+| `patch-script` | 1 | `bug-3695` |
+| `patch-tooling` | 2 | `bug-3002` `bug-3037` |
+| `path` | 5 | `bug-10263` `bug-10386` `bug-1905` `bug-3165` `bug-3218` |
 | `path-bug` | 1 | `bug-2030` |
 | `path-filter` | 1 | `bug-2147` |
+| `pathclip` | 1 | `bug-2797` |
+| `pathdist` | 4 | `bug-10313` `bug-3979` `bug-mgspawn1025` `bug-mgspawn1025b` |
 | `pather` | 1 | `bug-2715` |
-| `pathfinding` | 8 | `bug-122` `bug-1649` `bug-1656` `bug-1710` `bug-1812` `bug-1861` `bug-1989` `bug-2246` |
-| `pathing` | 4 | `bug-1319` `bug-1879` `bug-2311` `bug-2317` |
-| `pathnode` | 5 | `bug-1560` `bug-1561` `bug-1563` `bug-1565` `bug-1568` |
-| `patrol` | 1 | `bug-1720` |
-| `pattern` | 1 | `bug-2218` |
+| `pathfinding` | 9 | `bug-10545` `bug-122` `bug-1649` `bug-1656` `bug-1710` `bug-1812` `bug-1861` `bug-1989` `bug-2246` |
+| `pathing` | 15 | `bug-10399` `bug-10404` `bug-10566` `bug-1319` `bug-1879` `bug-2311` `bug-2317` `bug-2781` `bug-2787` `bug-2797` `bug-2803` `bug-2805` `bug-2849` `bug-2914` `bug-3690` |
+| `pathnode` | 9 | `bug-10604` `bug-1560` `bug-1561` `bug-1563` `bug-1565` `bug-1568` `bug-3181` `bug-3979` `bug-mgspawn1025b` |
+| `pathnodes` | 3 | `bug-3210` `bug-3687` `bug-3977` |
+| `paths` | 2 | `bug-10891` `bug-4194` |
+| `patrol` | 3 | `bug-10623` `bug-10687` `bug-1720` |
+| `pattern` | 2 | `bug-10898` `bug-2218` |
+| `pause` | 1 | `bug-10429` |
+| `pauseanims` | 1 | `bug-10684` |
+| `pbr` | 1 | `bug-4042` |
+| `pclip` | 2 | `bug-norway-1027-defence-start-hang` `bug-norway-1027-defence-start-hang-cause` |
 | `pdb` | 1 | `bug-2663` |
-| `peek` | 6 | `bug-303` `bug-305` `bug-311` `bug-313` `bug-323` `bug-325` |
+| `peek` | 8 | `bug-10414` `bug-10810` `bug-303` `bug-305` `bug-311` `bug-313` `bug-323` `bug-325` |
+| `peep-sight` | 1 | `bug-10763` |
 | `pelvis` | 1 | `bug-2126` |
-| `penetration` | 1 | `bug-2095` |
-| `per-gun` | 1 | `bug-2139` |
+| `penalty` | 1 | `bug-4051` |
+| `penetration` | 2 | `bug-2095` `bug-3130` |
+| `per-frame-repath` | 1 | `bug-2881` |
+| `per-gun` | 2 | `bug-10887` `bug-2139` |
 | `per-gun-recoil` | 1 | `bug-2140` |
 | `per-map` | 3 | `bug-1590` `bug-2595` `bug-848` |
 | `per-map-default` | 1 | `bug-1853` |
+| `per-map-grade` | 2 | `bug-3048` `bug-3060` |
+| `per-map-state` | 2 | `bug-3014` `bug-3101` |
 | `per-player` | 1 | `bug-2420` |
 | `per-player-vs-level` | 1 | `bug-2155` |
+| `per-shot` | 1 | `bug-3443` |
+| `per-shot-cycle` | 1 | `bug-3848` |
 | `per-team` | 1 | `bug-2717` |
+| `per-usercmd` | 1 | `bug-3372` |
 | `per-usercmd-integration` | 1 | `bug-2143` |
+| `per-weapon` | 2 | `bug-3842` `bug-3862` |
+| `per-weapon-rows` | 5 | `bug-3722` `bug-3723` `bug-3806` `bug-3815` `bug-3845` |
+| `percent` | 1 | `bug-4396` |
 | `perception` | 3 | `bug-1987` `bug-2690` `bug-2691` |
+| `perch` | 1 | `bug-10506` |
 | `perched-test` | 2 | `bug-2357` `bug-2370` |
-| `performance` | 4 | `bug-1141` `bug-1210` `bug-1667` `bug-1672` |
+| `perf` | 6 | `bug-2983` `bug-3062` `bug-3339` `bug-3357` `bug-3358` `bug-3459` |
+| `perf1` | 7 | `bug-3567` `bug-3568` `bug-3569` `bug-3575` `bug-3576` `bug-3577` `bug-3583` |
+| `performance` | 33 | `bug-10284` `bug-10295` `bug-10402` `bug-10495` `bug-10567` `bug-10613` `bug-10701` `bug-10714` `bug-10869` `bug-10872` `bug-10900` `bug-10901` `bug-10904` `bug-1141` `bug-1210` `bug-1667` `bug-1672` `bug-3001` `bug-3477` `bug-3483` `bug-3487` `bug-3488` `bug-3490` `bug-3491` `bug-3493` `bug-3497` `bug-3567` `bug-3568` `bug-3569` `bug-3575` `bug-3576` `bug-3577` `bug-3583` |
 | `period` | 1 | `bug-2541` |
-| `persistence` | 8 | `bug-1381` `bug-1398` `bug-1404` `bug-1554` `bug-2165` `bug-317` `bug-710` `bug-960` |
+| `permanent-link` | 1 | `bug-2734` |
+| `persist` | 2 | `bug-10441` `bug-2809` |
+| `persistence` | 18 | `bug-10585` `bug-10912` `bug-1381` `bug-1398` `bug-1404` `bug-1554` `bug-2165` `bug-2749` `bug-2767` `bug-2770` `bug-2775` `bug-2776` `bug-2777` `bug-317` `bug-3903` `bug-4187` `bug-710` `bug-960` |
+| `persistent` | 1 | `bug-2806` |
+| `personal-bests` | 1 | `bug-10843` |
 | `personality` | 5 | `bug-1103` `bug-1571` `bug-1720` `bug-1852` `bug-2100` |
-| `personality-roll` | 1 | `bug-2051` |
+| `personality-roll` | 2 | `bug-2051` `bug-3188` |
+| `phantom-bone` | 2 | `bug-4264` `bug-4267` |
 | `phase` | 1 | `bug-1983` |
 | `phase-0` | 2 | `bug-861` `bug-866` |
 | `phase-2` | 1 | `bug-2073` |
-| `phase-a` | 6 | `bug-1646` `bug-1647` `bug-1648` `bug-1649` `bug-1650` `bug-1653` |
+| `phase-a` | 7 | `bug-1646` `bug-1647` `bug-1648` `bug-1649` `bug-1650` `bug-1653` `bug-3010` |
 | `phase-b` | 2 | `bug-1655` `bug-355` |
 | `phase-b2` | 1 | `bug-1657` |
 | `phase-c` | 17 | `bug-1662` `bug-1674` `bug-1676` `bug-1682` `bug-1683` `bug-1684` `bug-1685` `bug-1686` `bug-1687` `bug-1689` `bug-1691` `bug-1692` `bug-1693` `bug-1695` `bug-1696` `bug-1697` `bug-1698` |
 | `phase-c-input` | 2 | `bug-1651` `bug-1652` |
 | `phase-gate` | 1 | `bug-1466` |
 | `phase-lock` | 1 | `bug-2485` |
+| `phase-s` | 7 | `bug-2969` `bug-2970` `bug-2977` `bug-2978` `bug-2990` `bug-2999` `bug-3008` |
 | `phase1` | 2 | `bug-2687` `bug-2690` |
 | `phase2` | 2 | `bug-2690` `bug-2696` |
 | `phase3` | 5 | `bug-1440` `bug-1962` `bug-1963` `bug-1964` `bug-2691` |
 | `phase5` | 1 | `bug-2693` |
 | `phase6` | 1 | `bug-2693` |
 | `phone-jack` | 1 | `bug-1673` |
-| `physics` | 7 | `bug-1882` `bug-1903` `bug-1910` `bug-1914` `bug-1915` `bug-1974` `bug-2552` |
-| `physics_off` | 1 | `bug-1431` |
+| `photo-mode` | 3 | `bug-10375` `bug-10378` `bug-10386` |
+| `photosensitivity` | 3 | `bug-3106` `bug-3148` `bug-3172` |
+| `physics` | 9 | `bug-1882` `bug-1903` `bug-1910` `bug-1914` `bug-1915` `bug-1974` `bug-2552` `bug-3370` `bug-4266` |
+| `physics_off` | 2 | `bug-1431` `bug-3324` |
 | `piat` | 2 | `bug-1252` `bug-1339` |
-| `pickup` | 2 | `bug-1263` `bug-939` |
-| `pid-file` | 3 | `bug-1064` `bug-1066` `bug-1441` |
-| `pii` | 1 | `bug-1799` |
-| `pinned` | 1 | `bug-1522` |
+| `picker` | 1 | `bug-2832` |
+| `pickup` | 15 | `bug-10258` `bug-10462` `bug-10474` `bug-10475` `bug-10476` `bug-10894` `bug-1263` `bug-3356` `bug-3465` `bug-3813` `bug-3851` `bug-4003` `bug-4441` `bug-4448` `bug-939` |
+| `pickupweapon` | 1 | `bug-3505` |
+| `pid` | 1 | `bug-10741` |
+| `pid-file` | 4 | `bug-1064` `bug-1066` `bug-1441` `bug-3169` |
+| `pii` | 2 | `bug-1799` `bug-3277` |
+| `pil` | 1 | `bug-10814` |
+| `pillarbox` | 1 | `bug-4416` |
+| `pillow` | 1 | `bug-2953` |
+| `pilot` | 1 | `bug-10315` |
+| `pin` | 2 | `bug-3827` `bug-4191` |
+| `ping` | 1 | `bug-3911` |
+| `ping-pong` | 1 | `bug-2890` |
+| `pinned` | 2 | `bug-1522` `bug-2835` |
 | `pinned-challenges` | 3 | `bug-1503` `bug-1523` `bug-1537` |
 | `pinning` | 2 | `bug-1512` `bug-1546` |
 | `pins` | 5 | `bug-1362` `bug-1364` `bug-1365` `bug-1925` `bug-2544` |
-| `pistol` | 2 | `bug-1204` `bug-618` |
+| `pip` | 15 | `bug-10286` `bug-10287` `bug-10288` `bug-10302` `bug-10343` `bug-10402` `bug-10403` `bug-10427` `bug-10428` `bug-10454` `bug-10624` `bug-10625` `bug-4390` `bug-4391` `bug-scopes1025-hip-lens` |
+| `pipe` | 1 | `bug-10732` |
+| `pipe-hides-error` | 1 | `bug-10753` |
+| `pipeline-order` | 1 | `bug-10809` |
+| `pistol` | 29 | `bug-10658` `bug-1204` `bug-3262` `bug-3315` `bug-3390` `bug-3467` `bug-3498` `bug-3499` `bug-3545` `bug-3556` `bug-3592` `bug-3593` `bug-3650` `bug-3651` `bug-3652` `bug-3653` `bug-3654` `bug-3655` `bug-3656` `bug-3677` `bug-3733` `bug-3734` `bug-3735` `bug-3736` `bug-3737` `bug-3738` `bug-4124` `bug-4132` `bug-618` |
+| `pistol-lane` | 5 | `bug-3782` `bug-3783` `bug-3787` `bug-3788` `bug-3804` |
 | `pistol-reload` | 1 | `bug-2120` |
-| `pitch` | 2 | `bug-1898` `bug-327` |
+| `pistols` | 7 | `bug-3875` `bug-3876` `bug-3877` `bug-3878` `bug-3879` `bug-3880` `bug-3886` |
+| `pitch` | 3 | `bug-1898` `bug-327` `bug-3746` |
 | `pitch-clamp` | 2 | `bug-321` `bug-328` |
 | `pitchcaps` | 1 | `bug-1569` |
+| `pitched roof` | 1 | `bug-10512` |
+| `pitched-roof` | 1 | `bug-10348` |
 | `pivot` | 3 | `bug-2191` `bug-2543` `bug-2562` |
-| `pk3` | 7 | `bug-1428` `bug-2097` `bug-2224` `bug-2228` `bug-2512` `bug-2516` `bug-494` |
+| `pk3` | 14 | `bug-10463` `bug-10835` `bug-10928` `bug-1428` `bug-2097` `bug-2224` `bug-2228` `bug-2512` `bug-2516` `bug-2741` `bug-2940` `bug-2943` `bug-2952` `bug-494` |
+| `pk3-bucket` | 1 | `bug-3251` |
 | `pk3-data` | 1 | `bug-1325` |
 | `pk3-only` | 3 | `bug-836` `bug-842` `bug-849` |
 | `pk3-override` | 1 | `bug-1190` |
 | `pk3-split` | 1 | `bug-1385` |
 | `placebo-cvar` | 1 | `bug-1940` |
 | `placeholder` | 1 | `bug-2494` |
-| `placement` | 22 | `bug-1744` `bug-1828` `bug-2209` `bug-2219` `bug-2256` `bug-2260` `bug-2261` `bug-2262` `bug-2264` `bug-2265` `bug-2268` `bug-2282` `bug-2347` `bug-2357` `bug-2363` `bug-2367` `bug-2370` `bug-2391` `bug-2504` `bug-2506` `bug-2515` `bug-2523` |
+| `placement` | 32 | `bug-10422` `bug-10477` `bug-10717` `bug-10820` `bug-10821` `bug-10823` `bug-10830` `bug-10854` `bug-1744` `bug-1828` `bug-2209` `bug-2219` `bug-2256` `bug-2260` `bug-2261` `bug-2262` `bug-2264` `bug-2265` `bug-2268` `bug-2282` `bug-2347` `bug-2357` `bug-2363` `bug-2367` `bug-2370` `bug-2391` `bug-2504` `bug-2506` `bug-2515` `bug-2523` `bug-2760` `bug-4038` |
 | `placements` | 1 | `bug-910` |
-| `plan` | 1 | `bug-2089` |
+| `plan` | 2 | `bug-10821` `bug-2089` |
 | `plan-c13` | 1 | `bug-1964` |
-| `planned` | 5 | `bug-1641` `bug-1642` `bug-1643` `bug-1644` `bug-1645` |
+| `planar` | 1 | `bug-4273` |
+| `planar-projection` | 1 | `bug-3883` |
+| `planned` | 8 | `bug-1641` `bug-1642` `bug-1643` `bug-1644` `bug-1645` `bug-3164` `bug-3166` `bug-3168` |
 | `plant` | 1 | `bug-2654` |
-| `player` | 4 | `bug-2092` `bug-2247` `bug-2547` `bug-2609` |
+| `plastic` | 1 | `bug-10319` |
+| `playback` | 2 | `bug-10330` `bug-10392` |
+| `player` | 10 | `bug-10484` `bug-10485` `bug-10659` `bug-2092` `bug-2247` `bug-2547` `bug-2609` `bug-2802` `bug-3042` `bug-3752` |
 | `player-animation` | 1 | `bug-381` |
 | `player-array` | 6 | `bug-1023` `bug-121` `bug-1257` `bug-1267` `bug-1473` `bug-1479` |
+| `player-cap` | 1 | `bug-2729` |
 | `player-census` | 1 | `bug-2174` |
 | `player-command` | 1 | `bug-073` |
 | `player-count` | 1 | `bug-2155` |
 | `player-gate` | 1 | `bug-797` |
+| `player-init` | 1 | `bug-2958` |
 | `player-initiated` | 1 | `bug-1676` |
 | `player-manned` | 1 | `bug-1946` |
 | `player-memory-not-zeroed` | 1 | `bug-2167` |
 | `player-model` | 2 | `bug-1216` `bug-294` |
 | `player-models` | 1 | `bug-2081` |
+| `player-pain` | 1 | `bug-3386` |
 | `player-ref` | 1 | `bug-899` |
-| `player-report` | 2 | `bug-2445` `bug-2446` |
+| `player-report` | 5 | `bug-2445` `bug-2446` `bug-3471` `bug-4431` `bug-4432` |
 | `player-reported` | 5 | `bug-2030` `bug-2031` `bug-2032` `bug-2035` `bug-2037` |
 | `player-respawn` | 1 | `bug-1498` |
 | `player-scaling` | 1 | `bug-1855` |
 | `player-skin` | 1 | `bug-356` |
+| `player-stack` | 3 | `bug-2985` `bug-2991` `bug-2994` |
 | `player-state` | 1 | `bug-1267` |
 | `player-teleport` | 1 | `bug-1231` |
+| `player-tik` | 1 | `bug-10672` |
 | `player-visible` | 3 | `bug-1777` `bug-1779` `bug-1780` |
 | `player-walkable-not-ai-reachable` | 1 | `bug-1568` |
 | `player.cpp` | 7 | `bug-1638` `bug-1712` `bug-2086` `bug-2301` `bug-2388` `bug-463` `bug-536` |
 | `player_closestto` | 2 | `bug-1665` `bug-1666` |
 | `player_legs` | 1 | `bug-431` |
-| `player_legs.st` | 1 | `bug-382` |
-| `playerbot` | 7 | `bug-2677` `bug-2682` `bug-2687` `bug-2690` `bug-2691` `bug-2693` `bug-2714` |
+| `player_legs.st` | 2 | `bug-10486` `bug-382` |
+| `player_torso.st` | 3 | `bug-3363` `bug-3546` `bug-3854` |
+| `playerbot` | 36 | `bug-2677` `bug-2682` `bug-2687` `bug-2690` `bug-2691` `bug-2693` `bug-2714` `bug-2815` `bug-2821` `bug-2824` `bug-2825` `bug-2826` `bug-2827` `bug-2829` `bug-2831` `bug-2833` `bug-2874` `bug-2875` `bug-2876` `bug-2877` `bug-2879` `bug-2880` `bug-2881` `bug-2882` `bug-2883` `bug-2884` `bug-2885` `bug-2886` `bug-2888` `bug-2889` `bug-2890` `bug-2891` `bug-2892` `bug-2897` `bug-2899` `bug-2900` |
 | `playercleanname` | 1 | `bug-712` |
-| `playerclip` | 5 | `bug-1378` `bug-937b` `bug-945` `bug-946` `bug-949` |
+| `playerclip` | 9 | `bug-10823` `bug-10854` `bug-1378` `bug-2955` `bug-4211` `bug-937b` `bug-945` `bug-946` `bug-949` |
 | `players-only` | 1 | `bug-1820` |
 | `playlocalsound` | 1 | `bug-2431` |
 | `playmovie` | 1 | `bug-1259` |
 | `playsound_wait` | 1 | `bug-2189` |
-| `playtest` | 6 | `bug-1610` `bug-2187` `bug-2197` `bug-2656` `bug-2659` `bug-2670` |
+| `playtest` | 7 | `bug-10825` `bug-1610` `bug-2187` `bug-2197` `bug-2656` `bug-2659` `bug-2670` |
 | `pm_climbwall` | 1 | `bug-1839` |
 | `pm_clipvelocity` | 1 | `bug-954` |
-| `pm_flags` | 2 | `bug-2105` `bug-2581` |
+| `pm_cmdscale` | 1 | `bug-2992` |
+| `pm_flags` | 3 | `bug-2105` `bug-2581` `bug-4176` |
 | `pm_flags-exhausted` | 1 | `bug-2007` |
 | `pm_stopspeed` | 1 | `bug-2103` |
+| `pmf_coop_cover` | 1 | `bug-4176` |
 | `pmf_frozen` | 1 | `bug-367` |
-| `pmove` | 5 | `bug-2099` `bug-2101` `bug-2103` `bug-2149` `bug-937b` |
+| `pmf_no_hud` | 1 | `bug-10516` |
+| `pmove` | 8 | `bug-10357` `bug-10863` `bug-2099` `bug-2101` `bug-2103` `bug-2149` `bug-2986` `bug-937b` |
+| `pocket` | 1 | `bug-2863` |
 | `pointbrushnum` | 1 | `bug-952` |
-| `policy` | 4 | `bug-1590` `bug-2002` `bug-956` `bug-961` |
+| `poisson` | 1 | `bug-3109` |
+| `policy` | 5 | `bug-1590` `bug-2002` `bug-3112` `bug-956` `bug-961` |
 | `polish` | 2 | `bug-1755` `bug-1847` |
+| `poll` | 1 | `bug-10908` |
 | `polling` | 1 | `bug-231` |
 | `poly` | 1 | `bug-1133` |
 | `poly-count` | 1 | `bug-1576` |
 | `polygon-offset` | 1 | `bug-1164` |
 | `polygonoffset` | 1 | `bug-230` |
-| `pool` | 3 | `bug-2303` `bug-2309` `bug-2316` |
+| `pool` | 6 | `bug-10910` `bug-10927` `bug-2303` `bug-2309` `bug-2316` `bug-3087` |
 | `pool-darken` | 1 | `bug-817` |
 | `pool-tint` | 1 | `bug-828` |
-| `pop-in` | 2 | `bug-1297` `bug-1809` |
+| `pools` | 1 | `bug-3088` |
+| `pop` | 11 | `bug-10360` `bug-3084` `bug-3139` `bug-3263` `bug-3361` `bug-3362` `bug-3389` `bug-3405` `bug-3436` `bug-3512` `bug-3513` |
+| `pop-in` | 3 | `bug-1297` `bug-1809` `bug-3515` |
+| `pop-out` | 1 | `bug-10408` |
+| `popen` | 1 | `bug-3178` |
 | `pophelmet` | 2 | `bug-614` `bug-615` |
-| `popmenu` | 2 | `bug-1165` `bug-461` |
-| `popup` | 2 | `bug-1668` `bug-300` |
+| `popin` | 1 | `bug-10903` |
+| `popmenu` | 6 | `bug-10856` `bug-10929` `bug-1165` `bug-3031` `bug-3328` `bug-461` |
+| `popup` | 3 | `bug-10757` `bug-1668` `bug-300` |
 | `port` | 6 | `bug-1149` `bug-1150` `bug-1151` `bug-1415` `bug-2635` `bug-gl2-gore` |
 | `port-regression` | 1 | `bug-1229` |
-| `portal` | 1 | `bug-1189` |
+| `portability` | 2 | `bug-10281` `bug-10308` |
+| `portal` | 2 | `bug-1189` `bug-3460` |
 | `portalsky` | 2 | `bug-1253` `bug-1273` |
-| `pose` | 12 | `bug-1162` `bug-1173` `bug-2065` `bug-2266` `bug-322` `bug-366` `bug-368` `bug-370` `bug-378` `bug-379` `bug-380` `bug-gl2-invisible-live-enemies-prepass-pose` |
+| `porting` | 1 | `bug-2739` |
+| `ports` | 3 | `bug-10273` `bug-10896` `bug-eap-portclash` |
+| `pose` | 17 | `bug-1162` `bug-1173` `bug-2065` `bug-2266` `bug-2931` `bug-3029` `bug-322` `bug-3245` `bug-366` `bug-368` `bug-3689` `bug-370` `bug-3746` `bug-378` `bug-379` `bug-380` `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `pose-corruption` | 2 | `bug-1184` `bug-1213` |
 | `pose-weighting` | 1 | `bug-2323` |
 | `posed` | 2 | `bug-418` `bug-854` |
-| `post-fx` | 7 | `bug-1149` `bug-1150` `bug-1151` `bug-1158` `bug-2355` `bug-2360` `bug-2595` |
+| `positional` | 1 | `bug-3441` |
+| `post-fx` | 8 | `bug-1149` `bug-1150` `bug-1151` `bug-1158` `bug-2355` `bug-2360` `bug-2595` `bug-3082` |
+| `post-fx-order` | 1 | `bug-3084` |
 | `post-process` | 1 | `bug-1211` |
 | `post-spawn-swap` | 1 | `bug-1957` |
 | `postcondition` | 2 | `bug-2546` `bug-2550` |
-| `postfx` | 21 | `bug-022` `bug-1160` `bug-1165` `bug-1170` `bug-1206` `bug-1233` `bug-1239` `bug-1268` `bug-1305` `bug-1306` `bug-152` `bug-1547` `bug-159` `bug-1629` `bug-1699` `bug-2172` `bug-2615` `bug-gl2-dbnofx` `bug-gl2-suppressfx` `bug-lowhealth-scene-dependent` `bug-postfx-intensity-clobbered` |
+| `posted-event` | 1 | `bug-3506` |
+| `posters` | 1 | `bug-10767` |
+| `postfx` | 33 | `bug-022` `bug-10268` `bug-10279` `bug-10287` `bug-10290` `bug-10311` `bug-1160` `bug-1165` `bug-1170` `bug-1206` `bug-1233` `bug-1239` `bug-1268` `bug-1305` `bug-1306` `bug-152` `bug-1547` `bug-159` `bug-1629` `bug-1699` `bug-2172` `bug-2615` `bug-3137` `bug-3138` `bug-3145` `bug-3217` `bug-3462` `bug-3509` `bug-4390` `bug-gl2-dbnofx` `bug-gl2-suppressfx` `bug-lowhealth-scene-dependent` `bug-pos… |
 | `postfx-menu` | 1 | `bug-1177` |
+| `postmessage` | 1 | `bug-3054` |
 | `postprocess` | 1 | `bug-1132` |
 | `posture` | 2 | `bug-2471` `bug-2472` |
-| `pot` | 1 | `bug-312` |
-| `pow` | 1 | `bug-1278` |
-| `powershell` | 5 | `bug-1619` `bug-1800` `bug-2414` `bug-425` `bug-ps-home-var` |
+| `pot` | 2 | `bug-10318` `bug-312` |
+| `pow` | 2 | `bug-10306` `bug-1278` |
+| `powershell` | 7 | `bug-10514` `bug-1619` `bug-1800` `bug-2414` `bug-3420` `bug-425` `bug-ps-home-var` |
 | `powershell-5.1` | 1 | `bug-1804` |
-| `pre-existing` | 3 | `bug-2585` `bug-2609` `bug-2709` |
+| `pps43` | 1 | `bug-3628` |
+| `ppsh` | 4 | `bug-3584` `bug-3586` `bug-3602` `bug-eap-ppshreload` |
+| `pre-existing` | 11 | `bug-10576` `bug-10672` `bug-10673` `bug-2585` `bug-2609` `bug-2709` `bug-3132` `bug-3133` `bug-3552` `bug-3557` `bug-3558` |
+| `pre-lift` | 1 | `bug-3131` |
 | `pre-pass` | 1 | `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `pre-player-add` | 2 | `bug-1625` `bug-1627` |
 | `pre-playtest` | 1 | `bug-2124` |
 | `pre-release` | 2 | `bug-786` `bug-787` |
 | `pre-release-audit` | 1 | `bug-2090` |
 | `pre-upload` | 1 | `bug-2593` |
-| `precache` | 9 | `bug-1141` `bug-1672` `bug-1745` `bug-1791` `bug-2173` `bug-2304` `bug-2341` `bug-2362` `bug-866` |
-| `precedence` | 2 | `bug-2228` `bug-2243` |
+| `precache` | 11 | `bug-1141` `bug-1672` `bug-1745` `bug-1791` `bug-2173` `bug-2304` `bug-2341` `bug-2362` `bug-2796` `bug-3097` `bug-866` |
+| `precedence` | 3 | `bug-2228` `bug-2243` `bug-3418` |
 | `predicate` | 1 | `bug-1565` |
 | `predicate-with-side-effects` | 1 | `bug-2045` |
-| `prediction` | 6 | `bug-2127` `bug-2130` `bug-2133` `bug-2149` `bug-2171` `bug-950` |
+| `prediction` | 10 | `bug-10357` `bug-10358` `bug-10387` `bug-10388` `bug-2127` `bug-2130` `bug-2133` `bug-2149` `bug-2171` `bug-950` |
+| `prefab` | 1 | `bug-2853` |
 | `preferences` | 1 | `bug-258` |
+| `prefix` | 1 | `bug-10645` |
 | `prefix-group` | 1 | `bug-2299` |
 | `prefix-match` | 4 | `bug-2198` `bug-2274` `bug-2275` `bug-2394` |
+| `prefix-pool` | 1 | `bug-3385` |
+| `preload` | 2 | `bug-10904` `bug-3493` |
 | `premise-correction` | 2 | `bug-1495` `bug-1497` |
 | `premise-error` | 1 | `bug-1873` |
+| `prep` | 1 | `bug-norway-1027-prep-blizzard-train` |
 | `preprocessor` | 1 | `bug-2572` |
 | `prerequisite` | 1 | `bug-1154` |
+| `preset` | 1 | `bug-2732` |
 | `preset-vs-flag` | 1 | `bug-2163` |
-| `presets` | 1 | `bug-2602` |
-| `prespawn` | 1 | `bug-2251` |
+| `presets` | 2 | `bug-2602` `bug-3484` |
+| `prespawn` | 3 | `bug-10595` `bug-2251` `bug-2794` |
 | `pressure` | 1 | `bug-1846` |
 | `preventative` | 1 | `bug-2199` |
 | `preventive` | 1 | `bug-1745` |
-| `preview` | 9 | `bug-1425` `bug-1545` `bug-1918` `bug-590` `bug-594` `bug-596` `bug-666` `bug-801` `bug-803` |
+| `preview` | 17 | `bug-10529` `bug-10554` `bug-10555` `bug-10861` `bug-1425` `bug-1545` `bug-1918` `bug-2754` `bug-3411` `bug-3445` `bug-4434` `bug-590` `bug-594` `bug-596` `bug-666` `bug-801` `bug-803` |
+| `preview-lies` | 1 | `bug-3019` |
+| `preview-vs-engine` | 1 | `bug-3059` |
+| `primarydmweapon` | 1 | `bug-3269` |
+| `print-noise` | 1 | `bug-3269` |
 | `print-once` | 1 | `bug-1807` |
+| `printdeathmsg` | 1 | `bug-10283` |
+| `printf` | 1 | `bug-10328` |
 | `printf-mismatch` | 2 | `bug-153` `bug-156` |
-| `println` | 3 | `bug-1751` `bug-592` `bug-911` |
+| `println` | 4 | `bug-1751` `bug-2967` `bug-592` `bug-911` |
+| `printwindow` | 2 | `bug-3053` `bug-3114` |
 | `priority` | 2 | `bug-1740` `bug-1742` |
-| `privacy` | 1 | `bug-1799` |
-| `probe` | 22 | `bug-1067` `bug-1311` `bug-1665` `bug-1684` `bug-1687` `bug-1702` `bug-1794` `bug-1865` `bug-1879` `bug-1880` `bug-2042` `bug-2061` `bug-2072` `bug-2400` `bug-2406` `bug-2407` `bug-2416` `bug-2417` `bug-2419` `bug-2457` `bug-2473` `bug-2527` |
+| `privacy` | 4 | `bug-1799` `bug-3053` `bug-3114` `bug-3277` |
+| `private-client` | 2 | `bug-3062` `bug-3063` |
+| `probe` | 36 | `bug-10359` `bug-10374` `bug-1067` `bug-1311` `bug-1665` `bug-1684` `bug-1687` `bug-1702` `bug-1794` `bug-1865` `bug-1879` `bug-1880` `bug-2042` `bug-2061` `bug-2072` `bug-2400` `bug-2406` `bug-2407` `bug-2416` `bug-2417` `bug-2419` `bug-2457` `bug-2473` `bug-2527` `bug-2867` `bug-2891` `bug-2915` `bug-2927` `bug-3013` `bug-3077` `bug-3580` `bug-3601` `bug-3790` `bug-3791` `bug-3795` `bug-mgspawn… |
 | `probe-armed` | 1 | `bug-2049` |
 | `probe-default-on` | 1 | `bug-2072` |
-| `probe-design` | 1 | `bug-2102` |
+| `probe-design` | 2 | `bug-2102` `bug-3610` |
 | `probe-diagnosed` | 2 | `bug-2055` `bug-2066` |
 | `probe-driven` | 1 | `bug-2086` |
 | `probe-lied` | 1 | `bug-2535` |
@@ -4341,77 +8369,115 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `probe-placement` | 1 | `bug-1237` |
 | `probe-resolved` | 1 | `bug-1289` |
 | `probe-wanted` | 1 | `bug-1663` |
-| `procedural` | 1 | `bug-2010` |
+| `probe2` | 1 | `bug-2879` |
+| `probes` | 1 | `bug-3066` |
+| `procedural` | 7 | `bug-2010` `bug-3294` `bug-3376` `bug-3421` `bug-3458` `bug-3883` `bug-3892` |
 | `procedural-draw` | 1 | `bug-2132` |
 | `procedural-drawing` | 1 | `bug-2161` |
-| `process` | 15 | `bug-1290` `bug-1298` `bug-1363` `bug-1402` `bug-1416` `bug-1421` `bug-1590` `bug-1598` `bug-1917` `bug-2036` `bug-2081` `bug-2089` `bug-2500` `bug-911` `bug-918` |
+| `procedural-wear` | 1 | `bug-3220` |
+| `procedure` | 1 | `bug-3355` |
+| `process` | 33 | `bug-10463` `bug-10539` `bug-10748` `bug-10915` `bug-10918` `bug-1290` `bug-1298` `bug-1363` `bug-1402` `bug-1416` `bug-1421` `bug-1590` `bug-1598` `bug-1917` `bug-2036` `bug-2081` `bug-2089` `bug-2500` `bug-2940` `bug-2952` `bug-2961` `bug-3044` `bug-3414` `bug-3439` `bug-3540` `bug-3544` `bug-3596` `bug-3616` `bug-3803` `bug-3885` `bug-3985` `bug-911` `bug-918` |
 | `process-error` | 2 | `bug-1172` `bug-1231` |
 | `process-failure` | 2 | `bug-1544` `bug-2009` |
+| `process-hygiene` | 2 | `bug-10660` `bug-10680` |
+| `process-launch` | 1 | `bug-3321` |
 | `process-leak` | 1 | `bug-gl2-sweep-crash` |
+| `producer-unisolated` | 1 | `bug-3052` |
 | `profile-load` | 1 | `bug-1352` |
-| `progress` | 1 | `bug-2686` |
-| `progress-bar` | 2 | `bug-462` `bug-501` |
+| `profiling` | 1 | `bug-3493` |
+| `progress` | 3 | `bug-2686` `bug-3471` `bug-4035` |
+| `progress-bar` | 3 | `bug-2756` `bug-462` `bug-501` |
 | `progress-block` | 1 | `bug-2702` |
-| `progression` | 9 | `bug-2114` `bug-2633` `bug-2648` `bug-2649` `bug-2651` `bug-2652` `bug-2655` `bug-2656` `bug-2657` |
+| `progression` | 20 | `bug-10521` `bug-10912` `bug-10913` `bug-2114` `bug-2633` `bug-2648` `bug-2649` `bug-2651` `bug-2652` `bug-2655` `bug-2656` `bug-2657` `bug-2748` `bug-2749` `bug-2770` `bug-2790` `bug-3903` `bug-3904` `bug-3905` `bug-3907` |
 | `progression-blocker` | 1 | `bug-624` |
+| `progression-sync` | 1 | `bug-3910` |
 | `projectile` | 1 | `bug-617` |
-| `projectilegenerator` | 1 | `bug-1801` |
+| `projectilegenerator` | 3 | `bug-10420` `bug-10584` `bug-1801` |
 | `projection` | 1 | `bug-2711` |
-| `promotion` | 1 | `bug-1264` |
-| `prompt` | 1 | `bug-1758` |
-| `prone` | 33 | `bug-1103` `bug-1648` `bug-1852` `bug-1922` `bug-2099` `bug-2101` `bug-2103` `bug-2104` `bug-2105` `bug-2108` `bug-2109` `bug-2112` `bug-2113` `bug-2115` `bug-2120` `bug-2123` `bug-2125` `bug-2126` `bug-2127` `bug-2128` `bug-2129` `bug-2130` `bug-2134` `bug-2135` `bug-2136` `bug-2247` `bug-2300` `bug-2301` `bug-2388` `bug-2547` `bug-2563` `bug-2564` `bug-2623` |
-| `prone-shooter` | 2 | `bug-2057` `bug-2076` |
+| `projector` | 2 | `bug-10534` `bug-10756` |
+| `promotion` | 3 | `bug-1264` `bug-3076` `bug-3246` |
+| `prompt` | 2 | `bug-10894` `bug-1758` |
+| `prone` | 44 | `bug-10267` `bug-1103` `bug-1648` `bug-1852` `bug-1922` `bug-2099` `bug-2101` `bug-2103` `bug-2104` `bug-2105` `bug-2108` `bug-2109` `bug-2112` `bug-2113` `bug-2115` `bug-2120` `bug-2123` `bug-2125` `bug-2126` `bug-2127` `bug-2128` `bug-2129` `bug-2130` `bug-2134` `bug-2135` `bug-2136` `bug-2247` `bug-2300` `bug-2301` `bug-2388` `bug-2547` `bug-2563` `bug-2564` `bug-2623` `bug-3225` `bug-3317` `b… |
+| `prone-shooter` | 3 | `bug-2057` `bug-2076` `bug-3309` |
 | `proof` | 1 | `bug-1901` |
 | `proof-probe` | 1 | `bug-1940` |
-| `prop` | 2 | `bug-1744` `bug-1749` |
+| `proof-run` | 1 | `bug-3452` |
+| `prop` | 13 | `bug-10833` `bug-1744` `bug-1749` `bug-2901` `bug-2902` `bug-2903` `bug-3450` `bug-3556` `bug-3563` `bug-3661` `bug-3727` `bug-3741` `bug-3837` |
 | `property` | 1 | `bug-1717` |
 | `property-name` | 1 | `bug-1584` |
 | `property-vs-command` | 1 | `bug-1069` |
 | `prophunt` | 2 | `bug-2641` `bug-2659` |
-| `props` | 8 | `bug-1381` `bug-1404` `bug-1407` `bug-1718` `bug-2340` `bug-2347` `bug-2357` `bug-2363` |
+| `proposal` | 18 | `bug-3105` `bug-3225` `bug-3226` `bug-3227` `bug-3239` `bug-3240` `bug-3243` `bug-3270` `bug-3271` `bug-3272` `bug-3280` `bug-3281` `bug-3282` `bug-3284` `bug-3287` `bug-3290` `bug-3294` `bug-3330` |
+| `proposed` | 7 | `bug-3127` `bug-3128` `bug-3129` `bug-3130` `bug-3131` `bug-3132` `bug-3133` |
+| `props` | 12 | `bug-10703` `bug-10769` `bug-10851` `bug-1381` `bug-1404` `bug-1407` `bug-1718` `bug-2340` `bug-2347` `bug-2357` `bug-2363` `bug-3884` |
 | `prosecheck` | 1 | `bug-2531` |
 | `protected-actor` | 1 | `bug-1814` |
 | `proto` | 1 | `bug-2222` |
-| `protocol` | 14 | `bug-1179` `bug-1180` `bug-1187` `bug-1864` `bug-1866` `bug-2099` `bug-2148` `bug-2283` `bug-2285` `bug-2449` `bug-2681` `bug-892` `bug-929` `bug-930` |
+| `protocol` | 16 | `bug-1179` `bug-1180` `bug-1187` `bug-1864` `bug-1866` `bug-2099` `bug-2148` `bug-2283` `bug-2285` `bug-2449` `bug-2681` `bug-2912` `bug-3400` `bug-892` `bug-929` `bug-930` |
 | `protocol-ceiling` | 1 | `bug-927` |
+| `protocol-coupling` | 1 | `bug-10443` |
 | `protocol-mismatch` | 1 | `bug-1172` |
 | `protocol-op-fallout` | 3 | `bug-932b` `bug-934` `bug-935` |
 | `protocol-ver15` | 1 | `bug-776` |
 | `protocol-vs-pool` | 1 | `bug-2291` |
 | `prototype` | 2 | `bug-1534` `bug-2569` |
+| `provenance` | 2 | `bug-10317` `bug-3774` |
 | `provisional` | 1 | `bug-1699` |
 | `proximity` | 1 | `bug-1689` |
+| `proxy` | 1 | `bug-10381` |
 | `ps-home-var` | 1 | `bug-2414` |
 | `ps-speed` | 2 | `bug-2127` `bug-2130` |
 | `ps1` | 1 | `bug-1122` |
-| `pshadow` | 2 | `bug-1223` `bug-1226` |
-| `publish` | 6 | `bug-1800` `bug-1804` `bug-1805` `bug-2500` `bug-2579` `bug-424` |
+| `pshadow` | 4 | `bug-1223` `bug-1226` `bug-2980` `bug-3009` |
+| `psx` | 1 | `bug-4270` |
+| `public-server` | 4 | `bug-3903` `bug-3909` `bug-3910` `bug-3911` |
+| `public-servers` | 3 | `bug-10273` `bug-10758` `bug-4271` |
+| `publish` | 10 | `bug-10514` `bug-10878` `bug-1800` `bug-1804` `bug-1805` `bug-2500` `bug-2579` `bug-3353` `bug-3985` `bug-424` |
+| `publish_release` | 2 | `bug-2734` `bug-3900` |
+| `puddles` | 1 | `bug-3408` |
 | `pulldown` | 2 | `bug-754` `bug-756` |
+| `pulled` | 2 | `bug-2747` `bug-2832` |
 | `pullups` | 1 | `bug-626` |
-| `push` | 22 | `bug-2611` `bug-2612` `bug-2637` `bug-2653` `bug-2684` `bug-2686` `bug-2694` `bug-2698` `bug-2700` `bug-2702` `bug-2703` `bug-2704` `bug-2707` `bug-2710` `bug-2711` `bug-2712` `bug-2713` `bug-2714` `bug-2716` `bug-2717` `bug-2718` `bug-2719` |
-| `pushmenu` | 2 | `bug-1165` `bug-461` |
+| `pump` | 2 | `bug-3729` `bug-3844` |
+| `push` | 101 | `bug-2611` `bug-2612` `bug-2637` `bug-2653` `bug-2684` `bug-2686` `bug-2694` `bug-2698` `bug-2700` `bug-2702` `bug-2703` `bug-2704` `bug-2707` `bug-2710` `bug-2711` `bug-2712` `bug-2713` `bug-2714` `bug-2716` `bug-2717` `bug-2718` `bug-2719` `bug-2723` `bug-2725` `bug-2739` `bug-2740` `bug-2741` `bug-2742` `bug-2743` `bug-2744` `bug-2745` `bug-2746` `bug-2747` `bug-2750` `bug-2751` `bug-2760` `bu… |
+| `push_blockers` | 2 | `bug-2830` `bug-2834` |
+| `push_spawns` | 1 | `bug-2826` |
+| `pushmenu` | 3 | `bug-10572` `bug-1165` `bug-461` |
 | `pvp` | 2 | `bug-2574` `bug-2713` |
-| `pvs` | 3 | `bug-1849` `bug-1869` `bug-2177` |
+| `pvs` | 8 | `bug-10298` `bug-10613` `bug-1849` `bug-1869` `bug-2177` `bug-3235` `bug-3380` `bug-3569` |
 | `py` | 5 | `bug-765` `bug-781` `bug-782` `bug-793` `bug-799` |
-| `python` | 5 | `bug-1363` `bug-1564` `bug-1566` `bug-259` `bug-458` |
+| `pyinstaller` | 1 | `bug-10744` |
+| `python` | 10 | `bug-10280` `bug-10876` `bug-1363` `bug-1564` `bug-1566` `bug-259` `bug-3070` `bug-3346` `bug-3632` `bug-458` |
+| `python-hash` | 1 | `bug-3233` |
+| `python-id-reuse` | 1 | `bug-10663` |
+| `python-literal` | 1 | `bug-3002` |
+| `qa` | 28 | `bug-10316` `bug-10384` `bug-10395` `bug-10450` `bug-10533` `bug-10550` `bug-10551` `bug-10656` `bug-10689` `bug-10695` `bug-10719` `bug-10771` `bug-10814` `bug-10828` `bug-10832` `bug-10833` `bug-10872` `bug-3236` `bug-3281` `bug-3282` `bug-3287` `bug-3290` `bug-3361` `bug-3374` `bug-3376` `bug-3417` `bug-3418` `bug-3421` |
+| `qa-by-diff` | 2 | `bug-10768` `bug-10841` |
 | `qcommon` | 1 | `bug-1198` |
-| `qconsole` | 1 | `bug-1619` |
-| `qgl` | 1 | `bug-734` |
-| `qte` | 5 | `bug-2527` `bug-2528` `bug-2530` `bug-2535` `bug-2561` |
+| `qconsole` | 2 | `bug-1619` `bug-2750` |
+| `qgl` | 2 | `bug-3156` `bug-734` |
+| `qte` | 6 | `bug-2527` `bug-2528` `bug-2530` `bug-2535` `bug-2561` `bug-4406` |
 | `quaked` | 1 | `bug-1407` |
 | `quaked-box` | 1 | `bug-2257` |
 | `quality` | 1 | `bug-1185` |
-| `quaternion` | 1 | `bug-2122` |
-| `queue` | 1 | `bug-537` |
-| `quick-draw` | 2 | `bug-2491` `bug-2499` |
+| `quaternion` | 2 | `bug-10505` `bug-2122` |
+| `queue` | 5 | `bug-2897` `bug-2912` `bug-3519` `bug-4188` `bug-537` |
+| `quick-draw` | 3 | `bug-2491` `bug-2499` `bug-3393` |
+| `quick-fix-staged` | 1 | `bug-3106` |
 | `quick-grenade` | 1 | `bug-2093` |
-| `quickdraw` | 2 | `bug-2480` `bug-2542` |
+| `quickdraw` | 7 | `bug-2480` `bug-2542` `bug-3393` `bug-3394` `bug-3395` `bug-3396` `bug-3398` |
+| `quicknade` | 2 | `bug-10855` `bug-10859` |
+| `quiet` | 1 | `bug-3342` |
+| `quit` | 1 | `bug-10875` |
+| `quotes` | 1 | `bug-2820` |
 | `quoting` | 1 | `bug-425` |
+| `r2` | 1 | `bug-3171` |
 | `r_addskelsurfaces` | 1 | `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `r_allocmodel` | 1 | `bug-1135` |
 | `r_charlighting` | 1 | `bug-1224` |
-| `r_charshadows` | 4 | `bug-1209` `bug-1223` `bug-1224` `bug-1229` |
+| `r_charshadows` | 5 | `bug-1209` `bug-1223` `bug-1224` `bug-1229` `bug-3009` |
 | `r_cmdtrace` | 1 | `bug-1153` |
+| `r_coopsunpublish` | 1 | `bug-3010` |
 | `r_customwidth` | 1 | `bug-753` |
 | `r_depthprepass` | 2 | `bug-1210` `bug-1211` |
 | `r_desktopfullscreen` | 1 | `bug-753` |
@@ -4421,14 +8487,23 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `r_ext_compressed_textures` | 2 | `bug-1225` `bug-2183` |
 | `r_ext_framebuffer_multisample` | 1 | `bug-1152` |
 | `r_ext_multisample` | 1 | `bug-1152` |
+| `r_faceplanecull` | 1 | `bug-4430` |
 | `r_fastentlight` | 1 | `bug-1229` |
-| `r_fastsky` | 1 | `bug-123` |
+| `r_fastsky` | 2 | `bug-123` `bug-3106` |
 | `r_gennormalmaps` | 1 | `bug-1225` |
 | `r_getlightingfordecal` | 1 | `bug-gl2-reddecals` |
 | `r_goreskelsurfacecheck` | 1 | `bug-828` |
+| `r_grass` | 1 | `bug-3168` |
+| `r_hzmdlightshadowchars` | 1 | `bug-3009` |
 | `r_hzmdlightshadows` | 2 | `bug-1223` `bug-1226` |
-| `r_hzmgennormals` | 2 | `bug-1225` `bug-2145` |
-| `r_init` | 1 | `bug-1864` |
+| `r_hzmframegen` | 7 | `bug-3535` `bug-3559` `bug-3571` `bug-3609` `bug-3610` `bug-3611` `bug-3612` |
+| `r_hzmframegenedge` | 1 | `bug-3561` |
+| `r_hzmframegengun` | 1 | `bug-3609` |
+| `r_hzmframegenlayers` | 1 | `bug-3571` |
+| `r_hzmframegenshadows` | 2 | `bug-3561` `bug-3611` |
+| `r_hzmframegenvectors` | 1 | `bug-3559` |
+| `r_hzmgennormals` | 3 | `bug-1225` `bug-2145` `bug-2997` |
+| `r_init` | 4 | `bug-1864` `bug-3030` `bug-3033` `bug-3034` |
 | `r_largemap` | 1 | `bug-2585` |
 | `r_mode` | 1 | `bug-753` |
 | `r_novis` | 3 | `bug-1849` `bug-1864` `bug-1869` |
@@ -4436,11 +8511,13 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `r_ppbloommode` | 1 | `bug-2615` |
 | `r_ppbloomthreshold` | 2 | `bug-1156` `bug-1159` |
 | `r_ppfrost` | 1 | `bug-1547` |
+| `r_ppmapcontrast` | 2 | `bug-3048` `bug-3060` |
 | `r_ppmapgradeon` | 1 | `bug-2615` |
 | `r_pprainwet` | 2 | `bug-1150` `bug-1206` |
 | `r_ppssao` | 1 | `bug-1211` |
 | `r_ppsunshafts` | 1 | `bug-2615` |
 | `r_renderscale` | 1 | `bug-2615` |
+| `r_resautodetected` | 1 | `bug-3153` |
 | `r_skeldiag` | 2 | `bug-1153` `bug-gl2-invisible-friendly-actor-2nd` |
 | `r_softparticles` | 1 | `bug-2615` |
 | `r_specularmapping` | 1 | `bug-1155` |
@@ -4448,45 +8525,60 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `r_tonemap` | 1 | `bug-1148` |
 | `r_tonemapmode` | 1 | `bug-1148` |
 | `r_updateposeinternal` | 1 | `bug-gl2-invisible-friendly-actor` |
-| `race` | 20 | `bug-1001` `bug-1293` `bug-1373` `bug-1458` `bug-1460` `bug-1461` `bug-1462` `bug-1469` `bug-1492` `bug-1498` `bug-1684` `bug-1706` `bug-1726` `bug-2124` `bug-2188` `bug-300` `bug-592` `bug-808` `bug-865` `bug-913` |
+| `r_uselod` | 1 | `bug-3483` |
+| `r_weaponznear` | 1 | `bug-10649` |
+| `race` | 32 | `bug-1001` `bug-10346` `bug-10478` `bug-10480` `bug-10569` `bug-10575` `bug-10827` `bug-1293` `bug-1373` `bug-1458` `bug-1460` `bug-1461` `bug-1462` `bug-1469` `bug-1492` `bug-1498` `bug-1684` `bug-1706` `bug-1726` `bug-2124` `bug-2188` `bug-2804` `bug-2816` `bug-2940` `bug-2943` `bug-300` `bug-3688` `bug-4439` `bug-592` `bug-808` `bug-865` `bug-913` |
 | `race-condition` | 9 | `bug-1270` `bug-133` `bug-1512` `bug-1516` `bug-1517` `bug-1808` `bug-1836` `bug-2305` `bug-2310` |
+| `rack` | 7 | `bug-10536` `bug-10538` `bug-10549` `bug-10755` `bug-10761` `bug-10772` `bug-10810` |
 | `radar` | 1 | `bug-2177` |
-| `radio` | 10 | `bug-1589` `bug-1723` `bug-1740` `bug-1741` `bug-1742` `bug-1744` `bug-1746` `bug-1758` `bug-1816` `bug-1872` |
+| `radio` | 19 | `bug-10410` `bug-10411` `bug-1589` `bug-1723` `bug-1740` `bug-1741` `bug-1742` `bug-1744` `bug-1746` `bug-1758` `bug-1816` `bug-1872` `bug-3303` `bug-3325` `bug-3923` `bug-3978` `bug-3983` `bug-4082` `bug-4413` |
 | `radio-bomb` | 1 | `bug-1583` |
 | `radio-distraction` | 1 | `bug-1709` |
 | `radioman` | 5 | `bug-2433` `bug-2435` `bug-2450` `bug-2474` `bug-2506` |
+| `radios` | 5 | `bug-2844` `bug-4185` `bug-4192` `bug-4193` `bug-4194` |
 | `radius` | 1 | `bug-1761` |
-| `radiusdamage` | 8 | `bug-1275` `bug-1282` `bug-2022` `bug-2193` `bug-2244` `bug-846` `bug-899` `bug-948` |
-| `ragdoll` | 10 | `bug-1962` `bug-1963` `bug-1964` `bug-1965` `bug-1966` `bug-1967` `bug-1969` `bug-1970` `bug-1981` `bug-1986` |
+| `radiusdamage` | 9 | `bug-10418` `bug-1275` `bug-1282` `bug-2022` `bug-2193` `bug-2244` `bug-846` `bug-899` `bug-948` |
+| `ragdoll` | 22 | `bug-10541` `bug-1962` `bug-1963` `bug-1964` `bug-1965` `bug-1966` `bug-1967` `bug-1969` `bug-1970` `bug-1981` `bug-1986` `bug-3127` `bug-3128` `bug-3129` `bug-3130` `bug-3131` `bug-3132` `bug-3133` `bug-3134` `bug-3136` `bug-3190` `bug-4212` |
 | `ragdoll-adjacent` | 1 | `bug-1974` |
-| `rain` | 8 | `bug-1133` `bug-1206` `bug-1280` `bug-1281` `bug-134` `bug-1383` `bug-1857` `bug-231` |
+| `rail-yard` | 1 | `bug-2912` |
+| `rain` | 20 | `bug-10873` `bug-10874` `bug-10884` `bug-1133` `bug-1206` `bug-1280` `bug-1281` `bug-134` `bug-1383` `bug-1857` `bug-231` `bug-2737` `bug-3222` `bug-3466` `bug-3529` `bug-3548` `bug-3552` `bug-3558` `bug-3583` `bug-3881` |
 | `rain-on-lens` | 1 | `bug-022` |
+| `rain73` | 2 | `bug-10885` `bug-10931` |
 | `rain_shader` | 1 | `bug-430` |
 | `raindensity` | 1 | `bug-1857` |
 | `raindrops` | 1 | `bug-1150` |
-| `raise` | 1 | `bug-1928` |
+| `rainfix_2026-10-13` | 1 | `bug-3881` |
+| `raise` | 3 | `bug-10287` `bug-1928` `bug-3779` |
 | `ramp` | 3 | `bug-2306` `bug-2477` `bug-2515` |
 | `ramsey` | 2 | `bug-1924` `bug-1949` |
-| `random-alias` | 3 | `bug-2214` `bug-2240` `bug-2498` |
+| `random` | 1 | `bug-3723` |
+| `random-alias` | 4 | `bug-2214` `bug-2240` `bug-2498` `bug-3492` |
 | `random-chatter` | 1 | `bug-1201` |
+| `random-jumping` | 1 | `bug-2889` |
 | `random-pool` | 1 | `bug-260` |
-| `range` | 1 | `bug-1730` |
+| `range` | 2 | `bug-1730` `bug-2922` |
 | `ranged-fetch` | 1 | `bug-1917` |
-| `rank` | 10 | `bug-1897` `bug-2078` `bug-2681` `bug-2683` `bug-2692` `bug-2697` `bug-2699` `bug-2701` `bug-494` `bug-622` |
-| `rank-bar` | 1 | `bug-553` |
+| `ranger` | 1 | `bug-10819` |
+| `rank` | 16 | `bug-10479` `bug-10698` `bug-10913` `bug-1897` `bug-2078` `bug-2681` `bug-2683` `bug-2692` `bug-2697` `bug-2699` `bug-2701` `bug-2749` `bug-2751` `bug-3810` `bug-494` `bug-622` |
+| `rank-bar` | 2 | `bug-3076` `bug-553` |
 | `rank-up` | 1 | `bug-957` |
-| `rate` | 1 | `bug-2324` |
-| `rate-limit` | 1 | `bug-2321` |
+| `ranks` | 2 | `bug-10620` `bug-10707` |
+| `rate` | 3 | `bug-2324` `bug-2909` `bug-3489` |
+| `rate-limit` | 3 | `bug-10359` `bug-2321` `bug-3047` |
 | `rate-limited` | 1 | `bug-2153` |
-| `rate-of-fire` | 1 | `bug-648` |
+| `rate-of-fire` | 3 | `bug-10882` `bug-10919` `bug-648` |
 | `raw-health-write` | 1 | `bug-2015` |
+| `raycast` | 1 | `bug-10767` |
 | `rb_color4bv` | 2 | `bug-gl2-compass` `bug-gl2-hudsegments` |
 | `rb_renderdrawsurflist` | 1 | `bug-gl2-invisible-live-char-depthprepass` |
 | `rb_stageiteratorgeneric` | 1 | `bug-gl2-invisible-friendly-actor-root` |
-| `rcon` | 8 | `bug-1143` `bug-1311` `bug-1550` `bug-1681` `bug-2148` `bug-2239` `bug-2411` `bug-2551` |
+| `rbox` | 2 | `bug-3742` `bug-3835` |
+| `rc-1.10.2` | 2 | `bug-3160` `bug-3161` |
+| `rc-1.10.3` | 3 | `bug-3191` `bug-3192` `bug-3193` |
+| `rcon` | 17 | `bug-10723` `bug-10741` `bug-10895` `bug-1143` `bug-1311` `bug-1550` `bug-1681` `bug-2148` `bug-2239` `bug-2411` `bug-2551` `bug-3033` `bug-3034` `bug-3047` `bug-3071` `bug-3343` `bug-3784` |
 | `rcon-diagnosis` | 1 | `bug-1556` |
 | `re-add` | 1 | `bug-1875` |
-| `re-arm` | 1 | `bug-1709` |
+| `re-arm` | 2 | `bug-1709` `bug-3132` |
 | `re-assert-not-one-shot` | 1 | `bug-2063` |
 | `re-entrancy` | 1 | `bug-818` |
 | `re-entry` | 1 | `bug-2199` |
@@ -4500,142 +8592,217 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `re_forceupdatepose` | 1 | `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `re_getrenderentity` | 1 | `bug-1217` |
 | `re_shutdown` | 1 | `bug-2671` |
+| `reach` | 3 | `bug-3504` `bug-3628` `bug-3643` |
+| `reachability` | 2 | `bug-10313` `bug-2846` |
+| `reaction` | 1 | `bug-2840` |
 | `read-before-assign` | 1 | `bug-2530` |
 | `read-the-log` | 1 | `bug-1912` |
 | `read-your-own-code` | 1 | `bug-1915` |
-| `readability` | 1 | `bug-1878` |
+| `readability` | 5 | `bug-10440` `bug-10782` `bug-1878` `bug-3155` `bug-3260` |
+| `readback` | 1 | `bug-10376` |
 | `readiness-gate` | 1 | `bug-1455` |
-| `readme` | 1 | `bug-1805` |
+| `readme` | 4 | `bug-1805` `bug-2734` `bug-3181` `bug-3186` |
 | `ready-up` | 3 | `bug-526` `bug-684` `bug-712` |
-| `readygate` | 6 | `bug-641` `bug-684` `bug-712` `bug-736` `bug-773` `bug-788` |
+| `readygate` | 7 | `bug-3474` `bug-641` `bug-684` `bug-712` `bug-736` `bug-773` `bug-788` |
 | `real-esrgan` | 1 | `bug-144` |
+| `real-input` | 1 | `bug-10686` |
+| `real-names` | 1 | `bug-3280` |
+| `real-rof` | 3 | `bug-10919` `bug-10920` `bug-10922` |
 | `realism` | 3 | `bug-2519` `bug-2623` `bug-2625` |
 | `realtime` | 1 | `bug-713` |
-| `rebuild` | 1 | `bug-1926` |
+| `rearm` | 1 | `bug-4086` |
+| `rebake` | 2 | `bug-10468` `bug-10469` |
+| `rebase` | 2 | `bug-3249` `bug-3456` |
+| `rebuild` | 2 | `bug-1926` `bug-3270` |
 | `rebuilt-gamedll` | 1 | `bug-230` |
-| `recast` | 3 | `bug-2617` `bug-2702` `bug-2715` |
-| `recoil` | 5 | `bug-1985` `bug-2132` `bug-2138` `bug-2139` `bug-2562` |
-| `recoil-table` | 1 | `bug-2143` |
-| `reconnect` | 1 | `bug-1066` |
+| `recast` | 17 | `bug-10605` `bug-2617` `bug-2702` `bug-2715` `bug-2787` `bug-2792` `bug-2803` `bug-2829` `bug-2831` `bug-2833` `bug-2842` `bug-2848` `bug-2860` `bug-2861` `bug-2887` `bug-2893` `bug-2988` |
+| `rechamber_ads` | 1 | `bug-3764` |
+| `recipe-copy` | 1 | `bug-10629` |
+| `recoil` | 20 | `bug-10307` `bug-10416` `bug-10877` `bug-10878` `bug-10879` `bug-10882` `bug-10897` `bug-10898` `bug-10922` `bug-1985` `bug-2132` `bug-2138` `bug-2139` `bug-2562` `bug-3262` `bug-3263` `bug-3315` `bug-3597` `bug-3605` `bug-3644` |
+| `recoil-table` | 2 | `bug-2143` `bug-3714` |
+| `reconnect` | 3 | `bug-1066` `bug-2772` `bug-3518` |
 | `reconstructed` | 1 | `bug-1896` |
+| `record` | 1 | `bug-10300` |
 | `record-over-code` | 2 | `bug-2392` `bug-2401` |
-| `record-vs-code` | 3 | `bug-2029` `bug-2036` `bug-2072` |
+| `record-vs-code` | 8 | `bug-10521` `bug-2029` `bug-2036` `bug-2072` `bug-3010` `bug-3152` `bug-3262` `bug-3297` |
+| `recording` | 1 | `bug-3475` |
+| `records` | 2 | `bug-10535` `bug-10550` |
 | `recovered` | 2 | `bug-1917` `bug-2041` |
+| `recovery` | 2 | `bug-10879` `bug-4037` |
+| `recruit` | 1 | `bug-3528` |
 | `recurrence` | 2 | `bug-1582` `bug-2531` |
-| `recurring` | 6 | `bug-1977` `bug-2262` `bug-2266` `bug-2280` `bug-2281` `bug-postfx-intensity-clobbered` |
+| `recurring` | 7 | `bug-1977` `bug-2262` `bug-2266` `bug-2280` `bug-2281` `bug-3076` `bug-postfx-intensity-clobbered` |
 | `recurring-trap` | 1 | `bug-2137` |
 | `recycled-entnum` | 2 | `bug-919` `bug-924` |
 | `red-herring` | 1 | `bug-t2l2-onfoot` |
-| `redesign` | 1 | `bug-2621` |
+| `redefinition` | 1 | `bug-3252` |
+| `redesign` | 2 | `bug-2621` `bug-2812` |
+| `redirect` | 1 | `bug-3034` |
 | `redirect-chain` | 2 | `bug-759` `bug-772` |
+| `redraw` | 1 | `bug-3013` |
+| `reel` | 1 | `bug-10341` |
+| `reels` | 1 | `bug-10534` |
+| `ref-api-version` | 1 | `bug-10466` |
+| `ref_api` | 1 | `bug-10443` |
 | `refactor` | 74 | `bug-001` `bug-002` `bug-003` `bug-004` `bug-005` `bug-006` `bug-008` `bug-009` `bug-011` `bug-012` `bug-013` `bug-014` `bug-015` `bug-016` `bug-017` `bug-019` `bug-023` `bug-024` `bug-025` `bug-028` `bug-031` `bug-034` `bug-035` `bug-037` `bug-038` `bug-039` `bug-040` `bug-041` `bug-042` `bug-045` `bug-046` `bug-047` `bug-049` `bug-050` `bug-051` `bug-093` `bug-104` `bug-1122` `bug-136` `bug-137… |
 | `refactor-regression` | 1 | `bug-1817` |
+| `refcount` | 1 | `bug-10897` |
+| `refdef-time` | 2 | `bug-3072` `bug-3091` |
+| `refentity-scale` | 1 | `bug-2977` |
 | `reference` | 1 | `bug-1475` |
+| `reference-mismatch` | 1 | `bug-3158` |
 | `refexport` | 1 | `bug-780` |
+| `reflection` | 1 | `bug-3406` |
 | `reflections` | 1 | `bug-1237` |
 | `reframe` | 1 | `bug-2624` |
 | `refusal-path-untested` | 1 | `bug-1620` |
 | `refuted` | 1 | `bug-2240` |
-| `regex` | 2 | `bug-2225` `bug-718` |
+| `regex` | 6 | `bug-10280` `bug-10752` `bug-2225` `bug-3221` `bug-4414` `bug-718` |
 | `regex-splice` | 1 | `bug-1942` |
+| `registration` | 2 | `bug-10900` `bug-3281` |
 | `registry` | 1 | `bug-716` |
-| `regive` | 5 | `bug-1919` `bug-1923` `bug-1926` `bug-592` `bug-618` |
+| `regive` | 6 | `bug-1919` `bug-1923` `bug-1926` `bug-3208` `bug-592` `bug-618` |
 | `regive-queue` | 1 | `bug-1930` |
-| `regression` | 70 | `bug-1063` `bug-1178` `bug-1179` `bug-1181` `bug-1183` `bug-1261` `bug-1273` `bug-1277` `bug-1281` `bug-1292` `bug-1302` `bug-1366` `bug-1546` `bug-157` `bug-1595` `bug-1603` `bug-1604` `bug-1653` `bug-166` `bug-1681` `bug-1696` `bug-1709` `bug-1714` `bug-1728` `bug-1735` `bug-1736` `bug-1737` `bug-1822` `bug-1832` `bug-1869` `bug-1971` `bug-1981` `bug-1983` `bug-1984` `bug-1985` `bug-1996` `bug-… |
+| `regression` | 87 | `bug-10368` `bug-10526` `bug-1063` `bug-10864` `bug-1178` `bug-1179` `bug-1181` `bug-1183` `bug-1261` `bug-1273` `bug-1277` `bug-1281` `bug-1292` `bug-1302` `bug-1366` `bug-1546` `bug-157` `bug-1595` `bug-1603` `bug-1604` `bug-1653` `bug-166` `bug-1681` `bug-1696` `bug-1709` `bug-1714` `bug-1728` `bug-1735` `bug-1736` `bug-1737` `bug-1822` `bug-1832` `bug-1869` `bug-1971` `bug-1981` `bug-1983` `b… |
+| `regression-1.8.8` | 1 | `bug-2908` |
 | `regression-2026-08-21` | 1 | `bug-2075` |
+| `regression-caught` | 1 | `bug-3460` |
+| `regression-caught-in-test` | 1 | `bug-3409` |
 | `regression-fix` | 1 | `bug-159` |
+| `regression-gate` | 1 | `bug-3231` |
 | `regression-harness` | 5 | `bug-1218` `bug-1219` `bug-1220` `bug-1221` `bug-1222` |
 | `regression-of-fix` | 2 | `bug-1293` `bug-2483` |
 | `regression-of-old-bug` | 1 | `bug-2357` |
 | `regression-risk` | 1 | `bug-1384` |
-| `reinforcements` | 5 | `bug-1641` `bug-1770` `bug-1809` `bug-1989` `bug-895` |
+| `regression-triage` | 1 | `bug-10369` |
+| `reinf` | 3 | `bug-3983` `bug-4409` `bug-4450` |
+| `reinf_mg` | 3 | `bug-10276` `bug-4036` `bug-mgspawn1025` |
+| `reinforcements` | 14 | `bug-10399` `bug-1641` `bug-1770` `bug-1809` `bug-1989` `bug-3469` `bug-3921` `bug-3922` `bug-3975` `bug-3978` `bug-3983` `bug-4040` `bug-4090` `bug-895` |
 | `reinvented-existing-system` | 1 | `bug-1604` |
 | `reinvestigated` | 1 | `bug-1487` |
 | `rejected-fix` | 1 | `bug-2180` |
 | `relative-origin` | 1 | `bug-1470` |
-| `release` | 6 | `bug-1635` `bug-1805` `bug-2500` `bug-2579` `bug-2610` `bug-424` |
+| `release` | 32 | `bug-10451` `bug-10472` `bug-10514` `bug-10745` `bug-10746` `bug-10747` `bug-10748` `bug-10749` `bug-1635` `bug-1805` `bug-2500` `bug-2579` `bug-2610` `bug-2952` `bug-3058` `bug-3072` `bug-3161` `bug-3193` `bug-3352` `bug-3353` `bug-3442` `bug-3463` `bug-3899` `bug-3900` `bug-3901` `bug-3985` `bug-4134` `bug-4135` `bug-4136` `bug-4165` `bug-424` `bug-4437` |
 | `release-audit` | 2 | `bug-2017` `bug-2018` |
+| `release-blocker` | 1 | `bug-3160` |
+| `release-build` | 1 | `bug-3298` |
+| `release-cut` | 1 | `bug-10739` |
+| `release-hygiene` | 1 | `bug-3190` |
 | `release-impact` | 1 | `bug-2020` |
 | `release-notes` | 1 | `bug-1804` |
+| `release-size` | 1 | `bug-3251` |
+| `releases` | 1 | `bug-2734` |
 | `reliable-command` | 2 | `bug-736` `bug-758` |
 | `reliable-command-overflow` | 1 | `bug-681` |
-| `reliable-commands` | 2 | `bug-1183` `bug-1670` |
-| `reload` | 11 | `bug-1589` `bug-168` `bug-1886` `bug-1887` `bug-1982` `bug-2109` `bug-2113` `bug-2115` `bug-2241` `bug-2566` `bug-328` |
+| `reliable-commands` | 6 | `bug-1183` `bug-1670` `bug-3480` `bug-3907` `bug-3909` `bug-3910` |
+| `relief` | 4 | `bug-3007` `bug-3061` `bug-3064` `bug-3697` |
+| `relief-clamp` | 1 | `bug-10617` |
+| `relief-sibling` | 1 | `bug-2994` |
+| `reload` | 103 | `bug-10278` `bug-10286` `bug-10289` `bug-10650` `bug-10706` `bug-10721` `bug-10722` `bug-10734` `bug-10899` `bug-1589` `bug-168` `bug-1886` `bug-1887` `bug-1982` `bug-2109` `bug-2113` `bug-2115` `bug-2241` `bug-2566` `bug-3239` `bug-328` `bug-3291` `bug-3294` `bug-3295` `bug-3296` `bug-3297` `bug-3311` `bug-3313` `bug-3363` `bug-3364` `bug-3367` `bug-3368` `bug-3369` `bug-3371` `bug-3388` `bug-33… |
+| `reload-feel` | 1 | `bug-3190` |
 | `reload-interrupt` | 1 | `bug-2464` |
+| `reload-latch` | 1 | `bug-3728` |
+| `reload-length` | 1 | `bug-3760` |
+| `reload_ads_empty` | 1 | `bug-3856` |
 | `reloadcam` | 2 | `bug-165` `bug-168` |
 | `relocation` | 1 | `bug-1813` |
+| `remaster` | 1 | `bug-4195` |
 | `remediated` | 5 | `bug-1172` `bug-1178` `bug-1179` `bug-1181` `bug-1183` |
-| `remote-client` | 1 | `bug-2580` |
+| `remote-client` | 5 | `bug-2580` `bug-2904` `bug-2906` `bug-3917` `bug-4123` |
+| `remote-join` | 2 | `bug-3015` `bug-3035` |
 | `removal-that-never-shipped` | 1 | `bug-2069` |
+| `removeattachedmodel` | 1 | `bug-3756` |
 | `removed` | 2 | `bug-1907` `bug-495` |
 | `removed-feature` | 1 | `bug-1547` |
 | `removeguys` | 1 | `bug-2252` |
+| `rename` | 2 | `bug-3365` `bug-3442` |
+| `rename-detection` | 1 | `bug-10647` |
 | `rend2` | 2 | `bug-1207` `bug-1237` |
-| `render` | 2 | `bug-138` `bug-2569` |
-| `rendereffects` | 1 | `bug-2259` |
-| `renderer` | 72 | `bug-108` `bug-1129b` `bug-1132` `bug-1133` `bug-1136` `bug-1137` `bug-1139` `bug-1140` `bug-1192` `bug-1193` `bug-1195` `bug-1196` `bug-1197` `bug-1242` `bug-1253` `bug-1254` `bug-1273` `bug-1295` `bug-1296` `bug-1299` `bug-1300` `bug-1304` `bug-1331` `bug-1699` `bug-1796` `bug-1849` `bug-1864` `bug-1963` `bug-1995` `bug-2131` `bug-2144` `bug-2147` `bug-2150` `bug-2154` `bug-2159` `bug-2166` `bu… |
+| `render` | 11 | `bug-10338` `bug-10342` `bug-10351` `bug-10352` `bug-10354` `bug-10365` `bug-10400` `bug-138` `bug-2569` `bug-3218` `bug-3332` |
+| `render-model` | 1 | `bug-4053` |
+| `render-preset` | 4 | `bug-10375` `bug-10376` `bug-10378` `bug-10386` |
+| `render-scale` | 2 | `bug-10402` `bug-3020` |
+| `rendereffects` | 2 | `bug-2259` `bug-3304` |
+| `renderer` | 127 | `bug-10269` `bug-10272` `bug-10367` `bug-10443` `bug-10464` `bug-10466` `bug-10600` `bug-10614` `bug-10649` `bug-10652` `bug-10754` `bug-108` `bug-10836` `bug-10887` `bug-1129b` `bug-1132` `bug-1133` `bug-1136` `bug-1137` `bug-1139` `bug-1140` `bug-1192` `bug-1193` `bug-1195` `bug-1196` `bug-1197` `bug-1242` `bug-1253` `bug-1254` `bug-1273` `bug-1295` `bug-1296` `bug-1299` `bug-1300` `bug-1304` `… |
 | `renderer-dll-reload` | 1 | `bug-1145` |
+| `renderer-dlopen` | 1 | `bug-4421` |
+| `renderer-lifecycle` | 3 | `bug-3030` `bug-3033` `bug-3034` |
 | `renderer-only` | 1 | `bug-868` |
+| `renderer-reinit` | 2 | `bug-3048` `bug-3064` |
+| `renderer-reload` | 2 | `bug-3011` `bug-3102` |
+| `renderer_reinit` | 3 | `bug-3030` `bug-3034` `bug-3062` |
 | `renderergl1` | 7 | `bug-059` `bug-1217` `bug-1268` `bug-152` `bug-159` `bug-905` `bug-916` |
-| `renderergl2` | 36 | `bug-1123` `bug-1144` `bug-1146` `bug-1147` `bug-1148` `bug-1149` `bug-1156` `bug-1189` `bug-1191` `bug-1209` `bug-1210` `bug-1211` `bug-1223` `bug-1224` `bug-1225` `bug-1226` `bug-1229` `bug-1230` `bug-143` `bug-1547` `bug-2145` `bug-2226` `bug-2227` `bug-2228` `bug-2666` `bug-2721` `bug-gl2-compass` `bug-gl2-e2l2-briefing-npc-invisible` `bug-gl2-foliage-white` `bug-gl2-forcepose-skips-composite… |
+| `renderergl2` | 46 | `bug-1123` `bug-1144` `bug-1146` `bug-1147` `bug-1148` `bug-1149` `bug-1156` `bug-1189` `bug-1191` `bug-1209` `bug-1210` `bug-1211` `bug-1223` `bug-1224` `bug-1225` `bug-1226` `bug-1229` `bug-1230` `bug-143` `bug-1547` `bug-2145` `bug-2226` `bug-2227` `bug-2228` `bug-2666` `bug-2721` `bug-3009` `bug-3067` `bug-3247` `bug-3318` `bug-3559` `bug-3561` `bug-3571` `bug-3609` `bug-3610` `bug-3611` `bug… |
+| `renderfx` | 1 | `bug-4265` |
 | `renderfx-bridge` | 1 | `bug-2024` |
 | `rendergl2` | 2 | `bug-2595` `bug-2596` |
 | `rendering` | 1 | `bug-2423` |
 | `rendermodel` | 3 | `bug-590` `bug-594` `bug-596` |
 | `reorg` | 1 | `bug-718` |
-| `repeat` | 5 | `bug-1360` `bug-1366` `bug-1370` `bug-2414` `bug-2565` |
+| `repeat` | 22 | `bug-10266` `bug-10844` `bug-1360` `bug-1366` `bug-1370` `bug-2414` `bug-2565` `bug-3279` `bug-3283` `bug-3286` `bug-3333` `bug-3338` `bug-3481` `bug-3581` `bug-3587` `bug-3675` `bug-3715` `bug-3726` `bug-3754` `bug-3785` `bug-3847` `bug-3858` |
 | `repeat-failure` | 2 | `bug-2223` `bug-2227` |
 | `repeat-mistake` | 2 | `bug-1238` `bug-1695` |
 | `repeat-offender` | 3 | `bug-2407` `bug-2409` `bug-2419` |
 | `repeat-report` | 1 | `bug-2546` |
+| `repeat-risk` | 1 | `bug-3346` |
 | `repeat-trap` | 1 | `bug-2017` |
 | `repetition` | 1 | `bug-2297` |
-| `replace.scr` | 3 | `bug-1279` `bug-1613` `bug-1614` |
+| `replace.scr` | 4 | `bug-10804` `bug-1279` `bug-1613` `bug-1614` |
 | `replica` | 2 | `bug-1618` `bug-1794` |
 | `replication` | 1 | `bug-2156` |
+| `repo-hygiene` | 1 | `bug-3023` |
+| `repo-push` | 1 | `bug-3071` |
 | `report` | 6 | `bug-gl2-01` `bug-gl2-autosprite2-swim` `bug-gl2-decal-red-dds` `bug-gl2-e2l2-fog-verified-correct` `bug-gl2-foliage` `bug-gl2-viewmodel-over-menu` |
-| `report-a-bug` | 1 | `bug-2030` |
-| `reporter` | 3 | `bug-1799` `bug-2663` `bug-2665` |
+| `report-a-bug` | 5 | `bug-2030` `bug-2907` `bug-2908` `bug-3276` `bug-3278` |
+| `reporter` | 4 | `bug-1799` `bug-2663` `bug-2665` `bug-3277` |
 | `reproducible` | 1 | `bug-1864` |
 | `reprojection` | 1 | `bug-1239` |
-| `research` | 4 | `bug-2040` `bug-2048` `bug-2069` `bug-2527` |
+| `rescue` | 1 | `bug-10657` |
+| `research` | 12 | `bug-2040` `bug-2048` `bug-2069` `bug-2527` `bug-3109` `bug-3127` `bug-3128` `bug-3129` `bug-3130` `bug-3131` `bug-3140` `bug-3141` |
 | `research-correction` | 4 | `bug-1998` `bug-1999` `bug-2008` `bug-2013` |
 | `research-followthrough` | 1 | `bug-2231` |
 | `research-found` | 6 | `bug-2574` `bug-2577` `bug-2579` `bug-2580` `bug-2583` `bug-2584` |
 | `research-led` | 1 | `bug-2134` |
 | `reseed` | 1 | `bug-2006` |
 | `resend` | 3 | `bug-716` `bug-800` `bug-802` |
+| `reserved-word` | 3 | `bug-3551` `bug-3957` `bug-4391` |
 | `reset` | 1 | `bug-1934` |
-| `resolution` | 3 | `bug-1134` `bug-2666` `bug-753` |
+| `residual` | 1 | `bug-2738` |
+| `resolution` | 6 | `bug-10590` `bug-10867` `bug-1134` `bug-2666` `bug-3495` `bug-753` |
 | `resolved` | 4 | `bug-1167` `bug-123` `bug-1852` `bug-2063` |
 | `resolved-side-effect` | 1 | `bug-1133` |
-| `respawn` | 18 | `bug-071` `bug-1252` `bug-133` `bug-1337` `bug-1429` `bug-1435` `bug-1436` `bug-1859` `bug-2646` `bug-367` `bug-378` `bug-627` `bug-871` `bug-874` `bug-897` `bug-924` `bug-939` `bug-940` |
+| `respawn` | 31 | `bug-071` `bug-1252` `bug-133` `bug-1337` `bug-1429` `bug-1435` `bug-1436` `bug-1859` `bug-2646` `bug-2895` `bug-2923` `bug-2928` `bug-2958` `bug-3093` `bug-3191` `bug-3305` `bug-3307` `bug-3308` `bug-3399` `bug-3465` `bug-3469` `bug-367` `bug-378` `bug-4012` `bug-627` `bug-871` `bug-874` `bug-897` `bug-924` `bug-939` `bug-940` |
 | `respawn-kit` | 1 | `bug-926` |
 | `respawn-state` | 1 | `bug-2139` |
 | `responsiveness` | 1 | `bug-paradrop-medic-idle` |
+| `rest` | 2 | `bug-3747` `bug-4266` |
 | `restart` | 2 | `bug-1491` `bug-2573` |
 | `restart-loop` | 5 | `bug-1463` `bug-1464` `bug-1465` `bug-1466` `bug-1467` |
 | `restartmap` | 1 | `bug-1466` |
 | `restartstate` | 1 | `bug-2420` |
 | `resting-contact` | 1 | `bug-1986` |
+| `restore_cvars` | 1 | `bug-10856` |
+| `restorecvars` | 1 | `bug-3329` |
 | `restored` | 1 | `bug-2411` |
 | `restyle` | 1 | `bug-2615` |
+| `result` | 1 | `bug-10909` |
 | `resume` | 1 | `bug-424` |
 | `retail` | 1 | `bug-1285` |
 | `retail-actor` | 1 | `bug-2467` |
 | `retail-assets` | 1 | `bug-854` |
 | `retail-behavior` | 1 | `bug-1329` |
 | `retail-behaviour` | 2 | `bug-1569` `bug-2251` |
-| `retail-bug` | 4 | `bug-1216` `bug-1297` `bug-1846` `bug-2206` |
+| `retail-bug` | 5 | `bug-1216` `bug-1297` `bug-1846` `bug-2206` `bug-3265` |
 | `retail-curve` | 1 | `bug-2545` |
 | `retail-data-defect` | 2 | `bug-1162` `bug-2021` |
 | `retail-data-gap` | 1 | `bug-1489` |
-| `retail-defect` | 1 | `bug-1331` |
+| `retail-defect` | 2 | `bug-10584` `bug-1331` |
+| `retail-fallback` | 1 | `bug-3511` |
 | `retail-fragile` | 1 | `bug-1954` |
 | `retail-latent` | 1 | `bug-1340` |
 | `retail-never-wired` | 1 | `bug-1330` |
 | `retail-override` | 1 | `bug-1549` |
-| `retail-parity` | 1 | `bug-1817` |
+| `retail-parity` | 3 | `bug-1817` `bug-2973` `bug-3051` |
 | `retail-recipe` | 5 | `bug-1611` `bug-1748` `bug-1752` `bug-1781` `bug-2347` |
 | `retail-reference` | 1 | `bug-1576` |
 | `retail-rewrite-regression` | 1 | `bug-2050` |
@@ -4648,67 +8815,131 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `retail-verified` | 1 | `bug-1188` |
 | `retail-wiring` | 1 | `bug-1841` |
 | `retaininventory` | 1 | `bug-627` |
+| `retarget` | 1 | `bug-3369` |
+| `reticle` | 3 | `bug-10626` `bug-3462` `bug-scopes1025-reticle-inlens` |
+| `retime` | 2 | `bug-3556` `bug-3804` |
+| `retouch` | 2 | `bug-10469` `bug-10641` |
 | `retracted` | 1 | `bug-2386` |
 | `retracted-rationale` | 1 | `bug-2394` |
-| `retraction` | 3 | `bug-1690` `bug-2396` `bug-2417` |
+| `retraction` | 4 | `bug-1690` `bug-2396` `bug-2417` `bug-3291` |
 | `retreat` | 2 | `bug-1104` `bug-2687` |
+| `retry` | 2 | `bug-2789` `bug-3472` |
 | `retry-loop` | 1 | `bug-1701b` |
 | `retuned-default` | 1 | `bug-2092` |
 | `reverse-index` | 1 | `bug-1362` |
 | `reversed` | 1 | `bug-431` |
-| `revert` | 10 | `bug-1515` `bug-1544` `bug-1701` `bug-1847` `bug-1917` `bug-1933` `bug-2482` `bug-2638` `bug-861` `bug-938` |
+| `reversible` | 1 | `bug-2901` |
+| `revert` | 13 | `bug-1515` `bug-1544` `bug-1701` `bug-1847` `bug-1917` `bug-1933` `bug-2482` `bug-2638` `bug-2815` `bug-2818` `bug-4166` `bug-861` `bug-938` |
 | `revert-on-refusal` | 1 | `bug-755` |
-| `reverted` | 8 | `bug-1182` `bug-1303` `bug-1546` `bug-1981` `bug-2285` `bug-2387` `bug-2622` `bug-2716` |
+| `reverted` | 10 | `bug-10902` `bug-1182` `bug-1303` `bug-1546` `bug-1981` `bug-2285` `bug-2387` `bug-2622` `bug-2716` `bug-2826` |
 | `reverted-my-fix` | 1 | `bug-1184` |
+| `review` | 7 | `bug-3088` `bug-3170` `bug-3213` `bug-3290` `bug-3295` `bug-3329` `bug-3425` |
 | `review-found` | 4 | `bug-2589` `bug-2590` `bug-2591` `bug-2592` |
 | `review-workflow` | 1 | `bug-2124` |
 | `revive` | 13 | `bug-1065` `bug-1236` `bug-1293` `bug-1660` `bug-1661` `bug-1668` `bug-1679` `bug-1930` `bug-618` `bug-625` `bug-880` `bug-893` `bug-913` |
+| `revolver` | 13 | `bug-10668` `bug-3368` `bug-3388` `bug-3531` `bug-3533` `bug-3534` `bug-3546` `bug-3578` `bug-3594` `bug-3613` `bug-3614` `bug-3617` `bug-3787` |
+| `reward` | 2 | `bug-4003` `bug-4012` |
 | `reward-wiring` | 1 | `bug-1521` |
 | `rewards` | 1 | `bug-2079` |
+| `rewind` | 1 | `bug-10295` |
 | `rf_coop_boss` | 1 | `bug-135` |
+| `rf_dontdraw` | 1 | `bug-3323` |
 | `rf_first_person` | 1 | `bug-1217` |
 | `rf_shadow_plane` | 1 | `bug-1189` |
-| `rgbgen` | 6 | `bug-1913` `bug-530` `bug-gl2-01` `bug-gl2-decal-red-dds` `bug-gl2-hudcolor` `bug-gl2-reddecals` |
+| `rgbgen` | 8 | `bug-10436` `bug-10883` `bug-1913` `bug-530` `bug-gl2-01` `bug-gl2-decal-red-dds` `bug-gl2-hudcolor` `bug-gl2-reddecals` |
+| `rgbgen-constant-byte` | 1 | `bug-3237` |
+| `rgbgen-dot` | 2 | `bug-2946` `bug-2962` |
 | `rgbgen-static` | 1 | `bug-gl2-modellight` |
 | `rgbgen-vertex` | 1 | `bug-916` |
 | `rich-hud` | 1 | `bug-2646` |
 | `ricochet` | 1 | `bug-2314` |
-| `ride` | 1 | `bug-1432` |
+| `ride` | 4 | `bug-1432` `bug-3029` `bug-3679` `bug-4034` |
 | `ride-end` | 1 | `bug-1431` |
+| `riders` | 1 | `bug-3449` |
+| `rifle` | 6 | `bug-3598` `bug-3599` `bug-3600` `bug-3630` `bug-3631` `bug-3644` |
+| `rifle-lane` | 6 | `bug-3711` `bug-3712` `bug-3713` `bug-3714` `bug-3716` `bug-3831` |
+| `rifle-only` | 4 | `bug-2730` `bug-2731` `bug-2732` `bug-2733` |
+| `rifles` | 17 | `bug-3699` `bug-3700` `bug-3701` `bug-3702` `bug-3703` `bug-3817` `bug-3833` `bug-3834` `bug-3835` `bug-3837` `bug-3838` `bug-3840` `bug-3841` `bug-3842` `bug-3843` `bug-3849` `bug-3850` |
+| `rifles-lane` | 17 | `bug-3739` `bug-3740` `bug-3741` `bug-3742` `bug-3743` `bug-3744` `bug-3745` `bug-3764` `bug-3765` `bug-3766` `bug-3767` `bug-3768` `bug-3789` `bug-3790` `bug-3791` `bug-3793` `bug-3795` |
+| `rig` | 1 | `bug-3566` |
+| `rig-solve` | 4 | `bug-3585` `bug-3597` `bug-3615` `bug-3634` |
+| `right_path` | 1 | `bug-3659` |
 | `rigid-transform-limit` | 1 | `bug-2135` |
+| `rigsolve` | 1 | `bug-3395` |
+| `ring` | 4 | `bug-3422` `bug-3425` `bug-4035` `bug-4039` |
 | `ring-buffer` | 2 | `bug-2284` `bug-934` |
 | `risk-reward` | 1 | `bug-1750` |
-| `ritualfont` | 3 | `bug-1129b` `bug-1130` `bug-font-bleed` |
+| `ritualfont` | 5 | `bug-1129b` `bug-1130` `bug-3287` `bug-3326` `bug-font-bleed` |
+| `river` | 1 | `bug-3176` |
+| `rkeep` | 1 | `bug-3183` |
+| `rnf_idle_watch` | 1 | `bug-3976` |
+| `roadblock` | 1 | `bug-10349` |
+| `robocopy` | 2 | `bug-3808` `bug-4216` |
 | `rock-shells` | 1 | `bug-952` |
+| `rockets` | 1 | `bug-2795` |
+| `rocks` | 1 | `bug-3210` |
+| `rog-ally` | 1 | `bug-4077` |
 | `roll` | 2 | `bug-2300` `bug-2301` |
 | `roll-budget` | 1 | `bug-2300` |
 | `rolls` | 1 | `bug-2120` |
+| `roof` | 1 | `bug-3466` |
+| `room-clear` | 2 | `bug-2986` `bug-3024` |
+| `room-clearing` | 1 | `bug-3322` |
 | `roomtransform` | 1 | `bug-1502` |
+| `root` | 1 | `bug-3411` |
+| `root-bone` | 2 | `bug-3228` `bug-3242` |
 | `root-cause` | 12 | `bug-1275` `bug-1637` `bug-1638` `bug-1640` `bug-1658` `bug-593` `bug-597` `bug-927` `bug-gl2-forcepose-skips-composite-ally` `bug-gl2-invisible-friendly-actor-root` `bug-gl2-invisible-live-char-depthprepass` `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `root-cause-after-4-failed-attempts` | 1 | `bug-2064` |
 | `root-caused` | 2 | `bug-1759` `bug-2075` |
-| `roster` | 5 | `bug-1450` `bug-1452` `bug-1902` `bug-401` `bug-armory-roster76` |
+| `root-frame` | 4 | `bug-3316` `bug-3661` `bug-3662` `bug-3871` |
+| `root-key` | 1 | `bug-3207` |
+| `rootless` | 1 | `bug-3958` |
+| `roq` | 4 | `bug-10677` `bug-10691` `bug-10692` `bug-10760` |
+| `roster` | 8 | `bug-10556` `bug-1450` `bug-1452` `bug-1902` `bug-3811` `bug-3951` `bug-401` `bug-armory-roster76` |
 | `roster_get` | 1 | `bug-1906` |
-| `rotation` | 2 | `bug-2239` `bug-2636` |
+| `rotate` | 1 | `bug-10814` |
+| `rotatedbbox` | 2 | `bug-3210` `bug-3219` |
+| `rotating-door` | 1 | `bug-3043` |
+| `rotation` | 6 | `bug-10829` `bug-10892` `bug-2239` `bug-2636` `bug-2782` `bug-2876` |
 | `rotation-builder` | 1 | `bug-2638` |
+| `round` | 3 | `bug-10826` `bug-10916` `bug-2895` |
 | `round-5` | 1 | `bug-922` |
+| `round2` | 1 | `bug-3520` |
 | `round8` | 5 | `bug-1965` `bug-1966` `bug-1967` `bug-1969` `bug-1970` |
-| `rounds` | 6 | `bug-2604` `bug-2607` `bug-2627` `bug-2641` `bug-2645` `bug-2649` |
+| `rounds` | 7 | `bug-2604` `bug-2607` `bug-2627` `bug-2641` `bug-2645` `bug-2649` `bug-2751` |
+| `route` | 2 | `bug-2821` `bug-2846` |
 | `route-bypass` | 1 | `bug-1842` |
+| `routes` | 1 | `bug-10404` |
+| `routing` | 3 | `bug-10644` `bug-3363` `bug-4007` |
+| `row-merge` | 1 | `bug-3894` |
 | `row-order` | 1 | `bug-2157` |
 | `rowboat` | 1 | `bug-121` |
+| `rowlen` | 4 | `bug-3817` `bug-3818` `bug-3823` `bug-4141` |
+| `rowlen_check` | 1 | `bug-3896` |
+| `rows` | 6 | `bug-3642` `bug-3807` `bug-3827` `bug-3842` `bug-3862` `bug-3875` |
 | `rubber-band` | 1 | `bug-2127` |
+| `rubric` | 1 | `bug-3177` |
+| `run` | 1 | `bug-3761` |
+| `run-id` | 1 | `bug-3805` |
+| `run-pa18` | 1 | `bug-3733` |
+| `run_h` | 2 | `bug-3698` `bug-3731` |
+| `run_int` | 1 | `bug-3897` |
+| `run_sweep` | 1 | `bug-3366` |
 | `runaway` | 1 | `bug-2408` |
 | `running-in-place` | 1 | `bug-2714` |
+| `runs` | 2 | `bug-3744` `bug-3758` |
 | `runtime-detector` | 1 | `bug-1462` |
 | `runtime-error` | 1 | `bug-1476` |
 | `runtime-found` | 3 | `bug-2581` `bug-2585` `bug-2593` |
 | `runtime-verified` | 1 | `bug-2574` |
-| `runto` | 5 | `bug-1812` `bug-1834` `bug-2180` `bug-2220` `bug-2246` |
+| `runto` | 6 | `bug-10267` `bug-1812` `bug-1834` `bug-2180` `bug-2220` `bug-2246` |
 | `russian` | 1 | `bug-1288` |
 | `s0` | 3 | `bug-1218` `bug-1219` `bug-1220` |
 | `s1jeep_yaw` | 1 | `bug-054` |
-| `s93` | 3 | `bug-1420` `bug-483` `bug-500` |
+| `s3a` | 2 | `bug-2977` `bug-2982` |
+| `s3b` | 1 | `bug-2979` |
+| `s4` | 2 | `bug-2980` `bug-3009` |
+| `s93` | 5 | `bug-10589` `bug-10665` `bug-1420` `bug-483` `bug-500` |
 | `s93-import` | 1 | `bug-809` |
 | `s_adsguntune` | 1 | `bug-863` |
 | `s_ambientvolume` | 1 | `bug-1502` |
@@ -4719,82 +8950,113 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `s_sfxduck` | 3 | `bug-1264` `bug-1501` `bug-1509` |
 | `s_sfxvolume` | 1 | `bug-1556` |
 | `s_sun` | 1 | `bug-1154` |
+| `s_volume` | 1 | `bug-10352` |
+| `s_worlddata` | 1 | `bug-3150` |
 | `sabotage` | 4 | `bug-1623` `bug-1748` `bug-1755` `bug-1756` |
 | `safe-mode` | 1 | `bug-1811` |
 | `safe-pattern` | 1 | `bug-1875` |
 | `safe-reimpl` | 1 | `bug-866` |
 | `safeholster` | 1 | `bug-378` |
+| `safety-net` | 1 | `bug-3305` |
 | `safety-rail` | 1 | `bug-2320` |
 | `salvo` | 1 | `bug-1856` |
 | `same-class-as-invisible-torsos` | 1 | `bug-2070` |
 | `same-day` | 1 | `bug-2472` |
 | `same-frame` | 2 | `bug-1737` `bug-1836` |
+| `same-frame-spawn` | 1 | `bug-3052` |
 | `same-team-damage` | 1 | `bug-2091` |
-| `same-team-filter` | 1 | `bug-2574` |
+| `same-team-filter` | 2 | `bug-2574` `bug-3309` |
+| `sample-mask` | 1 | `bug-3164` |
 | `samplespassed` | 1 | `bug-gl2-invisible-live-char-depthprepass` |
 | `sampling` | 1 | `bug-1470` |
-| `sandbag` | 2 | `bug-1407` `bug-536` |
-| `sandbags` | 1 | `bug-1986` |
-| `sandstorm` | 1 | `bug-1206` |
-| `save` | 1 | `bug-1542` |
+| `sandbag` | 5 | `bug-10276` `bug-1407` `bug-2837` `bug-2845` `bug-536` |
+| `sandbags` | 5 | `bug-10820` `bug-10823` `bug-10854` `bug-1986` `bug-2934` |
+| `sandstorm` | 3 | `bug-1206` `bug-2963` `bug-2972` |
+| `sas` | 1 | `bug-3916` |
+| `save` | 2 | `bug-10568` `bug-1542` |
 | `save-file` | 1 | `bug-1602` |
+| `save-files` | 1 | `bug-3795` |
+| `saved-config` | 1 | `bug-3190` |
 | `savegame` | 1 | `bug-2167` |
 | `say` | 2 | `bug-1807` `bug-2395` |
 | `say-anim` | 3 | `bug-837` `bug-839` `bug-842` |
 | `saymanager` | 1 | `bug-1939` |
 | `sc_-scripted` | 1 | `bug-gl2-invisible-friendly-actor-root` |
 | `scaffolding` | 1 | `bug-1153` |
-| `scale` | 1 | `bug-829` |
+| `scale` | 4 | `bug-10433` `bug-10439` `bug-4263` `bug-829` |
 | `scale-clamp` | 1 | `bug-776` |
+| `scaling` | 5 | `bug-3302` `bug-3918` `bug-3951` `bug-4004` `bug-4036` |
+| `scan` | 1 | `bug-10453` |
 | `scan-rewind` | 1 | `bug-1937` |
 | `scanner` | 1 | `bug-1725` |
 | `scanner-blind-spot` | 1 | `bug-1713` |
 | `scanner-gap` | 1 | `bug-1715` |
 | `scanners-insufficient` | 1 | `bug-1822` |
 | `scatter` | 1 | `bug-2696` |
-| `scene` | 3 | `bug-1054` `bug-1643` `bug-1654` |
-| `scene-actor` | 9 | `bug-2032` `bug-2033` `bug-2034` `bug-2035` `bug-2037` `bug-2038` `bug-2039` `bug-2040` `bug-2065` |
+| `scene` | 4 | `bug-1054` `bug-10849` `bug-1643` `bug-1654` |
+| `scene-actor` | 10 | `bug-2032` `bug-2033` `bug-2034` `bug-2035` `bug-2037` `bug-2038` `bug-2039` `bug-2040` `bug-2065` `bug-3188` |
 | `scene-actors` | 5 | `bug-1644` `bug-1648` `bug-1649` `bug-1650` `bug-2237` |
 | `scene-dependent` | 1 | `bug-lowhealth-scene-dependent` |
 | `scene-timing` | 1 | `bug-1348` |
 | `scene2` | 1 | `bug-1924` |
 | `scene3` | 1 | `bug-1809` |
+| `scene3d` | 26 | `bug-10379` `bug-10381` `bug-10439` `bug-10464` `bug-10466` `bug-10470` `bug-10471` `bug-10491` `bug-10503` `bug-10504` `bug-10537` `bug-10638` `bug-10652` `bug-10655` `bug-10696` `bug-10703` `bug-10768` `bug-10811` `bug-10841` `bug-10870` `bug-10871` `bug-10903` `bug-4414` `bug-4416` `bug-4420` `bug-4429` |
 | `scene6` | 1 | `bug-1877` |
 | `scene7` | 1 | `bug-1858` |
+| `scenehot` | 1 | `bug-10319` |
+| `scenehotbox` | 1 | `bug-4428` |
+| `scenelabel` | 1 | `bug-10832` |
 | `sceneless-frame` | 1 | `bug-1140` |
+| `scenepeek` | 4 | `bug-10537` `bug-10538` `bug-10755` `bug-10811` |
 | `scenery` | 1 | `bug-2187` |
 | `scenes` | 1 | `bug-2278` |
+| `schedule` | 1 | `bug-10432` |
 | `scientist` | 1 | `bug-1656` |
 | `scientists` | 1 | `bug-1654` |
-| `scope` | 5 | `bug-2008` `bug-256` `bug-2612` `bug-329` `bug-332` |
+| `scope` | 35 | `bug-10260` `bug-10286` `bug-10287` `bug-10288` `bug-10289` `bug-10302` `bug-10303` `bug-10304` `bug-10305` `bug-10323` `bug-10402` `bug-10403` `bug-10428` `bug-10429` `bug-10624` `bug-10625` `bug-10627` `bug-10629` `bug-10630` `bug-2008` `bug-256` `bug-2612` `bug-329` `bug-332` `bug-3462` `bug-3509` `bug-3510` `bug-3511` `bug-3512` `bug-3513` `bug-3673` `bug-3773` `bug-3884` `bug-4390` `bug-4391` |
 | `scope-discipline` | 1 | `bug-2047` |
+| `scope-pass-2026-10-12` | 6 | `bug-3509` `bug-3510` `bug-3511` `bug-3512` `bug-3513` `bug-3514` |
 | `scope-reversal` | 1 | `bug-2051` |
+| `scoped` | 2 | `bug-3842` `bug-scopes1025-fire-hip-snap` |
+| `scopehold` | 8 | `bug-10286` `bug-10287` `bug-10288` `bug-10289` `bug-10302` `bug-10303` `bug-10304` `bug-10305` |
+| `scopes` | 2 | `bug-3900` `bug-4419` |
+| `scopes-pak` | 1 | `bug-10626` |
+| `scopes1025` | 4 | `bug-10526` `bug-scopes1025-fire-hip-snap` `bug-scopes1025-hip-lens` `bug-scopes1025-reticle-inlens` |
 | `scoping` | 1 | `bug-2181` |
 | `scoping-error` | 1 | `bug-2233` |
-| `scoreboard` | 7 | `bug-2681` `bug-2683` `bug-2692` `bug-2697` `bug-2699` `bug-2701` `bug-2705` |
+| `scoreboard` | 8 | `bug-10586` `bug-2681` `bug-2683` `bug-2692` `bug-2697` `bug-2699` `bug-2701` `bug-2705` |
+| `scouting` | 1 | `bug-3301` |
 | `scr` | 51 | `bug-001` `bug-003` `bug-004` `bug-023` `bug-024` `bug-027` `bug-031` `bug-034` `bug-041` `bug-044` `bug-045` `bug-046` `bug-048` `bug-049` `bug-050` `bug-051` `bug-053` `bug-062` `bug-070` `bug-073` `bug-097` `bug-132` `bug-133` `bug-136` `bug-358` `bug-360` `bug-361` `bug-362` `bug-364` `bug-365` `bug-400` `bug-401` `bug-402` `bug-417` `bug-450` `bug-531` `bug-532` `bug-726` `bug-748` `bug-749`… |
 | `scr-compile` | 1 | `bug-298` |
 | `scr-editing` | 2 | `bug-1363` `bug-2081` |
 | `scr-runtime` | 1 | `bug-302` |
+| `screen` | 1 | `bug-10756` |
+| `screen-capture` | 2 | `bug-3053` `bug-3114` |
 | `screenshake` | 1 | `bug-2204` |
+| `screenshot` | 9 | `bug-10727` `bug-2995` `bug-3047` `bug-3186` `bug-3217` `bug-3253` `bug-3314` `bug-3884` `bug-blastreact-3` |
 | `screenshot-measurement` | 1 | `bug-957` |
-| `script` | 15 | `bug-1218` `bug-1220` `bug-1308` `bug-1562` `bug-1567` `bug-1571` `bug-1572` `bug-1573` `bug-1574` `bug-1575` `bug-166` `bug-1971` `bug-2009` `bug-2216` `bug-2236` |
-| `script-compile` | 1 | `bug-2608` |
-| `script-error` | 23 | `bug-1372` `bug-1373` `bug-1495` `bug-1553` `bug-1583` `bug-1584` `bug-1612` `bug-1613` `bug-1659` `bug-1694` `bug-1702` `bug-1717` `bug-1801` `bug-1818` `bug-2077` `bug-2087` `bug-2188` `bug-2530` `bug-2548` `bug-2603` `bug-2719` `bug-552` `bug-t2l2-flak` |
+| `screenshots` | 1 | `bug-10350` |
+| `script` | 34 | `bug-10417` `bug-10515` `bug-10818` `bug-10826` `bug-10889` `bug-1218` `bug-1220` `bug-1308` `bug-1562` `bug-1567` `bug-1571` `bug-1572` `bug-1573` `bug-1574` `bug-1575` `bug-166` `bug-1971` `bug-2009` `bug-2216` `bug-2236` `bug-2854` `bug-2967` `bug-3001` `bug-3215` `bug-3350` `bug-3383` `bug-3520` `bug-3526` `bug-3527` `bug-3551` `bug-3707` `bug-3791` `bug-3957` `bug-eap-ownernull` |
+| `script-command` | 1 | `bug-3056` |
+| `script-compile` | 2 | `bug-2608` `bug-2869` |
+| `script-engine` | 1 | `bug-4090` |
+| `script-error` | 49 | `bug-10332` `bug-10347` `bug-10576` `bug-10584` `bug-10595` `bug-10608` `bug-10804` `bug-10806` `bug-1372` `bug-1373` `bug-1495` `bug-1553` `bug-1583` `bug-1584` `bug-1612` `bug-1613` `bug-1659` `bug-1694` `bug-1702` `bug-1717` `bug-1801` `bug-1818` `bug-2077` `bug-2087` `bug-2188` `bug-2530` `bug-2548` `bug-2603` `bug-2719` `bug-2736` `bug-2737` `bug-2738` `bug-2859` `bug-2878` `bug-2998` `bug-3… |
 | `script-error-skips` | 2 | `bug-1580` `bug-2483` |
 | `script-error-skips-statement` | 1 | `bug-2034` |
 | `script-getter` | 1 | `bug-2484` |
 | `script-load` | 1 | `bug-1027` |
 | `script-only` | 1 | `bug-231` |
+| `script-order` | 1 | `bug-3070` |
 | `script-path` | 1 | `bug-1205` |
 | `script-surgery` | 1 | `bug-2279` |
 | `script-var-type` | 1 | `bug-1371` |
-| `script-vm` | 1 | `bug-2662` |
+| `script-vector` | 1 | `bug-4080` |
+| `script-vm` | 3 | `bug-2662` `bug-2983` `bug-3078` |
 | `script_maxtoken` | 1 | `bug-2116` |
-| `script_model` | 5 | `bug-2215` `bug-2543` `bug-418` `bug-829` `bug-916` |
+| `script_model` | 12 | `bug-10684` `bug-10849` `bug-2215` `bug-2543` `bug-3219` `bug-3923` `bug-3956` `bug-3958` `bug-3981` `bug-418` `bug-829` `bug-916` |
 | `script_model-actor` | 1 | `bug-350` |
 | `script_model-carrier` | 1 | `bug-2477` |
-| `script_object` | 1 | `bug-624` |
+| `script_object` | 2 | `bug-4275` `bug-624` |
 | `script_vehicle` | 1 | `bug-240` |
 | `scripted-damage` | 1 | `bug-2211` |
 | `scripted-edit` | 2 | `bug-1558` `bug-2137` |
@@ -4807,59 +9069,76 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `scripted_havoc` | 1 | `bug-714` |
 | `scripterror` | 1 | `bug-1369` |
 | `scripterror-outside-vm` | 1 | `bug-931b` |
+| `scriptmodel` | 3 | `bug-2896` `bug-2998` `bug-3004` |
 | `scripts-dir` | 1 | `bug-2403` |
-| `scriptslave` | 3 | `bug-2361` `bug-2487` `bug-2496` |
+| `scriptslave` | 4 | `bug-2361` `bug-2487` `bug-2496` `bug-2902` |
 | `scriptthread-vs-player` | 1 | `bug-1374` |
 | `scriptvariable` | 3 | `bug-2424` `bug-2425` `bug-948` |
 | `scriptvm` | 1 | `bug-1495` |
 | `scrlint` | 2 | `bug-1908` `bug-2632` |
-| `scrlint-gap` | 1 | `bug-1895` |
+| `scrlint-gap` | 2 | `bug-1895` `bug-4450` |
 | `scroll-wheel` | 1 | `bug-2053` |
-| `sdl` | 1 | `bug-2606` |
+| `scrub` | 1 | `bug-10326` |
+| `sdl` | 9 | `bug-10281` `bug-10312` `bug-10635` `bug-10738` `bug-2606` `bug-3054` `bug-3112` `bug-4077` `bug-4168` |
 | `sdl_glimp` | 2 | `bug-1795` `bug-753` |
 | `sea-mesh` | 1 | `bug-2513` |
-| `seam` | 4 | `bug-1247` `bug-2230` `bug-2514` `bug-m3l2-ground-seams` |
+| `seam` | 9 | `bug-10642` `bug-10770` `bug-1247` `bug-2230` `bug-2514` `bug-3232` `bug-3288` `bug-3883` `bug-m3l2-ground-seams` |
 | `seam-not-implemented` | 1 | `bug-1750` |
+| `seams` | 7 | `bug-10873` `bug-2833` `bug-2984` `bug-2987` `bug-2991` `bug-3027` `bug-3109` |
 | `search-party` | 3 | `bug-1344` `bug-1348` `bug-1350` |
-| `searchlight` | 2 | `bug-1520` `bug-1705` |
+| `searchlight` | 3 | `bug-1520` `bug-1705` `bug-4011` |
+| `searchlights` | 2 | `bug-2962` `bug-2969` |
 | `seasick` | 1 | `bug-2233` |
+| `seat` | 1 | `bug-3197` |
 | `seat-leak` | 1 | `bug-1437` |
 | `seating` | 2 | `bug-055` `bug-1266` |
 | `sec1` | 1 | `bug-2586` |
-| `sec2` | 5 | `bug-2588` `bug-2589` `bug-2590` `bug-2591` `bug-2592` |
+| `sec2` | 7 | `bug-2588` `bug-2589` `bug-2590` `bug-2591` `bug-2592` `bug-3012` `bug-3276` |
 | `second-cause` | 1 | `bug-gl2-invisible-friendly-actor-2nd` |
-| `second-primary` | 1 | `bug-897` |
+| `second-monitor` | 1 | `bug-3112` |
+| `second-primary` | 2 | `bug-3505` `bug-897` |
+| `secret` | 1 | `bug-3071` |
 | `section-close` | 1 | `bug-306` |
-| `security` | 8 | `bug-2184` `bug-2239` `bug-2580` `bug-2588` `bug-2589` `bug-2590` `bug-2591` `bug-2592` |
+| `sectors` | 1 | `bug-3000` |
+| `security` | 15 | `bug-2184` `bug-2239` `bug-2580` `bug-2588` `bug-2589` `bug-2590` `bug-2591` `bug-2592` `bug-2771` `bug-2933` `bug-3012` `bug-3071` `bug-3206` `bug-3276` `bug-3321` |
 | `sed` | 1 | `bug-2081` |
+| `see-through` | 2 | `bug-10848` `bug-3515` |
 | `seed` | 1 | `bug-1935` |
 | `seed-debounce` | 1 | `bug-326` |
 | `seeds` | 1 | `bug-601` |
+| `seek` | 13 | `bug-10261` `bug-10271` `bug-10282` `bug-10284` `bug-10291` `bug-10295` `bug-10311` `bug-10327` `bug-10354` `bug-10393` `bug-10429` `bug-10541` `bug-10543` |
 | `segfault` | 3 | `bug-1499` `bug-2182` `bug-330` |
 | `segment-boundary` | 1 | `bug-1222` |
+| `selected-to-active` | 1 | `bug-10467` |
+| `selection-idle` | 1 | `bug-10485` |
+| `self` | 1 | `bug-4033` |
 | `self-caught` | 2 | `bug-1653` `bug-2344` |
 | `self-caught-staleness` | 1 | `bug-2072` |
 | `self-correction` | 6 | `bug-1889` `bug-2465` `bug-2469` `bug-2546` `bug-2549` `bug-2550` |
+| `self-damage` | 1 | `bug-2925` |
 | `self-delete` | 1 | `bug-822` |
 | `self-found` | 1 | `bug-2572` |
 | `self-heal` | 4 | `bug-1728` `bug-1925` `bug-801` `bug-803` |
 | `self-healing` | 6 | `bug-1879` `bug-1952` `bug-2326` `bug-2544` `bug-2546` `bug-2551` |
 | `self-healing-sweep` | 1 | `bug-1212` |
-| `self-inflicted` | 81 | `bug-1172` `bug-1178` `bug-1179` `bug-1181` `bug-1183` `bug-1262` `bug-1269` `bug-1273` `bug-1274` `bug-1281` `bug-1292` `bug-1494` `bug-1499` `bug-1500` `bug-1558` `bug-1575` `bug-1598` `bug-1600` `bug-1603` `bug-1604` `bug-1606` `bug-1608` `bug-1671` `bug-1681` `bug-1696` `bug-1713` `bug-1749` `bug-1751` `bug-1756` `bug-1768` `bug-1781` `bug-1785` `bug-1801` `bug-1850` `bug-1864` `bug-1869` `bu… |
+| `self-inflicted` | 91 | `bug-10328` `bug-10339` `bug-1172` `bug-1178` `bug-1179` `bug-1181` `bug-1183` `bug-1262` `bug-1269` `bug-1273` `bug-1274` `bug-1281` `bug-1292` `bug-1494` `bug-1499` `bug-1500` `bug-1558` `bug-1575` `bug-1598` `bug-1600` `bug-1603` `bug-1604` `bug-1606` `bug-1608` `bug-1671` `bug-1681` `bug-1696` `bug-1713` `bug-1749` `bug-1751` `bug-1756` `bug-1768` `bug-1781` `bug-1785` `bug-1801` `bug-1850` `… |
 | `self-is-null` | 1 | `bug-1580` |
 | `self-referential` | 1 | `bug-1860` |
 | `self-regression` | 1 | `bug-1128` |
 | `self-review` | 8 | `bug-070` `bug-713` `bug-714` `bug-715` `bug-716` `bug-717` `bug-718` `bug-719` |
 | `self-service` | 1 | `bug-953` |
 | `self-start` | 1 | `bug-2043` |
-| `self-vet` | 5 | `bug-2139` `bug-2140` `bug-2141` `bug-2142` `bug-2143` |
+| `self-vet` | 6 | `bug-2139` `bug-2140` `bug-2141` `bug-2142` `bug-2143` `bug-3263` |
 | `self-vs-parm` | 1 | `bug-1434` |
 | `self.fact` | 1 | `bug-1868` |
 | `selfheal` | 1 | `bug-2127` |
-| `selftest` | 6 | `bug-2174` `bug-2415` `bug-2586` `bug-2592` `bug-2598` `bug-2680` |
+| `selfrevive` | 1 | `bug-4210` |
+| `selftest` | 11 | `bug-10606` `bug-10818` `bug-2174` `bug-2415` `bug-2586` `bug-2592` `bug-2598` `bug-2680` `bug-2928` `bug-2978` `bug-3159` |
+| `semantic-conflict` | 1 | `bug-10776` |
 | `semantics` | 1 | `bug-1202` |
-| `sentient` | 14 | `bug-1241` `bug-1586` `bug-1874` `bug-1875` `bug-1890` `bug-1975` `bug-2191` `bug-2193` `bug-2202` `bug-230` `bug-2574` `bug-2713` `bug-817` `bug-861` |
-| `sentinel` | 2 | `bug-2102` `bug-2200` |
+| `semi-auto` | 3 | `bug-10407` `bug-10879` `bug-3045` |
+| `sentient` | 16 | `bug-1241` `bug-1586` `bug-1874` `bug-1875` `bug-1890` `bug-1975` `bug-2191` `bug-2193` `bug-2202` `bug-230` `bug-2574` `bug-2713` `bug-2798` `bug-2799` `bug-817` `bug-861` |
+| `sentinel` | 3 | `bug-2102` `bug-2200` `bug-2880` |
 | `sentry` | 1 | `bug-1723` |
 | `separation` | 1 | `bug-2714` |
 | `sequence` | 2 | `bug-2490` `bug-872` |
@@ -4867,17 +9146,25 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `sequencing` | 2 | `bug-1335` `bug-2529` |
 | `sequential-storm` | 5 | `bug-1049` `bug-1051` `bug-1052` `bug-1942` `bug-1948` |
 | `series` | 1 | `bug-2653` |
-| `server` | 3 | `bug-1198` `bug-1664` `bug-2290` |
+| `server` | 9 | `bug-10278` `bug-10426` `bug-1198` `bug-1664` `bug-2290` `bug-3339` `bug-3357` `bug-3358` `bug-3480` |
+| `server timing` | 1 | `bug-3849` |
 | `server-authority` | 1 | `bug-2106` |
+| `server-browser` | 1 | `bug-2727` |
 | `server-command-overflow` | 1 | `bug-1183` |
 | `server-disconnect` | 1 | `bug-681` |
+| `server-exe` | 1 | `bug-3912` |
+| `server-frame` | 1 | `bug-10898` |
 | `server-frame-budget` | 1 | `bug-866` |
 | `server-performance` | 1 | `bug-1663` |
+| `server-recorder` | 4 | `bug-10298` `bug-10300` `bug-10301` `bug-10540` |
+| `server-recording` | 1 | `bug-10454` |
 | `server-shutdown` | 2 | `bug-1493` `bug-1494` |
+| `server-timing` | 7 | `bug-3683` `bug-3736` `bug-3782` `bug-3783` `bug-3789` `bug-3818` `bug-3825` |
 | `servercmd-filter` | 2 | `bug-526` `bug-sfx-duck-filtered` |
 | `servercmds-filter` | 1 | `bug-1991` |
 | `serverinfo` | 1 | `bug-2619` |
-| `service-record` | 31 | `bug-1503` `bug-1510` `bug-1511` `bug-1519` `bug-1521` `bug-1523` `bug-1525` `bug-1528` `bug-1529` `bug-1531` `bug-1532` `bug-1535` `bug-1537` `bug-1541` `bug-1544` `bug-1546` `bug-1582` `bug-1596` `bug-1925` `bug-458` `bug-459` `bug-460` `bug-461` `bug-462` `bug-493` `bug-501` `bug-534` `bug-628` `bug-713` `bug-739` `bug-750` |
+| `serverlist` | 4 | `bug-10444` `bug-10445` `bug-10446` `bug-10447` |
+| `service-record` | 45 | `bug-10473` `bug-10518` `bug-10705` `bug-10739` `bug-10817` `bug-1503` `bug-1510` `bug-1511` `bug-1519` `bug-1521` `bug-1523` `bug-1525` `bug-1528` `bug-1529` `bug-1531` `bug-1532` `bug-1535` `bug-1537` `bug-1541` `bug-1544` `bug-1546` `bug-1582` `bug-1596` `bug-1925` `bug-2756` `bug-2758` `bug-2764` `bug-2783` `bug-2785` `bug-2790` `bug-3076` `bug-3914` `bug-4454` `bug-458` `bug-459` `bug-460` `… |
 | `session-global` | 1 | `bug-1803` |
 | `session-vet` | 1 | `bug-2143` |
 | `set-enumerated` | 1 | `bug-2403` |
@@ -4885,12 +9172,13 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `set-piece` | 4 | `bug-2188` `bug-2192` `bug-2193` `bug-2306` |
 | `set2dwindow` | 1 | `bug-159` |
 | `set3rdperson` | 1 | `bug-647` |
-| `set_respawn` | 1 | `bug-1585` |
+| `set_respawn` | 5 | `bug-1585` `bug-2998` `bug-3004` `bug-3307` `bug-3308` |
 | `seta` | 1 | `bug-710` |
 | `seta-before-gate` | 1 | `bug-755` |
 | `seta-latch` | 1 | `bug-1427` |
 | `seta-persistence` | 1 | `bug-1068` |
 | `seta-vs-set` | 1 | `bug-166` |
+| `setactivewindow` | 1 | `bug-3149` |
 | `setaimtarget` | 1 | `bug-1552` |
 | `setammo` | 1 | `bug-913` |
 | `setcollisionentity` | 2 | `bug-056` `bug-057` |
@@ -4901,19 +9189,28 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `setmodel` | 1 | `bug-891` |
 | `setmotionanim` | 1 | `bug-1695` |
 | `setpathtonotblocksentient` | 1 | `bug-621` |
-| `setsize` | 4 | `bug-1718` `bug-2196` `bug-829` `bug-865` |
+| `setsize` | 7 | `bug-10276` `bug-1718` `bug-2196` `bug-3210` `bug-3219` `bug-829` `bug-865` |
+| `setter` | 1 | `bug-3350` |
 | `setter-only` | 1 | `bug-1717` |
+| `setter-only-getter` | 1 | `bug-3305` |
 | `setthread` | 1 | `bug-1218` |
+| `setting-is-a-promise` | 1 | `bug-3275` |
 | `settings-apply` | 1 | `bug-1139` |
+| `settle` | 1 | `bug-4212` |
+| `settle-branch` | 2 | `bug-3127` `bug-3132` |
+| `setu` | 1 | `bug-10575` |
 | `setup-buffer` | 1 | `bug-1244` |
 | `setup-screens` | 1 | `bug-2624` |
+| `setwindowpos` | 1 | `bug-3113` |
 | `seventh-attempt` | 1 | `bug-2468` |
+| `sfx` | 1 | `bug-fx1025-3` |
 | `sfx-slider` | 1 | `bug-1556` |
 | `sfx-vs-originemitter` | 1 | `bug-2477` |
 | `sfx_t` | 1 | `bug-1163` |
-| `shader` | 48 | `bug-092` `bug-095` `bug-1130` `bug-1191` `bug-1207` `bug-1242` `bug-1249` `bug-1424` `bug-143` `bug-1515` `bug-1610` `bug-1611` `bug-1911` `bug-1913` `bug-2008` `bug-2210` `bug-2225` `bug-2228` `bug-2230` `bug-2243` `bug-2249` `bug-230` `bug-2355` `bug-2359` `bug-2360` `bug-2403` `bug-2478` `bug-2485` `bug-2493` `bug-2507` `bug-2508` `bug-2509` `bug-2514` `bug-2518` `bug-2524` `bug-2525` `bug-25… |
+| `shader` | 71 | `bug-092` `bug-095` `bug-10321` `bug-10383` `bug-10436` `bug-10524` `bug-10529` `bug-10555` `bug-10665` `bug-10668` `bug-10677` `bug-10768` `bug-10769` `bug-10837` `bug-10841` `bug-10883` `bug-1130` `bug-1191` `bug-1207` `bug-1242` `bug-1249` `bug-1424` `bug-143` `bug-1515` `bug-1610` `bug-1611` `bug-1911` `bug-1913` `bug-2008` `bug-2210` `bug-2225` `bug-2228` `bug-2230` `bug-2243` `bug-2249` `bu… |
 | `shader-binding` | 1 | `bug-2085` |
 | `shader-collision` | 1 | `bug-1357` |
+| `shader-index` | 1 | `bug-10589` |
 | `shader-isolation` | 4 | `bug-1356` `bug-1894` `bug-1899` `bug-1900` |
 | `shader-lump` | 1 | `bug-1386` |
 | `shader-parse` | 1 | `bug-gl2-cullfront` |
@@ -4922,28 +9219,45 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `shader-time` | 1 | `bug-1147` |
 | `shaders` | 2 | `bug-1192` `bug-1245` |
 | `shading` | 1 | `bug-2525` |
-| `shadow` | 3 | `bug-1164` `bug-2569` `bug-2588` |
+| `shadow` | 6 | `bug-10768` `bug-10841` `bug-1164` `bug-2569` `bug-2588` `bug-2818` |
 | `shadow-copy` | 1 | `bug-2697` |
 | `shadow-pass` | 1 | `bug-gl2-invisible-live-enemies-prepass-pose` |
-| `shadowing` | 3 | `bug-1272` `bug-1477` `bug-1893` |
-| `shadowmask` | 1 | `bug-1224` |
-| `shadows` | 4 | `bug-1209` `bug-1223` `bug-1229` `bug-2721` |
+| `shadowing` | 6 | `bug-10876` `bug-10921` `bug-1272` `bug-1477` `bug-1893` `bug-3632` |
+| `shadowmask` | 3 | `bug-1224` `bug-2818` `bug-3006` |
+| `shadows` | 13 | `bug-1209` `bug-1223` `bug-1229` `bug-2721` `bug-2944` `bug-3224` `bug-3235` `bug-3244` `bug-3347` `bug-3575` `bug-3576` `bug-3577` `bug-3611` |
+| `shadows-b1` | 1 | `bug-3256` |
 | `shape-kit` | 2 | `bug-1002` `bug-1016` |
+| `shape-match` | 1 | `bug-3129` |
+| `shared-checkout` | 3 | `bug-10591` `bug-3540` `bug-3544` |
 | `shared-code` | 1 | `bug-1504` |
+| `shared-constant` | 1 | `bug-2930` |
+| `shared-counter` | 1 | `bug-3794` |
+| `shared-files` | 1 | `bug-10560` |
 | `shared-flag` | 4 | `bug-1709` `bug-1726` `bug-1732` `bug-1735` |
 | `shared-global` | 4 | `bug-1473` `bug-1480` `bug-1481` `bug-1493` |
+| `shared-home` | 1 | `bug-4031` |
 | `shared-latch` | 1 | `bug-2006` |
+| `shared-progression` | 1 | `bug-2751` |
+| `shared-resource` | 1 | `bug-3063` |
 | `shared-root-cause` | 1 | `bug-1491` |
+| `shared-state` | 1 | `bug-10346` |
 | `shared-state-ownership` | 1 | `bug-2068` |
+| `shared-texels` | 1 | `bug-3892` |
+| `shared-tree` | 1 | `bug-4158` |
 | `sharpen` | 1 | `bug-1150` |
 | `sheen` | 1 | `bug-143` |
+| `shell-casings` | 1 | `bug-3609` |
+| `shell-eject` | 1 | `bug-3388` |
 | `shell-expansion` | 1 | `bug-1713` |
 | `shelling` | 1 | `bug-2195` |
-| `shellshock` | 4 | `bug-1942` `bug-2420` `bug-2425` `bug-846` |
-| `sherman` | 3 | `bug-2244` `bug-2257` `bug-2258` |
+| `shellshock` | 5 | `bug-1942` `bug-2420` `bug-2425` `bug-3182` `bug-846` |
+| `sherman` | 4 | `bug-2244` `bug-2257` `bug-2258` `bug-3219` |
 | `shim` | 1 | `bug-1279` |
-| `shipped` | 2 | `bug-1691` `bug-2238` |
+| `shimmer` | 1 | `bug-4125` |
+| `ship-cut` | 1 | `bug-3804` |
+| `shipped` | 3 | `bug-1691` `bug-2238` `bug-3347` |
 | `shipped-armed` | 1 | `bug-2090` |
+| `shipped-broken` | 1 | `bug-2722` |
 | `shipped-but-never-ran` | 2 | `bug-2195` `bug-2204` |
 | `shipped-code-disabled` | 1 | `bug-1688` |
 | `shipped-defect` | 3 | `bug-1551` `bug-2030` `bug-2184` |
@@ -4951,88 +9265,127 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `shipped-unused` | 1 | `bug-1888` |
 | `shipping` | 2 | `bug-2020` `bug-2446` |
 | `ships-on` | 1 | `bug-1698` |
+| `shootable` | 2 | `bug-2802` `bug-2806` |
 | `shore` | 1 | `bug-2524` |
 | `shoreline` | 2 | `bug-2223` `bug-2227` |
-| `shoulder` | 1 | `bug-2146` |
+| `shotgun` | 18 | `bug-3431` `bug-3681` `bug-3696` `bug-3697` `bug-3727` `bug-3728` `bug-3729` `bug-3730` `bug-3731` `bug-3732` `bug-3755` `bug-3756` `bug-3757` `bug-3821` `bug-3844` `bug-3848` `bug-3889` `bug-3890` |
+| `shoulder` | 2 | `bug-10389` `bug-2146` |
 | `shoulder-ads` | 3 | `bug-2129` `bug-2130` `bug-256` |
 | `shoulder-aim` | 2 | `bug-1292` `bug-2104` |
 | `shoulder-override` | 1 | `bug-2073` |
 | `shoulder-swap` | 1 | `bug-1992` |
 | `show-all-with-lock` | 1 | `bug-787` |
-| `showmenu` | 1 | `bug-593` |
+| `showmenu` | 2 | `bug-3234` `bug-593` |
+| `showwindow` | 1 | `bug-3113` |
+| `shutdown` | 1 | `bug-10568` |
 | `shutter` | 2 | `bug-1051` `bug-1052` |
+| `sibling` | 1 | `bug-3852` |
 | `side-detection` | 1 | `bug-305` |
 | `side-effect` | 1 | `bug-918` |
+| `side-finding` | 2 | `bug-3166` `bug-3167` |
+| `side-magazine` | 1 | `bug-3660` |
 | `side-objective` | 1 | `bug-1589` |
+| `side-specific` | 1 | `bug-2761` |
 | `side-swap` | 1 | `bug-2718` |
-| `sidearm` | 7 | `bug-1204` `bug-2170` `bug-2464` `bug-2480` `bug-2491` `bug-2499` `bug-2661` |
+| `sidearm` | 8 | `bug-10667` `bug-1204` `bug-2170` `bug-2464` `bug-2480` `bug-2491` `bug-2499` `bug-2661` |
 | `sidechain` | 3 | `bug-1979` `bug-2250` `bug-2505` |
-| `sighttrace` | 2 | `bug-2211` `bug-2497` |
+| `sidehold` | 1 | `bug-3800` |
+| `sight-row` | 1 | `bug-10610` |
+| `sight-rows` | 1 | `bug-10617` |
+| `sightline` | 1 | `bug-10821` |
+| `sights` | 14 | `bug-10720` `bug-10724` `bug-10733` `bug-10737` `bug-10740` `bug-3640` `bug-3662` `bug-3664` `bug-3681` `bug-3697` `bug-3769` `bug-3816` `bug-3870` `bug-3871` |
+| `sights_override` | 1 | `bug-3662` |
+| `sighttrace` | 3 | `bug-10418` `bug-2211` `bug-2497` |
+| `sign-convention` | 1 | `bug-3660` |
 | `sign-error` | 1 | `bug-2139` |
+| `sign-off` | 1 | `bug-3501` |
+| `signal-smoke` | 2 | `bug-4003` `bug-4012` |
 | `signalrgb` | 1 | `bug-1795` |
 | `signals-officer` | 1 | `bug-1741` |
 | `silence-as-evidence` | 1 | `bug-1467` |
 | `silence-is-not-success` | 1 | `bug-1440` |
 | `silenced` | 2 | `bug-1714` `bug-500` |
+| `silenced-mp40` | 3 | `bug-3633` `bug-3640` `bug-3664` |
 | `silenced-pistol` | 3 | `bug-1706` `bug-1732` `bug-1735` |
 | `silencedpistol` | 1 | `bug-1683` |
 | `silencenativedialog` | 1 | `bug-842` |
-| `silent` | 3 | `bug-1196` `bug-1898` `bug-2567` |
+| `silencer` | 2 | `bug-3882` `bug-3883` |
+| `silent` | 5 | `bug-1196` `bug-1898` `bug-2567` `bug-3180` `bug-3377` |
 | `silent-content-loss` | 1 | `bug-1461` |
 | `silent-corruption` | 2 | `bug-1214` `bug-1228` |
-| `silent-failure` | 25 | `bug-1069` `bug-1244` `bug-1362` `bug-1363` `bug-1365` `bug-1374` `bug-1399` `bug-1408` `bug-1666` `bug-1710` `bug-1711` `bug-1782` `bug-1783` `bug-1791` `bug-1798` `bug-1818` `bug-1883` `bug-1885` `bug-2030` `bug-2081` `bug-2228` `bug-2335` `bug-2346` `bug-2393` `bug-775` |
+| `silent-drop` | 1 | `bug-10831` |
+| `silent-failure` | 33 | `bug-1069` `bug-1244` `bug-1362` `bug-1363` `bug-1365` `bug-1374` `bug-1399` `bug-1408` `bug-1666` `bug-1710` `bug-1711` `bug-1782` `bug-1783` `bug-1791` `bug-1798` `bug-1818` `bug-1883` `bug-1885` `bug-2030` `bug-2081` `bug-2228` `bug-2335` `bug-2346` `bug-2393` `bug-2875` `bug-2908` `bug-3179` `bug-3379` `bug-3555` `bug-3627` `bug-3957` `bug-4091` `bug-775` |
+| `silent-fallback` | 1 | `bug-3550` |
+| `silent-feature` | 1 | `bug-3098` |
 | `silent-guard` | 1 | `bug-1865` |
 | `silent-hang` | 1 | `bug-1441` |
-| `silent-no-op` | 1 | `bug-2017` |
+| `silent-log` | 1 | `bug-3326` |
+| `silent-no-op` | 2 | `bug-2017` `bug-3134` |
 | `silent-noop` | 7 | `bug-1560` `bug-1724` `bug-1928` `bug-2195` `bug-2205` `bug-2430` `bug-2436` |
+| `silent-noop-edit` | 1 | `bug-3320` |
 | `silent-restart` | 1 | `bug-1498` |
+| `silent-retry` | 1 | `bug-10345` |
 | `silent-skip` | 1 | `bug-1468` |
 | `silent-starvation` | 1 | `bug-2261` |
 | `silent-thread-abort` | 1 | `bug-1372` |
 | `silent-truncation` | 4 | `bug-1186` `bug-1187` `bug-1192` `bug-1193` |
-| `silent-veto` | 11 | `bug-1249` `bug-1552` `bug-1669` `bug-1688` `bug-1694` `bug-1811` `bug-1816` `bug-1975` `bug-2077` `bug-2083` `bug-2563` |
+| `silent-veto` | 12 | `bug-1249` `bug-1552` `bug-1669` `bug-1688` `bug-1694` `bug-1811` `bug-1816` `bug-1975` `bug-2077` `bug-2083` `bug-2563` `bug-3443` |
 | `silently-discarded` | 1 | `bug-2358` |
 | `simplification` | 1 | `bug-327` |
 | `sin` | 1 | `bug-2660` |
+| `single round` | 1 | `bug-3840` |
 | `single-client` | 2 | `bug-2160` `bug-2161` |
 | `single-front` | 1 | `bug-2711` |
+| `single-player` | 8 | `bug-10593` `bug-10594` `bug-10595` `bug-10607` `bug-10608` `bug-10616` `bug-10636` `bug-10804` |
+| `single-round` | 1 | `bug-3367` |
 | `single-sided-shell` | 1 | `bug-gl2-invisible-friendly-actor-root` |
 | `singleclient` | 1 | `bug-1658` |
-| `sink` | 6 | `bug-2424` `bug-2487` `bug-2496` `bug-2510` `bug-2537` `bug-2543` |
+| `sink` | 7 | `bug-2424` `bug-2487` `bug-2496` `bug-2510` `bug-2537` `bug-2543` `bug-2901` |
 | `sit-loop` | 1 | `bug-1636` |
 | `six-wrong-hypotheses` | 1 | `bug-1298` |
+| `size` | 2 | `bug-10886` `bug-10906` |
 | `size-minus-one` | 2 | `bug-1931` `bug-909` |
 | `skb` | 1 | `bug-854` |
-| `skc` | 7 | `bug-020` `bug-1162` `bug-1540` `bug-2085` `bug-2122` `bug-482` `bug-483` |
+| `skc` | 19 | `bug-020` `bug-10470` `bug-10505` `bug-10619` `bug-10714` `bug-1162` `bug-1540` `bug-2085` `bug-2122` `bug-3207` `bug-3241` `bug-3532` `bug-3657` `bug-3786` `bug-3823` `bug-3826` `bug-4124` `bug-482` `bug-483` |
 | `skc-orientation` | 1 | `bug-1002` |
 | `skc_flip` | 1 | `bug-2122` |
-| `skd` | 7 | `bug-020` `bug-095` `bug-1002` `bug-1540` `bug-1576` `bug-294` `bug-854` |
+| `skc_io` | 1 | `bug-3826` |
+| `skd` | 22 | `bug-020` `bug-095` `bug-1002` `bug-10439` `bug-10526` `bug-10653` `bug-10726` `bug-1540` `bug-1576` `bug-294` `bug-3376` `bug-3391` `bug-3564` `bug-3705` `bug-3711` `bug-3770` `bug-3864` `bug-3874` `bug-4137` `bug-4138` `bug-4139` `bug-854` |
 | `skd-format` | 1 | `bug-1534` |
+| `skel-cull` | 1 | `bug-4420` |
 | `skel_index` | 3 | `bug-932b` `bug-gl2-invisible-friendly-actor` `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `skeldiag` | 1 | `bug-gl2-invisible-friendly-actor-2nd` |
 | `skeldraw` | 1 | `bug-gl2-invisible-friendly-actor-2nd` |
-| `skeletal` | 7 | `bug-1184` `bug-1187` `bug-1209` `bug-1213` `bug-1214` `bug-1228` `bug-gl2-invisible-live-enemies-prepass-pose` |
+| `skeletal` | 9 | `bug-10655` `bug-1184` `bug-1187` `bug-1209` `bug-1213` `bug-1214` `bug-1228` `bug-3488` `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `skeletal-actor` | 2 | `bug-gl2-invisible-friendly-actor` `bug-gl2-invisible-friendly-actor-2nd` |
-| `skeleton` | 2 | `bug-2085` `bug-295` |
+| `skeleton` | 4 | `bug-2085` `bug-295` `bug-3228` `bug-3242` |
 | `skeletor` | 3 | `bug-1803` `bug-2292` `bug-2481` |
 | `skelmodel` | 1 | `bug-854` |
-| `skin` | 10 | `bug-1308` `bug-1595` `bug-666` `bug-683` `bug-715` `bug-755` `bug-759` `bug-787` `bug-801` `bug-803` |
+| `skin` | 15 | `bug-1308` `bug-1595` `bug-3208` `bug-3799` `bug-3915` `bug-3919` `bug-4131` `bug-666` `bug-683` `bug-715` `bug-755` `bug-759` `bug-787` `bug-801` `bug-803` |
+| `skin-cache` | 2 | `bug-3483` `bug-3491` |
 | `skin-detection` | 1 | `bug-868` |
 | `skin-gore` | 2 | `bug-817` `bug-828` |
 | `skin-offset` | 3 | `bug-1338` `bug-1341` `bug-2080` |
 | `skin-snap` | 1 | `bug-905` |
 | `skin-tier` | 1 | `bug-1874` |
 | `skin9` | 1 | `bug-809` |
+| `skin_std` | 1 | `bug-2754` |
 | `skinbase` | 1 | `bug-1952` |
-| `skinning` | 1 | `bug-1966` |
-| `skins` | 15 | `bug-1356` `bug-1357` `bug-1358` `bug-1359` `bug-1360` `bug-1521` `bug-1523` `bug-1545` `bug-1901` `bug-1913` `bug-1916` `bug-2203` `bug-2241` `bug-731` `bug-armory-roster76` |
-| `skip` | 1 | `bug-788` |
+| `skinning` | 3 | `bug-1966` `bug-3487` `bug-3577` |
+| `skins` | 19 | `bug-10314` `bug-1356` `bug-1357` `bug-1358` `bug-1359` `bug-1360` `bug-1521` `bug-1523` `bug-1545` `bug-1901` `bug-1913` `bug-1916` `bug-2203` `bug-2241` `bug-2757` `bug-2762` `bug-3227` `bug-731` `bug-armory-roster76` |
+| `skip` | 3 | `bug-10593` `bug-3474` `bug-788` |
 | `skip-locked` | 2 | `bug-759` `bug-772` |
 | `skipteamandweaponselect` | 1 | `bug-369` |
-| `sky` | 2 | `bug-1295` `bug-2583` |
+| `sky` | 17 | `bug-10425` `bug-1295` `bug-2583` `bug-2937` `bug-2938` `bug-2942` `bug-2987` `bug-3027` `bug-3081` `bug-3082` `bug-3106` `bug-3141` `bug-3380` `bug-3454` `bug-3478` `bug-3517` `bug-3523` |
+| `sky-fog` | 1 | `bug-3515` |
 | `sky-gate` | 3 | `bug-134` `bug-1383` `bug-231` |
+| `sky-leak` | 1 | `bug-10642` |
+| `sky-portal` | 1 | `bug-3212` |
 | `skybox` | 1 | `bug-1273` |
+| `skyfog` | 2 | `bug-3454` `bug-3460` |
+| `skylight` | 3 | `bug-10873` `bug-10884` `bug-10931` |
 | `slay` | 1 | `bug-2678` |
+| `sleep` | 2 | `bug-3128` `bug-3133` |
 | `slice1` | 1 | `bug-2599` |
 | `slice2` | 2 | `bug-2597` `bug-2602` |
 | `slice3` | 3 | `bug-2603` `bug-2604` `bug-2632` |
@@ -5040,49 +9393,73 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `slice5` | 1 | `bug-2607` |
 | `slice6` | 1 | `bug-2611` |
 | `slice7` | 2 | `bug-2613` `bug-2618` |
+| `slide` | 4 | `bug-3564` `bug-3650` `bug-4124` `bug-4132` |
 | `slide-chain` | 1 | `bug-2120` |
-| `slider` | 1 | `bug-2578` |
+| `slider` | 4 | `bug-2578` `bug-2822` `bug-3331` `bug-4169` |
 | `sliders` | 1 | `bug-postfx-intensity-clobbered` |
-| `slope` | 1 | `bug-2547` |
+| `sliver` | 1 | `bug-2988` |
+| `slop` | 2 | `bug-3290` `bug-3332` |
+| `slope` | 9 | `bug-10434` `bug-2547` `bug-2856` `bug-2867` `bug-2887` `bug-2900` `bug-3066` `bug-3086` `bug-4078` |
 | `slopes` | 1 | `bug-954` |
+| `slot` | 4 | `bug-3214` `bug-3341` `bug-3414` `bug-3525` |
 | `slot-254` | 1 | `bug-1792` |
 | `slot-6` | 1 | `bug-1854` |
-| `slot-collision` | 3 | `bug-2168` `bug-2169` `bug-553` |
+| `slot-collision` | 5 | `bug-2168` `bug-2169` `bug-2906` `bug-3199` `bug-553` |
 | `slot-exhaustion` | 1 | `bug-2013` |
 | `slot-map` | 4 | `bug-1402` `bug-1661` `bug-1847` `bug-808` |
 | `slot-reuse` | 2 | `bug-1135` `bug-2322` |
+| `slots` | 2 | `bug-10517` `bug-10666` |
 | `slots-127-134` | 1 | `bug-848` |
-| `slow-server` | 2 | `bug-1667` `bug-1673` |
+| `slow-server` | 3 | `bug-1667` `bug-1673` `bug-3209` |
+| `smart-objects` | 2 | `bug-eap-sobdark` `bug-eap-sobmeshes` |
+| `smg` | 53 | `bug-3584` `bug-3585` `bug-3586` `bug-3601` `bug-3602` `bug-3604` `bug-3605` `bug-3606` `bug-3607` `bug-3608` `bug-3624` `bug-3625` `bug-3626` `bug-3627` `bug-3628` `bug-3629` `bug-3633` `bug-3634` `bug-3635` `bug-3640` `bug-3641` `bug-3642` `bug-3643` `bug-3659` `bug-3660` `bug-3661` `bug-3662` `bug-3663` `bug-3664` `bug-3665` `bug-3666` `bug-3682` `bug-3683` `bug-3684` `bug-3685` `bug-3718` `bu… |
 | `sml` | 1 | `bug-2585` |
 | `sml-bsp` | 1 | `bug-951` |
-| `smoke` | 12 | `bug-1126` `bug-1176` `bug-1303` `bug-1847` `bug-1853` `bug-2179` `bug-2217` `bug-2303` `bug-2451` `bug-2501` `bug-2529` `bug-484` |
+| `smoke` | 21 | `bug-1126` `bug-1176` `bug-1303` `bug-1847` `bug-1853` `bug-2179` `bug-2217` `bug-2303` `bug-2451` `bug-2501` `bug-2529` `bug-3547` `bug-3579` `bug-3600` `bug-3648` `bug-3668` `bug-3684` `bug-3719` `bug-3975` `bug-4400` `bug-484` |
+| `smoke-test` | 5 | `bug-10312` `bug-3053` `bug-3054` `bug-3055` `bug-3056` |
 | `smoke_player` | 1 | `bug-1065` |
-| `snap` | 1 | `bug-326` |
-| `snapshot` | 3 | `bug-1186` `bug-1293` `bug-934` |
+| `smokegrenade` | 1 | `bug-3975` |
+| `smoking` | 1 | `bug-3956` |
+| `smoothness` | 3 | `bug-3013` `bug-3240` `bug-3272` |
+| `snap` | 4 | `bug-3133` `bug-326` `bug-3312` `bug-3317` |
+| `snaps` | 1 | `bug-3489` |
+| `snapshot` | 6 | `bug-10261` `bug-10339` `bug-1186` `bug-1293` `bug-3380` `bug-934` |
 | `snd` | 4 | `bug-2604` `bug-2656` `bug-2668` `bug-2669` |
 | `snd_info` | 1 | `bug-1194` |
-| `sniper` | 1 | `bug-256` |
-| `snow` | 5 | `bug-022` `bug-1158` `bug-1547` `bug-2710` `bug-430` |
-| `soak` | 1 | `bug-1062` |
-| `soft-lock` | 3 | `bug-1337` `bug-1339` `bug-2208` |
-| `soft-particles` | 1 | `bug-2594` |
-| `softlock` | 16 | `bug-1251` `bug-1252` `bug-1361` `bug-1366` `bug-1367` `bug-1368` `bug-1369` `bug-1370` `bug-1377` `bug-1429` `bug-1431` `bug-1433` `bug-1972` `bug-2088` `bug-2091` `bug-872` |
-| `solid` | 3 | `bug-055` `bug-2187` `bug-829` |
+| `sniper` | 11 | `bug-10286` `bug-10333` `bug-10348` `bug-10523` `bug-256` `bug-2915` `bug-2989` `bug-3367` `bug-3462` `bug-4030` `bug-4390` |
+| `snipers` | 6 | `bug-10506` `bug-10507` `bug-10509` `bug-10511` `bug-4153` `bug-4166` |
+| `snow` | 13 | `bug-022` `bug-10524` `bug-10565` `bug-1158` `bug-1547` `bug-2710` `bug-2796` `bug-3548` `bug-3552` `bug-3558` `bug-3583` `bug-3881` `bug-430` |
+| `snowclip` | 1 | `bug-3349` |
+| `snowfx` | 1 | `bug-10525` |
+| `soak` | 4 | `bug-10603` `bug-1062` `bug-2740` `bug-2826` |
+| `socket-buffer` | 1 | `bug-3912` |
+| `sockets` | 1 | `bug-3908` |
+| `soft-lock` | 5 | `bug-1337` `bug-1339` `bug-2208` `bug-4431` `bug-4432` |
+| `soft-particles` | 2 | `bug-2594` `bug-2979` |
+| `soft3d-preview` | 1 | `bug-3892` |
+| `softlock` | 22 | `bug-10325` `bug-1251` `bug-1252` `bug-1361` `bug-1366` `bug-1367` `bug-1368` `bug-1369` `bug-1370` `bug-1377` `bug-1429` `bug-1431` `bug-1433` `bug-1972` `bug-2088` `bug-2091` `bug-3468` `bug-3469` `bug-3470` `bug-3916` `bug-4436` `bug-872` |
+| `solid` | 8 | `bug-055` `bug-10632` `bug-2187` `bug-2891` `bug-2899` `bug-3357` `bug-4410` `bug-829` |
+| `solid-ground` | 1 | `bug-4030` |
+| `solid-tank` | 1 | `bug-2797` |
 | `solid-trigger` | 1 | `bug-938` |
 | `solid_bbox` | 2 | `bug-2187` `bug-2496` |
 | `solid_not` | 1 | `bug-1230` |
 | `solidify-scale` | 1 | `bug-962` |
 | `solidity` | 1 | `bug-865` |
-| `solo` | 1 | `bug-1855` |
-| `solved` | 3 | `bug-1668` `bug-1864` `bug-2412` |
+| `solo` | 2 | `bug-10688` `bug-1855` |
+| `solo-build` | 1 | `bug-2829` |
+| `solved` | 4 | `bug-1668` `bug-1864` `bug-2412` `bug-2762` |
 | `solved-unverified` | 1 | `bug-2419` |
+| `solver` | 2 | `bug-10710` `bug-10830` |
 | `sort-key` | 3 | `bug-1192` `bug-1196` `bug-1197` |
-| `sound` | 31 | `bug-099` `bug-1141` `bug-116` `bug-1161` `bug-1163` `bug-1188` `bug-1194` `bug-1398` `bug-1399` `bug-1548` `bug-1555` `bug-1672` `bug-1697` `bug-1774` `bug-1782` `bug-1783` `bug-1863` `bug-1885` `bug-1886` `bug-1898` `bug-2189` `bug-2198` `bug-2234` `bug-2248` `bug-2277` `bug-2280` `bug-2392` `bug-2393` `bug-2394` `bug-315` `bug-sfx-duck-filtered` |
+| `sound` | 58 | `bug-099` `bug-10275` `bug-10398` `bug-10412` `bug-10415` `bug-10475` `bug-10476` `bug-10493` `bug-10498` `bug-10802` `bug-10803` `bug-1141` `bug-116` `bug-1161` `bug-1163` `bug-1188` `bug-1194` `bug-1398` `bug-1399` `bug-1548` `bug-1555` `bug-1672` `bug-1697` `bug-1774` `bug-1782` `bug-1783` `bug-1863` `bug-1885` `bug-1886` `bug-1898` `bug-2189` `bug-2198` `bug-2234` `bug-2248` `bug-2277` `bug-2… |
 | `sound-alias` | 3 | `bug-1711` `bug-1807` `bug-2275` |
 | `sound-callback` | 1 | `bug-931b` |
 | `soundparms` | 1 | `bug-1898` |
-| `soviet` | 1 | `bug-1288` |
+| `source` | 1 | `bug-3418` |
+| `soviet` | 2 | `bug-1288` `bug-3401` |
 | `soviet-exemption` | 1 | `bug-1287` |
+| `sp` | 4 | `bug-10636` `bug-10644` `bug-10659` `bug-10683` |
 | `sp-hard-inherited` | 1 | `bug-1806` |
 | `sp-kit` | 1 | `bug-1279` |
 | `sp-maps` | 2 | `bug-2637` `bug-2639` |
@@ -5090,250 +9467,374 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `sp-only-path` | 1 | `bug-1802` |
 | `sp-parity` | 3 | `bug-1280` `bug-1282` `bug-2060` |
 | `sp-to-mp` | 1 | `bug-899` |
+| `sp3camp` | 2 | `bug-10616` `bug-10646` |
 | `space-contract` | 1 | `bug-1964` |
-| `spam` | 3 | `bug-1153` `bug-1777` `bug-gl2-maxpolys` |
-| `spawn` | 28 | `bug-1026` `bug-1231` `bug-1309` `bug-1319` `bug-1328` `bug-1328b` `bug-1328c` `bug-1624` `bug-1712` `bug-1716` `bug-1784` `bug-1785` `bug-1859` `bug-1906` `bug-1989` `bug-2031` `bug-2044` `bug-2194` `bug-2215` `bug-2251` `bug-2412` `bug-2667` `bug-355` `bug-359` `bug-369` `bug-800` `bug-802` `bug-t2l2-onfoot` |
+| `spam` | 4 | `bug-1153` `bug-1777` `bug-2767` `bug-gl2-maxpolys` |
+| `sparkle` | 1 | `bug-3167` |
+| `spawn` | 59 | `bug-1026` `bug-10293` `bug-10509` `bug-10603` `bug-10615` `bug-10683` `bug-10687` `bug-10694` `bug-10695` `bug-10907` `bug-1231` `bug-1309` `bug-1319` `bug-1328` `bug-1328b` `bug-1328c` `bug-1624` `bug-1712` `bug-1716` `bug-1784` `bug-1785` `bug-1859` `bug-1906` `bug-1989` `bug-2031` `bug-2044` `bug-2194` `bug-2215` `bug-2251` `bug-2412` `bug-2667` `bug-2724` `bug-2745` `bug-2759` `bug-2760` `bu… |
 | `spawn-callback` | 1 | `bug-349` |
 | `spawn-click` | 1 | `bug-1619` |
 | `spawn-derive` | 1 | `bug-2674` |
 | `spawn-flags` | 1 | `bug-1438` |
 | `spawn-form` | 1 | `bug-2366` |
 | `spawn-method` | 1 | `bug-1781` |
+| `spawn-order` | 1 | `bug-3308` |
+| `spawn-placement` | 2 | `bug-2831` `bug-2832` |
 | `spawn-point` | 1 | `bug-1568` |
 | `spawn-policy` | 2 | `bug-251` `bug-789` |
+| `spawn-protection` | 2 | `bug-10584` `bug-3853` |
+| `spawn-race` | 1 | `bug-4392` |
+| `spawn-relocation` | 1 | `bug-2826` |
 | `spawn-timing` | 3 | `bug-1555` `bug-1810` `bug-2534` |
 | `spawn-trigger` | 1 | `bug-1842` |
+| `spawn-visibility` | 2 | `bug-10405` `bug-10419` |
 | `spawn-warper` | 1 | `bug-874` |
 | `spawner` | 5 | `bug-1471` `bug-1493` `bug-1809` `bug-1846` `bug-2050` |
 | `spawninventory` | 3 | `bug-1204` `bug-897` `bug-939` |
-| `spawnlocations` | 4 | `bug-1028` `bug-552` `bug-874` `bug-940` |
+| `spawnkill` | 1 | `bug-3469` |
+| `spawnlocations` | 5 | `bug-1028` `bug-4190` `bug-552` `bug-874` `bug-940` |
 | `spawnprotect` | 2 | `bug-2640` `bug-2658` |
-| `spawns` | 5 | `bug-2637` `bug-2672` `bug-2684` `bug-2698` `bug-2700` |
+| `spawns` | 12 | `bug-2637` `bug-2672` `bug-2684` `bug-2698` `bug-2700` `bug-2834` `bug-2835` `bug-2843` `bug-2846` `bug-2857` `bug-2859` `bug-2863` |
 | `spawnturret` | 1 | `bug-054` |
+| `spawnwarper` | 1 | `bug-3469` |
 | `spawnweaponassert` | 3 | `bug-1677` `bug-1706` `bug-1928` |
-| `spearhead` | 9 | `bug-106` `bug-107` `bug-116` `bug-121` `bug-1252` `bug-1259` `bug-1272` `bug-1468` `bug-1477` |
+| `spearhead` | 12 | `bug-10447` `bug-106` `bug-10607` `bug-107` `bug-116` `bug-121` `bug-1252` `bug-1259` `bug-1272` `bug-1468` `bug-1477` `bug-4443` |
 | `spec-batch` | 1 | `bug-2123` |
+| `specialfx` | 1 | `bug-fx1025-6` |
 | `spectate` | 4 | `bug-1258` `bug-1267` `bug-1326` `bug-627` |
-| `spectator` | 9 | `bug-1204` `bug-1306` `bug-1401` `bug-1406` `bug-1456` `bug-1679` `bug-2174` `bug-380` `bug-871` |
+| `spectator` | 21 | `bug-10482` `bug-10587` `bug-10824` `bug-1204` `bug-1306` `bug-1401` `bug-1406` `bug-1456` `bug-1679` `bug-2174` `bug-2789` `bug-2928` `bug-2958` `bug-3162` `bug-3208` `bug-3474` `bug-3518` `bug-3750` `bug-380` `bug-4154` `bug-871` |
 | `specular` | 2 | `bug-1155` `bug-143` |
-| `speed` | 4 | `bug-089` `bug-1292` `bug-2146` `bug-2629` |
+| `speech` | 1 | `bug-4270` |
+| `speed` | 5 | `bug-089` `bug-1292` `bug-2146` `bug-2629` `bug-3393` |
 | `speed-floor` | 1 | `bug-2104` |
+| `spent-cases` | 1 | `bug-3388` |
+| `spfix` | 3 | `bug-10593` `bug-10594` `bug-10595` |
+| `spfix2` | 2 | `bug-10607` `bug-10608` |
 | `sphere-lighting` | 2 | `bug-1167` `bug-2554` |
 | `spin` | 2 | `bug-1986` `bug-923` |
-| `spotlight` | 3 | `bug-1705` `bug-2046` `bug-2548` |
+| `split` | 4 | `bug-3657` `bug-3863` `bug-4138` `bug-4453` |
+| `split-bone` | 2 | `bug-3743` `bug-3864` |
+| `split-screen` | 1 | `bug-10454` |
+| `split_bone` | 1 | `bug-4267` |
+| `split_tex` | 1 | `bug-10472` |
+| `splitter` | 1 | `bug-10699` |
+| `spot` | 2 | `bug-2999` `bug-3008` |
+| `spot-light` | 2 | `bug-2969` `bug-2980` |
+| `spotlight` | 5 | `bug-1705` `bug-2046` `bug-2548` `bug-3194` `bug-4011` |
+| `spots` | 1 | `bug-4030` |
 | `spr` | 1 | `bug-1424` |
-| `spread` | 3 | `bug-1881` `bug-2106` `bug-2132` |
+| `spread` | 4 | `bug-1881` `bug-2106` `bug-2132` `bug-2821` |
 | `spread-vs-accuracy` | 1 | `bug-1851` |
-| `sprint` | 8 | `bug-1324` `bug-164` `bug-2003` `bug-2004` `bug-2146` `bug-2555` `bug-319` `bug-554` |
-| `sprite` | 3 | `bug-108` `bug-1191` `bug-2201` |
+| `springfield` | 8 | `bug-10289` `bug-10304` `bug-3701` `bug-3840` `bug-3841` `bug-3849` `bug-3850` `bug-4390` |
+| `sprint` | 10 | `bug-1324` `bug-164` `bug-2003` `bug-2004` `bug-2146` `bug-2555` `bug-2920` `bug-319` `bug-3372` `bug-554` |
+| `sprite` | 4 | `bug-108` `bug-1191` `bug-2201` `bug-3424` |
 | `sprite-scale` | 1 | `bug-1189` |
 | `sprite-surfs` | 1 | `bug-1136` |
-| `sprites` | 3 | `bug-1193` `bug-2242` `bug-2594` |
-| `squad` | 2 | `bug-1693` `bug-1815` |
+| `spritegridlighting` | 1 | `bug-10524` |
+| `sprites` | 4 | `bug-1193` `bug-2242` `bug-2594` `bug-fx1025-1` |
+| `sqrt` | 1 | `bug-3383` |
+| `squad` | 7 | `bug-10523` `bug-10564` `bug-10850` `bug-1693` `bug-1815` `bug-4122` `bug-4123` |
 | `squad-bonus` | 1 | `bug-1870` |
-| `squad-brain` | 1 | `bug-1105` |
+| `squad-brain` | 2 | `bug-1105` `bug-3322` |
 | `squad-pathfinding` | 1 | `bug-123` |
 | `squadmate` | 1 | `bug-gl2-invisible-friendly-actor` |
 | `square` | 1 | `bug-138` |
-| `ssao` | 6 | `bug-1171` `bug-1177` `bug-1178` `bug-1211` `bug-152` `bug-159` |
-| `st` | 1 | `bug-137` |
-| `stack-overflow` | 1 | `bug-598` |
+| `squash` | 5 | `bug-10725` `bug-10728` `bug-10730` `bug-10751` `bug-10759` |
+| `srvperf` | 2 | `bug-3339` `bug-3356` |
+| `srvrows` | 2 | `bug-3877` `bug-3878` |
+| `ssao` | 9 | `bug-1171` `bug-1177` `bug-1178` `bug-1211` `bug-152` `bug-159` `bug-3084` `bug-3140` `bug-3142` |
+| `st` | 2 | `bug-137` `bug-4213` |
+| `stable` | 2 | `bug-3235` `bug-3244` |
+| `stack` | 1 | `bug-3024` |
+| `stack-overflow` | 2 | `bug-2727` `bug-598` |
 | `stack-overrun` | 1 | `bug-935` |
 | `stacking` | 1 | `bug-1514` |
 | `stage-a` | 1 | `bug-2123` |
+| `stage_rows` | 1 | `bug-3807` |
+| `staged` | 79 | `bug-2953` `bug-2984` `bug-2985` `bug-2987` `bug-2991` `bug-2994` `bug-3027` `bug-3043` `bug-3051` `bug-3052` `bug-3060` `bug-3061` `bug-3139` `bug-3151` `bug-3187` `bug-3194` `bug-3195` `bug-3196` `bug-3197` `bug-3198` `bug-3199` `bug-3200` `bug-3207` `bug-3208` `bug-3209` `bug-3210` `bug-3219` `bug-3224` `bug-3237` `bug-3262` `bug-3276` `bug-3277` `bug-3278` `bug-3294` `bug-3295` `bug-3498` `bu… |
 | `staged-kill` | 1 | `bug-2305` |
-| `staging` | 2 | `bug-2433` `bug-2482` |
-| `stale` | 1 | `bug-2647` |
+| `staged-unpublished` | 1 | `bug-3467` |
+| `staging` | 4 | `bug-10764` `bug-2433` `bug-2482` `bug-3150` |
+| `stale` | 2 | `bug-2647` `bug-3500` |
 | `stale-archive` | 1 | `bug-1961` |
 | `stale-artifact` | 1 | `bug-1925` |
 | `stale-baked-list` | 1 | `bug-1797` |
-| `stale-binary` | 1 | `bug-2620` |
+| `stale-binary` | 2 | `bug-2620` `bug-4427` |
+| `stale-check` | 1 | `bug-2978` |
 | `stale-client-state` | 1 | `bug-1457` |
-| `stale-comment` | 5 | `bug-1974` `bug-2179` `bug-2392` `bug-2401` `bug-2402` |
+| `stale-comment` | 7 | `bug-1974` `bug-2179` `bug-2392` `bug-2401` `bug-2402` `bug-3075` `bug-3136` |
 | `stale-config` | 2 | `bug-1990` `bug-2165` |
+| `stale-cvar` | 1 | `bug-4434` |
+| `stale-data` | 1 | `bug-2838` |
 | `stale-dll` | 2 | `bug-2697` `bug-sfx-duck-filtered` |
 | `stale-doc` | 1 | `bug-1402` |
 | `stale-entnum` | 1 | `bug-924` |
 | `stale-fbo` | 1 | `bug-1140` |
+| `stale-files` | 1 | `bug-10451` |
 | `stale-flag` | 1 | `bug-1740` |
 | `stale-gl1-assumption` | 1 | `bug-2151` |
+| `stale-handle` | 2 | `bug-4120` `bug-4429` |
 | `stale-kit` | 1 | `bug-1926` |
 | `stale-measurement` | 1 | `bug-2072` |
 | `stale-memory` | 1 | `bug-1995` |
 | `stale-note` | 1 | `bug-2036` |
-| `stale-record` | 3 | `bug-1027` `bug-1889` `bug-2089` |
+| `stale-obj` | 1 | `bug-3373` |
+| `stale-record` | 4 | `bug-1027` `bug-1889` `bug-2089` `bug-3138` |
 | `stale-scene` | 1 | `bug-1217` |
 | `stale-seed` | 1 | `bug-2017` |
-| `stale-state` | 1 | `bug-2028` |
+| `stale-snapshot` | 1 | `bug-3173` |
+| `stale-stage` | 1 | `bug-4428` |
+| `stale-state` | 3 | `bug-2028` `bug-3011` `bug-3102` |
 | `stale-tag` | 1 | `bug-1143` |
 | `stale-vertex-colors` | 1 | `bug-916` |
 | `staleness` | 1 | `bug-1860` |
-| `stall` | 2 | `bug-1222` `bug-251` |
-| `stamina` | 5 | `bug-2555` `bug-2559` `bug-2560` `bug-2593` `bug-554` |
+| `stalingrad` | 3 | `bug-10783` `bug-2731` `bug-2733` |
+| `stall` | 4 | `bug-1222` `bug-251` `bug-2886` `bug-3979` |
+| `stamina` | 6 | `bug-2555` `bug-2559` `bug-2560` `bug-2593` `bug-3372` `bug-554` |
+| `stamp` | 1 | `bug-10492` |
+| `stance` | 2 | `bug-3230` `bug-4177` |
+| `stand-in-officer` | 1 | `bug-3980` |
+| `standard` | 1 | `bug-3718` |
 | `standing` | 6 | `bug-2407` `bug-2409` `bug-2418` `bug-2419` `bug-2468` `bug-2469` |
 | `standing-corpse` | 1 | `bug-1921` |
 | `standing-only` | 1 | `bug-863` |
 | `standing-rule` | 3 | `bug-1320` `bug-1321` `bug-1975` |
-| `standoff` | 1 | `bug-2202` |
+| `standoff` | 2 | `bug-2202` `bug-4276` |
+| `stars` | 1 | `bug-3027` |
 | `start-solid` | 1 | `bug-1882` |
 | `start_server` | 2 | `bug-1261` `bug-2671` |
 | `start_server.cfg` | 1 | `bug-333` |
 | `startfiring` | 1 | `bug-1572` |
 | `startsolid` | 3 | `bug-2055` `bug-2547` `bug-923` |
-| `startyaw` | 1 | `bug-1573` |
+| `startupinfo` | 1 | `bug-3113` |
+| `startyaw` | 2 | `bug-10510` `bug-1573` |
+| `stat-bars` | 2 | `bug-3767` `bug-3797` |
 | `stat-packing` | 1 | `bug-1866` |
 | `stat-sharing` | 1 | `bug-2555` |
-| `stat_inzoom` | 1 | `bug-1208` |
+| `stat_inzoom` | 2 | `bug-1208` `bug-3462` |
+| `stat_mgheat` | 1 | `bug-3372` |
 | `statbar` | 1 | `bug-gl2-hudsegments` |
-| `state-machine` | 2 | `bug-1850` `bug-2108` |
+| `state` | 1 | `bug-10363` |
+| `state file` | 1 | `bug-3839` |
+| `state-file` | 7 | `bug-10583` `bug-3739` `bug-3740` `bug-3755` `bug-3772` `bug-3788` `bug-3887` |
+| `state-machine` | 6 | `bug-10899` `bug-1850` `bug-2108` `bug-2918` `bug-3546` `bug-3728` |
 | `state-only-set-as-side-effect` | 1 | `bug-1606` |
-| `statefile` | 2 | `bug-2563` `bug-2564` |
-| `statemap` | 19 | `bug-1291` `bug-1415` `bug-1836` `bug-1982` `bug-2099` `bug-2109` `bug-2113` `bug-2157` `bug-2162` `bug-299` `bug-307` `bug-309` `bug-313` `bug-319` `bug-320` `bug-323` `bug-350` `bug-379` `bug-382` |
+| `statefile` | 4 | `bug-2563` `bug-2564` `bug-3592` `bug-3594` |
+| `statemachine` | 1 | `bug-2931` |
+| `statemap` | 34 | `bug-10278` `bug-10394` `bug-10486` `bug-10487` `bug-10859` `bug-1291` `bug-1415` `bug-1836` `bug-1982` `bug-2099` `bug-2109` `bug-2113` `bug-2157` `bug-2162` `bug-299` `bug-307` `bug-309` `bug-313` `bug-319` `bug-320` `bug-323` `bug-3324` `bug-3372` `bug-350` `bug-3574` `bug-3658` `bug-3775` `bug-379` `bug-3809` `bug-382` `bug-3854` `bug-4126` `bug-4183` `bug-4213` |
 | `statemap-ruled-out` | 1 | `bug-1835` |
 | `statement-skipped` | 1 | `bug-1584` |
+| `static` | 1 | `bug-3170` |
+| `static-buffer` | 1 | `bug-10320` |
+| `static-global` | 1 | `bug-3150` |
 | `static-lifetime` | 1 | `bug-1146` |
-| `static-models` | 1 | `bug-1197` |
+| `static-model` | 1 | `bug-2836` |
+| `static-models` | 4 | `bug-1197` `bug-2944` `bug-2945` `bug-3224` |
 | `static-tik` | 1 | `bug-916` |
 | `static-vs-runtime` | 1 | `bug-1462` |
 | `stations` | 1 | `bug-2635` |
-| `stats` | 1 | `bug-1763` |
+| `stats` | 3 | `bug-10557` `bug-10921` `bug-1763` |
 | `statue-enemy` | 1 | `bug-1311` |
-| `stealth` | 41 | `bug-1604` `bug-1606` `bug-1615` `bug-1616` `bug-1617` `bug-1618` `bug-1623` `bug-1624` `bug-1630` `bug-1631` `bug-1636` `bug-1638` `bug-1639` `bug-1640` `bug-1646` `bug-1654` `bug-1671` `bug-1674` `bug-1676` `bug-1677` `bug-1682` `bug-1683` `bug-1685` `bug-1686` `bug-1688` `bug-1694` `bug-1698` `bug-1712` `bug-1714` `bug-1729` `bug-1732` `bug-1738` `bug-1748` `bug-1750` `bug-1786` `bug-1792` `bu… |
+| `stealth` | 43 | `bug-1604` `bug-1606` `bug-1615` `bug-1616` `bug-1617` `bug-1618` `bug-1623` `bug-1624` `bug-1630` `bug-1631` `bug-1636` `bug-1638` `bug-1639` `bug-1640` `bug-1646` `bug-1654` `bug-1671` `bug-1674` `bug-1676` `bug-1677` `bug-1682` `bug-1683` `bug-1685` `bug-1686` `bug-1688` `bug-1694` `bug-1698` `bug-1712` `bug-1714` `bug-1729` `bug-1732` `bug-1738` `bug-1748` `bug-1750` `bug-1786` `bug-1792` `bu… |
 | `stealth-start` | 1 | `bug-1603` |
+| `steamdeck` | 4 | `bug-10280` `bug-10281` `bug-10308` `bug-10312` |
 | `steelseries-sonar` | 2 | `bug-153` `bug-156` |
-| `steering` | 2 | `bug-2311` `bug-305` |
+| `steep` | 2 | `bug-2887` `bug-2898` |
+| `steering` | 3 | `bug-2311` `bug-305` `bug-3052` |
 | `stem-name` | 1 | `bug-1955` |
+| `sten` | 11 | `bug-3585` `bug-3601` `bug-3722` `bug-3724` `bug-3725` `bug-3760` `bug-3762` `bug-3763` `bug-3798` `bug-3802` `bug-4215` |
 | `step-edges` | 1 | `bug-958` |
 | `step-out` | 1 | `bug-311` |
 | `step-smoothing` | 1 | `bug-1998` |
 | `stereo-vs-mono` | 1 | `bug-933b` |
+| `stg44` | 2 | `bug-10302` `bug-3207` |
 | `stickybomb` | 1 | `bug-1271` |
+| `stinger` | 2 | `bug-4269` `bug-4270` |
 | `stingers` | 1 | `bug-933b` |
+| `stock` | 1 | `bug-10614` |
 | `stock-code` | 2 | `bug-2000` `bug-2092` |
+| `stock-model` | 1 | `bug-10467` |
 | `stopanimating` | 1 | `bug-1749` |
+| `stoppainhandler` | 1 | `bug-3921` |
 | `stopwatch` | 4 | `bug-1753` `bug-1759` `bug-1760` `bug-1767` |
-| `storm` | 1 | `bug-1802` |
+| `storage` | 1 | `bug-10258` |
+| `storm` | 5 | `bug-10432` `bug-10458` `bug-10511` `bug-1802` `bug-3252` |
+| `storm-darkness` | 5 | `bug-3211` `bug-3212` `bug-3213` `bug-3222` `bug-3223` |
 | `story-actor` | 3 | `bug-837` `bug-839` `bug-842` |
 | `story-actors` | 1 | `bug-725` |
-| `strafe` | 1 | `bug-2149` |
+| `str` | 1 | `bug-10897` |
+| `strafe` | 2 | `bug-10420` `bug-2149` |
 | `straggler` | 1 | `bug-873` |
 | `straggler-stall` | 1 | `bug-1924` |
+| `straight-link` | 1 | `bug-2964` |
 | `strand` | 1 | `bug-1579` |
 | `stranded-actor` | 1 | `bug-1575` |
 | `stranded-text` | 1 | `bug-1792` |
-| `stress` | 2 | `bug-2105` `bug-2106` |
+| `stray-file` | 2 | `bug-3023` `bug-3378` |
+| `stress` | 5 | `bug-2105` `bug-2106` `bug-3294` `bug-4267` `bug-4398` |
+| `stress-pak` | 2 | `bug-10513` `bug-4448` |
+| `stress-reload` | 1 | `bug-4213` |
+| `stretch` | 3 | `bug-3131` `bug-3290` `bug-4138` |
+| `stretched` | 1 | `bug-3281` |
+| `stricken` | 1 | `bug-4123` |
+| `string` | 1 | `bug-10515` |
 | `string-helper` | 1 | `bug-1351` |
 | `string-keys` | 1 | `bug-1916` |
 | `string-literal` | 1 | `bug-331` |
 | `string-vs-int` | 2 | `bug-1281` `bug-1372` |
-| `stringify` | 2 | `bug-1148` `bug-1240` |
+| `stringify` | 3 | `bug-1148` `bug-1240` `bug-2820` |
+| `stripper-clip` | 3 | `bug-3390` `bug-3735` `bug-3875` |
 | `structbuiltin` | 1 | `bug-1581` |
 | `structural` | 1 | `bug-2281` |
 | `structural-fix` | 1 | `bug-2033` |
 | `structures` | 1 | `bug-1567` |
 | `stub` | 2 | `bug-1126` `bug-gl2-reddecals` |
 | `stub-parser` | 1 | `bug-1381` |
-| `stuck` | 5 | `bug-2031` `bug-2247` `bug-252` `bug-2547` `bug-2714` |
+| `stuck` | 21 | `bug-10545` `bug-10566` `bug-10623` `bug-2031` `bug-2247` `bug-252` `bug-2547` `bug-2714` `bug-2805` `bug-2815` `bug-2825` `bug-2831` `bug-2841` `bug-2891` `bug-2892` `bug-2899` `bug-2900` `bug-3351` `bug-3357` `bug-3573` `bug-3916` |
 | `stuck-actor` | 2 | `bug-2192` `bug-2194` |
+| `stuck-escape` | 2 | `bug-2879` `bug-2881` |
+| `stuck-icon` | 1 | `bug-4210` |
 | `stuck-nohit` | 1 | `bug-954` |
 | `stuck-text` | 1 | `bug-1679` |
 | `stuck-value` | 1 | `bug-1501` |
 | `stuffcommand` | 2 | `bug-2116` `bug-589` |
-| `stufftext` | 15 | `bug-1305` `bug-1364` `bug-1449` `bug-1628` `bug-1678` `bug-1747` `bug-1991` `bug-2007` `bug-2152` `bug-2580` `bug-2588` `bug-595` `bug-597` `bug-736` `bug-758` |
+| `stuffsrv` | 1 | `bug-3526` |
+| `stufftext` | 28 | `bug-10291` `bug-10878` `bug-10895` `bug-10912` `bug-1305` `bug-1364` `bug-1449` `bug-1628` `bug-1678` `bug-1747` `bug-1991` `bug-2007` `bug-2152` `bug-2580` `bug-2588` `bug-3012` `bug-3025` `bug-3093` `bug-3198` `bug-3211` `bug-3394` `bug-3444` `bug-3902` `bug-3909` `bug-595` `bug-597` `bug-736` `bug-758` |
+| `stufftext-filter` | 2 | `bug-3234` `bug-3276` |
 | `stufftext-order` | 1 | `bug-1918` |
 | `stuka` | 3 | `bug-1174` `bug-1373` `bug-1488` |
 | `stun` | 2 | `bug-1737` `bug-1739` |
 | `stutter` | 3 | `bug-071` `bug-1703` `bug-2696` |
 | `sub-bass` | 1 | `bug-2153` |
 | `subdirectory` | 1 | `bug-1601` |
+| `subtitle` | 3 | `bug-10411` `bug-3098` `bug-4006` |
 | `subtitles` | 1 | `bug-1747` |
-| `sun` | 2 | `bug-1154` `bug-1207` |
+| `sun` | 4 | `bug-1154` `bug-1207` `bug-3014` `bug-3101` |
+| `sun-bridge` | 1 | `bug-3010` |
 | `sun-cascade` | 2 | `bug-1209` `bug-1210` |
-| `sun-rays` | 1 | `bug-1169` |
+| `sun-rays` | 3 | `bug-1169` `bug-3141` `bug-3145` |
+| `sun-shadow` | 3 | `bug-3006` `bug-3213` `bug-3222` |
+| `sun-shadow-mask` | 1 | `bug-3171` |
 | `sunflare` | 1 | `bug-1207` |
 | `sunrays` | 1 | `bug-1207` |
 | `super-messy` | 1 | `bug-796` |
-| `superseded` | 1 | `bug-2349` |
+| `superseded` | 2 | `bug-2349` `bug-2726` |
 | `superseded-fix` | 1 | `bug-1561` |
 | `supersedes-1608` | 1 | `bug-1620` |
 | `supersedes-1753` | 2 | `bug-1759` `bug-1760` |
 | `supersedes-1759` | 1 | `bug-1760` |
 | `supersedes-1760` | 1 | `bug-1767` |
 | `supine` | 11 | `bug-2122` `bug-2123` `bug-2124` `bug-2125` `bug-2126` `bug-2127` `bug-2128` `bug-2129` `bug-2130` `bug-2134` `bug-2135` |
-| `suppression` | 7 | `bug-1151` `bug-1268` `bug-1305` `bug-1322` `bug-1939` `bug-2106` `bug-gl2-suppressfx` |
+| `supply` | 2 | `bug-10477` `bug-3307` |
+| `support-hand` | 2 | `bug-3584` `bug-3602` |
+| `suppression` | 10 | `bug-10279` `bug-1151` `bug-1268` `bug-1305` `bug-1322` `bug-1939` `bug-2106` `bug-2976` `bug-3049` `bug-gl2-suppressfx` |
 | `surf` | 3 | `bug-2521` `bug-2525` `bug-2541` |
 | `surf_metal` | 1 | `bug-2394` |
-| `surface` | 8 | `bug-095` `bug-1216` `bug-1308` `bug-1360` `bug-1912` `bug-2566` `bug-2568` `bug-533` |
+| `surface` | 10 | `bug-095` `bug-1216` `bug-1308` `bug-1360` `bug-1912` `bug-2566` `bug-2568` `bug-3094` `bug-3617` `bug-533` |
 | `surface-command` | 1 | `bug-1332` |
 | `surface-index` | 1 | `bug-1880` |
 | `surface-names` | 1 | `bug-1539` |
 | `surface-nodraw` | 1 | `bug-1246` |
 | `surfaceflags` | 1 | `bug-2314` |
-| `surfaces` | 4 | `bug-1988` `bug-2075` `bug-2080` `bug-776` |
+| `surfaces` | 6 | `bug-10613` `bug-10726` `bug-1988` `bug-2075` `bug-2080` `bug-776` |
 | `surfaces-memset` | 1 | `bug-2075` |
 | `surgical-operation` | 2 | `bug-1576` `bug-1577` |
-| `surrender` | 9 | `bug-1945` `bug-1971` `bug-1972` `bug-1973` `bug-1980` `bug-2024` `bug-2088` `bug-2091` `bug-2550` |
+| `surprising-runtime-behaviour` | 1 | `bug-3113` |
+| `surrender` | 20 | `bug-1945` `bug-1971` `bug-1972` `bug-1973` `bug-1980` `bug-2024` `bug-2088` `bug-2091` `bug-2550` `bug-2976` `bug-3304` `bug-3424` `bug-3425` `bug-3468` `bug-3469` `bug-3528` `bug-4014` `bug-4015` `bug-4016` `bug-4017` |
 | `surrender-convert` | 1 | `bug-1958` |
 | `survey` | 1 | `bug-2563` |
+| `survive` | 1 | `bug-10457` |
+| `sv_autorecord` | 1 | `bug-10301` |
+| `sv_cmdpark` | 1 | `bug-3480` |
+| `sv_dmspeedmult` | 1 | `bug-2912` |
 | `sv_findindex` | 1 | `bug-1219` |
+| `sv_fps` | 2 | `bug-3381` `bug-3638` |
+| `sv_getuserinfo` | 1 | `bug-botslot-userinfo` |
 | `sv_init` | 1 | `bug-1478` |
-| `sv_maxbots` | 2 | `bug-2616` `bug-2617` |
+| `sv_maxbots` | 3 | `bug-2616` `bug-2617` `bug-botslot-userinfo` |
+| `sv_maxclients` | 1 | `bug-2729` |
 | `sv_numbots` | 1 | `bug-2616` |
+| `sv_record` | 1 | `bug-10298` |
+| `sv_running` | 1 | `bug-10268` |
 | `sv_runspeed` | 1 | `bug-2619` |
+| `sv_serverid` | 1 | `bug-3060` |
 | `sv_snapshot` | 1 | `bug-2177` |
+| `svf_bot` | 1 | `bug-3042` |
 | `svf_notsingleclient` | 2 | `bug-304` `bug-647` |
 | `svflags` | 1 | `bug-1658` |
-| `sway` | 1 | `bug-2132` |
-| `sweep` | 49 | `bug-1374` `bug-1442` `bug-1445` `bug-1446` `bug-1450` `bug-1451` `bug-1452` `bug-1453` `bug-1455` `bug-1456` `bug-1459` `bug-1463` `bug-1464` `bug-1465` `bug-1466` `bug-1467` `bug-1473` `bug-1474` `bug-1475` `bug-1476` `bug-1477` `bug-1478` `bug-1479` `bug-1480` `bug-1481` `bug-1482` `bug-1483` `bug-1484` `bug-1485` `bug-1486` `bug-1487` `bug-1488` `bug-1489` `bug-1490` `bug-1491` `bug-1492` `bu… |
+| `svlag` | 1 | `bug-3209` |
+| `sway` | 9 | `bug-10763` `bug-2132` `bug-3601` `bug-3620` `bug-3633` `bug-3667` `bug-3669` `bug-3682` `bug-3718` |
+| `sway envelope` | 1 | `bug-3835` |
+| `sway-envelope` | 1 | `bug-3733` |
+| `sweep` | 53 | `bug-10816` `bug-10915` `bug-1374` `bug-1442` `bug-1445` `bug-1446` `bug-1450` `bug-1451` `bug-1452` `bug-1453` `bug-1455` `bug-1456` `bug-1459` `bug-1463` `bug-1464` `bug-1465` `bug-1466` `bug-1467` `bug-1473` `bug-1474` `bug-1475` `bug-1476` `bug-1477` `bug-1478` `bug-1479` `bug-1480` `bug-1481` `bug-1482` `bug-1483` `bug-1484` `bug-1485` `bug-1486` `bug-1487` `bug-1488` `bug-1489` `bug-1490` `… |
+| `sweep2` | 11 | `bug-3194` `bug-3195` `bug-3196` `bug-3197` `bug-3198` `bug-3199` `bug-3200` `bug-3201` `bug-3202` `bug-3203` `bug-3204` |
 | `sweeper` | 3 | `bug-2326` `bug-2348` `bug-2472` |
 | `swim` | 1 | `bug-2561` |
 | `switch` | 1 | `bug-1960` |
+| `symbol-interposition` | 1 | `bug-10312` |
 | `symbolication` | 1 | `bug-122` |
 | `symmetric` | 1 | `bug-2645` |
-| `sync` | 1 | `bug-538` |
+| `sync` | 4 | `bug-3904` `bug-3905` `bug-3907` `bug-538` |
 | `syntax` | 1 | `bug-1913` |
+| `syntax-check` | 1 | `bug-3150` |
 | `sys_main` | 1 | `bug-1064` |
 | `systematic-debugging` | 1 | `bug-229` |
 | `systemic` | 4 | `bug-1461` `bug-1669` `bug-1679` `bug-1688` |
 | `systemic-fix` | 1 | `bug-2368` |
 | `systeminfo` | 1 | `bug-2589` |
-| `t1` | 6 | `bug-1751` `bug-1822` `bug-1826` `bug-1830` `bug-1895` `bug-1908` |
-| `t11` | 9 | `bug-1027` `bug-1889` `bug-1975` `bug-2392` `bug-2395` `bug-2396` `bug-2398` `bug-2401` `bug-2402` |
-| `t14` | 8 | `bug-2400` `bug-2406` `bug-2410` `bug-2417` `bug-2579` `bug-2580` `bug-2586` `bug-2592` |
+| `t1` | 8 | `bug-10520` `bug-1751` `bug-1822` `bug-1826` `bug-1830` `bug-1895` `bug-1908` `bug-3423` |
+| `t11` | 10 | `bug-1027` `bug-1889` `bug-1975` `bug-2392` `bug-2395` `bug-2396` `bug-2398` `bug-2401` `bug-2402` `bug-3138` |
+| `t14` | 28 | `bug-10911` `bug-10928` `bug-2400` `bug-2406` `bug-2410` `bug-2417` `bug-2579` `bug-2580` `bug-2586` `bug-2592` `bug-2820` `bug-2995` `bug-3033` `bug-3062` `bug-3076` `bug-3077` `bug-3112` `bug-3125` `bug-3143` `bug-3159` `bug-3169` `bug-3179` `bug-3211` `bug-3245` `bug-3247` `bug-3330` `bug-3457` `bug-3507` |
+| `t14e` | 1 | `bug-3152` |
 | `t16` | 1 | `bug-1861` |
 | `t18` | 2 | `bug-1758` `bug-1764` |
 | `t19` | 1 | `bug-1758` |
-| `t1l1` | 1 | `bug-1285` |
+| `t1l1` | 8 | `bug-1285` `bug-2872` `bug-2893` `bug-2903` `bug-2962` `bug-3307` `bug-3460` `bug-4443` |
 | `t1l2` | 3 | `bug-116` `bug-1251` `bug-1285` |
-| `t1l3` | 8 | `bug-1023` `bug-121` `bug-122` `bug-123` `bug-1251` `bug-133` `bug-1626` `bug-227` |
-| `t2` | 4 | `bug-1600` `bug-2081` `bug-2399` `bug-2414` |
+| `t1l3` | 12 | `bug-1023` `bug-121` `bug-122` `bug-123` `bug-1251` `bug-133` `bug-1626` `bug-227` `bug-2901` `bug-2902` `bug-3026` `bug-3307` |
+| `t2` | 13 | `bug-10483` `bug-10522` `bug-10700` `bug-1600` `bug-2081` `bug-2399` `bug-2414` `bug-2820` `bug-2986` `bug-3279` `bug-3283` `bug-3286` `bug-3333` |
 | `t20` | 6 | `bug-1732` `bug-1735` `bug-1736` `bug-1738` `bug-1739` `bug-1743` |
-| `t2l1` | 6 | `bug-1251` `bug-1487` `bug-1584` `bug-1801` `bug-gl2-foliage` `bug-gl2-texmods-null` |
-| `t2l2` | 12 | `bug-052` `bug-054` `bug-055` `bug-056` `bug-057` `bug-071` `bug-1026` `bug-1472` `bug-1481` `bug-1891` `bug-t2l2-f5bind` `bug-t2l2-onfoot` |
-| `t2l3` | 4 | `bug-1022` `bug-1023` `bug-1493` `bug-1588` |
-| `t2l4` | 2 | `bug-1023` `bug-1049` |
-| `t3` | 6 | `bug-1586` `bug-1865` `bug-1883` `bug-1975` `bug-2405` `bug-2407` |
-| `t3l1` | 16 | `bug-1253` `bug-1270` `bug-1271` `bug-1272` `bug-1275` `bug-1276` `bug-1279` `bug-1280` `bug-1282` `bug-1286` `bug-1287` `bug-1288` `bug-1289` `bug-1295` `bug-1473` `bug-1625` |
-| `t3l2` | 7 | `bug-1253` `bug-1257` `bug-1266` `bug-1288` `bug-1434` `bug-1500` `bug-1626` |
-| `t6` | 3 | `bug-1893` `bug-2396` `bug-2403` |
-| `t7` | 4 | `bug-1884` `bug-1961` `bug-2578` `bug-2584` |
-| `t8` | 1 | `bug-2580` |
+| `t2l1` | 15 | `bug-1251` `bug-1487` `bug-1584` `bug-1801` `bug-2880` `bug-2882` `bug-2884` `bug-2899` `bug-2966` `bug-3066` `bug-3324` `bug-3351` `bug-3984` `bug-gl2-foliage` `bug-gl2-texmods-null` |
+| `t2l2` | 13 | `bug-052` `bug-054` `bug-055` `bug-056` `bug-057` `bug-071` `bug-1026` `bug-1472` `bug-1481` `bug-1891` `bug-3196` `bug-t2l2-f5bind` `bug-t2l2-onfoot` |
+| `t2l3` | 7 | `bug-1022` `bug-1023` `bug-1493` `bug-1588` `bug-2891` `bug-2896` `bug-2898` |
+| `t2l4` | 6 | `bug-1023` `bug-1049` `bug-10576` `bug-10584` `bug-2892` `bug-2900` |
+| `t2l4-mortars` | 1 | `bug-10584` |
+| `t3` | 9 | `bug-1586` `bug-1865` `bug-1883` `bug-1975` `bug-2405` `bug-2407` `bug-3000` `bug-3245` `bug-3455` |
+| `t34` | 1 | `bug-2797` |
+| `t3l1` | 20 | `bug-1253` `bug-1270` `bug-1271` `bug-1272` `bug-1275` `bug-1276` `bug-1279` `bug-1280` `bug-1282` `bug-1286` `bug-1287` `bug-1288` `bug-1289` `bug-1295` `bug-1473` `bug-1625` `bug-2872` `bug-2951` `bug-2953` `bug-3307` |
+| `t3l2` | 10 | `bug-1253` `bug-1257` `bug-1266` `bug-1288` `bug-1434` `bug-1500` `bug-1626` `bug-2951` `bug-2953` `bug-3197` |
+| `t4` | 5 | `bug-2997` `bug-3003` `bug-3179` `bug-3180` `bug-3252` |
+| `t6` | 5 | `bug-10552` `bug-1893` `bug-2396` `bug-2403` `bug-3085` |
+| `t7` | 6 | `bug-1884` `bug-1961` `bug-2578` `bug-2584` `bug-3077` `bug-3108` |
+| `t8` | 4 | `bug-2580` `bug-3211` `bug-3394` `bug-3444` |
 | `tab` | 1 | `bug-2681` |
+| `table` | 1 | `bug-10831` |
 | `table-verified-offline` | 1 | `bug-2095` |
 | `tabs` | 2 | `bug-450` `bug-626` |
+| `tactics` | 1 | `bug-3686` |
 | `taf_random` | 1 | `bug-1955` |
 | `tag-eject` | 1 | `bug-1900` |
+| `tag_eject` | 1 | `bug-10619` |
 | `tag_seat` | 1 | `bug-322` |
 | `tag_static_renderer` | 1 | `bug-1146` |
+| `tag_weapon` | 1 | `bug-3630` |
+| `tag_weapon_left` | 4 | `bug-10288` `bug-3354` `bug-3598` `bug-3741` |
 | `tag_weapon_right` | 1 | `bug-310` |
 | `tags` | 2 | `bug-1369` `bug-1370` |
+| `tagspawn` | 1 | `bug-3580` |
+| `tagspawnlinked` | 1 | `bug-3567` |
 | `takeall` | 7 | `bug-098` `bug-1279` `bug-1604` `bug-366` `bug-368` `bug-620` `bug-625` |
 | `takecover` | 1 | `bug-536` |
+| `takeoff` | 1 | `bug-2957` |
+| `talonclouds` | 1 | `bug-3081` |
 | `tangent` | 1 | `bug-2150` |
-| `tank` | 4 | `bug-1054` `bug-1371` `bug-1434` `bug-541` |
+| `tank` | 11 | `bug-1054` `bug-10864` `bug-1371` `bug-1434` `bug-2792` `bug-2815` `bug-2824` `bug-2857` `bug-3197` `bug-4435` `bug-541` |
+| `tankbuild` | 1 | `bug-10277` |
 | `tanks` | 1 | `bug-1257` |
 | `target` | 1 | `bug-2620` |
+| `target-game` | 1 | `bug-2780` |
 | `targetname` | 2 | `bug-054` `bug-1482` |
+| `targetname-case` | 1 | `bug-10584` |
 | `targetname-collision` | 3 | `bug-2192` `bug-2194` `bug-2199` |
 | `targetname-vs-entity` | 1 | `bug-2046` |
 | `targettype` | 2 | `bug-1841` `bug-1845` |
@@ -5342,125 +9843,212 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `taunt` | 2 | `bug-775` `bug-taunt-intro` |
 | `taunts` | 1 | `bug-725` |
 | `tbn` | 1 | `bug-2150` |
+| `tcgen-environment` | 1 | `bug-4423` |
 | `tcmod` | 2 | `bug-1242` `bug-gl2-texmods-null` |
-| `team` | 1 | `bug-1513` |
+| `tcmod-rotate` | 1 | `bug-3059` |
+| `tdm` | 1 | `bug-10909` |
+| `team` | 2 | `bug-1513` `bug-2745` |
 | `team-flip` | 1 | `bug-1958` |
 | `team-menu` | 1 | `bug-1453` |
 | `team-revive` | 1 | `bug-2175` |
-| `team-select` | 1 | `bug-1455` |
+| `team-roles` | 1 | `bug-2993` |
+| `team-select` | 4 | `bug-1455` `bug-2812` `bug-2813` `bug-2823` |
+| `team-tactics` | 3 | `bug-2986` `bug-3000` `bug-3024` |
 | `teammate` | 1 | `bug-1871` |
-| `teardown` | 3 | `bug-1563` `bug-1659` `bug-1679` |
-| `telemetry` | 2 | `bug-1740` `bug-2180` |
+| `teammates` | 1 | `bug-4122` |
+| `teams` | 1 | `bug-2939` |
+| `teamselect` | 1 | `bug-4445` |
+| `teardown` | 4 | `bug-1563` `bug-1659` `bug-1679` `bug-2906` |
+| `tele` | 2 | `bug-3185` `bug-3457` |
+| `telemetry` | 6 | `bug-1740` `bug-2180` `bug-2915` `bug-2925` `bug-2927` `bug-2967` |
 | `telephone` | 1 | `bug-1612` |
+| `teleport` | 7 | `bug-3181` `bug-3351` `bug-3687` `bug-3693` `bug-3750` `bug-4031` `bug-4034` |
+| `teleportmaster` | 1 | `bug-3176` |
 | `template-stomp` | 1 | `bug-1947` |
 | `tempmodel` | 3 | `bug-1414` `bug-1417` `bug-1423` |
-| `tempmodels` | 4 | `bug-2217` `bug-2242` `bug-2303` `bug-2536` |
+| `tempmodels` | 5 | `bug-2217` `bug-2242` `bug-2303` `bug-2536` `bug-3569` |
 | `temporal-smoothing` | 1 | `bug-2554` |
 | `temporary-became-permanent` | 1 | `bug-2018` |
-| `terrain` | 9 | `bug-2144` `bug-2145` `bug-2150` `bug-2154` `bug-2164` `bug-2223` `bug-2224` `bug-2547` `bug-m3l2-ground-seams` |
+| `terrain` | 28 | `bug-10820` `bug-2144` `bug-2145` `bug-2150` `bug-2154` `bug-2164` `bug-2223` `bug-2224` `bug-2547` `bug-2882` `bug-2905` `bug-2950` `bug-2953` `bug-2985` `bug-2994` `bug-3006` `bug-3007` `bug-3039` `bug-3040` `bug-3061` `bug-3064` `bug-3089` `bug-3090` `bug-3100` `bug-3497` `bug-3575` `bug-4409` `bug-m3l2-ground-seams` |
 | `terrain-lump` | 1 | `bug-956` |
 | `terrain-shell` | 1 | `bug-2302` |
-| `test-harness` | 2 | `bug-1143` `bug-2600` |
+| `tess-stream` | 1 | `bug-3483` |
+| `tessellation` | 1 | `bug-10728` |
+| `test` | 6 | `bug-10264` `bug-10322` `bug-10350` `bug-10478` `bug-3230` `bug-3384` |
+| `test-1025` | 2 | `bug-4406` `bug-4407` |
+| `test-artifact` | 1 | `bug-3902` |
+| `test-cfg` | 1 | `bug-2982` |
+| `test-client` | 4 | `bug-10635` `bug-10741` `bug-2940` `bug-3044` |
+| `test-design` | 1 | `bug-3149` |
+| `test-driver` | 1 | `bug-3980` |
+| `test-environment` | 1 | `bug-3057` |
+| `test-flaw` | 1 | `bug-3860` |
+| `test-harness` | 6 | `bug-10466` `bug-1143` `bug-2600` `bug-3321` `bug-3323` `bug-3379` |
+| `test-hook` | 2 | `bug-10525` `bug-10573` |
+| `test-infra` | 5 | `bug-10362` `bug-3341` `bug-3342` `bug-3343` `bug-3345` |
+| `test-install` | 6 | `bug-3169` `bug-3500` `bug-4267` `bug-4398` `bug-4400` `bug-4419` |
+| `test-only` | 1 | `bug-3173` |
+| `test-overlay` | 2 | `bug-10668` `bug-3215` |
+| `test-rig` | 2 | `bug-3503` `bug-3516` |
+| `test-script` | 1 | `bug-10455` |
+| `test-setup` | 2 | `bug-10318` `bug-10681` |
+| `test-slot` | 2 | `bug-3355` `bug-3366` |
+| `test-tooling` | 2 | `bug-10489` `bug-4168` |
+| `test-window` | 1 | `bug-10628` |
+| `test-window-policy` | 1 | `bug-10805` |
 | `testability` | 1 | `bug-2539` |
-| `testing` | 5 | `bug-1064` `bug-2412` `bug-2413` `bug-2415` `bug-2637` |
+| `tester` | 4 | `bug-10540` `bug-10541` `bug-10542` `bug-10543` |
+| `tester-report` | 10 | `bug-3468` `bug-3469` `bug-3470` `bug-3473` `bug-3474` `bug-3475` `bug-3477` `bug-3480` `bug-3483` `bug-3518` |
+| `testing` | 10 | `bug-10463` `bug-1064` `bug-10718` `bug-10723` `bug-10895` `bug-2412` `bug-2413` `bug-2415` `bug-2637` `bug-3183` |
 | `testplayeranim` | 1 | `bug-257` |
+| `tether` | 4 | `bug-10267` `bug-10313` `bug-10460` `bug-3686` |
+| `tex-pak` | 6 | `bug-3463` `bug-4148` `bug-4165` `bug-4437` `bug-4453` `bug-4454` |
+| `tex-pak-gate` | 1 | `bug-10314` |
 | `tex-pk3` | 1 | `bug-2610` |
+| `texel-density` | 1 | `bug-10637` |
 | `texgen` | 1 | `bug-gl2-texgen` |
+| `texload` | 1 | `bug-10665` |
+| `text` | 2 | `bug-10384` `bug-4097` |
 | `text-audit` | 4 | `bug-1777` `bug-1778` `bug-1779` `bug-1780` |
+| `text-fit` | 1 | `bug-10832` |
 | `text-layout` | 3 | `bug-1525` `bug-1531` `bug-1532` |
-| `texture` | 20 | `bug-1129` `bug-1327` `bug-1917` `bug-2210` `bug-2223` `bug-2230` `bug-2249` `bug-2263` `bug-2445` `bug-2493` `bug-2508` `bug-2509` `bug-2518` `bug-2519` `bug-2525` `bug-2575` `bug-481` `bug-gl2-01` `bug-m3l2-ground-seams` `bug-menu-shader-label-invisible` |
+| `text-missing` | 1 | `bug-4007` |
+| `text-overflow` | 1 | `bug-10531` |
+| `text-overlap` | 1 | `bug-4160` |
+| `text-style` | 1 | `bug-10473` |
+| `textfeed` | 1 | `bug-4088` |
+| `texture` | 58 | `bug-10536` `bug-10609` `bug-10618` `bug-10622` `bug-10627` `bug-10670` `bug-10699` `bug-10765` `bug-10766` `bug-10814` `bug-1129` `bug-1327` `bug-1917` `bug-2210` `bug-2223` `bug-2230` `bug-2249` `bug-2263` `bug-2445` `bug-2493` `bug-2508` `bug-2509` `bug-2518` `bug-2519` `bug-2525` `bug-2575` `bug-2783` `bug-2822` `bug-2951` `bug-2954` `bug-2984` `bug-2991` `bug-3340` `bug-3374` `bug-3375` `bug… |
 | `texture-closure` | 1 | `bug-853` |
 | `texture-compression` | 1 | `bug-1295` |
 | `texture-corruption` | 1 | `bug-2183` |
+| `texture-edge` | 1 | `bug-3059` |
 | `texture-generation` | 1 | `bug-1901` |
 | `texture-wrap` | 1 | `bug-2227` |
-| `textures` | 8 | `bug-1016` `bug-1245` `bug-1247` `bug-157` `bug-2164` `bug-2533` `bug-2583` `bug-622` |
-| `tga` | 5 | `bug-092` `bug-1130` `bug-144` `bug-2493` `bug-312` |
+| `textures` | 15 | `bug-1016` `bug-10487` `bug-10488` `bug-10497` `bug-10554` `bug-1245` `bug-1247` `bug-157` `bug-2164` `bug-2533` `bug-2583` `bug-3109` `bug-3126` `bug-3880` `bug-622` |
+| `tga` | 8 | `bug-092` `bug-1130` `bug-144` `bug-2493` `bug-3019` `bug-312` `bug-3717` `bug-3821` |
 | `theatre` | 1 | `bug-1770` |
+| `theme` | 1 | `bug-3268` |
+| `thereisnomonkey` | 1 | `bug-3055` |
 | `thin-zone` | 1 | `bug-2711` |
-| `think-map` | 1 | `bug-1570` |
-| `think-state` | 2 | `bug-1737` `bug-1739` |
+| `think-map` | 2 | `bug-1570` `bug-2976` |
+| `think-state` | 3 | `bug-10267` `bug-1737` `bug-1739` |
 | `think_anim` | 1 | `bug-2420` |
 | `think_runner` | 1 | `bug-1368` |
 | `think_turret` | 1 | `bug-2074` |
 | `thinkidle` | 1 | `bug-091` |
-| `thinkstate` | 3 | `bug-1579` `bug-1973` `bug-2484` |
+| `thinkstate` | 4 | `bug-1579` `bug-1973` `bug-2484` `bug-3479` |
 | `third-attempt` | 2 | `bug-1760` `bug-1910` |
 | `third-consumer` | 1 | `bug-2037` |
 | `third-filter` | 1 | `bug-1599` |
 | `third-occurrence` | 1 | `bug-1954` |
-| `third-party` | 1 | `bug-1577` |
-| `third-person` | 6 | `bug-1208` `bug-1217` `bug-229` `bug-296` `bug-301` `bug-304` |
-| `thirdperson` | 5 | `bug-1991` `bug-1992` `bug-2000` `bug-2623` `bug-331` |
+| `third-party` | 3 | `bug-1577` `bug-3417` `bug-3453` |
+| `third-party-pak` | 1 | `bug-3005` |
+| `third-person` | 17 | `bug-10260` `bug-10484` `bug-1208` `bug-1217` `bug-229` `bug-2916` `bug-2931` `bug-296` `bug-2963` `bug-301` `bug-304` `bug-3658` `bug-3664` `bug-3666` `bug-3759` `bug-3855` `bug-3884` |
+| `thirdperson` | 6 | `bug-1991` `bug-1992` `bug-2000` `bug-2623` `bug-331` `bug-4130` |
+| `thompson` | 17 | `bug-10577` `bug-3296` `bug-3389` `bug-3682` `bug-3683` `bug-3718` `bug-3719` `bug-3720` `bug-3721` `bug-3724` `bug-3806` `bug-3863` `bug-3865` `bug-3866` `bug-3867` `bug-3868` `bug-3869` |
+| `thread` | 2 | `bug-10869` `bug-10914` |
 | `thread-abort` | 2 | `bug-1284` `bug-1297` |
-| `thread-args` | 1 | `bug-1718` |
+| `thread-args` | 2 | `bug-1718` `bug-eap-ownernull` |
 | `thread-boundary` | 1 | `bug-1665` |
 | `thread-handle-truthiness` | 1 | `bug-1646` |
 | `thread-killer` | 2 | `bug-1491` `bug-1492` |
 | `thread-leak` | 1 | `bug-2045` |
 | `thread-params` | 1 | `bug-1632` |
-| `threatbias` | 1 | `bug-2038` |
+| `threads` | 4 | `bug-10569` `bug-3487` `bug-3496` `bug-3577` |
+| `threatbias` | 2 | `bug-2038` `bug-4014` |
 | `threatbias-ignoreme` | 1 | `bug-2051` |
 | `three-binary-rebuild` | 1 | `bug-892` |
+| `three-edits` | 1 | `bug-2982` |
 | `three-symptoms-one-cause` | 1 | `bug-2055` |
 | `three-wrong-theories` | 1 | `bug-1849` |
 | `threshold` | 1 | `bug-2539` |
-| `thresholds` | 1 | `bug-747` |
+| `thresholds` | 2 | `bug-3303` `bug-747` |
 | `throbbingbox` | 2 | `bug-1271` `bug-1278` |
 | `throttle` | 1 | `bug-1808` |
 | `throttled-sync` | 1 | `bug-1508` |
+| `through-walls` | 1 | `bug-4265` |
+| `throw` | 2 | `bug-10548` `bug-10561` |
+| `thrown-triangles` | 1 | `bug-3891` |
+| `thumb` | 1 | `bug-2822` |
+| `thunder` | 3 | `bug-3106` `bug-3107` `bug-3148` |
+| `tickcooploot` | 1 | `bug-3504` |
 | `tier-skins` | 2 | `bug-796` `bug-817` |
+| `tier1` | 2 | `bug-2739` `bug-2744` |
+| `tier2` | 2 | `bug-2743` `bug-2744` |
 | `tiered` | 1 | `bug-2019` |
 | `tiers` | 1 | `bug-2006` |
 | `tiger-tank` | 1 | `bug-1817` |
-| `tik` | 9 | `bug-033` `bug-037` `bug-040` `bug-095` `bug-1716` `bug-355` `bug-482` `bug-648` `bug-794` |
+| `tik` | 26 | `bug-033` `bug-037` `bug-040` `bug-095` `bug-1716` `bug-3404` `bug-3415` `bug-355` `bug-3555` `bug-3617` `bug-3625` `bug-3649` `bug-3670` `bug-3672` `bug-3736` `bug-3738` `bug-3810` `bug-3817` `bug-3821` `bug-3867` `bug-4262` `bug-4263` `bug-4448` `bug-482` `bug-648` `bug-794` |
+| `tik rows` | 2 | `bug-3834` `bug-3838` |
 | `tik-data-disabled` | 1 | `bug-616` |
 | `tik-parsing` | 1 | `bug-586` |
 | `tik-setsize` | 1 | `bug-942` |
-| `tiki` | 53 | `bug-020` `bug-072` `bug-1190` `bug-1203` `bug-1216` `bug-1228` `bug-1244` `bug-1301` `bug-1302` `bug-1303` `bug-1332` `bug-1338` `bug-1369` `bug-1408` `bug-1476` `bug-1485` `bug-1487` `bug-1489` `bug-1540` `bug-1545` `bug-1621` `bug-1818` `bug-1880` `bug-1887` `bug-1891` `bug-1892` `bug-1905` `bug-1911` `bug-1912` `bug-1945` `bug-1953` `bug-1955` `bug-2075` `bug-2082` `bug-2085` `bug-2195` `bug-… |
+| `tiki` | 78 | `bug-020` `bug-072` `bug-10330` `bug-10439` `bug-10524` `bug-10536` `bug-10643` `bug-10645` `bug-10648` `bug-10655` `bug-10672` `bug-10802` `bug-1190` `bug-1203` `bug-1216` `bug-1228` `bug-1244` `bug-1301` `bug-1302` `bug-1303` `bug-1332` `bug-1338` `bug-1369` `bug-1408` `bug-1476` `bug-1485` `bug-1487` `bug-1489` `bug-1540` `bug-1545` `bug-1621` `bug-1818` `bug-1880` `bug-1887` `bug-1891` `bug-1… |
 | `tiki-frame-event` | 1 | `bug-1199` |
-| `tiki-includes` | 3 | `bug-2274` `bug-2275` `bug-2278` |
+| `tiki-includes` | 4 | `bug-2274` `bug-2275` `bug-2278` `bug-3196` |
 | `tiki-init-ordering` | 1 | `bug-2339` |
 | `tiki-models` | 1 | `bug-gl2-modellight` |
 | `tiki_sortlod` | 1 | `bug-1002` |
+| `tikidistfade` | 1 | `bug-3164` |
 | `tikiprobe` | 1 | `bug-260` |
-| `tiling` | 3 | `bug-1247` `bug-2210` `bug-m3l2-ground-seams` |
+| `tile-art` | 1 | `bug-3290` |
+| `tile-wrap` | 2 | `bug-2984` `bug-2991` |
+| `tileart` | 2 | `bug-3300` `bug-3301` |
+| `tiled` | 2 | `bug-2833` `bug-2861` |
+| `tilefix` | 1 | `bug-3109` |
+| `tiles` | 3 | `bug-10375` `bug-10376` `bug-10378` |
+| `tileshader` | 1 | `bug-3254` |
+| `tiling` | 7 | `bug-10316` `bug-10873` `bug-1247` `bug-2210` `bug-3318` `bug-3340` `bug-m3l2-ground-seams` |
 | `time-frequency` | 1 | `bug-2004` |
 | `time-of-day` | 1 | `bug-2156` |
 | `time-varying` | 1 | `bug-2318` |
 | `timebeginperiod` | 1 | `bug-1667` |
+| `timed` | 1 | `bug-2731` |
+| `timeline` | 12 | `bug-10282` `bug-10283` `bug-10284` `bug-10294` `bug-10309` `bug-10310` `bug-10326` `bug-10339` `bug-10340` `bug-10341` `bug-10366` `bug-10370` |
+| `timeout` | 3 | `bug-10676` `bug-3909` `bug-3910` |
 | `timeout-unreachable` | 1 | `bug-1459` |
-| `timer` | 5 | `bug-1667` `bug-1750` `bug-1753` `bug-1762` `bug-1863` |
-| `timing` | 10 | `bug-1103` `bug-1270` `bug-1877` `bug-2155` `bug-2254` `bug-2258` `bug-2322` `bug-2434` `bug-2435` `bug-2669` |
+| `timer` | 6 | `bug-1667` `bug-1750` `bug-1753` `bug-1762` `bug-1863` `bug-4039` |
+| `timing` | 24 | `bug-10337` `bug-10494` `bug-10690` `bug-1103` `bug-1270` `bug-1877` `bug-2155` `bug-2254` `bug-2258` `bug-2322` `bug-2434` `bug-2435` `bug-2669` `bug-2901` `bug-3296` `bug-3364` `bug-3533` `bug-3592` `bug-3595` `bug-3613` `bug-3710` `bug-3725` `bug-3760` `bug-blastreact-2` |
 | `timing-race` | 1 | `bug-2047` |
 | `timing-window` | 1 | `bug-2062` |
-| `tinnitus` | 6 | `bug-1669` `bug-1941` `bug-2234` `bug-2540` `bug-846` `bug-948` |
+| `tinnitus` | 9 | `bug-10805` `bug-1669` `bug-1941` `bug-2234` `bug-2540` `bug-3358` `bug-4407` `bug-846` `bug-948` |
+| `tint` | 1 | `bug-10400` |
+| `title-cards` | 1 | `bug-3234` |
+| `titles` | 1 | `bug-2851` |
 | `tlou2` | 1 | `bug-2134` |
 | `tmstartloop` | 1 | `bug-1426` |
-| `toast` | 6 | `bug-1588` `bug-1625` `bug-1626` `bug-1627` `bug-537` `bug-628` |
+| `toast` | 10 | `bug-10481` `bug-10544` `bug-1588` `bug-1625` `bug-1626` `bug-1627` `bug-2904` `bug-4446` `bug-537` `bug-628` |
 | `todo` | 1 | `bug-2197` |
 | `todo-system` | 1 | `bug-2236` |
+| `toe` | 1 | `bug-3223` |
+| `toggle` | 4 | `bug-2918` `bug-3512` `bug-3656` `bug-4183` |
 | `toggle-coupling` | 1 | `bug-2259` |
 | `toggle-desync` | 1 | `bug-1397` |
 | `toggle-vs-set` | 1 | `bug-2064` |
 | `token-drop` | 1 | `bug-1936` |
 | `token_logical_and` | 2 | `bug-739` `bug-750` |
 | `token_plus` | 1 | `bug-1308` |
-| `tonemap` | 7 | `bug-1148` `bug-1156` `bug-1171` `bug-1299` `bug-2156` `bug-2163` `bug-2584` |
+| `tonemap` | 9 | `bug-1148` `bug-1156` `bug-1171` `bug-1299` `bug-2156` `bug-2163` `bug-2584` `bug-3083` `bug-3223` |
+| `tonemapping` | 1 | `bug-3408` |
 | `tool` | 1 | `bug-1311` |
-| `tooling` | 38 | `bug-1227` `bug-1269` `bug-1283` `bug-1363` `bug-1404` `bug-1559` `bug-1566` `bug-1577` `bug-1600` `bug-1601` `bug-1713` `bug-1725` `bug-1800` `bug-1860` `bug-1993` `bug-1994` `bug-2081` `bug-2107` `bug-2148` `bug-2162` `bug-2229` `bug-2277` `bug-2278` `bug-2279` `bug-2280` `bug-2396` `bug-2410` `bug-2411` `bug-2421` `bug-2453` `bug-2482` `bug-2531` `bug-2582` `bug-2586` `bug-2587` `bug-2598` `bu… |
+| `tooling` | 135 | `bug-10280` `bug-10324` `bug-10488` `bug-10497` `bug-10560` `bug-10591` `bug-10611` `bug-10646` `bug-10710` `bug-10714` `bug-10815` `bug-10817` `bug-10844` `bug-10852` `bug-10872` `bug-10876` `bug-10881` `bug-10896` `bug-10928` `bug-1227` `bug-1269` `bug-1283` `bug-1363` `bug-1404` `bug-1559` `bug-1566` `bug-1577` `bug-1600` `bug-1601` `bug-1713` `bug-1725` `bug-1800` `bug-1860` `bug-1993` `bug-1… |
+| `tooling-blind-spot` | 1 | `bug-3659` |
 | `tooling-caused` | 2 | `bug-2397` `bug-2404` |
 | `tooling-lost` | 1 | `bug-1896` |
-| `tools` | 2 | `bug-020` `bug-021` |
-| `torso` | 2 | `bug-313` `bug-320` |
+| `tools` | 14 | `bug-020` `bug-021` `bug-3632` `bug-3641` `bug-3642` `bug-3645` `bug-3657` `bug-3680` `bug-3786` `bug-3801` `bug-3803` `bug-3826` `bug-3827` `bug-3829` |
+| `top-knob` | 1 | `bug-3865` |
+| `topup` | 1 | `bug-10508` |
+| `torso` | 5 | `bug-313` `bug-320` `bug-3363` `bug-3658` `bug-3775` |
 | `torso-lag` | 1 | `bug-2101` |
+| `toss-carry` | 2 | `bug-3130` `bug-3133` |
 | `toss-physics` | 1 | `bug-614` |
 | `tower` | 1 | `bug-1754` |
+| `town` | 3 | `bug-10704` `bug-10725` `bug-10731` |
 | `tr.sundirection` | 1 | `bug-1154` |
 | `tr.sunlight` | 1 | `bug-1154` |
 | `tr_bsp` | 1 | `bug-1237` |
 | `tr_draw` | 1 | `bug-1147` |
-| `tr_gore` | 6 | `bug-1142` `bug-780` `bug-796` `bug-817` `bug-868` `bug-905` |
+| `tr_gore` | 7 | `bug-1142` `bug-2807` `bug-780` `bug-796` `bug-817` `bug-868` `bug-905` |
 | `tr_image` | 1 | `bug-1225` |
 | `tr_init` | 1 | `bug-1146` |
 | `tr_local.h` | 1 | `bug-gl2-maxpolys` |
@@ -5469,20 +10057,29 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `tr_shade` | 1 | `bug-1144` |
 | `tr_shade_calc` | 1 | `bug-gl2-autosprite2-swim` |
 | `tr_shader` | 2 | `bug-1136` `bug-1145` |
-| `trace` | 7 | `bug-1382` `bug-1787` `bug-1989` `bug-2247` `bug-2340` `bug-2547` `bug-945` |
+| `trace` | 21 | `bug-10425` `bug-10820` `bug-10823` `bug-10854` `bug-1382` `bug-1787` `bug-1989` `bug-2247` `bug-2340` `bug-2547` `bug-2760` `bug-2766` `bug-2843` `bug-2977` `bug-3573` `bug-3694` `bug-3773` `bug-3889` `bug-4038` `bug-4409` `bug-945` |
 | `trace-budget` | 1 | `bug-1967` |
+| `trace-mask` | 1 | `bug-2835` |
 | `trace-print` | 1 | `bug-2426` |
+| `traced` | 2 | `bug-10293` `bug-10422` |
 | `tracer` | 3 | `bug-2076` `bug-2186` `bug-926` |
 | `tracerfreq` | 1 | `bug-2083` |
+| `tracerfrequency` | 1 | `bug-3045` |
+| `tracers` | 2 | `bug-3045` `bug-3477` |
+| `traces` | 1 | `bug-3583` |
 | `tracescan` | 2 | `bug-942` `bug-945` |
 | `tracked-attachment` | 1 | `bug-866` |
 | `tracker-lies` | 1 | `bug-1852` |
+| `trailing-bytes` | 1 | `bug-3874` |
 | `trailing-space` | 1 | `bug-1937` |
-| `train` | 2 | `bug-1438` `bug-227` |
+| `train` | 5 | `bug-1438` `bug-227` `bug-2844` `bug-2852` `bug-4410` |
+| `training` | 2 | `bug-10853` `bug-10855` |
 | `transcription` | 1 | `bug-1791` |
+| `transit` | 1 | `bug-4174` |
 | `transition-trigger` | 1 | `bug-1464` |
 | `transplant` | 1 | `bug-1540` |
-| `trap` | 7 | `bug-2214` `bug-2216` `bug-2434` `bug-2608` `bug-2614` `bug-2617` `bug-2620` |
+| `trap` | 24 | `bug-10601` `bug-10612` `bug-10625` `bug-10651` `bug-10652` `bug-10696` `bug-10711` `bug-2214` `bug-2216` `bug-2434` `bug-2608` `bug-2614` `bug-2617` `bug-2620` `bug-2854` `bug-2870` `bug-2882` `bug-3057` `bug-3308` `bug-3382` `bug-3383` `bug-3543` `bug-3819` `bug-4264` |
+| `trap-t14` | 1 | `bug-3082` |
 | `trap-t17` | 1 | `bug-1702` |
 | `trap-violation` | 1 | `bug-2005` |
 | `traps` | 2 | `bug-2453` `bug-2486` |
@@ -5496,7 +10093,11 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `traps-t5` | 3 | `bug-1257` `bug-1261` `bug-1267` |
 | `traps-t6` | 2 | `bug-2477` `bug-2485` |
 | `traps-t7` | 1 | `bug-2069` |
-| `trees` | 2 | `bug-gl2-autosprite2-swim` `bug-gl2-foliage-white` |
+| `tree-clip` | 1 | `bug-4129` |
+| `tree-drift` | 2 | `bug-3161` `bug-3193` |
+| `treeline` | 1 | `bug-3166` |
+| `trees` | 3 | `bug-3085` `bug-gl2-autosprite2-swim` `bug-gl2-foliage-white` |
+| `trench` | 1 | `bug-3876` |
 | `triage` | 4 | `bug-1580` `bug-1583` `bug-1584` `bug-1585` |
 | `triage-correction` | 1 | `bug-933b` |
 | `trigger` | 8 | `bug-1757` `bug-1761` `bug-1762` `bug-1786` `bug-1793` `bug-1817` `bug-1910` `bug-2208` |
@@ -5506,7 +10107,9 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `trigger_camerause` | 1 | `bug-349` |
 | `trigger_changelevel` | 1 | `bug-1467` |
 | `trigger_damage` | 1 | `bug-1671` |
+| `trigger_hurt` | 2 | `bug-2926` `bug-3065` |
 | `trigger_once` | 1 | `bug-1858` |
+| `trigger_use` | 1 | `bug-10632` |
 | `trigger_useonce` | 2 | `bug-1608` `bug-1620` |
 | `trilogy` | 2 | `bug-1337` `bug-538` |
 | `trilogy-audit` | 1 | `bug-2038` |
@@ -5514,75 +10117,99 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `trilogy-rollout` | 1 | `bug-1521` |
 | `trilogy-wide` | 6 | `bug-2033` `bug-2035` `bug-2100` `bug-2450` `bug-2461` `bug-gl2-invisible-friendly-actor` |
 | `tripwire` | 1 | `bug-1953` |
-| `truck` | 5 | `bug-056` `bug-057` `bug-1161` `bug-1162` `bug-1173` |
+| `trisurf` | 2 | `bug-10600` `bug-10614` |
+| `truck` | 6 | `bug-056` `bug-057` `bug-1161` `bug-1162` `bug-1173` `bug-4432` |
 | `truck-firefight` | 1 | `bug-2050` |
 | `truck-friendlies` | 2 | `bug-2047` `bug-2065` |
 | `truck_init` | 1 | `bug-057` |
 | `truck_load` | 1 | `bug-1277` |
+| `trucks` | 2 | `bug-3449` `bug-3461` |
 | `truncated-pointer` | 1 | `bug-2070` |
 | `truncated-record` | 1 | `bug-2061` |
-| `truncation` | 1 | `bug-1902` |
+| `truncation` | 3 | `bug-1902` `bug-2759` `bug-3346` |
+| `trunk` | 1 | `bug-3224` |
+| `tsv` | 2 | `bug-3767` `bug-3797` |
+| `tt33` | 2 | `bug-3651` `bug-3736` |
 | `tug-of-war` | 2 | `bug-2698` `bug-2704` |
-| `tuning` | 13 | `bug-1176` `bug-1200` `bug-1268` `bug-2230` `bug-2356` `bug-2384` `bug-2489` `bug-2510` `bug-2535` `bug-747` `bug-817` `bug-828` `bug-863` |
+| `tuning` | 19 | `bug-1176` `bug-1200` `bug-1268` `bug-2230` `bug-2356` `bug-2384` `bug-2489` `bug-2510` `bug-2535` `bug-2999` `bug-3008` `bug-3177` `bug-3802` `bug-4016` `bug-747` `bug-817` `bug-828` `bug-863` `bug-blastreact-4` |
 | `turndone` | 1 | `bug-1368` |
-| `turret` | 29 | `bug-054` `bug-091` `bug-1053` `bug-1208` `bug-1255` `bug-1258` `bug-1265` `bug-1435` `bug-1481` `bug-1552` `bug-1553` `bug-1569` `bug-1570` `bug-1841` `bug-1843` `bug-1850` `bug-1851` `bug-1920` `bug-1940` `bug-2205` `bug-229` `bug-2343` `bug-252` `bug-296` `bug-301` `bug-304` `bug-309` `bug-315` `bug-647` |
+| `turret` | 52 | `bug-054` `bug-091` `bug-10416` `bug-10421` `bug-10510` `bug-1053` `bug-10570` `bug-10919` `bug-1208` `bug-1255` `bug-1258` `bug-1265` `bug-1435` `bug-1481` `bug-1552` `bug-1553` `bug-1569` `bug-1570` `bug-1841` `bug-1843` `bug-1850` `bug-1851` `bug-1920` `bug-1940` `bug-2205` `bug-229` `bug-2343` `bug-252` `bug-2797` `bug-296` `bug-301` `bug-304` `bug-309` `bug-315` `bug-3194` `bug-3301` `bug-33… |
 | `turret-aim` | 1 | `bug-1504` |
 | `turret.scr` | 1 | `bug-1472` |
 | `turretgun` | 1 | `bug-2548` |
 | `turspread-verified` | 1 | `bug-1961` |
+| `twin` | 2 | `bug-3082` `bug-3158` |
 | `twin-drift` | 1 | `bug-2133` |
+| `twins` | 1 | `bug-3268` |
 | `twitch` | 1 | `bug-379` |
 | `two-agent-trace` | 1 | `bug-1940` |
+| `two-client` | 2 | `bug-3594` `bug-3595` |
 | `two-copies` | 3 | `bug-2104` `bug-2106` `bug-2111` |
 | `two-doors` | 1 | `bug-1463` |
+| `two-handed` | 1 | `bug-3498` |
 | `two-hypotheses-refuted` | 1 | `bug-2069` |
 | `two-layer-cvar` | 2 | `bug-759` `bug-772` |
 | `two-outcomes` | 1 | `bug-1769` |
 | `two-paths-one-right` | 1 | `bug-2023` |
+| `two-players` | 1 | `bug-3506` |
 | `two-systems-one-event` | 1 | `bug-1778` |
 | `two-wrong-diagnoses` | 1 | `bug-2363` |
 | `txt-blindspot` | 1 | `bug-2241` |
 | `type-coercion` | 2 | `bug-302` `bug-943` |
 | `type-error` | 3 | `bug-1281` `bug-1352` `bug-2236` |
-| `type100` | 1 | `bug-1888` |
+| `type100` | 3 | `bug-10278` `bug-1888` `bug-3584` |
 | `type_attack` | 1 | `bug-2074` |
-| `typo` | 5 | `bug-1482` `bug-1486` `bug-1643` `bug-2044` `bug-318` |
+| `typewriter` | 1 | `bug-4008` |
+| `typo` | 6 | `bug-10353` `bug-1482` `bug-1486` `bug-1643` `bug-2044` `bug-318` |
+| `typography` | 1 | `bug-3236` |
 | `u_hzmparams` | 1 | `bug-1177` |
 | `u_view3p` | 2 | `bug-304` `bug-647` |
-| `uberdialog` | 1 | `bug-1202` |
+| `uberdialog` | 2 | `bug-1202` `bug-3087` |
 | `ubermod` | 10 | `bug-2637` `bug-2639` `bug-2640` `bug-2641` `bug-2643` `bug-2644` `bug-2645` `bug-2646` `bug-2668` `bug-2669` |
-| `ubersound` | 20 | `bug-1161` `bug-1188` `bug-1202` `bug-1264` `bug-1272` `bug-1399` `bug-1477` `bug-1509` `bug-1548` `bug-1697` `bug-1834` `bug-1885` `bug-1886` `bug-1898` `bug-2176` `bug-2198` `bug-2248` `bug-2401` `bug-2567` `bug-775` |
-| `ui` | 54 | `bug-1127` `bug-1129b` `bug-1152` `bug-1160` `bug-1165` `bug-1170` `bug-1181` `bug-1346` `bug-1356` `bug-1365` `bug-138` `bug-144` `bug-1503` `bug-1510` `bug-1511` `bug-1519` `bug-1523` `bug-1524` `bug-1525` `bug-1527` `bug-1529` `bug-1530` `bug-1531` `bug-1532` `bug-1535` `bug-1541` `bug-1544` `bug-1546` `bug-1678` `bug-1797` `bug-1896` `bug-1977` `bug-2222` `bug-253` `bug-254` `bug-2570` `bug-2… |
+| `ubersound` | 31 | `bug-10398` `bug-10412` `bug-10476` `bug-10601` `bug-1161` `bug-1188` `bug-1202` `bug-1264` `bug-1272` `bug-1399` `bug-1477` `bug-1509` `bug-1548` `bug-1697` `bug-1834` `bug-1885` `bug-1886` `bug-1898` `bug-2176` `bug-2198` `bug-2248` `bug-2401` `bug-2567` `bug-2728` `bug-2800` `bug-3087` `bug-3088` `bug-3098` `bug-3160` `bug-4411` `bug-775` |
+| `ui` | 136 | `bug-10321` `bug-10403` `bug-10444` `bug-10445` `bug-10448` `bug-10450` `bug-10456` `bug-10464` `bug-10516` `bug-10518` `bug-10531` `bug-10571` `bug-10572` `bug-10585` `bug-10709` `bug-10715` `bug-10757` `bug-10829` `bug-10853` `bug-10857` `bug-10926` `bug-10929` `bug-1127` `bug-1129b` `bug-1152` `bug-1160` `bug-1165` `bug-1170` `bug-1181` `bug-1346` `bug-1356` `bug-1365` `bug-138` `bug-144` `bug… |
+| `ui-clipping` | 1 | `bug-3258` |
 | `ui-layer` | 1 | `bug-526` |
 | `ui-override` | 1 | `bug-2701` |
+| `ui-parse` | 1 | `bug-4091` |
+| `ui-rounding` | 1 | `bug-3288` |
 | `ui-scope` | 1 | `bug-1522` |
-| `ui-text` | 1 | `bug-1538` |
-| `ui_addhud` | 1 | `bug-1457` |
-| `ui_checkrestart` | 1 | `bug-1123` |
+| `ui-text` | 2 | `bug-1538` `bug-3079` |
+| `ui_addhud` | 3 | `bug-10516` `bug-1457` `bug-3234` |
+| `ui_atticmain` | 1 | `bug-10318` |
+| `ui_checkrestart` | 2 | `bug-1123` `bug-3428` |
 | `ui_console` | 1 | `bug-502` |
 | `ui_dedicated` | 1 | `bug-2671` |
+| `ui_menucenter` | 2 | `bug-3281` `bug-4415` |
 | `ui_minicon` | 1 | `bug-502` |
 | `ui_public` | 1 | `bug-334` |
-| `ui_startdmmap` | 1 | `bug-1326` |
+| `ui_removehud` | 1 | `bug-3954` |
+| `ui_scene_hot` | 1 | `bug-10319` |
+| `ui_startdmmap` | 4 | `bug-10264` `bug-10895` `bug-1326` `bug-3174` |
 | `ui_voodoo` | 1 | `bug-2098` |
+| `uiafter` | 3 | `bug-4196` `bug-4414` `bug-4426` |
 | `uii` | 1 | `bug-334` |
-| `uilib` | 8 | `bug-253` `bug-254` `bug-255` `bug-587` `bug-590` `bug-593` `bug-754` `bug-756` |
+| `uilib` | 14 | `bug-10716` `bug-10856` `bug-10906` `bug-253` `bug-254` `bug-255` `bug-3100` `bug-4077` `bug-4178` `bug-587` `bug-590` `bug-593` `bug-754` `bug-756` |
 | `uiwidget` | 1 | `bug-261` |
 | `uiwidget-display` | 1 | `bug-777` |
-| `ultrawide` | 7 | `bug-1127` `bug-1129b` `bug-314` `bug-626` `bug-641` `bug-805` `bug-819` |
-| `unarmed` | 1 | `bug-1957` |
+| `ultrawide` | 11 | `bug-10596` `bug-10867` `bug-1127` `bug-1129b` `bug-314` `bug-3258` `bug-3288` `bug-626` `bug-641` `bug-805` `bug-819` |
+| `unarmed` | 2 | `bug-10634` `bug-1957` |
 | `unarmed-enemies` | 1 | `bug-1952` |
 | `unassigned-variable` | 1 | `bug-1816` |
 | `unbindall` | 1 | `bug-2093` |
+| `unblock` | 1 | `bug-2774` |
 | `unbounded` | 1 | `bug-1215` |
 | `uncached` | 1 | `bug-2461` |
 | `uncaught-exception` | 2 | `bug-121` `bug-122` |
+| `uncommitted-dependency` | 1 | `bug-10591` |
+| `uncommitted-work` | 1 | `bug-4092` |
 | `unconditional-thread` | 1 | `bug-1484` |
 | `unconfirmed` | 3 | `bug-1794` `bug-2685` `bug-2710` |
+| `unconfirmed-in-play` | 1 | `bug-3522` |
 | `uncontested-advance` | 1 | `bug-2703` |
 | `undefined-alias` | 1 | `bug-1886` |
 | `undefined-behaviour` | 1 | `bug-2226` |
-| `under-map` | 1 | `bug-1989` |
+| `under-map` | 2 | `bug-1989` `bug-2843` |
 | `underlying-bug-open` | 1 | `bug-1181` |
 | `undermap` | 1 | `bug-2302` |
 | `underwater` | 19 | `bug-1158` `bug-1250` `bug-2320` `bug-2355` `bug-2430` `bug-2440` `bug-2443` `bug-2448` `bug-2452` `bug-2454` `bug-2476` `bug-2488` `bug-2494` `bug-2503` `bug-2505` `bug-2507` `bug-2517` `bug-2561` `bug-2565` |
@@ -5592,28 +10219,36 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `unfixed` | 2 | `bug-2432` `bug-2442` |
 | `unholster` | 1 | `bug-2035` |
 | `unicode` | 1 | `bug-1227` |
-| `uniform` | 1 | `bug-1148` |
+| `uniform` | 2 | `bug-1148` `bug-3915` |
+| `uniform-table` | 1 | `bug-3456` |
 | `uniform_hzmparams` | 1 | `bug-1151` |
 | `uniforms` | 1 | `bug-2081` |
 | `uninitialised` | 2 | `bug-1191` `bug-2167` |
 | `uninitialised-memory` | 1 | `bug-2133` |
 | `uninitialised-stack` | 2 | `bug-2397` `bug-2404` |
 | `uninitialized` | 1 | `bug-1131` |
-| `units` | 1 | `bug-1353` |
+| `units` | 2 | `bug-1353` `bug-3464` |
+| `units-mismatch` | 1 | `bug-3610` |
+| `universal-bed` | 1 | `bug-2786` |
 | `unkillable` | 2 | `bug-1260` `bug-1275` |
 | `unknown-animation` | 2 | `bug-1945` `bug-1953` |
-| `unknown-command` | 1 | `bug-2335` |
+| `unknown-command` | 2 | `bug-2335` `bug-3423` |
 | `unknown-state` | 1 | `bug-382` |
-| `unlock` | 2 | `bug-2415` `bug-2633` |
+| `unlock` | 13 | `bug-10705` `bug-2415` `bug-2633` `bug-2755` `bug-2763` `bug-2765` `bug-2778` `bug-2779` `bug-3189` `bug-3830` `bug-3831` `bug-3888` `bug-3902` |
+| `unlock-export` | 1 | `bug-3898` |
 | `unlock-gate` | 2 | `bug-1524` `bug-707` |
 | `unlock-requirement-text` | 1 | `bug-787` |
-| `unlocks` | 10 | `bug-1358` `bug-1543` `bug-1578` `bug-2078` `bug-2557` `bug-2571` `bug-2648` `bug-682` `bug-808` `bug-848` |
+| `unlock-text` | 2 | `bug-10580` `bug-3792` |
+| `unlocks` | 20 | `bug-10479` `bug-10480` `bug-10567` `bug-10616` `bug-10912` `bug-10913` `bug-10926` `bug-1358` `bug-1543` `bug-1578` `bug-2078` `bug-2557` `bug-2571` `bug-2648` `bug-2749` `bug-3903` `bug-4004` `bug-682` `bug-808` `bug-848` |
 | `unmasked-by-a-fix` | 1 | `bug-1377` |
 | `unnamed-entities` | 1 | `bug-1382` |
 | `unreachable` | 3 | `bug-1861` `bug-1879` `bug-2539` |
 | `unreachable-branch` | 1 | `bug-2023` |
 | `unreachable-code` | 1 | `bug-1646` |
 | `unreachable-recovery` | 1 | `bug-1474` |
+| `unreachable-target` | 1 | `bug-10404` |
+| `unreleased` | 12 | `bug-3517` `bug-3518` `bug-3523` `bug-3524` `bug-3530` `bug-3536` `bug-3538` `bug-3539` `bug-3542` `bug-3548` `bug-3553` `bug-3572` |
+| `unreproduced` | 2 | `bug-norway-1027-defence-start-hang` `bug-norway-1027-shoot-timeout` |
 | `unresolved` | 10 | `bug-165` `bug-1835` `bug-1864` `bug-1865` `bug-1907` `bug-2040` `bug-2131` `bug-2285` `bug-2341` `bug-2709` |
 | `unseeded-cvar` | 1 | `bug-1733` |
 | `unset-cvar` | 1 | `bug-1449` |
@@ -5625,71 +10260,119 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `untested-needs-playtest` | 1 | `bug-2667` |
 | `untested-path` | 1 | `bug-1800` |
 | `untextured` | 2 | `bug-1911` `bug-481` |
+| `untracked` | 1 | `bug-10748` |
+| `untracked-file` | 1 | `bug-4171` |
 | `unverifiable-ui` | 1 | `bug-1546` |
-| `unverified` | 13 | `bug-1534` `bug-1618` `bug-1622` `bug-1623` `bug-1624` `bug-1665` `bug-1676` `bug-1677` `bug-1678` `bug-1679` `bug-1691` `bug-1693` `bug-2032` |
+| `unverified` | 17 | `bug-1534` `bug-1618` `bug-1622` `bug-1623` `bug-1624` `bug-1665` `bug-1676` `bug-1677` `bug-1678` `bug-1679` `bug-1691` `bug-1693` `bug-2032` `bug-3018` `bug-3752` `bug-3880` `bug-4084` |
 | `unverified-feel` | 1 | `bug-1686` |
-| `unverified-in-play` | 11 | `bug-2560` `bug-2561` `bug-2562` `bug-2564` `bug-2565` `bug-2566` `bug-2568` `bug-2569` `bug-2570` `bug-2575` `bug-2576` |
+| `unverified-in-play` | 13 | `bug-2560` `bug-2561` `bug-2562` `bug-2564` `bug-2565` `bug-2566` `bug-2568` `bug-2569` `bug-2570` `bug-2575` `bug-2576` `bug-3465` `bug-3492` |
 | `unwind` | 1 | `bug-2585` |
 | `unwinnable` | 1 | `bug-2178` |
 | `updatecoopholsteredweapons` | 1 | `bug-619` |
 | `updateowner` | 1 | `bug-647` |
-| `updater` | 1 | `bug-2030` |
-| `upperanim` | 1 | `bug-1199` |
-| `upscale` | 8 | `bug-1129` `bug-1247` `bug-144` `bug-157` `bug-2097` `bug-2098` `bug-2533` `bug-312` |
+| `updater` | 4 | `bug-2030` `bug-2907` `bug-3471` `bug-3472` |
+| `upperanim` | 2 | `bug-10683` `bug-1199` |
+| `upscale` | 11 | `bug-1129` `bug-1247` `bug-144` `bug-157` `bug-2097` `bug-2098` `bug-2533` `bug-2937` `bug-312` `bug-3374` `bug-3375` |
+| `upside-down` | 1 | `bug-10666` |
 | `upside-down-rifle` | 1 | `bug-2134` |
 | `upstream` | 2 | `bug-1226` `bug-2426` |
 | `upstream-bug` | 2 | `bug-2126` `bug-2138` |
 | `upstream-cherry-pick` | 1 | `bug-954` |
-| `urc` | 32 | `bug-1123` `bug-1160` `bug-1165` `bug-1170` `bug-1365` `bug-138` `bug-1546` `bug-1759` `bug-2116` `bug-2222` `bug-2578` `bug-2593` `bug-2615` `bug-2701` `bug-2705` `bug-423` `bug-459` `bug-460` `bug-461` `bug-462` `bug-534` `bug-589` `bug-596` `bug-641` `bug-712` `bug-720` `bug-736` `bug-753` `bug-754` `bug-756` `bug-761` `bug-menu-shader-label-invisible` |
+| `urc` | 52 | `bug-10381` `bug-10383` `bug-10518` `bug-10571` `bug-10572` `bug-10647` `bug-10813` `bug-10828` `bug-10832` `bug-10853` `bug-10860` `bug-10929` `bug-1123` `bug-1160` `bug-1165` `bug-1170` `bug-1365` `bug-138` `bug-1546` `bug-1759` `bug-2116` `bug-2222` `bug-2578` `bug-2593` `bug-2615` `bug-2701` `bug-2705` `bug-2790` `bug-2932` `bug-3155` `bug-3221` `bug-3264` `bug-3859` `bug-3959` `bug-4044` `bu… |
 | `urc-authoring` | 1 | `bug-1529` |
 | `usability` | 2 | `bug-1380` `bug-1730` |
 | `usage` | 1 | `bug-021` |
+| `use` | 4 | `bug-10894` `bug-2921` `bug-3042` `bug-4443` |
 | `use-after-free` | 6 | `bug-1565` `bug-767` `bug-915` `bug-917` `bug-919` `bug-920` |
 | `use-collision` | 1 | `bug-2143` |
+| `use-key` | 1 | `bug-10632` |
+| `use-to-loot` | 5 | `bug-3504` `bug-3505` `bug-3506` `bug-3812` `bug-3852` |
 | `use_angles` | 1 | `bug-535` |
+| `use_renderer_dlopen` | 1 | `bug-3247` |
 | `useheld` | 2 | `bug-1623` `bug-dbno-medkit-letgo-same-key` |
 | `user-approved` | 1 | `bug-937b` |
 | `user-approved-exception` | 2 | `bug-2618` `bug-2622` |
 | `user-asked-what-broke` | 1 | `bug-2068` |
+| `user-at-pc` | 4 | `bug-3044` `bug-3053` `bug-3112` `bug-3114` |
 | `user-challenged-an-assertion` | 1 | `bug-2070` |
+| `user-config` | 1 | `bug-3058` |
 | `user-coords` | 2 | `bug-1752` `bug-1761` |
-| `user-correction` | 1 | `bug-2299` |
-| `user-decision` | 2 | `bug-2557` `bug-2571` |
+| `user-correction` | 3 | `bug-2299` `bug-3631` `bug-3747` |
+| `user-decision` | 4 | `bug-2557` `bug-2571` `bug-3524` `bug-3682` |
 | `user-designed-fix` | 2 | `bug-2091` `bug-2100` |
 | `user-diagnosed` | 4 | `bug-2063` `bug-2067` `bug-2211` `bug-2298` |
 | `user-expectation` | 1 | `bug-1554` |
+| `user-feedback` | 7 | `bug-10442` `bug-3535` `bug-3559` `bug-3763` `bug-3798` `bug-3799` `bug-3800` |
+| `user-game` | 2 | `bug-3214` `bug-4417` |
+| `user-gaming` | 1 | `bug-10758` |
 | `user-playtest` | 1 | `bug-2071` |
 | `user-predicted` | 1 | `bug-2033` |
-| `user-preference` | 1 | `bug-2110` |
-| `user-question` | 1 | `bug-1770` |
+| `user-preference` | 2 | `bug-10628` `bug-2110` |
+| `user-qa` | 4 | `bug-10699` `bug-10750` `bug-10759` `bug-10761` |
+| `user-question` | 2 | `bug-1770` `bug-3509` |
 | `user-refuted-both` | 1 | `bug-2069` |
 | `user-refuted-my-diagnosis` | 1 | `bug-2048` |
 | `user-repeated` | 3 | `bug-2368` `bug-2369` `bug-2371` |
 | `user-repeated-3x` | 1 | `bug-2390` |
-| `user-report` | 18 | `bug-1650` `bug-1651` `bug-1652` `bug-1654` `bug-1656` `bug-1744` `bug-1754` `bug-1755` `bug-1757` `bug-1764` `bug-1776` `bug-1786` `bug-1799` `bug-2183` `bug-2448` `bug-2642` `bug-gl2-introhud` `bug-taunt-intro` |
-| `user-reported` | 59 | `bug-1892` `bug-1898` `bug-1902` `bug-1903` `bug-1905` `bug-1906` `bug-1907` `bug-1908` `bug-1910` `bug-1912` `bug-1913` `bug-1914` `bug-1915` `bug-1918` `bug-1986` `bug-2053` `bug-2074` `bug-2075` `bug-2076` `bug-2078` `bug-2082` `bug-2085` `bug-2086` `bug-2087` `bug-2088` `bug-2091` `bug-2094` `bug-2099` `bug-2128` `bug-2129` `bug-2136` `bug-2146` `bug-2152` `bug-2157` `bug-2159` `bug-2162` `bu… |
-| `user-request` | 2 | `bug-1287` `bug-1289` |
+| `user-report` | 43 | `bug-10406` `bug-10413` `bug-10414` `bug-10430` `bug-10465` `bug-10546` `bug-10547` `bug-10548` `bug-1650` `bug-1651` `bug-1652` `bug-1654` `bug-1656` `bug-1744` `bug-1754` `bug-1755` `bug-1757` `bug-1764` `bug-1776` `bug-1786` `bug-1799` `bug-2183` `bug-2448` `bug-2642` `bug-3278` `bug-3393` `bug-3406` `bug-3407` `bug-3408` `bug-3432` `bug-3433` `bug-3454` `bug-3464` `bug-3465` `bug-3466` `bug-3… |
+| `user-reported` | 71 | `bug-10473` `bug-1892` `bug-1898` `bug-1902` `bug-1903` `bug-1905` `bug-1906` `bug-1907` `bug-1908` `bug-1910` `bug-1912` `bug-1913` `bug-1914` `bug-1915` `bug-1918` `bug-1986` `bug-2053` `bug-2074` `bug-2075` `bug-2076` `bug-2078` `bug-2082` `bug-2085` `bug-2086` `bug-2087` `bug-2088` `bug-2091` `bug-2094` `bug-2099` `bug-2128` `bug-2129` `bug-2136` `bug-2146` `bug-2152` `bug-2157` `bug-2159` `b… |
+| `user-request` | 19 | `bug-10349` `bug-10441` `bug-1287` `bug-1289` `bug-3075` `bug-3077` `bug-3426` `bug-3481` `bug-3482` `bug-3484` `bug-3485` `bug-3486` `bug-3489` `bug-3494` `bug-3495` `bug-3496` `bug-3498` `bug-3531` `bug-3548` |
 | `user-requested` | 19 | `bug-1904` `bug-2080` `bug-2158` `bug-2170` `bug-2555` `bug-2558` `bug-2560` `bug-2561` `bug-2564` `bug-2566` `bug-2568` `bug-2569` `bug-2570` `bug-2573` `bug-2575` `bug-2576` `bug-2577` `bug-2578` `bug-2594` |
+| `user-review` | 1 | `bug-2834` |
+| `user-setup` | 1 | `bug-3041` |
 | `user-spec` | 16 | `bug-1731` `bug-1738` `bug-1740` `bug-1741` `bug-1742` `bug-1746` `bug-1748` `bug-1750` `bug-1758` `bug-1762` `bug-1763` `bug-1765` `bug-1769` `bug-1773` `bug-1774` `bug-1775` |
 | `user-was-right` | 3 | `bug-2011` `bug-2020` `bug-2032` |
-| `usercmd` | 3 | `bug-1712` `bug-1881` `bug-325` |
-| `userinfo` | 6 | `bug-1503` `bug-1508` `bug-1512` `bug-2633` `bug-298` `bug-316` |
+| `usercmd` | 5 | `bug-10421` `bug-1712` `bug-1881` `bug-325` `bug-3574` |
+| `userinfo` | 17 | `bug-10575` `bug-10912` `bug-1503` `bug-1508` `bug-1512` `bug-2633` `bug-2749` `bug-2767` `bug-2771` `bug-2772` `bug-2775` `bug-2808` `bug-2816` `bug-2919` `bug-298` `bug-3151` `bug-316` |
 | `userinfo-pattern` | 1 | `bug-1502` |
 | `useweapon` | 2 | `bug-800` `bug-802` |
 | `utf-8` | 1 | `bug-1804` |
-| `uv` | 2 | `bug-1016` `bug-1327` |
+| `uv` | 10 | `bug-1016` `bug-10729` `bug-10765` `bug-10766` `bug-10833` `bug-1327` `bug-3711` `bug-3891` `bug-4131` `bug-4137` |
 | `uv-wound` | 1 | `bug-828` |
 | `uv-wounds` | 7 | `bug-1142` `bug-2212` `bug-734` `bug-747` `bug-780` `bug-905` `bug-gl2-gore` |
-| `ux` | 5 | `bug-1001` `bug-1246` `bug-1425` `bug-1691` `bug-1840` |
+| `ux` | 7 | `bug-1001` `bug-10886` `bug-1246` `bug-1425` `bug-1691` `bug-1840` `bug-2779` |
 | `ux-trap` | 1 | `bug-1418` |
 | `v1.1.54` | 1 | `bug-1063` |
+| `v1.10.10` | 1 | `bug-3305` |
+| `v1.10.14` | 1 | `bug-3449` |
+| `v1.10.22` | 3 | `bug-3899` `bug-3900` `bug-3901` |
+| `v1.10.3` | 1 | `bug-3152` |
+| `v1.10.35` | 1 | `bug-4171` |
+| `v1.10.37` | 3 | `bug-4435` `bug-4436` `bug-4437` |
+| `v1.10.4` | 7 | `bug-3246` `bug-3247` `bug-3248` `bug-3249` `bug-3250` `bug-3251` `bug-3298` |
+| `v1.10.5` | 1 | `bug-3299` |
+| `v1.10.56` | 2 | `bug-10343` `bug-10356` |
+| `v1.10.57` | 1 | `bug-10351` |
+| `v1.10.58` | 3 | `bug-10368` `bug-10370` `bug-10371` |
+| `v1.10.59` | 6 | `bug-10375` `bug-10376` `bug-10377` `bug-10378` `bug-10385` `bug-10386` |
+| `v1.10.60` | 3 | `bug-10392` `bug-10393` `bug-10400` |
+| `v1.10.61` | 5 | `bug-10426` `bug-10427` `bug-10428` `bug-10429` `bug-10432` |
+| `v1.10.62` | 20 | `bug-10452` `bug-10453` `bug-10454` `bug-10465` `bug-10466` `bug-10467` `bug-10468` `bug-10469` `bug-10470` `bug-10471` `bug-10490` `bug-10491` `bug-10499` `bug-10500` `bug-10501` `bug-10502` `bug-10503` `bug-10504` `bug-10505` `bug-10513` |
+| `v1.10.63` | 8 | `bug-10534` `bug-10535` `bug-10536` `bug-10537` `bug-10538` `bug-10546` `bug-10547` `bug-10548` |
+| `v1.10.64` | 5 | `bug-10549` `bug-10550` `bug-10561` `bug-10562` `bug-10563` |
+| `v1.10.66` | 5 | `bug-10637` `bug-10638` `bug-10639` `bug-10640` `bug-10641` |
+| `v1.10.68` | 8 | `bug-10698` `bug-10699` `bug-10740` `bug-10745` `bug-10746` `bug-10747` `bug-10748` `bug-10749` |
+| `v1.10.69` | 16 | `bug-10767` `bug-10768` `bug-10769` `bug-10770` `bug-10771` `bug-10772` `bug-10773` `bug-10774` `bug-10775` `bug-10776` `bug-10777` `bug-10778` `bug-10779` `bug-10780` `bug-10781` `bug-10782` |
+| `v1.10.70` | 16 | `bug-10783` `bug-10784` `bug-10785` `bug-10786` `bug-10787` `bug-10801` `bug-10802` `bug-10803` `bug-10804` `bug-10805` `bug-10806` `bug-10807` `bug-10808` `bug-10809` `bug-10810` `bug-10811` |
+| `v1.10.71` | 1 | `bug-10812` |
+| `v1.10.72` | 8 | `bug-10838` `bug-10839` `bug-10840` `bug-10853` `bug-10854` `bug-10855` `bug-10858` `bug-10860` |
+| `v1.10.73` | 9 | `bug-10841` `bug-10842` `bug-10843` `bug-10870` `bug-10871` `bug-10873` `bug-10874` `bug-10875` `bug-10907` |
+| `v1.10.74` | 2 | `bug-10883` `bug-10894` |
+| `v1.10.75` | 1 | `bug-10932` |
 | `v1.2.1` | 1 | `bug-1596` |
 | `v1.2.2` | 1 | `bug-1551` |
 | `v1.2.4` | 1 | `bug-1635` |
 | `v1.4.6` | 1 | `bug-2185` |
 | `v1.7.4` | 1 | `bug-2666` |
+| `v1.8.0` | 1 | `bug-2722` |
+| `v120` | 1 | `bug-2974` |
+| `v14` | 2 | `bug-3241` `bug-3786` |
+| `v3` | 2 | `bug-10357` `bug-2770` |
+| `v3.2` | 12 | `bug-10387` `bug-10388` `bug-10389` `bug-10390` `bug-10391` `bug-10406` `bug-10407` `bug-10408` `bug-10413` `bug-10414` `bug-10430` `bug-10431` |
+| `va` | 1 | `bug-10320` |
+| `vad` | 1 | `bug-4270` |
 | `validated` | 1 | `bug-1896` |
-| `validation` | 4 | `bug-591` `bug-599` `bug-600` `bug-601` |
+| `validation` | 8 | `bug-2769` `bug-2771` `bug-2964` `bug-3665` `bug-591` `bug-599` `bug-600` `bug-601` |
 | `validation-blindspot` | 1 | `bug-293` |
 | `validator` | 2 | `bug-2079` `bug-2114` |
 | `vanilla` | 1 | `bug-495` |
@@ -5699,91 +10382,127 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `vanilla-revert` | 1 | `bug-157` |
 | `vanishing-gun` | 1 | `bug-2069` |
 | `variable_none` | 1 | `bug-948` |
+| `variables` | 1 | `bug-3285` |
 | `variables.scr` | 1 | `bug-2080` |
 | `variance` | 1 | `bug-2418` |
-| `variant` | 6 | `bug-1919` `bug-1923` `bug-1928` `bug-1948` `bug-1952` `bug-1996` |
+| `variant` | 9 | `bug-1919` `bug-1923` `bug-1928` `bug-1948` `bug-1952` `bug-1996` `bug-2836` `bug-3368` `bug-3603` |
 | `variant-give` | 1 | `bug-1957` |
 | `variant-normalization` | 1 | `bug-1929` |
 | `variant-ring` | 1 | `bug-1938` |
-| `variant-roll` | 4 | `bug-1943` `bug-1949` `bug-2035` `bug-2038` |
+| `variant-roll` | 5 | `bug-1943` `bug-1949` `bug-2035` `bug-2038` `bug-3306` |
+| `variant-suffix` | 2 | `bug-3713` `bug-3714` |
 | `variant-suffix-trap` | 1 | `bug-2140` |
-| `variants` | 4 | `bug-1918` `bug-1982` `bug-2114` `bug-2577` |
-| `variety` | 1 | `bug-2316` |
+| `variants` | 17 | `bug-10526` `bug-10556` `bug-10577` `bug-10581` `bug-10597` `bug-1918` `bug-1982` `bug-2114` `bug-2577` `bug-2770` `bug-3227` `bug-3363` `bug-3365` `bug-3649` `bug-3764` `bug-3787` `bug-3804` |
+| `variety` | 3 | `bug-2316` `bug-2821` `bug-3087` |
 | `vault` | 1 | `bug-2007` |
+| `vcl` | 1 | `bug-3455` |
+| `vector` | 1 | `bug-3215` |
 | `vector-arithmetic` | 1 | `bug-402` |
 | `vector-literal` | 4 | `bug-1069` `bug-1830` `bug-2196` `bug-348` |
-| `vector_length` | 1 | `bug-1838` |
+| `vector_length` | 2 | `bug-1838` `bug-3200` |
 | `vectorscale` | 1 | `bug-615` |
-| `vehicle` | 13 | `bug-071` `bug-1266` `bug-1323` `bug-1336` `bug-1371` `bug-1514` `bug-240` `bug-251` `bug-252` `bug-541` `bug-724` `bug-941` `bug-t2l2-onfoot` |
+| `vehicle` | 25 | `bug-071` `bug-10434` `bug-10461` `bug-1266` `bug-1323` `bug-1336` `bug-1371` `bug-1514` `bug-240` `bug-251` `bug-252` `bug-2803` `bug-2893` `bug-2899` `bug-3051` `bug-3052` `bug-3301` `bug-3679` `bug-4393` `bug-4395` `bug-4435` `bug-541` `bug-724` `bug-941` `bug-t2l2-onfoot` |
+| `vehicle-objective` | 1 | `bug-3307` |
+| `vehicle-ride` | 1 | `bug-3216` |
 | `vehicle-seating` | 4 | `bug-052` `bug-054` `bug-056` `bug-057` |
 | `vehicle-warning` | 1 | `bug-1473` |
 | `vehicle_warning` | 1 | `bug-1050` |
-| `vehicles` | 4 | `bug-1277` `bug-1307` `bug-2643` `bug-2646` |
+| `vehicles` | 5 | `bug-1277` `bug-1307` `bug-2643` `bug-2646` `bug-2797` |
 | `vehicles_thinkers` | 1 | `bug-t2l2-flak` |
 | `vehicletanktandem` | 1 | `bug-647` |
 | `vehicleturret` | 5 | `bug-1265` `bug-1946` `bug-1950` `bug-2048` `bug-322` |
 | `vehicleturretguntandem` | 1 | `bug-647` |
 | `vehzombie` | 1 | `bug-1371` |
+| `veil` | 2 | `bug-10464` `bug-3323` |
 | `velocity` | 1 | `bug-615` |
-| `verification` | 12 | `bug-1213` `bug-1290` `bug-1564` `bug-1724` `bug-1791` `bug-1822` `bug-1830` `bug-1860` `bug-1889` `bug-1895` `bug-2036` `bug-2647` |
+| `verification` | 22 | `bug-10666` `bug-10720` `bug-1213` `bug-1290` `bug-1564` `bug-1724` `bug-1791` `bug-1822` `bug-1830` `bug-1860` `bug-1889` `bug-1895` `bug-2036` `bug-2647` `bug-3082` `bug-3174` `bug-3202` `bug-3203` `bug-3204` `bug-3250` `bug-3444` `bug-3445` |
 | `verification-gap` | 2 | `bug-1850` `bug-2162` |
-| `verified` | 11 | `bug-1615` `bug-1616` `bug-1692` `bug-1695` `bug-2075` `bug-2639` `bug-2640` `bug-2641` `bug-2643` `bug-2646` `bug-2648` |
+| `verification-lied` | 1 | `bug-3612` |
+| `verified` | 16 | `bug-1615` `bug-1616` `bug-1692` `bug-1695` `bug-2075` `bug-2639` `bug-2640` `bug-2641` `bug-2643` `bug-2646` `bug-2648` `bug-2740` `bug-2742` `bug-2743` `bug-2745` `bug-3073` |
 | `verified-clean` | 1 | `bug-1027` |
 | `verified-compile` | 1 | `bug-2644` |
 | `verified-correct` | 1 | `bug-gl2-e2l2-fog-verified-correct` |
-| `verified-headless` | 13 | `bug-2037` `bug-2045` `bug-2047` `bug-2050` `bug-2051` `bug-2700` `bug-2704` `bug-2708` `bug-2711` `bug-2716` `bug-2717` `bug-2718` `bug-2719` |
+| `verified-headless` | 19 | `bug-2037` `bug-2045` `bug-2047` `bug-2050` `bug-2051` `bug-2700` `bug-2704` `bug-2708` `bug-2711` `bug-2716` `bug-2717` `bug-2718` `bug-2719` `bug-2735` `bug-2736` `bug-2737` `bug-2739` `bug-2744` `bug-2968` |
 | `verified-live` | 3 | `bug-2064` `bug-2065` `bug-2067` |
 | `verified-not-live` | 1 | `bug-2028` |
 | `verified-runtime` | 3 | `bug-2038` `bug-2042` `bug-2043` |
 | `verified-spawn` | 1 | `bug-2645` |
-| `verlet` | 3 | `bug-1962` `bug-1981` `bug-1986` |
-| `versioning` | 1 | `bug-2592` |
+| `verlet` | 4 | `bug-1962` `bug-1981` `bug-1986` `bug-3128` |
+| `version` | 1 | `bug-2932` |
+| `versioning` | 2 | `bug-10330` `bug-2592` |
 | `vertex-color` | 3 | `bug-828` `bug-gl2-compass` `bug-gl2-reddecals` |
+| `vertex-colour` | 1 | `bug-10633` |
+| `vertexcolor` | 1 | `bug-10600` |
+| `vet` | 8 | `bug-2771` `bug-2772` `bug-2777` `bug-3109` `bug-3132` `bug-3133` `bug-3134` `bug-3143` |
 | `vetted` | 7 | `bug-1963` `bug-2039` `bug-2440` `bug-2441` `bug-2443` `bug-2447` `bug-2546` |
 | `vetting` | 2 | `bug-1357` `bug-2083` |
 | `vetting-catch` | 1 | `bug-1719` |
 | `vetting-round-3` | 5 | `bug-1641` `bug-1642` `bug-1643` `bug-1644` `bug-1645` |
-| `vgmstream` | 1 | `bug-599` |
+| `vfs` | 1 | `bug-10921` |
+| `vgmstream` | 2 | `bug-10678` `bug-599` |
 | `vid-restart` | 1 | `bug-1864` |
-| `vid_restart` | 9 | `bug-1124` `bug-1139` `bug-1145` `bug-1146` `bug-1181` `bug-1195` `bug-2666` `bug-753` `bug-767` |
+| `vid_restart` | 18 | `bug-1124` `bug-1139` `bug-1145` `bug-1146` `bug-1181` `bug-1195` `bug-2666` `bug-2975` `bug-2981` `bug-2995` `bug-3011` `bug-3048` `bug-3060` `bug-3064` `bug-3102` `bug-4429` `bug-753` `bug-767` |
+| `video` | 5 | `bug-10285` `bug-10334` `bug-10409` `bug-10423` `bug-3457` |
 | `video-options` | 3 | `bug-753` `bug-754` `bug-756` |
+| `video-panel` | 4 | `bug-3536` `bug-3537` `bug-3539` `bug-3541` |
+| `videomap` | 1 | `bug-10760` |
 | `view` | 1 | `bug-lean-ads-wrong-branch` |
+| `view-arc` | 1 | `bug-10546` |
 | `view-bob` | 1 | `bug-071` |
+| `view-motion` | 1 | `bug-3295` |
 | `view-origin` | 1 | `bug-1238` |
 | `view-roll` | 1 | `bug-2300` |
-| `viewangles` | 1 | `bug-1106` |
-| `viewer` | 1 | `bug-1927` |
-| `viewkick` | 2 | `bug-2092` `bug-2138` |
-| `viewmodel` | 40 | `bug-105` `bug-106` `bug-107` `bug-1140` `bug-1144` `bug-168` `bug-1888` `bug-1901` `bug-1983` `bug-1984` `bug-1985` `bug-1999` `bug-2003` `bug-2005` `bug-2007` `bug-2010` `bug-2012` `bug-2014` `bug-2016` `bug-2048` `bug-2049` `bug-2066` `bug-2067` `bug-2069` `bug-2142` `bug-2458` `bug-2459` `bug-2462` `bug-2463` `bug-2480` `bug-2491` `bug-2499` `bug-2502` `bug-2542` `bug-2562` `bug-294` `bug-301… |
+| `viewangles` | 2 | `bug-10421` `bug-1106` |
+| `viewclip` | 5 | `bug-10649` `bug-10650` `bug-10651` `bug-10667` `bug-10668` |
+| `viewer` | 2 | `bug-1927` `bug-2788` |
+| `viewkick` | 5 | `bug-10416` `bug-10877` `bug-2092` `bug-2138` `bug-3600` |
+| `viewmodel` | 84 | `bug-10336` `bug-105` `bug-106` `bug-10649` `bug-107` `bug-10706` `bug-10721` `bug-10722` `bug-1140` `bug-1144` `bug-168` `bug-1888` `bug-1901` `bug-1983` `bug-1984` `bug-1985` `bug-1999` `bug-2003` `bug-2005` `bug-2007` `bug-2010` `bug-2012` `bug-2014` `bug-2016` `bug-2048` `bug-2049` `bug-2066` `bug-2067` `bug-2069` `bug-2142` `bug-2458` `bug-2459` `bug-2462` `bug-2463` `bug-2480` `bug-2491` `b… |
 | `viewmodel-desync` | 1 | `bug-1706` |
-| `viewmodelanim` | 2 | `bug-072` `bug-074` |
+| `viewmodelanim` | 4 | `bug-072` `bug-074` `bug-3755` `bug-3825` |
 | `viewpos` | 6 | `bug-1710` `bug-1752` `bug-1784` `bug-1787` `bug-1859` `bug-895` |
-| `vignette` | 7 | `bug-1290` `bug-2294` `bug-2466` `bug-2468` `bug-gl2-dbnofx` `bug-gl2-suppressfx` `bug-lowhealth-scene-dependent` |
+| `vignette` | 8 | `bug-1290` `bug-2294` `bug-2466` `bug-2468` `bug-3049` `bug-gl2-dbnofx` `bug-gl2-suppressfx` `bug-lowhealth-scene-dependent` |
 | `vignette-budget` | 1 | `bug-2253` |
 | `vignettes` | 2 | `bug-2214` `bug-2235` |
 | `vigspawn` | 2 | `bug-2305` `bug-2310` |
 | `vip` | 1 | `bug-2676` |
-| `virtualres` | 1 | `bug-1127` |
+| `virtual-480` | 1 | `bug-3464` |
+| `virtualres` | 2 | `bug-1127` `bug-4415` |
+| `virtualsize` | 1 | `bug-4097` |
 | `vis` | 2 | `bug-1849` `bug-1869` |
-| `visibility` | 1 | `bug-747` |
+| `visibility` | 5 | `bug-10433` `bug-10837` `bug-3548` `bug-3873` `bug-747` |
 | `visibility-tag` | 1 | `bug-1189` |
-| `visual` | 5 | `bug-1424` `bug-2243` `bug-2594` `bug-2595` `bug-2596` |
+| `vision` | 1 | `bug-2922` |
+| `visual` | 9 | `bug-1424` `bug-2243` `bug-2594` `bug-2595` `bug-2596` `bug-2839` `bug-2844` `bug-3340` `bug-3344` |
 | `visual-bug` | 3 | `bug-1526` `bug-1527` `bug-1530` |
+| `visual-qa` | 5 | `bug-10668` `bug-10670` `bug-10677` `bug-10756` `bug-3832` |
+| `vm` | 1 | `bug-eap-counters` |
 | `vm_anim` | 2 | `bug-074` `bug-168` |
-| `vo` | 15 | `bug-1201` `bug-1202` `bug-1203` `bug-1288` `bug-1302` `bug-1475` `bug-1496` `bug-2297` `bug-2307` `bug-2316` `bug-2321` `bug-2324` `bug-2342` `bug-2344` `bug-600` |
+| `vm_offset` | 1 | `bug-3226` |
+| `vo` | 17 | `bug-10411` `bug-1201` `bug-1202` `bug-1203` `bug-1288` `bug-1302` `bug-1475` `bug-1496` `bug-2297` `bug-2307` `bug-2316` `bug-2321` `bug-2324` `bug-2342` `bug-2344` `bug-3385` `bug-600` |
 | `voice-spam` | 1 | `bug-1808` |
 | `voice-wheel` | 1 | `bug-2176` |
 | `voicebank` | 3 | `bug-2434` `bug-2474` `bug-2511` |
-| `voices` | 1 | `bug-2565` |
+| `voices` | 2 | `bug-2565` `bug-eap-voices` |
+| `void` | 6 | `bug-10848` `bug-10865` `bug-10870` `bug-10871` `bug-10872` `bug-10924` |
 | `void-fall` | 1 | `bug-958` |
 | `voidguard` | 1 | `bug-1231` |
 | `volume` | 2 | `bug-099` `bug-2313` |
+| `volumetric` | 2 | `bug-3517` `bug-3523` |
+| `volumetric-clouds` | 8 | `bug-3081` `bug-3082` `bug-3083` `bug-3156` `bug-3157` `bug-3158` `bug-3159` `bug-3184` |
 | `voprobe` | 1 | `bug-2400` |
 | `vpf_depthshadow` | 1 | `bug-1209` |
-| `vstr` | 2 | `bug-1927` `bug-2580` |
+| `vram` | 7 | `bug-3069` `bug-3397` `bug-3530` `bug-3536` `bug-3539` `bug-3561` `bug-3612` |
+| `vstr` | 4 | `bug-1927` `bug-2580` `bug-2754` `bug-3012` |
+| `vsync` | 3 | `bug-3017` `bug-3104` `bug-3911` |
+| `w` | 2 | `bug-3235` `bug-3244` |
 | `waders` | 1 | `bug-2475` |
-| `waitforplayer` | 2 | `bug-896` `bug-t2l2-onfoot` |
-| `waitframe` | 1 | `bug-865` |
+| `wait` | 10 | `bug-10713` `bug-10718` `bug-10727` `bug-2995` `bug-3175` `bug-3186` `bug-3314` `bug-3784` `bug-3805` `bug-3902` |
+| `wait-is-milliseconds` | 2 | `bug-3045` `bug-3253` |
+| `wait-marker` | 1 | `bug-3178` |
+| `wait-ms` | 1 | `bug-3977` |
+| `waiter` | 3 | `bug-3355` `bug-3414` `bug-4417` |
+| `waitforplayer` | 3 | `bug-896` `bug-norway-1027-fincine-harness` `bug-t2l2-onfoot` |
+| `waitframe` | 2 | `bug-3381` `bug-865` |
 | `waitthread` | 1 | `bug-1204` |
 | `waittill` | 15 | `bug-1294` `bug-1361` `bug-1458` `bug-1460` `bug-1461` `bug-1462` `bug-1469` `bug-1491` `bug-1495` `bug-1579` `bug-1586` `bug-1613` `bug-1614` `bug-1861` `bug-2669` |
 | `waittill-damage` | 1 | `bug-2083` |
@@ -5792,130 +10511,204 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `waittill-hang` | 2 | `bug-1921` `bug-2275` |
 | `waittill-hangs` | 1 | `bug-2071` |
 | `waittill-movedone` | 1 | `bug-1366` |
-| `waittill-spawn` | 3 | `bug-122` `bug-1637` `bug-t2l2-flak` |
+| `waittill-pickup` | 1 | `bug-3851` |
+| `waittill-spawn` | 4 | `bug-122` `bug-1637` `bug-2736` `bug-t2l2-flak` |
 | `waittill-trigger` | 1 | `bug-1471` |
+| `waittillspawn` | 1 | `bug-2968` |
 | `wake` | 1 | `bug-1574` |
 | `walk` | 1 | `bug-164` |
 | `walk-anim` | 1 | `bug-319` |
 | `walkto` | 1 | `bug-1710` |
-| `wall-breach` | 1 | `bug-2719` |
+| `walkway` | 1 | `bug-4402` |
+| `wall` | 1 | `bug-3131` |
+| `wall-breach` | 2 | `bug-2719` `bug-2723` |
+| `wall-clock` | 1 | `bug-3001` |
 | `wall-cover` | 5 | `bug-2028` `bug-2055` `bug-2072` `bug-2073` `bug-2094` |
 | `wall-death` | 1 | `bug-1921` |
+| `wall-map` | 1 | `bug-3261` |
+| `wall-slide` | 1 | `bug-2825` |
 | `wall-splat` | 1 | `bug-1142` |
 | `wallgun` | 2 | `bug-1380` `bug-1397` |
+| `wallmap` | 2 | `bug-10382` `bug-10395` |
 | `wallprobe` | 3 | `bug-1062` `bug-947` `bug-949` |
 | `wallprobe-v3` | 1 | `bug-952` |
 | `wallprobe-v5` | 1 | `bug-953` |
+| `walls` | 1 | `bug-10279` |
 | `wallslide` | 1 | `bug-2714` |
 | `war-chest` | 1 | `bug-2296` |
+| `war-map` | 4 | `bug-10783` `bug-10785` `bug-10786` `bug-10787` |
+| `warmap` | 4 | `bug-10703` `bug-10834` `bug-10868` `bug-10917` |
 | `warning` | 1 | `bug-gl2-cullfront` |
 | `warning-spam` | 1 | `bug-2189` |
+| `wasted-run` | 2 | `bug-3674` `bug-3806` |
 | `wasted-session` | 1 | `bug-2089` |
 | `wasted-work` | 1 | `bug-1210` |
 | `watch` | 1 | `bug-363` |
-| `watchdog` | 8 | `bug-1286` `bug-1450` `bug-1452` `bug-1459` `bug-2306` `bug-2437` `bug-2530` `bug-2579` |
+| `watchdog` | 12 | `bug-1286` `bug-1450` `bug-1452` `bug-1459` `bug-2306` `bug-2437` `bug-2530` `bug-2579` `bug-3147` `bug-3486` `bug-3922` `bug-4017` |
 | `watcher` | 1 | `bug-2068` |
 | `watcher-vs-event` | 1 | `bug-1939` |
-| `water` | 22 | `bug-1242` `bug-1247` `bug-1249` `bug-1250` `bug-1515` `bug-2219` `bug-2230` `bug-2255` `bug-2264` `bug-2265` `bug-2471` `bug-2479` `bug-2485` `bug-2493` `bug-2508` `bug-2514` `bug-2518` `bug-2519` `bug-2520` `bug-2521` `bug-2524` `bug-2525` |
+| `water` | 30 | `bug-1242` `bug-1247` `bug-1249` `bug-1250` `bug-1515` `bug-2219` `bug-2230` `bug-2255` `bug-2264` `bug-2265` `bug-2471` `bug-2479` `bug-2485` `bug-2493` `bug-2508` `bug-2514` `bug-2518` `bug-2519` `bug-2520` `bug-2521` `bug-2524` `bug-2525` `bug-3105` `bug-3161` `bug-3177` `bug-3406` `bug-3409` `bug-4273` `bug-4290` `bug-4404` |
+| `water_wetness` | 1 | `bug-3150` |
 | `waterline` | 2 | `bug-2532` `bug-2536` |
 | `wateronly` | 1 | `bug-2359` |
-| `wave` | 1 | `bug-1846` |
+| `wave` | 2 | `bug-1846` `bug-4276` |
 | `wave-director` | 1 | `bug-1831` |
-| `waves` | 4 | `bug-1824` `bug-1855` `bug-1879` `bug-2520` |
+| `wave-entry` | 1 | `bug-4083` |
+| `waves` | 6 | `bug-10313` `bug-1824` `bug-1855` `bug-1879` `bug-2520` `bug-3416` |
 | `wavetrant` | 1 | `bug-1242` |
 | `waypoint` | 2 | `bug-2246` `bug-2302` |
+| `wcag` | 1 | `bug-3172` |
 | `wcr` | 1 | `bug-1574` |
-| `weapon` | 10 | `bug-095` `bug-098` `bug-1420` `bug-1551` `bug-1881` `bug-2138` `bug-2153` `bug-2546` `bug-2550` `bug-378` |
+| `wcrc` | 1 | `bug-2995` |
+| `weapdrop` | 1 | `bug-3759` |
+| `weapon` | 24 | `bug-095` `bug-098` `bug-10307` `bug-10462` `bug-10475` `bug-10542` `bug-10543` `bug-1420` `bug-1551` `bug-1881` `bug-2138` `bug-2153` `bug-2546` `bug-2550` `bug-3095` `bug-3305` `bug-3374` `bug-3375` `bug-3378` `bug-3397` `bug-3418` `bug-378` `bug-3790` `bug-3920` |
+| `weapon-anim` | 1 | `bug-4130` |
 | `weapon-attach` | 1 | `bug-gl2-forcepose-skips-composite-ally` |
 | `weapon-balance` | 1 | `bug-648` |
-| `weapon-class` | 1 | `bug-098` |
-| `weapon-drop` | 1 | `bug-923` |
-| `weapon-feel` | 4 | `bug-1983` `bug-1984` `bug-2458` `bug-2459` |
+| `weapon-ban` | 1 | `bug-3269` |
+| `weapon-class` | 2 | `bug-098` `bug-3440` |
+| `weapon-drop` | 2 | `bug-4211` `bug-923` |
+| `weapon-feel` | 6 | `bug-1983` `bug-1984` `bug-2458` `bug-2459` `bug-3294` `bug-3295` |
+| `weapon-finish` | 2 | `bug-10314` `bug-2753` |
 | `weapon-flicker` | 1 | `bug-1701` |
 | `weapon-getter` | 3 | `bug-1943` `bug-1948` `bug-1960` |
-| `weapon-give` | 4 | `bug-1949` `bug-2049` `bug-2066` `bug-893` |
+| `weapon-give` | 5 | `bug-1949` `bug-2049` `bug-2066` `bug-3306` `bug-893` |
 | `weapon-group` | 1 | `bug-2295` |
+| `weapon-hd` | 2 | `bug-3589` `bug-3603` |
+| `weapon-item` | 2 | `bug-10258` `bug-10474` |
+| `weapon-key` | 1 | `bug-3806` |
 | `weapon-lag` | 3 | `bug-2459` `bug-2492` `bug-2502` |
-| `weapon-mass` | 1 | `bug-2005` |
+| `weapon-mass` | 2 | `bug-2005` `bug-3207` |
 | `weapon-mounting` | 2 | `bug-2132` `bug-2133` |
-| `weapon-name` | 1 | `bug-1716` |
+| `weapon-name` | 5 | `bug-1716` `bug-3363` `bug-3365` `bug-3713` `bug-3739` |
 | `weapon-raise` | 2 | `bug-1684` `bug-1732` |
+| `weapon-restriction` | 2 | `bug-2732` `bug-2733` |
 | `weapon-select` | 2 | `bug-1897` `bug-494` |
 | `weapon-skins` | 1 | `bug-2114` |
 | `weapon-state` | 1 | `bug-2113` |
-| `weapon-switch` | 1 | `bug-2053` |
+| `weapon-swap` | 1 | `bug-10894` |
+| `weapon-switch` | 3 | `bug-2053` `bug-2875` `bug-3239` |
+| `weapon-tag` | 2 | `bug-3335` `bug-3659` |
+| `weapon-tik` | 2 | `bug-3651` `bug-3782` |
+| `weapon-variants` | 1 | `bug-3337` |
+| `weapon-viewer` | 2 | `bug-10705` `bug-10807` |
 | `weapon-weight` | 4 | `bug-2140` `bug-2141` `bug-2142` `bug-2146` |
-| `weapon.scr` | 1 | `bug-1952` |
+| `weapon-wheel` | 1 | `bug-10698` |
+| `weapon.scr` | 2 | `bug-1952` `bug-3051` |
+| `weapon_hd` | 4 | `bug-10315` `bug-10316` `bug-10318` `bug-10319` |
+| `weapon_reloading` | 1 | `bug-3789` |
 | `weaponclip` | 1 | `bug-938` |
 | `weapongroup` | 1 | `bug-1103` |
 | `weapongroup-vs-model` | 1 | `bug-2071` |
-| `weapons` | 28 | `bug-1885` `bug-1886` `bug-1887` `bug-1888` `bug-1894` `bug-1897` `bug-1899` `bug-1900` `bug-1905` `bug-1907` `bug-1982` `bug-2095` `bug-2170` `bug-2241` `bug-2439` `bug-2450` `bug-2461` `bug-2464` `bug-2467` `bug-464` `bug-481` `bug-482` `bug-483` `bug-484` `bug-494` `bug-495` `bug-500` `bug-863` |
+| `weapons` | 40 | `bug-10406` `bug-10526` `bug-10530` `bug-10532` `bug-10533` `bug-10552` `bug-10557` `bug-10661` `bug-1885` `bug-1886` `bug-1887` `bug-1888` `bug-1894` `bug-1897` `bug-1899` `bug-1900` `bug-1905` `bug-1907` `bug-1982` `bug-2095` `bug-2170` `bug-2241` `bug-2439` `bug-2450` `bug-2461` `bug-2464` `bug-2467` `bug-2795` `bug-2948` `bug-4149` `bug-4151` `bug-464` `bug-481` `bug-482` `bug-483` `bug-484`… |
 | `weapons-on-back` | 5 | `bug-1891` `bug-616` `bug-619` `bug-623` `bug-923` |
 | `weaponshift` | 2 | `bug-105` `bug-108` |
 | `weaponsout` | 1 | `bug-378` |
 | `weaponstate` | 4 | `bug-1606` `bug-1617` `bug-1694` `bug-350` |
+| `weaponview` | 8 | `bug-3310` `bug-3311` `bug-3312` `bug-3313` `bug-3314` `bug-3315` `bug-3316` `bug-3317` |
 | `weapturret` | 3 | `bug-091` `bug-1552` `bug-229` |
 | `weaputils` | 2 | `bug-1974` `bug-846` |
-| `weather` | 19 | `bug-022` `bug-1051` `bug-1052` `bug-1053` `bug-1133` `bug-1206` `bug-1280` `bug-1281` `bug-134` `bug-1345` `bug-1383` `bug-1547` `bug-1802` `bug-1857` `bug-231` `bug-2516` `bug-2708` `bug-2710` `bug-430` |
-| `weather.scr` | 1 | `bug-231` |
+| `wear` | 2 | `bug-3376` `bug-3883` |
+| `weather` | 55 | `bug-022` `bug-10275` `bug-10385` `bug-10393` `bug-10396` `bug-1051` `bug-1052` `bug-1053` `bug-10689` `bug-10873` `bug-10885` `bug-10931` `bug-1133` `bug-1206` `bug-1280` `bug-1281` `bug-134` `bug-1345` `bug-1383` `bug-1547` `bug-1802` `bug-1857` `bug-231` `bug-2516` `bug-2708` `bug-2710` `bug-2735` `bug-2736` `bug-2737` `bug-2738` `bug-2796` `bug-2800` `bug-2936` `bug-2939` `bug-2963` `bug-2968… |
+| `weather.scr` | 3 | `bug-231` `bug-3173` `bug-3857` |
 | `weatherpattern` | 1 | `bug-1280` |
-| `wedge` | 1 | `bug-1642` |
+| `web-installer` | 2 | `bug-2734` `bug-2907` |
+| `webhook` | 2 | `bug-2907` `bug-3276` |
+| `webhook-leak` | 1 | `bug-3277` |
+| `webley` | 6 | `bug-3365` `bug-3368` `bug-3533` `bug-3578` `bug-3613` `bug-3804` |
+| `wedge` | 2 | `bug-1642` `bug-2949` |
+| `wedged` | 4 | `bug-2882` `bug-2885` `bug-2889` `bug-2891` |
 | `wehrmacht` | 1 | `bug-2243` |
 | `weight` | 3 | `bug-072` `bug-2153` `bug-260` |
 | `weight-zero` | 1 | `bug-2125` |
+| `weights` | 1 | `bug-3864` |
 | `welder` | 2 | `bug-1650` `bug-2275` |
 | `welders` | 1 | `bug-2313` |
 | `welding` | 1 | `bug-2408` |
+| `welrod` | 3 | `bug-3654` `bug-3734` `bug-3736` |
 | `wer-dump` | 1 | `bug-418` |
 | `west-wall` | 1 | `bug-950` |
 | `wet-sand` | 2 | `bug-2485` `bug-2493` |
+| `wetness` | 5 | `bug-3105` `bug-3177` `bug-3406` `bug-3407` `bug-3408` |
+| `whatsnew` | 3 | `bug-2908` `bug-3057` `bug-3267` |
+| `wheel` | 5 | `bug-10487` `bug-10488` `bug-10489` `bug-10496` `bug-10497` |
+| `whisper` | 1 | `bug-4270` |
 | `whistle` | 1 | `bug-2276` |
 | `whistles` | 1 | `bug-2451` |
 | `white-square` | 1 | `bug-430` |
 | `white-squares` | 2 | `bug-2403` `bug-2423` |
+| `white-strip` | 1 | `bug-10642` |
 | `white-texture` | 5 | `bug-088` `bug-092` `bug-095` `bug-809` `bug-936b` |
 | `white-textures` | 1 | `bug-480` |
 | `whitelist` | 3 | `bug-1449` `bug-1991` `bug-597` |
 | `whitelist-too-shallow` | 1 | `bug-2071` |
-| `whitespace` | 1 | `bug-450` |
+| `whitespace` | 2 | `bug-3022` `bug-450` |
 | `whole-file-override` | 1 | `bug-921` |
+| `wid` | 2 | `bug-10592` `bug-4143` |
+| `widescreen` | 1 | `bug-10473` |
+| `widgetcommand` | 1 | `bug-3268` |
+| `wildcard` | 1 | `bug-3241` |
 | `willys` | 1 | `bug-1369` |
 | `win-condition` | 1 | `bug-2704` |
+| `win32` | 1 | `bug-3113` |
 | `windbg` | 6 | `bug-1566` `bug-915` `bug-917` `bug-919` `bug-920` `bug-925` |
-| `windows` | 2 | `bug-1227` `bug-2587` |
+| `winding` | 5 | `bug-10599` `bug-10612` `bug-10662` `bug-3105` `bug-4430` |
+| `window-placement` | 1 | `bug-3112` |
+| `window-size` | 1 | `bug-3153` |
+| `window-view` | 13 | `bug-10652` `bug-10653` `bug-10654` `bug-10655` `bug-10656` `bug-10696` `bug-10697` `bug-10704` `bug-10725` `bug-10736` `bug-10750` `bug-10751` `bug-10759` |
+| `windows` | 5 | `bug-10582` `bug-1227` `bug-2587` `bug-3415` `bug-3820` |
 | `windscreen` | 2 | `bug-1338` `bug-1341` |
+| `winforms` | 1 | `bug-3471` |
 | `wire` | 1 | `bug-2498` |
 | `wire-audit` | 1 | `bug-2615` |
 | `wire-format` | 3 | `bug-1198` `bug-1364` `bug-1747` |
 | `wire-proof` | 1 | `bug-2073` |
-| `wire_mv2` | 1 | `bug-1947` |
+| `wire_mv2` | 2 | `bug-10581` `bug-1947` |
 | `wiring` | 1 | `bug-2513` |
 | `withindistanceof` | 2 | `bug-872` `bug-873` |
 | `witness` | 1 | `bug-1810` |
+| `wmic` | 1 | `bug-4417` |
 | `wont-fix` | 1 | `bug-1386` |
 | `wontfix` | 1 | `bug-1303` |
 | `wontfix-by-design` | 1 | `bug-1396` |
+| `wood` | 3 | `bug-10315` `bug-10618` `bug-10837` |
+| `wooden_barrel` | 1 | `bug-10277` |
+| `work-party` | 1 | `bug-3482` |
+| `work-pose` | 2 | `bug-3865` `bug-3873` |
 | `workaround-outlived-its-bug` | 1 | `bug-2050` |
-| `workflow` | 5 | `bug-1051` `bug-1054` `bug-1554` `bug-2148` `bug-2411` |
+| `worker-thread` | 1 | `bug-3536` |
+| `workers` | 1 | `bug-4156` |
+| `workflow` | 7 | `bug-1051` `bug-1054` `bug-1554` `bug-2148` `bug-2411` `bug-3392` `bug-4158` |
 | `workflow-verified` | 3 | `bug-1368` `bug-1369` `bug-1377` |
+| `working-tree` | 2 | `bug-10451` `bug-10472` |
 | `workparty` | 2 | `bug-2265` `bug-2284` |
+| `worktree` | 8 | `bug-10702` `bug-10780` `bug-10815` `bug-10817` `bug-10918` `bug-4147` `bug-4148` `bug-4191` |
+| `world` | 1 | `bug-10272` |
+| `world-clip` | 1 | `bug-4397` |
 | `world-geometry` | 1 | `bug-1396` |
 | `world-gun` | 1 | `bug-304` |
 | `world-stomp` | 1 | `bug-927` |
-| `worldspawn` | 2 | `bug-1154` `bug-1499` |
+| `worldspawn` | 5 | `bug-10586` `bug-10604` `bug-10890` `bug-1154` `bug-1499` |
 | `worm-artifacts` | 1 | `bug-1129` |
+| `wound` | 1 | `bug-2807` |
 | `wound-consistency` | 1 | `bug-828` |
 | `wound-props` | 4 | `bug-1876` `bug-2191` `bug-2202` `bug-747` |
-| `wounded` | 6 | `bug-1104` `bug-1644` `bug-1818` `bug-2009` `bug-2321` `bug-2323` |
+| `wounded` | 7 | `bug-1104` `bug-1644` `bug-1818` `bug-2009` `bug-2321` `bug-2323` `bug-2841` |
 | `wounded-limp` | 1 | `bug-638` |
+| `wpnfix` | 10 | `bug-10552` `bug-10553` `bug-10554` `bug-10555` `bug-10556` `bug-10557` `bug-10558` `bug-10559` `bug-10560` `bug-10706` |
+| `wpnfix2` | 2 | `bug-10577` `bug-10578` |
+| `wpnviewer` | 10 | `bug-10526` `bug-10527` `bug-10528` `bug-10529` `bug-10530` `bug-10531` `bug-10532` `bug-10533` `bug-10554` `bug-10772` |
 | `wreck` | 2 | `bug-2515` `bug-541` |
 | `wrecks` | 1 | `bug-2504` |
+| `wrist` | 1 | `bug-3446` |
 | `write-never-read` | 1 | `bug-2044` |
 | `write-only` | 1 | `bug-1404` |
 | `write-only-property` | 1 | `bug-2034` |
+| `write-tool` | 1 | `bug-3022` |
 | `wrong-anchor` | 2 | `bug-1558` `bug-1741` |
+| `wrong-art` | 1 | `bug-3274` |
 | `wrong-assumption` | 3 | `bug-1995` `bug-1998` `bug-1999` |
-| `wrong-attribution` | 1 | `bug-1884` |
+| `wrong-attribution` | 2 | `bug-1884` `bug-3644` |
 | `wrong-channel` | 1 | `bug-1588` |
 | `wrong-code-path` | 1 | `bug-lean-ads-wrong-branch` |
 | `wrong-comment` | 1 | `bug-2291` |
@@ -5933,7 +10726,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `wrong-mod` | 1 | `bug-941` |
 | `wrong-pak-priority` | 1 | `bug-2143` |
 | `wrong-pivot` | 1 | `bug-2142` |
-| `wrong-premise` | 2 | `bug-1553` `bug-2008` |
+| `wrong-premise` | 3 | `bug-1553` `bug-2008` `bug-3576` |
 | `wrong-reference` | 13 | `bug-007` `bug-053` `bug-062` `bug-097` `bug-702` `bug-751` `bug-752` `bug-761` `bug-762` `bug-770` `bug-771` `bug-806` `bug-807` |
 | `wrong-signal` | 1 | `bug-1455` |
 | `wrong-storage-class` | 1 | `bug-2042` |
@@ -5946,25 +10739,34 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `wrong-variable` | 1 | `bug-2023` |
 | `wrong-voice` | 1 | `bug-2020` |
 | `wuss-pk3` | 1 | `bug-1508` |
+| `wxextreme` | 1 | `bug-3881` |
+| `x64` | 1 | `bug-3021` |
 | `xbeam` | 1 | `bug-2191` |
-| `xp` | 25 | `bug-1065` `bug-1264` `bug-1422` `bug-1514` `bug-1520` `bug-1668` `bug-1680` `bug-1705` `bug-1868` `bug-1870` `bug-1871` `bug-1872` `bug-1977` `bug-2564` `bug-2680` `bug-2699` `bug-298` `bug-300` `bug-302` `bug-553` `bug-788` `bug-805` `bug-818` `bug-819` `bug-848` |
+| `xp` | 34 | `bug-10479` `bug-10568` `bug-1065` `bug-1264` `bug-1422` `bug-1514` `bug-1520` `bug-1668` `bug-1680` `bug-1705` `bug-1868` `bug-1870` `bug-1871` `bug-1872` `bug-1977` `bug-2564` `bug-2680` `bug-2699` `bug-2751` `bug-2924` `bug-298` `bug-300` `bug-302` `bug-3076` `bug-3199` `bug-3903` `bug-4004` `bug-4008` `bug-553` `bug-788` `bug-805` `bug-818` `bug-819` `bug-848` |
 | `xp_summary` | 1 | `bug-788` |
 | `xpbar` | 4 | `bug-312` `bug-314` `bug-501` `bug-957` |
+| `xw` | 2 | `bug-3417` `bug-3453` |
 | `xw-pack` | 1 | `bug-1420` |
 | `xw-weapons` | 4 | `bug-1887` `bug-1888` `bug-648` `bug-809` |
 | `xw_weapons` | 2 | `bug-481` `bug-483` |
-| `yaw` | 1 | `bug-1828` |
+| `yaw` | 2 | `bug-1828` `bug-3698` |
 | `yield` | 1 | `bug-2185` |
 | `z-fight` | 1 | `bug-2549` |
 | `z-fighting` | 2 | `bug-1164` `bug-230` |
 | `z-height` | 1 | `bug-1786` |
 | `z-order` | 1 | `bug-641` |
 | `z_tagmalloc` | 1 | `bug-gl2-ztagmalloc` |
+| `zero-width` | 1 | `bug-3076` |
+| `zf4` | 1 | `bug-10302` |
+| `zfar` | 2 | `bug-10652` `bug-3454` |
+| `zing` | 1 | `bug-10279` |
 | `zip` | 1 | `bug-1577` |
 | `zip-append` | 1 | `bug-1428` |
 | `zombie` | 1 | `bug-1323` |
 | `zombie-menu` | 2 | `bug-767` `bug-777` |
-| `zone` | 1 | `bug-1833` |
+| `zone` | 2 | `bug-1833` `bug-3204` |
 | `zone-leak` | 1 | `bug-1124` |
-| `zoom` | 4 | `bug-073` `bug-074` `bug-1996` `bug-256` |
+| `zones` | 2 | `bug-2838` `bug-2872` |
+| `zoom` | 7 | `bug-073` `bug-074` `bug-1996` `bug-256` `bug-3462` `bug-3503` `bug-3673` |
 | `zoom-leak` | 1 | `bug-2048` |
+| `zoomcam` | 1 | `bug-4196` |

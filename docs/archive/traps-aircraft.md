@@ -13,3 +13,13 @@ Moved here because `docs/TRAPS.md` is at its size ceiling. Design and evidence: 
 - **`wait 0.05` is every second server frame at sv_fps 40.** A script mover stepped that way judders against 40 Hz
   snapshots (half the client frames show no motion). Use `waitframe` and integrate `level.time` deltas. bug-3381.
 - **A harness client is capped by `com_maxfpsUnfocused`** (harness_window adds 60), not only `com_maxfps`. bug-3384.
+- **Above the sky, a down trace hits the sky brush's top face** (1856/1920 on m2l3) and a probe from just under the sky
+  starts solid inside the boundary walls: both read as "obstacles" and refused every track. Clearance for a plane above
+  the lowest sky = what a droptofloor probe from just under the sky finds; a solid start there is the boundary. bug-10425 (finair).
+- **The default `traced` mask has no CONTENTS_FENCE**: chain-link fences are invisible to it. Placement traces use
+  34155265 (SOLID|FENCE|PLAYERCLIP|VEHICLECLIP|BODY|...). bug-10422.
+- **Script view angles never turn a manned turret**: `VehicleTurretGun::RemoteControl` integrates the raw usercmd angles
+  and `SetViewAngles` only moves delta_angles; a usercmd angle back to exactly 0 is ignored too. Harness gunners use
+  pad `@mouse` events (finair `mktrack.py`). bug-10421.
+- **ProjectileGenerator_Gun rounds never registered a hit on a coop player** (point blank, coop_dmgProbe silent):
+  use them for tracers/impacts only and deal damage in script. bug-10420.

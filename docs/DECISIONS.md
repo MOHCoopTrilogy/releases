@@ -136,22 +136,15 @@ search comes up empty.**
 <a name="renderer"></a>
 ## Renderer
 
-### gl1 ships; gl2 develops in a fully isolated install
-**Chosen:** `cl_renderer` defaults to `"opengl1"` (`cl_main.cpp:3231`). gl2 lives at `G:\mohaa-gl2` —
-its own `main`/`mainta`/`maintt` (junctioned to the same real game data, so mod content is
-intentionally shared), its own binaries, its own **two** homepaths (`home`, `home_test`), and
-`PLAY-GL2.bat` pinning `fs_basepath`, `fs_homepath`, `cl_renderer opengl2`, `com_target_game 2`,
-resolution, `developer 1`, `logfile 2`.
-**Why the batch file forces latched graphics cvars on the command line:** applying them from the
-in-game menu triggers a `vid_restart` that **crashes** under gl2 (recorded in the batch file's own
-comments).
-**Why isolation at all:** bug-1172 — every `build.ps1` run during a gl2 sandbox session pushed
-sandbox-only `MAX_SOUNDS 2000` / `MAX_ENTITIES 4095` / `MAX_TIKI_ALIASES 8192` binaries into the
-user's **real install**. `MAX_ENTITIES` in `renderercommon/new/tr_types_new.h:33` still reads 1023
-from that emergency revert, even though the analysis proving it could be raised was independently
-verified correct.
-**Refinement worth keeping:** only **cross-binary protocol** constants can corrupt a mixed set;
-renderer-local constants cannot.
+### gl2 is the platform; gl1 is a frozen safety net (user 2026-10-26)
+**Chosen:** gl2 is the default for every player (since 2026-09-04) and the ONLY target for new visual
+features (water/ice, PiP scopes, 3D menu, haze, FX). gl1 gets **no new features or fallbacks** - new
+work must only not crash or break it (it stays as the low-end/driver-trouble escape hatch).
+**Rejected:** porting every effect to gl1 (user: "gl1 work is a waste at this point - we are building on gl2").
+**Still true from the old isolation era:** latched graphics cvars applied from a menu trigger a
+`vid_restart` that crashes gl2 (see below); bug-1172 - only **cross-binary protocol** constants can
+corrupt a mixed binary set, renderer-local constants cannot (`MAX_ENTITIES` 1023 in
+`renderercommon/new/tr_types_new.h` dates from that revert).
 
 ### Never trigger a renderer restart from inside a menu
 `REVERTED` · *bug-1181, bug-1177* — enabling Ambient Occlusion and pressing APPLY closed the game
@@ -378,11 +371,13 @@ request after two full generator rewrites; nothing was defective.
 | **Server-side `fov`/`setfov` for ADS zoom** | Dead ends. A cgame `CG_CalcFov` zoom was used instead. | `ads_ironsight_port.md` |
 | **Custom `viewmodelanim` tokens** | Silently fall through to idle — `Player::ViewModelAnim` accepts only a fixed set. The engine-recognised `charge` token was used. | `player.cpp:11696` |
 | **Layering a torso weapon-hold over sprint** | **Structurally impossible.** Closed. The proper fix is a Blender re-authored anim. | `sprint_walk_stamina.md` |
-| **Adding anim includes to individual model TIKs** | `MAX_TIKI_ALIASES` overflow risk. `$include human_thompson.tik` was moved into the **unconditional** block of `new_generic_human.tik` instead, which every allied model inherits — fixing ~1300 "unknown animation thompson_*" errors. | `sky_trace_and_airborne_anim_fixes.md` |
+| **Adding anim includes to individual model TIKs** | `MAX_TIKI_ALIASES` overflow risk. `$include human_thompson.tik` went into `new_generic_human.tik`'s unconditional block (every allied model) — ~1300 errors gone. | `sky_trace_and_airborne_anim_fixes.md` |
+| **`sv_team_spawn_interval` for Coop Hardcore respawn waves** | Archived (a coop value leaks into MP), forces death-spectator, gates first spawns and joins. game.dll holds only the DEAD, keyed on `g_coopHardcore`. | bug-2923 |
+| **Bots reading `self.flags[...]` / `coop_mp*` cvars for the bandage** | `ScriptVariable::operator[]` inserts keys; engine code may not name `coop_mp*` outside hooks. The script's own `COOP_SELFHEAL` torso state is the signal. | bug-2921 |
 | **Fading the HUD via `m_alpha`** | urc `fadein` widgets re-pin it every frame. Used the post-Motion `SetHudFadeMul` instead. | `hud_fade.md` |
 | **`popmenu;pushmenu` for Service Record tabs** | `MenuManager m_lock` drops the push. Tabs flip `enabledcvar` cvars instead. | bug-461 |
 | **Notsolid vehicle riders** | ⭐ **SUPERSEDED HARD RULE — do NOT re-apply.** Riders are now solid and take real damage, enabled by the glue-immunity and view-lock engine fixes. | `t2l2_coop_seating.md` |
-| **Warzone explosion variants; VFA wood footsteps** | User-rejected in play ("too cinematic/sub-heavy for close blasts"; "sounded bad in-game"). Artillery beds from the same library were **kept** — a separate judgement. | `audio_enhancements_research.md` |
+| **Warzone explosion variants; VFA wood footsteps** | User-rejected in play ("too cinematic"; "sounded bad in-game"). Its artillery beds were **kept**. | `audio_enhancements_research.md` |
 | **`bsptransition` / `loadMap` / `leveltransition` on a live coop server** | Runs the persistant archive → crash. Use `stuffsrv "map <name>"`. | CLAUDE.md |
 | **Re-enabling AI prone/crouch** | Reintroduces a **server crash** — `AttackCrouchDodge` spins into "Command overflow. Possible infinite loop." | `attack_scr_aiprone_fix.md` |
 | **gl2 as the shipping renderer** | Not yet — 7 post-FX unported, several open defects, and `coop_defaults.cfg` ships `r_ppSSAO 1` which blanks the gl2 screen. | [OPEN.md § gl2](OPEN.md#gl2) |
@@ -398,14 +393,10 @@ The clearest three-act revert in the record, and the one most worth re-reading b
    fix), one rigid non-`NewAnim`'d head prop, `EV_Stop` not `EV_Touch`, 4 s life, free wound-prop slot
    only (never an untracked attachment), precached on the spawn path.
 3. **bug-892** — reverted from **SOURCE** anyway, so a protocol rebuild could not silently
-   reintroduce it. Inert `.tik` assets kept. **Verified 2026-07-29: zero `CoopGoreTryDecapitate` /
-   `HeadGibObject` symbols exist in `openmohaa-hzm/code/`.**
-
-**⭐ The reason for the FIRST revert no longer holds.** The AI glitching was later attributed to the
-entity-pool stomp (bugs 914–927, root-caused as `maxentities 2048` against `GENTITYNUM_BITS 10`
-handing out slot 1022 repeatedly), which is fixed. **bug-866's safe pattern is the template for a
-re-add** — and the memory topic `decap_safe_rebuild.md` was itself STALE and misled a later session
-into assuming the code was present.
+   reintroduce it. Inert `.tik` assets kept.
+4. **bug-1875** — **re-added and live today**, on bug-866's pattern. The first revert's cause was the
+   entity-pool stomp (bugs 914–927, `maxentities 2048` vs `GENTITYNUM_BITS 10`), since fixed. Heads
+   then floated through five reports (bugs 1903–1915) until the `gibs.cpp` recipe was copied verbatim.
 
 ### Loading screens — single POT texture, new work only
 The stock two-tile convention (two overlapping TGAs, e.g. `_1.tga` 1024x1024 + `_2.tga` 512x1024,
@@ -430,6 +421,8 @@ instead of referencing the raw path.
 going forward; do not retrofit already-shipped ones (e3l4_arena, main.urc, etc.) — user call, "new
 work only, for now."** First applied to m1l1 (`scripts/coop_loadscreens.shader` → `coop_load_m1l1`,
 2048x2048, replaces the old `m1l1_1.tga`/`_2.tga` pair).
+
+**Per-mission loading clips (v1.10.34):** baked .hzlc per mission from real in-engine footage (50 plates, no repeated map+spot; rejected: 3 shared roads, AI imagery); own pak, q40/24fps.
 
 ### Reviving downed allies will become a MEDIC-class ability
 
@@ -535,9 +528,9 @@ gen_service_record regenerates on every build. Above the static tier sits a RUNT
 generation-stamped self-healing client state (wipe-on-mismatch), and a deployed-truth stamp
 compiled into the scripts that chal_init compares at every boot - it catches mixed deployments
 (stale pk3, shadowing pak) that no tree-level check can see, printing a ^~^~^ SELFTEST line the
-boot harness greps. REJECTED: deriving the hover text from the enforcement source instead of auditing it
-- hover lines are width-curated prose (two ~24-char lines) and mechanical derivation produced
-worse text than the curated tsv; the gate catches drift at the same point a generator would.
+boot harness greps. REVERSED 2026-09-28 (user): hover text was curated tsv prose behind
+unlock_audit, which parsed only `Rank:` - MP40 "Locked", 5 "Skill Tree", wrong-gun snipers and 10x
+finish targets passed it. An audit of prose sees only the phrasings it parses: gen_loadout derives it.
 
 ## Axis loadout cosmetics are UNGATED; Axis weapons keep their unlocks
 
@@ -550,33 +543,26 @@ blocked the whole MP loadout on content. Consequence: the `dmteam != "axis"` gua
 Axis cosmetic set is whatever German models already ship. Revisit only if Axis cosmetics need to
 *earn* anything.
 
-## Wall cover: RE-ENABLED 2026-08-22 - the kill switch is gone
+## Cover v3 (2026-11-01): the glide lives in shared pmove; the camera reads the playerstate
 
-**Superseded (2026-08-22).** This entry used to say standing back-to-wall cover was switched off
-behind an `if (false)`. It is LIVE at `openmohaa-hzm/code/fgame/player.cpp:17362`; both preconditions
-below were met. Corrected 2026-09-09 after a survey found a reader would have re-enabled something
-already shipping. Crouch/LOW cover was never off. Nothing was ever removed: the statemap states
-(`COVER_WALL` at `player_Legs.st:1915`, `COVER_WALL_FIRE` at `:1939`), the engine conditionals and
-the animation aliases all still exist.
+**Decision.** Cover is no longer a server pose that WASD cancels. One cover state rides in the
+playerstate - `PMF_COOP_COVER` plus a quantised pack in `ps->camera_posofs` (normal, type, open side,
+edge; `BG_CoopCoverPack/Unpack`, bg_public.h) - and **everything that happens while covered is the
+shared pmove's `PM_CoopCoverMove`**: slide along the wall, hug magnet, follow bends, stop at the cover's
+end, ADS at an edge pops the body out past the corner. `Player::TickCoopCover` decides entry and exit
+only; `CoopCoverBodyYaw` turns the body to the wall; the VIEW is never written. The cgame camera,
+the 3P crosshair and `Weapon::Shoot` (`BG_CoopBlindfireAim`) all read the same pack.
 
-**DO NOT re-propose the peek step-out** that slides the origin 24-32 u toward the open side - that
-design caused bug-463 and its tombstone is at `player.cpp:17938-17947`. `ps->fLeanAngle` replaced it.
+**Rejected:** (1) server-only glide - mispredicts remote clients; (2) a new netfield / stat - all 32 stats and 16 pm_flags
+are taken and a protocol change breaks demos (bug-10330); (3) stuffed cvars for side/normal - the v2
+`coop_coverSide` arrived on its own clock and the lean predictor disagreed with the server (bug-2171,
+bug-10358); (4) the setOrigin peek step-out - bug-463, still never; the pop-out is a predicted move.
 
-**What killing it was really about.** Of the three faults, two were already fixed when the switch
-went in (bug-308 a null deref, bug-307/313 statemap `ERR_DROP`s). The one that mattered was bug-463:
-a per-frame server `setOrigin()` shoving the collision hull toward a corner while the client
-predictor fought it. Both preconditions for re-enabling - deleting that peek step-out, and giving
-`m_iCoopCoverSide` an UNKNOWN state so a stale side cannot swing blindfire 50 degrees into the wall
-(bug-305) - were met before it went live.
-
-**Known dead end:** right-jamb blindfire has no usable animation. Every `_right` cornering clip
-carries `attachtohand offhand`, which players cannot honour (bug-310). Design around it; do not go
-looking for the clip again.
-
-**STILL UNVERIFIED IN PLAY.** The feature ships, the user's standing verdict is "isn't right at all",
-and no measurement exists. Arm `coop_coverProbe 1` over rcon before changing anything.
-
-Full design, doorway-side algorithm, A/D slide and probes: `_research/wallcover_plan_v1.md`.
+**v3.2 (user, 2026-11-02): the MGS hug model.** Back to the cover in wall AND low cover (low used to face
+the bags, bug-10413); the camera sits in front on his side and peeks past an edge (coop_coverHugPeekYaw);
+RMB = over-the-shoulder pop-out (Gears/TLOU), low RMB turns and rises. The view is not the camera, so input
+is cover-frame (A/D along, S steps away; bugs 10387/10388) and the exe steers the aim. Blind-fire rounds
+wait for the real barrel tag to clear the edge / top (bug-10406). Rejected: face-the-cover, camera behind.
 
 ---
 
@@ -664,12 +650,15 @@ that leaves systems running is worse than none, because the host believes they a
 **Asked:** the sprint viewmodel should randomly alternate between the current lowered carry and a raised
 ONE-HANDED carry. **Decision: not buildable procedurally, and not built.** The sprint pose is three
 translations of the first-person rig (`cg_sprintLower*`, cg_view.c) plus a stride pump; the HANDS are
-posed by whichever viewmodel clip is playing, and every rifle clip has both hands on the gun. Rotating
-the gun at the grip leaves the left hand floating where the foregrip was; rotating the whole rig keeps
-both hands on it - a two-handed high port, not one-handed. A genuinely one-handed raised carry needs a
-viewmodel CLIP with the left hand off the weapon (none ships; the pistol clips park the left hand at the
-hip, off screen). **Rejected alternatives:** (a) play a PISTOL clip while sprinting with a rifle so the
+posed by whichever viewmodel clip is playing, and every rifle clip has both hands on the gun (a rig rotation
+is a two-handed high port). A one-handed carry needs a viewmodel CLIP with the left hand off the weapon
+(none ships). **Rejected alternatives:** (a) play a PISTOL clip while sprinting with a rifle so the
 rifle sits one-handed in the right hand - works mechanically, but the hand pose is a pistol grip and the
 muzzle points forward at eye level; (b) a two-handed high port as a rigid rotation of the rig about the
 grip (the bug-2462 inspect compensation already does this) - reachable in an afternoon if a two-handed
 variant is acceptable. Either is a separate ask, not a substitute for what was asked.
+
+## Steam Deck: native Linux, CI on the engine repo, HD stays mandatory (user, 2026-11-01)
+Linux builds come from GitHub Actions on MOHCoopTrilogy/openmohaa (it exists, free). No Deck in hand:
+CI, then WSL2 Mesa, then a community tester. Rejected: optional HD paks (shrink via DDS instead), Proton
+as the main route. Plan: proposals/steamdeck_2026-11-01.

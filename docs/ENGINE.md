@@ -211,6 +211,7 @@ model count, not frame rate (`tr_model.cpp:50-51`). Typed-only: `hzmtlprobe <tag
   CMakeLists). The tick forces `SDL_GL_SetSwapInterval(0)` for the load (`IN_HZM_Set/GetSwapInterval`, restored at
   End/Abort) - with vsync a 30 fps tick costs a refresh wait per draw. Needs the mod's `hzm_loadcine` widget
   (docs/proposals/loadcine_2026-10-18/mod/); an exe without it never sets `ui_loadCineOn`. Numbers: that folder's README.
+  **Soldier + music over it** (`cl_loadplayer.cpp`, branch `loadcine-player`, `cl_loadPlayer`/`cl_loadMusic`; docs/proposals/loadplayer_2026-10-19/README.md). Trap: TIKI_FreeAll runs twice per load and RE_RegisterModel returns stale handles by name (`g_tikiFreeGen`, back-slash name variants); never register inside a tiki load (`g_tikiLoadDepth`).
 - **`CL_HZM_ResetTransientAudio`** (`cl_main.cpp`, from `CL_ClearState` and `CL_ServerRestarted`) - on
   every exit from a map (disconnect, map change, same-map `restart`, and the next `CL_Init` after a crash)
   the server-drivable mix cvars go back to rest and the player's own volumes come back from

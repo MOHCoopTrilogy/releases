@@ -67,3 +67,5 @@ dropped by `CG_IsSetVariableAllowed` unless whitelisted - see [T3](#t3).
 ---
 
 <a name="t9"></a>
+
+T8 bug ids (moved from TRAPS.md 2026-09-29): 595, 597, 736, 758, 772, 773, 1364, 1365, 1991, 2580, 2759, 2767, 2904, 2906, 3234; the COVC VDROP reason for an unterminated `/*` is `comment`.

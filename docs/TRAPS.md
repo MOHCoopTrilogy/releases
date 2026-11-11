@@ -85,6 +85,7 @@ and stays, never the reported line.
 | What happened | Bug |
 |---|---|
 | `.pk3` bytes (already CRLF) written back in Python **text** mode → `\r\r\n`; TIKI dropped **every** `anims_shared.txt` alias. | 259 |
+| Hand patches to the pak copy of `anims_shared.txt` that WINS (stress sorts after the mod's) left an old copy cut off before its `}` with a full copy appended: names in the text, never LOADED; FG 42 reload state-looped. The mod tree is the one copy now; `check_anim_aliases.py` parses with the engine grammar. | 10394, 10899 |
 | A Python literal of script/C text (heredoc or not) made a `\n` escape a real newline → T1 kill, C2001. Use a fragment file. | 331, 962, 3002 |
 | A shader generator's brace matcher broke on mixed CRLF/LF + `//`-commented braces (45 open / 43 close) → white-square HUD icons. | 480 |
 | A **texture upscaler** sharpened AFTER cropping its 3x3 tile (clamp re-made the seam, Lanczos overshot alpha): sharpen tiled, clamp to source. **DXT encoders skew colour**: Pillow DXT5 tilts normals ~14 deg (use `gen_terrain_pak_*.py`);  **TGA: bottom-up** (loader ignores the top-down bit, PIL obeys it). | 1247, 2953, 2994, 3019 |
@@ -154,8 +155,7 @@ Instrument first, repair second.
 
 **`invalid waittill spawn for 'Level'` means "this script ran at the wrong time"** - it does not wait
 ([Script Error](#script-error)). Fix with `replace.scr::waitTillSpawn` / `::waitTillPrespawn`, but **do
-NOT bulk-replace**: 191 bare sites ship and most are reached first, so fix only sites the runtime log
-shows throwing ([T14](#t14)).
+NOT bulk-replace** (191 bare sites, most reached first): fix only sites the log shows throwing ([T14](#t14)).
 
 **A second shape: the write executes and is then overwritten.** Proving execution is necessary but not
 sufficient - **grep every writer of a shared per-frame field and establish who runs last**, preferring
@@ -200,13 +200,11 @@ the end point outside the box, or trace world-only (arg 1) first.
 **Tell:** things vanish, alias, or corrupt at high entity/model/sound counts, often with **no log line
 at all**. **The archetype, `maxentities 2048`:** shipped for *years* while `GENTITYNUM_BITS` was 10
 (hard cap 1024) - it added no entities, it **disabled `AllocEdict`'s overflow guard**, so the allocator
-handed out the world slot: a weekend of use-after-free minidumps.
+handed out the world slot.
 
-- **A "comprehensive sweep" that greps only *suspected* files is not comprehensive** - bug-925 crashed in
-  `sentient_combat.cpp`, missed by bug-920's sweep. **Fix the producer, not just the consumers** -
-  `AddItem` appended entnums with no duplicate check while removal took one occurrence (bug-920). And
-  **non-NULL is not enough**: a recycled slot may hold a *different class*, so guards became
-  `item && item->isSubclassOf(Item)` (bug-919).
+- **A sweep that greps only *suspected* files is not comprehensive** (bug-925, missed by bug-920's). **Fix the producer, not just the consumers**
+  (`AddItem` appended duplicate entnums, bug-920). **Non-NULL is not enough**: a recycled slot may hold a
+  *different class* - guard `item && item->isSubclassOf(Item)` (bug-919).
 - **Audit bare array sizes, not just constant names** - `tr.skel_index[1024]` (bug-932b);
   `processed[MAX_ENTITIES]` where `MAX_ENTITIES` is the renderer *refentity* cap 1023, **not** the gentity
   count (bug-935); `MAX_SKELMORPH 12800` silently out-of-bounds (bug-1214). Same invisible-actor symptom
@@ -220,22 +218,21 @@ handed out the world slot: a weekend of use-after-free minidumps.
   size constant is a stack landmine**: `MAX_MSGLEN`→256KB (bug-1864) crashed the dedicated server the instant
   a browser sent `getstatus` - the OOB reply chain (`SVC_Status`→`SV_NET_OutOfBandPrint`→`NET_OutOfBandPrint`)
   allocates `char[MAX_MSGLEN]` on the *stack* at every hop, >1MB on a 1MB stack → `0xC00000FD` (bug-2727).
-  Fix = `static` (ioq3 pattern; OOB send is single-threaded). **Grep every `[MAX_MSGLEN]`/large stack array
-  when you raise a size constant - a public server gets `getstatus` in seconds, so it only crashes in prod.**
+  Fix = `static` (ioq3 pattern). **Grep every `[MAX_MSGLEN]`/large stack array when you raise a size constant.**
+- **A generated model keeps only 32 SURFACES** (`MAX_MODEL_SURFACES`; skx splits at 900 verts / 1700 tris):
+  the attic town's 126 drew 32 - walls gone, chimneys standing in air, no log line (bug-10726). Chunk at 30.
 - **⭐ Two constants that agree by COINCIDENCE are a bomb with no label** (bugs 2291-2293, 2315; three
   crashes and one blind revert). `TIKI_MAX_ENTITIES` was a hardcoded 2048 that merely *happened* to
   equal `MAX_GENTITIES`; `TIKI_End()` indexed `skel_entity_cache[i*2+j]` without the writer's
   `% TIKI_MAX_ENTITIES` wrap - in bounds by luck, zero margin - so 12 bits `delete`d 4096 garbage
   pointers and the blame landed on a blameless `GENTITYNUM_BITS` raise. **Grep a capacity's VALUE, not
   just its name; ask whether two limits are derived or merely equal today; an `==` against a capacity is
-  always a bug.** Knowing this does not prevent it (bug-2315: raised sound channels 32→96, shipped a
-  launch crash - loops bounded `loop_sounds[64]` by `CHANNELS_3D+CHANNELS_2D`): **write the build break in
-  the same commit as the raise.** And
+  always a bug.** Knowing this does not prevent it (bug-2315, sound channels 32→96 vs `loop_sounds[64]`):
+  **write the build break in the same commit as the raise.** And
   **`ENTITYNUM_*` are PROTOCOL indices** (`MAX_GENTITIES-2`): size anything indexed by one off
   `MAX_GENTITIES`, never off `maxentities`, which is all `g_entities` was malloc'd at (bug-2291).
   **Diagnose this class from the FAULT ADDRESS, never by inspection** - reading the diff produces
-  real-but-wrong fixes; WER's fault RVA + the linker `.map` names it in a minute (recipe in the
-  `crash_dump_analysis` memory; bug-2727 was cracked this way with no debugger installed).
+  real-but-wrong fixes; WER's fault RVA + the linker `.map` names it in a minute (`crash_dump_analysis` memory).
 
 **Read `openmohaa-hzm/code/qcommon/q_shared.h:1690-1755` before touching any capacity constant** (the canonical `MAX_SOUNDS` comment + its compile-time `#error`, bug-2292).
 
@@ -252,7 +249,7 @@ handed out the world slot: a weekend of use-after-free minidumps.
    `$player[1]` with a NULL host guard - never `replace.scr::player_closestTo` first (bug-1665).
 2. **`Cannot cast none to <type>`** - a `level.*` timing global the vanilla SP init would have set is
    never set in coop (`level.thundertime` / `windtime` / `shuttertime` / `rainvolume`);
-   `weather.scr:378` alone threw **8,662 times**. Fix: NIL-guards restoring vanilla defaults.
+   Fix: NIL-guards restoring vanilla defaults.
 3. **Stale pointers that PASS a NULL guard** - bug-1054's `coop_trackTankTarget` had no `else` branch, so
    a freed player ref lingered and evaded `== NULL`.
 
@@ -265,11 +262,11 @@ hides every storm downstream.** Budget **2–3 fix→re-sweep passes**; a clean 
 nothing.
 
 **Root cause of the biggest storm:** `addon_*` markers carry their model in `$ai_model`, not `.model`, so
-`spawner_create` recorded NIL and the engine spawned `models/nil.tik` in a loop - an entity leak as well
-as log spam (`global/spawner.scr:95-138`). Counts:
-`docs/archive/traps-measured-wins-2026-07-22.md`. **The proven repair pattern:** extract the retail gag
+`spawner_create` recorded NIL and the engine spawned `models/nil.tik` in a loop - a leak plus spam
+(`global/spawner.scr:95-138`). **The proven repair pattern:** extract the retail gag
 verbatim from `mainta/pak1.pk3`, change **only** the single-entity `$player` refs, add NULL host guards,
-leave everything else byte-identical (`gags/t2l4_start.scr:1-2`, `gags/t3l1_enemyspawn.scr:2`).
+leave everything else byte-identical (`gags/t3l1_enemyspawn.scr:2`). Not for threats: a `$player[1]` aim, barrage or
+kill field - or a TARGET_PLAYER generator (= client 0) - hunts only the host; pick among players (bug-10584).
 
 **Entities as `thread` parameters can arrive NIL, and a cross-file helper can return NULL outright**
 (bugs 1624, 1632, 1665). Numbers always bind; an entity passed to `thread label a b c` may not survive
@@ -301,7 +298,7 @@ changes.
 | **A junction hides loose files from your tools** | `G:\mohaa-gl2\{main,mainta,maintt}` -> GOG: use `find -L` (bug-2336/2386). |
 | Dev-only content skews audits **both ways** | bugs 2020, 2952, 2991. **Scope by the SHIPPED set (`manifests/latest.json`), never the install or the tool's own pak.** |
 | **`newanim/<path>` beats `<path>` for every `.skc`** | tiki_files.cpp ~565 opens `newanim/`+path FIRST (Pak0 ships 2,415): a same-path clip override never loads (bug-3452). Ship a NEW `coop_` path, repoint the row. |
-| **A fresh engine configure bakes the renderer INTO the exe** | `USE_RENDERER_DLOPEN` defaults OFF: the exe (~2.9 MB vs ~2.3) ignores the shipped renderer DLLs and its own copy mangled the Norway crate `.dds` (bug-10367). Build in the release `.cmake` or pass `-DUSE_RENDERER_DLOPEN=ON`. |
+| **A fresh engine configure bakes the renderer INTO the exe** | `USE_RENDERER_DLOPEN` defaults OFF: a bigger exe that ignores the shipped renderer DLLs (its copy mangled Norway `.dds`, bug-10367; again in a new worktree, bug-10754). Pass `-DUSE_RENDERER_DLOPEN=ON`; from Git-Bash give MSBuild `-m:4`, MSYS mangles `/m:4`. |
 | Homepath `maintt/` beats basepath | **bug-1633:** stale cfgs in the live profile's `maintt/` shadowed every deploy (build.ps1 now deploys cfgs to all three targets); watch 0-byte decoys (bug-595). |
 
 **⭐ THE FINAL ANSWER when a name is contested** (bug-922, closing the 5-round black-pouch saga): **stop
@@ -321,9 +318,6 @@ coop pak mounts last, so one import repaints other models (all 15 `viewsleeves*`
 **Diff its shader names against `scripts/*.shader` + retail paks, and its `models/player/*.tik` basenames
 against stock** - a matching basename *replaces* the stock model. `map foo.tga` resolves extension-agnostically, so a shader naming `.tga` beside a shipped `.jpg`
 is **not** missing.
-
-**Generated assets:** ESRGAN shipped worm noise, a black server browser and 29 clobbered vanilla menu
-textures (bugs 1129/247/157). Brightness-check output; never upscale 1-2px chrome.
 
 ---
 
@@ -547,6 +541,8 @@ subsystem the probe never read (bug-2102). **Probe the FINAL consumed value**; p
 other writer cannot produce** (head `11/22`).
 *(3) Never exercising the branch* - **force it** (`coop_boneDebug 2` runs prone maths standing).
 *(worked examples archived to `docs/archive/traps-t14-worked-examples.md`)*
+**A cfg's `wait N` is MILLISECONDS here, not frames** (Cbuf_Execute subtracts frame msec): a stills cfg
+timed in frames fired 45 `screenshot`s in one frame and kept one file (bug-10727).
 
 **THE TOOL LIED, NOT THE CODE - six species, all returning plausible results.**
 *(a)* **`grep` bails on a binary line**: a NUL in `qconsole.log` makes plain grep print only
@@ -679,12 +675,12 @@ Shapes where the symptom pointed away from the cause.
 - **A flag two systems both own is a race, and it comes back.** `coop_clickablePapersEnabled` re-armed
   mid-bash force-equipped papers into the pistol hand - five rounds to kill (bugs 1709-1736). **One writer
   per player; split the latch from the state and clear it on every exit.**
-- **State the client PREDICTS must come from the playerstate, never a stuffed cvar.** Cover v2 stuffed
-  `coop_coverSide`; the lean predictor and the server read it under different conditions and the view
-  snapped every snapshot (bugs 2171, 10358). Cover v3 packs normal/type/side/edge into
-  `ps->camera_posofs` (free outside `PMF_CAMERA_VIEW`), **quantised to 1/4u so both sides read identical
-  numbers**, and runs the glide in shared pmove (constants only). Any hand-rolled clear must
-  also drop the pm flag + pack (`CoopCoverClear`, bug-10363).
+- **State the client PREDICTS must come from the playerstate, never a stuffed cvar.** Cover v2's stuffed side
+  snapped the view (bugs 2171, 10358). v3 packs the cover into
+  `ps->camera_posofs` **quantised to 1/4u** and glides in shared pmove; any clear must also drop the pm
+  flag + pack (bug-10363). **When the camera stops being the view, map input in the
+  cover frame (shared bg), exits too** - S hit the wall (10388).
+  **Derive a clamp from what it limits:** free view vs bent fire sector pinned the cue (10546).
 - **Harness cheats on a listen server:** `cheats` is LATCH - a later `set` only latches until the cvar is
   re-registered, and `Entity::CheckEventFlags` zeroes it unless `thereisnomonkey 1`. Join, then
   `vid_restart`, wait ~25 s, then `tele` (bug-10362).
@@ -733,9 +729,9 @@ silent (bug-2248); with NEITHER `maps` nor `always` it registers nowhere - never
 random` loads as ONE anim, `crouch_beach_idle`; `anim crouch_beach_idle02` is `unknown animation`
 (`tiki_files.cpp:1046`; bug-2214, 2498). Address the stem, never a member.
 
-**A demo stores anim NUMBERS: an alias's rank in its tiki** sorted by `Q_stricmp`
-(UPPER fold: `_` after letters), unloadable clips dropped (`tiki_anim.cpp:50`, `tiki_files.cpp:997`).
-One added alias renumbers all after it; old demos play wrong anims (bug-10330 has the decoder).
+**A demo stores anim NUMBERS** (an alias's `Q_stricmp` rank in its tiki, bad clips
+dropped): a new alias renumbers the rest (bug-10330). **Client state keyed
+by ENTITY NUMBER** (ragdolls, gore) needs clearing on a seek (bug-10541); 2 model CSs can share a handle (bug-10543).
 
 **An animation pack is gated by a PREFIX match on the MAP NAME.** `new_generic_human.tik` wraps packs
 in `includes <tok...> { }` and `TIKI_ParseIncludes` (`tiki_parse.cpp:345`) makes a block live only if
@@ -780,25 +776,26 @@ touching a `.tik`; `audit_weapons.py`/`audit_shaders.py` test it.
 ---
 
 <a name="script-error"></a>
-## ⭐ A `Script Error` does NOT kill the thread — it SKIPS the statement (verified 2026-08-06)
+## ⭐ A `Script Error` does NOT kill the thread — it SKIPS the statement
 
-`ScriptException::next_abort` defaults to 0 (`scriptexception.cpp:30`); `ScriptVM::HandleScriptException`
-(`scriptvm.cpp:1915-1933`) rethrows only `if (exc.bAbort)`, else prints `^~^~^ Script Error` and resumes at the NEXT
-instruction. Only stack overflow (`:1038`) and command overflow (`:1867`, `ERR_DROP`, t2l3 bug-1493) abort.
+`next_abort` defaults to 0 (`scriptexception.cpp:30`); `HandleScriptException` (`scriptvm.cpp:1915-1933`)
+rethrows only `if (exc.bAbort)`, else prints `^~^~^ Script Error` and resumes at the NEXT instruction. Only stack overflow (`:1038`) and command overflow (`:1867`, `ERR_DROP`, bug-1493) abort.
 
 **Read every error site as "this statement was skipped", not "everything below died."**
-- **An `invalid waittill` means the script does NOT WAIT.** Everything below runs *immediately* -
-  sequences fire before their preconditions, entities are touched before they spawn. That is why the
-  `waitTillSpawn`/`waitTillPrespawn` shims still matter (bugs 1458-1469).
-- A cast error inside a `while` body removes the *statement*, not the loop (t2l3 span 4,347 times with no yield).
+- **An `invalid waittill` means the script does NOT WAIT.** Everything below runs *immediately*
+  (sequences before their preconditions, entities before they spawn): hence the
+  `waitTillSpawn`/`waitTillPrespawn` shims (bugs 1458-1469, 10584).
+- A cast error inside a `while` body removes the *statement*, not the loop (t2l3, 4,347 spins).
 - **Values parsed out of a `.dat` file are STRINGS** (bug-1352): `if( x > 0 )` throws and the assignment never
-  happens while the caller prints success. Coerce with `float()`/`int()` at load; tell: works live, never from its save.
-- **A probe that throws prints nothing.** An unset var reads `none` and `"str" + none` throws (bug-1702): sanitise first.
+  happens while the caller prints success. Coerce with `float()`/`int()` at load.
+- **A probe that throws prints nothing.** An unset var reads `none`; `"str" + none` throws (bug-1702).
+- **`$name` lookups are case-SENSITIVE** (`HashCode<str>`): retail `$deleteGuy2` vs the BSP's `deleteguy2`
+  is NULL (bug-10584). Re-casing wakes never-run code: check it.
 
 ---
 
 <a name="turrets"></a>
-## Turrets and AI spread: five ways a tune never reaches the gun
+## Turrets, AI spread, recoil: six ways a tune never reaches the gun
 
 **Bugs:** 1920, 1940, 1946, 1950. **Rule: before tuning a value, prove the failing PATH reads it -
 grep the consumer, not the setter.** Full write-up:
@@ -819,6 +816,10 @@ grep the consumer, not the setter.** Full write-up:
   of a burst (40 / s live; MG42 nests are tuned at it). `coopaibelt 1` gates a gun. (bug-3638)
 - **On a turret the TORSO state is the whole body** (`movetype anim`; the legs machine is off, its
   turret rows are dead), and an action row is picked once, on entry. (bug-309, 3658)
+- **Player recoil has 3 channels - aim kick (`CoopApplyAuthoredKick`), gun punch (`s_recoil`), camera `viewkick`
+  (`EventViewKick`); cut all 3.** v1.10.51 missed the camera: mounted MG42 pinned at 10 deg (bug-10416). **The camera
+  is AIM, not cosmetic:** the client sends `cg.refdefViewAngles` (viewkick, sway included) as the eye angles and the
+  server fires along them - a Thompson round left at aim + vk (measured, recoil 2026-11-10).
 - **`damage` event's LAST arg = hit LOCATION; 0 = HEAD = x4** (`ArmorDamage`). A floor needs the amount
   clamped AND location 3 (torso x1.0) (m3l3 church, mortars: bug-4032).
 

@@ -130,9 +130,15 @@ auto-updater compares each pak's sha256 to the manifest, so non-determinism brea
 ```sh
 # In openmohaa-hzm/
 mkdir .cmake && cd .cmake
-cmake -DFLEX_EXECUTABLE=... -DBISON_EXECUTABLE=... -DOPENAL_INCLUDE_DIR=... -DOPENAL_LIBRARY=... ../
+cmake -DUSE_RENDERER_DLOPEN=ON -DFLEX_EXECUTABLE=... -DBISON_EXECUTABLE=... -DOPENAL_INCLUDE_DIR=... -DOPENAL_LIBRARY=... ../
 cmake --build . --config Release
 ```
+
+**`-DUSE_RENDERER_DLOPEN=ON` is required** (2026-09-28): the option defaults OFF, and a fresh build dir configured
+without it has **no `omohrenderergl2` project at all** - no renderer_opengl2.dll, and `cl /Zs` tooling that reads the
+vcxproj files reports every gl2 file as not-in-project. Copy the full option set from `.cmake/CMakeCache.txt`.
+**A build dir under %TEMP% does not track header dependencies** (MSB8029): after a header change only the edited
+.cpp rebuilt, and the mixed-layout game.dll crashed at join (bug-3373). Build there with `-t:Rebuild`.
 
 Output at `openmohaa-hzm\.cmake\code\...\Release\`. `build.ps1` picks up **only** `cgame.dll` and
 `renderer_opengl1.dll`. `openmohaa.exe`, `game.dll` and `renderer_opengl2.dll` are **manual copies**

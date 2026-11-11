@@ -84,3 +84,65 @@ Report: `python _research/cov_report.py` -> `_research/cov_report.md` (never-fir
 map, runtime-confirmed dead aliases, labels run). Static layer 1 results:
 `scratchpad dead_aliases_confirmed.json` - 170 dead alias refs on 43 maps, families
 (bombtick/plantbomb/pickup_papers/door_locked) look retail-dead = restorable content.
+
+---
+
+*(moved from FEATURES.md 2026-09-27, verbatim)*
+
+## m2l2a stealth foundations (v1.2.5, 2026-08-10) - SHIPPED, verified in play
+
+Not the stealth *feature* (that is Phase C, still on paper) - the layer underneath it, which was broken:
+
+- **Papers checkers no longer freeze.** `coop_paperPassAll` was swapping the guard's disguise think 50ms into his
+  ACCEPT state, into a think with no functions. Deleted; the engine already demotes an accepting sentry.
+- **Five disguise gates that were always true.** `thread <label>` in a boolean returns a HANDLE, so every
+  `anim/disguise_*.scr` coop gate passed unconditionally - and four statements below them were unreachable,
+  including the squad-wide papers pass. All six now read the engine's per-target `is_disguised`.
+- **Latch-free aggro.** `attackentity` replaces `attackplayer` wherever a real target exists; the latter sets a
+  one-way flag that blinds an actor to disguises for the rest of the map and blames the host, not the offender.
+- **Scene actors protected** from the AI-personality system (card players, welders, dock crews, scientists, the 14
+  alarm runners). Measured, not guessed: A3 instrumentation caught the prone roll landing on the card man, a Naxos
+  watcher and an alarm runner. Path-failure warnings went 138 -> 0.
+- **Engine:** unguarded NULL deref in the disguise sight trace (a real crash), and the obstacle-bump branch now
+  resolves the player who actually bumped, plus holds off rewriting a scripted-animation actor's think map.
+- **Quiet Naxos sabotage** (hold USE) no longer strands the scientist mid-scene.
+
+---
+
+## Signal smoke stripping German grenades (moved 2026-10-04)
+
+**Signal smoke stripping German grenades** — `SHIPPED-VERIFIED`. Not a TIK problem: the smoke was
+spawned as a **world `Weapon` entity**, so walking over it hit `PickupWeapon`'s MP grenade-class
+branch, which forces grenade reselection and **drops** the player's other grenade-class weapon. Fixed
+purely in script by spawning a `script_model` + `trigger_multiple` and giving via `item` (the
+giveItem path, same as binoculars), which never enters that branch. The earlier
+`removeAdditionalStartAmmo` theory was a **red herring**. *Anchor:* `weapon.cpp:2954`.
+
+## Inert-feature sweep - six built-but-never-running systems (2026-08-30)
+
+`SHIPPED, UNTESTED IN PLAY`. Bugs 2176-2182 carry the full mechanism of each. Six built-and-forgotten
+features; "seed the gate cvar" was the wrong answer four times out of six. Fixed-on: **MP voice-command
+wheel** (retail DM-only scope → `always`, V freed from the bash), **teammate radar** (`SV_PackNonPVSClient`
+now clamps instead of unit-normalising the delta; range 1024→6144), **objective bonus drop** (re-enabled,
+9 BSP coords + ground snap + beacon), **bounding overwatch** `coop_aiBound` (re-gated on squad-brain
+ownership; ~3.5% fewer repositions). Deleted-as-harmful: **aggressive advance** `coop_aiAggrMove` (would
+ship the `runto` bug-1812 stall) and **stealth arm-on-hurt** `coop_stealthArmOnHurt` (no caller ever;
+would make e1l3 unwinnable).
+
+## Omaha (m3l1a) 2026-09-05 -> 09-08 batch - SHIPPED, AWAITING PLAYTEST
+
+Bugs 2473-2529. Every beat has a kill switch (`level.coop_*On`) and a `^~^~^` marker; acceptance
+lines in OPEN.md. Highlights: flank MG42 crews, radioman rework, underwater cinematic with a
+drowning QTE (tap-Use, per-player death, LMS-exempt, knobs in OPEN.md), ocean and surf realism
+(Airy mesh, bore layer, trough shadow, wet-sand swash), beach medics, quick-draw parked primary,
+obstacle wash, the smoke barrage holding for the shore-party radio exchange.
+
+## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
+
+`coop_mod/bust.scr` + `itemhandler.scr`. Gated on `coop_stealthStart` (ships ON from the next
+release, bug-1698). Full design: `docs/proposals/m2l2a_coop_stealth_master_plan_v2.md`, bugs
+1682-1691. An officer encounter is now a quiet fight: USE to stun (4.5s window), silenced pistol
+force-drawn, kill unseen = papers back + 10s clean = "Situation Contained"; seen = full alarm;
+corpse stays findable, 15s loiter = cover blown. VERIFIED: contain loop, escalation loadout, body
+investigation. UNVERIFIED: loiter escalation, stun-witness route, Naxos prompts/sabotage bar.
+

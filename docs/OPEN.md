@@ -187,6 +187,30 @@ on a dedicated server, two players with different lengths (server holds `level.c
 cgame.dll + code pak (shader, scripts) + fixes pak (`textures/hud/coop_db2`). `proposals/debrief2_2026-11-03/README.md`.
 Open beside it (bug-10495): `chal_add_unlock`'s dedup scans the whole unlock string; eight grants in one frame on a
 long record overran the script command budget (4.7 s hitch). Watch `chal_mission_complete` on veteran records.
+### Chronological Campaign - mod `chrono` + engine `chrono-eng`, awaiting merge + playtest (2026-11-08)
+BEGIN CHRONOLOGICAL CAMPAIGN under Begin Full Campaign: the 12 missions in history order (`proposals/chrono_campaign_2026-11-08/ORDER.md`),
+`coop_mod/chrono.scr`; CONTINUE via `coop_mod/save/chrono.dat` + the `coop_chronoresume` sheet; menu via `make_mpui.py`. Harness
+(G:\mohaa-chrono): 54/54 hops, every mission boundary incl. AA<->BT<->SH, resume, menu at 4:3/16:9/21:9. Open: the Dedicated
+row needs the engine build (`coop_dedChrono`; until then it is hidden), the finale (t3l2) has no credits, none of it played by a person.
+### t2l4 (Stavelot) health pass - leftovers after bug-10584 (2026-11-08)
+Fixed in bug-10584 (unplayed): host-only barrage/tanks/kill-fields, respawn into the barrage, 8 s spawn protection cut to ~2 s
+by sv_invulnerabletime, silent tanks + no shell whistle. Still open, retail-level: `chargers` patrol `Path not found` (16/run),
+4x `MG42 had no target gunner`, 3x `SPAWNER CREATE ERROR`, `flak_snd_fire` alias, snipers aim at `$player[1]` only. Other
+t-maps likely miss `tank_snd_fire` too (aliases only m3l3 m5 t1l3 t2l1) - check t3l2 first.
+
+### Mounted MG recoil (bug-10416) - engine branch `mg-recoil`, awaiting merge + playtest (2026-11-02)
+Brace-mounted MG42 camera climb 11 -> 1 deg per 2-3 s burst (harness `coop_recoilProbe`); hip/ADS unchanged. New cvars
+`coop_braceViewKickMG` 0.1, `coop_braceViewKick` 1.0, `coop_turretJitter` 0.35; `coop_braceShoveMG` 0.3 -> 0.15. Not yet
+felt in play; the emplacement (TurretGun) jitter scale is not harness-verified.
+
+### Norway flak gun + Stuka passes (finair) - mod branch `finair-next` df51113d, awaiting merge + playtest (2026-11-02)
+`coop_mod/finale_m2l3_air.scr` (one line in `finale_m2l3.scr` fin_main): players' Flakvierling at (-1704 388) (survey: 6 of
+662 grid spots pass), 2nd gun at 3+ players. Passes are gated on the LIVE v1.10.61 storm (score / push / def_storm_hold),
+never the clock: 3 before it (hold +11/+45/+77 s, train < 37 %), 2 (3 at tier 3+) once def_storm_hold has released.
+Stuka drawn at 1.2 (was a speck at 0.6). Harness: shot down by the gunner (3 x 20 mm), strafe 12 hp on a direct pass,
+0 at 150 u+. At merge copy the untracked `sound/coop_finair/stuka_siren.wav` (generator in `proposals/finair_2026-11-02/tools`).
+Open: the wreck's ground impact behind the sheds from the gun (fireball + fall + smoke column seen); plane still fog-pale
+at range; never played with a human gunner. Video `G:/mohaa-finair/deliver/finair_stuka_flak_m2l3_v2.mp4`.
 
 ### Aircraft call-ins - awaiting playtest (2026-10-05)
 Seen in engine: smooth flight, V of three, door exits (m2l1). Not yet seen: a Stuka shot down and crashing, Doppler by ear, fog see-through (e1l1), above-sky flight (m5l1a). `proposals/aircraft_2026-10-05`.
@@ -371,6 +395,12 @@ The full list is [FEATURES.md](FEATURES.md). These are the ones someone consciou
 ### 3D Join Game door - CLOSED 2026-11-02
 User: the right-hand attic door (MULTIPLAYER, `scenehot "mp"`) "should go into the multiplayer menu" - which it already does (fly-in, then `pushmenu multiplayer`, where Join Game is). Nothing to build.
 
+### Attic v1.10.62 re-bake + animated tone arm - BUILT, harness-verified, not merged (2026-11-03)
+Branch `attic-62` 12c2cc06 (mod worktree `hzm-mod-attic`) + pak `H:\hzm_work\attic62\ship\zzzzzzzzzzzzzz_hzm_menus3d.pk3` (on the mpui ship pak). Moved briefing door, stock props baked in, FIELD REPORT board / REPORT A BUG toolbox, needle hotspot with lift/drop/play (exe needs menu-sceneanim), dark bottle-green shades (bg re-baked), a round 96-segment record. Open: `scenemodelanim ... once` via globalwidgetcommand loses its mode (engine); the needle is mouse-only (pad uses the gramophone hotspot, same sequence). README: `docs/proposals/attic_polish_2026-11-02/README.md` "v1.10.62".
+
+### Attic polish + gramophone theme picker - BUILT, harness-verified, not merged (2026-11-02)
+Branch `attic-polish` (mod worktree `hzm-mod-attic`) + a rebuilt menus3d pak (`docs/proposals/attic_polish_2026-11-02/README.md`: defect table, rebuild order, release file list). Gramophone corner (its own side table; the gramophone is the control: click = next record with a needle drop, the sleeve of what is playing + the record's label show the title, a 'Shuffle ?' tag while shuffling; shuffle stays the default, a pick persists via `ui_mmBoot`); black bakelite phones, GL2 teal chrome fixed, phantom wall shadow and roof speck painted out, softer hover glow, New Game tags legible + captions say the action. Needs eyes: the sleeve at the user's 3440x1440, the needle-drop sound, a restart keeping the picked record. The menus3d pak must be re-assembled from the hub session's final pak (`polish_pak.py`).
+
 ### v1.10.56 playtest list
 Norway hold last 45 s rush, two halftracks never stacked (east fallback + launch lock), pitched-roof perches 1-4 now allowed
 (coop_asnCornerTol 6), bipod flush, storeroom gun pick-up after death, CC0 weapon sheets in game (PIAT canvas softer).
@@ -528,11 +558,11 @@ findings are in `docs/proposals/defect_sweep2_2026-09-28/`.
 Playtest: bolt/reload/lean/ride while aimed, pistols aimed (`cg_vmHandFix 0` / `cg_adsPistolKick 0` = old). Prone eye ease
 (bug-3317, cg_stanceEase) awaits playtest; Gewehrgranate + M1919 keep the old tune (bug-3316).
 
-### Cover v3 (shipped v1.10.58; follow-ups on `cover-seamless` 3caf42ed + mod a60f315f, not merged)
-Fixed in the follow-up: right-corner blind fire pose (left hand), the hand-back head close-up, actors read as
-cover (bugs 10372-10374). Still open: (1) no true curved wall on the AA maps tested - normal-follow proven on
-the m6l2b 28-degree convex bend only; (2) two-PC multiplayer not seen by the user (one PC, one remote client with
-120 ms cl_packetdelay passed); (3) bodies without tag_weapon_left still get the crate spray at right corners.
+### Cover v3.2 (`cover-seamless` engine, not merged; harness-verified on m3l2 + m2l1 daylight clips)
+Open: (1) m2l1 corner (2799, 6939) - the pop-out on a 45-degree bent wall loses cover (bug-10408); (2) the authored low
+blind-fire clip `coop_blindfire_low_back` must ship in the WINNING anims_shared (bug-10431); (3) two-PC MP not seen by the user; (4) bodies without tag_weapon_left keep the crate spray at right
+corners; (5) MP 100 ms: up to 6.5u mispredict around the pop-out (bug-10406 run mp2); `check_anim_aliases.py` before shipping.
+(6) v1.10.64 `coverlook2-eng` 493a7b08 + mod `coverlook2` 08321d67 (bugs 10561-10563) awaits merge + the user's look: cover throw pose (stock AI corner/crate/overhand throws, released from the hand), mid-wall shoulder aim cam, low short throws.
 
 ### Norway ending roof blasts + "tables" fix (branch `roof-cine` mod 11f64347, map v9; not merged, bug-10397)
 The "tables" were the v7 top-tier breach interiors (6, 18-21) standing 95 u above the roofline. Map v9 caps them and adds
@@ -540,3 +570,39 @@ five roof-edge notch sites (23-27); script fires a roof eruption + lingering fir
 `docs/proposals/roofcine_2026-11-02/README.md`. To ship: the v9 `maps/m2l3.bsp` must go into `zzzzzzzzzz_coop_maps.pk3`
 (candidate `H:\hzm_work\roofcine\zzzzzzzzzz_coop_maps.pk3`) in the same release as the script. Awaiting the user's look
 in-game. Known, untouched: the facade breach holes read as flat brown patches from the one-shot distance.
+
+### Emotes on the Tab wheel (branch `emotes`, mod + engine; not merged; harness-verified on m3l2)
+17 emotes on two wheel pages (EMOTES I / II), coop sessions only; MP keeps its two pages. Salute free, 13 by rank
+(xp.scr rank table, tokens `emote_<id>`), 3 by Service Record challenge (kt_cover, cc_field_hosp, cc_schoolgirls).
+One table: `docs/tools/gen_emotes.py` (states, aliases, rank grants, emotes_gen.scr, cgame header); server
+`coop_mod/emotes.scr` (bus 53 `,em<i>`, slings the gun, watches damage / move / fire / cap); padlocks via `coop_emoteU`.
+Ring art is git-ignored: bake with `gen_wheel_art.py <mod> --only 8,9` at merge. Bugs 10484-10489.
+- **Not verified:** a second client watching (stills are the player's own third-person camera, from behind), a gamepad
+  pick, the cigarette prop being visible, MP showing two pages.
+- **v1.10.63 branch `emotes-seek`** (mod f61a0de9, engine 0e4a028e, game.dll + cgame): `coop_legsanimstart` starts
+  the legs clip part-way, which brings back push-ups, jumping jacks, stretch, clean boots and lean (EMOTES III,
+  harness r19). On an older game.dll only those five are refused. Still cut: straighten up and attention (no gesture
+  in the clip), thumbs up and mill about (no move-cancel), follow me and canteen (body leaves the frame).
+- Pictograms: `docs/tools/gen_emote_icons.py` (vector, 24 icons). The crosshair no longer draws over the open wheel.
+- `docs/tools/gen_emotes.py` now describes `emotes-seek` (22 emotes, 8 per page); `--check` against `emotes` alone fails.
+
+## m2l3 roof snipers / nests (hotfix-1.10.53, 2026-11-03) - awaiting a playtest
+- Perches re-surveyed and proven with the engine's own `canshoot` (coop_finLosTest 1 + coop_finLosAll 1, run los162i): west-arm
+  corner (-3260 1668) 7/9, eight on the facility's z 960 terrace 7-9/9 pre-storm; nests fire (scripted, `def_roofmg_fire`).
+- Rule learned: script traces do not predict `canshoot`. Most of the west arm had a clear eye line (cansee 9/9) and canshoot 0/9
+  even standing (shscan162) - prove a perch with a real actor. A turret gunner's `canshoot` is always 0 (no hand weapon: GunPosition
+  is the origin) - judge nests by the gun's traced line + `coopheat`. A spawned turret needs `startyaw` (bunker.scr recipe).
+- Perch 2 (x -1804, los162i 0/9 after the storm) did NOT reproduce: los163b/c (2026-11-04, probes kept on every perch through all
+  three sweeps, nests on 7/8 as in los162i) give every roof sniper >=6/9 before AND after the storm, perch 2 9/9 + 6/9 -> 9/9. The
+  geometry is fine. Most likely cause: engine `Actor::FriendlyInLineOfFire` (upstream OPM too) tests the squadmate's projection
+  LENGTH along the line (clamped at 0), not its distance from the line - any squadmate behind/beside the shooter blocks every shot;
+  squads merge on any German AI event (`DefaultReceiveAIEvent`). Seen once directly (los163b: canshoot 0 -> 1 in the same frame after
+  a squad reset). Mitigation shipped in script: `def_sn_squadfix` (origin hop out of the squad, coop_finSqFix 0 = off). The engine
+  fix (perpendicular distance, skip mates behind) would change every AI in every map - not done; needs a decision.
+  In the blizzard no roof shooter engages (CanShoot's WithinFarplaneDistance at farplane ~1540: by design).
+
+## v1.10.63 queue (2026-11-03)
+- **Daily Orders** (worktrees H:\hzm_work\dailies-mod / -eng / -root, branches dailies / dailies-eng / dailies-root): merge; MP round test (save round-trip, cap exemption); calibrate targets from DAILYPACE prints; ship the new game.dll to both installs and the public servers. Phase 2 = 3 engine exports (grenade-kick credit, brace/MG heat, turret state) + 6 orders, switch at a 10:00 UTC reset. Open user question: aspect-correct HUD text for the panel/toast (stretches at 16:9/21:9).
+- **Emotes 5 more** (branch emotes-seek, mod f61a0de9, engine 0e4a028e): merge.
+- **Snow impacts**: seen and retuned 2026-11-04 (coop_finSnowFx test, stills docs/proposals/snowfx_2026-11-04). Open: every scripted grenade blast there is followed by a low dark-grey billow that is NOT from grenexp_snow (a column-only variant still had it, snowfx163h); source unknown (vss_draw 0 from the harness did not remove it; the hd_fx grenexp tiks are not loaded).
+- **v1.10.62 Discord post** went out without notes; follow-up post awaits the user's OK.

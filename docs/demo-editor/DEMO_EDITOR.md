@@ -8,7 +8,8 @@ into the game: nothing to install, nothing external. Run it from the numeric key
 
 ## Quick start
 
-1. **Record while you play.** Press **F9** to start and stop, or type `record mynight` in the
+1. **Record while you play.** Press **F9** to start and stop (hosting, each recording gets its own dated
+   name, `srv_<map>_<date>_<time>`), or type `record mynight` in the
    console (`~` or `§`) and `stoprecord` when you are done.
 2. **Play it back** with `demo mynight`. The editor is on for every demo, old ones included.
 3. **Press KP 0** to leave the soldier's eyes. Fly with **W A S D** and the mouse; **Space** goes
@@ -67,6 +68,16 @@ nothing in your config is changed.
 | J / Shift+J | Depth of field on / off, stronger |
 | K / Shift+K | Motion blur on / off, stronger |
 | B | Outlines through walls: off, players, players + AI |
+| V | Show the camera path (dots, numbered waypoints, aim ticks) |
+| N / Shift+N | Select the next / previous waypoint; Enter moves it to the camera, Shift+Enter also retimes it |
+| U / Shift+U | Undo / redo (path, clip points, captions) |
+| Q / Shift+Q | Follow the soldier, vehicle or projectile nearest the middle (Q again: the next one) / stop |
+| C | The montage editor |
+| F | Photo (2x or 3x, saved to `photos/`) |
+| R / Shift+R | Next render preset / make a GIF |
+| E / Shift+E | Timeline preview pictures on / off / collect them for this level |
+| 5 | Stats: corner, end card, both, off |
+| 6 / 7 | Weather / time of day (Shift goes back) |
 | W A S D, Space, Ctrl | Fly the free camera (Shift 3x faster, Alt slower) |
 | Mouse | The timeline cursor; in the free camera, look around (works while paused) |
 | Right mouse (hold) | In the free camera: the timeline cursor instead of looking |
@@ -104,6 +115,12 @@ plays with the full HUD. It shows the time played and the demo's full length, ac
   `cl_ffmpegPath`) the result is a small `videos/videoNNNN.mp4`; without it you get the AVI as
   before. `cl_aviMp4 2` keeps both, `0` AVI only. The video carries the game's sound (see
   Render sound below).
+
+**Preview pictures.** Hover over the timeline, or drag along it, and a small picture of that moment
+shows above the time, like a video site's scrub preview. The pictures are collected as you watch and
+scrub. A moment you have not seen yet shows the nearest picture, or says *no preview yet*. **Shift+E**
+collects every picture of the level that is loaded in one go: the demo steps through it, paused, and
+comes back to where you were. **E** turns the preview on or off.
 
 ## Trim and save clips
 
@@ -164,6 +181,29 @@ where he faces, 80 units up.
 
 ![Two players from the free camera](media/two-players.jpg)
 
+**Follow anything.** **Q** locks the camera onto a target: the soldier, vehicle or projectile nearest
+the middle of the picture first, then the next one each time you press it. You can also click a target
+in the picture (hold the right mouse button for the cursor). **Shift+Q** lets go. A small gold bracket
+marks the target while you edit.
+
+- **Aim** (the default): the camera stays where you put it and turns to keep the target in the middle.
+  W A S D still move it.
+- **Chase**: the camera rides behind and above the target as it moves.
+- **Projectile cam**: a grenade, rocket or tank shell always gets this. The camera rides right behind
+  it, looking along its flight. When it bursts, the camera holds on the impact for 3 seconds, then lets go.
+
+It all runs on the demo's own time, so slow motion slows the ride too - a quarter-speed rocket ride
+looks the way you want it to. The target also becomes the path's aim lock, so a playing camera path
+keeps it in the middle.
+
+| Command | Does |
+|---|---|
+| `demo_follow next` / `stop` | Next target / let go (Q / Shift+Q) |
+| `demo_follow 214` | Follow entity 214 (`demo_follow list` shows them) |
+| `demo_follow style aim` / `chase` | How the camera follows |
+| `demo_follow kinds soldiers` | Only soldiers (`vehicles`, `projectiles`, `all`) |
+| `demo_followDist 200` | How far behind a chase rides (vehicles: twice that) |
+
 ## Camera paths
 
 Pause, place the camera, press **KP Enter**; move on in the demo, place it again, press KP Enter
@@ -208,6 +248,31 @@ right. Each press shows the new value for a moment (hold **Shift** for 1-degree 
 before **KP Enter** and the waypoint keeps them: the path then eases the zoom and the tilt from one
 waypoint to the next, the same way it eases the speed. The menu has a slider for each.
 
+**See the path.** **V** shows the path in the free camera: the curve the camera will fly as a dotted
+line, and a numbered marker at every waypoint with a short tick along where it looks. The selected
+waypoint is white. The path is never drawn in a render, while it plays, or with the HUD hidden.
+
+**Edit a waypoint.** On the timeline every waypoint is a marker. Click one to select it; drag it left or
+right to change its time (it stays between its neighbours). **N** selects the next waypoint and puts the
+camera on it, **Shift+N** the previous one. With a waypoint selected:
+
+| Key | Does |
+|---|---|
+| **Enter** | Moves it to where the camera is now (with the camera's zoom and tilt) |
+| **Shift+Enter** | The same, and moves its time to the moment on screen |
+| **Del** | Deletes it |
+
+**Undo.** **U** undoes the last change to the path, the clip points or the captions - whether you made
+it with a key, the menu, the timeline or the console. **Shift+U** redoes it. The editor remembers 48
+steps for each demo.
+
+| Command | Does |
+|---|---|
+| `demo_wp next` / `prev` / `3` | Select the next / previous / third waypoint and jump to it |
+| `demo_wp move` / `retime` / `delete` | Move the selected waypoint to the camera / and retime it / delete it |
+| `demo_wp show` | Path on / off (V) |
+| `demo_undo` / `demo_redo` | Undo / redo (U / Shift+U) |
+
 ## The auto-director
 
 **G** hands the camera to the auto-director. It frames one player at a time - over the shoulder,
@@ -244,6 +309,31 @@ scene. Through a scope the scope view stays. Press **H** again to get back what 
 `r_ppFilterStrength 0.5` softens any of them. Cinematic adds 2.39:1 bars on screens narrower than
 that.
 
+**Weather and time of day.** Re-light a shot without recording it again:
+
+- **6** steps through the weather: as recorded, clear, rain, heavy rain, snow, blizzard, fog.
+  **Shift+6** goes back.
+- **7** steps through the time of day: as recorded, dawn, day, dusk, night. **Shift+7** goes back.
+
+Rain and snow are the mod's own, so they fall around the camera just as they do in a game. Fog closes
+the distance in grey. The time of day colours the picture and the fog. On the older gl1 renderer only
+the fog colour changes. Both settings are saved with the camera path and come back with the demo;
+seeking keeps them. "As recorded" on both puts everything back exactly as it was.
+
+| Command | Does |
+|---|---|
+| `demo_weather snow` | `recorded`, `clear`, `rain`, `heavy`, `snow`, `blizzard`, `fog`, or `next` / `prev` |
+| `demo_time dusk` | `recorded`, `dawn`, `day`, `dusk`, `night`, or `next` / `prev` |
+
+**Photo mode.** **F** takes a high-resolution still of the frame on screen: twice the screen's size
+each way by default (4K from a 1080p screen), up to 6 times (`demo_photoScale`, or the menu). It uses
+everything you set up - free camera, zoom, tilt, filter, depth of field, clean shot - and puts the
+letterbox on the finished picture. The HUD, the timeline and the menu are left out. The demo pauses for
+a moment while it is taken and then plays on.
+
+Photos are saved as PNG in `photos/`. To get a JPG as well, turn on *Photo as JPG too* in the menu, or
+type `demo_photoFormat jpg`. The JPG needs ffmpeg (see Recording everything).
+
 ## Film effects for renders
 
 **Depth of field (J)** blurs what is nearer or farther than the focus point, like a film camera.
@@ -264,6 +354,22 @@ carries.
 
 All three need the gl2 renderer; in gl1 the switches do nothing. Their strengths and the focus
 distance have sliders in the F1 menu (Render, Players).
+
+## Stats
+
+**5** steps the stats through off, corner, end card, and both. They are worked out from the demo itself,
+for the recorded player:
+
+- **Kills.** The server's kill confirmations. On hardcore, which sends none, an enemy who dies just after
+  the player fired counts.
+- **Deaths.** The player's own deaths in the kill feed.
+- **Accuracy.** Hits (the server's hit confirmations) out of rounds fired.
+- **Highlights.** Multi-kills and the best streak, vehicles destroyed, objectives, and the three best moments.
+
+The **corner** panel counts up to the moment on screen. The **end card** is a summary over the last
+frame. A render of the marked range or the whole demo holds its last frame for 4 seconds with the card
+on it before the video ends (`demo_statsCardSec` sets how long). The card also shows when the editor
+holds a demo's last frame. Both burn into renders, like captions.
 
 ## Render sound
 
@@ -340,6 +446,16 @@ The new name shows over his head, on the scoreboard and in the kill feed.
 | `demo_dof [on\|off\|toggle\|step]`, `demo_dof strength <0.1-1>`, `demo_dof focus <units>` | Depth of field (J) |
 | `demo_mblur [on\|off\|toggle\|step]`, `demo_mblur strength <0.1-1>`, `demo_mblur frames <1-8>` | Motion blur (K) |
 | `demo_outline [next\|0\|1\|2]` | Outlines (B) |
+| `demo_wp ...` | Select / move / retime / delete a waypoint (see Camera paths) |
+| `demo_undo` / `demo_redo` | Undo / redo an edit (U / Shift+U) |
+| `demo_follow ...` | Follow a soldier, vehicle or projectile (Q) |
+| `demo_thumbs build` | Collect every timeline preview picture of this level (Shift+E) |
+| `demo_weather ...` / `demo_time ...` | Weather / time of day (6 / 7) |
+| `demo_photo` | Take a photo (F); `demo_photoScale 3` for 3x |
+| `demo_preset next` / `0` - `4` | Render preset (R) |
+| `demo_gif` | GIF of the marked clip, or the whole demo (Shift+R) |
+| `demo_stats next` / `0` - `3` | Stats overlay (5); `demo_stats print` writes them to the console |
+| `demo_montage ...` | The montage editor (C) |
 
 | Setting | Default | Meaning |
 |---|---|---|
@@ -365,8 +481,15 @@ A normal demo only holds what the game sent *you*: the players, soldiers and eff
 the free camera somewhere you never looked and that part of the map is empty. When **you host**,
 F9 records **the whole map** instead: every player, every soldier, every shot, explosion and sound,
 wherever it happens. Nothing to type and nothing to switch on: host a game, press **F9**, play,
-press **F9** again. The file is the same `demos/lastclip`, it plays with `demo lastclip`, and F10
-renders it as before. It keeps going across map changes.
+press **F9** again. It keeps going across map changes, and F10 renders it as before.
+
+**Every recording keeps its own name.** Hosting, each F9 recording is saved as
+`demos/srv_<map>_<date>_<time>` - for example `srv_m2l3_2026-11-04_21-40-27` - so a new one never
+overwrites the last. To pick the name yourself, type `record <name>` in the console instead of
+pressing F9 (`stoprecord`, or F9, stops it); a name that is taken gets `_2`, `_3` ... added. The Film
+Room lists them under their names and can rename any of them. F10 always renders the newest
+recording. (On someone else's server F9 still writes `demos/lastclip`.) The F1 menu's **Recording
+names** line shows the name of the demo playing.
 
 ![A U-boat pen worker far from the host, only in a whole-map demo](media/record-everything.jpg)
 
@@ -386,6 +509,57 @@ renders it as before. It keeps going across map changes.
 The recorder costs the server 0.1 to 0.2 ms a frame. A whole-map demo is less than twice the size
 of a normal one: roughly 40-50 MB an hour on a coop map.
 
+**Render presets.** **R** steps through the presets for the next render. The status toast and the menu
+show which one is picked:
+
+| Preset | Comes out as |
+|---|---|
+| Custom | Your own settings (`cl_aviFrameRate`, the screen's size) |
+| YouTube 1080p60 | 1920 x 1080, 60 fps |
+| 4K 30 | 3840 x 2160, 30 fps |
+| Vertical short | 1080 x 1920, 30 fps - the middle of the picture, for phones |
+| GIF | A looping GIF, 15 fps, 480 wide |
+
+When the preset needs more pixels than your screen has (4K, or a vertical short's 1920 lines on a
+1080p screen), every frame is rendered in pieces and joined into one sharp frame, the way photos are.
+That render takes longer. Captions, the stats card and the letterbox come out right on the big frame.
+Motion blur is left off for those presets. ffmpeg then scales or crops the video to the preset's size.
+
+**GIFs.** **Shift+R** makes a GIF of the marked clip (the `[` `]` range), or of the whole demo when
+nothing is marked. The GIF preset also turns any render into a GIF. GIFs are saved in `videos/` beside
+the videos and need ffmpeg.
+
+## Montages
+
+**C** opens the montage editor: your saved clips on the left (everything **\\** has saved), the montage
+on the right in playing order, each clip with the transition into the next one.
+
+| Key (while it is open) | Does |
+|---|---|
+| **Up / Down**, **Left / Right** | Move in a list / go to the other list |
+| **Enter** | On a clip: add it to the end of the montage. On the montage: change its transition (cut, fade to black, crossfade) |
+| **Del** | Take it out of the montage |
+| **PgUp / PgDn** | Move it earlier / later |
+| **M** | Music: none, then each of the game's own tracks |
+| **S** / **L** | Save the montage / load a saved one (each L loads the next) |
+| **R** | Render it |
+| **C** or **Esc** | Close |
+
+**R** renders every clip in turn, the way F10 renders a demo: with its captions, the stats card, the
+render preset's frame rate and size, and render sound. ffmpeg then joins them into one MP4 in `videos/`.
+Fades and crossfades last half a second, picture and sound together. The music plays under the game
+sound and fades out at the end. Once the MP4 is written, the clips' own videos are removed. Montages
+are always MP4: pick a preset other than GIF.
+
+| Command | Does |
+|---|---|
+| `demo_montage add mynight_clip2` | Add a clip |
+| `demo_montage trans 1 cross` | Transition after clip 1 (`cut`, `fade`, `cross`) |
+| `demo_montage music next` / `none` | Pick the music |
+| `demo_montage save bestof` / `load bestof` | Save / load `demos/montages/bestof.mtg` |
+| `demo_montage render` | Render it |
+| `demo_montage list` | Show it |
+
 ## Where things are saved
 
 | File | Holds |
@@ -393,6 +567,11 @@ of a normal one: roughly 40-50 MB an hour on a coop map.
 | `demos/mynight.dm_17` | The recording |
 | `demos/cameras/mynight.cam` | Its camera path |
 | `demos/cameras/mynight.names` | Its renamed players |
+| `demos/cameras/mynight.wx` | Its weather and time of day |
+| `demos/montages/bestof.mtg` | A montage: its clips, transitions and music (plain text) |
+| `photos/mynight_01-23.png` | A photo taken at 1:23 |
+| `videos/bestof.mp4` | A rendered montage |
+| `videos/video0003.gif` | A GIF |
 
 They live in your game's `maintt` home folder. The `.cam` and `.names` files are plain text: send
 them with a demo to share a finished camera move.

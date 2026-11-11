@@ -27,12 +27,12 @@ asking and the risk preambles. **Content-only changes (pk3 assets: fonts, textur
   tool calls ("he spawns in now…", "now he isn't spawning"), respond to it in your next visible text
   — even one sentence — before continuing. *"id appreciate some acknowledgement when i want to you
   btw."* Silence while grinding tools reads as being ignored.
-- **Tell them FIRST when an automated test will pop game windows on their screen.**
+- **Tips/UI text: plain language players find useful; no %s/stats** (09-27).
+- **No game window while they play (chatting = at the PC, 09-27); when away, use a private client copy + send screenshots.**
 - **Say plainly when something is not built.** Asked *"what do i need todo to test teh fog"* the
-  correct answer was "nothing, it is not built" — not a list of cvars.
-- Their symptom framing can point at the wrong layer — **read the log evidence before assuming.**
-  "DBNO isn't triggering" was false; the log had the full down→bleed→died cycle, and the real
-  issue was audio audibility.
+  answer was "nothing, it is not built" — not a list of cvars.
+- Their symptom framing can point at the wrong layer — **read the log evidence before assuming**
+  ("DBNO isn't triggering": the log had the full cycle; the issue was audibility).
 - When they say *"increase the vignette more"* during a specific state, they want the feature
   **kept and strengthened**, not disabled.
 - When they say *"X used to work and broke when we did Y"*, **trust that** and go to git history /
@@ -52,10 +52,15 @@ reading). Drive the console yourself over rcon and read `qconsole.log` — tooli
 [01-project-map.md](01-project-map.md) §4.
 
 **Look for the existing harness before asking for anything manual, including a click.** A real
-2-player dedicated test = `launch_dedicated_2player.ps1 -Map <map>` + `spawn_clicker_2player.ps1`
-(joins both clients, re-joins across map changes); `rcon.py map <map>` restarts with both present at
-t=0. Both predate this session. **`ls` the root for `launch_*` / `*_clicker` before calling a manual
-step unavoidable.**
+2-player dedicated test = `launch_dedicated_2player.ps1 -Map <map>` + `spawn_clicker_2player.ps1`;
+`rcon.py map <map>` restarts with both present. **`ls` the root for `launch_*` / `*_clicker` first.**
+Test windows: the 3440x1440 ultrawide or the 1080p second screen, picked by resolution - never the TV (11-09).
+
+**Test the user's REAL setup by the REAL start path** (09-25: *"you are trying to launch a single
+player map ... figure out what you need to be modifying and tesitng before you proceed"*). They play
+`G:\mohaa-gl2\PLAY-GL2.bat` (gl2, homepath `G:\mohaa-gl2\home`) and start coop from the menu
+(`ui_startdmmap 2`). A `devmap`/`map` boot from a copied homepath is the SP path and proves nothing.
+Before launching anything, state which binaries/pk3/cfgs the launch loads and how the test starts.
 
 > **"You might want to watch console every time you deploy too, just in case we are missing any
 > problems."** — 2026-07-27
@@ -69,8 +74,8 @@ hash-compare the source against the shipped member, grep the built DLL for the n
 been left undeployed while the user tested the old build and reported "did not change anything".
 Full failure modes: [TRAPS.md § T10](TRAPS.md#t10).
 
-**The gl1/gl2 A/B is the highest-value test available.** It converted "unexplained missing smoke"
-into "retail never wired the asset up" in one run. Ask for it early.
+**GL1: no time on it (user, 2026-11-08: "Dont waste time on gl1").** Test and fix GL2 only; a GL1 A/B is
+a diagnostic for a GL2 mystery, never a target to fix or verify.
 
 ---
 
@@ -80,9 +85,13 @@ into "retail never wired the asset up" in one run. Ask for it early.
   unless the difference exists to make coop work. Full entry in
   [`archive/prefs-pruned-2026-08-20.md`](archive/prefs-pruned-2026-08-20.md).
 
-- **Push = break the front through to the ENEMY SPAWN, whoever does wins — NOT capture-points** (2026-09-18).
+- **Push = break the front through to the ENEMY SPAWN, whoever does wins — NOT capture-points** (09-18).
   One line both sides fight; axis push too. HUD minimal: `PUSH` + bar + timer.
-  A default-on feature (e.g. weather) must never ship crashing: default-off until fixed AND client-verified.
+  A default-on feature must never ship crashing: default-off until fixed AND client-verified.
+
+- **Our own custom scenery is wanted - with zero obvious mistakes** (11-09, the attic window's town:
+  floating / interpenetrating houses, clipping banners, a "beach" horizon). Zoom into every still and
+  fix before showing anything (a real-map view instead was declined).
 
 ---
 
@@ -94,11 +103,11 @@ into "retail never wired the asset up" in one run. Ask for it early.
 - **When re-baking from a CROUCH tuning pass, edit ONLY the 5 crouch fields per gun.** *"PLEASE ONLY
   UPDATE CROUCH"* (emphatic). `adssave` logs both stand and crouch even in a crouch pass — ignore the
   stand line. Bake via a script that keeps the first 5 stand tokens verbatim.
-- **Cvar hygiene is a TRAPS matter, not a preference** — mechanism + bug ids: [TRAPS.md § T7](TRAPS.md#t7).
+- **Cvar hygiene is a TRAPS matter** — mechanism + bug ids: [TRAPS.md § T7](TRAPS.md#t7).
 
 ---
 
-## Two failed attempts is the budget — then REVERT (2026-08-03)
+## Two failed attempts is the budget — then REVERT (08-03)
 
 - **Two failed attempts on the same symptom is the budget; then revert, do not iterate.** On a
   surface you cannot observe from here (a `.urc`), the SECOND failure triggers the revert - the
@@ -134,24 +143,24 @@ following the documented reading order found no reason not to delete the `if (fa
 crash. The buglog is a search index, not a substitute for the authored docs: if an entry would change
 a future decision, it belongs in TRAPS or DECISIONS too.
 
-**Budgets are not the enemy.** Pruning keeps rules and drops war stories; nothing load-bearing has
-been lost that way. The real inefficiency is knowledge that never left the buglog at all.
+**Probes are for harnesses, not for play** (09-27, reverses 08-22 "start on their own"): "flip the
+switch on them for now to cut the console spam". Diagnostics ship OFF; a harness `+set`s what it reads.
 
 Row-by-row evidence and the four rules for writing a probe:
 [`archive/prefs-pruned-2026-08-20.md`](archive/prefs-pruned-2026-08-20.md).
 
 ## Planning and queueing
 
-- **Plan, then have agents vet the plan, BEFORE writing code** (2026-08-20, stated three times:
+- **Plan, then have agents vet the plan, BEFORE writing code** (08-20, stated three times:
   "before you write any code, I'd like for you to plan it all out and then have agents vet your plan
   multiple times over before rolling it out"; "instead of me doing hundreds more tests do more
-  research and vet"). This is not ceremony - on the ADS work three independent reviews each found a
-  defect the plan would otherwise have shipped, including the one that WAS the user's bug (an
-  unscaled 38-degree crouch rotation) which the plan had wrongly assumed was already handled. Use
-  independent LENSES (engine correctness / adversarial edge cases / this project's own bug history),
+  research and vet"). Not ceremony - on the ADS work three independent reviews each found a defect
+  the plan would have shipped. Use
+  independent LENSES (engine / edge cases / this project's bug history),
   not three copies of the same review: the history lens is what catches "you already built this and
-  killed it", which reading the code alone cannot.
-- **When many requests are in flight, keep a visible queue and batch the report** (2026-08-20: "Im
+  killed it", which reading the code alone cannot. **Graphics especially** (09-25: "extreme research and vetting ..."): each render change ships with a one-key
+  old/new A/B and a 5-minute test script. 09-27 "no jank": judge in motion; user signs off the look first.
+- **When many requests are in flight, keep a visible queue and batch the report** (08-20: "Im
   throwing a lot at you so please make sure you dont miss anything", then "We have a lot going so
   just tell me when everything is done and ready"). Capture every incoming idea in writing as it
   arrives - the user fires them faster than they can be built - and report once at the end rather
@@ -167,7 +176,7 @@ Row-by-row evidence and the four rules for writing a probe:
 
 ## A setting is a promise
 
-- **"If we removed settings for a bug reason that setting needs to be removed."** (2026-08-21) A
+- **"If we removed settings for a bug reason that setting needs to be removed."** (08-21) A
   control still toggleable after its feature was disabled is worse than none - the player toggles it,
   nothing happens, and the whole options screen reads as fake. Both directions: pull a feature, pull
   its control; force a cvar mitigation for a bug, clear it when that bug closes. Check with
@@ -177,7 +186,7 @@ Row-by-row evidence and the four rules for writing a probe:
   spots in the tool.
 
 
-## Offer the MECHANISM, not just the outcome — the user picks the smaller one (2026-08-24)
+## Offer the MECHANISM, not just the outcome — the user picks the smaller one (08-24)
 
 Asked how to stop a recruited enemy softlocking a kill-them-all objective, I offered two options:
 model conversion as death-and-replace, or refuse to convert the last enemy. The user answered with a
@@ -191,24 +200,15 @@ uses, not only what it achieves** — the user reads mechanisms and routinely sp
 Framing a choice purely in outcomes hides exactly the information they decide on.
 
 **And when a LOOK is rejected as unreal, research the real phenomenon before touching a
-parameter** (2026-09-07: *"research how waves actually work, how currents actually work"*) -
+parameter** (09-07: *"research how waves actually work, how currents actually work"*) -
 two shader nudges had already failed.
 
 
-## Commit messages: short. The detail already lives somewhere better (2026-08-30)
+## Commit messages: short. The detail already lives somewhere better (08-30)
 
 User: *"I think git needs a makeover. way too much info."*
 
-Commit bodies had grown into essays - `40d6451` and `b25bef8` each run 15+ lines of prose with
-engine line numbers, measured velocities and root-cause narratives. **All of that is already in
-`.wolf/buglog.json` and the authored docs, which are searchable, structured and updateable; a commit
-body is none of those and cannot be corrected after the fact.**
-
-**The style, enforced by `.gitmessage`:**
-- Subject: `type: what changed`, imperative, <= 72 chars.
-- Body: at most ~6 bullets, ONE line each. Name the bug id and let the reader follow it.
-- No root-cause narrative, no measurements, no file:line citations. Those go in the buglog entry.
-- If a bullet needs a second line to make sense, the explanation belongs in `docs/` instead.
-
-Rule of thumb: **a commit body says WHAT changed and points at WHERE the why lives.** Someone
-skimming `git log --oneline` should get the shape of a release without opening a single commit.
+Style is enforced by `.gitmessage`: subject `type: what changed` (<= 72 chars), at most ~6 one-line
+bullets naming bug ids. No root-cause narrative, measurements or file:line citations - those live in
+the buglog and docs, which can be searched and corrected; a commit body cannot. **A commit says WHAT
+changed and points at WHERE the why lives.**

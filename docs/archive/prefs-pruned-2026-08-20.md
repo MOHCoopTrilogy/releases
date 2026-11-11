@@ -379,3 +379,8 @@ probe itself: [`archive/prefs-pruned-2026-08-20.md`](archive/prefs-pruned-2026-0
   circular bullet-hole marks.
 - **No body gore on players, ever, and players never pool** (alive or dead). Pools mark dead
   **actors** only, both sides.
+
+## Pruned 2026-09-27 (console-quiet pass, to make room for the probes-off preference)
+
+**Budgets are not the enemy.** Pruning keeps rules and drops war stories; nothing load-bearing has
+been lost that way. The real inefficiency is knowledge that never left the buglog at all.

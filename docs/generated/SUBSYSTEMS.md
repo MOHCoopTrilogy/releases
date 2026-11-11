@@ -8,10 +8,10 @@
 # Coop subsystem inventory (generated)
 | metric | value |
 |---|---:|
-| `coop_mod/*.scr` files | 167 |
-| total lines in `coop_mod/` | 95,872 |
-| top-level `maps/*.scr` | 122 |
-| of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
+| `coop_mod/*.scr` files | 255 |
+| total lines in `coop_mod/` | 155,508 |
+| top-level `maps/*.scr` | 124 |
+| of those, coop-integrated (call `coop_mod/main.scr::main`) | 67 |
 
 ## Boot order - `coop_mod/main.scr::main`
 Extracted from the source in order. Every one of these runs **synchronously in a single frame** - `wait` and `waitframe` are forbidden in or before this block.
@@ -19,104 +19,134 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | # | line | verb | target |
 |---:|---:|---|---|
 | 1 | 97 | `waitthread` | `coop_mod/variables.scr::main` |
-| 2 | 117 | `thread` | `spWaitForPlayer` |
-| 3 | 122 | `waitthread` | `coop_mod/server.scr::main` |
-| 4 | 128 | `waitthread` | `coop_mod/probe.scr::prb_init` |
-| 5 | 132 | `thread` | `coop_mod/xp.scr::xp_init` |
-| 6 | 135 | `thread` | `coop_mod/challenges.scr::chal_init` |
-| 7 | 139 | `thread` | `coop_mod/medals.scr::medal_init` |
-| 8 | 142 | `waitthread` | `coop_mod/spawnlocations.scr::main` |
-| 9 | 145 | `thread` | `coop_mod/player.scr::manage` |
-| 10 | 148 | `thread` | `coop_mod/aihandler.scr::coop_reinf_brain` |
-| 11 | 151 | `exec` | `coop_mod/loadout.scr` |
-| 12 | 154 | `thread` | `coop_mod/itemhandler.scr::disableAllWeaponsOnMenu` |
-| 13 | 155 | `thread` | `coop_launcherRespawnSweep` |
-| 14 | 160 | `thread` | `coop_mod/holdout.scr::holdout_init` |
-| 15 | 164 | `thread` | `coop_mod/wallgun.scr::wall_init` |
-| 16 | 165 | `thread` | `coop_mod/props.scr::prop_init` |
-| 17 | 172 | `thread` | `coop_mod/events.scr::initialiseEvents` |
-| 18 | 180 | `thread` | `coop_mod/fogmode.scr::coop_fog_boot` |
-| 19 | 184 | `thread` | `coop_mod/mapgrade.scr::coop_mapgrade_boot` |
-| 20 | 185 | `thread` | `coop_mod/probe.scr::boot` |
-| 21 | 187 | `thread` | `coop_mod/medkit.scr::coop_scan_health_entities` |
-| 22 | 188 | `thread` | `coop_mod/officer.scr::coop_officer_init` |
-| 23 | 189 | `thread` | `coop_mod/director.scr::director_main` |
-| 24 | 190 | `thread` | `coop_mod/weather.scr::coop_weather_init` |
-| 25 | 191 | `thread` | `coop_mod/ambience.scr::coop_ambience_init` |
-| 26 | 192 | `thread` | `coop_mod/flchatter.scr::flchatter_init` |
-| 27 | 193 | `thread` | `coop_mod/aivoice.scr::aivoice_init` |
-| 28 | 194 | `thread` | `coop_mod/flmusic.scr::coop_flmusic_filler` |
-| 29 | 202 | `thread` | `coop_mod/objective_drop.scr::coop_objective_drop_init` |
-| 30 | 206 | `thread` | `coop_mod/helmtest.scr::main` |
-| 31 | 212 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
-| 32 | 216 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
-| 33 | 219 | `thread` | `coop_mod/maptest_phase2.scr::coop_maptest_phase2_tick` |
-| 34 | 224 | `thread` | `coop_mod/maptest_m5l3.scr::coop_maptest_m5l3_walk` |
-| 35 | 229 | `thread` | `coop_mod/maptest_vehicle.scr::coop_maptest_vehicle_tick` |
-| 36 | 233 | `thread` | `coop_mod/tracescan.scr::scan` |
-| 37 | 239 | `thread` | `coop_mod/coop_selftest.scr::weaptest_run` |
-| 38 | 242 | `thread` | `coop_mod/coop_selftest.scr::dbnotest_run` |
-| 39 | 245 | `thread` | `coop_mod/coop_selftest.scr::dbnoteam_run` |
-| 40 | 248 | `thread` | `coop_mod/coop_selftest.scr::xptest_run` |
-| 41 | 251 | `thread` | `coop_mod/coop_selftest.scr::scaletest_run` |
-| 42 | 261 | `thread` | `coop_mod/coop_selftest.scr::st_autodeploy_run` |
-| 43 | 266 | `thread` | `coop_mod/coop_selftest.scr::st_flanktest_run` |
-| 44 | 269 | `thread` | `coop_mod/coop_selftest_scaling.scr::st_scaling_run` |
-| 45 | 272 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
-| 46 | 275 | `thread` | `coop_mod/coop_selftest_vehicles.scr::st_vehicles_run` |
-| 47 | 278 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
-| 48 | 281 | `thread` | `coop_mod/coop_selftest_triggers.scr::st_triggers_run` |
-| 49 | 284 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
-| 50 | 287 | `thread` | `coop_mod/coop_selftest_keyitems.scr::st_keyitems_run` |
-| 51 | 290 | `thread` | `coop_mod/coop_selftest_dbno.scr::st_dbno_run` |
-| 52 | 293 | `thread` | `coop_mod/coop_selftest_xp.scr::st_xp_run` |
-| 53 | 296 | `thread` | `coop_mod/coop_selftest_weapons.scr::st_weapons_run` |
-| 54 | 299 | `thread` | `coop_mod/coop_selftest.scr::wintest_run` |
-| 55 | 302 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
-| 56 | 308 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
-| 57 | 315 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
-| 58 | 319 | `thread` | `coop_mod/voidguard.scr::main` |
-| 59 | 328 | `thread` | `coop_mod/aimaneuver.scr::main` |
-| 60 | 338 | `thread` | `coop_mod/aibehav.scr::main` |
-| 61 | 343 | `thread` | `coop_mod/aicombat.scr::main` |
-| 62 | 349 | `thread` | `coop_mod/sndcache.scr::main` |
-| 63 | 352 | `thread` | `coop_mod/devprobe.scr::main` |
-| 64 | 354 | `thread` | `coop_mod/devprobe.scr::stuckWatch` |
-| 65 | 363 | `thread` | `coop_mod/eventsystem.scr::doEvent` |
+| 2 | 117 | `thread` | `spTrackPrespawn` |
+| 3 | 118 | `thread` | `spWaitForPlayer` |
+| 4 | 124 | `waitthread` | `coop_mod/hardcore.scr::init` |
+| 5 | 127 | `waitthread` | `coop_mod/server.scr::main` |
+| 6 | 133 | `waitthread` | `coop_mod/probe.scr::prb_init` |
+| 7 | 137 | `thread` | `coop_mod/xp.scr::xp_init` |
+| 8 | 140 | `thread` | `coop_mod/challenges.scr::chal_init` |
+| 9 | 143 | `thread` | `coop_mod/joincard.scr::jc_main` |
+| 10 | 147 | `thread` | `coop_mod/medals.scr::medal_init` |
+| 11 | 150 | `waitthread` | `coop_mod/spawnlocations.scr::main` |
+| 12 | 153 | `thread` | `coop_mod/player.scr::manage` |
+| 13 | 156 | `thread` | `coop_mod/aihandler.scr::coop_reinf_brain` |
+| 14 | 159 | `exec` | `coop_mod/loadout.scr` |
+| 15 | 162 | `thread` | `coop_mod/itemhandler.scr::disableAllWeaponsOnMenu` |
+| 16 | 163 | `thread` | `coop_launcherRespawnSweep` |
+| 17 | 164 | `thread` | `coop_mod/atsupply.scr::init` |
+| 18 | 169 | `thread` | `coop_mod/carry.scr::carry_init` |
+| 19 | 170 | `thread` | `coop_mod/alarm.scr::alarm_init` |
+| 20 | 171 | `thread` | `coop_mod/objx.scr::objx_init` |
+| 21 | 172 | `thread` | `coop_mod/holdout.scr::holdout_init` |
+| 22 | 176 | `thread` | `coop_mod/wallgun.scr::wall_init` |
+| 23 | 177 | `thread` | `coop_mod/props.scr::prop_init` |
+| 24 | 184 | `thread` | `coop_mod/events.scr::initialiseEvents` |
+| 25 | 192 | `thread` | `coop_mod/fogmode.scr::coop_fog_boot` |
+| 26 | 196 | `thread` | `coop_mod/mapgrade.scr::coop_mapgrade_boot` |
+| 27 | 197 | `thread` | `coop_mod/probe.scr::boot` |
+| 28 | 199 | `thread` | `coop_mod/medkit.scr::coop_scan_health_entities` |
+| 29 | 200 | `thread` | `coop_mod/medkit.scr::healthItemSweep` |
+| 30 | 201 | `thread` | `coop_mod/officer.scr::coop_officer_init` |
+| 31 | 202 | `thread` | `coop_mod/director.scr::director_main` |
+| 32 | 203 | `thread` | `coop_mod/weather.scr::coop_weather_init` |
+| 33 | 204 | `thread` | `coop_mod/ambience.scr::coop_ambience_init` |
+| 34 | 205 | `thread` | `coop_mod/flchatter.scr::flchatter_init` |
+| 35 | 206 | `thread` | `coop_mod/aivoice.scr::aivoice_init` |
+| 36 | 207 | `thread` | `coop_mod/flmusic.scr::coop_flmusic_filler` |
+| 37 | 215 | `thread` | `coop_mod/objective_drop.scr::coop_objective_drop_init` |
+| 38 | 219 | `thread` | `coop_mod/helmtest.scr::main` |
+| 39 | 225 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
+| 40 | 229 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
+| 41 | 232 | `thread` | `coop_mod/maptest_phase2.scr::coop_maptest_phase2_tick` |
+| 42 | 237 | `thread` | `coop_mod/maptest_m5l3.scr::coop_maptest_m5l3_walk` |
+| 43 | 242 | `thread` | `coop_mod/maptest_vehicle.scr::coop_maptest_vehicle_tick` |
+| 44 | 246 | `thread` | `coop_mod/tracescan.scr::scan` |
+| 45 | 252 | `thread` | `coop_mod/coop_selftest.scr::weaptest_run` |
+| 46 | 255 | `thread` | `coop_mod/coop_selftest.scr::dbnotest_run` |
+| 47 | 258 | `thread` | `coop_mod/coop_selftest.scr::dbnoteam_run` |
+| 48 | 261 | `thread` | `coop_mod/coop_selftest.scr::xptest_run` |
+| 49 | 264 | `thread` | `coop_mod/coop_selftest.scr::scaletest_run` |
+| 50 | 274 | `thread` | `coop_mod/coop_selftest.scr::st_autodeploy_run` |
+| 51 | 279 | `thread` | `coop_mod/coop_selftest.scr::st_flanktest_run` |
+| 52 | 282 | `thread` | `coop_mod/coop_selftest_scaling.scr::st_scaling_run` |
+| 53 | 285 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
+| 54 | 288 | `thread` | `coop_mod/coop_selftest_vehicles.scr::st_vehicles_run` |
+| 55 | 291 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
+| 56 | 294 | `thread` | `coop_mod/coop_selftest_triggers.scr::st_triggers_run` |
+| 57 | 297 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
+| 58 | 300 | `thread` | `coop_mod/coop_selftest_keyitems.scr::st_keyitems_run` |
+| 59 | 303 | `thread` | `coop_mod/coop_selftest_dbno.scr::st_dbno_run` |
+| 60 | 306 | `thread` | `coop_mod/coop_selftest_xp.scr::st_xp_run` |
+| 61 | 309 | `thread` | `coop_mod/coop_selftest_hardcore.scr::st_hc_run` |
+| 62 | 312 | `thread` | `coop_mod/coop_selftest_weapons.scr::st_weapons_run` |
+| 63 | 315 | `thread` | `coop_mod/coop_selftest.scr::wintest_run` |
+| 64 | 318 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
+| 65 | 324 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
+| 66 | 331 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
+| 67 | 335 | `thread` | `coop_mod/voidguard.scr::main` |
+| 68 | 344 | `thread` | `coop_mod/aimaneuver.scr::main` |
+| 69 | 354 | `thread` | `coop_mod/aibehav.scr::main` |
+| 70 | 359 | `thread` | `coop_mod/aicombat.scr::main` |
+| 71 | 365 | `thread` | `coop_mod/sndcache.scr::main` |
+| 72 | 368 | `thread` | `coop_mod/devprobe.scr::main` |
+| 73 | 370 | `thread` | `coop_mod/devprobe.scr::stuckWatch` |
+| 74 | 377 | `thread` | `coop_mod/main.scr::lobbyAlwaysRedirect` |
+| 75 | 379 | `thread` | `coop_mod/chrono.scr::chronoMapStart` |
+| 76 | 385 | `thread` | `coop_mod/eventsystem.scr::doEvent` |
 
 ## `coop_mod/` scripts
 | file | lines | labels | summary |
 |---|---:|---:|---|
-| `admin.scr` | 231 | 2 | ADMIN.SCR - the coop/MP ADMIN PANEL. [204] chrissstrahl seeded the secure name-append command framework |
+| `actprompt.scr` | 182 | 0 | actprompt.scr - ICON ACTION PROMPTS: one call to raise or drop "icon + bound key" under the crosshair |
+| `admin.scr` | 244 | 2 | ADMIN.SCR - the coop/MP ADMIN PANEL. [204] chrissstrahl seeded the secure name-append command framework |
 | `ads.scr` | 39 | 0 | HZM coop - AIM DOWN SIGHTS support (per-player), dedicated ADS button (RMB by default). |
 | `ads_dbg.scr` | 11 | 1 | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
-| `aibehav.scr` | 237 | 2 | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
+| `aibehav.scr` | 242 | 2 | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 1 | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 2,161 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
-| `aimaneuver.scr` | 288 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
+| `aihandler.scr` | 2,217 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aimaneuver.scr` | 293 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
+| `aircraft.scr` | 1,567 | 4 | coop_mod/aircraft.scr |
+| `aircraft_envelope.scr` | 603 | 0 | GENERATED by docs/tools/gen_aircraft_envelope.py from the retail BSPs + docs/tools/fog_profiles.tsv. |
 | `aisquad.scr` | 271 | 1 | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
-| `aivoice.scr` | 467 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
+| `aivoice.scr` | 486 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
+| `alarm.scr` | 610 | 9 | alarm.scr - HZM coop ALARM STATE (2026-10-15, docs/proposals/alarm_counterattack_2026-10-15) |
+| `alarmpoints.scr` | 358 | 9 | alarmpoints.scr - GENERATED by docs/tools/gen_alarm_points.py from docs/tools/alarm_points.json. Do not edit… |
+| `alarmsnipers.scr` | 491 | 5 | alarmsnipers.scr - ALARM SNIPERS (2026-10-18, docs/proposals/alarm_snipers_2026-10-18) |
+| `alarmsnipers_spots.scr` | 197 | 8 | alarmsnipers_spots.scr - GENERATED by docs/tools/gen_sniper_spots.py from docs/tools/sniper_spots.json. Do no… |
+| `alarmveh.scr` | 1,044 | 2 | coop_mod/alarmveh.scr - ALARM VEHICLE ARRIVAL (docs/proposals/alarm_halftrack_2026-10-18/FEASIBILITY.md) |
+| `alarmveh_routes.scr` | 133 | 5 | alarmveh_routes.scr - GENERATED by docs/tools/gen_alarm_vehicle_routes.py from docs/tools/alarm_vehicle_route… |
 | `m3l2.scr` | 81 | 0 |  |
-| `allysquad.scr` | 382 | 4 | [user 08-08] ALLIED SQUAD SURVIVABILITY |
-| `ambience.scr` | 333 | 5 | HZM coop - AMBIENCE BEDS + COMBAT MIXING (script-only; modeled on weather.scr::coop_weather_sound). |
-| `ammobox.scr` | 273 | 0 | HZM coop - player-deployable AMMO BOX. |
+| `allysquad.scr` | 384 | 4 | [user 08-08] ALLIED SQUAD SURVIVABILITY |
+| `ambience.scr` | 351 | 5 | HZM coop - AMBIENCE BEDS + COMBAT MIXING (script-only; modeled on weather.scr::coop_weather_sound). |
+| `ammobox.scr` | 291 | 0 | HZM coop - player-deployable AMMO BOX. |
+| `atsupply.scr` | 418 | 5 | coop_mod/atsupply.scr - ANTI-TANK SUPPLY POINTS |
+| `blastreact.scr` | 246 | 3 | [user 2026-10-26] BLAST REACTION FOR LIVE AI (axis and allies). |
 | `blueprint.scr` | 566 | 1 | HZM coop - BLUEPRINT / PLAYER STRUCTURES (build-mode extension) |
 | `bt_playerTank.scr` | 36 | 0 | chrissstrahl - Exit Tank Script for BT-Coop |
-| `buildmode.scr` | 1,060 | 4 | HZM Coop - BUILD MODE (dev tool). Full docs: _research/build_mode.md |
+| `buildmode.scr` | 1,103 | 4 | HZM Coop - BUILD MODE (dev tool). Full docs: _research/build_mode.md |
 | `buildmode_actors.scr` | 411 | 1 | HZM Coop - BUILD MODE : ALLIED ACTORS + ANIMATION catalog (DATA + ghost animator). |
-| `buildmode_catalog.scr` | 2,294 | 1 | HZM Coop - BUILD MODE model catalog (DATA ONLY). Generated from main/mainta/maintt Pak*.pk3 |
+| `buildmode_catalog.scr` | 2,296 | 1 | HZM Coop - BUILD MODE model catalog (DATA ONLY). Generated from main/mainta/maintt Pak*.pk3 |
 | `buildmode_sounds.scr` | 369 | 5 | HZM Coop - BUILD MODE : placeable SOUND EMITTERS (catalog + SOUND-mode control bus). |
-| `bunker.scr` | 808 | 2 | HZM coop - COMPOSED STRUCTURES v2 (build-mode geometry construction kit) |
-| `bust.scr` | 1,576 | 5 | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
+| `bunker.scr` | 948 | 2 | HZM coop - COMPOSED STRUCTURES v2 (build-mode geometry construction kit) |
+| `bust.scr` | 1,589 | 6 | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 12 | created by chrissstrahl on 2019.09.12 |
+| `byo_campaign.scr` | 78 | 0 | GENERATED by docs/proposals/sp3camp_2026-11-08/make_ng3campaigns.py from missions.json - do not hand-edit. |
 | `common.scr` | 120 | 0 |  |
 | `cannonThink.scr` | 147 | 1 | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,951 | 27 | [user, earlier ask, found by the audit sweep 2026-09-02] challenge targets capped at 750. |
-| `collectible.scr` | 443 | 2 | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
+| `carrier.scr` | 20 | 0 | carrier.scr - [bug-3360/bug-3416] the ONLY place the engine command coop_carrier is written. |
+| `carry.scr` | 235 | 7 | carry.scr - a LOST defend zone makes the NEXT mission's reinforcements heavier (2026-10-18, alarmplace-next) |
+| `challenges.scr` | 4,395 | 28 | [user, earlier ask, found by the audit sweep 2026-09-02] challenge targets capped at 750. |
+| `chrono.scr` | 260 | 5 | HZM Coop - CHRONOLOGICAL CAMPAIGN [chrono 2026-11-08] |
+| `collectible.scr` | 427 | 1 | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
+| `coop_counter.scr` | 1,103 | 13 | coop_counter.scr - HZM coop FINAL COUNTER-ATTACK (2026-10-15, docs/proposals/alarm_counterattack_2026-10-15) |
+| `coop_counter_zones.scr` | 344 | 12 | coop_counter_zones.scr - GENERATED by docs/tools/gen_counter_zones.py (BSP-traced defend zones). Do not edit… |
 | `coop_placements.scr` | 1,021 | 3 | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
-| `coop_selftest.scr` | 435 | 8 | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
+| `coop_selftest.scr` | 441 | 8 | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
+| `coop_selftest_daily.scr` | 325 | 1 | coop_selftest_daily.scr - Daily Orders self-test [v1.10.63]. Started ONLY by daily.scr::daily_init with coop_… |
 | `coop_selftest_dbno.scr` | 424 | 8 | coop_selftest_dbno.scr - HZM dev automated DBNO-subsystem probes |
 | `coop_selftest_engine.scr` | 304 | 6 | coop_selftest_engine.scr - HZM dev engine-stress self-tests (2026-07-23) |
+| `coop_selftest_hardcore.scr` | 275 | 1 | coop_selftest_hardcore.scr - HZM dev probes for the coop HARDCORE host rule (user 2026-09-25) |
 | `coop_selftest_keyitems.scr` | 575 | 10 | coop_selftest_keyitems.scr - HZM dev automated self-tests (KEYITEMS) |
 | `coop_selftest_objectives.scr` | 401 | 9 | coop_selftest_objectives.scr - HZM dev objectives-subsystem probes |
 | `coop_selftest_officer.scr` | 474 | 11 | coop_selftest_officer.scr - HZM dev officer/DDA subsystem self-tests |
@@ -124,42 +154,78 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `coop_selftest_triggers.scr` | 229 | 5 | coop_selftest_triggers.scr - HZM dev automated self-tests: TRIGGERS |
 | `coop_selftest_vehicles.scr` | 494 | 6 | coop_selftest_vehicles.scr - HZM dev vehicle/ride/turret self-tests |
 | `coop_selftest_weapons.scr` | 594 | 11 | coop_selftest_weapons.scr - HZM dev automated self-tests: WEAPONS |
-| `coop_selftest_xp.scr` | 696 | 14 | coop_selftest_xp.scr - HZM dev automated self-tests: XP / CHALLENGES |
+| `coop_selftest_xp.scr` | 869 | 15 | coop_selftest_xp.scr - HZM dev automated self-tests: XP / CHALLENGES |
 | `corpse.scr` | 32 | 0 | [208] HZM coop - CORPSE DESPAWN. Dead AI bodies fade out and are removed after coop_corpseLife seconds |
-| `cover.scr` | 336 | 0 | [user 2026-08-11] NO DEPLOYABLES WHILE DISGUISED. Building a sandbag nest or dropping an |
+| `corpsebudget.scr` | 153 | 1 | [2026-10-11, bug-3483] HZM coop - BODY AND GORE BUDGET. Opt-in per map (the two Omaha maps thread it); every |
+| `cosorder.scr` | 68 | 0 | GENERATED by docs/tools/gen_armory_cos.py - DO NOT EDIT BY HAND |
+| `cosring_gen.scr` | 213 | 1 | GENERATED by docs/tools/gen_armory_cos.py - DO NOT EDIT BY HAND |
+| `cover.scr` | 355 | 0 | [user 2026-08-11] NO DEPLOYABLES WHILE DISGUISED. Building a sandbag nest or dropping an |
 | `covwalk.scr` | 282 | 1 | COVERAGE WALK - trilogy sweep layer 3. [user 2026-08-05] |
 | `custom_items.scr` | 37 | 0 | [200] Smithy - used for spawning any script built custom items we want |
-| `dbno.scr` | 1,527 | 4 | [2026-09-05, bug-2432] one bed, one stop. stoploopsound takes NO argument |
+| `cutscene.scr` | 167 | 2 | HZM coop - SHARED CUTSCENE LOCK (bug-4094) |
+| `daily.scr` | 1,260 | 3 | daily.scr - HZM DAILY ORDERS [user 2026-11-03 "Build daily as approved", v1.10.63] |
+| `daily_clock.scr` | 24 | 0 | daily_clock.scr - HZM Daily Orders: the UTC day clock [user 2026-11-03, v1.10.63] |
+| `daily_gen.scr` | 1,354 | 1 | GENERATED by docs/tools/gen_daily_orders.py - Daily Orders pool + schedule. DO NOT EDIT; re-run the generator. |
+| `dbno.scr` | 1,668 | 4 | [2026-09-05, bug-2432] one bed, one stop. stoploopsound takes NO argument |
+| `dbno_bleed.scr` | 22 | 0 | dbno_bleed.scr - [user 2026-10-05] the ONLY place the bleed-out ring's engine commands are written. |
 | `dbno_test.scr` | 3 | 1 |  |
-| `deathvox.scr` | 100 | 0 | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
-| `developer.scr` | 1,658 | 28 | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
+| `deathvox.scr` | 106 | 0 | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
+| `debrief2.scr` | 389 | 0 | debrief2.scr - END-OF-MISSION DEBRIEF, take two [user 2026-11-03, v1.10.62/63] |
+| `debrief2_gen.scr` | 106 | 1 | GENERATED by docs/tools/gen_debrief2.py - do not edit by hand. |
+| `developer.scr` | 1,659 | 28 | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
 | `devprobe.scr` | 147 | 2 | DEV PROBE - "who is that actor, right now?" |
-| `director.scr` | 227 | 2 | [user 2026-07-17] REACTIVE DIFFICULTY DIRECTOR - Phase 1 (plan: _research/director_dda_plan.md). |
+| `director.scr` | 228 | 2 | [user 2026-07-17] REACTIVE DIFFICULTY DIRECTOR - Phase 1 (plan: _research/director_dda_plan.md). |
+| `duststorm.scr` | 855 | 9 | HZM coop - DUST STORM ROLL-IN [user 2026-09-26, bug-2963] |
 | `e1l4alarm.scr` | 76 | 4 | coop_mod/e1l4alarm.scr |
+| `emotes.scr` | 290 | 0 | emotes.scr - the Tab wheel's EMOTES page, server side (v1.10.62/63) |
+| `emotes_gen.scr` | 284 | 1 | GENERATED by docs/tools/gen_emotes.py BEGIN - DO NOT EDIT BY HAND |
+| `emotes_seek.scr` | 18 | 1 | emotes_seek.scr - the one call that needs the emotes-seek game.dll (v1.10.63) |
+| `enemycount.scr` | 140 | 1 | enemycount.scr - "ENEMIES REMAINING: N", top right |
 | `events.scr` | 57 | 3 | [200] Smithy - 'built-in' events used for coop |
 | `eventsystem.scr` | 163 | 1 | [200] Smithy - Custom named events system now has own file. |
-| `flchatter.scr` | 322 | 5 | HZM coop - FRONTLINE BATTLE CHATTER (user-approved VO expansion, 2026-07-13). |
-| `flmusic.scr` | 250 | 5 | [311] HZM coop - FRONTLINE SCORE LAYER (Phase 1: stingers + war-ambience beds). |
-| `fogmode.scr` | 478 | 11 | HZM coop - FOG / DARKNESS MODE [user 08-02] |
+| `feed.scr` | 329 | 0 | feed.scr - HZM coop EVENT FEED, script side [user 2026-10-05] |
+| `finale_m2l3.scr` | 1,590 | 27 | finale_m2l3.scr - HZM coop NORWAY FINALE for m2l3 "Escape from Trondheim" (branch norway-finale-next, 2026-10… |
+| `finale_m2l3_air.scr` | 1,329 | 21 | coop_mod/finale_m2l3_air.scr |
+| `finale_m2l3_cine.scr` | 2,420 | 29 | finale_m2l3_cine.scr - THE ENDING CUTSCENE of the m2l3 finale (DESIGN.md s.7). The squad is on the train; the… |
+| `finale_m2l3_data.scr` | 517 | 1 | finale_m2l3_data.scr - GENERATED by docs/tools/gen_finale.py from docs/tools/finale_m2l3.json. Do not edit by… |
+| `finale_m2l3_def.scr` | 3,637 | 52 | finale_m2l3_def.scr - HOLD THE STATION (step 4) of the m2l3 finale. docs/proposals/kickoff_2026-10-18/norway_… |
+| `finale_m2l3_eastgate.scr` | 114 | 4 | finale_m2l3_eastgate.scr - the EAST GATE of the Norway hold (map v10b, docs/proposals/roofcine_2026-11-02/too… |
+| `finale_m2l3_prep.scr` | 790 | 11 | finale_m2l3_prep.scr - the Norway holdout's PREP PHASE, resupply and solo help (user 2026-10-27) |
+| `finale_m2l3_wx.scr` | 262 | 6 | finale_m2l3_wx.scr - the Norway holdout BLIZZARD (user 2026-10-27): calm light snow at the start of the defen… |
+| `finchal_gen.scr` | 3,413 | 1 | GENERATED by docs/tools/finish_challenges.py --emit DO NOT EDIT BY HAND |
+| `flchatter.scr` | 335 | 5 | HZM coop - FRONTLINE BATTLE CHATTER (user-approved VO expansion, 2026-07-13). |
+| `flmusic.scr` | 457 | 13 | [311] HZM coop - FRONTLINE SCORE LAYER (Phase 1: stingers + war-ambience beds). |
+| `fogmode.scr` | 486 | 11 | HZM coop - FOG / DARKNESS MODE [user 08-02] |
+| `fxwreck.scr` | 110 | 1 | coop_mod/fxwreck.scr |
 | `gen_sr_stamp.scr` | 5 | 1 | GENERATED by docs/tools/gen_service_record.py - deployed-truth stamp. DO NOT EDIT. |
-| `gloves.scr` | 200 | 1 | HZM coop - ARMORY GLOVES [user 2026-08-23, bug-2080] |
+| `gloves.scr` | 206 | 1 | HZM coop - ARMORY GLOVES [user 2026-08-23, bug-2080] |
 | `gurgle.scr` | 140 | 0 | HZM coop - subtle WET BLEED-OUT GURGLE near a fresh corpse. |
-| `helmet.scr` | 1,768 | 4 | [305] HZM coop - LIVE HELMET SWITCHER |
+| `hardcore.scr` | 82 | 3 | HARDCORE.SCR - the coop HARDCORE host rule (user 2026-09-25: Host Rules > Hardcore, host cvar coop_hardcore). |
+| `helmet.scr` | 1,824 | 4 | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 1 | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
-| `holdout.scr` | 759 | 16 | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
-| `itemhandler.scr` | 3,738 | 35 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
-| `keyitems.scr` | 161 | 1 | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
+| `holdbar.scr` | 50 | 0 | HZM Coop Mod [user 2026-10-18, hdring] - ONE way to show a hold / timed-action progress bar. |
+| `holdout.scr` | 762 | 16 | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
+| `hudresend.scr` | 105 | 0 | hudresend.scr - make a one-shot ihuddraw teardown STICK on a remote client |
+| `indoor_maps.scr` | 16 | 0 | GENERATED by docs/tools/gen_indoor_maps.py from the retail BSPs + officer_positions.scr. |
+| `itemhandler.scr` | 4,171 | 37 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
+| `joincard.scr` | 150 | 1 | joincard.scr - JOIN CARD [user 2026-11-08, v1.10.64] |
+| `joincard_table.scr` | 537 | 1 | joincard_table.scr - GENERATED by docs/tools/gen_joincard.py from docs/tools/joincard_titles.tsv. DO NOT EDIT. |
+| `keyitems.scr` | 168 | 1 | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
 | `ladder.scr` | 295 | 1 | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 0 | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
 | `loadout.scr` | 765 | 0 | [200] Smithy - this contains the weaponsloadout for coop |
-| `loadoutpick.scr` | 1,199 | 0 | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
-| `loadoutroster.scr` | 833 | 1 | GENERATED by scratchpad/gen_loadout3.py -- DO NOT HAND-EDIT (regenerate instead) |
-| `loadoutskins.scr` | 646 | 1 | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
-| `loadoutskins_base.scr` | 434 | 1 | GENERATED by docs/tools/gen_skinbase.py from loadoutskins.scr - DO NOT EDIT. |
-| `lobby.scr` | 1,177 | 20 | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
-| `lobbyui.scr` | 285 | 3 | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
+| `loadoutpick.scr` | 1,917 | 0 | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
+| `loadoutroster.scr` | 892 | 1 | GENERATED by scratchpad/gen_loadout3.py -- DO NOT HAND-EDIT (regenerate instead) |
+| `loadoutskins.scr` | 1,905 | 1 | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
+| `loadoutskins_base.scr` | 1,625 | 1 | GENERATED by docs/tools/gen_skinbase.py from loadoutskins.scr - DO NOT EDIT. |
+| `lobby.scr` | 1,389 | 22 | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
+| `lobbyanim.scr` | 348 | 0 | coop_mod/lobbyanim.scr - LOBBY MANNEQUIN ANIMATION DIRECTOR [lobbyanim 2026-10-15] |
+| `lobbybrief.scr` | 472 | 0 | GENERATED by docs/tools/gen_lobby_briefs.py - do not edit by hand. [lobbyall 2026-10-19] |
+| `lobbyui.scr` | 311 | 3 | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
+| `loot.scr` | 162 | 1 | loot.scr - HZM coop USE-TO-LOOT, the loot table [user 2026-10-05] |
+| `m3l3_nebel.scr` | 652 | 8 | coop_mod/m3l3_nebel.scr - M3L3 NEBELWERFER FIGHT, HARDER BUT FAIR (user 2026-10-19: "the MGs don't seem to wo… |
 | `m4l3_precache.scr` | 157 | 0 |  |
-| `main.scr` | 2,331 | 23 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,504 | 25 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `mapgrade.scr` | 60 | 2 | HZM coop - PER-MAP COLOUR GRADE (server side). |
 | `maplist.scr` | 119 | 2 | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 2 | HZM Coop - Map Rotation Auto-Tester |
@@ -167,93 +233,126 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `maptest_phase2.scr` | 306 | 2 | HZM Coop - Phase 2 Map Tester |
 | `maptest_vehicle.scr` | 474 | 1 | HZM Coop - Vehicle Scene Tester (Phase 2 sibling) |
 | `maptest_waypoints.scr` | 4,171 | 0 | HZM Coop - Phase 2 Map Tester: Pre-Extracted Waypoints |
-| `medals.scr` | 208 | 1 | [401] HZM MEDALS & BADGES - campaign-wide meta-achievements, one per Service Record category plus |
-| `medkit.scr` | 808 | 1 |  |
+| `medals.scr` | 212 | 1 | [401] HZM MEDALS & BADGES - campaign-wide meta-achievements, one per Service Record category plus |
+| `medkit.scr` | 933 | 2 | [2026-09-25, bug-2906] every transient element in this file claims its slots on show and re-sends |
+| `menumirror.scr` | 505 | 8 | HZM Coop - MENU MIRROR: show every player the briefing slides and title cards the host sees (bug-3234). |
 | `mg42_hack.scr` | 36 | 0 | chrissstrahl - scale health to players |
-| `missioncomplete.scr` | 87 | 0 | [200] chrissstrahl - 2020.06.14 |
+| `missioncomplete.scr` | 105 | 0 | [200] chrissstrahl - 2020.06.14 |
 | `mom_actions.scr` | 173 | 17 | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `mom_login.scr` | 167 | 17 | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
-| `morale.scr` | 94 | 1 | morale.scr - HZM coop SQUAD MORALE (ME1, coop_moraleEnable, default off) |
-| `mp.scr` | 838 | 8 | MP.SCR - the multiplayer entry point. NOT the coop framework. |
-| `mp_arena_spawns.scr` | 1,425 | 12 | GENERATED by docs/tools/gen_arena_spawns.py. Do NOT hand-edit. |
-| `mp_armory.scr` | 634 | 5 | MP_ARMORY.SCR - the shared MP armory dispatcher (slice 2, LIVE). |
+| `morale.scr` | 101 | 1 | morale.scr - HZM coop SQUAD MORALE (ME1, coop_moraleEnable, default off) |
+| `mortar.scr` | 1,260 | 5 | mortar.scr - HZM coop MORTAR SQUADS (2026-10-18, docs/proposals/mortar_squads_2026-10-18/RESEARCH.md) |
+| `mp.scr` | 925 | 9 | MP.SCR - the multiplayer entry point. NOT the coop framework. |
+| `mp_ambience.scr` | 183 | 4 | MP_AMBIENCE.SCR - environmental ambience for the campaign maps in MULTIPLAYER. |
+| `mp_ambience_bsp.scr` | 211 | 19 | GENERATED by docs/tools/gen_mp_ambience.py -- DO NOT HAND-EDIT (regenerate instead). |
+| `mp_arena_spawns.scr` | 1,413 | 12 | GENERATED by docs/tools/gen_arena_spawns.py. Do NOT hand-edit. |
+| `mp_arenafix.scr` | 137 | 2 | MP_ARENAFIX.SCR - open the invisible SP path-clips on ported SP campaign maps run as MP arenas, so bots |
+| `mp_armory.scr` | 918 | 5 | MP_ARMORY.SCR - the shared MP armory dispatcher (slice 2, LIVE). |
 | `mp_assassination.scr` | 240 | 7 | MP_ASSASSINATION.SCR - ASSASSINATION, an MP game MODE (user 2026-09-16, "build us an assassination game |
 | `mp_baseassault.scr` | 698 | 10 | MP_BASEASSAULT.SCR - BASE ASSAULT, an MP game MODE. Decision M21: original rules - 3 bases per |
 | `mp_baseassault_maps.scr` | 713 | 6 | GENERATED by docs/tools/gen_baseassault_maps.py -- DO NOT HAND-EDIT (regenerate instead). |
 | `mp_basebuild_stations.scr` | 963 | 0 | GENERATED by docs/tools/gen_basebuild_maps.py from basebuild_stations.tsv. Do NOT hand-edit. |
 | `mp_botdirector.scr` | 75 | 2 | MP_BOTDIRECTOR.SCR - MULTIPLAYER BOT SQUAD DIRECTOR (user 2026-09-17, "I want multiplayer bots to be |
-| `mp_botobj.scr` | 56 | 1 | MP_BOTOBJ.SCR - MULTIPLAYER BOT OBJECTIVE ATTRACTION (user 2026-09-16, "get the bots to play objectives in |
-| `mp_bots.scr` | 179 | 6 | MP_BOTS.SCR - MP BOT AUTO-FILL (host-configurable bot backfill). Scales the number of engine bots |
+| `mp_botflanks.scr` | 10 | 1 | GENERATED by docs/tools/gen_bot_flanks.py from docs/tools/axis_chokes.json - DO NOT EDIT. |
+| `mp_botobj.scr` | 68 | 1 | MP_BOTOBJ.SCR - MULTIPLAYER BOT OBJECTIVE ATTRACTION (user 2026-09-16, "get the bots to play objectives in |
+| `mp_bots.scr` | 183 | 6 | MP_BOTS.SCR - MP BOT AUTO-FILL (host-configurable bot backfill). Scales the number of engine bots |
 | `mp_buildabase.scr` | 118 | 4 | MP_BUILDABASE.SCR - Build-A-Base MP MODE. |
-| `mp_challenges.scr` | 952 | 3 | GENERATED by docs/tools/gen_mp_challenges.py -- DO NOT HAND-EDIT (regenerate instead). |
+| `mp_challenges.scr` | 1,017 | 3 | GENERATED by docs/tools/gen_mp_challenges.py -- DO NOT HAND-EDIT (regenerate instead). |
 | `mp_cosmetics.scr` | 313 | 1 | MP_COSMETICS.SCR - apply a MP player's chosen cosmetics (body skin / gloves / helmet) at spawn. |
 | `mp_countdown.scr` | 81 | 4 | MP_COUNTDOWN.SCR - COUNTDOWN, an MP game MODE. This LOADS the real "Countdown" mod (imported htr/ radio |
 | `mp_ctf.scr` | 499 | 6 | MP_CTF.SCR - CAPTURE THE FLAG, an MP game MODE (slice 6). Decision M18: "CTF and Demolition built |
 | `mp_cyberattack.scr` | 60 | 4 | MP_CYBERATTACK.SCR - CYBER ATTACK, an MP game MODE. This LOADS the real UberMod v8 Cyber Attack |
 | `mp_cybersnd.scr` | 74 | 1 | MP_CYBERSND.SCR - shared LOADER CORE for the two real UberMod bomb modes: |
 | `mp_cybersnd_stations.scr` | 1,048 | 0 | GENERATED by docs/tools/gen_cybersnd_maps.py from cybersnd_sites.tsv. Do NOT hand-edit. |
-| `mp_dbno.scr` | 601 | 4 | MP_DBNO.SCR - DOWN BUT NOT OUT, an MP host toggle (coop_mpDbno 0/1). A PORT of the coop DBNO |
+| `mp_dbno.scr` | 626 | 4 | MP_DBNO.SCR - DOWN BUT NOT OUT, an MP host toggle (coop_mpDbno 0/1). A PORT of the coop DBNO |
 | `mp_demolition.scr` | 399 | 5 | MP_DEMOLITION.SCR - DEMOLITION, an MP game MODE. SYMMETRIC two-way bomb rounds (UberMod / Mefy |
-| `mp_domination.scr` | 303 | 6 | MP_DOMINATION.SCR - DOMINATION, an MP game MODE (user 2026-09-16). "KOTH with THREE static capture points |
-| `mp_finish_map.scr` | 308 | 2 | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead). |
+| `mp_domination.scr` | 306 | 6 | MP_DOMINATION.SCR - DOMINATION, an MP game MODE (user 2026-09-16). "KOTH with THREE static capture points |
+| `mp_finish_map.scr` | 848 | 2 | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead). |
 | `mp_freezetag.scr` | 378 | 2 | MP_FREEZETAG.SCR - FREEZE TAG, an MP game MODE (slice 5). Decisions M12/M13/M14: played on Team |
 | `mp_gungame.scr` | 295 | 2 | MP_GUNGAME.SCR - Gun Game, the first MP game MODE (slice 1). FFA (gt1) only for v1 (decision M9). |
 | `mp_gungame_tiers.scr` | 62 | 2 | MP_GUNGAME_TIERS.SCR - GENERATED by docs/tools/gen_mp_gungame.py from |
-| `mp_hardcore.scr` | 123 | 4 | MP_HARDCORE.SCR - the HARDCORE modifier (user 2026-09-14). A host toggle (coop_mpHardcore 0/1) that |
+| `mp_hardcore.scr` | 124 | 4 | MP_HARDCORE.SCR - the HARDCORE modifier (user 2026-09-14). A host toggle (coop_mpHardcore 0/1) that |
+| `mp_hudresend.scr` | 91 | 0 | mp_hudresend.scr - make a one-shot ihuddraw teardown STICK on a remote client (MP copy) |
 | `mp_koth.scr` | 402 | 7 | MP_KOTH.SCR - KING OF THE HILL, an MP game MODE (slice 4). Decision M15: a MOVING hill, TEAM |
 | `mp_lms.scr` | 81 | 2 | MP_LMS.SCR - LAST MAN STANDING, an MP game MODE (slice 3). Decision M17: team elimination rounds |
-| `mp_medkits.scr` | 317 | 3 | MP_MEDKITS.SCR - MEDKITS / HEALING, an MP host toggle (coop_mpMedkits 0/1). A PORT of the coop |
+| `mp_maptitles.scr` | 48 | 1 | MP_MAPTITLES.SCR - thematic display titles for the single-player campaign maps run as MP Push arenas |
+| `mp_medkits.scr` | 325 | 3 | MP_MEDKITS.SCR - MEDKITS / HEALING, an MP host toggle (coop_mpMedkits 0/1). A PORT of the coop |
 | `mp_oneammo.scr` | 111 | 5 | MP_ONEAMMO.SCR - the SINGLE-ROUND AMMO modifier (user 2026-09-16). A host toggle (coop_mpOneAmmo 0/1) |
 | `mp_oneshot.scr` | 58 | 3 | MP_ONESHOT.SCR - the ONE-SHOT KILL (instagib) modifier (user 2026-09-16). A host toggle |
+| `mp_ops.scr` | 252 | 6 | MP_OPS.SCR - LIVE OPERATIONS in the match (docs/proposals/livemap_2026-11-09/PLAN.md, v1.10.71). |
+| `mp_ops_table.scr` | 35 | 1 | GENERATED by docs/proposals/livemap_2026-11-09/gen_ops.py - do not hand-edit. MP-owned (coop_mod/mp*.scr). |
 | `mp_prog_wpnmap.scr` | 241 | 1 | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
-| `mp_progression.scr` | 671 | 3 | MP_PROGRESSION.SCR - MP kill attribution -> in-session progression counters (slice 1 of the |
+| `mp_progression.scr` | 1,002 | 5 | MP_PROGRESSION.SCR - MP kill attribution -> in-session progression counters (slice 1 of the |
 | `mp_prophunt.scr` | 340 | 5 | MP_PROPHUNT.SCR - PROP HUNT, an MP game MODE. Hiders (PROPS) disguise as static map objects and try |
-| `mp_push.scr` | 979 | 18 | MP_PUSH.SCR - PUSH / "King of the Map" / Gain Ground, an MP game MODE. FULL REBUILD 2026-09-17 to the |
-| `mp_push_maps.scr` | 1,528 | 8 | GENERATED by docs/tools/gen_push_maps.py -- DO NOT HAND-EDIT (regenerate instead). |
+| `mp_push.scr` | 1,719 | 38 | MP_PUSH.SCR - PUSH / "King of the Map" / Gain Ground, an MP game MODE. FULL REBUILD 2026-09-17 to the |
+| `mp_push_blockers.scr` | 73 | 2 | GENERATED by docs/tools/gen_push_gates.py from docs/tools/push_blockers.json - DO NOT EDIT. |
+| `mp_push_bsp.scr` | 3,625 | 19 | GENERATED by docs/tools/gen_push_from_bsp.py -- DO NOT HAND-EDIT (regenerate instead). |
+| `mp_push_maps.scr` | 1,720 | 9 | GENERATED by docs/tools/gen_push_maps.py -- DO NOT HAND-EDIT (regenerate instead). |
 | `mp_realism.scr` | 84 | 3 | MP_REALISM.SCR - the host "realism" toggles (user 2026-09-14). Four host toggles that let a host |
-| `mp_rounds.scr` | 356 | 6 | MP_ROUNDS.SCR - the shared MP round-state helper (slice 3). Consumed by |
+| `mp_rotate.scr` | 141 | 2 | MP_ROTATE.SCR - generic server map rotation for the non-Push MP modes (user 2026-09-18). Push owns its |
+| `mp_rounds.scr` | 367 | 6 | MP_ROUNDS.SCR - the shared MP round-state helper (slice 3). Consumed by |
+| `mp_skins_a.scr` | 151 | 1 | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead). |
+| `mp_skins_x.scr` | 119 | 1 | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead). |
 | `mp_snd.scr` | 58 | 4 | MP_SND.SCR - SEARCH & DESTROY, an MP game MODE. This LOADS the real UberMod v8 Search & Destroy |
 | `mp_spawnprotect.scr` | 171 | 4 | MP_SPAWNPROTECT.SCR - SPAWN PROTECTION, an MP host toggle (coop_mpSpawnProtect = seconds, 0 = off). |
 | `mp_vehicle_maps.scr` | 130 | 6 | GENERATED by docs/tools/gen_vehicle_maps.py -- DO NOT HAND-EDIT (regenerate instead). |
 | `mp_vehicles.scr` | 778 | 13 | MP_VEHICLES.SCR - the MP VEHICLE / EMPLACEMENT framework (host toggle coop_mpVehicles 0/1). A clean |
-| `mp_weather.scr` | 82 | 3 | MP_WEATHER.SCR - DYNAMIC WEATHER for MULTIPLAYER (user 2026-09-18: "Dynamic Weather should be an option |
+| `mp_weather.scr` | 102 | 3 | MP_WEATHER.SCR - DYNAMIC WEATHER for MULTIPLAYER (user 2026-09-18: "Dynamic Weather should be an option |
 | `mpa_roster.scr` | 504 | 1 | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `mpx_roster.scr` | 432 | 1 | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
-| `mvchal_gen.scr` | 214 | 1 | GENERATED by docs/tools/variant_challenges.py --emit DO NOT EDIT BY HAND |
-| `objective_drop.scr` | 218 | 1 | Objective Bonus Drop |
+| `mvchal_gen.scr` | 224 | 1 | GENERATED by docs/tools/variant_challenges.py --emit DO NOT EDIT BY HAND |
+| `objective_drop.scr` | 220 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 132 | 1 | objective_positions.scr |
-| `objectives.scr` | 739 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 5,414 | 27 | Officer Boss + Radio Station |
-| `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
+| `objectives.scr` | 821 | 7 | Coop Side Objectives (optional / secondary) |
+| `objx.scr` | 1,010 | 9 | objx.scr - HZM coop EXTRA MISSION OBJECTIVES (objectives-next, 2026-10-18; docs/proposals/objectives_ch1-3_20… |
+| `objx2.scr` | 601 | 0 | objx2.scr - HZM coop EXTRA MISSION OBJECTIVES, part 2 (objectives2-next, 2026-10-20; docs/proposals/objective… |
+| `objx_m2l2c.scr` | 2,147 | 25 | objx_m2l2c.scr - m2l2c "Cover Blown" FINALE objectives (user 2026-10-25, branch m2l2c-objectives) |
+| `objx_points.scr` | 10 | 0 | objx_points.scr - GENERATED by docs/tools/gen_objx.py from docs/tools/objx_points.json. Do not edit by hand. |
+| `officer.scr` | 6,278 | 29 | Officer Boss + Radio Station |
+| `officer_positions.scr` | 636 | 1 | coop_officer_positions.scr |
 | `painbreath.scr` | 81 | 0 | HZM coop - WOUNDED BREATHING. |
-| `paradrop.scr` | 774 | 1 | Allied Paradrop System |
-| `player.scr` | 1,963 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
-| `precache.scr` | 186 | 0 |  |
+| `panzerfaust.scr` | 19 | 0 | [newguns 2026-11-09] The Panzerfaust 60 is single-shot and disposable (docs/proposals/newguns_2026-11-09). |
+| `paradrop.scr` | 1,165 | 2 | Allied Paradrop System |
+| `parasquad.scr` | 3,182 | 1 | parasquad.scr - HZM coop PARATROOPER SQUAD BRAIN (2026-10-04) |
+| `parasquad_gun.scr` | 44 | 0 | parasquad_gun.scr - the paratroopers' .30 cal: the TurretGun keys that exist only in game.dll 1.10.22 and |
+| `player.scr` | 2,037 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
+| `precache.scr` | 202 | 0 |  |
 | `probe.scr` | 719 | 6 | COOP PROBE BUS - one diagnostic channel for everything this mod added. |
 | `profile.scr` | 71 | 0 | HZM COOP - PER-PLAYER PROFILE MIRROR (user decision 2026-08-10) |
 | `props.scr` | 414 | 2 | HZM coop - ARENA PROP PERSISTENCE [user 2026-08-04] bug-1381 |
-| `readygate.scr` | 301 | 3 | HZM Coop - READY GATE (reusable "whole squad press [Use] to continue"). |
-| `replace.scr` | 3,066 | 44 | chrissstrahl 23.06.2018 |
-| `server.scr` | 329 | 10 | started by chrissstrahl on 2020.10.16 ([202]) |
+| `readygate.scr` | 374 | 3 | HZM Coop - READY GATE (reusable "whole squad press [Use] to continue"). |
+| `reinf.scr` | 663 | 5 | reinf.scr - HZM coop OFFICER REINFORCEMENT REALISM (2026-10-15, docs/proposals/ai_realism_2026-10-15) |
+| `reinf_mg.scr` | 1,573 | 3 | reinf_mg.scr - THE OFFICER'S MG42 TEAM (2026-10-15) |
+| `replace.scr` | 3,112 | 44 | chrissstrahl 23.06.2018 |
+| `scopekeep.scr` | 9 | 1 | [scopes1025] called from the RELOAD_* states of coop_mod/player_torso.st in place of a bare zoomoff. |
+| `server.scr` | 343 | 10 | started by chrissstrahl on 2020.10.16 ([202]) |
+| `smokescreen.scr` | 207 | 2 | smokescreen.scr - enemy reinforcements' SMOKE SCREENS (2026-10-15, user: "when these reinforcements |
 | `sndcache.scr` | 111 | 1 | [user 2026-08-10] 633 cache lines REMOVED - deathvox (484), flvo (135), gurgle (13) and headshot |
 | `sound.scr` | 65 | 4 | [203] Smithy - we can use this for sound related code |
-| `spawnlocations.scr` | 3,617 | 181 | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
+| `spawnlocations.scr` | 3,717 | 197 | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
+| `spcampaign.scr` | 61 | 1 | HZM Coop - SINGLE-PLAYER CAMPAIGN PROGRESS [sp3camp 2026-11-08, bug-10616] |
+| `spcampaign_table.scr` | 21 | 0 | GENERATED by docs/proposals/sp3camp_2026-11-08/make_ng3campaigns.py from missions.json - do not hand-edit. |
+| `stormlight.scr` | 456 | 10 | HZM coop - STORM DARKNESS [user 2026-09-28] (docs/proposals/storm_darkness_2026-09-28/plan.md section 1) |
+| `stow_m2l2a.scr` | 281 | 7 | stow_m2l2a.scr - HZM coop, m2l2a (U-boat pens) [user 2026-10-28] |
 | `strings.scr` | 1,301 | 6 | [200] Smithy - this is taken from xnull. Not mine, but is used by many. Will be useful to us. |
 | `subsink.scr` | 618 | 4 | HZM coop - STAGED U-BOAT DEATH |
-| `surrender.scr` | 177 | 0 | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
-| `takecover.scr` | 58 | 0 | [214] HZM coop - TAKE COVER v1 (player cover system). |
+| `surrender.scr` | 290 | 0 | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
+| `takecover.scr` | 59 | 0 | [214] HZM coop - TAKE COVER v1 (player cover system). |
 | `thirdperson.scr` | 52 | 0 | HZM coop [237] - the 3rd-person bind now CYCLES three view modes (user): |
-| `tinnitus.scr` | 202 | 1 | HZM coop - TINNITUS / MUFFLED HEARING (per-player). |
+| `tinnitus.scr` | 244 | 1 | HZM coop - TINNITUS / MUFFLED HEARING (per-player). |
 | `tracescan.scr` | 132 | 1 | coop_mod/tracescan.scr - server-side collision grid scanner (dev tool) |
-| `unlockreq_gen.scr` | 268 | 1 | GENERATED by docs/tools/armory_unlocks.py --emit DO NOT EDIT BY HAND |
-| `variables.scr` | 316 | 5 | started by chrissstrahl on 2020.10.16 ([202]) |
+| `unlockprog_gen.scr` | 290 | 1 | GENERATED by docs/tools/gen_armory.py (progress_scr) - DO NOT EDIT BY HAND |
+| `unlockreq_gen.scr` | 273 | 1 | GENERATED by docs/tools/armory_unlocks.py --emit DO NOT EDIT BY HAND |
+| `unlockset.scr` | 50 | 0 | unlockset.scr - O(1) membership for a player's unlock set [v1.10.64, bug-10495] |
+| `variables.scr` | 317 | 5 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `vehiclehandler.scr` | 85 | 5 |  |
 | `voidguard.scr` | 56 | 1 | coop_mod/voidguard.scr - universal out-of-bounds safety net (all maps) |
 | `wallgun.scr` | 555 | 6 | HZM coop - INVISIBLE BARRIER TOOL [user 2026-08-04] bug-1378 |
-| `weaponstate.scr` | 125 | 0 | [200] Smithy |
-| `weather.scr` | 360 | 8 | HZM coop - WEATHER (v2): coop now drives the NATIVE SP trilogy weather system (global/weather.scr) so |
-| `wounded.scr` | 602 | 2 | [user 2026-07-17] WOUNDED GERMAN LIMP-AWAY. |
-| `xp.scr` | 2,123 | 14 | [302] HZM XP SYSTEM - Phase 1 (tracking + persistence + end-of-map debrief + own-rank HUD) |
+| `weaponstate.scr` | 134 | 0 | [200] Smithy |
+| `weather.scr` | 626 | 11 | HZM coop - WEATHER (v2): coop now drives the NATIVE SP trilogy weather system (global/weather.scr) so |
+| `wounded.scr` | 607 | 2 | [user 2026-07-17] WOUNDED GERMAN LIMP-AWAY. |
+| `wxextreme.scr` | 767 | 9 | HZM coop - BLIZZARD / TORRENTIAL DOWNPOUR: the extreme weather tier [user 2026-10-12] |
+| `xp.scr` | 2,539 | 15 | [302] HZM XP SYSTEM - Phase 1 (tracking + persistence + end-of-map debrief + own-rank HUD) |
 
 ## Coop-integrated map scripts
 | map | theatre flag |
@@ -271,6 +370,8 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `co_lobby6.scr` | AA |
 | `co_lobby7.scr` | AA |
 | `co_lobby8.scr` | BT |
+| `coop_ea_1_11.scr` | AA |
+| `coop_fl_1_1.scr` | AA |
 | `e1l1.scr` | ? |
 | `e1l2.scr` | ? |
 | `e1l3.scr` | ? |
