@@ -40,6 +40,9 @@ def script(which):
             for vn, stop, pose in (("home", 0, HOME), ("out", 3, OUT), ("up", 4, UP)):
                 L += ["set ui_atcStop %d; globalwidgetcommand atticscene scenefly 0.4 %s" % (stop, pose), "echo ^~^~^ PERF view %s" % vn, "wait 14000"]
         L += ["set ui_wxDebug 0", "set ui_scene_debug 0"]
+    elif which == "lid":
+        # the weathered trapdoor underside, calm light: the hatch view (stills73 TURN)
+        L += ["set ui_atcHatch 1", "globalwidgetcommand atticscene scenefly 0.5 -35.2 21.0 102.4 30.00 68.00 0.00 55.11", "wait 2500", "screenshot r73_lid_hatch", "wait 300"]
     elif which == "storm":
         for nm, I, F in (("4heavy", 0.78, 0.10), ("5storm", 1.0, 0.90)):
             L += ["set ui_wxWeather 4", "set ui_wxForce \"%.2f %.2f\"" % (I, F), "wait 12000"]

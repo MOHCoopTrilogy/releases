@@ -1,0 +1,47 @@
+[2026-11-10 21:03:43 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.41 ms/frame (120 frames)
+[2026-11-10 21:03:47 UTC-6.000] ^~^~^ WXRAIN cpu 0.125 ms/frame avg, 0.207 max (240 frames), I 1.00 F 0.90 drops 215/200
+[2026-11-10 21:03:47 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.41 ms/frame (120 frames)
+[2026-11-10 21:03:47 UTC-6.000] ^~^~^ WXTHUNDER 0.4 km, 1.3 s after the flash, vol 0.74, thunder1
+[2026-11-10 21:03:49 UTC-6.000] ^~^~^ PERF rainparts 1
+[2026-11-10 21:03:49 UTC-6.000] ^~^~^ PERF view home
+[2026-11-10 21:03:51 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.42 ms/frame (120 frames)
+[2026-11-10 21:03:55 UTC-6.000] ^~^~^ WXRAIN cpu 0.147 ms/frame avg, 0.208 max (240 frames), I 1.00 F 0.90 drops 338/199
+[2026-11-10 21:03:55 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.48 ms/frame (120 frames)
+[2026-11-10 21:03:59 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.44 ms/frame (120 frames)
+[2026-11-10 21:04:02 UTC-6.000] ^~^~^ WXTHUNDER 0.8 km, 2.4 s after the flash, vol 0.75, thunder1
+[2026-11-10 21:04:03 UTC-6.000] ^~^~^ PERF view out
+[2026-11-10 21:04:03 UTC-6.000] ^~^~^ WXRAIN cpu 0.161 ms/frame avg, 0.587 max (240 frames), I 1.00 F 0.90 drops 340/339
+[2026-11-10 21:04:03 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.42 ms/frame (120 frames)
+[2026-11-10 21:04:07 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.45 ms/frame (120 frames)
+[2026-11-10 21:04:11 UTC-6.000] ^~^~^ WXRAIN cpu 0.163 ms/frame avg, 0.350 max (240 frames), I 1.00 F 0.90 drops 339/340
+[2026-11-10 21:04:11 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.43 ms/frame (120 frames)
+[2026-11-10 21:04:15 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.42 ms/frame (120 frames)
+[2026-11-10 21:04:17 UTC-6.000] ^~^~^ PERF view up
+[2026-11-10 21:04:19 UTC-6.000] ^~^~^ WXRAIN cpu 0.158 ms/frame avg, 0.244 max (240 frames), I 1.00 F 0.90 drops 337/263
+[2026-11-10 21:04:19 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.36 ms/frame (120 frames)
+[2026-11-10 21:04:23 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.39 ms/frame (120 frames)
+[2026-11-10 21:04:27 UTC-6.000] ^~^~^ WXRAIN cpu 0.153 ms/frame avg, 0.214 max (240 frames), I 1.00 F 0.90 drops 340/340
+[2026-11-10 21:04:27 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.39 ms/frame (120 frames)
+[2026-11-10 21:04:27 UTC-6.000] ^~^~^ WXTHUNDER 0.8 km, 2.5 s after the flash, vol 1.15, thunder1
+[2026-11-10 21:04:31 UTC-6.000] ^~^~^ PERF rainparts 0
+[2026-11-10 21:04:31 UTC-6.000] ^~^~^ PERF view home
+[2026-11-10 21:04:31 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.45 ms/frame (120 frames)
+[2026-11-10 21:04:35 UTC-6.000] ^~^~^ WXRAIN cpu 0.078 ms/frame avg, 0.204 max (240 frames), I 1.00 F 0.90 drops 339/339
+[2026-11-10 21:04:35 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.23 ms/frame (120 frames)
+[2026-11-10 21:04:39 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.24 ms/frame (120 frames)
+[2026-11-10 21:04:43 UTC-6.000] ^~^~^ WXRAIN cpu 0.001 ms/frame avg, 0.037 max (240 frames), I 1.00 F 0.90 drops 339/339
+[2026-11-10 21:04:43 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.28 ms/frame (120 frames)
+[2026-11-10 21:04:45 UTC-6.000] ^~^~^ PERF view out
+[2026-11-10 21:04:47 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.29 ms/frame (120 frames)
+[2026-11-10 21:04:51 UTC-6.000] ^~^~^ WXRAIN cpu 0.001 ms/frame avg, 0.002 max (240 frames), I 1.00 F 0.90 drops 339/339
+[2026-11-10 21:04:51 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.36 ms/frame (120 frames)
+[2026-11-10 21:04:55 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.34 ms/frame (120 frames)
+[2026-11-10 21:04:57 UTC-6.000] ^~^~^ WXTHUNDER 2.0 km, 6.0 s after the flash, vol 0.55, thunder2
+[2026-11-10 21:04:59 UTC-6.000] ^~^~^ PERF view up
+[2026-11-10 21:04:59 UTC-6.000] ^~^~^ WXRAIN cpu 0.001 ms/frame avg, 0.001 max (240 frames), I 1.00 F 0.90 drops 339/339
+[2026-11-10 21:04:59 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.42 ms/frame (120 frames)
+[2026-11-10 21:05:03 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.34 ms/frame (120 frames)
+[2026-11-10 21:05:03 UTC-6.000] ^~^~^ WXTHUNDER 1.3 km, 3.8 s after the flash, vol 0.81, thunder1
+[2026-11-10 21:05:07 UTC-6.000] ^~^~^ WXRAIN cpu 0.001 ms/frame avg, 0.002 max (240 frames), I 1.00 F 0.90 drops 339/339
+[2026-11-10 21:05:07 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.26 ms/frame (120 frames)
+[2026-11-10 21:05:11 UTC-6.000] ^~^~^ SCENE3D RenderScene cpu 0.32 ms/frame (120 frames)
