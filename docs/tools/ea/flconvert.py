@@ -552,7 +552,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             a2, b2, c2 = wind(a, b, c, flip_coll)
             ctris.append((P[a2], P[b2], P[c2]))
     added_drawn = []
-    if game == "ea" and not os.environ.get("EA_NO_SHEETS"):
+    # [eapolish] 2026-11-10 user: invisible walls are fine where the original had them (1:1 is the bar): the
+    # original's own collision is kept as it is - the clip-sheet rebuild (drop / drawn collision / wire) is opt-in
+    if game == "ea" and os.environ.get("EA_SHEETS") == "1":
         # [eapolish] blocked only by what you can see (the Frontline polish rule, flsheets.py): a steep collision
         # triangle with nothing drawn within 12u is a floating clip sheet. Sheets standing in front of drawn
         # geometry (within 160u) are dropped and that drawn geometry gets collision of its own; sheets out in the
@@ -640,6 +642,20 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         cw, stats["cliffs"] = flcliff.walls(ctris + added_drawn, flgeom.TriGrid(ctris + added_drawn))
         ctris += cw
         kept_tris += cw
+        # barbed wire ONLY where an edge has nothing visible to stop the player: a kept sheet (or edge wall) with the
+        # original's drawn geometry within 96u (a bank, a trench wall, rubble, a house) already shows why the way ends
+        # - there the drawn geometry gets collision of its own (as for the dropped sheets) and no wire is strung
+        # (coordinator 2026-11-10: wire along every trench wall would look absurd)
+        bare, by_drawn = [], []
+        for t in kept_tris:
+            (by_drawn if drawn_near(t, 96.0) else bare).append(t)
+        if by_drawn:
+            _o, _f, more_drawn, _r = flsheets.replace(by_drawn + [], [1] * len(by_drawn), [(k,) for k in range(len(by_drawn))],
+                                                      lambda f: f == 1, rtris, keep=[], near=96.0)
+            added_drawn += more_drawn
+        stats["sheets"]["edges_by_drawn"] = len(by_drawn)
+        stats["sheets"]["edges_bare"] = len(bare)
+        kept_tris = bare
         wire = B.shader("textures/mohcommon/barbwire", 0, 0)
         GW = flgeom.TriGrid(ctris)
         nfe = 0
@@ -662,15 +678,41 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     # [eapolish] visible collision for the smart objects: thin slabs on their drawn triangles
     sobclip = B.shader("textures/common/ea_coll_sob", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
+    # 1:1 (user 2026-11-10): a smart object whose own collision is already in the level's .cdb (the railgun, the
+    # bridge, the ammo dump: 27-88 triangles inside its box) keeps exactly that; only the ones the .cdb leaves
+    # without collision (tower, tombstones, gates, crates) get collision on their drawn triangles. Doubling the
+    # railgun's made 5 invisible contacts on the route that the original did not have.
+    _cg = flgeom.TriGrid([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
+
+    def own_coll(tris_world):
+        xs = [v[0] for t in tris_world for v in t]
+        ys = [v[1] for t in tris_world for v in t]
+        zs = [v[2] for t in tris_world for v in t]
+        if not xs:
+            return False
+        lo_, hi_ = (min(xs) - 16, min(ys) - 16, min(zs) - 16), (max(xs) + 16, max(ys) + 16, max(zs) + 16)
+        n_ = 0
+        for j in _cg.near((lo_[0] + hi_[0]) / 2, (lo_[1] + hi_[1]) / 2, max(hi_[0] - lo_[0], hi_[1] - lo_[1]) / 2 + 16):
+            c_ = [sum(v[k] for v in _cg.tris[j]) / 3 for k in range(3)]
+            if all(lo_[k] <= c_[k] <= hi_[k] for k in range(3)):
+                n_ += 1
+        return n_ >= 10
     for _r, _s, ms in sob_static:
-        for m in ms:
-            P = [X(v) for v in m["verts"]]
-            for a, b, c in m["tris"]:
-                if B.add_prism(sobclip, P[a], P[b], P[c], thickness=4.0, centered=True) is not None:
-                    stats["sob_coll"] = stats.get("sob_coll", 0) + 1
+        tw = [tuple(X(v) for v in (m["verts"][a], m["verts"][b], m["verts"][c])) for m in ms for a, b, c in m["tris"]]
+        if own_coll(tw):
+            stats["sob_own_coll"] = stats.get("sob_own_coll", 0) + 1
+            continue
+        for t in tw:
+            if B.add_prism(sobclip, *t, thickness=4.0, centered=True) is not None:
+                stats["sob_coll"] = stats.get("sob_coll", 0) + 1
     sob_ents = []
     for rec, sob, sids, tri_world, piv in sob_models:
-        bids = [b for b in (B.add_prism(sobclip, *t, thickness=4.0, centered=True) for t in tri_world) if b is not None]
+        tw_world = [tuple(tuple(v[k] + piv[k] for k in range(3)) for v in t) for t in tri_world]
+        if own_coll(tw_world):
+            bids = []                     # the .cdb already carries its collision (1:1)
+            stats["sob_own_coll"] = stats.get("sob_own_coll", 0) + 1
+        else:
+            bids = [b for b in (B.add_prism(sobclip, *t, thickness=4.0, centered=True) for t in tri_world) if b is not None]
         B.models.append({"surfaces": sids, "brushes": bids})
         kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)),
               ("targetname", ("ea_sobD_" if sob.endswith("_D") else "ea_sob_") + rec.name)]
