@@ -151,10 +151,13 @@ carried by the **2026-09-20 session block below**. The MP framework engages on A
 `obj/mp_*` (bug-2638); Push/Base-Assault keep their own Campaign-Maps pickers for the SP maps.
 
 ### MP session (2026-09-20) — progression persistence FIXED, rank card SHIPPED, menu-parity roadmap
-- **PROGRESSION PERSISTENCE — engine fix DEPLOYED (bug-2749), needs ONE live client playtest.** The carry cvars
-  were USERINFO-registered only in cgame CG_Init (connect-time, too late), so the signed blob never reached the
-  server (`MPPROG load VERIFIED`=0 always). Fixed by registering all 19 at CLIENT LAUNCH in `cl_main.cpp CL_Init`.
-  **VERIFY:** kills → disconnect → reconnect (same then different server); log should show `MPPROG load VERIFIED=1`.
+- **PROGRESSION PERSISTENCE — the real cause FIXED 2026-11-10 (bug-10912, branch `mpprog`, not released).** bug-2749
+  (CL_Init USERINFO registration) was one of THREE gates; the other two kept every MP record at zero: the blob stufftext
+  was QUOTED (client set it empty, T8) and `;`-delimited (userinfo refuses `;`). Now `,` on the wire, unquoted. Rank tiers
+  now load at join, not at the first kill (bug-10913). Proven bot-driven on a dedicated + private client + server restart
+  (`docs/proposals/mpprog_2026-11-10/`); **still needs one real playtest** (kill, quit, rejoin: `MPPROG load VERIFIED`).
+  **Open:** `win_buildabase` has no writer (basebuild has no win point) - Architect challenge unreachable, its skin
+  stays earnable by kills; `mp_unlock_audit.py` lists it as a known WARN.
 - **MP END-OF-ROUND RANK CARD — SHIPPED + code-path verified (bug-2751).** `xp.scr::xp_mp_roundcard` draws a debrief
   in the pre-next-round pause (emblem, +XP, bar, PROMOTED; HUD 160-167), wired into `push_win`+`rounds_win`. The
   rank-up **bar + ceremony already fired in MP** via `xp_award_mp`; this card was the missing visual. **VERIFY** the

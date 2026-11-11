@@ -130,6 +130,11 @@ MP_COOP_ALLOW = {"main::containstext", "player::playercleanname", "player::coop_
                  # +XP this round, progress bar, PROMOTED banner). Reads coop rank tables + coop_xp_* flags
                  # only (shared store, not coop_mp* state); draws on MP-owned HUD slots 160-167; no-op outside MP.
                  "xp::xp_mp_roundcard",
+                 # [mpprog 2026-11-10, bug-10913] MP IDENTITY: mp_progression.scr::rankDerive loads the shared coop
+                 # identity + saved total at join (the kill path already did it, but only from the FIRST kill, so
+                 # the shared-rank weapon tiers were missing from the unlock store until then). Pays nothing, no
+                 # loop (xp_init returns before them in MP), hard no-op outside MP.
+                 "xp::xp_identify_mp",
                  # [v1.10.63 dailies] SHARED DAILY ORDERS: mp_progression.scr::mp_bump feeds the day's orders (m:<stat>). daily.scr is
                  # mode-neutral (player flags, the chal save file, xp_award_mp) and touches no coop gameplay state.
                  "daily::daily_onmpstat",

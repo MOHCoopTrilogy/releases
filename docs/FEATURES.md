@@ -636,8 +636,8 @@ enforces the earned gate at spawn (`mp_cosmetics.scr::apply` checks `cosUnlocked
 bug-2633, closing the userinfo bypass). **No vstr, no exe change.**
 
 **MP Service Record (coop-clone)** — `SHIPPED-UNVERIFIED`. `ui/coop_mp_record.urc` rebuilt as a **generated
-progression ladder** (`gen_mp_armory.py::record_urc`; thresholds parsed from the scripts so they can't
-drift): rank, each class with live `coop_mpCnt_<class>` / the N-kill unlock
+progression ladder** (`gen_mp_armory.py::record_urc`; thresholds parsed from scripts; counts persist
+only since bug-10912): rank, each class with live `coop_mpCnt_<class>` / the N-kill unlock
 + an **UNLOCKED badge** (`enabledcvar coop_mpUnlockC_<class>`), plus the cosmetic ladder (answers "progression
 not clearly defined").
 
