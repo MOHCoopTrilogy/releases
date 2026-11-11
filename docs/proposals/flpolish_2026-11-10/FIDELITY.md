@@ -20,7 +20,7 @@ Status: **M** matched, **D** deviation (closest MOHAA equivalent, reason given),
 | R8 | Trees/posts wrapped in tall clip columns | columns shrunk to the drawn trunk/post; 6 with nothing drawn dropped | D (snag fix) |
 | R9 | Level edges: no floor past them | clip wall + drawn skirt + ground under the level (no void) | D |
 | R10 | 19-34u lips walked over (Frontline step height ~0.7 m) | HZM engine step height per map (worldspawn hzm_stepsize 34: players, prediction, actors) | M |
-| R11 | Gaps narrower than the MOHAA box (30u) but wider than Frontline's (~20u) on the AI routes: 28 | not widened | X |
+| R11 | Gaps narrower than the MOHAA box (30u) but wider than Frontline's (~20u) on the AI routes | collision cut to the MOHAA box along every open route of the original's navigation (flroutes; collision only, nothing drawn changes); route blocks 146 -> 49 | D |
 | R12 | Door (DoorSwingCW) opened by its group | Frontline's own door mesh (inline model), solid while shut, swings when group 65552 wakes (log: FLSET door open; still to confirm on camera which drawn panel it replaces) | M |
 
 ## Encounters (group -> trigger -> members)
@@ -75,9 +75,9 @@ record's own (team byte, word 13); the class-name rule had made 4 Allied roamers
 
 ## Score (1 player)
 
-Matched 32 - Deviated 14 - Missing 1 (of 47 items; the earlier "of 50" over-counted the table, which holds 47).
+Matched 32 - Deviated 15 - Missing 0 (of 47 items; the earlier "of 50" over-counted the table, which holds 47).
 Round 1 was 22 / 19 / 9 on the same table. The deviations at R4/R5/R8/R9 are deliberate MOHAA-body fits, R7 is the
-user's visible-collision rule. Still missing: R11 (28 gaps between 20u and 30u on the AI routes are not widened).
+user's visible-collision rule. R11 is now a deviation: the gaps are cut to MOHAA's box along the original's routes (49 route blocks remain, most of them the original's own walls).
 Open deviations worth another pass: the shouters' barks (E3, E6), the molotov barrel (E14), the rockets' flight after
 their launch keys (S5), the ambushers' rise (E16), music segment switching (A3), the start loadout (P3).
 Set pieces were checked in one SP camera run (2026-11-10, stills local only); the door's swing and the fly-by over
