@@ -71,7 +71,7 @@ LIB_POOL = {
     "lib/mp_anzio_lib": (14, 20, 10, 12),
     "lib/mp_bizerteharbor_lib": (17, 25, 12, 12),
     "lib/mp_ship_lib": (12, 16, 6, 8),
-    "obj/mp_ardennes_tow": (13, 19, 11, 12),
+    "obj/mp_ardennes_tow": (13, 18, 11, 12),
     "obj/mp_berlin_tow": (17, 25, 12, 12),
     "obj/mp_bizertefort_obj": (12, 17, 8, 11),
     "obj/mp_bologna_obj": (17, 25, 12, 12),
