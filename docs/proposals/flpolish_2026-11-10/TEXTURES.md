@@ -71,14 +71,14 @@ one repeat and `repeat` re-tiles the surfaces' UVs in the BSP so the new tile is
 
 | id | what | CC0 asset (Poly Haven, CC0 1.0) | world units per tile | verdict |
 |---|---|---|---:|---|
-| 54200 | street cobbles (largest ground area) | `cobblestone_05` https://polyhaven.com/a/cobblestone_05 | 173 (old repeat / 12 x 6) | pass |
-| b3600 | cobbles, second sheet | `cobblestone_05` | 135 (/ 2 x 2) | pass |
+| 54200 | street cobbles (largest ground area) | `cobblestone_05` https://polyhaven.com/a/cobblestone_05 | 173 (old repeat / 12 x 6) | **withdrawn** after review: read as a clean regular sett grid where the original is rough ground with broad stains; disc texture kept |
+| b3600 | cobbles, second sheet | `cobblestone_05` | 135 (/ 2 x 2) | **withdrawn**, same reason; disc texture kept |
 | a680 | bare earth | `brown_mud_dry` https://polyhaven.com/a/brown_mud_dry | 128 | pass |
 | c6_124400 | dark earth | `brown_mud_dry` | 121 | pass |
 | c0_132880 | dark earth | `brown_mud_dry` | 180 | pass |
 | 4f880 | roof slates | `grey_roof_tiles_02` https://polyhaven.com/a/grey_roof_tiles_02 | 143 | pass; courses a little smaller than the original's |
 | 5ed80 | plank walls | `old_planks_02` https://polyhaven.com/a/old_planks_02 | 205 | pass at repeat 1 (planks about 20u, original about 25u) |
-| 4aa80 | rough stone wall | `old_stone_wall` https://polyhaven.com/a/old_stone_wall | 124 | weakest: hue and moss match, but it is rubble where the original is coursed block. First one to revert if it reads wrong in the stills |
+| 4aa80 | rough stone wall | `old_stone_wall` https://polyhaven.com/a/old_stone_wall | 124 | **withdrawn**: rubble where the original is coursed block; disc texture kept |
 | 38280 | board / shingle rows | none | - | **not done**: no CC0 candidate has the original's rows of short boards; the disc texture stays |
 
 Rejected after the sheet: `roof_slates_03` (slates far too fine, a seam band every 143u), `rock_wall_08` (brown rubble,
@@ -88,6 +88,8 @@ Cut-outs (11 tree and bush cards, listed in "hd" -> "cutout"): 4x Lanczos of the
 machine, leaf colour bled into the clear texels first, alpha resampled with the colour. On the sheet the cut edge is
 round instead of stair-stepped, with no halo and no key-colour fringe. The gain is modest; no learned upscaler is
 used, so nothing is invented.
+
+Second pass (2026-11-11, after the first sheet was judged too clean): the replacement is no longer only tinted. `flhd.bake` lays the CC0 tile under the disc texture's own low-frequency light/dark map (`overlay` 0..1), so stains, wear and the broad patches stay where Frontline had them, and writes a JPEG (pak 50.7 MB -> 37.3 MB). Sheet: `H:/hzm_work/flpolish/fix2/hd_swap_sheet2.jpg`. Result of the review: planks, roof slates and the three mud sheets keep the original's character and stay; both cobble sheets and the stone wall did not match and were withdrawn (the disc's own textures are used). A rougher, irregular CC0 cobble was not tried. Final list: 5 swaps (a680, c6_124400, c0_132880, 4f880, 5ed80) and 11 cut-outs; conversion v62 logs `flhd: 5 swapped, 11 cut-outs upscaled, 0 skipped`.
 
 Evidence: conversion v61 logs `flhd: 8 swapped, 11 cut-outs upscaled, 0 skipped, 3198 verts re-tiled`; headless boot
 of v61 loads with no script or shader error. Pak size 30.6 MB -> 50.7 MB (eight 1k TGAs and the 4x cards).
@@ -142,7 +144,7 @@ Downloaded as 1k diffuse JPG, each into its own folder under `H:\hzm_work\flpoli
 
 | asset | page | licence | proposed for |
 |---|---|---|---|
-| cobblestone_05 | https://polyhaven.com/a/cobblestone_05 | CC0 | 54200, b3600 |
+| cobblestone_05 | https://polyhaven.com/a/cobblestone_05 | CC0 | 54200, b3600 (withdrawn, file removed) |
 | brown_mud_dry | https://polyhaven.com/a/brown_mud_dry | CC0 | a680, c6_124400, c0_132880 |
 | roof_slates_03 | https://polyhaven.com/a/roof_slates_03 | CC0 | 4f880 |
 | rock_wall_08 | https://polyhaven.com/a/rock_wall_08 | CC0 | 4aa80 |

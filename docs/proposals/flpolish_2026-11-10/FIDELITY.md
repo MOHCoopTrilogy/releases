@@ -165,22 +165,26 @@ no corpses on this level (no dead-body class in the placement records), so any p
 
 | # | first conversion (origin, yaw) | now (origin, yaw) | stands on | note |
 |---|---|---|---|---|
-| 1 | (-2581 -4808 -125), 0 | (-2581 4808 -113), 304 | sandbag nest by the square | the "floating MG42 on the cobbles" |
-| 2 | (-5727 -3960 -129), 0 | (-5727 3960 -117), 274 | nest | |
+| 1 | (-2581 -4808 -125), 0 | (-2581 4808 -128), 304 | sandbag nest by the square | the "floating MG42 on the cobbles" |
+| 2 | (-5727 -3960 -129), 0 | (-5727 3960 -132), 274 | nest | |
 | 3 | (6573 3385 -123), 0 | (6573 -3385 -123), 179, broken | the wrecked jeep | Frontline flags it Broken: not spawned |
-| 4 | (1120 -2209 463), 0 | (1128 2209 475), 90 | bridge tower platform | reached only by the tower ladder |
-| 5 | (-5734 -5891 -176), 0 | (-5734 5891 -163), 90 | nest | |
-| 6 | (1641 -742 -122), 0 | (1630 742 -107), 48 | window sill across the bridge | the "misplaced MG42 across the bridge" |
+| 4 | (1120 -2209 463), 0 | (1128 2209 460), 90 | bridge tower platform | reached only by the tower ladder |
+| 5 | (-5734 -5891 -176), 0 | (-5734 5891 -178), 90 | nest | |
+| 6 | (1641 -742 -122), 0 | (1630 742 -122), 48 | window sill across the bridge | the "misplaced MG42 across the bridge" |
 
 Before: every gun faced yaw 0 and sat at the record's origin (its pivot, below the barrel). Now: Frontline's own
 facing, dropped onto what is under it and lifted by the tripod height; the nearest German machine-gunner of the group
 mans it when the group wakes (`FLSET mg <n> manned`). Seen manned in the walk: gun 1. After-stills not yet taken.
+
+Correction (v62): the lift was 34u and the guns hung about 15u over their rests. Stock mounts sit 18-19u over the support (m4l1 `turret3`, `turret4`, measured), and Frontline's own record is 22u over it; the lift is now 19u, which puts every gun within 3u of the record's height. The "black patch on the cobbles" under gun 1 is Frontline's own blob shadow for the nest (`1eeb00`, a black 32x32 disc, alpha up to 65%, on a 295u quad at (-2545 4752 -167)); 14 such quads and the square ones (`1ee600`) lie 0.5-3u over the ground with no depth offset, so they could z-fight into hard black shapes. The 10 soft ground-decal shaders now carry `polygonOffset`. Not seen in a client yet.
 
 ### Ladders (item 13)
 
 | # | where | drawn as | collision / record | now |
 |---|---|---|---|---|
 | 1 | bridge tower, inside of the west wall (plane x=1065, y 2258..2282, z -209..431) | material c4_feb00, 22 triangles | none - Frontline has no ladder record we can read | climbable: `fl_levels.json` "ladders" -> `level.fl_ladder*` -> coop ladder recipe; the climber is set down beside the hatch at the top (bug-10973). Boots clean (`FLSET ladder 1`); **the climb itself is unverified** |
+
+Down (v62): a player who steps into the hatch at the top is put on the ladder facing the wall (`fl_ladder_top`, log `FLSET ladder 1 down client=N`) instead of dropping 600u; the helper's own top mount needed him to touch a 1u trigger while looking 40 degrees down. Boots clean; not climbed in a client yet.
 
 `H:/hzm_work/flpolish/fix2/findladder.py` (narrow, tall, vertical strips of one material) finds no second ladder.
 An upper floor at (-1919 4799 16) holds 9 pathnodes no walk reaches and has no drawn ladder or stair: unknown whether
@@ -190,9 +194,9 @@ the original lets the player up there.
 
 | measure | first | now |
 |---|---|---|
-| walkable cells | 14557 | 74589 |
+| walkable cells | 14557 | 74615 |
 | pathnodes unreachable | 1058 | 16 |
-| route blocks (clusters) | 147 (97) | 41 (36) |
+| route blocks (clusters) | 147 (97) | 35 (30) in v62; every one has a walk-around of at most about 90u and drawn geometry within 32u (wall ends and posts beside the straight node-to-node line; `H:/hzm_work/flpolish/fix2/triage61.json`) |
 | placements unreachable | 118 | 19 (fly-through markers off the map, the tower gun and its ammo, 2 rockets) |
 | falls into the void | 0 | 0 |
 | low openings a crouched player passes | 0 | 30 clusters |

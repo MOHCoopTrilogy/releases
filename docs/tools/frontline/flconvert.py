@@ -278,7 +278,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             # (grass fringes along hedges) carry it in the texture - alpha-TEST turned their pale fringe opaque
             ag = "\t\talphaGen vertex\n" if key in vtx_alpha else ""
             stats["blended"] = stats.get("blended", 0) + 1
-            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm trans\n\tcull none\n\t{\n\t\tmap "
+            # [flfix2] soft ground decals (blob shadows under the MG nests and crates, scorch and stain patches) lie
+            # 0.5-3u over the cobbles: without a depth offset they z-fight into hard black patches at range
+            po = "\tpolygonOffset\n" if soft and tex_flat.get(key, 0) >= 0.9 else ""
+            if po:
+                stats["ground_decals"] = stats.get("ground_decals", 0) + 1
+            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm trans\n" + po + "\tcull none\n\t{\n\t\tmap "
                                 + name + ".tga\n\t\tblendFunc blend\n\t\trgbGen vertex\n" + ag + "\t}\n}\n")
         elif has_alpha:
             stats["alpha_textures"] += 1

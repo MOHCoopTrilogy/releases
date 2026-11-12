@@ -73,6 +73,12 @@ class FrontlineGame:
             flconvert.convert(image, level, tmp, mirror=False, vgm=vgm if os.path.exists(vgm) else None, mohaa_base=mohaa)
             add_marker(tmp, "fl/have_%s.cfg" % level, 'set coop_flHave_%s "1"\nset coop_flHave "1"\n' % level)
             os.replace(tmp, out)
+            # [flfix2 bug-10969] the engine caches the AI path graph it built for this map name in <home>/maps/<map>.pth;
+            # one left from an older conversion is reused silently (soldiers stand still). A new pak always drops it.
+            try:
+                os.remove(os.path.join(out_dir, "maps", "coop_fl_%s.pth" % level))
+            except OSError:
+                pass
         finally:
             if os.path.exists(tmp):
                 os.remove(tmp)

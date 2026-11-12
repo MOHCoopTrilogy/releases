@@ -184,3 +184,16 @@ missions: `docs/tools/ea/FRONTLINE_REFERENCE.md`.
 
 Not verified (no visible client may run while the user is playing): after-stills, the off-screen-fight walk, the
 ladder climb, a human pass through the interrogation area.
+
+### Round 7b (same day) - what the user was actually playing, and the rest of the list
+
+- **The live pak was a first-generation conversion** (bug-10975): `G:/mohaa-gl2/home/maintt/zzzz_coop_fl_1_1.pk3` (Nov 10 06:52, 27.1 MB) has an 18.6 KB data script with 5 named points and no trigger table, no jeep motion keys and no scripted-prop table. That alone gives: no jeep scene, allies idle at the start, Germans across the bridge not fighting, areas already dead, the generic P-47 run hanging over the Panzer, and three walk regions that do not connect (spawn / field phone / wall explosion; the interrogation approach is cut off). Nothing the converter can fix: the install has to be re-converted from the verified build.
+- **Stale path file** (bug-10976): both converters delete `maps/coop_<x>.pth` next to the pak they write.
+- **Interrogation area** (item 15): on v62 the way through is Frontline's own crawl passage, y 4690..4722, x -1658..-1178, 46-50u high in the original, capped at 58-59u here; the progression walk reaches all 68 targets (14 standing, 53 crouching) with 0 blocks. Engine walk by a human or client: not done.
+- **Snags** (items 3, 10; bug-10977): the 41 route blocks were triaged one by one: none is an invisible wall and none closes a route. 8 waist-high nubs on routes were added to `route_widen`; blocks 41 -> 35, fall-outs still 0.
+- **Black patch, floating guns** (item 7; bug-10978): see FIDELITY.md "Mounted guns".
+- **Ladder down** (item 13), **textures second pass** (bug-10979; TEXTURES.md).
+- **Intro crates** (item 5): drawn about 74 x 52 x 47, collision 48 x 48 x 44 (`setsize`); nearest crate to a spawn point is about 500u away. Not felt in a client.
+- v62: `flhd: 5 swapped`, 37.3 MB, headless boot without script or shader errors, `FLAI axis=55 allies=20 spawned=11 waiting=64`, guns and ladder logged.
+
+Still not verified in a client: everything visual (stills), the ladder both ways, the off-screen-fight walk, a human pass through the crawl passage.
