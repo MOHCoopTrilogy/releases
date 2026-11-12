@@ -651,7 +651,13 @@ $binaries = @(
     # carries two fixes without which a dedicated server does not work AT ALL: bug-1664 (the command
     # buffer never ran, so it booted to silence and loaded no map) and bug-1667 (the Windows timer
     # was never raised, pinning the "slow server" icon on). publish_release.ps1 ships it too.
-    @{ Name = "omohaaded.exe";        Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\Release\omohaaded.exe" }
+    @{ Name = "omohaaded.exe";        Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\Release\omohaaded.exe" },
+    # [user 2026-11-11] THE DISC CONVERTER WAS NEVER DEPLOYED HERE. Players get byo_convert.ps1 + hzmconv.zip from the
+    # updater; the dev install has no updater, so its converted disc missions stayed on the conversion that first wrote
+    # them (the user played a first-day Sealed Orders). With these beside the exe the game's own start-up check
+    # (CL_ByoReconvertStart) re-converts them whenever the converter's version moves, exactly as for a player.
+    @{ Name = "byo_convert.ps1";      Src = "C:\mohaa-coop-dev\installer\byo_convert.ps1" },
+    @{ Name = "hzmconv.zip";          Src = "H:\hzm_work\frontline_tools\hzmconv_release\hzmconv.zip" }
 )
 foreach ($bin in $binaries) {
     if (-not (Test-Path $bin.Src)) { continue }

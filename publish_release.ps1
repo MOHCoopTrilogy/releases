@@ -46,6 +46,14 @@ $tagExists = ($LASTEXITCODE -eq 0)
 $ErrorActionPreference = $eap
 if ($tagExists) { throw "release $tag already exists - never overwrite a published tag; bump the version" }
 
+# [2026-11-11] CONVERTER VERSION GATE. A player's converted disc missions are re-converted only when the shipped
+# converter's version word differs from the one their missions were written by. A converter change shipped under the
+# same HZMCONV_VERSION therefore never reaches anybody who already converted a disc - the user played a first-day
+# Sealed Orders for that reason. conv_guard.py compares the converter sources with the last shipped ones
+# (docs/tools/frontline/conv_shipped.json) and also refuses an hzmconv.zip older than those sources.
+& python "$dev\docs\tools\frontline\conv_guard.py" check $HzmconvZip
+if ($LASTEXITCODE -ne 0) { throw "converter version gate failed (see above)" }
+
 # [2026-08-11] WHAT'S NEW CARD GATE. v1.2.6 shipped with the card still titled v1.2.5-era content,
 # and the stealth route was flipped ON minutes after publishing - so the next release could have
 # gone out announcing the wrong thing entirely. A note in a doc would not have caught that; an
@@ -522,6 +530,7 @@ Write-Host "release $tag is LIVE"
 $relJson = & $gh api "repos/$repoSlug/releases/tags/$tag" | ConvertFrom-Json
 $asset = $relJson.assets | Where-Object { $_.name -eq "manifest-$Version.json" }
 if ($asset) { & $gh api -X PATCH "repos/$repoSlug/releases/assets/$($asset.id)" -f name=manifest.json | Out-Null; Write-Host "manifest.json published" }
+& python "$dev\docs\tools\frontline\conv_guard.py" stamp   # what shipped is the new baseline for the converter version gate
 
 # --- 6. record manifests in the repo (raw.githubusercontent fallback + audit trail) ---
 # release is LIVE at this point, so NOW the local baseline may advance
