@@ -238,12 +238,18 @@ Scripted character scenes
   scene's actor goes to the point, faces the record's way and holds there in a stock pose until his squad is
   given its next order. A point with a listen group starts on a Play to it (the hideout idlers, the man at the
   door, the cheering at the end, the bridge charge, the hiding allies); one without starts when its actor
-  spawns. The checkpoint posts take the spawn point standing on them (inferred). Not posed: the three German wall
-  vaults (no actor in the record) and the church-tower rig point.
-- The partisan woman is played by the stock male Soviet infantry model (the mod has no female partisan model).
-- Gun callers walk to their gun off the follow-the-player behaviour (friendly.scr: friendtype -1) and without
-  stopping to fight. The gun 4 partisan still stops 200-250u short; the existing rule seats a caller whom no
-  player sees, which is how the client run manned gun 4.
+  spawns. The checkpoint posts take the spawn point standing on them (inferred). 0.7.23: the three German wall
+  vaults and the church-tower rig point (RTR_DeathFromAbove) take the squad whose first objective stands on the
+  point (the level binds the church window jumps the same way); the tower sniper, killed up there, falls (the
+  stock ledge-death of global/balconyGuy.scr). No vault or fall animation of the original's own.
+- The partisan woman in her own model (user decision 2026-11-12, converter 0.7.23, eachar.py): her disc mesh
+  (Body_MRpartisanFemaleA_LOD1, 4 sub-meshes, 1065 vertices) and textures (found through her character
+  definition) are converted on the player's PC into the player's own pak, never shipped. Forced: she is skinned
+  rigidly (one bone a vertex) onto the stock human skeleton (bones from the player's install) and moves with the
+  stock human animations, not the original's; her LOD2/LOD3 meshes are not used.
+- Gun callers walk to their gun off the follow-the-player behaviour (friendly.scr: friendtype -1), without
+  stopping to fight, and with a 16u move-done radius: friendly.scr leaves it at the follow distance (180-320u),
+  which is why the gun 4 partisan stopped 150-255u short. Client run: she walks all the way and mans it.
 - Also, the three dead-body poses:
   0.7.22 places those squads as corpses on their pose points (they had spawned as live, armed Germans, and the
   one beside the partisan woman shot her before her scene in every run). The pose is the stock death fall.
