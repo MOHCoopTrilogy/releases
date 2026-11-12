@@ -50,6 +50,15 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.79 - Field Orders
+
+- **Sealed Orders follows the original's six objectives**, including manning the church-tower MG
+- **The jeep ambush, the bombed street and the wall breach play like the disc** - shoot the barrels or light the rag
+- **Allies hold, push and follow like they did on the disc**, and every mounted gun can be reached on foot
+- **Their Dying Breath gains more of its scenes** - gun crews, the checkpoint Halt, partisans warning of Panzers
+- **Only the original voices, and no officer waves** on the disc missions
+- **Needs playtesting** - both disc missions start to finish
+
 ### v1.10.78 - Set Pieces
 
 - **Sealed Orders plays its set pieces like the disc** - the jeep ambush with a .30 cal you can take over, the wall breach, and bombers at the original's speed
