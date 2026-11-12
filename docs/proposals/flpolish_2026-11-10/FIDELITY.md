@@ -458,18 +458,35 @@ model is the plain web one while the dropped one is netted; the rifleman's stay 
 was not logged; whether the wave also comes without the gun (triggers 87 / 420, code 51) is not traced - here it
 waits for the gun; the hint shows once per player profile in co-op (the original shows it each time a player is near).
 
+## Round 14c (flfix2, 2026-11-13) - gunner (user decision), officer off, scene 5 to the traces
+
+Mod script only (base checkout, commit a09a3d4a). Sources: `TRACE_panzer.md`, `TRACE_mg_ambush_end.md`,
+`TRACE_germans.md`, `TRACE_panzer_kill.md`. Stills and logs: `H:\hzm_work\flpolish\fix2\r14\`.
+
+| item | result | evidence |
+|---|---|---|
+| Wounded gunner (user decision, bug-11093) | thrown off at the blast, coop DBNO pose on the ground behind the wreck (not solid, clear of the gun's mount side); line at 6.2 m; dies 1 s after it; gun mountable, wave +2.0 s | `j5a.jpg`, `jeep5.out` |
+| Officer / enemy waves (user: "Keep officer off for now") | `level.coop_noOfficerWaves = 1` (existing per-map opt-out); log "OFFICER waves disabled"; no wave or assist feed lines | `jeep5/qconsole.log` |
+| Panzer (bug-11094) | created by its trigger (ours 38 = disc 251) out of view at disc (1372,466); 192u arc, halts +4.0 s; turret tracks +2.9; cannon +3.6 / +4.2 / +6.8 (stock VehicleTank, autotank recipe); hull MG from +7.6 within 45 m | `pz2a.jpg`, `pz2.out` |
+| MG nest | only the gunner (rec 33) walks to the waypoint (4 s cap, ends ~40u short), feeder and lead hold; runners to guns 2 / 5 dropped | `pz2b.jpg` |
+| Talkers (trigger 266 = ours 50) | AI off with their own idle (no talking clip on the German model), notice a player 2.6 s after they appear, or when shot | `pz2b.jpg` |
+
+Not matched or not verified: the tank's hull MG is a hidden stock MG42 (the disc builtin 0x6c is a guess at the hull MG);
+the cannon aims at the nearest player; tank destruction stays the user-approved rocket kill (TRACE_panzer_kill.md:
+the original's rockets do not kill it); the listener waits while a player watches his spot (spawn rule).
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
 |---|---|---|---|
 | Player loadout | Frontline's weapons | co-op Armory loadout | choice (user decision) |
-| Air strike on the Panzer | as on the disc | rockets hit the Panzer | choice (user decision) |
+| Air strike on the Panzer | the P-47's rockets do not kill the tank (TRACE_panzer_kill.md: hull 180, tracks 80 each) | rockets hit and destroy the Panzer | user decision (rockets-to-Panzer) |
 | Canal water look | flat disc water | mod water under a stock shader name, up normals, world-space UVs (tile 512) | choice (user decision) |
 | MG42 yaw | record yaw = gunner's side | muzzle = record + 180 | forced (engine convention) |
 | MG42 height | 22u over the support | 19u (stock MOHAA mount) | choice, 3u |
 | MG42 rest pose, unmanned | unknown | muzzle up about 45 degrees (MOHAA turret idle) | forced (engine) |
 | MG42 gun 3 (rec 302) | the jeep's .30 cal, spawned by message when the jeep's track ends, mountable | disc MG30_cal mesh on a stock turret; arc 180 each way | forced (engine turret); arc a choice |
-| Panzer height while driving | path heights | seated on the ground each step (path is up to 9u off) | choice |
+| Panzer drive | created at its trigger, 192u arc in 3.9 s, cannon +216 / +251 / +407 ticks, hull MG from +449 | same timings; stock VehicleTank, cannon at the nearest player, hidden MG42 on the hull (bug-11094) | MG a stand-in |
 | Jeep | body and four tyres on pre-authored tracks | disc meshes origin-stepped on the disc's keys (20 Hz); wreck = the disc body where its track ends | forced (script_model movement) |
 | Jeep crew poses and animations | disc animations 6500-6511 on body nodes | stock MOHAA poses: seated driver and passenger, gunner at the gun, thrown = death_mortar_high / death_mortar_twist on an invented 0.7 s arc, wounded gunner = A_22_driver_cover; no bump animation (6509-6511) | forced (no decoder for the disc's skeletal animations) |
 | Crew fades | 6 s fade-out of driver, passenger and gunner | 6 s fade on fade-capable clones of the stock skins (same textures) | forced (stock skins have no entity-alpha stage) |
@@ -502,7 +519,7 @@ waits for the gun; the hint shows once per player profile in co-op (the original
 | Wall breach | trace timings and break frames; use at the molotov (6 s fuse) or 3 hits on one barrel (no fuse); hint "Press ACTION to Ignite Rag" | same, both ways (bug-11087, bug-11083) | blast look a stand-in (stock emitter) |
 | Texture edges | clamp on non-tiling surfaces | half-texel UV inset on non-tiling axes | forced (engine has no per-axis clamp here) |
 | Fire at the jeep, look | disc tracers | stock muzzle flash and tracer (a white streak in stills) | stand-in |
-| Wounded gunner pose and spot | animation 6506 face-down over the rear deck, 6507 rises to the front; helmet stays | same spot and sequence with stock clips (dead_pose2, rifle_pronetocrouch, idle); stock netted helmet (bug-11088) | forced (no decoder) |
+| Wounded gunner | 6506 face-down over the rear deck, 6507 rises to the front, fades | thrown off at the blast, coop DBNO pose on the ground, his line when a player comes up, then dies (bug-11093) | user-approved 2026-11-12 |
 | Light on soldiers and objects | vertex colours | the engine's light grid; the ambientlight 40 40 40 key has no visible effect in this renderer | forced (engine) |
 | Weather | none | none (rain theme removed in round 11) | exact |
 | Objective wording | disc / published pause screen wording | ours, including two prisoner lines; HUD text = objective menu text | choice (user decision 2026-11-12: "Keep ours it's fine") |
@@ -513,3 +530,5 @@ waits for the gun; the hint shows once per player profile in co-op (the original
 | World mirroring | - | none (un-mirrored since bug-10965) | - |
 | Hint memory in co-op | hint shown each time a player is near | the coop cgame shows each hint key once per player profile (`coop_hintSeen`) | mod-wide rule, not changed here |
 | Gun wave without the gun | triggers 87 / 420 (msg 51) also hold id 19; never fired in the traced runs | the wave waits for a player to mount the gun (bug-11088) | choice (not traced) |
+| Officer / enemy-wave system | none | off on this map (`level.coop_noOfficerWaves = 1`) | user decision 2026-11-12 |
+| MG runners to guns 2 and 5 | not seen in the trace (24 s with the player in the trigger) | dropped (bug-11094) | trace; the route itself not traced |
