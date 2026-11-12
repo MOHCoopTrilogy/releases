@@ -216,6 +216,18 @@ Scripted character scenes
   walks v40/v41 play CallsPlayer, the full plan speech and SaysGoFight in order).
 - Rig animation, bounded attempt 2026-11-12: the rig name is held as a 172-byte scene definition (type, radius,
   flags, the rig CRC) and as .aso path strings; neither carries a length or tracks. Stock pose stays (forced).
+- AI barks (forced by the engine, not a choice): 25 voiced lines are referred to by nothing in the level file; the
+  original's AI plays them on its own states. 13 are mapped onto the mod's situational AI voice
+  (coop_mod/aivoice.scr: the same states, its own rate and cooldowns), per actor, by the speaker in the line's name:
+  Germans: reloading -> 10269 Reloading; under fire / call for backup -> 10270 UnderAttack; falling back -> 10286a
+  Retreat or 10286b FallBack (two voices, by spawn point). SS commander: taunt / kill -> 10283a NowYouDie.
+  Partisans: kill -> 10261 GreatJob; under fire -> 10262 TakeCover; contact -> 10266 LookAtThat; pressing the
+  attack -> 10278 OnTheWay; taunt -> 10286d LookAtThemRun. The woman: taunt / kill -> 10275c_1 DieFacista. A
+  Panzer waking: the nearest partisan calls 10267 DestroyPanzer (tanks 1 and 3) or 10267a PanzerInBuilding (tank
+  2, in the ruined house). Barks play voice only (the converter has subtitle text only for cued lines).
+  Not placed: 10263 GoingToBlow (a grenade bark: the engine owns grenade sighting), 10264 NoIdea, 10280 CommTower,
+  10286e ThankYou (context replies with no matching state), and the four "...Eng" takes (10282_1, 10282a_1,
+  10286a_1, 10286b_1: the same German lines spoken in English, a language variant).
 - Two leader lines (10258 and 10259a) are in the audio bank but no record, sequence or scene event in the level
   refers to them. They are not played. Whether the original ever plays them is unverified.
 - The other 26 scenes do not play (no voice cue in their rigs; pose only), except the three dead-body poses:
