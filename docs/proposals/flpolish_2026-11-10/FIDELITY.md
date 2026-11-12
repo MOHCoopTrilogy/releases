@@ -529,9 +529,16 @@ the original's rockets do not kill it); the listener waits while a player watche
 | Time and frag limits | none | switched off for the mission | forced (co-op) |
 | World mirroring | - | none (un-mirrored since bug-10965) | - |
 | Hint memory in co-op | hint shown each time a player is near | the coop cgame shows each hint key once per player profile (`coop_hintSeen`) | mod-wide rule, not changed here |
-| Gun wave without the gun | triggers 87 / 420 (msg 51) also hold id 19; never fired in the traced runs | the wave waits for a player to mount the gun (bug-11088) | choice (not traced) |
 | Officer / enemy-wave system | none | off on this map (`level.coop_noOfficerWaves = 1`) | user decision 2026-11-12 |
 | MG runners to guns 2 and 5 | not seen in the trace (24 s with the player in the trigger) | dropped (bug-11094) | trace; the route itself not traced |
 | Jeep .30 cal facing | mounted, it looks west over the windscreen into the square (frames w6 / w7 / wn) | same since bug-11095 (the record yaw read 180 off); 360 traverse | exact (facing) |
-| Gun wave rule | only a player using the gun starts it; the gun's leave slot and trigger 420 send disable-spawner | same: walking away unused or reaching trigger 420 ends it; trigger 87 (63 m) only holds (bug-11095) | rec 87's role inferred |
+| Gun wave rule | only a player using the gun starts it; walking away unused or trigger 420 switch it off | mounting starts it 2 s later; walking away unused or trigger 420 start it at once, out of view (bug-11100) | user-approved 2026-11-13 |
 | Wounded gunner's death | (no death: he fades) | prone death (death_prone) from the downed pose, corpse stays (bug-11095) | user-approved 2026-11-12 |
+| Interrogation | three lines (4, 5, 6; the third loops), the officer idles until he notices the player; no execution, the prisoner never reacts (TRACE_interrogation.md) | ours kept: nine bank lines, execution unless the officer is killed first, optional rescue, Castro challenge | user-approved 2026-11-13 ("I want to keep ours") |
+| Interrogation start | trigger 37 (3.2 m from the officer) | 1100u of the clipboard: trigger 37 lies inside our 200u rescue release (bug-11100) | forced by the kept rescue |
+| Clipboard pickup | walk within 2.3 m (rec 282) | same (bug-11100) | exact |
+| Trigger messages | start / clean-up / disable / enable per trigger | same since bug-11097 (every trigger used to start its groups) | exact |
+| Jeep squad (recs 64, 65, 103) | hold while their Germans live, push to the last one, trail 16-19 m behind the player, removed at trigger 66 | same (bug-11098); trail distance 820u behind a player 920u past them | exact by the trace |
+| Death-ambush pair (recs 69, 70) | created on the death of shouter rec 215, killed by bomb A | same; bomb A kills him within 600u (our blast radius would not) (bug-11099) | blast reach forced |
+| Panzer projectile generator (rec 473, trigger 256) | switched on by trigger 256 | not built (parameters not decoded); trigger 256 starts the tank (bug-11098) | missing |
+| Trigger 91 (death-ambush area 373 off / on) | disables rec 407's ambush while the player is inside | not emitted | not built (untraced effect) |
