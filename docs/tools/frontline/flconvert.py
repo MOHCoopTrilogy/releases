@@ -65,7 +65,56 @@ TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dro
 def coll_is_volume(f):
     return bool(f & COLL_VOLUME) and (f & 0x7FF) in COLL_MAT_VOLUME
 MERGE_CELL = 1536.0
+# reskinned hedge blocks: a face counts as standing up to this normal z. 0.5 dropped the three leaning skirt
+# faces of 1_1 (normal z 0.51 to 0.59; draws 153, 491, 1231), which left the foot of the start lane's west
+# hedge open to the fogged far ground: a bright wedge. The disc has no flat hedge tops. [flfix2 bug-11059]
+RESKIN_NZ = 0.7
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
+
+
+def sky_faces(src_dir, prefix, flip_y):
+    """[flfix2 bug-11058] The original's sky is a 6-face box centred on the eye (emulator trace TRACE_sky_fog.md):
+    <prefix>_px/nx/py/ny/pz/nz.png, uv 0,0 = top-left texel, face corners as traced. Re-cut texel for texel into the
+    engine's six sky images (rt bk lf ft up dn). flip_y: a mirrored build (map y = -original y).
+    -> {suffix: (w, h, rgba bytes)} or None when the folder or a face is missing (the level then keeps its stock sky)."""
+    try:
+        from PIL import Image
+    except ImportError:
+        return None
+    F = {"py": ((-1, 1, 1), (1, 1, 1), (-1, 1, -1)), "px": ((1, 1, 1), (1, -1, 1), (1, 1, -1)),
+         "ny": ((1, -1, 1), (-1, -1, 1), (1, -1, -1)), "nx": ((-1, -1, 1), (-1, 1, 1), (-1, -1, -1)),
+         "pz": ((-1, -1, 1), (1, -1, 1), (-1, 1, 1)), "nz": ((-1, 1, -1), (1, 1, -1), (-1, -1, -1))}   # uv 00, 10, 01
+    img = {}
+    for k in F:
+        fp = os.path.join(src_dir, f"{prefix}_{k}.png")
+        if not os.path.isfile(fp):
+            return None
+        img[k] = Image.open(fp).convert("RGB")
+    # engine sky faces (tr_sky.c MakeSkyVec): direction for image coordinate (s, t), s right, t up, both -1..1
+    E = {"rt": lambda a, b: (1.0, -a, b), "lf": lambda a, b: (-1.0, a, b), "bk": lambda a, b: (a, 1.0, b),
+         "ft": lambda a, b: (-a, -1.0, b), "up": lambda a, b: (-b, -a, 1.0), "dn": lambda a, b: (b, -a, -1.0)}
+    out = {}
+    for suf, vec in E.items():
+        n = 128
+        buf = bytearray()
+        for j in range(n):
+            for i in range(n):
+                d = vec((i + 0.5) / n * 2 - 1, 1 - (j + 0.5) / n * 2)
+                if flip_y:
+                    d = (d[0], -d[1], d[2])
+                ax = max(range(3), key=lambda q: abs(d[q]))
+                k = ("p" if d[ax] > 0 else "n") + "xyz"[ax]
+                m = abs(d[ax])
+                q = tuple(c / m for c in d)
+                v0, v1, v3 = F[k]
+                u = sum((q[c] - v0[c]) * (v1[c] - v0[c]) for c in range(3)) / 4.0
+                v = sum((q[c] - v0[c]) * (v3[c] - v0[c]) for c in range(3)) / 4.0
+                im = img[k]
+                x = min(im.width - 1, max(0, int(u * im.width)))
+                y = min(im.height - 1, max(0, int(v * im.height)))
+                buf += bytes(im.getpixel((x, y))) + b"\xff"
+        out[suf] = (n, n, bytes(buf))
+    return out
 
 
 def tga_bytes(w, h, rgba):
@@ -145,6 +194,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         flip_render = not (rdown > rup)
 
     B = flbsp.BSP()
+    # [flfix2 bug-11057] the disc's vertex colour is a plain 1x modulate of the texture. The gl2 renderer multiplies
+    # BSP vertex colours at load by 2^(r_mapOverBrightBits - r_overBrightBits) * r_mapOverBrightScale. The mod ships
+    # r_mapOverBrightBits 2, r_overBrightBits 0 (coop_defaults.cfg) and r_mapOverBrightScale 0.71 = 2.84, which
+    # saturated the disc's colours (about 200 of 255) to white: flat bright daylight. Cancelled here, in the
+    # converted map only (no engine cvar is touched). Engine-derived constant, not a look choice.
+    B.light_gain = float(flpack.spec(level).get("light_gain", 1.0 / (4.0 * 0.71)))
     B.vis_cell = 1024.0
     B.vis_radius = float(flpack.spec(level).get("vis_radius", 0))
     files = {}
@@ -435,7 +490,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             planes_ = {}
             for a, b, c in tris:
                 n = face_normal(verts[a][0], verts[b][0], verts[c][0])
-                if not n or abs(n[2]) > 0.5:
+                if not n or abs(n[2]) > RESKIN_NZ:
                     continue
                 hl = math.hypot(n[0], n[1]) or 1.0
                 hx, hy = n[0] / hl, n[1] / hl
@@ -451,8 +506,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             for a, b, c in tris:
                 T = [verts[a], verts[b], verts[c]]
                 n = face_normal(T[0][0], T[1][0], T[2][0])
-                if not n or abs(n[2]) > 0.5:
-                    continue                          # only the vertical faces of the block
+                if not n or abs(n[2]) > RESKIN_NZ:
+                    continue                          # only the standing faces of the block
                 z0, z1 = planes_[planes_[("t", a, b, c)]]
                 if z1 - z0 < 4:
                     continue
@@ -525,12 +580,35 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     stats["surfaces"] = nmerged
 
     # sky box (quads around the world, both windings) so the void renders as a MOHAA sky
+    # [flfix2 bug-11058] the original's own sky box when its six faces are at hand (FL_SKY_DIR + the level's
+    # "sky_faces" prefix; private captures, never shipped); otherwise the stock sky named in the level table
+    _sf = None
+    if not sky_shader and os.environ.get("FL_SKY_DIR") and flpack.spec(level).get("sky_faces"):
+        _sf = sky_faces(os.environ["FL_SKY_DIR"], flpack.spec(level)["sky_faces"], mirror)
+    if _sf:
+        sky_shader = f"textures/fl/{level}/sky"
+        for _suf, (_w, _h, _px) in _sf.items():
+            files[f"env/fl_{level}_sky_{_suf}.tga"] = tga_bytes(_w, _h, _px)
+        shader_lines.append(f"{sky_shader}\n{{\n\tsurfaceparm sky\n\tsurfaceparm noimpact\n\tsurfaceparm nolightmap\n"
+                            f"\tskyParms env/fl_{level}_sky 512 -\n"
+                            # the original's sky is never fogged: nofog is a stage word, so a stage that draws nothing carries it
+                            f"\t{{\n\t\tmap $whiteimage\n\t\tblendFunc GL_ZERO GL_ONE\n\t\tnofog\n\t}}\n}}\n")
+    stats["sky"] = sky_shader or flpack.spec(level).get("sky", "textures/sky/mohday1")
     sky = B.shader(sky_shader or flpack.spec(level).get("sky", "textures/sky/mohday1"), 0x4 | flbsp.SURF_NOLIGHTMAP, 0)
     blo = [max(min(s["bounds"][0][k] for s in B.surfaces) - 1024, -16300) for k in range(3)]
     bhi = [min(max(s["bounds"][1][k] for s in B.surfaces) + 1024 + 4096 * (k == 2), 16300) for k in range(3)]
     corners = [(x, y, z) for z in (blo[2], bhi[2]) for y in (blo[1], bhi[1]) for x in (blo[0], bhi[0])]
     for q in ((0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)):
         vs = [(corners[i], (0.0, 0.0), (0.0, 0.0, 1.0), (255, 255, 255, 255)) for i in q]
+        if _sf:
+            # planar faces, normal toward the level, as stock maps carry their sky
+            _c = [sum(corners[i][k] for i in q) / 4.0 for k in range(3)]
+            _m = [(blo[k] + bhi[k]) / 2.0 for k in range(3)]
+            _ax = max(range(3), key=lambda k: abs(_m[k] - _c[k]))
+            _n = [0.0, 0.0, 0.0]
+            _n[_ax] = 1.0 if _m[_ax] > _c[_ax] else -1.0
+            B.add_face(sky, vs, [0, 1, 2, 0, 2, 3, 0, 2, 1, 0, 3, 2], _n)
+            continue
         B.add_soup(sky, vs, [0, 1, 2, 0, 2, 3, 0, 2, 1, 0, 3, 2])
 
     clip = B.shader("textures/common/fl_collision", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
@@ -838,6 +916,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     sp = flpack.spec(level)
     ws = [("classname", "worldspawn"), ("message", f"Frontline {level} (converted locally, converter {CONVERTER_VERSION})"),
           ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
+          # [flfix2 bug-11058] fog start (the engine takes 18% of the far plane when this is 0)
+          ("farplane_bias", str(sp.get("farplane_bias", 0))),
+          # [flfix2 bug-11058] with the far plane as a cull plane the sky hull (further off than the fog end) is never
+          # drawn and the void shows the fog colour; the level table can switch the culling off (fog only)
+          ("farplane_cull", str(sp.get("farplane_cull", 1))),
           ("ambientlight", "40 40 40"),
           # [flpolish] engine extensions this map opts into (HZM engine >= 1.10.73; older engines ignore the keys):
           # entity coordinates past +-8192 (the jeep's start behind the gate) and Frontline's own step height (its body

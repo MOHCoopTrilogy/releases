@@ -289,6 +289,35 @@ object-mesh rotations of every mission on its next conversion). Pair sheets, our
 Not exact, open: the 6 s fade of the thrown men and the gunner is not visible (stock soldier skins have no entity-alpha stage);
 they disappear when the fade time ends. The throw arc and the thrown poses are invented around stock animations.
 
+## Round 11 (flfix2, 2026-11-12) - light, fog, sky, hedge foot, blast, crew fade
+
+Sources: `H:\hzm_work\ref_xemu\TRACE_sky_fog.md`, the sky faces in `H:\hzm_work\ref_xemu\sky\`, `TRACE_jeep.md`, the
+reference frames, the disc records. Build v85 in `G:\mohaa-flpolish` only. Converter changes (HZMCONV_VERSION not bumped):
+`flconvert.py` (light gain, fog and sky keys, sky shader and hull, hedge skirt), `flbsp.py` (light_gain, planar surfaces),
+`fl_levels.json` (1_1: farplane 4800, farplane_bias 240, farplane_cull 0, farplane_color, sky_faces). No engine cvar changed.
+Pairs, reference left and ours right: `H:\hzm_work\flpolish\fix2\r11\final\`.
+
+| item | finding | result | proof |
+|---|---|---|---|
+| Light (bug-11057) | the disc lights by vertex colour only, a 1x modulate; nothing was dropped. The mod's renderer multiplies map vertex light by 4 x 0.71 | converted maps only: vertex colours x 0.352 (= 1 / (4 x 0.71)); entities: ambientlight 40 40 40 (chosen). Soldiers and the jeep read consistent with the world | `pair_1_lane.jpg`, `H:\hzm_work\flpolish\fix2\r11\fade1_f5.jpg` |
+| Fog (bug-11058) | trace: linear, start 240, end 4800 disc units, colour 104,106,109, far clip at the fog end, on every scene draw | converted exactly; fog as view depth is inferred; clear colour 48,48,48 has no equivalent and is not represented | `pair_1_lane.jpg` |
+| Sky (bug-11058) | trace: 6-face box on the eye, drawn first, not fogged | the six captured faces as a sky box with a no-fog stage; clouds visible. The faces go into the player's private pak only (FL_SKY_DIR at conversion); without them the stock sky stays | `pair_2_sky.jpg` |
+| Rain (bug-11060) | the port had a rain theme; the original has no weather | removed: no rain, no rain sound. This is a visible change from the build the user played | `pair_1_lane.jpg` |
+| Hedge-foot wedge (bug-11059) | the disc HAS geometry there: three leaning hedge skirt faces (draws 153, 491, 1231) that the hedge reskin dropped as "not vertical" | restored (RESKIN_NZ 0.7); nothing added; the two lids tried first are removed again | `H:\hzm_work\flpolish\fix2\r11\lane8.jpg` |
+| Blast (bug-11061) | the disc's mine effect is a low dirt burst, not a fireball | emitter built from the disc particle records: grey dirt cloud, small puff, dark pieces; nothing reaches the arch top | `pair_3_blast.jpg`, `H:\hzm_work\flpolish\fix2\r11\arch4_sheet.jpg` |
+| Crew fade (bug-11062) | stock skins cannot fade; the men also came to rest inside the wreck | fade-capable skin clones; rest spots 110u either side of the wreck; fade 1.1 s / 1.9 s after the blast, 6 s, removed 6.7 s after the fade starts (trace, log markers) | `strip_5_crew_fade.jpg`, `pair_4_wreck.jpg` |
+| Objective wording | user, 2026-11-12: "Keep ours it's fine" | unchanged, including the two prisoner lines; HUD text matches the objective menu | - |
+
+Not matched, open:
+- Brightness: ours is still clearly brighter than the reference (mid-grey road, yellow-green leaves against a very dark dusk).
+  The client's gamma (r_gamma 1.3) and the mod's tonemap sit on top of the corrected vertex light; they are engine settings
+  and were not touched.
+- Blast: a thin dust cloud veils the arch for about 1 s where the reference frame shows the jeep clearly. The particle record
+  fields are only partly decoded ("read as").
+- Tumble: one thrown man passes through the jeep body, and the gunner stands upright on the jeep while it tumbles
+  (stock animations on an invented arc; no decoder for the disc's skeletal animations).
+- The driver's rest spot is on the far side of the wreck from the square; only the passenger's fade was seen on screen.
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -303,7 +332,9 @@ they disappear when the fade time ends. The throw arc and the thrown poses are i
 | Panzer height while driving | path heights | seated on the ground each step (path is up to 9u off) | choice |
 | Jeep | body and four tyres on pre-authored tracks | disc meshes origin-stepped on the disc's keys (20 Hz); wreck = the disc body where its track ends | forced (script_model movement) |
 | Jeep crew poses and animations | disc animations 6500-6511 on body nodes | stock MOHAA poses: seated driver and passenger, gunner at the gun, thrown = death_mortar_high / death_mortar_twist on an invented 0.7 s arc, wounded gunner = A_22_driver_cover; no bump animation (6509-6511) | forced (no decoder for the disc's skeletal animations) |
-| Crew fades | 6 s fade-out of driver, passenger and gunner | not visible: they disappear when the fade time ends | forced for now (stock skins have no entity-alpha stage); fixable with fade-capable skins |
+| Crew fades | 6 s fade-out of driver, passenger and gunner | 6 s fade on fade-capable clones of the stock skins (same textures) | forced (stock skins have no entity-alpha stage) |
+| Thrown crew rest spots | not traced | 110u either side of the wreck | choice |
+| Mine blast effect | disc particle records | emitter built from the records; several fields "read as"; alpha 0.25 | inferred; alpha a choice |
 | Jeep crew fate | trace: driver and passenger thrown out at the blast and fade; gunner wounded, speaks when the player reaches the gun, then fades | default = trace; `coop_fljeepcrew 1` (off) = two stay in cover | settled by the trace |
 | Fire at the jeep | trace: no crew member fires; generators 471 / 472, 10 volleys from +70 to +122 ticks, from two points above and behind the jeep (the strafe) | generators at the disc points, aimed at the jeep (no direction is stored); tracer and gun sound are stock stand-ins | aim = inferred; `coop_fljeepcrew 1` (off) = gunner fires |
 | Jeep .30 cal position | created at +284 ticks | the mesh rides the body; the usable gun is created at +284 on the record's rest spot | choice |
@@ -321,7 +352,12 @@ they disappear when the fade time ends. The throw arc and the thrown poses are i
 | Resistance drop | small package between the crates, hold ACTION about 1 s | the disc's mesh; taken on a single USE press | choice (hold time) |
 | Models | Frontline models | MOHAA stand-ins where no conversion exists | forced |
 | Textures | disc textures | 5 CC0 swaps (mud x3, roof slates, planks) | choice |
-| Sky and far plane | disc sky | MOHAA sky box and fog distance | forced |
+| Sky | 6-face box on the eye, unfogged | the six faces captured from the emulator, in the player's private pak only; stock sky when they are absent; drawn on a hull around the map | exact textures; hull forced (engine) |
+| Fog and far plane | linear 240 to 4800, colour 104,106,109, far clip 4800, clear colour 48,48,48 | same start, end and colour; far plane does not cull (the sky hull lies beyond it); clear colour not represented | exact values; fog as view depth inferred; no cull forced |
+| World light | vertex colours, 1x | vertex colours x 0.352 to cancel the renderer's 4 x 0.71 map light; still brighter than the original (client gamma and tonemap untouched) | forced (engine); residual open |
+| Light on soldiers and objects | vertex colours | ambientlight 40 40 40 plus the engine's light grid | choice (value) |
+| Weather | none | none (rain theme removed in round 11) | exact |
+| Objective wording | disc / published pause screen wording | ours, including two prisoner lines; HUD text = objective menu text | choice (user decision 2026-11-12: "Keep ours it's fine") |
 | Collision | disc collision | built from drawn geometry plus: riverbed, edge-of-world clip, lip ramps, 10 widened spots, 114 kept clip sheets, 5 patches | forced (no usable disc collision); each widened spot is a choice |
 | Tower ladder | disc ladder | built from the drawn ladder; scripted mount and exit at the top | forced (engine top mount needs floor behind the ladder plane; the tower has a wall there) |
 | Canal depth | (user request, not a disc fact) bed should not show through | unchanged default (tehao_indoorwater, bed visible); two converter-only options shot: FL_WATER_SHADER=textures/water/subpen_opaque (dark, opaque) or textures/water/canal_water (green, opaque) | OPEN, user to pick |
