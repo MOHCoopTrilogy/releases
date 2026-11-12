@@ -435,6 +435,29 @@ Not matched or not verified: the HUD did not draw on the gunner stills, so the g
 still; the ambush timing and the re-shoot of the other P-47 passes and rockets wait for the client hold to lift; "Press
 START button to View Objectives" (text id 273, console wording, when shown not traced) is not ported.
 
+## Round 14b (flfix2, 2026-11-12) - shot breach, jeep wreck to the new traces, bomber pair, P-47 re-shoot
+
+Sources: `H:\hzm_work\ref_xemu\TRACE_breach_shoot.md`, `TRACE_jeep_wreck.md`. Mod script only (base checkout,
+commits f9158a0b and 07abce8c); no converter change. Stills and logs: `H:\hzm_work\flpolish\fix2\r14\`.
+
+| item | result | evidence |
+|---|---|---|
+| Shot breach (bug-11087, reverses bug-11078) | 3 player hits on any one of the five barrels (per barrel; a bullet that goes through counts once, on the first barrel) blow all five and the wall on the next frame, no fuse; a shot molotov does not burn | `brs.out`, `brs_sheet.jpg` |
+| Use breach | unchanged: fuse +1.0 s, blast +6.0 s, steps +0/0.2/0.4/0.6, second boom +0.6, open +0.775, OBJ 3 | `bru.out` |
+| Wounded gunner (bug-11088) | face-down over the rear deck by the spare tyre at the trace spot; at 6.2 m his line, he pushes up and stands at the front, worn helmet hidden, a netted helmet left on the rear deck; fade 3.8 s after the line | `j4e.jpg`, `j4a.jpg`, `j4f.jpg` |
+| Gun hint | "Press ACTION to Use Machine Gun" legible with the HUD on (the coop cgame shows each hint key once per profile: test clients clear `coop_hintSeen`) | `jeep3_hint.jpg` |
+| 30cal fire | muzzle flash frames | `j3b.jpg` |
+| Body in view at the gun | harness only (`cg_drawviewmodel 2` = the player's own rifle); nothing with 0 | `j3a.jpg` |
+| Gun wave | 2.0 s after a player mounts the .30 cal: Allies 104-106, Germans 21, 98, 469, out of view; triggers 20 / 59 (recs 87 / 420) hold for the gun | `jeep4.out` |
+| Jeep's own group 65540 | recs 64, 65, 103, 60-62 start with the jeep; rec 103 (StartIdle) holds his spot | `jeep4.out` |
+| Ambush pair recs 69 / 70 | created at bomber clock +4.45 s (0.10 s after bomb A), out of view | `bomb.out` |
+| P-47 rocket pass and circling P-47 at the header rate | plane, two rockets, tank destroyed, circle pass; nothing broken | `pz_sheet.jpg` |
+
+Not matched or not verified: gunner poses are stock stand-ins (6506 / 6507 have no decoder); the worn helmet on our
+model is the plain web one while the dropped one is netted; the rifleman's stay was set (leash) but his 40 s position
+was not logged; whether the wave also comes without the gun (triggers 87 / 420, code 51) is not traced - here it
+waits for the gun; the hint shows once per player profile in co-op (the original shows it each time a player is near).
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -476,10 +499,10 @@ START button to View Objectives" (text id 273, console wording, when shown not t
 | Fog and far plane | fog colour 104,106,109, far clip 100 m, clear colour 48,48,48; register reading linear 5..100 m, but measured on world surfaces it is about a quarter of that at 50 m | start 600, end 16000 (fitted to the reference frame), same colour; no far cull; clear colour not represented | fit from measurement; exact function open (needs the vertex program) |
 | World light | vertex colours, 1x | vertex colours x 0.352 to cancel the renderer's 4 x 0.71 map light; measured equal to texture x vertex colour with the display chain off | forced (engine); exact by measurement |
 | Display chain on disc maps | none (emulator output as is) | the client's r_gamma 1.3 and post chain brighten by 1.3 to 1.45 | choice for the user: a per-map neutral display setting for disc maps (not applied) or keep the mod look |
-| Wall breach | trace timings, disc break frames; use at the molotov barrel; hint "Press ACTION to Ignite Rag" (trace hint 501) | same timings, frames and hint (bug-11083); use only (the records give the barrels no damage path, bug-BRSHOT13 / bug-11078) | open: whether shooting breaches in the original (emulator test pending) |
+| Wall breach | trace timings and break frames; use at the molotov (6 s fuse) or 3 hits on one barrel (no fuse); hint "Press ACTION to Ignite Rag" | same, both ways (bug-11087, bug-11083) | blast look a stand-in (stock emitter) |
 | Texture edges | clamp on non-tiling surfaces | half-texel UV inset on non-tiling axes | forced (engine has no per-axis clamp here) |
 | Fire at the jeep, look | disc tracers | stock muzzle flash and tracer (a white streak in stills) | stand-in |
-| Wounded gunner pose and spot | disc animation 6506, re-attached to the jeep | stock injured loop slumped in the rear of the wreck by the gun mount (bug-11077) | forced (no decoder); spot a stand-in |
+| Wounded gunner pose and spot | animation 6506 face-down over the rear deck, 6507 rises to the front; helmet stays | same spot and sequence with stock clips (dead_pose2, rifle_pronetocrouch, idle); stock netted helmet (bug-11088) | forced (no decoder) |
 | Light on soldiers and objects | vertex colours | the engine's light grid; the ambientlight 40 40 40 key has no visible effect in this renderer | forced (engine) |
 | Weather | none | none (rain theme removed in round 11) | exact |
 | Objective wording | disc / published pause screen wording | ours, including two prisoner lines; HUD text = objective menu text | choice (user decision 2026-11-12: "Keep ours it's fine") |
@@ -488,3 +511,6 @@ START button to View Objectives" (text id 273, console wording, when shown not t
 | Canal depth | (user request, not a disc fact) bed should not show through | unchanged default (tehao_indoorwater, bed visible); two converter-only options shot: FL_WATER_SHADER=textures/water/subpen_opaque (dark, opaque) or textures/water/canal_water (green, opaque) | OPEN, user to pick |
 | Time and frag limits | none | switched off for the mission | forced (co-op) |
 | World mirroring | - | none (un-mirrored since bug-10965) | - |
+
+| Hint memory in co-op | hint shown each time a player is near | the coop cgame shows each hint key once per player profile (`coop_hintSeen`) | mod-wide rule, not changed here |
+| Gun wave without the gun | triggers 87 / 420 (msg 51) also hold id 19; never fired in the traced runs | the wave waits for a player to mount the gun (bug-11088) | choice (not traced) |
