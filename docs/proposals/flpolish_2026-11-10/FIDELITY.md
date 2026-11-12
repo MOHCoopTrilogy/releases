@@ -220,9 +220,8 @@ Build v65hb. Stills and logs under `H:\hzm_work\flpolish\fix2\`.
 | MG42 gunner seat | gun 1: gunner crouched behind the stock, co-op client. Guns 2, 4, 5, 6 never logged as manned in any run | `vc4\c_mg1_00.tga` |
 | Jeep scene | fires from trigger 17 for a co-op player, drives in through the arch, mine, stops at the wreck spot in 7.625 s; Stuka dogfight starts with it and the Stuka is removed at its end | `vc3\sheet_jeep.jpg`, `vc3\qconsole.log` |
 | Crawl passage to the interrogation | passes in SP physics only; not walked by a co-op player | `vw64\` |
-| Tower ladder | disc ladder | built from the drawn ladder; scripted mount and exit at the top | forced (engine top mount needs floor behind the ladder plane; the tower has a wall there) |
-| Canal depth | (user request, not a disc fact) bed should not show through | unchanged default (tehao_indoorwater, bed visible); two converter-only options shot: FL_WATER_SHADER=textures/water/subpen_opaque (dark, opaque) or textures/water/canal_water (green, opaque) | OPEN, user to pick |
-| Tower ladder down (bug-11017) | OPEN. Six runs, no clean top mount | - |
+| Tower ladder up | passes in a co-op client | `vw71\` |
+| Tower ladder down (bug-11017) | was OPEN here; fixed in round 9 (bug-11027) | `r9\sheet_lad2.jpg` |
 | Window from the street | no void | `vw72_pond\v_win1..3.jpg` |
 | Canal water (bug-11019) | emitted as `textures/choppywater/tehao_indoorwater`, up normals, world UVs | `vw_hq\hq_quay_02.png`, `hq_eye_01.png`, `hq_low_01.png`, `canal_clip_5s.mp4` |
 | Unseen deaths walk | NOT zero. coop_fltest 9, 1 client: 63/63 triggers, objectives 1-5, 0 script errors, 0 spawned in view. German deaths beyond 1500u of the walker 4 of 42 (was 22 unseen before the gating): the tank set piece and fights the walker teleported away from. American 5 of 9, all the jeep crew, because the walk harness misses trigger 17 (bug-11020). The walk teleports; a human walk is the real test | `aa_t9\aiaudit.json`, `aa_t9\server_qconsole.log` |
@@ -301,6 +300,7 @@ original. Stills and logs under `H:\hzm_work\flpolish\fix2\r9\`. Build v71 (conv
 | Textures | disc textures | 5 CC0 swaps (mud x3, roof slates, planks) | choice |
 | Sky and far plane | disc sky | MOHAA sky box and fog distance | forced |
 | Collision | disc collision | built from drawn geometry plus: riverbed, edge-of-world clip, lip ramps, 10 widened spots, 114 kept clip sheets, 5 patches | forced (no usable disc collision); each widened spot is a choice |
-| Tower ladder | disc ladder | built from the drawn ladder with a scripted top exit | forced |
+| Tower ladder | disc ladder | built from the drawn ladder; scripted mount and exit at the top | forced (engine top mount needs floor behind the ladder plane; the tower has a wall there) |
+| Canal depth | (user request, not a disc fact) bed should not show through | unchanged default (tehao_indoorwater, bed visible); two converter-only options shot: FL_WATER_SHADER=textures/water/subpen_opaque (dark, opaque) or textures/water/canal_water (green, opaque) | OPEN, user to pick |
 | Time and frag limits | none | switched off for the mission | forced (co-op) |
 | World mirroring | - | none (un-mirrored since bug-10965) | - |
