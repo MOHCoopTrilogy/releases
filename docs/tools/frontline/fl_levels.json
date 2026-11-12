@@ -58,7 +58,9 @@
    "bark_incoming": 22,
    "bark_cover": 23,
    "bark_tanks": 24,
-   "bark_planes": 25
+   "bark_planes": 25,
+   "bark_away": 20,
+   "bark_pig": 21
   },
   "_barks": "[flpolish] the four road/square shouters (classes Soldier_SayIncoming / SayGetOutOfTheOpen / SayTheyreAfterTheTanks / SayPlanesAbove): unsubtitled German lines in the same script bank, matched to their classes by transcribing the decoded samples locally; no subtitle, as on the disc",
   "speakers": {
