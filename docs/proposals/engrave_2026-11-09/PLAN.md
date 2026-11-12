@@ -161,3 +161,11 @@ the gun, so every decal is behind the hands and follows reloads.
   command the widget sends), 3440x1440, other players' view.
 - QA: `docs/tools/engrave/qa/click_run.py <tag> look|clicks|hand|ops <WxH> <display WxH>` (own home, binaries from the build
   tree, never under the user's game: harness_guard.user_game_running_raw()).
+- **Anywhere (same day, user: "engrave just about anywhere on any gun we would want")**: a click now takes ANY drawn
+  surface - the scope's body and mount, magazines and belts (note: the piece stays put while the magazine is out), grips,
+  both sides, surfaces whose stored normals point inwards (the Thompson's magazine). Still refused: glass (a lens is
+  see-through), a hand, a surface seen edge-on, a place too small or too curved for even a fifth of the piece (a scope
+  ring, a thin barrel: the quad is flat). The AUTOMATIC spots stay off optics. Covered: every gun with an anchor key (93
+  meshes, 1672 tiks, all finishes); only the grenades have none. A piece on a moving part (a slide, a bolt, a magazine)
+  does not move with it - quads ride the gun's entity, not its bones. Stills: H:/hzm_work/engrave/click/anywhere2.
+  Test clients: the 1920x1080 screen only, one at a time (click_run.py refuses anything else).

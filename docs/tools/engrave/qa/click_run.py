@@ -22,9 +22,14 @@ import harness_window as hw  # noqa: E402
 tag, scen, win, disp = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 W, H = (int(v) for v in win.split("x"))
 DW, DH = (int(v) for v in disp.split("x"))
+# user rule 2026-11-11 (H:\hzm_work\DISPLAY_QUEUE.md): every test client on the 1920x1080 screen ONLY, nothing on the
+# 3440x1440 ultrawide until the user says otherwise. Picked by resolution; any other display is refused here.
+if (DW, DH) != (1920, 1080):
+    raise SystemExit("test clients go on the 1920x1080 screen only (DISPLAY_QUEUE.md rule of 2026-11-11), not %s" % disp)
 mon = [m for m in hw.monitors() if (m["rect"][2] - m["rect"][0], m["rect"][3] - m["rect"][1]) == (DW, DH)]
 if not mon:
     raise SystemExit("no %s display" % disp)
+W, H = min(W, DW), min(H, DH)
 
 GOG = r"G:\GOG\Medal of Honor - Allied Assault War Chest"
 CLIENT = r"G:\mohaa-engrave"
@@ -150,6 +155,8 @@ c("echo ^~^~^ CLICKRUN done"); c("quit")
 # cursor clip). This work's rule is: never while the user's own game runs.
 if hg.user_game_running_raw():
     raise SystemExit("the user's game is running: not launching a test client")
+if [p for p in hg.classify() if p["cls"] != "SERVER" and p["cls"] != "USER"]:
+    raise SystemExit("another test client is up: one at a time on the 1920x1080 screen")
 with open(r"H:\hzm_work\display_queue.txt", "a") as q:
     q.write("%s engrave free placement %s/%s (1 client %dx%d, muted, ~%d min)\n" % (
         time.strftime("%Y-%m-%d %H:%M"), tag, scen, W, H, max(1, sum(int(x.split()[1]) for x in L if x.startswith("wait ")) // 60000 + 1)))
@@ -183,7 +190,7 @@ args = [EXE, "+set", "com_target_game", "2", "+set", "fs_basepath", GOG, "+set",
 wd = hw.sdl_display_index(mon[0]) if hw.supports_window_cvars(CLIENT) else None
 args, late = hw.apply_policy(args, width=W, height=H, display=mon[0], window_display=wd)
 boot = ["set in_joystick 0", "set in_gamepad 0", "set in_mouse 0", "set in_nograb 1", "set s_volume 0", "set s_musicvolume 0",
-        "set s_ambientvolume 0", "set developer 1"]
+        "set s_ambientvolume 0", "set coop_tinnitusBaseVol 0", "set coop_tinnitusMuffle 0", "set coop_woundMuffleVol 0", "set developer 1"]
 open(os.path.join(MAINTT, "click_run.cfg"), "w", newline="\n").write("\n".join(late + boot + L) + "\n")
 cl = hw.launch_background(args[0], args[1:], CLIENT, policy=False, log=log, display=mon[0])
 t0 = time.time()

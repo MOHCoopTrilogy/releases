@@ -2,7 +2,7 @@
 
 **Card line**
 CUSTOMIZE BENCH: click the gun to put your engraving or an emblem exactly where you want it. It sits flat on the spot
-you picked and shows there on the gun in your hands. Scopes are off limits, and no gun carves its words on one any more.
+you picked and shows there on the gun in your hands. Stock, receiver, barrel, grip, magazine, even the scope's body - your call. Left alone, no gun puts its words on a scope any more.
 
 **Notes line (README / release notes)**
 - Customize bench: click anywhere on the gun to place the engraving or an emblem there. MOVE, TILT, SIZE, MIRROR and
