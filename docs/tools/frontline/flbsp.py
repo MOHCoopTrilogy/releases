@@ -60,6 +60,7 @@ class BSP:
         self.brushes = []          # dict(shader, sides[(plane, shader)], bounds)
         self.models = []           # extra inline models: dict(surfaces[ids], brushes[ids])
         self.entities = []         # list of ordered (key, value) lists
+        self.light_gain = 1.0      # every drawvert colour is multiplied by this when written (see flconvert)
         self.vis_cell = 0          # >0: leafs no wider than this, clustered on a 2D grid of this size
         self.vis_radius = 0        # cluster sees cluster when their cell centres are within this distance
 
@@ -91,6 +92,13 @@ class BSP:
         hi = [max(v[0][k] for v in verts) for k in range(3)]
         self.surfaces.append({"shader": shader_ix, "verts": verts, "indexes": list(indexes), "bounds": (lo, hi)})
         return len(self.surfaces) - 1
+
+    def add_face(self, shader_ix, verts, indexes, normal):
+        """[flfix2 bug-11058] one planar surface (MST_PLANAR, plane normal in the third lightmap vector): the engine's
+        portal sky test only takes planar faces."""
+        ix = self.add_soup(shader_ix, verts, indexes)
+        self.surfaces[ix]["planar"] = tuple(float(c) for c in normal)
+        return ix
 
     def add_brush_planes(self, shader_ix, planes_nd, lo, hi):
         """planes_nd: extra (normal, dist) planes; 6 axial bevels are prepended."""
@@ -233,11 +241,15 @@ class BSP:
         nverts = nidx = 0
         for old in s_order:
             s = self.surfaces[old]
+            lg = self.light_gain
             for xyz, st, nrm, rgba in s["verts"]:
+                if lg != 1.0:
+                    rgba = tuple(min(255, int(c * lg + 0.5)) for c in rgba[:3]) + (rgba[3],)
                 sv += struct.pack("<3f2f2f3f4B", *xyz, *st, 0.0, 0.0, *nrm, *rgba)
             si += struct.pack(f"<{len(s['indexes'])}i", *s["indexes"])
-            ss_ += struct.pack("<12i3f9f2if", s["shader"], -1, 3, nverts, len(s["verts"]), nidx, len(s["indexes"]),
-                               -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0)
+            pn = s.get("planar")
+            ss_ += struct.pack("<12i3f9f2if", s["shader"], -1, 1 if pn else 3, nverts, len(s["verts"]), nidx, len(s["indexes"]),
+                               -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, *(pn or (0, 0, 0)), 0, 0, 0.0)
             nverts += len(s["verts"])
             nidx += len(s["indexes"])
         lumps[L_SURFACES], lumps[L_DRAWVERTS], lumps[L_DRAWINDEXES] = bytes(ss_), bytes(sv), bytes(si)

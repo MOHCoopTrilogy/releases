@@ -34,7 +34,7 @@ import flscene  # noqa: E402
 import flfit  # noqa: E402
 import flcliff  # noqa: E402
 
-CONVERTER_VERSION = "0.5.0"
+CONVERTER_VERSION = "0.6.0"
 FL_STEP = 38                  # Frontline step height at 48 u/m: its characters walk the original routes over 35-37u lips (route audit 2026-11-10); 34 left 28 of them blocked
 
 # Frontline .cdb collision flag word (flcore.collision, decoded 2026-11-10 against the level's own AI nav graph):
@@ -48,6 +48,16 @@ COLL_MAT_VOLUME = (14, 15)   # 14 trigger volumes; 15 the river's WATER volume (
 COLL_SPECIAL = 1 << 23
 TAG_CLIFF = 0x7FFFF001        # [flpolish] collision added by us: edge-of-world clip (flcliff) / lip ramps (flclear)
 TAG_RAMP = 0x7FFFF002
+# [flfix2] open water (canal, river) is drawn with the MOD'S water: a stock shader name the gl2 water pass allowlists
+# (hzm_waterwet.h HARBOUR preset) and whose stock script is the gl1 look. Nothing disc-derived is used for it. The
+# name is the one the user accepted on screen (2026-11-11); pond / water_nodraw read as small drifting tiles or a flat
+# blue sheet. FL_WATER_SHADER= (empty) is a debug switch only (the old blended vertex-alpha surface), never a default.
+WATER_SHADER = os.environ.get("FL_WATER_SHADER", "textures/choppywater/tehao_indoorwater")
+# [flfix2] the stock shader's own stages are drawn with the surface's
+# texcoords: Frontline's (made for its small water tile) turned them into small drifting tiles. World-space instead,
+# one tile per FL_WATER_TILE units (a stock pond brush face at its usual scale).
+WATER_TILE = float(os.environ.get("FL_WATER_TILE", "512"))
+CONTENTS_WATER = 0x20
 TAG_RIVERBED = 0x7FFFF005    # [flpolish] the bed under the canal's water volume (a player who falls in lands and drowns)
 TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dropped player-clip sheet stood in front of
 
@@ -55,7 +65,56 @@ TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dro
 def coll_is_volume(f):
     return bool(f & COLL_VOLUME) and (f & 0x7FF) in COLL_MAT_VOLUME
 MERGE_CELL = 1536.0
+# reskinned hedge blocks: a face counts as standing up to this normal z. 0.5 dropped the three leaning skirt
+# faces of 1_1 (normal z 0.51 to 0.59; draws 153, 491, 1231), which left the foot of the start lane's west
+# hedge open to the fogged far ground: a bright wedge. The disc has no flat hedge tops. [flfix2 bug-11059]
+RESKIN_NZ = 0.7
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
+
+
+def sky_faces(src_dir, prefix, flip_y):
+    """[flfix2 bug-11058] The original's sky is a 6-face box centred on the eye (emulator trace TRACE_sky_fog.md):
+    <prefix>_px/nx/py/ny/pz/nz.png, uv 0,0 = top-left texel, face corners as traced. Re-cut texel for texel into the
+    engine's six sky images (rt bk lf ft up dn). flip_y: a mirrored build (map y = -original y).
+    -> {suffix: (w, h, rgba bytes)} or None when the folder or a face is missing (the level then keeps its stock sky)."""
+    try:
+        from PIL import Image
+    except ImportError:
+        return None
+    F = {"py": ((-1, 1, 1), (1, 1, 1), (-1, 1, -1)), "px": ((1, 1, 1), (1, -1, 1), (1, 1, -1)),
+         "ny": ((1, -1, 1), (-1, -1, 1), (1, -1, -1)), "nx": ((-1, -1, 1), (-1, 1, 1), (-1, -1, -1)),
+         "pz": ((-1, -1, 1), (1, -1, 1), (-1, 1, 1)), "nz": ((-1, 1, -1), (1, 1, -1), (-1, -1, -1))}   # uv 00, 10, 01
+    img = {}
+    for k in F:
+        fp = os.path.join(src_dir, f"{prefix}_{k}.png")
+        if not os.path.isfile(fp):
+            return None
+        img[k] = Image.open(fp).convert("RGB")
+    # engine sky faces (tr_sky.c MakeSkyVec): direction for image coordinate (s, t), s right, t up, both -1..1
+    E = {"rt": lambda a, b: (1.0, -a, b), "lf": lambda a, b: (-1.0, a, b), "bk": lambda a, b: (a, 1.0, b),
+         "ft": lambda a, b: (-a, -1.0, b), "up": lambda a, b: (-b, -a, 1.0), "dn": lambda a, b: (b, -a, -1.0)}
+    out = {}
+    for suf, vec in E.items():
+        n = 128
+        buf = bytearray()
+        for j in range(n):
+            for i in range(n):
+                d = vec((i + 0.5) / n * 2 - 1, 1 - (j + 0.5) / n * 2)
+                if flip_y:
+                    d = (d[0], -d[1], d[2])
+                ax = max(range(3), key=lambda q: abs(d[q]))
+                k = ("p" if d[ax] > 0 else "n") + "xyz"[ax]
+                m = abs(d[ax])
+                q = tuple(c / m for c in d)
+                v0, v1, v3 = F[k]
+                u = sum((q[c] - v0[c]) * (v1[c] - v0[c]) for c in range(3)) / 4.0
+                v = sum((q[c] - v0[c]) * (v3[c] - v0[c]) for c in range(3)) / 4.0
+                im = img[k]
+                x = min(im.width - 1, max(0, int(u * im.width)))
+                y = min(im.height - 1, max(0, int(v * im.height)))
+                buf += bytes(im.getpixel((x, y))) + b"\xff"
+        out[suf] = (n, n, bytes(buf))
+    return out
 
 
 def tga_bytes(w, h, rgba):
@@ -135,6 +194,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         flip_render = not (rdown > rup)
 
     B = flbsp.BSP()
+    # [flfix2 bug-11057] the disc's vertex colour is a plain 1x modulate of the texture. The gl2 renderer multiplies
+    # BSP vertex colours at load by 2^(r_mapOverBrightBits - r_overBrightBits) * r_mapOverBrightScale. The mod ships
+    # r_mapOverBrightBits 2, r_overBrightBits 0 (coop_defaults.cfg) and r_mapOverBrightScale 0.71 = 2.84, which
+    # saturated the disc's colours (about 200 of 255) to white: flat bright daylight. Cancelled here, in the
+    # converted map only (no engine cvar is touched). Engine-derived constant, not a look choice.
+    B.light_gain = float(os.environ.get("FL_LIGHT_GAIN") or flpack.spec(level).get("light_gain", 1.0 / (4.0 * 0.71)))
     B.vis_cell = 1024.0
     B.vis_radius = float(flpack.spec(level).get("vis_radius", 0))
     files = {}
@@ -204,8 +269,19 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     debug_ids = {}
 
+    water_keys = set()
+
     def tex_shader(key):
         if key in tex_names:
+            return tex_names[key]
+        if (key in vtx_alpha and WATER_SHADER and tex_flat.get(key, 0) >= 0.9 and not os.environ.get("FL_DEBUGCOLOR")
+                and (L.texture(key) or {}).get("rgba") and min(L.texture(key)["rgba"][3::4]) >= 250):
+            # [flfix2] Frontline's water (flat meshes with real vertex alpha and an OPAQUE texture; the soft shadow and
+            # scorch decals also carry vertex alpha, but their texture has an alpha channel) -> the mod's water shader
+            stats["water_shader"] = WATER_SHADER
+            water_keys.add(key)
+            stats["water_textures"] = stats.get("water_textures", 0) + 1
+            tex_names[key] = B.shader(WATER_SHADER, 0, 0)
             return tex_names[key]
         if key is None:
             name = tdir + "untextured"
@@ -218,7 +294,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             return tex_names[key]
         t = L.texture(key)
         short = key.replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_")
-        name = tdir + short
+        # [flfix2 bug-11034] no dot in a shader name: the engine strips a shader name at its last dot
+        # (COM_StripExtension), so every texture of one object mesh ("Vehicle_Jeep_Body.msh_11a00", "..msh_13b00")
+        # resolved to the same shader and the whole jeep wore its grille texture
+        name = tdir + short.replace(".", "_")
         up = texmap.get(short)
         if up and upgrade_ok(up):
             # upgrade to a texture the mod already ships (fl_texmap.json); Frontline's vertex light stays on top
@@ -265,7 +344,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             # (grass fringes along hedges) carry it in the texture - alpha-TEST turned their pale fringe opaque
             ag = "\t\talphaGen vertex\n" if key in vtx_alpha else ""
             stats["blended"] = stats.get("blended", 0) + 1
-            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm trans\n\tcull none\n\t{\n\t\tmap "
+            # [flfix2] soft ground decals (blob shadows under the MG nests and crates, scorch and stain patches) lie
+            # 0.5-3u over the cobbles: without a depth offset they z-fight into hard black patches at range
+            po = "\tpolygonOffset\n" if soft and tex_flat.get(key, 0) >= 0.9 else ""
+            if po:
+                stats["ground_decals"] = stats.get("ground_decals", 0) + 1
+            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm trans\n" + po + "\tcull none\n\t{\n\t\tmap "
                                 + name + ".tga\n\t\tblendFunc blend\n\t\trgbGen vertex\n" + ag + "\t}\n}\n")
         elif has_alpha:
             stats["alpha_textures"] += 1
@@ -350,6 +434,29 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             return (min(zs), max(zs)) if zs else (0.0, 0.0)
         return f
 
+    # [flfix2 bug-11064] A texture axis the level never tiles (every UV of that texture within 0..1) is sampled right
+    # on its edge rows; the mod's renderer wraps and filters, so the opposite edge row bleeds in as a thin line (the
+    # pale line down the middle of the start lane, where the road texture is mirrored at v = 0, and the white streaks
+    # at the edges of branch cards against the sky). Those axes are pulled in by half a texel: 0 and 1 land on the
+    # centres of the edge rows. Axes that tile are left alone.
+    uv_rng = {}
+    for m in meshes:
+        if m["tris"] and m["uvs"]:
+            r_ = uv_rng.setdefault(m["tex"], [9.0, -9.0, 9.0, -9.0])
+            us_ = [q[0] for q in m["uvs"]]
+            vs_ = [q[1] for q in m["uvs"]]
+            r_[0] = min(r_[0], min(us_)); r_[1] = max(r_[1], max(us_))
+            r_[2] = min(r_[2], min(vs_)); r_[3] = max(r_[3], max(vs_))
+    uv_inset = {}
+    for k_, r_ in uv_rng.items():
+        t_ = L.texture(k_) if k_ is not None else None
+        if not t_ or not t_.get("w") or not t_.get("h"):
+            continue
+        iu_ = t_["w"] if (r_[0] >= -0.002 and r_[1] <= 1.002) else 0
+        iv_ = t_["h"] if (r_[2] >= -0.002 and r_[3] <= 1.002) else 0
+        if iu_ or iv_:
+            uv_inset[k_] = (iu_, iv_)
+    stats["uv_inset_textures"] = len(uv_inset)
     batches = {}
     for m in meshes:
         if not m["tris"]:
@@ -383,7 +490,21 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             if gr:
                 r, g, b = (min(255, int(round(c * k))) for c, k in zip((r, g, b), gr))
             u, v = m["uvs"][i]
-            verts.append((p, (u, v), tuple(x / l for x in acc[i]), (r, g, b, va if m["tex"] in vtx_alpha else 255)))
+            ins_ = uv_inset.get(m["tex"])
+            if ins_:
+                if ins_[0]:
+                    u = (0.5 + min(1.0, max(0.0, u)) * (ins_[0] - 1)) / ins_[0]
+                if ins_[1]:
+                    v = (0.5 + min(1.0, max(0.0, v)) * (ins_[1] - 1)) / ins_[1]
+            if m["tex"] in water_keys:
+                u, v = p[0] / WATER_TILE, p[1] / WATER_TILE
+            nrm = tuple(x / l for x in acc[i])
+            if m["tex"] in water_keys:
+                # the water pass draws only where the vertex normal points up (hzmwater_fp.glsl: var_NormalZ >= 0.7, a stock
+                # brush face's own normal); Frontline winds its water sheet the other way, so the summed face normals
+                # point DOWN and the pass discarded every pixel: the canal showed the stock stages alone
+                nrm = (0.0, 0.0, 1.0)
+            verts.append((p, (u, v), nrm, (r, g, b, va if m["tex"] in vtx_alpha else 255)))
         rk = reskin.get(short_key(m["tex"])) if m["tex"] else None
         if rk:
             # fl_modelmap.json "reskin": render-only swap to MOHAA art from the player's own install (e.g. Frontline's
@@ -398,7 +519,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             planes_ = {}
             for a, b, c in tris:
                 n = face_normal(verts[a][0], verts[b][0], verts[c][0])
-                if not n or abs(n[2]) > 0.5:
+                if not n or abs(n[2]) > RESKIN_NZ:
                     continue
                 hl = math.hypot(n[0], n[1]) or 1.0
                 hx, hy = n[0] / hl, n[1] / hl
@@ -414,8 +535,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             for a, b, c in tris:
                 T = [verts[a], verts[b], verts[c]]
                 n = face_normal(T[0][0], T[1][0], T[2][0])
-                if not n or abs(n[2]) > 0.5:
-                    continue                          # only the vertical faces of the block
+                if not n or abs(n[2]) > RESKIN_NZ:
+                    continue                          # only the standing faces of the block
                 z0, z1 = planes_[planes_[("t", a, b, c)]]
                 if z1 - z0 < 4:
                     continue
@@ -462,7 +583,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             batches.setdefault((sh_, int(cx // MERGE_CELL), int(cy // MERGE_CELL)), []).append((verts, tris))
         stats["seam_bridges"] = len(br)
         # hand-located corner holes no edge pair spans (fl_levels.json "patches": polygon + texture + reason)
-        pq = flseam.patches(draws + br, flpack.spec(level).get("patches", []), lambda i: B.shaders[i][0])
+        pq = flseam.patches(draws + br, flpack.spec_xy(level, X, "patches"), lambda i: B.shaders[i][0])
         for sh_, verts, tris in pq:
             cx = sum(v[0][0] for v in verts) / len(verts)
             cy = sum(v[0][1] for v in verts) / len(verts)
@@ -488,12 +609,35 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     stats["surfaces"] = nmerged
 
     # sky box (quads around the world, both windings) so the void renders as a MOHAA sky
+    # [flfix2 bug-11058] the original's own sky box when its six faces are at hand (FL_SKY_DIR + the level's
+    # "sky_faces" prefix; private captures, never shipped); otherwise the stock sky named in the level table
+    _sf = None
+    if not sky_shader and os.environ.get("FL_SKY_DIR") and flpack.spec(level).get("sky_faces"):
+        _sf = sky_faces(os.environ["FL_SKY_DIR"], flpack.spec(level)["sky_faces"], mirror)
+    if _sf:
+        sky_shader = f"textures/fl/{level}/sky"
+        for _suf, (_w, _h, _px) in _sf.items():
+            files[f"env/fl_{level}_sky_{_suf}.tga"] = tga_bytes(_w, _h, _px)
+        shader_lines.append(f"{sky_shader}\n{{\n\tsurfaceparm sky\n\tsurfaceparm noimpact\n\tsurfaceparm nolightmap\n"
+                            f"\tskyParms env/fl_{level}_sky 512 -\n"
+                            # the original's sky is never fogged: nofog is a stage word, so a stage that draws nothing carries it
+                            f"\t{{\n\t\tmap $whiteimage\n\t\tblendFunc GL_ZERO GL_ONE\n\t\tnofog\n\t}}\n}}\n")
+    stats["sky"] = sky_shader or flpack.spec(level).get("sky", "textures/sky/mohday1")
     sky = B.shader(sky_shader or flpack.spec(level).get("sky", "textures/sky/mohday1"), 0x4 | flbsp.SURF_NOLIGHTMAP, 0)
     blo = [max(min(s["bounds"][0][k] for s in B.surfaces) - 1024, -16300) for k in range(3)]
     bhi = [min(max(s["bounds"][1][k] for s in B.surfaces) + 1024 + 4096 * (k == 2), 16300) for k in range(3)]
     corners = [(x, y, z) for z in (blo[2], bhi[2]) for y in (blo[1], bhi[1]) for x in (blo[0], bhi[0])]
     for q in ((0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)):
         vs = [(corners[i], (0.0, 0.0), (0.0, 0.0, 1.0), (255, 255, 255, 255)) for i in q]
+        if _sf:
+            # planar faces, normal toward the level, as stock maps carry their sky
+            _c = [sum(corners[i][k] for i in q) / 4.0 for k in range(3)]
+            _m = [(blo[k] + bhi[k]) / 2.0 for k in range(3)]
+            _ax = max(range(3), key=lambda k: abs(_m[k] - _c[k]))
+            _n = [0.0, 0.0, 0.0]
+            _n[_ax] = 1.0 if _m[_ax] > _c[_ax] else -1.0
+            B.add_face(sky, vs, [0, 1, 2, 0, 2, 3, 0, 2, 1, 0, 3, 2], _n)
+            continue
         B.add_soup(sky, vs, [0, 1, 2, 0, 2, 3, 0, 2, 1, 0, 3, 2])
 
     clip = B.shader("textures/common/fl_collision", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
@@ -549,7 +693,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         wtags += [TAG_DRAWN] * len(drawn_coll)
         wound, wtags, stats["routes"] = flroutes.carve(
             wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL) and f < TAG_CLIFF,
-            dense=flpack.spec(level).get("route_widen", ()))
+            dense=flpack.spec_xy(level, X, "route_widen"))
         # ...and the sheets that stay (the level's boundaries where nothing is drawn) get a VISIBLE edge: a barbed-wire
         # fence along their foot (MOHAA's own textures/mohcommon/barbwire from the player's install)
         gk_ = flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED])   # fences stand on land, not the canal bed
@@ -679,6 +823,22 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             rejected += 1
         else:
             nb += 1
+    # [flfix2] the water itself: a CONTENTS_WATER volume from the river's surface (material 15) down to its bed, so
+    # the engine knows a player is in water (splash, wading, the underwater view) before the script drowns him
+    nwv = 0
+    if WATER_SHADER:
+        wsh = B.shader("textures/common/fl_water_vol", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, CONTENTS_WATER)
+        for (a2, b2, c2), tg in zip(wound, wtags):
+            if tg != TAG_RIVERBED:
+                continue
+            a3, b3, c3 = [(q[0], q[1], q[2] + 160.0) for q in (a2, b2, c2)]
+            ux, uy = b3[0] - a3[0], b3[1] - a3[1]
+            vx, vy = c3[0] - a3[0], c3[1] - a3[1]
+            if ux * vy - uy * vx < 0:
+                b3, c3 = c3, b3                       # normal up: the slab lies under the surface
+            if B.add_prism(wsh, a3, b3, c3, thickness=157.0, centered=False) is not None:
+                nwv += 1
+    stats["water_volume_brushes"] = nwv
     for lo_, hi_ in caps:
         B.add_brush_planes(B.shader("textures/common/fl_coll_cap", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP,
                                     flbsp.CONTENTS_SOLID), [], lo_, hi_)
@@ -769,12 +929,17 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if spc.get("solid"):
             # the door blocks while it is shut: one box on its own bounds (moves with it)
             brushes_.append(B.add_brush_planes(clip, [], lo_, hi_))
+        for b0_, b1_ in spc.get("boxes", []):
+            # explicit clip boxes in the mesh's own frame, disc metres (the standing ends of the breached wall)
+            c0_, c1_ = Xr(b0_), Xr(b1_)
+            brushes_.append(B.add_brush_planes(clip, [], [min(c0_[q], c1_[q]) for q in range(3)],
+                                               [max(c0_[q], c1_[q]) for q in range(3)]))
         B.models.append({"surfaces": surf_ids, "brushes": brushes_})
         nom += 1
         kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)), ("targetname", "fl_om_" + tag_)]
         if rec_ is not None:
             o_ = X(rec_["pos"])
-            a_ = flscene.raw_angles(struct.unpack("<4f", struct.pack("<4I", *flscene.words(rec_)[7:11])))
+            a_ = flscene.raw_angles(struct.unpack("<4f", struct.pack("<4I", *flscene.words(rec_)[7:11])), X.m < 0)
             kv += [("origin", "%.1f %.1f %.1f" % o_), ("angles", "%.1f %.1f %.1f" % a_)]
         om_ents.append(kv)
     stats["object_meshes"] = nom
@@ -784,12 +949,24 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     player = next((e for e in ents if "Player" in e["strs"]), None)
     sp = flpack.spec(level)
     ws = [("classname", "worldspawn"), ("message", f"Frontline {level} (converted locally, converter {CONVERTER_VERSION})"),
-          ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
-          ("ambientlight", "40 40 40"),
+          ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(os.environ.get("FL_FARPLANE") or sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
+          # [flfix2 bug-11058] fog start (the engine takes 18% of the far plane when this is 0)
+          ("farplane_bias", str(sp.get("farplane_bias", 0))),
+          # [flfix2 bug-11058] with the far plane as a cull plane the sky hull (further off than the fog end) is never
+          # drawn and the void shows the fog colour; the level table can switch the culling off (fog only)
+          ("farplane_cull", str(sp.get("farplane_cull", 1))),
+          ("ambientlight", os.environ.get("FL_AMBIENT") or str(sp.get("ambientlight", "40 40 40"))),
           # [flpolish] engine extensions this map opts into (HZM engine >= 1.10.73; older engines ignore the keys):
           # entity coordinates past +-8192 (the jeep's start behind the gate) and Frontline's own step height (its body
           # walks over the 19-34u lips and kerbs MOHAA's 18u step snags on). server/sv_init.c reads both.
           ("hzm_widecoords", "1"), ("hzm_stepsize", str(sp.get("step_height", FL_STEP)))]
+    # [flfix2] bug-10969: the engine keeps the AI path graph it builds for a map in <home>/maps/<map>.pth and reuses it
+    # while the BSP's map_time matches (navigate.cpp ArchiveLoadNodes). We wrote none, so every conversion matched every
+    # other: the graph of the FIRST conversion was used for all later ones (soldiers that stand still, 'couldn't find
+    # end node'). A stamp that changes with the converter and with what it built makes the engine rebuild it once.
+    import zlib
+    ws.append(("map_time", "hzm-%s-%d-%08x" % (CONVERTER_VERSION, flpack.CONV_BUILD, zlib.crc32(repr(sorted(
+        (k, v) for k, v in stats.items() if isinstance(v, int))).encode()) & 0xffffffff)))
     B.entity(ws)
     for kv in om_ents:
         B.entity(kv)
@@ -827,6 +1004,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     os.remove(bsp_path)
     files[f"scripts/fl_{level}.shader"] = "".join(shader_lines).encode()
     pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base, grid=grid) if vgm else None
+    # [flfix2] tier-1 textures (TEXTURES.md, approved 2026-11-11): CC0 ground / roof / plank / stone, cut-out upscale
+    import flhd
+    hd_rep = flhd.apply(files, level, flpack.spec(level), mapname)
 
     os.makedirs(os.path.dirname(os.path.abspath(out_pk3)), exist_ok=True)
     with zipfile.ZipFile(out_pk3, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:

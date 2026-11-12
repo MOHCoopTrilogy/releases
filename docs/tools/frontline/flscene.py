@@ -61,9 +61,19 @@ def state(e):
     return ""
 
 
+class _Frames(list):
+    ticks = 2
+
+
 def mvd_frames(data):
     v, n, fl = struct.unpack_from("<3I", data, 4)
-    return [struct.unpack_from("<3fI4f", data, 16 + 32 * i) for i in range(n)]
+    fr = _Frames(struct.unpack_from("<3fI4f", data, 16 + 32 * i) for i in range(n))
+    # [flfix2 bug-11080] the header's first word is how many 60 Hz game ticks one key lasts (measured against the
+    # emulator's position tracks: 1 = the P-47s, the bombs, the rockets - one key per tick; 2 = the jeep, its wheels,
+    # the Stuka, the house parts, the U-boat - one key per two ticks). Everything was played at 30 keys a second, so
+    # the bomber and its bombs ran at half speed (12.0 s instead of the original's 6.1 s).
+    fr.ticks = v if v in (1, 2) else 2
+    return fr
 
 
 def _qmat(w, x, y, z):
@@ -94,13 +104,19 @@ def mohaa_angles(q, mirror):
     return pitch, yaw, roll
 
 
-def raw_angles(q):
+def raw_angles(q, mirror=True):
     """[flpolish] MOHAA (pitch, yaw, roll) of the stored rotation itself, for Frontline's OWN meshes kept in their own
     local frame (flconvert inline models, mirrored in y like the world). Checked on the door (record 401): its 180-degree
     turn hangs the 2.6 m panel from its record point 2.5 m above the street, swinging edge in the drawn doorway."""
-    m = [list(r) for r in _qmat(*q)]
+    # [flfix2 bug-11035] the stored quaternion is the INVERSE of the object's rotation (measured on the disc keys: with
+    # the transpose the jeep body's +y is its direction of travel on every key, dot 0.99-1.00, and each wheel's axle
+    # (its mesh x) stays level and across the path while it spins and ends upright = the wheel lying flat; with the
+    # matrix as stored the body headed up to 180 degrees off and the wheels came to rest leaning). A yaw-only turn of
+    # 180 degrees (the door, the only earlier check) is its own inverse, which is how this passed.
+    m = [list(r) for r in zip(*_qmat(*q))]
     # the mesh is mirrored in y like the world (flconvert), so the rotation is conjugated by the mirror: M R M
-    for i, j in ((0, 1), (1, 0), (1, 2), (2, 1)):
+    # [flfix2] only when the world IS mirrored; the un-mirrored world (bug-10965) takes the stored rotation as it is
+    for i, j in (((0, 1), (1, 0), (1, 2), (2, 1)) if mirror else ()):
         m[i][j] = -m[i][j]
     fwd = (m[0][0], m[1][0], m[2][0])
     lft = (m[0][1], m[1][1], m[2][1])
@@ -117,10 +133,11 @@ def path_lines(name, frames, X, mirror, step=3, zoff=0.0, ground=None, raw=False
     if idx[-1] != len(frames) - 1:
         idx.append(len(frames) - 1)
     out = []
+    FPS = 60.0 / getattr(frames, "ticks", 2)        # shadows the module default (30): the motion's own rate
     for k, i in enumerate(idx, 1):
         f = frames[i]
         p = X(f[:3])
-        a = raw_angles(f[4:8]) if raw else mohaa_angles(f[4:8], mirror)
+        a = raw_angles(f[4:8], mirror) if raw else mohaa_angles(f[4:8], mirror)
         z = p[2] + zoff
         if ground is not None:
             g = ground(p, f)

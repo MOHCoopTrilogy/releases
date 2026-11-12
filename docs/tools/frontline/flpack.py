@@ -81,6 +81,24 @@ def spec(level):
         return json.load(f)[level]
 
 
+# [flfix2] written into the data script (level.fl_conv): maps/coop_fl_*.scr tells the player to convert again when the
+# installed pak is older than the mission script expects (bug-10966). Raise it with every conversion-visible change.
+CONV_BUILD = 7
+
+
+def spec_xy(level, X, key):
+    """[flfix2] fl_levels.json entries written in MAP coordinates (patches / moves / route_widen) were measured on
+    the y-MIRRORED build (bug-10602). The world is no longer mirrored (bug-10965), so their y takes the sign the
+    transform now gives: unchanged when mirrored, negated when not."""
+    sg = 1.0 if X.m < 0 else -1.0
+    v = spec(level).get(key, [])
+    if key == "patches":
+        return [dict(p, poly=[[q[0], q[1] * sg, q[2]] for q in p["poly"]]) for p in v]
+    if key == "moves":
+        return [dict(m, **{"from": [m["from"][0], m["from"][1] * sg], "to": [m["to"][0], m["to"][1] * sg]}) for m in v]
+    return [[d[0], d[1] * sg] + list(d[2:]) for d in v]
+
+
 def scr_str(s):
     return '"' + s.replace("\\", "/").replace('"', "'") + '"'
 
@@ -230,7 +248,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             p = (q[0], q[1], q[2])
         # reviewed per-level moves (fl_levels.json "moves": from/to x,y + reason) for spots the box test passes but
         # the engine does not (e.g. an actor under a stair underside: droptofloor fails in solid, he never moves)
-        for mv in spec(level).get("moves", []):
+        for mv in spec_xy(level, X, "moves"):
             if abs(p[0] - mv["from"][0]) <= 16 and abs(p[1] - mv["from"][1]) <= 16:
                 g = grid.ground(mv["to"][0], mv["to"][1], p[2] + 48, p[2] - 96) if grid is not None else None
                 p = (float(mv["to"][0]), float(mv["to"][1]), g if g is not None else p[2])
@@ -273,6 +291,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             lines.append(f'\tlevel.fl_axis_state[{na}] = "{flscene.state(e)}"')
             lines.append(f'\tlevel.fl_axis_yaw[{na}] = {yaw_:.0f}')
             lines.append(f'\tlevel.fl_axis_ambush[{na}] = {int(any("DeathAmbush" in s for s in e["strs"]))}')
+            lines.append(f'\tlevel.fl_axis_rec[{na}] = {e["i"]}')  # [flfix2 bug-11084] the disc record number (the traces name records)
             if any("StayOnPath" in s_ for s_ in e["strs"]):
                 pid_ = _nearest_path(e["pos"], tank_paths)
                 if pid_ is not None:
@@ -299,11 +318,21 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             nl_ = lists.get(cls, 0) + 1
             lists[cls] = nl_
             lines.append(f'\tlevel.fl_list["{cls}"][{nl_}] = {o}')
+        elif cls == "MMGPoint":
+            # [flfix2 bug-11024] Frontline's machine gun waypoint: where a soldier stands to man a MountedMachineGun
+            # (every soldier class carries Logic:RunToMountedMachineGun, which needs one). 1_1 has three, at guns
+            # 1, 2 and 5 (46-70u behind each, same yaw); a gun without one (the tower gun, gun 6) is never manned.
+            nmp = lists.get("MMGPoint", 0) + 1
+            lists["MMGPoint"] = nmp
+            lines.append(f'	level.fl_mmg[{nmp}] = {o}')
         elif cls == "MountedMachineGun":
             nm += 1
             lines.append(f'\tlevel.fl_mg[{nm}] = {o}')
             # [flpolish] its facing and whether Frontline places it broken (the jeep's .30 cal on the wreck)
-            lines.append(f'\tlevel.fl_mg_yaw[{nm}] = {yaw_:.0f}')
+            # [flfix2 bug-11015] Frontline's MountedMachineGun record faces the GUNNER's side (its yaw is the way the
+            # stock end points: 1_1 gun 1 yaw 304 with its three nest gunners standing at bearing 274-338 from it, the
+            # tower gun's yaw running into a wall 122u away, 3000u open behind). MOHAA's turret yaw is the barrel's.
+            lines.append(f'\tlevel.fl_mg_yaw[{nm}] = {(yaw_ + 180) % 360:.0f}')
             lines.append(f'\tlevel.fl_mg_broken[{nm}] = {int(any("Broken" in s_ for s_ in e["strs"]))}')
         elif cls in ("TankVehicle", "Player"):
             lines.append(f'\tlevel.fl_pos["{cls}"] = {o}')
@@ -330,6 +359,16 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             lines.append(f'\tlevel.fl_trig_send[{nt}][{j}] = {g}')
         lines.append(f'\tlevel.fl_trig_nsend[{nt}] = {len(sends)}')
     lines.append(f"\tlevel.fl_trig_n = {nt}")
+    # [flfix2 round 9] named disc records (fl_levels.json "marks"): spot and radius (a trigger's, in units)
+    recs_m = {e.get("i"): e for e in L.entities()}
+    for mk_, ri_ in sorted(sp.get("marks", {}).items()):
+        e_ = recs_m.get(ri_)
+        if e_ is None:
+            continue
+        q = X(e_["pos"])
+        w_ = flscene.words(e_)
+        lines.append(f'\tlevel.fl_mark["{mk_}"] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+        lines.append(f'\tlevel.fl_mark_r["{mk_}"] = {(w_[11] >> 16) / 10.0 * X.s:.0f}')
     for e in L.entities():
         nm_ = [s for s in e["strs"] if not s.lower().startswith("start")]
         g_ = flscene.ids(e)
@@ -419,13 +458,18 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             bp = X(o_["pos"])
             lines.append(f'\tlevel.fl_sp_base[{nsp}] = ( {bp[0]:.0f} {bp[1]:.0f} {bp[2]:.0f} )')
             q_ = struct.unpack("<4f", struct.pack("<4I", *flscene.words(o_)[7:11]))
-            y_ = flscene.raw_angles(q_)[1] if spc.get("mesh") else flscene.yaw(o_, X.m < 0)
+            y_ = flscene.raw_angles(q_, X.m < 0)[1] if spc.get("mesh") else flscene.yaw(o_, X.m < 0)
             lines.append(f'\tlevel.fl_sp_yaw[{nsp}] = {y_:.0f}')
         for k_, key_ in (("delay", "delay"), ("snd", "snd"), ("fx", "fx"), ("loop", "loop"), ("yaw", "yaw"),
-                         ("scale", "scale"), ("sync", "sync")):
+                         ("scale", "scale"), ("sync", "sync"), ("by", "by"), ("after", "after"), ("hold", "hold"),
+                         ("stop", "stop")):
             if spc.get(k_) is not None and not (k_ == "yaw" and rel):
                 v_ = spc[k_]
                 lines.append(f'\tlevel.fl_sp_{key_}[{nsp}] = ' + (f'"{v_}"' if isinstance(v_, str) else f"{v_}"))
+        if spc.get("parent"):
+            # [flfix2 bug-11080] a child of another set piece: it runs on that one's clock ("after" seconds)
+            pn_ = "sp_" + re.sub(r"\W", "_", spc["parent"].rsplit(".", 1)[0]).lower()
+            lines.append(f'\tlevel.fl_sp_parent[{nsp}] = "{pn_}"')
     if nsp:
         lines.append(f"\tlevel.fl_sp_n = {nsp}")
     # [flpolish] the river (material 15 water volume): its extent and surface, per collision chunk - the mission
@@ -473,8 +517,23 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
     lines.append(f"\tlevel.fl_prop_n = {npr}")
     for cls, sp in sorted(mm_markers.items()):
         lines.append(f'\tlevel.fl_marker_model["{cls}"] = "{sp["model"]}"')
+    # [flfix2 bug-10973] climbable ladders. Frontline has no ladder record we can read (FRONTLINE_REFERENCE.md,
+    # section 8): the ladder is only a drawn strip, so each one is listed in fl_levels.json "ladders" in the
+    # coordinates of the UN-mirrored map (base = foot at the climbing face, yaw = the way a climber faces, exit =
+    # where he is put down at the top) and built by the map script with the coop ladder recipe.
+    sg = -1.0 if X.m < 0 else 1.0
+    nlad = 0
+    for ld in spec(level).get("ladders", []):
+        nlad += 1
+        bx, by, bz = ld["base"]
+        ex, ey, ez = ld["exit"]
+        lines.append(f"\tlevel.fl_ladder[{nlad}] = ( {bx:.0f} {by * sg:.0f} {bz:.0f} )")
+        lines.append(f"\tlevel.fl_ladder_yaw[{nlad}] = {(ld['yaw'] * sg) % 360:.0f}")
+        lines.append(f"\tlevel.fl_ladder_h[{nlad}] = {ld['height']:.0f}")
+        lines.append(f"\tlevel.fl_ladder_exit[{nlad}] = ( {ex:.0f} {ey * sg:.0f} {ez:.0f} )")
+    lines.append(f"\tlevel.fl_ladder_n = {nlad}")
     lines.append(f"\tlevel.fl_ammo_n = {n_ammo}")
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
-              "\tlevel.fl_data_ok = 1", "}end", ""]
+              "\tlevel.fl_conv = %d" % CONV_BUILD, "\tlevel.fl_data_ok = 1", "}end", ""]
     files[f"maps/coop_fl_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     return {"nudged": nudged, "axis": na, "allies": nl, "health": nh, "cues": len(wavs), "music": len(segs)}

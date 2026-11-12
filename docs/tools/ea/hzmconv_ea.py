@@ -57,6 +57,12 @@ def convert(image, level, out_dir, mohaa, progress, opts):
         flconvert.convert(image, level, tmp, game="ea", mohaa_base=mohaa, vgm=vgm if os.path.exists(vgm) else None)
         hzmconv.add_marker(tmp, "ea/have_%s.cfg" % level, 'set coop_eaHave_%s "1"\nset coop_eaHave "1"\n' % level)
         os.replace(tmp, out)
+        # [flfix2 bug-10969] the engine caches the AI path graph it built for this map name in <home>/maps/<map>.pth;
+        # one left from an older conversion is reused silently (soldiers stand still). A new pak always drops it.
+        try:
+            os.remove(os.path.join(out_dir, "maps", "coop_ea_%s.pth" % level))
+        except OSError:
+            pass
     finally:
         if os.path.exists(tmp):
             os.remove(tmp)
