@@ -11,6 +11,8 @@
   "farplane_color": "0.408 0.416 0.427",
   "chars_bum": {
    "obj_drop": 104,
+   "obj_mg": 1032,
+   "done_mg": 1037,
    "obj_roster": 106,
    "obj_dock": 111,
    "obj_crate": 114,
@@ -491,7 +493,7 @@
     "trigger": 86,
     "by": "plane",
     "parent": "P47bomb_building1_1.mvd",
-    "after": 0.03,
+    "after": 4.35,
     "fx": "stay"
    },
    {
@@ -501,7 +503,7 @@
     "trigger": 86,
     "by": "plane",
     "parent": "P47bomb_building1_1.mvd",
-    "after": 0.03,
+    "after": 4.35,
     "fx": "stay"
    },
    {
