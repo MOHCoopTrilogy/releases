@@ -98,7 +98,12 @@ def raw_angles(q, mirror=True):
     """[flpolish] MOHAA (pitch, yaw, roll) of the stored rotation itself, for Frontline's OWN meshes kept in their own
     local frame (flconvert inline models, mirrored in y like the world). Checked on the door (record 401): its 180-degree
     turn hangs the 2.6 m panel from its record point 2.5 m above the street, swinging edge in the drawn doorway."""
-    m = [list(r) for r in _qmat(*q)]
+    # [flfix2 bug-11035] the stored quaternion is the INVERSE of the object's rotation (measured on the disc keys: with
+    # the transpose the jeep body's +y is its direction of travel on every key, dot 0.99-1.00, and each wheel's axle
+    # (its mesh x) stays level and across the path while it spins and ends upright = the wheel lying flat; with the
+    # matrix as stored the body headed up to 180 degrees off and the wheels came to rest leaning). A yaw-only turn of
+    # 180 degrees (the door, the only earlier check) is its own inverse, which is how this passed.
+    m = [list(r) for r in zip(*_qmat(*q))]
     # the mesh is mirrored in y like the world (flconvert), so the rotation is conjugated by the mirror: M R M
     # [flfix2] only when the world IS mirrored; the un-mirrored world (bug-10965) takes the stored rotation as it is
     for i, j in (((0, 1), (1, 0), (1, 2), (2, 1)) if mirror else ()):

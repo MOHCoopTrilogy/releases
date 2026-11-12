@@ -239,7 +239,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             return tex_names[key]
         t = L.texture(key)
         short = key.replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_")
-        name = tdir + short
+        # [flfix2 bug-11034] no dot in a shader name: the engine strips a shader name at its last dot
+        # (COM_StripExtension), so every texture of one object mesh ("Vehicle_Jeep_Body.msh_11a00", "..msh_13b00")
+        # resolved to the same shader and the whole jeep wore its grille texture
+        name = tdir + short.replace(".", "_")
         up = texmap.get(short)
         if up and upgrade_ok(up):
             # upgrade to a texture the mod already ships (fl_texmap.json); Frontline's vertex light stays on top

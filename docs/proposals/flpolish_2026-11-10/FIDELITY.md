@@ -268,6 +268,27 @@ original. Stills and logs under `H:\hzm_work\flpolish\fix2\r9\`. Build v71 (conv
 | Crates, first objective | disc meshes and textures; objective 1 is the Resistance drop ("Press ACTION to Search Drop" -> "Resistance Drop Found") | `sheet_crate2.jpg` |
 | Canal depth (two interim options, default unchanged) | opt1 subpen_opaque: dark opaque surface, bed and wall bases hidden; opt2 canal_water: green opaque surface, bed hidden; current: bed visible. Default not changed | `quay\` |
 
+## Round 10 (flfix2, 2026-11-12) - the jeep scene on the emulator trace
+
+Sources: `H:\hzm_work\ref_xemu\TRACE_jeep.md` and its body / tyre / plane tracks, the reference frames in
+`H:\hzm_work\ref_xemu\captures\sealed_orders\`, the disc records. Build v73 in `G:\mohaa-flpolish` only. Converter
+changes (HZMCONV_VERSION not bumped): `flconvert.py` shader names (bug-11034), `flscene.py` rotation (bug-11035, changes
+object-mesh rotations of every mission on its next conversion). Pair sheets, ours beside the reference: `H:\hzm_work\flpolish\fix2\r10\final\`.
+
+| item | finding | result | proof |
+|---|---|---|---|
+| Jeep texture (user: "the texture is all wrong") | bug-11034: the engine cuts a shader name at its last dot; `Mesh.msh_<n>` names made every texture of a mesh one shader | each texture has its own shader; olive body with star, grille, seats, spare wheel, jerrycan; tyres and .30 cal checked | `pair_6_wreck.jpg`, `H:\hzm_work\flpolish\fix2\r10\jc2\sheet.jpg` |
+| Jeep, tyre and plane rotation | bug-11035: the stored quaternion is the inverse of the rotation | body heads along its track, wreck faces as in the reference, all four loose tyres end flat, planes fly nose first | `pair_6_wreck.jpg`, `tyrerot.py`, `bodyrot.py`, `planerot.py` |
+| Timing | trace ticks (60 per second, 0 = player on trigger 77) | generators on tick 71 to 123, bump mine 105, double blast and crew thrown 279, gun created 285, fourth mine 291, fades 1.1 s / 1.9 s after the blast (bug-11036) | log markers `FLJEEP` |
+| Stuka and bomb 1 | the bombs are children of the bomber pass (FlyThrough_1_1 118), +153 and +219 ticks after its start; the jeep-scene plane drops nothing | Stuka no longer releases bomb 1; both bombs still fall with the bomber | `H:\hzm_work\flpolish\fix2\r10\bomb.out` |
+| Generators 471 / 472 | disc: two fixed points 6.3 m above the road either side of the road line, behind the jeep; no direction stored; emulator: tracers cross the lane mouth first, then the jeep, then a German fighter very low about 1.2 s behind | tracer fire from those two points at the jeep = the strafe; the jeep's gun is silent | `pair_1_lane_pass.jpg`, `pair_2_plane.jpg` |
+| Allies in the lane mouth | recs 104-106 (group 65555) first act at +134 ticks | group held until 2.83 s; nobody in the lane mouth as the jeep passes | `pair_1_lane_pass.jpg` |
+| Thrown crew | they stood back up and faded standing (bug-11037) | they stay down (stock anim, animdone, bedead recipe) | `H:\hzm_work\flpolish\fix2\r10\s_arch3\sheet.jpg` |
+| Objective wording vs the published pause screen | five of six identical; objective 2 "Man Machine Gun in Church Tower" and "Machine Gun Manned" missing; hint is "Shoot Barrels to Destroy Wall" (published: "Destroy Fuel Drums to Breach Wall"); no crouch prompt, no HQ hint lines; ours adds "Optional: Rescue the prisoner" | NOT changed yet | - |
+
+Not exact, open: the 6 s fade of the thrown men and the gunner is not visible (stock soldier skins have no entity-alpha stage);
+they disappear when the fade time ends. The throw arc and the thrown poses are invented around stock animations.
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -281,13 +302,15 @@ original. Stills and logs under `H:\hzm_work\flpolish\fix2\r9\`. Build v71 (conv
 | MG42 gun 3 (rec 302) | the jeep's .30 cal, spawned by message when the jeep's track ends, mountable | disc MG30_cal mesh on a stock turret; arc 180 each way | forced (engine turret); arc a choice |
 | Panzer height while driving | path heights | seated on the ground each step (path is up to 9u off) | choice |
 | Jeep | body and four tyres on pre-authored tracks | disc meshes origin-stepped on the disc's keys (20 Hz); wreck = the disc body where its track ends | forced (script_model movement) |
-| Jeep crew poses and animations | disc animations 6500-6511 on body nodes | stock MOHAA seated / gun / cover poses, no bump animation | forced (no animation mapping) |
-| Jeep crew fate | decode: driver and passenger fade and are removed, gunner wounded then removed after his line. User's watch: about two survive | default = decode; `coop_fljeepcrew 1` = two stay in cover | OPEN, not settled |
-| Fire at the jeep | decode: two world generators; user's watch: the gunner fires the .30 cal | default = generators; `coop_fljeepcrew 1` = gunner fires | OPEN, not settled |
+| Jeep crew poses and animations | disc animations 6500-6511 on body nodes | stock MOHAA poses: seated driver and passenger, gunner at the gun, thrown = death_mortar_high / death_mortar_twist on an invented 0.7 s arc, wounded gunner = A_22_driver_cover; no bump animation (6509-6511) | forced (no decoder for the disc's skeletal animations) |
+| Crew fades | 6 s fade-out of driver, passenger and gunner | not visible: they disappear when the fade time ends | forced for now (stock skins have no entity-alpha stage); fixable with fade-capable skins |
+| Jeep crew fate | trace: driver and passenger thrown out at the blast and fade; gunner wounded, speaks when the player reaches the gun, then fades | default = trace; `coop_fljeepcrew 1` (off) = two stay in cover | settled by the trace |
+| Fire at the jeep | trace: no crew member fires; generators 471 / 472, 10 volleys from +70 to +122 ticks, from two points above and behind the jeep (the strafe) | generators at the disc points, aimed at the jeep (no direction is stored); tracer and gun sound are stock stand-ins | aim = inferred; `coop_fljeepcrew 1` (off) = gunner fires |
+| Jeep .30 cal position | created at +284 ticks | the mesh rides the body; the usable gun is created at +284 on the record's rest spot | choice |
 | Gunner's line | sound 82 | stream 17 "mg_hurt" from the player's converted audio | inferred mapping, no reference audio |
 | Play-dead men | disc actors | MOHAA actors; scenery until they rise | forced |
 | Fly-throughs | 287, 289, 291, 292, 301 started by triggers; 288 and 290 never started | the five; 288 and 290 removed | - |
-| Bomb 1 and the Stuka | sky trigger 423 fires for any plane crossing it (literal reading) | Stuka 287 crosses it and drops bomb 1 during the jeep scene | inferred; alternative = bomber 289 only |
+| Bomb 1 and the Stuka | trace: the jeep-scene plane drops nothing; both bombs are children of the bomber pass | bomber only | exact |
 | House parts | fall on the bomb's impact message | fall 3.4 s after the plane crosses trigger 86 | choice (timing stand-in) |
 | Rockets | launch when an object (inferred: the tank) enters trigger 255 | launch when a player enters it | inferred |
 | AI behaviour, accuracy, health | Frontline AI | MOHAA AI with the mod's scaling | forced |
