@@ -511,6 +511,5 @@ waits for the gun; the hint shows once per player profile in co-op (the original
 | Canal depth | (user request, not a disc fact) bed should not show through | unchanged default (tehao_indoorwater, bed visible); two converter-only options shot: FL_WATER_SHADER=textures/water/subpen_opaque (dark, opaque) or textures/water/canal_water (green, opaque) | OPEN, user to pick |
 | Time and frag limits | none | switched off for the mission | forced (co-op) |
 | World mirroring | - | none (un-mirrored since bug-10965) | - |
-
 | Hint memory in co-op | hint shown each time a player is near | the coop cgame shows each hint key once per player profile (`coop_hintSeen`) | mod-wide rule, not changed here |
 | Gun wave without the gun | triggers 87 / 420 (msg 51) also hold id 19; never fired in the traced runs | the wave waits for a player to mount the gun (bug-11088) | choice (not traced) |
