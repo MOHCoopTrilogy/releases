@@ -509,6 +509,9 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
                                  if t.lower().endswith(".xpd"))
     vm["fx"] = eafx.build(L.stream, db, X, level, files, lines, used=dict(fxused), log=log,
                           far_gain=float(spec.get("far_fx_gain", 1.0)))
+    # [0.7.23] the level's own character models (eachar.py: the partisan woman so far), into this pak only
+    import eachar
+    eachar.build(L.stream, level, mohaa_base, files, lines, log=log)
     lines += [f"\tlevel.ea_axis_n = {na}", f"\tlevel.ea_ally_n = {nl}", "\tlevel.ea_data_ok = 1", "}end", ""]
     files[f"maps/coop_ea_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     if mohaa_base:

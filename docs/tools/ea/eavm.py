@@ -347,28 +347,43 @@ def build(db, X, spot, ground, text, lines, log=print):
         if mm:
             sc_names.add(mm.group(1))
     n = 0
-    for r in db.of("ICSPoint"):
+    # a point whose record names no actor takes the squad whose first objective stands on it (within 1 m): the
+    # level binds the graveyard wall vaults, the church window jumps and the tower rig point that way
+    first_at = []
+    for o in db.of("SquadObjective_New"):
+        mo = _re.match(r"^(?:JA|BR|JP|AG|END|DR)_SquadObjective_(.+?)_01$", o.name)
+        if mo:
+            first_at.append((o.pos, mo.group(1)))
+    for r in list(db.of("ICSPoint")) + [x for x in db.recs if x.cls == "CreativeRigPoint"]:
         rig = ""
         for _i, sv in r.strings():
             if sv.endswith(".xdd"):
-                rig = sv.split("/")[-1][:-4]
-        if not rig or "DeadPose" in rig or r.name in sc_names or len(r.w) < 60:
+                rig = sv.replace(chr(92), "/").split("/")[-1][:-4]
+        if not rig or "DeadPose" in rig or r.name in sc_names:
             continue
-        w, i, icl = r.w, 47, []
-        while i < len(w) and len(icl) < 3:
-            c = w[i]
-            if c > 16:
-                break
-            icl.append(list(w[i + 1:i + 1 + c]))
-            i += c + 1
+        if r.cls == "CreativeRigPoint":
+            icl = [[], []]
+        elif len(r.w) < 60:
+            continue
+        if r.cls == "ICSPoint":
+            w, i, icl = r.w, 47, []
+            while i < len(w) and len(icl) < 3:
+                c = w[i]
+                if c > 16:
+                    break
+                icl.append(list(w[i + 1:i + 1 + c]))
+                i += c + 1
         if len(icl) < 2:
             continue
         b_groups = [x for x in icl[1] if eadb.is_group(x)]
         ps_sp = 0
-        # a point with neither a listen group nor an actor list (the German wall vaults) is not posed: no actor to infer
+        ps_sq = ""
         if not b_groups and not [x for x in icl[0] if eadb.is_group(x)]:
-            continue
-        if not b_groups:
+            fa = sorted((((op[0] - r.pos[0]) ** 2 + (op[1] - r.pos[1]) ** 2) ** 0.5, sq) for op, sq in first_at)
+            if not fa or fa[0][0] > 1.0:
+                continue
+            ps_sq = fa[0][1]
+        elif not b_groups:
             near = sorted((((sp.pos[0] - r.pos[0]) ** 2 + (sp.pos[1] - r.pos[1]) ** 2) ** 0.5, sp.name)
                           for sp in db.of("NPCSpawnPoint") if sp.name in sp_ix)
             near = [x for x in near if x[0] <= 4.0]
@@ -385,7 +400,10 @@ def build(db, X, spot, ground, text, lines, log=print):
         a_groups = [x for x in icl[0] if eadb.is_group(x)]
         L(f"\tlevel.ea_ps_a[{n}] = {gid(a_groups[0]) if a_groups else chr(34) * 2}")
         L(f"\tlevel.ea_ps_sp[{n}] = {ps_sp}")
-        log("  ICS pose %s (%s): actor %s" % (r.name, rig, ("group %x" % b_groups[0]) if b_groups else ("spawn point %d (inferred)" % ps_sp)))
+        L(f"\tlevel.ea_ps_sq[{n}] = {S(ps_sq)}")
+        L(f"\tlevel.ea_ps_fall[{n}] = {1 if 'DeathFromAbove' in rig else 0}")
+        log("  ICS pose %s (%s): actor %s" % (r.name, rig, ("group %x" % b_groups[0]) if b_groups else
+            ("squad %s (its first objective on the point)" % ps_sq) if ps_sq else ("spawn point %d (inferred)" % ps_sp)))
     L(f"\tlevel.ea_ps_n = {n}")
     # ---- logic objects ----
     music_events = set()
