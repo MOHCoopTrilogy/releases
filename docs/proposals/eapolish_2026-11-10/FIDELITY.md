@@ -225,12 +225,26 @@ Scripted character scenes
   attack -> 10278 OnTheWay; taunt -> 10286d LookAtThemRun. The woman: taunt / kill -> 10275c_1 DieFacista. A
   Panzer waking: the nearest partisan calls 10267 DestroyPanzer (tanks 1 and 3) or 10267a PanzerInBuilding (tank
   2, in the ruined house). Barks play voice only (the converter has subtitle text only for cued lines).
+- Only the original's own barks (user-approved 2026-11-12): level.coop_discBarksOnly = 1. The mod's stock voice
+  pools (situational AI voice, battle chatter and taunts, reinforcement calls) and the engine's native barks
+  (anim/SayManager.scr: sighted, grenade, taunt, kill, man down) are silent; a situation the disc has no line for
+  plays nothing. Death cries are not barks and are unchanged. The same flag serves the other disc missions.
   Not placed: 10263 GoingToBlow (a grenade bark: the engine owns grenade sighting), 10264 NoIdea, 10280 CommTower,
   10286e ThankYou (context replies with no matching state), and the four "...Eng" takes (10282_1, 10282a_1,
   10286a_1, 10286b_1: the same German lines spoken in English, a language variant).
 - Two leader lines (10258 and 10259a) are in the audio bank but no record, sequence or scene event in the level
   refers to them. They are not played. Whether the original ever plays them is unverified.
-- The other 26 scenes do not play (no voice cue in their rigs; pose only), except the three dead-body poses:
+- 0.7.22 pose stand-ins for 20 of the 26 scenes with no voice cue (forced: the rig animation is not decoded): the
+  scene's actor goes to the point, faces the record's way and holds there in a stock pose until his squad is
+  given its next order. A point with a listen group starts on a Play to it (the hideout idlers, the man at the
+  door, the cheering at the end, the bridge charge, the hiding allies); one without starts when its actor
+  spawns. The checkpoint posts take the spawn point standing on them (inferred). Not posed: the three German wall
+  vaults (no actor in the record) and the church-tower rig point.
+- The partisan woman is played by the stock male Soviet infantry model (the mod has no female partisan model).
+- Gun callers walk to their gun off the follow-the-player behaviour (friendly.scr: friendtype -1) and without
+  stopping to fight. The gun 4 partisan still stops 200-250u short; the existing rule seats a caller whom no
+  player sees, which is how the client run manned gun 4.
+- Also, the three dead-body poses:
   0.7.22 places those squads as corpses on their pose points (they had spawned as live, armed Germans, and the
   one beside the partisan woman shot her before her scene in every run). The pose is the stock death fall.
 - Railgun destruction (0.7.22): the step that the build sent as a bare Activate carries four messages to the two
