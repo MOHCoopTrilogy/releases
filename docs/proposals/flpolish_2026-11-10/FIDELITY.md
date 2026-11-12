@@ -361,6 +361,55 @@ Not matched, open:
   jeep and a rifleman standing behind it, which we do not have (soldier tracks unverified).
 - Breach not verified: the real use-key path, trigger arming and hint in a full run, collision of the wall ends, sounds.
 
+## Round 13 (flfix2, 2026-11-12) - wreck crew, breach in a full run, the bomber pass on the trace
+
+Sources: `H:\hzm_work\ref_xemu\TRACE_bombers.md`, `TRACE_jeep.md`, `TRACE_breach.md`, the disc records. Build v89 in
+`G:\mohaa-flpolish` only. Converter changes (HZMCONV_VERSION not bumped): `flscene.py` (.mvd key rate from the header),
+`flpack.py` (set-piece keys parent / after / hold / stop), `fl_levels.json` (bombs and house parts on the bomber's clock).
+Mod script `maps/coop_fl_1_1.scr` (uncommitted). Stills and logs: `H:\hzm_work\flpolish\fix2\r13\`.
+
+| item | result | evidence |
+|---|---|---|
+| Wreck crew (bug-11077) | gunner lies wounded beside the wreck (stock injured loop), nobody seated in the jeep; thrown men start clear of the body | `cw1_tumble.jpg`, `cw1_rest.jpg` |
+| Breach, full run with the real use key | objectives 1 and 2 by use, trigger 62, armed, use at the molotov, fuse +1.0, blast +6.0, break steps +0 / 0.2 / 0.4 / 0.6, open +0.775, five barrels on one tick, objective 3 | `br4.out`, `br5.out`, `br5_sheet.jpg`, `br5_obj.jpg` |
+| Collision at the wall afterwards | the gap (y 5053) is walked through; the north wall end holds (stops at x -3240.5); the south end could not be reached to test | `br5.out` |
+| Shot barrel path removed (bug-11078) | disc records: wall barrels and molotov are AnimateOnMsg (no damage path); 1.5 s of fire does nothing now | `br5.out` |
+| Barrel meshes on their records (bug-11079) | log only | `bm4.out` |
+| .mvd key rate (bug-11080) | header word = 60 Hz ticks per key: 1 = P-47s, bombs, rockets; 2 = jeep, wheels, Stuka, house parts, U-boat | emulator tracks |
+
+Bomber pass, seconds from the plane's start (ours, runs bm2 / bm4 | trace):
+
+| event | ours | trace |
+|---|---|---|
+| "planes above" line | 1.525 | 1.517 |
+| bomb A made | 2.55 | 2.55 |
+| bomb B made | 3.65 | 3.65 |
+| bomb A lands, dock wall (4207,-2696,-106) | 4.35 | 4.35 |
+| house parts start (recs 294 / 295) | 5.05 | 5.05 |
+| bomb B lands, the house (4246,-1962,97) | 5.15 | 5.15 |
+| plane gone | 6.025 | 6.1 |
+
+What the bombs destroy: bomb A hits the dock wall point (blast, shake; no mesh change found in the disc records), bomb B
+the house, whose two parts fall (1.0 s of keys). Still: `bm4_burst.jpg`.
+
+Not matched or not verified:
+- gunner pose and spot are stand-ins (animation 6506 has no decoder; the trace gives no gunner position);
+- the standing rifleman of the reference frame is a square roamer (one of three AlliedSoldier_A records), not confirmed on our frame;
+- the break frames are hidden by the fireball on our stills (log markers only); the hint text was not legible on a still;
+- disc hint text says "Shoot Barrels to Destroy Wall" while the records give the barrels no damage path: shooting was never traced in the original;
+- blast look is the stock emitter + sound + radius damage (original: 3 particles, CREATEEXPLOSION 20 and 30, not decoded); no reference frame of the blasts, so no matched pair;
+- the two death-ambush soldiers (recs 69, 70) exist from level load instead of being created at +267 ticks;
+- the other P-47 passes and the rockets now run at the header rate too (matches the plane lives in the trace), not re-shot; rocket delay 0.6 s remains a stand-in.
+
+Content audit rows (`H:\hzm_work\flpolish\content_audit\AUDIT.md`): S05 bomber PARTIAL -> timing MATCH, blast look listed;
+S06 shouters PARTIAL -> MATCH for the three at trigger 411 (one line with sound, two silent), the fourth (rec 229) untouched;
+S23 breach PARTIAL -> MATCH on trigger, timing and frames, hint conflict listed; S02 / A08 / I05 jeep, crew, gun: built and
+shown, poses listed as stand-ins.
+
+Look work parked on the user's priority (2026-11-12): the decoded fog (linear 240..4800, planar) and the object light
+formula are NOT applied; the build still carries the fitted fog 600..16000. A patch is staged, untested:
+`H:\hzm_work\flpolish\fix2\r13\fog_conv.py`.
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -377,6 +426,9 @@ Not matched, open:
 | Jeep crew poses and animations | disc animations 6500-6511 on body nodes | stock MOHAA poses: seated driver and passenger, gunner at the gun, thrown = death_mortar_high / death_mortar_twist on an invented 0.7 s arc, wounded gunner = A_22_driver_cover; no bump animation (6509-6511) | forced (no decoder for the disc's skeletal animations) |
 | Crew fades | 6 s fade-out of driver, passenger and gunner | 6 s fade on fade-capable clones of the stock skins (same textures) | forced (stock skins have no entity-alpha stage) |
 | Thrown crew rest spots | not traced | 110u either side of the wreck | choice |
+| Death-ambush pair at the bomber (recs 69, 70) | created 267 ticks after the bomber starts | present from level load | choice (not built) |
+| German shouters at the bomber | one line with sound (planes above, +91 ticks), two animation only | same; the line plays from the shouter's record place even while his spawn is held out of view | exact (sound); animation not carried |
+| P-47 passes and rockets, speed | .mvd header rate (1 tick per key) | same since bug-11080 (twice the earlier speed) | exact by the header; not re-shot |
 | Mine blast effect | disc particle records | emitter built from the records; several fields "read as"; alpha 0.25 | inferred; alpha a choice |
 | Jeep crew fate | trace: driver and passenger thrown out at the blast and fade; gunner wounded, speaks when the player reaches the gun, then fades | default = trace; `coop_fljeepcrew 1` (off) = two stay in cover | settled by the trace |
 | Fire at the jeep | trace: no crew member fires; generators 471 / 472, 10 volleys from +70 to +122 ticks, from two points above and behind the jeep (the strafe) | generators at the disc points, aimed at the jeep (no direction is stored); tracer and gun sound are stock stand-ins | aim = inferred; `coop_fljeepcrew 1` (off) = gunner fires |
@@ -384,8 +436,8 @@ Not matched, open:
 | Gunner's line | sound 82 | stream 17 "mg_hurt" from the player's converted audio | inferred mapping, no reference audio |
 | Play-dead men | disc actors | MOHAA actors; scenery until they rise | forced |
 | Fly-throughs | 287, 289, 291, 292, 301 started by triggers; 288 and 290 never started | the five; 288 and 290 removed | - |
-| Bomb 1 and the Stuka | trace: the jeep-scene plane drops nothing; both bombs are children of the bomber pass | bomber only | exact |
-| House parts | fall on the bomb's impact message | fall 3.4 s after the plane crosses trigger 86 | choice (timing stand-in) |
+| Bombs | both are children of the bomber pass: made at +153 / +219 ticks, land at +261 / +309 | same times and points (bug-11080); blast = stock emitter, sound, radius damage, shake | timing exact; blast look a stand-in |
+| House parts | start 303 ticks after the bomber starts | same (5.05 s on the bomber's clock, bug-11080) | exact (timing) |
 | Rockets | launch when an object (inferred: the tank) enters trigger 255 | launch when a player enters it | inferred |
 | AI behaviour, accuracy, health | Frontline AI | MOHAA AI with the mod's scaling | forced |
 | AI kept asleep until the player is near; spawns deferred out of view | unknown | fl_offscreen gating, deferred spawns | choice (user: no fights off-screen) |
@@ -399,10 +451,10 @@ Not matched, open:
 | Fog and far plane | fog colour 104,106,109, far clip 100 m, clear colour 48,48,48; register reading linear 5..100 m, but measured on world surfaces it is about a quarter of that at 50 m | start 600, end 16000 (fitted to the reference frame), same colour; no far cull; clear colour not represented | fit from measurement; exact function open (needs the vertex program) |
 | World light | vertex colours, 1x | vertex colours x 0.352 to cancel the renderer's 4 x 0.71 map light; measured equal to texture x vertex colour with the display chain off | forced (engine); exact by measurement |
 | Display chain on disc maps | none (emulator output as is) | the client's r_gamma 1.3 and post chain brighten by 1.3 to 1.45 | choice for the user: a per-map neutral display setting for disc maps (not applied) or keep the mod look |
-| Wall breach | trace timings, disc break frames | same; a shot barrel also sets it off; wall and barrels stand from map start | shot path and early spawn are choices |
+| Wall breach | trace timings, disc break frames; use at the molotov barrel; hint text "Shoot Barrels to Destroy Wall" | same timings and frames; use only (the records give the barrels no damage path, bug-11078); shooting in the original never traced | open: hint text against the records |
 | Texture edges | clamp on non-tiling surfaces | half-texel UV inset on non-tiling axes | forced (engine has no per-axis clamp here) |
 | Fire at the jeep, look | disc tracers | stock muzzle flash and tracer (a white streak in stills) | stand-in |
-| Wounded gunner pose | disc animation 6506 | stock seated cover pose, in plain view | forced (no decoder); a lying pose is a possible choice |
+| Wounded gunner pose and spot | disc animation 6506, position not in the trace | stock injured loop on the ground beside the wreck, jeep-relative (-46 0 12) (bug-11077) | forced (no decoder); spot a stand-in |
 | Light on soldiers and objects | vertex colours | the engine's light grid; the ambientlight 40 40 40 key has no visible effect in this renderer | forced (engine) |
 | Weather | none | none (rain theme removed in round 11) | exact |
 | Objective wording | disc / published pause screen wording | ours, including two prisoner lines; HUD text = objective menu text | choice (user decision 2026-11-12: "Keep ours it's fine") |

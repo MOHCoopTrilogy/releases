@@ -460,10 +460,15 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             y_ = flscene.raw_angles(q_, X.m < 0)[1] if spc.get("mesh") else flscene.yaw(o_, X.m < 0)
             lines.append(f'\tlevel.fl_sp_yaw[{nsp}] = {y_:.0f}')
         for k_, key_ in (("delay", "delay"), ("snd", "snd"), ("fx", "fx"), ("loop", "loop"), ("yaw", "yaw"),
-                         ("scale", "scale"), ("sync", "sync"), ("by", "by")):
+                         ("scale", "scale"), ("sync", "sync"), ("by", "by"), ("after", "after"), ("hold", "hold"),
+                         ("stop", "stop")):
             if spc.get(k_) is not None and not (k_ == "yaw" and rel):
                 v_ = spc[k_]
                 lines.append(f'\tlevel.fl_sp_{key_}[{nsp}] = ' + (f'"{v_}"' if isinstance(v_, str) else f"{v_}"))
+        if spc.get("parent"):
+            # [flfix2 bug-11080] a child of another set piece: it runs on that one's clock ("after" seconds)
+            pn_ = "sp_" + re.sub(r"\W", "_", spc["parent"].rsplit(".", 1)[0]).lower()
+            lines.append(f'\tlevel.fl_sp_parent[{nsp}] = "{pn_}"')
     if nsp:
         lines.append(f"\tlevel.fl_sp_n = {nsp}")
     # [flpolish] the river (material 15 water volume): its extent and surface, per collision chunk - the mission

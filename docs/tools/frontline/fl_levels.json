@@ -390,7 +390,7 @@
    "wheel_rl": "Vhcl_Jp_Tr_RrL_1_1.mvd",
    "wheel_rr": "Vhcl_Jp_Tr_RrR_1_1.mvd"
   },
-  "_motions": "[flpolish] set-piece motion paths the mission script plays by origin-stepping (flscene.path_lines): the jeep's run down the road into the mine and its four wheels flying off - Frontline's own .mvd keys, sampled every motion_step frames at 30 fps",
+  "_motions": "[flpolish] set-piece motion paths the mission script plays by origin-stepping (flscene.path_lines): the jeep's run down the road into the mine and its four wheels flying off - Frontline's own .mvd keys, sampled every motion_step frames; the rate is the .mvd header's (1 or 2 game ticks of 1/60 s per frame, flscene.mvd_frames). [flfix2 bug-11080] set-piece keys parent/after/hold/stop: a child runs on its parent's clock - made 'after' seconds after the parent starts, waits 'hold', and stops 'stop' seconds into its own keys (emulator trace of the bomber pass, TRACE_bombers.md: bombs made at +153 and +219 ticks, on the ground at +261 and +309, the house goes at +303)",
   "motion_step": 3,
   "motion_first": {
    "jeep": 1
@@ -418,6 +418,10 @@
     "model": "models/ammo/us_bomb.tik",
     "trigger": 423,
     "by": "plane",
+    "parent": "P47bomb_building1_1.mvd",
+    "after": 2.55,
+    "hold": 0.2,
+    "stop": 1.6,
     "fx": "bomb",
     "mesh": "Falling_Bomb.msh"
    },
@@ -426,6 +430,10 @@
     "model": "models/ammo/us_bomb.tik",
     "trigger": 86,
     "by": "plane",
+    "parent": "P47bomb_building1_1.mvd",
+    "after": 3.65,
+    "hold": 0.1,
+    "stop": 1.4,
     "fx": "bomb",
     "mesh": "Falling_Bomb.msh"
    },
@@ -482,7 +490,8 @@
     "object": 294,
     "trigger": 86,
     "by": "plane",
-    "delay": 3.4,
+    "parent": "P47bomb_building1_1.mvd",
+    "after": 5.05,
     "fx": "stay"
    },
    {
@@ -491,7 +500,8 @@
     "object": 295,
     "trigger": 86,
     "by": "plane",
-    "delay": 3.4,
+    "parent": "P47bomb_building1_1.mvd",
+    "after": 5.05,
     "fx": "stay"
    },
    {

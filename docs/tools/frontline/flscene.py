@@ -61,9 +61,19 @@ def state(e):
     return ""
 
 
+class _Frames(list):
+    ticks = 2
+
+
 def mvd_frames(data):
     v, n, fl = struct.unpack_from("<3I", data, 4)
-    return [struct.unpack_from("<3fI4f", data, 16 + 32 * i) for i in range(n)]
+    fr = _Frames(struct.unpack_from("<3fI4f", data, 16 + 32 * i) for i in range(n))
+    # [flfix2 bug-11080] the header's first word is how many 60 Hz game ticks one key lasts (measured against the
+    # emulator's position tracks: 1 = the P-47s, the bombs, the rockets - one key per tick; 2 = the jeep, its wheels,
+    # the Stuka, the house parts, the U-boat - one key per two ticks). Everything was played at 30 keys a second, so
+    # the bomber and its bombs ran at half speed (12.0 s instead of the original's 6.1 s).
+    fr.ticks = v if v in (1, 2) else 2
+    return fr
 
 
 def _qmat(w, x, y, z):
@@ -123,6 +133,7 @@ def path_lines(name, frames, X, mirror, step=3, zoff=0.0, ground=None, raw=False
     if idx[-1] != len(frames) - 1:
         idx.append(len(frames) - 1)
     out = []
+    FPS = 60.0 / getattr(frames, "ticks", 2)        # shadows the module default (30): the motion's own rate
     for k, i in enumerate(idx, 1):
         f = frames[i]
         p = X(f[:3])
