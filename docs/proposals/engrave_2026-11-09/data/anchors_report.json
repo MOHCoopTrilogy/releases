@@ -191,7 +191,8 @@
    "nu": 43,
    "nv": 16,
    "bits": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003fffffff8003fffffe000000000000"
-  }
+  },
+  "tris": "m834w14m84"
  },
  "models/weapons/arisaka.tik": {
   "o": [
@@ -350,137 +351,103 @@
    "nu": 42,
    "nv": 15,
    "bits": "7f800000001fffffffffe7fffffffff9fffffffffe7fffffffffbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffeffffffffffbff000003fe000000007f8"
-  }
+  },
+  "tris": "m3006"
  },
  "models/weapons/arisakasniper.tik": {
   "o": [
-   4.321,
-   -2.081,
-   -3.45
+   1.655,
+   -1.637,
+   -3.389
   ],
   "u": [
-   -0.9996,
-   -0.0,
-   -0.0291
+   -1.0,
+   0.001,
+   0.0011
   ],
   "v": [
-   0.0291,
-   -0.0,
-   -0.9996
+   -0.0013,
+   -0.1951,
+   -0.9808
   ],
-  "width": 2.981,
+  "width": 1.104,
   "material": "metal",
   "surface": "Skin2",
-  "screen": 0.00573,
-  "facing": 0.234,
-  "text_h": 0.057,
-  "tilt": 42.1,
+  "screen": 0.00232,
+  "facing": 0.263,
+  "text_h": 0.0304,
+  "tilt": 46.7,
   "lines": 2,
-  "letter_px": 21.4,
+  "letter_px": 11.4,
   "spots": {
    "receiver_l": {
     "o": [
-     4.321,
-     -2.081,
-     -3.45
+     1.655,
+     -1.637,
+     -3.389
     ],
     "u": [
-     -0.9996,
-     -0.0,
-     -0.0291
+     -1.0,
+     0.001,
+     0.0011
     ],
     "v": [
-     0.0291,
-     -0.0,
-     -0.9996
+     -0.0013,
+     -0.1951,
+     -0.9808
     ],
-    "width": 2.981,
+    "width": 1.104,
     "material": "metal",
     "lines": 2,
-    "letter_px": 21.4,
-    "face": {
-     "u0": -1.66,
-     "v0": -0.48,
-     "cell": 0.08,
-     "cellv": 0.08,
-     "nu": 42,
-     "nv": 15,
-     "bits": "000000007fbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffe7fffffffff9fffffffffe7fffffffff9ff000001f07fc00000000"
-    },
-    "sq": 0.84,
-    "du0": 0.0,
-    "du1": 0.0,
+    "letter_px": 11.4,
+    "sq": 0.32,
+    "du0": -6.64,
+    "du1": 0.04,
     "dv0": 0.0,
-    "dv1": 0.16
+    "dv1": 0.0,
+    "face": {
+     "u0": -11.04,
+     "v0": -0.16,
+     "cell": 0.28,
+     "cellv": 0.04,
+     "nu": 41,
+     "nv": 8,
+     "bits": "000000000f8000000007c000000003e000000001f000000000f8000000007c000000003e000000001f"
+    }
    },
    "top": {
     "o": [
-     5.786,
-     -2.374,
-     -5.847
+     7.409,
+     -2.384,
+     -5.853
     ],
     "u": [
-     -0.9998,
-     0.022,
-     0.0039
+     -0.999,
+     0.0439,
+     -0.0007
     ],
     "v": [
-     0.0155,
-     0.8088,
-     -0.5879
+     0.0359,
+     0.808,
+     -0.5881
     ],
-    "width": 3.054,
+    "width": 2.723,
     "material": "metal",
     "lines": 1,
-    "letter_px": 12.2,
+    "letter_px": 9.8,
+    "sq": 0.44,
+    "du0": -0.24,
+    "du1": 0.0,
+    "dv0": 0.0,
+    "dv1": 0.0,
     "face": {
-     "u0": -3.82,
-     "v0": -0.24,
-     "cell": 0.16,
+     "u0": -2.2,
+     "v0": -0.26,
+     "cell": 0.12,
      "cellv": 0.04,
-     "nu": 41,
-     "nv": 14,
-     "bits": "000000003f007fffffffbfffffffffdfffffffff8fffffffff07fffffffe03ffffffffe1fffffffffcffffffffff7fffffffffbffffffff01ffffe00000ffc000000000000000000"
-    },
-    "sq": 0.4,
-    "du0": -0.96,
-    "du1": 0.0,
-    "dv0": 0.0,
-    "dv1": 0.0
-   },
-   "engrave_short": {
-    "o": [
-     3.663,
-     -2.081,
-     -3.51
-    ],
-    "u": [
-     -0.9996,
-     -0.0,
-     -0.0291
-    ],
-    "v": [
-     0.0291,
-     -0.0,
-     -0.9996
-    ],
-    "width": 1.766,
-    "material": "metal",
-    "lines": 3,
-    "letter_px": 28.4,
-    "sq": 1.0,
-    "du0": -0.12,
-    "du1": 0.0,
-    "dv0": 0.0,
-    "dv1": 0.04,
-    "face": {
-     "u0": -2.32,
-     "v0": -0.52,
-     "cell": 0.08,
-     "cellv": 0.08,
-     "nu": 42,
+     "nu": 34,
      "nv": 15,
-     "bits": "000000007fbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffe7fffffffff9fffffffffe7fffffffff9ff000001f07fc00000000"
+     "bits": "0000000fc0003ffff0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc3fffff800fffe00003fc000000000000000"
     }
    }
   },
@@ -496,20 +463,21 @@
     4.796
    ]
   ],
-  "sq": 0.84,
-  "du0": 0.0,
-  "du1": 0.0,
+  "sq": 0.32,
+  "du0": -6.64,
+  "du1": 0.04,
   "dv0": 0.0,
-  "dv1": 0.16,
+  "dv1": 0.0,
   "face": {
-   "u0": -1.66,
-   "v0": -0.48,
-   "cell": 0.08,
-   "cellv": 0.08,
-   "nu": 42,
-   "nv": 15,
-   "bits": "000000007fbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffe7fffffffff9fffffffffe7fffffffff9ff000001f07fc00000000"
-  }
+   "u0": -11.04,
+   "v0": -0.16,
+   "cell": 0.28,
+   "cellv": 0.04,
+   "nu": 41,
+   "nv": 8,
+   "bits": "000000000f8000000007c000000003e000000001f000000000f8000000007c000000003e000000001f"
+  },
+  "tris": "m651o14m214o1m198o2m11o24m6o2m2105o1668"
  },
  "models/weapons/bar.tik": {
   "o": [
@@ -633,7 +601,8 @@
    "nu": 43,
    "nv": 13,
    "bits": "70000000000ffff0000001fffffff8003ffffffffff7ffffffff3dffffffffc1bffffffff037fffffffe06ffffffffe0cffffffffe38001ffffffe0000000fff800000000000"
-  }
+  },
+  "tris": "m4432w169m1w2m2w11m2w1m1w7m1w2m1w1m1w7m2w6m1w1m1w4m2w13m3w8m4w12m5w2m6w2m2w6m1w1m4w1m1w2m1w1m4w18m1w2m2w3m2w1m1w2m1w1m1w1m4w4m2w2m2w1m1w4m1w44"
  },
  "models/weapons/bazooka.tik": {
   "o": [
@@ -757,7 +726,8 @@
    "nu": 47,
    "nv": 11,
    "bits": "c000000000019fffe00000013fffc00000007fff8000000001ff8000000003ff0000000007fe000000000ffc0000001ffff8000000000030000000000000000000"
-  }
+  },
+  "tris": "m7w3m6w1m6w1m1w1m1w1m3w3m3w5m4w3m3w9m1w2m2w1m1w1m5w4m4w1m5w1m1w5m1w2m38w1m1w11m1w1m1w1m1w9m1w1m1w3m8w75m1w2m1w64m11w2m31w6m1w11m1w110m8w205m1w115m18w1m2w1m6w1m2w1m22w13m9w1m1w1m1w11m7w1m1w16m1w1m2w22m1w36m1w1m1w1m1w16m1w1m1w1m1w1m1w18m1w1m1w1m1w1m1w8m5w1m13w1m4w1m1w1m2w1m15w2m1"
  },
  "models/weapons/berettasilenced.tik": {
   "o": [
@@ -881,7 +851,8 @@
    "nu": 45,
    "nv": 15,
    "bits": "0000000000f00003ffffffbffffffffffdffffffffffe007e3ffffff003f1ffffff801f8ffffffc00fc7fffffeff8fffffffe7fc7fffffff3fe3fffffff9ff1fffffffcffffffffffe7ffffffff003ffc000000000"
-  }
+  },
+  "tris": "m53w1m94w1m1055"
  },
  "models/weapons/carbine.tik": {
   "o": [
@@ -970,69 +941,35 @@
    "nu": 47,
    "nv": 13,
    "bits": "0000000001800003ffffff000fffffffff0080ab5dffff0d0156bbfffe1a02ad77fffe240d7aeffffc481af5dffffc9035ebbffff9306917fffff060d22c000000c1a450000007ffffe0000000"
-  }
+  },
+  "tris": "m352w2m14w25m12w30m1w1m3w8m28w3m11w8m17w16m21w6m8w4m19w25m3w6m2w6m3w8m6w1m1w1m16w5m3w6m7w6m18w12m50w1m2w1m3w8m10w3m36w7m1w3m1w16m12w1m5w9m3w1m28w2m4w6m1w5m15w2m2w1m1w4m2w1m1w1m9w9m429w8m2w9m29w5m11w3m12w8m5w2m2w7m4w2m1w12m26w9m8w2m1w5m18w9m1w2m1w1m3w6m8w4m1w26m3w10m1w13m8w7m3w1m1w1m7w3m1w1m2w2m1"
  },
  "models/weapons/carcanosniper.tik": {
   "o": [
-   1.282,
-   -0.971,
-   -6.618
+   1.639,
+   -1.45,
+   -3.691
   ],
   "u": [
+   -0.9575,
    0.0,
-   1.0,
-   0.0045
+   -0.2885
   ],
   "v": [
+   0.2885,
    0.0,
-   0.0045,
-   -1.0
+   -0.9575
   ],
-  "width": 1.104,
+  "width": 1.288,
   "material": "metal",
-  "surface": "lens",
-  "screen": 0.00415,
-  "facing": 0.92,
-  "text_h": 0.0319,
-  "tilt": 6.5,
-  "lines": 2,
-  "letter_px": 12.0,
+  "surface": "Metal",
+  "screen": 0.00098,
+  "facing": 0.29,
+  "text_h": 0.0185,
+  "tilt": 21.5,
+  "lines": 1,
+  "letter_px": 8.9,
   "spots": {
-   "butt": {
-    "o": [
-     1.282,
-     -0.971,
-     -6.618
-    ],
-    "u": [
-     0.0,
-     1.0,
-     0.0045
-    ],
-    "v": [
-     0.0,
-     0.0045,
-     -1.0
-    ],
-    "width": 1.104,
-    "material": "metal",
-    "lines": 2,
-    "letter_px": 12.0,
-    "face": {
-     "u0": -0.6,
-     "v0": -0.6,
-     "cell": 0.04,
-     "cellv": 0.08,
-     "nu": 31,
-     "nv": 15,
-     "bits": "001fe00003fffc003fffff00ffffff83ffffff8fffffffbfffffff7ffffffefffffffcfffffff9ffffffe0ffffff80fffffc007fffe0000ffc0000"
-    },
-    "sq": 0.88,
-    "du0": 0.0,
-    "du1": 0.0,
-    "dv0": 0.0,
-    "dv1": 0.0
-   },
    "top": {
     "o": [
      3.174,
@@ -1081,20 +1018,21 @@
     4.988
    ]
   ],
-  "sq": 0.88,
+  "sq": 0.48,
   "du0": 0.0,
   "du1": 0.0,
   "dv0": 0.0,
-  "dv1": 0.0,
+  "dv1": 0.04,
   "face": {
-   "u0": -0.6,
-   "v0": -0.6,
+   "u0": -0.82,
+   "v0": -0.72,
    "cell": 0.04,
    "cellv": 0.08,
-   "nu": 31,
+   "nu": 39,
    "nv": 15,
-   "bits": "001fe00003fffc003fffff00ffffff83ffffff8fffffffbfffffff7ffffffefffffffcfffffff9ffffffe0ffffff80fffffc007fffe0000ffc0000"
-  }
+   "bits": "0000000000000000000000000000000000007f0000003ffe00001ffffe001ffffffe1ffffffffc3ffffffffc3ffffffff83fffffff807fffff80007fff800000ffc0000000c000000000"
+  },
+  "tris": "m1372o2992"
  },
  "models/weapons/colt45.tik": {
   "o": [
@@ -1253,7 +1191,8 @@
    "nu": 41,
    "nv": 16,
    "bits": "000000000080000000ffc000007fffe0007ffffff003fccffff801fe67fffc00ff33fffe007f99ffff0133ccffffff99e67fffffccf33fffffe6799ffc0ffffffc0007fffe000003fe000000010000000000"
-  }
+  },
+  "tris": "m391w1m4w1m16w3m2w1m1w2m2w1m9w1m2w6m2w2m1w10m132w1m4w1m16w3m2w1m1w2m2w1m9w1m2w6m2w2m1w10m204"
  },
  "models/weapons/colt_silenced.tik": {
   "o": [
@@ -1412,7 +1351,8 @@
    "nu": 47,
    "nv": 15,
    "bits": "001c000000000079f8ffffc001f3f1ffffc007e7ffffff901f3fcffffffffe7f9ffffffffcff3ffffffff9fe7fffffc03fffffffff807fffffffff00fffffffffe01ffffffffffffffffffffe0ffffffffff800000007fff00"
-  }
+  },
+  "tris": "m3452"
  },
  "models/weapons/coop_dbshotgun.tik": {
   "o": [
@@ -1536,7 +1476,8 @@
    "nu": 47,
    "nv": 10,
    "bits": "0000007fffc0000000f800e0001ffdc00003fffffa0000000230b3d7f80c046167afffd808c2cf5fffb011859ebfff7ffffffffffefff000000000"
-  }
+  },
+  "tris": "m182w1m4w1m3w1m2w1m32w1m4w1m3w1m4w1m36w2m5w1m1w1m13w1m18w1m1w1m3w1m12w1m1w1m1w1m1w1m8w1m1w1m10w1m2w1m7w1m3w1m22w1m3w1m1w1m1w1m676w2m1w1m57w2m89w1m16w1m2w1m78w3m47w2m50w1m16w2m223w1m84w1m50w2m1w1m32w2m943w1m837w1m3w1m3w1m3w2m2w1m1w1m3w2m3w1m5w1m1w1m1w3m1w1m3w1m1w1m1w1m12w5m2w8m1w1m1w2m1w3m1w3m1w1m24w1m1w3m1w5m1w3m1w6m1w2m2w2m1w1m1w1m7w1m22w9m1w2m1w3m1w1m10w10m17w4m22w6m10w2m1w2m1w3m9w5m15w2m1w2m11w8m2w1m1w1m25w2m39w1m5w2m24w2m15w2m54w2m2w6m2w3m1w8m4w3m3w1m26w2m3w8m10w4m4w2m18w4m30w4m44w14m72w2m3w4m5w18m74w13m4w52m5w108m4w87m812w2m2w2m4w2m2w4m2w6m12w2m4w4m2w2m2w2m4w4m2w4m12w4m6w2m2w4m2w2m8w2m5w4m1w2m4w2m6w2m3w3m4w4m10w2m20w2m8w2m14w2m2w2m34w2m14w1m4w1m20w2m58w2m2w2m16w3m2w1m1w3m4w1m1w2m1w1m2w4m2w4m5w4m8w2m2w1m1w6m5w6m3w2m2w8m2w2m4w2m2w6m2w2m1w4m10w6m4w6m10w4m6w2m8w2m2w2m2w2m6w2m4w2m2w4m6w2m4w2m4w2m4w2m2w2m6w4m2w2m2w244m25w1m15w2m20w2m18w2m3w2m3w2m4w8m1w4m8w2m3w12m4w4m1w5m3w2m38w2m10w2m5w1m26w2m57w2m30w2m15w2m97w4m10w4m5w2m25w2m4w2m15w2m5w4m1w2m24w2m12w2m106w2m14w2m10w2m6w2m2w2m6w4m20w2m16w4m22w2m4w2m4w2m4w2m47w2m3w2m34w2m12w6m12w2m2w2m2w8m18w2m4w2m6w4m2w2m2w4m2w2m15w2m2w2m1w2m2w2m2w4m5w2m1w4m7w2m2w2m2w2m4w2m6w1m1w2m2w2m9w2m33w2m10w2m6w2m2w6m1w4m2w4m5w2m1w2m8w2m5w2m8w2m2w2m3w2m9w10m8w4m5w2m19w1m4w1m20w2m3w2m5w6m4w2m4w1m1w4m3w2m4w2m23w1m8w2m3w2m3w10m2w6m4w1m1w4m24w1m20w1m3w1m12w1m4w1m3w1m93w4m2w2m2w3m8w1m5w1m35w2m4w3m1w6m122w1m16w1m8w1m3w1m40w1m53w1m1w2m5w3m8w4m2937w1m4w1m852w1m131w1m97w520"
  },
  "models/weapons/coop_fg42_irons.tik": {
   "o": [
@@ -1652,7 +1593,8 @@
   "du1": 0.0,
   "dv0": 0.0,
   "dv1": 0.0,
-  "face": null
+  "face": null,
+  "tris": "m6287"
  },
  "models/weapons/coop_g43_irons.tik": {
   "o": [
@@ -1846,7 +1788,8 @@
    "nu": 47,
    "nv": 14,
    "bits": "000000000000000003fc000000001ffc0000001ffffc00006bfffffc000fd7fffffc0000fdfffff80001fbfffff8007cffeffff000f9ffdfffe0001fbfffffc0043f7fffff80000000ffff0000000000000000"
-  }
+  },
+  "tris": "w19m16w1m1w8m1w18m1w12m1w7m1w50m1w5m4w4m56w2m12w1m452"
  },
  "models/weapons/delisle.tik": {
   "o": [
@@ -1970,7 +1913,8 @@
    "nu": 32,
    "nv": 16,
    "bits": "0000000e00000fff000fffff0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff007fff00007f00000000000000"
-  }
+  },
+  "tris": "w178m28w2m60w2m102w41m1w1m1w1m1w1m1w1m3w1m1w1m1w1m1w1m260w1m1w1m12w1m1w2m198"
  },
  "models/weapons/dp28.tik": {
   "o": [
@@ -2129,7 +2073,8 @@
    "nu": 42,
    "nv": 15,
    "bits": "000000000000007fff8000181ffffe001007ffffe00001fffffe081c7fffffc63f1ffffff98fc7fffffe63f1ffffff88ffffffffc1ffffffffe01fc7ffffe001f1ffffe00007ffff80000000800000"
-  }
+  },
+  "tris": "m1912"
  },
  "models/weapons/enfield.tik": {
   "o": [
@@ -2288,7 +2233,8 @@
    "nu": 43,
    "nv": 13,
    "bits": "00000000000000000000000000000003000000001fe000001ffff8001fffffff1fffffffffe7fffffffffc63ffffffff0c7fffffffe1fffc1fc00c380003c001000000780000"
-  }
+  },
+  "tris": "w3m1w1m7w5m14w1m6w2m8w6m4w5m1w1m1w10m6w10m7w2m2w1m1w1m23w1m536w1m25w1m10w1m46w1m2w12m5w4m1w3m3w1"
  },
  "models/weapons/enfieldsniper.tik": {
   "o": [
@@ -2351,41 +2297,6 @@
     "dv0": 0.0,
     "dv1": 0.04
    },
-   "top": {
-    "o": [
-     4.051,
-     -1.068,
-     -6.699
-    ],
-    "u": [
-     -0.9973,
-     -0.0637,
-     0.0375
-    ],
-    "v": [
-     -0.0703,
-     0.9737,
-     -0.2166
-    ],
-    "width": 1.619,
-    "material": "metal",
-    "lines": 2,
-    "letter_px": 12.3,
-    "face": {
-     "u0": -1.96,
-     "v0": -0.42,
-     "cell": 0.08,
-     "cellv": 0.08,
-     "nu": 36,
-     "nv": 9,
-     "bits": "7000000007fffe00007fffffffc7fffffffeffffffffeffffffffeffffffffe000fffffe0000001fe0"
-    },
-    "sq": 0.52,
-    "du0": -0.16,
-    "du1": 0.0,
-    "dv0": 0.0,
-    "dv1": 0.0
-   },
    "engrave_short": {
     "o": [
      5.075,
@@ -2447,7 +2358,8 @@
    "nu": 42,
    "nv": 12,
    "bits": "00000000000000000000000000000000000001e000001ffffc001fffffff8007ffffffe001fffffffc001fffffff800000ffffc00000000f00000000000000"
-  }
+  },
+  "tris": "m4o2m8o4m6o5m2o2m2o76m2o16m1o1m4o12m10o1m1o8m7o3m81o2m4o2m1o6m12o37m1o2m39o33m141o10m2o2m1o31m2o11m395o180m68w1m507o1078"
  },
  "models/weapons/fg42.tik": {
   "o": [
@@ -2477,73 +2389,73 @@
   "spots": {
    "receiver_l": {
     "o": [
-     -2.592,
-     -1.483,
-     -7.408
+     -2.4,
+     -2.35,
+     -4.772
     ],
     "u": [
-     -0.9998,
-     -0.0057,
-     0.0175
+     -0.9986,
+     -0.0499,
+     -0.0145
     ],
     "v": [
-     -0.0185,
-     0.309,
-     -0.9509
+     -0.0187,
+     0.6063,
+     -0.795
     ],
-    "width": 2.76,
+    "width": 2.171,
     "material": "metal",
     "lines": 1,
-    "letter_px": 11.4,
-    "face": {
-     "u0": -6.58,
-     "v0": -0.34,
-     "cell": 0.2,
-     "cellv": 0.04,
-     "nu": 40,
-     "nv": 15,
-     "bits": "f800000000ffc0000000ffc0f06000ffc0007ffcffc0007fffffc0007fffffc0007fffffc0007fffffc0007fffffc0007fffffc0007fff0fc0007fff0000007fff0000007fff000000000f"
-    },
-    "sq": 0.44,
-    "du0": -2.24,
-    "du1": 0.04,
+    "letter_px": 9.3,
+    "sq": 0.28,
+    "du0": -1.04,
+    "du1": 0.0,
     "dv0": 0.0,
-    "dv1": 0.04
+    "dv1": 0.0,
+    "face": {
+     "u0": -2.78,
+     "v0": -0.62,
+     "cell": 0.12,
+     "cellv": 0.08,
+     "nu": 38,
+     "nv": 10,
+     "bits": "000007ff03fffffffe0ffffffffe3f8000001ec00000003f00000000fc7ffffffbffffffffe1ffffffff83ffe0000000"
+    }
    },
    "top": {
     "o": [
-     -2.632,
-     -1.236,
-     -7.754
+     -3.54,
+     -5.224,
+     -3.834
     ],
     "u": [
-     -0.9998,
-     -0.0149,
-     0.0108
+     -0.0649,
+     0.9979,
+     -0.0004
     ],
     "v": [
-     -0.0185,
-     0.8089,
-     -0.5877
+     0.9978,
+     0.0649,
+     0.0096
     ],
-    "width": 2.76,
-    "material": "wood",
+    "width": 3.018,
+    "material": "metal",
     "lines": 1,
-    "letter_px": 11.3,
-    "face": {
-     "u0": -6.62,
-     "v0": -0.34,
-     "cell": 0.2,
-     "cellv": 0.04,
-     "nu": 40,
-     "nv": 15,
-     "bits": "18000000001fc00000001f800060001f80007ffc1f80007fff1f00007fff1f00007fff1f00007fffff00007fffff00007fffff00007fff0f00007fff0000007fff0000007fff000000000f"
-    },
-    "sq": 0.44,
-    "du0": -2.28,
-    "du1": 0.0,
+    "letter_px": 6.2,
+    "sq": 0.48,
+    "du0": -0.2,
+    "du1": 1.28,
     "dv0": 0.0,
-    "dv1": 0.04
+    "dv1": 0.0,
+    "face": {
+     "u0": -2.24,
+     "v0": -0.32,
+     "cell": 0.16,
+     "cellv": 0.08,
+     "nu": 37,
+     "nv": 8,
+     "bits": "f000000007fffff0003fffffff01fffffff80fffffffc03ffffffe00003ffff00000000000"
+    }
    }
   },
   "bounds": [
@@ -2563,7 +2475,8 @@
   "du1": 0.0,
   "dv0": 0.0,
   "dv1": 0.0,
-  "face": null
+  "face": null,
+  "tris": "m4656o142m124o8m28"
  },
  "models/weapons/g43.tik": {
   "o": [
@@ -2628,38 +2541,38 @@
    },
    "receiver_l": {
     "o": [
-     2.934,
-     -1.713,
-     -6.241
+     2.902,
+     -1.691,
+     -3.856
     ],
     "u": [
-     -0.9902,
-     0.0,
-     0.1398
+     -0.9998,
+     -0.0106,
+     0.0165
     ],
     "v": [
-     -0.1398,
-     -0.0,
-     -0.9902
+     -0.0196,
+     0.5943,
+     -0.804
     ],
-    "width": 2.502,
+    "width": 3.864,
     "material": "metal",
-    "lines": 2,
-    "letter_px": 16.9,
-    "face": {
-     "u0": -1.44,
-     "v0": -0.7,
-     "cell": 0.08,
-     "cellv": 0.12,
-     "nu": 38,
-     "nv": 12,
-     "bits": "2000000000fff0000003fffff8001ffffffff87fffffffe1ffffffff87fffffffc1ffffffff0ffffffffc000ffffff0000007ffe000000007c"
-    },
-    "sq": 0.92,
-    "du0": 0.0,
+    "lines": 1,
+    "letter_px": 16.3,
+    "sq": 0.52,
+    "du0": -0.84,
     "du1": 0.04,
     "dv0": 0.0,
-    "dv1": 0.04
+    "dv1": 0.0,
+    "face": {
+     "u0": -9.1,
+     "v0": -0.46,
+     "cell": 0.28,
+     "cellv": 0.08,
+     "nu": 45,
+     "nv": 10,
+     "bits": "000000000001ff020000000ff01fffc0000300fffffff00007ffffff80003fffffe00001ffffff00000ffffff8000003ffffc0000000000600"
+    }
    },
    "top": {
     "o": [
@@ -2698,38 +2611,38 @@
    },
    "butt": {
     "o": [
-     -0.788,
-     -1.134,
-     -6.264
+     -0.82,
+     -1.14,
+     -3.617
     ],
     "u": [
-     -0.0,
-     0.9694,
-     -0.2456
+     0.0,
+     0.9895,
+     0.1447
     ],
     "v": [
-     -0.0,
-     -0.2456,
-     -0.9694
+     0.0,
+     0.1447,
+     -0.9895
     ],
-    "width": 1.251,
+    "width": 1.214,
     "material": "metal",
-    "lines": 2,
-    "letter_px": 14.7,
+    "lines": 1,
+    "letter_px": 9.3,
+    "sq": 0.8,
+    "du0": 0.0,
+    "du1": 0.0,
+    "dv0": -0.4,
+    "dv1": 0.04,
     "face": {
-     "u0": -0.8,
-     "v0": -0.72,
+     "u0": -0.7,
+     "v0": -0.96,
      "cell": 0.04,
      "cellv": 0.12,
-     "nu": 38,
+     "nu": 37,
      "nv": 12,
-     "bits": "0007fc000001ffffe0007ffffff803fffffff81ffffffff07fffffffe1ffffffff83fffffffc07ffffffe007ffffff0001ffffc00000fff000"
-    },
-    "sq": 1.0,
-    "du0": -0.08,
-    "du1": 0.0,
-    "dv0": 0.0,
-    "dv1": 0.04
+     "bits": "00000000000000000000000000000000000000000000000000000003fc0000000ffffffff87fffffffc0fffffff800ffffff00003fff0000"
+    }
    },
    "engrave_short": {
     "o": [
@@ -2792,70 +2705,35 @@
    "nu": 47,
    "nv": 14,
    "bits": "000000000000000003fe000000001ffe0000001ffffe00001dfe7ffe000f3bfcfffc001f9c3ffffc003f387ffff800035ffffff00006bfffffe001faffffffc00785ffffff80000000ffff0000000000000000"
-  }
+  },
+  "tris": "w19m16w1m1w8m1w18m1w12m1w7m1w50m1w5m4w4m136w2m12w1m154o180m92o38m58o24m58o8m660"
  },
  "models/weapons/g43sniper.tik": {
   "o": [
-   0.126,
-   -1.893,
-   -7.419
+   -1.553,
+   -2.517,
+   -4.333
   ],
   "u": [
-   -0.9914,
-   -0.0052,
-   -0.1305
+   -0.9975,
+   -0.069,
+   -0.0155
   ],
   "v": [
-   0.1105,
-   0.4989,
-   -0.8596
+   0.0153,
+   0.0033,
+   -0.9999
   ],
-  "width": 2.098,
+  "width": 1.362,
   "material": "metal",
-  "surface": "scopeb",
-  "screen": 0.00448,
-  "facing": 0.226,
-  "text_h": 0.0499,
-  "tilt": 25.1,
-  "lines": 2,
-  "letter_px": 18.7,
-  "spots": {
-   "engrave_short": {
-    "o": [
-     -0.23,
-     -1.895,
-     -7.466
-    ],
-    "u": [
-     -0.9914,
-     -0.0052,
-     -0.1305
-    ],
-    "v": [
-     0.1105,
-     0.4989,
-     -0.8596
-    ],
-    "width": 1.214,
-    "material": "metal",
-    "lines": 3,
-    "letter_px": 23.6,
-    "sq": 0.72,
-    "du0": -0.32,
-    "du1": 0.0,
-    "dv0": 0.0,
-    "dv1": 0.0,
-    "face": {
-     "u0": -2.14,
-     "v0": -0.44,
-     "cell": 0.08,
-     "cellv": 0.08,
-     "nu": 37,
-     "nv": 14,
-     "bits": "000000007000003fff803ffffffdffffffffefffffffff3ffffffffdffffffffefffffffff7ffffffffbfffffff01fffff8000fffc000007e00000000000000000"
-    }
-   }
-  },
+  "surface": "Gewehr43",
+  "screen": 0.00233,
+  "facing": 0.253,
+  "text_h": 0.0221,
+  "tilt": 54.4,
+  "lines": 1,
+  "letter_px": 10.6,
+  "spots": {},
   "bounds": [
    [
     -17.784,
@@ -2868,12 +2746,21 @@
     2.086
    ]
   ],
-  "sq": 0.524,
-  "du0": 0.0,
+  "sq": 0.2,
+  "du0": -1.24,
   "du1": 0.0,
   "dv0": 0.0,
   "dv1": 0.0,
-  "face": null
+  "face": {
+   "u0": -6.98,
+   "v0": -0.14,
+   "cell": 0.2,
+   "cellv": 0.04,
+   "nu": 40,
+   "nv": 7,
+   "bits": "000000000000007ffffc00007fffff00007fffff00007fffff0000007fff0000000000"
+  },
+  "tris": "m10o34m406w4m2w1m1w13m14w3m2w2m4w17m6w4m4w2m2w44o12w3o1w3o7m14o16m679o1064"
  },
  "models/weapons/garand_scoped.tik": {
   "o": [
@@ -2997,7 +2884,8 @@
    "nu": 47,
    "nv": 15,
    "bits": "0000000000000000001f800000000079780000007ff2fe001c0d00affc00001a015ffc000007f0fff801fe0021fff8007198e3bff0000331c77ff00007a0b67ff00001410cffe000007f01ffe000001e000fc0000000000080"
-  }
+  },
+  "tris": "w14m1w1m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w30m784o35m265o18m53o32m3o32m207o32m1290o81m359o30m156o2547"
  },
  "models/weapons/garand_silenced.tik": {
   "o": [
@@ -3121,7 +3009,8 @@
    "nu": 30,
    "nv": 15,
    "bits": "7ffffff9fffffde79ffff09e1fff80781ffe01e01ff8070007e018000000400000000000000c00000030000000c00000030000000c00000000"
-  }
+  },
+  "tris": "w14m1w1m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w30m784o35m265o18m53o32m3o32m207o32m1290o81m359o30m156o1343m336o1204"
  },
  "models/weapons/greasegun.tik": {
   "o": [
@@ -3315,7 +3204,8 @@
    "nu": 26,
    "nv": 13,
    "bits": "00000000000000ffffc0fffff83fffff1fffffe7fffff9fffffe7fffff07ffffc0ffffc00fff8000000000"
-  }
+  },
+  "tris": "m3215"
  },
  "models/weapons/greasegun_silenced.tik": {
   "o": [
@@ -3509,7 +3399,8 @@
    "nu": 26,
    "nv": 13,
    "bits": "00000000000000ffff80fffff83fffff1fffffe7fffff9fffffe7fffff07ffffc0ffffc00fff8000000000"
-  }
+  },
+  "tris": "m3551"
  },
  "models/weapons/it_w_beretta.tik": {
   "o": [
@@ -3668,7 +3559,8 @@
    "nu": 41,
    "nv": 14,
    "bits": "0fffffffff87ffffffffc3ffffffffc1ffffffffeffffffffff7fffffffffbfffffffff9fffffffffcfffffffffe7fffffffff3fffffffff1fffffffff8fffffffffc7ffffffffc0"
-  }
+  },
+  "tris": "m148w1m719"
  },
  "models/weapons/it_w_breda.tik": {
   "o": [
@@ -3862,7 +3754,8 @@
    "nu": 40,
    "nv": 12,
    "bits": "00000000030000007fff000fffffff1fffffffff1fffffffff1fffffffff1fffffffff1fffffffff1fffffffff1ffffffc001fff8000000000000000"
-  }
+  },
+  "tris": "m73w154m56w116m866w1m39w2m33w1m988"
  },
  "models/weapons/it_w_carcano.tik": {
   "o": [
@@ -3986,7 +3879,8 @@
    "nu": 42,
    "nv": 13,
    "bits": "60000000001fffffff8007fffffffe00007fe3ffc0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-  }
+  },
+  "tris": "m1w1m13w1m1w5m1w1m1w1m1w1m1w1m1w1m1w12m1w5m1w6m1w3m3w1m25w1m1w1m1w1m1w1m6w1m1w1m2w1m1w1m7w2m1w10m2w8m4w1m1w8m1w1m6w1m2w10m37w3m1w1m1w1m2w2m1w1m1w1m1w1m1w1m1w1m1w1m1w1m1w4m1w1m4w1m1w2m1w1m16w1m31w15m1w1m1w3m1w1m1w1m1w1m1w1m1w5m1w24m207w8m4w2m3w4m3w6m4w2m6w8m4w1m2w1m1w4m2w1m1w1m3w1m1w1m1w2m1w2m1w3m2w14m14w1m2w2m1w1m1w5m1w1m1w3m1w3m1w1m3w1m6w1m3w65m28w1m226w197m4w2m81w2m1w1m6w1m1w13m1w1m6w1m16w6m2"
  },
  "models/weapons/it_w_moschetto.tik": {
   "o": [
@@ -4145,7 +4039,8 @@
    "nu": 27,
    "nv": 13,
    "bits": "00000000000100001ff801e00fc7f000fcfc000fbf8001fff0007f7f001fc7f007f07ffffc03fffe000ffe00"
-  }
+  },
+  "tris": "m254w1m89w29m3w23m1w1m1w1m1w29m2w1m4w1m2w9m8w18m6w1m1w1m116w7m1w14m4w4m5w1m116w1m2w2m2w2m7w1m1w1m13w1m138w70m2w76m2w4m28w1m1w1m519"
  },
  "models/weapons/johnson_m1941.tik": {
   "o": [
@@ -4339,7 +4234,8 @@
    "nu": 41,
    "nv": 15,
    "bits": "000000000030000000001f800000000ff000000007ffe07e0003ffffff8001fffffff000fffffffe0063ffffffc031fffffff81fffffffff007fffffffe03ffffffff81ffffffffc0ffffffff0"
-  }
+  },
+  "tris": "m622w1m116w1m5w1m1w1m13w1m110w1m19w1m1w1m30w1m1w1m1w1m1w1m1w1m1w3m1w6m1w1m1w1m1w1m1w1m1w1m1w1m1w6m21w1m1w1m1w2m1w1m1w11m1w1m1w2m1w10m1w1m15w2m18w2m18w2m29w1m10w1m12w1m10w2m142w1m17w1m6w1m358w62m1w14m1w4m2w13m1w5m1w159m1w18m2w12m1w5m1w13m1w794m3160w1576m1088w593m1w1m1w126m1w17m16w4m16w4m16w4m16w4m16w4m16w4m16w4m16w4m14w6m14w6m1048w1m2w1m16w1m59w2m1w1m16w1m2w1m19w1m1449w1m61w12m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w30m18"
  },
  "models/weapons/kar98.tik": {
   "o": [
@@ -4455,7 +4351,8 @@
   "du1": 0.0,
   "dv0": 0.0,
   "dv1": 0.0,
-  "face": null
+  "face": null,
+  "tris": "m196w48m12w159m38w1m161w24m7w28m9w26m37w9m1w1m1w3m91w37m280w12m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w30m18"
  },
  "models/weapons/kar98_g98.tik": {
   "o": [
@@ -4579,7 +4476,8 @@
    "nu": 48,
    "nv": 13,
    "bits": "00000000000000000000fc000000000ffc00000000fffe000000ffffff001fffffffff8001cf07ffffc0000f07ffffe00077fb7ffff00077fb7ffff0000d4fff800003cd4ffff800007fffff8000"
-  }
+  },
+  "tris": "w140m5w2m6w1m1w17m1w1m1w1m16w1m2w3m5w2m2w1m4w1m1w2m1w5m4w4m1w4m1w29m2w1m7w2m2w5m377w1m2w2m2w2m2w2336m2w8m2w38m2w8m2w78m2w8m2w38m2w8m2w621m1w8m2w8m2w9m2w17m1w9m2w8m2w8m1w2m1w20m1w2m1w270m6w6m3w3m7w11m2w4m352w40m1w13m18w1m1w16m7w1m1w1m1w19m2w2m1w1m2w2m2w30m1w4m2w5m3w2m1w3m3w12"
  },
  "models/weapons/kar98_mortar.tik": {
   "o": [
@@ -4695,7 +4593,8 @@
   "du1": 0.0,
   "dv0": 0.0,
   "dv1": 0.0,
-  "face": null
+  "face": null,
+  "tris": "w12m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w30m1033w1m4w1m43w1m4w2m4w1m34w1m8w1m4w2m14w3m2w2m37w2m54w2m5w2m2w2m1w2m2w2m1w2m5w2m2w4m3w3m2w1m2w2m2w2m1w2m2w1m2w2m2w2m1w1m1w114"
  },
  "models/weapons/kar98sniper.tik": {
   "o": [
@@ -4854,7 +4753,8 @@
    "nu": 45,
    "nv": 8,
    "bits": "fffe00000007ffffffffff9ffffffffffcffffffffffe7ffffffffff003ffffffff800000007ffe00000000000"
-  }
+  },
+  "tris": "m196w48m12w159m38w1m161w24m7w28m9w26m37w9m1w1m1w3m91w37m280o1220"
  },
  "models/weapons/kar98snipersilenced.tik": {
   "o": [
@@ -5013,7 +4913,8 @@
    "nu": 39,
    "nv": 13,
    "bits": "00000000000000000000000000000000600000007ffc000001ffff800003fffff0000ffffffc001fffffff807ffffffff0fffffffffbfffffc0007e000000000"
-  }
+  },
+  "tris": "m78w1m1w1m11w3m3w2m4w10m4w2m3w2m8w1m20w3m6w3m7w3m11w3m8w2m5w2m7w3m14w4m2w1m5w4m8w1m7w2m5w4m3w4m5w1m2w2m1w1m5w2m1w3m1w2m8w3m1w3m1w1m1w4m5w1m1w1m1w1m1w1m7w4m1w4m5w1m2w2m3w1m8w2m7w2m6w3m2w1m2w4m4w2m3w1m6w2m8w3m4w3m2w1m1w1m6w1m2w1m5w1m1w1m1w4m3w4m6w3m8w2m1w1m1w1m5w1m3w1m7w1m2w1m6w1m2w1m5w1m1w8m7w13m1w12m2w13m2w3m1w7m1w20m1w16m9w23m4o38m336o808"
  },
  "models/weapons/lugerp08.tik": {
   "o": [
@@ -5172,7 +5073,8 @@
    "nu": 42,
    "nv": 14,
    "bits": "7e000000001ffff8000007ffffffe003fffffffffeffffffffffbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffe007fffffff800001ffffe000000007f800000000000"
-  }
+  },
+  "tris": "w2m6w2m1w1m1w2m1w2m21w2m37w2m1w1m1w1m4w1m4w1m6w9m1w5m2w1m7w2m1w1m5w1m1w1m5w2m1w2m4w2m20w1m2w9m10w6m1w3m8w2m3w11m6w1m1w1m4w13m3w5m3w7m1w1m1w1m5w5m3w6m21w1m15w1m3w1m4w1m1w1m1w1m2w3m1w1m1w1m1w3m10w2m12w1m1w1m8w1m4w1m5w1m6w4m13w2m11w1m5w1m10w5m2w1m10w7m1w1m1w1m1w1m1w1m1w1m2w1m1w1m2w1m1w1m1w1m1w1m1w3m1w1m2w2m13w1m1w8m21w8m3w2m6w9m4w1m1w1m4w4m12w1m8w1m15w2m2w2m2w1m5w5m5w2m1w1m2w2m2w2m1w1m1w3m9w1m2w4m2w3m2w2m1w26m6w1m2w1m1w1m1w2m1w1m1w2m3w3m1w3m6w2m2w2m1w1m2w4m2w2m1w1m2w1m1w1m1w3m1w7m1w7m2w9m2w1m4w2m1w1m14w1m1w3m1w9m1w1m1w5m2w5m1w22m1w1m1w3m1w1m1w9m3w2m1w20m1w1m3w7m4w1m1w15m1w1m1w1m5w2m1w7m3w2m6w2m9w10m4w16m3w1m2w12m4w2m3w2m1w4m3w2m3w1m1w2m1w1m9w6m8w2m6w1m1w3m1w6m2w1m1w2m1w13m6w1m1w1m1w7m1w1m81w3m1w2m1w1m1w1m2w2m7w5m4w4m10w1m4w1m1w1m1w1m1w1m5w3m3w1m1w2m1w4m1w9m2w5m1w1m3w1m1w1m1w1m7w1m1w1m3w17"
  },
  "models/weapons/lugerp08silenced.tik": {
   "o": [
@@ -5331,7 +5233,8 @@
    "nu": 42,
    "nv": 14,
    "bits": "7e000000001ffff8000007ffffffe003fffffffffeffffffffffbfffffffffeffffffffffbfffffffffeffffffffffbfffffffffe007fffffff800001ffffe000000007f800000000000"
-  }
+  },
+  "tris": "w2m6w2m1w1m1w2m1w2m21w2m37w2m1w1m1w1m4w1m4w1m6w9m1w5m2w1m7w2m1w1m5w1m1w1m5w2m1w2m4w2m20w1m2w9m10w6m1w3m8w2m3w11m6w1m1w1m4w13m3w5m3w7m1w1m1w1m5w5m3w6m21w1m15w1m3w1m4w1m1w1m1w1m2w3m1w1m1w1m1w3m10w2m12w1m1w1m8w1m4w1m5w1m6w4m13w2m11w1m5w1m10w5m2w1m10w7m1w1m1w1m1w1m1w1m1w1m2w1m1w1m2w1m1w1m1w1m1w1m1w3m1w1m2w2m13w1m1w8m21w8m3w2m6w9m4w1m1w1m4w4m12w1m8w1m15w2m2w2m2w1m5w5m5w2m1w1m2w2m2w2m1w1m1w3m9w1m2w4m2w3m2w2m1w26m6w1m2w1m1w1m1w2m1w1m1w2m3w3m1w3m6w2m2w2m1w1m2w4m2w2m1w1m2w1m1w1m1w3m1w7m1w7m2w9m2w1m4w2m1w1m14w1m1w3m1w9m1w1m1w5m2w5m1w22m1w1m1w3m1w1m1w9m3w2m1w20m1w1m3w7m4w1m1w15m1w1m1w1m5w2m1w7m3w2m6w2m9w10m4w16m3w1m2w12m4w2m3w2m1w4m3w2m3w1m1w2m1w1m9w6m8w2m6w1m1w3m1w6m2w1m1w2m1w13m6w1m1w1m1w7m1w1m81w3m1w2m1w1m1w1m2w2m7w5m4w4m10w1m4w1m1w1m1w1m1w1m5w3m3w1m1w2m1w4m1w9m2w5m1w1m3w1m1w1m1w1m7w1m1w1m3w17m168"
  },
  "models/weapons/m10_revolver.tik": {
   "o": [
@@ -5490,7 +5393,8 @@
    "nu": 39,
    "nv": 9,
    "bits": "00000001fcfffffffffbfffffffff7ffffffffefffffffffdfffffffffbfffffffff7ffffffc000000000000"
-  }
+  },
+  "tris": "w168m2306w1m9w3m1w1m14w2m1w2m4w1m14w2m6w2m14w1m17w1m1w1m28w1m1w1m29w4m1w1m2w4m1w1m2w4m1w1m2w4m1w1m41w1m7w1m7w1m7w1m6w1m7w1m7w1m7w1m529"
  },
  "models/weapons/m1_garand.tik": {
   "o": [
@@ -5684,7 +5588,8 @@
    "nu": 44,
    "nv": 13,
    "bits": "ff800000000fffffffffffffffffffffffcffffffffffcffffffffffcfffffffffffffffffffeffffffffff0ffe000fffc0ff8000fff80000000fe8000000000c000000000000000"
-  }
+  },
+  "tris": "w14m1w1m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w30m36w38m12w236m2w24m96w1m26w2m41w1m34w1m78w1m2w1m26w2m1w1m17w1m3w1m14w1m2w1m1w1m19w1m30w1m91w1m22w1m18w2m16w1m198w1m23w1m191w2m15w1m10w1m4w1m8w1m4w1m19w1m1w1m15w1m152"
  },
  "models/weapons/mauser_c96.tik": {
   "o": [
@@ -5773,7 +5678,8 @@
    "nu": 33,
    "nv": 14,
    "bits": "0000000060000000f8000000fe000000ffc00001fffc0003fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8007ffffc"
-  }
+  },
+  "tris": "m6w4m2w2m4w8m1w2m1w2m2w10m1w11m1w21m1w13m1w19m1w12m1w10m2w2m2w4m3w2m2w4m1w18m1w30m2w2m2w2m1w8m1w1m1w1m2w4m2w2m7w6m7w6m3w2m2w1m1w7m6w2m6w2m10w2m30w2m2w2m4w2m12w2m7w6m10w2m4w2m7w4m4w2m12w2m3w2m2w2m7w4m7w1m1w3m3w2m10w2m7w2m4w4m52w2m8w2m61w2m2w2m1w2m28w2m4w2m16w2m19w1m3w2m1w2m1w2m1w2m8w3m5w2m7w2m21w2m2w2m4w2m15w2m6w2m16w2m1w4m1w1m1w3m3w2m14w2m9w2m4w4m11w2m32w2m11w2m3w2m3w4m5w2m3w10m4w2m40w2m29w2m9w4m8w4m1w4m13w2m12w2m14w2m7w2m51w2m5w2m25w2m33w2m8w2m15w2m4w2m3w2m2w2m2w2m12w2m2w3m6w2m2w3m1w3m1w3m2w2m4w2m8w2m4w3m10w2m8w1m17w4m4w2m2w8m1w2m3w3m1w1m3w4m3w4m8w2m3w2m2w2m3w2m6w2m4w4m1w2m2w2m3w1m2w1m5w9m1w5m8w2m2w4m3w2m3w2m2w2m1w3m1w1m2w2m15w2m6w4m5w2m4w2m7w1m4w5m4w4m3w2m6w6m2w1m3w1m1w4m3w2m2w2m1w2m13w2m3w2m8w4m4w3m3w1m2w2m4w2m3w2m5w4m2w1m5w1m3w4m2w2m1w2m5w2m2w2m13w1m3w1m5w2m2w2m4w2m1w2m5w1m2w1m5w2m2w2m2w2m3w2m1w2m1w2m76w2m13w2m22w2m2w6m8w2m2w4m1w2m9w2m2w4m4w2m25w4m2w2m36w1m4w1m11w2m5w2m5w4m2w1m6w1m3w3m12w1m22w2m2w2m37w2m38w1m2w1m10w1m5w1m17w1m2w1m3w2m11w4m7w2m6w2m3985w2m2w2m2w2m7w2m2w2m15w2m5w2m5w4m2w2m4196"
  },
  "models/weapons/mg42portable.tik": {
   "o": [
@@ -5897,7 +5803,8 @@
    "nu": 47,
    "nv": 13,
    "bits": "0000000000000000000000000000000000000001e000000003ffc000000007ff800000000fff000000001ffe000000001ffc000000003ff8000000007ff0000000003fe0000000001fc0000000"
-  }
+  },
+  "tris": "w1m3w1m2w15m14w1m2w1m1w1m2w1m2w16m14w1m4w1m2w1m4w4m4w3m1w3m1w4m14w1m17w2m6w1m1w1m2w4m13w3m2w4m2w6m2w12m3w4m1w3m2w4m2w16m6w3m1w2m4w1m46w1m1w1m95w1m4w1m35w3m1w2m1w2m29w2m4w2m8w2m2w2m2w2m4w2m8w2m2w1m3w2m5w1m8w2m2w1m1w1m1w4m1w3m1w1m6w2m2w2m4w6m9w1m2w1m64w3m67w1m6w1m274w1m10w1m8w1m6w1m3w2m3w1m3w1m12w1m2w1m5w1m1w2m1w2m1w2m1w1m4w1m2w4m1w1m2w4m19w1m6w1m11w2m10w2m3w1m3w2m2w2m3w1m2w1m4w1m58w2m10w2m17w1m3w2m2w2m3w1m2w1m5w1m25w1m39w2m2w2m2w5m1w2m22w1m1w1m4w4m1w3m65w2m3w14"
  },
  "models/weapons/moschetto.tik": {
   "o": [
@@ -6056,7 +5963,8 @@
    "nu": 27,
    "nv": 13,
    "bits": "00000000000000000ff800e00fc7f000fcfc000fbf8001fff0007f7f001fc7f007f07ffffc03fffe000ffe00"
-  }
+  },
+  "tris": "m227w1m4w1m21w1m89w29m3w23m1w1m1w1m1w32m1w2m1w12m4w1m2w19m6w1m1w1m116w22m4w4m5w2m114w3m1w2m2w2m7w1m1w1m13w1m138w154m20"
  },
  "models/weapons/mosin_nagant_rifle.tik": {
   "o": [
@@ -6215,7 +6123,8 @@
    "nu": 38,
    "nv": 16,
    "bits": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffff00000000000000000000"
-  }
+  },
+  "tris": "m232w10m1w1m2w4m7w24m2w22m1w13m2w15m2w2m327"
  },
  "models/weapons/mp40.tik": {
   "o": [
@@ -6374,7 +6283,8 @@
    "nu": 46,
    "nv": 12,
    "bits": "000700000000001fffff000000ffffffff8000f33ffffe0013ccfffffdfc4f33fffff433ffcffffff0cfff3fffffc33e7cfffffc0ff87ffffff0000007ffffc00000000007"
-  }
+  },
+  "tris": "m1509"
  },
  "models/weapons/mp40silenced.tik": {
   "o": [
@@ -6533,7 +6443,8 @@
    "nu": 44,
    "nv": 15,
    "bits": "000043ffe00000043fffff000003fffff000003fffff00001cfffffffc00cfffffffe004ffffffff000fffffc00803fffffc00c01fffffc00f80fffffc00fe07fffffffff03fffffffff81fffe0001f81fffe0"
-  }
+  },
+  "tris": "m2w2m20w1m379w1m1w1m19w2m4w9m8w1m7w3m25w3m150w1m1w1m115w1m233w1m251"
  },
  "models/weapons/mp44.tik": {
   "o": [
@@ -6692,68 +6603,69 @@
    "nu": 43,
    "nv": 9,
    "bits": "000000000000000003e000001ffffc003fffffff8007fffffff000ffffffff001fffffffe003fffff000007f8000000000"
-  }
+  },
+  "tris": "w104m4w94m12w1m58w1m38w1m1735"
  },
  "models/weapons/mp44scoped.tik": {
   "o": [
-   -4.214,
-   -2.615,
-   -8.038
+   1.312,
+   -1.614,
+   -4.453
   ],
   "u": [
-   -0.9953,
-   -0.0837,
-   -0.0491
+   -0.9993,
+   -0.0351,
+   -0.0145
   ],
   "v": [
-   0.0329,
-   0.1854,
-   -0.9821
+   0.0155,
+   -0.0285,
+   -0.9995
   ],
-  "width": 1.104,
+  "width": 3.165,
   "material": "metal",
-  "surface": "scopeb",
-  "screen": 0.00739,
-  "facing": 0.535,
-  "text_h": 0.0492,
-  "tilt": 6.8,
-  "lines": 2,
-  "letter_px": 18.4,
+  "surface": "2",
+  "screen": 0.00524,
+  "facing": 0.336,
+  "text_h": 0.0315,
+  "tilt": 46.6,
+  "lines": 1,
+  "letter_px": 15.1,
   "spots": {
    "receiver_l": {
     "o": [
-     0.431,
-     -2.336,
-     -8.361
+     1.312,
+     -1.614,
+     -4.453
     ],
     "u": [
-     -0.9979,
-     0.0048,
-     -0.0642
+     -0.9993,
+     -0.0351,
+     -0.0145
     ],
     "v": [
-     0.0584,
-     0.4865,
-     -0.8717
+     0.0155,
+     -0.0285,
+     -0.9995
     ],
-    "width": 2.208,
+    "width": 3.165,
     "material": "metal",
-    "lines": 2,
-    "letter_px": 17.8,
+    "lines": 1,
+    "letter_px": 15.1,
+    "sq": 0.44,
+    "du0": -1.0,
+    "du1": 2.64,
+    "dv0": 0.0,
+    "dv1": 0.0,
     "face": {
-     "u0": -2.32,
-     "v0": -0.5,
-     "cell": 0.08,
+     "u0": -9.32,
+     "v0": -0.3,
+     "cell": 0.32,
      "cellv": 0.08,
      "nu": 44,
-     "nv": 13,
-     "bits": "0000000000700000007fff00007ffffff07fffffffffffffffffffffffffffffffffffffffffffffffffffff7ffffffffff7ffffffffff7fffffffe007ffffc000007f8000000000"
-    },
-    "sq": 0.76,
-    "du0": -0.24,
-    "du1": 0.0,
-    "dv0": 0.0,
-    "dv1": 0.0
+     "nv": 9,
+     "bits": "00000000000000003ffe00000003ffe00000003fff00000003fff00000003fff80000003ff00000000000000000000000000"
+    }
    },
    "top": {
     "o": [
@@ -6789,41 +6701,6 @@
     "du1": 0.0,
     "dv0": 0.0,
     "dv1": 0.0
-   },
-   "engrave_short": {
-    "o": [
-     0.17,
-     -2.344,
-     -8.361
-    ],
-    "u": [
-     -0.9979,
-     0.0048,
-     -0.0642
-    ],
-    "v": [
-     0.0584,
-     0.4865,
-     -0.8717
-    ],
-    "width": 1.288,
-    "material": "metal",
-    "lines": 3,
-    "letter_px": 22.3,
-    "sq": 0.72,
-    "du0": 0.0,
-    "du1": 0.0,
-    "dv0": 0.0,
-    "dv1": 0.0,
-    "face": {
-     "u0": -2.58,
-     "v0": -0.48,
-     "cell": 0.08,
-     "cellv": 0.08,
-     "nu": 44,
-     "nv": 13,
-     "bits": "0000000000700000007fff00007ffffff07fffffffffffffffffffffffffffffffffffffffffffffffffffff7ffffffffff7ffffffffff7fffffffe007ffffc000007f8000000000"
-    }
    }
   },
   "bounds": [
@@ -6838,12 +6715,21 @@
     8.822
    ]
   ],
-  "sq": 0.276,
-  "du0": 0.0,
-  "du1": 0.0,
+  "sq": 0.44,
+  "du0": -1.0,
+  "du1": 2.64,
   "dv0": 0.0,
   "dv1": 0.0,
-  "face": null
+  "face": {
+   "u0": -9.32,
+   "v0": -0.3,
+   "cell": 0.32,
+   "cellv": 0.08,
+   "nu": 44,
+   "nv": 9,
+   "bits": "00000000000000003ffe00000003ffe00000003fff00000003fff00000003fff80000003ff00000000000000000000000000"
+  },
+  "tris": "m1748w2m29w4m2w1m14w1m8w1m714w1m5w1m2w1m21w4m17w1m5w1m4w5m1w1m1w10m1w1m9w15m8w16m8w16m8w16m8w16m8w20m1135o16m12o1136"
  },
  "models/weapons/nagant_revolver.tik": {
   "o": [
@@ -6932,33 +6818,34 @@
    "nu": 46,
    "nv": 8,
    "bits": "0000000000f800007fffffefffffffffffbffffffffffefffffffffffbffffffffffeffffffffc001ffe00000000"
-  }
+  },
+  "tris": "m566"
  },
  "models/weapons/nagant_sniper.tik": {
   "o": [
-   2.907,
-   -0.769,
-   -5.692
+   17.71,
+   -1.367,
+   -3.428
   ],
   "u": [
-   0.0,
-   1.0,
-   0.0
+   -0.9991,
+   -0.0079,
+   0.0428
   ],
   "v": [
-   -0.0,
-   0.0,
-   -1.0
+   -0.0428,
+   0.0032,
+   -0.9991
   ],
-  "width": 1.141,
+  "width": 3.68,
   "material": "metal",
-  "surface": "lens",
-  "screen": 0.00311,
-  "facing": 0.915,
-  "text_h": 0.028,
-  "tilt": 0.2,
-  "lines": 2,
-  "letter_px": 10.5,
+  "surface": "mosin-nagant",
+  "screen": 0.00052,
+  "facing": 0.125,
+  "text_h": 0.016,
+  "tilt": 56.7,
+  "lines": 1,
+  "letter_px": 7.7,
   "spots": {
    "receiver_l": {
     "o": [
@@ -6994,76 +6881,6 @@
     "du1": 0.28,
     "dv0": -0.04,
     "dv1": 0.0
-   },
-   "butt": {
-    "o": [
-     2.907,
-     -0.769,
-     -5.692
-    ],
-    "u": [
-     0.0,
-     1.0,
-     0.0
-    ],
-    "v": [
-     -0.0,
-     0.0,
-     -1.0
-    ],
-    "width": 1.141,
-    "material": "metal",
-    "lines": 2,
-    "letter_px": 10.5,
-    "face": {
-     "u0": -0.66,
-     "v0": -0.56,
-     "cell": 0.04,
-     "cellv": 0.12,
-     "nu": 33,
-     "nv": 11,
-     "bits": "0007f00000ffffe003fffffe07ffffffc7fffffff7fffffffdfffffffc7ffffffc0ffffff800ffffe00001fc0000"
-    },
-    "sq": 0.84,
-    "du0": 0.0,
-    "du1": 0.0,
-    "dv0": 0.0,
-    "dv1": 0.2
-   },
-   "stock_l": {
-    "o": [
-     3.695,
-     -1.632,
-     -6.22
-    ],
-    "u": [
-     -1.0,
-     0.0087,
-     -0.0025
-    ],
-    "v": [
-     0.0058,
-     0.4029,
-     -0.9152
-    ],
-    "width": 1.582,
-    "material": "wood",
-    "lines": 2,
-    "letter_px": 12.3,
-    "face": {
-     "u0": -4.38,
-     "v0": -0.34,
-     "cell": 0.12,
-     "cellv": 0.04,
-     "nu": 44,
-     "nv": 16,
-     "bits": "000000000010000000000f003801c007ffff000ffffffff0007ffffffe0003fffeffe0003fffeffc0001fffef0c0000fffef0c0000fffef0e0001fffef0f0003fffef0f8003fffef0fc007fffef0fc007f00010fe0000000"
-    },
-    "sq": 0.44,
-    "du0": -0.72,
-    "du1": 0.0,
-    "dv0": 0.0,
-    "dv1": 0.0
    }
   },
   "bounds": [
@@ -7078,81 +6895,82 @@
     3.541
    ]
   ],
-  "sq": 0.84,
-  "du0": 0.0,
-  "du1": 0.0,
-  "dv0": 0.0,
-  "dv1": 0.2,
+  "sq": 0.64,
+  "du0": -0.2,
+  "du1": 0.28,
+  "dv0": -0.04,
+  "dv1": 0.0,
   "face": {
-   "u0": -0.66,
-   "v0": -0.56,
-   "cell": 0.04,
-   "cellv": 0.12,
-   "nu": 33,
-   "nv": 11,
-   "bits": "0007f00000ffffe003fffffe07ffffffc7fffffff7fffffffdfffffffc7ffffffc0ffffff800ffffe00001fc0000"
-  }
+   "u0": -2.92,
+   "v0": -0.44,
+   "cell": 0.12,
+   "cellv": 0.08,
+   "nu": 43,
+   "nv": 10,
+   "bits": "700000000007ffff800000fffffffffe0fffffffff80fffffffff00ffffffffe01ffffffffe01ffffffffc000fffffff800000003ff0"
+  },
+  "tris": "w6m15w7m77w10m12w6m23w16m44w2m4w1m105w1m47w12m1w17m3w21m2w23m2w9m18w8m15w3m13w3m5w1m22w4m4w4m5w11m58w11m241o1584"
  },
  "models/weapons/nagant_snipersilenced.tik": {
   "o": [
-   3.796,
-   -1.697,
-   -5.98
+   7.355,
+   -1.541,
+   -1.101
   ],
   "u": [
-   -0.9999,
-   0.0096,
-   -0.0141
+   -0.9984,
+   -0.002,
+   0.0561
   ],
   "v": [
-   0.0156,
-   0.175,
-   -0.9844
+   -0.0559,
+   -0.0535,
+   -0.997
   ],
-  "width": 1.766,
+  "width": 2.834,
   "material": "wood",
-  "surface": "Weas",
-  "screen": 0.00185,
-  "facing": 0.307,
-  "text_h": 0.0362,
-  "tilt": 14.0,
+  "surface": "mosin-nagant",
+  "screen": 0.0044,
+  "facing": 0.186,
+  "text_h": 0.0423,
+  "tilt": 62.0,
   "lines": 2,
-  "letter_px": 13.6,
+  "letter_px": 15.8,
   "spots": {
    "stock_l": {
     "o": [
-     3.796,
-     -1.697,
-     -5.98
+     7.355,
+     -1.541,
+     -1.101
     ],
     "u": [
-     -0.9999,
-     0.0096,
-     -0.0141
+     -0.9984,
+     -0.002,
+     0.0561
     ],
     "v": [
-     0.0156,
-     0.175,
-     -0.9844
+     -0.0559,
+     -0.0535,
+     -0.997
     ],
-    "width": 1.766,
+    "width": 2.834,
     "material": "wood",
     "lines": 2,
-    "letter_px": 13.6,
-    "face": {
-     "u0": -4.28,
-     "v0": -0.44,
-     "cell": 0.12,
-     "cellv": 0.08,
-     "nu": 44,
-     "nv": 9,
-     "bits": "000000000010000000003f00000000fffffe007ffffffff003ffffffff001ffffffff000ffffffff0007fffefff0003fc000"
-    },
-    "sq": 0.48,
-    "du0": -1.24,
-    "du1": 0.0,
+    "letter_px": 15.8,
+    "sq": 0.76,
+    "du0": 0.0,
+    "du1": 0.28,
     "dv0": 0.0,
-    "dv1": 0.0
+    "dv1": 0.0,
+    "face": {
+     "u0": -13.38,
+     "v0": -0.7,
+     "cell": 0.52,
+     "cellv": 0.2,
+     "nu": 44,
+     "nv": 15,
+     "bits": "000000000000000000000000000ffc00000000ffc000000003fe0000000007f0000000000f00000000001800000000000000000000000000000000e00000007ffe00000003fff000000000ff00000000003000"
+    }
    },
    "top": {
     "o": [
@@ -7191,38 +7009,38 @@
    },
    "receiver_l": {
     "o": [
-     6.227,
-     -1.675,
-     -5.491
+     10.193,
+     -1.268,
+     -3.737
     ],
     "u": [
-     -0.9999,
-     -0.0092,
-     -0.0086
+     -0.9989,
+     -0.0216,
+     0.0423
     ],
     "v": [
-     0.0112,
-     -0.3217,
-     -0.9468
+     -0.0463,
+     0.6431,
+     -0.7644
     ],
-    "width": 3.422,
+    "width": 1.288,
     "material": "metal",
-    "lines": 1,
-    "letter_px": 13.1,
-    "face": {
-     "u0": -1.86,
-     "v0": -0.64,
-     "cell": 0.12,
-     "cellv": 0.08,
-     "nu": 45,
-     "nv": 11,
-     "bits": "0000000000000000040000000000700000000007c0000000007f00007ff7ffff0003ffbfffff801ff8ffffffc0ffc7ffffffe7fe3fffffc03ff0ffff8000"
-    },
-    "sq": 0.52,
-    "du0": 0.0,
-    "du1": 0.0,
+    "lines": 2,
+    "letter_px": 6.3,
+    "sq": 0.36,
+    "du0": -0.16,
+    "du1": 0.2,
     "dv0": 0.0,
-    "dv1": 0.0
+    "dv1": 0.0,
+    "face": {
+     "u0": -2.14,
+     "v0": -0.3,
+     "cell": 0.12,
+     "cellv": 0.04,
+     "nu": 32,
+     "nv": 15,
+     "bits": "0000000000000000000fc000000fff80000ffff2000fffe0000fffc0000fffc0000fff80001fff80001fff00001ffe0000003e000000000000000000"
+    }
    },
    "engrave_short": {
     "o": [
@@ -7272,20 +7090,21 @@
     3.541
    ]
   ],
-  "sq": 0.48,
-  "du0": -1.24,
-  "du1": 0.0,
+  "sq": 0.76,
+  "du0": 0.0,
+  "du1": 0.28,
   "dv0": 0.0,
   "dv1": 0.0,
   "face": {
-   "u0": -4.28,
-   "v0": -0.44,
-   "cell": 0.12,
-   "cellv": 0.08,
+   "u0": -13.38,
+   "v0": -0.7,
+   "cell": 0.52,
+   "cellv": 0.2,
    "nu": 44,
-   "nv": 9,
-   "bits": "000000000010000000003f00000000fffffe007ffffffff003ffffffff001ffffffff000ffffffff0007fffefff0003fc000"
-  }
+   "nv": 15,
+   "bits": "000000000000000000000000000ffc00000000ffc000000003fe0000000007f0000000000f00000000001800000000000000000000000000000000e00000007ffe00000003fff000000000ff00000000003000"
+  },
+  "tris": "w6m15w7m3o74w10o10m2w6m23w16m44w2m4w1m104o1w1o6m2o9m1o2m2o1m13o2m9w12m1w17m3w21m2w23m2w9m18w8m15w3m13w3m5w1m22w4m4w4m5w11m58w11m111o18m7o11m8o1m4o5m3o4m6o2m1o21m39o480w96m336"
  },
  "models/weapons/nambu.tik": {
   "o": [
@@ -7444,7 +7263,8 @@
    "nu": 43,
    "nv": 12,
    "bits": "00000000004000000007f8000000ffff00000fffffe001fffffffc003fffffff8007fffffff000fffffffe07fffff01fefffff0000f9ffe00000003e0000000000"
-  }
+  },
+  "tris": "m3180"
  },
  "models/weapons/p38.tik": {
   "o": [
@@ -7568,7 +7388,8 @@
    "nu": 39,
    "nv": 14,
    "bits": "0000000006000001fffc003ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdfffffffffbfffffffff3fc03fff006000000000c0000000000"
-  }
+  },
+  "tris": "m1126"
  },
  "models/weapons/p38silenced.tik": {
   "o": [
@@ -7692,7 +7513,8 @@
    "nu": 39,
    "nv": 15,
    "bits": "e000000001c7ffffff038ffffffff71fffffffefffffffffdffffffc0fbffffff01f7ffffe003efffffc003dfffff8007bfffff800f70003f801ee0007fc07800007f80f000000000600"
-  }
+  },
+  "tris": "m1920"
  },
  "models/weapons/panzerschreck.tik": {
   "o": [
@@ -7851,7 +7673,8 @@
    "nu": 47,
    "nv": 10,
    "bits": "0000000000000000000000000000007f00000001ffff0000007ffffe000000fffffc0000003ffff8000000001ff000000000000000000000000000"
-  }
+  },
+  "tris": "m2w1m5w1m1w4m5w3m10w1m2w2m2w1m8w8m1w3m1w3m5w1m10w1m1w1m3w1m1w8m1w1m1w1m1w1m1w1m1w1m1w1m1w1m1w1m1w2m11w50m1w1m1w1m1w1m1w1m1w21m1w1m1w1m1w1m1w1m1w23m1w47m1w1m2w1m1w2m2w10m1w1m2w1m1w32m2w58m1w2m1w36m1w2m1w232m1w23m1w4m1w1m1w2m2w35m10w67m3w4m7"
  },
  "models/weapons/ppk.tik": {
   "o": [
@@ -7975,7 +7798,8 @@
    "nu": 46,
    "nv": 15,
    "bits": "00000000000000000000000000000000000000000000000000000000000001f0000000000000000000000000200000010000c000001c0003000003ff000e00000fffffffc0003fffffff0000ffffe000001e0000000000"
-  }
+  },
+  "tris": "m4926"
  },
  "models/weapons/ppsh43silenced.tik": {
   "o": [
@@ -8099,7 +7923,8 @@
    "nu": 46,
    "nv": 16,
    "bits": "000000000000000c00000000007e0003ff0000100003fc01c040000ff2000000003fc8007a00203f21c0280080fe07e0000003f800000f8ffff0001c00f80000007600000007fe000000001f00000000000000000000000000000000"
-  }
+  },
+  "tris": "m1742"
  },
  "models/weapons/ppsh_smg.tik": {
   "o": [
@@ -8180,7 +8005,8 @@
   "du1": 0.0,
   "dv0": 0.0,
   "dv1": 0.0,
-  "face": null
+  "face": null,
+  "tris": "m44w2m36w1m2w7m2w4m4w1m2w5m5w6m3w1m4w6m2w1m2w1m4w6m19w2m12w2m846w1m1w1m17"
  },
  "models/weapons/shotgun.tik": {
   "o": [
@@ -8304,7 +8130,8 @@
    "nu": 44,
    "nv": 16,
    "bits": "7f0000000007fffff800007fffffffff87fffffffff07fffffffff07fffffffff07ffffffffe07ffffffffe07ffffffffe07ffffffffe07ffffffffe0003ffffffe000003ffffe00000001ffe0000000000e000000000000"
-  }
+  },
+  "tris": "m94w60m10w8m22w8m17w9m2w60m152w3m2w11m20w256m28"
  },
  "models/weapons/silencedpistol.tik": {
   "o": [
@@ -8463,33 +8290,34 @@
    "nu": 39,
    "nv": 14,
    "bits": "ffffffff01ffffffffffffffffffffffffffffffffffffffdfffffffffbfffffffff7ffffffffefffffffffdfffffffff3ffffffffe7ffffffffcfffffffff1ffffffffe00"
-  }
+  },
+  "tris": "w4m12w3m1w4m3w1m56w1m11w2m2w2m2w2m2w1m231w4m1w1m3w1m6w6m1w1m320"
  },
  "models/weapons/springfield.tik": {
   "o": [
-   3.58,
-   -1.523,
-   -3.856
+   3.609,
+   -1.546,
+   -3.832
   ],
   "u": [
-   -0.998,
-   0.0445,
-   -0.0445
+   -1.0,
+   0.0032,
+   -0.0032
   ],
   "v": [
-   0.063,
-   0.7057,
-   -0.7057
+   0.0046,
+   0.7071,
+   -0.7071
   ],
-  "width": 1.398,
+  "width": 1.546,
   "material": "metal",
-  "surface": "scopeb2",
-  "screen": 0.00187,
-  "facing": 0.418,
-  "text_h": 0.0302,
-  "tilt": 35.6,
+  "surface": "springfield1",
+  "screen": 0.00224,
+  "facing": 0.417,
+  "text_h": 0.0331,
+  "tilt": 43.9,
   "lines": 2,
-  "letter_px": 11.3,
+  "letter_px": 12.4,
   "spots": {
    "top": {
     "o": [
@@ -8609,12 +8437,21 @@
     4.876
    ]
   ],
-  "sq": 0.349,
-  "du0": 0.0,
+  "sq": 0.44,
+  "du0": -0.48,
   "du1": 0.0,
   "dv0": 0.0,
   "dv1": 0.0,
-  "face": null
+  "face": {
+   "u0": -1.48,
+   "v0": -0.2,
+   "cell": 0.08,
+   "cellv": 0.04,
+   "nu": 29,
+   "nv": 12,
+   "bits": "fffffffbffffffdffffffefffffff7ffffffbffffffcffffffe7ffffff3ffffff9ffffffc7ffff803ffe0000"
+  },
+  "tris": "o12w28m10w26m12w12m7w2m1w18m8w4m1w12m1w1m4w16m1w1m1w1m1w1m1w26m1w13m1w1m13w16m1w1m6w2m1w48m4w4m6w8m1w8m2w1m15w7m6w12m1w2m1w2m1w1m1w2m1w2m4w8m4w2m1w1m4w1m1w5m6w1m6w1m1w4m1w1m6w1m7w5m1w6m1w3m2w1m2w6m1w15m2w10m2w1m1w8m2w6m1w6m1w16m16w33m1w5m2w44m6w2m2w1m1w2m6w1m4w10m2w4m1w3m2w2m1w1m3w7m3w2m2w3m4w2m1w10m2w3m1w6m3w13m1w30m2w1m1w2m2w4m8w6m8w6o1392"
  },
  "models/weapons/springfield_unscoped.tik": {
   "o": [
@@ -8773,7 +8610,8 @@
    "nu": 48,
    "nv": 13,
    "bits": "00000000000000007ff000000033fffc0000ff33fffc0000cf33fffc0000cf33fffc0000cf3ffffc0000cf3ffffc0000cf3ff3fc0000cf3ff3fc0000cf3ff3fe0200cf3ff3fe0000fffffffe0000"
-  }
+  },
+  "tris": "m763"
  },
  "models/weapons/sten.tik": {
   "o": [
@@ -8932,33 +8770,34 @@
    "nu": 46,
    "nv": 10,
    "bits": "000000000000380010000000f0007ffff003e001fffff8c000037fffe301000dffff8c060037fffe001800dffff8000007ffffe0000000000f80"
-  }
+  },
+  "tris": "m5w4m7w1m1w4m1w3m4w24m8w1m2w3m12w1m6w1m7w1m1w3m5w1m1w2m1w1m1w1m1w3m1w6m4w1m1w1m3w1m1w1m1w2m1w1m2w2m1w3m8w1m1w1m1w1m1w3m1w1m16w13m1w1m1w16m5w2m1w1m1w6m6w6m1w2m2w11m3w1m1w8m6w9m2w8m4w13m5w1m3w1m2w1m14w1m8w2m1w1m1w6m1w1m2w10m2w1m1w2m1w1m1w2m1w2m3w1m18w1m2w2m3w1m6w1m4w2m15w7m14w7m1w5m7w1m10w1m1w5m3w1m21w1m2w2m1w1m3w1m4w2m2w2m2w2m5w9m1w17"
  },
  "models/weapons/svt_rifle.tik": {
   "o": [
-   0.722,
-   -0.807,
-   -7.642
+   11.101,
+   -0.596,
+   0.785
   ],
   "u": [
-   -0.9996,
-   -0.02,
-   0.0175
+   -0.9904,
+   0.0,
+   -0.1383
   ],
   "v": [
-   -0.0263,
-   0.6438,
-   -0.7648
+   0.1383,
+   -0.0,
+   -0.9904
   ],
-  "width": 1.546,
+  "width": 4.306,
   "material": "metal",
-  "surface": "svt_rifle",
-  "screen": 0.00248,
-  "facing": 0.384,
-  "text_h": 0.0361,
-  "tilt": 16.7,
+  "surface": "svt_riflecull",
+  "screen": 0.00433,
+  "facing": 0.171,
+  "text_h": 0.0488,
+  "tilt": 52.1,
   "lines": 2,
-  "letter_px": 13.5,
+  "letter_px": 18.3,
   "spots": {
    "top": {
     "o": [
@@ -9043,12 +8882,21 @@
     3.234
    ]
   ],
-  "sq": 0.387,
+  "sq": 3.48,
   "du0": 0.0,
   "du1": 0.0,
-  "dv0": 0.0,
+  "dv0": -0.12,
   "dv1": 0.0,
-  "face": null
+  "face": {
+   "u0": -2.66,
+   "v0": -2.74,
+   "cell": 0.12,
+   "cellv": 0.32,
+   "nu": 43,
+   "nv": 15,
+   "bits": "00000000000000000000000000000000007fe0000007fffff80000fffffffe000fffffffff01fffffffffc1fffffffffc3fffffffff87ffffffffe07fffe00000000000000000000000000000000000000"
+  },
+  "tris": "w1m1w5m1w10m10w21m3w1m1w25m2w1m1w1m3w59m1w5m13w2m1w4m2w4m64w2m18w1m1w1m1w21m51w2m113w1m68o54m40o24m152o10m648"
  },
  "models/weapons/thompson50.tik": {
   "o": [
@@ -9172,7 +9020,8 @@
    "nu": 44,
    "nv": 14,
    "bits": "00000000000000000000000063fb000000063fbfff800063bbeffc00063bbeffe000432bfffe000432bffff000432bffff800c32bffffc00433bffffe00433bfffff007ffffffff0000003ffff"
-  }
+  },
+  "tris": "m3315"
  },
  "models/weapons/thompsonsmg.tik": {
   "o": [
@@ -9296,7 +9145,8 @@
    "nu": 44,
    "nv": 14,
    "bits": "80000000000800000000008000000000000000000000400001ffe007ffffffff001f3bfffff001f3bfffff801f3bfffffc07287effffc07287effffe07287efffff07ffff80000000000000000"
-  }
+  },
+  "tris": "w14m1w16m1w18m1w1m3w9m3w1m1w31m1w47m1w16m1w18m1w1m3w9m3w1m1w31m1w33m40w1m165w2m18w2m7w1m1w1m4w132m25w1m6w1m12w4m111w34m2w5m1w12m2w4m2w22m2w4m2w12m2w5m1w12m2w4m2w6m1w1m1w5m1w9m2w4m2w16m2w14m20w4m792"
  },
  "models/weapons/tt33.tik": {
   "o": [
@@ -9420,7 +9270,8 @@
    "nu": 47,
    "nv": 11,
    "bits": "003000000000007fffe0000000ffffffffc001ffffffffefffffffffffdfffffffffff8f3cffffffff1e79fffffffc3cf3fffffff80001fffffff000000003ffc0"
-  }
+  },
+  "tris": "m853"
  },
  "models/weapons/tt33silenced.tik": {
   "o": [
@@ -9544,7 +9395,8 @@
    "nu": 47,
    "nv": 11,
    "bits": "003000000000007fffe0000000ffffffffc001ffffffffefffffffffffdfffffffffff8f3cffffffff1e79fffffffc3cf3fffffff80001fffffff000000003ffc0"
-  }
+  },
+  "tris": "m1021"
  },
  "models/weapons/type100smg.tik": {
   "o": [
@@ -9695,7 +9547,8 @@
   "du1": 0.0,
   "dv0": 0.0,
   "dv1": 0.0,
-  "face": null
+  "face": null,
+  "tris": "m225w4m1w3m2w14m2w1m21w6m11w2m1w5m12w7m4w4m3w2m12w1m1w1m4w2m9w3m12w2m14w4m10w5m6w1m29w2m6w1m17w5m8w26m4w14m24w4m8w8m9w1m11w1m1w6m2w2m16w5m3w2m3814"
  },
  "models/weapons/uk_w_l42a1.tik": {
   "o": [
@@ -9760,38 +9613,38 @@
    },
    "receiver_l": {
     "o": [
-     -1.19,
-     -2.287,
-     -7.001
+     0.6,
+     -2.347,
+     -4.065
     ],
     "u": [
      -0.9999,
-     -0.0003,
-     -0.012
+     -0.0,
+     0.0145
     ],
     "v": [
-     0.0068,
-     0.809,
-     -0.5877
+     -0.0145,
+     -0.0,
+     -0.9999
     ],
-    "width": 2.134,
+    "width": 2.429,
     "material": "metal",
-    "lines": 2,
-    "letter_px": 18.6,
-    "face": {
-     "u0": -1.16,
-     "v0": -0.32,
-     "cell": 0.08,
-     "cellv": 0.04,
-     "nu": 29,
-     "nv": 16,
-     "bits": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0"
-    },
-    "sq": 0.64,
-    "du0": 0.0,
+    "lines": 1,
+    "letter_px": 11.5,
+    "sq": 0.32,
+    "du0": -0.32,
     "du1": 0.0,
-    "dv0": -0.04,
-    "dv1": 0.0
+    "dv0": 0.0,
+    "dv1": 0.0,
+    "face": {
+     "u0": -6.68,
+     "v0": -0.28,
+     "cell": 0.2,
+     "cellv": 0.04,
+     "nu": 40,
+     "nv": 12,
+     "bits": "fe00000000fffff00000ffffffffc0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000fffffff0000003fff0000000001"
+    }
    },
    "engrave_short": {
     "o": [
@@ -9854,7 +9707,8 @@
    "nu": 47,
    "nv": 14,
    "bits": "00000000000000000001c0000000607fe0003fffc0ffe00638038ffff00c70071ffff018fc0ffffff831f81ffffff8600e3ffffffcc01c7ffffffd8ffffffffffb180000000007f00000000000000000000000"
-  }
+  },
+  "tris": "m38w174m20w54m2w2m1w12m1w18m12w19m3w1m4w1m4w2m4o172m72o38m248o40w57m1w3m1w1m1w9m1w3m1w1m1w3m2w107o86m371o20"
  },
  "models/weapons/uk_w_piat.tik": {
   "o": [
@@ -9978,7 +9832,8 @@
    "nu": 45,
    "nv": 16,
    "bits": "c0000000000701e0000000380fffe00001807fff80000c07fffc0000603ffff0000201ffff8000101ffffc000000ffffe0000007ffff0000007ffff8000003ffffc0000003ffff0000000003f800000000000000000000000000"
-  }
+  },
+  "tris": "m28w1m2w1m70w19m41w40m1093w1m7w1m28"
  },
  "models/weapons/uk_w_vickers.tik": {
   "o": [
@@ -10137,7 +9992,8 @@
    "nu": 42,
    "nv": 14,
    "bits": "c0000000003ffff800000fffffc380007ffff8f0001fffff3c0007ffffff8001ffffffe0007ffffff8001ffffffe0007ffffff8001ffffffe0007ffffff800007ffffe000000000f8000"
-  }
+  },
+  "tris": "m54w74m22w2m2w2m4w4m3w2m22w5m3w2m274w127m71w1m1w1m1350"
  },
  "models/weapons/webley_revolver.tik": {
   "o": [
@@ -10296,7 +10152,8 @@
    "nu": 25,
    "nv": 14,
    "bits": "00000200003f0007ff807fffc1ffffe7fffff9fffffcfffffe7fffff3fffff9ffffe07ffe003fe0000000000"
-  }
+  },
+  "tris": "m6w2m193w1m1w1m1w4m30w12m1w5m10w2m1w1m22w11m1w13m1w2m147w2m12w4m2w4m4w3m5w1m1w1m2w1m25w1m16w2m264w1m1w3"
  },
  "models/weapons/welrod.tik": {
   "o": [
@@ -10420,7 +10277,8 @@
    "nu": 47,
    "nv": 9,
    "bits": "000000000bdc003ffffff7b83fffffffef707fffffffdee00000007fffc0000000ffff80000001ffff000000000000080000000000"
-  }
+  },
+  "tris": "m2452"
  },
  "models/weapons/bar_bar1918.tik": {
   "o": [
@@ -10614,7 +10472,8 @@
      "bits": "7e000000fffffffdfffffffbfffffff7ffffffefffffffdfffffffbfffffff7ffffffefffffffffffffff7ffffffefffffffc000000f80"
     }
    }
-  }
+  },
+  "tris": "m233w1m48w1m90w1m48w1m131w1m1w4m4w1m1w2m6w1m1w2m6w1m2w1m6w1m2w1m52w1m1w4m1w1m4w4m1w1m4w1m1w2m1w1m6w2m1w1m6w2m1w1m7w3m46w1m1w2m42w1m3w3m1w6m8w1m1w26m1w5m6w1m46w1m9w1m38w1m9w1m15w164m1w1m2w6m1w1m2w4m1w5m1w5m1w8m227w1m2w1m9w1m10w1m6w2m16w1m4w1m9w1m8w1m7w2m38w1m8w1m668w1m2w1m2w1m1w1m2w3m2w1m5w3m2w2m1w2m4w2m1w2m2w2m1w4m1w1m2w2m4w2m2w1m1w8m1w1m2w2m4w2m2w1m1w8m1w1m2w2m4w2m2w1m1w10m2w2m4w2m2w1m1w4m32w2m3w3m16w2m18w1m25w2m3w3m3w1m8w1m12w1m22w1m5w1m4w1m488w40m1w13m18w1m1w16m7w1m1w1m1w7"
  },
  "models/weapons/bar_bar1918a.tik": {
   "o": [
@@ -10773,7 +10632,8 @@
      "bits": "00000003c00fffffffff00fffffffffe0ffffffffff8ffffffffffeffffffffffeffffffffffeffffffffffeffffffffffeffffffffffeffffffffffeffffffffffeffffffffffe7fffffffffe000000000000"
     }
    }
-  }
+  },
+  "tris": "m30w8m10w2m18w8m1w2m9w11m9w8m1w2m1w1m1w2m3w1m1w1m271w13m12w1m5w1m371w131m1w2m1w13m380"
  },
  "models/weapons/bar_pabar.tik": {
   "o": [
@@ -10932,7 +10792,8 @@
      "bits": "70000000000ffff0000001fffffff8003ffffffff007ffffffff01ffffffffc03ffffffff007fffffffe06ffffffffe0cffffffffe38001ffffffe0000000fff800000000000"
     }
    }
-  }
+  },
+  "tris": "m4432"
  },
  "models/weapons/colt45_colt1911w.tik": {
   "o": [
@@ -11091,7 +10952,8 @@
      "bits": "000003f7ffffffbffffffdffffffefffffff7fffffffffffffffffffff78000000"
     }
    }
-  }
+  },
+  "tris": "w2048m2w1m1w1m1w1m1w1m1w1m41w1m1w1m1w1m1w1m93w1m1w1m1w1m1w1m1w1m41w100m1w2m1w2m1w1m2w1m1w696m546w1m52w3m6w1m1w1m7w2m5w1m6w4m6w1m6w1m20w12m3w2m2w3m1w7m4w46m6w1m1w1m2w1m8w24m1w1m2w14m1w1m2w122m11w1m1w1m1w1m1w1m1w11m4w14m1w1m18"
  },
  "models/weapons/colt45_coltpa.tik": {
   "o": [
@@ -11250,7 +11112,8 @@
      "bits": "001f00000000007ff8ffffc001fff1ffffc007ffffffff901fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0ffffffffff800000007fff00"
     }
    }
-  }
+  },
+  "tris": "m3116"
  },
  "models/weapons/coop_bergmann.tik": {
   "o": [
@@ -11374,7 +11237,8 @@
     "dv0": 0.0,
     "dv1": 0.0
    }
-  }
+  },
+  "tris": "m7448"
  },
  "models/weapons/coop_bren.tik": {
   "o": [
@@ -11533,7 +11397,8 @@
      "bits": "000000000001ff80000000ffffffc0000ffffffc0001ffffff80007ffffff0001ffffffc000fffffff0003ffffff0003ffffff8003ffffff8003ffffff000ffffffc003ffffff800007fffc000"
     }
    }
-  }
+  },
+  "tris": "m10061"
  },
  "models/weapons/coop_panzerfaust.tik": {
   "o": [
@@ -11657,7 +11522,8 @@
      "bits": "000003000003fffffc00000f8003f0000038000fc0000000003f0000004000fc0000010003f0000004000fc0000000003f000000000000000000"
     }
    }
-  }
+  },
+  "tris": "m7254"
  },
  "models/weapons/enfield_p14.tik": {
   "o": [
@@ -11781,7 +11647,8 @@
     "dv0": 0.0,
     "dv1": 0.04
    }
-  }
+  },
+  "tris": "w697m141w1m19w1m19w1m19w1m19w1m19w1m19w1m19w1m19w1m19w1m19w1m19w1m19w1m19w1m18w14m3w14m4w1m1w10m1w4m2w2m2w12m1w5m1w4m1w3m1w7m1w1m1w1m1w1m1w6m2w12m2w1m1w4m6w4m1w1m18w1m1w1m166w1m40w1m5w1m17w1m6w1m24w1m78w1m24w1m70w1m33w1m2w2m2w2m3w7m1w1m1w1m2w6m1w1m15w9m8w3m73w1m2w1m2w1m2w1m2w1m2w1m20w40m1w13m18w1m1w16m7w1m1w1m1w7m356w2m2w1m43w1m1w1m33w1m1w2m12w2m8w2m8w2m10w1m9w1m15w1m1w2m1w1m4w1m1w2m6w1m2w1m33w1m1w1m1w1m1w1m1w1m10w1m1w1m1w1m1w1m1w1m21w11m1w1m1w1m1w1m1w1m2w1m1w1m1w1m1w1m1w2m1w1m1w1m1w1m1w1m11w10m1w1m20w1m5w2m8w2m2w2m2w8m8w2m2w2m2w8m8w2m2w2m2w8m8w2m2w2m2w8m8w2m2w2m2w8m8w2m2w2m2w154m1w1m1w21m1w1m1w19m11w2m24w1m1w6m1w1m1w12m1w3m1w3m8w3m1w3m4w7m5w6m4w4m2w4m653w20m7w3m15w5m4w6m5w3m8w1m1w2m14w1m1w4m4w6m4w1m1w2m2w2m1w9m1w9m1w9m1w7m1w1m2w2m1w1m3w1m2w2m1w1m3w1m2w2m1w1m3w1m2w2m1w1m4w1m5w1m3w1m5w1m3w1m5w1m3w1m5w1m48w3m15w5m4w6m5w3m8w1m1w2m14w1m1w4m4w6m4w1m1w2m2w2m1w9m1w9m1w9m1w7m1w1m2w2m1w1m3w1m2w2m1w1m3w1m2w2m1w1m3w1m2w2m1w1m4w1m6w1m2w1m6w1m2w1m6w1m2w1m6w2m1w1m1w7m1w1m1w7m1w1m1w7m1w1m1w7m2w9m1w23m2w4m2w6m74w1m1w1m5w4m1w4m2w2m3w2m4w1m3w3m2w3m3w1m5w1m1w1m4w5m1w2m1w2m2w1m2w2m5w1m2w2m2w1m1w2m2w1m205w1m1w1m5w4m1w4m2w2m3w2m4w1m3w2m3w3m3w1m5w1m1w1m4w5m1w2m1w2m2w1m2w2m5w1m2w2m1w2m1w2m2w1m203w1m2w1m4w1m2w9m8w13m2w12m1w4m60w2m14w5m1w2m24w12m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w30m18"
  },
  "models/weapons/kar98sniper_g98scope.tik": {
   "o": [
@@ -11870,41 +11737,6 @@
     "dv0": -0.04,
     "dv1": 0.2
    },
-   "receiver_l": {
-    "o": [
-     4.367,
-     -1.426,
-     -6.64
-    ],
-    "u": [
-     -0.9999,
-     0.0047,
-     -0.0157
-    ],
-    "v": [
-     0.0139,
-     -0.2589,
-     -0.9658
-    ],
-    "width": 1.104,
-    "material": "metal",
-    "lines": 2,
-    "letter_px": 8.5,
-    "face": {
-     "u0": -9.48,
-     "v0": -0.24,
-     "cell": 0.28,
-     "cellv": 0.04,
-     "nu": 43,
-     "nv": 13,
-     "bits": "000000000000000000fe000000ffffc00607fffff800f0ffffff001e1fffffe003c3fffffc00787fffff800f0ffffff000e1fffffe000c3ffffc000087fe0000001000000000"
-    },
-    "sq": 0.32,
-    "du0": -3.88,
-    "du1": 1.84,
-    "dv0": -0.04,
-    "dv1": 0.0
-   },
    "engrave_short": {
     "o": [
      5.693,
@@ -11940,7 +11772,8 @@
      "bits": "00000000000000000000f8000000000ffc00000000fffe000000ffffff001fffffffff8001ffffffffc0003fffffffc0007fffffffe0007ffffffff0003fffff800003fffffff800007fffff8000"
     }
    }
-  }
+  },
+  "tris": "w140m5w2m6w1m1w17m1w1m1w1m16w1m2w3m5w2m2w1m4w1m1w2m1w5m4w4m1w4m1w29m2w1m7w2m2w1813o820m377w1m2w2m2w2m2o1052w299m1w8m2w8m2w9m2w17m1w9m2w8m2w8m1w2m1w20m1w2m1w270m6w6m3w3m7w11m2w4o12m352w40m1w13m18w1m1w16m7w1m1w1m1w19m2w2m1w1m2w2m2w30m1w4m2w5m3w2m1w3m3w12o36"
  },
  "models/weapons/m1_garand_pagarand.tik": {
   "o": [
@@ -12064,7 +11897,8 @@
      "bits": "00000000000003e000000007fc0000000fffc000001ffff800003fffff00187fffff0003ffffff0003fffe1c00003ff80000000040000000000000"
     }
    }
-  }
+  },
+  "tris": "w14m1w1m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w42m2w2m1w1m2w2m2w44m1w1m2w2m1w1m2w2m2w30m4021"
  },
  "models/weapons/mauser_c96_c96trench.tik": {
   "o": [
@@ -12188,7 +12022,8 @@
      "bits": "000000000000800000fc20080007fe6008003ffe7c08007fff3ff800fffc3ffe03ffff3fffffffff3ffffffffe1ffffffff01ffffffe001fffff80001fffe000000ff80000000e00000000"
     }
    }
-  }
+  },
+  "tris": "w317m3w3m3w3m3w3m22w1m13w1m1w1m1w1m13w1m35w2861m72w12m2w2m1w1m2w2m2w38m8w1m1w1m1w4m1w1m1w1m1w1m1w18m1w1m1w6m1w1m1w1m1w57m1w14m1w1m2w2m1w1m1w12m5w3m1w1"
  },
  "models/weapons/mp40_mp18.tik": {
   "o": [
@@ -12382,7 +12217,8 @@
     "dv0": 0.0,
     "dv1": 0.04
    }
-  }
+  },
+  "tris": "m80w340m50w212m2599"
  },
  "models/weapons/mp40_mp40r2.tik": {
   "o": [
@@ -12506,7 +12342,8 @@
     "dv0": -0.04,
     "dv1": 0.0
    }
-  }
+  },
+  "tris": "m1756"
  },
  "models/weapons/mp44_mp44strap.tik": {
   "o": [
@@ -12665,7 +12502,8 @@
     "dv0": 0.0,
     "dv1": 0.0
    }
-  }
+  },
+  "tris": "m22w104m4w94m10w1m1w1m1w12m1w1m34w1m7w1m7w1m2w1m1w2m1w1m6w1m1w2m1w1m2w1m7w1m7w1m2w1m1w2m1w1m6w1m1w2m1w1m41w1m9w4m1w1m2w2m1w1m8w2m9w1m1w3m2w2m2w1m3w2m1w4m1w2m2w2m1w5m1w3m9w1m9w2m1w1m1w1m1w1m3w1m2w1m2w2m6w2m2w1m5w1m1w2m2w1m1w1m5w184m738w2m1w2m4w1m1w1m3w1m7w1m1w2m1w2m1w1m2w1m7w2m1w1m4w1m1w6m11w1m2w1m1w3m7w1m3w1m4w2m5w1m13w8m2w4m2w1m37w2m1w2m2w1m1w1m1w1m1w9m6w1m2w2m1w2m1w1m29w1m2w1m1w1m1w1m1w9m1w1m1w1m6w2m1w1m4w1m4w3m3w2m2w2m4w3m1w2m5w1m3w2m3w1m4w2m32w1m8w1m31w2m4w2m10w9m1w2m1w1m1w1m2w3m2w1m2w1m4w1m2w1m1w1m2w2m1w4m2w3m10w2m1w13m1w3m16w2m1w13m1w3m18w8m18w2m1w7m2w1m1w2m95w1m3w1m10w1m3w4m12w1m3w4m3w3m8w2m1w1m40w1m1w1m2w3m1w1m5w1m1w1m2w3m1w1m19w1m3w1m351"
  },
  "models/weapons/springfield_m1903.tik": {
   "o": [
@@ -12824,7 +12662,8 @@
      "bits": "0000000000000000000007c000000007ff80000007fffe000001fffff800007ffffff0001fdfffffc00f7f7fffff000ffffbfffc703fffeffff07e7fefffff0001ffbffff00000fff8000000001f800000000000000000"
     }
    }
-  }
+  },
+  "tris": "w1690m788w1m8w4m6w1m1w1m29w1m6w1m1w2m1w1m4w1m1w1m55w3m14w10m6w3m8w11m8w6m17w1m8w4m6w1m1w1m29w1m6w1m1w2m1w1m4w1m1w1m174w6m35w1m7w1m1w4m1w1m35w1m4w20m22w1m1w2m6w1m1w2m27w6m35w1m7w1m1w4m1w1m35w1m4w20m22w1m1w2m6w1m1w2m28w1m9w1m40w1m9w1m375w1m2w2m2w2m786w92m8w16m8w16m8w13m2w5m556w197m1w1m1w1m5w8m2w30m1w1m1w1m1w1m4w8m2w31m1w10m1w1m2w1m1w283m1w9m1w9m1w9m1w9m1w8m1w9m1w9m1w9m1w9m1w128m1w1m1w1m2w9m1w1m10w10m1w1m1w1m1w69m2w1m1w7m1w1m1w1m1w5m27w138m1w1m5w10m9w2m1w1m2w6m1w3m15w9m8w3m15w10m8w3m73w1m2w1m2w1m2w1m2w1m2w1m20w40m1w13m18w1m1w16m7w1m1w1m1w19m2w2m1w1m2w2m2w30"
  },
  "models/weapons/springfield_smlescope.tik": {
   "o": [
@@ -12915,38 +12754,38 @@
    },
    "receiver_l": {
     "o": [
-     5.041,
-     -1.469,
-     -6.021
+     13.007,
+     -2.043,
+     -2.708
     ],
     "u": [
-     -0.9999,
-     -0.0152,
-     -0.0048
+     -0.9796,
+     -0.0016,
+     -0.2012
     ],
     "v": [
-     0.0007,
-     0.2589,
-     -0.9659
+     0.2007,
+     0.0577,
+     -0.9779
     ],
-    "width": 1.73,
-    "material": "metal",
-    "lines": 1,
-    "letter_px": 7.8,
+    "width": 1.619,
+    "material": "wood",
+    "lines": 2,
+    "letter_px": 7.0,
+    "sq": 0.68,
+    "du0": 0.0,
+    "du1": 0.0,
+    "dv0": 0.0,
+    "dv1": 0.04,
     "face": {
-     "u0": -7.9,
-     "v0": -0.2,
-     "cell": 0.2,
-     "cellv": 0.04,
-     "nu": 47,
-     "nv": 10,
-     "bits": "000000000000000000003fe00007ffffffc0000fffffff80001fffffff00003ffffffe00007ffffffc0000fffffff8000180000000000000000000"
-    },
-    "sq": 0.24,
-    "du0": -4.84,
-    "du1": 0.52,
-    "dv0": -0.04,
-    "dv1": 0.0
+     "u0": -2.08,
+     "v0": -0.58,
+     "cell": 0.08,
+     "cellv": 0.08,
+     "nu": 39,
+     "nv": 15,
+     "bits": "000000001000000003e0000000ffc000001fff800003ffff8000ffffff001ffffffe07fffffffc0ffffffff8007ffffff80003fffff000001fffe0000000ffc000000007800000000000"
+    }
    },
    "top": {
     "o": [
@@ -13018,7 +12857,8 @@
      "bits": "0000000000000000000003f000000003ffc0000003ffff0000003ffffc000000fffff0000003ffffc000000fffff0000003ffffc000000fffff0000003ffff0000000ffff80000003c0000000000800000000000000000"
     }
    }
-  }
+  },
+  "tris": "m774w197m1w1m1w1m5w8m2w30m1w1m1w1m1w1m4w8m2w31m1w10m1w1m2w1m1w283m1w9m1w9m1w9m1w9m1w8m1w9m1w9m1w9m1w9m1w119o306m1w1m5w10m9w2m1w1m2w6m1w3m15w9m8w3m15w10m8w3m73w1m2w1m2w1m2w1m2w1m2w1m21w1m2w2m2w2m2o12m784w92m8w16m8w16m8w13m2w5m220w1879m4w35m2w2m1w1m2w2m2w30o1198"
  },
  "models/weapons/thompsonsmg_m1a1dk.tik": {
   "o": [
@@ -13177,7 +13017,8 @@
      "bits": "0000000000000003fc00007ffffe0ffffffffefffffffff8ffffffffc07ffffffe003ffffff8003fffffc0001ffffe00000ffff800000fffc0000007fe00000003f8000000038000"
     }
    }
-  }
+  },
+  "tris": "m345w1m44w2m18w2m7w1m1w1m4w75m1w38m1w17m191w33m2w45m2w44m2w1m1w22m2w40m1w33m2w45m2w44m2w1m1w22m2w40m99w1m240w2m1w20m1w46m1w145m648"
  },
  "models/weapons/thompsonsmg_tommy1928d.tik": {
   "o": [
@@ -13301,7 +13142,8 @@
     "dv0": -0.04,
     "dv1": 0.0
    }
-  }
+  },
+  "tris": "m267w9m2w1m7w1m1w2m2w1m17w1m1w3m5w1m5w1m2w1m1w2m1w1m7w1m2w9m1w1m17w2m3w2m5w1m2w2m2w1m5w2m3w1m3w1m5w1m2w7m1w12m1w14m2w4m1w3m1268w4m12w2m16w5m4w9m3w1m5w2m16w1m3w2m1w24m2w2m1w24m10w7m11w8m19w24m2w3m10w1m6w21m1w1m1w1m3w1m1w1m1w1m1w1m1w2m5w10m5w1m1w1m1w3m5w3m2w40m2w2m2w15m1w1m3w2m1w3m1w12m1w9m3w6m2w2m6w2m1w2m7w1m1w5m2w2m3w1m1w3m10w1m648"
  },
  "models/weapons/thompsonsmg_tommy27a1.tik": {
   "o": [
@@ -13425,7 +13267,8 @@
      "bits": "0000000000007fff0003ffffff8007ffffffc001ffffffe000fffffff0007ffffff8001ffffff0000fffffc00007ffff800001fffe000000fff80000007ff00000001fc00000000f0000"
     }
    }
-  }
+  },
+  "tris": "w14m1w16m1w18m1w1m3w9m3w1m1w31m1w47m1w16m1w18m1w1m3w9m3w1m1w31m1w33m40w1m165w2m18w2m7w1m1w1m4w132m25w1m6w1m12w4m111w34m2w5m1w12m2w4m2w22m2w4m2w12m2w5m1w12m2w4m2w6m1w1m1w5m1w9m2w4m2w16m2w14m20w4m1250"
  },
  "models/weapons/thompsonsmg_tommy28.tik": {
   "o": [
@@ -13514,6 +13357,7 @@
     "dv0": -0.12,
     "dv1": 0.04
    }
-  }
+  },
+  "tris": "m3463"
  }
 }

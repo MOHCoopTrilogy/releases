@@ -98,9 +98,14 @@ def build():
         extra=["ordernumber 20", "modelxformcvar \"cl_custXfm\"", "rendermodel 1", "rendermodelfit 1",
                "modelfitaspect " + FIT_ASPECT, "modeloffset \"0 0 0\"", "modelrotateoffset \"0 0 0\"", "modelangles \"0 90 180\"",
                "modelscale 1.00", "modelanim idle", "modelspincvar \"cl_custSpin\"",
-               "modeltiltcvar \"cl_custTilt\""])   # [benchfix] the drag tilts too (+-60, engine-clamped)
+               "modeltiltcvar \"cl_custTilt\"",   # [benchfix] the drag tilts too (+-60, engine-clamped)
+               # [free placement] a click that is not a drag puts the selected piece where the click's ray meets the gun
+               # (hzmcust click <px> <py>, cl_engrave.cpp); an older engine ignores the key and the bench is as before
+               "modelclickcommand \"hzmcust click\""])
     text("pvNone", 30, 140, 580, "THIS GUN HAS NO ENGRAVING SPOT YET.", col=DIM, align="center", enable="cl_custNoGun")
-    text("pvHint", 26, 254, 400, "DRAG TO TURN AND TILT THE GUN.", col=FAINT)
+    text("pvHint", 26, 254, 400, "CLICK THE GUN TO PLACE THE PIECE. DRAG TO TURN IT.", col=FAINT)
+    # why a click was refused ("NOT ON THE SCOPE", "NO ROOM THERE"): four seconds, over the preview's top edge
+    text("pvNote", 26, 42, 588, link="cl_custPickNote", col=ORANGE, font="facfont-20", h=18, align="center")
     button("zoom", 426, 249, 92, 16, "ZOOM", "hzmcust zoom")
     button("turn", 524, 249, 92, 16, "TURN OVER", "hzmcust turn")
 

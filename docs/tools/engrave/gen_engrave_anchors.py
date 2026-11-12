@@ -12,6 +12,10 @@ For each first-person weapon model (grouped by mesh: finish variants share the a
      hidden by any other part of the gun (ray cast against the whole mesh);
   6. the best by projected screen area (bigger text on screen = easier to read), with a bonus for wood.
 Hands are not in this mesh: the in-game check (cg_engraveCheck) renders each gun and fails any anchor a hand covers.
+A spot never sits on an optic (a scope, its glass, its rings and mount: gunclass.py): optic triangles are left out of the
+candidate patches. `--classes <bad.json>` adds every gun's triangle classes to the report (`tris`, written into the table
+for the bench's free placement), lists the anchors / spots of an existing report that sit on an optic and clears the
+face cells over one; `merge_engrave_spots.py` with EG_ONLY=<bad.json> then replaces exactly those from a fresh solve.
 
     python docs/tools/engrave/gen_engrave_anchors.py --cams <cams.json> --mod <mod checkout> [--only <tik> ...] [--report out.json]
 """
@@ -24,6 +28,7 @@ import gunmesh  # noqa: E402
 import functools
 gunmesh.read_tik = functools.lru_cache(maxsize=None)(gunmesh.read_tik)
 import vfs  # noqa: E402  (weapon_hd/vfs.py, via gunmesh)
+import gunclass  # noqa: E402  (what each triangle is: metal / wood / optic / hand)
 
 PLANE_DEG = float(os.environ.get("EG_PLANE_DEG", 14.0))
 PLANE_TOL = float(os.environ.get("EG_PLANE_TOL", 0.12))
@@ -393,8 +398,33 @@ def material(rgb):
     return "wood" if (r > g > b and sat > 0.28 and mx > 0.18) else "metal"
 
 
+ALLCAMS = {}      # every measured gun (main): the optic classifier learns its shader rule from all of them
+_MESHES = None
+_CLASSES = None
+
+
+def mesh_for(tik):
+    global _MESHES
+    if _MESHES is None:
+        _MESHES = {}
+        for t, c in sorted(ALLCAMS.items()):
+            mm = gunmesh.load(t, engine_bones=c.get("bones"))
+            if mm:
+                _MESHES[t] = mm
+    return _MESHES.get(tik)
+
+
+def classes_for(tik):
+    """gunclass.classify() of this gun (every gun is classified once, together)"""
+    global _CLASSES
+    if _CLASSES is None:
+        mesh_for(tik)
+        _CLASSES = gunclass.classify_all(_MESHES)
+    return _CLASSES.get(tik)
+
+
 def solve(tik, cam):
-    m = gunmesh.load(tik, engine_bones=cam.get("bones"))
+    m = mesh_for(tik) if ALLCAMS else gunmesh.load(tik, engine_bones=cam.get("bones"))
     if not m:
         return None, "no mesh"
     allP = np.vstack([s["pos"] for s in m["surfaces"]])
@@ -409,6 +439,9 @@ def solve(tik, cam):
     tocam = cam["pos"] - cen
     tocam /= np.linalg.norm(tocam, axis=1)[:, None] + 1e-12
     facing = (N * tocam).sum(1) > FACING_MIN
+    C = classes_for(tik) if ALLCAMS else gunclass.classify(tik, m)
+    # never on a scope, its glass, its rings or its mount - nor on a hand a mesh happens to carry
+    facing &= (C["cls"] != gunclass.OPTIC) & (C["cls"] != gunclass.HAND)
     cands = []
     # the biggest patches only: a small one cannot carry readable letters, and a high-poly gun (scopes, HD meshes) has
     # hundreds of slivers whose ray casts took ten minutes a gun (2026-11-09)
@@ -429,12 +462,15 @@ def solve(tik, cam):
         r["material"] = material(sample_color(os.path.dirname(tik), s["shader"] or s["name"], uv))
         r["surface"] = s["name"]
         r["score"] *= (1.1 if r["material"] == "wood" else 1.0)
+        if gunclass.quad_on_optic(C, r["o"], r["u"], r["v"], r["width"], {1: 8.0, 2: 4.0, 3: 2.0}[r["lines"]]):
+            continue   # (a patch is grown over non-optic triangles only: this is the belt to that brace)
         cands.append(r)
     if not cands:
         return None, "no visible flat patch"
     best = max(cands, key=lambda r: r["score"])
     best["spots"] = name_spots(cands, cam, allP)
     best["bounds"] = [allP.min(0).round(3).tolist(), allP.max(0).round(3).tolist()]   # the posed mesh, for the bench's framing
+    best["tris"] = gunclass.rle(C["cls"])
     return best, "ok"
 
 
@@ -494,10 +530,64 @@ def load_avoid(paths, prev_report):
                 AVOID.setdefault(r["tik"], []).append((np.array(a["o"]), a["width"] * 0.5))
 
 
+def face_cells_on_optic(C, c):
+    """clear the cells of a spot's face that lie over an optic triangle; -> how many were cleared"""
+    f = c.get("face")
+    if not f:
+        return 0
+    o, u, v = np.array(c["o"]), np.array(c["u"]), np.array(c["v"])
+    n = np.cross(u, v)
+    b = np.unpackbits(np.frombuffer(bytes.fromhex(f["bits"]), np.uint8))[:f["nu"] * f["nv"]].reshape(f["nv"], f["nu"]).copy()
+    cleared = 0
+    for j, i in zip(*np.nonzero(b)):
+        X = o + u * (f["u0"] + (i + 0.5) * f["cell"]) + v * (f["v0"] + (j + 0.5) * f["cellv"])
+        k, _d = gunclass.tri_under(C["P"], C["T"], X, n)
+        if k >= 0 and C["cls"][k] == gunclass.OPTIC:
+            b[j, i] = 0
+            cleared += 1
+    if cleared:
+        f["bits"] = np.packbits(b.reshape(-1)).tobytes().hex()
+    return cleared
+
+
+def classes_mode(report, bad_path):
+    """every gun's triangle classes into the report; which anchors / spots sit on an optic -> bad_path ({tik: [names]})"""
+    bad = {}
+    for tik, r in sorted(report.items()):
+        if not isinstance(r, dict) or tik not in ALLCAMS:
+            continue
+        C = classes_for(tik)
+        if C is None:
+            continue
+        r["tris"] = gunclass.rle(C["cls"])
+        if not (C["cls"] == gunclass.OPTIC).any():
+            continue
+        places = [("engrave", r)] + sorted(r.get("spots", {}).items())
+        for nm, c in places:
+            asp = {1: 8.0, 2: 4.0, 3: 2.0}[c.get("lines", 1)]
+            if gunclass.quad_on_optic(C, c["o"], c["u"], c["v"], c["width"], asp):
+                bad.setdefault(tik, []).append(nm)
+            else:
+                n = face_cells_on_optic(C, c)
+                if n:
+                    print("  %s %s: %d face cells over an optic cleared" % (tik, nm, n))
+        print("%-46s optic %5d tris   on an optic: %s" % (tik, int((C["cls"] == gunclass.OPTIC).sum()), ", ".join(bad.get(tik, [])) or "-"))
+    json.dump(bad, open(bad_path, "w"), indent=1)
+    print("wrote", bad_path, sum(len(v) for v in bad.values()), "anchors / spots on an optic,", len(bad), "guns")
+
+
 def main():
     cams = load_cams(opt("--cams"))
     for k in cams:
         cams[k]["tik"] = k
+    ALLCAMS.update(cams)
+    if opt("--classes"):
+        report = json.load(open(opt("--report")))
+        classes_mode(report, opt("--classes"))
+        json.dump(report, open(opt("--report"), "w"), indent=1)
+        if opt("--mod"):
+            write_table(report, opt("--mod"))
+        return
     if opt("--avoid"):
         prev = json.load(open(opt("--report"))) if opt("--report") and os.path.exists(opt("--report")) else {}
         load_avoid(opt("--avoid").split(","), prev)
@@ -517,7 +607,7 @@ def main():
                                              width=round(r["width"], 3), material=r["material"], surface=r["surface"],
                                              screen=round(r["screen"], 5), facing=round(r["facing"], 3), text_h=round(r["text_h"], 4),
                                              tilt=round(r["tilt"], 1), lines=r["lines"], letter_px=round(r["letter_px"], 1),
-                                             **spot_fields(r), bounds=r.get("bounds"), face=r.get("face"),
+                                             **spot_fields(r), bounds=r.get("bounds"), face=r.get("face"), tris=r.get("tris"),
                                              spots={k: dict(o=c["o"].round(3).tolist(), u=c["u"].round(4).tolist(), v=c["v"].round(4).tolist(),
                                                             width=round(c["width"], 3), material=c["material"], lines=c["lines"],
                                                             letter_px=round(c["letter_px"], 1), face=c.get("face"), **spot_fields(c))
@@ -570,7 +660,9 @@ def write_table(report, mod):
     L = ["// GENERATED by docs/tools/engrave/gen_engrave_anchors.py - do not hand-edit. Where the personal engraving sits",
          "// on each gun (cgame/cg_engrave.c): anchor <key> o(3) u(3) v(3) width wood|metal lines ; use <tiki> <key>",
          "// spot <key> <name> o(3) u(3) v(3) width wood|metal lines sq du0 du1 dv0 dv1 ; bounds <key> min(3) max(3) (Customize bench,",
-         "// qcommon/hzm_engrave_table.h) ; face <key> <spot> u0 v0 cellu cellv nu nv <hex bits, row-major from (u0, v0)>: where MOVE may go"]
+         "// qcommon/hzm_engrave_table.h) ; face <key> <spot> u0 v0 cellu cellv nu nv <hex bits, row-major from (u0, v0)>: where MOVE may go",
+         "// tris <key> <count> <runs>: what each triangle of the mesh is, in skd order, run-length coded (m metal, w wood, o optic,",
+         "// h hand; gunclass.py) - the bench's free placement refuses an optic and takes wood / metal from the triangle it hit"]
     uses = []
     for tik, r in sorted(report.items()):
         if not isinstance(r, dict):
@@ -584,6 +676,8 @@ def write_table(report, mod):
                 L.append(face_line(key, "engrave", r))
         if r.get("bounds"):
             L.append("bounds %s %s" % (key, " ".join("%.3f" % x for x in r["bounds"][0] + r["bounds"][1])))
+        if r.get("tris"):
+            L.append("tris %s %d %s" % (key, len(gunclass.unrle(r["tris"])), r["tris"]))
         for nm, c in sorted(r.get("spots", {}).items()):
             L.append(spot_line(key, nm, c))
             if face_line(key, nm, c):

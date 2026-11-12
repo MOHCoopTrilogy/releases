@@ -1,0 +1,57 @@
+{
+ "models/weapons/arisakasniper.tik": [
+  "engrave",
+  "engrave_short",
+  "receiver_l",
+  "top"
+ ],
+ "models/weapons/carcanosniper.tik": [
+  "engrave",
+  "butt"
+ ],
+ "models/weapons/enfieldsniper.tik": [
+  "top"
+ ],
+ "models/weapons/fg42.tik": [
+  "receiver_l",
+  "top"
+ ],
+ "models/weapons/g43.tik": [
+  "butt",
+  "receiver_l"
+ ],
+ "models/weapons/g43sniper.tik": [
+  "engrave",
+  "engrave_short"
+ ],
+ "models/weapons/kar98sniper_g98scope.tik": [
+  "receiver_l"
+ ],
+ "models/weapons/mp44scoped.tik": [
+  "engrave",
+  "engrave_short",
+  "receiver_l"
+ ],
+ "models/weapons/nagant_sniper.tik": [
+  "engrave",
+  "butt",
+  "stock_l"
+ ],
+ "models/weapons/nagant_snipersilenced.tik": [
+  "engrave",
+  "receiver_l",
+  "stock_l"
+ ],
+ "models/weapons/springfield.tik": [
+  "engrave"
+ ],
+ "models/weapons/springfield_smlescope.tik": [
+  "receiver_l"
+ ],
+ "models/weapons/svt_rifle.tik": [
+  "engrave"
+ ],
+ "models/weapons/uk_w_l42a1.tik": [
+  "receiver_l"
+ ]
+}

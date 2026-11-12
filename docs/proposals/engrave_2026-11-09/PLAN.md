@@ -129,3 +129,35 @@ the gun, so every decal is behind the hands and follows reloads.
 - **"Dark preview" was a test-build artefact**: a fresh cmake configure defaults USE_RENDERER_DLOPEN OFF, which links the GL1
   renderer into the exe; GL1 lights menu models darker. Release builds load renderer_opengl2.dll and are as bright as v1.10.68.
 - Legibility (22 px at 1080p): 23/93 long words, 44/93 words of <= 10 letters.
+
+## Optics fix + free placement (2026-11-11) - user: "on some guns the engraving ends up on the scope", "I want to choose precisely where"
+- **What a triangle is** (`docs/tools/engrave/gunclass.py`): metal / wood / optic / hand for every triangle, in skd order. An
+  optic is found by surface or shader name, by a shader rule learned over all guns (two passes: the silenced Nagant's scope
+  is the surface "Weas"), and by geometry (the piece that rings a lens, pieces inside the scope's capsule or hugging it, a
+  tube welded into the rifle walked from the glass: the L42A1). Maps: H:/hzm_work/engrave/click/classes.
+- **Solver**: optic triangles never join a candidate patch. `--classes <bad.json>` lists the anchors / spots of a report
+  that sit on an optic, clears face cells over one and writes `tris <key> <count> <runs>` (run-length classes) into the
+  table. `merge_engrave_spots.py` with `EG_ONLY=<bad.json>` replaces exactly the listed ones.
+- **Result**: 27 anchors / spots were on an optic (14 guns; the default engraving on 8: arisakasniper, carcanosniper,
+  g43sniper, mp44scoped, nagant_sniper, nagant_snipersilenced, springfield, svt_rifle). 20 re-solved, 7 dropped, the other
+  303 byte-identical (data/optic_fix_2026-11-11.json). The new default spots on scoped guns are small (9-18 px letters at
+  1080p): with the scope excluded little of the gun is in view at the hip. **The in-game hand check (check_visible /
+  check_faces) of the 20 re-solved ones is still to do.**
+- **Free placement**: a click on the bench's gun (`modelclickcommand "hzmcust click"` on the model widget, cl_uistd.cpp;
+  `hzmcust clickf <fx> <fy>` for scripts) casts a ray through the preview's own projection against the mesh posed as the
+  renderer poses it (cl_engrave.cpp CL_Bench_BuildMesh), in the gun's entity space. The quad is laid on the tangent plane at
+  the hit (the smooth normal or the triangle's own, whichever carries the bigger piece), reading along the screen's right
+  (snapped to the gun's long axis within 20 degrees), sized to the largest that has gun under 9 x 5 points of it (flush
+  within +0.09 / -0.03 units, same facing, no optic / hand / magazine). Refused with a 4 s note: scope, hand, magazine or
+  belt (it leaves the gun on a reload), the inside of the mesh, edge-on, no room.
+- **String**: `tf o(3) u(3) n(3) width kind metal rot scale mirror` / `df <decal> o(3) u(3) n(3) width metal rot scale mirror`.
+  `HZE_PlaceFree` builds the quad for every reader (bench, gun in hand); old strings build byte-identical quads (tested
+  over 160 guns x 7 strings against the old header). MOVE walks the piece over the surface, TILT / SIZE / CENTRE are
+  checked against the mesh, the SPOT stepper takes it back to a named spot, TURN OVER and ZOOM work as before.
+- **Checked in a client** (private G:/mohaa-engrave, 1920x1080; stills H:/hzm_work/engrave/click): clicks6 = receiver,
+  stock, magazine well, barrel shroud on the scoped StG44, M1 Garand, Thompson, Colt .45, MG42 (21 placements, scope and
+  magazine clicks refused); hand1 = the same strings on the gun in hand (flat check quads); ops1 = move / tilt / size /
+  mirror / centre / turn over / stepper / emblem. Not checked: a real mouse click (the scripted path enters at the
+  command the widget sends), 3440x1440, other players' view.
+- QA: `docs/tools/engrave/qa/click_run.py <tag> look|clicks|hand|ops <WxH> <display WxH>` (own home, binaries from the build
+  tree, never under the user's game: harness_guard.user_game_running_raw()).

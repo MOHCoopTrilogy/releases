@@ -7,6 +7,46 @@ sys.path.insert(0, r"C:\mohaa-coop-dev\docs\tools\engrave")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import gen_engrave_anchors as G
 base = json.load(open(sys.argv[1]))
+# [optic fix 2026-11-11] EG_ONLY=<bad.json> ({tik: [names]}, written by gen_engrave_anchors.py --classes): ONLY the listed
+# anchors / spots are taken from the new solve (argv 2; argv 5 = the EG_SHORT solve for engrave_short) - a listed spot the
+# new solve does not have is dropped. Every other anchor, spot, range and face stays exactly as hand-checked.
+ONLY = json.load(open(os.environ["EG_ONLY"])) if os.environ.get("EG_ONLY") else None
+if ONLY is not None:
+    new = {}
+    for path in sys.argv[2].split(","):
+        new.update(json.load(open(path)))
+    short = json.load(open(sys.argv[5])) if len(sys.argv) > 5 else {}
+    AF = ("o", "u", "v", "width", "material", "surface", "screen", "facing", "text_h", "tilt", "lines", "letter_px", "sq", "du0", "du1",
+          "dv0", "dv1", "face")
+    SF = ("o", "u", "v", "width", "material", "lines", "letter_px", "sq", "du0", "du1", "dv0", "dv1", "face")
+    for tik, names in sorted(ONLY.items()):
+        b, r = base[tik], new.get(tik)
+        if not isinstance(r, dict):
+            raise SystemExit("EG_ONLY: no new solve for %s (%r): its spots would stay on an optic" % (tik, r))
+        for nm in names:
+            if nm == "engrave":
+                for k in AF:
+                    b[k] = r.get(k)
+                print("%-44s engrave      <- new solve (%s, letters %.0f px)" % (tik, r.get("surface"), r["letter_px"]))
+            elif nm == "engrave_short":
+                s = short.get(tik)
+                if isinstance(s, dict) and s["letter_px"] > b["letter_px"] * 1.1:
+                    b["spots"][nm] = {k: s.get(k) for k in SF}
+                    print("%-44s engrave_short <- new short solve (letters %.0f px)" % (tik, s["letter_px"]))
+                else:
+                    b["spots"].pop(nm, None)
+                    print("%-44s engrave_short dropped" % tik)
+            elif nm in r.get("spots", {}):
+                b["spots"][nm] = {k: r["spots"][nm].get(k) for k in SF}
+                print("%-44s %-12s <- new solve" % (tik, nm))
+            else:
+                b["spots"].pop(nm, None)
+                print("%-44s %-12s dropped (no such spot off the optic)" % (tik, nm))
+        if r.get("tris"):
+            b["tris"] = r["tris"]
+    json.dump(base, open(sys.argv[3], "w"), indent=1)
+    G.write_table(base, sys.argv[4])
+    sys.exit(0)
 for path in sys.argv[2].split(","):
     new = json.load(open(path))
     if os.environ.get("EG_ADDNEW"):
