@@ -532,3 +532,6 @@ the original's rockets do not kill it); the listener waits while a player watche
 | Gun wave without the gun | triggers 87 / 420 (msg 51) also hold id 19; never fired in the traced runs | the wave waits for a player to mount the gun (bug-11088) | choice (not traced) |
 | Officer / enemy-wave system | none | off on this map (`level.coop_noOfficerWaves = 1`) | user decision 2026-11-12 |
 | MG runners to guns 2 and 5 | not seen in the trace (24 s with the player in the trigger) | dropped (bug-11094) | trace; the route itself not traced |
+| Jeep .30 cal facing | mounted, it looks west over the windscreen into the square (frames w6 / w7 / wn) | same since bug-11095 (the record yaw read 180 off); 360 traverse | exact (facing) |
+| Gun wave rule | only a player using the gun starts it; the gun's leave slot and trigger 420 send disable-spawner | same: walking away unused or reaching trigger 420 ends it; trigger 87 (63 m) only holds (bug-11095) | rec 87's role inferred |
+| Wounded gunner's death | (no death: he fades) | prone death (death_prone) from the downed pose, corpse stays (bug-11095) | user-approved 2026-11-12 |
