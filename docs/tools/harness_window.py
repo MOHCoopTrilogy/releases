@@ -299,7 +299,8 @@ def test_display(name=None):
     mons = monitors()
     # The user picks the test screen by RESOLUTION (2026-11-09: "Ultra wide" - the 34in 3440x1440, even while it is
     # the primary). HZM_TEST_RES overrides; "" disables the resolution pick (old non-primary rule).
-    res = os.environ.get("HZM_TEST_RES", "3440x1440")
+    # [user 2026-11-11] ALL test clients on the small 1920x1080 screen only, never the ultrawide or the TV (supersedes 11-09).
+    res = os.environ.get("HZM_TEST_RES", "1920x1080")
     if not name and res:
         try:
             rw, rh = (int(v) for v in res.lower().split("x"))
