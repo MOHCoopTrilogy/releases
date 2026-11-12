@@ -112,6 +112,15 @@ def opt_extra(o):
 LIGHTNING = P("cg_hzmLightningMode", ["cg_hzmLightningMode"],
               [("Normal", 1), ("Reduced flashing", 2), ("Off (thunder only)", 0)], 1)
 
+# [2026-11-11, docs/proposals/reflections_2026-11-11] REAL REFLECTIONS. r_hzmReflect (renderergl2/tr_hzm_reflect.c) is
+# flags 0, default "-1" = AUTO = 1. 1 = window glass and bright metal show the real street / room (cubemap probes baked
+# at map load, nothing rendered per frame). 2 = plus one mirrored view a frame for the nearest pane (not the
+# water: r_hzmWaterPlanar is separate), which is what shows the player's own body and other soldiers; it costs a second, half-size scene
+# render while a pane is in range. Seeded -1 like WATER / WET (TRAPS T7). On the Post-FX ATMOSPHERE page: the Advanced Graphics sheet has no free row. Off <-> on applies at the next map load (the
+# probes are baked there); Real <-> Real + You is live. gl1: no effect. Omaha is excluded in the engine by map name.
+REFLECT = P("r_hzmReflect", ["r_hzmReflect"], [("Off", 0), ("Real", 1), ("Real + You", 2)], -1,
+            aliases=[(-1, "Real (default)")])
+
 PFX_PAGES = [
     ("coop_postfx", "POST-PROCESSING", "IMAGE", "coop_postfx2", None, [
         (0, "POST-PROCESSING", [
@@ -174,6 +183,9 @@ PFX_PAGES = [
         # our fog, and the rays glowed as a square on fogged skies. Rays stay off; r_drawSunRays is PINNED to 0.
         (1, "SUN", [
             ("SunShadow", "toggle", "Sun Shadows *", "r_sunShadows", T(1)),
+        ]),
+        (1, "REFLECTIONS", [
+            ("Reflect", "pulldown", "Real Reflections", "r_hzmReflect", REFLECT),
         ]),
     ]),
     ("coop_postfx4", "POST-PROCESSING", "COMBAT", None, "coop_postfx3", [
@@ -258,6 +270,7 @@ SHADOW = P("cg_shadows", ["cg_shadows"], [("Off", 0), ("On", 2)], 2, aliases=[(1
 # A pulldown, not a CheckBox: a CheckBox (and a bare enabledcvar) reads -1 as ON only by accident of the value.
 WATER = P("r_hzmWater", ["r_hzmWater"], [("Off", 0), ("On", 1)], -1, aliases=[(-1, "On (default)")])
 WET = P("r_hzmWet", ["r_hzmWet"], [("Off", 0), ("On", 1)], -1, aliases=[(-1, "On (default)")])
+
 
 # [2026-10-04, docs/proposals/ground_variety_2026-09-29] GROUND VARIETY - a normal row, OFF by default. r_groundVariety
 # (renderergl2/tr_hzm_groundvar.c) is flags 0, default "-1" = AUTO = HZM_GROUNDVAR_AUTO, which is 0 (OFF): the
