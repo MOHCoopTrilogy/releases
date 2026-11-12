@@ -491,7 +491,7 @@
     "trigger": 86,
     "by": "plane",
     "parent": "P47bomb_building1_1.mvd",
-    "after": 5.05,
+    "after": 0.03,
     "fx": "stay"
    },
    {
@@ -501,7 +501,7 @@
     "trigger": 86,
     "by": "plane",
     "parent": "P47bomb_building1_1.mvd",
-    "after": 5.05,
+    "after": 0.03,
     "fx": "stay"
    },
    {
