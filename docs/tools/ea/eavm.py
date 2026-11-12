@@ -337,6 +337,56 @@ def build(db, X, spot, ground, text, lines, log=print):
             L(f'\tlevel.ea_sc_t["{n}_{k}"] = {fr / 30.0:.2f}')
         log("  ICS scene %s (%s, actor: %s): %s" % (r.name, rig, sc_how, ", ".join("%s@%.2f" % (c, fr / 30.0) for fr, c in evs)))
     L(f"\tlevel.ea_sc_n = {n}")
+    # ---- 0.7.22 pose-only ICS points (no voice cue in the rig): the scene's actor stands on the point facing the
+    # record's way and holds there until his squad is given its next order (the rig animation is not decoded: stock
+    # pose). Actor = the point's actor group (list B), or the spawn point standing on it when the list is empty.
+    # Dead poses are the corpses above; scenes with voice cues are emitted as scenes.
+    sc_names = set()
+    for ln in lines:
+        mm = _re.match(r'\tlevel\.ea_sc_name\[\d+\] = "(.*)"', ln)
+        if mm:
+            sc_names.add(mm.group(1))
+    n = 0
+    for r in db.of("ICSPoint"):
+        rig = ""
+        for _i, sv in r.strings():
+            if sv.endswith(".xdd"):
+                rig = sv.split("/")[-1][:-4]
+        if not rig or "DeadPose" in rig or r.name in sc_names or len(r.w) < 60:
+            continue
+        w, i, icl = r.w, 47, []
+        while i < len(w) and len(icl) < 3:
+            c = w[i]
+            if c > 16:
+                break
+            icl.append(list(w[i + 1:i + 1 + c]))
+            i += c + 1
+        if len(icl) < 2:
+            continue
+        b_groups = [x for x in icl[1] if eadb.is_group(x)]
+        ps_sp = 0
+        # a point with neither a listen group nor an actor list (the German wall vaults) is not posed: no actor to infer
+        if not b_groups and not [x for x in icl[0] if eadb.is_group(x)]:
+            continue
+        if not b_groups:
+            near = sorted((((sp.pos[0] - r.pos[0]) ** 2 + (sp.pos[1] - r.pos[1]) ** 2) ** 0.5, sp.name)
+                          for sp in db.of("NPCSpawnPoint") if sp.name in sp_ix)
+            near = [x for x in near if x[0] <= 4.0]
+            if not near:
+                continue
+            ps_sp = sp_ix[near[0][1]]
+        n += 1
+        q = spot(X(r.pos)) or X(r.pos)
+        L(f"\tlevel.ea_ps_name[{n}] = {S(r.name)}")
+        L(f"\tlevel.ea_ps_rig[{n}] = {S(rig)}")
+        L(f"\tlevel.ea_ps_pos[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2] + 24:.0f} )")
+        L(f"\tlevel.ea_ps_yaw[{n}] = {(r.yaw + 90) % 360:.0f}")
+        L(f"\tlevel.ea_ps_b[{n}] = {gid(b_groups[0]) if b_groups else chr(34) * 2}")
+        a_groups = [x for x in icl[0] if eadb.is_group(x)]
+        L(f"\tlevel.ea_ps_a[{n}] = {gid(a_groups[0]) if a_groups else chr(34) * 2}")
+        L(f"\tlevel.ea_ps_sp[{n}] = {ps_sp}")
+        log("  ICS pose %s (%s): actor %s" % (r.name, rig, ("group %x" % b_groups[0]) if b_groups else ("spawn point %d (inferred)" % ps_sp)))
+    L(f"\tlevel.ea_ps_n = {n}")
     # ---- logic objects ----
     music_events = set()
     n = 0
