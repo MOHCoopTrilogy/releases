@@ -10,8 +10,9 @@
   "noupscale": [
    "49380",
    "49f00",
-   "b2500"
+   "b2500",
+   "c0_111c80", "c0_112800", "c3_107580", "c3_108100", "c0_11c080", "c4_ee500", "c0_120180", "c6_11a400", "c0_151200", "c1_10d080", "c1_fc600", "c1_feb00", "c2_100400", "c6_115e00", "c2_ebd00", "c3_118500", "c3_110180", "c3_117400", "c4_eb300", "c5_12e200", "c5_14e800", "1_1_Uboat_bobbing_msh_2a180", "1_1_Uboat_bobbing_msh_2e280", "Vehicle_Jeep_Body_msh_13e00", "Vehicle_Jeep_Body_msh_15b00", "1_1mustangP47_msh_1200"
   ],
-  "_noupscale_reason": "road signs 'Periers 7km' / '30 Km a l'heure' and the 'Le Consortium' poster: lettering - Frontline's own pixels are kept (no ESRGAN on text)"
+  "_noupscale_reason": "road signs 'Periers 7km' / '30 Km a l'heure' and the 'Le Consortium' poster: lettering - Frontline's own pixels are kept (no ESRGAN on text); [flfix2 look 2026-11-12] plus every lettered sheet found on the contact sheet of the ESRGAN pass: Cherbourg / Paris direction signs, BOULANGERIE, HALT, D-789, BAZAR DE VARZY, MERCERIE, CORDON-GIRARDOT, HUILES RENAULT, VINS LIQUEURS, ENERGOL, ANTIQUITE, the 718 / 987 / 45 224 numbers, the U-boat, jeep and P-47 markings"
  }
 }

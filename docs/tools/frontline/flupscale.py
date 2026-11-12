@@ -73,12 +73,87 @@ def is_cutout(a):
     return al.min() < 250 and (al < 128).mean() > 0.05
 
 
-def upscale_one(exe, im, tmp, threads):
+def upscale_cutout(exe, a, tmp, threads, pre=1):
+    """[flfix2 look 2026-11-12] alpha-tested cards (tree lines, branches, bushes): ESRGAN on the COLOUR only, the cut
+    edge from the original alpha. ESRGAN run on the whole card ate the leaf clusters (fewer, smaller leaves) because the
+    key colour around them read as background; here the leaf colour is bled into the clear texels first (flhd.bleed), so
+    ESRGAN sees one continuous foliage picture and only adds needle and leaf detail. The silhouette is the original's
+    alpha resampled smoothly and cut at 128 (what alphaFunc GE128 draws): round edges, no stair steps, nothing eroded.
+    pre: the card in the pak is already a flhd 4x Lanczos copy - it is boxed back down by `pre` first."""
+    import flhd
+    im = Image.fromarray(a, "RGBA")
+    if pre > 1:
+        im = im.resize((max(1, im.width // pre), max(1, im.height // pre)), Image.BOX)
+    w, h = im.size
+    a0 = np.asarray(im)[:, :, 3]
+    if pre > 1:     # a flhd card is alpha-tested (GE128): its Lanczos-softened edge is not a blend
+        im.putalpha(Image.fromarray(np.where(a0 >= 128, 255, 0).astype(np.uint8)))
+        a0 = np.asarray(im)[:, :, 3]
+    if ((a0 > 8) & (a0 < 247)).mean() > 0.10:
+        return None, "cutout: blended (soft alpha) kept original"     # shadow blobs, scorch decals, haze cards
+    base = np.asarray(flhd.bleed(im))
+    pw, ph = max(4, w // 4), max(4, h // 4)
+    rgb = np.pad(base[:, :, :3], ((ph, ph), (pw, pw), (0, 0)), mode="wrap")
+    src, dst = os.path.join(tmp, "in.png"), os.path.join(tmp, "out.png")
+    Image.fromarray(rgb).save(src)
+    if os.path.exists(dst):
+        os.remove(dst)
+    if not run_esrgan(exe, src, dst, threads):
+        return None, "esrgan failed"
+    up = np.asarray(Image.open(dst).convert("RGB"))[ph * 4: ph * 4 + h * 4, pw * 4: pw * 4 + w * 4]
+    al0 = base[:, :, 3]
+    solid = al0 >= 128
+    # colour statistics on the leaves only (the bled border is not part of the picture)
+    back = np.asarray(Image.fromarray(up).resize((w, h), Image.BOX)).astype(np.float32)
+    o = base[:, :, :3].astype(np.float32)
+    out = up.astype(np.float32)
+    if solid.sum() < 16:
+        return None, "cutout: no solid texels"
+    for c in range(3):
+        bm, bs = back[:, :, c][solid].mean(), back[:, :, c][solid].std()
+        om, osd = o[:, :, c][solid].mean(), o[:, :, c][solid].std()
+        g = min(2.0, max(0.5, (osd / bs) if bs > 1e-3 else 1.0))
+        out[:, :, c] = (out[:, :, c] - bm) * g + om
+    up = np.clip(out, 0, 255).astype(np.uint8)
+    back = np.asarray(Image.fromarray(up).resize((w, h), Image.BOX)).astype(np.float32)
+    m0, m1 = o[solid].mean(), back[solid].mean()
+    if abs(m1 - m0) / max(1.0, m0) > DRIFT_LIMIT:
+        return None, "cutout: brightness drift"
+    if np.abs(back - o)[solid].mean() > 14:
+        return None, "cutout: downscale-back mismatch"
+    bic = np.asarray(Image.fromarray(base[:, :, :3]).resize((w * 4, h * 4), Image.BICUBIC))
+    ratio = lap_energy(up) / max(1.0, lap_energy(bic))
+    # dense foliage carries real high-frequency detail: the fir tree-line card measured 107x and showed needles, not worms,
+    # on the QA sheet (H:/hzm_work/flpolish/look/cut_qa.jpg), so cards get a wider limit than opaque surfaces
+    if ratio > 2.5 * WORM_LIMIT and not os.environ.get("FLUP_DEBUG"):
+        return None, "cutout: worm-noise %.0fx" % ratio
+    al = Image.fromarray(al0).resize((w * 4, h * 4), Image.BICUBIC).filter(ImageFilter.GaussianBlur(2.4))   # half a source texel: rounds the stair steps
+    al = np.where(np.asarray(al) >= 128, 255, 0).astype(np.uint8)
+    # the same share of the card must stay solid (an eroded or swollen silhouette is a reject)
+    if abs(float((al > 0).mean()) - float(solid.mean())) > 0.03:
+        return None, "cutout: silhouette changed"
+    # thin features (wrought iron, twigs, fence wires) must survive: boxed back down, every solid texel stays solid
+    kept = np.asarray(Image.fromarray(al).resize((w, h), Image.BOX)) >= 64
+    if solid.sum() and float((solid & ~kept).sum()) / float(solid.sum()) > 0.05:
+        return None, "cutout: thin features lost"
+    t = min(1024, w * 4) / float(w * 4)
+    res = Image.fromarray(np.dstack([up, al]), "RGBA")
+    if t < 1.0:
+        res = res.resize((int(round(w * 4 * t)), int(round(h * 4 * t))), Image.LANCZOS)
+        r_ = np.asarray(res).copy()
+        r_[:, :, 3] = np.where(r_[:, :, 3] >= 128, 255, 0)
+        res = Image.fromarray(r_, "RGBA")
+    return res, "ok cutout"
+
+
+def upscale_one(exe, im, tmp, threads, cut_pre=0):
     rgba = im.convert("RGBA")
     w, h = rgba.size
     a = np.asarray(rgba)
     if is_cutout(a):
-        # ESRGAN erodes and thins leaf clusters (fewer, smaller leaves): alpha-tested cards keep the original
+        # ESRGAN on the whole card erodes and thins leaf clusters: only cards the level lists get the colour-only pass
+        if cut_pre:
+            return upscale_cutout(exe, a, tmp, threads, cut_pre)
         return None, "cutout kept original"
     pw, ph = max(4, w // 4), max(4, h // 4)
     rgb = np.pad(a[:, :, :3], ((ph, ph), (pw, pw), (0, 0)), mode="wrap")
@@ -131,6 +206,12 @@ def main(pk3, level, out_pk3, exe_dir, threads="1:1:1"):
     if os.path.exists(p):
         tm = json.load(open(p)).get(level, {})
     skip = set(tm.get("noupscale", [])) | {k for k in tm if not k.startswith("_") and k != "noupscale"}
+    # cards flhd already enlarged 4x (fl_levels.json "hd" -> "cutout"): boxed back down before the colour-only pass
+    lv = {}
+    p = os.path.join(HERE, "fl_levels.json")
+    if os.path.exists(p):
+        lv = json.load(open(p)).get(level, {})
+    flhd_cut = set((lv.get("hd") or {}).get("cutout", []))
     z = zipfile.ZipFile(pk3)
     names = sorted(n for n in z.namelist() if n.startswith(f"textures/fl/{level}/") and n.endswith(".tga"))
     tmp = tempfile.mkdtemp(prefix="flup_")
@@ -142,7 +223,7 @@ def main(pk3, level, out_pk3, exe_dir, threads="1:1:1"):
             continue
         try:
             im = Image.open(io.BytesIO(z.read(n)))
-            res, why = upscale_one(exe, im, tmp, threads)
+            res, why = upscale_one(exe, im, tmp, threads, cut_pre=4 if key in flhd_cut else 1)
         except Exception as e:  # never fail the conversion
             res, why = None, "error %s" % e
         report[key] = why
