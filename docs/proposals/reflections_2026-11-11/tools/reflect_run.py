@@ -74,14 +74,14 @@ for spot in cfg["spots"]:
         c(spot[1])
         continue
     name, x, y, z, pitch, yaw = spot
-    c("tele %d %d %d" % (x, y, z)); c("face %d %d 0" % (pitch, yaw)); wait(1.5)
+    c("tele %d %d %d" % (x, y, z)); c("face %d %d 0" % (pitch, yaw)); wait(cfg.get("settle", 1.5))
     for lv in levels:
         c("set r_hzmReflect %d" % lv)
         c("echo ^~^~^ REFLECTRUN %s level %d" % (name, lv))
         if perf:
             wait(4.5)
         else:
-            wait(0.8)
+            wait(cfg.get("shotwait", 0.8))
             n[0] += 1
             c("screenshotJPEG %s_%02d_%s_L%d" % (tag, n[0], name, lv)); wait(0.5)
 if perf:
@@ -103,6 +103,8 @@ for fn in ("OpenAL64.dll", "SDL2.dll", "libcurl.dll"):
         shutil.copy2(os.path.join(SEED, fn), os.path.join(CLIENT, fn))
 for dst, src in BINS.items():
     shutil.copy2(os.path.join(BIN, src), os.path.join(CLIENT, dst))
+if os.environ.get("RF_GL2"):      # A/B against another renderer build (a file path)
+    shutil.copy2(os.environ["RF_GL2"], os.path.join(CLIENT, "renderer_opengl2.dll"))
 shutil.copyfile(os.path.join(SEED, "pristine", "omconfig_fresh.cfg"), os.path.join(MAINTT, "configs", "omconfig.cfg"))
 for fn in os.listdir(MAINTT):
     if fn.lower().endswith(".pid") or fn == "whatsnew_pending.cfg":

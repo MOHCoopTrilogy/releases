@@ -343,3 +343,56 @@ every building at once, so it needs its own level on the same row (Off / Real / 
 panes are exactly where the reflection now draws attention to the flat glass. Group 2 should wait
 for that prototype and a look at the mask problem on one building. Not started: one window on t2l4
 or m5l3 with stills at two angles, a walk-past clip and a measured frame cost is the next step.
+
+## 10. Second round (2026-11-11, evening): water found and fixed, rooms behind glass, mask samples
+
+Engine commit `53fb4bf5`. Not deployed. Supersedes the "Water: not delivered" line of section 8.
+
+**Why the water pass showed nothing (bug-11021).** Commit `f8f8ff40` (2026-10-26, moving wave sheets)
+made the pass send the current orientation's transform matrix to the water shader. The world has
+none: `R_RotateForViewer` clears `tr.or` and fills `modelMatrix` only; `R_RotateForEntity` is the one
+writer (`renderergl2/tr_main.c:581`). So every BSP water surface got a zero matrix, a zero normal,
+and the shader's first test threw the fragment away. Since that commit only water drawn by an entity
+showed the improved look; world water drew its retail stages.
+
+Evidence: the pass gate passed all along (`fade=1.00 ready=1`, run `r19`); the picture did not change
+with `r_hzmWater` 0, body x10 or the bypass (`r20`); the shipped renderer of 2026-11-11 05:32 behaves
+the same (`r21`), so it is not from this work and not about single player, settings or the renderer
+choice; with an identity matrix for the world the water appears (`r22`, `stills/water_pens.jpg`).
+This also explains the canal the user saw as a flat blue texture. The water's mirrored view was also
+repaired (clip plane, bug-11012) and now runs at Real + You.
+
+Measured on m2l2a, 1600x900, cap off, facing the pens (`r24`): Off / Real 5.5-6.0 ms, Real + You
+9.8-9.9 ms (+4 ms, 100 fps); open water with nothing to mirror +0.13 ms. The cost of the repaired
+water pass on its own was not separated out.
+
+**Rooms behind glass (built).** Every flat upright glass pane with separate glass gets a room that
+exists only in the shader (`glsl/generic_fp.glsl` HzmRoom): no texture, no geometry, nothing from
+disc assets. Per pane, from a hash of its position: room size, wallpaper, a door or cupboard, a
+picture, side or closed curtains, and at night a lamp in a share of rooms. On under Real and
+Real + You; `r_hzmReflectRooms 0` turns it off live. m5l3: 125 of 145 panes; m5l1b: 112 of 112.
+Cost (m5l3, two large panes filling the view, `s3`): 1.28-1.30 ms off, 1.41-1.50 ms on.
+Stills `stills/rooms_*.jpg`, clip `stills/rooms_walkpast.gif`.
+
+**Also changed.** 48 probes (bake measured: 182 ms for 48 on m5l1b, 82 ms for 24 on m2l2a), cube
+read unblurred. In daylight the probe now reads as a recognisable sky and street
+(`stills/rooms_angle.jpg`, middle frame).
+
+**Painted windows: mask samples, nothing applied.** `masks/_sample_sheet.jpg` (tool:
+`tools/masks.py`). Of eight textures the automatic mask is usable on two (plain dark glass); it
+fails on windows with curtains or light painted in and on textures that are dark all over. So masks
+need a per-texture decision, and painted lit windows should get no room at all.
+Correction to sections 3 and 9: the earlier counts matched "panel" as "pane" (bug-11023). Window-
+named world surfaces without separate glass, non-Omaha campaign maps: 2,909, of which 1,390 are one
+alpha-masked frame texture (`mohcommon/window32_p1`) that needs its own look before anything else.
+
+**Still not verified.**
+- No co-op server, second player or AI was in any view. No storm. gl1 and Omaha untested.
+- Rooms were looked at on two maps only. On the night map no lit room happened to be in frame, so
+  the lamp was seen only in the debug view.
+- A pane whose texture does not repeat once per pane would get a room cut in the wrong place; none
+  was seen, none was searched for.
+- Metal: the only env-mapped metal found on screen is dark girders (`stills/metal_girder.jpg`); the
+  change is visible but it is not a showcase.
+- Small green specks in the mirrored water are the player's own body floating in the fly camera.
+- The red dotted arc of section 8 is the HUD's hit-direction mark (AI firing at the test player).
