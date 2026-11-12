@@ -50,6 +50,16 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.78 - Set Pieces
+
+- **Sealed Orders plays its set pieces like the disc** - the jeep ambush with a .30 cal you can take over, the wall breach, and bombers at the original's speed
+- **Their Dying Breath gains more of its scripted scenes** - loudspeaker calls, machine-gun squads, and tanks that take two rockets like the original
+- **Liberation is fairer** - a tougher hunter, less precise Germans, played contracts leave the war map
+- **Co-op missions have no time limit any more**
+- **One cold-sea look for all water**, out to the horizon, and **Real Reflections** on windows and metal (Post-FX menu, on by default)
+- **Engraving: click anywhere on the gun** to place it
+- **Needs playtesting** - both disc missions start to finish, and reflections and water across the maps
+
 ### v1.10.77 - Night Watch
 
 - **Their Dying Breath is a real night now** - the village is dark, the snow keeps its detail, and tanks and soldiers take the night light instead of glowing
