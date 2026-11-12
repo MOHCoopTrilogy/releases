@@ -318,6 +318,49 @@ Not matched, open:
   (stock animations on an invented arc; no decoder for the disc's skeletal animations).
 - The driver's rest spot is on the far side of the wreck from the square; only the passenger's fade was seen on screen.
 
+## Round 12 (flfix2, 2026-11-12) - wall breach, road line, light and fog measured, wreck pose
+
+Sources: `H:\hzm_work\ref_xemu\TRACE_breach.md`, `TRACE_jeep.md` and tracks, the reference frames, the disc records.
+Build v88 in `G:\mohaa-flpolish` only. Converter changes (HZMCONV_VERSION not bumped): `flconvert.py` (clip `boxes` per object
+mesh; half-texel UV inset on non-tiling axes; `ambientlight` read from the level table; test overrides FL_AMBIENT,
+FL_LIGHT_GAIN, FL_FARPLANE), `fl_levels.json` (21 `walbrk` meshes wb0..wb20; 1_1 farplane 16000, farplane_bias 600).
+Stills: `H:\hzm_work\flpolish\fix2\r12\`.
+
+| item | finding | result | proof |
+|---|---|---|---|
+| Wall breach (bug-11063) | trace: use at the molotov barrel, fuse +1 s, blast +6 s, all five barrels on one tick, 20 break frames in 0.8 s in four steps, second boom +0.6 s, objective +0.1 s | built to the trace with the disc's own 21 wall meshes; standing wall ends block, rubble does not | `FLBREACH` log markers; breach stills in `H:\hzm_work\flpolish\fix2\r12\` |
+| Pale line down the road (bug-11064) | texture edge bleed on non-tiling surfaces | half-texel UV inset on non-tiling axes | `ln87.jpg` |
+| White streak in the sky | it is the muzzle flash and tracer of the fire at the jeep, not a surface | unchanged; the original fires 10 volleys there too | `ln4\lane_01.tga` |
+| Wreck pose | trace end pose and the four tyre rest spots equal ours once the converter's recentre offset (-42, +220) is applied; the wreck is upright, two wheels flat on the cobbles, spare on the back, fourth wheel far up the lane as in the trace | unchanged; the earlier pair looked tipped because of its camera | `pair_4_wreck_r12b.jpg`, `wk1_crop.jpg` |
+| Light, measured (bug-11066) | zero vertex light gives a black world: no added light term. ambientlight 0 changes nothing on screen. Offline, texture x disc vertex colour equals our screen value with the display chain off (lane road 29 x 200/255 = 23, screen 21) | the 0.352 factor is right; no data change. The client display chain (r_gamma 1.3 and the post chain) multiplies by 1.3 to 1.45 | tables below |
+| Fog, measured (bug-11065) | with zero light the far lane read 50 of 107 from fog alone, more than the reference's total (28). The original's world fog is about a quarter of the linear 5..100 m reading at 50 m; that reading was marked not proven in the trace (world draws use a vertex program, its fog output was not dumped) | fog refitted to the reference frame: start 600, end 16000, same colour. Two sample points, one frame: a fit, not a trace value | `pair_4_wreck_r12b.jpg` |
+
+Wreck view, camera 6260,-3290,-150 yaw -3 pitch 15, mean RGB; v88 (reference | ours normal | ours display chain off | ratios of luminance):
+
+| surface | reference | normal | chain off | normal/ref | off/ref |
+|---|---|---|---|---|---|
+| cobble mid | 26,27,25 | 41,41,39 | 31,31,30 | 1.54 | 1.17 |
+| cobble near | 28,29,27 | 64,65,60 | 45,45,43 | 2.25 | 1.57 |
+| stone wall by arch | 17,17,16 | 40,40,37 | 30,29,28 | 2.35 | 1.73 |
+| jeep hood | 30,34,31 | 67,72,66 | 48,52,48 | 2.15 | 1.55 |
+| jeep side panel | 15,18,17 | 29,35,30 | 24,28,25 | 1.92 | 1.56 |
+| hedge bank past arch | 13,14,13 | 16,17,13 | 14,14,11 | 1.20 | 1.01 |
+| far end of lane | 28,29,27 | 38,37,32 | 28,27,25 | 1.29 | 0.95 |
+| sky (lane view) | 103,104,107 | 135,136,139 | 110,110,115 | 1.31 | 1.06 |
+
+Far end of lane by build, chain off: fog 240..4800 = 59; no fog = 18; fog 600..16000 = 28 (reference 28).
+
+Not matched, open:
+- Walls and the jeep near the camera stay 1.5 to 1.7 times brighter than the reference with the display chain off. The
+  patches are not on identical spots (the reference camera is closer and steeper), so no factor is derived from them.
+- The lane pair is not on a matched camera (the reference stands under a tree further into the lane); its road and hedge
+  rows are not comparable and are left out.
+- Fog: the true function needs the world vertex program's fog output from the emulator. The original also clips at
+  100 m; ours does not cull.
+- Wreck: our wounded gunner sits in plain view (stock seated cover pose); the reference frame shows no gunner in the
+  jeep and a rifleman standing behind it, which we do not have (soldier tracks unverified).
+- Breach not verified: the real use-key path, trigger arming and hint in a full run, collision of the wall ends, sounds.
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -353,9 +396,14 @@ Not matched, open:
 | Models | Frontline models | MOHAA stand-ins where no conversion exists | forced |
 | Textures | disc textures | 5 CC0 swaps (mud x3, roof slates, planks) | choice |
 | Sky | 6-face box on the eye, unfogged | the six faces captured from the emulator, in the player's private pak only; stock sky when they are absent; drawn on a hull around the map | exact textures; hull forced (engine) |
-| Fog and far plane | linear 240 to 4800, colour 104,106,109, far clip 4800, clear colour 48,48,48 | same start, end and colour; far plane does not cull (the sky hull lies beyond it); clear colour not represented | exact values; fog as view depth inferred; no cull forced |
-| World light | vertex colours, 1x | vertex colours x 0.352 to cancel the renderer's 4 x 0.71 map light; still brighter than the original (client gamma and tonemap untouched) | forced (engine); residual open |
-| Light on soldiers and objects | vertex colours | ambientlight 40 40 40 plus the engine's light grid | choice (value) |
+| Fog and far plane | fog colour 104,106,109, far clip 100 m, clear colour 48,48,48; register reading linear 5..100 m, but measured on world surfaces it is about a quarter of that at 50 m | start 600, end 16000 (fitted to the reference frame), same colour; no far cull; clear colour not represented | fit from measurement; exact function open (needs the vertex program) |
+| World light | vertex colours, 1x | vertex colours x 0.352 to cancel the renderer's 4 x 0.71 map light; measured equal to texture x vertex colour with the display chain off | forced (engine); exact by measurement |
+| Display chain on disc maps | none (emulator output as is) | the client's r_gamma 1.3 and post chain brighten by 1.3 to 1.45 | choice for the user: a per-map neutral display setting for disc maps (not applied) or keep the mod look |
+| Wall breach | trace timings, disc break frames | same; a shot barrel also sets it off; wall and barrels stand from map start | shot path and early spawn are choices |
+| Texture edges | clamp on non-tiling surfaces | half-texel UV inset on non-tiling axes | forced (engine has no per-axis clamp here) |
+| Fire at the jeep, look | disc tracers | stock muzzle flash and tracer (a white streak in stills) | stand-in |
+| Wounded gunner pose | disc animation 6506 | stock seated cover pose, in plain view | forced (no decoder); a lying pose is a possible choice |
+| Light on soldiers and objects | vertex colours | the engine's light grid; the ambientlight 40 40 40 key has no visible effect in this renderer | forced (engine) |
 | Weather | none | none (rain theme removed in round 11) | exact |
 | Objective wording | disc / published pause screen wording | ours, including two prisoner lines; HUD text = objective menu text | choice (user decision 2026-11-12: "Keep ours it's fine") |
 | Collision | disc collision | built from drawn geometry plus: riverbed, edge-of-world clip, lip ramps, 10 widened spots, 114 kept clip sheets, 5 patches | forced (no usable disc collision); each widened spot is a choice |

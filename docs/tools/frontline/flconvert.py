@@ -199,7 +199,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # r_mapOverBrightBits 2, r_overBrightBits 0 (coop_defaults.cfg) and r_mapOverBrightScale 0.71 = 2.84, which
     # saturated the disc's colours (about 200 of 255) to white: flat bright daylight. Cancelled here, in the
     # converted map only (no engine cvar is touched). Engine-derived constant, not a look choice.
-    B.light_gain = float(flpack.spec(level).get("light_gain", 1.0 / (4.0 * 0.71)))
+    B.light_gain = float(os.environ.get("FL_LIGHT_GAIN") or flpack.spec(level).get("light_gain", 1.0 / (4.0 * 0.71)))
     B.vis_cell = 1024.0
     B.vis_radius = float(flpack.spec(level).get("vis_radius", 0))
     files = {}
@@ -434,6 +434,29 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             return (min(zs), max(zs)) if zs else (0.0, 0.0)
         return f
 
+    # [flfix2 bug-11064] A texture axis the level never tiles (every UV of that texture within 0..1) is sampled right
+    # on its edge rows; the mod's renderer wraps and filters, so the opposite edge row bleeds in as a thin line (the
+    # pale line down the middle of the start lane, where the road texture is mirrored at v = 0, and the white streaks
+    # at the edges of branch cards against the sky). Those axes are pulled in by half a texel: 0 and 1 land on the
+    # centres of the edge rows. Axes that tile are left alone.
+    uv_rng = {}
+    for m in meshes:
+        if m["tris"] and m["uvs"]:
+            r_ = uv_rng.setdefault(m["tex"], [9.0, -9.0, 9.0, -9.0])
+            us_ = [q[0] for q in m["uvs"]]
+            vs_ = [q[1] for q in m["uvs"]]
+            r_[0] = min(r_[0], min(us_)); r_[1] = max(r_[1], max(us_))
+            r_[2] = min(r_[2], min(vs_)); r_[3] = max(r_[3], max(vs_))
+    uv_inset = {}
+    for k_, r_ in uv_rng.items():
+        t_ = L.texture(k_) if k_ is not None else None
+        if not t_ or not t_.get("w") or not t_.get("h"):
+            continue
+        iu_ = t_["w"] if (r_[0] >= -0.002 and r_[1] <= 1.002) else 0
+        iv_ = t_["h"] if (r_[2] >= -0.002 and r_[3] <= 1.002) else 0
+        if iu_ or iv_:
+            uv_inset[k_] = (iu_, iv_)
+    stats["uv_inset_textures"] = len(uv_inset)
     batches = {}
     for m in meshes:
         if not m["tris"]:
@@ -467,6 +490,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             if gr:
                 r, g, b = (min(255, int(round(c * k))) for c, k in zip((r, g, b), gr))
             u, v = m["uvs"][i]
+            ins_ = uv_inset.get(m["tex"])
+            if ins_:
+                if ins_[0]:
+                    u = (0.5 + min(1.0, max(0.0, u)) * (ins_[0] - 1)) / ins_[0]
+                if ins_[1]:
+                    v = (0.5 + min(1.0, max(0.0, v)) * (ins_[1] - 1)) / ins_[1]
             if m["tex"] in water_keys:
                 u, v = p[0] / WATER_TILE, p[1] / WATER_TILE
             nrm = tuple(x / l for x in acc[i])
@@ -900,6 +929,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if spc.get("solid"):
             # the door blocks while it is shut: one box on its own bounds (moves with it)
             brushes_.append(B.add_brush_planes(clip, [], lo_, hi_))
+        for b0_, b1_ in spc.get("boxes", []):
+            # explicit clip boxes in the mesh's own frame, disc metres (the standing ends of the breached wall)
+            c0_, c1_ = Xr(b0_), Xr(b1_)
+            brushes_.append(B.add_brush_planes(clip, [], [min(c0_[q], c1_[q]) for q in range(3)],
+                                               [max(c0_[q], c1_[q]) for q in range(3)]))
         B.models.append({"surfaces": surf_ids, "brushes": brushes_})
         nom += 1
         kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)), ("targetname", "fl_om_" + tag_)]
@@ -915,13 +949,13 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     player = next((e for e in ents if "Player" in e["strs"]), None)
     sp = flpack.spec(level)
     ws = [("classname", "worldspawn"), ("message", f"Frontline {level} (converted locally, converter {CONVERTER_VERSION})"),
-          ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
+          ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(os.environ.get("FL_FARPLANE") or sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
           # [flfix2 bug-11058] fog start (the engine takes 18% of the far plane when this is 0)
           ("farplane_bias", str(sp.get("farplane_bias", 0))),
           # [flfix2 bug-11058] with the far plane as a cull plane the sky hull (further off than the fog end) is never
           # drawn and the void shows the fog colour; the level table can switch the culling off (fog only)
           ("farplane_cull", str(sp.get("farplane_cull", 1))),
-          ("ambientlight", "40 40 40"),
+          ("ambientlight", os.environ.get("FL_AMBIENT") or str(sp.get("ambientlight", "40 40 40"))),
           # [flpolish] engine extensions this map opts into (HZM engine >= 1.10.73; older engines ignore the keys):
           # entity coordinates past +-8192 (the jeep's start behind the gate) and Frontline's own step height (its body
           # walks over the 19-34u lips and kerbs MOHAA's 18u step snags on). server/sv_init.c reads both.
