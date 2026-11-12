@@ -321,7 +321,10 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             nm += 1
             lines.append(f'\tlevel.fl_mg[{nm}] = {o}')
             # [flpolish] its facing and whether Frontline places it broken (the jeep's .30 cal on the wreck)
-            lines.append(f'\tlevel.fl_mg_yaw[{nm}] = {yaw_:.0f}')
+            # [flfix2 bug-11015] Frontline's MountedMachineGun record faces the GUNNER's side (its yaw is the way the
+            # stock end points: 1_1 gun 1 yaw 304 with its three nest gunners standing at bearing 274-338 from it, the
+            # tower gun's yaw running into a wall 122u away, 3000u open behind). MOHAA's turret yaw is the barrel's.
+            lines.append(f'\tlevel.fl_mg_yaw[{nm}] = {(yaw_ + 180) % 360:.0f}')
             lines.append(f'\tlevel.fl_mg_broken[{nm}] = {int(any("Broken" in s_ for s_ in e["strs"]))}')
         elif cls in ("TankVehicle", "Player"):
             lines.append(f'\tlevel.fl_pos["{cls}"] = {o}')

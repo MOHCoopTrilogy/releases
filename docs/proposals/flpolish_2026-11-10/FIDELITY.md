@@ -208,3 +208,48 @@ AI attributes per class (accuracy, health, reaction) are not decoded - ours are 
 squad waits for the player or advances on its own is not decoded; ours follows the player. Trigger-to-plane pairing
 for the seven fly-throughs is ours (closest pass). The cause of the "black patch on the cobbles" is likely one of the
 original's square shadow blobs with nothing standing on it (see TEXTURES.md), not confirmed on camera.
+
+## Round 8 (flfix2, 2026-11-11) - seen in a client
+
+Build v65hb. Stills and logs under `H:\hzm_work\flpolish\fix2\`.
+
+| check | result | proof |
+|---|---|---|
+| Panzer hovering | not floating at rest; the pale patch is Frontline's own ground art. Driving phase now ground-follows (bug-11016), not filmed | `vw63\crop1.jpg` |
+| MG42 facing (bug-11015) | fixed and seen, all five spawned guns | `vw65\` (side-on + muzzle-end; gun 4 side-on blocked by a wall) |
+| MG42 gunner seat | gun 1: gunner crouched behind the stock, co-op client. Guns 2, 4, 5, 6 never logged as manned in any run | `vc4\c_mg1_00.tga` |
+| Jeep scene | fires from trigger 17 for a co-op player, drives in through the arch, mine, stops at the wreck spot in 7.625 s; Stuka dogfight starts with it and the Stuka is removed at its end | `vc3\sheet_jeep.jpg`, `vc3\qconsole.log` |
+| Crawl passage to the interrogation | passes in SP physics only; not walked by a co-op player | `vw64\` |
+| Tower ladder up | passes in a co-op client | `vw71\` |
+| Tower ladder down (bug-11017) | OPEN. Six runs, no clean top mount | - |
+| Window from the street | no void | `vw72_pond\v_win1..3.jpg` |
+| Canal water (bug-11019) | emitted as `textures/choppywater/tehao_indoorwater`, up normals, world UVs | `vw_hq\hq_quay_02.png`, `hq_eye_01.png`, `hq_low_01.png`, `canal_clip_5s.mp4` |
+| Unseen deaths walk | NOT zero. coop_fltest 9, 1 client: 63/63 triggers, objectives 1-5, 0 script errors, 0 spawned in view. German deaths beyond 1500u of the walker 4 of 42 (was 22 unseen before the gating): the tank set piece and fights the walker teleported away from. American 5 of 9, all the jeep crew, because the walk harness misses trigger 17 (bug-11020). The walk teleports; a human walk is the real test | `aa_t9\aiaudit.json`, `aa_t9\server_qconsole.log` |
+
+## Deviations from the original (for the user; choices are not settled here)
+
+| what | original | conversion | forced or choice |
+|---|---|---|---|
+| Player loadout | Frontline's weapons | co-op Armory loadout | choice (user decision) |
+| Air strike on the Panzer | as on the disc | rockets hit the Panzer | choice (user decision) |
+| Canal water look | flat disc water | mod water under a stock shader name, up normals, world-space UVs (tile 512) | choice (user decision) |
+| MG42 yaw | record yaw = gunner's side | muzzle = record + 180 | forced (engine convention) |
+| MG42 height | 22u over the support | 19u (stock MOHAA mount) | choice, 3u |
+| MG42 rest pose, unmanned | unknown | muzzle up about 45 degrees (MOHAA turret idle) | forced (engine) |
+| MG42 gun 3 ("Broken") | broken prop | not spawned | choice |
+| Panzer height while driving | path heights | seated on the ground each step (path is up to 9u off) | choice |
+| Jeep | disc animation | origin-stepped along the 77 path keys from key 1; stops upright, undamaged model, at the record's wreck spot | forced (script_model movement); wreck model is a choice |
+| Jeep crew, "dead" men | disc actors | MOHAA actors; play-dead men are scenery until they rise | forced |
+| Fly-throughs (Stuka, P-47) | disc triggers | paired to the nearest set-piece trigger | forced (trigger data is partial) |
+| AI behaviour, accuracy, health | Frontline AI | MOHAA AI with the mod's scaling | forced |
+| AI kept asleep until the player is near; spawns deferred out of view | unknown | fl_offscreen gating, deferred spawns | choice (user: no fights off-screen) |
+| Allied squad follows the player | unknown | follows | choice |
+| One ally moved | (799,479) | (760,479), out of a wall | forced, 39u |
+| Intro crates | BreakingWoodBoxSwap x20 | MOHAA crate model, crate-sized collision | forced (model), collision a choice |
+| Models | Frontline models | MOHAA stand-ins where no conversion exists | forced |
+| Textures | disc textures | 5 CC0 swaps (mud x3, roof slates, planks) | choice |
+| Sky and far plane | disc sky | MOHAA sky box and fog distance | forced |
+| Collision | disc collision | built from drawn geometry plus: riverbed, edge-of-world clip, lip ramps, 10 widened spots, 114 kept clip sheets, 5 patches | forced (no usable disc collision); each widened spot is a choice |
+| Tower ladder | disc ladder | built from the drawn ladder with a scripted top exit | forced |
+| Time and frag limits | none | switched off for the mission | forced (co-op) |
+| World mirroring | - | none (un-mirrored since bug-10965) | - |

@@ -49,9 +49,14 @@ COLL_SPECIAL = 1 << 23
 TAG_CLIFF = 0x7FFFF001        # [flpolish] collision added by us: edge-of-world clip (flcliff) / lip ramps (flclear)
 TAG_RAMP = 0x7FFFF002
 # [flfix2] open water (canal, river) is drawn with the MOD'S water: a stock shader name the gl2 water pass allowlists
-# (hzm_waterwet.h POND preset: calm, dark green) and whose stock script is the gl1 look. Nothing disc-derived is used
-# for it. FL_WATER_SHADER= (empty) turns the mapping off (the old blended vertex-alpha surface).
-WATER_SHADER = os.environ.get("FL_WATER_SHADER", "textures/misc_outside/pond")
+# (hzm_waterwet.h HARBOUR preset) and whose stock script is the gl1 look. Nothing disc-derived is used for it. The
+# name is the one the user accepted on screen (2026-11-11); pond / water_nodraw read as small drifting tiles or a flat
+# blue sheet. FL_WATER_SHADER= (empty) is a debug switch only (the old blended vertex-alpha surface), never a default.
+WATER_SHADER = os.environ.get("FL_WATER_SHADER", "textures/choppywater/tehao_indoorwater")
+# [flfix2] the stock shader's own stages are drawn with the surface's
+# texcoords: Frontline's (made for its small water tile) turned them into small drifting tiles. World-space instead,
+# one tile per FL_WATER_TILE units (a stock pond brush face at its usual scale).
+WATER_TILE = float(os.environ.get("FL_WATER_TILE", "512"))
 CONTENTS_WATER = 0x20
 TAG_RIVERBED = 0x7FFFF005    # [flpolish] the bed under the canal's water volume (a player who falls in lands and drowns)
 TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dropped player-clip sheet stood in front of
@@ -209,6 +214,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     debug_ids = {}
 
+    water_keys = set()
+
     def tex_shader(key):
         if key in tex_names:
             return tex_names[key]
@@ -217,6 +224,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             # [flfix2] Frontline's water (flat meshes with real vertex alpha and an OPAQUE texture; the soft shadow and
             # scorch decals also carry vertex alpha, but their texture has an alpha channel) -> the mod's water shader
             stats["water_shader"] = WATER_SHADER
+            water_keys.add(key)
             stats["water_textures"] = stats.get("water_textures", 0) + 1
             tex_names[key] = B.shader(WATER_SHADER, 0, 0)
             return tex_names[key]
@@ -401,7 +409,15 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             if gr:
                 r, g, b = (min(255, int(round(c * k))) for c, k in zip((r, g, b), gr))
             u, v = m["uvs"][i]
-            verts.append((p, (u, v), tuple(x / l for x in acc[i]), (r, g, b, va if m["tex"] in vtx_alpha else 255)))
+            if m["tex"] in water_keys:
+                u, v = p[0] / WATER_TILE, p[1] / WATER_TILE
+            nrm = tuple(x / l for x in acc[i])
+            if m["tex"] in water_keys:
+                # the water pass draws only where the vertex normal points up (hzmwater_fp.glsl: var_NormalZ >= 0.7, a stock
+                # brush face's own normal); Frontline winds its water sheet the other way, so the summed face normals
+                # point DOWN and the pass discarded every pixel: the canal showed the stock stages alone
+                nrm = (0.0, 0.0, 1.0)
+            verts.append((p, (u, v), nrm, (r, g, b, va if m["tex"] in vtx_alpha else 255)))
         rk = reskin.get(short_key(m["tex"])) if m["tex"] else None
         if rk:
             # fl_modelmap.json "reskin": render-only swap to MOHAA art from the player's own install (e.g. Frontline's
