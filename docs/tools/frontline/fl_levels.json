@@ -9,6 +9,7 @@
   "sky_faces": "fl",
   "vis_radius": 7000,
   "farplane_color": "0.408 0.416 0.427",
+  "pit_lid": {"rgb": [83, 81, 76], "reason": "flat lid in floorless house pockets (flpit.py): the original's sky box below the horizon is this one flat colour (TRACE_sky_fog.md, -z face and the lower band of the side faces), which is what its player saw through a window into a house with no ground floor"},
   "chars_bum": {
    "obj_drop": 104,
    "obj_mg": 1032,

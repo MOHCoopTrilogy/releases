@@ -31,6 +31,7 @@ import flclear
 import flsheets  # noqa: E402
 import flroutes  # noqa: E402
 import flscene  # noqa: E402
+import flpit  # noqa: E402
 import flfit  # noqa: E402
 import flcliff  # noqa: E402
 
@@ -804,6 +805,27 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     xx += T
                 yy += T
             stats["under_ground_tiles"] = ng
+        # [flfix2 bug-11115] floorless pockets (Frontline houses are shells with no ground floor): through a window the
+        # original shows its sky box there, one flat dark colour below the horizon; our skirt + under-ground fill
+        # read as "under the map" (user, the window by the jeep road). A render-only lid in that colour closes each
+        # pocket that drawn walls cut off from the outside (flpit.py); the level's edges keep their skirt and ground.
+        pl_ = flpack.spec(level).get("pit_lid")
+        if pl_ and not os.environ.get("FL_NO_PITLID"):
+            ptris = []
+            for m in meshes:
+                if not m["tris"] or (m["cell"], m["draw"]) in hidden:
+                    continue
+                P_ = [X(v) for v in m["verts"]]
+                ptris += [(P_[a], P_[b], P_[c]) for a, b, c in m["tris"]]
+            rects_, stats["pit_lids"] = flpit.lids(ptris)
+            lname = tdir + "pit_lid"
+            shader_lines.append(lname + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm nomarks\n\tcull none\n\t{\n\t\tmap $whiteimage\n"
+                                "\t\trgbGen vertex\n\t}\n}\n")
+            lsh = B.shader(lname, flbsp.SURF_NOLIGHTMAP, 0)
+            lcol = tuple(int(v) for v in pl_["rgb"]) + (255,)
+            for zl, ax, ay, bx, by in rects_:
+                q = [((ax, ay, zl), (0.0, 0.0)), ((bx, ay, zl), (1.0, 0.0)), ((bx, by, zl), (1.0, 1.0)), ((ax, by, zl), (0.0, 1.0))]
+                B.add_soup(lsh, [(pp, st, (0.0, 0.0, 1.0), lcol) for pp, st in q], [0, 1, 2, 0, 2, 3])
     # [flpolish] each collision brush carries its SOURCE in its (nodraw) shader name, so the walk audit can tell an
     # original player-clip boundary from a wall, a fitted column, a headroom cap or our edge-of-world clip
     def clip_for(tag):
