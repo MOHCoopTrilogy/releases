@@ -542,3 +542,14 @@ the original's rockets do not kill it); the listener waits while a player watche
 | Death-ambush pair (recs 69, 70) | created on the death of shouter rec 215, killed by bomb A | same; bomb A kills him within 600u (our blast radius would not) (bug-11099) | blast reach forced |
 | Panzer projectile generator (rec 473, trigger 256) | switched on by trigger 256 | not built (parameters not decoded); trigger 256 starts the tank (bug-11098) | missing |
 | Trigger 91 (death-ambush area 373 off / on) | disables rec 407's ambush while the player is inside | not emitted | not built (untraced effect) |
+| House fall timing | real speed: down by +51 ticks of trigger 41 (house_early_sheet.png) | house parts at +0.05 s, down by ~+1.1 s; ambush pair at +0.40 s (bug-11103) | real-speed frames, not a tick trace |
+| Dock and exit | dock = trigger rec 1 (r 25 m); end = exit trigger rec 2 (r 2.6 m) walked into with 1-5 done, text 36, ENDLEVEL | same spots and radii; our crate objective completes at the exit, crate prop there (bug-11103) | exact (positions) |
+| Hints on entering | drop lid rec 383 (text 52), MG volumes 283 / 384 / 539 / 302 (text 274), molotov (501) | same texts on entering, once per player (and the coop cgame's once-per-profile rule) | exact text |
+| Area-373 ambush respawn | respawn on death, gaps 600-1050 ticks, held while inside trigger 91; limit not decoded | respawn 12 s after death, held inside trigger 91, cap 3 per spawner (bug-11103) | cap a choice |
+| Rec 539 MG | using it starts the MG-nest crew early | same (bug-11103) | exact |
+| Field phone | its volume (rec 387) plays sound 40 once | plays our bank's sound-40 cue once on entering (bug-11103) | cue mapping by id |
+| Allied soldiers (all groups) | generic soldier AI: fight from spawn, push when the area's Germans are down, trail 16-19 m behind the player | same rule for every allied soldier; they no longer follow closely (bug-11103) | trace rule applied to all groups |
+| Starting weapons (message 43 at the drop) | given on touch | our co-op Armory loadout | user-approved |
+| Rec 257, message 509 | dead in the original (no target / no listener) | none | exact |
+| Bump-through toggles (46/47) and halt marker 246 | AI bump-through and a halt marker for soldiers | not built: stock AI navigation | forced |
+| Panzer and bullets | bullets do nothing; the player may leave it alive | immune to bullets; destroyed only by the rocket pass (user decision) | exact (bullets) |
