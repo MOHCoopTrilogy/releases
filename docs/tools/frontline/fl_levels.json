@@ -19,6 +19,7 @@
    "done_wall": 134,
    "hint_drop": 182,
    "hint_wall": 187,
+   "hint_gun": 190,
    "warn_incomplete": 170
   },
   "music": {
@@ -392,6 +393,8 @@
    "jeep": 1
   },
   "_motion_first": "[flpolish] the key a motion starts from, named outright (else flpack's collision sweep picks the first key whose run is open). The jeep starts at Frontline's own key 1 behind the farm gate again: it used to be forced to key 20 because a start past x 8192 was never drawn - the entity-origin wire format wraps at +-8192 (bug-flp-jeepdraw); the converter now opts the map into the HZM engine's wide coordinates (worldspawn hzm_widecoords).",
+  "_marks": "[flfix2 round 9] disc records the mission script needs a spot / radius for (decoded scene, cbs_decode SCENES.md 1): the trigger whose two projectile generators fire at the jeep, the generators, the second bump trigger, the wreck's gun (its 6.2 m player range)",
+  "marks": {"jeepfire": 470, "jeepgen1": 471, "jeepgen2": 472, "jeepbump": 403, "jeepgun": 302},
   "set_pieces": [
    {
     "motion": "STUKAdogfight_1_1.mvd",
@@ -399,14 +402,6 @@
     "trigger": 77,
     "snd": "coop_flstuka",
     "mesh": "Stuka_fly.msh"
-   },
-   {
-    "motion": "P47dogfight_1_1.mvd",
-    "model": "models/vehicles/p47fly.tik",
-    "trigger": 77,
-    "delay": 2.5,
-    "snd": "coop_flp47",
-    "mesh": "1_1mustangP47.msh"
    },
    {
     "motion": "P47bomb_building1_1.mvd",
@@ -419,6 +414,7 @@
     "motion": "Bomb_1_1_01.mvd",
     "model": "models/ammo/us_bomb.tik",
     "trigger": 423,
+    "by": "plane",
     "fx": "bomb",
     "mesh": "Falling_Bomb.msh"
    },
@@ -426,20 +422,21 @@
     "motion": "Bomb_1_1_02.mvd",
     "model": "models/ammo/us_bomb.tik",
     "trigger": 86,
+    "by": "plane",
     "fx": "bomb",
     "mesh": "Falling_Bomb.msh"
    },
    {
     "motion": "P47flyingcircle1_1.mvd",
     "model": "models/vehicles/p47fly.tik",
-    "trigger": 220,
+    "trigger": 226,
     "snd": "coop_flp47",
     "mesh": "1_1mustangP47.msh"
    },
    {
     "motion": "P47rocket_tank1_1.mvd",
     "model": "models/vehicles/p47fly.tik",
-    "trigger": 226,
+    "trigger": 220,
     "snd": "coop_flp47",
     "fx": "tank",
     "mesh": "1_1mustangP47.msh"
@@ -462,13 +459,6 @@
     "mesh": "rocket.msh"
    },
    {
-    "motion": "P47strafe_mg_1_1.mvd",
-    "model": "models/vehicles/p47fly.tik",
-    "trigger": 219,
-    "snd": "coop_flp47",
-    "mesh": "1_1mustangP47.msh"
-   },
-   {
     "motion": "P47flyby1_1.mvd",
     "model": "models/vehicles/p47fly.tik",
     "trigger": 84,
@@ -488,6 +478,7 @@
     "mesh": "house_chunk_1_1_01.msh",
     "object": 294,
     "trigger": 86,
+    "by": "plane",
     "delay": 3.4,
     "fx": "stay"
    },
@@ -496,31 +487,38 @@
     "mesh": "house_chunk_1_1_02.msh",
     "object": 295,
     "trigger": 86,
+    "by": "plane",
     "delay": 3.4,
     "fx": "stay"
    },
    {
     "motion": "Vhcl_Jp_Tr_FrntL_1_1.mvd",
     "mesh": "Vehicle_Jeep_Wheel.msh",
-    "sync": "jeep",
+    "sync": "jeepstart",
     "fx": "stay"
    },
    {
     "motion": "Vhcl_Jp_Tr_FrntR_1_1.mvd",
     "mesh": "Vehicle_Jeep_Wheel.msh",
-    "sync": "jeep",
+    "sync": "jeepstart",
     "fx": "stay"
    },
    {
     "motion": "Vhcl_Jp_Tr_RrL_1_1.mvd",
     "mesh": "Vehicle_Jeep_Wheel.msh",
-    "sync": "jeep",
+    "sync": "jeepstart",
     "fx": "stay"
    },
    {
     "motion": "Vhcl_Jp_Tr_RrR_1_1.mvd",
     "mesh": "Vehicle_Jeep_Wheel.msh",
-    "sync": "jeep",
+    "sync": "jeepstart",
+    "fx": "stay"
+   },
+   {
+    "motion": "jeep_body_1_1.mvd",
+    "mesh": "Vehicle_Jeep_Body.msh",
+    "sync": "jeepstart",
     "fx": "stay"
    }
   ],
@@ -658,7 +656,13 @@
    {"name": "brl", "mesh": "Barrel_Metal_Flammable_Red.mpk#0", "class": "ExplodingBarrelSwap_1_1", "solid": 1},
    {"name": "brlx", "mesh": "Barrel_Metal_Flammable_Red.mpk#1", "class": "ExplodingBarrelSwap_1_1"},
    {"name": "mol", "mesh": "BarrelMolotovSwapping.mpk#0", "class": "BarrelMolotovSwap", "solid": 1},
-   {"name": "molx", "mesh": "BarrelMolotovSwapping.mpk#1", "class": "BarrelMolotovSwap"}
+   {"name": "molx", "mesh": "BarrelMolotovSwapping.mpk#1", "class": "BarrelMolotovSwap"},
+   {"name": "jeepgun", "mesh": "MG30_cal.msh", "object": 302},
+   {"name": "crt", "mesh": "Crate_Hide_Swapping.mpk#0", "class": "BreakingWoodBoxSwap", "solid": 1},
+   {"name": "crtx", "mesh": "Crate_Hide_Swapping.mpk#1", "class": "BreakingWoodBoxSwap"},
+   {"name": "cig", "mesh": "CigarBox_Open.msh", "object": 382},
+   {"name": "ciglid", "mesh": "CigarBox_Closed.msh", "object": 383},
+   {"name": "cigempty", "mesh": "CigarBox_Empty.msh", "object": 381}
   ],
   "_object_meshes": "[flpolish] Frontline object meshes that stand on their own record (inline models): the door (DoorSwingCW, solid while shut, swings open when its group wakes). With 'class' instead of 'object': one per record of that class, named <name><n> in record order - the exploding barrels and the molotov barrel (mesh packs: #0 intact, #1 the wreck the original swaps in).",
   "_clip_keep": "[flpolish] Frontline player-clip sheets (disc chunk, triangle index) that STAY: they bound the playable area where nothing is drawn, and get a visible barbed-wire edge (flsheets.edges). Every other non-walkable sheet is dropped and the drawn geometry behind it collides instead. Curated with the walk audit (docs/proposals/flpolish_2026-11-10/sheetiter.py): drop all, keep the sheets where the walker got out of the level."

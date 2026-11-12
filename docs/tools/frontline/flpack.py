@@ -317,6 +317,13 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             nl_ = lists.get(cls, 0) + 1
             lists[cls] = nl_
             lines.append(f'\tlevel.fl_list["{cls}"][{nl_}] = {o}')
+        elif cls == "MMGPoint":
+            # [flfix2 bug-11024] Frontline's machine gun waypoint: where a soldier stands to man a MountedMachineGun
+            # (every soldier class carries Logic:RunToMountedMachineGun, which needs one). 1_1 has three, at guns
+            # 1, 2 and 5 (46-70u behind each, same yaw); a gun without one (the tower gun, gun 6) is never manned.
+            nmp = lists.get("MMGPoint", 0) + 1
+            lists["MMGPoint"] = nmp
+            lines.append(f'	level.fl_mmg[{nmp}] = {o}')
         elif cls == "MountedMachineGun":
             nm += 1
             lines.append(f'\tlevel.fl_mg[{nm}] = {o}')
@@ -351,6 +358,16 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             lines.append(f'\tlevel.fl_trig_send[{nt}][{j}] = {g}')
         lines.append(f'\tlevel.fl_trig_nsend[{nt}] = {len(sends)}')
     lines.append(f"\tlevel.fl_trig_n = {nt}")
+    # [flfix2 round 9] named disc records (fl_levels.json "marks"): spot and radius (a trigger's, in units)
+    recs_m = {e.get("i"): e for e in L.entities()}
+    for mk_, ri_ in sorted(sp.get("marks", {}).items()):
+        e_ = recs_m.get(ri_)
+        if e_ is None:
+            continue
+        q = X(e_["pos"])
+        w_ = flscene.words(e_)
+        lines.append(f'\tlevel.fl_mark["{mk_}"] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+        lines.append(f'\tlevel.fl_mark_r["{mk_}"] = {(w_[11] >> 16) / 10.0 * X.s:.0f}')
     for e in L.entities():
         nm_ = [s for s in e["strs"] if not s.lower().startswith("start")]
         g_ = flscene.ids(e)
@@ -443,7 +460,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             y_ = flscene.raw_angles(q_, X.m < 0)[1] if spc.get("mesh") else flscene.yaw(o_, X.m < 0)
             lines.append(f'\tlevel.fl_sp_yaw[{nsp}] = {y_:.0f}')
         for k_, key_ in (("delay", "delay"), ("snd", "snd"), ("fx", "fx"), ("loop", "loop"), ("yaw", "yaw"),
-                         ("scale", "scale"), ("sync", "sync")):
+                         ("scale", "scale"), ("sync", "sync"), ("by", "by")):
             if spc.get(k_) is not None and not (k_ == "yaw" and rel):
                 v_ = spc[k_]
                 lines.append(f'\tlevel.fl_sp_{key_}[{nsp}] = ' + (f'"{v_}"' if isinstance(v_, str) else f"{v_}"))

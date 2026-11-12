@@ -220,11 +220,54 @@ Build v65hb. Stills and logs under `H:\hzm_work\flpolish\fix2\`.
 | MG42 gunner seat | gun 1: gunner crouched behind the stock, co-op client. Guns 2, 4, 5, 6 never logged as manned in any run | `vc4\c_mg1_00.tga` |
 | Jeep scene | fires from trigger 17 for a co-op player, drives in through the arch, mine, stops at the wreck spot in 7.625 s; Stuka dogfight starts with it and the Stuka is removed at its end | `vc3\sheet_jeep.jpg`, `vc3\qconsole.log` |
 | Crawl passage to the interrogation | passes in SP physics only; not walked by a co-op player | `vw64\` |
-| Tower ladder up | passes in a co-op client | `vw71\` |
+| Tower ladder | disc ladder | built from the drawn ladder; scripted mount and exit at the top | forced (engine top mount needs floor behind the ladder plane; the tower has a wall there) |
+| Canal depth | (user request, not a disc fact) bed should not show through | unchanged default (tehao_indoorwater, bed visible); two converter-only options shot: FL_WATER_SHADER=textures/water/subpen_opaque (dark, opaque) or textures/water/canal_water (green, opaque) | OPEN, user to pick |
 | Tower ladder down (bug-11017) | OPEN. Six runs, no clean top mount | - |
 | Window from the street | no void | `vw72_pond\v_win1..3.jpg` |
 | Canal water (bug-11019) | emitted as `textures/choppywater/tehao_indoorwater`, up normals, world UVs | `vw_hq\hq_quay_02.png`, `hq_eye_01.png`, `hq_low_01.png`, `canal_clip_5s.mp4` |
 | Unseen deaths walk | NOT zero. coop_fltest 9, 1 client: 63/63 triggers, objectives 1-5, 0 script errors, 0 spawned in view. German deaths beyond 1500u of the walker 4 of 42 (was 22 unseen before the gating): the tank set piece and fights the walker teleported away from. American 5 of 9, all the jeep crew, because the walk harness misses trigger 17 (bug-11020). The walk teleports; a human walk is the real test | `aa_t9\aiaudit.json`, `aa_t9\server_qconsole.log` |
+
+## Round 9 (flfix2, 2026-11-11/12) - disc bytecode and emulator reference
+
+Sources: the decoded behaviour bytecode (`H:\hzm_work\flpolish\cbs_decode\SCENES.md`, D = read from the disc, I = inferred),
+the emulator capture of the original (`H:\hzm_work\ref_xemu\NOTES_sealed_orders.md`, no audio) and the user's watch of the
+original. Stills and logs under `H:\hzm_work\flpolish\fix2\r9\`. Build v71 (converter changes: `flpack.py` MMGPoint runners, `fl_sp_by`,
+`fl_mark`; `fl_levels.json` set pieces 19 -> 17, marks, hint_gun; HZMCONV_VERSION not bumped here).
+
+### Set pieces: what the disc specifies and what the build does
+
+| set piece | disc (D decoded / I inferred / R reference frame) | build | exact? |
+|---|---|---|---|
+| Jeep: start | D player enters trigger 77 (6.4 m): body + 4 tyres + Stuka 287 start together | same trigger, same instant (`jeep7`: jeep start and plane start in the same frame) | yes |
+| Jeep: crew | D driver, passenger, gunner attached to body nodes, ride loops 6500/6502/6504; R at least two visible, one at the rear gun | three riders: seated driver and passenger (stock e2l2 jeep poses), gunner standing at the pedestal gun | forced: disc animations and node offsets have no asset mapping; stock poses |
+| Jeep: dust | D one puff 0.33 s after start | one puff at 0.33 s | yes (stock puff effect) |
+| Jeep: fire on the drive-in | D generators 471/472 (NoFlash, MG42 sound) fire at the jeep while it is in trigger 470; no firing code in the gunner. R tracers cross the lane mouth just before the jeep. User: the .30 cal is fired | two hidden MG42 guns at records 471/472 fire at the jeep while inside 470 (t 1.6-3.2 s). `coop_fljeepcrew 1` makes the gunner fire instead | open: decode vs user account; default = decode. Tracer look is MOHAA's |
+| Jeep: bumps | D mine 82 (explosion + bump anims 6509-6511), trigger 403 (second bump) | mine 82 explosion at t 2.15, trigger 403 logged at 2.68; no bump animation | forced: animations unmapped |
+| Jeep: hit | D mines 81/95: explosions, driver and passenger play 6501/6503, fade 6 s, removed; gunner 6505 then wounded loop 6506 on the jeep. User: about two survive. R a soldier slumped in the wreck | default: driver and passenger fade 6 s and are removed at 6.7 s; gunner slumped on the wreck. `coop_fljeepcrew 1`: driver and passenger stay in cover | open: decode vs user account; default = decode. Poses are stock stand-ins |
+| Jeep: tumble, wheels | D body and tyres on pre-authored tracks. R tumbles beyond the arch, a wheel rolls back down the road to the gate, wreck upright inside the village, wheels around it | the disc's own body and wheel meshes on the disc's own motion keys: tumble at the arch, wreck upright at (6561 -3310), three wheels beside it, the fourth ends back at the gate (8419 -3327) | yes for path and timing (7.6 s); origin-stepped at 20 Hz |
+| Jeep: gun on the wreck | D message 103 at track end spawns rec 302 (I link); player within 6.2 m: hint text, gunner plays sound 82 and anim 6507, fades 6 s, removed. R "Press ACTION to Use Machine Gun", gun mountable, muzzle flash and casings | disc MG30_cal mesh at rec 302, usable (stock turret), hint text 190 from the disc text table, gunner line (stream 17 "mg_hurt") at 298u, fade and removal at 6.7 s | forced: sound 82 -> stream 17 is inferred, no reference audio; final animation unmapped; turret arc 180 each way is ours |
+| Stuka 287 | D trigger 77, sound 66. R low along the road about 1.2 s behind the jeep | disc mesh on disc keys; crosses the lane mouth right behind the jeep (`sheet7_lane.jpg` frame 5) | yes for path; engine sound is a stand-in |
+| Fly-through 288 (dogfight), 290 (strafe) | D no start link / no sender: never flown | removed (were flown before this round) | yes |
+| Bomber 289, bombs 299/300, house parts | D trigger 41 starts the plane; a plane crossing sky triggers 423 / 86 drops each bomb; bomb impact (76 -> 74) drops parts 294/295 | plane on trigger 41; bombs released when a flying set piece is inside the trigger sphere (39.8 s and 41.9 s in `bomb2`); house parts 3.4 s after the 86 crossing | I: parts are timed, not chained to the impact message. NOTE: Stuka 287 also crosses trigger 423 and drops bomb 1 during the jeep scene (`jeep7` log); literal reading of the data, unconfirmed |
+| Fly-through 291, rockets 385/386 | D trigger 220; rockets launch when an object (I: the tank) enters trigger 255 | plane on 220; rockets when a player enters 255; they hit the Panzer | I trigger object; rockets-to-Panzer is the user's decision |
+| Fly-by 292 | D trigger 84 | same | yes (not re-shot) |
+| Circling 301 + line | D trigger 226, also sends 415 = "They're after the tanks" | plane on 226 (`sheet_pz1.jpg`); line from the bark table | line timing not re-checked |
+| "Planes above" | D sky trigger 107 sends 415 when a plane crosses | bark on the soldier's own wake | I, not matched to the plane crossing |
+| Panzer | D trigger 251, path start, turret re-aim 3-6 s, fire 0.25-1 s after, generator 473 on trigger 256, death: explosion, destroyed model, sound 61 | trigger 251, disc path, MOHAA tank turret AI | forced: turret timing is the engine's |
+| Wall breach | D trigger 430 spawns wall and barrels; use (86) -> chain -> wall frames 1-20 in four steps, sound 61, objective 4 | use + explosion + objective 4 | wall's four-step animation not reproduced |
+| Interrogation, play-dead men | not in the decoded scenes | as rounds 7/8 | unverified against the disc |
+| Allied squad | D no scripted moves: spawn triggers, order triggers, 110 cover points | follows the player | choice (existing row) |
+
+### Round 9 items
+
+| item | result | proof |
+|---|---|---|
+| Tower ladder down | fixed with the scripted top mount. Stock top mount (FuncLadder::CanUseLadder) needs floor behind the ladder plane at the lip; the tower has its outer wall there | `lad2.out` (start 374, end -160.2), `sheet_lad2.jpg` |
+| MG42 guns 2, 4, 5, 6 | 2 and 5 manned by their MMGPoint runners; 4 and 6 have no MMGPoint on the disc: unmanned in the original | `sheet_mg2.jpg` |
+| Gun 3 "Broken" | it is the jeep's .30 cal (rec 302, StartBrokenById = started by message, not a broken prop); now the disc mesh, usable | `sheet6_gun.jpg` |
+| Canal wall streaks | the disc's own texture and UVs | `tex_6180.png` |
+| Crates, first objective | disc meshes and textures; objective 1 is the Resistance drop ("Press ACTION to Search Drop" -> "Resistance Drop Found") | `sheet_crate2.jpg` |
+| Canal depth (two interim options, default unchanged) | opt1 subpen_opaque: dark opaque surface, bed and wall bases hidden; opt2 canal_water: green opaque surface, bed hidden; current: bed visible. Default not changed | `quay\` |
 
 ## Deviations from the original (for the user; choices are not settled here)
 
@@ -236,16 +279,24 @@ Build v65hb. Stills and logs under `H:\hzm_work\flpolish\fix2\`.
 | MG42 yaw | record yaw = gunner's side | muzzle = record + 180 | forced (engine convention) |
 | MG42 height | 22u over the support | 19u (stock MOHAA mount) | choice, 3u |
 | MG42 rest pose, unmanned | unknown | muzzle up about 45 degrees (MOHAA turret idle) | forced (engine) |
-| MG42 gun 3 ("Broken") | broken prop | not spawned | choice |
+| MG42 gun 3 (rec 302) | the jeep's .30 cal, spawned by message when the jeep's track ends, mountable | disc MG30_cal mesh on a stock turret; arc 180 each way | forced (engine turret); arc a choice |
 | Panzer height while driving | path heights | seated on the ground each step (path is up to 9u off) | choice |
-| Jeep | disc animation | origin-stepped along the 77 path keys from key 1; stops upright, undamaged model, at the record's wreck spot | forced (script_model movement); wreck model is a choice |
-| Jeep crew, "dead" men | disc actors | MOHAA actors; play-dead men are scenery until they rise | forced |
-| Fly-throughs (Stuka, P-47) | disc triggers | paired to the nearest set-piece trigger | forced (trigger data is partial) |
+| Jeep | body and four tyres on pre-authored tracks | disc meshes origin-stepped on the disc's keys (20 Hz); wreck = the disc body where its track ends | forced (script_model movement) |
+| Jeep crew poses and animations | disc animations 6500-6511 on body nodes | stock MOHAA seated / gun / cover poses, no bump animation | forced (no animation mapping) |
+| Jeep crew fate | decode: driver and passenger fade and are removed, gunner wounded then removed after his line. User's watch: about two survive | default = decode; `coop_fljeepcrew 1` = two stay in cover | OPEN, not settled |
+| Fire at the jeep | decode: two world generators; user's watch: the gunner fires the .30 cal | default = generators; `coop_fljeepcrew 1` = gunner fires | OPEN, not settled |
+| Gunner's line | sound 82 | stream 17 "mg_hurt" from the player's converted audio | inferred mapping, no reference audio |
+| Play-dead men | disc actors | MOHAA actors; scenery until they rise | forced |
+| Fly-throughs | 287, 289, 291, 292, 301 started by triggers; 288 and 290 never started | the five; 288 and 290 removed | - |
+| Bomb 1 and the Stuka | sky trigger 423 fires for any plane crossing it (literal reading) | Stuka 287 crosses it and drops bomb 1 during the jeep scene | inferred; alternative = bomber 289 only |
+| House parts | fall on the bomb's impact message | fall 3.4 s after the plane crosses trigger 86 | choice (timing stand-in) |
+| Rockets | launch when an object (inferred: the tank) enters trigger 255 | launch when a player enters it | inferred |
 | AI behaviour, accuracy, health | Frontline AI | MOHAA AI with the mod's scaling | forced |
 | AI kept asleep until the player is near; spawns deferred out of view | unknown | fl_offscreen gating, deferred spawns | choice (user: no fights off-screen) |
 | Allied squad follows the player | unknown | follows | choice |
 | One ally moved | (799,479) | (760,479), out of a wall | forced, 39u |
-| Intro crates | BreakingWoodBoxSwap x20 | MOHAA crate model, crate-sized collision | forced (model), collision a choice |
+| Intro crates | BreakingWoodBoxSwap x20 | the disc's crate mesh and texture, collision sized to it; break sound is a stock stand-in; nothing dropped | forced (sound) |
+| Resistance drop | small package between the crates, hold ACTION about 1 s | the disc's mesh; taken on a single USE press | choice (hold time) |
 | Models | Frontline models | MOHAA stand-ins where no conversion exists | forced |
 | Textures | disc textures | 5 CC0 swaps (mud x3, roof slates, planks) | choice |
 | Sky and far plane | disc sky | MOHAA sky box and fog distance | forced |
