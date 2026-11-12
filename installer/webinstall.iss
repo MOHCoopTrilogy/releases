@@ -7,6 +7,12 @@
 #ifndef ReportWebhook
 #define ReportWebhook ""
 #endif
+; [2026-09-25, bug-2907] refuse to build a stub with no webhook: it writes an empty ReportWebhook= into
+; every new player's updater.ini, and nothing downstream can recover it. Build with
+; /DReportWebhook=<ReportWebhook from publish_secrets.ini> (see the 09-19 stub build).
+#if ReportWebhook == ""
+  #error ReportWebhook is empty - pass /DReportWebhook from publish_secrets.ini
+#endif
 #ifndef AppVer
 #define AppVer "1.0.0"
 #endif

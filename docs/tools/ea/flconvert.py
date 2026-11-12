@@ -28,7 +28,7 @@ import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
 
-CONVERTER_VERSION = "0.7.5"   # 0.7.5 an entity light grid from the baked vertex light (tanks and soldiers no longer daylit at night), silent panic bark; 0.7.4 baked light written for the mod's world gain (the night was near three times too bright), two-layer terrain upgrades graded (crater rims), far glows given back the fog share, silent bark aliases; 0.7.2 particle sizes are half extents (quads twice as wide); 0.7.1 the level's own global fog record sets the far plane and its colour (the village is a night level), width and height end scales of a particle kept apart; 0.7.0 the level's own particle systems (eafx: emitters + sprite sheets from the disc's ProcParticleType records; engine convfx); 0.6.1 music events by the .mpf's own table (eamusic); [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
+CONVERTER_VERSION = "0.7.21"   # 0.7.21 (EA) a loudspeaker point plays its own sound event when it is a speech stream (ea_pa_ev), PA group from word 32; 0.7.20 (EA) MG squads from the StayOnMMG objectives (ea_mg_obj), loudspeaker points (ea_pa_*), scene cue tables from the rig event records (ea_sc_*); 0.7.19 (EA) sky box sides: the -x and +y images were written under each other's name (the engine draws image lf on -x and bk on +y), which put hard seams in the sky; 0.7.18 (EA) the disc sky is kept out of the fog (the original does not fog its sky; the engine fogged it by elevation and at a 95 m fog end it showed as flat fog colour, no clouds, no moon): the sky shader carries one no-op stage with nofog; 0.7.17 (EA) fog and sky from the original: fog is linear from 0 to opaque at the record's far distance (it was started at 18 m and capped at 44 percent from two words that are not decoded), and the sky box is built from the level's own sky textures and moon (it was a stock MOHAA night sky); 0.7.16 (EA) ICS points with an actor group relay their slot-1 sends once the actor is in place (the second partisan leader, the idle partisans and the Locate Partisan Fighters objective came at the wrong moments: at load, at a later line, and only on completion); 0.7.15 (EA) path-node bridges: a group that finds no way out on the 40u lattice is searched again on a 20u lattice whose cells may shift up to 9u (the church side door is 36u wide and passes the hull on one row only), groups are re-tried in rounds until nothing joins, and a link climbs at most 17u (19-20u pews and kerbs made links the engine never makes): the church was off the node graph and every order across it ended "unreachable path"; spawn points read alive-at-once from word 50 (min, max, alive sit at 48-50; word 55 was misread and held most groups to one man at a time); 0.7.14 (EA) each mounted gun names its squad: the one whose first squad objective the level places at the gun (was: any squad with MMG in its name, and any German near the gun); 0.7.13 (EA) facings read from the record's row 1 (spawn points, tanks, mounted guns and the player start stood a quarter turn off: gunners spawned beside their guns, the squad faced the map edge); 0.7.12 (EA) gag triggers carry the record's once flag (a leader line played four times), spawn points of squads named for a mounted gun are marked (the gunner squad takes its gun); 0.7.11 headroom lift stops 2.5u (was 6u) under the floor above, a 100u door header now clears the 94u hull, and a header vertex in the door jamb (no floor straight under it) is lifted too, so is the tall wall triangle over a door and a header underside beside a stair, lift height 104u (98u left exactly the hull height less the collision prisms); 0.7.10 headroom relief also for hanging up-facing triangles, relieved places listed in the report; 0.7.9 worldspawn map_time is a hash of the entities and collision (the engine kept the first conversion's cached path graph for ever); 0.7.8 path node groups with no straight-walk link to the rest are bridged with 40u node chains or dropped; 0.7.7 a fine path node is skipped only for a near node it can walk straight to (cellar nodes stood unlinked either side of a pillar); 0.7.6 smart-object meshes anchored on their own origin (the radio tower stood as its top half in the air, wall chunks and the railgun's overlay sat displaced), the railgun and its wreck are solid, path nodes on every floor level and in tight places (cellars, stairs, doorways), charge heights kept; 0.7.5 an entity light grid from the baked vertex light (tanks and soldiers no longer daylit at night), silent panic bark; 0.7.4 baked light written for the mod's world gain (the night was near three times too bright), two-layer terrain upgrades graded (crater rims), far glows given back the fog share, silent bark aliases; 0.7.2 particle sizes are half extents (quads twice as wide); 0.7.1 the level's own global fog record sets the far plane and its colour (the village is a night level), width and height end scales of a particle kept apart; 0.7.0 the level's own particle systems (eafx: emitters + sprite sheets from the disc's ProcParticleType records; engine convfx); 0.6.1 music events by the .mpf's own table (eamusic); [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
 MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
@@ -649,7 +649,23 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     stats["surfaces"] = nmerged
 
     # sky box (quads around the world, both windings) so the void renders as a MOHAA sky
-    sky = B.shader(sky_shader or flpack.spec(level, game).get("sky", "textures/sky/mohday1"), 0x4 | flbsp.SURF_NOLIGHTMAP, 0)
+    _skyname = sky_shader or flpack.spec(level, game).get("sky", "textures/sky/mohday1")
+    _sd = flpack.spec(level, game).get("sky_disc") if game == "ea" and not sky_shader else None
+    if _sd and not os.environ.get("EA_NO_DISCSKY"):
+        # 0.7.17: the level's own sky textures as the sky box (easky.py), not a stock MOHAA sky
+        import easky
+        _faces = easky.build(L, _sd)
+        if _faces:
+            for _suf, (_w, _h, _px) in _faces.items():
+                files[f"env/{game}_{level}_sky_{_suf}.tga"] = tga_bytes(_w, _h, _px)
+            _skyname = f"textures/{game}/{level}/sky"
+            shader_lines.append(_skyname + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm noimpact\n\tsurfaceparm sky\n"
+                                f"\tskyParms env/{game}_{level}_sky 512 -\n"
+                                + ("" if os.environ.get("EA_SKY_FOGGED") else
+                                   "\t{\n\t\tmap $whiteimage\n\t\tblendFunc GL_ZERO GL_ONE\n\t\tnofog\n\t}\n")
+                                + "}\n")
+            stats["disc_sky"] = sorted(_faces)
+    sky = B.shader(_skyname, 0x4 | flbsp.SURF_NOLIGHTMAP, 0)
     blo = [max(min(s["bounds"][0][k] for s in B.surfaces) - 1024, -16300) for k in range(3)]
     bhi = [min(max(s["bounds"][1][k] for s in B.surfaces) + 1024 + 4096 * (k == 2), 16300) for k in range(3)]
     corners = [(x, y, z) for z in (blo[2], bhi[2]) for y in (blo[1], bhi[1]) for x in (blo[0], bhi[0])]
@@ -782,6 +798,139 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             B.add_soup(wire, [(pp, st, (0.0, 0.0, 1.0), med_light + (255,)) for pp, st in q], [0, 1, 2, 0, 2, 3])
             nfe += 1
         stats["sheets"]["visible_edges"] = nfe
+    if game == "ea" and not os.environ.get("EA_NO_HEADROOM"):
+        # 0.7.7 headroom relief: European Assault's soldier is shorter than MOHAA's 94u standing box, so a door
+        # header, beam or stair ceiling 78-103u over the floor let the original's player through and stops ours (an
+        # invisible wall at head height, on a stair from the downhill side only) - and stops every AI for good, the
+        # AI box cannot crouch (the partisans never left their cellar: its door header hangs 85u over the stair).
+        # A HANGING collision triangle (not facing up; every vertex 78u+ over the ground
+        # around it) gets its vertices that hang lower than 104u lifted to 104u; never up through a floor above.
+        _hg = flgeom.TriGrid(ctris, cell=64.0)
+        _hc = {}
+
+        def _hgr(x, y, ztop, zbot):
+            # the highest FLOOR (a collision triangle facing up) under (x, y) between zbot and ztop; a ceiling below
+            # the vertex is not ground (TriGrid.ground takes both)
+            best_ = None
+            for i_ in _hg.near(x, y, 1):
+                a_, b_, c_ = _hg.tris[i_]
+                m_ = flgeom._cross(flgeom._sub(b_, a_), flgeom._sub(c_, a_))
+                if m_[2] <= 1e-9 or m_[2] / math.sqrt(flgeom._dot(m_, m_)) < 0.5:
+                    continue
+                d1 = (x - b_[0]) * (a_[1] - b_[1]) - (a_[0] - b_[0]) * (y - b_[1])
+                d2 = (x - c_[0]) * (b_[1] - c_[1]) - (b_[0] - c_[0]) * (y - c_[1])
+                d3 = (x - a_[0]) * (c_[1] - a_[1]) - (c_[0] - a_[0]) * (y - a_[1])
+                if (d1 < 0 or d2 < 0 or d3 < 0) and (d1 > 0 or d2 > 0 or d3 > 0):
+                    continue
+                z_ = a_[2] - (m_[0] * (x - a_[0]) + m_[1] * (y - a_[1])) / m_[2]
+                if zbot <= z_ <= ztop and (best_ is None or z_ > best_):
+                    best_ = z_
+            return best_
+
+        def _hz(v):
+            # (floor straight under the vertex, highest floor within the 45u square the standing hull rests on)
+            k_ = (round(v[0], 1), round(v[1], 1), round(v[2], 1))
+            if k_ in _hc:
+                return _hc[k_]
+            d_ = _hgr(v[0], v[1], v[2] - 4.0, v[2] - 200.0)
+            best_ = d_
+            for dx_ in (-45, -30, -15, 0, 15, 30, 45):      # 30u of hull + the brush's own thickness
+                for dy_ in (-45, -30, -15, 0, 15, 30, 45):
+                    g_ = _hgr(v[0] + dx_, v[1] + dy_, v[2] - 4.0, v[2] - 200.0)
+                    if g_ is not None and (best_ is None or g_ > best_):
+                        best_ = g_
+            if d_ is None:
+                d_ = best_      # 0.7.11: a header vertex in the door jamb has no floor straight under it
+            _hc[k_] = (d_, best_)
+            return _hc[k_]
+        _out, _nv, _nt, _nup, _hp = [], 0, 0, 0, []
+        _hdbg = [float(c) for c in os.environ["EA_HEADDBG"].split(",")] if os.environ.get("EA_HEADDBG") else None
+        for t in ctris:
+            n_ = flgeom._cross(flgeom._sub(t[1], t[0]), flgeom._sub(t[2], t[0]))
+            l_ = math.sqrt(flgeom._dot(n_, n_))
+            if l_ < 1e-6:
+                _out.append(t)
+                continue
+            # 0.7.10: a triangle that faces up is relieved too when it hangs (a roof slope or an upper stair flight
+            # 78-98u over the steps below it: the Nebelwerfer house's stair). Its own neighbours (the next tread of
+            # the same flight) are floor within 50u, so an ordinary floor or stair is never touched.
+            _up = n_[2] / l_ >= 0.5
+            gs_ = [_hz(v) for v in t]
+            # hanging: every vertex 78u+ over the floor under it (the original's soldier stood there) and 50u+ over
+            # the floor around it (a wall standing on a ledge is not hanging over the ledge)
+            _dn = n_[2] / l_ <= -0.5
+            bs_ = []
+            _cx = (t[0][0] + t[1][0] + t[2][0]) / 3.0
+            _cy = (t[0][1] + t[1][1] + t[2][1]) / 3.0
+            _why = ""
+            for v, (d_, r_) in zip(t, gs_):
+                if d_ is not None and v[2] - d_ < 78.0:
+                    # 0.7.11: the vertex may sit on the edge of a landing beside the door: read the floor 3u inside
+                    _l = math.hypot(_cx - v[0], _cy - v[1])
+                    if _l > 6.0:
+                        _d2 = _hgr(v[0] + (_cx - v[0]) * 3.0 / _l, v[1] + (_cy - v[1]) * 3.0 / _l, v[2] - 4.0, v[2] - 200.0)
+                        if _d2 is not None and v[2] - _d2 >= 78.0:
+                            d_ = _d2
+                            if v[2] - r_ < 50.0 or r_ > _d2 + 30.0:
+                                r_ = _d2
+                if d_ is None:
+                    # 0.7.11: no floor within 200u under it. High over a floor far below (the top of the wall over
+                    # a door): passes, unmoved. Nothing under it at all (a wall foot under the floor): not hanging.
+                    _l = math.hypot(_cx - v[0], _cy - v[1]) or 1.0     # also 3u inside: the vertex may be on the wall's edge
+                    if _hgr(v[0], v[1], v[2] - 4.0, v[2] - 1500.0) is None and _hgr(v[0] + (_cx - v[0]) * 3.0 / _l, v[1] + (_cy - v[1]) * 3.0 / _l, v[2] - 4.0, v[2] - 1500.0) is None:
+                        bs_ = None
+                        _why = "void under"
+                        break
+                    bs_.append(None)
+                elif v[2] - d_ < 78.0:
+                    bs_ = None
+                    _why = "under 78 %.1f" % (v[2] - d_)
+                    break
+                elif v[2] - r_ < 50.0:
+                    if not _dn:
+                        bs_ = None
+                        _why = "ledge %.1f" % (v[2] - r_)
+                        break
+                    bs_.append(d_)      # 0.7.11: an underside beside a stair tread: over the floor straight under it
+                else:
+                    bs_.append(r_)
+            if _hdbg and abs(_cx - _hdbg[0]) < 120 and abs(_cy - _hdbg[1]) < 120:
+                print("HEADDBG", [tuple(round(c, 1) for c in v) for v in t], "bases", bs_, _why)
+            if bs_ is None or all(b_ is None for b_ in bs_):
+                _out.append(t)
+                continue
+            nt_ = []
+            ch_ = False
+            for v, r_ in zip(t, bs_):
+                if r_ is None:
+                    nt_.append(v)
+                    continue
+                z_ = r_ + 104.0     # 0.7.11: 98 left 94u less the two 2u collision prisms (floor up, header down)
+                if v[2] < z_:
+                    f_ = _hgr(v[0], v[1], z_ + 8.0, v[2] + 1.0)
+                    if f_ is not None:
+                        z_ = min(z_, f_ - 2.5)      # 0.7.11: was 6.0 (left 92u under a 100u header)
+                    if z_ > v[2] + 0.5:
+                        nt_.append((v[0], v[1], z_))
+                        _nv += 1
+                        ch_ = True
+                        continue
+                nt_.append(v)
+            _nt += 1 if ch_ else 0
+            if ch_:
+                _nup += 1 if _up else 0
+                _hp.append((sum(v[0] for v in t) / 3.0, sum(v[1] for v in t) / 3.0, min(v[2] for v in t)))
+            _out.append(tuple(nt_))
+        ctris = _out
+        _hcl = []
+        for p_ in _hp:
+            for c_ in _hcl:
+                if abs(c_[0] - p_[0]) < 160 and abs(c_[1] - p_[1]) < 160 and abs(c_[2] - p_[2]) < 120:
+                    c_[3] += 1
+                    break
+            else:
+                _hcl.append([round(p_[0]), round(p_[1]), round(p_[2]), 1])
+        stats["headroom"] = {"triangles": _nt, "vertices": _nv, "up_facing": _nup, "places": _hcl}
     for t in ctris:
         if B.add_prism(clip, *t, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
             rejected += 1
@@ -810,7 +959,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         n_ = 0
         for j in _cg.near((lo_[0] + hi_[0]) / 2, (lo_[1] + hi_[1]) / 2, max(hi_[0] - lo_[0], hi_[1] - lo_[1]) / 2 + 16):
             c_ = [sum(v[k] for v in _cg.tris[j]) / 3 for k in range(3)]
-            if all(lo_[k] <= c_[k] <= hi_[k] for k in range(3)):
+            # 0.7.6: only collision in the upper 60% of the object's height counts. The railgun's box held 32 .cdb
+            # triangles, all of them the GROUND under it (1 m of height against the gun's 8 m): it was taken for
+            # "has its own collision" and got none - players walked through it
+            if all(lo_[k] <= c_[k] <= hi_[k] for k in range(3)) and c_[2] >= lo_[2] + 0.4 * (hi_[2] - lo_[2]):
                 n_ += 1
         return n_ >= 10
     for _r, _s, ms in sob_static:
@@ -854,15 +1006,25 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     # and stays there. The engine's fog is a ramp from farplane_bias to opaque at the far plane, so
                     # the far plane goes where the same slope would reach opaque, and farplane_maxfog (engine
                     # extension) stops the ramp at the record's most; the far plane then no longer culls.
-                    _st = _r.f(27)
-                    _st = _st * 48.0 if 0.0 <= _st < _far else 0.0
-                    sp["farplane"] = int(max(2400.0, min(16000.0, _st + (_far * 48.0 - _st) * 100.0 / _most)))
+                    # 0.7.17: the original's fog state read from its GPU at the opening is linear from 0 m to opaque at
+                    # 95 m in this colour: the start is word 26 (0.0) and the end word 28 (95.0). Words 27 (18.0) and 29
+                    # (44.0) were taken for the start and a 44 percent ceiling until now; what they hold is not decoded.
+                    # EA_FOG_CEIL=1 brings the old reading back for comparison. The far plane does not cull, so the sky
+                    # and the fogged shapes beyond it are still drawn, as the original draws them.
+                    if os.environ.get("EA_FOG_CEIL"):
+                        _st = _r.f(27)
+                        _st = _st * 48.0 if 0.0 <= _st < _far else 0.0
+                        sp["farplane"] = int(max(2400.0, min(16000.0, _st + (_far * 48.0 - _st) * 100.0 / _most)))
+                        if _most < 99.0:
+                            sp["farplane_maxfog"] = "%.3f" % (_most / 100.0)
+                    else:
+                        _st = _r.f(26)
+                        _st = _st * 48.0 if 0.0 <= _st < _far else 0.0
+                        sp["farplane"] = int(max(1200.0, min(16000.0, _far * 48.0)))
                     sp["farplane_color"] = "%.3f %.3f %.3f" % tuple(c / 255.0 for c in _col)
                     if _st > 1.0:
                         sp["farplane_bias"] = "%d" % _st
-                    if _most < 99.0:
-                        sp["farplane_maxfog"] = "%.3f" % (_most / 100.0)
-                        sp["farplane_cull"] = "0"
+                    sp["farplane_cull"] = "0"
                     stats["disc_fog"] = [sp["farplane"], sp["farplane_color"], sp.get("farplane_bias"), sp.get("farplane_maxfog")]
                 break
     ws = [("classname", "worldspawn"), ("message", f"{ {'fl': 'Frontline', 'ea': 'European Assault'}[game]} {level} (converted locally, converter {CONVERTER_VERSION})"),
@@ -913,20 +1075,219 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         anchors = [X(r.pos) for r in _db.recs if r.cls in ("NPCSpawnPoint", "SquadObjective_New", "BasicTrigger",
                                                             "Player", "ICSPoint", "MMGPoint") and r.pos != (0.0, 0.0, 0.0)]
         cells = {}
+
+        def _levels(x, y, ztop, zbot):
+            # the distinct floor heights under (x, y), highest first (TriGrid.ground gives only the highest)
+            out_, top_ = [], ztop
+            while True:
+                g_ = grid.ground(x, y, top_, zbot)
+                if g_ is None:
+                    return out_
+                out_.append(g_)
+                top_ = g_ - 72.0
         for a in anchors:
             for gx in range(int((a[0] - 1600) // 160), int((a[0] + 1600) // 160) + 1):
                 for gy in range(int((a[1] - 1600) // 160), int((a[1] + 1600) // 160) + 1):
                     x, y = gx * 160 + 80, gy * 160 + 80
                     if (x - a[0]) ** 2 + (y - a[1]) ** 2 > 1600 ** 2:
                         continue
-                    g = grid.ground(x, y, a[2] + 160, a[2] - 260)
-                    if g is None:
-                        continue
-                    key = (gx, gy, int(g // 96))
-                    if key in cells:
-                        continue
-                    cells[key] = (x, y, g) if grid.box_free(x, y, g, lift=18.0, margin=2.0) else None
+                    # 0.7.6: every floor level under the column, not just the highest - a cellar's spawn points
+                    # got their nodes on the house floor above it ("couldn't find start node", the partisans never
+                    # left the basement)
+                    for g in _levels(x, y, a[2] + 160, a[2] - 260):
+                        key = (gx, gy, int(g // 96))
+                        if key in cells:
+                            continue
+                        cells[key] = (x, y, g) if grid.box_free(x, y, g, lift=18.0, margin=2.0) else None
         nodes = sorted(v for v in cells.values() if v)
+        # fine pass (40u): stairs, corridors and doorways are narrower than the coarse grid's free standing spots;
+        # a fine node goes only where no node stands within 100u on its level, so open ground stays at 160u
+        _ng = {}
+        for v in nodes:
+            _ng.setdefault((int(v[0] // 128), int(v[1] // 128)), []).append(v)
+
+        def _has_near(x, y, g, r=100.0):
+            for ix in (-1, 0, 1):
+                for iy in (-1, 0, 1):
+                    for q in _ng.get((int(x // 128) + ix, int(y // 128) + iy), ()):
+                        if (q[0] - x) ** 2 + (q[1] - y) ** 2 < r * r and abs(q[2] - g) < 72 \
+                                and _walk((x, y, g), q):
+                            return True
+            return False
+
+        _wm = [2.0]        # hull margin of the straight-walk test (the 4u collision slabs)
+
+        def _walk(p_, q_):
+            # 0.7.7: the node hull can walk p -> q in a straight line (every 16u: ground within an 18u step up,
+            # free standing room). A near node behind a pillar, a wall or a kerb taller than a step is no link.
+            import math as _m
+            n_ = max(1, int(_m.hypot(q_[0] - p_[0], q_[1] - p_[1]) / 16.0))
+            z_ = p_[2]
+            for k_ in range(1, n_ + 1):
+                x_ = p_[0] + (q_[0] - p_[0]) * k_ / n_
+                y_ = p_[1] + (q_[1] - p_[1]) * k_ / n_
+                # 0.7.15: a step up of at most 17u (was 20): the engine's AI climbs 18u, and a 19-20u pew, kerb or
+                # rubble edge linked nodes here that the engine never links (whole node groups cut off)
+                g_ = grid.ground(x_, y_, z_ + 17.0, z_ - 30.0)
+                if g_ is None or not grid.box_free(x_, y_, g_, lift=18.0, margin=_wm[0]):
+                    return False
+                z_ = g_
+            return abs(z_ - q_[2]) < 20.0
+        fine, seen_f = [], set()
+        for a in anchors:
+            for gx in range(int((a[0] - 640) // 40), int((a[0] + 640) // 40) + 1):
+                for gy in range(int((a[1] - 640) // 40), int((a[1] + 640) // 40) + 1):
+                    if (gx, gy) in seen_f:
+                        continue
+                    seen_f.add((gx, gy))
+                    x, y = gx * 40 + 20, gy * 40 + 20
+                    for g in _levels(x, y, a[2] + 160, a[2] - 260):
+                        if _has_near(x, y, g) or not grid.box_free(x, y, g, lift=24.0, margin=2.0):
+                            continue
+                        fine.append((x, y, g))
+                        _ng.setdefault((int(x // 128), int(y // 128)), []).append((x, y, g))
+        stats["pathnodes_fine"] = len(fine)
+        nodes = sorted(nodes + fine)
+        if not os.environ.get("EA_NO_BRIDGE"):
+            # 0.7.8 bridges: a node is only useful if the engine can LINK it (a straight hull walk to another node).
+            # The partisan leader's corner of the cellar had one node, hemmed in by a pillar, a low wall and a
+            # table: the engine took it as his start node and every order ended "unreachable path". Nodes are
+            # grouped by straight-walk links; each group cut off from the rest gets a chain of 40u nodes walked
+            # around the obstacle to the nearest other group. A group of one or two that cannot be bridged is
+            # dropped (it only ever captured men standing near it).
+            import math as _m
+            from collections import deque as _dq
+            _par = {}
+
+            def _find(a_):
+                while _par.get(a_, a_) != a_:
+                    _par[a_] = _par.get(_par[a_], _par[a_])
+                    a_ = _par[a_]
+                return a_
+
+            def _link(p_, q_):
+                return abs(p_[2] - q_[2]) < 72.0 and _walk(p_, q_) and _walk(q_, p_)
+
+            def _near(p_, r_):
+                bx_, by_, k_ = int(p_[0] // 128), int(p_[1] // 128), int(r_ // 128) + 1
+                for ix_ in range(-k_, k_ + 1):
+                    for iy_ in range(-k_, k_ + 1):
+                        for q_ in _ng.get((bx_ + ix_, by_ + iy_), ()):
+                            if q_ != p_ and (q_[0] - p_[0]) ** 2 + (q_[1] - p_[1]) ** 2 < r_ * r_:
+                                yield q_
+            for p_ in nodes:
+                for q_ in _near(p_, 240.0):
+                    if q_ > p_ and _find(p_) != _find(q_) and _link(p_, q_):
+                        _par[_find(p_)] = _find(q_)
+            _comps = {}
+            for p_ in nodes:
+                _comps.setdefault(_find(p_), []).append(p_)
+            _groups = sorted(_comps.values(), key=len)
+            stats["pathnode_groups"] = len(_groups)
+            _added, _dropped, _left = [], set(), 0
+            _offs0 = ((0, 0),)
+            _offs9 = ((0, 0), (3, 0), (-3, 0), (6, 0), (-6, 0), (9, 0), (-9, 0), (0, 3), (0, -3), (0, 6), (0, -6), (0, 9), (0, -9))
+            _nm = [0]
+
+            def _rounds():
+                # a bridge joins a group to ANY other group, so one round can leave a cluster of joined groups still
+                # cut off from the main one (the church: 85 nodes joined to a 16-node neighbour, nothing more).
+                # The groups are recomputed and tried again until a round joins nothing.
+                grp_ = _groups
+                fail_ = set()
+                for _r in range(8):
+                    n0_ = _nm[0]
+                    for m_ in grp_[:-1]:
+                        k_ = (m_[0], len(m_))
+                        if m_[0] not in _dropped and k_ not in fail_:
+                            n1_ = _nm[0]
+                            yield m_
+                            if _nm[0] == n1_:
+                                fail_.add(k_)       # unchanged groups are not tried again
+                    if _nm[0] == n0_:
+                        return
+                    cm_ = {}
+                    for p_ in nodes + _added:
+                        if p_ not in _dropped:
+                            cm_.setdefault(_find(p_), []).append(p_)
+                    grp_ = sorted(cm_.values(), key=len)
+            for members_ in _rounds():
+                rc_ = _find(members_[0])
+                for pitch_, offs_, lim_ in ((40, _offs0, 2000), (20, _offs9, 4000)):
+                    mg_ = 2.0
+                    prev_ = {m_: None for m_ in members_}
+                    keys_ = {(m_[0], m_[1], int(m_[2] // 24)) for m_ in members_}
+                    q_ = _dq(members_)
+                    hit_, nexp_ = None, 0
+                    while q_ and nexp_ < len(members_) + lim_ and hit_ is None:
+                        c_ = q_.popleft()
+                        nexp_ += 1
+                        if prev_[c_] is not None:
+                            for o_ in _near(c_, 150.0):
+                                if o_ not in prev_ and _find(o_) != rc_ and _link(c_, o_):
+                                    hit_ = (c_, o_)
+                                    break
+                            if hit_:
+                                break
+                        bx_ = _m.floor(c_[0] / pitch_) * pitch_ + pitch_ // 2
+                        by_ = _m.floor(c_[1] / pitch_) * pitch_ + pitch_ // 2
+                        for dx_ in (-pitch_, 0, pitch_):
+                            for dy_ in (-pitch_, 0, pitch_):
+                                x_, y_ = bx_ + dx_, by_ + dy_
+                                # the second pass lets a cell shift up to 9u along x or y: a 36u doorway passes the hull only
+                                # within a few units of its centre line
+                                for ox_, oy_ in offs_:
+                                    g_ = grid.ground(x_ + ox_, y_ + oy_, c_[2] + 24.0, c_[2] - 60.0)
+                                    if g_ is None:
+                                        continue
+                                    k_ = (x_, y_, int(g_ // 24))
+                                    if k_ in keys_:
+                                        break
+                                    if not grid.box_free(x_ + ox_, y_ + oy_, g_, lift=24.0, margin=mg_):
+                                        continue
+                                    s_ = (x_ + ox_, y_ + oy_, g_)
+                                    if s_ in prev_ or not _link(c_, s_):
+                                        continue
+                                    keys_.add(k_)
+                                    prev_[s_] = c_
+                                    q_.append(s_)
+                                    break
+                    if hit_ is not None:
+                        break
+                if hit_ is None:
+                    _wm[0] = 2.0
+                if hit_ is None:
+                    if len(members_) <= 2:
+                        _dropped.update(members_)
+                    else:
+                        _left += 1
+                    continue
+                c_ = hit_[0]
+                chain_ = [hit_[1]]
+                while c_ is not None:
+                    chain_.append(c_)
+                    c_ = prev_[c_]
+                # chain_: the far group's node, the walked cells, the member the walk left from; a 20u walk is
+                # thinned to the farthest cells that still link (the engine refuses nodes packed too tight)
+                i_ = 0
+                while i_ < len(chain_) - 1:
+                    j_ = i_ + 1
+                    if pitch_ < 40:
+                        while j_ + 1 < len(chain_) and _m.hypot(chain_[j_ + 1][0] - chain_[i_][0], chain_[j_ + 1][1] - chain_[i_][1]) < 150.0 \
+                                and _link(chain_[i_], chain_[j_ + 1]):
+                            j_ += 1
+                    c_ = chain_[j_]
+                    if j_ < len(chain_) - 1:
+                        _added.append(c_)
+                        _ng.setdefault((int(c_[0] // 128), int(c_[1] // 128)), []).append(c_)
+                        _par[c_] = rc_
+                    i_ = j_
+                _wm[0] = 2.0
+                _par[rc_] = _find(hit_[1])
+                _nm[0] += 1
+            nodes = sorted([v for v in nodes if v not in _dropped] + _added)
+            _left = len({_find(p_) for p_ in nodes}) - 1
+            stats["pathnode_bridges"] = {"added": len(_added), "dropped": len(_dropped), "groups_left": _left}
         for x, y, g in nodes[:3800]:
             kept.append((x, y, g))
             B.entity([("classname", "info_pathnode"), ("origin", f"{x:.0f} {y:.0f} {g + 16:.0f}")])
@@ -950,7 +1311,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         import eapack
         o = eapack.find_object(L, sp["objects"]["start"], X, grid, zrange_m)
         if o:
-            player = {"pos": tuple(o["pos"]), "strs": ["Player"]}
+            player = {"pos": tuple(o["pos"]), "strs": ["Player"], "yaw": o.get("yaw")}
     if player is None and sp.get("start"):
         player = {"pos": tuple(sp["start"]), "strs": ["Player"]}
     if player and not kept:
@@ -977,6 +1338,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         far = max(kept, key=lambda q: (q[0] - ps[0]) ** 2 + (q[1] - ps[1]) ** 2)
         for i, q in enumerate(nearest(ps, 8)):
             yaw = math.degrees(math.atan2(-q[1], -q[0])) % 360
+            if game == "ea" and player.get("yaw") is not None:     # the original's own start facing (row 1)
+                yaw = (player["yaw"] + 90) % 360
             for cls in (("info_player_start",) if i == 0 else ()) + ("info_player_deathmatch", "info_player_allied"):
                 B.entity([("classname", cls), ("origin", f"{q[0]:.0f} {q[1]:.0f} {q[2] + 40:.0f}"), ("angle", f"{yaw:.0f}")])
         for q in nearest(far, 8):
@@ -999,6 +1362,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     import flvis
     B.vis_occluders = flvis.occluders([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
     bsp_path = out_pk3 + ".bsp.tmp"
+    # The engine caches the linked path graph in <home>/maps/<map>.pth and reuses it while the worldspawn "map_time"
+    # matches (its file-date test is a stub). Converted maps carried no map_time, so a re-converted map kept the
+    # FIRST conversion's node graph for ever: node and collision fixes never reached the AI. map_time is now a hash
+    # of the entities and the collision brushes, so any change to either rebuilds the graph.
+    import hashlib as _hl
+    _mt = _hl.sha1(repr(B.entities).encode("utf-8", "replace"))
+    _mt.update(repr([b_["bounds"] for b_ in B.brushes]).encode())
+    B.entities[0].append(("map_time", _mt.hexdigest()[:16]))
     info = B.write(bsp_path)
     with open(bsp_path, "rb") as f:
         files[f"maps/{mapname}.bsp"] = f.read()

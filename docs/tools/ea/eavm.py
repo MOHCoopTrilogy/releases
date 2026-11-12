@@ -148,13 +148,13 @@ def build(db, X, spot, ground, text, lines, log=print):
         n += 1
         g = r.group()
         L(f"\tlevel.ea_sp_pos[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2] + 24:.0f} )")
-        L(f"\tlevel.ea_sp_yaw[{n}] = {r.yaw:.0f}")
+        L(f"\tlevel.ea_sp_yaw[{n}] = {(r.yaw + 90) % 360:.0f}")      # facing = row 1
         L(f'\tlevel.ea_sp_team[{n}] = "{team}"')
         L(f'\tlevel.ea_sp_wpn[{n}] = "{GUNS.get(base(npc["weapon"]).lower(), "mp40" if team == "axis" else "ppsh")}"')
         L(f'\tlevel.ea_sp_chr[{n}] = {S(base(npc["character"]))}')
         L(f"\tlevel.ea_sp_grp[{n}] = {gid(g) if g else chr(34) * 2}")
         L(f"\tlevel.ea_sp_cnt[{n}] = {max(1, min(12, r.u(48) or 1))}")
-        L(f"\tlevel.ea_sp_alive[{n}] = {max(1, min(4, r.u(55) or 1))}")
+        L(f"\tlevel.ea_sp_alive[{n}] = {max(1, min(12, r.u(50) or 1))}")      # 0.7.15: word 50 (min, max, alive-at-once sit at 48-50); word 55 was misread as it
         dl = lists(r, 73)
         dg = [x for k, v in dl if k == "g" for x in v]
         dm = next((v for k, v in dl if k == "m"), ["Activate"])
@@ -185,6 +185,108 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_so_pos[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2] + 24:.0f} )")
         L(f"\tlevel.ea_so_grp[{n}] = {gid(g) if g else chr(34) * 2}")
     L(f"\tlevel.ea_so_n = {n}")
+    # ---- ICS points (0.7.16): flag word 15 set, an actor group in list B and a slot-1 send list. Words from 47:
+    # three head lists (A listen, B actors, C), seven target lists, seven message lists; an empty list is one 0.
+    # Only slot 1 is relayed (the one the original-game trace shows firing); the other slots' events are not decoded.
+    n = 0
+    for r in db.of("ICSPoint"):
+        w = r.w
+        if len(w) < 60 or w[15] != 1:
+            continue
+        i, icl = 47, []
+        while i < len(w) and len(icl) < 17:
+            c = w[i]
+            if c > 16 or i + c >= len(w) + 0 and c:
+                break
+            icl.append(list(w[i + 1:i + 1 + c]))
+            i += c + 1
+        if len(icl) < 11:
+            continue
+        b_, t_, m_ = icl[1], icl[3], icl[10]
+        act = [x for x in m_ if eadb.MSG.get(x) == "Activate"]
+        if not b_ or not t_ or not act or not all(eadb.is_group(x) for x in b_ + t_):
+            continue
+        n += 1
+        q = X(r.pos)
+        L(f"\tlevel.ea_ic_name[{n}] = {S(r.name)}")
+        L(f"\tlevel.ea_ic_pos[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )")
+        L(f"\tlevel.ea_ic_b[{n}] = {gid(b_[0])}")
+        L(f"\tlevel.ea_ic_tn[{n}] = {len(t_)}")
+        for k, g in enumerate(t_, 1):
+            L(f'\tlevel.ea_ic_t["{n}_{k}"] = {gid(g)}')
+    L(f"\tlevel.ea_ic_n = {n}")
+    # ---- 0.7.20 loudspeaker points: the level's SoundDefTriggers named GERMANPA (their own sound defs are not
+    # decoded). A PA announcement plays from these, not on every player. Word 23 = 1 reads as starts-on.
+    n = 0
+    pa_events = []
+    for r in db.of("SoundDefTrigger"):
+        if "GERMANPA" not in r.name.upper():
+            continue
+        n += 1
+        q = X(r.pos)
+        gr = [x for x in r.w[30:] if eadb.is_group(x)]      # word 32 (word 22 is an offset that can look like one)
+        L(f"\tlevel.ea_pa_name[{n}] = {S(r.name)}")
+        L(f"\tlevel.ea_pa_pos[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )")
+        L(f"\tlevel.ea_pa_grp[{n}] = {gid(gr[0]) if gr else chr(34) * 2}")
+        L(f"\tlevel.ea_pa_on[{n}] = {1 if len(r.w) > 23 and r.w[23] == 1 else 0}")
+        pa_ev = "#%08x" % r.w[30] if len(r.w) > 30 else ""
+        L(f"\tlevel.ea_pa_ev[{n}] = {S(pa_ev)}")
+        if pa_ev:
+            pa_events.append(pa_ev)
+    L(f"\tlevel.ea_pa_n = {n}")
+    # ---- 0.7.20 scripted character scenes (ICS): the rig's cue events. Each ICS point names its rig (string 16);
+    # the rig's animation (<rig>.aso) is preceded in the level file by 12-byte events: u16 frame, u16 0xcaf0,
+    # u32 CRC32 of the cue name, u32 0. Frames are at 30 a second (cue spacing equals the voice lengths).
+    # Emitted for every ICS point with a listen group (list A) and an actor group (list B) whose rig has voice
+    # cues; the skeleton animation itself is not decoded (the script plays the lines from the actor, stock pose).
+    import struct as _st
+    raw = getattr(db, "raw", None) or b""
+    n = 0
+    for r in db.of("ICSPoint"):
+        w = r.w
+        rig = ""
+        for _i, sv in r.strings():
+            if sv.endswith(".xdd"):
+                rig = sv.split("/")[-1][:-4]
+        if not rig or len(w) < 60:
+            continue
+        i, icl = 47, []
+        while i < len(w) and len(icl) < 3:
+            c = w[i]
+            if c > 16:
+                break
+            icl.append(list(w[i + 1:i + 1 + c]))
+            i += c + 1
+        if len(icl) < 2 or not icl[0] or not icl[1] or not all(eadb.is_group(x) for x in icl[0] + icl[1]):
+            continue
+        at = raw.find((rig + ".aso").encode())
+        evs = []
+        if at > 0:
+            o = at - 12
+            lo = max(0, at - 1200)
+            while o >= lo:
+                fr, tag, crc, z = _st.unpack_from("<HHII", raw, o)
+                if tag == 0xcaf0 and z == 0 and crc in cue and cue[crc] in text:
+                    evs.append((fr, cue[crc]))
+                o -= 2
+        evs = sorted(set(evs))
+        if not evs:
+            continue
+        n += 1
+        q = X(r.pos)
+        L(f"\tlevel.ea_sc_name[{n}] = {S(r.name)}")
+        L(f"\tlevel.ea_sc_rig[{n}] = {S(rig)}")
+        L(f"\tlevel.ea_sc_pos[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )")
+        L(f"\tlevel.ea_sc_yaw[{n}] = {(r.yaw + 90) % 360:.0f}")
+        L(f"\tlevel.ea_sc_a[{n}] = {gid(icl[0][0])}")
+        L(f"\tlevel.ea_sc_b[{n}] = {gid(icl[1][0])}")
+        L(f"\tlevel.ea_sc_cn[{n}] = {len(evs)}")
+        for k, (fr, c) in enumerate(evs, 1):
+            said.add(c)
+            L(f'\tlevel.ea_sc_cue["{n}_{k}"] = {S(c)}')
+            L(f'\tlevel.ea_sc_t["{n}_{k}"] = {fr / 30.0:.2f}')
+        log("  ICS scene %s (%s): %s" % (r.name, rig, ", ".join("%s@%.2f" % (c, fr / 30.0) for fr, c in evs)))
+    L(f"\tlevel.ea_sc_n = {n}")
     # ---- logic objects ----
     music_events = set()
     n = 0
@@ -280,6 +382,10 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f'\tlevel.ea_lo_cls[{n}] = "{r.cls}"')
         L(f"\tlevel.ea_lo_name[{n}] = {S(r.name)}")
         L(f"\tlevel.ea_trig_pos[{n}] = {P(q)}")
+        if r.cls in ("DemoCharge", "CSATrigger"):
+            # 0.7.6: where the original holds the charge / plunger (the record's own height, not the floor under
+            # it): the marker the player looks for goes here
+            L(f"\tlevel.ea_lo_opos[{n}] = {P(X(r.pos))}")
         L(f"\tlevel.ea_lo_yaw[{n}] = {r.yaw:.0f}")
         if r.cls in TRIGGERS + ("DemoCharge", "SoundMusicTrigger"):
             k, rad, hx, hy, hz = shape(r, X)
@@ -292,6 +398,8 @@ def build(db, X, spot, ground, text, lines, log=print):
             L(f"\tlevel.ea_lo_hz[{n}] = {hz:.0f}")
         L(f'\tlevel.ea_lo_fire[{n}] = "{fire}"')
         L(f"\tlevel.ea_lo_gag[{n}] = {S(gag)}")
+        if r.cls == "GagTrigger" and r.u(24) == 1:     # once flag (0 only on the leader's go-back gag)
+            L(f"\tlevel.ea_lo_once[{n}] = 1")
         send = send or ["Activate"]
         L(f"\tlevel.ea_lo_sn[{n}] = {len(send)}")
         for k, mm in enumerate(send, 1):
@@ -381,6 +489,8 @@ def build(db, X, spot, ground, text, lines, log=print):
                 s = say_of(a)
                 if s:
                     L(f"\tlevel.ea_ga_say[{key}] = {S(s)}")
+                    if g.endswith("_PA") and "_GENPC" in s:
+                        L(f"\tlevel.ea_pa_cue[{S(s)}] = 1")
             elif act == "Fade":
                 L(f"\tlevel.ea_ga_time[{key}] = {a.u(17) or 0}")
             elif act == "GoToScriptedGag":
@@ -439,7 +549,7 @@ def build(db, X, spot, ground, text, lines, log=print):
         q = ground(X(r.pos)) or X(r.pos)
         n += 1
         L(f"\tlevel.ea_tk_pos[{n}] = {P(q)}")
-        L(f"\tlevel.ea_tk_yaw[{n}] = {r.yaw:.0f}")
+        L(f"\tlevel.ea_tk_yaw[{n}] = {(r.yaw + 90) % 360:.0f}")      # facing = row 1
         L(f"\tlevel.ea_tk_sq[{n}] = {S(r.s(29) or '')}")
         L(f"\tlevel.ea_tk_grp[{n}] = {gid(r.group()) if r.group() else chr(34) * 2}")
         tl = lists(r, 30)
@@ -455,7 +565,37 @@ def build(db, X, spot, ground, text, lines, log=print):
         q = ground(X(r.pos)) or X(r.pos)
         n += 1
         L(f"\tlevel.ea_mg_pos[{n}] = {P(q)}")
-        L(f"\tlevel.ea_mg_yaw[{n}] = {r.yaw:.0f}")
+        # the gun's squad: the one whose first SquadObjective the level places at this MMG point (within 120u);
+        # MMG points carry no link of their own
+        first = {}
+        for o in db.of("SquadObjective_New"):
+            mo = _re.match(r"^(?:JA|BR|JP|AG|END|DR)_SquadObjective_(.+?)_(\d+)$", o.name)
+            if mo and (mo.group(1) not in first or int(mo.group(2)) < first[mo.group(1)][0]):
+                first[mo.group(1)] = (int(mo.group(2)), X(o.pos))
+        mp = X(r.pos)
+        cand = sorted((((p[0] - mp[0]) ** 2 + (p[1] - mp[1]) ** 2) ** 0.5, sq) for sq, (_k, p) in first.items())
+        # 0.7.20: the record's own order first. A SquadObjective whose tactic (string 23) is a StayOnMMG one and that
+        # sits at this MMG point (within 120u) names the squad the level orders onto the gun, and from which
+        # objective number. Only a gun with no such objective falls back to the nearest first objective (192u).
+        stay = []
+        for o in db.of("SquadObjective_New"):
+            mo = _re.match(r"^(?:JA|BR|JP|AG|END|DR)_SquadObjective_(.+?)_(\d+)$", o.name)
+            if not mo or "StayOnMMG" not in (o.s(23) or ""):
+                continue
+            op = X(o.pos)
+            if ((op[0] - mp[0]) ** 2 + (op[1] - mp[1]) ** 2) ** 0.5 <= 120:
+                stay.append((int(mo.group(2)), mo.group(1)))
+        stay.sort()
+        if stay:
+            mg_sq, mg_obj, mg_how = stay[0][1], stay[0][0], "StayOnMMG objective"
+        elif cand and cand[0][0] <= 192:
+            mg_sq, mg_obj, mg_how = cand[0][1], 1, "nearest first objective %.0fu" % cand[0][0]
+        else:
+            mg_sq, mg_obj, mg_how = "", 1, "no squad"
+        log("  MMG %d %s: squad %s from objective %d (%s)" % (n, r.name, mg_sq or "-", mg_obj, mg_how))
+        L(f"\tlevel.ea_mg_sq[{n}] = {S(mg_sq)}")
+        L(f"\tlevel.ea_mg_obj[{n}] = {mg_obj}")
+        L(f"\tlevel.ea_mg_yaw[{n}] = {(r.yaw + 90) % 360:.0f}")      # facing = row 1
         L(f"\tlevel.ea_mg_tower[{n}] = {1 if 'Tower' in (r.s(22) or '') else 0}")
     L(f"\tlevel.ea_mg_n = {n}")
     n = 0
@@ -475,8 +615,8 @@ def build(db, X, spot, ground, text, lines, log=print):
         q = spot(X(r.pos))
         if q:
             L(f"\tlevel.ea_player = ( {q[0]:.0f} {q[1]:.0f} {q[2] + 24:.0f} )")
-            L(f"\tlevel.ea_player_yaw = {r.yaw:.0f}")
+            L(f"\tlevel.ea_player_yaw = {(r.yaw + 90) % 360:.0f}")
         kit = [ITEMS.get(base(t).lower()) for _k, t in r.strings() if "Powerups" in t]
         L(f'\tlevel.ea_kit = "{" ".join(k for k in kit if k)}"')
-    return {"music_events": sorted(music_events), "spawn_points": sum(1 for x in lines if "ea_sp_team" in x), "logic": sum(1 for x in lines if "ea_lo_cls" in x),
+    return {"pa_events": pa_events, "music_events": sorted(music_events), "spawn_points": sum(1 for x in lines if "ea_sp_team" in x), "logic": sum(1 for x in lines if "ea_lo_cls" in x),
             "gags": ng, "said": len(said)}

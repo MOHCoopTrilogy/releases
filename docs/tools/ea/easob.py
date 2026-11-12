@@ -9,7 +9,7 @@ Reverse-engineered 2026-11-10 on the user's own Xbox USA disc (1_11):
     part (.shstrtab/.strtab/.symtab/.rel.data + section headers, eartc's layout): symbols __Model:::<part>,
     __BBOX:::<part> (f32 min[3], max[3], local metres), __VB:::__GPvb_16..19 (positions, uv, colour, normal),
     __RM:::__GP_RM_<part>_<n>, and R_MIPS_32 relocations to the __EAGL::TAR texture shapes (as in a .cpt cell);
-  - positions are int16 x3 normalised to the box: local = centre + (v + 16384) / 8192 * half-extent;
+  - positions are int16 x3 normalised to the box: local = (v + 16384) / 8192 * max(|min|, |max|) per axis (origin-anchored);
   - index strips: u32 0x00040000 at X-0x10, count at X, u16 strip at X+0x20 (the .cpt rule with 4 for 5).
 .data of each ELF starts at ELF+0x40; symbol values are .data offsets.
 """
@@ -120,8 +120,10 @@ class Store:
         mx = struct.unpack_from("<3f", c, data + bb + 12)
         if not all(abs(v) < 500 for v in mn + mx) or any(mx[k] < mn[k] for k in range(3)):
             return None
-        cen = [(mn[k] + mx[k]) / 2 for k in range(3)]
-        half = [(mx[k] - mn[k]) / 2 for k in range(3)]
+        # the int16 grid is anchored on the part's LOCAL ORIGIN (v = -16384), one unit = the box's largest reach
+        # from that origin on the axis / 8192. Centre + half-extent only agrees with that for a box symmetric about
+        # the origin (the railgun): the radio tower (z 0..10.4) came out as its top half hung at 5.2..10.4
+        sc = [max(abs(mn[k]), abs(mx[k])) for k in range(3)]
         out = []
         prev_end = 0
         seg = c[e - 0x80:]
@@ -156,7 +158,7 @@ class Store:
             pos = []
             for i in range(n):
                 v = struct.unpack_from("<3h", seg, p + 6 * i)
-                pos.append(tuple(cen[j] + (v[j] + 16384) / 8192.0 * half[j] for j in range(3)))
+                pos.append(tuple((v[j] + 16384) / 8192.0 * sc[j] for j in range(3)))
             uv = [tuple(t / 1024.0 for t in struct.unpack_from("<2h", seg, att["uv"] + 4 * i)) for i in range(n)] \
                 if "uv" in att else [(0.0, 0.0)] * n
             col = [seg[att["col"] + 4 * i:att["col"] + 4 * i + 4] for i in range(n)] if "col" in att else None

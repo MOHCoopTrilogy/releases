@@ -128,7 +128,7 @@ def music(L, level, mspec, vgm, files, lines, log=print, events=()):
     return n
 
 
-def voices(L, level, text, vgm, files, lines, log=print):
+def voices(L, level, text, vgm, files, lines, log=print, extra=()):
     """[eapolish] the original's scripted voice lines (eavoice.py: UBER event -> str.ast stream), decoded on this PC
     to sound/ea/<level>/<n>.wav with a dialog alias each; level.ea_voice[cue] / ea_voice_len[cue]"""
     import os
@@ -144,7 +144,7 @@ def voices(L, level, text, vgm, files, lines, log=print):
     except Exception as e:      # a disc without them: subtitles only
         log("eapack: no voice data", e)
         return 0
-    got = eavoice.lines(ubr, ast, [k for k in text if re.match(r"^\d", k)])
+    got = eavoice.lines(ubr, ast, [k for k in text if re.match(r"^\d", k)] + list(extra))
     tmp = tempfile.mkdtemp(prefix="eavoice_")
     ali, n = [], 0
     try:
@@ -172,6 +172,107 @@ def voices(L, level, text, vgm, files, lines, log=print):
         shutil.rmtree(tmp, ignore_errors=True)
     files[f"ubersound/ea_{level}_voice.scr"] = ("// GENERATED on this PC by the European Assault converter\n" +
                                                  "\n".join(ali) + "\n").encode()
+    return n
+
+
+def ambience(L, level, db, X, vgm, files, lines, log=print):
+    """[dbfix 0.7.6] the level's own ambience loops. An AmbienceTrigger record names a sound event (string field 33:
+    Amb_Start, Amb_Battle_Village, Amb_Cemetery ...) and carries a trigger volume; SOUND/Audio.ubr maps the event
+    (id = CRC32 of its name, record type 0xf645799c - speech is 0xfd0fb324) to its stream in SOUND/str.ast. Each
+    distinct stream is decoded once on this PC (mono, half rate: a loaded loop) to sound/ea/<level>/amb<n>.wav;
+    level.ea_am_* lists the zones. The map script plays the loop of the zone a player entered last."""
+    import array
+    import os
+    import shutil
+    import struct
+    import subprocess
+    import tempfile
+    import wave
+    import zlib
+    import eavm
+    import eavoice
+    recs = [r for r in db.of("AmbienceTrigger") if r.pos != (0.0, 0.0, 0.0) and r.s(33)]
+    if not recs:
+        return 0
+    d = f"DATA/{level.split('_')[0]}/{level}/SOUND/"
+    try:
+        ubr = L.disc.read(d + "Audio.ubr")
+        ast = L.disc.read(d + "str.ast")
+    except Exception as e:
+        log("eapack: no ambience data", e)
+        return 0
+    idx = {}
+    mark = struct.pack("<I", 0xF645799C)
+    o = ubr.find(mark)
+    while o >= 0:
+        if o >= 12:
+            i, flag, ev = struct.unpack_from("<III", ubr, o - 12)
+            if flag == 0x80000000 and ev == struct.unpack_from("<I", ubr, o + 4)[0] and i < 100000:
+                idx[ev] = i
+        o = ubr.find(mark, o + 4)
+    ents = eavoice.ast_members(ast)
+    tmp = tempfile.mkdtemp(prefix="eaamb_")
+    alias_of, ali, n = {}, [], 0
+    try:
+        for ev_name in sorted(set(r.s(33) for r in recs)):
+            i = idx.get(zlib.crc32(ev_name.encode()) & 0xffffffff)
+            if i is None or i >= len(ents):
+                log("eapack: ambience event without a stream", ev_name)
+                continue
+            off, sz, _nm = ents[i]
+            if ast[off:off + 4] != b"SCHl":
+                continue
+            src, dst = os.path.join(tmp, "a.hab"), os.path.join(tmp, "a.wav")
+            with open(src, "wb") as f:
+                f.write(ast[off:off + sz])
+            r_ = subprocess.run([vgm, "-o", dst, src], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                                creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
+            if r_.returncode != 0 or not os.path.exists(dst):
+                log("eapack: ambience stream not decoded", ev_name)
+                continue
+            with wave.open(dst, "rb") as w:
+                ch, rate, sw = w.getnchannels(), w.getframerate(), w.getsampwidth()
+                pcm = array.array("h", w.readframes(w.getnframes())) if sw == 2 else None
+            os.remove(dst)
+            if pcm is None:
+                continue
+            # mono, half rate (mean of the 2 * channels samples of each frame pair): a small loaded loop
+            step = 2 * ch
+            out = array.array("h", (sum(pcm[k:k + step]) // step for k in range(0, len(pcm) - step + 1, step)))
+            n += 1
+            rel = f"sound/ea/{level}/amb{n}.wav"
+            with wave.open(dst, "wb") as w:
+                w.setnchannels(1)
+                w.setsampwidth(2)
+                w.setframerate(rate // 2)
+                w.writeframes(out.tobytes())
+            with open(dst, "rb") as f:
+                files[rel] = f.read()
+            os.remove(dst)
+            alias = f"ea{level.replace('_', '')}_amb{n}"
+            alias_of[ev_name] = alias
+            ali.append(f'aliascache {alias} {rel} soundparms 1.0 0.0 1.0 0.0 160 1600 auto loaded maps "coop_ea"')
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    k = 0
+    for r in recs:
+        a = alias_of.get(r.s(33))
+        if not a:
+            continue
+        k += 1
+        q = X(r.pos)
+        kind, rad, hx, hy, hz = eavm.shape(r, X)
+        lines.append(f'\tlevel.ea_am_name[{k}] = "{r.name}"')
+        lines.append(f'\tlevel.ea_am_alias[{k}] = "{a}"')
+        lines.append(f"\tlevel.ea_am_pos[{k}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )")
+        lines.append(f"\tlevel.ea_am_yaw[{k}] = {r.yaw:.0f}")
+        lines.append(f"\tlevel.ea_am_shape[{k}] = {kind}")
+        lines.append(f"\tlevel.ea_am_r[{k}] = {rad:.0f}")
+        lines.append(f"\tlevel.ea_am_hx[{k}] = {hx:.0f}")
+        lines.append(f"\tlevel.ea_am_hy[{k}] = {hy:.0f}")
+    lines.append(f"\tlevel.ea_am_n = {k}")
+    files[f"ubersound/ea_{level}_amb.scr"] = ("// GENERATED on this PC by the European Assault converter\n" +
+                                               "\n".join(ali) + "\n").encode()
     return n
 
 
@@ -276,6 +377,17 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
                 g = grid.ground(x, y, z0 + 48, z0 - 96)
                 if g is not None and grid.box_free(x, y, g, lift=2.0, margin=8.0):
                     return (round(x), round(y), g)
+        # 0.7.10 a point on a hillside: the lift-2 box cuts the slope itself everywhere, and the spawn point was
+        # dropped (TAKE_IT_MMG_01). Same search with the feet lifted 14u (the walls' margin unchanged); the actor is
+        # dropped to the floor when it spawns.
+        for r in range(0, 96 + 1, step):
+            n = 1 if r == 0 else max(8, int(2 * math.pi * r / step))
+            for k in range(n):
+                a = 2 * math.pi * k / n
+                x, y = x0 + r * math.cos(a), y0 + r * math.sin(a)
+                g = grid.ground(x, y, z0 + 48, z0 - 96)
+                if g is not None and grid.box_free(x, y, g, lift=14.0, margin=8.0):
+                    return (round(x), round(y), g)
         return None
 
     def free(p):
@@ -308,7 +420,7 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     if "start" in found:
         p, yaw = found["start"]
         lines.append(f'\tlevel.ea_start = ( {p[0]:.0f} {p[1]:.0f} {p[2] + 24:.0f} )')
-        lines.append(f'\tlevel.ea_start_yaw = {yaw % 360:.0f}')
+        lines.append(f'\tlevel.ea_start_yaw = {(yaw + 90) % 360:.0f}')      # facing = row 1
     na = nl = 0
     seen = []
     for o in places:
@@ -382,8 +494,9 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     vm = eavm.build(db, X, strict_spot, ground_pt, text, lines, log)
     nvoice = 0
     if vgm:
-        nvoice = voices(L, level, text, vgm, files, lines, log)
+        nvoice = voices(L, level, text, vgm, files, lines, log, vm.get("pa_events", ()))
     vm["voices"] = nvoice
+    vm["ambience"] = ambience(L, level, db, X, vgm, files, lines, log) if vgm else 0
     nmus = 0
     if vgm and spec.get("music"):
         # [eapolish] the original's music EVENTS (its music triggers, eavm) play the sections the .mpf's own

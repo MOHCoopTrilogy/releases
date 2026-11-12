@@ -46,7 +46,7 @@ def lines(ubr, ast, keys):
     ents = ast_members(ast)
     out = {}
     for k in keys:
-        ev = zlib.crc32(k.encode()) & 0xffffffff
+        ev = int(k[1:], 16) if k.startswith("#") else zlib.crc32(k.encode()) & 0xffffffff
         i = idx.get(ev)
         if i is None or i >= len(ents):
             continue

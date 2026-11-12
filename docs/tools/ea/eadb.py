@@ -45,6 +45,7 @@ class DB:
         else:
             raise ValueError("no object database chunk")
         self.c = c
+        self.raw = data      # the whole level file (rig event tables live outside the object chunk)
         self.strs = []
         o = st
         while True:

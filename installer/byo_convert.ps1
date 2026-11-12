@@ -23,6 +23,9 @@ param(
     # QA only: draw the window into this .png without ever showing it (no focus taken), then exit
     [string]$Snapshot = "",
     [switch]$Reconvert,
+    # [2026-11-11] -Reconvert started by the GAME itself (CL_ByoInit): the paks are in use while it runs, so the new ones
+    # wait in byo_pending and are moved in once this process id has exited
+    [int]$WaitPid = 0,
     [switch]$NoActivate,
     [string]$Screen = "3440x1440"
 )
@@ -152,7 +155,13 @@ function Move-Pending {
     $pd = Join-Path $GameHome "byo_pending"
     if (-not (Test-Path -LiteralPath $pd)) { return }
     foreach ($f in @(Get-ChildItem -LiteralPath $pd -File -Filter "zzzz_*.pk3")) {
-        try { Move-Item -LiteralPath $f.FullName -Destination (Join-Path $GameHome $f.Name) -Force; Log "pending -> $($f.Name)" }
+        try {
+            Move-Item -LiteralPath $f.FullName -Destination (Join-Path $GameHome $f.Name) -Force; Log "pending -> $($f.Name)"
+            # [2026-11-11] the engine caches a map's path nodes in maps\<map>.pth under the home folder; one written for
+            # the OLD conversion would be used with the new geometry (soldiers walking into walls), so it goes with it
+            $pth = Join-Path (Join-Path $GameHome "maps") (($f.BaseName -replace '^zzzz_', '') + ".pth")
+            if (Test-Path -LiteralPath $pth) { Remove-Item -LiteralPath $pth -Force -ErrorAction SilentlyContinue; Log "stale path file removed: $pth" }
+        }
         catch { Log "pending kept (in use?): $($f.Name)" }
     }
 }
@@ -188,6 +197,12 @@ if (-not $exe) {
 
 # ------------------------------------------------------------------ silent re-convert (updater, hidden)
 if ($Reconvert) {
+    # one silent re-convert at a time (the updater and the game may both start one)
+    $mtx = $null
+    try {
+        $mtx = New-Object System.Threading.Mutex($false, "Local\hzm_byo_reconvert")
+        if (-not $mtx.WaitOne(0)) { exit 0 }
+    } catch {}
     try {
         $cur = ""
         try { $cur = ((& $exe version 2>$null | Select-Object -Last 1) | ConvertFrom-Json).version } catch {}
@@ -208,6 +223,14 @@ if ($Reconvert) {
             if (-not $p.WaitForExit(30 * 60 * 1000)) { try { & taskkill.exe /T /F /PID $p.Id | Out-Null } catch {}; Log "reconvert $Game timed out"; continue }
             Start-Sleep -Milliseconds 300
             [void](Finish $p)
+            Move-Pending
+        }
+        # started by the game: whatever is still pending (its own paks were in use) lands as soon as the game has closed
+        $pd = Join-Path $GameHome "byo_pending"
+        if ($WaitPid -gt 0 -and (Test-Path -LiteralPath $pd) -and @(Get-ChildItem -LiteralPath $pd -File -Filter "zzzz_*.pk3").Count) {
+            Log "reconvert: new missions wait for the game (pid $WaitPid) to close"
+            try { $gp = Get-Process -Id $WaitPid -ErrorAction Stop; [void]$gp.WaitForExit(24 * 60 * 60 * 1000) } catch {}
+            Start-Sleep -Milliseconds 1500
             Move-Pending
         }
     } catch { Log "reconvert failed: $_" }
