@@ -140,6 +140,25 @@ def build(db, X, spot, ground, text, lines, log=print):
     # ---- spawn points ----
     n = 0
     sp_ix = {}
+    # 0.7.22: the dead-body prefabs. Their squad is the actor group of an ICS point whose rig is a dead pose
+    # (amb_ics_gl_rap_DeadPoseFlatOnGround01): on the disc a posed corpse, in the build they spawned as live, armed
+    # Germans (one shot the partisan woman before her scene). Marked ea_sp_dead with the pose point.
+    dead_pts = []
+    for ic in db.of("ICSPoint"):
+        rg = "".join(sv for _k, sv in ic.strings() if sv.endswith(".xdd"))
+        if "DeadPose" not in rg:
+            continue
+        w, i2, lsts = ic.w, 47, []
+        while i2 < len(w) and len(lsts) < 3:
+            c = w[i2]
+            if c > 16:
+                break
+            lsts.append(list(w[i2 + 1:i2 + 1 + c]))
+            i2 += c + 1
+        for lst in lsts:
+            for x in lst:
+                if eadb.is_group(x):
+                    dead_pts.append((x, ic.pos, ic.name))
     for r in db.of("NPCSpawnPoint"):
         npc = r.npc()
         team = eadb.team_of(npc["character"])
@@ -170,6 +189,12 @@ def build(db, X, spot, ground, text, lines, log=print):
             L(f'\tlevel.ea_sp_dm["{n}_{k}"] = "{mm}"')
         L(f"\tlevel.ea_sp_name[{n}] = {S(r.name)}")
         sp_ix[r.name] = n
+        dp = sorted((((pp[0] - r.pos[0]) ** 2 + (pp[1] - r.pos[1]) ** 2) ** 0.5, pp, nm2) for gg, pp, nm2 in dead_pts if r.group() and gg == r.group())
+        if dp:
+            dq = spot(X(dp[0][1])) or X(dp[0][1])
+            L(f"\tlevel.ea_sp_dead[{n}] = 1")
+            L(f"\tlevel.ea_sp_deadAt[{n}] = ( {dq[0]:.0f} {dq[1]:.0f} {dq[2] + 24:.0f} )")
+            log("  dead body %s at its pose point %s (%.1f m)" % (r.name, dp[0][2], dp[0][0]))
         ms = _re2.match(r"^(?:JA|BR|JP|AG|END|DR)_NPCSpawnPoint_(.+?)_(\d+)$", r.name)
         L(f"\tlevel.ea_sp_sq[{n}] = {S(ms.group(1) if ms else '')}")
     L(f"\tlevel.ea_sp_n = {n}")
