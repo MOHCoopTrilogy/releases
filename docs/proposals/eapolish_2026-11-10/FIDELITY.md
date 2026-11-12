@@ -208,11 +208,24 @@ Scripted character scenes
 - Stand-in for four scenes: the scene's own actor goes to the scene point, faces the nearest player and speaks the
   cue lines at their own times, heard from him, in a stock pose. Partisan leader: "American, over here" and "waiting
   downstairs" (0.00 and 1.90 s), the plan speech (four lines at 0.17, 12.00, 15.73 and 19.43 s), "back to the front
-  lines" (0.03 s, each time the go-back trigger fires; a Play during another of his scenes waits 6 s, then is
-  dropped). The partisan woman: "come with me" at 0.83 s.
+  lines" (0.03 s, each time the go-back trigger fires; a Play during another of his scenes waits for it, up to
+  30 s, so it follows the plan speech; inferred). The partisan woman: "come with me" at 0.83 s.
+- 0.7.22, fifth scene: the checkpoint guard's "Halt" (GuardStopsPlayer, 0.50 s). Its point names no actor; the
+  German of the spawn point standing on it (1.0 m) plays it (inferred). The guards are still hostile from spawn.
+- Scene orders: a scene's non-squad targets go out when it starts, its squad orders when it ends (inferred; headless
+  walks v40/v41 play CallsPlayer, the full plan speech and SaysGoFight in order).
+- Rig animation, bounded attempt 2026-11-12: the rig name is held as a 172-byte scene definition (type, radius,
+  flags, the rig CRC) and as .aso path strings; neither carries a length or tracks. Stock pose stays (forced).
 - Two leader lines (10258 and 10259a) are in the audio bank but no record, sequence or scene event in the level
   refers to them. They are not played. Whether the original ever plays them is unverified.
-- The other 27 scenes do not play.
+- The other 26 scenes do not play (no voice cue in their rigs; pose only), except the three dead-body poses:
+  0.7.22 places those squads as corpses on their pose points (they had spawned as live, armed Germans, and the
+  one beside the partisan woman shot her before her scene in every run). The pose is the stock death fall.
+- Railgun destruction (0.7.22): the step that the build sent as a bare Activate carries four messages to the two
+  guns on the railgun: Disable, Vanish and two still-unnamed ids. Disable keeps the gun from being manned again
+  (also on its gunner's death, as the disc does); Vanish hides the gun and returns its gunner to plain combat.
+  Message names found by CRC32 against the level's words: IncrementCounter, StartTimer, ObjectiveAdd, Disable,
+  Vanish.
 
 ### User decisions 2026-11-12 (Their Dying Breath)
 
