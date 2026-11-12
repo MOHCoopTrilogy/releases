@@ -22,6 +22,11 @@ import zlib
 
 MSG = {zlib.crc32(s.encode()) & 0xffffffff: s for s in (
     "Activate", "Deactivate", "ObjectiveSucceeded", "Play", "Charge_Set", "CSA_DemoCharge")}
+# 0.7.22: further message ids named by their CRC32 (found by a dictionary search over the level file's words): they
+# are emitted under these names (was h<crc>) and recognised as messages, but MSG above stays the set the converter
+# acts on. Still unnamed: h7cbb21c1 (always sent with Disable) and hbd5a5da6 (sent with Vanish).
+NAMES = {zlib.crc32(s.encode()) & 0xffffffff: s for s in (
+    "Disable", "Vanish", "ObjectiveAdd", "IncrementCounter", "StartTimer")}
 
 # class -> field index (from the record start, in u32s) of the group the object belongs to; checked on 1_11
 MEMBER = {"SquadDefinition": 20, "NPCSpawnPoint": 72, "SmartObject": 19, "TreadedVehicle": 32,

@@ -57,7 +57,7 @@ def glists(r, start):
 
 
 def is_msg(r, x):
-    if x in eadb.MSG:
+    if x in eadb.MSG or x in eadb.NAMES:
         return True
     if x < 0x01000000 or eadb.is_group(x):
         return False
@@ -67,7 +67,7 @@ def is_msg(r, x):
 
 
 def mname(x):
-    return eadb.MSG.get(x) or "h%08x" % x
+    return eadb.MSG.get(x) or eadb.NAMES.get(x) or "h%08x" % x
 
 
 def lists(r, start):
@@ -81,7 +81,10 @@ def lists(r, start):
                 out.append(("g", items))
                 i += n + 1
                 continue
-            if all(is_msg(r, x) for x in items):
+            # 0.7.22: a run holding a named message is a message run even when an unnamed id in it reads as a float
+            # (the railgun destroy's hbd5a5da6 beside Disable and Vanish)
+            named = any(x in eadb.MSG or x in eadb.NAMES for x in items)
+            if all(is_msg(r, x) for x in items) or (named and all(x >= 0x01000000 and not eadb.is_group(x) for x in items)):
                 out.append(("m", [mname(x) for x in items if mname(x) not in ("CSA_DemoCharge", "Charge_Set")]))
                 i += n + 1
                 continue
@@ -136,6 +139,7 @@ def build(db, X, spot, ground, text, lines, log=print):
     import re as _re2
     # ---- spawn points ----
     n = 0
+    sp_ix = {}
     for r in db.of("NPCSpawnPoint"):
         npc = r.npc()
         team = eadb.team_of(npc["character"])
@@ -165,6 +169,7 @@ def build(db, X, spot, ground, text, lines, log=print):
         for k, mm in enumerate(dm, 1):
             L(f'\tlevel.ea_sp_dm["{n}_{k}"] = "{mm}"')
         L(f"\tlevel.ea_sp_name[{n}] = {S(r.name)}")
+        sp_ix[r.name] = n
         ms = _re2.match(r"^(?:JA|BR|JP|AG|END|DR)_NPCSpawnPoint_(.+?)_(\d+)$", r.name)
         L(f"\tlevel.ea_sp_sq[{n}] = {S(ms.group(1) if ms else '')}")
     L(f"\tlevel.ea_sp_n = {n}")
@@ -257,7 +262,22 @@ def build(db, X, spot, ground, text, lines, log=print):
                 break
             icl.append(list(w[i + 1:i + 1 + c]))
             i += c + 1
-        if len(icl) < 2 or not icl[0] or not icl[1] or not all(eadb.is_group(x) for x in icl[0] + icl[1]):
+        # 0.7.22: a point with a listen group but an empty actor list (Checkpoint_02 GuardStopsPlayer, "Halt") takes
+        # the group of the NPC spawn point standing on it (within 4 m): inferred, the record names no actor
+        sc_how = "actor list"
+        sc_sp = 0
+        if len(icl) >= 2 and icl[0] and not icl[1] and all(eadb.is_group(x) for x in icl[0]):
+            near = []
+            for sp in db.of("NPCSpawnPoint"):
+                d = ((sp.pos[0] - r.pos[0]) ** 2 + (sp.pos[1] - r.pos[1]) ** 2) ** 0.5
+                if d <= 4.0 and sp.name in sp_ix:
+                    near.append((d, sp.name))
+            if near:
+                near.sort()
+                sc_sp = sp_ix[near[0][1]]
+                icl[1] = [0x7fffffff]
+                sc_how = "spawn point %s %.1f m from the point (inferred)" % (near[0][1], near[0][0])
+        if len(icl) < 2 or not icl[0] or not icl[1] or not all(eadb.is_group(x) for x in icl[0] + (icl[1] if not sc_sp else [])):
             continue
         at = raw.find((rig + ".aso").encode())
         evs = []
@@ -279,13 +299,18 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_sc_pos[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )")
         L(f"\tlevel.ea_sc_yaw[{n}] = {(r.yaw + 90) % 360:.0f}")
         L(f"\tlevel.ea_sc_a[{n}] = {gid(icl[0][0])}")
-        L(f"\tlevel.ea_sc_b[{n}] = {gid(icl[1][0])}")
+        if sc_sp:
+            # the actor by his spawn point (a point with no group of its own): the script matches ea_sc_sp
+            L(f'\tlevel.ea_sc_b[{n}] = "sp{sc_sp}"')
+            L(f"\tlevel.ea_sc_sp[{n}] = {sc_sp}")
+        else:
+            L(f"\tlevel.ea_sc_b[{n}] = {gid(icl[1][0])}")
         L(f"\tlevel.ea_sc_cn[{n}] = {len(evs)}")
         for k, (fr, c) in enumerate(evs, 1):
             said.add(c)
             L(f'\tlevel.ea_sc_cue["{n}_{k}"] = {S(c)}')
             L(f'\tlevel.ea_sc_t["{n}_{k}"] = {fr / 30.0:.2f}')
-        log("  ICS scene %s (%s): %s" % (r.name, rig, ", ".join("%s@%.2f" % (c, fr / 30.0) for fr, c in evs)))
+        log("  ICS scene %s (%s, actor: %s): %s" % (r.name, rig, sc_how, ", ".join("%s@%.2f" % (c, fr / 30.0) for fr, c in evs)))
     L(f"\tlevel.ea_sc_n = {n}")
     # ---- logic objects ----
     music_events = set()
@@ -481,6 +506,9 @@ def build(db, X, spot, ground, text, lines, log=print):
                 gm = next((v for k, v in gl if k == "m"), None)
                 if gm:
                     L(f'\tlevel.ea_ga_msg2[{key}] = "{gm[-1]}"')
+                    L(f"\tlevel.ea_ga_mn[{key}] = {len(gm)}")
+                    for j, x in enumerate(gm, 1):
+                        L(f'\tlevel.ea_ga_m["{S(g)[1:-1]}_{k}_{j}"] = "{x}"')
                 L(f"\tlevel.ea_ga_tn[{key}] = {len(ts)}")
                 for j, x in enumerate(ts, 1):
                     L(f'\tlevel.ea_ga_t["{S(g)[1:-1]}_{k}_{j}"] = {gid(x)}')
@@ -597,6 +625,8 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_mg_obj[{n}] = {mg_obj}")
         L(f"\tlevel.ea_mg_yaw[{n}] = {(r.yaw + 90) % 360:.0f}")      # facing = row 1
         L(f"\tlevel.ea_mg_tower[{n}] = {1 if 'Tower' in (r.s(22) or '') else 0}")
+        if len(r.w) > 43 and eadb.is_group(r.w[43]):
+            L(f"\tlevel.ea_mg_grp[{n}] = {gid(r.w[43])}")
     L(f"\tlevel.ea_mg_n = {n}")
     n = 0
     for r in db.of("MissionObjective"):
