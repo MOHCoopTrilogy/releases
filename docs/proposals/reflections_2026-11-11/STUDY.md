@@ -415,7 +415,7 @@ dock. Decisions made on the way, for the user to overrule:
 - Side by side with the harbour look on a pond and a canal: `stills/pond_looks_m4l0.jpg`,
   `stills/canal_looks_m3l2.jpg`. On the pond the harbour look lets the stock tiles show through.
 
-**Water that does not stop (bug-11024).** Two causes. Most of what was seen was the dead water pass
+**Water that does not stop (bug-11030).** Two causes. Most of what was seen was the dead water pass
 (section 10): the retail sheet is not fogged, so its corner stood out against the sky
 (`stills/uboat_cutscene_m2l2b.jpg`). The second is real: on open maps the water brush ends inside
 the view (`stills/sea_extension_m1l3c.jpg`, middle frames; `stills/sea_extension_others.jpg`).
