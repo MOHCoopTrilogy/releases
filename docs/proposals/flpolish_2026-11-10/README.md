@@ -159,3 +159,28 @@ FIDELITY.md: 39 matched, 8 deviated, 0 missing. Open: the rockets' flight (S5), 
 on the user), the deliberate MOHAA-body fits.
 
 **Decided 2026-11-11 (user):** the start loadout (P3) stays the co-op loadout. Closed; do not add the original's Colt / Garand / grenades start.
+
+## Round 7 (2026-11-11, branch flfix2) - first human playtest
+
+Per item: FIDELITY.md "Round 7". Textures: TEXTURES.md (decision list, nothing implemented). Reference for future
+missions: `docs/tools/ea/FRONTLINE_REFERENCE.md`.
+
+- **The world was mirrored** (bug-10965). The y flip that fixed triangle winding also mirrored the level: signs read
+  backwards, every left turn was a right turn. The transform is now a proper rotation; winding is fixed where it is
+  wrong. Config entries measured on the mirrored build are converted on read (`flpack.spec_xy`).
+- **Stale pak / stale .pth** (bug-10966, bug-10969): a pathfile cached from an older conversion of the same map name
+  survives in the home folder and is used silently. The converter now stamps the build and the mission refuses a
+  data script older than it; delete `maps/coop_fl_1_1.pth` in the home when re-converting.
+- **Time limit** (bug-10968): a Live Operations Team Match leaves `ui_timelimit 10` archived; `ui_startdmmap` pushes
+  it onto the next co-op mission, which then restarted after 10 minutes and dropped everyone to the team menu.
+  `coop_mod/server.scr::coop_noLimits` clears the three limits every frame on co-op levels; `start_server.cfg`
+  seeds `ui_timelimit` / `ui_fraglimit` 0. Proven on a dedicated boot with limits forced to 1 before and during.
+- **Mines** (bug-10967): one blast each, then gone; no chain in the same frame; capped so a healthy player goes down
+  (DBNO) instead of dying outright; drawn and signposted.
+- **Mounted guns, AI facing, route order** (bug-10970), **water** (bug-10971: the canal is `textures/misc_outside/pond`),
+  **no off-screen fights** (bug-10972), **tower ladder** (bug-10973).
+- **Tier-1 textures** (bug-10974, user approved): 8 CC0 ground / roof / plank / stone replacements and 11 cut-out upscales, `flhd.py`; verdict per texture in `TEXTURES.md`. Never seen in a client yet.
+- Mod files touched (mod repo, uncommitted): `maps/coop_fl_1_1.scr`, `coop_mod/server.scr`, `coop_mod/start_server.cfg`.
+
+Not verified (no visible client may run while the user is playing): after-stills, the off-screen-fight walk, the
+ladder climb, a human pass through the interrogation area.

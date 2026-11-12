@@ -1,0 +1,8 @@
+CC0 textures used by flhd.py (tier-1 texture pass). All from Poly Haven, licence CC0 1.0
+(https://polyhaven.com/license). 1k diffuse JPG, unmodified files; tinting happens at conversion time.
+
+brown_mud_dry.jpg  page https://polyhaven.com/a/brown_mud_dry  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brown_mud_dry/brown_mud_dry_diff_1k.jpg  CC0
+cobblestone_05.jpg  page https://polyhaven.com/a/cobblestone_05  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_05/cobblestone_05_diff_1k.jpg  CC0
+grey_roof_tiles_02.jpg  page https://polyhaven.com/a/grey_roof_tiles_02  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/grey_roof_tiles_02/grey_roof_tiles_02_diff_1k.jpg  CC0
+old_planks_02.jpg  page https://polyhaven.com/a/old_planks_02  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/old_planks_02/old_planks_02_diff_1k.jpg  CC0
+old_stone_wall.jpg  page https://polyhaven.com/a/old_stone_wall  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/old_stone_wall/old_stone_wall_diff_1k.jpg  CC0

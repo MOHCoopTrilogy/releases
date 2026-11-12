@@ -34,7 +34,7 @@ import flscene  # noqa: E402
 import flfit  # noqa: E402
 import flcliff  # noqa: E402
 
-CONVERTER_VERSION = "0.5.0"
+CONVERTER_VERSION = "0.6.0"
 FL_STEP = 38                  # Frontline step height at 48 u/m: its characters walk the original routes over 35-37u lips (route audit 2026-11-10); 34 left 28 of them blocked
 
 # Frontline .cdb collision flag word (flcore.collision, decoded 2026-11-10 against the level's own AI nav graph):
@@ -48,6 +48,11 @@ COLL_MAT_VOLUME = (14, 15)   # 14 trigger volumes; 15 the river's WATER volume (
 COLL_SPECIAL = 1 << 23
 TAG_CLIFF = 0x7FFFF001        # [flpolish] collision added by us: edge-of-world clip (flcliff) / lip ramps (flclear)
 TAG_RAMP = 0x7FFFF002
+# [flfix2] open water (canal, river) is drawn with the MOD'S water: a stock shader name the gl2 water pass allowlists
+# (hzm_waterwet.h POND preset: calm, dark green) and whose stock script is the gl1 look. Nothing disc-derived is used
+# for it. FL_WATER_SHADER= (empty) turns the mapping off (the old blended vertex-alpha surface).
+WATER_SHADER = os.environ.get("FL_WATER_SHADER", "textures/misc_outside/pond")
+CONTENTS_WATER = 0x20
 TAG_RIVERBED = 0x7FFFF005    # [flpolish] the bed under the canal's water volume (a player who falls in lands and drowns)
 TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dropped player-clip sheet stood in front of
 
@@ -206,6 +211,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     def tex_shader(key):
         if key in tex_names:
+            return tex_names[key]
+        if (key in vtx_alpha and WATER_SHADER and tex_flat.get(key, 0) >= 0.9 and not os.environ.get("FL_DEBUGCOLOR")
+                and (L.texture(key) or {}).get("rgba") and min(L.texture(key)["rgba"][3::4]) >= 250):
+            # [flfix2] Frontline's water (flat meshes with real vertex alpha and an OPAQUE texture; the soft shadow and
+            # scorch decals also carry vertex alpha, but their texture has an alpha channel) -> the mod's water shader
+            stats["water_shader"] = WATER_SHADER
+            stats["water_textures"] = stats.get("water_textures", 0) + 1
+            tex_names[key] = B.shader(WATER_SHADER, 0, 0)
             return tex_names[key]
         if key is None:
             name = tdir + "untextured"
@@ -462,7 +475,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             batches.setdefault((sh_, int(cx // MERGE_CELL), int(cy // MERGE_CELL)), []).append((verts, tris))
         stats["seam_bridges"] = len(br)
         # hand-located corner holes no edge pair spans (fl_levels.json "patches": polygon + texture + reason)
-        pq = flseam.patches(draws + br, flpack.spec(level).get("patches", []), lambda i: B.shaders[i][0])
+        pq = flseam.patches(draws + br, flpack.spec_xy(level, X, "patches"), lambda i: B.shaders[i][0])
         for sh_, verts, tris in pq:
             cx = sum(v[0][0] for v in verts) / len(verts)
             cy = sum(v[0][1] for v in verts) / len(verts)
@@ -549,7 +562,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         wtags += [TAG_DRAWN] * len(drawn_coll)
         wound, wtags, stats["routes"] = flroutes.carve(
             wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL) and f < TAG_CLIFF,
-            dense=flpack.spec(level).get("route_widen", ()))
+            dense=flpack.spec_xy(level, X, "route_widen"))
         # ...and the sheets that stay (the level's boundaries where nothing is drawn) get a VISIBLE edge: a barbed-wire
         # fence along their foot (MOHAA's own textures/mohcommon/barbwire from the player's install)
         gk_ = flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED])   # fences stand on land, not the canal bed
@@ -679,6 +692,22 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             rejected += 1
         else:
             nb += 1
+    # [flfix2] the water itself: a CONTENTS_WATER volume from the river's surface (material 15) down to its bed, so
+    # the engine knows a player is in water (splash, wading, the underwater view) before the script drowns him
+    nwv = 0
+    if WATER_SHADER:
+        wsh = B.shader("textures/common/fl_water_vol", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, CONTENTS_WATER)
+        for (a2, b2, c2), tg in zip(wound, wtags):
+            if tg != TAG_RIVERBED:
+                continue
+            a3, b3, c3 = [(q[0], q[1], q[2] + 160.0) for q in (a2, b2, c2)]
+            ux, uy = b3[0] - a3[0], b3[1] - a3[1]
+            vx, vy = c3[0] - a3[0], c3[1] - a3[1]
+            if ux * vy - uy * vx < 0:
+                b3, c3 = c3, b3                       # normal up: the slab lies under the surface
+            if B.add_prism(wsh, a3, b3, c3, thickness=157.0, centered=False) is not None:
+                nwv += 1
+    stats["water_volume_brushes"] = nwv
     for lo_, hi_ in caps:
         B.add_brush_planes(B.shader("textures/common/fl_coll_cap", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP,
                                     flbsp.CONTENTS_SOLID), [], lo_, hi_)
@@ -774,7 +803,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)), ("targetname", "fl_om_" + tag_)]
         if rec_ is not None:
             o_ = X(rec_["pos"])
-            a_ = flscene.raw_angles(struct.unpack("<4f", struct.pack("<4I", *flscene.words(rec_)[7:11])))
+            a_ = flscene.raw_angles(struct.unpack("<4f", struct.pack("<4I", *flscene.words(rec_)[7:11])), X.m < 0)
             kv += [("origin", "%.1f %.1f %.1f" % o_), ("angles", "%.1f %.1f %.1f" % a_)]
         om_ents.append(kv)
     stats["object_meshes"] = nom
@@ -790,6 +819,13 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
           # entity coordinates past +-8192 (the jeep's start behind the gate) and Frontline's own step height (its body
           # walks over the 19-34u lips and kerbs MOHAA's 18u step snags on). server/sv_init.c reads both.
           ("hzm_widecoords", "1"), ("hzm_stepsize", str(sp.get("step_height", FL_STEP)))]
+    # [flfix2] bug-10969: the engine keeps the AI path graph it builds for a map in <home>/maps/<map>.pth and reuses it
+    # while the BSP's map_time matches (navigate.cpp ArchiveLoadNodes). We wrote none, so every conversion matched every
+    # other: the graph of the FIRST conversion was used for all later ones (soldiers that stand still, 'couldn't find
+    # end node'). A stamp that changes with the converter and with what it built makes the engine rebuild it once.
+    import zlib
+    ws.append(("map_time", "hzm-%s-%d-%08x" % (CONVERTER_VERSION, flpack.CONV_BUILD, zlib.crc32(repr(sorted(
+        (k, v) for k, v in stats.items() if isinstance(v, int))).encode()) & 0xffffffff)))
     B.entity(ws)
     for kv in om_ents:
         B.entity(kv)
@@ -827,6 +863,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     os.remove(bsp_path)
     files[f"scripts/fl_{level}.shader"] = "".join(shader_lines).encode()
     pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base, grid=grid) if vgm else None
+    # [flfix2] tier-1 textures (TEXTURES.md, approved 2026-11-11): CC0 ground / roof / plank / stone, cut-out upscale
+    import flhd
+    hd_rep = flhd.apply(files, level, flpack.spec(level), mapname)
 
     os.makedirs(os.path.dirname(os.path.abspath(out_pk3)), exist_ok=True)
     with zipfile.ZipFile(out_pk3, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:

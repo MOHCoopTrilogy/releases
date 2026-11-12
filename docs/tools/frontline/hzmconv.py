@@ -25,7 +25,7 @@ sys.path.insert(0, HERE)
 # [v1.10.69] the converter's own version. Bump it whenever a change alters what a conversion writes: the updater
 # (updater.ps1 BYO RE-CONVERT) re-converts every remembered disc silently when this differs from the version that
 # wrote the player's paks (maintt\byo_converted.txt). Unchanged = no work at all.
-HZMCONV_VERSION = "1.10.76.1"   # .76.1 [eapolish] EA converter 0.7.5 - models lit by the level's own night light (light grid from the baked vertex colours); .73.14 [eapolish] EA converter 0.7.4 - night light matched to the disc (world gain divided out), crater rims, silent partisan bark aliases; .73.12 [eapolish] EA converter 0.7.2 - particle sizes are half extents; .73.11 [eapolish] EA converter 0.7.1 - the level's own fog record (night), particle width/height end scales; .73.10 [eapolish] (above flpolish .73.8, .73.9 left free for it): EA converter 0.7.0 - the level's own particle systems (eafx); .73.7 [eapolish] (above flpolish .73.6): EA converter 0.6.1 - the score's own event -> section table (eamusic), original collision 1:1; .73.5 [eapolish] EA converter 0.6.0 - the original voice lines (eavoice); .73.4 [eapolish] (above flpolish .73.3): EA converter 0.5.0 - destroyed variants, hinged gates, relit smart objects; .73.3 [eapolish]: EA converter 0.3.0 - real object-DB names (eadb) + the mission logic tables (eavm) (bug-eap-dbnames)
+HZMCONV_VERSION = "1.10.77.1"   # .77.1 [flfix2] Frontline converter 0.6.0 - the world is no longer mirrored (signs read the right way round, bug-10965), build marker in the data script; .76.1 [eapolish] EA converter 0.7.5 - models lit by the level's own night light (light grid from the baked vertex colours); .73.14 [eapolish] EA converter 0.7.4 - night light matched to the disc (world gain divided out), crater rims, silent partisan bark aliases; .73.12 [eapolish] EA converter 0.7.2 - particle sizes are half extents; .73.11 [eapolish] EA converter 0.7.1 - the level's own fog record (night), particle width/height end scales; .73.10 [eapolish] (above flpolish .73.8, .73.9 left free for it): EA converter 0.7.0 - the level's own particle systems (eafx); .73.7 [eapolish] (above flpolish .73.6): EA converter 0.6.1 - the score's own event -> section table (eamusic), original collision 1:1; .73.5 [eapolish] EA converter 0.6.0 - the original voice lines (eavoice); .73.4 [eapolish] (above flpolish .73.3): EA converter 0.5.0 - destroyed variants, hinged gates, relit smart objects; .73.3 [eapolish]: EA converter 0.3.0 - real object-DB names (eadb) + the mission logic tables (eavm) (bug-eap-dbnames)
 TOOLS = os.path.join(os.path.dirname(os.path.abspath(sys.executable if getattr(sys, "frozen", False) else __file__)), "tools")
 
 
@@ -70,7 +70,7 @@ class FrontlineGame:
         # the previous good pak survives it); the marker cfg goes INSIDE the pak, so deleting the pak also hides the map
         tmp = out + ".tmp"
         try:
-            flconvert.convert(image, level, tmp, mirror=True, vgm=vgm if os.path.exists(vgm) else None, mohaa_base=mohaa)
+            flconvert.convert(image, level, tmp, mirror=False, vgm=vgm if os.path.exists(vgm) else None, mohaa_base=mohaa)
             add_marker(tmp, "fl/have_%s.cfg" % level, 'set coop_flHave_%s "1"\nset coop_flHave "1"\n' % level)
             os.replace(tmp, out)
         finally:

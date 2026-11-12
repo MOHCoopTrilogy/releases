@@ -268,6 +268,7 @@ fallback branch silently decides behaviour.
 | [OPEN.md](OPEN.md) | Open defects, unverified work awaiting playtest, planned-but-unbuilt |
 | [DECISIONS.md](DECISIONS.md) | Significant technical decisions and why, including roads not taken |
 | [HISTORY.md](HISTORY.md) | Condensed chronology, one line per item |
+| [tools/ea/FRONTLINE_REFERENCE.md](tools/ea/FRONTLINE_REFERENCE.md) | How Medal of Honor: Frontline levels work (formats, triggers, groups, set pieces, unknowns) - read before converting another disc mission |
 | [PROPOSED_CLAUDE.md](PROPOSED_CLAUDE.md) | Proposed replacement `CLAUDE.md` — **review and move, not applied** |
 
 ### Generated — `docs/generated/` (**DO NOT EDIT**, rebuilt from source)

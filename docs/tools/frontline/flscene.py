@@ -94,13 +94,14 @@ def mohaa_angles(q, mirror):
     return pitch, yaw, roll
 
 
-def raw_angles(q):
+def raw_angles(q, mirror=True):
     """[flpolish] MOHAA (pitch, yaw, roll) of the stored rotation itself, for Frontline's OWN meshes kept in their own
     local frame (flconvert inline models, mirrored in y like the world). Checked on the door (record 401): its 180-degree
     turn hangs the 2.6 m panel from its record point 2.5 m above the street, swinging edge in the drawn doorway."""
     m = [list(r) for r in _qmat(*q)]
     # the mesh is mirrored in y like the world (flconvert), so the rotation is conjugated by the mirror: M R M
-    for i, j in ((0, 1), (1, 0), (1, 2), (2, 1)):
+    # [flfix2] only when the world IS mirrored; the un-mirrored world (bug-10965) takes the stored rotation as it is
+    for i, j in (((0, 1), (1, 0), (1, 2), (2, 1)) if mirror else ()):
         m[i][j] = -m[i][j]
     fwd = (m[0][0], m[1][0], m[2][0])
     lft = (m[0][1], m[1][1], m[2][1])
@@ -120,7 +121,7 @@ def path_lines(name, frames, X, mirror, step=3, zoff=0.0, ground=None, raw=False
     for k, i in enumerate(idx, 1):
         f = frames[i]
         p = X(f[:3])
-        a = raw_angles(f[4:8]) if raw else mohaa_angles(f[4:8], mirror)
+        a = raw_angles(f[4:8], mirror) if raw else mohaa_angles(f[4:8], mirror)
         z = p[2] + zoff
         if ground is not None:
             g = ground(p, f)

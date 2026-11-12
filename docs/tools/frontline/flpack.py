@@ -81,6 +81,24 @@ def spec(level):
         return json.load(f)[level]
 
 
+# [flfix2] written into the data script (level.fl_conv): maps/coop_fl_*.scr tells the player to convert again when the
+# installed pak is older than the mission script expects (bug-10966). Raise it with every conversion-visible change.
+CONV_BUILD = 7
+
+
+def spec_xy(level, X, key):
+    """[flfix2] fl_levels.json entries written in MAP coordinates (patches / moves / route_widen) were measured on
+    the y-MIRRORED build (bug-10602). The world is no longer mirrored (bug-10965), so their y takes the sign the
+    transform now gives: unchanged when mirrored, negated when not."""
+    sg = 1.0 if X.m < 0 else -1.0
+    v = spec(level).get(key, [])
+    if key == "patches":
+        return [dict(p, poly=[[q[0], q[1] * sg, q[2]] for q in p["poly"]]) for p in v]
+    if key == "moves":
+        return [dict(m, **{"from": [m["from"][0], m["from"][1] * sg], "to": [m["to"][0], m["to"][1] * sg]}) for m in v]
+    return [[d[0], d[1] * sg] + list(d[2:]) for d in v]
+
+
 def scr_str(s):
     return '"' + s.replace("\\", "/").replace('"', "'") + '"'
 
@@ -230,7 +248,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             p = (q[0], q[1], q[2])
         # reviewed per-level moves (fl_levels.json "moves": from/to x,y + reason) for spots the box test passes but
         # the engine does not (e.g. an actor under a stair underside: droptofloor fails in solid, he never moves)
-        for mv in spec(level).get("moves", []):
+        for mv in spec_xy(level, X, "moves"):
             if abs(p[0] - mv["from"][0]) <= 16 and abs(p[1] - mv["from"][1]) <= 16:
                 g = grid.ground(mv["to"][0], mv["to"][1], p[2] + 48, p[2] - 96) if grid is not None else None
                 p = (float(mv["to"][0]), float(mv["to"][1]), g if g is not None else p[2])
@@ -419,7 +437,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             bp = X(o_["pos"])
             lines.append(f'\tlevel.fl_sp_base[{nsp}] = ( {bp[0]:.0f} {bp[1]:.0f} {bp[2]:.0f} )')
             q_ = struct.unpack("<4f", struct.pack("<4I", *flscene.words(o_)[7:11]))
-            y_ = flscene.raw_angles(q_)[1] if spc.get("mesh") else flscene.yaw(o_, X.m < 0)
+            y_ = flscene.raw_angles(q_, X.m < 0)[1] if spc.get("mesh") else flscene.yaw(o_, X.m < 0)
             lines.append(f'\tlevel.fl_sp_yaw[{nsp}] = {y_:.0f}')
         for k_, key_ in (("delay", "delay"), ("snd", "snd"), ("fx", "fx"), ("loop", "loop"), ("yaw", "yaw"),
                          ("scale", "scale"), ("sync", "sync")):
@@ -473,8 +491,23 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
     lines.append(f"\tlevel.fl_prop_n = {npr}")
     for cls, sp in sorted(mm_markers.items()):
         lines.append(f'\tlevel.fl_marker_model["{cls}"] = "{sp["model"]}"')
+    # [flfix2 bug-10973] climbable ladders. Frontline has no ladder record we can read (FRONTLINE_REFERENCE.md,
+    # section 8): the ladder is only a drawn strip, so each one is listed in fl_levels.json "ladders" in the
+    # coordinates of the UN-mirrored map (base = foot at the climbing face, yaw = the way a climber faces, exit =
+    # where he is put down at the top) and built by the map script with the coop ladder recipe.
+    sg = -1.0 if X.m < 0 else 1.0
+    nlad = 0
+    for ld in spec(level).get("ladders", []):
+        nlad += 1
+        bx, by, bz = ld["base"]
+        ex, ey, ez = ld["exit"]
+        lines.append(f"\tlevel.fl_ladder[{nlad}] = ( {bx:.0f} {by * sg:.0f} {bz:.0f} )")
+        lines.append(f"\tlevel.fl_ladder_yaw[{nlad}] = {(ld['yaw'] * sg) % 360:.0f}")
+        lines.append(f"\tlevel.fl_ladder_h[{nlad}] = {ld['height']:.0f}")
+        lines.append(f"\tlevel.fl_ladder_exit[{nlad}] = ( {ex:.0f} {ey * sg:.0f} {ez:.0f} )")
+    lines.append(f"\tlevel.fl_ladder_n = {nlad}")
     lines.append(f"\tlevel.fl_ammo_n = {n_ammo}")
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
-              "\tlevel.fl_data_ok = 1", "}end", ""]
+              "\tlevel.fl_conv = %d" % CONV_BUILD, "\tlevel.fl_data_ok = 1", "}end", ""]
     files[f"maps/coop_fl_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     return {"nudged": nudged, "axis": na, "allies": nl, "health": nh, "cues": len(wavs), "music": len(segs)}
