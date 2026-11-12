@@ -11,6 +11,8 @@
   "farplane_color": "0.408 0.416 0.427",
   "chars_bum": {
    "obj_drop": 104,
+   "obj_mg": 1032,
+   "done_mg": 1037,
    "obj_roster": 106,
    "obj_dock": 111,
    "obj_crate": 114,
@@ -56,7 +58,9 @@
    "bark_incoming": 22,
    "bark_cover": 23,
    "bark_tanks": 24,
-   "bark_planes": 25
+   "bark_planes": 25,
+   "bark_away": 20,
+   "bark_pig": 21
   },
   "_barks": "[flpolish] the four road/square shouters (classes Soldier_SayIncoming / SayGetOutOfTheOpen / SayTheyreAfterTheTanks / SayPlanesAbove): unsubtitled German lines in the same script bank, matched to their classes by transcribing the decoded samples locally; no subtitle, as on the disc",
   "speakers": {
@@ -491,7 +495,7 @@
     "trigger": 86,
     "by": "plane",
     "parent": "P47bomb_building1_1.mvd",
-    "after": 5.05,
+    "after": 4.35,
     "fx": "stay"
    },
    {
@@ -501,7 +505,7 @@
     "trigger": 86,
     "by": "plane",
     "parent": "P47bomb_building1_1.mvd",
-    "after": 5.05,
+    "after": 4.35,
     "fx": "stay"
    },
    {
