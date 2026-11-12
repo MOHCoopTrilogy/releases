@@ -410,6 +410,31 @@ Look work parked on the user's priority (2026-11-12): the decoded fog (linear 24
 formula are NOT applied; the build still carries the fitted fog 600..16000. A patch is staged, untested:
 `H:\hzm_work\flpolish\fix2\r13\fog_conv.py`.
 
+## Round 14 (flfix2, 2026-11-12) - text ids, hints, the ambush pair, wreck gunner stills
+
+Build v90 in `G:\mohaa-flpolish` only. Converter changes (HZMCONV_VERSION not bumped): `flpack.py` (disc record number
+per axis soldier, `level.fl_axis_rec`), `fl_levels.json` (hint_wall 187 -> 1750, hint_gun 190 -> 968). Mod script
+`maps/coop_fl_1_1.scr` (uncommitted): records 69 / 70 held and released at bomber clock +4.45 s, out of view.
+Stills and logs: `H:\hzm_work\flpolish\fix2\r14\`.
+
+Text ids: a Frontline script text id is the index among the non-empty strings of `chars.bum`; `fl_levels.json` keeps raw
+ordinals (empties included). The 1_1 objective names are ids 28-32, done texts 33-37 (trace texts 35 and 37 agree).
+
+| item | result | evidence |
+|---|---|---|
+| Barrels at the dock wall | stand on the ground before the blast (bug-11079 seat edit), 0 script errors | `..\r13\br6_sheet.jpg` |
+| Dark shape in the fireball | the disc's own molotov wreck mesh (`BarrelMolotovSwapping.mpk`), swapped in at blast B as the trace shows; textured, not a missing mesh | `..\r13\br6_wreck.jpg` |
+| Molotov hint (bug-11083) | now "Press ACTION to Ignite Rag" = trace hint 501; the "Shoot Barrels" string is never shown in the trace | v90 data script |
+| Objective T06 "Machine Gun Manned" | not in the original 1_1: the raw ordinal belongs to another mission's texts; nothing built | `chars.bum` id table |
+| Ambush pair recs 69 / 70 (bug-11084) | created at +267 ticks through the out-of-view spawn | data `fl_axis_rec`; timing not yet run on a client |
+| Body in the camera at the 30cal | harness artefact: with `cg_drawviewmodel 0` nothing is in view; with 2 it is the player's own rifle viewmodel, as in normal play | `atgun_vm0_00`, `atgun_vm2_00` (`j3a.jpg`) |
+| Wounded gunner | slumped in the rear of the wreck by the gun mount (log 6591,-3344,-152), not beside it | `j3a.jpg` |
+| 30cal fire | muzzle flash on frames 2-9 of 10 | `j3b.jpg` |
+
+Not matched or not verified: the HUD did not draw on the gunner stills, so the gun hint is still not shown legibly on a
+still; the ambush timing and the re-shoot of the other P-47 passes and rockets wait for the client hold to lift; "Press
+START button to View Objectives" (text id 273, console wording, when shown not traced) is not ported.
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -426,7 +451,7 @@ formula are NOT applied; the build still carries the fitted fog 600..16000. A pa
 | Jeep crew poses and animations | disc animations 6500-6511 on body nodes | stock MOHAA poses: seated driver and passenger, gunner at the gun, thrown = death_mortar_high / death_mortar_twist on an invented 0.7 s arc, wounded gunner = A_22_driver_cover; no bump animation (6509-6511) | forced (no decoder for the disc's skeletal animations) |
 | Crew fades | 6 s fade-out of driver, passenger and gunner | 6 s fade on fade-capable clones of the stock skins (same textures) | forced (stock skins have no entity-alpha stage) |
 | Thrown crew rest spots | not traced | 110u either side of the wreck | choice |
-| Death-ambush pair at the bomber (recs 69, 70) | created 267 ticks after the bomber starts | present from level load | choice (not built) |
+| Death-ambush pair at the bomber (recs 69, 70) | created 267 ticks after the bomber starts | same, through the out-of-view spawn (may wait while a player watches the spot) (bug-11084) | timing exact unless watched |
 | German shouters at the bomber | one line with sound (planes above, +91 ticks), two animation only | same; the line plays from the shouter's record place even while his spawn is held out of view | exact (sound); animation not carried |
 | P-47 passes and rockets, speed | .mvd header rate (1 tick per key) | same since bug-11080 (twice the earlier speed) | exact by the header; not re-shot |
 | Mine blast effect | disc particle records | emitter built from the records; several fields "read as"; alpha 0.25 | inferred; alpha a choice |
@@ -451,10 +476,10 @@ formula are NOT applied; the build still carries the fitted fog 600..16000. A pa
 | Fog and far plane | fog colour 104,106,109, far clip 100 m, clear colour 48,48,48; register reading linear 5..100 m, but measured on world surfaces it is about a quarter of that at 50 m | start 600, end 16000 (fitted to the reference frame), same colour; no far cull; clear colour not represented | fit from measurement; exact function open (needs the vertex program) |
 | World light | vertex colours, 1x | vertex colours x 0.352 to cancel the renderer's 4 x 0.71 map light; measured equal to texture x vertex colour with the display chain off | forced (engine); exact by measurement |
 | Display chain on disc maps | none (emulator output as is) | the client's r_gamma 1.3 and post chain brighten by 1.3 to 1.45 | choice for the user: a per-map neutral display setting for disc maps (not applied) or keep the mod look |
-| Wall breach | trace timings, disc break frames; use at the molotov barrel; hint text "Shoot Barrels to Destroy Wall" | same timings and frames; use only (the records give the barrels no damage path, bug-11078); shooting in the original never traced | open: hint text against the records |
+| Wall breach | trace timings, disc break frames; use at the molotov barrel; hint "Press ACTION to Ignite Rag" (trace hint 501) | same timings, frames and hint (bug-11083); use only (the records give the barrels no damage path, bug-BRSHOT13 / bug-11078) | open: whether shooting breaches in the original (emulator test pending) |
 | Texture edges | clamp on non-tiling surfaces | half-texel UV inset on non-tiling axes | forced (engine has no per-axis clamp here) |
 | Fire at the jeep, look | disc tracers | stock muzzle flash and tracer (a white streak in stills) | stand-in |
-| Wounded gunner pose and spot | disc animation 6506, position not in the trace | stock injured loop on the ground beside the wreck, jeep-relative (-46 0 12) (bug-11077) | forced (no decoder); spot a stand-in |
+| Wounded gunner pose and spot | disc animation 6506, re-attached to the jeep | stock injured loop slumped in the rear of the wreck by the gun mount (bug-11077) | forced (no decoder); spot a stand-in |
 | Light on soldiers and objects | vertex colours | the engine's light grid; the ambientlight 40 40 40 key has no visible effect in this renderer | forced (engine) |
 | Weather | none | none (rain theme removed in round 11) | exact |
 | Objective wording | disc / published pause screen wording | ours, including two prisoner lines; HUD text = objective menu text | choice (user decision 2026-11-12: "Keep ours it's fine") |

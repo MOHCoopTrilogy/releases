@@ -21,8 +21,8 @@
    "done_crate": 129,
    "done_wall": 134,
    "hint_drop": 182,
-   "hint_wall": 187,
-   "hint_gun": 190,
+   "hint_wall": 1750,
+   "hint_gun": 968,
    "warn_incomplete": 170
   },
   "music": {

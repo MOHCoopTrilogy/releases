@@ -291,6 +291,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             lines.append(f'\tlevel.fl_axis_state[{na}] = "{flscene.state(e)}"')
             lines.append(f'\tlevel.fl_axis_yaw[{na}] = {yaw_:.0f}')
             lines.append(f'\tlevel.fl_axis_ambush[{na}] = {int(any("DeathAmbush" in s for s in e["strs"]))}')
+            lines.append(f'\tlevel.fl_axis_rec[{na}] = {e["i"]}')  # [flfix2 bug-11084] the disc record number (the traces name records)
             if any("StayOnPath" in s_ for s_ in e["strs"]):
                 pid_ = _nearest_path(e["pos"], tank_paths)
                 if pid_ is not None:
