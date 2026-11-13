@@ -258,9 +258,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             pk = os.path.join(mohaa_base, game, up["pak"])
             if os.path.exists(pk):
                 try:
-                    return up["path"] in zipfile.ZipFile(pk).namelist()
+                    if up["path"] in zipfile.ZipFile(pk).namelist():
+                        return True
                 except Exception:
-                    return False
+                    pass
         return False
 
     # share of each texture's triangles that are NOT vertical (foliage cards vs wall decals)
@@ -306,9 +307,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 if pk and os.path.exists(pk):
                     try:
                         data = zipfile.ZipFile(pk).read(up["path"])
+                        break
                     except Exception:
-                        return None
-                    break
+                        continue
         if data is None:
             return None
         try:
