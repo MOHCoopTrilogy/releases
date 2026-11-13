@@ -19,6 +19,7 @@ level vars (single frame, no waits; groups are strings "g<hex>"):
   ea_say[cue] subtitle text (the disc's own subtitles for a scripted line)
 """
 import math
+import re
 import zlib
 
 import eadb
@@ -652,6 +653,42 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_pr_name[{n}] = {S(r.name)}")
         L(f"\tlevel.ea_pr_grp[{n}] = {gid(g) if g else chr(34) * 2}")
     L(f"\tlevel.ea_pr_n = {n}")
+    # ---- [dbfix 0.7.27] damage detection volumes: a shot into the box sends its messages (the checkpoint volume
+    # Deactivates the checkpoint scene's group: the guards stop playing it and fight). Size from the .sob name
+    # (S_FX_<x>x<y>x<z>_DamageDetectionVolume, metres, the object's own axes), turned by the record's yaw ----
+    n = 0
+    for r in db.recs:
+        m = re.search(r"S_FX_(\d+)x(\d+)x(\d+)_DamageDetectionVolume", r.cls)
+        if not m or r.pos == (0.0, 0.0, 0.0) or not r.targets():
+            continue
+        n += 1
+        sx, sy, sz = (float(v) for v in m.groups())
+        q0, q1 = X((0.0, 0.0, 0.0)), X((1.0, 0.0, 0.0))
+        u = abs(q1[0] - q0[0]) or 48.0          # map units per metre
+        L(f"\tlevel.ea_dv_pos[{n}] = {P(X(r.pos))}")
+        L(f"\tlevel.ea_dv_yaw[{n}] = {r.yaw:.0f}")
+        L(f"\tlevel.ea_dv_half[{n}] = ( {sx * u / 2:.0f} {sy * u / 2:.0f} {sz * u / 2:.0f} )")
+        L(f"\tlevel.ea_dv_name[{n}] = {S(r.name)}")
+        msgs = r.messages() or ["Activate"]
+        tg = r.targets()
+        L(f"\tlevel.ea_dv_tn[{n}] = {len(tg)}")
+        for k, t in enumerate(tg, 1):
+            L(f'\tlevel.ea_dv_t["{n}_{k}"] = {gid(t)}')
+            L(f'\tlevel.ea_dv_m["{n}_{k}"] = "{msgs[min(k, len(msgs)) - 1]}"')
+    L(f"\tlevel.ea_dv_n = {n}")
+    # ---- [dbfix 0.7.27] dynamic lights with an animated light (DynamicLight_Generic + AnimLightFlicker: the
+    # flickering light in the village). Colour, radius and the flicker's timing are not decoded: the script uses a
+    # stock firelight (a listed deviation) ----
+    n = 0
+    for r in db.recs:
+        if not r.cls.startswith("DynamicLight_Generic") or r.pos == (0.0, 0.0, 0.0):
+            continue
+        anim = [t for _k, t in r.strings() if t.startswith("AnimLight")]
+        n += 1
+        L(f"\tlevel.ea_dl_pos[{n}] = {P(X(r.pos))}")
+        L(f"\tlevel.ea_dl_anim[{n}] = {S(anim[0] if anim else '')}")
+        L(f"\tlevel.ea_dl_name[{n}] = {S(r.name)}")
+    L(f"\tlevel.ea_dl_n = {n}")
     # ---- effects packages (fires, smoke, fog, explosions): the .xpd name, its place, the group that plays it ----
     n = 0
     for r in db.of("EffectsPackage"):

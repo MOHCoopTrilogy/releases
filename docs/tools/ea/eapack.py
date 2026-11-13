@@ -30,10 +30,21 @@ def scr_str(s):
 
 
 def level_strings(disc, level):
-    d = f"DATA/{level.split('_')[0]}/{level}/strings.viv"
-    out = {}
-    data = disc.read(d)
+    """the level's own strings.viv over the game's shared one (DATA/SHARED/STRINGS.VIV: the nemesis and OSS dossier
+    lines, 'Defeat %1!', 'Document Added to Inventory!' - dbfix 0.7.27); the level's own wins on a shared key"""
     import viv
+    out = {}
+    for d in ("DATA/SHARED/STRINGS.VIV", f"DATA/{level.split('_')[0]}/{level}/strings.viv"):
+        try:
+            data = disc.read(d)
+        except Exception:
+            continue
+        out.update(_viv_strings(viv, data))
+    return out
+
+
+def _viv_strings(viv, data):
+    out = {}
     for name, off, size in viv.parse_toc(data):
         blob = data[off:off + size]
         text = blob.decode("utf-16") if blob[:2] in (b"\xff\xfe", b"\xfe\xff") else blob.decode("latin-1")
