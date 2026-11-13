@@ -456,6 +456,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # render-only reskins from fl_modelmap.json (MOHAA art from the player's install, nothing shipped)
     _mm = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"{game}_modelmap.json")
     reskin = json.load(open(_mm)).get(level, {}).get("reskin", {}) if os.path.exists(_mm) else {}
+    # "trees": a tree-card texture whose cards are dropped and replaced by a stock 3D tree (static model) at each
+    # card cluster. "trial" entries apply only with EA_TREE_TRIAL set (user approval pending).
+    trees3d = {k: v for k, v in (json.load(open(_mm)).get(level, {}).get("trees", {}) if os.path.exists(_mm) else {}).items()
+               if not k.startswith("_") and (not v.get("trial") or os.environ.get("EA_TREE_TRIAL"))}
+    tree_cards = {}
 
     def short_key(key):
         return str(key).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_")
@@ -531,6 +536,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         sh = tex_shader(m["tex"])
     for m in meshes:
         if not m["tris"]:
+            continue
+        _tk = str(m["tex"]).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_").split("#")[0] if m["tex"] else ""
+        if _tk in trees3d:
+            # card geometry kept aside for placement; nothing of it is drawn (collision comes from the .cdb, untouched)
+            tree_cards.setdefault(_tk, []).append(([X(v) for v in m["verts"]], m["tris"], m["cols"]))
             continue
         sh = tex_shader(m["tex"])
         P = [X(v) for v in m["verts"]]
@@ -1295,6 +1305,85 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         for t in tw:
             if B.add_prism(sobclip, *t, thickness=4.0, centered=True) is not None:
                 stats["sob_coll"] = stats.get("sob_coll", 0) + 1
+    # ---- tree cards -> stock 3D trees (ea_modelmap.json "trees") ----
+    _navs = [X(n["pos"]) for n in L.navpoints()] if tree_cards else []
+    # EA levels carry no navpoints: the AI walks the navmesh the engine builds from the BSP. A trunk box must not
+    # pinch a gap shut, so a trunk is skipped where a wall of the disc collision or a placed entity (actor, spawn,
+    # pickup) stands within 48u of it.
+    _walls = {}
+    if tree_cards:
+        for _, vs_, ts_ in coll:
+            for a_, b2_, c_, *_r in ts_:
+                A_, B_, C_ = X(vs_[a_]), X(vs_[b2_]), X(vs_[c_])
+                nz = face_normal(A_, B_, C_)
+                if nz and abs(nz[2]) < 0.5:
+                    for q_ in (A_, B_, C_, tuple((A_[k] + B_[k] + C_[k]) / 3 for k in range(3))):
+                        _walls.setdefault((int(q_[0] // 64), int(q_[1] // 64)), []).append(q_)
+        _navs += [X(e["pos"]) for e in L.entities()]
+
+    def _pinch(bx, by, z0, r):
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                for q_ in _walls.get((int(bx // 64) + dx, int(by // 64) + dy), ()):
+                    if z0 - 16 < q_[2] < z0 + 120 and math.hypot(q_[0] - bx, q_[1] - by) < r + 48.0:
+                        return True
+        return False
+    for _tk, groups in sorted(tree_cards.items()):
+        spec_ = trees3d[_tk]
+        comps = []
+        for P_, T_, C_ in groups:
+            par = list(range(len(P_)))
+
+            def _f(i):
+                while par[i] != i:
+                    par[i] = par[par[i]]; i = par[i]
+                return i
+            for a, b, c in T_:
+                par[_f(b)] = _f(a); par[_f(c)] = _f(a)
+            cc = {}
+            for i in range(len(P_)):
+                cc.setdefault(_f(i), []).append(i)
+            for ix in cc.values():
+                vs = [P_[i] for i in ix]
+                cols = [C_[i] for i in ix]
+                comps.append((vs, cols))
+        # one tree = the card components standing on one spot (crossed cards); tallest first
+        trees_ = []
+        for vs, cols in sorted(comps, key=lambda c: -(max(v[2] for v in c[0]) - min(v[2] for v in c[0]))):
+            cx = (min(v[0] for v in vs) + max(v[0] for v in vs)) / 2; cy = (min(v[1] for v in vs) + max(v[1] for v in vs)) / 2
+            for t in trees_:
+                if math.hypot(t[0] - cx, t[1] - cy) < max(24.0, 0.25 * t[2]):
+                    t[3].extend(vs); t[4].extend(cols); break
+            else:
+                trees_.append([cx, cy, max(v[2] for v in vs) - min(v[2] for v in vs), list(vs), list(cols)])
+        n_trunk = n_navskip = 0
+        for _cx, _cy, _h, vs, cols in trees_:
+            zlo = min(v[2] for v in vs); zhi = max(v[2] for v in vs)
+            low = [v for v in vs if v[2] < zlo + 0.08 * (zhi - zlo)]
+            bx = sum(v[0] for v in low) / len(low); by = sum(v[1] for v in low) / len(low)
+            # scale: the model's height above its origin matches the card tree's height
+            sc = (zhi - zlo) / float(spec_["model_height"])
+            # light: the cards' own mean vertex colour (unlit pure white -> the level median, as for world draws)
+            lit = [(med_light if (r == g == b_ == 255) else (r, g, b_)) for r, g, b_, *_a in cols]
+            # light_gain: the stock tree's canopy texture is brighter than the disc card (frost vs bare bark)
+            _lg = float(spec_.get("light_gain", 1.0))
+            rgb = tuple(min(255, int(round(_lg * sum(c[k] for c in lit) / len(lit)))) for k in range(3))
+            # a yaw from the spot itself: deterministic, and no two neighbours face the same way
+            yaw = (int(bx * 7.0 + by * 13.0) * 37) % 360
+            B.static_models.append((spec_["model"], (bx, by, zlo - float(spec_.get("sink", 4.0))), (0.0, float(yaw), 0.0), sc,
+                                    [rgb] * int(spec_["verts"])))
+            tr_ = float(spec_.get("trunk_radius", 0.0)) * sc
+            if tr_ > 0:
+                # trunk only, as solid as a wall; never on an AI navpoint's spot (the disc's trees had no collision)
+                if any(math.hypot(n_[0] - bx, n_[1] - by) < tr_ + 48.0 for n_ in _navs) or _pinch(bx, by, zlo, tr_):
+                    n_navskip += 1
+                else:
+                    B.add_brush_planes(clip, [], (bx - tr_, by - tr_, zlo - 8.0),
+                                       (bx + tr_, by + tr_, zlo + float(spec_.get("trunk_height", 0.3)) * (zhi - zlo)))
+                    n_trunk += 1
+        stats.setdefault("trees3d", {})[_tk] = {"model": spec_["model"], "trees": len(trees_), "trunks": n_trunk,
+                                                "trunks_skipped_gap": n_navskip,
+                                                "h_med": round(sorted(t[2] for t in trees_)[len(trees_) // 2]) if trees_ else 0}
     sob_ents = []
     for rec, sob, sids, tri_world, piv in sob_models:
         tw_world = [tuple(tuple(v[k] + piv[k] for k in range(3)) for v in t) for t in tri_world]

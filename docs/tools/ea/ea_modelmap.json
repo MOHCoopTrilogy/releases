@@ -1,0 +1,18 @@
+{
+ "_doc": "EA -> MOHAA model swaps (same rules as fl_modelmap.json: only art from the player's own install or the mod's paks; nothing from the disc is shipped). 'trees': a tree-card texture whose card geometry is dropped and a stock 3D tree (BSP static model) is placed at each card cluster: origin at the cluster's trunk foot, scaled so model_height (units above the origin, tiki scale included) matches the card tree, lit with the cards' own mean vertex colour (verts = the model's vertex count), yaw from the spot. trunk_radius (model units, scaled with the tree) adds a solid trunk box up to trunk_height of the tree, skipped within 40u of an AI navpoint. 'trial': applied only when EA_TREE_TRIAL is set.",
+ "1_11": {
+  "trees": {
+   "huO~": {
+    "trial": true,
+    "model": "models/static/tree_caskawinter.tik",
+    "model_height": 357,
+    "verts": 175,
+    "trunk_radius": 12,
+    "trunk_height": 0.3,
+    "sink": 4,
+    "light_gain": 0.65,
+    "reason": "[trial 2026-11-13, user asked 'Should we just place a real tree instead?'] the lone bare trees (193 card clusters, 214-403u tall, median 337u) -> the mod's winter common tree (MOHAA commontree mesh, 160 tris, snow-dusted bare branches, its own distance sprite). The disc trees had no collision; the trial adds a trunk box."
+   }
+  }
+ }
+}

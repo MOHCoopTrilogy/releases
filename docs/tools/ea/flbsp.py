@@ -63,6 +63,9 @@ class BSP:
         self.vis_cell = 0          # >0: leafs no wider than this, clustered on a 2D grid of this size
         self.vis_radius = 0        # cluster sees cluster when their cell centres are within this distance
         self.grid_light = 0.0      # >0: write an entity light grid from the world vertex colours, times this gain
+        # MOHAA static models (LUMP_STATICMODELDEF 25 / DATA 24): (model path, origin, angles, scale, rgb per vertex)
+        # render-only, client-side, no entity; the renderer walks them all (frustum + radius cull, no leaf lists)
+        self.static_models = []
 
     # ---------- tables ----------
     def shader(self, name, surface_flags=0, content_flags=0):
@@ -455,6 +458,14 @@ class BSP:
             if _g:
                 lumps[16], lumps[17], lumps[18] = _g
 
+        if self.static_models:
+            defs, data = bytearray(), bytearray()
+            for model, org, ang, sc, rgbs in self.static_models:
+                # firstVertexData counts BYTES of the 3-byte colour lump (the loader turns it into a color4ub offset)
+                defs += struct.pack("<128s3f3ffii", model.encode()[:127], *org, *ang, sc, len(data), len(rgbs))
+                for r, g, b_ in rgbs:
+                    data += bytes((r, g, b_))
+            lumps[24], lumps[25] = bytes(data), bytes(defs)
         ent = ""
         for kv in self.entities:
             ent += "{\n" + "".join(f'"{k}" "{v}"\n' for k, v in kv) + "}\n"
