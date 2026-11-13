@@ -126,7 +126,16 @@ def _jpg(im):
 def apply(files, level, spec, mapname, log=print, hd_dir=HD_DIR):
     """files: the pak's name -> bytes dict (changed in place). Returns a small report."""
     rep = {"swapped": [], "cutouts": [], "skipped": []}
-    hd = (spec or {}).get("hd")
+    hd = dict((spec or {}).get("hd") or {})
+    # [look 2026-11-12, user: CC0 replacements for the smudged walls and ground] extra swaps kept in hd/swaps_look.json
+    # ({level: {key: swap}}) so this texture pass never edits fl_levels.json; a key listed in both uses this file
+    try:
+        import json as _json
+        _ex = _json.load(open(os.path.join(hd_dir, "swaps_look.json"))).get(level, {})
+    except Exception:
+        _ex = {}
+    if _ex:
+        hd["swap"] = dict(hd.get("swap", {}), **{k: v for k, v in _ex.items() if not k.startswith("_")})
     if not hd:
         return rep
     pre = "textures/fl/%s/" % level

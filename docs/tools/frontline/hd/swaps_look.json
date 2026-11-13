@@ -1,0 +1,50 @@
+{
+ "_comment": "look round 2026-11-12 (user: replace the smudged walls and ground with CC0 textures; listed in FIDELITY as deviations, credited in CREDITS.txt). Merged into fl_levels.json hd.swap by flhd.apply.",
+ "1_1": {
+  "54200": {
+   "asset": "stony_dirt_path",
+   "tile": 160,
+   "repeat": [
+    13,
+    6
+   ],
+   "overlay": 1.0
+  },
+  "b3600": {
+   "asset": "stony_dirt_path",
+   "tile": 160,
+   "repeat": [
+    2,
+    2
+   ],
+   "overlay": 1.0
+  },
+  "6180": {
+   "asset": "worn_mossy_plasterwall",
+   "tile": 128,
+   "repeat": [
+    2,
+    2
+   ],
+   "overlay": 1.0
+  },
+  "ccf80": {
+   "asset": "worn_mossy_plasterwall",
+   "tile": 179,
+   "repeat": [
+    1,
+    1
+   ],
+   "overlay": 1.0
+  },
+  "41180": {
+   "asset": "weathered_planks",
+   "tile": 166,
+   "repeat": [
+    1,
+    1
+   ],
+   "overlay": 1.0
+  }
+ }
+}
