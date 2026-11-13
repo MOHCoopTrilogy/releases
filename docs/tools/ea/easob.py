@@ -22,6 +22,7 @@ RTC_TYPE_MARK = b"RTC\0"
 # smart objects the mission changes (blown up / opened): inline brush models, the rest is world geometry
 DYNAMIC = {"SMA_RailGun6", "SMA_RadioTower5", "XD_Rus1_ammo_dump", "SMA_WoodBridge6", "SP_R1_LeftHandGate",
            "SP_R1_RightHandGate"}
+BREAKABLE = set()       # [dbfix] smart objects with a broken variant <sob>_d (filled by placed())
 
 
 def chunks(d):
@@ -243,10 +244,16 @@ def placed(stream, db, skip_classes=(), light=150.0):
         if not path.lower().endswith(".sob"):
             continue
         sob0 = path.replace("\\", "/").split("/")[-1].rsplit(".", 1)[0]
-        for sob in (sob0, sob0 + "_D"):
+        for sob in (sob0, sob0 + "_D", sob0 + "_d"):
             # the destroyed variant (<sob>_D_Art_n) of the ones the mission blows up, placed with the same transform
-            if sob != sob0 and sob0 not in DYNAMIC:
+            if sob.endswith("_D") and sob != sob0 and sob0 not in DYNAMIC:
                 continue
+            # [dbfix] the broken variant (<sob>_d_Art_n) of the ones a shot or a blast breaks: the graveyard's
+            # tombstones and crosses (SX_tomb_*, S_XA_Cross_no2); the record names its break package at word 18
+            if sob.endswith("_d") and sob != sob0:
+                if sob0 in DYNAMIC or not S.parts(sob):
+                    continue
+                BREAKABLE.add(sob0)
             out += _placement(S, r, sob, light)
     return out
 

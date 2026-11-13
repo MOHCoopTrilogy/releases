@@ -518,6 +518,10 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     import eafx
     fxused = collections.Counter(eavm.base(t) for r in db.of("EffectsPackage") for _k, t in r.strings()
                                  if t.lower().endswith(".xpd"))
+    # [dbfix] the break packages of breakable smart objects (word 18 of the tombstones): played once, not always on
+    for r in db.recs:
+        if r.cls.startswith(("SX_", "S_X")) and (r.s(18) or "").lower().endswith(".xpd"):
+            fxused.setdefault(eavm.base(r.s(18)), 0)
     vm["fx"] = eafx.build(L.stream, db, X, level, files, lines, used=dict(fxused), log=log,
                           far_gain=float(spec.get("far_fx_gain", 1.0)))
     # [0.7.23] the level's own character models (eachar.py: the partisan woman so far), into this pak only

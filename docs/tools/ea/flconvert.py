@@ -220,8 +220,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         import easob
         import eadb as _eadb
         for rec, sob, ms in easob.placed(L.stream, _eadb.DB(L.stream)):
-            base_ = sob[:-2] if sob.endswith("_D") else sob
-            (sob_dyn if base_ in easob.DYNAMIC else sob_static).append((rec, sob, ms))
+            base_ = sob[:-2] if sob.endswith(("_D", "_d")) else sob
+            (sob_dyn if base_ in easob.DYNAMIC or base_ in easob.BREAKABLE else sob_static).append((rec, sob, ms))
         for _r, _s, ms in sob_static:
             meshes += ms
     rup, rdown = floor_vote([(m["verts"][a], m["verts"][b], m["verts"][c]) for m in meshes for a, b, c in m["tris"]])
@@ -1425,7 +1425,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             bids = [b for b in (B.add_prism(sobclip, *t, thickness=4.0, centered=True) for t in tri_world) if b is not None]
         B.models.append({"surfaces": sids, "brushes": bids})
         kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)),
-              ("targetname", ("ea_sobD_" if sob.endswith("_D") else "ea_sob_") + rec.name)]
+              ("targetname", ("ea_sobD_" if sob.endswith(("_D", "_d")) else "ea_sob_") + rec.name)]
         if piv != (0.0, 0.0, 0.0):
             kv.append(("origin", "%.1f %.1f %.1f" % piv))
         sob_ents.append(kv)

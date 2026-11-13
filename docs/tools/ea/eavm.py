@@ -657,6 +657,10 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f'\tlevel.ea_pr_sob[{n}] = {S(base(r.s(15)))}')
         L(f"\tlevel.ea_pr_name[{n}] = {S(r.name)}")
         L(f"\tlevel.ea_pr_grp[{n}] = {gid(g) if g else chr(34) * 2}")
+        # [dbfix] a breakable smart object names its break package at word 18 (the tombstones' dust and debris)
+        bx = r.s(18) if r.cls.startswith(("SX_", "S_X")) else None
+        if bx and bx.lower().endswith(".xpd"):
+            L(f"\tlevel.ea_pr_bfx[{n}] = {S(base(bx))}")
     L(f"\tlevel.ea_pr_n = {n}")
     # ---- [dbfix 0.7.27] damage detection volumes: a shot into the box sends its messages (the checkpoint volume
     # Deactivates the checkpoint scene's group: the guards stop playing it and fight). Size from the .sob name
