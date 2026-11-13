@@ -272,3 +272,26 @@ Scripted character scenes
 - Display: converted disc missions get a neutral display chain; the per-map switch is being defined in the Sealed
   Orders work and will be reused here, not rebuilt.
 - Order of work from here: scripted scenes and voiced lines first; sky, fog, light and tank seating last.
+
+## 2026-11-12 playtest round 2 (converter 0.7.24-0.7.25, overlay v70)
+
+### User-approved deviations
+
+| # | item | original | ours | why |
+|---|---|---|---|---|
+| U1 | Visibility sectioning | the console draws in sections | no PVS on converted EA maps: the whole level is drawn and the fog far plane cuts | the distance PVS let a cluster see only 1,536u while the fog is opaque at 4,560u: popping on the bridge, the railgun, soldiers and a Panzer turret dropped out in plain view; user: "rendering things in sections which we may not need to worry about on pc". Frame time with and without: client proof pending |
+| U2 | Extra bazooka supply | 6 bazookas (2 in the partisan cellar, 2 by tank 3, 2 by the graveyard) | the 6 kept, plus a launcher with rockets by MG 9, 8 and 1 (the nests nearest the Panzers), out in the open, respawning; the original six glow | user: "we may want to place some by the mg42's nearby" |
+
+### Our choices (for the user)
+
+| # | item | original | ours | why |
+|---|---|---|---|---|
+| C1 | Invisible blocker volumes (.cdb type 0) | stop the player; whether shots pass is not known | stop players, soldiers and tanks; shots, grenades and sight pass (player/monster/vehicle clip) | built solid they stopped bullets and the AI's sight along trench lips and field edges ("one huge invisible wall ... my bullets are hitting it"); shot sweep 8,599 -> 179 invisible blocks. Open: the emulator can tell whether the original also lets the player through some of them |
+| C2 | Partisan follow | squads take staged "move to point and fight" orders (emulator trace) | no follow-the-player (it was ours, not the original's); staged squad orders only | the invented follow ran them into unreachable paths |
+| C3 | Nebelwerfer salvo | launch effects at the launcher, 1 s timer into the railgun's destruction | the same plus six stock Nebelwerfer rockets with exhaust arcing onto the railgun in that second | user saw no salvo and no hit; the rockets' flight is not decoded |
+| C4 | Pose stand-ins (rig points) | the actor plays the rig animation on the point | the stand-in stands on the floor under the point and leaves the pose to fight on an enemy, a hit or a player in sight | no rig animation; on the raw point they floated and ignored the player |
+| C5 | Bridge deck | the deck's own collision goes with the bridge | slabs on the drawn deck where the level collision has none, part of the bridge's own model | the .cdb covers the ends only; the player fell through |
+| C6 | Cellar trigger that starts switched off | BasicTrigger word 25 = 0 | ea_lo_dis: not armed at load | played the leader's go-back line before his plan speech |
+| C7 | Checkpoint guards | at their posts until the checkpoint scene (inferred) | at peace until their scene plays, they are hurt, or a player walks up within 700u in sight | the "Halt" guard was shot before the scene |
+| C8 | Network culling | n/a (single machine) | actors, props, tank hulls and turrets always sent | the server's distance cull dropped them inside the fog |
+| C9 | Bark repetition | each AI speaks its own lines | one line at most once per 25 s across all soldiers, only in a fight | every partisan carries the same disc line; one repeated every 7-13 s |
