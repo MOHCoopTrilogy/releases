@@ -382,6 +382,70 @@ def _axis_rot(k, a):
     return [[_I3[i][j] + s * K[i][j] + (1 - c) * K2[i][j] for j in range(3)] for i in range(3)]
 
 
+# EXPERIMENT (off): one level of Loop subdivision on the body sub-meshes of these characters, the Loop positions
+# blended with the plain midpoint split by the given factor (1 = full Loop; it shrinks the mesh), weights and uvs
+# interpolated linearly. A sub-mesh that would pass the engine's 2,048 vertices per surface keeps its own mesh.
+SUBDIV = {}
+
+
+def _subdivide(V, N, W, uv, tris, k):
+    edges = {}
+    for t in tris:
+        for a, b, c in ((t[0], t[1], t[2]), (t[1], t[2], t[0]), (t[2], t[0], t[1])):
+            edges.setdefault((min(a, b), max(a, b)), []).append(c)
+    if len(V) + len(edges) > 2000:
+        return V, N, W, uv, tris
+    nb = [set() for _ in V]
+    bnd = [[] for _ in V]
+    # the body only: anything riding the head or neck keeps its shape (the face shrank off its mouth card)
+    kv = [0.0 if any(bn in ("Bip01 Head", "Bip01 Neck") for bn, _w in w) else 1.0 for w in W]
+    for (a, b), opp in edges.items():
+        nb[a].add(b)
+        nb[b].add(a)
+        if len(opp) != 2:
+            bnd[a].append(b)
+            bnd[b].append(a)
+
+    def mixw(ws):
+        acc = {}
+        for wl, f in ws:
+            for bn, w in wl:
+                acc[bn] = acc.get(bn, 0.0) + w * f
+        return sorted(acc.items(), key=lambda q: -q[1])
+    V2, N2, W2, uv2 = [], list(N), list(W), list(uv)
+    for i, v in enumerate(V):
+        if bnd[i]:
+            if len(bnd[i]) == 2:
+                lp = _add(_mul(v, 0.75), _mul(_add(V[bnd[i][0]], V[bnd[i][1]]), 0.125))
+            else:
+                lp = v                        # a corner / non-manifold vertex stays put
+        else:
+            n = len(nb[i])
+            beta = 3.0 / 16.0 if n == 3 else 3.0 / (8.0 * n)
+            s = (0.0, 0.0, 0.0)
+            for j in nb[i]:
+                s = _add(s, V[j])
+            lp = _add(_mul(v, 1.0 - n * beta), _mul(s, beta))
+        V2.append(_add(v, _mul(_sub(lp, v), k * kv[i])))
+    mid = {}
+    for (a, b), opp in edges.items():
+        lin = _mul(_add(V[a], V[b]), 0.5)
+        if len(opp) == 2:
+            lp = _add(_mul(_add(V[a], V[b]), 0.375), _mul(_add(V[opp[0]], V[opp[1]]), 0.125))
+        else:
+            lp = lin
+        mid[(a, b)] = len(V2)
+        V2.append(_add(lin, _mul(_sub(lp, lin), k * min(kv[a], kv[b]))))
+        N2.append(_norm(_add(N[a], N[b])))
+        W2.append(mixw(((W[a], 0.5), (W[b], 0.5))))
+        uv2.append(((uv[a][0] + uv[b][0]) * 0.5, (uv[a][1] + uv[b][1]) * 0.5))
+    T2 = []
+    for t in tris:
+        m01, m12, m20 = (mid[(min(x, y), max(x, y))] for x, y in ((t[0], t[1]), (t[1], t[2]), (t[2], t[0])))
+        T2 += [(t[0], m01, m20), (m01, t[1], m12), (m20, m12, t[2]), (m01, m12, m20)]
+    return V2, N2, W2, uv2, T2
+
+
 def skin(model, sdata, skel, bone_block, nbones, bidx, label):
     """SKD v5 bytes: her sub-meshes on the stock skeleton, re-posed to the stock standing pose (POSE) piece by piece and
     weighted with the disc's own one- and two-bone blends, each EA bone carried by its Bip01 counterpart"""
@@ -411,6 +475,8 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
         for t in tris:
             fn = _cross(_sub(V[t[1]], V[t[0]]), _sub(V[t[2]], V[t[0]]))
             out_t.append(t if _dot(fn, _add(_add(N[t[0]], N[t[1]]), N[t[2]])) >= 0 else (t[0], t[2], t[1]))
+        if label in SUBDIV and shape and "#a" not in shape:
+            V, N, W, uv, out_t = _subdivide(V, N, W, list(uv), out_t, SUBDIV[label])
         vb = bytearray()
         for j in range(len(V)):
             bp, ax = J[W[j][0][0]]
