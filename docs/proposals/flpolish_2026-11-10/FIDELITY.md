@@ -496,6 +496,27 @@ the door top (no ceiling face, so the headroom pass never saw them); with the 2u
 MOHAA's stand box - and the engine lifts the box a full step (38u) over any seam or stub before sliding on. Arches'
 chamfers start at 90-105u. Converter: `flclear.lift_lintels` (commits 8af40870, 31725dc3).
 
+### Round 16b - the live engine, per screen, step lips
+
+The test install's engine (Nov 10) is not the live one (game/cgame/exe hashes differ). The same walks were run with
+byte copies of the live binaries (`G:/mohaa-flpolish/_live1112`, `r16/L_v95.out`, `r16/L_v106.out`): 40 runs, v95 31
+standing / v106 32. The live engine honours the map's 38u step, and the octagonal arch passes standing there on v95 too.
+
+| screen | found at | v95 live | v106 live | cause / note |
+|---|---|---|---|---|
+| 10 octagonal arch | (2945-3002, -2109) | pass | pass | test engine: blocked off centre on v95 (chamfer 90-105u); fixed by lift_lintels |
+| 11 lane to the crawl hole | (2975, -2000 -> -1820); hole (2840-2960, -1680) | pass; hole passes | pass | the straight line from the arch to the hole meets a drawn wall, not a defect |
+| 16 opening over the VINS LIQUEURS street | upper floor (1600-1680, 1460-1480, z -6), 155u over the street | blocked | blocked | the original blocks it too (sill + material 10/13 sheets 35-115u); the street in front of the shop has no collision floor on the disc either - the original's boundary, kept |
+| 19 breach hole into the interrogation room (presumed) | (-1712, 4752) -> (-1750, 4680) | standing blocked both ways, crouch one way | standing one way, crouch the other | partly improved; not confirmed as the screen's hole |
+| 20 door from the dotted-wallpaper room | (-1748, 4772) -> (-1862, 4798) | pass | pass | - |
+| 22 breach-yard arch | (-2840, 5150-5240) | pass | pass | - |
+| 12, 15, 17, 18 | not found | | | - |
+| capped lane before the interrogation | (-1232, 4464) -> (-1712, 4752) | blocked standing and crouched | same | the original's crawl tunnel (player-clip sheets 52u over the lane, kept as 61u caps); its floor has a hole at (-1329, 4607): a player who climbs onto the sheet falls through it. Pre-existing, not changed |
+
+Step lips (18-38u rises from the walkable area): 913 edges in 290 places on v106, half of them with no drawn
+surface within 6u. Not smoothed: the live engine climbs 38u on this map, so they are not walls; clip half-steps
+would be a deviation without a cause.
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
