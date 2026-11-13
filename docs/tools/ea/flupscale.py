@@ -106,13 +106,132 @@ def is_cutout(a):
     return al.min() < 250 and (al < 128).mean() > 0.05
 
 
+# [look 2026-11-12] ported from the Frontline flupscale (same rules, same QA clamp)
+def _bleed(im, rounds=8):
+    """RGBA cut-out: push the opaque texels' colour outwards into the clear ones (alpha untouched)"""
+    a = np.asarray(im, np.float64)
+    al = (a[:, :, 3:4] > 127).astype(np.float64)
+    rgb = a[:, :, :3] * al
+    w = al.copy()
+    for _ in range(rounds):
+        p = np.asarray(Image.fromarray(np.clip(rgb, 0, 255).astype(np.uint8)).filter(ImageFilter.BoxBlur(1)), np.float64)
+        q = np.asarray(Image.fromarray(np.clip(w[:, :, 0] * 255, 0, 255).astype(np.uint8)).filter(ImageFilter.BoxBlur(1)),
+                       np.float64)[:, :, None] / 255.0
+        fill = np.where(q > 1e-3, p / np.maximum(q, 1e-3), 0.0)
+        got = w > 0.5
+        rgb = np.where(got, rgb, fill)
+        w = np.where(got, w, (q > 1e-3).astype(np.float64))
+    rgb = np.where(w > 0.5, rgb, a[:, :, :3])
+    return Image.fromarray(np.dstack([np.clip(rgb, 0, 255), a[:, :, 3]]).astype(np.uint8), "RGBA")
+
+
+def upscale_cutout(exe, a, tmp, threads, pre=1):
+    """[flfix2 look 2026-11-12] alpha-tested cards (tree lines, branches, bushes): ESRGAN on the COLOUR only, the cut
+    edge from the original alpha. ESRGAN run on the whole card ate the leaf clusters (fewer, smaller leaves) because the
+    key colour around them read as background; here the leaf colour is bled into the clear texels first (flhd.bleed), so
+    ESRGAN sees one continuous foliage picture and only adds needle and leaf detail. The silhouette is the original's
+    alpha resampled smoothly and cut at 128 (what alphaFunc GE128 draws): round edges, no stair steps, nothing eroded.
+    pre: the card in the pak is already a flhd 4x Lanczos copy - it is boxed back down by `pre` first."""
+    im = Image.fromarray(a, "RGBA")
+    if pre > 1:
+        im = im.resize((max(1, im.width // pre), max(1, im.height // pre)), Image.BOX)
+    w, h = im.size
+    a0 = np.asarray(im)[:, :, 3]
+    if pre > 1:     # a flhd card is alpha-tested (GE128): its Lanczos-softened edge is not a blend
+        im.putalpha(Image.fromarray(np.where(a0 >= 128, 255, 0).astype(np.uint8)))
+        a0 = np.asarray(im)[:, :, 3]
+    if ((a0 > 8) & (a0 < 247)).mean() > 0.10:
+        return None, "cutout: blended (soft alpha) kept original"     # shadow blobs, scorch decals, haze cards
+    # [look QA 2026-11-12] fine leaf sprays stay as they are: on cards that are mostly leaf edge (more than 55 % of the solid
+    # texels touch a clear one) and leaf-coloured, ESRGAN plus the rounded cut turned single leaves into blobs ('AI look' on
+    # 12c380, 1dd980, c0_16dc00, 15b680, 124280). Dense foliage (tree lines, hedges), ruins, fences and iron work still pass.
+    sol_ = a0 >= 128
+    in_ = sol_.copy()
+    in_[1:, :] &= sol_[:-1, :]; in_[:-1, :] &= sol_[1:, :]; in_[:, 1:] &= sol_[:, :-1]; in_[:, :-1] &= sol_[:, 1:]
+    if sol_.sum() and (sol_ & ~in_).sum() / float(sol_.sum()) > 0.55:
+        rgb_ = np.asarray(im)[:, :, :3][sol_].astype(np.float32)
+        mr, mg, mb = rgb_.mean(0)
+        if mg >= 0.9 * mr and mg > mb * 1.1:
+            return None, "cutout: fine leaf spray kept original"
+    base = np.asarray(_bleed(im))
+    pw, ph = max(4, w // 4), max(4, h // 4)
+    rgb = np.pad(base[:, :, :3], ((ph, ph), (pw, pw), (0, 0)), mode="wrap")
+    src, dst = os.path.join(tmp, "in.png"), os.path.join(tmp, "out.png")
+    Image.fromarray(rgb).save(src)
+    if os.path.exists(dst):
+        os.remove(dst)
+    if not run_esrgan(exe, src, dst, threads):
+        return None, "esrgan failed"
+    up = np.asarray(Image.open(dst).convert("RGB"))[ph * 4: ph * 4 + h * 4, pw * 4: pw * 4 + w * 4]
+    al0 = base[:, :, 3]
+    solid = al0 >= 128
+    # colour statistics on the leaves only (the bled border is not part of the picture)
+    back = np.asarray(Image.fromarray(up).resize((w, h), Image.BOX)).astype(np.float32)
+    o = base[:, :, :3].astype(np.float32)
+    out = up.astype(np.float32)
+    if solid.sum() < 16:
+        return None, "cutout: no solid texels"
+    for c in range(3):
+        bm, bs = back[:, :, c][solid].mean(), back[:, :, c][solid].std()
+        om, osd = o[:, :, c][solid].mean(), o[:, :, c][solid].std()
+        g = min(2.0, max(0.5, (osd / bs) if bs > 1e-3 else 1.0))
+        out[:, :, c] = (out[:, :, c] - bm) * g + om
+    # [look QA 2026-11-12] no new highlights or colours: every output texel stays inside the range of the source texels
+    # around it (3x3 min / max of the bled card, smoothly enlarged). ESRGAN otherwise lit leaf edges with bright yellow-green
+    # speckles and rounded the leaves into blobs ('AI look' on 12c380, 1dd980, c0_16dc00, 15b680).
+    src_rgb = Image.fromarray(base[:, :, :3])
+    lo_ = np.asarray(src_rgb.filter(ImageFilter.MinFilter(3)).resize((w * 4, h * 4), Image.BILINEAR)).astype(np.float32)
+    hi_ = np.asarray(src_rgb.filter(ImageFilter.MaxFilter(3)).resize((w * 4, h * 4), Image.BILINEAR)).astype(np.float32)
+    out = np.minimum(np.maximum(out, lo_), hi_)
+    up = np.clip(out, 0, 255).astype(np.uint8)
+    back = np.asarray(Image.fromarray(up).resize((w, h), Image.BOX)).astype(np.float32)
+    m0, m1 = o[solid].mean(), back[solid].mean()
+
+    def _sat(a):
+        mx_, mn_ = a.max(axis=-1), a.min(axis=-1)
+        return (mx_ - mn_) / np.maximum(mx_, 1.0)
+    # and no card gets more saturated or brighter in its top end than the source (the speckle tell)
+    big_solid = np.asarray(Image.fromarray((solid * 255).astype(np.uint8)).resize((w * 4, h * 4), Image.NEAREST)) > 127
+    if _sat(up.astype(np.float32))[big_solid].mean() > _sat(o)[solid].mean() * 1.08 + 0.01:
+        return None, "cutout: more saturated than the source"
+    if np.percentile(up.astype(np.float32).mean(-1)[big_solid], 99) > np.percentile(o.mean(-1)[solid], 99) + 6:
+        return None, "cutout: brighter highlights than the source"
+    if abs(m1 - m0) / max(1.0, m0) > DRIFT_LIMIT:
+        return None, "cutout: brightness drift"
+    if np.abs(back - o)[solid].mean() > 14:
+        return None, "cutout: downscale-back mismatch"
+    bic = np.asarray(Image.fromarray(base[:, :, :3]).resize((w * 4, h * 4), Image.BICUBIC))
+    ratio = lap_energy(up) / max(1.0, lap_energy(bic))
+    # dense foliage carries real high-frequency detail: the fir tree-line card measured 107x and showed needles, not worms,
+    # on the QA sheet (H:/hzm_work/flpolish/look/cut_qa.jpg), so cards get a wider limit than opaque surfaces
+    if ratio > 2.5 * WORM_LIMIT and not os.environ.get("FLUP_DEBUG"):
+        return None, "cutout: worm-noise %.0fx" % ratio
+    al = Image.fromarray(al0).resize((w * 4, h * 4), Image.BICUBIC).filter(ImageFilter.GaussianBlur(2.4))   # half a source texel: rounds the stair steps
+    al = np.where(np.asarray(al) >= 128, 255, 0).astype(np.uint8)
+    # the same share of the card must stay solid (an eroded or swollen silhouette is a reject)
+    if abs(float((al > 0).mean()) - float(solid.mean())) > 0.03:
+        return None, "cutout: silhouette changed"
+    # thin features (wrought iron, twigs, fence wires) must survive: boxed back down, every solid texel stays solid
+    kept = np.asarray(Image.fromarray(al).resize((w, h), Image.BOX)) >= 64
+    if solid.sum() and float((solid & ~kept).sum()) / float(solid.sum()) > 0.05:
+        return None, "cutout: thin features lost"
+    t = min(1024, w * 4) / float(w * 4)
+    res = Image.fromarray(np.dstack([up, al]), "RGBA")
+    if t < 1.0:
+        res = res.resize((int(round(w * 4 * t)), int(round(h * 4 * t))), Image.LANCZOS)
+        r_ = np.asarray(res).copy()
+        r_[:, :, 3] = np.where(r_[:, :, 3] >= 128, 255, 0)
+        res = Image.fromarray(r_, "RGBA")
+    return res, "ok cutout"
+
+
 def upscale_one(exe, im, tmp, threads):
     rgba = im.convert("RGBA")
     w, h = rgba.size
     a = np.asarray(rgba)
     if is_cutout(a):
-        # ESRGAN erodes and thins leaf clusters (fewer, smaller leaves): alpha-tested cards keep the original
-        return None, "cutout kept original"
+        # alpha-tested cards: colour-only pass, original silhouette (upscale_cutout); fine leaf sprays keep the original
+        return upscale_cutout(exe, a, tmp, threads, 1)
     pw, ph = max(4, w // 4), max(4, h // 4)
     rgb = np.pad(a[:, :, :3], ((ph, ph), (pw, pw), (0, 0)), mode="wrap")
     src, dst = os.path.join(tmp, "in.png"), os.path.join(tmp, "out.png")
