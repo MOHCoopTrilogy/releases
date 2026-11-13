@@ -463,7 +463,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     stats["uv_inset_textures"] = len(uv_inset)
     # [flfix2 round 19, bug-11163] some of the disc's big out-of-bounds ground triangles carry UVs shared by pairs of
     # vertices (c6 draws 358 / 535 / 741 / 1242 on 1_1: zero UV area), so the texture is smeared along one line - the
-    # dark streaked ground the user saw from a window by the wall objective. Such a floor triangle (|n.z| >= 0.9,
+    # dark streaked ground the user saw from a window by the wall objective. Such a ground triangle (|n.z| >= 0.4,
     # >= 10000 u^2) of a TILING texture gets planar world UVs at that texture's own median floor density (the units
     # per repeat of its well-mapped floor triangles). Nothing else is touched.
     floor_rep = {}
@@ -537,7 +537,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 A_, B_, C_ = verts[a], verts[b], verts[c]
                 uva2 = abs((B_[1][0] - A_[1][0]) * (C_[1][1] - A_[1][1]) - (C_[1][0] - A_[1][0]) * (B_[1][1] - A_[1][1]))
                 n_ = face_normal(A_[0], B_[0], C_[0])
-                if uva2 > 1e-9 or n_ is None or abs(n_[2]) < 0.9:
+                if uva2 > 1e-9 or n_ is None or abs(n_[2]) < 0.4:      # embankment slopes too (c6 240: n.z 0.67)
                     nt_.append((a, b, c))
                     continue
                 e1 = [B_[0][i] - A_[0][i] for i in range(3)]
@@ -611,10 +611,15 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     v0_, v1_ = rk["core"]
                     kd_ = float(rk.get("core_shade", 0.75))
                     cb_ = len(cv_)
+                    sk_ = float(rk.get("core_skirt", 0))
                     for q in T:
                         p = q[0]
                         uu = (p[0] * tx + p[1] * ty) / float(rk.get("tile", 128))
                         vv = v1_ - (v1_ - v0_) * (p[2] - z0) / max(1.0, z1 - z0)
+                        if sk_ and p[2] <= z0 + 0.25 * (z1 - z0):
+                            # the foot goes core_skirt further down: where the ground falls away from a hedge the
+                            # original showed the void under the box (the light band under the hedgerows)
+                            p = (p[0], p[1], p[2] - sk_)
                         cr, cg, cb = (min(255, int(round(q[3][k] * gk[k] * kd_))) for k in range(3))
                         cv_.append(((p[0], p[1], p[2]), (uu, vv), q[2], (cr, cg, cb, 255)))
                     ct_.append((cb_, cb_ + 1, cb_ + 2))
