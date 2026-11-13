@@ -28,7 +28,7 @@ import flpack  # noqa: E402
 import flseam  # noqa: E402
 import flgeom  # noqa: E402
 
-CONVERTER_VERSION = "0.7.23"   # 0.7.23 (EA) the partisan woman in her own disc model (eachar.py: her skinned mesh and textures from the level stream, on the stock human skeleton from the player's install, into this pak only; level.ea_chr_tik); pose points for the wall vaults and the tower rig (the squad whose first objective stands on the point; DeathFromAbove falls); 0.7.22 (EA) message ids named from their CRC32 (Disable, Vanish, ObjectiveAdd, IncrementCounter, StartTimer; eadb.NAMES), an Action_Message sends every one of its messages (ea_ga_m: the railgun destroy sent its MMG points a bare Activate instead of Disable + Vanish), MMG points carry their own group (ea_mg_grp); 0.7.21 (EA) a loudspeaker point plays its own sound event when it is a speech stream (ea_pa_ev), PA group from word 32; 0.7.20 (EA) MG squads from the StayOnMMG objectives (ea_mg_obj), loudspeaker points (ea_pa_*), scene cue tables from the rig event records (ea_sc_*); 0.7.19 (EA) sky box sides: the -x and +y images were written under each other's name (the engine draws image lf on -x and bk on +y), which put hard seams in the sky; 0.7.18 (EA) the disc sky is kept out of the fog (the original does not fog its sky; the engine fogged it by elevation and at a 95 m fog end it showed as flat fog colour, no clouds, no moon): the sky shader carries one no-op stage with nofog; 0.7.17 (EA) fog and sky from the original: fog is linear from 0 to opaque at the record's far distance (it was started at 18 m and capped at 44 percent from two words that are not decoded), and the sky box is built from the level's own sky textures and moon (it was a stock MOHAA night sky); 0.7.16 (EA) ICS points with an actor group relay their slot-1 sends once the actor is in place (the second partisan leader, the idle partisans and the Locate Partisan Fighters objective came at the wrong moments: at load, at a later line, and only on completion); 0.7.15 (EA) path-node bridges: a group that finds no way out on the 40u lattice is searched again on a 20u lattice whose cells may shift up to 9u (the church side door is 36u wide and passes the hull on one row only), groups are re-tried in rounds until nothing joins, and a link climbs at most 17u (19-20u pews and kerbs made links the engine never makes): the church was off the node graph and every order across it ended "unreachable path"; spawn points read alive-at-once from word 50 (min, max, alive sit at 48-50; word 55 was misread and held most groups to one man at a time); 0.7.14 (EA) each mounted gun names its squad: the one whose first squad objective the level places at the gun (was: any squad with MMG in its name, and any German near the gun); 0.7.13 (EA) facings read from the record's row 1 (spawn points, tanks, mounted guns and the player start stood a quarter turn off: gunners spawned beside their guns, the squad faced the map edge); 0.7.12 (EA) gag triggers carry the record's once flag (a leader line played four times), spawn points of squads named for a mounted gun are marked (the gunner squad takes its gun); 0.7.11 headroom lift stops 2.5u (was 6u) under the floor above, a 100u door header now clears the 94u hull, and a header vertex in the door jamb (no floor straight under it) is lifted too, so is the tall wall triangle over a door and a header underside beside a stair, lift height 104u (98u left exactly the hull height less the collision prisms); 0.7.10 headroom relief also for hanging up-facing triangles, relieved places listed in the report; 0.7.9 worldspawn map_time is a hash of the entities and collision (the engine kept the first conversion's cached path graph for ever); 0.7.8 path node groups with no straight-walk link to the rest are bridged with 40u node chains or dropped; 0.7.7 a fine path node is skipped only for a near node it can walk straight to (cellar nodes stood unlinked either side of a pillar); 0.7.6 smart-object meshes anchored on their own origin (the radio tower stood as its top half in the air, wall chunks and the railgun's overlay sat displaced), the railgun and its wreck are solid, path nodes on every floor level and in tight places (cellars, stairs, doorways), charge heights kept; 0.7.5 an entity light grid from the baked vertex light (tanks and soldiers no longer daylit at night), silent panic bark; 0.7.4 baked light written for the mod's world gain (the night was near three times too bright), two-layer terrain upgrades graded (crater rims), far glows given back the fog share, silent bark aliases; 0.7.2 particle sizes are half extents (quads twice as wide); 0.7.1 the level's own global fog record sets the far plane and its colour (the village is a night level), width and height end scales of a particle kept apart; 0.7.0 the level's own particle systems (eafx: emitters + sprite sheets from the disc's ProcParticleType records; engine convfx); 0.6.1 music events by the .mpf's own table (eamusic); [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
+CONVERTER_VERSION = "0.7.24"   # 0.7.24 (EA) the .cdb collision type is read: type 0, the original's invisible blocker volume, is player/monster/vehicle clip (shots, grenades and sight pass; was solid: invisible walls that stopped bullets and the AI's sight) and no PVS occluder; no PVS on EA maps (user-approved: a cluster saw only 1,536u while the fog is opaque at 4,560u - popping, vanishing railgun, soldiers, turret); a smart object with its own collision gets slabs on its drawn floor the .cdb leaves out (the wooden bridge deck); two-layer smart-object meshes (base + top, uv2: the railgun hull and radio tower were one smeared texture); unindexed world draws read as strips (9,812 vertices of foliage and ragged-edge cards were dropped); a BasicTrigger that starts switched off (ea_lo_dis); 0.7.23 (EA) the partisan woman in her own disc model (eachar.py: her skinned mesh and textures from the level stream, on the stock human skeleton from the player's install, into this pak only; level.ea_chr_tik); pose points for the wall vaults and the tower rig (the squad whose first objective stands on the point; DeathFromAbove falls); 0.7.22 (EA) message ids named from their CRC32 (Disable, Vanish, ObjectiveAdd, IncrementCounter, StartTimer; eadb.NAMES), an Action_Message sends every one of its messages (ea_ga_m: the railgun destroy sent its MMG points a bare Activate instead of Disable + Vanish), MMG points carry their own group (ea_mg_grp); 0.7.21 (EA) a loudspeaker point plays its own sound event when it is a speech stream (ea_pa_ev), PA group from word 32; 0.7.20 (EA) MG squads from the StayOnMMG objectives (ea_mg_obj), loudspeaker points (ea_pa_*), scene cue tables from the rig event records (ea_sc_*); 0.7.19 (EA) sky box sides: the -x and +y images were written under each other's name (the engine draws image lf on -x and bk on +y), which put hard seams in the sky; 0.7.18 (EA) the disc sky is kept out of the fog (the original does not fog its sky; the engine fogged it by elevation and at a 95 m fog end it showed as flat fog colour, no clouds, no moon): the sky shader carries one no-op stage with nofog; 0.7.17 (EA) fog and sky from the original: fog is linear from 0 to opaque at the record's far distance (it was started at 18 m and capped at 44 percent from two words that are not decoded), and the sky box is built from the level's own sky textures and moon (it was a stock MOHAA night sky); 0.7.16 (EA) ICS points with an actor group relay their slot-1 sends once the actor is in place (the second partisan leader, the idle partisans and the Locate Partisan Fighters objective came at the wrong moments: at load, at a later line, and only on completion); 0.7.15 (EA) path-node bridges: a group that finds no way out on the 40u lattice is searched again on a 20u lattice whose cells may shift up to 9u (the church side door is 36u wide and passes the hull on one row only), groups are re-tried in rounds until nothing joins, and a link climbs at most 17u (19-20u pews and kerbs made links the engine never makes): the church was off the node graph and every order across it ended "unreachable path"; spawn points read alive-at-once from word 50 (min, max, alive sit at 48-50; word 55 was misread and held most groups to one man at a time); 0.7.14 (EA) each mounted gun names its squad: the one whose first squad objective the level places at the gun (was: any squad with MMG in its name, and any German near the gun); 0.7.13 (EA) facings read from the record's row 1 (spawn points, tanks, mounted guns and the player start stood a quarter turn off: gunners spawned beside their guns, the squad faced the map edge); 0.7.12 (EA) gag triggers carry the record's once flag (a leader line played four times), spawn points of squads named for a mounted gun are marked (the gunner squad takes its gun); 0.7.11 headroom lift stops 2.5u (was 6u) under the floor above, a 100u door header now clears the 94u hull, and a header vertex in the door jamb (no floor straight under it) is lifted too, so is the tall wall triangle over a door and a header underside beside a stair, lift height 104u (98u left exactly the hull height less the collision prisms); 0.7.10 headroom relief also for hanging up-facing triangles, relieved places listed in the report; 0.7.9 worldspawn map_time is a hash of the entities and collision (the engine kept the first conversion's cached path graph for ever); 0.7.8 path node groups with no straight-walk link to the rest are bridged with 40u node chains or dropped; 0.7.7 a fine path node is skipped only for a near node it can walk straight to (cellar nodes stood unlinked either side of a pillar); 0.7.6 smart-object meshes anchored on their own origin (the radio tower stood as its top half in the air, wall chunks and the railgun's overlay sat displaced), the railgun and its wreck are solid, path nodes on every floor level and in tight places (cellars, stairs, doorways), charge heights kept; 0.7.5 an entity light grid from the baked vertex light (tanks and soldiers no longer daylit at night), silent panic bark; 0.7.4 baked light written for the mod's world gain (the night was near three times too bright), two-layer terrain upgrades graded (crater rims), far glows given back the fog share, silent bark aliases; 0.7.2 particle sizes are half extents (quads twice as wide); 0.7.1 the level's own global fog record sets the far plane and its colour (the village is a night level), width and height end scales of a particle kept apart; 0.7.0 the level's own particle systems (eafx: emitters + sprite sheets from the disc's ProcParticleType records; engine convfx); 0.6.1 music events by the .mpf's own table (eamusic); [eapolish] eadb names (the eaents lookup gave wrong names), the EA logic VM tables (eavm)
 MERGE_CELL = 1536.0
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)   # fixed timestamp for deterministic zips
 
@@ -232,6 +232,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     B = flbsp.BSP()
     B.vis_cell = 1024.0
+    # 0.7.24 (EA) no PVS (user-approved 2026-11-12, "rendering things in sections which we may not need to worry
+    # about on pc"): with vis_radius 0 a cluster saw only the clusters within 1,536u, while the level's fog is opaque
+    # at 4,560u - surfaces popped crossing the bridge, the railgun, soldiers and a Panzer turret dropped out in plain
+    # view. The whole level is drawn and the fog far plane does the cutting. EA_VIS=1 brings the clusters back.
+    if game == "ea" and os.environ.get("EA_VIS") != "1":
+        B.vis_cell = 0
     B.vis_radius = float(flpack.spec(level, game).get("vis_radius", 0))
     files = {}
     shader_lines = []
@@ -579,6 +585,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             vv = []
             for i, q in enumerate(P):
                 r_, g_, b_, _a = m["cols"][i]
+                if m.get("uvs2") and m["tex"] and "+" in m["tex"]:
+                    # 0.7.24 two-layer smart-object mesh (the railgun hull): vertex alpha = the top layer's weight,
+                    # uv2 in the lightmap texcoords, as the world's two-layer terrain
+                    vv.append((q, m["uvs"][i], (0.0, 0.0, 1.0), (r_, g_, b_, _a), m["uvs2"][i]))
+                    continue
                 vv.append((q, m["uvs"][i], (0.0, 0.0, 1.0), (r_, g_, b_, 255)))
             sids.append(B.add_soup(tex_shader(m["tex"]), vv, [i for t in tris for i in t]))
             tri_world += [(P[a], P[b], P[c]) for a, b, c in tris]
@@ -674,8 +685,18 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         B.add_soup(sky, vs, [0, 1, 2, 0, 2, 3, 0, 2, 1, 0, 3, 2])
 
     clip = B.shader("textures/common/fl_collision", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
+    # 0.7.24 (EA) collision type 0 is the original's blocker volume: the only entry of the .cdb type table with
+    # its top bit set (0x80000005), and on 1_11 74 percent of its area (7,142 of 9,685 m2) has nothing drawn within
+    # 25 cm, against 0-1 percent for the ten material types (dirt, wood, stone ...). Built solid it stopped bullets
+    # and the AI's sight along every trench lip and field edge (user 2026-11-12: "one huge invisible wall ... my
+    # bullets are hitting it"). It is emitted as clip: it still stops players, soldiers and tanks where the
+    # original did, and shots, grenades and sight pass. EA_CLIP0=solid brings the old build back for comparison.
+    clip0 = B.shader("textures/common/ea_coll_clip", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP,
+                     0x10000 | 0x20000 | 0x80000)     # CONTENTS_PLAYERCLIP | MONSTERCLIP | VEHICLECLIP
+    nclip0 = 0
     nb = rejected = 0
     ctris = []
+    _clip0 = set()
     for name, vs, ts in coll:
         if os.environ.get("FL_COLL_ONLY") and os.environ["FL_COLL_ONLY"] not in name:
             continue
@@ -683,6 +704,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         for a, b, c, _f in ts:
             a2, b2, c2 = wind(a, b, c, flip_coll)
             ctris.append((P[a2], P[b2], P[c2]))
+            if game == "ea" and _f == 0 and os.environ.get("EA_CLIP0") != "solid":
+                _clip0.add(ctris[-1])
     added_drawn = []
     # [eapolish] 2026-11-10 user: invisible walls are fine where the original had them (1:1 is the bar): the
     # original's own collision is kept as it is - the clip-sheet rebuild (drop / drawn collision / wire) is opt-in
@@ -921,6 +944,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 _nup += 1 if _up else 0
                 _hp.append((sum(v[0] for v in t) / 3.0, sum(v[1] for v in t) / 3.0, min(v[2] for v in t)))
             _out.append(tuple(nt_))
+            if t in _clip0:
+                _clip0.add(tuple(nt_))
         ctris = _out
         _hcl = []
         for p_ in _hp:
@@ -932,10 +957,13 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 _hcl.append([round(p_[0]), round(p_[1]), round(p_[2]), 1])
         stats["headroom"] = {"triangles": _nt, "vertices": _nv, "up_facing": _nup, "places": _hcl}
     for t in ctris:
-        if B.add_prism(clip, *t, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
+        c0 = t in _clip0
+        if B.add_prism(clip0 if c0 else clip, *t, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
             rejected += 1
         else:
             nb += 1
+            nclip0 += c0
+    stats["coll_clip0"] = nclip0
     drawnclip = B.shader("textures/common/ea_coll_drawn", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
     for t in added_drawn:
         if B.add_prism(drawnclip, *t, thickness=4.0, centered=True) is not None:
@@ -965,10 +993,30 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             if all(lo_[k] <= c_[k] <= hi_[k] for k in range(3)) and c_[2] >= lo_[2] + 0.4 * (hi_[2] - lo_[2]):
                 n_ += 1
         return n_ >= 10
+
+    # 0.7.24: an object with its own .cdb collision can still have floor the .cdb does not carry: the wooden
+    # bridge's .cdb covers its two ends only, and a 72-96u strip across the middle of the deck let the player
+    # fall through (user 2026-11-12, "i straight up fell thru this bridge"; the original's deck there is the
+    # smart object's own collision, gone when it is blown). Its drawn walkable triangles (facing up) with no
+    # collision floor within 24u under them get slabs; a dynamic object's go into its own model, so they leave
+    # with it. Walls are left as the .cdb has them (1:1).
+    def floor_gaps(tris_world):
+        out_ = []
+        for k_, t in enumerate(tris_world):
+            n_ = face_normal(*t)
+            if n_ is None or n_[2] < 0.7:
+                continue
+            cx_, cy_, cz_ = (sum(v[j] for v in t) / 3 for j in range(3))
+            if _cg.ground(cx_, cy_, cz_ + 8.0, cz_ - 24.0) is None:
+                out_.append(k_)
+        return out_
     for _r, _s, ms in sob_static:
         tw = [tuple(X(v) for v in (m["verts"][a], m["verts"][b], m["verts"][c])) for m in ms for a, b, c in m["tris"]]
         if own_coll(tw):
             stats["sob_own_coll"] = stats.get("sob_own_coll", 0) + 1
+            for k_ in floor_gaps(tw):
+                if B.add_prism(sobclip, *tw[k_], thickness=4.0, centered=True) is not None:
+                    stats["sob_floor_gaps"] = stats.get("sob_floor_gaps", 0) + 1
             continue
         for t in tw:
             if B.add_prism(sobclip, *t, thickness=4.0, centered=True) is not None:
@@ -977,8 +1025,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     for rec, sob, sids, tri_world, piv in sob_models:
         tw_world = [tuple(tuple(v[k] + piv[k] for k in range(3)) for v in t) for t in tri_world]
         if own_coll(tw_world):
-            bids = []                     # the .cdb already carries its collision (1:1)
+            # the .cdb already carries its collision (1:1), but for floor it leaves out (0.7.24, floor_gaps)
+            bids = [b for b in (B.add_prism(sobclip, *tri_world[k_], thickness=4.0, centered=True)
+                                for k_ in floor_gaps(tw_world)) if b is not None]
             stats["sob_own_coll"] = stats.get("sob_own_coll", 0) + 1
+            stats["sob_floor_gaps_" + sob] = len(bids)
         else:
             bids = [b for b in (B.add_prism(sobclip, *t, thickness=4.0, centered=True) for t in tri_world) if b is not None]
         B.models.append({"surfaces": sids, "brushes": bids})
@@ -1360,7 +1411,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         B.grid_light = float(os.environ.get("EA_ENT_LIGHT", "1.0"))
         stats["ent_light_gain"] = B.grid_light
     import flvis
-    B.vis_occluders = flvis.occluders([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts])
+    # 0.7.24 (EA) the PVS occluders are walls you cannot see through: the original's blocker volumes (collision type
+    # 0, invisible) are left out. As occluders they cut whole clusters out of sight from behind a trench lip or a
+    # field edge: user 2026-11-12, textures popping crossing the bridge, the railgun and enemies vanishing in the
+    # distance, a Panzer without its turret until he came close.
+    B.vis_occluders = flvis.occluders([(X(vs[a]), X(vs[b]), X(vs[c])) for _, vs, ts in coll for a, b, c, _f in ts
+                                       if not (game == "ea" and _f == 0)])
     bsp_path = out_pk3 + ".bsp.tmp"
     # The engine caches the linked path graph in <home>/maps/<map>.pth and reuses it while the worldspawn "map_time"
     # matches (its file-date test is a stub). Converted maps carried no map_time, so a re-converted map kept the

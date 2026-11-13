@@ -87,9 +87,21 @@ def meshes(d):
             continue
         prev = res[-1]["end"] if res else 0
         ib = find_index(d, prev, c)
-        if not ib:
-            continue
-        idx = struct.unpack_from(f"<{ib[1]}H", d, ib[0])
+        if ib:
+            idx = struct.unpack_from(f"<{ib[1]}H", d, ib[0])
+        else:
+            # 0.7.24: no index block - the vertices ARE the strip (easob.py reads smart objects the same way).
+            # 1_11 dropped 8 such draws, 9,812 vertices of tree and foliage cards (Texture1OneBitAlpha). Separate
+            # strips follow each other in the buffer: where two neighbours are more than 6 m apart the strip is
+            # broken with degenerate repeats (parity kept).
+            pos0 = [tuple(struct.unpack_from("<3h", d, p + 6 * i)[j] * sc[j] for j in range(3)) for i in range(n)]
+            lst = [0]
+            for i in range(1, n):
+                q0, q1 = pos0[i - 1], pos0[i]
+                if (q0[0] - q1[0]) ** 2 + (q0[1] - q1[1]) ** 2 + (q0[2] - q1[2]) ** 2 > 36.0:
+                    lst += [i - 1, i]
+                lst.append(i)
+            idx = tuple(lst)
         if max(idx) >= n:
             continue
         sh = re.search(rb"([\w]+_RM) = (Moh3_\w+)", d[last:last + 0x1000])

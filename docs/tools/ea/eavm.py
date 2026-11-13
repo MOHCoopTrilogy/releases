@@ -518,6 +518,11 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_lo_gag[{n}] = {S(gag)}")
         if r.cls == "GagTrigger" and r.u(24) == 1:     # once flag (0 only on the leader's go-back gag)
             L(f"\tlevel.ea_lo_once[{n}] = 1")
+        # 0.7.24: a BasicTrigger with word 25 = 0 starts switched off (5 on 1_11, none of them in any group, so
+        # nothing switches them on): the cellar trigger BR_BasicTrigger_22 fired the leader's go-back line before his
+        # plan speech; the original plays it only from the speech's own timer
+        if r.cls == "BasicTrigger" and len(r.w) > 25 and r.u(25) == 0:
+            L(f"\tlevel.ea_lo_dis[{n}] = 1")
         send = send or ["Activate"]
         L(f"\tlevel.ea_lo_sn[{n}] = {len(send)}")
         for k, mm in enumerate(send, 1):

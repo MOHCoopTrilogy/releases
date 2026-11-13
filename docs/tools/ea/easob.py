@@ -162,11 +162,39 @@ class Store:
             uv = [tuple(t / 1024.0 for t in struct.unpack_from("<2h", seg, att["uv"] + 4 * i)) for i in range(n)] \
                 if "uv" in att else [(0.0, 0.0)] * n
             col = [seg[att["col"] + 4 * i:att["col"] + 4 * i + 4] for i in range(n)] if "col" in att else None
+            uv2 = [tuple(t / 1024.0 for t in struct.unpack_from("<2h", seg, att["uv2"] + 4 * i)) for i in range(n)] \
+                if "uv2" in att else None
             last = (run[-1] + 4 * n) if run else p + size
             nm = re.search(rb"([\w]+)_RM = (Moh3_\w+)", seg[last:last + 0x1000])
-            out.append({"pos": pos, "uv": uv, "col": col, "tris": list(eacpt.strip_tris(idx)),
-                        "tex": self.texture(part, nm.group(1).decode() if nm else None),
+            shp = self.textures(part, nm.group(1).decode() if nm else None)
+            # 0.7.24: a Texture2 render model names two shapes, base + top, and carries a second UV set: the
+            # world's two-layer recipe (vertex alpha = the top layer's weight). The railgun's four hull meshes all
+            # name the same base (ZSsw) and their own top; drawn with the base alone the hull was one smeared,
+            # wrongly tiled texture (user 2026-11-12, "the texture is all kinds of messed up"; the radio tower too)
+            tex = shp[0] if shp else None
+            if len(shp) > 1 and uv2 is not None and (nm and nm.group(2) == b"Moh3_Msh_Texture2"):
+                tex = shp[0] + "+" + shp[1]
+            out.append({"pos": pos, "uv": uv, "uv2": uv2 if tex and "+" in tex else None, "col": col,
+                        "tris": list(eacpt.strip_tris(idx)), "tex": tex,
                         "shader": nm.group(2).decode() if nm else ""})
+        return out
+
+    def textures(self, part, rmname):
+        """every texture shape the render model's relocations reference, in order, without repeats"""
+        c, e, syms, rel = self.models[part]
+        rms = sorted(s[1] for s in syms if s[0].startswith("__RM:::"))
+        lo, hi = 0, 1 << 30
+        if rmname:
+            v = next((s[1] for s in syms if s[0] == "__RM:::__GP_RM_" + rmname), None)
+            if v is not None:
+                lo = v
+                hi = next((x for x in rms if x > v), v + 0x4000)
+        out = []
+        for off, si in rel:
+            if lo <= off < hi and si < len(syms) and "TAR:::" in syms[si][0]:
+                m = re.search(r"SHAPENAME=([^,;]+),(\d+)", syms[si][0])
+                if m and m.group(1) not in out:
+                    out.append(m.group(1))
         return out
 
     def texture(self, part, rmname):
@@ -220,7 +248,7 @@ def _placement(S, r, sob, light):
                 cols = [(min(255, 2 * a), min(255, 2 * b), min(255, 2 * cc), d) for a, b, cc, d in cols]
                 ms.append({"cell": "sob", "draw": len(ms), "tex": m["tex"], "tex2": None, "shader": m["shader"],
                            "verts": [world(v, r.rot, r.pos) for v in m["pos"]], "cols": cols, "uvs": m["uv"],
-                           "uvs2": None, "tris": m["tris"], "sob": sob, "placement": r.name})
+                           "uvs2": m.get("uv2"), "tris": m["tris"], "sob": sob, "placement": r.name})
         if ms:
             # EA lights smart objects at run time; their vertex colour is only a dark tint (mean ~30, x2 = 60 against
             # the world's baked ~140): unlit they read as black masses (the railgun) - bring each placement to the

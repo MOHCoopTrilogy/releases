@@ -110,7 +110,9 @@ class Level:
     def collision(self):
         for name in sorted(k for k in self.rez if k.endswith(".cdb")):
             verts, tris, surf = eacdb.read(self.rez[name])
-            yield name, verts, [(a, b, c, float(s[1])) for (a, b, c), s in zip(tris, surf)]
+            # 4th element: the triangle's collision type (u16 word 3 of the triangle, an index into the .cdb's
+            # type table at sec8; 0.7.24). Type 0 is the original's blocker volume (see flconvert EA_CLIP0)
+            yield name, verts, [(a, b, c, s[0]) for (a, b, c), s in zip(tris, surf)]
 
     # ---------------- placement (entity decode pending; see STUDY.md) ----------------
     def navpoints(self):

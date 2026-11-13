@@ -31,7 +31,16 @@ CHUNK_MODEL = 0x88c9c893
 CHUNK_TEX = 0x0c3ddc52
 KEY_TEXTURE = 0xa768ffbc
 STOCK_SKD = "models/human/german_wehrmact_officer/german_officer.skd"
-CHARS = [("Body_MRpartisanFemaleA_LOD1", "RussianFemalePartisan", "partisan_female")]
+# (disc body, the character names that wear it, label). Each is converted; the map script uses one only once it has
+# passed the still-sheet QA (level.ea_chr_own[character], set from OWN below)
+CHARS = [("Body_MRpartisanFemaleA_LOD1", ("RussianFemalePartisan",), "partisan_female"),
+         ("Body_MGgermanInfantry_LOD1", ("GermanInfantryWinterizedA",), "german_infantry"),
+         ("Body_MGofficer_LOD1", ("GermanOfficerA",), "german_officer"),
+         ("Body_MGssOfficer_LOD1", ("Nemesis_WaffenSScommander",), "ss_officer"),
+         ("Body_MRpartisanLeader_LOD1", ("PartisanLeader",), "partisan_leader"),
+         ("Body_MRpartisan_LOD1", ("RussianPartisanA", "RussianPartisanA2", "RussianPartisanA3"), "partisan")]
+# the characters whose own models have passed the client still sheet (face, front, side, back, run, fire, no breaks)
+OWN = set()
 
 # the stock human skeleton in a standing pose (soviet_infantry1, AI off; gettagposition / gettagangles, model space cm,
 # facing +X): position, (pitch, yaw, roll) - only the bones the skin uses
@@ -250,6 +259,26 @@ def skin(model, bone_block, nbones, bidx, label):
         nm = "Bip01 %s Hand" % side
         R = _rot_between(_axes(*POSE["Bip01 %s Forearm" % side][1])[0], _sub(hj, el))
         J[nm] = (hj, [R(x) for x in _axes(*POSE[nm][1])])
+    # legs: re-aimed at her own ankles (the stock pose stands with the left foot planted 29 cm out, so her left boot
+    # was nearer the right foot and rode it): ankle = the centre of her boot on that side, knee at the stock thigh /
+    # calf proportion between hip and ankle, the foot frame carried along with the calf
+    for side, sgn in (("L", 1), ("R", -1)):
+        boot = [v for v in allv if sgn * v[1] > 0 and 6.0 < v[2] < 16.0]
+        if not boot:
+            continue
+        ankle = (sum(b[0] for b in boot) / len(boot), sum(b[1] for b in boot) / len(boot), 12.0)
+        hip = J["Bip01 %s Thigh" % side][0]
+        knee = _add(hip, _mul(_sub(ankle, hip), 46.35 / (46.35 + 46.04)))
+        old_calf = J["Bip01 %s Calf" % side][1][0]
+        for bone, a, b in (("Thigh", hip, knee), ("Calf", knee, ankle)):
+            nm = "Bip01 %s %s" % (side, bone)
+            R = _rot_between(J[nm][1][0], _sub(b, a))
+            J[nm] = (a, [R(x) for x in J[nm][1]])
+        R = _rot_between(old_calf, _sub(ankle, knee))
+        fo, to = "Bip01 %s Foot" % side, "Bip01 %s Toe0" % side
+        toe_off = _sub(J[to][0], J[fo][0])
+        J[to] = (_add(ankle, R(toe_off)), [R(x) for x in J[to][1]])
+        J[fo] = (ankle, [R(x) for x in J[fo][1]])
     seg_end = {"Bip01 Pelvis": "Bip01 Spine", "Bip01 Spine": "Bip01 Spine1", "Bip01 Spine1": "Bip01 Spine2",
                "Bip01 Spine2": "Bip01 Neck", "Bip01 Neck": "Bip01 Head", "Bip01 Head": None}
     for s in "LR":
@@ -268,7 +297,7 @@ def skin(model, bone_block, nbones, bidx, label):
         w = _sub(p, _add(a, _mul(d, t)))
         return math.sqrt(_dot(w, w)) + (6.0 if "Clavicle" in bn_ else 0.0)
     # her hem: the lowest point of the skirt's front / back flare (11 cm before or behind the body axis, within 10 cm of
-    # the middle, so not the satchel on her side); thighs above it are under the skirt and ride the pelvis with it
+    # the middle, so not the satchel on her side); the skirt cloth above it blends pelvis and thigh
     flare = [p[2] for m in meshes for p in m[0] if 40.0 < p[2] < 100.0 and abs(p[1]) < 10.0 and abs(p[0]) > 11.0]
     hem = min(flare) if flare else 1e9
     # a sub-mesh wholly at head height (her face, her cap) is a head piece
@@ -293,23 +322,40 @@ def skin(model, bone_block, nbones, bidx, label):
         for j, p in enumerate(v):
             best, bd = None, 1e9
             for bn_ in seg:
+                # a leg bone only takes vertices on its own side of her
+                if (" L Thigh" in bn_ or " L Calf" in bn_ or " L Foot" in bn_ or " L Toe" in bn_) and p[1] < 0:
+                    continue
+                if (" R Thigh" in bn_ or " R Calf" in bn_ or " R Foot" in bn_ or " R Toe" in bn_) and p[1] > 0:
+                    continue
                 dd = dseg(p, *seg[bn_])
                 if dd < bd:
                     best, bd = bn_, dd
-            # skirt and coat-tail cloth (a thigh vertex more than 8 cm off the thigh bone) and the thighs under the skirt
-            # ride the pelvis: on the thighs the panels swung apart and the legs pushed through with every stride
-            if "Thigh" in best and (bd > 8.0 or p[2] > hem):
-                best = "Bip01 Pelvis"
-            # the head moves as one piece: the face and cap sub-meshes (bone slots 40-44 on the disc: her head bones)
-            # and anything at head height ride the head bone; split over neck and spine, the face sheared and the
-            # cap and hair slid over her eyes whenever the stock animations turned the head
+            # the foot is one piece (split over foot and toe the boots splintered when the toe bent)
+            if "Toe0" in best:
+                best = best.replace("Toe0", "Foot")
+            ws = [(best, 1.0)]
+            pel_z = J["Bip01 Pelvis"][0][2]
             if head_mesh[k] or p[2] > J["Bip01 Head"][0][2] - 3.0:
-                best = "Bip01 Head"
-            bp, ax = J[best]
-            dv = _sub(p, bp)
+                # the head moves as one piece: the face and cap sub-meshes and anything at head height ride the head
+                # bone; split over neck and spine, the face sheared and the cap slid over her eyes when the head turned
+                ws = [("Bip01 Head", 1.0)]
+            elif ("Thigh" in best or "Calf" in best) and p[2] >= hem - 2.0 and bd > 7.0:
+                # skirt cloth (a leg-bone vertex more than 7 cm off its bone, at or above her hem): rigid on the pelvis
+                # it let the legs out through it in a stride, on the legs its panels tore apart. It blends: all pelvis at
+                # the waist, three quarters the nearer thigh at the hem. Beyond her hips (satchel, coat side) pelvis.
+                if abs(p[1]) > 17.0:
+                    ws = [("Bip01 Pelvis", 1.0)]
+                else:
+                    th = "Bip01 %s Thigh" % ("L" if p[1] > 0 else "R")
+                    wp = 0.25 + 0.75 * max(0.0, min(1.0, (p[2] - hem) / max(1.0, pel_z - hem)))
+                    ws = [("Bip01 Pelvis", wp), (th, 1.0 - wp)]
             nn = _norm(tuple(nrm[j]))
-            vb += struct.pack("<3f2f2i", _dot(nn, ax[0]), _dot(nn, ax[1]), _dot(nn, ax[2]), uv[j][0], uv[j][1], 1, 0)
-            vb += struct.pack("<if3f", bidx[best], 1.0, _dot(dv, ax[0]), _dot(dv, ax[1]), _dot(dv, ax[2]))
+            bp, ax = J[ws[0][0]]
+            vb += struct.pack("<3f2f2i", _dot(nn, ax[0]), _dot(nn, ax[1]), _dot(nn, ax[2]), uv[j][0], uv[j][1], len(ws), 0)
+            for bn, w in ws:
+                bp, ax = J[bn]
+                dv = _sub(p, bp)
+                vb += struct.pack("<if3f", bidx[bn], w, _dot(dv, ax[0]), _dot(dv, ax[1]), _dot(dv, ax[2]))
         tb = b"".join(struct.pack("<3i", *((t[0], t[1], t[2]) if flip else (t[0], t[2], t[1]))) for t in tris)
         nV, nT = len(v), len(tris)
         sn = "%s_%d" % (label, k)
@@ -339,7 +385,7 @@ def build(stream, level, mohaa_base, files, lines, log=print):
         return 0
     bone_block, nbones, bidx = sk
     made = 0
-    for mname, chr_name, label in CHARS:
+    for mname, chr_names, label in CHARS:
         m = read_model(stream, mname)
         if not m or not m["meshes"]:
             continue
@@ -368,7 +414,10 @@ def build(stream, level, mohaa_base, files, lines, log=print):
                "$include models/human/new_generic_human.tik\n") % (mdir, label, "".join(tik_surf))
         tikp = "models/human/ea_%s_%s.tik" % (level, label)
         files[tikp] = tik.encode()
-        lines.append('\tlevel.ea_chr_tik["%s"] = "%s"' % (chr_name, tikp))
+        for chr_name in chr_names:
+            lines.append('\tlevel.ea_chr_tik["%s"] = "%s"' % (chr_name, tikp))
+            if chr_name in OWN:
+                lines.append('\tlevel.ea_chr_own["%s"] = 1' % chr_name)
         log("eachar: %s -> %s (%d sub-meshes, %d verts, textures %s)" % (
             mname, tikp, len(surfs), sum(len(x[0]) for x in m["meshes"]), sorted(m["textures"])))
         made += 1
