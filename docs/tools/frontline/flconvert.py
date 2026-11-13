@@ -231,8 +231,27 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         with open(tmp) as f:
             texmap = json.load(f).get(level, {})
 
+    _HD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hd")
+
+    def _local(up):
+        """[look 2026-11-13] a texture shipped next to the converter (hd/<file>, CC0, credited in hd/CREDITS.txt): its
+        bytes, or None. It is written into the converted pak under textures/hd/<file>."""
+        if not up.get("local"):
+            return None
+        fp = os.path.join(_HD_DIR, up["local"])
+        if not os.path.isfile(fp):
+            return None
+        up.setdefault("path", "textures/hd/" + up["local"])
+        return open(fp, "rb").read()
+
     def upgrade_ok(up):
-        """only when the player's own install carries the pak that holds the texture"""
+        """only when the player's own install carries the pak that holds the texture (or the converter ships it)"""
+        if up.get("local"):
+            data = _local(up)
+            if data is None:
+                return False
+            files.setdefault(up["path"], data)
+            return True
         if not mohaa_base:
             return False
         for game in ("maintt", "mainta", "main"):
@@ -271,19 +290,38 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         t = L.texture(key)
         if not (t and t["rgba"]):
             return None
-        fl = [fmean(t["rgba"][c::4]) for c in range(3)]
-        for game in ("maintt", "mainta", "main"):
-            pk = os.path.join(mohaa_base, game, up["pak"])
-            if os.path.exists(pk):
-                try:
-                    from PIL import Image
-                    im = Image.open(_io.BytesIO(zipfile.ZipFile(pk).read(up["path"]))).convert("RGB").resize((64, 64))
-                    px = im.tobytes()
-                    hd = [fmean(px[c::3]) for c in range(3)]
-                    return tuple(max(0.3, min(1.2, round(f / max(1.0, h), 3))) for f, h in zip(fl, hd))
-                except Exception:
-                    return None
-        return None
+        # [look 2026-11-13] a cut-out card is graded on its solid texels only (the clear ones hold no colour)
+        cut = bool(up.get("alpha"))
+        if cut:
+            sol = [i for i in range(0, len(t["rgba"]), 4) if t["rgba"][i + 3] >= 128]
+            if not sol:
+                return None
+            fl = [fmean(t["rgba"][i + c] for i in sol) for c in range(3)]
+        else:
+            fl = [fmean(t["rgba"][c::4]) for c in range(3)]
+        data = _local(up)
+        if data is None:
+            for game in ("maintt", "mainta", "main"):
+                pk = os.path.join(mohaa_base, game, up["pak"]) if up.get("pak") else None
+                if pk and os.path.exists(pk):
+                    try:
+                        data = zipfile.ZipFile(pk).read(up["path"])
+                    except Exception:
+                        return None
+                    break
+        if data is None:
+            return None
+        try:
+            from PIL import Image
+            im = Image.open(_io.BytesIO(data)).convert("RGBA").resize((64, 64))
+            px = im.tobytes()
+            idx = [i for i in range(0, len(px), 4) if px[i + 3] >= 128] if cut else list(range(0, len(px), 4))
+            if not idx:
+                return None
+            hd = [fmean(px[i + c] for i in idx) for c in range(3)]
+        except Exception:
+            return None
+        return tuple(max(0.3, min(1.2, round(f / max(1.0, h), 3))) for f, h in zip(fl, hd))
 
     debug_ids = {}
 
@@ -321,8 +359,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             # upgrade to a texture the mod already ships (fl_texmap.json); Frontline's vertex light stays on top
             sc = up.get("tc_scale", 1.0)
             tcm = ("\t\ttcMod scale %g %g\n" % (sc, sc)) if sc != 1.0 else ""
+            # [look 2026-11-13] "alpha": a cut-out card (tree, bush) keeps its hard alpha edge and writes depth
+            acut = "\t\talphaFunc GE128\n\t\tdepthWrite\n" if up.get("alpha") else ""
             shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tcull none\n\t{\n\t\tmap " + up["path"] + "\n"
-                                + tcm + "\t\trgbGen vertex\n\t}\n}\n")
+                                + tcm + acut + "\t\trgbGen vertex\n\t}\n}\n")
             stats["upgraded"] = stats.get("upgraded", 0) + 1
             if up.get("grade", True):
                 g = grade_for(key, up)
