@@ -21,7 +21,7 @@ area) and the props stood at the wrong places.
 
 | # | item (original) | port | status |
 |---|---|---|---|
-| R1 | Player start in the north-west field (-5438 3191), squad around him | same. 2026-11-12: the three Russians added at the co-op start are off by default (`coop_eaStartSquad 1` brings them back); the original has none there. Start kit from the Player record (see follow-up). | D |
+| R1 | Player start in the north-west field (-5438 3191), squad around him | same. 2026-11-13: the three Russians once added at the co-op start are removed (C17); the original has none there - its squad is handed over by the partisan leader. Start kit from the Player record (see follow-up). | D |
 | R2 | Kit: PPSh, Gewehr 43, stick grenades; bazookas are pickups on the map | same kit, 6 bazooka pickups at the original's points | M |
 | R3 | Route: start -> checkpoint -> partisan leader (west, -3500 -375) -> trenches / bridge / nebelwerfer (south-west) -> railgun (-941 -2463) -> village -> graveyard -> comm tower (4042 -2998) -> church (5140 -1935) | the same order emerges from the original's triggers in the self-test walk | M |
 | R4 | 137 logic objects (volume triggers, gag triggers, dialogue triggers, dispatchers, counters, timers, 5 demolition charges, a plunger) | all interpreted; trigger volumes from the record (sphere radius / box half-extents, rotated) | M (box extents' unit inferred: D until checked on screen) |
