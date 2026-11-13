@@ -39,14 +39,49 @@ def _arr(t, sharp):
     import numpy as np
     from PIL import Image, ImageFilter
     im = Image.frombytes("RGBA", (t["w"], t["h"]), bytes(t["rgba"]))
-    big = im.resize((t["w"] * PRE, t["h"] * PRE), Image.LANCZOS if sharp else Image.BICUBIC)
-    a = np.asarray(big, np.float32)
-    if sharp:
-        # Lanczos overshoots at the moon's rim: clamp every texel into the local 3x3 range of the source (no halo)
-        lo = np.asarray(im.filter(ImageFilter.MinFilter(3)).resize(big.size, Image.BILINEAR), np.float32)
-        hi = np.asarray(im.filter(ImageFilter.MaxFilter(3)).resize(big.size, Image.BILINEAR), np.float32)
-        a = np.minimum(np.maximum(a, lo), hi)
-    return a
+    if not sharp:
+        return np.asarray(im.resize((t["w"] * PRE, t["h"] * PRE), Image.BICUBIC), np.float32)
+    # the moon: resampled PREMULTIPLIED. Its glow texels are white with a low alpha; interpolating straight colour pulled
+    # that white into the disc's edge and drew a crisp bright ring (look QA 2026-11-13). Premultiplied, the edge keeps the
+    # texture's own alpha falloff (about three texels) and only the disc's colour. Lanczos keeps the craters; every texel
+    # is clamped into the local 3x3 range of the source so the sharpening adds no ring of its own. Returned premultiplied.
+    a0 = np.asarray(im, np.float32).copy()
+    # the texture's own rim: its partly transparent edge texels carry a light colour (a baked outline). Give them the
+    # colour of the disc just inside, so the edge is only the alpha falloff - soft, not a drawn ring
+    alpha = a0[..., 3].copy()
+    edge = (alpha > 60) & (alpha < 250)
+    edge0 = edge.copy()
+    good = alpha >= 250
+    rgb = a0[..., :3] * good[..., None]
+    wsum = good.astype(np.float32)
+    for _ in range(4):
+        if not edge.any():
+            break
+        k = lambda m: (m + np.roll(m, 1, 0) + np.roll(m, -1, 0) + np.roll(m, 1, 1) + np.roll(m, -1, 1)
+                       + np.roll(np.roll(m, 1, 0), 1, 1) + np.roll(np.roll(m, 1, 0), -1, 1)
+                       + np.roll(np.roll(m, -1, 0), 1, 1) + np.roll(np.roll(m, -1, 0), -1, 1))
+        s_ = k(rgb); w_ = k(wsum)
+        fill = edge & (w_ > 0) & ~good
+        a0[..., :3][fill] = (s_[fill] / w_[fill][:, None])
+        rgb[fill] = a0[..., :3][fill]
+        wsum[fill] = 1.0
+        good = good | fill
+        edge = edge & ~fill
+    # an edge texel is the disc (coverage t) over the white glow (the glow's own alpha just outside, about 38): composite
+    # them so the falloff runs from disc colour into glow, with neither a light ring nor a dark one
+    ga = float(np.median(alpha[(alpha > 20) & (alpha < 60)])) if ((alpha > 20) & (alpha < 60)).any() else 0.0
+    pm = a0.copy()
+    pm[..., :3] *= a0[..., 3:4] / 255.0
+    if edge0.any():
+        tcov = np.clip((alpha - ga) / max(1.0, 255.0 - ga), 0.0, 1.0)[..., None]
+        pm[..., :3] = np.where(edge0[..., None], a0[..., :3] * tcov + 255.0 * (ga / 255.0) * (1 - tcov), pm[..., :3])
+    def up(ch, mode):
+        return np.stack([np.asarray(Image.fromarray(ch[..., c]).resize((t["w"] * PRE, t["h"] * PRE), mode), np.float32)
+                         for c in range(4)], -1)
+    big = up(pm, Image.LANCZOS)
+    lo = up(np.stack([np.asarray(Image.fromarray(pm[..., c]).filter(ImageFilter.MinFilter(3)), np.float32) for c in range(4)], -1), Image.BILINEAR)
+    hi = up(np.stack([np.asarray(Image.fromarray(pm[..., c]).filter(ImageFilter.MaxFilter(3)), np.float32) for c in range(4)], -1), Image.BILINEAR)
+    return np.minimum(np.maximum(big, lo), hi)
 
 
 def _bilerp(a, u, v):
@@ -148,7 +183,7 @@ def build(L, spec, size=None):
             if sel.any():
                 mc = _bilerp(msrc, (qy[sel] - mq[1]) / (mq[2] - mq[1]), (mq[4] - qz[sel]) / (mq[4] - mq[3]))
                 al = mc[:, 3:4] / 255.0
-                col[sel] = col[sel] * (1 - al) + mc[:, :3] * al
+                col[sel] = col[sel] * (1 - al) + mc[:, :3]       # premultiplied moon (see _arr)
         rgba = np.empty((n, n, 4), np.uint8)
         rgba[..., :3] = np.clip(col + 0.5, 0, 255).astype(np.uint8)
         rgba[..., 3] = 255
