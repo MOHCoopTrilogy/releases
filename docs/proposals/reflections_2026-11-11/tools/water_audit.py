@@ -55,6 +55,7 @@ def main():
                 names = [b[so + 140 * k: so + 140 * k + 64].split(b"\0")[0].decode("latin-1").lower() for k in range(sl // 140)]
                 levels, used = [], collections.Counter()
                 mb = [1e30, 1e30, -1e30, -1e30]
+                land = []
                 for k in range(fl // 108):
                     sn, fog, stype, fv, nv = struct.unpack_from("<5i", b, fo + 108 * k)
                     if not (0 <= sn < len(names)) or nv < 3:
@@ -67,6 +68,7 @@ def main():
                     if n not in allow:
                         if "sky" not in n and "common/" not in n:
                             mb = [min(mb[0], min(xs)), min(mb[1], min(ys)), max(mb[2], max(xs)), max(mb[3], max(ys))]
+                            land.extend(zip(xs, ys, zs))
                         continue
                     used[n] += 1
                     if n == ICE or max(zs) - min(zs) > 8:
@@ -106,6 +108,14 @@ def main():
                     bx = D["box"]
                     touch = [s for s, c in (("-x", bx[0] <= mb[0] + 512), ("+x", bx[2] >= mb[2] - 512),
                                             ("-y", bx[1] <= mb[1] + 512), ("+y", bx[3] >= mb[3] - 512)) if c]
+                    # [2026-11-12] engine rule 2: the water reaches the edge of the land ABOVE its waterline (a seabed under the
+                    # water no longer hides an open sea). Terrain is not read here (the engine counts it as land).
+                    up = [(x, y) for x, y, zz in land if zz > D["z"] + 16]
+                    if up:
+                        lb = [min(p[0] for p in up), min(p[1] for p in up), max(p[0] for p in up), max(p[1] for p in up)]
+                        touch += [s + "(land)" for s, c in (("-x", bx[0] <= lb[0] + 512), ("+x", bx[2] >= lb[2] - 512),
+                                                            ("-y", bx[1] <= lb[1] + 512), ("+y", bx[3] >= lb[3] - 512))
+                                  if c and s not in touch]
                     diag = ((bx[2] - bx[0]) ** 2 + (bx[3] - bx[1]) ** 2) ** 0.5
                     near = sum(1 for c in cams if bx[0] - 1500 < c[0] < bx[2] + 1500 and bx[1] - 1500 < c[1] < bx[3] + 1500 and c[2] > D["z"])
                     r.update(z=D["z"], area=D["area"], box=bx, mapbox=mb, touch=touch, diag=diag, sh=D["sh"], camsnear=near,
