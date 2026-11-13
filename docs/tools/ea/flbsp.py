@@ -113,22 +113,40 @@ class BSP:
         self.brushes.append({"shader": shader_ix, "sides": sides, "bounds": (list(lo), list(hi))})
         return len(self.brushes) - 1
 
-    def add_prism(self, shader_ix, a, b, c, thickness, centered=False):
+    def add_prism(self, shader_ix, a, b, c, thickness, centered=False, vertical_sides=False):
         """Thin convex brush on triangle abc. centered=False: the slab lies behind the face (front face = abc's
         normal). centered=True: the slab straddles the face (+-thickness/2) - independent of the source winding,
         which Frontline's collision does not keep consistent (a reversed floor would otherwise grow a slab
-        UPWARD and every such triangle becomes a step the navmesh cannot climb)."""
+        UPWARD and every such triangle becomes a step the navmesh cannot climb).
+        vertical_sides=True (a floor-like triangle, |normal z| >= 0.5): the edge faces stand vertical over the
+        triangle's edges instead of square to its tilt. A tilted slab's square edge face leans over its uphill
+        neighbour - a steep (55-60 degree) sliver standing up to 2u proud where a flat floor meets a downslope, and
+        the engine's step-up lands on it, finds it too steep and takes the step back (PM_StepSlideMove): the player
+        stood still at the bridge's west end, eastbound only, at walking speed. A vertical face is a plain 0-2u
+        riser the step-up always clears."""
         n = _norm(_cross(_sub(b, a), _sub(c, a)))
         if n is None:
             return None
         d = _dot(n, a)
         front = thickness / 2.0 if centered else 0.0
         back_d = thickness - front
-        top = [(p[0] + n[0] * front, p[1] + n[1] * front, p[2] + n[2] * front) for p in (a, b, c)]
-        back = [(p[0] - n[0] * back_d, p[1] - n[1] * back_d, p[2] - n[2] * back_d) for p in (a, b, c)]
+        vert = vertical_sides and abs(n[2]) >= 0.5
+        if vert:
+            top = [(p[0], p[1], p[2] + front / n[2]) for p in (a, b, c)]
+            back = [(p[0], p[1], p[2] - back_d / n[2]) for p in (a, b, c)]
+        else:
+            top = [(p[0] + n[0] * front, p[1] + n[1] * front, p[2] + n[2] * front) for p in (a, b, c)]
+            back = [(p[0] - n[0] * back_d, p[1] - n[1] * back_d, p[2] - n[2] * back_d) for p in (a, b, c)]
         planes = [(n, d + front), ((-n[0], -n[1], -n[2]), -(d - back_d))]
         for p, q in ((a, b), (b, c), (c, a)):
-            e = _norm(_cross(_sub(q, p), n))       # outward for a CCW-from-front triangle
+            if vert:
+                e = _norm((q[1] - p[1], -(q[0] - p[0]), 0.0))
+                if e is not None:
+                    opp = c if (p, q) == (a, b) else (a if (p, q) == (b, c) else b)
+                    if _dot(e, opp) - _dot(e, p) > 0:
+                        e = (-e[0], -e[1], -e[2])
+            else:
+                e = _norm(_cross(_sub(q, p), n))       # outward for a CCW-from-front triangle
             if e is None:
                 return None
             planes.append((e, _dot(e, p)))

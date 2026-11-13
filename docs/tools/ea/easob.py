@@ -13,6 +13,7 @@ Reverse-engineered 2026-11-10 on the user's own Xbox USA disc (1_11):
   - index strips: u32 0x00040000 at X-0x10, count at X, u16 strip at X+0x20 (the .cpt rule with 4 for 5).
 .data of each ELF starts at ELF+0x40; symbol values are .data offsets.
 """
+import math
 import re
 import struct
 
@@ -33,6 +34,34 @@ def chunks(d):
             break
         yield p, typ, d[p:p + sz]
         p += sz
+
+
+def _drop_strip_bridges(tris, pos, uv):
+    """0.7.27: an unindexed draw holds several strips back to back with no degenerate stitch between them (the
+    radio tower's guy wires: four-vertex quads after two rings). Read as one strip, the turn from one wire's end
+    to the next wire's start is a real triangle - 3-12 m2 of wire texture stretched over it: the 'flat blue and
+    white striped panel' at the tower's foot (user 2026-11-12: does the original really look like that? it does
+    not). Such a bridge carries almost no texture for its size: its texture area per square metre is under a
+    50th of a strip neighbour's, where true neighbours agree within a few times. Those of 2 m2 or more are
+    dropped (a big panel's two halves agree with each other, so they stay)."""
+    def area3(a, b, c):
+        u = [b[k] - a[k] for k in range(3)]
+        v = [c[k] - a[k] for k in range(3)]
+        return 0.5 * math.sqrt((u[1] * v[2] - u[2] * v[1]) ** 2 + (u[2] * v[0] - u[0] * v[2]) ** 2 + (u[0] * v[1] - u[1] * v[0]) ** 2)
+
+    def area2(a, b, c):
+        return 0.5 * abs((b[0] - a[0]) * (c[1] - a[1]) - (c[0] - a[0]) * (b[1] - a[1]))
+    dens = []
+    for t in tris:
+        s = area3(*(pos[i] for i in t))
+        dens.append(area2(*(uv[i] for i in t)) / s if s > 1e-6 else None)
+    out = []
+    for k, (t, d) in enumerate(zip(tris, dens)):
+        nb = [x for x in (dens[k - 1] if k else None, dens[k + 1] if k + 1 < len(dens) else None) if x is not None]
+        if d is not None and nb and d < max(nb) / 50.0 and area3(*(pos[i] for i in t)) >= 2.0:
+            continue
+        out.append(t)
+    return out
 
 
 class Store:
@@ -174,8 +203,11 @@ class Store:
             tex = shp[0] if shp else None
             if len(shp) > 1 and uv2 is not None and (nm and nm.group(2) == b"Moh3_Msh_Texture2"):
                 tex = shp[0] + "+" + shp[1]
+            tris = list(eacpt.strip_tris(idx))
+            if ib is None and "uv" in att and len(tris) > 8:
+                tris = _drop_strip_bridges(tris, pos, uv)
             out.append({"pos": pos, "uv": uv, "uv2": uv2 if tex and "+" in tex else None, "col": col,
-                        "tris": list(eacpt.strip_tris(idx)), "tex": tex,
+                        "tris": tris, "tex": tex,
                         "shader": nm.group(2).decode() if nm else ""})
         return out
 
