@@ -476,12 +476,19 @@ def build(stream, level, mohaa_base, files, lines, log=print):
                 files.setdefault("scripts/ea_%s_chars.shader" % level, b"")
                 files["scripts/ea_%s_chars.shader" % level] += (
                     "%s\n{\n\tcull none\n\t{\n\t\tmap %s\n%s\t\trgbGen lightingSpherical\n\t}\n}\n\n" % (
-                        shname, tname, "\t\talphaFunc GE128\n" if cut else "")).encode()
+                        shname, tname, "\t\tblendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n\t\tdepthWrite\n" if cut
+                        else "")).encode()
+                # '#a' (GeoPrimState ABM_BLEND) pieces are alpha-BLENDED as on the disc: the German helmet carries a
+                # soft shadow card under its brim (alpha 0..222 gradient) that an alpha test drew as a solid black
+                # band across his eyes; the opaque texels still write depth
             tik_surf.append("\tsurface %s shader %s\n" % (sn, shname))
+        axis = label.startswith(("german", "ss_"))   # as the stock German tiks: 'german' and the German dialogue
         tik = ("TIKI\nsetup\n{\n\tscale 0.52\n\tpath %s\n\tskelmodel %s.skd\n%s\tpath models/human/protoanimations\n"
                "\tradius 20\n}\n\ninit\n{\n\tserver\n\t{\n\t\tclassname Actor\n\t\tsetsize \"-16 -16 0\" \"16 16 92\"\n"
-               "\t\tamerican\n\t\thealth 100\n\t}\n}\n\n$include models/human/animation/dialogue/generic_dialogue_ru.tik\n"
-               "$include models/human/new_generic_human.tik\n") % (mdir, label, "".join(tik_surf))
+               "\t\t%s\n\t\thealth 100\n\t}\n}\n\n$include models/human/animation/dialogue/%s.tik\n"
+               "$include models/human/new_generic_human.tik\n") % (
+            mdir, label, "".join(tik_surf), "german" if axis else "american",
+            "generic_dialogue_german" if axis else "generic_dialogue_ru")
         tikp = "models/human/ea_%s_%s.tik" % (level, label)
         files[tikp] = tik.encode()
         for chr_name in chr_names:
