@@ -476,6 +476,26 @@ Not matched or not verified: the tank's hull MG is a hidden stock MG42 (the disc
 the cannon aims at the nearest player; tank destruction stays the user-approved rocket kill (TRACE_panzer_kill.md:
 the original's rockets do not kill it); the listener waits while a player watches his spot (spawn rule).
 
+## Round 16 (flfix2, 2026-11-12) - collision: doorways and arches
+
+User playtest (2026-11-12): "invisible walls" in doorways, arches, lanes and wall holes along the route (screens
+10-22). Stills, logs and walk results under `H:/hzm_work/flpolish/fix2/r16/`; offline sweeps
+(`walksweep.py`, `routesweep.py`, `cross.py`) in the round's scratch folder. Build v106 (`H:/hzm_work/flpolish/v106_fl_1_1.pk3`).
+
+| check | v95 (as played) | v106 | proof |
+|---|---|---|---|
+| Octagonal arch from the dark stone room to the lane before the crawl hole (screen 10), off its centre line (x 2990) | standing player stopped under the arch's right chamfer (90-105u up), passes crouched | passes standing both ways (2975, 2985, 2990) | `r16/c_v106/archx2990_ab_stand_pre.jpg` / `_stand.jpg`, `c_v106.out` (origin 2990,-2260 -> 2990,-1974) |
+| Arch into the breach yard (screen 22) | passes standing in the test engine | passes standing both ways | `r16/c_v106/yard5180_ab_stand*.jpg` (origin -2700 -> -3082) |
+| Engine walk, 50 AI-route crossings both ways + the two arches (1 client) | 82 of 89 standing, 2 crouch only, 5 blocked | 100 of 108 standing, 1 crouch only, 7 blocked (2 starts inside a fitted post, the same 5 as v95) | `main_v95.out`, `c_v106.out` |
+| Offline route-pair sweep (MOHAA box 30 x 94 / 54, step 38) | 154 pairs blocked standing | 111 | |
+| geoaudit | walkable 74615, void falls 0, must-crouch cells 1277 | 74725, 0, 965 | |
+| Screens 11, 12, 15-20 | not located on the map (no positions in the playtest log) - NOT verified | | |
+
+Cause found: Frontline's doors and arches are about 2.0 m (96u) high and their collision is a vertical sheet ending at
+the door top (no ceiling face, so the headroom pass never saw them); with the 2u floor slab that left 94u - exactly
+MOHAA's stand box - and the engine lifts the box a full step (38u) over any seam or stub before sliding on. Arches'
+chamfers start at 90-105u. Converter: `flclear.lift_lintels` (commits 8af40870, 31725dc3).
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -558,3 +578,5 @@ the original's rockets do not kill it); the listener waits while a player watche
 | Stock AI barks | only the original's lines | level.coop_discBarksOnly = 1: no stock voice, chatter or taunts (bug-11110); the disc's two German combat lines (script bank 20 'Lass ihn nicht abhauen!', 21 'Das warst du, alliiertes Schwein!') on the AI voice's attack and man-down situations (bug-11113) | user-approved 2026-11-12; situation mapping a choice (the original's AI states are not decoded) |
 | Church-tower MG mount | a tripod MG on the tower floor (the walk frames do not show its height) | the stock turret on sandbags at floor + 44, disc x/y and facing kept: MOHAA's use trace cannot reach a turret at floor height (bug-11112) | forced (engine use height) |
 | Other mounted guns (1, 2, 5, 6) | usable | reached and mounted on foot with use (run guns); facing from the records, not checked against frames | facing unverified |
+| Collision over doors, arches and wall gaps (round 16) | the wall's collision ends where it is drawn (about 96u over the floor, arch chamfers from about 90u) | collision only: whatever hangs 56-136u over a floor that runs on level through the wall is cut away up to 136u over that floor; the AI-route carve cuts walls to 136u (ceilings still 106u); doorway soffit caps at 136u. Shots pass through that band of drawn wall over an opening | forced (MOHAA's 94u stand box + its 38u step-up) |
+| Low openings the original crouched through, 56-82u high | crouch | can be walked through standing where the opening runs on level both sides | side effect of the row above |
