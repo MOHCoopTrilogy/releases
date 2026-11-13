@@ -384,16 +384,12 @@ def _axis_rot(k, a):
 
 # One level of Loop subdivision on the body sub-meshes (user decision 2026-11-13, option C: rounder elbows, knees and
 # shoulders, no bloat), the Loop positions blended with the plain midpoint split by SMOOTH (1 = full Loop, which
-# shrinks the mesh); weights and uvs interpolated linearly; head and neck vertices keep their place. All or nothing per
-# character: if one body sub-mesh would pass the engine's 2,048 vertices per surface (2,000 kept as margin), the
-# character keeps its own mesh (its upscaled textures still apply). SUBDIV: per-label override (0 = off).
+# shrinks the mesh); weights and uvs interpolated linearly; head and neck vertices keep their place. The 4x triangles
+# are cut into engine-sized surfaces in skin(). SUBDIV: per-label override (0 = off).
 SMOOTH = 0.6
 SUBDIV = {}
-SUBDIV_MAX = 2000
-
-
-def _edge_count(tris):
-    return len({(min(a, b), max(a, b)) for t in tris for a, b in ((t[0], t[1]), (t[1], t[2]), (t[2], t[0]))})
+TIKI_MAX_VERTS = 999       # tiki_shared.h TIKI_MAX_VERTEXES 1000 / TIKI_MAX_TRIANGLES 2000, refused when exceeded
+TIKI_MAX_TRIS = 1999
 
 
 def _subdivide(V, N, W, uv, tris, k):
@@ -459,9 +455,6 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
     T, s = repose(skel, J)
     blobs, surf_names = [], []
     smooth = SUBDIV.get(label, SMOOTH)
-    if smooth and any(len(pos) + _edge_count(tris) > SUBDIV_MAX for pos, uv, tris, shape in model["meshes"]
-                      if shape and "#a" not in shape):
-        smooth = 0.0
     model["smoothed"] = smooth
     for k, ((pos, uv, tris, shape), sd) in enumerate(zip(model["meshes"], sdata)):
         V, N, W = [], [], []
@@ -488,28 +481,46 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
             out_t.append(t if _dot(fn, _add(_add(N[t[0]], N[t[1]]), N[t[2]])) >= 0 else (t[0], t[2], t[1]))
         if smooth and shape and "#a" not in shape:
             V, N, W, uv, out_t = _subdivide(V, N, W, list(uv), out_t, smooth)
-        vb = bytearray()
-        for j in range(len(V)):
-            bp, ax = J[W[j][0][0]]
-            nn = N[j]
-            vb += struct.pack("<3f2f2i", _dot(nn, ax[0]), _dot(nn, ax[1]), _dot(nn, ax[2]), uv[j][0], uv[j][1],
-                              len(W[j]), 0)
-            for bn, w in W[j]:
-                bp, ax = J[bn]
-                dv = _sub(V[j], bp)
-                vb += struct.pack("<if3f", bidx[bn], w, _dot(dv, ax[0]), _dot(dv, ax[1]), _dot(dv, ax[2]))
-        tb = b"".join(struct.pack("<3i", *t) for t in out_t)
-        nV, nT = len(V), len(out_t)
-        sn = "%s_%d" % (label, k)
-        surf_names.append((sn, shape))
-        ofsTri = 100
-        ofsVerts = ofsTri + len(tb)
-        ofsColl = ofsVerts + len(vb)
-        ofsCollIdx = ofsColl + 4 * nV
-        ofsEnd = ofsCollIdx + 4 * nV
-        hdr = struct.pack("<4s64s8i", b"SKL ", sn.encode().ljust(64, b"\0"), nT, nV, 0, ofsTri, ofsVerts, ofsColl,
-                          ofsEnd, ofsCollIdx)
-        blobs.append(hdr + tb + bytes(vb) + struct.pack("<%di" % nV, *range(nV)) + struct.pack("<%di" % nV, *([0] * nV)))
+        # the engine's skeletal loader refuses a surface over 1,000 vertices or 2,000 triangles (TIKI_MAX_VERTEXES /
+        # _TRIANGLES; the whole model then fails to load): long sub-meshes are cut into chunks, each its own surface
+        # with the same shader (chunk-edge vertices are duplicated with identical position, normal and weights)
+        chunks, cur, cmap = [], [], {}
+        for t in out_t:
+            new = sum(1 for x in t if x not in cmap)
+            if cur and (len(cmap) + new > TIKI_MAX_VERTS or len(cur) + 1 > TIKI_MAX_TRIS):
+                chunks.append((cur, cmap))
+                cur, cmap = [], {}
+            for x in t:
+                if x not in cmap:
+                    cmap[x] = len(cmap)
+            cur.append(t)
+        if cur:
+            chunks.append((cur, cmap))
+        for c, (ct, cmap) in enumerate(chunks):
+            order = sorted(cmap, key=cmap.get)
+            vb = bytearray()
+            for j in order:
+                bp, ax = J[W[j][0][0]]
+                nn = N[j]
+                vb += struct.pack("<3f2f2i", _dot(nn, ax[0]), _dot(nn, ax[1]), _dot(nn, ax[2]), uv[j][0], uv[j][1],
+                                  len(W[j]), 0)
+                for bn, w in W[j]:
+                    bp, ax = J[bn]
+                    dv = _sub(V[j], bp)
+                    vb += struct.pack("<if3f", bidx[bn], w, _dot(dv, ax[0]), _dot(dv, ax[1]), _dot(dv, ax[2]))
+            tb = b"".join(struct.pack("<3i", cmap[t[0]], cmap[t[1]], cmap[t[2]]) for t in ct)
+            nV, nT = len(order), len(ct)
+            sn = "%s_%d" % (label, k) if len(chunks) == 1 else "%s_%d_%d" % (label, k, c)
+            surf_names.append((sn, shape))
+            ofsTri = 100
+            ofsVerts = ofsTri + len(tb)
+            ofsColl = ofsVerts + len(vb)
+            ofsCollIdx = ofsColl + 4 * nV
+            ofsEnd = ofsCollIdx + 4 * nV
+            hdr = struct.pack("<4s64s8i", b"SKL ", sn.encode().ljust(64, b"\0"), nT, nV, 0, ofsTri, ofsVerts, ofsColl,
+                              ofsEnd, ofsCollIdx)
+            blobs.append(hdr + tb + bytes(vb) + struct.pack("<%di" % nV, *range(nV))
+                         + struct.pack("<%di" % nV, *([0] * nV)))
     body = b"".join(blobs)
     total = 148 + len(bone_block) + len(body)
     head = struct.pack("<4si64s5i10i4i", b"SKMD", 5, ("ea_" + label).encode().ljust(64, b"\0"), len(blobs), nbones,
@@ -574,6 +585,6 @@ def build(stream, level, mohaa_base, files, lines, log=print):
                 lines.append('\tlevel.ea_chr_own["%s"] = 1' % chr_name)
         log("eachar: %s -> %s (%d sub-meshes, %d verts, textures %s, %s)" % (
             mname, tikp, len(surfs), sum(len(x[0]) for x in m["meshes"]), sorted(m["textures"]),
-            "smoothed" if m.get("smoothed") else "own mesh (too dense to smooth)"))
+            "smoothed" if m.get("smoothed") else "own mesh"))
         made += 1
     return made
