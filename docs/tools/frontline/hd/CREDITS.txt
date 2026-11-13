@@ -6,4 +6,3 @@ grey_roof_tiles_02.jpg  page https://polyhaven.com/a/grey_roof_tiles_02  file ht
 old_planks_02.jpg  page https://polyhaven.com/a/old_planks_02  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/old_planks_02/old_planks_02_diff_1k.jpg  CC0
 stony_dirt_path.jpg  page https://polyhaven.com/a/stony_dirt_path  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/stony_dirt_path/stony_dirt_path_diff_1k.jpg  CC0
 worn_mossy_plasterwall.jpg  page https://polyhaven.com/a/worn_mossy_plasterwall  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/worn_mossy_plasterwall/worn_mossy_plasterwall_diff_1k.jpg  CC0
-weathered_planks.jpg  page https://polyhaven.com/a/weathered_planks  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/weathered_planks/weathered_planks_diff_1k.jpg  CC0
