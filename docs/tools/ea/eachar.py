@@ -382,10 +382,18 @@ def _axis_rot(k, a):
     return [[_I3[i][j] + s * K[i][j] + (1 - c) * K2[i][j] for j in range(3)] for i in range(3)]
 
 
-# EXPERIMENT (off): one level of Loop subdivision on the body sub-meshes of these characters, the Loop positions
-# blended with the plain midpoint split by the given factor (1 = full Loop; it shrinks the mesh), weights and uvs
-# interpolated linearly. A sub-mesh that would pass the engine's 2,048 vertices per surface keeps its own mesh.
+# One level of Loop subdivision on the body sub-meshes (user decision 2026-11-13, option C: rounder elbows, knees and
+# shoulders, no bloat), the Loop positions blended with the plain midpoint split by SMOOTH (1 = full Loop, which
+# shrinks the mesh); weights and uvs interpolated linearly; head and neck vertices keep their place. All or nothing per
+# character: if one body sub-mesh would pass the engine's 2,048 vertices per surface (2,000 kept as margin), the
+# character keeps its own mesh (its upscaled textures still apply). SUBDIV: per-label override (0 = off).
+SMOOTH = 0.6
 SUBDIV = {}
+SUBDIV_MAX = 2000
+
+
+def _edge_count(tris):
+    return len({(min(a, b), max(a, b)) for t in tris for a, b in ((t[0], t[1]), (t[1], t[2]), (t[2], t[0]))})
 
 
 def _subdivide(V, N, W, uv, tris, k):
@@ -393,8 +401,6 @@ def _subdivide(V, N, W, uv, tris, k):
     for t in tris:
         for a, b, c in ((t[0], t[1], t[2]), (t[1], t[2], t[0]), (t[2], t[0], t[1])):
             edges.setdefault((min(a, b), max(a, b)), []).append(c)
-    if len(V) + len(edges) > 2000:
-        return V, N, W, uv, tris
     nb = [set() for _ in V]
     bnd = [[] for _ in V]
     # the body only: anything riding the head or neck keeps its shape (the face shrank off its mouth card)
@@ -452,6 +458,11 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
     J = {nm: (p, _axes(*a)) for nm, (p, a) in POSE.items()}
     T, s = repose(skel, J)
     blobs, surf_names = [], []
+    smooth = SUBDIV.get(label, SMOOTH)
+    if smooth and any(len(pos) + _edge_count(tris) > SUBDIV_MAX for pos, uv, tris, shape in model["meshes"]
+                      if shape and "#a" not in shape):
+        smooth = 0.0
+    model["smoothed"] = smooth
     for k, ((pos, uv, tris, shape), sd) in enumerate(zip(model["meshes"], sdata)):
         V, N, W = [], [], []
         for j, p in enumerate(pos):
@@ -475,8 +486,8 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
         for t in tris:
             fn = _cross(_sub(V[t[1]], V[t[0]]), _sub(V[t[2]], V[t[0]]))
             out_t.append(t if _dot(fn, _add(_add(N[t[0]], N[t[1]]), N[t[2]])) >= 0 else (t[0], t[2], t[1]))
-        if label in SUBDIV and shape and "#a" not in shape:
-            V, N, W, uv, out_t = _subdivide(V, N, W, list(uv), out_t, SUBDIV[label])
+        if smooth and shape and "#a" not in shape:
+            V, N, W, uv, out_t = _subdivide(V, N, W, list(uv), out_t, smooth)
         vb = bytearray()
         for j in range(len(V)):
             bp, ax = J[W[j][0][0]]
@@ -561,7 +572,8 @@ def build(stream, level, mohaa_base, files, lines, log=print):
             lines.append('\tlevel.ea_chr_tik["%s"] = "%s"' % (chr_name, tikp))
             if chr_name in OWN:
                 lines.append('\tlevel.ea_chr_own["%s"] = 1' % chr_name)
-        log("eachar: %s -> %s (%d sub-meshes, %d verts, textures %s)" % (
-            mname, tikp, len(surfs), sum(len(x[0]) for x in m["meshes"]), sorted(m["textures"])))
+        log("eachar: %s -> %s (%d sub-meshes, %d verts, textures %s, %s)" % (
+            mname, tikp, len(surfs), sum(len(x[0]) for x in m["meshes"]), sorted(m["textures"]),
+            "smoothed" if m.get("smoothed") else "own mesh (too dense to smooth)"))
         made += 1
     return made

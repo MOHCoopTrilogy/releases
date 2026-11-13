@@ -96,4 +96,12 @@ def convert(image, level, out_dir, mohaa, progress, opts):
                     files.append(hp)
             except Exception as e:     # optional too
                 progress(step="upscale", game="ea", level=level, skipped=str(e))
+            try:                       # the level's own characters (eachar.py textures), same upscaler
+                import eacharup
+                cp = os.path.join(out_dir, "zzzz_ea_hdchr_%s.pk3" % level)
+                eacharup.main(out, level, cp, up)
+                if os.path.exists(cp):
+                    files.append(cp)
+            except Exception as e:
+                progress(step="upscale", game="ea", level=level, skipped="characters: %s" % e)
     return files
