@@ -48,7 +48,8 @@ BATCH = {"mode": None, "key": None, "in": None, "out": None}
 
 def _esrgan(exe, src, dst, threads, timeout):
     try:
-        r = subprocess.run([exe, "-i", src, "-o", dst, "-n", "realesrgan-x4plus", "-s", "4", "-t", "128", "-j", threads,
+        # [look QA 2026-11-12] 512 px tiles: 128 px tiles left square seams in noisy ground (EA PUfh_NMVX)
+        r = subprocess.run([exe, "-i", src, "-o", dst, "-n", "realesrgan-x4plus", "-s", "4", "-t", "512", "-j", threads,
                             "-f", "png"], cwd=os.path.dirname(exe), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                            creationflags=0x08000000 | 0x00000040, timeout=timeout)   # no window, IDLE_PRIORITY_CLASS
     except Exception:
@@ -237,6 +238,10 @@ def upscale_one(exe, im, tmp, threads, cut_pre=0):
         return None, "brightness drift"
     if np.abs(back - orig).mean() > 14:
         return None, "downscale-back mismatch"
+    # [look QA 2026-11-12] ESRGAN reads fine gravel / snow grain as noise and smooths it away: keep the original when the
+    # result, boxed back to the source size, has lost more than half of the source's fine detail
+    if lap_energy(back) < 0.5 * lap_energy(orig):
+        return None, "detail lost (smoothed)"
     bic = np.asarray(Image.fromarray(a[:, :, :3]).resize((w * 4, h * 4), Image.BICUBIC))
     if lap_energy(up) > WORM_LIMIT * max(1.0, lap_energy(bic)):
         return None, "worm-noise"
