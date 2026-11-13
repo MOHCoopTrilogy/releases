@@ -140,6 +140,9 @@ def main():
         cp(os.path.join(ea_src, m + ".py"), os.path.join(ea_dst, m + ".py"))
     for j in glob.glob(os.path.join(ea_src, "*.json")):
         cp(j, os.path.join(ea_dst, os.path.basename(j)))
+    # [look 2026-11-13] CC0 textures shipped next to the EA converter (ea_texmap.json "local", hd/CREDITS.txt)
+    for f in glob.glob(os.path.join(ea_src, "hd", "*")):
+        cp(f, os.path.join(ea_dst, "hd", os.path.basename(f)))
     print("ea modules:", " ".join(sorted(need)))
 
     # nothing from a disc may be in here (it never should be: the tree is our code + the runtimes above)
