@@ -703,7 +703,8 @@
    {"name": "wb17", "mesh": "walbrk.mpk#17", "object": 284},
    {"name": "wb18", "mesh": "walbrk.mpk#18", "object": 284},
    {"name": "wb19", "mesh": "walbrk.mpk#19", "object": 284},
-   {"name": "wb20", "mesh": "walbrk.mpk#20", "object": 284, "boxes": [[[-1.0, 0.0, -0.04], [0.47, 0.57, 3.45]], [[-1.0, 3.93, -0.04], [0.47, 6.92, 3.45]]]}
+   {"name": "wb20", "mesh": "walbrk.mpk#20", "object": 284, "boxes": [[[-1.0, 0.0, -0.04], [0.47, 0.57, 3.45]], [[-1.0, 3.93, -0.04], [0.47, 6.92, 3.45]]]},
+   {"name": "house_remove", "mesh": "house_remove_1_1.msh", "object": 293, "boxes": [[[0.27, 0.26, -0.38], [5.36, 0.44, 3.47]], [[0.27, 0.26, 0.15], [0.46, 5.4, 3.48]]], "note": "round 20: the bombed house wall section that stands before the blast (ObjectivePickUp rec 293, removed on message 74 from trigger 83); clip on its two wall faces"}
   ],
   "particles": {"models": {"smoke": "models/emitters/tehao_firesmoke_long.tik", "pall": "models/emitters/tehao_thicksmoke.tik", "flame": "models/emitters/tehao_fire.tik", "blast": "models/emitters/explosion_bombdirt.tik"}, "start": {"8": "house", "51": "bombA"}, "life": {"51": 8}},
   "_particles": "[flfix2 round 20] Frontline placed particle systems (.bpd kind 9, flscene.particle) -> stock MOHAA emitters by decoded type (flpack._particles): smoke = rises steadily, grey; pall = big, black, hangs (sinks as well as rises); flame = orange start colour; blast = one-shot burst or scripted explosion class. start: record -> our reading where the record's own start field (word 32 high half: 1 load, 2 event) is not enough: 8 = the house smoke, which the original shows only after the house blast (ref_xemu/trace/b41h_prepost.png); 51 = StartBeachExplosionBig, listed with bomb A's blast set in the AUDIT (its starter on link 6:240 is not identified). life: seconds the stand-in stays for a burst (51: its four by-type systems + the 20-tick follow-up live up to 7.1 s).",
