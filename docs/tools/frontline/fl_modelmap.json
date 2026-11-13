@@ -8,8 +8,9 @@
     "tile": 128,
     "overshoot": 0.25,
     "core": [0.5, 1.0],
-    "core_shade": 0.75,
-    "_core": "[flfix2 round 19, bug-11162] the image's crown band (rows 15-45%, gappy) lands on the top third of the original's OPAQUE box once the card is stretched over 1.25x its height, so the hedge was see-through there (at the level's edge into the void). core = an opaque copy of each original hedge face, unraised, in the image's leaf body (v 0.5-1.0, no alpha), 0.75 darker; the card gets polygonOffset and stays in front. Above the old top the crown stays open, as before.",
+    "core_shade": 0.85,
+    "core_skirt": 96,
+    "_core": "[flfix2 round 19, bug-11162] the image's crown band (rows 15-45%, gappy) lands on the top third of the original's OPAQUE box once the card is stretched over 1.25x its height, so the hedge was see-through there (at the level's edge into the void). core = an opaque copy of each original hedge face, unraised, in the image's leaf body (v 0.5-1.0, no alpha), 0.85 darker, its foot taken 96u further down (where the ground falls away the void showed under the hedge); the card gets polygonOffset and stays in front. Above the old top the crown stays open, as before.",
     "reason": "Frontline's hedges are opaque boxes (422 vertical faces, no tops; the user called them solid-looking). MOHAA has no usable hedge MODEL (the mod's models/hedgerow.tik is a broken Call of Duty port: missing .skc); MOHAA's own Normandy bocage is brush cards with textures/misc_outside/hedgerow.tga (HD in zzzzz_hd_foliage), so the same art is used the same way: facade-mapped on the box sides, crown raised 25% so the leafy alpha top replaces the flat edge. Render only - the hedge collision brushes are Frontline's, unchanged."
    }
   },
