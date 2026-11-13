@@ -27,7 +27,7 @@ DEFAULTS = {"cell": 8.0, "crawl_min": 24.0, "crawl_to": 60.0, "door_min": 78.0, 
             # + the 94u stand box + the floor slab's 2u + 2u: MOHAA's PM_StepSlideMove lifts the box a FULL step before
             # it slides on, so a 2-4u floor seam or a door step under a lintel needs the whole step of headroom.
             # 56: an arch springs from its jambs at ~64u; a crawl hole's top (<56) stays (flclear crawl cells)
-            "lintel_min": 56.0, "lintel_to": 136.0, "lintel_flush": 38.0,
+            "lintel_min": 56.0, "lintel_to": 136.0, "lintel_flush": 38.0, "soffit_w": 40.0,
             # [round 16] the cap over a carved DOORWAY (a flat soffit 78-98u up) goes to this height, not door_to,
             # for the same step-up reason
             "door_cap": 134.0}
@@ -343,6 +343,9 @@ def lift_lintels(tris, tags, o):
     lo_h, to_h = o["lintel_min"], o["lintel_to"]
     fl = [t for t in tris if (lambda n: n is not None and abs(n[2]) >= o["floor_nz"])(_unit(t))]
     G = flgeom.TriGrid(fl, cell=64.0)
+    # floors facing UP only, for "is something standing right under it": an arch's chamfer soffit (|nz| 0.76, facing
+    # down) counted as a floor there and every chamfered arch looked 'not hanging'
+    Gup = flgeom.TriGrid([t for t in fl if _unit(t)[2] > 0.0], cell=64.0)
     W = flgeom.TriGrid(tris, cell=64.0)
 
     def open_under(p, ux, uy):
@@ -357,7 +360,18 @@ def lift_lintels(tris, tags, o):
     out, otags, n = [], [], 0
     for t, tg in zip(tris, tags):
         nv = _unit(t)
-        if nv is None or abs(nv[2]) >= o["floor_nz"]:
+        soffit = None
+        if nv is not None and nv[2] <= -o["floor_nz"]:
+            # a downward face: an arch's soffit or chamfer strip inside the wall's thickness (narrow across its
+            # longest edge) - not a ceiling or an upper floor (wide). Its across direction replaces the face normal.
+            ed = max(((t[i], t[(i + 1) % 3]) for i in range(3)), key=lambda e: math.dist(e[0][:2], e[1][:2]))
+            L0 = math.dist(ed[0][:2], ed[1][:2])
+            if L0 > 1e-6:
+                dx, dy = (ed[1][0] - ed[0][0]) / L0, (ed[1][1] - ed[0][1]) / L0
+                wid = max(abs((p[0] - ed[0][0]) * -dy + (p[1] - ed[0][1]) * dx) for p in t)
+                if wid <= o["soffit_w"]:
+                    soffit = (-dy, dx)
+        if nv is None or (abs(nv[2]) >= o["floor_nz"] and soffit is None):
             out.append(t)
             otags.append(tg)
             continue
@@ -368,23 +382,25 @@ def lift_lintels(tris, tags, o):
         ok = False
         # it must HANG: nothing to stand on just under its lowest point (an upper storey's wall stands on its own
         # floor, which has the street 120u under it)
-        if fz is not None and G.ground(cx, cy, zlow + 4.0, zlow - lo_h + 1.0) is None:
+        if fz is not None and Gup.ground(cx, cy, zlow + 4.0, zlow - lo_h + 1.0) is None:
             # a walkway THROUGH the wall: floor on both sides of it, across its face (the face normal), level with
             # the floor under it. A window's sill fails (the street is a sill's height lower, a house shell has no
             # floor at all - round 16 audit: testing along x/y instead let the walk climb onto sills, through the
             # windows and into the shells: 921 falls into the void)
-            hl = math.hypot(nv[0], nv[1])
-            ux, uy = nv[0] / hl * 24.0, nv[1] / hl * 24.0
+            if soffit is not None:
+                ux, uy = soffit[0] * 24.0, soffit[1] * 24.0
+            else:
+                hl = math.hypot(nv[0], nv[1])
+                ux, uy = nv[0] / hl * 24.0, nv[1] / hl * 24.0
             ok = floor_at(cx + ux, cy + uy, fz) is not None and floor_at(cx - ux, cy - uy, fz) is not None
             if ok:
-                # ...and it really hangs over that walkway: open under its lowest edge (ends inset 2u, and middle)
-                if len(low) >= 2:
-                    e0, e1 = low[0], low[1]
-                    L_ = math.dist(e0[:2], e1[:2]) or 1.0
-                    smp = [tuple(e0[k] + (e1[k] - e0[k]) * f for k in range(3)) for f in (min(0.5, 2.0 / L_), 0.5, max(0.5, 1.0 - 2.0 / L_))]
-                else:
-                    smp = [low[0]]
-                ok = all(open_under(q, ux, uy) for q in smp)
+                # ...and some of it really hangs over that walkway: open space under a point of its lower boundary
+                # below the cut (a wall cut into stacked rows has the next row under every such point; the facade
+                # triangle that carries an arch's chamfer edge sits on the jamb at its lowest corner but is open
+                # under the rest of that edge - so: any edge point, not the lowest corner)
+                smp = [tuple(t[i][k] + (t[(i + 1) % 3][k] - t[i][k]) * f for k in range(3))
+                       for i in range(3) for f in (0.1, 0.3, 0.5, 0.7, 0.9)]
+                ok = any(open_under(q, ux, uy) for q in smp if q[2] < fz + to_h - 1.0)
         if not ok:
             out.append(t)
             otags.append(tg)
