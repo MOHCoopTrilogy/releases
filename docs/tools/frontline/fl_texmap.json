@@ -7,6 +7,12 @@
    "tc_scale": 1.6,
    "reason": "main town street (3183 floor tris): Frontline 128px dark mossy granite setts; HD Project cobblestone2 is 1024px, same mossy setts look, no artefacts; scaled 1.6x so the stones keep Frontline's size"
   },
+  "1dd980": {"path": "textures/models/natural/tree1_5.tga", "pak": "Pak2.pk3", "tc_scale": 1.0, "alpha": true, "reason": "[look 2026-11-13, user-approved 'Yes upgrade'] the mod's own HD stock tree card (Pak2 path; the HD foliage pak draws it at 1024 px), cut-out kept, graded to the disc card's mean colour on its solid texels"},
+  "12c380": {"path": "textures/models/natural/tree4_3.tga", "pak": "Pak2.pk3", "tc_scale": 1.0, "alpha": true, "reason": "[look 2026-11-13, user-approved 'Yes upgrade'] the mod's own HD stock tree card (Pak2 path; the HD foliage pak draws it at 1024 px), cut-out kept, graded to the disc card's mean colour on its solid texels"},
+  "15b680": {"path": "textures/models/natural/tree4_4.tga", "pak": "Pak2.pk3", "tc_scale": 1.0, "alpha": true, "reason": "[look 2026-11-13, user-approved 'Yes upgrade'] the mod's own HD stock tree card (Pak2 path; the HD foliage pak draws it at 1024 px), cut-out kept, graded to the disc card's mean colour on its solid texels"},
+  "15f800": {"path": "textures/models/natural/tree4_4.tga", "pak": "Pak2.pk3", "tc_scale": 1.0, "alpha": true, "reason": "[look 2026-11-13, user-approved 'Yes upgrade'] the mod's own HD stock tree card (Pak2 path; the HD foliage pak draws it at 1024 px), cut-out kept, graded to the disc card's mean colour on its solid texels"},
+  "1d5680": {"path": "textures/models/natural/tree1_4.tga", "pak": "Pak2.pk3", "tc_scale": 1.0, "alpha": true, "reason": "[look 2026-11-13, user-approved 'Yes upgrade'] the mod's own HD stock tree card (Pak2 path; the HD foliage pak draws it at 1024 px), cut-out kept, graded to the disc card's mean colour on its solid texels"},
+  "1d9800": {"path": "textures/models/natural/tree1_3.tga", "pak": "Pak2.pk3", "tc_scale": 1.0, "alpha": true, "reason": "[look 2026-11-13, user-approved 'Yes upgrade'] the mod's own HD stock tree card (Pak2 path; the HD foliage pak draws it at 1024 px), cut-out kept, graded to the disc card's mean colour on its solid texels"},
   "noupscale": [
    "49380",
    "49f00",
