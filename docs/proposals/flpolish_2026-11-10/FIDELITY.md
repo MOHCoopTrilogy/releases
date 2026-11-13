@@ -406,9 +406,10 @@ S06 shouters PARTIAL -> MATCH for the three at trigger 411 (one line with sound,
 S23 breach PARTIAL -> MATCH on trigger, timing and frames, hint conflict listed; S02 / A08 / I05 jeep, crew, gun: built and
 shown, poses listed as stand-ins.
 
-Look work parked on the user's priority (2026-11-12): the decoded fog (linear 240..4800, planar) and the object light
-formula are NOT applied; the build still carries the fitted fog 600..16000. A patch is staged, untested:
-`H:\hzm_work\flpolish\fix2\r13\fog_conv.py`.
+Look round (2026-11-12, after the v1.10.79 playtest): the decoded fog IS applied (`fl_levels.json` 1_1 farplane 4800,
+farplane_bias 240; commit 002f71d7). Same views, v94 vs the new conversion (local): `H:\hzm_work\flpolish\look\fog_pairs_a.jpg`,
+`fog_pairs_b.jpg`; the far town now hazes like the reference frame `sq_across`. The object light formula of the same staged
+patch (`H:\hzm_work\flpolish\fix2\r13\fog_conv.py`, OBJLIT part) is still NOT applied.
 
 ## Round 14 (flfix2, 2026-11-12) - text ids, hints, the ambush pair, wreck gunner stills
 
@@ -513,7 +514,7 @@ the original's rockets do not kill it); the listener waits while a player watche
 | Models | Frontline models | MOHAA stand-ins where no conversion exists | forced |
 | Textures | disc textures | 5 CC0 swaps (mud x3, roof slates, planks) | choice |
 | Sky | 6-face box on the eye, unfogged | the six faces captured from the emulator, in the player's private pak only; stock sky when they are absent; drawn on a hull around the map | exact textures; hull forced (engine) |
-| Fog and far plane | fog colour 104,106,109, far clip 100 m, clear colour 48,48,48; register reading linear 5..100 m, but measured on world surfaces it is about a quarter of that at 50 m | start 600, end 16000 (fitted to the reference frame), same colour; no far cull; clear colour not represented | fit from measurement; exact function open (needs the vertex program) |
+| Fog and far plane | fog colour 104,106,109, linear 5..100 m of view depth (re-render proven, TRACE_fog_colour.md), far clip 100 m, clear colour 48,48,48 | linear 240..4800 units, same colour; no far cull (the sky box shows past the fog end); clear colour not represented | exact fog; no cull forced (bug-11058) |
 | World light | vertex colours, 1x | vertex colours x 0.352 to cancel the renderer's 4 x 0.71 map light; measured equal to texture x vertex colour with the display chain off | forced (engine); exact by measurement |
 | Display chain on disc maps | none (emulator output as is) | the client's r_gamma 1.3 and post chain brighten by 1.3 to 1.45 | choice for the user: a per-map neutral display setting for disc maps (not applied) or keep the mod look |
 | Wall breach | trace timings and break frames; use at the molotov (6 s fuse) or 3 hits on one barrel (no fuse); hint "Press ACTION to Ignite Rag" | same, both ways (bug-11087, bug-11083) | blast look a stand-in (stock emitter) |
