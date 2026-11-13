@@ -39,6 +39,8 @@
    }
   },
   "dialogue_bank": "11ScrBnk.abk",
+  "_ambience": "[flfix2 round 17] the original's ambience zones and fire loops (TRACE_ambience.md): AmbienceTrigger records start streamed bed (record word 14) from <beds>.abk/.ast; PlayFireLoopParent records play their sound set's PLAYSOUND(sound) (PlaySoundLoop.cbs) through the level's propSnd .som into bank, stopped on leave when slot 1 sends stop_msg",
+  "ambience": {"beds": "11STRBNK", "zone_cls": "AmbienceTrigger", "fire": {"cls": "PlayFireLoopParent", "som": "1_1propSnd.som", "sound": 57, "bank": "11ScrBnk.abk", "stop_msg": 67}},
   "cues": {
    "interrog_1": 4,
    "castro_1": 5,

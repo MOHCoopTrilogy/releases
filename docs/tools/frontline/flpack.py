@@ -83,7 +83,7 @@ def spec(level):
 
 # [flfix2] written into the data script (level.fl_conv): maps/coop_fl_*.scr tells the player to convert again when the
 # installed pak is older than the mission script expects (bug-10966). Raise it with every conversion-visible change.
-CONV_BUILD = 7
+CONV_BUILD = 8
 
 
 def spec_xy(level, X, key):
@@ -110,6 +110,96 @@ def chars_table(disc):
 # TODO(frontline): English speech has no English subtitle on the disc (SMUL carries EN only for foreign-language
 # lines). Decision 2026-11-08: keep Frontline's own behaviour - subtitles only where the disc has them. A local
 # speech-to-text pass was prototyped and removed; revisit only with the user's OK (bundled model, licence, size).
+
+
+
+def _slots(e, k):
+    """[flfix2 round 17] the messages a record's slot k sends (0 = player enters, 1 = player leaves, 2 = object
+    enters, ...): word 22+k is the byte offset of the slot's list {u32 count, u32 msg...}, 0 = the slot is empty"""
+    w = flscene.words(e)
+    if 22 + k >= len(w) or not w[22 + k] or w[22 + k] % 4:
+        return []
+    o = w[22 + k] // 4
+    if o >= len(w) or not (0 < w[o] < 16) or o + 1 + w[o] > len(w):
+        return []
+    return list(w[o + 1:o + 1 + w[o]])
+
+
+def _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log):
+    """[flfix2 round 17] Frontline's ambience zones and fire loops -> sounds + level vars for the mission script.
+    AmbienceTrigger (player enters, msg 236) starts streamed bed n = record word 14 from <l>STRBNK.AST and the bed
+    plays until another zone starts another; PlayFireLoopParent plays its sound set's PLAYSOUND(57) at the record
+    on enter (msg 66) and stops it on leave (msg 67) when its slot 1 sends 67, else never. Positions and radii go
+    through the converter's own transform (X), radii in map units."""
+    pre = f"fl{level.replace('_', '')}"
+    sdir = f"sound/fl/{level}/"
+    # beds: one per streamed ref of the .ABK, the loop body of each (the intro is the same audio on this disc)
+    beds = {}
+    ast = disc.read(d + amb["beds"] + ".ast")
+    for n, (intro, loop) in enumerate(flaudio.ast_loops(disc.read(d + amb["beds"] + ".abk"))):
+        sch = flaudio.schl_at(ast, loop or intro)
+        if not sch:
+            continue
+        src, dst = os.path.join(tmp, f"amb{n}.asf"), os.path.join(tmp, f"amb{n}.wav")
+        with open(src, "wb") as f:
+            f.write(sch)
+        if not flaudio.vgm_decode(vgm, src, dst):
+            log("ambience bed decode failed", n)
+            continue
+        rel = f"{sdir}amb{n + 1}.wav"
+        with open(dst, "rb") as f:
+            files[rel] = f.read()
+        alias = f"{pre}_amb{n + 1}"
+        # played levelwide (loopsound min distance "levelwide"), so the distances here do not matter
+        ali.append(f'aliascache {alias} {rel} soundparms 1.0 0.0 1.0 0.0 10000 10000 auto loaded maps "coop_fl"')
+        beds[n] = alias
+        lines.append(f'\tlevel.fl_amb_alias[{n + 1}] = "{alias}"')
+        lines.append(f'\tlevel.fl_amb_len[{n + 1}] = {flaudio.wav_seconds(dst):.1f}')
+    lines.append(f"\tlevel.fl_amb_n = {len(beds)}")
+    # the fire loop: the sound set of a PlayFireLoopParent record (link category 11) -> SOMI row -> bank sample
+    fire, row, sets_ = None, None, []
+    som = L.files.get(amb["fire"]["som"], b"")
+    fires = [e for e in L.entities() if amb["fire"]["cls"] in e["strs"]]
+    for e in fires:
+        sets_ = [x & 0xFFFF for x in flscene.words(e)[13:] if x >> 16 == 11]
+        row = flaudio.som_sound(som, sets_[0], amb["fire"]["sound"]) if sets_ else None
+        if row:
+            break
+    if row:
+        abk = disc.read(d + amb["fire"]["bank"])
+        stream = flaudio.bank_stream(abk, row["code"], row["first"])
+        bnk_path = os.path.join(tmp, "fire.bnk")
+        with open(bnk_path, "wb") as f:
+            f.write(abk[abk.find(b"BNKl"):])
+        dst = os.path.join(tmp, "fire.wav")
+        if stream and flaudio.vgm_decode(vgm, bnk_path, dst, stream):
+            rel = f"{sdir}fire.wav"
+            with open(dst, "rb") as f:
+                files[rel] = f.read()
+            fire = f"{pre}_fire"
+            ali.append(f'aliascache {fire} {rel} soundparms {row["volume"]:.2f} 0.0 1.0 0.0 256 2400 auto loaded maps "coop_fl"')
+            lines.append(f'\tlevel.fl_fire_alias = "{fire}"')
+            log("fire loop: set", sets_[0], "row", row, "stream", stream, f"{flaudio.wav_seconds(dst):.1f} s")
+    nz = nf = 0
+    for e in L.entities():
+        w = flscene.words(e)
+        q = X(e["pos"])
+        r_ = (w[11] >> 16) / 10.0 * X.s
+        if amb["zone_cls"] in e["strs"] and len(w) > 14 and w[14] in beds:
+            nz += 1
+            lines.append(f'\tlevel.fl_ambz[{nz}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+            lines.append(f'\tlevel.fl_ambz_r[{nz}] = {r_:.0f}')
+            lines.append(f'\tlevel.fl_ambz_bed[{nz}] = {w[14] + 1}')
+            lines.append(f'\tlevel.fl_ambz_rec[{nz}] = {e["i"]}')
+        elif fire and amb["fire"]["cls"] in e["strs"]:
+            nf += 1
+            lines.append(f'\tlevel.fl_fire[{nf}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+            lines.append(f'\tlevel.fl_fire_r[{nf}] = {r_:.0f}')
+            lines.append(f'\tlevel.fl_fire_stop[{nf}] = {int(amb["fire"]["stop_msg"] in _slots(e, 1))}')
+            lines.append(f'\tlevel.fl_fire_rec[{nf}] = {e["i"]}')
+    lines.append(f"\tlevel.fl_ambz_n = {nz}")
+    lines.append(f"\tlevel.fl_fire_n = {nf}")
+    log("ambience: beds", len(beds), "zones", nz, "fire loops", nf)
 
 
 def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
@@ -150,6 +240,10 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         lines.append(f'\tlevel.fl_cue_sub["{key}"] = {scr_str(sub)}')
         lines.append(f'\tlevel.fl_cue_who["{key}"] = {scr_str(spk)}')
         lines.append(f'\tlevel.fl_cue_len["{key}"] = {flaudio.wav_seconds(path):.2f}')
+    # ---- [flfix2 round 17] ambience beds + fire loops (TRACE_ambience.md) ----
+    amb = sp.get("ambience")
+    if amb:
+        _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log)
     files[f"ubersound/fl_{level}.scr"] = ("// GENERATED on this PC by the Frontline converter\n" + "\n".join(ali) + "\n").encode()
 
     if mohaa_base:
