@@ -75,10 +75,36 @@ class Level:
         return key.split("#", 1)[1] if key and "#" in key else None
 
     # ---------------- render meshes ----------------
+    def _cell_objects(self, cell):
+        """[(cpt, rtc)] per ELF object of a cell. 0.7.27: a .cpt holds up to two objects (header word 21 = count,
+        then {elf offset, size} pairs; the .rtc's object table: object 0 at words 7/8, object 1 at words 10/11).
+        Object 1 - 52 of 76 cells on 1_11, ~950 KB - is the translucent / cut-out pass: barbed wire, grass and wheat
+        cards, fire sprites. It was never read (its pointers are relative to its own ELF): the wire by the bridge
+        and the grass were missing. Each object is handed on as its own cell image, ELF at 0x80 like object 0."""
+        cpt = self.rez[cell]
+        rtc = self.rez.get(cell[:-4] + ".rtc")
+        out = [(cpt, rtc)]
+        try:
+            n = struct.unpack_from("<I", cpt, 84)[0]
+            if n < 2 or not rtc:
+                return out
+            off1, size1 = struct.unpack_from("<2I", cpt, 96)
+            nr = struct.unpack_from("<I", rtc, 16)[0]
+            if not off1 or not size1 or off1 + size1 > len(cpt) or cpt[off1:off1 + 4] != b"\x7fELF" or nr < 2:
+                return out
+            ro, rs = struct.unpack_from("<2I", rtc, 40)
+            if ro + rs > len(rtc):
+                return out
+            hdr = bytearray(rtc[:0x30])
+            struct.pack_into("<I", hdr, 0x20, rs)
+            out.append((bytes(0x80) + cpt[off1:off1 + size1], bytes(hdr) + rtc[ro:ro + rs]))
+        except struct.error:
+            pass
+        return out
+
     def meshes(self):
         for cell in self.cells:
-            cpt = self.rez[cell]
-            rtc = self.rez.get(cell[:-4] + ".rtc")
+          for _obj, (cpt, rtc) in enumerate(self._cell_objects(cell)):
             bind, state = {}, {}
             if rtc:
                 c = eartc.Cell(cpt, rtc)

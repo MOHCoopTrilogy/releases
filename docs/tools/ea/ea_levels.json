@@ -15,6 +15,8 @@
   "lon": 44.47,
   "_place_source": "disc: RusMIntr.vp6 title card 'Stalingrad, USSR / January 28, 1943 / The Eastern Front'; approved by the user 2026-11-09",
   "unit": "OSS, attached to Soviet partisans",
+  "_path_nodes_extra": "dbfix 2026-11-13: the partisan cellar's stair foot (x -3760..-3670, y -372) had no path node: the cellar was cut off from the node graph",
+  "path_nodes_extra": [[-3740, -372, -606], [-3700, -372, -643], [-3655, -372, -656]],
   "text": [
    "NemesisName",
    "NemesisObjective_RUS1",
