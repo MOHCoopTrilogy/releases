@@ -1110,6 +1110,39 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                         break
                     tops_[c] = min(cap_[c], nxt_ - 16.0)
                     nxt_ = tops_[c]
+        # a side edge: where the level's floor beside a column (any direction) stands 17-36u over it, the
+        # column takes half that rise (a ramp narrower than its drawn flight - the altar's east wedge - left a 24u
+        # lip up onto the sanctuary across its slope, x >= 5280 on 1_11)
+        # (three passes: a lifted column is a floor for its own downhill neighbour - the wedge is two columns deep at
+        # its east end, -527 / -515 under a -491 edge)
+        _lift = {}
+        for _pass in range(3):
+            _new = {}
+            for (gx_, gy_), tt_ in tops_.items():
+                best_ = None
+                for ox_, oy_ in ((8, 0), (-8, 0), (0, 8), (0, -8)):
+                    # (a neighbour cell may be a column and still carry the level's own higher floor: the
+                    # sanctuary's edge overlaps the wedge's top cells)
+                    g_ = _OG.ground(gx_ + 4.0 + ox_, gy_ + 4.0 + oy_, tt_ + 40.0, tt_ + 2.0)   # not the ramps
+                    nt_ = _lift.get((gx_ + ox_, gy_ + oy_))     # a column counts only once it was lifted itself
+                    if nt_ is not None and (g_ is None or nt_ > g_):
+                        g_ = nt_
+                    if g_ is not None and 17.0 <= g_ - tt_ <= 36.0 and (best_ is None or g_ > best_):
+                        best_ = g_
+                if best_ is not None:
+                    mid_ = round((tt_ + best_) / 2.0)
+                    bx_, by_ = back_(gx_, gy_)
+                    if _room(bx_, by_, ax_, mid_, 9.0):
+                        _new[(gx_, gy_)] = mid_
+                        if os.environ.get("EA_LIPDBG"):
+                            print("RAMPLIP", _pass, gx_, gy_, tt_, best_, mid_)
+            if not _new:
+                break
+            for c, v in _new.items():
+                if v > tops_[c]:
+                    tops_[c] = v
+                    _lift[c] = v
+        stats["ramp_side_lips"] = stats.get("ramp_side_lips", 0) + len(_lift)
         for (gx_, gy_), tt_ in sorted(tops_.items()):
             B.add_brush_planes(clip0, [], (gx_, gy_, tt_ - 24.0), (gx_ + 8, gy_ + 8, tt_))
             nb += 1

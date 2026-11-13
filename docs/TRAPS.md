@@ -703,11 +703,8 @@ Shapes where the symptom pointed away from the cause.
 4. **Am I reading the record or the code?** ([T11](#t11) — the code wins; read the record to the END)
 5. **Am I guessing, or measuring?** (was T13) **BISECT FIRST - a cvar bisect beats any number of
    hypotheses** (bug-1298): turn things off one at a time until the symptom moves.
-6. **Symptom or design?** A fix producing the MIRROR IMAGE of the bug means the design underneath is
-   wrong. "Stuck prone" and "popped back to crouch" were one flaw from two sides (bug-2108): an escape
-   valve added to work around a broken standup trace force-stood the player a second after they let go.
-   **The user's phrasing often names the design** - "space or control should put me back into crouch"
-   described the INPUT MODEL, and was read as a trace bug twice.
+6. **Symptom or design?** A fix producing the MIRROR IMAGE of the bug means the design underneath is wrong
+   (bug-2108: "stuck prone" and "popped back to crouch" were one flaw). **The user's phrasing often names the design.**
 7. **Did I look at the moment it breaks?** An event-bound symptom needs an engine screenshot AT the event
    (bug-3076: `coop_st_xp_mode promo`).
 
@@ -817,10 +814,8 @@ grep the consumer, not the setter.** Full write-up:
   of a burst (40 / s live; MG42 nests are tuned at it). `coopaibelt 1` gates a gun. (bug-3638)
 - **On a turret the TORSO state is the whole body** (`movetype anim`; the legs machine is off, its
   turret rows are dead), and an action row is picked once, on entry. (bug-309, 3658)
-- **Player recoil has 3 channels - aim kick (`CoopApplyAuthoredKick`), gun punch (`s_recoil`), camera `viewkick`
-  (`EventViewKick`); cut all 3.** v1.10.51 missed the camera: mounted MG42 pinned at 10 deg (bug-10416). **The camera
-  is AIM, not cosmetic:** the client sends `cg.refdefViewAngles` (viewkick, sway included) as the eye angles and the
-  server fires along them - a Thompson round left at aim + vk (measured, recoil 2026-11-10).
+- **Player recoil has 3 channels** - aim kick (`CoopApplyAuthoredKick`), gun punch (`s_recoil`), camera `viewkick`;
+  cut all 3 (bug-10416). The camera is AIM: the server fires along `cg.refdefViewAngles`.
 - **`damage` event's LAST arg = hit LOCATION; 0 = HEAD = x4** (`ArmorDamage`). A floor needs the amount
   clamped AND location 3 (torso x1.0) (m3l3 church, mortars: bug-4032).
 
@@ -959,6 +954,13 @@ the safety, capped in distance.
 **Shape:** five unrelated causes all read "prone is broken"; none was found by reasoning about code - probe each symptom.
 
 <a name="t24"></a>
+## T25 - Converted (BYO) stairs: MOHAA steps only with room over the 94u box
+
+`PM_StepSlideMove` steps up only if the box fits 18u higher (else 9u): a stair under a 104u header stops the player
+one step up though every riser is 12u, and a step that lands on a face steeper than normal z 0.7 is taken back.
+Prove walkability with the engine's own step code on the pak's brushes (dbfix `tools/pmsim.py`), never with a floor
+profile (bug-11144, 11146).
+
 ## T24 - A text fix applied per call site never holds: route the channel, then check the sink
 
 **Bugs:** 3426, 3520, 3542, 3952, 4007. Four rounds converted `iprint`/`iprintlnbold` SITES to `feed.scr`; every later
