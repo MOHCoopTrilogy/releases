@@ -359,7 +359,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             tcm = ("\t\ttcMod scale %g %g\n" % (sc, sc)) if sc != 1.0 else ""
             # [look 2026-11-13] "alpha": a cut-out card (tree, bush) keeps its hard alpha edge and writes depth
             acut = "\t\talphaFunc GE128\n\t\tdepthWrite\n" if up.get("alpha") else ""
-            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tcull none\n\t{\n\t\tmap " + up["path"] + "\n"
+            # stock card recipe (scripts/trees.shader, TAnatural.shader): nomipmaps, or thin twigs dissolve into dashes
+            # under GE128 at distance
+            nomip = "\tnomipmaps\n" if up.get("alpha") else ""
+            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n" + nomip + "\tcull none\n\t{\n\t\tmap " + up["path"] + "\n"
                                 + tcm + acut + "\t\trgbGen vertex\n\t}\n}\n")
             stats["upgraded"] = stats.get("upgraded", 0) + 1
             if up.get("grade", True):
