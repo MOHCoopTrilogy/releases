@@ -1,4 +1,4 @@
-"""easky.py: the level's own sky as a MOHAA sky box (converter 0.7.17).
+"""easky.py: the level's own sky as a MOHAA sky box (converter 0.7.17; 2048 px faces since the look round, 2026-11-13).
 
 The original draws its sky as an eye-centred half cube (200 x 200 m wide, 100.8 m tall, bottom edge 0.84 m below the
 eye): a 256x256 top, four 2:1 sides, and a moon quad on the +x side. The textures are in the level stream (SHPX,
@@ -24,97 +24,192 @@ FACES = {
     "ny": (((-100, -100, 100), (-100, -100, -0.84), (100, -100, 100), (100, -100, -0.84)),
            ((1022, 0), (1022, 1023), (1, 0), (1, 1023))),
 }
-SIZE = 512
+# [look 2026-11-13, user: "the skybox for dying breath looks pretty bad quality. I love that it has a moon though!"]
+# The faces were 512 px, sampled bilinearly from 128-256 px sources: the 48 px moon of the original's 256 px moon texture
+# came out about 12 x 18 px and the clouds were stretched mush. Now: 2048 px faces, sampled from the sources enlarged
+# smoothly beforehand (bicubic for the clouds - nothing invented, they stay soft; Lanczos for the moon, held inside its
+# own source range so the sharpening adds no ring or halo), all vectorised (numpy). Every face samples the same sky
+# through the same direction -> texture mapping, so the twelve cube edges meet without a seam by construction
+# (edge_report() measures them).
+SIZE = 2048
+PRE = 4            # source pre-enlargement before sampling
 
 
-def _sample(im, u, v):
-    """bilinear, clamped; u, v in 0..1; v = 0 is the first stored row"""
-    w, h, px = im["w"], im["h"], im["rgba"]
-    x, y = min(max(u * w - 0.5, 0.0), w - 1.0), min(max(v * h - 0.5, 0.0), h - 1.0)
-    x0, y0 = int(x), int(y)
-    x1, y1 = min(x0 + 1, w - 1), min(y0 + 1, h - 1)
-    fx, fy = x - x0, y - y0
-    out = []
-    for c in range(4):
-        a = px[(y0 * w + x0) * 4 + c] * (1 - fx) + px[(y0 * w + x1) * 4 + c] * fx
-        b = px[(y1 * w + x0) * 4 + c] * (1 - fx) + px[(y1 * w + x1) * 4 + c] * fx
-        out.append(a * (1 - fy) + b * fy)
-    return out
+def _arr(t, sharp):
+    import numpy as np
+    from PIL import Image, ImageFilter
+    im = Image.frombytes("RGBA", (t["w"], t["h"]), bytes(t["rgba"]))
+    big = im.resize((t["w"] * PRE, t["h"] * PRE), Image.LANCZOS if sharp else Image.BICUBIC)
+    a = np.asarray(big, np.float32)
+    if sharp:
+        # Lanczos overshoots at the moon's rim: clamp every texel into the local 3x3 range of the source (no halo)
+        lo = np.asarray(im.filter(ImageFilter.MinFilter(3)).resize(big.size, Image.BILINEAR), np.float32)
+        hi = np.asarray(im.filter(ImageFilter.MaxFilter(3)).resize(big.size, Image.BILINEAR), np.float32)
+        a = np.minimum(np.maximum(a, lo), hi)
+    return a
 
 
-def _uv(face, p):
+def _bilerp(a, u, v):
+    """a: HxWx4 float; u, v: arrays 0..1 (v = 0 the first stored row); clamped bilinear"""
+    import numpy as np
+    h, w = a.shape[:2]
+    x = np.clip(u * w - 0.5, 0.0, w - 1.0)
+    y = np.clip(v * h - 0.5, 0.0, h - 1.0)
+    x0 = np.floor(x).astype(np.int32)
+    y0 = np.floor(y).astype(np.int32)
+    x1 = np.minimum(x0 + 1, w - 1)
+    y1 = np.minimum(y0 + 1, h - 1)
+    fx = (x - x0)[..., None]
+    fy = (y - y0)[..., None]
+    top = a[y0, x0] * (1 - fx) + a[y0, x1] * fx
+    bot = a[y1, x0] * (1 - fx) + a[y1, x1] * fx
+    return top * (1 - fy) + bot * fy
+
+
+def _uv_np(face, px, py, pz):
+    import numpy as np
     cs, uvs = FACES[face]
     c0, c1, c2 = cs[0], cs[1], cs[2]
     e1 = [c1[k] - c0[k] for k in range(3)]
     e2 = [c2[k] - c0[k] for k in range(3)]
-    d = [p[k] - c0[k] for k in range(3)]
-    a = sum(d[k] * e1[k] for k in range(3)) / sum(e * e for e in e1)
-    b = sum(d[k] * e2[k] for k in range(3)) / sum(e * e for e in e2)
-    a, b = min(max(a, 0.0), 1.0), min(max(b, 0.0), 1.0)
-    return tuple((uvs[0][k] + a * (uvs[1][k] - uvs[0][k]) + b * (uvs[2][k] - uvs[0][k])) / 1023.0 for k in range(2))
+    d = (px - c0[0], py - c0[1], pz - c0[2])
+    a = (d[0] * e1[0] + d[1] * e1[1] + d[2] * e1[2]) / sum(e * e for e in e1)
+    b = (d[0] * e2[0] + d[1] * e2[1] + d[2] * e2[2]) / sum(e * e for e in e2)
+    a = np.clip(a, 0.0, 1.0)
+    b = np.clip(b, 0.0, 1.0)
+    u = (uvs[0][0] + a * (uvs[1][0] - uvs[0][0]) + b * (uvs[2][0] - uvs[0][0])) / 1023.0
+    v = (uvs[0][1] + a * (uvs[1][1] - uvs[0][1]) + b * (uvs[2][1] - uvs[0][1])) / 1023.0
+    return u, v
 
 
-def _dir(suffix, s, t):
-    """the engine's sky box: face suffix and s, t in -1..1 (s to the image's right, t up) -> world direction"""
+def _dirs(suffix, n):
+    """the engine's sky box: face suffix -> world directions of its n x n texels (s to the image's right, t up)"""
+    import numpy as np
+    c = (np.arange(n, dtype=np.float32) + 0.5) / n
+    s = (2.0 * c - 1.0)[None, :].repeat(n, 0)
+    t = (1.0 - 2.0 * c)[:, None].repeat(n, 1)
+    one = np.ones_like(s)
     if suffix == "rt":
-        return (1.0, -s, t)
+        return one, -s, t
     # the engine draws image "lf" on its second side (-x) and image "bk" on its third (+y): sky_texorder 0,2,1,3,4,5
     if suffix == "lf":
-        return (-1.0, s, t)
+        return -one, s, t
     if suffix == "bk":
-        return (s, 1.0, t)
+        return s, one, t
     if suffix == "ft":
-        return (-s, -1.0, t)
+        return -s, -one, t
     if suffix == "up":
-        return (-t, -s, 1.0)
-    return (t, -s, -1.0)
+        return -t, -s, one
+    return t, -s, -one
 
 
-def build(L, spec):
+def build(L, spec, size=None):
+    import numpy as np
     tex = {k: L.texture(spec[k]) for k in ("top", "nx", "px", "py", "ny")}
     if any(v is None or v.get("rgba") is None for v in tex.values()):
         return None
+    n = int(size or SIZE)
+    src = {k: _arr(v, False) for k, v in tex.items()}
     moon = L.texture(spec["moon"]) if spec.get("moon") else None
+    msrc = _arr(moon, True) if moon is not None and moon.get("rgba") is not None else None
     mq = spec.get("moon_quad")            # x, y0, y1, z0, z1 (metres from the eye)
     gain = float(spec.get("gain", 0.75))
     # below the box: the mean of the sides' bottom edge (the original paints that band in the fog colour)
-    low = [0.0, 0.0, 0.0]
-    n = 0
+    lows = []
     for f in ("nx", "px", "py", "ny"):
-        for i in range(17):
-            c = _sample(tex[f], *_uv(f, tuple(FACES[f][0][1][k] + (FACES[f][0][3][k] - FACES[f][0][1][k]) * i / 16.0 for k in range(3))))
-            low = [low[k] + c[k] for k in range(3)]
-            n += 1
-    low = [v / n for v in low]
+        i = np.arange(17, dtype=np.float32) / 16.0
+        p0, p1 = FACES[f][0][1], FACES[f][0][3]
+        u, v = _uv_np(f, p0[0] + (p1[0] - p0[0]) * i, p0[1] + (p1[1] - p0[1]) * i, p0[2] + (p1[2] - p0[2]) * i)
+        lows.append(_bilerp(src[f], u, v)[:, :3])
+    low = np.concatenate(lows).mean(0)
     out = {}
     for suf in ("rt", "bk", "lf", "ft", "up", "dn"):
-        buf = bytearray(SIZE * SIZE * 4)
-        for py_ in range(SIZE):
-            t = 1.0 - 2.0 * (py_ + 0.5) / SIZE
-            for px_ in range(SIZE):
-                s = 2.0 * (px_ + 0.5) / SIZE - 1.0
-                d = _dir(suf, s, t)
-                m = max(abs(d[0]), abs(d[1]), d[2] * 100.0 / 99.9 if d[2] > 0 else 0.0)
-                p = tuple(v * 100.0 / m for v in d)
-                if p[2] < -0.84:
-                    c = low
-                else:
-                    if p[2] >= 99.89:
-                        f = "top"
-                    elif abs(p[0]) >= abs(p[1]):
-                        f = "px" if p[0] > 0 else "nx"
-                    else:
-                        f = "py" if p[1] > 0 else "ny"
-                    c = _sample(tex[f], *_uv(f, p))
-                c = [c[0] * gain, c[1] * gain, c[2] * gain]
-                if moon is not None and mq and d[0] > 0:
-                    q = tuple(v * mq[0] / d[0] for v in d)
-                    if mq[1] <= q[1] <= mq[2] and mq[3] <= q[2] <= mq[4]:
-                        mc = _sample(moon, (q[1] - mq[1]) / (mq[2] - mq[1]), (mq[4] - q[2]) / (mq[4] - mq[3]))
-                        al = mc[3] / 255.0
-                        c = [c[k] * (1 - al) + mc[k] * al for k in range(3)]
-                o = (py_ * SIZE + px_) * 4
-                buf[o], buf[o + 1], buf[o + 2], buf[o + 3] = (min(255, int(c[0] + 0.5)), min(255, int(c[1] + 0.5)),
-                                                             min(255, int(c[2] + 0.5)), 255)
-        out[suf] = (SIZE, SIZE, bytes(buf))
+        dx, dy, dz = _dirs(suf, n)
+        m = np.maximum(np.maximum(np.abs(dx), np.abs(dy)), np.where(dz > 0, dz * 100.0 / 99.9, 0.0))
+        px, py, pz = dx * 100.0 / m, dy * 100.0 / m, dz * 100.0 / m
+        col = np.empty((n, n, 3), np.float32)
+        col[:] = low
+        below = pz < -0.84
+        top = (~below) & (pz >= 99.89)
+        side = (~below) & (~top)
+        xs = side & (np.abs(px) >= np.abs(py))
+        ys = side & (np.abs(px) < np.abs(py))
+        for f, sel in (("top", top), ("px", xs & (px > 0)), ("nx", xs & (px <= 0)), ("py", ys & (py > 0)), ("ny", ys & (py <= 0))):
+            if sel.any():
+                u, v = _uv_np(f, px[sel], py[sel], pz[sel])
+                col[sel] = _bilerp(src[f], u, v)[:, :3]
+        col *= gain
+        if msrc is not None and mq:
+            pos = dx > 0
+            with np.errstate(divide="ignore", invalid="ignore"):
+                qy = np.where(pos, dy * mq[0] / dx, -1e9)
+                qz = np.where(pos, dz * mq[0] / dx, -1e9)
+            sel = pos & (qy >= mq[1]) & (qy <= mq[2]) & (qz >= mq[3]) & (qz <= mq[4])
+            if sel.any():
+                mc = _bilerp(msrc, (qy[sel] - mq[1]) / (mq[2] - mq[1]), (mq[4] - qz[sel]) / (mq[4] - mq[3]))
+                al = mc[:, 3:4] / 255.0
+                col[sel] = col[sel] * (1 - al) + mc[:, :3] * al
+        rgba = np.empty((n, n, 4), np.uint8)
+        rgba[..., :3] = np.clip(col + 0.5, 0, 255).astype(np.uint8)
+        rgba[..., 3] = 255
+        out[suf] = (n, n, rgba.tobytes())
     return out
+
+
+def edge_report(faces):
+    """mean absolute colour step across each of the twelve cube edges (a texel on each side): the seam check"""
+    import numpy as np
+    n = faces["rt"][0]
+    F = {k: np.frombuffer(v[2], np.uint8).reshape(n, n, 4)[..., :3].astype(np.float32) for k, v in faces.items()}
+    # direction of a face texel -> which neighbour face holds the next texel: compare each face's border row/column with the
+    # texel the same direction lands on in the neighbour (found by sampling the neighbour at the edge-adjacent direction)
+    rep = {}
+    for suf in F:
+        dx, dy, dz = _dirs(suf, n)
+        for name, (yy, xx) in (("top", (0, slice(None))), ("bottom", (n - 1, slice(None))),
+                               ("left", (slice(None), 0)), ("right", (slice(None), n - 1))):
+            d = np.stack([dx[yy, xx], dy[yy, xx], dz[yy, xx]], -1)
+            # push the direction one texel outward and find where it lands
+            k = 2.0 / n
+            if name == "top":
+                d2 = d + k * np.stack(_t_axis(suf), -1)
+            elif name == "bottom":
+                d2 = d - k * np.stack(_t_axis(suf), -1)
+            elif name == "left":
+                d2 = d - k * np.stack(_s_axis(suf), -1)
+            else:
+                d2 = d + k * np.stack(_s_axis(suf), -1)
+            other, oy, ox = _locate(d2, n)
+            a = F[suf][yy, xx]
+            b = np.stack([F[o][y, x] for o, y, x in zip(other, oy, ox)])
+            rep[(suf, name)] = float(np.abs(a - b).mean())
+    return rep
+
+
+def _s_axis(suf):
+    return {"rt": (0, -1, 0), "lf": (0, 1, 0), "bk": (1, 0, 0), "ft": (-1, 0, 0), "up": (0, -1, 0), "dn": (0, -1, 0)}[suf]
+
+
+def _t_axis(suf):
+    return {"rt": (0, 0, 1), "lf": (0, 0, 1), "bk": (0, 0, 1), "ft": (0, 0, 1), "up": (-1, 0, 0), "dn": (1, 0, 0)}[suf]
+
+
+def _locate(d, n):
+    """directions (k x 3) -> (face, row, col) of the texel each one falls in"""
+    import numpy as np
+    out_f, out_y, out_x = [], [], []
+    for x, y, z in d:
+        ax = max(abs(x), abs(y), abs(z))
+        if ax == abs(x):
+            f = "rt" if x > 0 else "lf"
+            s, t = ((-y / x), z / abs(x)) if x > 0 else ((y / -x), z / abs(x))
+        elif ax == abs(y):
+            f = "bk" if y > 0 else "ft"
+            s, t = ((x / y), z / abs(y)) if y > 0 else ((-x / -y), z / abs(y))
+        else:
+            f = "up" if z > 0 else "dn"
+            s, t = ((-y / z), (-x / z)) if z > 0 else ((-y / -z), (x / -z))
+        col = int(min(n - 1, max(0, (s + 1) * 0.5 * n)))
+        row = int(min(n - 1, max(0, (1 - t) * 0.5 * n)))
+        out_f.append(f); out_y.append(row); out_x.append(col)
+    return out_f, out_y, out_x
