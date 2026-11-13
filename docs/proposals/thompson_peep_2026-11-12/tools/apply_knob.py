@@ -48,7 +48,12 @@ def main():
         if key in MESHES:
             tik, surf, drop, top0 = MESHES[key]
             raw = zin.read(info)
-            out, rep = knobfit.lower(raw, tik, surf, drop=drop)
+            try:
+                out, rep = knobfit.lower(raw, tik, surf, drop=drop)
+            except AssertionError:
+                # the pak's knob differs from the one the live VFS fits against = it was already shortened here
+                print("%s: knob differs from the live mesh (already applied?) - skipped" % info.filename)
+                continue
             if abs(rep["top_before"] - top0) > 0.01:
                 print("%s: knob top %.3f is not the original %.3f - already applied or regenerated, skipped" % (info.filename, rep["top_before"], top0))
                 continue

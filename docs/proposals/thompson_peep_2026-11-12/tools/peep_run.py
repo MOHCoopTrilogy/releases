@@ -79,9 +79,19 @@ for tik in ([l.strip() for l in open(RL) if l.strip()] if os.path.exists(RL) els
     wait(1.5)
     c("tele -3608 2303 80"); c("face 0 225 0"); wait(0.5)
     c("echo ^~^~^ PEEPRUN hipreload %s" % name)
-    c("+attackprimary"); wait(7.0); c("-attackprimary"); wait(0.3)
-    c("reload")
-    for k in range(32):
+    # the gun empties after ~4.6 s of fire and reloads by itself right away (run `knob`: the whole reload played
+    # before a capture that started at 7 s) - so frames start while still firing and the trigger lets go mid-capture
+    # a given gun has NO spare ammo (run `knobrl`: emptied, never reloaded) - hand over SMG ammo boxes first
+    c("give all"); wait(1.0)                 # every gun with its start ammo: the SMG pool is shared (an item_smg_ammobox give added nothing, run `knobrl2`)
+    for _ in range(3):
+        c("use " + tik); wait(0.8)
+    wait(1.0)
+    c("+attackprimary"); wait(3.6)
+    for k in range(48):
+        if k == 10:
+            c("-attackprimary")
+        if k == 12:
+            c("reload")
         c("screenshotJPEG %s_rl_%s_%02d" % (tag, name, k)); wait(0.12)
 c("echo ^~^~^ PEEPRUN done"); c("quit")
 
