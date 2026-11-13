@@ -1306,28 +1306,47 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             if B.add_prism(sobclip, *t, thickness=4.0, centered=True) is not None:
                 stats["sob_coll"] = stats.get("sob_coll", 0) + 1
     # ---- tree cards -> stock 3D trees (ea_modelmap.json "trees") ----
-    _navs = [X(n["pos"]) for n in L.navpoints()] if tree_cards else []
-    # EA levels carry no navpoints: the AI walks the navmesh the engine builds from the BSP. A trunk box must not
-    # pinch a gap shut, so a trunk is skipped where a wall of the disc collision or a placed entity (actor, spawn,
-    # pickup) stands within 48u of it.
+    # EA levels carry no navpoints: the AI walks the info_pathnodes laid below. A trunk box must not pinch a gap
+    # shut, so a trunk is skipped where a wall of the disc collision stands within 40u of the box.
     _walls = {}
-    if tree_cards:
-        for _, vs_, ts_ in coll:
-            for a_, b2_, c_, *_r in ts_:
-                A_, B_, C_ = X(vs_[a_]), X(vs_[b2_]), X(vs_[c_])
-                nz = face_normal(A_, B_, C_)
-                if nz and abs(nz[2]) < 0.5:
-                    for q_ in (A_, B_, C_, tuple((A_[k] + B_[k] + C_[k]) / 3 for k in range(3))):
-                        _walls.setdefault((int(q_[0] // 64), int(q_[1] // 64)), []).append(q_)
-        _navs += [X(e["pos"]) for e in L.entities()]
+    for _, vs_, ts_ in coll:
+        for a_, b2_, c_, *_r in ts_:
+            A_, B_, C_ = X(vs_[a_]), X(vs_[b2_]), X(vs_[c_])
+            nz = face_normal(A_, B_, C_)
+            if nz and abs(nz[2]) < 0.5:
+                for q_ in (A_, B_, C_, tuple((A_[k] + B_[k] + C_[k]) / 3 for k in range(3))):
+                    _walls.setdefault((int(q_[0] // 64), int(q_[1] // 64)), []).append(q_)
 
-    def _pinch(bx, by, z0, r):
-        for dx in (-1, 0, 1):
-            for dy in (-1, 0, 1):
+    def _wall_near(bx, by, z0, r, z1=120.0):
+        for dx in (-2, -1, 0, 1, 2):
+            for dy in (-2, -1, 0, 1, 2):
                 for q_ in _walls.get((int(bx // 64) + dx, int(by // 64) + dy), ()):
-                    if z0 - 16 < q_[2] < z0 + 120 and math.hypot(q_[0] - bx, q_[1] - by) < r + 48.0:
+                    if z0 - 16 < q_[2] < z0 + z1 and math.hypot(q_[0] - bx, q_[1] - by) < r:
                         return True
         return False
+
+    def _tree_rgb(spec_, rgb):
+        # dimmed and pulled toward grey: the frosted canopy is brighter and colder than the disc's bare cards
+        g_ = sum(rgb) / 3.0
+        d_ = float(spec_.get("light_desat", 0.0)); k_ = float(spec_.get("light_gain", 1.0))
+        return tuple(min(255, int(round(k_ * (c * (1.0 - d_) + g_ * d_)))) for c in rgb)
+
+    def _place_tree(spec_, bx, by, zlo, sc, rgb, yaw):
+        """one static model + its trunk box; returns 1 when the trunk got collision"""
+        oz = zlo - float(spec_.get("sink", 4.0))
+        B.static_models.append((spec_["model"], (bx, by, oz), (0.0, float(yaw), 0.0), sc, [rgb] * int(spec_["verts"])))
+        th = float(spec_.get("trunk_half", 0.0)) * sc
+        if th <= 0:
+            return 0
+        if _wall_near(bx, by, zlo, th + 40.0):
+            return 0
+        # the box sits inside the bark (the mesh trunk is ~6.4u radius at mid height, model units) and stops below
+        # the first branch (trunk_top), so shots beside the trunk and through the crown pass
+        B.add_brush_planes(clip, [], (bx - th, by - th, zlo - 8.0), (bx + th, by + th, oz + float(spec_["trunk_top"]) * sc))
+        _trunks.append((bx, by, zlo, th))
+        return 1
+    _tree_rgbs = []
+    _trunks = []
     for _tk, groups in sorted(tree_cards.items()):
         spec_ = trees3d[_tk]
         comps = []
@@ -1344,9 +1363,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             for i in range(len(P_)):
                 cc.setdefault(_f(i), []).append(i)
             for ix in cc.values():
-                vs = [P_[i] for i in ix]
-                cols = [C_[i] for i in ix]
-                comps.append((vs, cols))
+                comps.append(([P_[i] for i in ix], [C_[i] for i in ix]))
         # one tree = the card components standing on one spot (crossed cards); tallest first
         trees_ = []
         for vs, cols in sorted(comps, key=lambda c: -(max(v[2] for v in c[0]) - min(v[2] for v in c[0]))):
@@ -1356,7 +1373,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     t[3].extend(vs); t[4].extend(cols); break
             else:
                 trees_.append([cx, cy, max(v[2] for v in vs) - min(v[2] for v in vs), list(vs), list(cols)])
-        n_trunk = n_navskip = 0
+        n_trunk = 0
         for _cx, _cy, _h, vs, cols in trees_:
             zlo = min(v[2] for v in vs); zhi = max(v[2] for v in vs)
             low = [v for v in vs if v[2] < zlo + 0.08 * (zhi - zlo)]
@@ -1365,24 +1382,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             sc = (zhi - zlo) / float(spec_["model_height"])
             # light: the cards' own mean vertex colour (unlit pure white -> the level median, as for world draws)
             lit = [(med_light if (r == g == b_ == 255) else (r, g, b_)) for r, g, b_, *_a in cols]
-            # light_gain: the stock tree's canopy texture is brighter than the disc card (frost vs bare bark)
-            _lg = float(spec_.get("light_gain", 1.0))
-            rgb = tuple(min(255, int(round(_lg * sum(c[k] for c in lit) / len(lit)))) for k in range(3))
+            rgb = _tree_rgb(spec_, tuple(sum(c[k] for c in lit) / len(lit) for k in range(3)))
+            _tree_rgbs.append(rgb)
             # a yaw from the spot itself: deterministic, and no two neighbours face the same way
             yaw = (int(bx * 7.0 + by * 13.0) * 37) % 360
-            B.static_models.append((spec_["model"], (bx, by, zlo - float(spec_.get("sink", 4.0))), (0.0, float(yaw), 0.0), sc,
-                                    [rgb] * int(spec_["verts"])))
-            tr_ = float(spec_.get("trunk_radius", 0.0)) * sc
-            if tr_ > 0:
-                # trunk only, as solid as a wall; never on an AI navpoint's spot (the disc's trees had no collision)
-                if any(math.hypot(n_[0] - bx, n_[1] - by) < tr_ + 48.0 for n_ in _navs) or _pinch(bx, by, zlo, tr_):
-                    n_navskip += 1
-                else:
-                    B.add_brush_planes(clip, [], (bx - tr_, by - tr_, zlo - 8.0),
-                                       (bx + tr_, by + tr_, zlo + float(spec_.get("trunk_height", 0.3)) * (zhi - zlo)))
-                    n_trunk += 1
+            n_trunk += _place_tree(spec_, bx, by, zlo, sc, rgb, yaw)
         stats.setdefault("trees3d", {})[_tk] = {"model": spec_["model"], "trees": len(trees_), "trunks": n_trunk,
-                                                "trunks_skipped_gap": n_navskip,
                                                 "h_med": round(sorted(t[2] for t in trees_)[len(trees_) // 2]) if trees_ else 0}
     sob_ents = []
     for rec, sob, sids, tri_world, piv in sob_models:
@@ -1704,6 +1709,190 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             nodes = sorted([v for v in nodes if v not in _dropped] + _added)
             _left = len({_find(p_) for p_ in nodes}) - 1
             stats["pathnode_bridges"] = {"added": len(_added), "dropped": len(_dropped), "groups_left": _left}
+        # ---- extra trees (ea_extratrees.json, user-approved 2026-11-13): stock 3D trees filling the bare fringes,
+        # out of the play space. Kept off: every path node (the AI's walkable lattice around its spawn points,
+        # objectives, triggers and the player start) by route_margin, the AI/objective anchors, the mounted guns'
+        # fields of fire, the smart objects (railgun, tower, bridge, dump, church pieces), walls/fences, roofs and
+        # second floors, slopes, and any ground the disc's own trees do not stand on (roads, ice, yards).
+        _xp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ea_extratrees.json")
+        _xs = json.load(open(_xp)).get(level) if os.path.exists(_xp) else None
+        if _xs and _xs.get("enabled", True) and not os.environ.get("EA_NO_EXTRATREES"):
+            spec_ = _xs
+            # ground texture under each render cell (highest up-facing triangle)
+            _ft = {}
+            for m in meshes:
+                if not m["tris"] or not m["tex"]:
+                    continue
+                _k = str(m["tex"]).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_").split("#")[0]
+                P_ = [X(v) for v in m["verts"]]
+                for a, b, c in m["tris"]:
+                    n_ = face_normal(P_[a], P_[b], P_[c])
+                    if not n_ or abs(n_[2]) < 0.8:
+                        continue
+                    cz = (P_[a][2] + P_[b][2] + P_[c][2]) / 3
+                    for q_ in (P_[a], P_[b], P_[c], ((P_[a][0] + P_[b][0] + P_[c][0]) / 3, (P_[a][1] + P_[b][1] + P_[c][1]) / 3, cz)):
+                        kk = (int(q_[0] // 64), int(q_[1] // 64))
+                        if kk not in _ft or _ft[kk][0] < cz:
+                            _ft[kk] = (cz, _k)
+            # the ground the disc's own trees stand on
+            _tc = {}
+            for m in meshes:
+                if not m["tex"]:
+                    continue
+                _k = str(m["tex"]).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_").split("#")[0]
+                if _k not in spec_["learn_from"]:
+                    continue
+                P_ = [X(v) for v in m["verts"]]
+                zmin = min(v[2] for v in P_)
+                for v in P_:
+                    if v[2] < zmin + 24:
+                        f_ = _ft.get((int(v[0] // 64), int(v[1] // 64)))
+                        if f_ and abs(f_[0] - v[2]) < 32:
+                            _tc[f_[1]] = _tc.get(f_[1], 0) + 1
+            _tot = sum(_tc.values()) or 1
+            _okg = {k for k, v in _tc.items() if v >= float(spec_.get("ground_min_share", 0.03)) * _tot
+                    and k not in spec_.get("ground_exclude", [])}
+            stats["extratrees_ground"] = sorted(_okg)
+            # what to keep clear of
+            _ng2 = {}
+            for v in nodes:
+                _ng2.setdefault((int(v[0] // 256), int(v[1] // 256)), []).append(v)
+            rm = float(spec_.get("route_margin", 256))
+            _anch = [(X(r.pos), float(spec_["mg_margin"] if r.cls == "MMGPoint" else spec_["anchor_margin"]))
+                     for r in _db.recs if r.cls in ("NPCSpawnPoint", "SquadObjective_New", "BasicTrigger", "Player",
+                                                    "ICSPoint", "MMGPoint") and r.pos != (0.0, 0.0, 0.0)]
+            _anch += [(X(r_.pos), float(spec_["setpiece_margin"])) for r_, _s, _m in sob_static + sob_dyn]
+            _have = [(sm[1][0], sm[1][1]) for sm in B.static_models]
+            _hg = {}
+            for h_ in _have:
+                _hg.setdefault((int(h_[0] // 128), int(h_[1] // 128)), []).append(h_)
+
+            def _clear(x, y):
+                for dx in (-1, 0, 1):
+                    for dy in (-1, 0, 1):
+                        for q_ in _ng2.get((int(x // 256) + dx, int(y // 256) + dy), ()):
+                            if (q_[0] - x) ** 2 + (q_[1] - y) ** 2 < rm * rm:
+                                return False
+                for q_, r_ in _anch:
+                    if (q_[0] - x) ** 2 + (q_[1] - y) ** 2 < r_ * r_:
+                        return False
+                for dx in (-1, 0, 1):
+                    for dy in (-1, 0, 1):
+                        for q_ in _hg.get((int(x // 128) + dx, int(y // 128) + dy), ()):
+                            if (q_[0] - x) ** 2 + (q_[1] - y) ** 2 < float(spec_["spacing"]) ** 2:
+                                return False
+                return True
+
+            _rej = {}
+
+            def _no(k):
+                _rej[k] = _rej.get(k, 0) + 1
+
+            # the drawn ground the disc's trees stand on, as exact triangles (the fringe toward the fog line often has
+            # no collision at all: nobody was meant to walk there)
+            _rt = []
+            for m in meshes:
+                if not m["tris"] or not m["tex"]:
+                    continue
+                _k = str(m["tex"]).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_").split("#")[0]
+                if _k not in _okg:
+                    continue
+                P_ = [X(v) for v in m["verts"]]
+                for a, b, c in m["tris"]:
+                    n_ = face_normal(P_[a], P_[b], P_[c])
+                    if n_ and abs(n_[2]) >= 0.8:
+                        _rt.append((P_[a], P_[b], P_[c]))
+            rgrid = flgeom.TriGrid(_rt)
+
+            def _ground_ok(x, y):
+                f_ = _ft.get((int(x // 64), int(y // 64)))
+                if not f_ or f_[1] not in _okg:
+                    return _no("ground_tex")
+                g0 = rgrid.ground(x, y, f_[0] + 64.0, f_[0] - 64.0)
+                if g0 is None:
+                    return _no("ground_tex")
+                # anything solid over the drawn ground (a roof, a bridge, a ledge): no tree
+                if grid.ground(x, y, g0 + 900.0, g0 + 24.0) is not None:
+                    return _no("roof")
+                zs = []
+                for ox, oy in ((64, 0), (-64, 0), (0, 64), (0, -64), (14, 14), (-14, -14), (14, -14), (-14, 14)):
+                    g_ = rgrid.ground(x + ox, y + oy, g0 + 120.0, g0 - 120.0)
+                    if g_ is None:
+                        return _no("edge")
+                    zs.append(g_)
+                if max(zs + [g0]) - min(zs + [g0]) > float(spec_.get("max_rise", 36)):
+                    return _no("slope")
+                if _wall_near(x, y, g0, float(spec_.get("wall_margin", 96)), 400.0):
+                    return _no("wall")
+                # the trunk's foot on the lowest ground under it: never a floating root on a slope
+                return min([g0] + zs[4:])
+
+            def _h(i, j, k=0):
+                return ((i * 73856093) ^ (j * 19349663) ^ (k * 83492791)) & 0xFFFFFF
+            xs_ = [_r[0] * 64 for _r in _ft]
+            ys_ = [_r[1] * 64 for _r in _ft]
+            cell = float(spec_.get("cell", 128))
+            cands = []
+            for gx in range(int(min(xs_) // cell), int(max(xs_) // cell) + 1):
+                for gy in range(int(min(ys_) // cell), int(max(ys_) // cell) + 1):
+                    hh = _h(gx, gy)
+                    x = gx * cell + (hh & 0xFF) / 255.0 * cell
+                    y = gy * cell + ((hh >> 8) & 0xFF) / 255.0 * cell
+                    cands.append((hh, x, y))
+            cands.sort()
+            hmin, hmax = spec_["height_range"]
+            n_x = n_tr = 0
+            cl_ = []
+            for hh, x, y in cands:
+                if n_x >= int(spec_["max"]):
+                    break
+                if any((c_[0] - x) ** 2 + (c_[1] - y) ** 2 < float(spec_["cluster_gap"]) ** 2 for c_ in cl_):
+                    continue
+                if not _clear(x, y):
+                    _no("play_space")
+                    continue
+                if _ground_ok(x, y) is None:
+                    continue
+                cl_.append((x, y))
+                # a natural clump around the seed: 2..6 trees within cluster_radius, spaced
+                want = 2 + (hh >> 16) % 5
+                for t_ in range(want * int(spec_.get("tries", 8))):
+                    if want <= 0 or n_x >= int(spec_["max"]):
+                        break
+                    h2 = _h(int(x), int(y), t_ + 1)
+                    if t_ == 0:
+                        px, py = x, y
+                    else:
+                        ang = (h2 & 0x3FF) / 1024.0 * 2 * math.pi
+                        rr = float(spec_["cluster_radius"]) * (0.3 + 0.7 * ((h2 >> 10) & 0xFF) / 255.0)
+                        px, py = x + rr * math.cos(ang), y + rr * math.sin(ang)
+                    if not _clear(px, py):
+                        continue
+                    gz = _ground_ok(px, py)
+                    if gz is None:
+                        continue
+                    ht = hmin + (hmax - hmin) * ((h2 >> 18) & 0x3F) / 63.0
+                    sc = ht / float(spec_["model_height"])
+                    # the swapped trees' median light (already dimmed); without them the level median, dimmed
+                    rgb = (tuple(sorted(c[k] for c in _tree_rgbs)[len(_tree_rgbs) // 2] for k in range(3)) if _tree_rgbs
+                           else _tree_rgb(spec_, med_light))
+                    n_tr += _place_tree(spec_, px, py, gz, sc, rgb, (h2 >> 4) % 360)
+                    _hg.setdefault((int(px // 128), int(py // 128)), []).append((px, py))
+                    n_x += 1
+                    want -= 1
+            stats["extratrees"] = {"trees": n_x, "clusters": len(cl_), "trunks": n_tr, "tris": n_x * int(spec_.get("tris", 160)), "seed_rejects": _rej}
+        # a path node a trunk box would hold inside the AI's hull is dropped (the AI paths around the trunk)
+        _tg = {}
+        for t_ in _trunks:
+            _tg.setdefault((int(t_[0] // 128), int(t_[1] // 128)), []).append(t_)
+        _nodes2 = []
+        for x, y, g in nodes:
+            if any(abs(t_[0] - x) < t_[3] + 18 and abs(t_[1] - y) < t_[3] + 18 and abs(t_[2] - g) < 64
+                   for dx in (-1, 0, 1) for dy in (-1, 0, 1) for t_ in _tg.get((int(x // 128) + dx, int(y // 128) + dy), ())):
+                continue
+            _nodes2.append((x, y, g))
+        stats["pathnodes_in_trunk_dropped"] = len(nodes) - len(_nodes2)
+        nodes = _nodes2
         for x, y, g in nodes[:3800]:
             kept.append((x, y, g))
             B.entity([("classname", "info_pathnode"), ("origin", f"{x:.0f} {y:.0f} {g + 16:.0f}")])
