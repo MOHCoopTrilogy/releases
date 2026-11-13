@@ -1437,6 +1437,37 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         dk = f"maps/coop_ea_{level}_data.scr"
         if sob_static or sob_dyn:      # [eapolish] the smart objects are real geometry: the script drops its stand-ins
             files[dk] = files[dk].replace(b"\tlevel.ea_data_ok = 1", b"\tlevel.ea_sob = 1\n\tlevel.ea_data_ok = 1")
+        # 0.7.25: a squad goal off the path-node graph ("couldn't find end node": the order never ran) is moved to
+        # the nearest path node within 192u across and 64u up or down; one within 48u of a node is left alone
+        import re as _re
+        _pn = [tuple(float(v) for v in dict(e)["origin"].split()) for e in B.entities
+               if dict(e).get("classname") == "info_pathnode"]
+        _snap = {"moved": 0, "kept": 0, "none": 0}
+
+        def _so(m_):
+            q_ = [float(v) for v in m_.group(2).split()]
+            best_, bd_ = None, None
+            for n_ in _pn:
+                if abs((n_[2] - 16.0) - (q_[2] - 24.0)) > 64.0:
+                    continue
+                d_ = (n_[0] - q_[0]) ** 2 + (n_[1] - q_[1]) ** 2
+                if bd_ is None or d_ < bd_:
+                    best_, bd_ = n_, d_
+            if best_ is not None and bd_ <= 48.0 ** 2:
+                _snap["kept"] += 1
+                return m_.group(0)
+            if best_ is None or bd_ > 192.0 ** 2:
+                _snap["none"] += 1
+                return m_.group(0)
+            _snap["moved"] += 1
+            return m_.group(1) + "( %.0f %.0f %.0f )" % (best_[0], best_[1], best_[2] - 16.0 + 24.0)
+        # OFF by default: a blind nearest-node move took the cellar goal (-3771 -379 -656) to a node a floor up and
+        # through the wall (-3580 -419 -523): path failures 237 -> 1,090 in the playerless run. A snap needs a
+        # reachability test first. EA_SOSNAP=1 for experiments.
+        if os.environ.get("EA_SOSNAP") == "1":
+            files[dk] = _re.sub(r"(\tlevel\.ea_so_pos\[\d+\] = )\(([^)]*)\)", _so,
+                                files[dk].decode("latin-1")).encode("latin-1")
+        stats["so_snap"] = _snap
     else:
         pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base, grid=grid) if vgm else None
 

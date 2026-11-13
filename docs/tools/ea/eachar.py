@@ -349,6 +349,22 @@ def skin(model, bone_block, nbones, bidx, label):
                     th = "Bip01 %s Thigh" % ("L" if p[1] > 0 else "R")
                     wp = 0.25 + 0.75 * max(0.0, min(1.0, (p[2] - hem) / max(1.0, pel_z - hem)))
                     ws = [("Bip01 Pelvis", wp), (th, 1.0 - wp)]
+            if len(ws) == 1:
+                # knees and elbows bend smoothly: within 6 cm of the joint (along the lower bone) a vertex is shared by
+                # the upper and the lower bone. Rigid on one or the other, a bent knee opened a bare crack between
+                # the boot top and the skirt (her crouch and run poses, 2026-11-12 offline sheet)
+                for up_, lo_ in (("Thigh", "Calf"), ("UpperArm", "Forearm")):
+                    bn0 = ws[0][0]
+                    if bn0.endswith(" " + up_) or bn0.endswith(" " + lo_):
+                        sd_ = bn0.split(" ")[1]
+                        ub, lb = "Bip01 %s %s" % (sd_, up_), "Bip01 %s %s" % (sd_, lo_)
+                        if ub in seg and lb in seg:
+                            jt, en_ = seg[lb]
+                            dr = _norm(_sub(en_, jt))
+                            sv = _dot(_sub(p, jt), dr)
+                            if -6.0 < sv < 6.0:
+                                wl = (sv + 6.0) / 12.0
+                                ws = [(lb, wl), (ub, 1.0 - wl)] if wl >= 0.5 else [(ub, 1.0 - wl), (lb, wl)]
             nn = _norm(tuple(nrm[j]))
             bp, ax = J[ws[0][0]]
             vb += struct.pack("<3f2f2i", _dot(nn, ax[0]), _dot(nn, ax[1]), _dot(nn, ax[2]), uv[j][0], uv[j][1], len(ws), 0)
