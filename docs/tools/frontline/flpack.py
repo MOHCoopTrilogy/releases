@@ -254,6 +254,65 @@ def _particles(L, X, lines, pfx, log):
     lines.append(f"\tlevel.fl_pfx_n = {n}")
 
 
+def _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, osp, log):
+    """[flfix2 round 20] LoadOneShotSound areas (entering one loads bank 11LOAD<n>, n = record word 14 = the class's
+    attr 2): the bank's clips are the area's AI combat barks and pain sounds, both sides. Which clip is which situation
+    is OUR table (fl_levels.json "oneshots" "sets": bank -> side_situation -> entry numbers), made by transcribing
+    the decoded clips locally; nothing of the audio or the words is stored in the repository. Each situation becomes
+    a numbered alias set (<base>1..<base>N: the engine plays one at random when the base name is played, the
+    coop_aivoice pool recipe) and the mission script hands the base name to the situational AI voice per area."""
+    import hashlib
+    pre = f"fl{level.replace('_', '')}_os"
+    seen = {}
+    na = 0
+    banks = {}
+    for e in L.entities():
+        if osp["cls"] not in e["strs"]:
+            continue
+        w = flscene.words(e)
+        bank = w[14] if len(w) > 14 else 0
+        sets = osp.get("sets", {}).get(str(bank))
+        if not sets:
+            continue
+        na += 1
+        q = X(e["pos"])
+        lines.append(f'\tlevel.fl_os[{na}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+        lines.append(f'\tlevel.fl_os_r[{na}] = {(w[11] >> 16) / 10.0 * X.s:.0f}')
+        lines.append(f'\tlevel.fl_os_bank[{na}] = {bank}')
+        lines.append(f'\tlevel.fl_os_rec[{na}] = {e["i"]}')
+        if bank in banks:
+            continue
+        abk = disc.read(d + osp["bank"].format(n=bank))
+        bnk, _ents = flaudio.bnk_entries(abk)
+        bp = os.path.join(tmp, f"os{bank}.bnk")
+        with open(bp, "wb") as f:
+            f.write(bnk)
+        nb = 0
+        for key, entries in sorted(sets.items()):
+            j = 0
+            for k in entries:
+                dst = os.path.join(tmp, f"os{bank}_{k}.wav")
+                if not flaudio.vgm_decode(vgm, bp, dst, k):
+                    log("one-shot decode failed", bank, k)
+                    continue
+                data = open(dst, "rb").read()
+                h = hashlib.sha1(data[44:]).hexdigest()[:10]
+                rel = seen.get(h)
+                if rel is None:
+                    rel = f"sound/fl/{level}/os/{h}.wav"     # the same clip in two banks is stored once
+                    files[rel] = data
+                    seen[h] = rel
+                j += 1
+                ali.append(f'aliascache {pre}{bank}_{key}{j} {rel} soundparms 1.0 0.1 1.0 0.05 220 2400 dialog loaded maps "coop_fl"')
+            if j:
+                nb += j
+                lines.append(f'\tlevel.fl_os_alias[{bank}]["{key}"] = "{pre}{bank}_{key}"')
+                lines.append(f'\tlevel.fl_os_cnt[{bank}]["{key}"] = {j}')
+        banks[bank] = nb
+    lines.append(f"\tlevel.fl_os_n = {na}")
+    log("one-shots: areas", na, "clips per bank", banks, "files", len(seen))
+
+
 def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
     sp = spec(level)
     d = f"DATA/{level.split('_')[0]}/{level}/"
@@ -296,6 +355,9 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
     amb = sp.get("ambience")
     if amb:
         _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log)
+    # ---- [flfix2 round 20] one-shot banks: the areas' combat barks and pain sounds ----
+    if sp.get("oneshots"):
+        _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, sp["oneshots"], log)
     files[f"ubersound/fl_{level}.scr"] = ("// GENERATED on this PC by the Frontline converter\n" + "\n".join(ali) + "\n").encode()
 
     if mohaa_base:
