@@ -1,5 +1,5 @@
 {
- "_comment": "look round 2026-11-12 (user: replace the smudged walls and ground with CC0 textures; listed in FIDELITY as deviations, credited in CREDITS.txt). Merged into fl_levels.json hd.swap by flhd.apply.",
+ "_comment": "look round 2026-11-12 (user: replace the smudged walls and ground with CC0 textures; listed in FIDELITY as deviations, credited in CREDITS.txt). Merged into fl_levels.json hd.swap by flhd.apply. 41180 (plank wall) withdrawn after QA: every CC0 plank read too new or lost the wall's frame boards; the learned upscale of the disc's own image is used.",
  "1_1": {
   "54200": {
    "asset": "stony_dirt_path",
@@ -31,15 +31,6 @@
   "ccf80": {
    "asset": "worn_mossy_plasterwall",
    "tile": 179,
-   "repeat": [
-    1,
-    1
-   ],
-   "overlay": 1.0
-  },
-  "41180": {
-   "asset": "weathered_planks",
-   "tile": 166,
    "repeat": [
     1,
     1
