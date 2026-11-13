@@ -519,8 +519,13 @@ plus bursts; old / new), `fin` (use icon, house). Deaths are attributed from the
 | Barrel use "not obvious" | no use prompt | the mod's crosshair USE icon (`coop_mod/actprompt.scr`, `hand`) while a player faces one of our use spots within 110u (drop, molotov barrel) | `r17/fin/use_on_*.tga` |
 | Ambience | (Round 17) | `fl_ambience` wired; the mod's country bed off on this mission (`level.coop_ambienceBed none`) | boot log `FLAMB start beds=3 zones=5 fires=3` |
 
-Not done here: the MG-nest corpse with legs up out of the sandbags (death pose against the nest geometry), the tower
-MG "glitchy" (waiting for the user's detail), the use icon seen on the barrel itself (same code as the drop).
+Round 18b (client run `r17/dp2`): the Panzer is created out of sight and fires its three shots (trace spacing) once a
+player is within 2200u or sees it; seen down the street with the muzzle flash (`r17/dp2_tank5.jpg`), the rocket pass
+after the shots. `grenade_nest` is never spoken by the interrogation officer or a man playing dead; the dock talk is
+skipped when every German there is already in the fight. MG-nest men with no room behind them die forward or crumple
+in place instead of the stock fall-back; the user's legs-up corpse did not reproduce (`r17/dp2_nest_crop.jpg`).
+Not done: the tower MG "glitchy" (waiting for the user's detail), the use icon seen on the barrel itself (same code as
+the drop).
 
 ## Round 16 (flfix2, 2026-11-12) - collision: doorways and arches
 
@@ -684,7 +689,7 @@ v109 is not yet seen in a client: the 1920x1080 test screen has been missing sin
 | Wounded gunner's death pose | (no death: he fades) | settles into the stock on-back dead pose, body stays | user-approved 2026-11-12 (pose changed 2026-11-13) |
 | Interrogation execution | never happens (line 3 stalls) | after interrog_4 he aims 5 s, then the bang that opens interrog_5 = the shot | choice (kept from the user's rescue design) |
 | Interrogation start | trigger 37, 54u from the officer | 350u, or 750u in line of sight of the officer | forced (our 200u rescue radius) |
-| Panzer first shot | +216 ticks from its trigger | same spacing, from when a player sees it; rocket pass after the second shot | choice (user: it must be seen firing) |
+| Panzer first shot | +216 ticks from its trigger | same spacing, from when a player sees it or is within 2200u; rocket pass after the second shot | choice (user: it must be seen firing) |
 | House collapse dust and smoke | disc particle records | stock dust cloud and smoke column | stand-in |
 | Use prompt | hint text on approach | hint text plus the mod's USE icon when facing the spot | user-approved 2026-11-13 |
 | Collision over doors, arches and wall gaps (round 16) | the wall's collision ends where it is drawn (about 96u over the floor, arch chamfers from about 90u) | collision only: whatever hangs 56-136u over a floor that runs on level through the wall is cut away up to 136u over that floor; the AI-route carve cuts walls to 136u (ceilings still 106u); doorway soffit caps at 136u. Shots pass through that band of drawn wall over an opening | forced (MOHAA's 94u stand box + its 38u step-up) |
