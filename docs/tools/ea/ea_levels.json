@@ -19,6 +19,11 @@
   "path_nodes_extra": [[-3740, -372, -606], [-3700, -372, -643], [-3655, -372, -656]],
   "text": [
    "NemesisName",
+   "PartisanFoshkovich",
+   "PartisanVasileva",
+   "PartisanMoldavonov",
+   "PlayerSquadNPCDeath",
+   "HealAlly",
    "NemesisObjective_RUS1",
    "NemesisObjectiveAdded",
    "NemesisObjectiveCompleted",

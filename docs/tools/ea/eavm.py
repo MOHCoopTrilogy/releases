@@ -176,6 +176,11 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f'\tlevel.ea_sp_team[{n}] = "{team}"')
         L(f'\tlevel.ea_sp_wpn[{n}] = "{GUNS.get(base(npc["weapon"]).lower(), "mp40" if team == "axis" else "ppsh")}"')
         L(f'\tlevel.ea_sp_chr[{n}] = {S(base(npc["character"]))}')
+        # [dbfix] a named squadmate: the archetype's own name string (PartisanVasileva -> "Vasileva"), for the
+        # original's "<name> has died!" (PlayerSquadNPCDeath)
+        _an = base(npc["archetype"] or "")
+        if _an and text.get(_an):
+            L(f'\tlevel.ea_sp_shown[{n}] = {S(text[_an])}')
         L(f"\tlevel.ea_sp_grp[{n}] = {gid(g) if g else chr(34) * 2}")
         L(f"\tlevel.ea_sp_cnt[{n}] = {max(1, min(12, r.u(48) or 1))}")
         L(f"\tlevel.ea_sp_alive[{n}] = {max(1, min(12, r.u(50) or 1))}")      # 0.7.15: word 50 (min, max, alive-at-once sit at 48-50); word 55 was misread as it
