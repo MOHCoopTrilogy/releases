@@ -517,6 +517,20 @@ Step lips (18-38u rises from the walkable area): 913 edges in 290 places on v106
 surface within 6u. Not smoothed: the live engine climbs 38u on this map, so they are not walls; clip half-steps
 would be a deviation without a cause.
 
+## Round 16c (collision, 2026-11-13) - screens 12-18 and the capped lane, live engine
+
+Located from the user's own log: the screens' file times (12 at 17:13:49, 15 at 17:17:21, 17 at 17:22:32, 18 at
+17:23:04) against his FLTRIG positions, then stills taken there (`H:/hzm_work/flpolish/fix2/r16/Le_v106/*_pre.jpg`).
+Walks with byte copies of the live binaries (`r16/Le_v95.out`, `r16/Le_v106.out`).
+
+| screen | found at | v95 (live engine) | v106 (live engine) | cause / note |
+|---|---|---|---|---|
+| 12 diamond-wallpaper room, door onto the street | room x 2232-2420, y -1700..-1600; door x 2231, y -1676..-1627 (lintel 129u) | the walker stops in the doorway (x 2248) | through to the street (x 2017) | lintel; fixed by lift_lintels. The still shows the CORDIN-GIRARDOT street, not the red barn doors: probable, not certain |
+| 15 rusty pointed arches past the bridge | not found: at that time the user was on the Panzer street (1400-1550, 470-900) | - | - | - |
+| 17 breach gap with slats and the canteen | (-656, 2620-2700) - matches the screen | passes standing (x -656) | passes standing (x -656) | 16u off its centre: v95 passed once, v106 crouched once; v106 only removed collision there (lintel pieces), so not a regression |
+| 18 diamond-wallpaper room onto a barrel yard | room with rubble near (-840, 2700) found; its door to the yard not found | - | - | - |
+| capped lane (-1232, 4464) -> (-1712, 4752) | | blocked standing and crouched | same | Not a passage in the original: the line crosses floorless house shells (no disc floor, nothing drawn, only our pit lids) under the original's player-clip sheets at 52u and 94u, with rubble drawn at 57-89u, and only one AI node at its start. The original keeps the player out; kept blocked. The holes are under 61-65u caps, so they can't be reached at the 38u step. An emulator frame would settle it |
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
