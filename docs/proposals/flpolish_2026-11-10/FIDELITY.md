@@ -598,6 +598,54 @@ v109 is not yet seen in a client: the 1920x1080 test screen has been missing sin
 | Bridge crates "dropped" (bug-11165) | they are the disc's own records 432/435/436, tilted 10/15/10 degrees about x to sit on the arched deck; our roll had the wrong sign for the engine, so they leaned against the arch (corners 6-11u sunk or floating) | roll fixed in flscene (raw_angles and mohaa_angles): the crates follow the deck (corners within 0-3u). Same fix turns the jeep tumble and the planes' bank the right way (not yet seen) | `r19/a108/crates2.tga`; offline corner check |
 | Culling vs the fog | vis_radius is 7000 (cells 1024): nothing within ~7090u can be culled, the fog is solid at 4800 | unchanged: no popping possible inside the fog. Frame time (live engine, 60 fps cap): start overlook 16.6 ms (rf 1.7, bk 1.0), church tower west 15.9 (1.5 / 1.4), tower east 16.2 (0.7 / 7.9) | `r19/a108.out` |
 
+## Round 20 (flfix2, 2026-11-13) - particles, house wall, one-shots
+
+Converter only (commits 0bf6e1bd, 94765973, ffbf73a3; CONV_BUILD 9). Pak `H:\hzm_work\flpolish\v110_fl_1_1.pk3`, commit list
+beside it; headless dedicated boot `fix2\r20\boot20.log`: `^~^~^ FLDATA conv 9 pfx 15 oneshot areas 7`, ubersound/fl_1_1.scr
+parsed (SERVER) with no error lines. The map script is not changed here: its blocks are with the map owner. Nothing seen
+or heard in a client yet. Sweep: `H:\hzm_work\sweep_2026-11-13\SWEEP_fl_1_1.md`; work files `sweep_2026-11-13\sopfx\` (local).
+
+**Particle systems (bug-11184).** The 15 kind-9 records are a 72-byte header plus the same 168-byte block the
+CREATEPARTICLESYSTEMBYTYPE templates use (type hash in its first word; 236 such blocks in 1_P.bpd). emt_1_1.emt is not
+particle data (no seed word 12345, no type hash: int16 tuples). Read as (flscene.particle): colour range, spawn box,
+velocity range, acceleration, start size, emit duration (0 = continuous), rate per second, particle life, spin, sprite key;
+start = word 32 high half (1 runs from load, 2 waits for an event). The sprite itself is not on the level (same key = same
+sprite). Stock emitter by decoded type; positions through the converter's transform (level.fl_pfx_*).
+
+| rec | our pos | decoded | type -> stock | start |
+|---|---|---|---|---|
+| 4, 5, 6 | (3564 -3423 -215), (533 -773 -90), (995 1190 198) | grey 0.3, 0.5-1 m, up 1 m/s, 6/s, life 12 / 12 / 14 s | smoke -> tehao_firesmoke_long | load |
+| 7 | (1356 -2493 -153) | black, 2 m, 7 x 5 m box, sinks and rises, 6/s, 12 s | pall -> tehao_thicksmoke | load |
+| 8 | (4238 -1894 -14) house | black to grey, 1-1.5 m, 6/s, 12 s | smoke -> tehao_firesmoke_long | house (field = event; the original's frames: no smoke before, a black column after, `ref_xemu/trace/b41h_prepost.png`) |
+| 9 / 10 | (-2054 4431 -57 / -92) roster fire | smoke 0.18 grey, 6/s, 12 s / flame orange, 0.2-0.5 m, up 0.6-1.1 m/s, 5/s, 1 s | smoke / flame -> tehao_fire | 9 load; **10 event, starter not decoded: not spawned** |
+| 11 / 12 | (4614 -2604 37 / 63) dock street | flame 0.6-1 m, 2.8/s, 1 s / black smoke | flame / smoke | load (small flame on the street at trigger 41's moment, `trace/b41_sheet.png`) |
+| 13 | (4228 -1916 -13) house | flame as 11 | flame | load (field) - not checked against a frame |
+| 208, 209 / 421, 422 | (4190 / 4108 -2836 -112 / -147) the burning car | smoke 5 / 4.2 per s, 12 / 9.7 s / flame bed 0.1-0.8 m, life 1.3 / 0.9 s, rate field 0 | smoke / flame | load (car burning with its column at trigger 41's moment, before any bomb: `trace/b41_sheet.png` frame 1) |
+| 51 | (4302 -2932 -104) | StartBeachExplosionBig: its own burst (150 bits at 15 m/s, 0.1 s) + four by-type systems (grey dirt 1.4-2 m up to 20 m/s; cloud up to 28 m/s, 3.7 s; geyser 2-8 m up to 41 m/s; debris) + a 7 s smoke 20 ticks later, CREATEEXPLOSION, vibration 1.5 s | blast -> explosion_bombdirt, removed after 8 s | bombA (AUDIT row 4; its starter on link 6:240 is not identified) |
+
+Scale (`fl_pfx_scale`) is the system's size against its type's median on this level; the engine does not apply entity
+scale to originemitter sprites (cg_commands.cpp UpdateEmitter: only dlight intensity), so it is information only.
+
+**House wall (bug-11185).** house_remove_1_1.msh belongs to ObjectivePickUp rec 293: 49 of its 81 vertices coincide with
+the baked world at that record's origin, no rotation (the world art carries the hole). The original removes it on
+message 74 from trigger 83, the moment the house parts start. Now script_object `fl_om_house_remove` (inline model,
+visible from load, clip boxes on its two wall faces, 0.18 m thick). The original also plays sound 54 then (id not resolved).
+
+**One-shot banks (bug-11186).** LoadOneShotSound 53-59 load 11LOAD1-7 (record word 14 = the bank). 431 distinct clips
+(541 with repeats between banks). Every bank: entry 1 silence, ~20 pain grunts, then German lines, then American lines
+- the area's barks for BOTH sides. Transcribed locally (faster-whisper small, German and English) and placed by our phrase
+table: 145 pain, German contact 23 / attack 15 / taunt 12 / backup 10 / grenade 7 / cover 7 / kill 7 / banter (lost him)
+6 / mandown 5 / fallback 3 / reload 1, American attack 60 / cover 37 / suppress 14 / grenade 12 / contact 7 / fallback 6 /
+taunt 1; 46 unplaced (unclear words), LOAD8/9 not loaded by any 1_1 trigger. Numbered alias sets (the engine plays one at
+random from the base name) so the AI voice gets variety without an aivoice.scr change.
+
+| item | original | conversion | status |
+|---|---|---|---|
+| Particle systems | 15 kind-9 records | 14 placed as stock emitters, 1 (rec 10) waits for its undecoded start | data built; script blocks with the owner |
+| House wall | swapped out at the house blast | disc mesh, hidden at the blast by the map script | data built; not seen |
+| One-shot banks | one bank per area, clips chosen by the AI through AEMSEVENT (computed id, not decoded) | per area, per side, per situation sets on the situational AI voice | data built; situation per clip is ours |
+| Visual check wanted | - | emulator stills: roster fire (-2012 4211 disc) before and after the MG-nest street is reached; the house front (4271 -2136 disc) before trigger 41 from the street, for rec 13's flame; the four untriggered spots (3606 -3643), (575 -993), (1038 970), (1398 -2713) | queued |
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -691,7 +739,11 @@ v109 is not yet seen in a client: the 1920x1080 test screen has been missing sin
 | Interrogation execution | never happens (line 3 stalls) | after interrog_4 he aims 5 s, then the bang that opens interrog_5 = the shot | choice (kept from the user's rescue design) |
 | Interrogation start | trigger 37, 54u from the officer | 350u, or 750u in line of sight of the officer | forced (our 200u rescue radius) |
 | Panzer first shot | +216 ticks from its trigger | same spacing, from when a player sees it or is within 2200u; rocket pass after the second shot | choice (user: it must be seen firing) |
-| House collapse dust and smoke | disc particle records | stock dust cloud and smoke column | stand-in |
+| House collapse dust and smoke | disc particle records | stock dust cloud and smoke column; round 20: the smoke column at the disc's own record 8 spot (tehao_firesmoke_long), once the map script takes the block | stand-in (forced: no disc sprite carried) |
+| Placed particle systems (round 20) | 15 kind-9 systems with their own sprites | stock emitters chosen by decoded type (smoke, pall, flame, blast) at the disc spots; size not carried (engine ignores entity scale on emitter sprites) | forced (sprites not on the level); type mapping a choice |
+| Particle start rules (round 20) | record start field + messages | load / event from the record; rec 8 with the house (frames), rec 51 with bomb A (AUDIT), rec 10 not started (starter undecoded) | 8 = trace; 51 = inferred; 10 open |
+| House wall section (round 20) | house_remove swapped out on message 74 | disc mesh on rec 293, clip on its two wall faces (0.18 m slabs, windows included), hidden by the map script with the house parts; sound 54 not played | clip shape a choice; timing exact once wired |
+| One-shot barks and pain (round 20) | 11LOAD bank of the area entered, clip chosen by the AI (not decoded) | same banks per area; clip -> situation by our transcription table; German lines to German AI, American lines to allied AI, grunts to both | situation mapping a choice; 46 clips unplaced |
 | Use prompt | hint text on approach | hint text plus the mod's USE icon when facing the spot | user-approved 2026-11-13 |
 | Collision over doors, arches and wall gaps (round 16) | the wall's collision ends where it is drawn (about 96u over the floor, arch chamfers from about 90u) | collision only: whatever hangs 56-136u over a floor that runs on level through the wall is cut away up to 136u over that floor; the AI-route carve cuts walls to 136u (ceilings still 106u); doorway soffit caps at 136u. Shots pass through that band of drawn wall over an opening | forced (MOHAA's 94u stand box + its 38u step-up) |
 | Low openings the original crouched through, 56-82u high | crouch | can be walked through standing where the opening runs on level both sides | side effect of the row above |
