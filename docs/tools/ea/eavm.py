@@ -689,6 +689,26 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_dl_anim[{n}] = {S(anim[0] if anim else '')}")
         L(f"\tlevel.ea_dl_name[{n}] = {S(r.name)}")
     L(f"\tlevel.ea_dl_n = {n}")
+    # ---- [dbfix 0.7.27] the other SoundDefTriggers (fire loops, barbed wire, the plunger; the PA points are above):
+    # sphere radius (word 16, m), the sound definition's hash (word 30: 6 distinct sounds on 1_11, ref_xemu
+    # TRACE_ea_sounds.md), looping flag (word 23), one-shot by message (words 25-26), group list (31: count, 32..) ----
+    n = 0
+    for r in db.of("SoundDefTrigger"):
+        if "GERMANPA" in r.name.upper() or r.pos == (0.0, 0.0, 0.0) or len(r.w) < 31:
+            continue
+        n += 1
+        q0, q1 = X((0.0, 0.0, 0.0)), X((1.0, 0.0, 0.0))
+        u = abs(q1[0] - q0[0]) or 48.0
+        cnt = (r.u(31) or 0) if len(r.w) > 31 else 0
+        grs = [r.u(32 + k) for k in range(min(cnt, 4)) if len(r.w) > 32 + k]
+        L(f"\tlevel.ea_sd_pos[{n}] = {P(X(r.pos))}")
+        L(f"\tlevel.ea_sd_r[{n}] = {max(32.0, r.f(16) * u):.0f}")
+        L(f'\tlevel.ea_sd_hash[{n}] = "{r.u(30):08x}"')
+        L(f"\tlevel.ea_sd_loop[{n}] = {1 if r.u(23) == 1 else 0}")
+        L(f"\tlevel.ea_sd_once[{n}] = {1 if (r.u(25) == 1 or r.u(26) == 1) else 0}")
+        L(f"\tlevel.ea_sd_grp[{n}] = {gid(grs[0]) if grs else chr(34) * 2}")
+        L(f"\tlevel.ea_sd_name[{n}] = {S(r.name)}")
+    L(f"\tlevel.ea_sd_n = {n}")
     # ---- effects packages (fires, smoke, fog, explosions): the .xpd name, its place, the group that plays it ----
     n = 0
     for r in db.of("EffectsPackage"):
