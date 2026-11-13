@@ -83,7 +83,7 @@ def spec(level):
 
 # [flfix2] written into the data script (level.fl_conv): maps/coop_fl_*.scr tells the player to convert again when the
 # installed pak is older than the mission script expects (bug-10966). Raise it with every conversion-visible change.
-CONV_BUILD = 8
+CONV_BUILD = 9
 
 
 def spec_xy(level, X, key):
@@ -200,6 +200,58 @@ def _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log):
     lines.append(f"\tlevel.fl_ambz_n = {nz}")
     lines.append(f"\tlevel.fl_fire_n = {nf}")
     log("ambience: beds", len(beds), "zones", nz, "fire loops", nf)
+
+
+def _particles(L, X, lines, pfx, log):
+    """[flfix2 round 20] Frontline's placed particle systems (.bpd section-3 kind 9, flscene.particle) -> level vars for
+    the mission script: where, which STOCK MOHAA emitter stands in for it (fl_levels.json "particles": type -> model,
+    chosen by the decoded colour, motion and size), when it starts and how long it stays. Nothing of the disc's
+    sprites is carried; the type is ours, from the decoded numbers."""
+    rows = []
+    for e in L.entities():
+        p = flscene.particle(e)
+        if p is None:
+            continue
+        r, g, b = p["rgb"]
+        if p["dur"] > 0 or p["cls"]:
+            typ = "blast"           # a one-shot burst (emit duration set) or a scripted explosion class
+        elif r > 1.3 * b and r > 0.4:
+            typ = "flame"           # orange start colour
+        elif p["vel"][2][0] < 0:
+            typ = "pall"            # sinks as well as rises: a low, wide smoke that hangs
+        else:
+            typ = "smoke"           # rises steadily
+        rows.append((e, p, typ))
+    by_typ = {}
+    for _e, p, typ in rows:
+        by_typ.setdefault(typ, []).append(sum(p["size"]) / 2.0)
+    n = 0
+    for e, p, typ in rows:
+        rec = e["i"]
+        model = pfx["models"].get(typ)
+        if not model:
+            continue
+        n += 1
+        q = X(e["pos"])
+        ref = sorted(by_typ[typ])[len(by_typ[typ]) // 2] or 1.0
+        start = pfx.get("start", {}).get(str(rec)) or ("load" if p["start"] == 1 else "event")
+        if typ == "blast":
+            life = pfx.get("life", {}).get(str(rec), math.ceil(p["dur"] + p["life"]))
+        else:
+            life = 0            # continuous: the original never stops it (no stop message reaches a kind-9 record)
+        lines.append(f'\tlevel.fl_pfx[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+        lines.append(f'\tlevel.fl_pfx_rec[{n}] = {rec}')
+        lines.append(f'\tlevel.fl_pfx_type[{n}] = "{typ}"')
+        lines.append(f'\tlevel.fl_pfx_model[{n}] = "{model}"')
+        lines.append(f'\tlevel.fl_pfx_scale[{n}] = {sum(p["size"]) / 2.0 / ref:.2f}')
+        lines.append(f'\tlevel.fl_pfx_start[{n}] = "{start}"')
+        lines.append(f'\tlevel.fl_pfx_life[{n}] = {life}')
+        lines.append(f'\tlevel.fl_pfx_rate[{n}] = {p["rate"]:.2f}')
+        lines.append(f'\tlevel.fl_pfx_plife[{n}] = {p["life"]:.2f}')
+        lines.append(f'\tlevel.fl_pfx_size[{n}] = {sum(p["size"]) / 2.0 * X.s:.0f}')
+        log("particle", rec, typ, model, start, "life", life, "rate %.2f plife %.2f size %.2f-%.2f m rgb %s"
+            % (p["rate"], p["life"], p["size"][0], p["size"][1], tuple(round(c, 2) for c in p["rgb"])))
+    lines.append(f"\tlevel.fl_pfx_n = {n}")
 
 
 def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
@@ -626,8 +678,18 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         lines.append(f"\tlevel.fl_ladder_h[{nlad}] = {ld['height']:.0f}")
         lines.append(f"\tlevel.fl_ladder_exit[{nlad}] = ( {ex:.0f} {ey * sg:.0f} {ez:.0f} )")
     lines.append(f"\tlevel.fl_ladder_n = {nlad}")
+    # [flfix2 round 20] placed particle systems (kind 9) -> stock emitters
+    if spec(level).get("particles"):
+        _particles(L, X, lines, spec(level)["particles"], log)
     lines.append(f"\tlevel.fl_ammo_n = {n_ammo}")
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
-              "\tlevel.fl_conv = %d" % CONV_BUILD, "\tlevel.fl_data_ok = 1", "}end", ""]
+              "\tlevel.fl_conv = %d" % CONV_BUILD, "\tlevel.fl_data_ok = 1"]
+    # [flfix2 round 20] one greppable line read back from the vars just set (proves the data script ran to the end)
+    summ = ['" conv " + level.fl_conv']
+    if any(q.startswith("\tlevel.fl_pfx_n =") for q in lines):
+        summ.append('" pfx " + level.fl_pfx_n')
+    if any(q.startswith("\tlevel.fl_os_n =") for q in lines):
+        summ.append('" oneshot areas " + level.fl_os_n')
+    lines += ["\tprintln( \"^~^~^ FLDATA\" + " + " + ".join(summ) + " )", "}end", ""]
     files[f"maps/coop_fl_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     return {"nudged": nudged, "axis": na, "allies": nl, "health": nh, "cues": len(wavs), "music": len(segs)}
