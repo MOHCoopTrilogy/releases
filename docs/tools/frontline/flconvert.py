@@ -94,27 +94,44 @@ def sky_faces(src_dir, prefix, flip_y):
     # engine sky faces (tr_sky.c MakeSkyVec): direction for image coordinate (s, t), s right, t up, both -1..1
     E = {"rt": lambda a, b: (1.0, -a, b), "lf": lambda a, b: (-1.0, a, b), "bk": lambda a, b: (a, 1.0, b),
          "ft": lambda a, b: (-a, -1.0, b), "up": lambda a, b: (-b, -a, 1.0), "dn": lambda a, b: (b, -a, -1.0)}
+    # [look 2026-11-13, user: the disc skies look low quality] 512 px faces sampled bilinearly from the captured faces
+    # (they were re-cut texel for texel at 128 px, so the engine magnified 128 px blocks). Nothing is invented: the
+    # captures are only interpolated, as the original's own filtering did. Each texel's direction picks the source face
+    # exactly as before; at a face border the neighbour face continues the sky, so the twelve edges stay continuous.
+    import numpy as np
+    N = int(os.environ.get("FL_SKY_SIZE", "512"))
+    arr = {k: np.asarray(im, np.float32) for k, im in img.items()}
     out = {}
+    c = (np.arange(N, dtype=np.float64) + 0.5) / N
+    A = (c * 2 - 1)[None, :].repeat(N, 0)
+    Bv = (1 - c * 2)[:, None].repeat(N, 1)
     for suf, vec in E.items():
-        n = 128
-        buf = bytearray()
-        for j in range(n):
-            for i in range(n):
-                d = vec((i + 0.5) / n * 2 - 1, 1 - (j + 0.5) / n * 2)
-                if flip_y:
-                    d = (d[0], -d[1], d[2])
-                ax = max(range(3), key=lambda q: abs(d[q]))
-                k = ("p" if d[ax] > 0 else "n") + "xyz"[ax]
-                m = abs(d[ax])
-                q = tuple(c / m for c in d)
-                v0, v1, v3 = F[k]
-                u = sum((q[c] - v0[c]) * (v1[c] - v0[c]) for c in range(3)) / 4.0
-                v = sum((q[c] - v0[c]) * (v3[c] - v0[c]) for c in range(3)) / 4.0
-                im = img[k]
-                x = min(im.width - 1, max(0, int(u * im.width)))
-                y = min(im.height - 1, max(0, int(v * im.height)))
-                buf += bytes(im.getpixel((x, y))) + b"\xff"
-        out[suf] = (n, n, bytes(buf))
+        d = np.stack(np.broadcast_arrays(*vec(A, Bv)), -1).astype(np.float64)
+        if flip_y:
+            d[..., 1] = -d[..., 1]
+        ax = np.abs(d).argmax(-1)
+        col = np.zeros((N, N, 3), np.float32)
+        for k in F:
+            axis = "xyz".index(k[1])
+            sel = (ax == axis) & ((d[..., axis] > 0) if k[0] == "p" else (d[..., axis] <= 0))
+            if not sel.any():
+                continue
+            q = d[sel] / np.abs(d[sel][:, axis:axis + 1])
+            v0, v1, v3 = (np.array(t, np.float64) for t in F[k])
+            u = ((q - v0) * (v1 - v0)).sum(-1) / 4.0
+            v = ((q - v0) * (v3 - v0)).sum(-1) / 4.0
+            a = arr[k]
+            h, w = a.shape[:2]
+            x = np.clip(u * w - 0.5, 0, w - 1)
+            y = np.clip(v * h - 0.5, 0, h - 1)
+            x0 = np.floor(x).astype(int); y0 = np.floor(y).astype(int)
+            x1 = np.minimum(x0 + 1, w - 1); y1 = np.minimum(y0 + 1, h - 1)
+            fx = (x - x0)[:, None]; fy = (y - y0)[:, None]
+            col[sel] = (a[y0, x0] * (1 - fx) + a[y0, x1] * fx) * (1 - fy) + (a[y1, x0] * (1 - fx) + a[y1, x1] * fx) * fy
+        rgba = np.empty((N, N, 4), np.uint8)
+        rgba[..., :3] = np.clip(col + 0.5, 0, 255).astype(np.uint8)
+        rgba[..., 3] = 255
+        out[suf] = (N, N, rgba.tobytes())
     return out
 
 
