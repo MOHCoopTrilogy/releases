@@ -232,7 +232,10 @@ def _tga(im):
     w, h, rgba = im["w"], im["h"], bytes(im["rgba"])
     px = bytearray(len(rgba))
     px[0::4], px[1::4], px[2::4], px[3::4] = rgba[2::4], rgba[1::4], rgba[0::4], rgba[3::4]
-    return struct.pack("<BBBHHBHHHHBB", 0, 0, 2, 0, 0, 0, 0, 0, w, h, 32, 0x28) + bytes(px)
+    # rows written bottom-up: the engine's TGA loader IGNORES the top-down flag (it warns "declares top-down image,
+    # ignoring") - a top-down file loads upside down, which put her face texture on her legs and the boot on her face
+    rows = [bytes(px[i * w * 4:(i + 1) * w * 4]) for i in range(h)]
+    return struct.pack("<BBBHHBHHHHBB", 0, 0, 2, 0, 0, 0, 0, 0, w, h, 32, 0x08) + b"".join(reversed(rows))
 
 
 def _mm(A, B):
