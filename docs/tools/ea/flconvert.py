@@ -1456,14 +1456,28 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             if best_ is not None and bd_ <= 48.0 ** 2:
                 _snap["kept"] += 1
                 return m_.group(0)
-            if best_ is None or bd_ > 192.0 ** 2:
+            # 0.7.25b: only to a node on the SAME floor (|dz| <= 24u) that the hull can walk to in a straight line
+            # from the goal (the 0.7.7 node-link test); never across a wall or up a floor (the blind version took
+            # the cellar goal a floor up through a wall)
+            gz_ = q_[2] - 24.0
+            if "_walk" not in _wk:
                 _snap["none"] += 1
                 return m_.group(0)
-            _snap["moved"] += 1
-            return m_.group(1) + "( %.0f %.0f %.0f )" % (best_[0], best_[1], best_[2] - 16.0 + 24.0)
-        # OFF by default: a blind nearest-node move took the cellar goal (-3771 -379 -656) to a node a floor up and
-        # through the wall (-3580 -419 -523): path failures 237 -> 1,090 in the playerless run. A snap needs a
-        # reachability test first. EA_SOSNAP=1 for experiments.
+            cand_ = sorted((((n_[0] - q_[0]) ** 2 + (n_[1] - q_[1]) ** 2), n_) for n_ in _pn
+                           if abs((n_[2] - 16.0) - gz_) <= 24.0)
+            for d_, n_ in cand_:
+                if d_ > 192.0 ** 2:
+                    break
+                if _wk["_walk"]((q_[0], q_[1], gz_), (n_[0], n_[1], n_[2] - 16.0)):
+                    _snap["moved"] += 1
+                    return m_.group(1) + "( %.0f %.0f %.0f )" % (n_[0], n_[1], n_[2] - 16.0 + 24.0)
+            _snap["none"] += 1
+            return m_.group(0)
+        # 0.7.25a (blind nearest node) took the cellar goal (-3771 -379 -656) a floor up through a wall (path failures
+        # 237 -> 1,090); 0.7.25b moves a goal only to a same-floor node the hull walks to (EA_SOSNAP=0 turns it off)
+        _wk = {"_walk": _walk} if "_walk" in dir() else {}
+        # 0.7.25b with the node-link walk test is no better (playerless: 237 -> 1,161; the cellar goal still went
+        # to -3578 -385 -523, the reinforcements' goal next to their spawn failed 512 times): OFF, opt-in only
         if os.environ.get("EA_SOSNAP") == "1":
             files[dk] = _re.sub(r"(\tlevel\.ea_so_pos\[\d+\] = )\(([^)]*)\)", _so,
                                 files[dk].decode("latin-1")).encode("latin-1")

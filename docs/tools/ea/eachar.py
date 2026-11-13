@@ -347,7 +347,7 @@ def skin(model, bone_block, nbones, bidx, label):
                     ws = [("Bip01 Pelvis", 1.0)]
                 else:
                     th = "Bip01 %s Thigh" % ("L" if p[1] > 0 else "R")
-                    wp = 0.25 + 0.75 * max(0.0, min(1.0, (p[2] - hem) / max(1.0, pel_z - hem)))
+                    wp = 0.85 * max(0.0, min(1.0, (p[2] - hem) / max(1.0, pel_z - hem))) ** 1.5
                     ws = [("Bip01 Pelvis", wp), (th, 1.0 - wp)]
             if len(ws) == 1:
                 # knees and elbows bend smoothly: within 6 cm of the joint (along the lower bone) a vertex is shared by
