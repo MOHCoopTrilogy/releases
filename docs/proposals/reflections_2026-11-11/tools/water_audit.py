@@ -1,4 +1,4 @@
-"""water_audit.py - GENERATED audit of water on every campaign map (AA, SH, BT). Writes ../WATER_AUDIT.md.
+"""water_audit.py - GENERATED audit of water on every map in the install (campaign, MP, lobbies; converted disc maps via WA_EXTRA). Writes ../WATER_AUDIT.md.
 
 Read-only on the game tree and the engine tree. For every campaign BSP in the retail paks it applies the engine's own
 rules offline (renderercommon/hzm_waterwet.h allowlist; tr_hzm_water.c R_HZMWaterBuildPlanar levels):
@@ -31,17 +31,26 @@ def main():
     allow = set(allowlist())
     rows = []
     seen = set()
+    # [2026-11-12] every map, not only the campaign: all paks of the install (mod paks included, highest priority first)
+    # plus converted disc maps given in WA_EXTRA (';'-separated pk3 paths: local conversions, never shipped)
+    paks = []
     for d in ("maintt", "mainta", "main"):          # the highest-priority copy of a map wins
-        for f in sorted(os.listdir(os.path.join(ROOT, d)), reverse=True):
-            if not re.match(r"(?i)pak\d.*\.pk3$", f):
+        fs = sorted(os.listdir(os.path.join(ROOT, d)), reverse=True)
+        paks += [os.path.join(ROOT, d, f) for f in fs if f.lower().endswith(".pk3") and not re.match(r"(?i)pak\d", f)]
+        paks += [os.path.join(ROOT, d, f) for f in fs if re.match(r"(?i)pak\d.*\.pk3$", f)]
+    paks = [p for p in os.environ.get("WA_EXTRA", "").split(";") if p] + paks
+    for pk in paks:
+        if True:
+            try:
+                z = zipfile.ZipFile(pk)
+            except Exception:
                 continue
-            z = zipfile.ZipFile(os.path.join(ROOT, d, f))
             for nm in z.namelist():
                 l = nm.lower()
                 if not (l.startswith("maps/") and l.endswith(".bsp") and l.count("/") == 1):
                     continue
                 base = l[5:-4]
-                if not re.match(r"(m\dl\d\w?|t\dl\d\w?|e\dl\d\w?)$", base) or base in seen:
+                if base in seen:
                     continue
                 seen.add(base)
                 b = z.read(nm)
