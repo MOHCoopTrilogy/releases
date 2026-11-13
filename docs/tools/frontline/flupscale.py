@@ -123,6 +123,17 @@ def upscale_cutout(exe, a, tmp, threads, pre=1):
         a0 = np.asarray(im)[:, :, 3]
     if ((a0 > 8) & (a0 < 247)).mean() > 0.10:
         return None, "cutout: blended (soft alpha) kept original"     # shadow blobs, scorch decals, haze cards
+    # [look QA 2026-11-12] fine leaf sprays stay as they are: on cards that are mostly leaf edge (more than 55 % of the solid
+    # texels touch a clear one) and leaf-coloured, ESRGAN plus the rounded cut turned single leaves into blobs ('AI look' on
+    # 12c380, 1dd980, c0_16dc00, 15b680, 124280). Dense foliage (tree lines, hedges), ruins, fences and iron work still pass.
+    sol_ = a0 >= 128
+    in_ = sol_.copy()
+    in_[1:, :] &= sol_[:-1, :]; in_[:-1, :] &= sol_[1:, :]; in_[:, 1:] &= sol_[:, :-1]; in_[:, :-1] &= sol_[:, 1:]
+    if sol_.sum() and (sol_ & ~in_).sum() / float(sol_.sum()) > 0.55:
+        rgb_ = np.asarray(im)[:, :, :3][sol_].astype(np.float32)
+        mr, mg, mb = rgb_.mean(0)
+        if mg >= 0.9 * mr and mg > mb * 1.1:
+            return None, "cutout: fine leaf spray kept original"
     base = np.asarray(flhd.bleed(im))
     pw, ph = max(4, w // 4), max(4, h // 4)
     rgb = np.pad(base[:, :, :3], ((ph, ph), (pw, pw), (0, 0)), mode="wrap")
@@ -146,9 +157,26 @@ def upscale_cutout(exe, a, tmp, threads, pre=1):
         om, osd = o[:, :, c][solid].mean(), o[:, :, c][solid].std()
         g = min(2.0, max(0.5, (osd / bs) if bs > 1e-3 else 1.0))
         out[:, :, c] = (out[:, :, c] - bm) * g + om
+    # [look QA 2026-11-12] no new highlights or colours: every output texel stays inside the range of the source texels
+    # around it (3x3 min / max of the bled card, smoothly enlarged). ESRGAN otherwise lit leaf edges with bright yellow-green
+    # speckles and rounded the leaves into blobs ('AI look' on 12c380, 1dd980, c0_16dc00, 15b680).
+    src_rgb = Image.fromarray(base[:, :, :3])
+    lo_ = np.asarray(src_rgb.filter(ImageFilter.MinFilter(3)).resize((w * 4, h * 4), Image.BILINEAR)).astype(np.float32)
+    hi_ = np.asarray(src_rgb.filter(ImageFilter.MaxFilter(3)).resize((w * 4, h * 4), Image.BILINEAR)).astype(np.float32)
+    out = np.minimum(np.maximum(out, lo_), hi_)
     up = np.clip(out, 0, 255).astype(np.uint8)
     back = np.asarray(Image.fromarray(up).resize((w, h), Image.BOX)).astype(np.float32)
     m0, m1 = o[solid].mean(), back[solid].mean()
+
+    def _sat(a):
+        mx_, mn_ = a.max(axis=-1), a.min(axis=-1)
+        return (mx_ - mn_) / np.maximum(mx_, 1.0)
+    # and no card gets more saturated or brighter in its top end than the source (the speckle tell)
+    big_solid = np.asarray(Image.fromarray((solid * 255).astype(np.uint8)).resize((w * 4, h * 4), Image.NEAREST)) > 127
+    if _sat(up.astype(np.float32))[big_solid].mean() > _sat(o)[solid].mean() * 1.08 + 0.01:
+        return None, "cutout: more saturated than the source"
+    if np.percentile(up.astype(np.float32).mean(-1)[big_solid], 99) > np.percentile(o.mean(-1)[solid], 99) + 6:
+        return None, "cutout: brighter highlights than the source"
     if abs(m1 - m0) / max(1.0, m0) > DRIFT_LIMIT:
         return None, "cutout: brightness drift"
     if np.abs(back - o)[solid].mean() > 14:
