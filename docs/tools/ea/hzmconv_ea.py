@@ -91,7 +91,7 @@ def convert(image, level, out_dir, mohaa, progress, opts):
                 import flupscale
                 importlib.reload(flupscale)          # GAME is read at import
                 hp = os.path.join(out_dir, "zzzz_ea_hdtex_%s.pk3" % level)
-                flupscale.main(out, level, hp, up)
+                flupscale.main(out, level, hp, up, progress=lambda **kv: progress(game="ea", level=level, **kv))
                 if os.path.exists(hp):
                     files.append(hp)
             except Exception as e:     # optional too

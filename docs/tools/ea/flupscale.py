@@ -41,11 +41,43 @@ def lap_energy(a):
     return float((l * l).mean())
 
 
-def run_esrgan(exe, src, dst, threads):
-    r = subprocess.run([exe, "-i", src, "-o", dst, "-n", "realesrgan-x4plus", "-s", "4", "-t", "128", "-j", threads],
-                       cwd=os.path.dirname(exe), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                       creationflags=0x08000000 | 0x00000040, timeout=600)   # no window, IDLE_PRIORITY_CLASS
+# [flfix2 2026-11-12, upscale on by default] ONE ESRGAN process per level. Starting the exe per texture cost ~1.8 s of
+# GPU and model start-up each (543 textures: 16 min on an RTX 5070 Ti). main() now runs every texture twice: pass
+# "collect" files each ESRGAN input under its texture key, one batch run upscales the folder, pass "use" reads the result.
+BATCH = {"mode": None, "key": None, "in": None, "out": None}
+
+
+def _esrgan(exe, src, dst, threads, timeout):
+    try:
+        r = subprocess.run([exe, "-i", src, "-o", dst, "-n", "realesrgan-x4plus", "-s", "4", "-t", "128", "-j", threads,
+                            "-f", "png"], cwd=os.path.dirname(exe), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                           creationflags=0x08000000 | 0x00000040, timeout=timeout)   # no window, IDLE_PRIORITY_CLASS
+    except Exception:
+        return False
     return r.returncode == 0 and os.path.exists(dst)
+
+
+def run_esrgan(exe, src, dst, threads):
+    if BATCH["mode"] == "collect":
+        import shutil
+        shutil.copyfile(src, os.path.join(BATCH["in"], BATCH["key"] + ".png"))
+        return False
+    if BATCH["mode"] == "use":
+        import shutil
+        got = os.path.join(BATCH["out"], BATCH["key"] + ".png")
+        if not os.path.exists(got):
+            return False
+        shutil.copyfile(got, dst)
+        return True
+    return _esrgan(exe, src, dst, threads, 600)
+
+
+def gpu_ok(exe, tmp, threads):
+    """the upscaler needs a Vulkan GPU (this build has no CPU path: -g -1 is 'invalid gpu device'). A 16 px probe
+    decides once; no GPU, no driver, a crash or a hang -> the pass is skipped and the conversion goes on."""
+    src, dst = os.path.join(tmp, "probe_in.png"), os.path.join(tmp, "probe_out.png")
+    Image.new("RGB", (16, 16), (90, 80, 70)).save(src)
+    return _esrgan(exe, src, dst, threads, 60)
 
 
 WORM_LIMIT = 60.0      # Laplacian energy vs a bicubic x4; real ESRGAN detail on 64-256px textures sits ~5..40x
@@ -122,7 +154,25 @@ def upscale_one(exe, im, tmp, threads):
     return out, "ok"
 
 
-def main(pk3, level, out_pk3, exe_dir, threads="1:1:1"):
+def _main_one(z, n, key, skip, report, files, exe, tmp, threads, cut_pre):
+    if key in skip or key == "untextured":
+        report[key] = "skipped (list)"
+        return
+    try:
+        im = Image.open(io.BytesIO(z.read(n)))
+        res, why = upscale_one(exe, im, tmp, threads, )
+    except Exception as e:  # never fail the conversion
+        res, why = None, "error %s" % e
+    if BATCH["mode"] == "collect":
+        return
+    report[key] = why
+    if res is not None:
+        b = io.BytesIO()
+        res.save(b, "TGA")
+        files[n] = b.getvalue()
+
+
+def main(pk3, level, out_pk3, exe_dir, threads="1:1:1", progress=None):
     exe = os.path.join(exe_dir, "realesrgan-ncnn-vulkan.exe")
     if not os.path.exists(exe):
         print("no upscaler - skipped")
@@ -136,21 +186,37 @@ def main(pk3, level, out_pk3, exe_dir, threads="1:1:1"):
     names = sorted(n for n in z.namelist() if n.startswith(f"textures/{GAME}/{level}/") and n.endswith(".tga"))
     tmp = tempfile.mkdtemp(prefix="flup_")
     report, files = {}, {}
-    for n in names:
-        key = n.rsplit("/", 1)[-1][:-4]
-        if key in skip or key == "untextured":
-            report[key] = "skipped (list)"
-            continue
-        try:
-            im = Image.open(io.BytesIO(z.read(n)))
-            res, why = upscale_one(exe, im, tmp, threads)
-        except Exception as e:  # never fail the conversion
-            res, why = None, "error %s" % e
-        report[key] = why
-        if res is not None:
-            b = io.BytesIO()
-            res.save(b, "TGA")
-            files[n] = b.getvalue()
+    if not gpu_ok(exe, tmp, threads):
+        print("no usable Vulkan GPU for the upscaler - skipped (the level keeps its own textures)")
+        if progress:
+            progress(step="upscale", skipped="no Vulkan graphics card")
+        with open(out_pk3 + ".report.json", "w") as f:
+            json.dump({"_skipped": "no usable Vulkan GPU"}, f)
+        return 0
+    import time as _t
+    budget = float(os.environ.get("HZM_UPSCALE_BUDGET", "1200"))     # seconds; past it the pass stops, nothing fails
+    t0 = _t.time()
+    BATCH["in"], BATCH["out"] = os.path.join(tmp, "batch_in"), os.path.join(tmp, "batch_out")
+    os.makedirs(BATCH["in"]), os.makedirs(BATCH["out"])
+    for BATCH["mode"] in ("collect", "use"):
+        if BATCH["mode"] == "use":
+            if progress:
+                progress(step="upscale", phase="gpu", textures=len(os.listdir(BATCH["in"])))
+            ok_ = _esrgan(exe, BATCH["in"], BATCH["out"], threads, max(60, budget - (_t.time() - t0)))
+            if not ok_ and not os.listdir(BATCH["out"]):
+                print("upscaler batch failed - skipped (the level keeps its own textures)")
+                return 0
+        for i_, n in enumerate(names):
+            key = BATCH["key"] = n.rsplit("/", 1)[-1][:-4]
+            if progress and BATCH["mode"] == "use" and i_ % 25 == 0:
+                progress(step="upscale", phase="finish", done=i_, total=len(names))
+            if BATCH["mode"] == "use" and _t.time() - t0 > budget + 120:
+                report[key] = "skipped (time budget)"
+                continue
+            _main_one(z, n, key, skip, report, files, exe, tmp, threads, 1)
+    BATCH["mode"] = None
+    if False:
+        pass
     if files:
         with zipfile.ZipFile(out_pk3, "w", zipfile.ZIP_DEFLATED) as o:
             for n in sorted(files):
@@ -159,7 +225,7 @@ def main(pk3, level, out_pk3, exe_dir, threads="1:1:1"):
                 o.writestr(zi, files[n])
     with open(out_pk3 + ".report.json", "w") as f:
         json.dump(report, f, indent=0, sort_keys=True)
-    ok = sum(1 for v in report.values() if v == "ok")
+    ok = sum(1 for v in report.values() if v.startswith("ok"))
     print("upscaled", ok, "of", len(report), "->", out_pk3)
     return 0
 

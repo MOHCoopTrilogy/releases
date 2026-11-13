@@ -31,6 +31,11 @@ FFMPEG = r"H:\hzm_work\frontline_tools\ffmpeg_src"            # build.sh, CONFIG
 FFMPEG_SRC_TXT = r"H:\hzm_work\frontline_tools\hzmconv_build\dist\hzmconv\tools\ffmpeg\SOURCE.txt"
 VGM = r"H:\hzm_work\ea_tools_dl\vgmstream_mpeg"                 # MPEG-enabled vgmstream (EA agent's build)
 MPG123 = r"H:\hzm_work\ea_tools_dl\mpg123\mpg123-1.32.12"
+# [flfix2 2026-11-12, user: texture upscale for everyone] realesrgan-ncnn-vulkan v0.2.5.0, official release zip
+# (sha256 abc02804e17982a3be33675e4d471e91ea374e65b70167abc09e31acb412802d), unpacked; only the exe, its OpenMP runtime
+# and the one model flupscale uses ship. UPSCALER_LIC holds the three licence texts (MIT / BSD-3 / BSD-3).
+UPSCALER = r"H:\hzm_work\frontline_tools\upscaler\bin"
+UPSCALER_LIC = r"H:\hzm_work\frontline_tools\upscaler\licenses"
 ZIP_TIME = (2026, 1, 1, 0, 0, 0)
 
 
@@ -77,6 +82,15 @@ def main():
                 "  https://www.mpg123.de/download/mpg123-1.32.12.tar.bz2 (GPG signature verified against Thomas Orgis' key)\n"
                 "  It is a separate DLL: you may replace it with your own build of the same library.\n")
 
+    # texture upscaler (flupscale runs it by default; it skips itself without a Vulkan GPU)
+    up = os.path.join(tools, "upscaler")
+    for f in ("realesrgan-ncnn-vulkan.exe", "vcomp140.dll", "models/realesrgan-x4plus.bin", "models/realesrgan-x4plus.param"):
+        cp(os.path.join(UPSCALER, *f.split("/")), os.path.join(up, *f.split("/")))
+    for f in ("LICENSE-realesrgan-ncnn-vulkan.txt", "LICENSE-Real-ESRGAN.txt", "LICENSE-ncnn.txt"):
+        src = os.path.join(UPSCALER_LIC, f)
+        assert os.path.isfile(src), "upscaler licence text missing: " + src
+        cp(src, os.path.join(up, f))
+
     # licences of the bundled Python runtime and packages
     lic = os.path.join(root, "LICENSES")
     py_lic = os.path.join(os.path.dirname(sys.executable), "LICENSE.txt")
@@ -102,6 +116,8 @@ def main():
                 "  Pillow %s (MIT-CMU / HPND)         LICENSES/Pillow/\n"
                 "  ffmpeg 8.1 (LGPL-2.1 or later)      tools/ffmpeg/ (COPYING.LGPLv2.1, SOURCE.txt, CONFIGURE_LINE.txt, build.sh)\n"
                 "  vgmstream (ISC-style)               tools/vgmstream/COPYING\n"
+                "  realesrgan-ncnn-vulkan 0.2.5.0 (MIT), ncnn (BSD-3), Real-ESRGAN x4plus weights (BSD-3)\n"
+                "                                      tools/upscaler/LICENSE-*.txt\n"
                 "  mpg123 1.32.12 (LGPL-2.1)           tools/vgmstream/COPYING.mpg123, SOURCE.txt\n"
                 "No GPL component is included. (numpy's OpenBLAS DLL carries GCC runtime code, which the GCC Runtime\n"
                 "Library Exception permits in any program; see LICENSES/numpy/licenses_LICENSE.txt.)\n" % (sys.version.split()[0], numpy.__version__, PIL.__version__))
