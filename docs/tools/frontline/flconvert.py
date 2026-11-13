@@ -461,6 +461,26 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if iu_ or iv_:
             uv_inset[k_] = (iu_, iv_)
     stats["uv_inset_textures"] = len(uv_inset)
+    # [flfix2 round 19, bug-11163] some of the disc's big out-of-bounds ground triangles carry UVs shared by pairs of
+    # vertices (c6 draws 358 / 535 / 741 / 1242 on 1_1: zero UV area), so the texture is smeared along one line - the
+    # dark streaked ground the user saw from a window by the wall objective. Such a floor triangle (|n.z| >= 0.9,
+    # >= 10000 u^2) of a TILING texture gets planar world UVs at that texture's own median floor density (the units
+    # per repeat of its well-mapped floor triangles). Nothing else is touched.
+    floor_rep = {}
+    for m in meshes:
+        if not m["tris"] or not m["tex"] or m["tex"] in uv_inset:
+            continue
+        P_ = [X(v) for v in m["verts"]]
+        U_ = m["uvs"]
+        for a, b, c in m["tris"]:
+            e1 = [P_[b][i] - P_[a][i] for i in range(3)]
+            e2 = [P_[c][i] - P_[a][i] for i in range(3)]
+            nn = (e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0])
+            ar2 = math.sqrt(sum(x * x for x in nn))
+            uva2 = abs((U_[b][0] - U_[a][0]) * (U_[c][1] - U_[a][1]) - (U_[c][0] - U_[a][0]) * (U_[b][1] - U_[a][1]))
+            if ar2 > 1.0 and abs(nn[2]) >= 0.9 * ar2 and uva2 > 1e-9:
+                floor_rep.setdefault(m["tex"], []).append(math.sqrt(ar2 / uva2))   # world units per UV unit
+    floor_rep = {k_: sorted(v_)[len(v_) // 2] for k_, v_ in floor_rep.items() if len(v_) >= 8}
     batches = {}
     for m in meshes:
         if not m["tris"]:
@@ -509,6 +529,29 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 # point DOWN and the pass discarded every pixel: the canal showed the stock stages alone
                 nrm = (0.0, 0.0, 1.0)
             verts.append((p, (u, v), nrm, (r, g, b, va if m["tex"] in vtx_alpha else 255)))
+        rep_ = floor_rep.get(m["tex"]) if m["tex"] not in water_keys else None
+        if rep_:
+            # [flfix2 round 19, bug-11163] zero-UV-area floor triangles -> planar world UVs (see floor_rep above)
+            nt_ = []
+            for a, b, c in tris:
+                A_, B_, C_ = verts[a], verts[b], verts[c]
+                uva2 = abs((B_[1][0] - A_[1][0]) * (C_[1][1] - A_[1][1]) - (C_[1][0] - A_[1][0]) * (B_[1][1] - A_[1][1]))
+                n_ = face_normal(A_[0], B_[0], C_[0])
+                if uva2 > 1e-9 or n_ is None or abs(n_[2]) < 0.9:
+                    nt_.append((a, b, c))
+                    continue
+                e1 = [B_[0][i] - A_[0][i] for i in range(3)]
+                e2 = [C_[0][i] - A_[0][i] for i in range(3)]
+                if math.sqrt(sum(x * x for x in (e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2],
+                                                 e1[0] * e2[1] - e1[1] * e2[0]))) / 2 < 10000.0:
+                    nt_.append((a, b, c))
+                    continue
+                k0 = len(verts)
+                for q in (A_, B_, C_):
+                    verts.append((q[0], (q[0][0] / rep_, -q[0][1] / rep_), q[2], q[3]))
+                nt_.append((k0, k0 + 1, k0 + 2))
+                stats["uv_planar_tris"] = stats.get("uv_planar_tris", 0) + 1
+            tris = nt_
         rk = reskin.get(short_key(m["tex"])) if m["tex"] else None
         if rk:
             # fl_modelmap.json "reskin": render-only swap to MOHAA art from the player's own install (e.g. Frontline's
