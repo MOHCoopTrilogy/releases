@@ -1,0 +1,3 @@
+CC0 textures shipped with the European Assault converter (ea_texmap.json "local"). Poly Haven, licence CC0 1.0 (https://polyhaven.com/license). 1k diffuse JPG, unmodified; tinted at conversion time.
+
+snow_03_diff_1k.jpg  page https://polyhaven.com/a/snow_03  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/snow_03/snow_03_diff_1k.jpg  CC0  (user-approved 2026-11-13: Dying Breath snow ground PUfh, qHPE)
