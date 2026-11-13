@@ -66,6 +66,23 @@ for i, tik in enumerate(guns):
     c("+button13"); wait(2.2)
     c("screenshotJPEG %s_%02d_%s" % (tag, i, name)); wait(0.6)
     c("-button13"); wait(0.6)
+# HIP EMPTY RELOAD frames (the cocking hand is keyed onto the actuator knob): guns listed one per line in
+# H:\hzm_work\thompson\reload_guns.txt - fire the gun dry from the hip, then one frame every ~0.12 s through the reload
+RL = os.path.join(r"H:\hzm_work", "thompson", "reload_guns.txt")
+for tik in ([l.strip() for l in open(RL) if l.strip()] if os.path.exists(RL) else []):
+    if tik not in guns:
+        continue
+    name = os.path.basename(tik).replace(".tik", "")
+    c("-button13"); c("give " + tik); wait(0.5)
+    for _ in range(3):
+        c("use " + tik); wait(0.8)
+    wait(1.5)
+    c("tele -3608 2303 80"); c("face 0 225 0"); wait(0.5)
+    c("echo ^~^~^ PEEPRUN hipreload %s" % name)
+    c("+attackprimary"); wait(7.0); c("-attackprimary"); wait(0.3)
+    c("reload")
+    for k in range(32):
+        c("screenshotJPEG %s_rl_%s_%02d" % (tag, name, k)); wait(0.12)
 c("echo ^~^~^ PEEPRUN done"); c("quit")
 
 if hg.user_game_running_raw():
@@ -77,6 +94,10 @@ os.makedirs(os.path.join(MAINTT, "configs"), exist_ok=True)
 for fn in ("openmohaa.exe", "cgame.dll", "game.dll", "renderer_opengl1.dll", "renderer_opengl2.dll",
            "OpenAL64.dll", "SDL2.dll", "libcurl.dll"):
     shutil.copy2(os.path.join(LIVE, fn), os.path.join(CLIENT, fn))
+CG_OVERRIDE = os.path.join(r"H:\hzm_work", "thompson", "cgame_override.dll")   # a test cgame (e.g. a sight-table change) when present
+if os.path.exists(CG_OVERRIDE):
+    shutil.copy2(CG_OVERRIDE, os.path.join(CLIENT, "cgame.dll"))
+    log("cgame override", CG_OVERRIDE)
 shutil.copyfile(r"G:\mohaa-engrave\pristine\omconfig_fresh.cfg", os.path.join(MAINTT, "configs", "omconfig.cfg"))
 for fn in os.listdir(MAINTT):
     if fn.lower().endswith(".pid") or fn == "whatsnew_pending.cfg" or fn == OVNAME:

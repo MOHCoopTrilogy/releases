@@ -5,7 +5,9 @@ actuator knob - the knob sits low in the sight picture. Our meshes' knob (the AD
 r 0.27 u x 0.4 u, knurled cap r 0.42 u x 0.4 u) stood so tall that only 7 % (50rd) / 12 % (M1928) of the blade showed.
 knobfit.py moves the cap down by DROP and compresses the stem under it (cap shape kept, nothing else touched):
 Thompson50.skd `Skin5` 0.28 u, coop_tommy28 `Skin5` 0.22 u -> 96 % of the blade visible offline (eye line unchanged).
-The 1928 Tommy is NOT changed here: its cap already sits on the receiver; it needs a higher rear aperture (decision).
+The 1928 Tommy (coop_tommy1928d): its cap already sits on the receiver, so instead lyman.py adds a raised Lyman leaf
+with a 0.20 u aperture centred at z -5.60 (1.30 in above the bore); the engine sight row R moves there with it
+(cg_adssights.h, rel-1.10.38-engine). The mesh and the cgame have to ship together.
 
     python apply_knob.py                       dry run
     python apply_knob.py --apply [--base DIR]  back up to H:/hzm_work/thompson/bak, then rewrite the pak in DIR
@@ -14,6 +16,8 @@ Idempotent only against the retail-lane knob: it refuses a knob whose top is alr
 import hashlib, os, shutil, sys, time, zipfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import knobfit  # noqa: E402
+import lyman  # noqa: E402
+import skdlib  # noqa: E402
 
 PAK = "zzzzzzzzzzzz_coop_fixes2.pk3"
 # entry -> (tik, surface, drop, knob top z of the unmodified mesh)
@@ -32,6 +36,15 @@ def main():
     new = {}
     for info in zin.infolist():
         key = info.filename.lower()
+        if key == "models/weapons/coop_tommy1928d/thompsonsmg.skd":
+            raw = zin.read(info)
+            n6 = [x.numVerts for x in skdlib.read_skd(raw).surfaces if x.name == "Skin6"][0]
+            if n6 != 407:
+                print("%s: Skin6 has %d verts (not the original 407) - leaf already added or mesh regenerated, skipped" % (info.filename, n6))
+                continue
+            out, rep = lyman.build(raw, zc=-5.60, dia=0.20)
+            print(info.filename, hashlib.sha256(raw).hexdigest()[:16], "->", hashlib.sha256(out).hexdigest()[:16], rep)
+            new[info.filename] = out
         if key in MESHES:
             tik, surf, drop, top0 = MESHES[key]
             raw = zin.read(info)
