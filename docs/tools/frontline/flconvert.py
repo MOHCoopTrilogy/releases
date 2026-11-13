@@ -371,10 +371,13 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     def short_key(key):
         return str(key).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_")
 
-    def reskin_shader(rk):
-        name = tdir + rk["shader"]
+    def reskin_shader(rk, core=False):
+        # [flfix2 round 19, bug-11162] the card wears polygonOffset so it wins over its own opaque core (below), which
+        # lies in the same plane; the core is the same image's leaf body (no alpha there) and has no offset
+        name = tdir + rk["shader"] + ("_core" if core else "")
         if name not in tex_names:
-            shader_lines.append(f"{name}\n{{\n\tsurfaceparm nolightmap\n\tcull none\n\tnopicmip\n\t{{\n\t\tmap {rk['image']}\n"
+            po = "" if core or not rk.get("core") else "\tpolygonOffset\n"
+            shader_lines.append(f"{name}\n{{\n\tsurfaceparm nolightmap\n\tcull none\n{po}\tnopicmip\n\t{{\n\t\tmap {rk['image']}\n"
                                 f"\t\talphaFunc GE128\n\t\trgbGen vertex\n\t\tdepthWrite\n\t}}\n}}\n")
             tex_names[name] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
         return tex_names[name]
@@ -533,6 +536,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     zz[1] = max(zz[1], verts[i][0][2])
                 planes_.setdefault(("t", a, b, c), pk_)
             nv, nt = [], []
+            cv_, ct_ = [], []
             for a, b, c in tris:
                 T = [verts[a], verts[b], verts[c]]
                 n = face_normal(T[0][0], T[1][0], T[2][0])
@@ -555,6 +559,28 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     cr, cg, cb = (min(255, int(round(q[3][k] * gk[k]))) for k in range(3))
                     nv.append(((p[0], p[1], pz), (uu, vv), q[2], (cr, cg, cb, 255)))
                 nt.append((base, base + 1, base + 2))
+                if rk.get("core"):
+                    # [flfix2 round 19, bug-11162] the opaque CORE: the original's own hedge face, unraised, in the image's
+                    # leaf body (v core[0]..core[1] top -> bottom, no alpha there), darker (the inside of the hedge). The
+                    # card's gappy crown band covers the top third of the original's opaque box; through its gaps the
+                    # player saw through the hedge, at the level's edge into the void ("into nothingness"). The core
+                    # fills them with leaves where the original was solid; above the old top the crown stays open.
+                    v0_, v1_ = rk["core"]
+                    kd_ = float(rk.get("core_shade", 0.75))
+                    cb_ = len(cv_)
+                    for q in T:
+                        p = q[0]
+                        uu = (p[0] * tx + p[1] * ty) / float(rk.get("tile", 128))
+                        vv = v1_ - (v1_ - v0_) * (p[2] - z0) / max(1.0, z1 - z0)
+                        cr, cg, cb = (min(255, int(round(q[3][k] * gk[k] * kd_))) for k in range(3))
+                        cv_.append(((p[0], p[1], p[2]), (uu, vv), q[2], (cr, cg, cb, 255)))
+                    ct_.append((cb_, cb_ + 1, cb_ + 2))
+            if ct_:
+                ccx = sum(v[0][0] for v in cv_) / len(cv_)
+                ccy = sum(v[0][1] for v in cv_) / len(cv_)
+                batches.setdefault((reskin_shader(rk, core=True), int(ccx // MERGE_CELL), int(ccy // MERGE_CELL)),
+                                   []).append((cv_, ct_))
+                stats["reskin_core_tris"] = stats.get("reskin_core_tris", 0) + len(ct_)
             stats["reskinned_tris"] = stats.get("reskinned_tris", 0) + len(nt)
             if not nt:
                 continue
