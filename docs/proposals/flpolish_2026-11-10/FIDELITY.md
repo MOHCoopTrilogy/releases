@@ -411,6 +411,10 @@ farplane_bias 240; commit 002f71d7). Same views, v94 vs the new conversion (loca
 `fog_pairs_b.jpg`; the far town now hazes like the reference frame `sq_across`. The object light formula of the same staged
 patch (`H:\hzm_work\flpolish\fix2\r13\fog_conv.py`, OBJLIT part) is still NOT applied.
 
+Look work parked on the user's priority (2026-11-12): the decoded fog (linear 240..4800, planar) and the object light
+formula are NOT applied; the build still carries the fitted fog 600..16000. A patch is staged, untested:
+`H:\hzm_work\flpolish\fix2\r13\fog_conv.py`.
+
 ## Round 14 (flfix2, 2026-11-12) - text ids, hints, the ambush pair, wreck gunner stills
 
 Build v90 in `G:\mohaa-flpolish` only. Converter changes (HZMCONV_VERSION not bumped): `flpack.py` (disc record number
@@ -475,6 +479,48 @@ Mod script only (base checkout, commit a09a3d4a). Sources: `TRACE_panzer.md`, `T
 Not matched or not verified: the tank's hull MG is a hidden stock MG42 (the disc builtin 0x6c is a guess at the hull MG);
 the cannon aims at the nearest player; tank destruction stays the user-approved rocket kill (TRACE_panzer_kill.md:
 the original's rockets do not kill it); the listener waits while a player watches his spot (spawn rule).
+
+## Round 15 (flfix2, 2026-11-12) - window into a floorless house (bug-11115)
+
+| item | finding | result | proof |
+|---|---|---|---|
+| "Through these windows I can still see under the map" (user) | the ground-floor window of the house south of the jeep road (window about (6480,-3590), house (6330..6620, -3910..-3590)); the house is a shell with no ground floor on the disc too (nothing dropped). The original shows its sky box there: one flat dark colour below the horizon (TRACE_sky_fog.md). Ours showed the edge fill (cobble skirt + cobble ground under the level) | converter `flpit.py`: every floorless pocket closed off by drawn walls gets a render-only lid in that colour (83 81 76), 4u under the ground around it; level edges keep skirt and ground. 1_1: 623 pockets, collision unchanged | offline ray view `rv7b.png` (fill pixels at the window 20743 -> 0); in-game `H:\hzm_work\flpolish\fix2\r15\s1\` |
+
+## Round 17 (flfix2, 2026-11-13) - ambience ("it sounds quiet", bug-11149)
+
+| item | original (TRACE_ambience.md) | conversion | status |
+|---|---|---|---|
+| Ambience beds | three streamed loops in 11STRBNK.AST (57 s, 192 s, 62 s, 22 kHz stereo) | the same three streams decoded from the player's disc (loop body of each, sizes equal to the reference decodes), aliases fl11_amb1..3, one levelwide loop at a time | exact audio; which bed a zone starts is now read from the .abk's streamed-ref table, not assumed |
+| Ambience zones | recs 44-48, spheres, enter starts bed (44, 45 -> 0; 46, 47 -> 1; 48 -> 2), no stop | same records, positions and radii through the converter's transform (level.fl_ambz*); switch on entry by any living player; bed keeps playing | exact rule; zone test 2D (spheres sit at z 0) - a choice |
+| Fire crackle | PLAYSOUND 57 of sound set 446 -> 11SCRBNK sample (resolved via 1_1propSnd.som), volume 20000/32767, positional at recs 99 / 100 / 101 | the same disc sample (stream 31, 14 s loop), alias fl11_fire at 0.61; loops at the three spots, 99 and 101 stop on leave, 100 never stops | sample resolved from the disc tables (not heard); falloff 256-2400u a stand-in (EA's falloff not decoded) |
+| Burning rag on the molotov | same sound 57 (set 716 -> the same row) | still coop_snd_fire_small until the map swaps in level.fl_fire_alias | stand-in until wired |
+| Mod ambience on top | none | coop ambience bed (coop_amb_country, bridged for coop_fl) and its artillery sweeteners also play unless the map sets level.coop_ambienceBed = "none" | user choice |
+| In a client | - | not heard yet: needs the map script's fl_ambience thread (handed to the map owner) and a listen | not verified |
+
+## Round 18 (flfix2, 2026-11-13) - after the second human playtest: allies, jeep gun and gunner, interrogation, voices
+
+Mod script only (`maps/coop_fl_1_1.scr`, new `coop_mod/discallies.scr`, an opt-in line in `coop_mod/aihandler.scr`). Runs
+in `H:\hzm_work\flpolish\fix2\r17\` (one muted 1080 client each, v107 pak): `base0` / `tune1` (player stands at the
+TRACE_allies spot A, never fires; old kit / new kit), `eng0` / `eng1` (player fights: auto-aim at the nearest visible German
+plus bursts; old / new), `fin` (use icon, house). Deaths are attributed from the pain handler (`FLSET death ... by=`).
+
+| Item (user) | Cause | Now | Proof |
+|---|---|---|---|
+| ".30 cal ... two inside of each other" | mounted, the engine draws the turret's own first-person gun (`30cal_viewmodel.tik` on the eyes, world turret hidden from the gunner) while our disc gun mesh followed the aim in the same place | the disc mesh is hidden from the mounted player only (`svflags +notsingleclient`); everyone else still sees the disc gun | `r17/ongun_l_00_c.jpg` (one gun), log `30cal mounted by 0: disc mesh hidden from him` |
+| Wounded gunner "kinda flips" | `death_prone` starts face-down; the downed cycle (23A825) lies on his back | settles from the cycle into the stock on-back dead pose (`dead_pose3`) over 1.2 s, stub death handler, pose kept on the body. (Webber's own 23A826_DeadPose was tried first: half-sitting with a raised fist, `base0` stills) | `r17/eng1_dead_b_crop.jpg`, `r17/eng1_death_seq.jpg` |
+| Allies "decimating" / "crush the Germans" | paratrooper kit: accuracy 60, health 300, noticescale 50 (spots twice as fast), BAR; AI damage on AI unscaled | `coop_mod/discallies.scr` kit: accuracy 18, health 150, noticescale 100, Garand instead of BAR; `level.coop_aiVsAiDmg 0.5` (AI-vs-AI damage of the other team halved; opt-in, a stock map is unchanged: `r17/stock17_m2l1.log`) | square group (3 Germans) dead after spawn: old +5..+8 s (standing) / +8..+11 s (fighting); new +14..+17 s (standing, kit only) / +17..+32 s (fighting). Whole route with a fighting player: old = allies 6 kills, player 2; new = allies 3, player 4 (all 3 ally kills in the square while the test player was on the .30 cal) |
+| Allies "stuck, not moving forward" | trail goals were points on a straight line 820u behind the player, off the path graph (user log: 56 `couldn't find end node`), so they never moved | goals are spots the players actually walked (a trail of positions every 128u), on the ally's side of the player; an unreachable goal (no motion in 2.5 s) is dropped for the next; an ally stranded twice and unseen is put on an unseen spot of the trail; a German of the area alive far off no longer holds an ally the player has walked past; the push never takes an ally further than the player | `r17/eng1` ally positions at every stop: 600-1100u behind the player from the wreck to trigger 66 |
+| Same German line "constantly" | one disc line per situation on every German, no line limit | shared cooldown `level.coop_avLineCd = 25` (aivoice.scr 8ec71705), each play logged (`AIVOICE`) | `r17/tune1` log: 7 lines in about 4 min, none repeated within 25 s |
+| Interrogation starts "before you get near it" | started at 1100u, through walls | starts within 350u of the officer, or 750u with a clear line from the player's eyes to him | headless `r17/int17_7.log`, `r17/int17_5.log` |
+| "heard him killing Castro but he was still alive" | `interrog_5` OPENS with the shot (0.5 s clipped bang and room tail, then his words); we played it while he only aimed and shot after it | the execution is atomic: he aims 5 s (rescue window), then the bang (`interrog_5`), the prisoner's death and the state change in one frame; killed first, the line never plays; the alarm path the same | headless: mode 7 executed, `FLSHOOT 2` and `interrog_5` on the same tick; mode 5 rescued, no `interrog_5` |
+| Dialogue after its speakers were dead | the dock lines (and the nest shout) played from a fixed spot on distance only | German lines need a living speaker near the spot and come from him; the dock talk needs calm (no enemy) speakers within 700u, re-checked before each line, and stops for good otherwise | code; not yet seen in a client |
+| Panzer "didn't notice it firing" | trigger 38 fired 2400u from the tank: its three shots went off unseen, the rocket pass killed it a minute later | the shots keep the trace spacing but start once a player sees the tank or is within 1500u (60 s cap); the rocket pass waits for the second shot (45 s cap) | code; not yet seen in a client |
+| "two houses sections" not seen | ours had only the bomb's fireball | a stock dust cloud at the house as its parts start, then a long smoke column (stand-ins) | `r17/fin` stills |
+| Barrel use "not obvious" | no use prompt | the mod's crosshair USE icon (`coop_mod/actprompt.scr`, `hand`) while a player faces one of our use spots within 110u (drop, molotov barrel) | `r17/fin/use_on_*.tga` |
+| Ambience | (Round 17) | `fl_ambience` wired; the mod's country bed off on this mission (`level.coop_ambienceBed none`) | boot log `FLAMB start beds=3 zones=5 fires=3` |
+
+Not done here: the MG-nest corpse with legs up out of the sandbags (death pose against the nest geometry), the tower
+MG "glitchy" (waiting for the user's detail), the use icon seen on the barrel itself (same code as the drop).
 
 ## Round 16 (flfix2, 2026-11-12) - collision: doorways and arches
 
@@ -554,6 +600,7 @@ Walks with byte copies of the live binaries (`r16/Le_v95.out`, `r16/Le_v106.out`
 | Jeep crew fate | trace: driver and passenger thrown out at the blast and fade; gunner wounded, speaks when the player reaches the gun, then fades | default = trace; `coop_fljeepcrew 1` (off) = two stay in cover | settled by the trace |
 | Fire at the jeep | trace: no crew member fires; generators 471 / 472, 10 volleys from +70 to +122 ticks, from two points above and behind the jeep (the strafe) | generators at the disc points, aimed at the jeep (no direction is stored); tracer and gun sound are stock stand-ins | aim = inferred; `coop_fljeepcrew 1` (off) = gunner fires |
 | Jeep .30 cal position | created at +284 ticks | the mesh rides the body; the usable gun is created at +284 on the record's rest spot | choice |
+| Inside floorless houses (seen through windows) | nothing drawn: the sky box's flat dark lower band shows | a flat lid in that colour 4u under the street (bug-11115); same look from a window, but it is geometry: it hides the foot of a cut-out ruin card or wall where that runs below street level, and fog tints it with distance where the sky was unfogged | choice (stands in for the sky band; the edge fill it replaces is itself a deviation, R9) |
 | Gunner's line | sound 82 | stream 17 "mg_hurt" from the player's converted audio | inferred mapping, no reference audio |
 | Play-dead men | disc actors | MOHAA actors; scenery until they rise | forced |
 | Fly-throughs | 287, 289, 291, 292, 301 started by triggers; 288 and 290 never started | the five; 288 and 290 removed | - |
@@ -613,5 +660,14 @@ Walks with byte copies of the live binaries (`r16/Le_v95.out`, `r16/Le_v106.out`
 | Stock AI barks | only the original's lines | level.coop_discBarksOnly = 1: no stock voice, chatter or taunts (bug-11110); the disc's two German combat lines (script bank 20 'Lass ihn nicht abhauen!', 21 'Das warst du, alliiertes Schwein!') on the AI voice's attack and man-down situations (bug-11113) | user-approved 2026-11-12; situation mapping a choice (the original's AI states are not decoded) |
 | Church-tower MG mount | a tripod MG on the tower floor (the walk frames do not show its height) | the stock turret on sandbags at floor + 44, disc x/y and facing kept: MOHAA's use trace cannot reach a turret at floor height (bug-11112) | forced (engine use height) |
 | Other mounted guns (1, 2, 5, 6) | usable | reached and mounted on foot with use (run guns); facing from the records, not checked against frames | facing unverified |
+| Allied soldiers' strength | Frontline AI (not decoded); in the trace allies support and can die | kit accuracy 18, health 150, noticescale 100, no BAR, AI-vs-AI damage x0.5 (`coop_mod/discallies.scr`, `level.coop_aiVsAiDmg`) | user-approved 2026-11-13 ("balance the allies on the frontline missions") |
+| Trail goals | AISETCOVERPOINT on the player's route | a spot the player walked, 500-900u behind him on the ally's side; unseen placement of a stranded ally | forced (no cover-point data) |
+| Jeep .30 cal, mounted | the disc gun seen from behind | the stock first-person 30cal for the gunner, the disc gun for everyone else | forced (engine turret view model) |
+| Wounded gunner's death pose | (no death: he fades) | settles into the stock on-back dead pose, body stays | user-approved 2026-11-12 (pose changed 2026-11-13) |
+| Interrogation execution | never happens (line 3 stalls) | after interrog_4 he aims 5 s, then the bang that opens interrog_5 = the shot | choice (kept from the user's rescue design) |
+| Interrogation start | trigger 37, 54u from the officer | 350u, or 750u in line of sight of the officer | forced (our 200u rescue radius) |
+| Panzer first shot | +216 ticks from its trigger | same spacing, from when a player sees it; rocket pass after the second shot | choice (user: it must be seen firing) |
+| House collapse dust and smoke | disc particle records | stock dust cloud and smoke column | stand-in |
+| Use prompt | hint text on approach | hint text plus the mod's USE icon when facing the spot | user-approved 2026-11-13 |
 | Collision over doors, arches and wall gaps (round 16) | the wall's collision ends where it is drawn (about 96u over the floor, arch chamfers from about 90u) | collision only: whatever hangs 56-136u over a floor that runs on level through the wall is cut away up to 136u over that floor; the AI-route carve cuts walls to 136u (ceilings still 106u); doorway soffit caps at 136u. Shots pass through that band of drawn wall over an opening | forced (MOHAA's 94u stand box + its 38u step-up) |
 | Low openings the original crouched through, 56-82u high | crouch | can be walked through standing where the opening runs on level both sides | side effect of the row above |
