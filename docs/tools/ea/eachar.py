@@ -41,7 +41,8 @@ CHARS = [("Body_MRpartisanFemaleA_LOD1", ("RussianFemalePartisan",), "partisan_f
          ("Body_MRpartisanLeader_LOD1", ("PartisanLeader",), "partisan_leader"),
          ("Body_MRpartisan_LOD1", ("RussianPartisanA", "RussianPartisanA2", "RussianPartisanA3"), "partisan")]
 # the characters whose own models have passed the client still sheet (face, front, side, back, run, fire, no breaks)
-OWN = {"RussianFemalePartisan"}   # 2026-11-13 user approved her client sheet (SHEET_partisan_female_v1)
+OWN = {"RussianFemalePartisan",    # 2026-11-13 user approved SHEET_partisan_female_v1
+       "GermanInfantryWinterizedA"}  # 2026-11-13 user approved SHEET_german_infantry_v1 (form C)
 
 # the stock human skeleton in a standing pose (soviet_infantry1, AI off; gettagposition / gettagangles, model space cm,
 # facing +X): position, (pitch, yaw, roll) - only the bones the skin uses
