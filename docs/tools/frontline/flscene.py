@@ -100,7 +100,11 @@ def mohaa_angles(q, mirror):
         lft = (up[1] * fwd[2] - up[2] * fwd[1], up[2] * fwd[0] - up[0] * fwd[2], up[0] * fwd[1] - up[1] * fwd[0])
     yaw = math.degrees(math.atan2(fwd[1], fwd[0]))
     pitch = -math.degrees(math.asin(max(-1.0, min(1.0, fwd[2]))))
-    roll = math.degrees(math.atan2(-lft[2], up[2]))
+    # [flfix2 round 19, bug-11165] the engine's AngleVectors gives left.z = +sin(roll) (up.y = -sin(roll) at yaw 0):
+    # atan2(-left.z, up.z) rolled every object the wrong way (the canal-bridge crates leaned against the deck's
+    # arch instead of with it). Checked: AngleVectors(pitch, yaw, roll) now rebuilds this frame (200 random
+    # rotations, axis error < 1e-6; it was up to 2.0)
+    roll = math.degrees(math.atan2(lft[2], up[2]))
     return pitch, yaw, roll
 
 
@@ -123,7 +127,11 @@ def raw_angles(q, mirror=True):
     up = (m[0][2], m[1][2], m[2][2])
     yaw = math.degrees(math.atan2(fwd[1], fwd[0]))
     pitch = -math.degrees(math.asin(max(-1.0, min(1.0, fwd[2]))))
-    roll = math.degrees(math.atan2(-lft[2], up[2]))
+    # [flfix2 round 19, bug-11165] the engine's AngleVectors gives left.z = +sin(roll) (up.y = -sin(roll) at yaw 0):
+    # atan2(-left.z, up.z) rolled every object the wrong way (the canal-bridge crates leaned against the deck's
+    # arch instead of with it). Checked: AngleVectors(pitch, yaw, roll) now rebuilds this frame (200 random
+    # rotations, axis error < 1e-6; it was up to 2.0)
+    roll = math.degrees(math.atan2(lft[2], up[2]))
     return pitch, yaw, roll
 
 
