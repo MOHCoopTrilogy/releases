@@ -25,6 +25,7 @@ import glob
 import os
 
 import eacpt
+import easkin
 import shpx
 
 CHUNK_MODEL = 0x88c9c893
@@ -234,146 +235,191 @@ def _tga(im):
     return struct.pack("<BBBHHBHHHHBB", 0, 0, 2, 0, 0, 0, 0, 0, w, h, 32, 0x28) + bytes(px)
 
 
-def skin(model, bone_block, nbones, bidx, label):
-    """SKD v5 bytes: her sub-meshes on the stock skeleton"""
-    meshes = []
-    for pos, uv, tris, shape in model["meshes"]:
-        meshes.append(([(p[1] * 100.0, -p[0] * 100.0, p[2] * 100.0) for p in pos], uv, tris, shape))
-    allv = [x for m in meshes for x in m[0]]
-    r = max(v[2] for v in allv) / (POSE["eyes bone"][0][2] + 9.0)
-    J = {nm: (_mul(p, r), _axes(*a)) for nm, (p, a) in POSE.items()}
-    for side, sgn in (("L", 1), ("R", -1)):
-        hand = [v for v in allv if sgn * v[1] > 45 and v[2] < 110]
-        if not hand:
-            continue
-        tip = max(hand, key=lambda v: sgn * v[1])
-        wr = [v for v in hand if sgn * v[1] > sgn * tip[1] - 14]
-        wrist = tuple(sum(w[i] for w in wr) / len(wr) for i in range(3))
-        sh = J["Bip01 %s UpperArm" % side][0]
-        el = _add(sh, _mul(_sub(wrist, sh), 25.6 / (25.6 + 25.97)))
-        hj = _add(sh, _mul(_sub(wrist, sh), 0.97))
-        for bone, a, b in (("UpperArm", sh, el), ("Forearm", el, hj)):
-            nm = "Bip01 %s %s" % (side, bone)
-            R = _rot_between(J[nm][1][0], _sub(b, a))
-            J[nm] = (a, [R(x) for x in J[nm][1]])
-        nm = "Bip01 %s Hand" % side
-        R = _rot_between(_axes(*POSE["Bip01 %s Forearm" % side][1])[0], _sub(hj, el))
-        J[nm] = (hj, [R(x) for x in _axes(*POSE[nm][1])])
-    # legs: re-aimed at her own ankles (the stock pose stands with the left foot planted 29 cm out, so her left boot
-    # was nearer the right foot and rode it): ankle = the centre of her boot on that side, knee at the stock thigh /
-    # calf proportion between hip and ankle, the foot frame carried along with the calf
-    for side, sgn in (("L", 1), ("R", -1)):
-        boot = [v for v in allv if sgn * v[1] > 0 and 6.0 < v[2] < 16.0]
-        if not boot:
-            continue
-        ankle = (sum(b[0] for b in boot) / len(boot), sum(b[1] for b in boot) / len(boot), 12.0)
-        hip = J["Bip01 %s Thigh" % side][0]
-        knee = _add(hip, _mul(_sub(ankle, hip), 46.35 / (46.35 + 46.04)))
-        old_calf = J["Bip01 %s Calf" % side][1][0]
-        for bone, a, b in (("Thigh", hip, knee), ("Calf", knee, ankle)):
-            nm = "Bip01 %s %s" % (side, bone)
-            R = _rot_between(J[nm][1][0], _sub(b, a))
-            J[nm] = (a, [R(x) for x in J[nm][1]])
-        R = _rot_between(old_calf, _sub(ankle, knee))
-        fo, to = "Bip01 %s Foot" % side, "Bip01 %s Toe0" % side
-        toe_off = _sub(J[to][0], J[fo][0])
-        J[to] = (_add(ankle, R(toe_off)), [R(x) for x in J[to][1]])
-        J[fo] = (ankle, [R(x) for x in J[fo][1]])
-    seg_end = {"Bip01 Pelvis": "Bip01 Spine", "Bip01 Spine": "Bip01 Spine1", "Bip01 Spine1": "Bip01 Spine2",
-               "Bip01 Spine2": "Bip01 Neck", "Bip01 Neck": "Bip01 Head", "Bip01 Head": None}
-    for s in "LR":
-        seg_end.update({"Bip01 %s Clavicle" % s: "Bip01 %s UpperArm" % s, "Bip01 %s UpperArm" % s: "Bip01 %s Forearm" % s,
-                        "Bip01 %s Forearm" % s: "Bip01 %s Hand" % s, "Bip01 %s Hand" % s: None,
-                        "Bip01 %s Thigh" % s: "Bip01 %s Calf" % s, "Bip01 %s Calf" % s: "Bip01 %s Foot" % s,
-                        "Bip01 %s Foot" % s: "Bip01 %s Toe0" % s, "Bip01 %s Toe0" % s: None})
-    seg = {}
-    for bn, en in seg_end.items():
-        a = J[bn][0]
-        seg[bn] = (a, J[en][0] if en else _add(a, _mul(J[bn][1][0], 18.0 if bn == "Bip01 Head" else 10.0)))
+def _mm(A, B):
+    return [[sum(A[i][k] * B[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
 
-    def dseg(p, a, e):
-        d = _sub(e, a)
-        t = max(0.0, min(1.0, _dot(_sub(p, a), d) / (_dot(d, d) or 1.0)))
-        w = _sub(p, _add(a, _mul(d, t)))
-        return math.sqrt(_dot(w, w)) + (6.0 if "Clavicle" in bn_ else 0.0)
-    # her hem: the lowest point of the skirt's front / back flare (11 cm before or behind the body axis, within 10 cm of
-    # the middle, so not the satchel on her side); the skirt cloth above it blends pelvis and thigh
-    flare = [p[2] for m in meshes for p in m[0] if 40.0 < p[2] < 100.0 and abs(p[1]) < 10.0 and abs(p[0]) > 11.0]
-    hem = min(flare) if flare else 1e9
-    # a sub-mesh wholly at head height (her face, her cap) is a head piece
-    head_mesh = [min(p[2] for p in m[0]) > J["Bip01 Neck"][0][2] - 12.0 for m in meshes]
+
+def _mv(A, x):
+    return tuple(A[i][0] * x[0] + A[i][1] * x[1] + A[i][2] * x[2] for i in range(3))
+
+
+_I3 = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+
+
+def _rot_mat(u, v):
+    """the 3x3 matrix turning direction u onto direction v the short way (no twist about either)"""
+    u, v = _norm(u), _norm(v)
+    c = _dot(u, v)
+    ax = _cross(u, v)
+    s = math.sqrt(_dot(ax, ax))
+    if s < 1e-9:
+        if c > 0:
+            return [r[:] for r in _I3]
+        p = _norm(_cross(u, (1.0, 0.0, 0.0) if abs(u[0]) < 0.9 else (0.0, 1.0, 0.0)))
+        return [[2 * p[i] * p[j] - (1.0 if i == j else 0.0) for j in range(3)] for i in range(3)]
+    k = _mul(ax, 1.0 / s)
+    K = [[0.0, -k[2], k[1]], [k[2], 0.0, -k[0]], [-k[1], k[0], 0.0]]
+    K2 = _mm(K, K)
+    return [[_I3[i][j] + s * K[i][j] + (1 - c) * K2[i][j] for j in range(3)] for i in range(3)]
+
+
+# Re-posing a disc body onto the stock skeleton. Each piece is a group of EA bones that moves as one: its EA joint ->
+# tip direction is turned onto the stock bone's joint -> tip direction (the turn chained from the parent piece, so a
+# limb swings without twisting), its EA joint lands on the stock joint (or, 'chain', where the parent piece carries
+# it), and it is stretched along that direction to the stock bone length ('stretch'; 'rigid' keeps her own size).
+# (piece, EA bones, EA joint, EA tip, stock joint, stock tip, parent, mode)
+#   an EA tip is a bone, a pair of bones (their midpoint), or ('fwd', bone) = 6 cm straight ahead of that bone;
+#   a stock tip ('x', bone) is that bone's own x axis.
+def _pieces():
+    P = [("torso", ("character_root", "JO_anchor", "JO_csw", "JO_pelvis", "JO_lumbar1", "JO_lumbar2", "JO_thoracic",
+                    "JO_aim"), "JO_pelvis", "JO_neck", "Bip01 Pelvis", "Bip01 Neck", None, "stretch"),
+         ("neck", ("JO_neck",), "JO_neck", "JO_head", "Bip01 Neck", "Bip01 Head", "torso", "rigid"),
+         ("head", ("JO_head", "JO_helmet", "JO_jaw", "JO_bonehead", "JO_eyeLid_L", "JO_eyeLid_R", "JO_brow_L",
+                   "JO_brow_R"), "JO_head", ("fwd", "JO_head"), "Bip01 Head", ("x", "eyes bone"), "neck", "chain")]
+    # (the head: her straight-ahead gaze onto the stock 'eyes bone' x axis, which is the stock gaze; the eye
+    # POSITIONS differ - the stock eyes sit 62 degrees above the head joint, hers 33 - and aiming one at the
+    # other tipped her face 29 degrees up)
+    for s in "LR":
+        fing = tuple("JO_%s%s_%s" % (f, j, s) for f in ("thm", "pnt", "rng") for j in "ABC")
+        P += [("clav" + s, ("JO_clavicleScapula_" + s,), "JO_clavicleScapula_" + s, "JO_shoulder_" + s,
+               "Bip01 %s Clavicle" % s, "Bip01 %s UpperArm" % s, "torso", "stretch"),
+              ("upper" + s, ("JO_shoulder_" + s, "JO_uparm_" + s), "JO_shoulder_" + s, "JO_elbow_" + s,
+               "Bip01 %s UpperArm" % s, "Bip01 %s Forearm" % s, "clav" + s, "stretch"),
+              ("fore" + s, ("JO_elbow_" + s, "JO_loarm_" + s), "JO_elbow_" + s, "JO_wrist_" + s,
+               "Bip01 %s Forearm" % s, "Bip01 %s Hand" % s, "upper" + s, "stretch"),
+              ("hand" + s, ("JO_wrist_" + s, "JO_object_" + s) + fing, "JO_wrist_" + s,
+               ("JO_pntA_" + s, "JO_rngA_" + s), "Bip01 %s Hand" % s, ("x", "Bip01 %s Hand" % s), "fore" + s, "rigid"),
+              ("thigh" + s, ("JO_hip_" + s,), "JO_hip_" + s, "JO_knee_" + s, "Bip01 %s Thigh" % s,
+               "Bip01 %s Calf" % s, "torso", "stretch"),
+              ("calf" + s, ("JO_knee_" + s,), "JO_knee_" + s, "JO_ankle_" + s, "Bip01 %s Calf" % s,
+               "Bip01 %s Foot" % s, "thigh" + s, "stretch"),
+              ("foot" + s, ("JO_ankle_" + s,), "JO_ankle_" + s, "JO_ball_" + s, "Bip01 %s Foot" % s,
+               "Bip01 %s Toe0" % s, "calf" + s, "stretch"),
+              ("toe" + s, ("JO_ball_" + s,), "JO_ball_" + s, ("fwd", "JO_ball_" + s), "Bip01 %s Toe0" % s,
+               ("x", "Bip01 %s Toe0" % s), "foot" + s, "rigid")]
+    return P
+
+
+def _xf(t, x):
+    a, sa, R, u, k = t
+    r = _mv(R, _sub(x, a))
+    return _add(sa, _add(r, _mul(u, (k - 1.0) * _dot(r, u))))
+
+
+def repose(skel, pose):
+    """({EA bone index: (EA joint, stock joint, R, axis, k)}, s): the transforms carrying her bind pose (EA model space
+    turned to MOHAA's: (y, -x, z) x 100 x s) onto the stock pose {bone: (pos, axes)}; s = her girth scale"""
+    byname = {b["name"]: i for i, b in enumerate(skel)}
+    ea = lambda nm: skel[byname[nm]]["pos"]
+    s = math.dist(pose["Bip01 Pelvis"][0], pose["Bip01 Neck"][0]) / (100.0 * math.dist(ea("JO_pelvis"), ea("JO_neck")))
+    E = {b["name"]: (b["pos"][1] * 100.0 * s, -b["pos"][0] * 100.0 * s, b["pos"][2] * 100.0 * s) for b in skel}
+
+    def ea_pt(t):
+        if isinstance(t, str):
+            return E[t]
+        if t[0] == "fwd":
+            return _add(E[t[1]], (6.0, 0.0, 0.0))
+        return _mul(_add(E[t[0]], E[t[1]]), 0.5)
+    out, piece = {}, {}
+    for name, bones, ej, et, sj, stp, parent, mode in _pieces():
+        if ej not in E or sj not in pose:
+            continue
+        a, b = E[ej], ea_pt(et)
+        sa = pose[sj][0]
+        sb = _add(sa, _mul(pose[stp[1]][1][0], math.dist(a, b))) if isinstance(stp, tuple) else pose[stp][0]
+        R0 = piece[parent][2] if parent in piece else _I3
+        R = _mm(_rot_mat(_mv(R0, _sub(b, a)), _sub(sb, sa)), R0)
+        u = _norm(_sub(sb, sa))
+        k = max(0.6, min(1.6, math.dist(sa, sb) / max(0.1, math.dist(a, b)))) if mode == "stretch" else 1.0
+        if mode == "chain" and parent in piece:
+            sa = _xf(piece[parent], a)
+        piece[name] = (a, sa, R, u, k)
+        for bn in bones:
+            if bn in byname:
+                out[byname[bn]] = piece[name]
+    # fingers: her bind hand is flat; the stock hands are modelled in a grip (the stock animations never move
+    # fingers), so her fingers are curled toward the palm at each knuckle before the hand piece carries them
+    for side in "LR":
+        h = piece.get("hand" + side)
+        w, kn = "JO_wrist_" + side, ("JO_pntA_" + side, "JO_rngA_" + side)
+        if not h or w not in E or any(x not in E for x in kn):
+            continue
+        hu = _norm(_sub(ea_pt(kn), E[w]))
+        across = _sub(E[kn[0]], E[kn[1]])
+        pn = _norm(_cross(hu, across))
+        mid = _mul(_add(E["JO_pelvis"], E["JO_neck"]), 0.5)
+        if _dot(pn, _sub(mid, E[w])) < 0:           # the palm faces her body in the A-pose
+            pn = _mul(pn, -1.0)
+        for f, angs in (("pnt", FINGER_CURL), ("rng", FINGER_CURL), ("thm", THUMB_CURL)):
+            M, t = h[2], _sub(h[1], _mv(h[2], h[0]))     # the hand piece as x -> M x + t
+            for j, ang in zip("ABC", angs):
+                jn = "JO_%s%s_%s" % (f, j, side)
+                if jn not in E:
+                    break
+                nxt = "JO_%s%s_%s" % (f, chr(ord(j) + 1), side)
+                fd = _norm(_sub(E[nxt], E[jn])) if nxt in E else hu
+                Rc = _axis_rot(_norm(_cross(fd, pn)), math.radians(ang))
+                # compose: x -> M (p + Rc (x - p)) + t
+                p = E[jn]
+                t = _add(t, _mv(M, _sub(p, _mv(Rc, p))))
+                M = _mm(M, Rc)
+                if jn in byname:
+                    out[byname[jn]] = ((0.0, 0.0, 0.0), t, M, h[3], 1.0)
+    return out, s
+
+
+FINGER_CURL = (30.0, 45.0, 30.0)      # knuckle, middle, tip
+THUMB_CURL = (10.0, 15.0, 15.0)
+
+
+def _axis_rot(k, a):
+    c, s = math.cos(a), math.sin(a)
+    K = [[0.0, -k[2], k[1]], [k[2], 0.0, -k[0]], [-k[1], k[0], 0.0]]
+    K2 = _mm(K, K)
+    return [[_I3[i][j] + s * K[i][j] + (1 - c) * K2[i][j] for j in range(3)] for i in range(3)]
+
+
+def skin(model, sdata, skel, bone_block, nbones, bidx, label):
+    """SKD v5 bytes: her sub-meshes on the stock skeleton, re-posed to the stock standing pose (POSE) piece by piece and
+    weighted with the disc's own one- and two-bone blends, each EA bone carried by its Bip01 counterpart"""
+    J = {nm: (p, _axes(*a)) for nm, (p, a) in POSE.items()}
+    T, s = repose(skel, J)
     blobs, surf_names = [], []
-    for k, (v, uv, tris, shape) in enumerate(meshes):
-        nrm = [[0.0, 0.0, 0.0] for _ in v]
+    for k, ((pos, uv, tris, shape), sd) in enumerate(zip(model["meshes"], sdata)):
+        V, N, W = [], [], []
+        for j, p in enumerate(pos):
+            x = (p[1] * 100.0 * s, -p[0] * 100.0 * s, p[2] * 100.0 * s)
+            n0 = sd["nrm"][j] if sd["nrm"] else (0.0, 0.0, 1.0)
+            n0 = (n0[1], -n0[0], n0[2])
+            acc, nacc, tw, merged = (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), 0.0, {}
+            for bi, w in sd["wts"][j]:
+                t = T.get(bi) or T[1]
+                acc = _add(acc, _mul(_xf(t, x), w))
+                nacc = _add(nacc, _mul(_mv(t[2], n0), w))
+                tw += w
+                bip = easkin.EA_TO_BIP.get(skel[bi]["name"], "Bip01 Pelvis")
+                merged[bip] = merged.get(bip, 0.0) + w
+            tw = tw or 1.0
+            V.append(_mul(acc, 1.0 / tw))
+            N.append(_norm(nacc))
+            W.append(sorted(((bn, w / tw) for bn, w in merged.items()), key=lambda q: -q[1]))
+        # winding: each triangle faces the way the disc's own normals say (MOHAA wants (e1 x e2) outward)
+        out_t = []
         for t in tris:
-            fn = _cross(_sub(v[t[1]], v[t[0]]), _sub(v[t[2]], v[t[0]]))
-            for j in t:
-                for i in range(3):
-                    nrm[j][i] -= fn[i]       # the disc's winding is clockwise: its face normals point inward
-        # a strip can start on the other parity (the face sub-mesh does): outward test about the sub-mesh's centre;
-        # inward -> flip its normals and its winding
-        c = tuple(sum(p[i] for p in v) / len(v) for i in range(3))
-        score = sum(1 if _dot(_norm(tuple(nrm[j])), _norm((p[0] - c[0], p[1] - c[1], 0.3 * (p[2] - c[2])))) > 0 else -1
-                    for j, p in enumerate(v))
-        flip = score < 0
-        if flip:
-            nrm = [[-x for x in n] for n in nrm]
+            fn = _cross(_sub(V[t[1]], V[t[0]]), _sub(V[t[2]], V[t[0]]))
+            out_t.append(t if _dot(fn, _add(_add(N[t[0]], N[t[1]]), N[t[2]])) >= 0 else (t[0], t[2], t[1]))
         vb = bytearray()
-        for j, p in enumerate(v):
-            best, bd = None, 1e9
-            for bn_ in seg:
-                # a leg bone only takes vertices on its own side of her
-                if (" L Thigh" in bn_ or " L Calf" in bn_ or " L Foot" in bn_ or " L Toe" in bn_) and p[1] < 0:
-                    continue
-                if (" R Thigh" in bn_ or " R Calf" in bn_ or " R Foot" in bn_ or " R Toe" in bn_) and p[1] > 0:
-                    continue
-                dd = dseg(p, *seg[bn_])
-                if dd < bd:
-                    best, bd = bn_, dd
-            # the foot is one piece (split over foot and toe the boots splintered when the toe bent)
-            if "Toe0" in best:
-                best = best.replace("Toe0", "Foot")
-            ws = [(best, 1.0)]
-            pel_z = J["Bip01 Pelvis"][0][2]
-            if head_mesh[k] or p[2] > J["Bip01 Head"][0][2] - 3.0:
-                # the head moves as one piece: the face and cap sub-meshes and anything at head height ride the head
-                # bone; split over neck and spine, the face sheared and the cap slid over her eyes when the head turned
-                ws = [("Bip01 Head", 1.0)]
-            elif ("Thigh" in best or "Calf" in best) and p[2] >= hem - 2.0 and bd > 7.0:
-                # skirt cloth (a leg-bone vertex more than 7 cm off its bone, at or above her hem): rigid on the pelvis
-                # it let the legs out through it in a stride, on the legs its panels tore apart. It blends: all pelvis at
-                # the waist, three quarters the nearer thigh at the hem. Beyond her hips (satchel, coat side) pelvis.
-                if abs(p[1]) > 17.0:
-                    ws = [("Bip01 Pelvis", 1.0)]
-                else:
-                    th = "Bip01 %s Thigh" % ("L" if p[1] > 0 else "R")
-                    wp = 0.85 * max(0.0, min(1.0, (p[2] - hem) / max(1.0, pel_z - hem))) ** 1.5
-                    ws = [("Bip01 Pelvis", wp), (th, 1.0 - wp)]
-            if len(ws) == 1:
-                # knees and elbows bend smoothly: within 6 cm of the joint (along the lower bone) a vertex is shared by
-                # the upper and the lower bone. Rigid on one or the other, a bent knee opened a bare crack between
-                # the boot top and the skirt (her crouch and run poses, 2026-11-12 offline sheet)
-                for up_, lo_ in (("Thigh", "Calf"), ("UpperArm", "Forearm")):
-                    bn0 = ws[0][0]
-                    if bn0.endswith(" " + up_) or bn0.endswith(" " + lo_):
-                        sd_ = bn0.split(" ")[1]
-                        ub, lb = "Bip01 %s %s" % (sd_, up_), "Bip01 %s %s" % (sd_, lo_)
-                        if ub in seg and lb in seg:
-                            jt, en_ = seg[lb]
-                            dr = _norm(_sub(en_, jt))
-                            sv = _dot(_sub(p, jt), dr)
-                            if -6.0 < sv < 6.0:
-                                wl = (sv + 6.0) / 12.0
-                                ws = [(lb, wl), (ub, 1.0 - wl)] if wl >= 0.5 else [(ub, 1.0 - wl), (lb, wl)]
-            nn = _norm(tuple(nrm[j]))
-            bp, ax = J[ws[0][0]]
-            vb += struct.pack("<3f2f2i", _dot(nn, ax[0]), _dot(nn, ax[1]), _dot(nn, ax[2]), uv[j][0], uv[j][1], len(ws), 0)
-            for bn, w in ws:
+        for j in range(len(V)):
+            bp, ax = J[W[j][0][0]]
+            nn = N[j]
+            vb += struct.pack("<3f2f2i", _dot(nn, ax[0]), _dot(nn, ax[1]), _dot(nn, ax[2]), uv[j][0], uv[j][1],
+                              len(W[j]), 0)
+            for bn, w in W[j]:
                 bp, ax = J[bn]
-                dv = _sub(p, bp)
+                dv = _sub(V[j], bp)
                 vb += struct.pack("<if3f", bidx[bn], w, _dot(dv, ax[0]), _dot(dv, ax[1]), _dot(dv, ax[2]))
-        tb = b"".join(struct.pack("<3i", *((t[0], t[1], t[2]) if flip else (t[0], t[2], t[1]))) for t in tris)
-        nV, nT = len(v), len(tris)
+        tb = b"".join(struct.pack("<3i", *t) for t in out_t)
+        nV, nT = len(V), len(out_t)
         sn = "%s_%d" % (label, k)
         surf_names.append((sn, shape))
         ofsTri = 100
@@ -400,12 +446,17 @@ def build(stream, level, mohaa_base, files, lines, log=print):
         log("eachar: stock skeleton not found in the install; characters keep the stock models")
         return 0
     bone_block, nbones, bidx = sk
+    skel = easkin.skeleton(stream)
     made = 0
     for mname, chr_names, label in CHARS:
         m = read_model(stream, mname)
         if not m or not m["meshes"]:
             continue
-        skd, surfs = skin(m, bone_block, nbones, bidx, label)
+        sd = easkin.skin_data(stream, mname)
+        if not skel or not sd or len(sd) != len(m["meshes"]) or any(x["wts"] is None for x in sd):
+            log("eachar: %s: no disc skeleton / skin weights; the character keeps the stock model" % mname)
+            continue
+        skd, surfs = skin(m, sd, skel, bone_block, nbones, bidx, label)
         mdir = "models/human/ea_%s" % level
         files["%s/%s.skd" % (mdir, label)] = skd
         shader_lines, tik_surf = [], []
