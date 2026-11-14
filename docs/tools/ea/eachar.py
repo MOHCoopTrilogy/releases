@@ -395,6 +395,16 @@ TIKI_MAX_VERTS = 999       # tiki_shared.h TIKI_MAX_VERTEXES 1000 / TIKI_MAX_TRI
 TIKI_MAX_TRIS = 1999
 
 
+DRAPE = {}             # label -> pelvis share kept by loose thigh cloth (see skin()); per character, sheet-tested
+DRAPE_MIN_OFF = 11.0   # cm off the stock thigh bone (times her girth scale): closer than this the cloth hugs the leg
+
+
+def _segdist(p, a, b):
+    ab = _sub(b, a)
+    t = max(0.0, min(1.0, _dot(_sub(p, a), ab) / (_dot(ab, ab) or 1.0)))
+    return math.dist(p, _add(a, _mul(ab, t)))
+
+
 def _subdivide(V, N, W, uv, tris, k):
     edges = {}
     for t in tris:
@@ -476,7 +486,22 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
             tw = tw or 1.0
             V.append(_mul(acc, 1.0 / tw))
             N.append(_norm(nacc))
-            W.append(sorted(((bn, w / tw) for bn, w in merged.items()), key=lambda q: -q[1]))
+            wl = [(bn, w / tw) for bn, w in merged.items()]
+            share = DRAPE.get(label, 0.0)
+            if share and set(merged) <= {"Bip01 Pelvis", "Bip01 L Thigh", "Bip01 R Thigh"} and len(merged) > 0 \
+                    and (set(merged) & {"Bip01 L Thigh", "Bip01 R Thigh"}):
+                # loose cloth over the thighs (a skirt panel: thigh-weighted, well off the thigh bone) keeps a pelvis
+                # share, so a raised thigh lifts it only part way: lying down with the knees up, the disc's own weights
+                # stood her skirt up as a flat flap (dbx, 2026-11-13). Leg-hugging cloth stays on the thigh.
+                off = min(_segdist(V[-1], J["Bip01 %s Thigh" % sd_][0], J["Bip01 %s Calf" % sd_][0]) for sd_ in "LR")
+                if off > DRAPE_MIN_OFF * s:
+                    wl = [(bn, w * (1.0 - share)) for bn, w in wl]
+                    wl.append(("Bip01 Pelvis", share))
+                    acc_ = {}
+                    for bn, w in wl:
+                        acc_[bn] = acc_.get(bn, 0.0) + w
+                    wl = list(acc_.items())
+            W.append(sorted(wl, key=lambda q: -q[1]))
         # winding: each triangle faces the way the disc's own normals say (MOHAA wants (e1 x e2) outward)
         out_t = []
         for t in tris:
