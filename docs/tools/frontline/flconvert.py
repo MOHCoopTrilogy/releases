@@ -653,7 +653,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     continue
                 hl = math.hypot(n[0], n[1]) or 1.0
                 tx, ty = -n[1] / hl, n[0] / hl
-                ztop = z0 + (z1 - z0) * (1.0 + float(rk.get("overshoot", 0.25)))
+                # [flfix2 round 19b] uneven crown: the overshoot varies per hedge face (a fixed hash of its plane) by
+                # +-overshoot_jitter, so neighbouring segments do not share one straight top line
+                pk2_ = planes_[("t", a, b, c)]
+                jit_ = ((pk2_[0] * 7919 + pk2_[1] * 104729) % 1000) / 999.0 * 2.0 - 1.0     # deterministic, -1..1
+                ztop = z0 + (z1 - z0) * (1.0 + float(rk.get("overshoot", 0.25)) + float(rk.get("overshoot_jitter", 0.0)) * jit_)
                 base = len(nv)
                 for q in T:
                     p = q[0]
@@ -661,7 +665,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     # profile is kept and the image's alpha crown sits on it (v1/v2 flattened the tops)
                     pz = p[2] + (ztop - z1) if p[2] >= z0 + (z1 - z0) * 0.75 else p[2]
                     uu = (p[0] * tx + p[1] * ty) / float(rk.get("tile", 128))
-                    vv = (ztop - pz) / max(1.0, ztop - z0)
+                    # [flfix2 round 19b] v_range: the image rows the card uses, top -> bottom (skips the empty top band
+                    # so the leaf body reaches higher, and the bottom rows next to the wrap seam: the orange line)
+                    vr0_, vr1_ = rk.get("v_range", (0.0, 1.0))
+                    vv = vr0_ + (vr1_ - vr0_) * (ztop - pz) / max(1.0, ztop - z0)
                     cr, cg, cb = (min(255, int(round(q[3][k] * gk[k]))) for k in range(3))
                     nv.append(((p[0], p[1], pz), (uu, vv), q[2], (cr, cg, cb, 255)))
                 nt.append((base, base + 1, base + 2))
