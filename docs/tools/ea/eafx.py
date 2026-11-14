@@ -231,6 +231,10 @@ def mist_key(stream, X, level):
         return None
     _a, x0, y0, x1, y1, zc, ztop, edge, c = best
     g = float(ms.get("gain", 1.0))
+    # desat: pulled toward the cards' own grey (the user remembers the mist as white against the blue night)
+    dsat = float(ms.get("desat", 0.0))
+    gy = sum(c) / 3.0
+    c = [v * (1.0 - dsat) + gy * dsat for v in c]
     return "%.0f %.0f %.0f %.0f %.0f %.0f %.6f %.0f %.3f %.3f %.3f" % (
         x0, y0, x1, y1, zc, ztop, float(ms.get("density", 0.001)), edge, *(min(1.0, v * g) for v in c))
 
