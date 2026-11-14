@@ -121,6 +121,51 @@ def packages(db):
     return {k: [n for _i, n in sorted(v)] for k, v in out.items()}
 
 
+class _Scaled:
+    """the level transform with its unit scale times k (a pulled-in distant package keeps its size on screen)"""
+    def __init__(self, X, k):
+        self.s, self.m = X.s * k, X.m
+
+
+def _distant_pull(db, X, level):
+    """{package name (lower): (k, offset in the placement's axes, colour gain)} for the distant fire and glow
+    packages. The original draws its effects in a pass of their own with fog off; ours sit beyond the far plane
+    and are clipped. With ea_levels.json "distant_fx_pull" approved (or EA_DISTPULL=1), each one is drawn on the
+    line from the nearest place the AI and players use (spawn, objective, trigger, player start) out to it, at
+    `dist` units from that place, everything scaled by the same factor so it covers the same part of the view."""
+    import json, os
+    try:
+        spec = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "ea_levels.json"))).get(level, {})
+    except (OSError, ValueError):
+        spec = {}
+    dp = spec.get("distant_fx_pull")
+    if not dp or not (dp.get("approved") or os.environ.get("EA_DISTPULL")):
+        return {}
+    anch = [X(r.pos) for r in db.recs if r.cls in ("NPCSpawnPoint", "SquadObjective_New", "BasicTrigger", "Player",
+                                                   "ICSPoint", "MMGPoint") and r.pos != (0.0, 0.0, 0.0)]
+    if not anch:
+        return {}
+    D = float(dp.get("dist", 2400.0))
+    out = {}
+    for r in db.of("EffectsPackage"):
+        xp = [t for _k, t in r.strings() if t.lower().endswith(".xpd")]
+        if not xp or "distant" not in xp[0].lower() or r.pos == (0.0, 0.0, 0.0):
+            continue
+        low = _base(xp[0]).lower()
+        P = X(r.pos)
+        A = min(anch, key=lambda a: (a[0] - P[0]) ** 2 + (a[1] - P[1]) ** 2)
+        d = math.sqrt((A[0] - P[0]) ** 2 + (A[1] - P[1]) ** 2 + (A[2] - P[2]) ** 2)
+        if d <= D or low in out:
+            continue
+        k = D / d
+        W = tuple((A[i] + (P[i] - A[i]) * k) - P[i] for i in range(3))       # world shift, our units
+        f0, l0, u0 = r.rot[0:3], r.rot[3:6], r.rot[6:9]
+        fw = (f0[0], f0[1] * X.m, f0[2]); lw = (l0[0], l0[1] * X.m, l0[2]); uw = (u0[0], u0[1] * X.m, u0[2])
+        off = tuple(sum(W[i] * ax[i] for i in range(3)) for ax in (fw, lw, uw))
+        out[low] = (k, off, float(dp.get("gain", 1.0)))
+    return out
+
+
 # ------------------------------------------------------------------ sprites
 def _resample(rgba, w, h, tw, th):
     if (tw, th) == (w, h):
@@ -238,7 +283,7 @@ def _lim(v):
     return max(-1.0e6, min(1.0e6, v))
 
 
-def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0):
+def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0, off=(0.0, 0.0, 0.0)):
     """-> (text of the originemitter block, on-time class, particle life, live particles)"""
     u, m = X.s, X.m
     g = d.g
@@ -300,8 +345,10 @@ def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0):
     if abs(es - 1.0) > 1e-3:
         A("\t\t\tscalerate %s" % _f((es - 1.0) / life))
     ylo, yhi = sorted((g("LocMinY") * m, g("LocMaxY") * m))
-    A("\t\t\toffsetalongaxis %s %s %s" % (_rng(g("LocMinX") * u, g("LocMaxX") * u), _rng(ylo * u, yhi * u),
-                                 _rng(g("LocMinZ") * u, g("LocMaxZ") * u)))
+    # off: a constant shift in the placement's own axes (a distant package drawn nearer, distant_fx_pull)
+    A("\t\t\toffsetalongaxis %s %s %s" % (_rng(g("LocMinX") * u + off[0], g("LocMaxX") * u + off[0]),
+                                 _rng(ylo * u + off[1], yhi * u + off[1]),
+                                 _rng(g("LocMinZ") * u + off[2], g("LocMaxZ") * u + off[2])))
     vlo, vhi = sorted((g("VelMinY") * m, g("VelMaxY") * m))
     vel = (g("VelMinX"), g("VelMaxX"), vlo, vhi, g("VelMinZ"), g("VelMaxZ"))
     if any(abs(v) > 1e-6 for v in vel):
@@ -404,6 +451,7 @@ def build(stream, db, X, level, files, lines, used=None, log=print, budget=2600,
                 total += ((0.5 if 0.0 < far < 1.0e4 else 1.0) * cnt * max(1, int(d.g("EmitRate", 1))) * TICK
                           / max(1, int(d.g("EmitDelay", 1))) * d.g("PartLifetime", 1.0))
     rate_scale = min(1.0, budget / total) if total > 0 else 1.0
+    pull = _distant_pull(db, X, level)
     made, missing = 0, []
     lines.append("\t// ---- particle systems converted from the disc (eafx): parts of each package, on-time, tail ----")
     for low in sorted(want):
@@ -413,7 +461,11 @@ def build(stream, db, X, level, files, lines, used=None, log=print, budget=2600,
             d = defs.get(dn)
             if d is None:
                 continue
-            txt, on, life, _live = emitter(d, i, X, sprites, rate_scale, far_gain if "distant" in low else 1.0)
+            if low in pull:
+                k_, off_, g_ = pull[low]
+                txt, on, life, _live = emitter(d, i, _Scaled(X, k_), sprites, rate_scale, g_, off_)
+            else:
+                txt, on, life, _live = emitter(d, i, X, sprites, rate_scale, far_gain if "distant" in low else 1.0)
             if txt is None:
                 continue
             p = parts.setdefault(on, {"txt": [], "names": [], "tail": 0.0})

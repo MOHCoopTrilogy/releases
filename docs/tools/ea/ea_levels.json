@@ -7,6 +7,8 @@
   "sky": "textures/sky/mohnightfog",
   "farplane": 9000,
   "vis_radius": 0, "far_fx_gain": 1.79,
+  "distant_fx_pull": {"dist": 2400, "gain": 1.79, "approved": false,
+                      "_doc": "fidelity item (2026-11-13, pending the emulator frames): the distant fire/glow packages sit 6,000-10,000u out, past the far plane, and are clipped; the original draws effects in a fog-off pass of their own. approved true draws each at dist from the nearest AI/player place, scaled to keep its size on screen (eafx._distant_pull); EA_DISTPULL=1 for a test conversion"},
   "farplane_color": "0.58 0.60 0.64",
   "date": "1943-01-28",
   "place": "Gorodishche, near Stalingrad, USSR",
