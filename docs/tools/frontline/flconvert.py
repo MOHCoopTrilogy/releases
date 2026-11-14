@@ -235,6 +235,70 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     _HD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hd")
 
+    _eng_img = {}
+
+    def _engine_image(path):
+        """bytes of the image the renderer loads for <path> on the player's install: <stem>.dds from the last pak that
+        has one (r_ext_compressed_textures, on by default), else the path itself from the last pak; None if neither"""
+        if path in _eng_img:
+            return _eng_img[path]
+        stem = os.path.splitext(path)[0].lower()
+        best = {}
+        for game in ("main", "mainta", "maintt"):        # load order: the last one found wins
+            for pk in sorted(glob.glob(os.path.join(mohaa_base or "", game, "*.pk3")), key=str.lower):
+                try:
+                    z = zipfile.ZipFile(pk)
+                except Exception:
+                    continue
+                for n in z.namelist():
+                    nl_ = n.lower()
+                    if nl_ == stem + ".dds":
+                        best["dds"] = (pk, n)
+                    elif nl_ == path.lower():
+                        best["own"] = (pk, n)
+        data = None
+        for kind in ("dds", "own"):
+            if kind in best:
+                try:
+                    data = zipfile.ZipFile(best[kind][0]).read(best[kind][1])
+                    from PIL import Image as _I
+                    import io as _io2
+                    _I.open(_io2.BytesIO(data)).load()        # a DDS PIL cannot decode falls through to the tga
+                    break
+                except Exception:
+                    data = None
+        _eng_img[path] = data
+        return data
+
+    def recolour_card(key, up):
+        """[flfix2 round 19d] TGA bytes of the card image the engine draws for up['path'], each channel scaled so its
+        solid texels' mean equals the disc card's (gain 0.25..6), at most 512 px; None when either image is missing"""
+        try:
+            import io as _io
+            import numpy as _np
+            from PIL import Image
+            t = L.texture(key)
+            data = _engine_image(up["path"])
+            if not (t and t["rgba"]) or data is None:
+                return None
+            d = _np.frombuffer(t["rgba"], _np.uint8).reshape(t["h"], t["w"], 4).astype(_np.float32)
+            fl = d[d[..., 3] >= 128][:, :3].mean(0)
+            im = Image.open(_io.BytesIO(data)).convert("RGBA")
+            if max(im.size) > 512:
+                im = im.resize((min(512, im.size[0]), min(512, im.size[1])), Image.LANCZOS)
+            a = _np.asarray(im).astype(_np.float32)
+            sol = a[..., 3] >= 128
+            if not sol.any():
+                return None
+            hd = a[sol][:, :3].mean(0)
+            g = _np.clip(fl / _np.maximum(1.0, hd), 0.25, 6.0)
+            a[..., :3] = _np.clip(a[..., :3] * g, 0, 255)
+            a[..., 3] = _np.where(a[..., 3] >= 128, 255, 0)
+            o = a.astype(_np.uint8)
+            return tga_bytes(o.shape[1], o.shape[0], o.tobytes())
+        except Exception:
+            return None
+
     def _local(up):
         """[look 2026-11-13] a texture shipped next to the converter (hd/<file>, CC0, credited in hd/CREDITS.txt): its
         bytes, or None. It is written into the converted pak under textures/hd/<file>."""
@@ -304,6 +368,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             fl = [fmean(t["rgba"][c::4]) for c in range(3)]
         data = _local(up)
         if data is None:
+            # [flfix2 round 19d] grade against the image the ENGINE draws: R_LoadImage tries <name>.dds first (the HD
+            # DDS override paks), then the last pak in load order. The stock tree card 1dd980 was graded on Pak2's
+            # 256 px tga (mean blue 25) while the dds drawn has mean blue 3: the lane's branch cards came out yellow.
+            data = _engine_image(up["path"]) if up.get("path") else None
+        if data is None:
             for game in ("maintt", "mainta", "main"):
                 pk = os.path.join(mohaa_base, game, up["pak"]) if up.get("pak") else None
                 if pk and os.path.exists(pk):
@@ -367,10 +436,20 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             # stock card recipe (scripts/trees.shader, TAnatural.shader): nomipmaps, or thin twigs dissolve into dashes
             # under GE128 at distance
             nomip = "\tnomipmaps\n" if up.get("alpha") else ""
-            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n" + nomip + "\tcull none\n\t{\n\t\tmap " + up["path"] + "\n"
+            mpath = up["path"]
+            rec_ = recolour_card(key, up) if up.get("alpha") and up.get("recolour", True) else None
+            if rec_:
+                # [flfix2 round 19d] the stock card the engine draws (the HD DDS override) has another hue than the disc
+                # card (tree1_5: mean blue 2 against the disc's 18 - the lane's branch cards read yellow) and a vertex
+                # grade cannot move hue past its clamp: the drawn image is written into this pak per-channel matched to
+                # the disc card's solid texels, and mapped instead (player's own install data, private pak)
+                mpath = name + "_hd.tga"
+                files[mpath] = rec_
+                stats.setdefault("recoloured_cards", []).append(short)
+            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n" + nomip + "\tcull none\n\t{\n\t\tmap " + mpath + "\n"
                                 + tcm + acut + "\t\trgbGen vertex\n\t}\n}\n")
             stats["upgraded"] = stats.get("upgraded", 0) + 1
-            if up.get("grade", True):
+            if up.get("grade", True) and not rec_:
                 g = grade_for(key, up)
                 if g:
                     grade[key] = g
@@ -637,11 +716,20 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 pl_.setdefault(k_, []).append((a, b, c))
             add_ = []
             for k_, ts_ in pl_.items():
-                z0_ = min(verts[i][0][2] for t_ in ts_ for i in t_)
+                # [round 19d] the hedge's foot is bumpy: skirt every BOUNDARY edge of the plane's faces that has its own
+                # triangle above it (was: only edges at the plane's lowest height - the pale void sliver in hedgeFar)
+                pk3_ = lambda v: (round(v[0][0], 1), round(v[0][1], 1), round(v[0][2], 1))     # noqa: E731
+                ecount_ = {}
                 for t_ in ts_:
                     for i, j in ((t_[0], t_[1]), (t_[1], t_[2]), (t_[2], t_[0])):
-                        if verts[i][0][2] - z0_ > 1.0 or verts[j][0][2] - z0_ > 1.0:
+                        ek_ = tuple(sorted((pk3_(verts[i]), pk3_(verts[j]))))
+                        ecount_[ek_] = ecount_.get(ek_, 0) + 1
+                for t_ in ts_:
+                    for i, j, k in ((t_[0], t_[1], t_[2]), (t_[1], t_[2], t_[0]), (t_[2], t_[0], t_[1])):
+                        if ecount_[tuple(sorted((pk3_(verts[i]), pk3_(verts[j]))))] != 1:
                             continue
+                        if verts[k][0][2] - max(verts[i][0][2], verts[j][0][2]) < 8.0:
+                            continue          # a side or top edge, not a foot
                         b_ = len(verts)
                         for q in (verts[i], verts[j]):
                             verts.append(q)
