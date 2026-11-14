@@ -586,7 +586,7 @@ Walks with byte copies of the live binaries (`r16/Le_v95.out`, `r16/Le_v106.out`
 
 Converter only. Paks `H:\hzm_work\flpolish\v108_fl_1_1.pk3` (f123d82d..e5cc91d2) and `v109_fl_1_1.pk3` (+90c3f927, 92a1a1a3),
 commit lists beside them. Stills: `H:\hzm_work\flpolish\fix2\r19\a108\` (v108, LIVE engine binaries on the test home).
-v109 seen in a client: `H:\hzm_worklpolishix219109\` (hedges, window, pit, crates). Water: `r19\d109\`, `r19\d111\` (v111 = v109 + 8ebfc56e).
+v109 seen in a client: `H:\hzm_work\flpolish\fix2\r19\b109\` (hedges, window, pit, crates). Water: `r19\d109\`, `r19\d111\` (v111 = v109 + 8ebfc56e).
 
 | item (user) | cause | now | proof |
 |---|---|---|---|
