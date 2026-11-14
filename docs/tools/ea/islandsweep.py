@@ -4,7 +4,7 @@ A node group the main graph cannot reach, or that cannot reach the main graph, w
 (z within 64u: one floor level), is listed for ea_levels.json "path_nodes_drop". Groups WITH an AI place are reported for a fix.
 usage: python -I islandsweep.py <pth> <pak> [street x,y,z]"""
 import json, math, re, sys, zipfile
-sys.path.insert(0, r"H:\hzm_work\eapolish\dbfix_2026-11-11\tools")
+sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 import pthread as P
 
 pth, pak = sys.argv[1], sys.argv[2]
