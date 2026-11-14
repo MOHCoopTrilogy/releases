@@ -20,6 +20,7 @@ diffusion, trails, FogMultiplier.
 Nothing here is stored in the repository except this code: every output is derived at convert time.
 """
 import math
+import os
 import re
 import struct
 import zlib
@@ -396,7 +397,10 @@ def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0, off=(0.0, 0.0, 0.0), a
         es = math.sqrt(max(1e-4, esx * esy))
     additive = int(g("RenderType", 0)) == 0
     shader, tw = sprites.shader(d.tex(), int(g("HorizCount", 1)), int(g("VertCount", 1)), g("UVAnimRate", 0.0),
-                                min(16.0, max(1 / 16.0, wm / hm)), additive, nofog=any(abs(v) > 1e-6 for v in off))
+                                min(16.0, max(1 / 16.0, wm / hm)), additive,
+                                # nofog OFF by default: in the 2026-11-13 stills the nofog systems did not draw at all on gl2
+                                # (the same systems with fog showed); EA_FX_NOFOG=1 brings it back for the engine investigation
+                                nofog=any(abs(v) > 1e-6 for v in off) and os.environ.get("EA_FX_NOFOG") == "1")
     if shader is None:
         return None, on, life, 0
     L = ["originemitter e%d" % idx, "\t\t("]
