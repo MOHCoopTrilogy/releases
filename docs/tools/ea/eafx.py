@@ -121,6 +121,27 @@ def packages(db):
     return {k: [n for _i, n in sorted(v)] for k, v in out.items()}
 
 
+def _halo(txt, i, h):
+    """a copy of emitter block e<i> as e<i>h: sizes x h['scale'], alpha x h['alpha'], rate x h['rate']"""
+    t = txt.replace("originemitter e%d\n" % i, "originemitter e%dh\n" % i, 1)
+
+    def mul(key, k, cap=None):
+        def f(m):
+            v = float(m.group(2)) * k
+            return m.group(1) + _f(min(cap, v) if cap else v)
+        return re.sub(r"(\t%s )([-0-9.]+)" % key, f, t)
+    for key, k, cap in (("scalemin", float(h.get("scale", 3.0)), None), ("scalemax", float(h.get("scale", 3.0)), None),
+                        ("alpha", float(h.get("alpha", 0.4)), 1.0), ("spawnrate", float(h.get("rate", 0.5)), None)):
+        t = mul(key, k, cap)
+    # the convfx alpha curve carries the per-particle alpha on converted maps: scale its three levels as well
+    def fa(m):
+        v = [float(x) for x in m.group(1).split()]
+        ka = float(h.get("alpha", 0.4))
+        return "convfx alpha " + " ".join(_f(min(1.0, x * ka)) for x in v[:3]) + " " + " ".join(_f(x) for x in v[3:])
+    t = re.sub(r"convfx alpha ([-0-9. ]+)", fa, t)
+    return t
+
+
 class _Scaled:
     """the level transform with its unit scale times k (a pulled-in distant package keeps its size on screen)"""
     def __init__(self, X, k):
@@ -162,7 +183,7 @@ def _distant_pull(db, X, level):
         f0, l0, u0 = r.rot[0:3], r.rot[3:6], r.rot[6:9]
         fw = (f0[0], f0[1] * X.m, f0[2]); lw = (l0[0], l0[1] * X.m, l0[2]); uw = (u0[0], u0[1] * X.m, u0[2])
         off = tuple(sum(W[i] * ax[i] for i in range(3)) for ax in (fw, lw, uw))
-        out[low] = (k, off, float(dp.get("gain", 1.0)))
+        out[low] = (k, off, float(dp.get("gain", 1.0)), float(dp.get("alpha_gain", 1.0)), dp.get("halo"))
     return out
 
 
@@ -283,7 +304,7 @@ def _lim(v):
     return max(-1.0e6, min(1.0e6, v))
 
 
-def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0, off=(0.0, 0.0, 0.0)):
+def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0, off=(0.0, 0.0, 0.0), alpha_gain=1.0):
     """-> (text of the originemitter block, on-time class, particle life, live particles)"""
     u, m = X.s, X.m
     g = d.g
@@ -331,7 +352,15 @@ def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0, off=(0.0, 0.0, 0.0)):
     c0 = [_c(g("ColorStart" + x, 128)) for x in "RGB"] + [_c(g("ColorStartMax" + x, 128)) for x in "RGB"]
     c1 = [_c(g("ColorEnd" + x, 128)) for x in "RGB"] + [_c(g("ColorEndMax" + x, 128)) for x in "RGB"]
     a0, a1, ae = _c(g("AlphaStart", 128)), _c(g("AlphaStartMax", 128)), _c(g("AlphaEnd", 128))
-    if additive and gain != 1.0:
+    if additive and gain != 1.0 and alpha_gain != 1.0:
+        # a pulled-in distant fire (distant_fx_pull): brightened without bleaching - every colour of the system is
+        # scaled by one factor, held where its brightest channel reaches 1, so the orange stays orange
+        top = max(c0 + c1 + [1e-3])
+        f_ = min(gain, 1.0 / top)
+        c0 = [v * f_ for v in c0]
+        c1 = [v * f_ for v in c1]
+        a0, a1, ae = (min(1.0, v * alpha_gain) for v in (a0, a1, ae))
+    elif additive and gain != 1.0:
         # a far glow sits beyond the fog's far end: the mod's screen fog pass lays the level's most-fog share over it
         # (the disc fogs geometry per vertex, a glow sprite over the sky keeps its light), so that share is given back
         c0 = [min(1.0, v * gain) for v in c0]
@@ -462,8 +491,13 @@ def build(stream, db, X, level, files, lines, used=None, log=print, budget=2600,
             if d is None:
                 continue
             if low in pull:
-                k_, off_, g_ = pull[low]
-                txt, on, life, _live = emitter(d, i, _Scaled(X, k_), sprites, rate_scale, g_, off_)
+                k_, off_, g_, ag_, halo_ = pull[low]
+                txt, on, life, _live = emitter(d, i, _Scaled(X, k_), sprites, rate_scale, g_, off_, ag_)
+                if txt is not None and halo_ and "glow" in dn.lower():
+                    # the halo: the system's own glow again, wider and fainter, lighting the fog round the fire
+                    p = parts.setdefault(on, {"txt": [], "names": [], "tail": 0.0})
+                    p["txt"].append(_halo(txt, i, halo_))
+                    p["names"].append("e%dh" % i)
             else:
                 txt, on, life, _live = emitter(d, i, X, sprites, rate_scale, far_gain if "distant" in low else 1.0)
             if txt is None:
