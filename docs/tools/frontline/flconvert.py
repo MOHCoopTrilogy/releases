@@ -59,6 +59,8 @@ WATER_SHADER = os.environ.get("FL_WATER_SHADER", "textures/choppywater/tehao_ind
 # one tile per FL_WATER_TILE units (a stock pond brush face at its usual scale).
 WATER_TILE = float(os.environ.get("FL_WATER_TILE", "512"))
 CONTENTS_WATER = 0x20
+CONTENTS_TRANSLUCENT = 0x20000000   # engine surfaceflags.h
+SURF_PUDDLE = 0x200000             # engine surfaceflags.h: puddle impact effects / sounds
 TAG_RIVERBED = 0x7FFFF005    # [flpolish] the bed under the canal's water volume (a player who falls in lands and drowns)
 TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dropped player-clip sheet stood in front of
 
@@ -974,7 +976,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             nm = "riverbed"
         else:
             nm = "m%d%s%s" % (tag & 0x7FF, "s" if tag & COLL_SPECIAL else "", "v" if tag & COLL_VOLUME else "")
-        return B.shader("textures/common/fl_coll_" + nm, flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
+        # [flfix2 round 19, bug-11164] the canal bed is a puddle surface: a round that goes through the water lands on
+        # it and the cgame picked its impact by surface type - none = the stone puff and chips (seen through the water)
+        sf_ = SURF_PUDDLE if tag == TAG_RIVERBED else 0
+        return B.shader("textures/common/fl_coll_" + nm, flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP | sf_, flbsp.CONTENTS_SOLID)
     for (a2, b2, c2), tg in zip(wound, wtags):
         if B.add_prism(clip_for(tg), a2, b2, c2, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
             rejected += 1
@@ -984,7 +989,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # the engine knows a player is in water (splash, wading, the underwater view) before the script drowns him
     nwv = 0
     if WATER_SHADER:
-        wsh = B.shader("textures/common/fl_water_vol", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, CONTENTS_WATER)
+        # [flfix2 round 19, bug-11164] as stock water (surfaceparm water + trans): CONTENTS_WATER | CONTENTS_TRANSLUCENT,
+        # and the puddle surface type on its sides, so every impact the engine resolves on it is the water splash/sound
+        wsh = B.shader("textures/common/fl_water_vol", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP | SURF_PUDDLE,
+                       CONTENTS_WATER | CONTENTS_TRANSLUCENT)
         for (a2, b2, c2), tg in zip(wound, wtags):
             if tg != TAG_RIVERBED:
                 continue
