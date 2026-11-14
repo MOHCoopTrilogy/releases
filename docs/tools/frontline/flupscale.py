@@ -80,6 +80,9 @@ def gpu_ok(exe, tmp, threads):
     return _esrgan(exe, src, dst, threads, 60)
 
 
+# [flfix2 round 19c] opaque dense-foliage textures (fl_texmap.json "upscale_foliage"): the same wider limit as the cards
+# (the Sealed Orders hedge box 16c480 measured over 60x as leaves, not worms) - filled per level in main()
+FOLIAGE = set()
 WORM_LIMIT = 60.0      # Laplacian energy vs a bicubic x4; real ESRGAN detail on 64-256px textures sits ~5..40x
 DRIFT_LIMIT = 0.12     # mean brightness drift allowed AFTER the colour match
 
@@ -207,7 +210,7 @@ def upscale_cutout(exe, a, tmp, threads, pre=1):
     return res, "ok cutout"
 
 
-def upscale_one(exe, im, tmp, threads, cut_pre=0):
+def upscale_one(exe, im, tmp, threads, cut_pre=0, key=None):
     rgba = im.convert("RGBA")
     w, h = rgba.size
     a = np.asarray(rgba)
@@ -243,7 +246,7 @@ def upscale_one(exe, im, tmp, threads, cut_pre=0):
     if lap_energy(back) < 0.5 * lap_energy(orig):
         return None, "detail lost (smoothed)"
     bic = np.asarray(Image.fromarray(a[:, :, :3]).resize((w * 4, h * 4), Image.BICUBIC))
-    if lap_energy(up) > WORM_LIMIT * max(1.0, lap_energy(bic)):
+    if lap_energy(up) > WORM_LIMIT * (2.5 if key in FOLIAGE else 1.0) * max(1.0, lap_energy(bic)):
         return None, "worm-noise"
     long_side = max(w, h) * 4
     target = min(1024, max(512, max(w, h) * 4)) if long_side >= 512 else long_side
@@ -267,7 +270,7 @@ def _main_one(z, n, key, skip, report, files, exe, tmp, threads, cut_pre):
         return
     try:
         im = Image.open(io.BytesIO(z.read(n)))
-        res, why = upscale_one(exe, im, tmp, threads, cut_pre=cut_pre)
+        res, why = upscale_one(exe, im, tmp, threads, cut_pre=cut_pre, key=key)
     except Exception as e:  # never fail the conversion
         res, why = None, "error %s" % e
     if BATCH["mode"] == "collect":
@@ -288,7 +291,9 @@ def main(pk3, level, out_pk3, exe_dir, threads="1:1:1", progress=None):
     p = os.path.join(HERE, "fl_texmap.json")
     if os.path.exists(p):
         tm = json.load(open(p)).get(level, {})
-    skip = set(tm.get("noupscale", [])) | {k for k in tm if not k.startswith("_") and k != "noupscale"}
+    skip = set(tm.get("noupscale", [])) | {k for k in tm if not k.startswith("_") and k not in ("noupscale", "upscale_foliage")}
+    FOLIAGE.clear()
+    FOLIAGE.update(tm.get("upscale_foliage", []))
     # cards flhd already enlarged 4x (fl_levels.json "hd" -> "cutout"): boxed back down before the colour-only pass
     lv = {}
     p = os.path.join(HERE, "fl_levels.json")
