@@ -730,11 +730,24 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                             continue
                         if verts[k][0][2] - max(verts[i][0][2], verts[j][0][2]) < 8.0:
                             continue          # a side or top edge, not a foot
+                        # the texture CONTINUES down the skirt (its UV gradient along -z on this triangle), not one
+                        # stretched row (that read as a striped band under the hedges)
+                        P0, P1, P2 = verts[i][0], verts[j][0], verts[k][0]
+                        e1 = [P1[q] - P0[q] for q in range(3)]
+                        e2 = [P2[q] - P0[q] for q in range(3)]
+                        g11 = sum(x * x for x in e1); g22 = sum(x * x for x in e2); g12 = sum(x * y for x, y in zip(e1, e2))
+                        det_ = g11 * g22 - g12 * g12
+                        duv_ = (0.0, 0.0)
+                        if abs(det_) > 1e-6:
+                            r1, r2 = -sk_ * e1[2], -sk_ * e2[2]               # d . e1, d . e2 with d = (0, 0, -skirt)
+                            ca, cb = (r1 * g22 - r2 * g12) / det_, (r2 * g11 - r1 * g12) / det_
+                            U0, U1, U2 = verts[i][1], verts[j][1], verts[k][1]
+                            duv_ = (ca * (U1[0] - U0[0]) + cb * (U2[0] - U0[0]), ca * (U1[1] - U0[1]) + cb * (U2[1] - U0[1]))
                         b_ = len(verts)
                         for q in (verts[i], verts[j]):
                             verts.append(q)
                         for q in (verts[j], verts[i]):
-                            verts.append(((q[0][0], q[0][1], q[0][2] - sk_), q[1], q[2], q[3]))
+                            verts.append(((q[0][0], q[0][1], q[0][2] - sk_), (q[1][0] + duv_[0], q[1][1] + duv_[1]), q[2], q[3]))
                         add_ += [(b_, b_ + 1, b_ + 2), (b_, b_ + 2, b_ + 3)]
             tris = list(tris) + add_
             stats["foot_tris"] = stats.get("foot_tris", 0) + len(add_)
