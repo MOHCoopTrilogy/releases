@@ -271,7 +271,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         return data
 
     def recolour_card(key, up):
-        """[flfix2 round 19d] TGA bytes of the card image the engine draws for up['path'], each channel scaled so its
+        """[flfix2 round 19d] TGA bytes of the card image the engine draws for up["path"], luminance kept and recoloured to the disc card hue so its
         solid texels' mean equals the disc card's (gain 0.25..6), at most 512 px; None when either image is missing"""
         try:
             import io as _io
@@ -290,9 +290,13 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             sol = a[..., 3] >= 128
             if not sol.any():
                 return None
-            hd = a[sol][:, :3].mean(0)
-            g = _np.clip(fl / _np.maximum(1.0, hd), 0.25, 6.0)
-            a[..., :3] = _np.clip(a[..., :3] * g, 0, 255)
+            # luminance from the drawn image, hue from the disc card: a per-channel gain (blue x9 on tree1_5) blew the
+            # bark's blue noise into bright blue streaks (round 19d QA)
+            lw = _np.array([0.299, 0.587, 0.114], _np.float32)
+            lum = (a[..., :3] * lw).sum(-1)
+            fl_l = float((fl * lw).sum())
+            k = fl_l / max(1.0, float(lum[sol].mean()))
+            a[..., :3] = _np.clip((lum * k)[..., None] * (fl / max(1.0, fl_l))[None, None, :], 0, 255)
             a[..., 3] = _np.where(a[..., 3] >= 128, 255, 0)
             o = a.astype(_np.uint8)
             return tga_bytes(o.shape[1], o.shape[0], o.tobytes())
