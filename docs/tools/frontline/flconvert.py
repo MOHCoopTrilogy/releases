@@ -430,6 +430,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     _mm = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fl_modelmap.json")
     reskin = json.load(open(_mm)).get(level, {}).get("reskin", {}) if os.path.exists(_mm) else {}
     hidden = {(h["cell"], int(h["draw"])) for h in (json.load(open(_mm)).get(level, {}).get("hide", []) if os.path.exists(_mm) else [])}
+    # [flfix2 round 19c] "foot": the disc's own texture is kept, but each standing face of it gets a skirt of that many
+    # units below its lowest edge (same texture, its bottom row stretched), so where the ground falls away from a hedge
+    # the player does not look under the box into the void (user 2026-11-13: the disc's own hedge boxes, see-through fixed)
+    footmap = json.load(open(_mm)).get(level, {}).get("foot", {}) if os.path.exists(_mm) else {}
 
     def short_key(key):
         return str(key).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_")
@@ -615,6 +619,37 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 nt_.append((k0, k0 + 1, k0 + 2))
                 stats["uv_planar_tris"] = stats.get("uv_planar_tris", 0) + 1
             tris = nt_
+        ft_ = footmap.get(short_key(m["tex"])) if m["tex"] else None
+        if ft_:
+            # [flfix2 round 19c] foot skirt (see footmap): per plane of standing faces, every edge on the plane's lowest
+            # height gets a quad down to that height - skirt, with the edge's own UVs and colours
+            sk_ = float(ft_.get("skirt", 96))
+            pl_ = {}
+            for a, b, c in tris:
+                n = face_normal(verts[a][0], verts[b][0], verts[c][0])
+                if not n or abs(n[2]) > RESKIN_NZ:
+                    continue
+                hl = math.hypot(n[0], n[1]) or 1.0
+                hx, hy = n[0] / hl, n[1] / hl
+                if hx < -1e-6 or (abs(hx) < 1e-6 and hy < 0):
+                    hx, hy = -hx, -hy
+                k_ = (round(math.degrees(math.atan2(hy, hx)) / 3), round((hx * verts[a][0][0] + hy * verts[a][0][1]) / 6))
+                pl_.setdefault(k_, []).append((a, b, c))
+            add_ = []
+            for k_, ts_ in pl_.items():
+                z0_ = min(verts[i][0][2] for t_ in ts_ for i in t_)
+                for t_ in ts_:
+                    for i, j in ((t_[0], t_[1]), (t_[1], t_[2]), (t_[2], t_[0])):
+                        if verts[i][0][2] - z0_ > 1.0 or verts[j][0][2] - z0_ > 1.0:
+                            continue
+                        b_ = len(verts)
+                        for q in (verts[i], verts[j]):
+                            verts.append(q)
+                        for q in (verts[j], verts[i]):
+                            verts.append(((q[0][0], q[0][1], q[0][2] - sk_), q[1], q[2], q[3]))
+                        add_ += [(b_, b_ + 1, b_ + 2), (b_, b_ + 2, b_ + 3)]
+            tris = list(tris) + add_
+            stats["foot_tris"] = stats.get("foot_tris", 0) + len(add_)
         rk = reskin.get(short_key(m["tex"])) if m["tex"] else None
         if rk:
             # fl_modelmap.json "reskin": render-only swap to MOHAA art from the player's own install (e.g. Frontline's
