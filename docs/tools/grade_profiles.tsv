@@ -119,3 +119,4 @@ co_lobby7	1.00	1.08	0.88	-0.03	derived	overcast	Norway naval base caulksky
 co_lobby8	1.00	1.05	0.80	-0.07	derived	night	night
 test_bob_foy	1.00	1.03	0.90	-0.01	derived	snow	snow overcast (HD sky)
 training	1.00	1.03	0.95	-0.01	derived	clear	clear day (HD sky)
+coop_fl_1_1	0.50	1.00	0.92	0.00	measured	overcast	BYO disc mission; matched to the original lane darkness (bug-11204; user decision 2026-11-12 disc missions match the original darkness)
