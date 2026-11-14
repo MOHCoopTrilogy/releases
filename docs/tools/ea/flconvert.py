@@ -1476,6 +1476,13 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
           ("farplane", "0" if os.environ.get("FL_DEBUGCOLOR") else str(sp.get("farplane", 12000))), ("farplane_color", sp.get("farplane_color", "0.55 0.6 0.65")),
           ("ambientlight", os.environ.get("EA_AMBIENT", "12 14 17") if game == "ea" else "40 40 40")]
     ws += [(k, sp[k]) for k in ("farplane_bias", "farplane_maxfog", "farplane_cull") if k in sp]
+    if game == "ea":
+        # the original's standing low mist as the engine's height mist (eafx.mist_key; tr_hzm_mist.c, user-approved 2026-11-13)
+        import eafx as _eafx
+        _mist = _eafx.mist_key(L.stream, X, level)
+        if _mist:
+            ws.append(("hzm_mist", _mist))
+            stats["hzm_mist"] = _mist
     B.entity(ws)
     if game == "ea":
         # [eapolish] the Panzers' driving paths: each tank squad's SquadObjective points in order (the original orders

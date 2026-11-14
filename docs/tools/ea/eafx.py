@@ -187,6 +187,54 @@ def _distant_pull(db, X, level):
     return out
 
 
+def mist_key(stream, X, level):
+    """the engine's hzm_mist worldspawn value ("x0 y0 x1 y1 zcore ztop density edge r g b") from the level's always-on
+    low mist package (a package whose name holds 'fog', placed with no group: on from the start - Dying Breath's
+    creek, RUS1_Fog_02). The box is the package's own emit volume around its placement, grown by the cards' half
+    width; the layer is dense at the placement height and thins to nothing at the top of its cards; the colour is
+    the cards' own start colour. Density and a colour gain come from ea_levels.json "mist" (user-approved
+    2026-11-13: the same layout as the original's mist cards, drawn by the engine as height mist - no hard lines at
+    walls, no popping, no cards seen edge-on, no mist indoors). None when the level has none or "mist" is off."""
+    import json, os
+    import eadb, eavm
+    try:
+        spec = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "ea_levels.json"))).get(level, {})
+    except (OSError, ValueError):
+        spec = {}
+    ms = spec.get("mist")
+    if not ms or not ms.get("enabled", True) or os.environ.get("EA_NO_MIST"):
+        return None
+    db = eadb.DB(stream)
+    defs, _tex = parse(stream)
+    pk = packages(db)
+    best = None
+    for r in db.of("EffectsPackage"):
+        xp = [t for _k, t in r.strings() if t.lower().endswith(".xpd")]
+        if not xp or "fog" not in xp[0].lower() or r.pos == (0.0, 0.0, 0.0):
+            continue
+        if [x for k, v in eavm.lists(r, 15) if k == "g" for x in v]:
+            continue                                    # switched on by the mission: not the standing mist
+        ds = [defs[n] for n in pk.get(_base(xp[0]).lower(), ()) if n in defs]
+        if not ds:
+            continue
+        u, m = X.s, X.m
+        P = X(r.pos)
+        xs = [v * u for d in ds for v in (d.g("LocMinX", 0.0), d.g("LocMaxX", 0.0))]
+        ys = sorted(v * u * m for d in ds for v in (d.g("LocMinY", 0.0), d.g("LocMaxY", 0.0)))
+        zt = max(d.g("LocMaxZ", 0.0) + abs(d.g("SizeMaxHeight", 1.0)) for d in ds) * u
+        edge = max(abs(d.g("SizeMaxWidth", 1.0)) for d in ds) * u
+        area = (max(xs) - min(xs)) * (ys[-1] - ys[0])
+        c = [sum(_c(d.g("ColorStart" + k, 128)) for d in ds) / len(ds) for k in "RGB"]
+        if best is None or area > best[0]:
+            best = (area, P[0] + min(xs), P[1] + ys[0], P[0] + max(xs), P[1] + ys[-1], P[2], P[2] + zt, edge, c)
+    if best is None:
+        return None
+    _a, x0, y0, x1, y1, zc, ztop, edge, c = best
+    g = float(ms.get("gain", 1.0))
+    return "%.0f %.0f %.0f %.0f %.0f %.0f %.6f %.0f %.3f %.3f %.3f" % (
+        x0, y0, x1, y1, zc, ztop, float(ms.get("density", 0.001)), edge, *(min(1.0, v * g) for v in c))
+
+
 # ------------------------------------------------------------------ sprites
 def _resample(rgba, w, h, tw, th):
     if (tw, th) == (w, h):
@@ -252,7 +300,7 @@ class Sprites:
             self.img[cid] = im
         return self.img[cid]
 
-    def shader(self, cid, cols, rows, fps, aspect, additive):
+    def shader(self, cid, cols, rows, fps, aspect, additive, nofog=False):
         """shader name of a sprite whose image is `aspect` (width / height) wide, and its image width in pixels"""
         im = self.image(cid)
         if im is None:
@@ -266,9 +314,10 @@ class Sprites:
             tw, th = _pow2(max(fw, fh)), _pow2(max(fw, fh) / aspect)
         else:
             tw, th = _pow2(max(fw, fh) * aspect), _pow2(max(fw, fh))
-        key = (cid, cols, rows, round(fps, 1) if cols * rows > 1 else 0, tw, th, bool(additive))
+        key = (cid, cols, rows, round(fps, 1) if cols * rows > 1 else 0, tw, th, bool(additive), bool(nofog))
         if key not in self.shaders:
-            name = "ea_%s_fx_%08x_%dx%d_%s%d" % (self.level, cid, tw, th, "a" if additive else "b", len(self.shaders))
+            name = "ea_%s_fx_%08x_%dx%d_%s%s%d" % (self.level, cid, tw, th, "a" if additive else "b", "n" if nofog else "",
+                                                   len(self.shaders))
             paths = []
             for fr in range(cols * rows):
                 rel = "textures/ea/%s/fx/%08x_%dx%d_%02d.tga" % (self.level, cid, tw, th, fr)
@@ -279,8 +328,9 @@ class Sprites:
             stage = ("animMap %.2f %s" % (max(0.5, fps), " ".join(paths))) if len(paths) > 1 else ("clampmap " + paths[0])
             blend = "blendFunc GL_SRC_ALPHA GL_ONE" if additive else "blendFunc blend"
             self.shaders[key] = name
-            self.order.append("%s\n{\n\tcull none\n\tnomipmaps\n\tspriteGen parallel_oriented\n\t{\n\t\t%s\n\t\t%s\n"
-                              "\t\trgbGen vertex\n\t\talphaGen vertex\n\t}\n}\n\n" % (name, stage, blend))
+            # nofog: a distant system drawn the way the original draws its effects, in a pass with fog off
+            self.order.append("%s\n{\n\tcull none\n\tnomipmaps\n%s\tspriteGen parallel_oriented\n\t{\n\t\t%s\n\t\t%s\n"
+                              "\t\trgbGen vertex\n\t\talphaGen vertex\n\t}\n}\n\n" % (name, "\tnofog\n" if nofog else "", stage, blend))
         return self.shaders[key], tw
 
 
@@ -342,7 +392,7 @@ def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0, off=(0.0, 0.0, 0.0), a
         es = math.sqrt(max(1e-4, esx * esy))
     additive = int(g("RenderType", 0)) == 0
     shader, tw = sprites.shader(d.tex(), int(g("HorizCount", 1)), int(g("VertCount", 1)), g("UVAnimRate", 0.0),
-                                min(16.0, max(1 / 16.0, wm / hm)), additive)
+                                min(16.0, max(1 / 16.0, wm / hm)), additive, nofog=any(abs(v) > 1e-6 for v in off))
     if shader is None:
         return None, on, life, 0
     L = ["originemitter e%d" % idx, "\t\t("]
