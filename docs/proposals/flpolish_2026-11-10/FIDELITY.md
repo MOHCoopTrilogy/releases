@@ -646,6 +646,13 @@ random from the base name) so the AI voice gets variety without an aivoice.scr c
 | One-shot banks | one bank per area, clips chosen by the AI through AEMSEVENT (computed id, not decoded) | per area, per side, per situation sets on the situational AI voice | data built; situation per clip is ours |
 | Visual check wanted | - | emulator stills: roster fire (-2012 4211 disc) before and after the MG-nest street is reached; the house front (4271 -2136 disc) before trigger 41 from the street, for rec 13's flame; the four untriggered spots (3606 -3643), (575 -993), (1038 970), (1398 -2713) | queued |
 
+Round 20b (map script, mod 3c8e943d, sweep items): wired - the 12 load-rule particle systems start with the level
+(`r17/r20*`: the burning car and its black column at the bomb site from load, smoke at the roster), rec 8 and the
+`fl_om_house_remove` wall go at trigger 41 (`FLSP house wall removed`), rec 51 with bomb A; the one-shot banks feed the
+situational voice (Germans de_*, allies us_*; bank = the last area a player entered). `level.coop_noReplicas` (new
+opt-out in aihandler.scr, b90c9272) and `level.coop_noCounter`: no ADDED clones or end waves. The door (rec 401) opens and
+closes with the use key from both sides (logged); NOT verified on screen: its close swing and the USE icon at it.
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -747,3 +754,5 @@ random from the base name) so the AI voice gets variety without an aivoice.scr c
 | Use prompt | hint text on approach | hint text plus the mod's USE icon when facing the spot | user-approved 2026-11-13 |
 | Collision over doors, arches and wall gaps (round 16) | the wall's collision ends where it is drawn (about 96u over the floor, arch chamfers from about 90u) | collision only: whatever hangs 56-136u over a floor that runs on level through the wall is cut away up to 136u over that floor; the AI-route carve cuts walls to 136u (ceilings still 106u); doorway soffit caps at 136u. Shots pass through that band of drawn wall over an opening | forced (MOHAA's 94u stand box + its 38u step-up) |
 | Low openings the original crouched through, 56-82u high | crouch | can be walked through standing where the opening runs on level both sides | side effect of the row above |
+| Enemy count at 2+ players (coop_mod/discscale.scr) | one player | 1 player: exactly the disc. 2+ players: a wave (the level start, or a group's start trigger) gets extra men shared over its plain Roamer records, each at his record's place after that record's own man, only when no player sees the spot (fl_seen; after 90 s the nearest unseen German record within 1500u; never spawned in view), built by fl_mk_axis (same off-screen wake, voice, area); factor on the wave 1 / 1.5 / 2 / 2.5 for 1 / 2 / 3 / 4+ players (nearest man), at most 8 extras a wave, 24 live Germans level-wide, the live-German hardcap and a free-entity floor; the area clean-up removes them and the allies' area-clear test counts them; the area-373 respawn cap (3) scales the same way. Never scaled: ambush / play-dead men, talkers, shouters, the MG nest, the gun wave, path patrols, the interrogation officer. Extras send nothing. Accuracy scaling as on every map, no health scaling; generic cloner and end waves off | user-approved 2026-11-13 |
+| Door use prompt | 'Press ACTION to Open / Close Door' | the mod's USE icon (hand) facing it within 140u; use toggles | user-approved (use icon), on-screen check open |
