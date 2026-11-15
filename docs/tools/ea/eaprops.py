@@ -100,7 +100,8 @@ MG42 = {
     "variants": ("grip", "pole"),
     # the stock gunner's hands sit 22.7 ahead of and 68.7 over his seat (eaanimconv): seat back / down that put them
     # on the disc grip (52 u/m: 8.8 behind, 1.8 under the pole pivot)
-    "pole_seat": (31.5, 70.5),
+    # (character agent 2026-11-15: centre-cell hands 23.0 ahead / 68.9 up -> 23.0 + 8.8, 68.9 + 1.8)
+    "pole_seat": (31.8, 70.7),
 }
 
 
@@ -486,7 +487,10 @@ def _build_panzer(stream, level, mohaa_base, files, lines, log):
     turret_set = set(PANZER["turret_bones"])
     gun_set = set(PANZER["gun_bones"])
 
-    # textures and shaders (one per texture; the cross decal blended as on the disc)
+    # textures and shaders (one per texture; the cross decal blended as on the disc). rgbGen lightingSpherical is the
+    # STOCK tank's own (mainta pak1 scripts/Tanks.shader, turret_eu_wntr ...). Tried and rejected 2026-11-15: lightingGrid
+    # (gl2: the whole hull orange from the fire-tinted grid) and implicit shaders (gl2: black). Beside a fire the
+    # whitewash takes the fire colour more than the stock tank's dark grey - same lighting, brighter albedo
     sh = []
     used = {(m["meshes"][k][3] or "").split("#")[0] for k in set(PANZER["intact"]) | set(PANZER["wreck"])}
     for key, im in sorted(m["textures"].items()):

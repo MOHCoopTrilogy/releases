@@ -613,11 +613,11 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     eaprops.build(L.stream, level, mohaa_base, files, lines, log=log)
     # [dbfix] which disc clip families this pak carries (eaanimconv: models/human/<level>/anim/<family>_*.skc), so the map
     # script only plays a family the player's own conversion has (an older BYO pak: retail anims, no unknown-animation stall)
-    _fams = {"mmg": "mmg_", "death": "death_"}
+    _fams = {"mmg": "mmg_", "mmgp": "mmgp_", "death": "death_"}   # mmgp_: the pole MG42's crew set (eaprops, 47216ebc)
     _anims = [k.split("/")[-1].lower() for k in files if "/anim/" in k and k.lower().endswith(".skc")]
     for fk_, pre_ in _fams.items():
         lines.append(f'\tlevel.ea_anim["{fk_}"] = {1 if any(n.startswith(pre_) for n in _anims) else 0}')
-    lines.append(f'\tlevel.ea_anim["ics"] = {1 if any(not n.startswith(("mmg_", "death_")) for n in _anims) else 0}')
+    lines.append(f'\tlevel.ea_anim["ics"] = {1 if any(not n.startswith(("mmg_", "mmgp_", "death_")) for n in _anims) else 0}')
     lines += [f"\tlevel.ea_axis_n = {na}", f"\tlevel.ea_ally_n = {nl}", "\tlevel.ea_data_ok = 1", "}end", ""]
     files[f"maps/coop_ea_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     if mohaa_base:
