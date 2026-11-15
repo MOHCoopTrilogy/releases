@@ -265,6 +265,16 @@ LOCO = {
 }
 # Non-lethal hit reactions (graph 9930d76b, ChooseHitReaction -> GetHitLocation; 0.2 s full-body flinches): the
 # stand tree (@0df0) and the crouch tree (@1890), by the original's own hit zones (see ANIM_NOTES: zone = hit joint)
+# Idles and reloads (graph 9930d76b): {stock alias: (clip, loop)}; the stock alias's event block (reload sound, the
+# hand swap of the rifle reload) is copied with its frame numbers moved to the same point of our clip
+STATIC = {
+    # STAND IDLE (37f69f45 and the ChooseNewAimPose variants) is NOT put on <group>_aim: the stock aim_up / aim_down /
+    # shoot clips blend against the stock aim pose, and the idle aliases (stand_alert01/02, bored) are 'random' groups
+    "mp40_crouch_alert": ("327c561f", True), "thompson_crouch_alert": ("327c561f", True),
+    "rifle_crouch_alert": ("327c561f", True),                                                   # NONCOVER_CROUCH_IDLE
+    "mp40_reload": ("70250ac8", False), "thompson_reload": ("70250ac8", False),                # STAND RELOAD, SMG
+    "kar98_reload": ("d427e00d", False),                                                        # STAND RELOAD, rifle
+}
 HITS = {
     "stand_hit_head": "579d6c72", "stand_hit_larm": "140c7011", "stand_hit_rarm": "33bfbb81",
     "stand_hit_leg": "140c7011", "stand_hit_lowertorso": "b5072b4f", "stand_hit_back": "513dbf63",
@@ -331,6 +341,37 @@ def _stock_alias(stock, alias):
         if m:
             return m.group(1), m.group(2).strip()
     return None, ""
+
+
+def _stock_block(stock, alias, scale=1.0):
+    """the { server / client } event block under a stock alias line (weapon hand swaps, reload sounds), or "".
+    Frame-numbered events are moved to the same fraction of our clip (scale = our frames / stock frames);
+    entry / exit / last events are kept as they are."""
+    for tik in ("human_%s.tik" % alias.split("_")[0], "human_rifle.tik", "human_unarmed.tik"):
+        t = stock("models/human/animation/" + tik)
+        if not t:
+            continue
+        t = t.decode("latin-1")
+        m = re.search(r"^\s*%s\s+\S+\.skc[^\n]*\n\s*\{" % re.escape(alias), t, re.M | re.I)
+        if not m:
+            continue
+        i, depth = m.end() - 1, 0
+        for j in range(i, len(t)):
+            if t[j] == "{":
+                depth += 1
+            elif t[j] == "}":
+                depth -= 1
+                if depth == 0:
+                    blk = t[i:j + 1].replace("\r", "")
+                    return re.sub(r"(?m)^(\s*)(\d+)(\s)", lambda q: "%s%d%s" % (
+                        q.group(1), int(round(int(q.group(2)) * scale)), q.group(3)), blk)
+        return ""
+    return ""
+
+
+def _stock_frames(skc):
+    import struct
+    return struct.unpack_from("<i", skc, 44)[0] if skc and len(skc) > 48 else 0
 
 
 def _stock_speed(skc):
@@ -402,6 +443,20 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
                 rows.append("%s\t\tanim/%s.skc%s" % (alias, fn, ("\t" + flags) if flags else ""))
                 log("eaanimconv: %s <- %s: original %.0f u/s, MOHAA %.0f u/s, played at %.2fx" % (
                     alias, hx, info["ea_speed"], info["target"], 1.0 / info["rate"]))
+        for alias, (hx, loop) in STATIC.items():
+            path, flags = _stock_alias(stock, alias)
+            if not path or "random" in flags.lower() or int(hx, 16) not in bank.clips:
+                continue
+            skc, _ = convert_clip(bank, bank.clip(int(hx, 16)), skel, bones, root_motion=False)
+            if loop:
+                skc = skc[:8] + struct.pack("<i", struct.unpack_from("<i", skc, 8)[0] | 0x20) + skc[12:]
+            sb = stock("models/human/animation/" + path)
+            nf0 = _stock_frames(sb)
+            blk = _stock_block(stock, alias, _stock_frames(skc) / float(nf0) if nf0 else 1.0)
+            fn = "st_%s" % alias.lower()
+            files["models/human/ea_%s/anim/%s.skc" % (level, fn)] = skc
+            rows.append("%s\t\tanim/%s.skc%s%s" % (alias, fn, ("\t" + flags) if flags else "",
+                                                   ("\n" + blk) if blk else ""))
         # non-lethal hit reactions by location (same opt-in); stock aliases flagged 'random' keep the stock clips
         # (a random alias pools every definition, so ours would only be mixed in)
         for grp in LOCO_GROUPS:
