@@ -756,6 +756,12 @@ def build(L, level, mohaa_base, files, log=print):
                 files["%s/%s.tga" % (tdir, key)] = tga(w, hh, rgba)
                 shader.append("%s\n{\n\tcull none\n\t{\n\t\tmap %s/%s.tga\n%s\t\trgbGen lightingSpherical\n\t}\n}\n\n" % (
                     shname, tdir, key, "\t\talphaFunc GE128\n\t\tdepthWrite\n" if cut else ""))
+                # its fade-capable twin: the script's "alpha" fades the man out (the jeep crew, as coop_fl_fade.shader
+                # does for the stock paratrooper); a cut-out piece keeps its alpha test, so it goes at half the fade
+                shader.append("%s_fade\n{\n\tcull none\n\t{\n\t\tmap %s/%s.tga\n%s\t\trgbGen lightingSpherical\n"
+                              "\t\talphaGen entity\n\t}\n}\n\n" % (
+                                  shname, tdir, key, "\t\talphaFunc GE128\n\t\tdepthWrite\n" if cut
+                                  else "\t\tblendFunc blend\n\t\tdepthWrite\n"))
             tik_surf.append("\tsurface %s shader %s\n" % (sn, shname))
         axis = team == 2
         tik = ("TIKI\nsetup\n{\n\tscale 0.52\n\tpath %s\n\tskelmodel %s.skd\n%s\tpath models/human/protoanimations\n"
@@ -767,6 +773,11 @@ def build(L, level, mohaa_base, files, log=print):
         tikp = "models/human/fl_%s_%s.tik" % (level, label)
         files[tikp] = tik.encode()
         lines.append('\tlevel.fl_chr_tik["%s"] = "%s"' % (h, tikp))
+        # the same man on the fade-capable shaders (coop_fl_1_1: the jeep crew fades out after the mine)
+        fadep = "models/human/fl_%s_%s_fade.tik" % (level, label)
+        files[fadep] = "\n".join(ln + "_fade" if ln.lstrip().startswith("surface ") else ln
+                                 for ln in tik.split("\n")).encode()
+        lines.append('\tlevel.fl_chr_fade["%s"] = "%s"' % (h, fadep))
         if h in OWN:
             lines.append('\tlevel.fl_chr_own["%s"] = 1' % h)
         log("flchar: %s (%s %s/%s, %s) -> %s, %d surfaces, scale %.3f" % (
