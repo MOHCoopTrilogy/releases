@@ -8,6 +8,7 @@ skeleton - a chunk of type 0x0bcfa9ed (the human rig, one per level stream; it h
   word at +0x10 (call it B): B+0x18 bone count n, B+0x1c n u32 record offsets (from B). Record r:
     r+0x10 .. r+0x4f  the bone's inverse bind matrix, 4 rows of f32x4, row-vector convention
                       (local = model * R + T; rows 0-2 = R, row 3 = T); so the joint sits at -T R^T in model space
+    r+0x58            the joint's name hash (the animation JointLists name joints by it)
     r+0x5c            parent bone index (u32, 0xffffffff for record 0, 'character_root')
     r+0x70            name, 16 bytes ('JO_pelvis', 'JO_shoulder_L', ...)
   Bone index = record index (character_root 0, JO_pelvis 1 ...). Model space is metres, z up, the character faces
@@ -66,8 +67,8 @@ def skeleton(d):
             M = struct.unpack_from("<16f", d, r + 0x10)
             R = (M[0:3], M[4:7], M[8:11])
             T = M[12:15]
-            par = struct.unpack_from("<I", d, r + 0x5c)[0]
-            out.append({"name": d[r + 0x70:r + 0x80].split(b"\0")[0].decode("latin-1"),
+            jh, par = struct.unpack_from("<II", d, r + 0x58)
+            out.append({"name": d[r + 0x70:r + 0x80].split(b"\0")[0].decode("latin-1"), "hash": jh,
                         "parent": -1 if par == 0xffffffff else par,
                         "pos": tuple(-sum(T[j] * R[k][j] for j in range(3)) for k in range(3)),
                         "axes": [tuple(R[k][j] for k in range(3)) for j in range(3)]})
