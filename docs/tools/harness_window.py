@@ -292,6 +292,18 @@ def monitors():
     return res
 
 
+USER_GAMES = ("anno117",)  # the user's other games: while one runs, test windows stay off the primary display
+
+
+def _user_fullscreen_game():
+    try:
+        import subprocess
+        out = subprocess.run(["tasklist", "/fo", "csv", "/nh"], capture_output=True, text=True, timeout=20).stdout.lower()
+    except Exception:
+        return True
+    return any('"%s.exe"' % g in out for g in USER_GAMES)
+
+
 def test_display(name=None):
     """the monitor test windows live on: $HZM_TEST_DISPLAY (e.g. \\\\.\\DISPLAY2), else the first non-primary one.
     Refuses (NoTestDisplay) rather than fall back to the primary - that is the user's screen."""
@@ -301,7 +313,11 @@ def test_display(name=None):
     # the primary). HZM_TEST_RES overrides; "" disables the resolution pick (old non-primary rule).
     # [user 2026-11-11] ALL test clients on the small 1920x1080 screen only, never the ultrawide or the TV (supersedes 11-09).
     # [user 2026-11-15] "use my primary display for testing" (supersedes 11-11): default is the PRIMARY display.
-    res = os.environ.get("HZM_TEST_RES", "1920x1080")  # [user 2026-11-15 later] "move testing to my small monitor"
+    # [user 2026-11-15 latest] "move testing to my main screen, just don't let it get in the way of Anno 117 I'm
+    # playing": the primary display, EXCEPT while a fullscreen game of the user's runs on it - then the small 1920x1080
+    res = os.environ.get("HZM_TEST_RES", "auto")
+    if not name and res == "auto":
+        res = "1920x1080" if _user_fullscreen_game() else "primary"
     if not name and res == "primary":
         for m in mons:
             if m["primary"]:
