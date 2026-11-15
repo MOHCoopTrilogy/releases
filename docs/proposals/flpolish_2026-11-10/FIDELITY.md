@@ -660,8 +660,11 @@ now stepped by hand in place (`r17/doorc3_sheet.jpg`: open and closed from the f
 Round 20c (emulator stills `ref_xemu/so_fx`, mod f546ed7c): the bomb site matches (wrecked car and dark column, 10 s and 18 s
 after bomb A); the house front has no flame before trigger 41, so rec 13 now starts with the house blast (was: load);
 the roster fire (rec 10) burns before the player reaches the MG-nest street, so it now runs from load (was: not spawned).
-Rec 7 seen from walked ground is a burnt wreck with no smoke in that frame (decode says a hanging black smoke; kept,
-open). Recs 4-6 and the door are still to be captured.
+Walked stills (`so_fx/walked_sheet.png`, mod 2451dc60): rec 4 = a burning car with a dark column (matches the
+stock fire smoke); rec 5 = a low brownish haze at street level, no column, now the stock lingering smoke; rec 6 = no
+smoke seen on the VINS LIQUEURS facade from street level (the system sits at z 198, above the frame; kept as decoded,
+open); rec 7 = a burnt wreck with no smoke in two frames, so not spawned (choice: the frames over the decode); rec 10
+still burns, a thick black column over the roof, after the MG-nest street. The door was not in view; open.
 
 ## Deviations from the original (for the user; choices are not settled here)
 
