@@ -251,6 +251,44 @@ def build(db, X, spot, ground, text, lines, log=print):
         for k, g in enumerate(t_, 1):
             L(f'\tlevel.ea_ic_t["{n}_{k}"] = {gid(g)}')
     L(f"\tlevel.ea_ic_n = {n}")
+    # ---- 0.7.32 (EA) ICS send slots 2-7 (sweep 2026-11-15: only slot 1 was relayed). Every ICS point, any flag:
+    # slot k's targets (list 3+k-1) and its Activate / Deactivate messages (list 10+k-1); other message ids are not
+    # decoded and are left out. Which rig event fires slot 2 and later is not decoded either: the script relays them
+    # once the point's scene or pose has finished (an inference; slot 1 keeps its own timing, ea_ic above).
+    n = 0
+    for r in db.of("ICSPoint"):
+        w = r.w
+        if len(w) < 60:
+            continue
+        i, icl = 47, []
+        while i < len(w) and len(icl) < 17:
+            c = w[i]
+            if c > 16 or i + c >= len(w) + 0 and c:
+                break
+            icl.append(list(w[i + 1:i + 1 + c]))
+            i += c + 1
+        if len(icl) < 17:
+            continue
+        sl = []
+        for k in range(1, 7):
+            tg = [x for x in icl[3 + k] if eadb.is_group(x)]
+            ms = [eadb.MSG.get(x) for x in icl[10 + k] if eadb.MSG.get(x) in ("Activate", "Deactivate")]
+            if tg and ms:
+                sl.append((k + 1, tg, ms))
+        if not sl:
+            continue
+        n += 1
+        L(f"\tlevel.ea_isl_name[{n}] = {S(r.name)}")
+        L(f"\tlevel.ea_isl_c[{n}] = {len(sl)}")
+        for j, (k, tg, ms) in enumerate(sl, 1):
+            L(f'\tlevel.ea_isl_k["{n}_{j}"] = {k}')
+            L(f'\tlevel.ea_isl_tn["{n}_{j}"] = {len(tg)}')
+            for x, g in enumerate(tg, 1):
+                L(f'\tlevel.ea_isl_t["{n}_{j}_{x}"] = {gid(g)}')
+            L(f'\tlevel.ea_isl_mn["{n}_{j}"] = {len(ms)}')
+            for x, m in enumerate(ms, 1):
+                L(f'\tlevel.ea_isl_m["{n}_{j}_{x}"] = {S(m)}')
+    L(f"\tlevel.ea_isl_n = {n}")
     # ---- 0.7.20 loudspeaker points: the level's SoundDefTriggers named GERMANPA (their own sound defs are not
     # decoded). A PA announcement plays from these, not on every player. Word 23 = 1 reads as starts-on.
     n = 0

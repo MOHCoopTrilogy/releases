@@ -287,6 +287,85 @@ def ambience(L, level, db, X, vgm, files, lines, log=print):
     return n
 
 
+def sounddefs(L, level, db, vgm, files, lines, log=print):
+    """[0.7.32] the disc's own samples of the level's SoundDefTriggers (fire loops, barbed wire, the plunger; the PA
+    points are voices()). SOUND/Audio.ubr holds per sound definition 12-word records
+        u32 INDEX, u32 BANK, u32 hash, u32 class, u32 hash, u32 0xff..0200, u32 packed, u32, u32, u32 c, u32, u32
+    BANK says where INDEX points: 0x80000000 = str.ast (the speech / stream archive), 0x40000000 = scr.abk, 1 / 2 /
+    4 / 8 = L1 / L2 / L3 / L4.abk (decoded 2026-11-15 from the index ranges: the largest index of each bank kind fits
+    that bank's stream count; scr.abk sample 152 is the one looping sample there, the fires). byte 2 of packed reads as
+    the volume in percent and c >> 16 as the pitch in 1/4096 (fire A: 90 % and 0.87, fire B 100 % and 1.0) - read
+    from the two fire definitions sharing one sample, a guess. Each distinct sample is decoded once (vgmstream
+    subsong INDEX + 1) to sound/ea/<level>/sd_<hash>.wav; level.ea_sd_alias["<hash>"] names its alias."""
+    import os
+    import shutil
+    import struct
+    import subprocess
+    import tempfile
+    hashes = sorted(set("%08x" % r.u(30) for r in db.of("SoundDefTrigger")
+                        if "GERMANPA" not in r.name.upper() and len(r.w) > 30 and r.u(30)))
+    if not hashes:
+        return 0
+    d = f"DATA/{level.split('_')[0]}/{level}/SOUND/"
+    try:
+        ubr = L.disc.read(d + "Audio.ubr")
+    except Exception as e:
+        log("eapack: no Audio.ubr for the sound definitions", e)
+        return 0
+    banks = {0x40000000: "scr.abk", 1: "L1.abk", 2: "L2.abk", 4: "L3.abk", 8: "L4.abk", 16: "L5.abk", 32: "L6.abk"}
+    tmp = tempfile.mkdtemp(prefix="easd_")
+    ali, n = [], 0
+    try:
+        for h in hashes:
+            hv = int(h, 16)
+            rec = None
+            o = ubr.find(struct.pack("<I", hv))
+            while o >= 0:
+                if o >= 8:
+                    w = struct.unpack_from("<12I", ubr, o - 8)
+                    if w[2] == hv and w[4] == hv and (w[5] & 0xff00ffff) == 0xff000200:
+                        rec = w
+                        break
+                o = ubr.find(struct.pack("<I", hv), o + 4)
+            if rec is None or rec[1] not in banks:
+                log("eapack: sound definition not found or not in a bank", h, rec and hex(rec[1]))
+                continue
+            idx, bank = rec[0], banks[rec[1]]
+            vol = max(0.1, min(1.5, ((rec[6] >> 8) & 0xff) / 100.0))
+            pit = (rec[9] >> 16) / 4096.0
+            pit = pit if 0.5 <= pit <= 2.0 else 1.0
+            try:
+                raw = L.disc.read(d + bank)
+            except Exception as e:
+                log("eapack: no bank", bank, e)
+                continue
+            src, dst = os.path.join(tmp, "b.abk"), os.path.join(tmp, "s.wav")
+            with open(src, "wb") as f:
+                f.write(raw)
+            r_ = subprocess.run([vgm, "-s", str(idx + 1), "-i", "-o", dst, src], stdout=subprocess.DEVNULL,
+                                stderr=subprocess.DEVNULL,
+                                creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
+            if r_.returncode != 0 or not os.path.exists(dst):
+                log("eapack: sound definition sample not decoded", h, bank, idx)
+                continue
+            rel = f"sound/ea/{level}/sd_{h}.wav"
+            with open(dst, "rb") as f:
+                files[rel] = f.read()
+            os.remove(dst)
+            alias = f"ea{level.replace('_', '')}_sd_{h}"
+            ali.append(f'aliascache {alias} {rel} soundparms {vol:.2f} 0.0 {pit:.3f} 0.0 160 1600 auto loaded maps "coop_ea"')
+            lines.append(f'\tlevel.ea_sd_alias["{h}"] = "{alias}"')
+            lines.append(f'\tlevel.ea_sd_src["{h}"] = "{bank} #{idx}"')
+            n += 1
+            log("eapack: sound definition", h, "=", bank, "sample", idx, "vol", vol, "pitch", round(pit, 3))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    if ali:
+        files[f"ubersound/ea_{level}_sd.scr"] = ("// GENERATED on this PC by the European Assault converter\n" +
+                                                 "\n".join(ali) + "\n").encode()
+    return n
+
+
 def clear_line(grid, a, b, step=16.0):
     """the player box can stand all along a->b (BSP units): every 16u has ground within a step and free space"""
     import math
@@ -508,6 +587,7 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
         nvoice = voices(L, level, text, vgm, files, lines, log, vm.get("pa_events", ()))
     vm["voices"] = nvoice
     vm["ambience"] = ambience(L, level, db, X, vgm, files, lines, log) if vgm else 0
+    vm["sounddefs"] = sounddefs(L, level, db, vgm, files, lines, log) if vgm else 0
     nmus = 0
     if vgm and spec.get("music"):
         # [eapolish] the original's music EVENTS (its music triggers, eavm) play the sections the .mpf's own
