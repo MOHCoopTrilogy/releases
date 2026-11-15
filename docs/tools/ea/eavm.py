@@ -667,6 +667,11 @@ def build(db, X, spot, ground, text, lines, log=print):
                 L(f"\tlevel.ea_ga_to[{key}] = {S(a.s(17))}")
             elif act == "CameraShake":
                 L(f"\tlevel.ea_ga_time[{key}] = {round(a.f(18) or 0.5, 2)}")
+            elif act == "ChangeGPSBehavior":
+                # [0.7.32] the squad it hands from its scripted objectives to squad AI (word 18: the squad name; the
+                # record has no other parameter - a 3x4 identity transform and the action order)
+                sq = a.s(18) or ([t for _k, t in a.strings()][-1:] or [""])[0]
+                L(f"\tlevel.ea_ga_sq[{key}] = {S(sq)}")
     L(f"\tlevel.ea_ga_count = {ng}")
     # ---- pickups, props, tanks, MG points, objectives ----
     n = 0

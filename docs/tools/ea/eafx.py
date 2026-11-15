@@ -157,7 +157,13 @@ def _fire_tune(level, low, dn):
         return None
     if not any(m in low for m in ft.get("match", ())) or ft.get("system", "flame") not in dn.lower():
         return None
-    return (float(ft.get("size", 1.0)), float(ft.get("gain", 1.0)), float(ft.get("alpha_gain", 1.0)))
+    # [0.7.32] "per": {package name part: size multiplier} on top of the common size, for one package the emulator
+    # frames show larger than the rest (1_11: StrawRoofFireD_01, the corners_before gable fire)
+    size = float(ft.get("size", 1.0))
+    for k, m in (ft.get("per") or {}).items():
+        if k in low:
+            size *= float(m)
+    return (size, float(ft.get("gain", 1.0)), float(ft.get("alpha_gain", 1.0)))
 
 
 class _Scaled:
