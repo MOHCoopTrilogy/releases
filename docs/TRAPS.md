@@ -86,7 +86,7 @@ and stays, never the reported line.
 |---|---|
 | `.pk3` bytes (already CRLF) written back in Python **text** mode → `\r\r\n`; TIKI dropped **every** `anims_shared.txt` alias. | 259 |
 | Hand patches to the pak copy of `anims_shared.txt` that WINS (stress sorts after the mod's) left an old copy cut off before its `}` with a full copy appended: names in the text, never LOADED; FG 42 reload state-looped. The mod tree is the one copy now; `check_anim_aliases.py` parses with the engine grammar. | 10394, 10899 |
-| A Python literal of script/C text (heredoc or not) made a `\n` escape a real newline → T1 kill, C2001. Use a fragment file. | 331, 962, 3002 |
+| A Python literal of script/C text (heredoc or not) made a `\n` escape a real newline → T1 kill, C2001. Use a fragment file. | 331, 962, 3002, 11247 |
 | A shader generator's brace matcher broke on mixed CRLF/LF + `//`-commented braces (45 open / 43 close) → white-square HUD icons. | 480 |
 | **Upscaler**: sharpen the 3x3 tile BEFORE cropping, clamp to source (else seams, alpha overshoot). **DXT**: Pillow DXT5 tilts normals ~14 deg (use `gen_terrain_pak_*.py`); a DXT1/.jpg repack DROPS alpha - the Thompson's alpha-drawn peep went solid in every pak: cut see-through features into the MESH. **TGA: bottom-up** (loader ignores the top-down bit, PIL obeys it). | 1247, 2953, 2994, 3019, 11150 |
 | A PowerShell harness assigned `$home`, a **built-in automatic variable**; the assignment silently no-op'd and logs landed in the user profile. | ps-home-var |
