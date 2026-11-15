@@ -53,9 +53,9 @@ EULER_ORDER = "yzx"
 # expressions (grimace, smile, scream...), 28-37 head SHAPES (silhouette: long, broad, narrow jaw...). A definition's
 # first int (0-9, ten values for ten shapes) picks its head shape 28 + int (inferred: counts match, and the capped
 # Roamer's long face and heavy brow on the emulator, so_chars ger_cap_face_crop, matches shape 34 for his int 6). The
-# second int (0-11) is not an expression at rest (most Germans would scream: 10 -> 26). Off until the user approves the
-# look (MORPH_headshape_vs_emu sheets).
-HEAD_SHAPES = False
+# second int (0-11) is not an expression at rest (most Germans would scream: 10 -> 26). User approved 2026-11-15
+# (MORPH_headshape_all20_v1).
+HEAD_SHAPES = True
 
 # the character definitions whose own models have passed the client sheet QA (front, side, back, face, run, fire,
 # crouch, no breaks). Every other Frontline character keeps the stock model in game until the user approves its sheet.
@@ -513,6 +513,8 @@ def character_surfaces(defn, files, tpk, L=None):
     """the character in the DISC bind pose: [(V model m, N, W [(FL bone, w)], uv, tris, texture name, smooth)]"""
     skl = read_skl(files[defn["skl"]])
     out = []
+    head_pairs = []          # (neutral, shaped) head vertex, model space (the crown under a hat is clamped, below)
+    head_v = [None]
     body = read_dmf(files[defn["body"]])
     B = bind(skl, body)
     for fname in (defn["body"], defn["head"]):
@@ -535,6 +537,7 @@ def character_surfaces(defn, files, tpk, L=None):
             for pal, P, U in me["batches"]:
                 base = len(V)
                 for p, u in zip(P, U):
+                    p0 = p
                     if shape is not None and me["kind"] == 167 and vi < len(shape):
                         p = tuple(p[c] + shape[vi][c] for c in range(3)) + tuple(p[3:6])
                     vi += 1
@@ -542,6 +545,9 @@ def character_surfaces(defn, files, tpk, L=None):
                     w = max(0.0, min(1.0, w / 4096.0))
                     J, R = B[d["names"][a]]
                     V.append(_add(_mv(R, p[:3]), J))
+                    if me["kind"] == 167:
+                        head_pairs.append((_add(_mv(R, p0[:3]), J), V[-1]))
+                        head_v[0] = V
                     N.append(_norm(_mv(R, p[3:6])))
                     W.append([(d["names"][a], w)] + ([(d["names"][b], 1.0 - w)] if w < 1.0 else []))
                     UV.append((u[0], u[1]))
@@ -550,6 +556,23 @@ def character_surfaces(defn, files, tpk, L=None):
     if defn.get("hat") and L is not None and "head" in skl["attach"]:
         bi, A, At = skl["attach"]["head"]
         J, R = B[skl["names"][bi]]
+        # a head shape (HEAD_SHAPES) can make the crown broader or longer than the neutral head the hat was made for
+        # (2026-11-15: shape 31 showed through the backs of helmets). Under the hat - above its lowest rim - the
+        # crown keeps the smaller of its neutral and shaped form (a fold cap sits on the shaped crown, a helmet over the neutral one), blended over 4 cm below the rim;
+        # the face below keeps its full shape, the hat keeps the disc's size and place.
+        hv = [_add(_mv(R, _add(_vrow(_add(v, defn["off"]), A), At)), J) for dr in L.mesh(defn["hat"]) for v in dr["verts"]]
+        if hv and head_v[0] is not None and len(head_pairs) == len(head_v[0]):
+            rimz = min(v[2] for v in hv) - 0.01
+            up = [n for n, _ in head_pairs if n[2] > rimz]
+            if up:
+                hc = tuple(sum(n[c] for n in up) / len(up) for c in range(3))
+                for i, (n, sh) in enumerate(head_pairs):
+                    inner = n if math.dist(n, hc) < math.dist(sh, hc) else sh
+                    if n[2] > rimz:
+                        head_v[0][i] = inner        # under the hat: the smaller of the neutral and shaped crown
+                    elif n[2] > rimz - 0.04:
+                        t = (n[2] - (rimz - 0.04)) / 0.04    # 4 cm under the rim blend into the shaped face
+                        head_v[0][i] = _add(_mul(sh, 1.0 - t), _mul(inner, t))
         for k, dr in enumerate(L.mesh(defn["hat"])):
             V = [_add(_mv(R, _add(_vrow(_add(v, defn["off"]), A), At)), J) for v in dr["verts"]]
             nacc = [(0.0, 0.0, 0.0)] * len(V)
