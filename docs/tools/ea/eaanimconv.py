@@ -187,6 +187,34 @@ SCENES = {
 }
 
 
+# More ICS rigs (2026-11-15), each with its clips in its graph's order and the state the graph names after them
+# (rig record: crc32 of the rig name, its graph id 0x50-0x94 bytes on; in these graphs a state's name FOLLOWS its
+# clips). Aliases ea_ics_<rig>_<n> in this order; *IDLE states loop. 0.02 s clips are held poses.
+SCENES_STATES = {
+    "blockingdoor": "813863af:ACTION 41464f54:ENTER c028d7d3:EXIT 8805e6c8:IDLE",
+    "kickopengate": "bab2f9da:ACTION a5fcf274:ENTER 745afc5f:EXIT 3c77cd44:IDLE",
+    "speakingintomike": "046ccf4a:ACTION 70da7206:ENTER 329b6a7d:EXIT 7ab65b66:IDLE",
+    "nemesisorders": "2e44b951:ACTION 3787fdfd:ENTER dddbee93:EXIT 95f6df88:IDLE",
+    "placingcharge": "79bbcd75:ACTION a046fc89:ENTER ce031298:EXIT 862e2383:IDLE",
+    "jumpoverwall": "be47778b:ACTION 8b54b6f2:ENTER 6813fb22:EXIT 203eca39:IDLE",
+    "jumpintochurch01": "fac93a47:ACTION 0134099e:ENTER 6d657b39:EXIT 25484a22:IDLE",
+    "jumpintochurch02": "74463da4:ACTION 30dc1303:ENTER ebf10997:EXIT a3dc388c:IDLE",
+    "hidingincover01": "203259a9:ACTION 9aef37f5:ENTER d299a0f9:EXIT 5b396449:EXIT 87d7bf5f:IDLE 3a457e3f:IDLE 7c477b13:OW_ENTER",
+    "hidingincover2": "76b5211c:ACTION ae53a1c0:ENTER 00d66990:EXIT ba780615:EXIT dfc09831:IDLE 052e963c:IDLE 9a60458d:OW_ENTER",
+    "hidejumpover01": "d9629448:ACTION 73fdb969:ENTER a3b209ff:EXIT eb9f38e4:IDLE 7c477b13:OW_ENTER",
+    "hidejumpover02": "57ed93ab:ACTION 4215a3f4:ENTER 25267b51:EXIT 6d0b4a4a:IDLE 7c477b13:OW_ENTER",
+    "hidejumpover03": "9b479335:ACTION e462a840:ENTER ee7aa8f4:EXIT a65799ef:IDLE 7c477b13:OW_ENTER",
+    "cheering01": "477b1caa:ACTION 0ee0f86e:ENTER b96dbf70:EXIT f1408e6b:IDLE",
+    "cheering02": "c9f41b49:ACTION 3f08e2f3:ENTER 3ff9cdde:EXIT 77d4fcc5:IDLE",
+    "cheering03": "055e1bd7:ACTION 997fe947:ENTER f4a51e7b:EXIT bc882f60:IDLE",
+    "deadposeflatonground01": "6fc63309:IDLE",
+    # DeathFromAbove.aso (graph 68afb9d4): the sniper on a tower - aim over cover, hide, hit and the fall (DEATH_REACT)
+    "deathfromabove": "58be6869:AIM_OVER_FIRE_RELEASE 2e333b5d:AIM_OVER_FIRE_RELEASE ee885d30:AIM_OVER_FIRE_START "
+                      "276ae269:AIM_OVER_IDLE 78773183:AIM_OVER_PEEK 240c8be0:AIM_STAND_IDLE 0ee947c9:DEATH_REACT "
+                      "94fd1126:DEATH_REACT b5806981:DEATH_REACT 87d7bf5f:HIDE_IDLE d33345f8:HIT_REACT 8c4a6495:HIT_REACT",
+}
+
+
 # Ordinary soldier deaths: graph 84033c53 (HitReactions.aso). Its states pick by core pose (ChooseDeathPose), hit
 # type and hit location; the named states that follow are DEATH_REACT (low/prone), DEATH_REACT_EXPLOSION (by
 # GetHitDirection) and DEATH_REACT_HIT_BY_VEHICLE_BACK / _FRONT. The tree keys (which location takes which clip) are
@@ -271,6 +299,10 @@ def build(stream, level, skd_bytes, files, log=print):
     for rig, hs in SCENES.items():
         for n, hx in enumerate(hs.split()):
             put("ics_%s_%d" % (rig, n + 1), int(hx, 16), n == 0 and rig not in ("explainsplan", "partisanleadersaysgofight", "callsplayer", "guardstopsplayer"))
+    for rig, hs in SCENES_STATES.items():
+        for n, hs_ in enumerate(hs.split()):
+            hx, st = hs_.split(":")
+            put("ics_%s_%d" % (rig, n + 1), int(hx, 16), st.endswith("IDLE"))
     for kind, hs in DEATHS.items():
         for n, hx in enumerate(hs.split()):
             put("death_%s_%d" % (kind, n + 1), int(hx, 16), False)
