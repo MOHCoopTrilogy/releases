@@ -63,6 +63,7 @@ class BSP:
         self.vis_cell = 0          # >0: leafs no wider than this, clustered on a 2D grid of this size
         self.vis_radius = 0        # cluster sees cluster when their cell centres are within this distance
         self.grid_light = 0.0      # >0: write an entity light grid from the world vertex colours, times this gain
+        self.light_volumes = []    # [bloommix] opt-in interior volumes [(centre, yaw, hx, hy, hz)] for the light grid
         # MOHAA static models (LUMP_STATICMODELDEF 25 / DATA 24): (model path, origin, angles, scale, rgb per vertex)
         # render-only, client-side, no entity; the renderer walks them all (frustum + radius cull, no leaf lists)
         self.static_models = []
@@ -290,6 +291,23 @@ class BSP:
                     out.append([sm[k] / n for k in range(3)] if n else (None if _pass == 0 else list(mean)))
             cell = out
         cell = [c if c is not None else list(mean) for c in cell]
+        # [bloommix 2026-11-15] interior volumes (the original's IrradianceVolumeTriggers, eazones.light_volumes): a column
+        # whose centre lies in one takes the mean light of the world vertices INSIDE that volume, not the 256u outdoor
+        # average that bled through the walls (a soldier in a dark hut was lit like the street). Empty = unchanged.
+        vol_light = []
+        for (vc, vyaw, vhx, vhy, vhz) in self.light_volumes:
+            ca, sa = math.cos(math.radians(vyaw)), math.sin(math.radians(vyaw))
+            sm, n = [0.0, 0.0, 0.0], 0
+            for srf in self.surfaces:
+                if "sky" in self.shaders[srf["shader"]][0].lower():
+                    continue
+                for v in srf["verts"]:
+                    dx, dy, dz = v[0][0] - vc[0], v[0][1] - vc[1], v[0][2] - vc[2]
+                    if abs(dz) <= vhz and abs(dx * ca + dy * sa) <= vhx and abs(dy * ca - dx * sa) <= vhy:
+                        sm[0] += v[3][0]; sm[1] += v[3][1]; sm[2] += v[3][2]; n += 1
+            if n:
+                vol_light.append((vc, ca, sa, vhx, vhy, [sm[k] / n for k in range(3)]))
+        self.light_volume_report = [(round(vl[0][0]), round(vl[0][1]), [round(x, 1) for x in vl[5]]) for vl in vol_light]
         cols = []                                # per column, bilinear between the coarse cells
         for x in range(bx):
             fx = (x + 0.5) / C - 0.5
@@ -303,6 +321,12 @@ class BSP:
                 c_, d_ = cell[x0 + (y0 + 1) * cx], cell[x0 + 1 + (y0 + 1) * cx]
                 cols.append(tuple((a_[k] * (1 - tx) + b_[k] * tx) * (1 - ty) + (c_[k] * (1 - tx) + d_[k] * tx) * ty
                                   for k in range(3)))
+                if vol_light:
+                    px, py = org[0] + 32.0 * x, org[1] + 32.0 * y
+                    hit = [vl[5] for vl in vol_light if abs((px - vl[0][0]) * vl[1] + (py - vl[0][1]) * vl[2]) <= vl[3]
+                           and abs((py - vl[0][1]) * vl[1] - (px - vl[0][0]) * vl[2]) <= vl[4]]
+                    if hit:
+                        cols[-1] = tuple(sum(h[k] for h in hit) / len(hit) for k in range(3))
         step = 1.0                               # coarsen until the map's colours fit the 255 palette slots
         while True:
             q = [(int(c[0] / step + 0.5), int(c[1] / step + 0.5), int(c[2] / step + 0.5)) for c in cols]

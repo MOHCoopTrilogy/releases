@@ -2085,6 +2085,13 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         # models take their light from a grid written out of the same vertex colours (see flbsp._light_grid)
         B.grid_light = float(os.environ.get("EA_ENT_LIGHT", "1.0"))
         stats["ent_light_gain"] = B.grid_light
+        # [bloommix 2026-11-15] the original's interior irradiance volumes: models inside take the interior's own baked
+        # light (eazones.light_volumes; AUDIT F5). EA_LIGHT_VOLUMES=0 restores the plain grid.
+        if os.environ.get("EA_LIGHT_VOLUMES", "1") != "0":
+            import eadb as _eadbz
+            import eazones
+            B.light_volumes = eazones.light_volumes(_eadbz.DB(L.stream), X)
+            stats["light_volumes"] = len(B.light_volumes)
     import flvis
     # 0.7.24 (EA) the PVS occluders are walls you cannot see through: the original's blocker volumes (collision type
     # 0, invisible) are left out. As occluders they cut whole clusters out of sight from behind a trench lip or a

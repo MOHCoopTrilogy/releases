@@ -588,6 +588,10 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     vm["voices"] = nvoice
     vm["ambience"] = ambience(L, level, db, X, vgm, files, lines, log) if vgm else 0
     vm["sounddefs"] = sounddefs(L, level, db, vgm, files, lines, log) if vgm else 0
+    # [bloommix 2026-11-15] the original's bloom door strips, mixer-snapshot boxes and interior volumes (eazones.py,
+    # read by coop_mod/zonefx.scr): level.coop_zn_*
+    import eazones
+    vm["zones"] = eazones.emit(L, level, db, X, lines, log)
     nmus = 0
     if vgm and spec.get("music"):
         # [eapolish] the original's music EVENTS (its music triggers, eavm) play the sections the .mpf's own
