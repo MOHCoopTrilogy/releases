@@ -69,8 +69,12 @@ def ea_globals(skel, sample):
     return G
 
 
-def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True):
-    """MOHAA .skc bytes of one EA clip for the stock human skeleton (bones = mohskel.read_skd_bones of the stock skd)"""
+def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0):
+    """MOHAA .skc bytes of one EA clip for the stock human skeleton (bones = mohskel.read_skd_bones of the stock skd);
+    yaw (degrees, about the model origin) turns the whole clip - the gunner clips are turned so the gun hands point
+    straight ahead, since the engine yaws a gunner with his turret (actor_machinegunner.cpp ThinkHoldGun_TurretGun)"""
+    cy, sy = math.cos(math.radians(yaw)), math.sin(math.radians(yaw))
+    Rz = [[cy, -sy, 0.0], [sy, cy, 0.0], [0.0, 0.0, 1.0]]
     J = {nm: (p, eachar._axes(*a)) for nm, (p, a) in eachar.POSE.items()}
     T, s = eachar.repose(skel, J)
     byname = {b["name"]: i for i, b in enumerate(skel)}
@@ -91,12 +95,12 @@ def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True):
             Dm = _mm(_mm(C3, D), _tr(C3))
             R = T[i][2] if i in T else [[1.0, 0, 0], [0, 1.0, 0], [0, 0, 1.0]]
             Q = _mm(Dm, _tr(R))                               # back to the EA bind direction, then the clip's turn
-            rows[m] = [_mv(Q, ax) for ax in J[m][1]]          # the P rows turned by Q
+            rows[m] = [_mv(Rz, _mv(Q, ax)) for ax in J[m][1]]   # the P rows turned by Q (and the clip's yaw)
         ch = {}
         # pelvis: Bip01 carries its origin, Pelvis its rows
         dp = [G[pel][1][k] - p0[k] for k in range(3)] if root_motion else [0.0, 0.0, 0.0]
         dpm = [dp[1] * 100.0 * s, -dp[0] * 100.0 * s, dp[2] * 100.0 * s]
-        porg = [J["Bip01 Pelvis"][0][k] + dpm[k] for k in range(3)]
+        porg = _mv(Rz, [J["Bip01 Pelvis"][0][k] + dpm[k] for k in range(3)])
         ch["Bip01 pos"] = (porg[0], porg[1], porg[2], 0.0)
         ch["Bip01 rot"] = (0.0, 0.0, 0.0, 1.0)
         ch["Bip01 Pelvis pos"] = (0.0, 0.0, 0.0, 0.0)
@@ -152,6 +156,7 @@ MMG_GRID = {
     "fire": ("74933e1a 07d0c0de 7bd00209 8361c23c acd05c0d 958e4d39 a556acdf b99e9086 4ad27270 e4812e32 86831a5b", True),
     "hit": ("dfe9bcc3 f56b812f ac04dddd 0f17512d b40a4375 d4e07cfa dcba45dd 151cc681 4526f423 4f80852b", False),
 }
+MMG_CENTRE = "51f46f11"     # l9_z124: the idle point that needs the least turn; the one-shots (enter, exit, deaths) take its yaw
 MMG_ONE = {"enter": "58f52873", "exit": "647c2159", "death": "7a12045e", "death_explosion": "573a6031"}
 SCENES = {"leader_explains_plan": ("cfebf641", False), "partisan_idling": ("d4f7a161", True),
           "partisan_idling2": ("0a84ccf5", True), "partisan_idling3": ("982e0d67", True),
@@ -168,6 +173,19 @@ def aim_label(bank, skel, h):
     return "%s%d_z%d" % ("r" if yaw >= 0 else "l", round(abs(yaw)), round(mid[2] * 100))
 
 
+def hands(bank, skel, bones, h, yaw=0.0, t=0.0):
+    """(right hand, left hand) origins of a converted clip at time t, MOHAA model space (x forward, y left, z up)"""
+    _, frames = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw)
+    T = mohskel.fk(bones, frames[min(len(frames) - 1, int(round(t * 30)))])
+    return T["Bip01 R Hand"][3], T["Bip01 L Hand"][3]
+
+
+def gun_yaw(bank, skel, bones, h):
+    """the yaw that turns a gunner clip so the midpoint of his hands lies straight ahead of the model origin"""
+    r, l = hands(bank, skel, bones, h)
+    return -math.degrees(math.atan2((r[1] + l[1]) / 2, (r[0] + l[0]) / 2))
+
+
 def build(stream, level, skd_bytes, files, log=print):
     """write the clip sets as models/human/ea_<level>/anim/*.skc; returns the tik 'animations' block text"""
     import struct
@@ -180,10 +198,10 @@ def build(stream, level, skd_bytes, files, log=print):
     bones = mohskel.read_skd_bones(skd_bytes)
     rows = []
 
-    def put(alias, h, loop):
+    def put(alias, h, loop, yaw=0.0):
         if h not in bank.clips:
             return
-        skc, _ = convert_clip(bank, bank.clip(h), skel, bones)
+        skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw)
         if loop:
             skc = skc[:8] + struct.pack("<i", struct.unpack_from("<i", skc, 8)[0] | 0x20) + skc[12:]
         files["models/human/ea_%s/anim/%s.skc" % (level, alias)] = skc
@@ -196,9 +214,10 @@ def build(stream, level, skd_bytes, files, log=print):
             h = int(hx, 16)
             if h in bank.clips:
                 tag = lab[i] if state != "hit" and i < len(lab) and lab[i] else aim_label(bank, skel, h)
-                put("mmg_%s_%s" % (state, tag), h, loop)
+                put("mmg_%s_%s" % (state, tag), h, loop, gun_yaw(bank, skel, bones, h))
+    centre = gun_yaw(bank, skel, bones, int(MMG_CENTRE, 16))
     for nm, hx in MMG_ONE.items():
-        put("mmg_" + nm, int(hx, 16), False)
+        put("mmg_" + nm, int(hx, 16), False, centre)
     for nm, (hx, loop) in SCENES.items():
         put(nm, int(hx, 16), loop)
     log("eaanimconv: %d clips -> models/human/ea_%s/anim" % (len(rows), level))
