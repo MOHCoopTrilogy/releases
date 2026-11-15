@@ -8,3 +8,7 @@ PaintedMetal012_1K_Color.jpg  page https://ambientcg.com/view?id=PaintedMetal012
 Metal016_1K_Color.jpg         page https://ambientcg.com/view?id=Metal016         file https://ambientcg.com/get?file=Metal016_1K-JPG.zip         CC0  (Panzer IV hull / turret / skirts fine grain)
 Rubber004_1K_Color.jpg        page https://ambientcg.com/view?id=Rubber004        file https://ambientcg.com/get?file=Rubber004_1K-JPG.zip        CC0  (Panzer IV road-wheel tyres)
 Metal063_1K_Color.jpg         page https://ambientcg.com/view?id=Metal063         file https://ambientcg.com/get?file=Metal063_1K-JPG.zip         CC0  (Panzer IV wheel hubs, sprocket)
+
+Stock-HD pass (docs/tools/upscale_discstock.py REPLACE; user-approved 2026-11-15: "If not that find replacements"). Poly Haven, licence CC0 1.0 (https://polyhaven.com/license). 1k diffuse JPG, unmodified; resized and graded to the stock sheet's colour statistics at build time, shipped as a DXT .dds in zzzzzzzzzz_coop_hd_discstock.pk3.
+
+bark_willow_02_diff_1k.jpg  page https://polyhaven.com/a/bark_willow_02  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_willow_02/bark_willow_02_diff_1k.jpg  CC0  (winter trunk bark textures/models/natural/tree1_1winter of tree_caskawinter, Their Dying Breath trees)

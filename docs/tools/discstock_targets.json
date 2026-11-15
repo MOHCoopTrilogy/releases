@@ -1,0 +1,2931 @@
+[
+ {
+  "image": "env/mohday1_dn.tga",
+  "file": "env/mohday1_dn.jpg",
+  "pak": "Pak2.pk3",
+  "size": [
+   8,
+   8
+  ],
+  "shaders": [
+   "textures/sky/mohday1"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "bsp"
+  ],
+  "loaded": false,
+  "exclude": "sky down face, below the horizon (look agent owns the sky)"
+ },
+ {
+  "image": "models/fx/muzflash/flashnode1.tga",
+  "file": "models/fx/muzflash/flashnode1.tga",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "muzmodel",
+   "muzsprite"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/fx/muzflash.tik#material1",
+   "models/statweapons/30cal.tik#sprite",
+   "models/statweapons/mg42_gun.tik#sprite",
+   "models/vehicles/PanzerIV_w_cannon.tik#sprite",
+   "models/vehicles/PanzerIV_w_mg42.tik#sprite",
+   "models/vehicles/panzer_cannon_europe.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/beams/tracer.tga",
+  "file": "textures/beams/tracer.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   16
+  ],
+  "shaders": [
+   "tracer"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/weapons/UK_W_Vickers.tik#sprite",
+   "models/weapons/kar98.tik#sprite",
+   "models/weapons/mp40.tik#sprite",
+   "models/weapons/ppsh_smg.tik#sprite",
+   "models/weapons/silencedpistol.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": "smooth gradient strip (no detail to add)"
+ },
+ {
+  "image": "textures/beams/tracergradient.tga",
+  "file": "textures/beams/tracergradient.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   16
+  ],
+  "shaders": [
+   "tracer"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/weapons/UK_W_Vickers.tik#sprite",
+   "models/weapons/kar98.tik#sprite",
+   "models/weapons/mp40.tik#sprite",
+   "models/weapons/ppsh_smg.tik#sprite",
+   "models/weapons/silencedpistol.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": "smooth gradient strip (no detail to add)"
+ },
+ {
+  "image": "textures/common/cherry.tga",
+  "file": "textures/common/cherry.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   16,
+   16
+  ],
+  "shaders": [
+   "cherry_c"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/items/cigarette.tik#cherry"
+  ],
+  "loaded": false,
+  "exclude": "16x16 cigarette ember glow"
+ },
+ {
+  "image": "textures/decals/bhole_glass.tga",
+  "file": "textures/decals/bhole_glass.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "bhole_glass"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/fx/exp_Nebelwerfer.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/bh_dirt_piece.tga",
+  "file": "textures/effects/bh_dirt_piece.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   8,
+   8
+  ],
+  "shaders": [
+   "bh_dirt_piece"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/emitters/coop_fl_mine.tik#sprite",
+   "models/emitters/explosion_bombdirt.tik#sprite",
+   "models/emitters/explosion_bombwall.tik#sprite",
+   "models/emitters/explosion_tank.tik#sprite",
+   "models/emitters/mortar_dirt_dustcloud.tik#sprite",
+   "models/fx/fx_explosion.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": "8x8 debris fleck, a few pixels on screen"
+ },
+ {
+  "image": "textures/effects/bh_metal_fastpiece.tga",
+  "file": "textures/effects/bh_metal_fastpiece.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   8,
+   32
+  ],
+  "shaders": [
+   "bh_metal_fastpiece"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/fx/bh_metal_fastpiece.tik#material1"
+  ],
+  "loaded": true,
+  "exclude": "8x32 spark streak, a few pixels on screen"
+ },
+ {
+  "image": "textures/effects/bh_snow_puff.tga",
+  "file": "textures/effects/bh_snow_puff.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   32,
+   32
+  ],
+  "shaders": [
+   "bh_snow_puff"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/nebel_snowexplosion.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_01.tga",
+  "file": "textures/effects/flamer_01.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_02.tga",
+  "file": "textures/effects/flamer_02.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_03.tga",
+  "file": "textures/effects/flamer_03.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_04.tga",
+  "file": "textures/effects/flamer_04.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_05.tga",
+  "file": "textures/effects/flamer_05.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_06.tga",
+  "file": "textures/effects/flamer_06.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_07.tga",
+  "file": "textures/effects/flamer_07.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_08.tga",
+  "file": "textures/effects/flamer_08.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_09.tga",
+  "file": "textures/effects/flamer_09.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_10.tga",
+  "file": "textures/effects/flamer_10.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_11.tga",
+  "file": "textures/effects/flamer_11.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_12.tga",
+  "file": "textures/effects/flamer_12.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_13.tga",
+  "file": "textures/effects/flamer_13.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_14.tga",
+  "file": "textures/effects/flamer_14.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_15.tga",
+  "file": "textures/effects/flamer_15.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_16.tga",
+  "file": "textures/effects/flamer_16.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_17.tga",
+  "file": "textures/effects/flamer_17.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_18.tga",
+  "file": "textures/effects/flamer_18.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_19.tga",
+  "file": "textures/effects/flamer_19.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_20.tga",
+  "file": "textures/effects/flamer_20.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_21.tga",
+  "file": "textures/effects/flamer_21.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_22.tga",
+  "file": "textures/effects/flamer_22.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_23.tga",
+  "file": "textures/effects/flamer_23.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_24.tga",
+  "file": "textures/effects/flamer_24.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_25.tga",
+  "file": "textures/effects/flamer_25.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_26.tga",
+  "file": "textures/effects/flamer_26.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_27.tga",
+  "file": "textures/effects/flamer_27.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_28.tga",
+  "file": "textures/effects/flamer_28.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_29.tga",
+  "file": "textures/effects/flamer_29.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_30.tga",
+  "file": "textures/effects/flamer_30.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_31.tga",
+  "file": "textures/effects/flamer_31.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/flamer_32.tga",
+  "file": "textures/effects/flamer_32.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "fire_back",
+   "fire_front",
+   "fire_middle"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/fireandsmoke.tik#back",
+   "models/emitters/fireandsmoke.tik#front",
+   "models/emitters/fireandsmoke.tik#middle"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/ibeam_piece.tga",
+  "file": "textures/effects/ibeam_piece.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "ibeam_piece"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/fx/ibeam_piece.tik#material1"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/effects/steam_blur.tga",
+  "file": "textures/effects/steam_blur.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "sandstorm01"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/tehao_explosiondust.tik#sprite"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/fx/bomb_exp/snowtrail_01.tga",
+  "file": "textures/fx/bomb_exp/snowTrail_01.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "snowplume_01"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/vehicles/PanzerIV_w_cannon.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/fx/bridge/bridgecharge.tga",
+  "file": "textures/fx/bridge/bridgeCharge.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "bridgecharge",
+   "muzzlecharge"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/explosion_tank_sideplume.tik#sprite",
+   "models/vehicles/PanzerIV_w_cannon.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/fx/sustainedfire/flame1.tga",
+  "file": "textures/fx/sustainedFire/flame1.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "campfire_01"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/explosion_tank_sideplume.tik#sprite"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/fx/sustainedfire/flame3.tga",
+  "file": "textures/fx/sustainedFire/flame3.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "campfire_03"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/explosion_tank_sideplume.tik#sprite"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/fx/tehao/debris_01.tga",
+  "file": "textures/fx/tehao/debris_01.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "tehaodebris_01"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/tehao_explosiondust.tik#sprite"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/fx/tehao/tehaosmoke_dark.tga",
+  "file": "textures/fx/tehao/tehaoSmoke_dark.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "puffystuff_dark",
+   "tehaosmoke_dark"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/explosion_tank_sideplume.tik#sprite",
+   "models/fx/Nebelwerfer_exhaust.tik#sprite"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/fx/tehao/tehaosmoke_light.tga",
+  "file": "textures/fx/tehao/tehaoSmoke_light.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "tehaosmoke_light"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/emitters/tehao_explosiondust.tik#sprite",
+   "models/vehicles/PanzerIV_w_cannon.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/fx/train/trainspark_01.tga",
+  "file": "textures/fx/Train/trainSpark_01.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   32,
+   32
+  ],
+  "shaders": [
+   "trainspark_01"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/fx/Nebelwerfer_exhaust.tik#sprite",
+   "models/vehicles/PanzerIV_w_cannon.tik#sprite"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/crates/explosive1.tga",
+  "file": "textures/models/crates/explosive1.dds",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_exp_crate1",
+   "static_exp_crate1a"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/exp_crate1.tik#explode1",
+   "models/static/exp_crate1a.tik#explode1"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/crates/indycrate.tga",
+  "file": "textures/models/crates/indycrate.dds",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "indycrate"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/static/indycrate.tik#indycrate"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/crates/nazi_crate.tga",
+  "file": "textures/models/crates/nazi_crate.dds",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "nazi_crate"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/static/nazi_crate.tik#nazi_crate"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/crates/wood_gibs.tga",
+  "file": "textures/models/crates/wood_gibs.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "crate-jibs"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/fx/crates/crate-jib-chunk.tik#crate-jib-chunk",
+   "models/fx/crates/crate-jib-plank.tik#crate-jib-plank",
+   "models/fx/crates/crate-jib-smallchunk.tik#crate-jib-smallchunk",
+   "models/fx/crates/crate-jib-smallplank.tik#crate-jib-smallplank",
+   "models/fx/crates/crate-jib-splinter.tik#crate-jib-splinter"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/human/germanmaps/officer/pants_officer.tga",
+  "file": "textures/models/human/germanmaps/officer/pants_officer.dds",
+  "pak": "zzzzzz-HRRTM_Pak3_Textures.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "officer_pants"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/human/german_wehrmact_officer.tik#pants"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/human/germanmaps/wintertroops/knitgloves1.tga",
+  "file": "textures/models/human/germanmaps/wintertroops/knitgloves1.dds",
+  "pak": "zzzzzz-HRRTM_Pak3_Textures.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "knitgloves1"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/human/german_winter_type1.tik#hand",
+   "models/human/german_winter_type2.tik#hand"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/human/usmaps/airborne/air_gear.tga",
+  "file": "textures/models/human/usmaps/airborne/air_gear.dds",
+  "pak": "zzzzzz-HRRTM_Pak3_Textures.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "airborne_gear",
+   "coop_fl_fade_air_gear"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/human/allied_airborne_soldier.tik#gear",
+   "models/human/coop_fl_fade_airborne.tik#gear"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/human/usmaps/airborne/air_pants.tga",
+  "file": "textures/models/human/usmaps/airborne/air_pants.dds",
+  "pak": "zzzzzz-HRRTM_Pak3_Textures.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "airborne_pants",
+   "coop_fl_fade_air_pants"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/human/allied_airborne_soldier.tik#pants",
+   "models/human/coop_fl_fade_airborne.tik#pants"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/items/bunkerchair.tga",
+  "file": "textures/models/items/bunkerchair.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "bunkerchair"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/furniture/interrogationchair.tik#bunkerchair"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/items/cigarette.tga",
+  "file": "textures/models/items/cigarette.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "cherry_c",
+   "cigarette"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/items/cigarette.tik#cherry",
+   "models/items/cigarette.tik#cigarette"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/items/detonator.tga",
+  "file": "textures/models/items/detonator.dds",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "detonator"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/miscobj/detonator.tik#detonator"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/items/dial.tga",
+  "file": "textures/models/items/dial.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "dial"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/miscobj/phone_squarebase.tik#dial"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/items/phone1.tga",
+  "file": "textures/models/items/phone1.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "phone1"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/miscobj/phone_squarebase.tik#phone1"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/items/pulse.tga",
+  "file": "textures/models/items/pulse.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   2,
+   2
+  ],
+  "shaders": [
+   "pulsating_tnt"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/items/pulse_explosive.tik#tnt1",
+   "models/items/pulse_explosive.tik#tnt2"
+  ],
+  "loaded": true,
+  "exclude": "flat 2x2 colour swatch"
+ },
+ {
+  "image": "textures/models/items/tnt.tga",
+  "file": "textures/models/items/tnt.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "tnt"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/items/explosive.tik#tnt1",
+   "models/items/explosive.tik#tnt2"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/natural/mortar_noise.tga",
+  "file": "textures/models/natural/mortar_noise.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "mortar_dirthit"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/nebel_snowexplosion.tik#sprite"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/natural/mortarhit2.tga",
+  "file": "textures/models/natural/mortarhit2.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   256,
+   512
+  ],
+  "shaders": [
+   "mortar_dirthit"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/nebel_snowexplosion.tik#sprite"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/natural/motarhit.tga",
+  "file": "textures/models/natural/motarhit.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   256,
+   512
+  ],
+  "shaders": [
+   "mortar_dirthit2"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/nebel_snowexplosion.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/sandbags/sb_1.tga",
+  "file": "textures/models/sandbags/sb_1.dds",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "coop_mg_bags"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/coop_mg_bags.tik#bags"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/statweapons/15cannon.tga",
+  "file": "textures/models/statweapons/15cannon.dds",
+  "pak": "Pak2.pk3",
+  "size": [
+   1024,
+   1024
+  ],
+  "shaders": [
+   "15cannon",
+   "15cannon_shield"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/statweapons/15cmcannon.tik#15cannon2",
+   "models/statweapons/15cmcannon.tik#15cannon3",
+   "models/statweapons/15cmcannon.tik#15cannon4",
+   "models/statweapons/15cmcannon.tik#shield"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/statweapons/15cannon_d.tga",
+  "file": "textures/models/statweapons/15cannon_d.dds",
+  "pak": "Pak2.pk3",
+  "size": [
+   1024,
+   1024
+  ],
+  "shaders": [
+   "15cannon_d",
+   "15cannon_shield_d"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/statweapons/15cmcannon_d.tik#15cannon",
+   "models/statweapons/15cmcannon_d.tik#shield"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/blackhull1.tga",
+  "file": "textures/models/submodels/blackhull1.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_blackhull1"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material11"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/contowerlamp.tga",
+  "file": "textures/models/submodels/contowerlamp.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "static_contowerlamp"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material23"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/contowerwood.tga",
+  "file": "textures/models/submodels/contowerwood.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "static_contowerwood"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material24"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/deckcannon.tga",
+  "file": "textures/models/submodels/deckcannon.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "static_deckcannon"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material10"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/deckflak.tga",
+  "file": "textures/models/submodels/deckflak.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "static_deckflak"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material13",
+   "models/static/uboat.tik#material8"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/deckguntwins.tga",
+  "file": "textures/models/submodels/deckguntwins.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "static_deckguntwins"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material9"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/hulltop1a.tga",
+  "file": "textures/models/submodels/hulltop1a.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_hulltop1a"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material2"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/hulltop1c.tga",
+  "file": "textures/models/submodels/hulltop1c.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_hulltop1c"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material3",
+   "models/static/uboat.tik#material4"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/hulltop1d.tga",
+  "file": "textures/models/submodels/hulltop1d.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_hulltop1d"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material26"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/hulltop1e.tga",
+  "file": "textures/models/submodels/hulltop1e.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_hulltop1e"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material19"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/hulltop1h.tga",
+  "file": "textures/models/submodels/hulltop1h.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_hulltop1h"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material7"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/hulltop1i.tga",
+  "file": "textures/models/submodels/hulltop1i.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_hulltop1i"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material21"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/hulltop1j.tga",
+  "file": "textures/models/submodels/hulltop1j.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   256
+  ],
+  "shaders": [
+   "static_hulltop1j"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material22"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/metaldeck_plating.tga",
+  "file": "textures/models/submodels/metaldeck_plating.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   256
+  ],
+  "shaders": [
+   "static_metaldeck_plating"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material14"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/miscpieces.tga",
+  "file": "textures/models/submodels/miscpieces.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_miscpieces"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material25"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/periscopes.tga",
+  "file": "textures/models/submodels/periscopes.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   128
+  ],
+  "shaders": [
+   "static_periscopes"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material5"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/radiostation1.tga",
+  "file": "textures/models/submodels/radiostation1.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_radiostation1"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/static/static_radiostation1.tik#material1"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/radiostation2.tga",
+  "file": "textures/models/submodels/radiostation2.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "static_radiostation2"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/static/static_radiostation1.tik#material2"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/subrailing.tga",
+  "file": "textures/models/submodels/subrailing.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   256,
+   128
+  ],
+  "shaders": [
+   "static_subrailing"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material6"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/submodels/wooddeck.tga",
+  "file": "textures/models/submodels/wooddeck.tga",
+  "pak": "Pak2.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "static_wooddeck"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/uboat.tik#material1"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/vehicles/panzer_iv/backwheel_eu.tga",
+  "file": "textures/models/vehicles/panzer_iv/backwheel_eu.dds",
+  "pak": "zzzzzzz_dds_hdmem.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "panzer_iv_backwheel_eu",
+   "panzer_iv_backwheel_eun"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/vehicle_panzer_iv_europe.tik#backwheel",
+   "models/vehicles/panzer_tank_europe.tik#backwheel"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/vehicles/panzer_iv/frontwheel_eu.tga",
+  "file": "textures/models/vehicles/panzer_iv/frontwheel_eu.dds",
+  "pak": "zzzzzzz_dds_hdmem.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "panzer_iv_frontwheel_eu",
+   "panzer_iv_frontwheel_eun"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/vehicle_panzer_iv_europe.tik#frontwheel",
+   "models/vehicles/panzer_tank_europe.tik#frontwheel"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/vehicles/panzer_iv/smallwheel_eu.tga",
+  "file": "textures/models/vehicles/panzer_iv/smallwheel_eu.dds",
+  "pak": "zzzzzzz_dds_hdmem.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "panzer_iv_smallwheel_eu",
+   "panzer_iv_smallwheel_eun"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/vehicle_panzer_iv_europe.tik#smallwheel",
+   "models/vehicles/panzer_tank_europe.tik#smallwheel"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/vehicles/panzer_iv/tread_eu.tga",
+  "file": "textures/models/vehicles/panzer_iv/tread_eu.dds",
+  "pak": "zzzzzzz_dds_hdmem.pk3",
+  "size": [
+   256,
+   128
+  ],
+  "shaders": [
+   "panzer_iv_tread_eu",
+   "panzer_iv_tread_eun"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/vehicle_panzer_iv_europe.tik#tread",
+   "models/vehicles/panzer_tank_europe.tik#tread"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/vehicles/panzer_iv/undercarriage.tga",
+  "file": "textures/models/vehicles/panzer_iv/undercarriage.dds",
+  "pak": "zzzzzz-HRRTM_Pak2_Models_misc.pk3",
+  "size": [
+   1024,
+   1024
+  ],
+  "shaders": [
+   "panzer_iv_undercarriage"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/vehicles/panzer_tank_europe.tik#undercarriage"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/vehicles/panzer_iv/undercarriage_eu.tga",
+  "file": "textures/models/vehicles/panzer_iv/undercarriage_eu.dds",
+  "pak": "zzzzzz-HRRTM_Pak2_Models_misc.pk3",
+  "size": [
+   1024,
+   1024
+  ],
+  "shaders": [
+   "panzer_iv_undercarriage_eu"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/vehicle_panzer_iv_europe.tik#undercarriage",
+   "models/vehicles/panzer_cannon_europe.tik#undercarriage",
+   "models/vehicles/panzer_smgun_europe.tik#undercarriage",
+   "models/vehicles/panzer_tank_europe.tik#undercarriage"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/vehicles/panzer_iv/verysmallwheel_eu.tga",
+  "file": "textures/models/vehicles/panzer_iv/verysmallwheel_eu.dds",
+  "pak": "zzzzzzz_dds_hdmem.pk3",
+  "size": [
+   32,
+   32
+  ],
+  "shaders": [
+   "panzer_iv_verysmallwheel_eu",
+   "panzer_iv_verysmallwheel_eun"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/static/vehicle_panzer_iv_europe.tik#verysmallwheel",
+   "models/vehicles/panzer_tank_europe.tik#verysmallwheel"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/vehicles/panzer_iv_d/tread_eud.tga",
+  "file": "textures/models/vehicles/panzer_iv_d/tread_eud.dds",
+  "pak": "zzzzzzz_dds_hdmem.pk3",
+  "size": [
+   256,
+   128
+  ],
+  "shaders": [
+   "panzer_iv_tread_eud"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/vehicles/Panzer_destroyed_lowpoly_base.tik#tread_eu"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/vehicles/stuka/stuka.tga",
+  "file": "textures/models/vehicles/stuka/stuka.dds",
+  "pak": "Pak2.pk3",
+  "size": [
+   1024,
+   1024
+  ],
+  "shaders": [
+   "stuka"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/vehicles/stuka_fly.tik#stuka1",
+   "models/vehicles/stuka_fly.tik#stuka2",
+   "models/vehicles/stuka_fly.tik#stuka3",
+   "models/vehicles/stuka_fly.tik#stuka4"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/weapons/30cal/30cal.tga",
+  "file": "textures/models/weapons/30cal/30cal.dds",
+  "pak": "zzzzzzz_dds_override.pk3",
+  "size": [
+   1024,
+   1024
+  ],
+  "shaders": [
+   "30cal"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/statweapons/30cal.tik#material1"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/models/weapons/30cal/30calholes.tga",
+  "file": "textures/models/weapons/30cal/30calholes.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "30cal"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/statweapons/30cal.tik#material1"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/sprites/explosed2.tga",
+  "file": "textures/sprites/explosed2.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "explosed2"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/fx/snipesmoke.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/sprites/mortarsnow_noise.tga",
+  "file": "textures/sprites/mortarsnow_noise.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "mortar_snowhit"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/nebel_snowexplosion.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/sprites/snow_mortarhit.tga",
+  "file": "textures/sprites/snow_mortarHit.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   256,
+   512
+  ],
+  "shaders": [
+   "mortar_snowhit"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/nebel_snowexplosion.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/sprites/snowclump.tga",
+  "file": "textures/sprites/snowclump.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   16,
+   16
+  ],
+  "shaders": [
+   "snowclump"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/emitters/nebel_snowexplosion.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": "16x16 snow fleck, a few pixels on screen"
+ },
+ {
+  "image": "textures/sprites/vsssource.tga",
+  "file": "textures/sprites/vsssource.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   32,
+   32
+  ],
+  "shaders": [
+   "vsssource",
+   "vsssource2",
+   "vsssource_new"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/emitters/breath_emitter.tik#sprite",
+   "models/emitters/coop_fl_mine.tik#sprite",
+   "models/emitters/linger_smoke.tik#sprite",
+   "models/emitters/linger_smoke02.tik#sprite",
+   "models/emitters/mortar_dirt_dustcloud.tik#sprite",
+   "models/emitters/nebel_snowexplosion.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/sprites/vsssource2.tga",
+  "file": "textures/sprites/vsssource2.tga",
+  "pak": "zzzzzz_hd_fx.pk3",
+  "size": [
+   32,
+   32
+  ],
+  "shaders": [
+   "vsssource",
+   "vsssource2"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/emitters/breath_emitter.tik#sprite",
+   "models/emitters/coop_fl_mine.tik#sprite",
+   "models/emitters/linger_smoke.tik#sprite",
+   "models/emitters/linger_smoke02.tik#sprite",
+   "models/emitters/mortar_dirt_dustcloud.tik#sprite",
+   "models/emitters/tehao_explosiondust.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null
+ },
+ {
+  "image": "textures/sprites/willys_dust_plume.tga",
+  "file": "textures/sprites/willys_dust_plume.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   128,
+   256
+  ],
+  "shaders": [
+   "willys_dust"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/emitters/JS_dust_puff.tik#sprite"
+  ],
+  "loaded": false,
+  "exclude": null
+ },
+ {
+  "image": "textures/water/noise3.tga",
+  "file": "textures/water/noise3.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "textures/choppywater/tehao_indoorwater"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "bsp"
+  ],
+  "loaded": true,
+  "exclude": "procedural water noise map (look agent owns the water)"
+ },
+ {
+  "image": "textures/water/noise4.tga",
+  "file": "textures/water/noise4.tga",
+  "pak": "pak1.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "textures/choppywater/tehao_indoorwater"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "bsp"
+  ],
+  "loaded": true,
+  "exclude": "procedural water noise map (look agent owns the water)"
+ },
+ {
+  "image": "textures/water/opaque.tga",
+  "file": "textures/water/opaque.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   32,
+   32
+  ],
+  "shaders": [
+   "textures/choppywater/tehao_indoorwater"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "bsp"
+  ],
+  "loaded": true,
+  "exclude": "flat water base colour"
+ },
+ {
+  "image": "textures/water/subpen_waves.tga",
+  "file": "textures/water/subpen_waves.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "textures/choppywater/tehao_indoorwater"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "bsp"
+  ],
+  "loaded": true,
+  "exclude": "water layer (look agent owns the water)"
+ },
+ {
+  "image": "textures/water/water_shadows.tga",
+  "file": "textures/water/water_shadows.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "textures/choppywater/tehao_indoorwater"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "bsp"
+  ],
+  "loaded": true,
+  "exclude": "water caustic noise (look agent owns the water)"
+ },
+ {
+  "image": "textures/water/water_shadows2.tga",
+  "file": "textures/water/water_shadows2.dds",
+  "pak": "pak1.pk3",
+  "size": [
+   64,
+   64
+  ],
+  "shaders": [
+   "textures/choppywater/tehao_indoorwater"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "bsp"
+  ],
+  "loaded": true,
+  "exclude": "water caustic noise (look agent owns the water)"
+ },
+ {
+  "image": "textures/models/coop_dmedipack.tga",
+  "file": "textures/models/coop_dmedipack.tga",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "coop_dmedipack"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/human/allied_airborne_soldier.tik#dmedipack"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/germanmaps/officer/pants_officer_blood1.jpg",
+  "file": "textures/models/human/germanmaps/officer/pants_officer_blood1.jpg",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "officer_pants_blood1"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/human/german_wehrmact_officer.tik#pants"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/germanmaps/officer/pants_officer_blood2.jpg",
+  "file": "textures/models/human/germanmaps/officer/pants_officer_blood2.jpg",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "officer_pants_blood2"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/human/german_wehrmact_officer.tik#pants"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/germanmaps/officer/pants_officer_blood3.jpg",
+  "file": "textures/models/human/germanmaps/officer/pants_officer_blood3.jpg",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "officer_pants_blood3"
+  ],
+  "maps": [
+   "ea",
+   "fl"
+  ],
+  "users": [
+   "models/human/german_wehrmact_officer.tik#pants"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/germanmaps/wintertroops/knitgloves1_blood3.jpg",
+  "file": "textures/models/human/germanmaps/wintertroops/knitgloves1_blood3.jpg",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "knitgloves1_blood3"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/human/german_winter_type1.tik#hand",
+   "models/human/german_winter_type2.tik#hand"
+  ],
+  "loaded": false,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/germanmaps/wintertroops/knitgloves1_skin2.jpg",
+  "file": "textures/models/human/germanmaps/wintertroops/knitgloves1_skin2.jpg",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "knitgloves1_skin2"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/human/german_winter_type1.tik#hand",
+   "models/human/german_winter_type2.tik#hand"
+  ],
+  "loaded": false,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/usmaps/airborne/air_helm.jpg",
+  "file": "textures/models/human/usmaps/airborne/air_helm.jpg",
+  "pak": "zzzzzz-HRRTM_Pak3_Textures.pk3",
+  "size": [
+   384,
+   384
+  ],
+  "shaders": [
+   "air_helm"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/human/allied_airborne_soldier.tik#us_helmet"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/usmaps/airborne/air_pants_blood1.jpg",
+  "file": "textures/models/human/usmaps/airborne/air_pants_blood1.jpg",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "airborne_pants_blood1"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/human/allied_airborne_soldier.tik#pants"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/usmaps/airborne/air_pants_blood2.jpg",
+  "file": "textures/models/human/usmaps/airborne/air_pants_blood2.jpg",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "airborne_pants_blood2"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/human/allied_airborne_soldier.tik#pants"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/usmaps/airborne/air_pants_blood3.jpg",
+  "file": "textures/models/human/usmaps/airborne/air_pants_blood3.jpg",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   512,
+   512
+  ],
+  "shaders": [
+   "airborne_pants_blood3"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/human/allied_airborne_soldier.tik#pants"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/natural/tree1_1winter.tga",
+  "file": "textures/models/natural/tree1_1winter.tga",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "static_tree1_1winter"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/static/tree_caskawinter.tik#tree1_1"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/natural/tree1_2winter.tga",
+  "file": "textures/models/natural/tree1_2winter.tga",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   128,
+   256
+  ],
+  "shaders": [
+   "static_tree1_2winter"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/static/tree_caskawinter.tik#tree1_2"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/natural/tree1_3winter.tga",
+  "file": "textures/models/natural/tree1_3winter.tga",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "static_tree1_3winter"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/static/tree_caskawinter.tik#tree1_3"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/natural/tree1_4winter.tga",
+  "file": "textures/models/natural/tree1_4winter.tga",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "static_tree1_4winter"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/static/tree_caskawinter.tik#tree1_4"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/natural/tree1_5winter.tga",
+  "file": "textures/models/natural/tree1_5winter.tga",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   256,
+   256
+  ],
+  "shaders": [
+   "static_tree1_5winter"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/static/tree_caskawinter.tik#tree1_5"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/natural/tree1spritewinter.tga",
+  "file": "textures/models/natural/tree1spritewinter.tga",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   128,
+   256
+  ],
+  "shaders": [
+   "static_tree1spritewinter"
+  ],
+  "maps": [
+   "ea"
+  ],
+  "users": [
+   "models/static/tree_caskawinter.tik#tree1sprite"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/sprites/bloodsplat.tga",
+  "file": "textures/sprites/bloodsplat.tga",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": [
+   128,
+   128
+  ],
+  "shaders": [
+   "bloodsplat"
+  ],
+  "maps": [
+   "fl"
+  ],
+  "users": [
+   "models/fx/coop_fl_bloodsplat.tik#sprite"
+  ],
+  "loaded": true,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/germanmaps/wintertroops/knitgloves1_blood1.jpg",
+  "file": "textures/models/human/germanmaps/wintertroops/knitgloves1_blood1.jpg",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": null,
+  "shaders": [],
+  "maps": [],
+  "users": [
+   "gore/skin swap of an upscaled base sheet"
+  ],
+  "loaded": false,
+  "exclude": null,
+  "mod_derived": true
+ },
+ {
+  "image": "textures/models/human/germanmaps/wintertroops/knitgloves1_blood2.jpg",
+  "file": "textures/models/human/germanmaps/wintertroops/knitgloves1_blood2.jpg",
+  "pak": "zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+  "size": null,
+  "shaders": [],
+  "maps": [],
+  "users": [
+   "gore/skin swap of an upscaled base sheet"
+  ],
+  "loaded": false,
+  "exclude": null,
+  "mod_derived": true
+ }
+]
