@@ -158,9 +158,23 @@ MMG_GRID = {
 }
 MMG_CENTRE = "51f46f11"     # l9_z124: the idle point that needs the least turn; the one-shots (enter, exit, deaths) take its yaw
 MMG_ONE = {"enter": "58f52873", "exit": "647c2159", "death": "7a12045e", "death_explosion": "573a6031"}
-SCENES = {"leader_explains_plan": ("cfebf641", False), "partisan_idling": ("d4f7a161", True),
-          "partisan_idling2": ("0a84ccf5", True), "partisan_idling3": ("982e0d67", True),
-          "partisan_female_crouched": ("ad30af0a", True), "partisan_female_crouched2": ("614ca96c", True)}
+# ambient / scripted scenes, by the rig the level's ICS points name (level.ea_ps_rig / ea_sc_rig): the clips of that
+# rig's state graph that have length (single-frame state poses left out), longest first. Alias ea_ics_<rig>_<n>.
+# Each clip's root is the rig point on the floor, facing the point's yaw: the clip already carries the original's own
+# root turn (ExplainsPlan and PolishingWeapon play turned 180, TyingBootLaces 80, GuardIdling 90) and seat heights
+# (PolishingWeapon's pelvis 43 cm, TyingBootLaces' 51 cm over the root: the bench must be there).
+SCENES = {
+    "partisanidling": "d4f7a161 0a84ccf5 982e0d67",
+    "crouchedpartisanfemale": "ad30af0a 614ca96c 29619877",
+    "explainsplan": "cfebf641 936dea29 db40db32",
+    "partisanleadersaysgofight": "e5e54e87 23edf3ec",
+    "polishingweapon": "3ae7a727 72ca963c",
+    "tyingbootlaces": "fca8bb38 b4858a23",
+    "callsplayer": "d933ab7c 22c28d69 428633ce 0aab02d5",
+    "guardidling": "8b9bc128 c3b6f033 7a4c26b6",
+    "guardatpost": "1926945c 2a1ead82 510ba547",
+    "guardstopsplayer": "cfe6595e fdfda7cd 87cb6845",
+}
 
 
 def aim_label(bank, skel, h):
@@ -218,7 +232,8 @@ def build(stream, level, skd_bytes, files, log=print):
     centre = gun_yaw(bank, skel, bones, int(MMG_CENTRE, 16))
     for nm, hx in MMG_ONE.items():
         put("mmg_" + nm, int(hx, 16), False, centre)
-    for nm, (hx, loop) in SCENES.items():
-        put(nm, int(hx, 16), loop)
+    for rig, hs in SCENES.items():
+        for n, hx in enumerate(hs.split()):
+            put("ics_%s_%d" % (rig, n + 1), int(hx, 16), n == 0 and rig not in ("explainsplan", "partisanleadersaysgofight", "callsplayer", "guardstopsplayer"))
     log("eaanimconv: %d clips -> models/human/ea_%s/anim" % (len(rows), level))
     return "animations\n{\n\t$path models/human/ea_%s\n%s\n}\n" % (level, "\n".join("\t" + r for r in rows))
