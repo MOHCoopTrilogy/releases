@@ -35,7 +35,7 @@ VERSION = "0.7.33"
 WORLD_SCALE = 48.0          # map units per disc metre (flconvert.convert default; the EA world)
 
 # the props whose own models have passed the user's sheets; the map script uses one only when it is listed here
-OWN = set()
+OWN = {"panzer"}   # 2026-11-15 user approved the converted winter Panzer ("I like the snow panzer", sheets SHEET_ea_panzer_ingame_near_v8 / v8b)
 
 # stock bone frames, idle frame (and the cannon's 'open'), measured in game: name -> (world pos, (pitch, yaw, roll))
 STOCK = {
