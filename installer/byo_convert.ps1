@@ -129,7 +129,12 @@ function Describe($o) {
         "unpack" { return "Reading the disc image out of the zip (one temporary copy)..." }
         "convert" { return "Converting the mission (about a minute)..." }
         "films" { if ($o.skipped) { return "Briefing film skipped." } return "Converting the briefing film..." }
-        "upscale" { return "Sharpening textures..." }
+        "upscale" {
+            if ($o.skipped) { return "Texture sharpening skipped ($($o.skipped))." }
+            if ($o.phase -eq "gpu") { return "Sharpening $($o.textures) textures on the graphics card (a few minutes)..." }
+            if ($o.phase -eq "finish") { return "Sharpening textures: checking $($o.done) of $($o.total)..." }
+            return "Sharpening textures (checking the graphics card)..."
+        }
     }
     if ($o.done) { return "Done." }
     return ""

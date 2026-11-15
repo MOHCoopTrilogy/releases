@@ -100,7 +100,11 @@ def mohaa_angles(q, mirror):
         lft = (up[1] * fwd[2] - up[2] * fwd[1], up[2] * fwd[0] - up[0] * fwd[2], up[0] * fwd[1] - up[1] * fwd[0])
     yaw = math.degrees(math.atan2(fwd[1], fwd[0]))
     pitch = -math.degrees(math.asin(max(-1.0, min(1.0, fwd[2]))))
-    roll = math.degrees(math.atan2(-lft[2], up[2]))
+    # [flfix2 round 19, bug-11165] the engine's AngleVectors gives left.z = +sin(roll) (up.y = -sin(roll) at yaw 0):
+    # atan2(-left.z, up.z) rolled every object the wrong way (the canal-bridge crates leaned against the deck's
+    # arch instead of with it). Checked: AngleVectors(pitch, yaw, roll) now rebuilds this frame (200 random
+    # rotations, axis error < 1e-6; it was up to 2.0)
+    roll = math.degrees(math.atan2(lft[2], up[2]))
     return pitch, yaw, roll
 
 
@@ -123,7 +127,11 @@ def raw_angles(q, mirror=True):
     up = (m[0][2], m[1][2], m[2][2])
     yaw = math.degrees(math.atan2(fwd[1], fwd[0]))
     pitch = -math.degrees(math.asin(max(-1.0, min(1.0, fwd[2]))))
-    roll = math.degrees(math.atan2(-lft[2], up[2]))
+    # [flfix2 round 19, bug-11165] the engine's AngleVectors gives left.z = +sin(roll) (up.y = -sin(roll) at yaw 0):
+    # atan2(-left.z, up.z) rolled every object the wrong way (the canal-bridge crates leaned against the deck's
+    # arch instead of with it). Checked: AngleVectors(pitch, yaw, roll) now rebuilds this frame (200 random
+    # rotations, axis error < 1e-6; it was up to 2.0)
+    roll = math.degrees(math.atan2(lft[2], up[2]))
     return pitch, yaw, roll
 
 
@@ -162,3 +170,34 @@ def yaw(e, mirror):
         return 0.0
     q = struct.unpack("<4f", struct.pack("<4I", *w[7:11]))
     return mohaa_angles(q, mirror)[1] % 360
+
+
+def particle(e):
+    """[flfix2 round 20] a kind-9 record's particle-system parameters, or None. Decoded 2026-11-13 from the 15 kind-9
+    records of 1_1 and the by-type templates in the same .bpd (CREATEPARTICLESYSTEMBYTYPE hashes; a template is the
+    same 168-byte block with its type hash in the first word, so record word k = template word k - 18). Our reading:
+      [28] start colour (bytes 1..3 = R, G, B), [29] second colour (bytes 1..3) - the start colour range
+      [30], [31] end colour bytes (read, not used)
+      [32] high half: 1 = runs from load, 2 = waits for an event (record 8: the house smoke, which the original's
+           frames show only after the house blast); low half not decoded (0, 50, 51; 255 on the beach blast)
+      [33] not decoded (1, 2, 3)
+      [34] emit duration in seconds, 0 = continuous (the one-shot templates: 0.1 to 1.0)
+      [36..41] spawn box, [42..47] velocity range, [48..50] acceleration, all metres (per second), each axis given
+           as two ends in either order
+      [51..54] start size range (two pairs), metres
+      [55] particles per second (continuous systems), [56] particle life, seconds
+      [57], [58] spin range; [59] the sprite (an offset into data not on this level: same value = same sprite)
+    Fields marked 'read as' in FIDELITY round 20 are readings, not documentation."""
+    w = words(e)
+    if len(w) < 60 or w[3] != 9:
+        return None
+    f = lambda k: struct.unpack("<f", struct.pack("<I", w[k]))[0]          # noqa: E731
+    rgb = lambda x: ((x >> 8) & 255, (x >> 16) & 255, (x >> 24) & 255)      # noqa: E731
+    ax = lambda a, b: [tuple(sorted((f(a + i), f(b + i)))) for i in range(3)]   # noqa: E731
+    c0, c1 = rgb(w[28]), rgb(w[29])
+    return {"rgb": tuple((a + b) / 510.0 for a, b in zip(c0, c1)), "rgb0": c0, "rgb1": c1,
+            "start": w[32] >> 16, "w32lo": w[32] & 0xFFFF, "w33": w[33], "dur": f(34),
+            "box": ax(36, 39), "vel": ax(42, 45), "acc": (f(48), f(49), f(50)),
+            "size": (min(f(51), f(52), f(53), f(54)), max(f(51), f(52), f(53), f(54))),
+            "rate": f(55), "life": f(56), "spin": (f(57), f(58)), "sprite": w[59],
+            "cls": next((s for s in e["strs"] if s.startswith("Start")), "")}

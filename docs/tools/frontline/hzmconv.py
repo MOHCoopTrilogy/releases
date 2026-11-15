@@ -104,7 +104,7 @@ class FrontlineGame:
                     progress(step="upscale", level=level)
                     import flupscale
                     hp = os.path.join(out_dir, "zzzz_fl_hdtex_%s.pk3" % level)
-                    flupscale.main(out, level, hp, up)
+                    flupscale.main(out, level, hp, up, progress=lambda **kv: progress(level=level, **kv))
                     if os.path.exists(hp):
                         files.append(hp)
                 except Exception as e:     # optional too
@@ -241,7 +241,10 @@ def main(argv=None):
     a.add_argument("--mohaa", required=True)
     a.add_argument("--home", help="where the paks go (default: <mohaa>/maintt)")
     a.add_argument("--films", action="store_true")
-    a.add_argument("--upscale", action="store_true")
+    # [flfix2 2026-11-12, user: "Yes for everyone"] the texture upscale runs by default; --no-upscale turns it off
+    # (--upscale is still accepted). It skips itself without a usable Vulkan GPU and never fails a conversion.
+    a.add_argument("--upscale", action="store_true", default=True)
+    a.add_argument("--no-upscale", dest="upscale", action="store_false")
     a.add_argument("--level", action="append")
     o = ap.parse_args(argv)
     if o.cmd == "version":

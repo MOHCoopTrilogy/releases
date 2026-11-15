@@ -83,7 +83,7 @@ def spec(level):
 
 # [flfix2] written into the data script (level.fl_conv): maps/coop_fl_*.scr tells the player to convert again when the
 # installed pak is older than the mission script expects (bug-10966). Raise it with every conversion-visible change.
-CONV_BUILD = 7
+CONV_BUILD = 9
 
 
 def spec_xy(level, X, key):
@@ -110,6 +110,207 @@ def chars_table(disc):
 # TODO(frontline): English speech has no English subtitle on the disc (SMUL carries EN only for foreign-language
 # lines). Decision 2026-11-08: keep Frontline's own behaviour - subtitles only where the disc has them. A local
 # speech-to-text pass was prototyped and removed; revisit only with the user's OK (bundled model, licence, size).
+
+
+
+def _slots(e, k):
+    """[flfix2 round 17] the messages a record's slot k sends (0 = player enters, 1 = player leaves, 2 = object
+    enters, ...): word 22+k is the byte offset of the slot's list {u32 count, u32 msg...}, 0 = the slot is empty"""
+    w = flscene.words(e)
+    if 22 + k >= len(w) or not w[22 + k] or w[22 + k] % 4:
+        return []
+    o = w[22 + k] // 4
+    if o >= len(w) or not (0 < w[o] < 16) or o + 1 + w[o] > len(w):
+        return []
+    return list(w[o + 1:o + 1 + w[o]])
+
+
+def _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log):
+    """[flfix2 round 17] Frontline's ambience zones and fire loops -> sounds + level vars for the mission script.
+    AmbienceTrigger (player enters, msg 236) starts streamed bed n = record word 14 from <l>STRBNK.AST and the bed
+    plays until another zone starts another; PlayFireLoopParent plays its sound set's PLAYSOUND(57) at the record
+    on enter (msg 66) and stops it on leave (msg 67) when its slot 1 sends 67, else never. Positions and radii go
+    through the converter's own transform (X), radii in map units."""
+    pre = f"fl{level.replace('_', '')}"
+    sdir = f"sound/fl/{level}/"
+    # beds: one per streamed ref of the .ABK, the loop body of each (the intro is the same audio on this disc)
+    beds = {}
+    ast = disc.read(d + amb["beds"] + ".ast")
+    for n, (intro, loop) in enumerate(flaudio.ast_loops(disc.read(d + amb["beds"] + ".abk"))):
+        sch = flaudio.schl_at(ast, loop or intro)
+        if not sch:
+            continue
+        src, dst = os.path.join(tmp, f"amb{n}.asf"), os.path.join(tmp, f"amb{n}.wav")
+        with open(src, "wb") as f:
+            f.write(sch)
+        if not flaudio.vgm_decode(vgm, src, dst):
+            log("ambience bed decode failed", n)
+            continue
+        rel = f"{sdir}amb{n + 1}.wav"
+        with open(dst, "rb") as f:
+            files[rel] = f.read()
+        alias = f"{pre}_amb{n + 1}"
+        # played levelwide (loopsound min distance "levelwide"), so the distances here do not matter
+        ali.append(f'aliascache {alias} {rel} soundparms 1.0 0.0 1.0 0.0 10000 10000 auto loaded maps "coop_fl"')
+        beds[n] = alias
+        lines.append(f'\tlevel.fl_amb_alias[{n + 1}] = "{alias}"')
+        lines.append(f'\tlevel.fl_amb_len[{n + 1}] = {flaudio.wav_seconds(dst):.1f}')
+    lines.append(f"\tlevel.fl_amb_n = {len(beds)}")
+    # the fire loop: the sound set of a PlayFireLoopParent record (link category 11) -> SOMI row -> bank sample
+    fire, row, sets_ = None, None, []
+    som = L.files.get(amb["fire"]["som"], b"")
+    fires = [e for e in L.entities() if amb["fire"]["cls"] in e["strs"]]
+    for e in fires:
+        sets_ = [x & 0xFFFF for x in flscene.words(e)[13:] if x >> 16 == 11]
+        row = flaudio.som_sound(som, sets_[0], amb["fire"]["sound"]) if sets_ else None
+        if row:
+            break
+    if row:
+        abk = disc.read(d + amb["fire"]["bank"])
+        stream = flaudio.bank_stream(abk, row["code"], row["first"])
+        bnk_path = os.path.join(tmp, "fire.bnk")
+        with open(bnk_path, "wb") as f:
+            f.write(abk[abk.find(b"BNKl"):])
+        dst = os.path.join(tmp, "fire.wav")
+        if stream and flaudio.vgm_decode(vgm, bnk_path, dst, stream):
+            rel = f"{sdir}fire.wav"
+            with open(dst, "rb") as f:
+                files[rel] = f.read()
+            fire = f"{pre}_fire"
+            ali.append(f'aliascache {fire} {rel} soundparms {row["volume"]:.2f} 0.0 1.0 0.0 256 2400 auto loaded maps "coop_fl"')
+            lines.append(f'\tlevel.fl_fire_alias = "{fire}"')
+            log("fire loop: set", sets_[0], "row", row, "stream", stream, f"{flaudio.wav_seconds(dst):.1f} s")
+    nz = nf = 0
+    for e in L.entities():
+        w = flscene.words(e)
+        q = X(e["pos"])
+        r_ = (w[11] >> 16) / 10.0 * X.s
+        if amb["zone_cls"] in e["strs"] and len(w) > 14 and w[14] in beds:
+            nz += 1
+            lines.append(f'\tlevel.fl_ambz[{nz}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+            lines.append(f'\tlevel.fl_ambz_r[{nz}] = {r_:.0f}')
+            lines.append(f'\tlevel.fl_ambz_bed[{nz}] = {w[14] + 1}')
+            lines.append(f'\tlevel.fl_ambz_rec[{nz}] = {e["i"]}')
+        elif fire and amb["fire"]["cls"] in e["strs"]:
+            nf += 1
+            lines.append(f'\tlevel.fl_fire[{nf}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+            lines.append(f'\tlevel.fl_fire_r[{nf}] = {r_:.0f}')
+            lines.append(f'\tlevel.fl_fire_stop[{nf}] = {int(amb["fire"]["stop_msg"] in _slots(e, 1))}')
+            lines.append(f'\tlevel.fl_fire_rec[{nf}] = {e["i"]}')
+    lines.append(f"\tlevel.fl_ambz_n = {nz}")
+    lines.append(f"\tlevel.fl_fire_n = {nf}")
+    log("ambience: beds", len(beds), "zones", nz, "fire loops", nf)
+
+
+def _particles(L, X, lines, pfx, log):
+    """[flfix2 round 20] Frontline's placed particle systems (.bpd section-3 kind 9, flscene.particle) -> level vars for
+    the mission script: where, which STOCK MOHAA emitter stands in for it (fl_levels.json "particles": type -> model,
+    chosen by the decoded colour, motion and size), when it starts and how long it stays. Nothing of the disc's
+    sprites is carried; the type is ours, from the decoded numbers."""
+    rows = []
+    for e in L.entities():
+        p = flscene.particle(e)
+        if p is None:
+            continue
+        r, g, b = p["rgb"]
+        if p["dur"] > 0 or p["cls"]:
+            typ = "blast"           # a one-shot burst (emit duration set) or a scripted explosion class
+        elif r > 1.3 * b and r > 0.4:
+            typ = "flame"           # orange start colour
+        elif p["vel"][2][0] < 0:
+            typ = "pall"            # sinks as well as rises: a low, wide smoke that hangs
+        else:
+            typ = "smoke"           # rises steadily
+        rows.append((e, p, typ))
+    by_typ = {}
+    for _e, p, typ in rows:
+        by_typ.setdefault(typ, []).append(sum(p["size"]) / 2.0)
+    n = 0
+    for e, p, typ in rows:
+        rec = e["i"]
+        model = pfx["models"].get(typ)
+        if not model:
+            continue
+        n += 1
+        q = X(e["pos"])
+        ref = sorted(by_typ[typ])[len(by_typ[typ]) // 2] or 1.0
+        start = pfx.get("start", {}).get(str(rec)) or ("load" if p["start"] == 1 else "event")
+        if typ == "blast":
+            life = pfx.get("life", {}).get(str(rec), math.ceil(p["dur"] + p["life"]))
+        else:
+            life = 0            # continuous: the original never stops it (no stop message reaches a kind-9 record)
+        lines.append(f'\tlevel.fl_pfx[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+        lines.append(f'\tlevel.fl_pfx_rec[{n}] = {rec}')
+        lines.append(f'\tlevel.fl_pfx_type[{n}] = "{typ}"')
+        lines.append(f'\tlevel.fl_pfx_model[{n}] = "{model}"')
+        lines.append(f'\tlevel.fl_pfx_scale[{n}] = {sum(p["size"]) / 2.0 / ref:.2f}')
+        lines.append(f'\tlevel.fl_pfx_start[{n}] = "{start}"')
+        lines.append(f'\tlevel.fl_pfx_life[{n}] = {life}')
+        lines.append(f'\tlevel.fl_pfx_rate[{n}] = {p["rate"]:.2f}')
+        lines.append(f'\tlevel.fl_pfx_plife[{n}] = {p["life"]:.2f}')
+        lines.append(f'\tlevel.fl_pfx_size[{n}] = {sum(p["size"]) / 2.0 * X.s:.0f}')
+        log("particle", rec, typ, model, start, "life", life, "rate %.2f plife %.2f size %.2f-%.2f m rgb %s"
+            % (p["rate"], p["life"], p["size"][0], p["size"][1], tuple(round(c, 2) for c in p["rgb"])))
+    lines.append(f"\tlevel.fl_pfx_n = {n}")
+
+
+def _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, osp, log):
+    """[flfix2 round 20] LoadOneShotSound areas (entering one loads bank 11LOAD<n>, n = record word 14 = the class's
+    attr 2): the bank's clips are the area's AI combat barks and pain sounds, both sides. Which clip is which situation
+    is OUR table (fl_levels.json "oneshots" "sets": bank -> side_situation -> entry numbers), made by transcribing
+    the decoded clips locally; nothing of the audio or the words is stored in the repository. Each situation becomes
+    a numbered alias set (<base>1..<base>N: the engine plays one at random when the base name is played, the
+    coop_aivoice pool recipe) and the mission script hands the base name to the situational AI voice per area."""
+    import hashlib
+    pre = f"fl{level.replace('_', '')}_os"
+    seen = {}
+    na = 0
+    banks = {}
+    for e in L.entities():
+        if osp["cls"] not in e["strs"]:
+            continue
+        w = flscene.words(e)
+        bank = w[14] if len(w) > 14 else 0
+        sets = osp.get("sets", {}).get(str(bank))
+        if not sets:
+            continue
+        na += 1
+        q = X(e["pos"])
+        lines.append(f'\tlevel.fl_os[{na}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+        lines.append(f'\tlevel.fl_os_r[{na}] = {(w[11] >> 16) / 10.0 * X.s:.0f}')
+        lines.append(f'\tlevel.fl_os_bank[{na}] = {bank}')
+        lines.append(f'\tlevel.fl_os_rec[{na}] = {e["i"]}')
+        if bank in banks:
+            continue
+        abk = disc.read(d + osp["bank"].format(n=bank))
+        bnk, _ents = flaudio.bnk_entries(abk)
+        bp = os.path.join(tmp, f"os{bank}.bnk")
+        with open(bp, "wb") as f:
+            f.write(bnk)
+        nb = 0
+        for key, entries in sorted(sets.items()):
+            j = 0
+            for k in entries:
+                dst = os.path.join(tmp, f"os{bank}_{k}.wav")
+                if not flaudio.vgm_decode(vgm, bp, dst, k):
+                    log("one-shot decode failed", bank, k)
+                    continue
+                data = open(dst, "rb").read()
+                h = hashlib.sha1(data[44:]).hexdigest()[:10]
+                rel = seen.get(h)
+                if rel is None:
+                    rel = f"sound/fl/{level}/os/{h}.wav"     # the same clip in two banks is stored once
+                    files[rel] = data
+                    seen[h] = rel
+                j += 1
+                ali.append(f'aliascache {pre}{bank}_{key}{j} {rel} soundparms 1.0 0.1 1.0 0.05 220 2400 dialog loaded maps "coop_fl"')
+            if j:
+                nb += j
+                lines.append(f'\tlevel.fl_os_alias[{bank}]["{key}"] = "{pre}{bank}_{key}"')
+                lines.append(f'\tlevel.fl_os_cnt[{bank}]["{key}"] = {j}')
+        banks[bank] = nb
+    lines.append(f"\tlevel.fl_os_n = {na}")
+    log("one-shots: areas", na, "clips per bank", banks, "files", len(seen))
 
 
 def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
@@ -150,6 +351,13 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         lines.append(f'\tlevel.fl_cue_sub["{key}"] = {scr_str(sub)}')
         lines.append(f'\tlevel.fl_cue_who["{key}"] = {scr_str(spk)}')
         lines.append(f'\tlevel.fl_cue_len["{key}"] = {flaudio.wav_seconds(path):.2f}')
+    # ---- [flfix2 round 17] ambience beds + fire loops (TRACE_ambience.md) ----
+    amb = sp.get("ambience")
+    if amb:
+        _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log)
+    # ---- [flfix2 round 20] one-shot banks: the areas' combat barks and pain sounds ----
+    if sp.get("oneshots"):
+        _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, sp["oneshots"], log)
     files[f"ubersound/fl_{level}.scr"] = ("// GENERATED on this PC by the Frontline converter\n" + "\n".join(ali) + "\n").encode()
 
     if mohaa_base:
@@ -532,8 +740,18 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         lines.append(f"\tlevel.fl_ladder_h[{nlad}] = {ld['height']:.0f}")
         lines.append(f"\tlevel.fl_ladder_exit[{nlad}] = ( {ex:.0f} {ey * sg:.0f} {ez:.0f} )")
     lines.append(f"\tlevel.fl_ladder_n = {nlad}")
+    # [flfix2 round 20] placed particle systems (kind 9) -> stock emitters
+    if spec(level).get("particles"):
+        _particles(L, X, lines, spec(level)["particles"], log)
     lines.append(f"\tlevel.fl_ammo_n = {n_ammo}")
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
-              "\tlevel.fl_conv = %d" % CONV_BUILD, "\tlevel.fl_data_ok = 1", "}end", ""]
+              "\tlevel.fl_conv = %d" % CONV_BUILD, "\tlevel.fl_data_ok = 1"]
+    # [flfix2 round 20] one greppable line read back from the vars just set (proves the data script ran to the end)
+    summ = ['" conv " + level.fl_conv']
+    if any(q.startswith("\tlevel.fl_pfx_n =") for q in lines):
+        summ.append('" pfx " + level.fl_pfx_n')
+    if any(q.startswith("\tlevel.fl_os_n =") for q in lines):
+        summ.append('" oneshot areas " + level.fl_os_n')
+    lines += ["\tprintln( \"^~^~^ FLDATA\" + " + " + ".join(summ) + " )", "}end", ""]
     files[f"maps/coop_fl_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     return {"nudged": nudged, "axis": na, "allies": nl, "health": nh, "cues": len(wavs), "music": len(segs)}

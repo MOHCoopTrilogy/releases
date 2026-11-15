@@ -22,7 +22,15 @@ import math
 import numpy as np
 
 DEFAULTS = {"cell": 8.0, "crawl_min": 24.0, "crawl_to": 60.0, "door_min": 78.0, "door_to": 98.0,
-            "carve_lo": 22.0, "margin": 12.0, "floor_nz": 0.7, "ceil_nz": 0.3, "slab": 2.0}
+            "carve_lo": 22.0, "margin": 12.0, "floor_nz": 0.7, "ceil_nz": 0.3, "slab": 2.0,
+            # [round 16] hanging walls (lift_lintels), raw height over the floor triangle. 136 = the map's 38u step
+            # + the 94u stand box + the floor slab's 2u + 2u: MOHAA's PM_StepSlideMove lifts the box a FULL step before
+            # it slides on, so a 2-4u floor seam or a door step under a lintel needs the whole step of headroom.
+            # 56: an arch springs from its jambs at ~64u; a crawl hole's top (<56) stays (flclear crawl cells)
+            "lintel_min": 56.0, "lintel_to": 136.0, "lintel_flush": 38.0, "soffit_w": 40.0,
+            # [round 16] the cap over a carved DOORWAY (a flat soffit 78-98u up) goes to this height, not door_to,
+            # for the same step-up reason
+            "door_cap": 134.0}
 
 
 def _tri_columns(tris, cell):
@@ -84,7 +92,7 @@ def low_cells(tris, o):
         if o["crawl_min"] <= g < o["crawl_to"]:
             kind, top = "crawl", z[i] + o["slab"] + o["crawl_to"]
         elif o["door_min"] <= g < o["door_to"]:
-            kind, top = "door", z[i] + o["slab"] + o["door_to"]
+            kind, top = "door", z[i] + o["slab"] + o.get("door_cap", o["door_to"])
         else:
             continue
         prev = out.get(key)
@@ -316,6 +324,106 @@ def visible_ceiling(cells, render_tris, o):
     return keep
 
 
+def lift_lintels(tris, tags, o):
+    """[flfix2 round 16] HANGING walls over a walkway: a lintel, an arch's soffit or chamfer, the wall over a gap -
+    any non-floor collision triangle whose lowest point hangs `lintel_min`..`lintel_to` above a floor that continues
+    on both sides of it (a passage, not a window sill) - is clipped so nothing of it is below floor+`lintel_to`.
+
+    Why: low_cells only sees CEILINGS (faces with |nz| >= ceil_nz over a column centre). Most of 1_1's doorways and
+    arches have none: the wall above the opening is a vertical sheet whose bottom edge is the door top, 2.0 m = 96u
+    over the floor. The floor's collision slab stands 2u proud of its triangle (centred 4u prisms), so a MOHAA player
+    standing in the opening has 94u - exactly the 94u stand box (bg_pmove.cpp PM_CheckDuck) and less once the engine's
+    ground epsilon is added: an invisible wall at head height in every 2 m door of the level (user playtest 2026-11-12,
+    round-16 sweep: 110 of 154 blocked route pairs passed crouched). And a door is rarely level: a 2-4u floor seam or a
+    real step under it makes PM_StepSlideMove lift the box a whole step (the map's 38u) before sliding on, so the
+    lintel has to clear step + box (lintel_to 136). Arches spring from their jambs at ~64u (lintel_min 56). The cost:
+    collision is open up to 136u in a drawn wall over a doorway (shots pass there). Collision only; nothing drawn
+    changes."""
+    import flgeom
+    lo_h, to_h = o["lintel_min"], o["lintel_to"]
+    fl = [t for t in tris if (lambda n: n is not None and abs(n[2]) >= o["floor_nz"])(_unit(t))]
+    G = flgeom.TriGrid(fl, cell=64.0)
+    # floors facing UP only, for "is something standing right under it": an arch's chamfer soffit (|nz| 0.76, facing
+    # down) counted as a floor there and every chamfered arch looked 'not hanging'
+    Gup = flgeom.TriGrid([t for t in fl if _unit(t)[2] > 0.0], cell=64.0)
+    W = flgeom.TriGrid(tris, cell=64.0)
+
+    def open_under(p, ux, uy):
+        """nothing directly under point p of the triangle's lowest edge: a short segment ACROSS the face 3u lower
+        crosses no collision (a wall cut into stacked rows of triangles has its next row there - not a lintel)"""
+        a = (p[0] - ux * 0.5, p[1] - uy * 0.5, p[2] - 3.0)
+        b = (p[0] + ux * 0.5, p[1] + uy * 0.5, p[2] - 3.0)
+        return not _seg_hits(W.tris, W.near(p[0], p[1], 16.0), a, b)
+
+    def floor_at(x, y, z):
+        return G.ground(x, y, z + o["lintel_flush"], z - o["lintel_flush"])
+    out, otags, n = [], [], 0
+    for t, tg in zip(tris, tags):
+        nv = _unit(t)
+        soffit = None
+        if nv is not None and nv[2] <= -o["floor_nz"]:
+            # a downward face: an arch's soffit or chamfer strip inside the wall's thickness (narrow across its
+            # longest edge) - not a ceiling or an upper floor (wide). Its across direction replaces the face normal.
+            ed = max(((t[i], t[(i + 1) % 3]) for i in range(3)), key=lambda e: math.dist(e[0][:2], e[1][:2]))
+            L0 = math.dist(ed[0][:2], ed[1][:2])
+            if L0 > 1e-6:
+                dx, dy = (ed[1][0] - ed[0][0]) / L0, (ed[1][1] - ed[0][1]) / L0
+                wid = max(abs((p[0] - ed[0][0]) * -dy + (p[1] - ed[0][1]) * dx) for p in t)
+                if wid <= o["soffit_w"]:
+                    soffit = (-dy, dx)
+        if nv is None or (abs(nv[2]) >= o["floor_nz"] and soffit is None):
+            out.append(t)
+            otags.append(tg)
+            continue
+        zlow = min(p[2] for p in t)
+        low = [p for p in t if p[2] <= zlow + 1.0]
+        cx, cy = sum(p[0] for p in low) / len(low), sum(p[1] for p in low) / len(low)
+        fz = G.ground(cx, cy, zlow - lo_h, zlow - to_h)
+        ok = False
+        # it must HANG: nothing to stand on just under its lowest point (an upper storey's wall stands on its own
+        # floor, which has the street 120u under it)
+        if fz is not None and Gup.ground(cx, cy, zlow + 4.0, zlow - lo_h + 1.0) is None:
+            # a walkway THROUGH the wall: floor on both sides of it, across its face (the face normal), level with
+            # the floor under it. A window's sill fails (the street is a sill's height lower, a house shell has no
+            # floor at all - round 16 audit: testing along x/y instead let the walk climb onto sills, through the
+            # windows and into the shells: 921 falls into the void)
+            if soffit is not None:
+                ux, uy = soffit[0] * 24.0, soffit[1] * 24.0
+            else:
+                hl = math.hypot(nv[0], nv[1])
+                ux, uy = nv[0] / hl * 24.0, nv[1] / hl * 24.0
+            ok = floor_at(cx + ux, cy + uy, fz) is not None and floor_at(cx - ux, cy - uy, fz) is not None
+            if ok:
+                # ...and some of it really hangs over that walkway: open space under a point of its lower boundary
+                # below the cut (a wall cut into stacked rows has the next row under every such point; the facade
+                # triangle that carries an arch's chamfer edge sits on the jamb at its lowest corner but is open
+                # under the rest of that edge - so: any edge point, not the lowest corner)
+                smp = [tuple(t[i][k] + (t[(i + 1) % 3][k] - t[i][k]) * f for k in range(3))
+                       for i in range(3) for f in (0.1, 0.3, 0.5, 0.7, 0.9)]
+                ok = any(open_under(q, ux, uy) for q in smp if q[2] < fz + to_h - 1.0)
+        if not ok:
+            out.append(t)
+            otags.append(tg)
+            continue
+        keep, _cut = _split([tuple(p) for p in t], (0.0, 0.0, -1.0), -(fz + to_h))
+        n += 1
+        if keep is None or _area(keep) < 0.5:
+            continue
+        for i in range(1, len(keep) - 1):
+            out.append((keep[0], keep[i], keep[i + 1]))
+            otags.append(tg)
+    return out, otags, n
+
+
+def _unit(t):
+    a, b, c = t
+    u = (b[0] - a[0], b[1] - a[1], b[2] - a[2])
+    v = (c[0] - a[0], c[1] - a[1], c[2] - a[2])
+    n = (u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0])
+    ln = math.sqrt(n[0] ** 2 + n[1] ** 2 + n[2] ** 2)
+    return None if ln < 1e-9 else (n[0] / ln, n[1] / ln, n[2] / ln)
+
+
 def normalise(tris, opts=None, tags=None, render_tris=None):
     """tris: [(a, b, c)] in MOHAA units, WOUND the converter's way (outward faces: floors face up). Returns (new_tris, caps[(lo, hi)], report)."""
     o = dict(DEFAULTS)
@@ -361,8 +469,9 @@ def normalise(tris, opts=None, tags=None, render_tris=None):
             for i in range(1, len(p) - 1):
                 out.append((p[0], p[i], p[i + 1]))
                 otags.append(tg)
+    out, otags, n_lift = lift_lintels(out, otags, o)
     caps = [((b["lo"][0], b["lo"][1], b["hi"][2]), (b["hi"][0], b["hi"][1], b["hi"][2] + 4.0)) for b in boxes]
-    rep = {"low_cells": n_low, "drawn_ceiling_cells": n_vis, "passage_cells": len(cells), "crawl_cells": sum(1 for v in cells.values() if v[2] == "crawl"),
+    rep = {"lintels_lifted": n_lift,"low_cells": n_low, "drawn_ceiling_cells": n_vis, "passage_cells": len(cells), "crawl_cells": sum(1 for v in cells.values() if v[2] == "crawl"),
            "door_cells": sum(1 for v in cells.values() if v[2] == "door"), "boxes": len(boxes),
            "tris_carved": touched, "tris_in": len(tris), "tris_out": len(out)}
     rep["tags"] = otags

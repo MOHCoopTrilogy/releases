@@ -125,7 +125,8 @@ def thin_objects(tris, span=48.0):
     return {i for i in walls if box[find(i)][2] - box[find(i)][0] <= span and box[find(i)][3] - box[find(i)][1] <= span}
 
 
-def carve(tris, tags, segs, step_h=38.0, top=96.0, half=19.0, spacing=12.0, keep=lambda f: False, notch=12.0, dense=()):
+def carve(tris, tags, segs, step_h=38.0, top=106.0, half=19.0, spacing=12.0, keep=lambda f: False, notch=12.0, dense=(),
+          wall_top=136.0):
     """cut the collision that keeps a MOHAA box off an open route, above the step height (collision only)"""
     G = flgeom.TriGrid(tris)
     boxes = []
@@ -150,8 +151,13 @@ def carve(tris, tags, segs, step_h=38.0, top=96.0, half=19.0, spacing=12.0, keep
                            for i_ in G.near(x_, y_, 20))
             if not hit_(x, y):
                 continue
-            # from 6u under the step: the cut piece below keeps a 2u half-slab, which must stay climbable
-            boxes.append(((x - half, y - half, z + step_h - 6.0), (x + half, y + half, z + top)))
+            # from 6u under the step: the cut piece below keeps a 2u half-slab, which must stay climbable.
+            # [flfix2 round 16] walls are cut up to `wall_top` = 136u (was 96u: the piece left above stood 94u over the
+            # floor slab - the stand box's own height - and MOHAA climbs the stub with a FULL step, PM_StepSlideMove,
+            # which lifts the head 38u higher still: every carved doorway passed only crouched). Ceilings only up to
+            # `top` (the `flat` test below): an upper storey's floor is never cut. Cutting the stub away as well (from
+            # under the floor) was tried and opened a way out of the level at (4320, -3056): geoaudit void falls 0 -> 980.
+            boxes.append(((x - half, y - half, z + step_h - 6.0), (x + half, y + half, z + wall_top)))
     if not boxes:
         return tris, tags, {"routes": len(segs), "blocked_samples": 0, "tris_cut": 0}
     B = flgeom.TriGrid([((lo[0], lo[1], lo[2]), (hi[0], lo[1], lo[2]), (hi[0], hi[1], hi[2])) for lo, hi in boxes])
@@ -179,7 +185,7 @@ def carve(tris, tags, segs, step_h=38.0, top=96.0, half=19.0, spacing=12.0, keep
             # Frontline's 86u body walks under and MOHAA's 94u one does not)
             zmin_ = min(v[2] for v in t)
             c2 = [sum(v[k] for v in t) / 3 for k in range(2)]
-            flat = not any(lo[2] + 28.0 <= zmin_ <= hi[2] and lo[0] <= c2[0] <= hi[0] and lo[1] <= c2[1] <= hi[1]
+            flat = not any(lo[2] + 28.0 <= zmin_ <= lo[2] - step_h + 6.0 + top and lo[0] <= c2[0] <= hi[0] and lo[1] <= c2[1] <= hi[1]
                            for lo, hi in (boxes[j] for j in B.near(c2[0], c2[1], half)))
         if edge and not keep(f):
             # ...except a NOTCH: where the route only clips the last few units of such a wall (its end by the path,

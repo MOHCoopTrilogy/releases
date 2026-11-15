@@ -406,6 +406,11 @@ S06 shouters PARTIAL -> MATCH for the three at trigger 411 (one line with sound,
 S23 breach PARTIAL -> MATCH on trigger, timing and frames, hint conflict listed; S02 / A08 / I05 jeep, crew, gun: built and
 shown, poses listed as stand-ins.
 
+Look round (2026-11-12, after the v1.10.79 playtest): the decoded fog IS applied (`fl_levels.json` 1_1 farplane 4800,
+farplane_bias 240; commit 002f71d7). Same views, v94 vs the new conversion (local): `H:\hzm_work\flpolish\look\fog_pairs_a.jpg`,
+`fog_pairs_b.jpg`; the far town now hazes like the reference frame `sq_across`. The object light formula of the same staged
+patch (`H:\hzm_work\flpolish\fix2\r13\fog_conv.py`, OBJLIT part) is still NOT applied.
+
 Look work parked on the user's priority (2026-11-12): the decoded fog (linear 240..4800, planar) and the object light
 formula are NOT applied; the build still carries the fitted fog 600..16000. A patch is staged, untested:
 `H:\hzm_work\flpolish\fix2\r13\fog_conv.py`.
@@ -475,6 +480,184 @@ Not matched or not verified: the tank's hull MG is a hidden stock MG42 (the disc
 the cannon aims at the nearest player; tank destruction stays the user-approved rocket kill (TRACE_panzer_kill.md:
 the original's rockets do not kill it); the listener waits while a player watches his spot (spawn rule).
 
+## Round 15 (flfix2, 2026-11-12) - window into a floorless house (bug-11115)
+
+| item | finding | result | proof |
+|---|---|---|---|
+| "Through these windows I can still see under the map" (user) | the ground-floor window of the house south of the jeep road (window about (6480,-3590), house (6330..6620, -3910..-3590)); the house is a shell with no ground floor on the disc too (nothing dropped). The original shows its sky box there: one flat dark colour below the horizon (TRACE_sky_fog.md). Ours showed the edge fill (cobble skirt + cobble ground under the level) | converter `flpit.py`: every floorless pocket closed off by drawn walls gets a render-only lid in that colour (83 81 76), 4u under the ground around it; level edges keep skirt and ground. 1_1: 623 pockets, collision unchanged | offline ray view `rv7b.png` (fill pixels at the window 20743 -> 0); in-game `H:\hzm_work\flpolish\fix2\r15\s1\` |
+
+## Round 17 (flfix2, 2026-11-13) - ambience ("it sounds quiet", bug-11149)
+
+| item | original (TRACE_ambience.md) | conversion | status |
+|---|---|---|---|
+| Ambience beds | three streamed loops in 11STRBNK.AST (57 s, 192 s, 62 s, 22 kHz stereo) | the same three streams decoded from the player's disc (loop body of each, sizes equal to the reference decodes), aliases fl11_amb1..3, one levelwide loop at a time | exact audio; which bed a zone starts is now read from the .abk's streamed-ref table, not assumed |
+| Ambience zones | recs 44-48, spheres, enter starts bed (44, 45 -> 0; 46, 47 -> 1; 48 -> 2), no stop | same records, positions and radii through the converter's transform (level.fl_ambz*); switch on entry by any living player; bed keeps playing | exact rule; zone test 2D (spheres sit at z 0) - a choice |
+| Fire crackle | PLAYSOUND 57 of sound set 446 -> 11SCRBNK sample (resolved via 1_1propSnd.som), volume 20000/32767, positional at recs 99 / 100 / 101 | the same disc sample (stream 31, 14 s loop), alias fl11_fire at 0.61; loops at the three spots, 99 and 101 stop on leave, 100 never stops | sample resolved from the disc tables (not heard); falloff 256-2400u a stand-in (EA's falloff not decoded) |
+| Burning rag on the molotov | same sound 57 (set 716 -> the same row) | still coop_snd_fire_small until the map swaps in level.fl_fire_alias | stand-in until wired |
+| Mod ambience on top | none | coop ambience bed (coop_amb_country, bridged for coop_fl) and its artillery sweeteners also play unless the map sets level.coop_ambienceBed = "none" | user choice |
+| In a client | - | not heard yet: needs the map script's fl_ambience thread (handed to the map owner) and a listen | not verified |
+
+## Round 18 (flfix2, 2026-11-13) - after the second human playtest: allies, jeep gun and gunner, interrogation, voices
+
+Mod script only (`maps/coop_fl_1_1.scr`, new `coop_mod/discallies.scr`, an opt-in line in `coop_mod/aihandler.scr`). Runs
+in `H:\hzm_work\flpolish\fix2\r17\` (one muted 1080 client each, v107 pak): `base0` / `tune1` (player stands at the
+TRACE_allies spot A, never fires; old kit / new kit), `eng0` / `eng1` (player fights: auto-aim at the nearest visible German
+plus bursts; old / new), `fin` (use icon, house). Deaths are attributed from the pain handler (`FLSET death ... by=`).
+
+| Item (user) | Cause | Now | Proof |
+|---|---|---|---|
+| ".30 cal ... two inside of each other" | mounted, the engine draws the turret's own first-person gun (`30cal_viewmodel.tik` on the eyes, world turret hidden from the gunner) while our disc gun mesh followed the aim in the same place | the disc mesh is hidden from the mounted player only (`svflags +notsingleclient`); everyone else still sees the disc gun | `r17/ongun_l_00_c.jpg` (one gun), log `30cal mounted by 0: disc mesh hidden from him` |
+| Wounded gunner "kinda flips" | `death_prone` starts face-down; the downed cycle (23A825) lies on his back | settles from the cycle into the stock on-back dead pose (`dead_pose3`) over 1.2 s, stub death handler, pose kept on the body. (Webber's own 23A826_DeadPose was tried first: half-sitting with a raised fist, `base0` stills) | `r17/eng1_dead_b_crop.jpg`, `r17/eng1_death_seq.jpg` |
+| Allies "decimating" / "crush the Germans" | paratrooper kit: accuracy 60, health 300, noticescale 50 (spots twice as fast), BAR; AI damage on AI unscaled | `coop_mod/discallies.scr` kit: accuracy 18, health 150, noticescale 100, Garand instead of BAR; `level.coop_aiVsAiDmg 0.5` (AI-vs-AI damage of the other team halved; opt-in, a stock map is unchanged: `r17/stock17_m2l1.log`) | square group (3 Germans) dead after spawn: old +5..+8 s (standing) / +8..+11 s (fighting); new +14..+17 s (standing, kit only) / +17..+32 s (fighting). Whole route with a fighting player: old = allies 6 kills, player 2; new = allies 3, player 4 (all 3 ally kills in the square while the test player was on the .30 cal) |
+| Allies "stuck, not moving forward" | trail goals were points on a straight line 820u behind the player, off the path graph (user log: 56 `couldn't find end node`), so they never moved | goals are spots the players actually walked (a trail of positions every 128u), on the ally's side of the player; an unreachable goal (no motion in 2.5 s) is dropped for the next; an ally stranded twice and unseen is put on an unseen spot of the trail; a German of the area alive far off no longer holds an ally the player has walked past; the push never takes an ally further than the player | `r17/eng1` ally positions at every stop: 600-1100u behind the player from the wreck to trigger 66 |
+| Same German line "constantly" | one disc line per situation on every German, no line limit | shared cooldown `level.coop_avLineCd = 25` (aivoice.scr 8ec71705), each play logged (`AIVOICE`) | `r17/tune1` log: 7 lines in about 4 min, none repeated within 25 s |
+| Interrogation starts "before you get near it" | started at 1100u, through walls | starts within 350u of the officer, or 750u with a clear line from the player's eyes to him | headless `r17/int17_7.log`, `r17/int17_5.log` |
+| "heard him killing Castro but he was still alive" | `interrog_5` OPENS with the shot (0.5 s clipped bang and room tail, then his words); we played it while he only aimed and shot after it | the execution is atomic: he aims 5 s (rescue window), then the bang (`interrog_5`), the prisoner's death and the state change in one frame; killed first, the line never plays; the alarm path the same | headless: mode 7 executed, `FLSHOOT 2` and `interrog_5` on the same tick; mode 5 rescued, no `interrog_5` |
+| Dialogue after its speakers were dead | the dock lines (and the nest shout) played from a fixed spot on distance only | German lines need a living speaker near the spot and come from him; the dock talk needs calm (no enemy) speakers within 700u, re-checked before each line, and stops for good otherwise | code; not yet seen in a client |
+| Panzer "didn't notice it firing" | trigger 38 fired 2400u from the tank: its three shots went off unseen, the rocket pass killed it a minute later | the shots keep the trace spacing but start once a player sees the tank or is within 1500u (60 s cap); the rocket pass waits for the second shot (45 s cap) | code; not yet seen in a client |
+| "two houses sections" not seen | ours had only the bomb's fireball | a stock dust cloud at the house as its parts start, then a long smoke column (stand-ins) | `r17/fin` stills |
+| Barrel use "not obvious" | no use prompt | the mod's crosshair USE icon (`coop_mod/actprompt.scr`, `hand`) while a player faces one of our use spots within 110u (drop, molotov barrel) | `r17/fin/use_on_*.tga` |
+| Ambience | (Round 17) | `fl_ambience` wired; the mod's country bed off on this mission (`level.coop_ambienceBed none`) | boot log `FLAMB start beds=3 zones=5 fires=3` |
+
+Round 18b (client run `r17/dp2`): the Panzer is created out of sight and fires its three shots (trace spacing) once a
+player is within 2200u or sees it; seen down the street with the muzzle flash (`r17/dp2_tank5.jpg`), the rocket pass
+after the shots. `grenade_nest` is never spoken by the interrogation officer or a man playing dead; the dock talk is
+skipped when every German there is already in the fight. MG-nest men with no room behind them die forward or crumple
+in place instead of the stock fall-back; the user's legs-up corpse did not reproduce (`r17/dp2_nest_crop.jpg`).
+Not done: the tower MG "glitchy" (waiting for the user's detail), the use icon seen on the barrel itself (same code as
+the drop).
+
+## Round 16 (flfix2, 2026-11-12) - collision: doorways and arches
+
+User playtest (2026-11-12): "invisible walls" in doorways, arches, lanes and wall holes along the route (screens
+10-22). Stills, logs and walk results under `H:/hzm_work/flpolish/fix2/r16/`; offline sweeps
+(`walksweep.py`, `routesweep.py`, `cross.py`) in the round's scratch folder. Build v106 (`H:/hzm_work/flpolish/v106_fl_1_1.pk3`).
+
+| check | v95 (as played) | v106 | proof |
+|---|---|---|---|
+| Octagonal arch from the dark stone room to the lane before the crawl hole (screen 10), off its centre line (x 2990) | standing player stopped under the arch's right chamfer (90-105u up), passes crouched | passes standing both ways (2975, 2985, 2990) | `r16/c_v106/archx2990_ab_stand_pre.jpg` / `_stand.jpg`, `c_v106.out` (origin 2990,-2260 -> 2990,-1974) |
+| Arch into the breach yard (screen 22) | passes standing in the test engine | passes standing both ways | `r16/c_v106/yard5180_ab_stand*.jpg` (origin -2700 -> -3082) |
+| Engine walk, 50 AI-route crossings both ways + the two arches (1 client) | 82 of 89 standing, 2 crouch only, 5 blocked | 100 of 108 standing, 1 crouch only, 7 blocked (2 starts inside a fitted post, the same 5 as v95) | `main_v95.out`, `c_v106.out` |
+| Offline route-pair sweep (MOHAA box 30 x 94 / 54, step 38) | 154 pairs blocked standing | 111 | |
+| geoaudit | walkable 74615, void falls 0, must-crouch cells 1277 | 74725, 0, 965 | |
+| Screens 11, 12, 15-20 | not located on the map (no positions in the playtest log) - NOT verified | | |
+
+Cause found: Frontline's doors and arches are about 2.0 m (96u) high and their collision is a vertical sheet ending at
+the door top (no ceiling face, so the headroom pass never saw them); with the 2u floor slab that left 94u - exactly
+MOHAA's stand box - and the engine lifts the box a full step (38u) over any seam or stub before sliding on. Arches'
+chamfers start at 90-105u. Converter: `flclear.lift_lintels` (commits 8af40870, 31725dc3).
+
+### Round 16b - the live engine, per screen, step lips
+
+The test install's engine (Nov 10) is not the live one (game/cgame/exe hashes differ). The same walks were run with
+byte copies of the live binaries (`G:/mohaa-flpolish/_live1112`, `r16/L_v95.out`, `r16/L_v106.out`): 40 runs, v95 31
+standing / v106 32. The live engine honours the map's 38u step, and the octagonal arch passes standing there on v95 too.
+
+| screen | found at | v95 live | v106 live | cause / note |
+|---|---|---|---|---|
+| 10 octagonal arch | (2945-3002, -2109) | pass | pass | test engine: blocked off centre on v95 (chamfer 90-105u); fixed by lift_lintels |
+| 11 lane to the crawl hole | (2975, -2000 -> -1820); hole (2840-2960, -1680) | pass; hole passes | pass | the straight line from the arch to the hole meets a drawn wall, not a defect |
+| 16 opening over the VINS LIQUEURS street | upper floor (1600-1680, 1460-1480, z -6), 155u over the street | blocked | blocked | the original blocks it too (sill + material 10/13 sheets 35-115u); the street in front of the shop has no collision floor on the disc either - the original's boundary, kept |
+| 19 breach hole into the interrogation room (presumed) | (-1712, 4752) -> (-1750, 4680) | standing blocked both ways, crouch one way | standing one way, crouch the other | partly improved; not confirmed as the screen's hole |
+| 20 door from the dotted-wallpaper room | (-1748, 4772) -> (-1862, 4798) | pass | pass | - |
+| 22 breach-yard arch | (-2840, 5150-5240) | pass | pass | - |
+| 12, 15, 17, 18 | not found | | | - |
+| capped lane before the interrogation | (-1232, 4464) -> (-1712, 4752) | blocked standing and crouched | same | the original's crawl tunnel (player-clip sheets 52u over the lane, kept as 61u caps); its floor has a hole at (-1329, 4607): a player who climbs onto the sheet falls through it. Pre-existing, not changed |
+
+Step lips (18-38u rises from the walkable area): 913 edges in 290 places on v106, half of them with no drawn
+surface within 6u. Not smoothed: the live engine climbs 38u on this map, so they are not walls; clip half-steps
+would be a deviation without a cause.
+
+## Round 16c (collision, 2026-11-13) - screens 12-18 and the capped lane, live engine
+
+Located from the user's own log: the screens' file times (12 at 17:13:49, 15 at 17:17:21, 17 at 17:22:32, 18 at
+17:23:04) against his FLTRIG positions, then stills taken there (`H:/hzm_work/flpolish/fix2/r16/Le_v106/*_pre.jpg`).
+Walks with byte copies of the live binaries (`r16/Le_v95.out`, `r16/Le_v106.out`).
+
+| screen | found at | v95 (live engine) | v106 (live engine) | cause / note |
+|---|---|---|---|---|
+| 12 diamond-wallpaper room, door onto the street | room x 2232-2420, y -1700..-1600; door x 2231, y -1676..-1627 (lintel 129u) | the walker stops in the doorway (x 2248) | through to the street (x 2017) | lintel; fixed by lift_lintels. The still shows the CORDIN-GIRARDOT street, not the red barn doors: probable, not certain |
+| 15 rusty pointed arches past the bridge | not found: at that time the user was on the Panzer street (1400-1550, 470-900) | - | - | - |
+| 17 breach gap with slats and the canteen | (-656, 2620-2700) - matches the screen | passes standing (x -656) | passes standing (x -656) | 16u off its centre: v95 passed once, v106 crouched once; v106 only removed collision there (lintel pieces), so not a regression |
+| 18 diamond-wallpaper room onto a barrel yard | room with rubble near (-840, 2700) found; its door to the yard not found | - | - | - |
+| capped lane (-1232, 4464) -> (-1712, 4752) | | blocked standing and crouched | same | Not a passage in the original: the line crosses floorless house shells (no disc floor, nothing drawn, only our pit lids) under the original's player-clip sheets at 52u and 94u, with rubble drawn at 57-89u, and only one AI node at its start. The original keeps the player out; kept blocked. The holes are under 61-65u caps, so they can't be reached at the 38u step. An emulator frame would settle it |
+
+## Round 19 (flfix2, 2026-11-13) - visuals after the second playtest
+
+Converter only. Paks `H:\hzm_work\flpolish\v108_fl_1_1.pk3` (f123d82d..e5cc91d2) and `v109_fl_1_1.pk3` (+90c3f927, 92a1a1a3),
+commit lists beside them. Stills: `H:\hzm_work\flpolish\fix2\r19\a108\` (v108, LIVE engine binaries on the test home).
+v109 seen in a client: `H:\hzm_work\flpolish\fix2\r19\b109\` (hedges, window, pit, crates). Water: `r19\d109\`, `r19\d111\` (v111 = v109 + 8ebfc56e).
+
+| item (user) | cause | now | proof |
+|---|---|---|---|
+| Pit floor "light grey" (bug-11161) | the lid wore the sky band's 83 81 76; our display chain lifts it to ~112 on screen, the rooms around read 35-90 | 24 23 22 (~40 on screen, like the shaded wall foot); the band colour is kept as `rgb_original` | `r19/a108/pit.tga` |
+| See-through hedges, "into nothingness" (bug-11162) | the reskin stretches hedgerow.tga over 1.25x the box: its gappy crown band (image rows 15-45%) covered the top third of the original's opaque hedge box; Frontline's hedges have nothing inside | an opaque core in every original hedge face (the image's leaf body, unraised, 0.85 darker, foot 96u lower where the ground falls away); the card is drawn in front (polygonOffset); above the old top the crown stays open | `r19/a108/hedge*.tga` (v108: crown gaps closed; the void under hedges at `hedgeFar` led to the 96u foot in v109, not yet seen) |
+| See-through trees and shrubs | the tree cards near the start are the disc's own sparse branch cards (alpha-tested, two-sided); nothing dropped, no blended foliage in view | unchanged | `r19/a108/treeA/treeB/treeFar.tga` |
+| Window smear (bug-11163, user shot0377, by the wall objective) | the disc's out-of-bounds ground draws there (c6 240, 358, 535, 741, 1242, texture 54200) have UVs shared by pairs of vertices: zero UV area, the texture smeared along a line; nothing dropped (offline render of every disc draw: no street there on the disc either) | such ground triangles (n.z >= 0.4, >= 10000 u^2, tiling texture) get planar world UVs at the texture's own floor density | `r19/a108/win.tga`, `win2.tga` (v108: the yard fixed, the embankment still streaked -> v109) |
+| "Shooting the water does nothing" (bug-11164) | the BSP had the water (32 CONTENTS_WATER brushes; offline point-contents: water under the surface, nothing above). In v109 (`r19/d109/waterC_*`) a round into the canal threw the STONE impact (flash and chips): the canal bed under the water had no surface type, so the cgame chose stone | v111 (8ebfc56e): the water volume as stock water (CONTENTS_WATER + TRANSLUCENT, puddle surface) and a puddle canal bed: the stone chips are gone (`r19/d111/waterC_strip.jpg`). A white puff still rises at the hit; whether it is the stock water splash cannot be told apart from the gun smoke in these stills, and no stock-map comparison was run. Known, not closed | `r19/d109/waterC_strip.jpg` vs `r19/d111/waterC_strip.jpg` |
+| Bridge crates "dropped" (bug-11165) | they are the disc's own records 432/435/436, tilted 10/15/10 degrees about x to sit on the arched deck; our roll had the wrong sign for the engine, so they leaned against the arch (corners 6-11u sunk or floating) | roll fixed in flscene (raw_angles and mohaa_angles): the crates follow the deck (corners within 0-3u). Same fix turns the jeep tumble and the planes' bank the right way (not yet seen) | `r19/a108/crates2.tga`; offline corner check |
+| Hedges read as boxes, orange line (coordinator QA of v109, bug-11199) | the MOHAA hedgerow card was lighter, sharper art among the disc's own darker hedge and shrub art (12de80, 129d80, 170980); the original's lane is all disc art | user decision 2026-11-13 (option 1): back to the disc's OWN opaque hedge boxes (16c480), the card and its core dropped (7e21243e); a 96u foot skirt of the same texture keeps the void out from under them; 16c480 now passes the learned upscale (dd970a90: opaque dense foliage gets the cards' wider worm limit; leaf grain kept, colour-matched). v113 + its upscale pak: one dark leaf mass with the disc shrubs, no see-through, no seam line; light level 1:1 with the disc (vertex colour); the lane still reads lighter than the reference overall (display chain, row 'Display chain on disc maps') and the branch cards in front of the lane hedges are yellower. Left: a thin pale sliver under one far hedge (hedgeFar, centre right) and the skirt shows as a dark band where the ground falls away. The grey area in hedgeB2 is outside the playable side (disc draws nothing) | `H:\hzm_work\flpolish\fix2\r19\f113\s_hedge.jpg`, `f113\lane_pair.jpg` (reference left) |
+| Lane brightness: neutral display chain (user decision 2026-11-12) | never built: no script, cgame or renderer code reads a disc-map flag (EA notes: 'being defined in the Sealed Orders work'). The test client runs the full mod chain: r_gamma 1.3, r_postProcess 1, r_ppTonemap 1, r_ppExposure 0.7, r_ppSaturation 1.083, r_ppContrast 0.9986, r_ppBloom 1, r_ppSharpen 1, r_mapOverBrightBits 2 / scale 0.71, r_overBrightBits 0. r_gamma is client-archived and a server cannot set it (CG_IsSetVariableAllowed) | measured at the original's lane camera (4:3 crop, mean luminance hedge / road): reference 9.4 / 12.9; ours 24.6 / 26.6; true neutral (r_gamma 1, r_postProcess 0, test client only) 19.5 / 20.6; the existing per-map grade layer (coop_mapGrade expo 0.50, sat 0.92) 11.1 / 11.8. NOT applied: the row goes in the mod repo (docs/tools/grade_profiles.tsv -> coop_mod/cfg/mapgrade.cfg, `coop_fl_1_1 0.50 1.00 0.92 0.00`) - handed to the coordinator; a forced neutral chain would need cgame work | `H:\hzm_work\flpolish\fix2\r19\g114\lane_variants.jpg`, `i116\lane_pair.jpg` (reference, ours, ours at grade 0.50) |
+| Lane branch cards yellower (bug-11202) | the stock tree cards that replace 1dd980 etc. (fl_texmap) were graded on Pak2's 256 px tga, while the engine draws the HD DDS override (tree1_5: mean blue 2 against the tga's 24): the vertex grade left them yellow | the drawn image is written into the private pak with its luminance and the disc card's hue (95ec3ec3, luminance recolour 0ef203eb); the disc card itself is olive-yellow (mean 36 34 18), so most of the remaining difference is brightness | `i116\s_i.jpg` |
+| Pale sliver under a far hedge (hedgeFar) | the skirt covered only edges at each hedge plane's lowest height; this hedge's foot is bumpy | skirt on every boundary foot edge, texture continued downward (no stretched band) | `i116\s_i.jpg` (hedgeFar) |
+| Culling vs the fog | vis_radius is 7000 (cells 1024): nothing within ~7090u can be culled, the fog is solid at 4800 | unchanged: no popping possible inside the fog. Frame time (live engine, 60 fps cap): start overlook 16.6 ms (rf 1.7, bk 1.0), church tower west 15.9 (1.5 / 1.4), tower east 16.2 (0.7 / 7.9) | `r19/a108.out` |
+
+## Round 20 (flfix2, 2026-11-13) - particles, house wall, one-shots
+
+Converter only (commits 0bf6e1bd, 94765973, ffbf73a3; CONV_BUILD 9). Pak `H:\hzm_work\flpolish\v110_fl_1_1.pk3`, commit list
+beside it; headless dedicated boot `fix2\r20\boot20.log`: `^~^~^ FLDATA conv 9 pfx 15 oneshot areas 7`, ubersound/fl_1_1.scr
+parsed (SERVER) with no error lines. The map script is not changed here: its blocks are with the map owner. Nothing seen
+or heard in a client yet. Sweep: `H:\hzm_work\sweep_2026-11-13\SWEEP_fl_1_1.md`; work files `sweep_2026-11-13\sopfx\` (local).
+
+**Particle systems (bug-11184).** The 15 kind-9 records are a 72-byte header plus the same 168-byte block the
+CREATEPARTICLESYSTEMBYTYPE templates use (type hash in its first word; 236 such blocks in 1_P.bpd). emt_1_1.emt is not
+particle data (no seed word 12345, no type hash: int16 tuples). Read as (flscene.particle): colour range, spawn box,
+velocity range, acceleration, start size, emit duration (0 = continuous), rate per second, particle life, spin, sprite key;
+start = word 32 high half (1 runs from load, 2 waits for an event). The sprite itself is not on the level (same key = same
+sprite). Stock emitter by decoded type; positions through the converter's transform (level.fl_pfx_*).
+
+| rec | our pos | decoded | type -> stock | start |
+|---|---|---|---|---|
+| 4, 5, 6 | (3564 -3423 -215), (533 -773 -90), (995 1190 198) | grey 0.3, 0.5-1 m, up 1 m/s, 6/s, life 12 / 12 / 14 s | smoke -> tehao_firesmoke_long | load |
+| 7 | (1356 -2493 -153) | black, 2 m, 7 x 5 m box, sinks and rises, 6/s, 12 s | pall -> tehao_thicksmoke | load |
+| 8 | (4238 -1894 -14) house | black to grey, 1-1.5 m, 6/s, 12 s | smoke -> tehao_firesmoke_long | house (field = event; the original's frames: no smoke before, a black column after, `ref_xemu/trace/b41h_prepost.png`) |
+| 9 / 10 | (-2054 4431 -57 / -92) roster fire | smoke 0.18 grey, 6/s, 12 s / flame orange, 0.2-0.5 m, up 0.6-1.1 m/s, 5/s, 1 s | smoke / flame -> tehao_fire | 9 load; **10 event, starter not decoded: not spawned** |
+| 11 / 12 | (4614 -2604 37 / 63) dock street | flame 0.6-1 m, 2.8/s, 1 s / black smoke | flame / smoke | load (small flame on the street at trigger 41's moment, `trace/b41_sheet.png`) |
+| 13 | (4228 -1916 -13) house | flame as 11 | flame | load (field) - not checked against a frame |
+| 208, 209 / 421, 422 | (4190 / 4108 -2836 -112 / -147) the burning car | smoke 5 / 4.2 per s, 12 / 9.7 s / flame bed 0.1-0.8 m, life 1.3 / 0.9 s, rate field 0 | smoke / flame | load (car burning with its column at trigger 41's moment, before any bomb: `trace/b41_sheet.png` frame 1) |
+| 51 | (4302 -2932 -104) | StartBeachExplosionBig: its own burst (150 bits at 15 m/s, 0.1 s) + four by-type systems (grey dirt 1.4-2 m up to 20 m/s; cloud up to 28 m/s, 3.7 s; geyser 2-8 m up to 41 m/s; debris) + a 7 s smoke 20 ticks later, CREATEEXPLOSION, vibration 1.5 s | blast -> explosion_bombdirt, removed after 8 s | bombA (AUDIT row 4; its starter on link 6:240 is not identified) |
+
+Scale (`fl_pfx_scale`) is the system's size against its type's median on this level; the engine does not apply entity
+scale to originemitter sprites (cg_commands.cpp UpdateEmitter: only dlight intensity), so it is information only.
+
+**House wall (bug-11185).** house_remove_1_1.msh belongs to ObjectivePickUp rec 293: 49 of its 81 vertices coincide with
+the baked world at that record's origin, no rotation (the world art carries the hole). The original removes it on
+message 74 from trigger 83, the moment the house parts start. Now script_object `fl_om_house_remove` (inline model,
+visible from load, clip boxes on its two wall faces, 0.18 m thick). The original also plays sound 54 then (id not resolved).
+
+**One-shot banks (bug-11186).** LoadOneShotSound 53-59 load 11LOAD1-7 (record word 14 = the bank). 431 distinct clips
+(541 with repeats between banks). Every bank: entry 1 silence, ~20 pain grunts, then German lines, then American lines
+- the area's barks for BOTH sides. Transcribed locally (faster-whisper small, German and English) and placed by our phrase
+table: 145 pain, German contact 23 / attack 15 / taunt 12 / backup 10 / grenade 7 / cover 7 / kill 7 / banter (lost him)
+6 / mandown 5 / fallback 3 / reload 1, American attack 60 / cover 37 / suppress 14 / grenade 12 / contact 7 / fallback 6 /
+taunt 1; 46 unplaced (unclear words), LOAD8/9 not loaded by any 1_1 trigger. Numbered alias sets (the engine plays one at
+random from the base name) so the AI voice gets variety without an aivoice.scr change.
+
+| item | original | conversion | status |
+|---|---|---|---|
+| Particle systems | 15 kind-9 records | 14 placed as stock emitters, 1 (rec 10) waits for its undecoded start | data built; script blocks with the owner |
+| House wall | swapped out at the house blast | disc mesh, hidden at the blast by the map script | data built; not seen |
+| One-shot banks | one bank per area, clips chosen by the AI through AEMSEVENT (computed id, not decoded) | per area, per side, per situation sets on the situational AI voice | data built; situation per clip is ours |
+| Visual check wanted | - | emulator stills: roster fire (-2012 4211 disc) before and after the MG-nest street is reached; the house front (4271 -2136 disc) before trigger 41 from the street, for rec 13's flame; the four untriggered spots (3606 -3643), (575 -993), (1038 970), (1398 -2713) | queued |
+
+Round 20b (map script, mod 3c8e943d, sweep items): wired - the 12 load-rule particle systems start with the level
+(`r17/r20*`: the burning car and its black column at the bomb site from load, smoke at the roster), rec 8 and the
+`fl_om_house_remove` wall go at trigger 41 (`FLSP house wall removed`), rec 51 with bomb A; the one-shot banks feed the
+situational voice (Germans de_*, allies us_*; bank = the last area a player entered). `level.coop_noReplicas` (new
+opt-out in aihandler.scr, b90c9272) and `level.coop_noCounter`: no ADDED clones or end waves. The door (rec 401) opens and
+closes with the use key from both sides; the ScriptSlave move had thrown the leaf to (-39 57 -1) on its first swing,
+now stepped by hand in place (`r17/doorc3_sheet.jpg`: open and closed from the face and the side), USE icon drawn (`r17/doorc_icon.jpg`).
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -498,6 +681,9 @@ the original's rockets do not kill it); the listener waits while a player watche
 | Jeep crew fate | trace: driver and passenger thrown out at the blast and fade; gunner wounded, speaks when the player reaches the gun, then fades | default = trace; `coop_fljeepcrew 1` (off) = two stay in cover | settled by the trace |
 | Fire at the jeep | trace: no crew member fires; generators 471 / 472, 10 volleys from +70 to +122 ticks, from two points above and behind the jeep (the strafe) | generators at the disc points, aimed at the jeep (no direction is stored); tracer and gun sound are stock stand-ins | aim = inferred; `coop_fljeepcrew 1` (off) = gunner fires |
 | Jeep .30 cal position | created at +284 ticks | the mesh rides the body; the usable gun is created at +284 on the record's rest spot | choice |
+| Inside floorless houses (seen through windows) | nothing drawn: the sky box's flat dark lower band shows | a flat lid in that colour 4u under the street (bug-11115); same look from a window, but it is geometry: it hides the foot of a cut-out ruin card or wall where that runs below street level, and fog tints it with distance where the sky was unfogged | choice (stands in for the sky band; the edge fill it replaces is itself a deviation, R9). Round 19: colour 24 23 22, not the band's 83 81 76 (user: it read light grey) - choice |
+| Hedges (round 19c) | opaque hedge boxes (16c480) | the same disc boxes and texture (upscaled on the player's PC like the other textures), plus a 96u skirt of that texture under each face (bug-11199) | exact art; skirt a choice (hides the void where the ground falls away) |
+| Smeared out-of-bounds ground (round 19) | the disc's zero-UV-area triangles (c6 240, 358, 535, 741, 1242): a smeared line of texture | planar world UVs at the texture's own density (bug-11163) | choice (repairs disc data; no reference frame of that yard) |
 | Gunner's line | sound 82 | stream 17 "mg_hurt" from the player's converted audio | inferred mapping, no reference audio |
 | Play-dead men | disc actors | MOHAA actors; scenery until they rise | forced |
 | Fly-throughs | 287, 289, 291, 292, 301 started by triggers; 288 and 290 never started | the five; 288 and 290 removed | - |
@@ -511,11 +697,12 @@ the original's rockets do not kill it); the listener waits while a player watche
 | Intro crates | BreakingWoodBoxSwap x20 | the disc's crate mesh and texture, collision sized to it; break sound is a stock stand-in; nothing dropped | forced (sound) |
 | Resistance drop | small package between the crates, hold ACTION about 1 s | the disc's mesh; taken on a single USE press | choice (hold time) |
 | Models | Frontline models | MOHAA stand-ins where no conversion exists | forced |
-| Textures | disc textures | 5 CC0 swaps (mud x3, roof slates, planks) | choice |
+| Textures | disc textures (64-256 px, up to 8 units per texel on the ground) | 9 CC0 swaps, Poly Haven, tinted to the disc texture's mean colour with its own stains laid over (hd/CREDITS.txt): mud x3, roof slates, planks (round 7); look round 2026-11-12, user 'replace the smudged walls and ground': ground 54200 + b3600 -> stony_dirt_path, mossy whitewash 6180 + ccf80 -> worn_mossy_plasterwall (the plank wall 41180 swap was withdrawn after QA: too new; it is upscaled instead). Every other texture: the player's own image, 4x learned upscale on the player's PC by default (lettered sheets, blended sprites and fine leaf sprays keep the original) | user decisions 2026-11-11 and 2026-11-12 |
+| Tree and leaf cards 1dd980, 12c380, 15b680, 15f800, 1d5680, 1d9800 (look round 2026-11-13) | the disc's 128-512 px leafy tree and branch cards | the mod's own HD stock MOHAA tree cards (models/natural tree1_3/1_4/1_5, tree4_3/4_4; drawn at 1024 px), hard cut-out kept, graded to each disc card's mean colour on its solid texels; the 2:1 tree card 124280 keeps the disc's image (no stock card of that shape) | user-approved "Yes upgrade" |
 | Sky | 6-face box on the eye, unfogged | the six faces captured from the emulator, in the player's private pak only; stock sky when they are absent; drawn on a hull around the map | exact textures; hull forced (engine) |
-| Fog and far plane | fog colour 104,106,109, far clip 100 m, clear colour 48,48,48; register reading linear 5..100 m, but measured on world surfaces it is about a quarter of that at 50 m | start 600, end 16000 (fitted to the reference frame), same colour; no far cull; clear colour not represented | fit from measurement; exact function open (needs the vertex program) |
+| Fog and far plane | fog colour 104,106,109, linear 5..100 m of view depth (re-render proven, TRACE_fog_colour.md), far clip 100 m, clear colour 48,48,48 | linear 240..4800 units, same colour; no far cull (the sky box shows past the fog end); clear colour not represented | exact fog; no cull forced (bug-11058) |
 | World light | vertex colours, 1x | vertex colours x 0.352 to cancel the renderer's 4 x 0.71 map light; measured equal to texture x vertex colour with the display chain off | forced (engine); exact by measurement |
-| Display chain on disc maps | none (emulator output as is) | the client's r_gamma 1.3 and post chain brighten by 1.3 to 1.45 | choice for the user: a per-map neutral display setting for disc maps (not applied) or keep the mod look |
+| Display chain on disc maps | none (emulator output as is) | the client's r_gamma 1.3 and post chain: ours is 2.0-2.6x the reference at the lane; the user's neutral chain (2026-11-12) was never built; proposed: per-map grade expo 0.50 / sat 0.92 (measured 1.0-1.2x) | BUG, not a choice (user decision); fix handed over (mod repo grade row) |
 | Wall breach | trace timings and break frames; use at the molotov (6 s fuse) or 3 hits on one barrel (no fuse); hint "Press ACTION to Ignite Rag" | same, both ways (bug-11087, bug-11083) | blast look a stand-in (stock emitter) |
 | Texture edges | clamp on non-tiling surfaces | half-texel UV inset on non-tiling axes | forced (engine has no per-axis clamp here) |
 | Fire at the jeep, look | disc tracers | stock muzzle flash and tracer (a white streak in stills) | stand-in |
@@ -557,4 +744,20 @@ the original's rockets do not kill it); the listener waits while a player watche
 | Stock AI barks | only the original's lines | level.coop_discBarksOnly = 1: no stock voice, chatter or taunts (bug-11110); the disc's two German combat lines (script bank 20 'Lass ihn nicht abhauen!', 21 'Das warst du, alliiertes Schwein!') on the AI voice's attack and man-down situations (bug-11113) | user-approved 2026-11-12; situation mapping a choice (the original's AI states are not decoded) |
 | Church-tower MG mount | a tripod MG on the tower floor (the walk frames do not show its height) | the stock turret on sandbags at floor + 44, disc x/y and facing kept: MOHAA's use trace cannot reach a turret at floor height (bug-11112) | forced (engine use height) |
 | Other mounted guns (1, 2, 5, 6) | usable | reached and mounted on foot with use (run guns); facing from the records, not checked against frames | facing unverified |
+| Allied soldiers' strength | Frontline AI (not decoded); in the trace allies support and can die | kit accuracy 18, health 150, noticescale 100, no BAR, AI-vs-AI damage x0.5 (`coop_mod/discallies.scr`, `level.coop_aiVsAiDmg`) | user-approved 2026-11-13 ("balance the allies on the frontline missions") |
+| Trail goals | AISETCOVERPOINT on the player's route | a spot the player walked, 500-900u behind him on the ally's side; unseen placement of a stranded ally | forced (no cover-point data) |
+| Jeep .30 cal, mounted | the disc gun seen from behind | the stock first-person 30cal for the gunner, the disc gun for everyone else | forced (engine turret view model) |
+| Wounded gunner's death pose | (no death: he fades) | settles into the stock on-back dead pose, body stays | user-approved 2026-11-12 (pose changed 2026-11-13) |
+| Interrogation execution | never happens (line 3 stalls) | after interrog_4 he aims 5 s, then the bang that opens interrog_5 = the shot | choice (kept from the user's rescue design) |
+| Interrogation start | trigger 37, 54u from the officer | 350u, or 750u in line of sight of the officer | forced (our 200u rescue radius) |
+| Panzer first shot | +216 ticks from its trigger | same spacing, from when a player sees it or is within 2200u; rocket pass after the second shot | choice (user: it must be seen firing) |
+| House collapse dust and smoke | disc particle records | stock dust cloud and smoke column; round 20: the smoke column at the disc's own record 8 spot (tehao_firesmoke_long), once the map script takes the block | stand-in (forced: no disc sprite carried) |
+| Placed particle systems (round 20) | 15 kind-9 systems with their own sprites | stock emitters chosen by decoded type (smoke, pall, flame, blast) at the disc spots; size not carried (engine ignores entity scale on emitter sprites) | forced (sprites not on the level); type mapping a choice |
+| Particle start rules (round 20) | record start field + messages | load / event from the record; rec 8 with the house (frames), rec 51 with bomb A (AUDIT), rec 10 not started (starter undecoded) | 8 = trace; 51 = inferred; 10 open |
+| House wall section (round 20) | house_remove swapped out on message 74 | disc mesh on rec 293, clip on its two wall faces (0.18 m slabs, windows included), hidden by the map script with the house parts; sound 54 not played | clip shape a choice; timing exact once wired |
+| One-shot barks and pain (round 20) | 11LOAD bank of the area entered, clip chosen by the AI (not decoded) | same banks per area; clip -> situation by our transcription table; German lines to German AI, American lines to allied AI, grunts to both | situation mapping a choice; 46 clips unplaced |
+| Use prompt | hint text on approach | hint text plus the mod's USE icon when facing the spot | user-approved 2026-11-13 |
+| Collision over doors, arches and wall gaps (round 16) | the wall's collision ends where it is drawn (about 96u over the floor, arch chamfers from about 90u) | collision only: whatever hangs 56-136u over a floor that runs on level through the wall is cut away up to 136u over that floor; the AI-route carve cuts walls to 136u (ceilings still 106u); doorway soffit caps at 136u. Shots pass through that band of drawn wall over an opening | forced (MOHAA's 94u stand box + its 38u step-up) |
+| Low openings the original crouched through, 56-82u high | crouch | can be walked through standing where the opening runs on level both sides | side effect of the row above |
 | Enemy count at 2+ players (coop_mod/discscale.scr) | one player | 1 player: exactly the disc. 2+ players: a wave (the level start, or a group's start trigger) gets extra men shared over its plain Roamer records, each at his record's place after that record's own man, only when no player sees the spot (fl_seen; after 90 s the nearest unseen German record within 1500u; never spawned in view), built by fl_mk_axis (same off-screen wake, voice, area); factor on the wave 1 / 1.5 / 2 / 2.5 for 1 / 2 / 3 / 4+ players (nearest man), at most 8 extras a wave, 24 live Germans level-wide, the live-German hardcap and a free-entity floor; the area clean-up removes them and the allies' area-clear test counts them; the area-373 respawn cap (3) scales the same way. Never scaled: ambush / play-dead men, talkers, shouters, the MG nest, the gun wave, path patrols, the interrogation officer. Extras send nothing. Accuracy scaling as on every map, no health scaling; generic cloner and end waves off | user-approved 2026-11-13 |
+| Door use prompt | 'Press ACTION to Open / Close Door' | the mod's USE icon (hand) facing it within 140u; use toggles | user-approved (use icon) |

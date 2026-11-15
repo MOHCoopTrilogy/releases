@@ -31,6 +31,7 @@ import flclear
 import flsheets  # noqa: E402
 import flroutes  # noqa: E402
 import flscene  # noqa: E402
+import flpit  # noqa: E402
 import flfit  # noqa: E402
 import flcliff  # noqa: E402
 
@@ -58,6 +59,8 @@ WATER_SHADER = os.environ.get("FL_WATER_SHADER", "textures/choppywater/tehao_ind
 # one tile per FL_WATER_TILE units (a stock pond brush face at its usual scale).
 WATER_TILE = float(os.environ.get("FL_WATER_TILE", "512"))
 CONTENTS_WATER = 0x20
+CONTENTS_TRANSLUCENT = 0x20000000   # engine surfaceflags.h
+SURF_PUDDLE = 0x200000             # engine surfaceflags.h: puddle impact effects / sounds
 TAG_RIVERBED = 0x7FFFF005    # [flpolish] the bed under the canal's water volume (a player who falls in lands and drowns)
 TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dropped player-clip sheet stood in front of
 
@@ -93,27 +96,44 @@ def sky_faces(src_dir, prefix, flip_y):
     # engine sky faces (tr_sky.c MakeSkyVec): direction for image coordinate (s, t), s right, t up, both -1..1
     E = {"rt": lambda a, b: (1.0, -a, b), "lf": lambda a, b: (-1.0, a, b), "bk": lambda a, b: (a, 1.0, b),
          "ft": lambda a, b: (-a, -1.0, b), "up": lambda a, b: (-b, -a, 1.0), "dn": lambda a, b: (b, -a, -1.0)}
+    # [look 2026-11-13, user: the disc skies look low quality] 512 px faces sampled bilinearly from the captured faces
+    # (they were re-cut texel for texel at 128 px, so the engine magnified 128 px blocks). Nothing is invented: the
+    # captures are only interpolated, as the original's own filtering did. Each texel's direction picks the source face
+    # exactly as before; at a face border the neighbour face continues the sky, so the twelve edges stay continuous.
+    import numpy as np
+    N = int(os.environ.get("FL_SKY_SIZE", "512"))
+    arr = {k: np.asarray(im, np.float32) for k, im in img.items()}
     out = {}
+    c = (np.arange(N, dtype=np.float64) + 0.5) / N
+    A = (c * 2 - 1)[None, :].repeat(N, 0)
+    Bv = (1 - c * 2)[:, None].repeat(N, 1)
     for suf, vec in E.items():
-        n = 128
-        buf = bytearray()
-        for j in range(n):
-            for i in range(n):
-                d = vec((i + 0.5) / n * 2 - 1, 1 - (j + 0.5) / n * 2)
-                if flip_y:
-                    d = (d[0], -d[1], d[2])
-                ax = max(range(3), key=lambda q: abs(d[q]))
-                k = ("p" if d[ax] > 0 else "n") + "xyz"[ax]
-                m = abs(d[ax])
-                q = tuple(c / m for c in d)
-                v0, v1, v3 = F[k]
-                u = sum((q[c] - v0[c]) * (v1[c] - v0[c]) for c in range(3)) / 4.0
-                v = sum((q[c] - v0[c]) * (v3[c] - v0[c]) for c in range(3)) / 4.0
-                im = img[k]
-                x = min(im.width - 1, max(0, int(u * im.width)))
-                y = min(im.height - 1, max(0, int(v * im.height)))
-                buf += bytes(im.getpixel((x, y))) + b"\xff"
-        out[suf] = (n, n, bytes(buf))
+        d = np.stack(np.broadcast_arrays(*vec(A, Bv)), -1).astype(np.float64)
+        if flip_y:
+            d[..., 1] = -d[..., 1]
+        ax = np.abs(d).argmax(-1)
+        col = np.zeros((N, N, 3), np.float32)
+        for k in F:
+            axis = "xyz".index(k[1])
+            sel = (ax == axis) & ((d[..., axis] > 0) if k[0] == "p" else (d[..., axis] <= 0))
+            if not sel.any():
+                continue
+            q = d[sel] / np.abs(d[sel][:, axis:axis + 1])
+            v0, v1, v3 = (np.array(t, np.float64) for t in F[k])
+            u = ((q - v0) * (v1 - v0)).sum(-1) / 4.0
+            v = ((q - v0) * (v3 - v0)).sum(-1) / 4.0
+            a = arr[k]
+            h, w = a.shape[:2]
+            x = np.clip(u * w - 0.5, 0, w - 1)
+            y = np.clip(v * h - 0.5, 0, h - 1)
+            x0 = np.floor(x).astype(int); y0 = np.floor(y).astype(int)
+            x1 = np.minimum(x0 + 1, w - 1); y1 = np.minimum(y0 + 1, h - 1)
+            fx = (x - x0)[:, None]; fy = (y - y0)[:, None]
+            col[sel] = (a[y0, x0] * (1 - fx) + a[y0, x1] * fx) * (1 - fy) + (a[y1, x0] * (1 - fx) + a[y1, x1] * fx) * fy
+        rgba = np.empty((N, N, 4), np.uint8)
+        rgba[..., :3] = np.clip(col + 0.5, 0, 255).astype(np.uint8)
+        rgba[..., 3] = 255
+        out[suf] = (N, N, rgba.tobytes())
     return out
 
 
@@ -213,17 +233,105 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         with open(tmp) as f:
             texmap = json.load(f).get(level, {})
 
+    _HD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hd")
+
+    _eng_img = {}
+
+    def _engine_image(path):
+        """bytes of the image the renderer loads for <path> on the player's install: <stem>.dds from the last pak that
+        has one (r_ext_compressed_textures, on by default), else the path itself from the last pak; None if neither"""
+        if path in _eng_img:
+            return _eng_img[path]
+        stem = os.path.splitext(path)[0].lower()
+        best = {}
+        for game in ("main", "mainta", "maintt"):        # load order: the last one found wins
+            for pk in sorted(glob.glob(os.path.join(mohaa_base or "", game, "*.pk3")), key=str.lower):
+                try:
+                    z = zipfile.ZipFile(pk)
+                except Exception:
+                    continue
+                for n in z.namelist():
+                    nl_ = n.lower()
+                    if nl_ == stem + ".dds":
+                        best["dds"] = (pk, n)
+                    elif nl_ == path.lower():
+                        best["own"] = (pk, n)
+        data = None
+        for kind in ("dds", "own"):
+            if kind in best:
+                try:
+                    data = zipfile.ZipFile(best[kind][0]).read(best[kind][1])
+                    from PIL import Image as _I
+                    import io as _io2
+                    _I.open(_io2.BytesIO(data)).load()        # a DDS PIL cannot decode falls through to the tga
+                    break
+                except Exception:
+                    data = None
+        _eng_img[path] = data
+        return data
+
+    def recolour_card(key, up):
+        """[flfix2 round 19d] TGA bytes of the card image the engine draws for up["path"], luminance kept and recoloured to the disc card hue so its
+        solid texels' mean equals the disc card's (gain 0.25..6), at most 512 px; None when either image is missing"""
+        try:
+            import io as _io
+            import numpy as _np
+            from PIL import Image
+            t = L.texture(key)
+            data = _engine_image(up["path"])
+            if not (t and t["rgba"]) or data is None:
+                return None
+            d = _np.frombuffer(t["rgba"], _np.uint8).reshape(t["h"], t["w"], 4).astype(_np.float32)
+            fl = d[d[..., 3] >= 128][:, :3].mean(0)
+            im = Image.open(_io.BytesIO(data)).convert("RGBA")
+            if max(im.size) > 512:
+                im = im.resize((min(512, im.size[0]), min(512, im.size[1])), Image.LANCZOS)
+            a = _np.asarray(im).astype(_np.float32)
+            sol = a[..., 3] >= 128
+            if not sol.any():
+                return None
+            # luminance from the drawn image, hue from the disc card: a per-channel gain (blue x9 on tree1_5) blew the
+            # bark's blue noise into bright blue streaks (round 19d QA)
+            lw = _np.array([0.299, 0.587, 0.114], _np.float32)
+            lum = (a[..., :3] * lw).sum(-1)
+            fl_l = float((fl * lw).sum())
+            k = fl_l / max(1.0, float(lum[sol].mean()))
+            a[..., :3] = _np.clip((lum * k)[..., None] * (fl / max(1.0, fl_l))[None, None, :], 0, 255)
+            a[..., 3] = _np.where(a[..., 3] >= 128, 255, 0)
+            o = a.astype(_np.uint8)
+            return tga_bytes(o.shape[1], o.shape[0], o.tobytes())
+        except Exception:
+            return None
+
+    def _local(up):
+        """[look 2026-11-13] a texture shipped next to the converter (hd/<file>, CC0, credited in hd/CREDITS.txt): its
+        bytes, or None. It is written into the converted pak under textures/hd/<file>."""
+        if not up.get("local"):
+            return None
+        fp = os.path.join(_HD_DIR, up["local"])
+        if not os.path.isfile(fp):
+            return None
+        up.setdefault("path", "textures/hd/" + up["local"])
+        return open(fp, "rb").read()
+
     def upgrade_ok(up):
-        """only when the player's own install carries the pak that holds the texture"""
+        """only when the player's own install carries the pak that holds the texture (or the converter ships it)"""
+        if up.get("local"):
+            data = _local(up)
+            if data is None:
+                return False
+            files.setdefault(up["path"], data)
+            return True
         if not mohaa_base:
             return False
         for game in ("maintt", "mainta", "main"):
             pk = os.path.join(mohaa_base, game, up["pak"])
             if os.path.exists(pk):
                 try:
-                    return up["path"] in zipfile.ZipFile(pk).namelist()
+                    if up["path"] in zipfile.ZipFile(pk).namelist():
+                        return True
                 except Exception:
-                    return False
+                    pass
         return False
 
     # share of each texture's triangles that are NOT vertical (foliage cards vs wall decals)
@@ -253,19 +361,43 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         t = L.texture(key)
         if not (t and t["rgba"]):
             return None
-        fl = [fmean(t["rgba"][c::4]) for c in range(3)]
-        for game in ("maintt", "mainta", "main"):
-            pk = os.path.join(mohaa_base, game, up["pak"])
-            if os.path.exists(pk):
-                try:
-                    from PIL import Image
-                    im = Image.open(_io.BytesIO(zipfile.ZipFile(pk).read(up["path"]))).convert("RGB").resize((64, 64))
-                    px = im.tobytes()
-                    hd = [fmean(px[c::3]) for c in range(3)]
-                    return tuple(max(0.3, min(1.2, round(f / max(1.0, h), 3))) for f, h in zip(fl, hd))
-                except Exception:
-                    return None
-        return None
+        # [look 2026-11-13] a cut-out card is graded on its solid texels only (the clear ones hold no colour)
+        cut = bool(up.get("alpha"))
+        if cut:
+            sol = [i for i in range(0, len(t["rgba"]), 4) if t["rgba"][i + 3] >= 128]
+            if not sol:
+                return None
+            fl = [fmean(t["rgba"][i + c] for i in sol) for c in range(3)]
+        else:
+            fl = [fmean(t["rgba"][c::4]) for c in range(3)]
+        data = _local(up)
+        if data is None:
+            # [flfix2 round 19d] grade against the image the ENGINE draws: R_LoadImage tries <name>.dds first (the HD
+            # DDS override paks), then the last pak in load order. The stock tree card 1dd980 was graded on Pak2's
+            # 256 px tga (mean blue 25) while the dds drawn has mean blue 3: the lane's branch cards came out yellow.
+            data = _engine_image(up["path"]) if up.get("path") else None
+        if data is None:
+            for game in ("maintt", "mainta", "main"):
+                pk = os.path.join(mohaa_base, game, up["pak"]) if up.get("pak") else None
+                if pk and os.path.exists(pk):
+                    try:
+                        data = zipfile.ZipFile(pk).read(up["path"])
+                        break
+                    except Exception:
+                        continue
+        if data is None:
+            return None
+        try:
+            from PIL import Image
+            im = Image.open(_io.BytesIO(data)).convert("RGBA").resize((64, 64))
+            px = im.tobytes()
+            idx = [i for i in range(0, len(px), 4) if px[i + 3] >= 128] if cut else list(range(0, len(px), 4))
+            if not idx:
+                return None
+            hd = [fmean(px[i + c] for i in idx) for c in range(3)]
+        except Exception:
+            return None
+        return tuple(max(0.3, min(1.2, round(f / max(1.0, h), 3))) for f, h in zip(fl, hd))
 
     debug_ids = {}
 
@@ -303,10 +435,25 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             # upgrade to a texture the mod already ships (fl_texmap.json); Frontline's vertex light stays on top
             sc = up.get("tc_scale", 1.0)
             tcm = ("\t\ttcMod scale %g %g\n" % (sc, sc)) if sc != 1.0 else ""
-            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n\tcull none\n\t{\n\t\tmap " + up["path"] + "\n"
-                                + tcm + "\t\trgbGen vertex\n\t}\n}\n")
+            # [look 2026-11-13] "alpha": a cut-out card (tree, bush) keeps its hard alpha edge and writes depth
+            acut = "\t\talphaFunc GE128\n\t\tdepthWrite\n" if up.get("alpha") else ""
+            # stock card recipe (scripts/trees.shader, TAnatural.shader): nomipmaps, or thin twigs dissolve into dashes
+            # under GE128 at distance
+            nomip = "\tnomipmaps\n" if up.get("alpha") else ""
+            mpath = up["path"]
+            rec_ = recolour_card(key, up) if up.get("alpha") and up.get("recolour", True) else None
+            if rec_:
+                # [flfix2 round 19d] the stock card the engine draws (the HD DDS override) has another hue than the disc
+                # card (tree1_5: mean blue 2 against the disc's 18 - the lane's branch cards read yellow) and a vertex
+                # grade cannot move hue past its clamp: the drawn image is written into this pak per-channel matched to
+                # the disc card's solid texels, and mapped instead (player's own install data, private pak)
+                mpath = name + "_hd.tga"
+                files[mpath] = rec_
+                stats.setdefault("recoloured_cards", []).append(short)
+            shader_lines.append(name + "\n{\n\tsurfaceparm nolightmap\n" + nomip + "\tcull none\n\t{\n\t\tmap " + mpath + "\n"
+                                + tcm + acut + "\t\trgbGen vertex\n\t}\n}\n")
             stats["upgraded"] = stats.get("upgraded", 0) + 1
-            if up.get("grade", True):
+            if up.get("grade", True) and not rec_:
                 g = grade_for(key, up)
                 if g:
                     grade[key] = g
@@ -366,14 +513,21 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     _mm = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fl_modelmap.json")
     reskin = json.load(open(_mm)).get(level, {}).get("reskin", {}) if os.path.exists(_mm) else {}
     hidden = {(h["cell"], int(h["draw"])) for h in (json.load(open(_mm)).get(level, {}).get("hide", []) if os.path.exists(_mm) else [])}
+    # [flfix2 round 19c] "foot": the disc's own texture is kept, but each standing face of it gets a skirt of that many
+    # units below its lowest edge (same texture, its bottom row stretched), so where the ground falls away from a hedge
+    # the player does not look under the box into the void (user 2026-11-13: the disc's own hedge boxes, see-through fixed)
+    footmap = json.load(open(_mm)).get(level, {}).get("foot", {}) if os.path.exists(_mm) else {}
 
     def short_key(key):
         return str(key).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_")
 
-    def reskin_shader(rk):
-        name = tdir + rk["shader"]
+    def reskin_shader(rk, core=False):
+        # [flfix2 round 19, bug-11162] the card wears polygonOffset so it wins over its own opaque core (below), which
+        # lies in the same plane; the core is the same image's leaf body (no alpha there) and has no offset
+        name = tdir + rk["shader"] + ("_core" if core else "")
         if name not in tex_names:
-            shader_lines.append(f"{name}\n{{\n\tsurfaceparm nolightmap\n\tcull none\n\tnopicmip\n\t{{\n\t\tmap {rk['image']}\n"
+            po = "" if core or not rk.get("core") else "\tpolygonOffset\n"
+            shader_lines.append(f"{name}\n{{\n\tsurfaceparm nolightmap\n\tcull none\n{po}\tnopicmip\n\t{{\n\t\tmap {rk['image']}\n"
                                 f"\t\talphaFunc GE128\n\t\trgbGen vertex\n\t\tdepthWrite\n\t}}\n}}\n")
             tex_names[name] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
         return tex_names[name]
@@ -457,6 +611,26 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if iu_ or iv_:
             uv_inset[k_] = (iu_, iv_)
     stats["uv_inset_textures"] = len(uv_inset)
+    # [flfix2 round 19, bug-11163] some of the disc's big out-of-bounds ground triangles carry UVs shared by pairs of
+    # vertices (c6 draws 358 / 535 / 741 / 1242 on 1_1: zero UV area), so the texture is smeared along one line - the
+    # dark streaked ground the user saw from a window by the wall objective. Such a ground triangle (|n.z| >= 0.4,
+    # >= 10000 u^2) of a TILING texture gets planar world UVs at that texture's own median floor density (the units
+    # per repeat of its well-mapped floor triangles). Nothing else is touched.
+    floor_rep = {}
+    for m in meshes:
+        if not m["tris"] or not m["tex"] or m["tex"] in uv_inset:
+            continue
+        P_ = [X(v) for v in m["verts"]]
+        U_ = m["uvs"]
+        for a, b, c in m["tris"]:
+            e1 = [P_[b][i] - P_[a][i] for i in range(3)]
+            e2 = [P_[c][i] - P_[a][i] for i in range(3)]
+            nn = (e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0])
+            ar2 = math.sqrt(sum(x * x for x in nn))
+            uva2 = abs((U_[b][0] - U_[a][0]) * (U_[c][1] - U_[a][1]) - (U_[c][0] - U_[a][0]) * (U_[b][1] - U_[a][1]))
+            if ar2 > 1.0 and abs(nn[2]) >= 0.9 * ar2 and uva2 > 1e-9:
+                floor_rep.setdefault(m["tex"], []).append(math.sqrt(ar2 / uva2))   # world units per UV unit
+    floor_rep = {k_: sorted(v_)[len(v_) // 2] for k_, v_ in floor_rep.items() if len(v_) >= 8}
     batches = {}
     for m in meshes:
         if not m["tris"]:
@@ -505,6 +679,82 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 # point DOWN and the pass discarded every pixel: the canal showed the stock stages alone
                 nrm = (0.0, 0.0, 1.0)
             verts.append((p, (u, v), nrm, (r, g, b, va if m["tex"] in vtx_alpha else 255)))
+        rep_ = floor_rep.get(m["tex"]) if m["tex"] not in water_keys else None
+        if rep_:
+            # [flfix2 round 19, bug-11163] zero-UV-area floor triangles -> planar world UVs (see floor_rep above)
+            nt_ = []
+            for a, b, c in tris:
+                A_, B_, C_ = verts[a], verts[b], verts[c]
+                uva2 = abs((B_[1][0] - A_[1][0]) * (C_[1][1] - A_[1][1]) - (C_[1][0] - A_[1][0]) * (B_[1][1] - A_[1][1]))
+                n_ = face_normal(A_[0], B_[0], C_[0])
+                if uva2 > 1e-9 or n_ is None or abs(n_[2]) < 0.4:      # embankment slopes too (c6 240: n.z 0.67)
+                    nt_.append((a, b, c))
+                    continue
+                e1 = [B_[0][i] - A_[0][i] for i in range(3)]
+                e2 = [C_[0][i] - A_[0][i] for i in range(3)]
+                if math.sqrt(sum(x * x for x in (e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2],
+                                                 e1[0] * e2[1] - e1[1] * e2[0]))) / 2 < 10000.0:
+                    nt_.append((a, b, c))
+                    continue
+                k0 = len(verts)
+                for q in (A_, B_, C_):
+                    verts.append((q[0], (q[0][0] / rep_, -q[0][1] / rep_), q[2], q[3]))
+                nt_.append((k0, k0 + 1, k0 + 2))
+                stats["uv_planar_tris"] = stats.get("uv_planar_tris", 0) + 1
+            tris = nt_
+        ft_ = footmap.get(short_key(m["tex"])) if m["tex"] else None
+        if ft_:
+            # [flfix2 round 19c] foot skirt (see footmap): per plane of standing faces, every edge on the plane's lowest
+            # height gets a quad down to that height - skirt, with the edge's own UVs and colours
+            sk_ = float(ft_.get("skirt", 96))
+            pl_ = {}
+            for a, b, c in tris:
+                n = face_normal(verts[a][0], verts[b][0], verts[c][0])
+                if not n or abs(n[2]) > RESKIN_NZ:
+                    continue
+                hl = math.hypot(n[0], n[1]) or 1.0
+                hx, hy = n[0] / hl, n[1] / hl
+                if hx < -1e-6 or (abs(hx) < 1e-6 and hy < 0):
+                    hx, hy = -hx, -hy
+                k_ = (round(math.degrees(math.atan2(hy, hx)) / 3), round((hx * verts[a][0][0] + hy * verts[a][0][1]) / 6))
+                pl_.setdefault(k_, []).append((a, b, c))
+            add_ = []
+            for k_, ts_ in pl_.items():
+                # [round 19d] the hedge's foot is bumpy: skirt every BOUNDARY edge of the plane's faces that has its own
+                # triangle above it (was: only edges at the plane's lowest height - the pale void sliver in hedgeFar)
+                pk3_ = lambda v: (round(v[0][0], 1), round(v[0][1], 1), round(v[0][2], 1))     # noqa: E731
+                ecount_ = {}
+                for t_ in ts_:
+                    for i, j in ((t_[0], t_[1]), (t_[1], t_[2]), (t_[2], t_[0])):
+                        ek_ = tuple(sorted((pk3_(verts[i]), pk3_(verts[j]))))
+                        ecount_[ek_] = ecount_.get(ek_, 0) + 1
+                for t_ in ts_:
+                    for i, j, k in ((t_[0], t_[1], t_[2]), (t_[1], t_[2], t_[0]), (t_[2], t_[0], t_[1])):
+                        if ecount_[tuple(sorted((pk3_(verts[i]), pk3_(verts[j]))))] != 1:
+                            continue
+                        if verts[k][0][2] - max(verts[i][0][2], verts[j][0][2]) < 8.0:
+                            continue          # a side or top edge, not a foot
+                        # the texture CONTINUES down the skirt (its UV gradient along -z on this triangle), not one
+                        # stretched row (that read as a striped band under the hedges)
+                        P0, P1, P2 = verts[i][0], verts[j][0], verts[k][0]
+                        e1 = [P1[q] - P0[q] for q in range(3)]
+                        e2 = [P2[q] - P0[q] for q in range(3)]
+                        g11 = sum(x * x for x in e1); g22 = sum(x * x for x in e2); g12 = sum(x * y for x, y in zip(e1, e2))
+                        det_ = g11 * g22 - g12 * g12
+                        duv_ = (0.0, 0.0)
+                        if abs(det_) > 1e-6:
+                            r1, r2 = -sk_ * e1[2], -sk_ * e2[2]               # d . e1, d . e2 with d = (0, 0, -skirt)
+                            ca, cb = (r1 * g22 - r2 * g12) / det_, (r2 * g11 - r1 * g12) / det_
+                            U0, U1, U2 = verts[i][1], verts[j][1], verts[k][1]
+                            duv_ = (ca * (U1[0] - U0[0]) + cb * (U2[0] - U0[0]), ca * (U1[1] - U0[1]) + cb * (U2[1] - U0[1]))
+                        b_ = len(verts)
+                        for q in (verts[i], verts[j]):
+                            verts.append(q)
+                        for q in (verts[j], verts[i]):
+                            verts.append(((q[0][0], q[0][1], q[0][2] - sk_), (q[1][0] + duv_[0], q[1][1] + duv_[1]), q[2], q[3]))
+                        add_ += [(b_, b_ + 1, b_ + 2), (b_, b_ + 2, b_ + 3)]
+            tris = list(tris) + add_
+            stats["foot_tris"] = stats.get("foot_tris", 0) + len(add_)
         rk = reskin.get(short_key(m["tex"])) if m["tex"] else None
         if rk:
             # fl_modelmap.json "reskin": render-only swap to MOHAA art from the player's own install (e.g. Frontline's
@@ -532,6 +782,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     zz[1] = max(zz[1], verts[i][0][2])
                 planes_.setdefault(("t", a, b, c), pk_)
             nv, nt = [], []
+            cv_, ct_ = [], []
             for a, b, c in tris:
                 T = [verts[a], verts[b], verts[c]]
                 n = face_normal(T[0][0], T[1][0], T[2][0])
@@ -542,7 +793,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     continue
                 hl = math.hypot(n[0], n[1]) or 1.0
                 tx, ty = -n[1] / hl, n[0] / hl
-                ztop = z0 + (z1 - z0) * (1.0 + float(rk.get("overshoot", 0.25)))
+                # [flfix2 round 19b] uneven crown: the overshoot varies per hedge face (a fixed hash of its plane) by
+                # +-overshoot_jitter, so neighbouring segments do not share one straight top line
+                pk2_ = planes_[("t", a, b, c)]
+                jit_ = ((pk2_[0] * 7919 + pk2_[1] * 104729) % 1000) / 999.0 * 2.0 - 1.0     # deterministic, -1..1
+                ztop = z0 + (z1 - z0) * (1.0 + float(rk.get("overshoot", 0.25)) + float(rk.get("overshoot_jitter", 0.0)) * jit_)
                 base = len(nv)
                 for q in T:
                     p = q[0]
@@ -550,10 +805,40 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     # profile is kept and the image's alpha crown sits on it (v1/v2 flattened the tops)
                     pz = p[2] + (ztop - z1) if p[2] >= z0 + (z1 - z0) * 0.75 else p[2]
                     uu = (p[0] * tx + p[1] * ty) / float(rk.get("tile", 128))
-                    vv = (ztop - pz) / max(1.0, ztop - z0)
+                    # [flfix2 round 19b] v_range: the image rows the card uses, top -> bottom (skips the empty top band
+                    # so the leaf body reaches higher, and the bottom rows next to the wrap seam: the orange line)
+                    vr0_, vr1_ = rk.get("v_range", (0.0, 1.0))
+                    vv = vr0_ + (vr1_ - vr0_) * (ztop - pz) / max(1.0, ztop - z0)
                     cr, cg, cb = (min(255, int(round(q[3][k] * gk[k]))) for k in range(3))
                     nv.append(((p[0], p[1], pz), (uu, vv), q[2], (cr, cg, cb, 255)))
                 nt.append((base, base + 1, base + 2))
+                if rk.get("core"):
+                    # [flfix2 round 19, bug-11162] the opaque CORE: the original's own hedge face, unraised, in the image's
+                    # leaf body (v core[0]..core[1] top -> bottom, no alpha there), darker (the inside of the hedge). The
+                    # card's gappy crown band covers the top third of the original's opaque box; through its gaps the
+                    # player saw through the hedge, at the level's edge into the void ("into nothingness"). The core
+                    # fills them with leaves where the original was solid; above the old top the crown stays open.
+                    v0_, v1_ = rk["core"]
+                    kd_ = float(rk.get("core_shade", 0.75))
+                    cb_ = len(cv_)
+                    sk_ = float(rk.get("core_skirt", 0))
+                    for q in T:
+                        p = q[0]
+                        uu = (p[0] * tx + p[1] * ty) / float(rk.get("tile", 128))
+                        vv = v1_ - (v1_ - v0_) * (p[2] - z0) / max(1.0, z1 - z0)
+                        if sk_ and p[2] <= z0 + 0.25 * (z1 - z0):
+                            # the foot goes core_skirt further down: where the ground falls away from a hedge the
+                            # original showed the void under the box (the light band under the hedgerows)
+                            p = (p[0], p[1], p[2] - sk_)
+                        cr, cg, cb = (min(255, int(round(q[3][k] * gk[k] * kd_))) for k in range(3))
+                        cv_.append(((p[0], p[1], p[2]), (uu, vv), q[2], (cr, cg, cb, 255)))
+                    ct_.append((cb_, cb_ + 1, cb_ + 2))
+            if ct_:
+                ccx = sum(v[0][0] for v in cv_) / len(cv_)
+                ccy = sum(v[0][1] for v in cv_) / len(cv_)
+                batches.setdefault((reskin_shader(rk, core=True), int(ccx // MERGE_CELL), int(ccy // MERGE_CELL)),
+                                   []).append((cv_, ct_))
+                stats["reskin_core_tris"] = stats.get("reskin_core_tris", 0) + len(ct_)
             stats["reskinned_tris"] = stats.get("reskinned_tris", 0) + len(nt)
             if not nt:
                 continue
@@ -804,6 +1089,27 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     xx += T
                 yy += T
             stats["under_ground_tiles"] = ng
+        # [flfix2 bug-11115] floorless pockets (Frontline houses are shells with no ground floor): through a window the
+        # original shows its sky box there, one flat dark colour below the horizon; our skirt + under-ground fill
+        # read as "under the map" (user, the window by the jeep road). A render-only lid in that colour closes each
+        # pocket that drawn walls cut off from the outside (flpit.py); the level's edges keep their skirt and ground.
+        pl_ = flpack.spec(level).get("pit_lid")
+        if pl_ and not os.environ.get("FL_NO_PITLID"):
+            ptris = []
+            for m in meshes:
+                if not m["tris"] or (m["cell"], m["draw"]) in hidden:
+                    continue
+                P_ = [X(v) for v in m["verts"]]
+                ptris += [(P_[a], P_[b], P_[c]) for a, b, c in m["tris"]]
+            rects_, stats["pit_lids"] = flpit.lids(ptris)
+            lname = tdir + "pit_lid"
+            shader_lines.append(lname + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm nomarks\n\tcull none\n\t{\n\t\tmap $whiteimage\n"
+                                "\t\trgbGen vertex\n\t}\n}\n")
+            lsh = B.shader(lname, flbsp.SURF_NOLIGHTMAP, 0)
+            lcol = tuple(int(v) for v in pl_["rgb"]) + (255,)
+            for zl, ax, ay, bx, by in rects_:
+                q = [((ax, ay, zl), (0.0, 0.0)), ((bx, ay, zl), (1.0, 0.0)), ((bx, by, zl), (1.0, 1.0)), ((ax, by, zl), (0.0, 1.0))]
+                B.add_soup(lsh, [(pp, st, (0.0, 0.0, 1.0), lcol) for pp, st in q], [0, 1, 2, 0, 2, 3])
     # [flpolish] each collision brush carries its SOURCE in its (nodraw) shader name, so the walk audit can tell an
     # original player-clip boundary from a wall, a fitted column, a headroom cap or our edge-of-world clip
     def clip_for(tag):
@@ -817,7 +1123,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             nm = "riverbed"
         else:
             nm = "m%d%s%s" % (tag & 0x7FF, "s" if tag & COLL_SPECIAL else "", "v" if tag & COLL_VOLUME else "")
-        return B.shader("textures/common/fl_coll_" + nm, flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
+        # [flfix2 round 19, bug-11164] the canal bed is a puddle surface: a round that goes through the water lands on
+        # it and the cgame picked its impact by surface type - none = the stone puff and chips (seen through the water)
+        sf_ = SURF_PUDDLE if tag == TAG_RIVERBED else 0
+        return B.shader("textures/common/fl_coll_" + nm, flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP | sf_, flbsp.CONTENTS_SOLID)
     for (a2, b2, c2), tg in zip(wound, wtags):
         if B.add_prism(clip_for(tg), a2, b2, c2, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
             rejected += 1
@@ -827,7 +1136,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # the engine knows a player is in water (splash, wading, the underwater view) before the script drowns him
     nwv = 0
     if WATER_SHADER:
-        wsh = B.shader("textures/common/fl_water_vol", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, CONTENTS_WATER)
+        # [flfix2 round 19, bug-11164] as stock water (surfaceparm water + trans): CONTENTS_WATER | CONTENTS_TRANSLUCENT,
+        # and the puddle surface type on its sides, so every impact the engine resolves on it is the water splash/sound
+        wsh = B.shader("textures/common/fl_water_vol", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP | SURF_PUDDLE,
+                       CONTENTS_WATER | CONTENTS_TRANSLUCENT)
         for (a2, b2, c2), tg in zip(wound, wtags):
             if tg != TAG_RIVERBED:
                 continue

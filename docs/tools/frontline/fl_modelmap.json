@@ -1,13 +1,12 @@
 {
  "_doc": "Frontline prop/static -> MOHAA swaps, used only where the replacement is clearly better and fits (same object type, period, scale, footprint). Everything referenced comes from the player's own MOHAA install or the mod's paks; nothing from Frontline is shipped. 'reskin' = render-only facade swap of a Frontline texture's vertical faces (collision untouched). 'props' = MOHAA models placed at Frontline placement classes. Each entry carries its reason.",
  "1_1": {
-  "reskin": {
+  "reskin": {},
+  "_reskin_16c480_dropped": "[flfix2 round 19c, bug-11199] user decision 2026-11-13 (option 1): the Sealed Orders hedges are the disc's own opaque hedge boxes (texture 16c480) again, 1:1 with the original; the MOHAA hedgerow card (hedgecard, its opaque core, v_range and crown jitter of rounds 19/19b) is dropped. Its last settings, for the record: {\"shader\": \"hedgecard\", \"image\": \"textures/misc_outside/hedgerow.tga\", \"tile\": 128, \"overshoot\": 0.25, \"core\": [0.5, 0.97], \"core_shade\": 0.95, \"v_range\": [0.15, 0.97], \"overshoot_jitter\": 0.08, \"_look19b\": \"[flfix2 round 19b, bug-11199] coordinator QA of v109: flat leafy rectangles on a darker block, an orange line at the bottom. The card now uses image rows 0.15-0.97 (the empty top band skipped, so the leaf body reaches near the old top and the core shows only through the crown's small gaps; the rows next to the wrap seam dropped), the core is 0.95 and ends at row 0.97, and the crown height varies per face by +-8% of the face height.\", \"core_skirt\": 96, \"_core\": \"[flfix2 round 19, bug-11162] the image's crown band (rows 15-45%, gappy) lands on the top third of the original's OPAQUE box once the card is stretched over 1.25x its height, so the hedge was see-through there (at the level's edge into the void). core = an opaque copy of each original hedge face, unraised, in the image's leaf body (v 0.5-1.0, no alpha), 0.85 darker, its foot taken 96u further down (where the ground falls away the void showed under the hedge); the card gets polygonOffset and stays in front. Above the old top the crown stays open, as before.\", \"reason\": \"Frontline's hedges are opaque boxes (422 vertical faces, no tops; the user called them solid-looking). MOHAA has no usable hedge MODEL (the mod's models/hedgerow.tik is a broken Call of Duty port: missing .skc); MOHAA's own Normandy bocage is brush cards with textures/misc_outside/hedgerow.tga (HD in zzzzz_hd_foliage), so the same art is used the same way: facade-mapped on the box sides, crown raised 25% so the leafy alpha top replaces the flat edge. Render only - the hedge collision brushes are Frontline's, unchanged.\"}",
+  "foot": {
    "16c480": {
-    "shader": "hedgecard",
-    "image": "textures/misc_outside/hedgerow.tga",
-    "tile": 128,
-    "overshoot": 0.25,
-    "reason": "Frontline's hedges are opaque boxes (422 vertical faces, no tops; the user called them solid-looking). MOHAA has no usable hedge MODEL (the mod's models/hedgerow.tik is a broken Call of Duty port: missing .skc); MOHAA's own Normandy bocage is brush cards with textures/misc_outside/hedgerow.tga (HD in zzzzz_hd_foliage), so the same art is used the same way: facade-mapped on the box sides, crown raised 25% so the leafy alpha top replaces the flat edge. Render only - the hedge collision brushes are Frontline's, unchanged."
+    "skirt": 96,
+    "reason": "[flfix2 round 19c] the disc's hedge boxes keep a 96u skirt below each face's lowest edge (same texture), so where the ground falls away from a hedge the player does not look under it into the void (round 19, hedgeFar). Render only; collision unchanged."
    }
   },
   "props": {
