@@ -260,6 +260,15 @@ LOCO = {
     "run_forward": "34691ee9",          # RUN (graph abebe588): 0.67 s cycle, the original moves ~275 u/s
     "walk_alert_forward": "997a78cf",   # WALK: 0.60 s cycle, ~176 u/s - the original's walk is a brisk patrol walk
 }
+# Non-lethal hit reactions (graph 9930d76b, ChooseHitReaction -> GetHitLocation; 0.2 s full-body flinches): the
+# stand tree (@0df0) and the crouch tree (@1890), by the original's own hit zones (see ANIM_NOTES: zone = hit joint)
+HITS = {
+    "stand_hit_head": "579d6c72", "stand_hit_larm": "140c7011", "stand_hit_rarm": "33bfbb81",
+    "stand_hit_leg": "140c7011", "stand_hit_lowertorso": "b5072b4f", "stand_hit_back": "513dbf63",
+    "crouch_hit_head": "94855a6c", "crouch_hit_Larm": "896ede4b", "crouch_hit_Rarm": "f8e6559a",
+    "crouch_hit_leg": "896ede4b", "crouch_hit_lowertorso": "98dae79a", "crouch_hit_back": "a8412f50",
+    "crouch_hit_uppertorso01": "a8412f50", "crouch_hit_uppertorso02": "a8412f50",
+}
 
 
 # Ordinary soldier deaths: graph 84033c53 (HitReactions.aso). Its states pick by core pose (ChooseDeathPose), hit
@@ -389,6 +398,18 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
                 rows.append("%s\t\tanim/%s.skc%s" % (alias, fn, ("\t" + flags) if flags else ""))
                 log("eaanimconv: %s <- %s: original %.0f u/s, MOHAA %.0f u/s, played at %.2fx" % (
                     alias, hx, info["ea_speed"], info["target"], 1.0 / info["rate"]))
+        # non-lethal hit reactions by location (same opt-in); stock aliases flagged 'random' keep the stock clips
+        # (a random alias pools every definition, so ours would only be mixed in)
+        for grp in LOCO_GROUPS:
+            for suffix, hx in HITS.items():
+                alias = "%s_%s" % (grp, suffix)
+                path, flags = _stock_alias(stock, alias)
+                if not path or "random" in flags.lower() or int(hx, 16) not in bank.clips:
+                    continue
+                skc, _ = convert_clip(bank, bank.clip(int(hx, 16)), skel, bones)
+                fn = "hit_%s" % alias.lower()
+                files["models/human/ea_%s/anim/%s.skc" % (level, fn)] = skc
+                rows.append("%s\t\tanim/%s.skc%s" % (alias, fn, ("\t" + flags) if flags else ""))
     for kind, hs in DEATHS.items():
         for n, hx in enumerate(hs.split()):
             put("death_%s_%d" % (kind, n + 1), int(hx, 16), False)
