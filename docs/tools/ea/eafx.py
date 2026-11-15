@@ -143,6 +143,23 @@ def _halo(txt, i, h):
     return t
 
 
+def _fire_tune(level, low, dn):
+    """(size, colour gain, alpha gain) for a flame system of a village fire package, from ea_levels.json "fire_tune"
+    {"match": [package name parts], "system": part of the system name, "size", "gain", "alpha_gain"}; None otherwise.
+    The original's roof fires (ref_xemu atmo roof_fires2 / corners_before, from disc (-11, 53)) are tall, bright open
+    flames standing well above the rooflines; converted 1:1 they came out as thin licks on the timbers."""
+    import json, os
+    try:
+        ft = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "ea_levels.json"))).get(level, {}).get("fire_tune")
+    except (OSError, ValueError):
+        ft = None
+    if not ft or os.environ.get("EA_NO_FIRETUNE"):
+        return None
+    if not any(m in low for m in ft.get("match", ())) or ft.get("system", "flame") not in dn.lower():
+        return None
+    return (float(ft.get("size", 1.0)), float(ft.get("gain", 1.0)), float(ft.get("alpha_gain", 1.0)))
+
+
 class _Scaled:
     """the level transform with its unit scale times k (a pulled-in distant package keeps its size on screen)"""
     def __init__(self, X, k):
@@ -361,7 +378,7 @@ def _lim(v):
     return max(-1.0e6, min(1.0e6, v))
 
 
-def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0, off=(0.0, 0.0, 0.0), alpha_gain=1.0):
+def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0, off=(0.0, 0.0, 0.0), alpha_gain=1.0, size_k=1.0):
     """-> (text of the originemitter block, on-time class, particle life, live particles)"""
     u, m = X.s, X.m
     g = d.g
@@ -382,7 +399,7 @@ def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0, off=(0.0, 0.0, 0.0), a
     # A particle's size is the half width and half height of its quad (corners at +-size). Read as the full
     # width, every fire was a scatter of specks and every smoke column a string of beads; against footage of
     # the level the flame masses and plumes are about twice that. EA_FX_SIZEK overrides for an A/B.
-    w0, w1, h0, h1 = (v * SIZE_K for v in (w0, w1, h0, h1))
+    w0, w1, h0, h1 = (v * SIZE_K * size_k for v in (w0, w1, h0, h1))
     w0, w1 = min(w0, w1), max(w0, w1)
     wm, hm = max(1e-3, (w0 + w1) / 2), max(1e-3, (h0 + h1) / 2)
     # Width and height each have their own end scale. A MOHAA sprite has one scale, so the picture is cut to the
@@ -558,7 +575,12 @@ def build(stream, db, X, level, files, lines, used=None, log=print, budget=2600,
                     p["txt"].append(_halo(txt, i, halo_))
                     p["names"].append("e%dh" % i)
             else:
-                txt, on, life, _live = emitter(d, i, X, sprites, rate_scale, far_gain if "distant" in low else 1.0)
+                ft_ = _fire_tune(level, low, dn)
+                if ft_:
+                    # a village fire's flame system matched to the original's roof fires (tall bright open flames)
+                    txt, on, life, _live = emitter(d, i, X, sprites, rate_scale, ft_[1], (0.0, 0.0, 0.0), ft_[2], ft_[0])
+                else:
+                    txt, on, life, _live = emitter(d, i, X, sprites, rate_scale, far_gain if "distant" in low else 1.0)
             if txt is None:
                 continue
             p = parts.setdefault(on, {"txt": [], "names": [], "tail": 0.0})
