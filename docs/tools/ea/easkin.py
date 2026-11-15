@@ -72,6 +72,12 @@ def skeleton(d):
                         "parent": -1 if par == 0xffffffff else par,
                         "pos": tuple(-sum(T[j] * R[k][j] for j in range(3)) for k in range(3)),
                         "axes": [tuple(R[k][j] for k in range(3)) for j in range(3)]})
+        # the record's name field is 16 bytes: 'JO_clavicleScapula_L' / '_R' are both cut to 'JO_clavicleScapu'.
+        # Restore the side from the position (the character's left is -X); unrestored, both clavicles fell through
+        # to the default bone - the shoulder cloth rode the pelvis and the clavicle carried no animation
+        for b in out:
+            if b["name"] == "JO_clavicleScapu":
+                b["name"] = "JO_clavicleScapula_" + ("L" if b["pos"][0] < 0 else "R")
         return out
     return None
 

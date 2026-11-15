@@ -567,6 +567,15 @@ def build(stream, level, mohaa_base, files, lines, log=print):
     bone_block, nbones, bidx = sk
     skel = easkin.skeleton(stream)
     made = 0
+    # the level's own animations (eaanimconv: the MG gunner set, scene clips), one set for every character
+    anim_block = ""
+    if skel:
+        try:
+            import eaanimconv
+            anim_block = eaanimconv.build(stream, level, bytes(72) + struct.pack("<3i", 0, nbones, 84) + bone_block,
+                                          files, log=log)
+        except Exception as e:     # never fail the conversion: the characters keep the stock animations only
+            log("eachar: animations skipped (%s)" % e)
     for mname, chr_names, label in CHARS:
         m = read_model(stream, mname)
         if not m or not m["meshes"]:
@@ -602,9 +611,9 @@ def build(stream, level, mohaa_base, files, lines, log=print):
         tik = ("TIKI\nsetup\n{\n\tscale 0.52\n\tpath %s\n\tskelmodel %s.skd\n%s\tpath models/human/protoanimations\n"
                "\tradius 20\n}\n\ninit\n{\n\tserver\n\t{\n\t\tclassname Actor\n\t\tsetsize \"-16 -16 0\" \"16 16 92\"\n"
                "\t\t%s\n\t\thealth 100\n\t}\n}\n\n$include models/human/animation/dialogue/%s.tik\n"
-               "$include models/human/new_generic_human.tik\n") % (
+               "%s\n$include models/human/new_generic_human.tik\n") % (
             mdir, label, "".join(tik_surf), "german" if axis else "american",
-            "generic_dialogue_german" if axis else "generic_dialogue_ru")
+            "generic_dialogue_german" if axis else "generic_dialogue_ru", anim_block)
         tikp = "models/human/ea_%s_%s.tik" % (level, label)
         files[tikp] = tik.encode()
         for chr_name in chr_names:
