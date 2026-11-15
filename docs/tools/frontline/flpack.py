@@ -412,6 +412,15 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         for k, g in enumerate(pts_, 1):
             lines.append(f'\tlevel.fl_npath[{pid}][{k}] = ( {g[0]:.0f} {g[1]:.0f} {g[2]:.0f} )')
         lines.append(f'\tlevel.fl_npath_n[{pid}] = {len(pts_)}')
+    # [flfix2 round 21] the path ids themselves, so a script can walk every named path (level.fl_npath is keyed by id)
+    for j_, pid in enumerate(sorted(npaths), 1):
+        lines.append(f'\tlevel.fl_npath_id[{j_}] = {pid}')
+    lines.append(f'\tlevel.fl_npath_cnt = {len(npaths)}')
+    # [flfix2 round 21] the disc's AI cover points (flcover.py; flconvert placed them and made the cover nodes)
+    if getattr(L, "cover", None) is not None:
+        import flcover
+        lines.extend(flcover.data_lines(L.cover))
+        log("cover points", len(L.cover), "as nodes", sum(c.get("node", 0) for c in L.cover))
 
     def _nearest_path(pos, skip=()):
         """the named path whose points pass closest to a record's position (Frontline units)"""

@@ -1188,6 +1188,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # moves them by origin/angles (script_object $fl_om<k>). Which mesh goes where is fl_levels.json ("set_pieces"
     # entries with "mesh", and "object_meshes" for the ones that stand on a record); converted on the player's PC.
     om_ents = []
+    cover_obst = []
     # local frame mirrored in y like the world; flscene.raw_angles conjugates the rotations to match
     Xr = lambda q: (q[0] * X.s, q[1] * X.s * X.m, q[2] * X.s)          # noqa: E731 - local frame: no recentre
     recs_ = {e.get("i"): e for e in L.entities()}
@@ -1254,6 +1255,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             a_ = flscene.raw_angles(struct.unpack("<4f", struct.pack("<4I", *flscene.words(rec_)[7:11])), X.m < 0)
             kv += [("origin", "%.1f %.1f %.1f" % o_), ("angles", "%.1f %.1f %.1f" % a_)]
         om_ents.append(kv)
+        if rec_ is not None and spc.get("solid"):
+            # [flfix2 round 21] a solid prop on a record (the crates): flcover keeps the cover nodes out of its box
+            cover_obst.append({"name": tag_, "pos": o_, "yaw": a_[1], "lo": lo_, "hi": hi_,
+                               "tag": flscene.words(rec_)[14] if len(flscene.words(rec_)) > 14 else 0})
     stats["object_meshes"] = nom
 
     # ---- entities ----
@@ -1272,6 +1277,23 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
           # entity coordinates past +-8192 (the jeep's start behind the gate) and Frontline's own step height (its body
           # walks over the 19-34u lips and kerbs MOHAA's 18u step snags on). server/sv_init.c reads both.
           ("hzm_widecoords", "1"), ("hzm_stepsize", str(sp.get("step_height", FL_STEP)))]
+    kept = []
+    for n in L.navpoints():
+        p = X(n["pos"])
+        # Frontline packs navpoints tighter than MOHAA's PathSearch accepts ("Duplicate node ... not linked")
+        if any((p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2 < 64 * 64 and abs(p[2] - q[2]) < 48 for q in kept):
+            continue
+        kept.append(p)
+    # [flfix2 round 21] the disc's AI cover points as MOHAA cover nodes (flcover.py has the decode and the flag mapping);
+    # the same list goes into the data script (flpack: level.fl_cov_*). FL_NO_COVER=1 leaves the nodes out. Counted
+    # before the stamp below, so a build with other cover nodes gets a new map_time (the engine rebuilds the .pth).
+    import flcover
+    acts_ = [(X(e_["pos"]), flscene.team(e_), (flscene.ids(e_) or [0])[0]) for e_ in L.entities() if flscene.kind(e_) == 3]
+    L.cover = flcover.points(L, X, grid, cover_obst, acts_, B, float(sp.get("step_height", FL_STEP)))
+    taken_ = {(int(f"{q[0]:.0f}"), int(f"{q[1]:.0f}")) for q in kept}
+    cnodes_ = [] if os.environ.get("FL_NO_COVER") else flcover.nodes(L.cover, taken_)
+    stats["cover_points"] = len(L.cover)
+    stats["cover_nodes"] = len(cnodes_)
     # [flfix2] bug-10969: the engine keeps the AI path graph it builds for a map in <home>/maps/<map>.pth and reuses it
     # while the BSP's map_time matches (navigate.cpp ArchiveLoadNodes). We wrote none, so every conversion matched every
     # other: the graph of the FIRST conversion was used for all later ones (soldiers that stand still, 'couldn't find
@@ -1282,14 +1304,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     B.entity(ws)
     for kv in om_ents:
         B.entity(kv)
-    kept = []
-    for n in L.navpoints():
-        p = X(n["pos"])
-        # Frontline packs navpoints tighter than MOHAA's PathSearch accepts ("Duplicate node ... not linked")
-        if any((p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2 < 64 * 64 and abs(p[2] - q[2]) < 48 for q in kept):
-            continue
-        kept.append(p)
+    for p in kept:
         B.entity([("classname", "info_pathnode"), ("origin", f"{p[0]:.0f} {p[1]:.0f} {p[2] + 16:.0f}")])
+    for x_, y_, z_, c_ in cnodes_:
+        B.entity([("classname", "info_pathnode"), ("origin", f"{x_} {y_} {z_ + 16:.0f}"),
+                  ("angle", f"{c_['node_yaw']:.0f}"), ("spawnflags", str(c_["flags"]))])
 
     # spawn points on Frontline's own navpoints (they are known-walkable): the 8 nearest the player start
     # for the allies/coop start and the 8 nearest the far end for axis - one shared point jams 8 bodies
