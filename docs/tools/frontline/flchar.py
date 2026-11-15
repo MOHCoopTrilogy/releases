@@ -51,8 +51,10 @@ STOCK_SKD = "models/human/german_wehrmact_officer/german_officer.skd"
 EULER_ORDER = "yzx"
 
 # the character definitions whose own models have passed the client sheet QA (front, side, back, face, run, fire,
-# crouch, no breaks). Empty: every Frontline character keeps the stock model in game until the user approves its sheet.
-OWN = set()
+# crouch, no breaks). Every other Frontline character keeps the stock model in game until the user approves its sheet.
+OWN = {"645ffd2b",    # 2026-11-15 user approved (main German, SHEET_fl_645ffd2b_ingame_645_v11)
+       "7f9a5a86",    # 2026-11-15 user approved (capped officer, SHEET_fl_7f9a5a86_ingame_7f9_v5)
+       "dca82ce9"}    # 2026-11-15 user approved (GI, SHEET_fl_dca82ce9_ingame_dca_v5)
 
 # Frontline bone -> MOHAA stock human bone (the stock animations drive only Bip01). Fingers have no counterpart:
 # they ride the hand.
