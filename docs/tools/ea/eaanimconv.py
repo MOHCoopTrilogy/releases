@@ -161,7 +161,7 @@ MMG_CENTRE = "51f46f11"     # l9_z124: the idle point that needs the least turn;
 # the engine seats a gunner 62-64u flat behind the gun pivot (dbx test 27, EAMMGSTATE log; the 39u in
 # actor_machinegunner.cpp is not the seat): every ea_mmg_* clip's root goes 27 world units forward so the hands reach
 # the grip. The clip is in model units: the character tiks scale 0.52 (eachar), so 27 / 0.52 here
-MMG_FWD = 27.0 / 0.52
+MMG_FWD = 0.0   # 0 since 2026-11-15: the fixer seats each disc crew with turretseat 36 74 (game.dll); was 27/0.52
 MMG_ONE = {"enter": "58f52873", "exit": "647c2159", "death": "7a12045e", "death_explosion": "573a6031"}
 # ambient / scripted scenes, by the rig the level's ICS points name (level.ea_ps_rig / ea_sc_rig): the clips of that
 # rig's state graph that have length (single-frame state poses left out), longest first. Alias ea_ics_<rig>_<n>.
