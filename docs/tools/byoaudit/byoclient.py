@@ -52,8 +52,8 @@ class Client:
 
     # ---------------------------------------------------------------- launch
     def __enter__(self):
-        # the user's own game running -> only the 1080p second screen; otherwise the ultrawide (H:\hzm_work\DISPLAY_QUEUE.md)
-        res = os.environ.get("BYO_TEST_RES") or ("1920x1080" if user_playing() else "3440x1440")
+        # [user 2026-11-15] "use my primary display for testing": always the primary display
+        res = os.environ.get("BYO_TEST_RES") or "primary"
         os.environ["HZM_TEST_RES"] = res
         os.makedirs(self.maintt, exist_ok=True)
         for fn in os.listdir(self.maintt):
