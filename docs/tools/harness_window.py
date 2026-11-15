@@ -317,7 +317,9 @@ def test_display(name=None):
     # playing": the primary display, EXCEPT while a fullscreen game of the user's runs on it - then the small 1920x1080
     res = os.environ.get("HZM_TEST_RES", "auto")
     if not name and res == "auto":
-        res = "1920x1080" if _user_fullscreen_game() else "primary"
+        # [user 2026-11-15, final] "you can still test just don't let it overtake my game": always the primary;
+        # while the user's game runs the window is placed BEHIND it (z-order bottom) and never activated
+        res = "primary"
     if not name and res == "primary":
         for m in mons:
             if m["primary"]:
@@ -683,7 +685,12 @@ class Watcher(threading.Thread):
         def mv():
             rec["visible_at_call"] = bool(u32.IsWindowVisible(hwnd))   # False = placed before the first show
             a = time.perf_counter()
-            ok = u32.SetWindowPos(hwnd, None, x, y, 0, 0, PLACE_FLAGS)
+            if _user_fullscreen_game():
+                # [user 2026-11-15] "you can still test just don't let it overtake my game": the test window goes
+                # to the BOTTOM of the z-order (behind the user's game) and is never activated; captures are PrintWindow
+                ok = u32.SetWindowPos(hwnd, wt.HWND(1), x, y, 0, 0, PLACE_FLAGS & ~SWP_NOZORDER)
+            else:
+                ok = u32.SetWindowPos(hwnd, None, x, y, 0, 0, PLACE_FLAGS)
             rec.update({"ok": bool(ok), "returned_ms": round((time.perf_counter() - a) * 1000, 1),
                         "rect_after": _wrect(hwnd)})
             with self.lock:
