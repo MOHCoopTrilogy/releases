@@ -91,6 +91,33 @@ class Brushes:
         return False
 
 
+def floor_at(grid, x, y, z0):
+    """the floor under (x, y) nearest the disc point's height z0: the highest one within 20u above it, else the highest
+    within 40u (a dug-in point below the converted floor) - searching 48u up stood points on the low wall they hide
+    behind (rec 138, 115, 175, 176: 29-45u up)"""
+    if grid is None:
+        return z0
+    z = grid.ground(x, y, z0 + 20, z0 - 96)
+    return z if z is not None else grid.ground(x, y, z0 + 40, z0 - 96)
+
+
+def walk_ok(B_, grid, a, b, lift, step=12.0):
+    """[approximate navigate.cpp CheckMove] a body walks the straight line a -> b (x, y, floor z): every 12u it finds a
+    floor no more than `lift` above and 256u below its last one and its box (step height to 94u) is clear of the brushes"""
+    L = math.hypot(b[0] - a[0], b[1] - a[1])
+    n = max(1, int(L // step))
+    z = a[2]
+    for i in range(1, n + 1):
+        x, y = a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n
+        g = grid.ground(x, y, z + lift, z - 256) if grid is not None else z
+        if g is None:
+            return False
+        if B_ is not None and B_.box_hits((x - 15.5, y - 15.5, max(g, z) + lift), (x + 15.5, y + 15.5, max(g, z) + 94.0)):
+            return False
+        z = g
+    return abs(z - b[2]) <= lift + 2
+
+
 def _free(B_, grid, obstacles, p, yaw, lift, max_r=96, step=4):
     """nearest spot to p where a MOHAA body stands clear of the brushes and the props, searched in rings, each ring from
     straight behind the point (away from its cover) round to the front; (spot, moved) or (None, -1)"""
@@ -101,7 +128,7 @@ def _free(B_, grid, obstacles, p, yaw, lift, max_r=96, step=4):
                       key=lambda a: abs(math.atan2(math.sin(a - back), math.cos(a - back))))
         for a in angs:
             x, y = p[0] + r * math.cos(a), p[1] + r * math.sin(a)
-            z = grid.ground(x, y, p[2] + 48, p[2] - 96) if grid is not None else p[2]
+            z = floor_at(grid, x, y, p[2])
             if z is None:
                 continue
             if any(_in_box((x, y), ob, BODY) for ob in obstacles if math.dist(ob["pos"][:2], (x, y)) < 160):
@@ -127,6 +154,7 @@ def points(L, X, grid=None, obstacles=(), actors=(), B=None, lift=38.0):
     (its solid brushes), `lift` = the map's step height (k is 1-based; moved -1 = no free spot within 96u)."""
     mirror = X.m < 0
     B_ = Brushes(B) if B is not None else None
+    points.last = (B_, grid, lift)
     out = []
     for e, team, tag, typ, is_mg in records(L):
         p = X(e["pos"])
@@ -154,16 +182,25 @@ def points(L, X, grid=None, obstacles=(), actors=(), B=None, lift=38.0):
     return out
 
 
-def nodes(cov, taken):
+def nodes(cov, taken, nav=()):
     """the cover points that become info_pathnode entities: one per spot (a disc corner pair at one spot keeps its first
-    record; MOHAA gives a node one flag and one yaw), none for a mounted-gun point or one that has no free spot.
-    `taken` = set of (x, y) integer origins already used by the navpoint nodes (the engine drops a node whose origin
-    equals another's after droptofloor - same x, y is enough). Marks c["node"] = 1 on the ones it returns."""
+    record; MOHAA gives a node one flag and one yaw), none for a mounted-gun point, one that has no free spot, or one no
+    navpoint node within 384u (the engine's link range) can be walked to in a straight line (`nav` = the navpoint
+    nodes' (x, y, floor z); an unlinked cover node is one an actor picks and cannot reach). `taken` = set of (x, y)
+    integer origins already used by the navpoint nodes (the engine drops a node whose origin equals another's after
+    droptofloor - same x, y is enough). Marks c["node"] = 1 on the ones it returns (c["link"] = 0 when unlinked)."""
+    B_, grid, lift = getattr(points, "last", (None, None, 38.0))
     out = []
     for c in cov:
         c["node"] = 0
         if not c["flags"] or c["moved"] < 0:
             continue
+        if nav:
+            near = sorted((q for q in nav if (q[0] - c["pos"][0]) ** 2 + (q[1] - c["pos"][1]) ** 2 < 384.0 ** 2),
+                          key=lambda q: (q[0] - c["pos"][0]) ** 2 + (q[1] - c["pos"][1]) ** 2)[:12]
+            c["link"] = int(any(walk_ok(B_, grid, c["pos"], q, lift) or walk_ok(B_, grid, q, c["pos"], lift) for q in near))
+            if not c["link"]:
+                continue
         x, y = int(round(c["pos"][0])), int(round(c["pos"][1]))
         if any(abs(x - n["xy"][0]) <= 8 and abs(y - n["xy"][1]) <= 8 for n in out):
             continue

@@ -1291,7 +1291,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     acts_ = [(X(e_["pos"]), flscene.team(e_), (flscene.ids(e_) or [0])[0]) for e_ in L.entities() if flscene.kind(e_) == 3]
     L.cover = flcover.points(L, X, grid, cover_obst, acts_, B, float(sp.get("step_height", FL_STEP)))
     taken_ = {(int(f"{q[0]:.0f}"), int(f"{q[1]:.0f}")) for q in kept}
-    cnodes_ = [] if os.environ.get("FL_NO_COVER") else flcover.nodes(L.cover, taken_)
+    nav_ = [(q[0], q[1], flcover.floor_at(grid, q[0], q[1], q[2]) or q[2]) for q in kept]
+    cnodes_ = [] if os.environ.get("FL_NO_COVER") else flcover.nodes(L.cover, taken_, nav_)
     stats["cover_points"] = len(L.cover)
     stats["cover_nodes"] = len(cnodes_)
     # [flfix2] bug-10969: the engine keeps the AI path graph it builds for a map in <home>/maps/<map>.pth and reuses it
