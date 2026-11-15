@@ -608,7 +608,7 @@ def _build_panzer(stream, level, mohaa_base, files, lines, log):
     ct = re.sub(r"(?im)^(\s*open\s+)PanzerIV_W_cannon_open\.skc", r"\1panzer_cannon_open.skc", ct)
     tik["cannon"] = ct
     mt = _retarget_tik(mg_tik, mdir, "panzer_mg.skd", ["	surface pz_mg_none shader %s_002" % pre])
-    tik["mg"] = re.sub(r"(?im)^(\s*(?:idle|fire)\s+)PanzerIV_w_mg42\.skc", r"panzer_mg.skc", mt)
+    tik["mg"] = re.sub(r"(?im)^(\s*(?:idle|fire)\s+)PanzerIV_w_mg42\.skc", r"\1panzer_mg.skc", mt)
     tik["wreck"] = _retarget_tik(wr_tik, mdir, "panzer_wreck.skd", surf_lines(wr_surfs), "models/vehicles/PanzerIV_w_d")
     for k, t in tik.items():
         files["models/vehicles/ea_%s_panzer%s.tik" % (level, "" if k == "base" else "_" + k)] = t.encode("latin-1")
