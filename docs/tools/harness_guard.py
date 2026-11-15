@@ -38,7 +38,10 @@ if _HERE not in sys.path:
 import harness_window as window  # noqa: E402
 from harness_window import launch_background, apply_policy, popen_kwargs, test_display  # noqa: E402,F401
 
-USER_EXES = [r"G:\mohaa-gl2\openmohaa.exe", r"G:\GOG\Medal of Honor - Allied Assault War Chest\openmohaa.exe"]
+USER_EXES = [r"G:\mohaa-gl2\openmohaa.exe", r"G:\GOG\Medal of Honor - Allied Assault War Chest\openmohaa.exe",
+             r"G:\mohaa-test\openmohaa.exe"]  # G:\mohaa-test = the user's playable test copy (2026-10-25)
+# Folders that are the user's own installs: never treated as an agent's private client.
+USER_ROOTS = [r"G:\mohaa-gl2", r"G:\mohaa-test", r"G:\GOG"]
 # registered harness folders -> owner name and the homepath marker its launches carry on the command line
 HARNESSES = {
     r"G:\mohaa-gfxtest": {"owner": "gfx/shared", "home": r"G:\mohaa-gl2\home_test"},
@@ -266,6 +269,17 @@ HARNESSES = {
     # (read only) and the liberacion-branch openmohaa.exe, fresh home, basepath = the GOG tree read-only, one test pak in the home,
     # net_ip 127.0.0.1, ports 12951 (dedicated sweep) / 12953 (client), queue slot "liberacion"
     r"G:\mohaa-lib": {"owner": "liberacion", "home": r"G:\mohaa-lib\home"},
+    # padlean (docs/proposals/padlean_2026-10-21): A = pad client (new padlean exe + LIVE v1.10.35 DLLs, net_port 12912), B = observer (net_port 12913); server home G:\mohaa-padlean\home_ded, port 12911
+    r"G:\mohaa-padlean": {"owner": "padlean", "home": r"G:\mohaa-padlean\home"},
+    r"G:\mohaa-padlean2": {"owner": "padlean2", "home": r"G:\mohaa-padlean2\home"},
+    # demo anim tables (bug-10330, docs/proposals/demo_compat_2026-11-01): demo-animtab exe + LIVE v1.10.54 DLLs, net_port 12931
+    r"G:\mohaa-animtab": {"owner": "animtab", "home": r"G:\mohaa-animtab\home"},
+    # demo viewer tester fixes (v1.10.63: own corpse, freecam gun, server recording names), demofix-eng build, net_port 12941
+    r"G:\mohaa-demofix": {"owner": "demofix", "home": r"G:\mohaa-demofix\home"},
+    # in-game ESC board lane (escmenu, 2026-11-10): byte copies of the LIVE G:\mohaa-gl2 DLLs + the escmenu-branch
+    # openmohaa.exe, home on H:, basepath = the GOG tree read-only, one test pak in the home, net_port 12971 (+12973 client 2)
+    r"H:\hzm_work\escmenu\client": {"owner": "escmenu", "home": r"H:\hzm_work\escmenu\client\home"},
+    r"H:\hzm_work\escmenu\client2": {"owner": "escmenu2", "home": r"H:\hzm_work\escmenu\client2\home"},
 }
 # [2026-10-12] one slot PER OWNER (= per harness folder), no longer one for the whole PC: the user lifted the quiet rule
 # ("It's fine to hear the fans now"), so different harnesses run at the same time. Two clients of the SAME harness
@@ -313,11 +327,34 @@ def classify():
                 if path.startswith(_norm(folder) + os.sep) and _norm(h["home"]) in _norm(cmd.replace('"', "")):
                     rec["cls"], rec["owner"] = "HARNESS", h["owner"]
                     break
+            else:
+                # Unregistered private client (2026-10-25): an exe under its own G:\mohaa-<x> folder (not a user
+                # root) whose fs_homepath is inside that same folder is an agent's harness, not the user.
+                m = re.match(r"^(g:\\mohaa-[^\\]+)\\", path or "")
+                top = m.group(1) if m else None
+                if top and not any(top == _norm(u) for u in USER_ROOTS):
+                    hm = re.search(r"fs_homepath\s+(\S+)", cmd.replace('"', ""), re.I)
+                    # [2026-11-15] also an fs_homepath on H:\hzm_work (agents' private homes, e.g. G:\mohaa-ea with
+                    # its home under H:\hzm_work\eapolish): the user never keeps a home there
+                    if hm and (_norm(hm.group(1)).startswith(top + os.sep) or _norm(hm.group(1)).startswith(_norm(r"H:\hzm_work") + os.sep)):
+                        rec["cls"], rec["owner"] = "HARNESS", "unregistered:" + os.path.basename(top)
         res.append(rec)
     return res
 
 
+ALLOW_WHILE_PLAYING = r"C:\Users\curry\AppData\Local\Temp\claude\ALLOW_WHILE_PLAYING"
+
+
 def user_game_running():
+    # user 2026-10-27: harness jobs may run while the user plays (fps/fan cost accepted).
+    # While the flag file exists this reports no user game; delete the file to restore the pause.
+    if os.path.exists(ALLOW_WHILE_PLAYING):
+        return []
+    return [r["pid"] for r in classify() if r["cls"] == "USER"]
+
+
+def user_game_running_raw():
+    # the real answer, for jobs that must still avoid the user's own install
     return [r["pid"] for r in classify() if r["cls"] == "USER"]
 
 
