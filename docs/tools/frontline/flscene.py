@@ -13,6 +13,7 @@ size is the high half of word [11] in decimetres.
 f32 quaternion w,x,y,z}, 30 per second. Model forward = local -y (heading = quaternion yaw - 90).
 """
 import math
+import re
 import struct
 
 ID_LO, ID_HI = 65536, 70000
@@ -184,7 +185,8 @@ def particle(e):
       [34] emit duration in seconds, 0 = continuous (the one-shot templates: 0.1 to 1.0)
       [36..41] spawn box, [42..47] velocity range, [48..50] acceleration, all metres (per second), each axis given
            as two ends in either order
-      [51..54] start size range (two pairs), metres
+      [51..54] size, metres: [51, 52] start range, [53, 54] end range (round 22 reading: 13 shrinks 0.9-1.0 -> 0.5,
+           11 / 209 / 421 differ between the pairs, the smokes repeat one pair)
       [55] particles per second (continuous systems), [56] particle life, seconds
       [57], [58] spin range; [59] the sprite (an offset into data not on this level: same value = same sprite)
     Fields marked 'read as' in FIDELITY round 20 are readings, not documentation."""
@@ -199,5 +201,63 @@ def particle(e):
             "start": w[32] >> 16, "w32lo": w[32] & 0xFFFF, "w33": w[33], "dur": f(34),
             "box": ax(36, 39), "vel": ax(42, 45), "acc": (f(48), f(49), f(50)),
             "size": (min(f(51), f(52), f(53), f(54)), max(f(51), f(52), f(53), f(54))),
+            "size_raw": (min(f(51), f(52)), max(f(51), f(52)), min(f(53), f(54)), max(f(53), f(54))),
             "rate": f(55), "life": f(56), "spin": (f(57), f(58)), "sprite": w[59],
             "cls": next((s for s in e["strs"] if s.startswith("Start")), "")}
+
+
+def links(e):
+    """[flfix2 round 22] a record's link list (word 17 = byte offset of {u32 count, u32 (category << 16 | id) ...}) as
+    [(category, id)]: 1 message group, 6 trigger <-> partner, 10 AI area, 11 / 12 sound set (cbs_decode FORMAT.md 6)"""
+    w = words(e)
+    if len(w) < 18 or not w[17] or w[17] % 4:
+        return []
+    o = w[17] // 4
+    if o >= len(w) or not (0 < w[o] < 64) or o + 1 + w[o] > len(w):
+        return []
+    return [(x >> 16, x & 0xFFFF) for x in w[o + 1:o + 1 + w[o]]]
+
+
+def slots(e, k):
+    """[flfix2 round 22] the messages a record's slot k sends (0 player enters, 1 player leaves, 2 object enters,
+    3 object leaves, 4 used); word 22+k = byte offset of {u32 count, u32 msg ...}, 0 = empty"""
+    w = words(e)
+    if 22 + k >= len(w) or not w[22 + k] or w[22 + k] % 4:
+        return []
+    o = w[22 + k] // 4
+    if o >= len(w) or not (0 < w[o] < 16) or o + 1 + w[o] > len(w):
+        return []
+    return list(w[o + 1:o + 1 + w[o]])
+
+
+def projgen(e):
+    """[flfix2 round 22] a kind-10 ProjectileGenerator record's settings, or None. Decoded 2026-11-15 from the four 1_1
+    records, ProjectileGenerator.lst (state 0 init reads attr(0,25..33)) and the VM traces (TRACE_jeep: builtin 0x1c
+    arguments 0x2b / 0x2c; trace/trig256: (1, 0x4f79c15b, 0.5, self, 0x11, 0.5, 0) at the trigger's tick):
+      [28] high half = attr 25: the NAMED PATH the shots are spread along (.bpd section 0; 0 = fire at the target
+           object instead, FIREPROJECTILE); shot s of a burst of N aims at fraction (s + 0.5) / N along it
+      [29] attr 26: shots per second (timer 60 / rate ticks)   [30] attr 27: the second fire argument (0.85 default)
+      [31] / [32] attr 28 / 29: shots per burst, min / max     [33] attr 31: bursts per switch-on (0 = unlimited)
+      [34] / [35] attr 32 / 33: pause between bursts, min / max seconds   [37] attr 30: the projectile definition
+           (a weapbul_*.dat entry hash)
+    The class name (word 16) is the behaviour; a record with none is never created (1_1 rec 212)."""
+    w = words(e)
+    if len(w) < 36 or w[3] != 10:
+        return None
+    f = lambda k: struct.unpack("<f", struct.pack("<I", w[k]))[0]          # noqa: E731
+    # the string scan can pick up a byte or two before the name (1_1 rec 473: 'yOProjectileGenerator')
+    cls = next((s[s.find("ProjectileGenerator"):] for s in e["strs"] if "ProjectileGenerator" in s), "")
+    return {"cls": cls, "path": w[28] >> 16, "rate": f(29), "arg": f(30), "burst": (w[31], w[32]), "cycles": w[33],
+            "pause": (f(34), f(35)), "proj": w[37] if len(w) > 37 and cls else 0, "sound": "MG42Sound" in cls}
+
+
+def weapbul(data):
+    """[flfix2 round 22] weapbul_<skill>.dat -> {definition hash: entry name}: each entry ends with its mesh name, and
+    the definition hash sits 5 words before it (cross-checked: 0xb975b217 = the enemy MP40 the jeep generators and
+    the SoldierA_Roamer class fire). Read only to label a generator's round as bullet or rocket - no name is stored"""
+    out = {}
+    for m in re.finditer(rb"([A-Z0-9_]{3,})\.MSH\0", data):
+        o = m.start() - 20
+        if o >= 0:
+            out[struct.unpack_from("<I", data, o)[0]] = m.group(1).decode()
+    return out
