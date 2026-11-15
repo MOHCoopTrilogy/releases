@@ -13,6 +13,8 @@ global * parent^-1; the legs as their foot IK target in model space). Positions 
 own lengths; only the pelvis moves by the EA pelvis' own translation (root motion), in the skin's scale.
 """
 import math
+import os
+import re
 
 import eaanim
 import eachar
@@ -149,6 +151,39 @@ def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0, f
     return mohskel.write_skc(1.0 / fps, chans, frames), frames
 
 
+def convert_loco(bank, clip, skel, bones, target_speed, fps=30.0, tik_scale=0.52):
+    """a locomotion LOOP for the actor: the clip's travel over one cycle comes out of the body channels (Bip01 pos and
+    the model-space foot IK targets) and goes into the frame deltas, as the stock walk/run files carry it, so the
+    engine moves the actor. The cycle is time-scaled so the actor keeps MOHAA's own speed (target_speed, world u/s,
+    read from the stock clip the alias replaces): the feet stay planted, the cadence changes instead.
+    Returns (skc bytes, info {ea_speed, target, rate})"""
+    _, frames = convert_clip(bank, clip, skel, bones, fps=fps, root_motion=True)
+    if len(frames) < 3:
+        return None, None
+    p0, p1 = frames[0]["Bip01 pos"], frames[-1]["Bip01 pos"]
+    tr = (p1[0] - p0[0], p1[1] - p0[1])                  # model units over the whole clip (= one cycle)
+    frames = frames[:-1]                                  # the last sample is the first pose one cycle on
+    nf = len(frames)
+    out = []
+    for f, ch in enumerate(frames):
+        k = f / float(nf)
+        c2 = dict(ch)
+        for name, v in ch.items():
+            if name == "Bip01 pos" or (name.endswith(" Foot pos")):
+                c2[name] = (v[0] - tr[0] * k, v[1] - tr[1] * k, v[2], v[3])
+        out.append(c2)
+    dur = clip["duration"]
+    ea_speed = math.hypot(*tr) * tik_scale / dur if dur > 0 else 0.0
+    rate = ea_speed / target_speed if target_speed > 1e-3 and ea_speed > 1e-3 else 1.0
+    ft = (dur / nf) * rate                                # slower playback when the original moves faster
+    deltas = [(tr[0] / nf, tr[1] / nf, 0.0)] * nf
+    chans = list(out[0].keys())
+    order = [b[0] for b in bones]
+    chans.sort(key=lambda c: order.index(c.rsplit(" ", 1)[0]) if c.rsplit(" ", 1)[0] in order else 999)
+    skc = mohskel.write_skc(ft, chans, out, flags=0x20, deltas=deltas)
+    return skc, {"ea_speed": ea_speed, "target": target_speed, "rate": rate, "cycle": nf * ft}
+
+
 # ---- the clip sets the converter writes (1_11's own clip names are hashes; these are read from its state graphs) ----
 # MG gunner (state graph 'MMG'): an 11-point traverse / elevation grid per state; the grid points are named by the
 # clip's own aim (hands' yaw in degrees right / left of the chest's forward, hands' height in cm): r<deg>_z<cm>
@@ -215,6 +250,18 @@ SCENES_STATES = {
 }
 
 
+# Live-AI locomotion (2026-11-15, user-approved): the original's walk and run cycles under the STOCK alias names in the
+# disc character tiks, so every anim script (runto_*, motionblend) plays them. Needs the engine's "first definition of a
+# non-random alias wins" (our animations block precedes the $include of new_generic_human.tik); without it the engine
+# picks either definition. Weapon groups of the disc crews: mp40 (MP40), thompson (PPSh), rifle (Kar98k), unarmed.
+# The stock clip each alias replaces sets the speed (convert_loco keeps it); its line's flags (autosteps_*) are kept.
+LOCO_GROUPS = ("mp40", "thompson", "rifle", "unarmed")
+LOCO = {
+    "run_forward": "34691ee9",          # RUN (graph abebe588): 0.67 s cycle, the original moves ~275 u/s
+    "walk_alert_forward": "997a78cf",   # WALK: 0.60 s cycle, ~176 u/s - the original's walk is a brisk patrol walk
+}
+
+
 # Ordinary soldier deaths: graph 84033c53 (HitReactions.aso). Its states pick by core pose (ChooseDeathPose), hit
 # type and hit location; the named states that follow are DEATH_REACT (low/prone), DEATH_REACT_EXPLOSION (by
 # GetHitDirection) and DEATH_REACT_HIT_BY_VEHICLE_BACK / _FRONT. The tree keys (which location takes which clip) are
@@ -262,7 +309,28 @@ def gun_yaw(bank, skel, bones, h):
     return -math.degrees(math.atan2((r[1] + l[1]) / 2, (r[0] + l[0]) / 2))
 
 
-def build(stream, level, skd_bytes, files, log=print):
+def _stock_alias(stock, alias):
+    """(skc path under models/human/animation, flags) of a stock alias, from the player's own human_*.tik files"""
+    for tik in ("human_%s.tik" % alias.split("_")[0], "human_rifle.tik", "human_unarmed.tik"):
+        t = stock("models/human/animation/" + tik)
+        if not t:
+            continue
+        m = re.search(r"^\s*%s\s+(\S+\.skc)([^\n{/]*)" % re.escape(alias), t.decode("latin-1"), re.M | re.I)
+        if m:
+            return m.group(1), m.group(2).strip()
+    return None, ""
+
+
+def _stock_speed(skc):
+    import struct
+    h = struct.unpack_from("<4s3if3ff3i", skc, 0)
+    nf, ft = h[11], h[4]
+    tx = sum(struct.unpack_from("<f", skc, 48 + 48 * f + 28)[0] for f in range(nf))
+    ty = sum(struct.unpack_from("<f", skc, 48 + 48 * f + 32)[0] for f in range(nf))
+    return math.hypot(tx, ty) * 0.52 / (nf * ft) if nf and ft else 0.0
+
+
+def build(stream, level, skd_bytes, files, log=print, stock=None):
     """write the clip sets as models/human/ea_<level>/anim/*.skc; returns the tik 'animations' block text"""
     import struct
     import easkin
@@ -303,6 +371,24 @@ def build(stream, level, skd_bytes, files, log=print):
         for n, hs_ in enumerate(hs.split()):
             hx, st = hs_.split(":")
             put("ics_%s_%d" % (rig, n + 1), int(hx, 16), st.endswith("IDLE"))
+    # opt-in (EA_LOCO=1) until the engine build with "first definition wins" ships, then default on
+    if stock is not None and os.environ.get("EA_LOCO") == "1":
+        for grp in LOCO_GROUPS:
+            for suffix, hx in LOCO.items():
+                alias = "%s_%s" % (grp, suffix)
+                path, flags = _stock_alias(stock, alias)
+                if not path or int(hx, 16) not in bank.clips:
+                    continue
+                sb = stock("models/human/animation/" + path)
+                tgt = _stock_speed(sb) if sb else 0.0
+                skc, info = convert_loco(bank, bank.clip(int(hx, 16)), skel, bones, tgt)
+                if not skc:
+                    continue
+                fn = "loco_%s" % alias
+                files["models/human/ea_%s/anim/%s.skc" % (level, fn)] = skc
+                rows.append("%s\t\tanim/%s.skc%s" % (alias, fn, ("\t" + flags) if flags else ""))
+                log("eaanimconv: %s <- %s: original %.0f u/s, MOHAA %.0f u/s, played at %.2fx" % (
+                    alias, hx, info["ea_speed"], info["target"], 1.0 / info["rate"]))
     for kind, hs in DEATHS.items():
         for n, hx in enumerate(hs.split()):
             put("death_%s_%d" % (kind, n + 1), int(hx, 16), False)

@@ -231,6 +231,25 @@ def _stock_bones(mohaa_base):
     return None
 
 
+def _stock_reader(mohaa_base):
+    """path -> bytes (or None) from the player's own install: main, mainta, maintt paks in the engine's order (a later
+    pak overrides). Read only - nothing of it is written anywhere except what the caller derives (speeds, flags)."""
+    idx = {}
+    for root in ("main", "mainta", "maintt"):
+        for pk in sorted(glob.glob(os.path.join(mohaa_base, root, "*.pk3"))):
+            try:
+                z = zipfile.ZipFile(pk)
+            except (zipfile.BadZipFile, OSError):
+                continue
+            for n in z.namelist():
+                idx[n.lower()] = (z, n)
+
+    def read(path):
+        e = idx.get(path.lower())
+        return e[0].read(e[1]) if e else None
+    return read
+
+
 def _tga(im):
     w, h, rgba = im["w"], im["h"], bytes(im["rgba"])
     px = bytearray(len(rgba))
@@ -573,7 +592,7 @@ def build(stream, level, mohaa_base, files, lines, log=print):
         try:
             import eaanimconv
             anim_block = eaanimconv.build(stream, level, bytes(72) + struct.pack("<3i", 0, nbones, 84) + bone_block,
-                                          files, log=log)
+                                          files, log=log, stock=_stock_reader(mohaa_base))
         except Exception as e:     # never fail the conversion: the characters keep the stock animations only
             log("eachar: animations skipped (%s)" % e)
     for mname, chr_names, label in CHARS:

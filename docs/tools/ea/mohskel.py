@@ -83,7 +83,7 @@ def read_skc(b):
     return {"flags": flags, "frametime": frametime, "channels": chans, "frames": frames}
 
 
-def write_skc(frametime, channels, frames, flags=0):
+def write_skc(frametime, channels, frames, flags=0, deltas=None):
     """SKAN v13: 48 header | nf x 48 frame headers | nf x nc x 16 data | nc x 32 names. frames: [{channel: 4 floats}]"""
     nc, nf = len(channels), len(frames)
     ofs_data = 48 + 48 * nf
@@ -93,7 +93,8 @@ def write_skc(frametime, channels, frames, flags=0):
     data = bytearray()
     for f, fr in enumerate(frames):
         pos = fr.get("Bip01 pos", (0, 0, 0, 0))
-        head.append(struct.pack("<3f3ff3ffi", -60.0, -60.0, 0.0, 60.0, 60.0, 180.0, 110.0, 0.0, 0.0, 0.0, 0.0,
+        dl = deltas[f] if deltas else (0.0, 0.0, 0.0)
+        head.append(struct.pack("<3f3ff3ffi", -60.0, -60.0, 0.0, 60.0, 60.0, 180.0, 110.0, dl[0], dl[1], dl[2], 0.0,
                                 ofs_data + 16 * nc * f))
         for c in channels:
             data += struct.pack("<4f", *fr[c])
