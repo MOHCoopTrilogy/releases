@@ -84,6 +84,13 @@ PANZER = {
     # the hull's ball MG (sub-mesh 5, bone 0): the front face of its mount, disc metres; the stock hull-MG turret fires
     # from here (its tag_barrel is moved; the turret entity itself stays on the stock 'turret1' tag)
     "ball_mg": (0.582, 2.127, 1.453),
+    # [QA 2026-11-15] at the converted SOLDIERS' scale (eachar: 52 u/m), not the world's 48: the original's tank-to-soldier
+    # proportion (coordinator). The stock entity's own box (setsize 120 x 120 x 78) is smaller than either model and stays
+    "scale": 52.0,
+    # whitewash brightness: the original draws the tank near the snow's own brightness (emulator still
+    # ref_xemu/atmo/medium_firec: tank / snow 0.77; ours under the stock tank's lightingSpherical: 0.42). A second
+    # additive pass of the same texture at this weight lifts it (x1.8)
+    "lift": 0.8,
 }
 
 
@@ -460,6 +467,7 @@ def _build_panzer(stream, level, mohaa_base, files, lines, log):
         log("eaprops: Panzer IV model not found in the level stream; the tank keeps the stock model")
         return 0
     F = panzer_fit(m)
+    PS = PANZER["scale"]
     db = F["db"]
     base_tik = _stock_tik(mohaa_base, "vehicles/PanzerIV_w_base.tik")
     can_tik = _stock_tik(mohaa_base, "vehicles/PanzerIV_w_cannon.tik")
@@ -476,7 +484,7 @@ def _build_panzer(stream, level, mohaa_base, files, lines, log):
     pre = "ea_%s_pz" % level
     SB, SC, SD = (STOCK["vehicles/PanzerIV_w_base.tik"], STOCK["vehicles/PanzerIV_w_cannon.tik"],
                   STOCK["vehicles/PanzerIV_w_d_base.tik"])
-    piv = to_map(F["pivot"])
+    piv = to_map(F["pivot"], PS)
     t0 = SB["bones"]["turret0"][0]
     shift = (t0[0] - piv[0], t0[1] - piv[1], 0.0)        # the hull moves so the disc ring centre is on turret0
 
@@ -499,9 +507,12 @@ def _build_panzer(stream, level, mohaa_base, files, lines, log):
         tname = "%s/panzer_%s.tga" % (tdir, key.strip("_").lower())
         files[tname] = _tga(im)
         blended = min(im["rgba"][3::4]) < 250
-        sh.append("%s_%s\n{\n\tcull none\n%s\t{\n\t\tmap %s\n%s\t\trgbGen lightingSpherical\n\t}\n}\n" % (
+        lift = "" if blended or not PANZER.get("lift") else (
+            "\t{\n\t\tmap %s\n\t\tblendFunc GL_SRC_ALPHA GL_ONE\n\t\trgbGen lightingSpherical\n\t\talphaGen const %.2f\n"
+            "\t}\n" % (tname, PANZER["lift"]))
+        sh.append("%s_%s\n{\n\tcull none\n%s\t{\n\t\tmap %s\n%s\t\trgbGen lightingSpherical\n\t}\n%s}\n" % (
             pre, key.strip("_").lower(), "\tpolygonOffset\n" if blended else "", tname,
-            "\t\tblendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n" if blended else ""))
+            "\t\tblendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n" if blended else "", lift))
     files["scripts/ea_%s_props.shader" % level] = "\n".join(sh).encode()
 
     def shader_of(shape):
@@ -518,7 +529,7 @@ def _build_panzer(stream, level, mohaa_base, files, lines, log):
         sel_hull[k] = 1
     # a sub-mesh carrying both hull and turret vertices (5: hull + turret + gun) is split by vertex
     hull_surfs = surfaces_for(
-        m, list(sel_hull), lambda k, j, p: _add(to_map(p), shift),
+        m, list(sel_hull), lambda k, j, p: _add(to_map(p, PS), shift),
         lambda k, j: (ib, frame(SB, "tank"), SB["scale"]), "pz_hull",
         keep=lambda k, j: db[k] is None or db[k][j] not in turret_set)
     files["%s/panzer_base.skd" % mdir] = write_skd("ea_panzer_base", bb, len(bnames),
@@ -526,8 +537,8 @@ def _build_panzer(stream, level, mohaa_base, files, lines, log):
     # 2. turret + gun (cannon): turret body on panzer_IV_turret, gun on main_gun (pitch); its own frames below
     cb, cnames = skd_bones(sk["PanzerIV_w/PanzerIV_w_cannon"])
     off = (shift[0] - t0[0], shift[1] - t0[1], -t0[2])      # disc map space -> the cannon entity's space
-    trn = _add(to_map(F["trunnion"]), off)
-    muz = _add(to_map(F["muzzle"]), off)
+    trn = _add(to_map(F["trunnion"], PS), off)
+    muz = _add(to_map(F["muzzle"], PS), off)
     cw = {b: frame(SC, b) for b in SC["bones"]}
     cw["pitch"] = (trn, cw["pitch"][1])
     cw["main_gun"] = (trn, cw["main_gun"][1])
@@ -537,7 +548,7 @@ def _build_panzer(stream, level, mohaa_base, files, lines, log):
     def can_bone(k, j):
         b = "main_gun" if db[k][j] in gun_set else "panzer_IV_turret"
         return cnames.index(b), cw[b], SC["scale"]
-    can_surfs = surfaces_for(m, tur_k, lambda k, j, p: _add(to_map(p), off), can_bone, "pz_turret",
+    can_surfs = surfaces_for(m, tur_k, lambda k, j, p: _add(to_map(p, PS), off), can_bone, "pz_turret",
                              keep=lambda k, j: db[k] is not None and db[k][j] in turret_set)
     files["%s/panzer_cannon.skd" % mdir] = write_skd("ea_panzer_cannon", cb, len(cnames),
                                                       [(s[0], s[1], s[2]) for s in can_surfs])
@@ -566,7 +577,7 @@ def _build_panzer(stream, level, mohaa_base, files, lines, log):
     SM = STOCK["vehicles/PanzerIV_w_mg42.tik"]
     t1 = SB["bones"]["turret1"][0]
     mgw = {b: frame(SM, b) for b in SM["bones"]}
-    mgw["tag_barrel"] = (_sub(_add(to_map(PANZER["ball_mg"]), shift), t1), mgw["tag_barrel"][1])
+    mgw["tag_barrel"] = (_sub(_add(to_map(PANZER["ball_mg"], PS), shift), t1), mgw["tag_barrel"][1])
     mpar = {"connect": None, "panzer_IV_mg42": "connect", "tag_barrel": "panzer_IV_mg42", "eyebone": None,
             "Camera01": "eyebone", "pitch": None}
     mn = list(SM["bones"])
@@ -576,7 +587,7 @@ def _build_panzer(stream, level, mohaa_base, files, lines, log):
     # 4. the wreck: the disc's destroyed set on panzeriv_base_d, the same shift as the hull (the turret is in it)
     wb, wnames = skd_bones(sk["PanzerIV_w_d/PanzerIV_w_d_base"])
     iw = wnames.index("panzeriv_base_d")
-    wr_surfs = surfaces_for(m, list(PANZER["wreck"]), lambda k, j, p: _add(to_map(p), shift),
+    wr_surfs = surfaces_for(m, list(PANZER["wreck"]), lambda k, j, p: _add(to_map(p, PS), shift),
                             lambda k, j: (iw, frame(SD, "panzeriv_base_d"), SD["scale"]), "pz_wreck")
     files["%s/panzer_wreck.skd" % mdir] = write_skd("ea_panzer_wreck", wb, len(wnames),
                                                      [(s[0], s[1], s[2]) for s in wr_surfs])
