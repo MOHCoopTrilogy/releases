@@ -657,6 +657,80 @@ situational voice (Germans de_*, allies us_*; bank = the last area a player ente
 opt-out in aihandler.scr, b90c9272) and `level.coop_noCounter`: no ADDED clones or end waves. The door (rec 401) opens and
 closes with the use key from both sides; the ScriptSlave move had thrown the leaf to (-39 57 -1) on its first swing,
 now stepped by hand in place (`r17/doorc3_sheet.jpg`: open and closed from the face and the side), USE icon drawn (`r17/doorc_icon.jpg`).
+Round 20c (emulator stills `ref_xemu/so_fx`, mod f546ed7c): the bomb site matches (wrecked car and dark column, 10 s and 18 s
+after bomb A); the house front has no flame before trigger 41, so rec 13 now starts with the house blast (was: load);
+the roster fire (rec 10) burns before the player reaches the MG-nest street, so it now runs from load (was: not spawned).
+Walked stills (`so_fx/walked_sheet.png`, mod 2451dc60): rec 4 = a burning car with a dark column (matches the
+stock fire smoke); rec 5 = a low brownish haze at street level, no column, now the stock lingering smoke; rec 6 = no
+smoke seen on the VINS LIQUEURS facade from street level (the system sits at z 198, above the frame; kept as decoded,
+open); rec 7 = a burnt wreck with no smoke in two frames, so not spawned (choice: the frames over the decode); rec 10
+still burns, a thick black column over the roof, after the MG-nest street. The door was not in view; open.
+
+## Round 21 (flfix2, 2026-11-15) - cover and routes
+
+Decoded from the 1_1 .bpd and the VM traces (`docs/tools/frontline/flcover.py` holds the layout). The 113 kind-5
+records are 109 cover points (type hash 0x9101C906, 116 bytes), 3 mounted-gun points (0x5B607813, "MGPoint", word 28 = 8)
+and record 0 (0x2070A66D, not a point; undecoded). A cover point carries: position; the quaternion = its facing, toward
+the threat; word 13 byte 1 = the side that may use it (0 any 83, 1 Allied 18, 2 Axis 12 - the actor's own team byte);
+word 14 = a link tag shared with the BreakingWoodBoxSwap crate it leans on (19 points, one per side of a crate, facing
+each other across it); word 28 = type: 1 (28) corner with the wall on the right, 2 (21) wall on the left (measured on
+the converted collision: 23/28 and 20/21; a corner spot often holds a 1 and a 2 at one position, 90 degrees apart),
+4 (59) behind low cover or a crate, 80 (1, rec 112) not decoded. No message id or group link is stored.
+Evidence: 84 of the 85 traced AISETCOVERPOINT calls (and all 259 GETWAYPOINTINFO calls) take a section-3 record
+number of a 0x9101C906 record, the 85th is -1 (clear); allies took only team 0/1 points, Germans only 0/2; in run sr_D
+ally rec 64 took point 121 and stopped 18u from it, the shouters took 119 and 123 where they stood.
+
+Routes: no actor record holds a path id, and no soldier calls a path builtin in 60+ traces (only the tank's
+MECHFOLLOWPATH, argument 3 - path 3 is the stub beside it, but its traced 3.9 m arc follows neither path 3 nor 66: open).
+The gun wave's allies (recs 104-106, `sq_wave4`) run the jeep road, within 64u of path 67 for 37/47 and 54/84 of their
+samples and near path 99, not paths 43/44. So the actor-to-path link stays undecoded; the paths are data
+(`level.fl_npath[id][i]`, now with `fl_npath_id[j]` / `fl_npath_cnt`).
+
+Built (converter commits 804872a2, 4cf8f6b5; test pak v118): `level.fl_cov[k]` (MOHAA position, placed where a MOHAA
+body stands clear of the BSP's brushes and the crate boxes, mean 16u from the disc point), `fl_cov_yaw` (facing, toward
+the threat), `fl_cov_type` (1 / 2 / 4 / 8 MG / 80), `fl_cov_team`, `fl_cov_tag`, `fl_cov_om` (the crate's inline
+model, `$fl_om_<name>`), `fl_cov_grp` (INFERRED: the waking message of the nearest actor record within 15 m that may use
+it), `fl_cov_node`, `fl_cov_rec`, `fl_cov_n` = 112. 101 become MOHAA cover nodes (info_pathnode spawnflags + angle): disc
+1 -> corner_right (32), 2 -> corner_left (16), both turned 180 degrees (a stock corner node points away from the threat:
+measured on m1l1/m2l1/m2l3/m3l2/m4l0, 123 corner nodes), 4 -> crate (128), 80 -> cover (4). Left out: the 3 MG points,
+5 second records of a shared corner spot (one node per spot), 3 with no walkable link to a navpoint node.
+Proof: 1421 nodes (1320 + 101), 0 in solid, 0 floating, 0 in a crate box, 101/101 walk-linked to a navpoint node
+(approximate CheckMove; 100 in a part of >= 10 navpoint nodes, the navpoint parts are unchanged); headless boot: the
+engine rebuilt the .pth once (3.1 s) and reused it on the next boot, no Duplicate node / not linked / paths-per-node /
+Script Error, the data script compiles (`compilescript`).
+Not yet in the map: the script layer (each soldier tethered to the nearest free point of his side in combat, one man
+per point, re-pick when the crate breaks or he is flanked; the trail's move-up ends on a cover point; a disc path is
+followed where one runs past both the ally and his goal) is handed to the map owner.
+
+| item | original | conversion | status |
+|---|---|---|---|
+| Cover points | 109 records, AISETCOVERPOINT | 112 data points, 101 MOHAA cover nodes; script layer `fl_cov_think` (mod ba237365, on by default 22fb8b9f) | proven in a client: `r17/dp3` 44 FLCOV lines, Germans and allies take and hold points in the Panzer street, the nest yard and the dock and re-pick when the crate breaks, they are flanked or the enemy is on the point; stills `r17/cover_panzer_street.jpg`, `r17/cover_ally_dock.jpg` |
+| Named paths for soldiers | link not found | data only (`fl_npath`); `fl_path_via` follows one where it runs past both the ally and his goal (dp3: path 17 run once) | undecoded (choice: fit by distance) |
+
+Layer choices (round 21b): one man per point; allies never take a point closer to the enemy than the nearest player;
+MG crews on their marks or guns and men playing dead keep their own behaviour; the scaling extras get cover through
+`fl_mk_axis`; a point not reached in 12 s is dropped (some "cannot reach it" re-picks in dp3); `coop_flCover 0` /
+`coop_flPaths 0` switch the two parts off.
+
+## Characters (flchar, 2026-11-15) - the disc's own soldiers
+
+Decode: `docs/tools/frontline/flchar.py` (formats in its header). Each actor record's word 18 names a character
+definition in `levelfile.lfc`: skeleton, body .dmf, body texture, head .dmf, head texture, two ints, hat .msh and its
+offset. 1_1 places 20 definitions on 9 bodies. Sheets: `H:\hzm_work\flchar\` (offline bind and posed, in-game).
+
+| definition | body / texture / head / hat | who (count) | status |
+|---|---|---|---|
+| 645ffd2b | BM37 / BT01 / HT01 / German helmet | Roamers, StayOnPath (11) | in-game sheet pending; offline QA passed |
+| 9a138cf4, ed14bc62, 031add4e | BM01 / BT01 / HT01, HT02, HT03 / helmet | Roamers, shouters, MG lead, talkers (7, 6, 4) | built, off |
+| 2e091524, 590e25b2, c76ab011, b06d8087 | BM03 / BT01 / various / helmet | Roamers, MG feeder (4, 4, 4, 1) | built, off; GR4 chest piece not drawn (no texture on the disc); emulator rec 67 (so_chars bm03_rec67_*): the original shows a plain field-grey tunic there, no separate layer - leaving it out matches |
+| c18e036f, 588752d5 | BM33 / BT01c / HT03, HT02 / helmet | Roamers, MG gunner (5, 1) | built, off |
+| 3f817f27 | BM02 / BT01 / HT02 / helmet | Roamer, talkers (3) | built, off |
+| 7f9a5a86 | BM11 / BT02 / HT02b / officer cap | capped Roamers (3) - the emulator's capped Roamer (so_chars ger_cap_face_crop) | built, off; cap, tabs, tunic match; face shape and visor height differ (head morphs) |
+| e6930b3c | BM11 / BT02 / HT02b / officer cap | interrogation officer (1) | built, off |
+| 9719a637 | BM12 / BT02 / HT03 / side cap | talker (1) | built, off |
+| dca82ce9, 45a17d53, 42ccb94a, abaf1c7f, 35cb89dc | BM22 / BT21 / HT01b, HT02a, HT03a / M1 helmet with net | GIs, dead GI, jeep crew (6, 6, 2, 7, 2) | built, off |
+| 07d5b007 | BM22 / BT21 / HT02a / none | interrogation victim (1) | built, off |
+| adba9dd8 | BM37_20L / BT01 / UHM02 + HT01_128 | not placed on 1_1 (low-detail set) | not built |
 
 ## Deviations from the original (for the user; choices are not settled here)
 
@@ -697,6 +771,12 @@ now stepped by hand in place (`r17/doorc3_sheet.jpg`: open and closed from the f
 | Intro crates | BreakingWoodBoxSwap x20 | the disc's crate mesh and texture, collision sized to it; break sound is a stock stand-in; nothing dropped | forced (sound) |
 | Resistance drop | small package between the crates, hold ACTION about 1 s | the disc's mesh; taken on a single USE press | choice (hold time) |
 | Models | Frontline models | MOHAA stand-ins where no conversion exists | forced |
+| Characters (flchar, 2026-11-15) | 20 disc character definitions on 1_1: 9 bodies (BM01/02/03/11/12/22/33/37), one head with 37 morph targets, 10 head textures, 4 hats; each actor record names its definition | the disc's own meshes and textures (player's PC only), re-posed from the disc A-pose onto the stock Bip01 standing pose and driven by the stock animations; one level of body-only smoothing; every character texture 4x on the player's PC - bodies, heads, gear, hats and the fade twins (30 of 30 passed the upscale QA; insignia, lettering and the 32 px helmet decal kept as a plain resample); OFF in game (stock models) until each sheet is approved (level.fl_chr_own) | forced (no disc animation decoder yet); gate = user QA |
+| Faces | the head's 37 morph targets: 1-10 mouth shapes (lip-sync), 12-15 eyes/brows, 16-27 expressions, 28-37 head SHAPES; a definition's first int (0-9) picks shape 28+int (capped Roamer: shape 34 = the emulator's long face, heavy brow); the second int (0-11) is not a resting expression | each character's own head shape (user approved 2026-11-15); expressions and lip-sync not used. Under a helmet or cap the crown keeps the smaller of its neutral and shaped form (blended 4 cm below the rim), so no shaped head pokes through; hats keep the disc's size and offset (checked on all 19 hatted characters, HATS_clamp_check_v4) | exact shapes; crown clamp a choice (hidden under the hat) |
+| Fingers | flat disc bind hands, disc finger animation | curled into the stock grip (30/45/30 degrees, thumb 10/15/15) so stock weapons sit in the hand | forced (stock animations never move fingers) |
+| Jeep riders | disc crew models faded out | their own disc models on fade-capable twin shaders (blend + entity alpha), the script's 6 s fade unchanged; stock fade paratrooper only as fallback | exact (models); fade look by the script |
+| Castro (interrogation challenge) | not on the disc (ours) | stock model | - |
+| Interrogation victim | BM22 US body, HT02a, no helmet | same (definition 07d5b007) | exact (when approved) |
 | Textures | disc textures (64-256 px, up to 8 units per texel on the ground) | 9 CC0 swaps, Poly Haven, tinted to the disc texture's mean colour with its own stains laid over (hd/CREDITS.txt): mud x3, roof slates, planks (round 7); look round 2026-11-12, user 'replace the smudged walls and ground': ground 54200 + b3600 -> stony_dirt_path, mossy whitewash 6180 + ccf80 -> worn_mossy_plasterwall (the plank wall 41180 swap was withdrawn after QA: too new; it is upscaled instead). Every other texture: the player's own image, 4x learned upscale on the player's PC by default (lettered sheets, blended sprites and fine leaf sprays keep the original) | user decisions 2026-11-11 and 2026-11-12 |
 | Tree and leaf cards 1dd980, 12c380, 15b680, 15f800, 1d5680, 1d9800 (look round 2026-11-13) | the disc's 128-512 px leafy tree and branch cards | the mod's own HD stock MOHAA tree cards (models/natural tree1_3/1_4/1_5, tree4_3/4_4; drawn at 1024 px), hard cut-out kept, graded to each disc card's mean colour on its solid texels; the 2:1 tree card 124280 keeps the disc's image (no stock card of that shape) | user-approved "Yes upgrade" |
 | Sky | 6-face box on the eye, unfogged | the six faces captured from the emulator, in the player's private pak only; stock sky when they are absent; drawn on a hull around the map | exact textures; hull forced (engine) |
@@ -745,7 +825,10 @@ now stepped by hand in place (`r17/doorc3_sheet.jpg`: open and closed from the f
 | Church-tower MG mount | a tripod MG on the tower floor (the walk frames do not show its height) | the stock turret on sandbags at floor + 44, disc x/y and facing kept: MOHAA's use trace cannot reach a turret at floor height (bug-11112) | forced (engine use height) |
 | Other mounted guns (1, 2, 5, 6) | usable | reached and mounted on foot with use (run guns); facing from the records, not checked against frames | facing unverified |
 | Allied soldiers' strength | Frontline AI (not decoded); in the trace allies support and can die | kit accuracy 18, health 150, noticescale 100, no BAR, AI-vs-AI damage x0.5 (`coop_mod/discallies.scr`, `level.coop_aiVsAiDmg`) | user-approved 2026-11-13 ("balance the allies on the frontline missions") |
-| Trail goals | AISETCOVERPOINT on the player's route | a spot the player walked, 500-900u behind him on the ally's side; unseen placement of a stranded ally | forced (no cover-point data) |
+| Trail goals | AISETCOVERPOINT on the player's route | a spot the player walked, 500-900u behind him on the ally's side; unseen placement of a stranded ally; round 21 layer: the free disc cover point within 300u of that spot | cover-point data built (round 21); layer not yet in the map |
+| Cover points (round 21) | 109 records: facing, side, crate tag, type; the AI picks one per man | same points; placed up to ~44u off (mean 16u) where a MOHAA body fits; MOHAA cover nodes: corner types flipped 180 degrees and one node per spot (5 second records of a corner pair have none), 3 unreachable spots have none; the stock cover state fights from them (corner lean / over-the-crate), not Frontline's own | forced (engine body size, node conventions); group link inferred |
+| Mounted-gun points (round 21) | 3 MGPoint records | data only (`fl_cov_type` 8), no node | not used |
+| Soldiers on named paths (round 21) | link to a path not found | allies follow a disc path only where it runs past both them and their goal | inferred from sq_wave4 |
 | Jeep .30 cal, mounted | the disc gun seen from behind | the stock first-person 30cal for the gunner, the disc gun for everyone else | forced (engine turret view model) |
 | Wounded gunner's death pose | (no death: he fades) | settles into the stock on-back dead pose, body stays | user-approved 2026-11-12 (pose changed 2026-11-13) |
 | Interrogation execution | never happens (line 3 stalls) | after interrog_4 he aims 5 s, then the bang that opens interrog_5 = the shot | choice (kept from the user's rescue design) |

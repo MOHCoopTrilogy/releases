@@ -107,6 +107,12 @@ class FrontlineGame:
                     flupscale.main(out, level, hp, up, progress=lambda **kv: progress(level=level, **kv))
                     if os.path.exists(hp):
                         files.append(hp)
+                    # [flchar] the characters' textures: the European Assault character rules (flcharup.py)
+                    import flcharup
+                    cp = os.path.join(out_dir, "zzzz_fl_hdchr_%s.pk3" % level)
+                    flcharup.main(out, level, cp, up)
+                    if os.path.exists(cp):
+                        files.append(cp)
                 except Exception as e:     # optional too
                     progress(step="upscale", level=level, skipped=str(e))
         return files
