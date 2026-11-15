@@ -177,6 +177,45 @@ def up_rgb(rgb, key):
     return lanczos_sharp(rgb, w * 4, h * 4), how
 
 
+# ESRGAN weight per sheet (the rest is a bicubic 4x): coordinator QA 2026-11-15 - on sb_1 ESRGAN turned the soft sandbag
+# cloth into a hard regular weave the stock sheet does not have
+BLEND = {"textures/models/sandbags/sb_1.tga": 0.4}
+
+
+def range_clamp(up, rgb_bled):
+    """no new highlights or colours: every texel stays inside the 3x3 min/max of the source around it (flupscale cutout
+    rule) - ESRGAN otherwise turns the painted snow flecks of the winter cards into bright blobs"""
+    h4, w4 = up.shape[:2]
+    src = Image.fromarray(rgb_bled)
+    lo = np.asarray(src.filter(ImageFilter.MinFilter(3)).resize((w4, h4), Image.BILINEAR)).astype(np.float32)
+    hi = np.asarray(src.filter(ImageFilter.MaxFilter(3)).resize((w4, h4), Image.BILINEAR)).astype(np.float32)
+    return np.clip(np.minimum(np.maximum(up.astype(np.float32), lo), hi), 0, 255).astype(np.uint8)
+
+
+def defringe(res, src_rgba):
+    """[coordinator QA 2026-11-15] no light fringe on cut-out cards: the opaque texels within 3 px of the cut may not be
+    brighter than the stock card there (+6 luma), and every clear texel carries the colour of the opaque texels next to
+    it (edge padding at the OUTPUT size), so neither the alpha test nor bilinear/mip filtering pulls a light rim in"""
+    a = np.asarray(res.convert("RGBA")).astype(np.float32)
+    h4, w4 = a.shape[:2]
+    sol = a[:, :, 3] >= 128
+    if (~sol).mean() < 0.02:
+        return res
+    ref_rgb = np.asarray(FU._bleed(Image.fromarray(src_rgba, "RGBA")))[:, :, :3]
+    ref = np.asarray(Image.fromarray(ref_rgb).resize((w4, h4), Image.BICUBIC)).astype(np.float32)
+    lw = np.array([.299, .587, .114], np.float32)
+    l_up, l_ref = a[:, :, :3] @ lw, ref @ lw
+    er = np.asarray(Image.fromarray((sol * 255).astype(np.uint8)).filter(ImageFilter.MinFilter(7))) > 127
+    band = sol & ~er
+    k = np.where(band & (l_up > l_ref + 6), (l_ref + 6) / np.maximum(l_up, 1.0), 1.0)
+    a[:, :, :3] *= k[:, :, None]
+    out = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGBA")
+    return FU._bleed(out, rounds=12)
+
+
+ATEST = set()      # images drawn through an alphaFunc (cut-out) shader: filled in main()
+
+
 def protect(up, rgb, key):
     rects = PROTECT.get(key)
     if not rects:
@@ -230,13 +269,15 @@ def process(vfs, row):
         if res.size[0] <= w:
             return {"image": key, "from": "%s@%s" % (f, os.path.basename(e[1])), "src": [w, h], "out": [w, h],
                     "fmt": None, "how": "kept stock (cutout pass caps at 1024; source already 1024)"}
+        if key in ATEST:
+            res = defringe(res, rgba)
         out = os.path.join(STAGE, os.path.splitext(key)[0].replace("/", os.sep) + ".dds")
         save_dds_mipped(res, out, "DXT5")
         qa = os.path.join(WORK, "qa", os.path.splitext(key)[0].replace("/", "__") + ".png")
         os.makedirs(os.path.dirname(qa), exist_ok=True)
         res.save(qa)
         return {"image": key, "from": "%s@%s" % (f, os.path.basename(e[1])), "src": [w, h], "out": list(res.size),
-                "fmt": "DXT5", "how": "esrgan cutout (%s)" % why}
+                "fmt": "DXT5", "how": "esrgan cutout (%s) +defringe" % why}
     if has_alpha:
         # bleed the colour into clear texels so ESRGAN and the mips never pull in the key colour
         rgb = np.asarray(FU._bleed(Image.fromarray(rgba, "RGBA")))[:, :, :3].copy()
@@ -244,6 +285,13 @@ def process(vfs, row):
     if how.startswith("lanczos"):
         # the ESRGAN result was rejected; a Lanczos copy adds nothing over GPU bilinear, so ship nothing
         return dict(keep, how="kept stock (esrgan rejected: %s)" % how[len("lanczos ("):-1])
+    if key in BLEND:
+        bic = np.asarray(Image.fromarray(rgb).resize((w * 4, h * 4), Image.BICUBIC)).astype(np.float32)
+        up = np.clip(BLEND[key] * up.astype(np.float32) + (1 - BLEND[key]) * bic, 0, 255).astype(np.uint8)
+        how += " blend%.1f" % BLEND[key]
+    if has_alpha and key in ATEST:
+        up = range_clamp(up, rgb)
+        how += " +clamp"
     up, prot = protect(up, rgb, key)
     w4, h4 = w * 4, h * 4
     if has_alpha:
@@ -252,6 +300,9 @@ def process(vfs, row):
             a4 = a4.filter(ImageFilter.GaussianBlur(2.0))
             a4 = Image.fromarray(np.where(np.asarray(a4) >= 128, 255, 0).astype(np.uint8))
         res = Image.fromarray(np.dstack([up, np.asarray(a4)]), "RGBA")
+        if key in ATEST:     # blended sprites keep their semi-transparent colour: no edge padding there
+            res = defringe(res, rgba)
+            how += " +defringe"
         fmt = "DXT5"
     else:
         res = Image.fromarray(up, "RGB")
@@ -301,6 +352,49 @@ def sprite_shaders(vfs, sh, done):
     return out
 
 
+RETAIL_PAK = re.compile(r"^pak\d+\w*\.pk3$", re.I)
+
+
+def hdpack_sprite_fixes(vfs, sh, skip):
+    """[bug-11244] the same size bug in the HD packs already installed: zzzzzz_hd_fx.pk3 (and one m3l1a muzzle flash)
+    ship 2x-8x sprite images under the RETAIL shader, so smoke swirls, dirt/sand/water plumes, body-hit puffs, fire
+    rings and grenade fireballs draw 2x-8x the stock size. Every spritegen shader whose winning definition is still a
+    retail one and whose stage-0 image now loads larger than the retail file gets spritescale * retail_w / loaded_w."""
+    out = []
+    for n, (prio, fname, pak, name, body) in sorted(sh.defs.items()):
+        if n in skip or not RETAIL_PAK.match(os.path.basename(pak)):
+            continue
+        if not re.search(r"(?i)\bspritegen\b", body):
+            continue
+        imgs = V.shader_images(body)
+        if not imgs:
+            continue
+        im = imgs[0][1]
+        f, e = vfs.resolve_image(im)
+        if not e or RETAIL_PAK.match(os.path.basename(e[1])):
+            continue
+        retail = None
+        for c in vfs.image_candidates(im):
+            r = [x for x in vfs.all(c) if RETAIL_PAK.match(os.path.basename(x[1]))]
+            if r:
+                retail = vfs.image_size(r[-1])
+                break
+        now = vfs.image_size(e)
+        if not retail or not now or now[0] == retail[0]:
+            continue
+        old = V.shader_spritescale(body) or 1.0
+        new = old * retail[0] / float(now[0])
+        if re.search(r"(?im)^\s*spritescale\s+[-\d.]+", body):
+            body2 = re.sub(r"(?im)^(\s*spritescale\s+)[-\d.]+", lambda m: m.group(1) + "%.5f" % new, body, count=1)
+        else:
+            body2 = re.sub(r"(?i)(\bspritegen\b[^\n]*\n)", lambda m: m.group(1) + "\tspritescale %.5f\n" % new, body,
+                           count=1)
+        out.append("// [bug-11244] %s (was %s@%s): stage-0 %s loads %dx%d from %s, retail %dx%d, spritescale %.4f -> %.5f\n"
+                   "%s\n%s\n" % (name, fname, os.path.basename(pak), im, now[0], now[1], os.path.basename(e[1]),
+                                 retail[0], retail[1], old, new, name, body2.strip()))
+    return out
+
+
 def build_pak(shader_text=None):
     files = []
     for root, _, fs in os.walk(STAGE):
@@ -327,6 +421,13 @@ def main():
     rep_p = os.path.join(WORK, "report.json")
     report = json.load(open(rep_p)) if os.path.exists(rep_p) else {}
     vfs = V.VFS(drop={os.path.basename(PAK).lower()})
+    sh0 = V.Shaders(vfs)
+    for r in json.load(open(GAPS)):
+        for n in r["shaders"]:
+            d = sh0.get(n)
+            b = d[4].lower() if d else ""
+            if "alphafunc" in b:     # alphaFunc discards the clear texels, blended or not
+                ATEST.add(r["image"])
     if "--pack" not in sys.argv:
         only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
         rows = [r for r in json.load(open(GAPS)) if not r.get("exclude")]
@@ -350,6 +451,10 @@ def main():
             time.sleep(1.0)      # 12-asset-conventions: sustained ESRGAN runs corrupt outputs on this GPU
     sh = V.Shaders(vfs)
     blocks = sprite_shaders(vfs, sh, {k.lower(): v for k, v in report.items()})
+    mine = {b.split("\n")[1].strip().lower() for b in blocks}
+    fixes = hdpack_sprite_fixes(vfs, sh, mine)
+    log("%d HD-pack sprite shaders size-corrected (bug-11244)" % len(fixes))
+    blocks += fixes
     sp = os.path.join(STAGE, SHADER_FILE.replace("/", os.sep))
     os.makedirs(os.path.dirname(sp), exist_ok=True)
     with io.open(sp, "w", newline="\n") as f:

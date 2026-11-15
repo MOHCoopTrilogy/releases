@@ -291,7 +291,7 @@ changes.
 |---|---|
 | Pak order main < mainta < maintt < mod pk3s, **LAST copy wins** | A FIRST-match extractor shipped Spearhead's values (G43 yaw 1 -> 16; archive/traps-pruned-2026-09-05.md). |
 | `.dds` beats `.jpg`/`.tga` | `R_LoadImage` tries `.dds` **first** (compression on): a stock `.dds` beat 881 HD `.jpg`s. Compression off is no fix (~1400 `.dds`-only textures vanish): ship full-mip DXT `.dds` overrides or NEW names (`env/hzmhd/`). gl1 can't read DX10/BC7 hdmem `.dds`: parse DX10 (bug-2994). |
-| The engine tries `.jpg` **before** `.tga`; a **sprite's world size = stage-0 image width x `spritescale`** (`tr_sprite.c`) | Menu art. An upscaled sprite image draws a 4x particle unless its shader is re-emitted with `spritescale` /4 (`upscale_discstock.py`); `zzzzzz_hd_fx`'s 2x sprites never were (bug-11244) |
+| The engine tries `.jpg` **before** `.tga`; a **sprite's world size = stage-0 image width x `spritescale`** (`tr_sprite.c`) | Menu art. An upscaled sprite image draws a 4x particle unless its shader is re-emitted with `spritescale` /4 (`upscale_discstock.py`); the HD packs' oversized retail sprites are re-scaled the same way there (bug-11244) |
 | Shader **NAME** overrides lose the reverse-concat race | Whole-**FILE** overrides win (filesystem dedupes by filename; coop pak mounts last; bug-921/525) |
 | `.tik` surface directives must match the `.skd`'s real surface names | else `TIKI_InitTiki` drops them (bug-1216) |
 | **A junction hides loose files from your tools** | `G:\mohaa-gl2\{main,mainta,maintt}` -> GOG: use `find -L` (bug-2336/2386). |

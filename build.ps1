@@ -509,6 +509,16 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
         Copy-Item -Path $shadowPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_hd_shadowfix.pk3') -Force
         Write-Host "  Deployed shadow-fix pak -> $destDir"
     }
+    # [2026-11-15, bug-11243/11244] Stock-HD pak for the own-disc missions (Sealed Orders, Their Dying Breath), built
+    # out-of-band by docs/tools/upscale_discstock.py on the m3l1a recipe (our ESRGAN 4x of the winning stock file, DXT
+    # .dds full mips) and copied like it. Ten z so its .dds out-sort dds_hdmem/dds_override/hd_fx; its sprite shaders
+    # (scripts/zz_hd_discstock.shader) re-scale every upscaled sprite AND the oversized zzzzzz_hd_fx sprites back to
+    # stock size. Add any rename to publish_release.ps1 in the same commit.
+    $discPak = Join-Path $srcDir 'zzzzzzzzzz_coop_hd_discstock.pk3'
+    if (Test-Path $discPak) {
+        Copy-Item -Path $discPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_hd_discstock.pk3') -Force
+        Write-Host "  Deployed disc-mission stock HD pak -> $destDir"
+    }
     # [2026-09-25] The HD sky pak, built out-of-band by docs/tools/gen_sky_hd.py (Real-ESRGAN, cached), so it is
     # copied rather than repacked. Its members are NEW names (env/hzmhd/<box>_<suf>.tga) that only the gl2
     # r_skyHD hook asks for, so pak order cannot hide or override them; the ten z just keep it beside its

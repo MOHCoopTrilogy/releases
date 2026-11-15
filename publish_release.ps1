@@ -139,6 +139,8 @@ $stage["home/maintt/zzzzzzzzz_coop_terrain.pk3"] = "$mod\zzzzzzzzz_coop_terrain.
 # out-of-band pk3 to build.ps1, ADD IT HERE IN THE SAME COMMIT.
 $stage["home/maintt/zzzzzzzzzz_coop_hd_m3l1a.pk3"]    = "$mod\zzzzzzzzzz_coop_hd_m3l1a.pk3"
 $stage["home/maintt/zzzzzzzzzz_coop_hd_shadowfix.pk3"] = "$mod\zzzzzzzzzz_coop_hd_shadowfix.pk3"
+# [2026-11-15, bug-11243/11244] Stock-HD pak for the own-disc missions (docs/tools/upscale_discstock.py) - copied by build.ps1 the same way.
+$stage["home/maintt/zzzzzzzzzz_coop_hd_discstock.pk3"] = "$mod\zzzzzzzzzz_coop_hd_discstock.pk3"
 # [2026-09-25] HD sky pak (docs/tools/gen_sky_hd.py), copied by build.ps1 the same way - added HERE in the same
 # change, per the warning above. Inert unless renderer_opengl2.dll has the r_skyHD hook and r_skyHD is on.
 $stage["home/maintt/zzzzzzzzzz_coop_hd_skies.pk3"]    = "$mod\zzzzzzzzzz_coop_hd_skies.pk3"
