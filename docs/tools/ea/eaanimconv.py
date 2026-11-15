@@ -69,7 +69,7 @@ def ea_globals(skel, sample):
     return G
 
 
-def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0):
+def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0, fwd=0.0):
     """MOHAA .skc bytes of one EA clip for the stock human skeleton (bones = mohskel.read_skd_bones of the stock skd);
     yaw (degrees, about the model origin) turns the whole clip - the gunner clips are turned so the gun hands point
     straight ahead, since the engine yaws a gunner with his turret (actor_machinegunner.cpp ThinkHoldGun_TurretGun)"""
@@ -101,6 +101,7 @@ def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0):
         dp = [G[pel][1][k] - p0[k] for k in range(3)] if root_motion else [0.0, 0.0, 0.0]
         dpm = [dp[1] * 100.0 * s, -dp[0] * 100.0 * s, dp[2] * 100.0 * s]
         porg = _mv(Rz, [J["Bip01 Pelvis"][0][k] + dpm[k] for k in range(3)])
+        porg[0] += fwd                                  # after the turn: along the actor's forward (+X), model units
         ch["Bip01 pos"] = (porg[0], porg[1], porg[2], 0.0)
         ch["Bip01 rot"] = (0.0, 0.0, 0.0, 1.0)
         ch["Bip01 Pelvis pos"] = (0.0, 0.0, 0.0, 0.0)
@@ -157,6 +158,10 @@ MMG_GRID = {
     "hit": ("dfe9bcc3 f56b812f ac04dddd 0f17512d b40a4375 d4e07cfa dcba45dd 151cc681 4526f423 4f80852b", False),
 }
 MMG_CENTRE = "51f46f11"     # l9_z124: the idle point that needs the least turn; the one-shots (enter, exit, deaths) take its yaw
+# the engine seats a gunner 62-64u flat behind the gun pivot (dbx test 27, EAMMGSTATE log; the 39u in
+# actor_machinegunner.cpp is not the seat): every ea_mmg_* clip's root goes 27 world units forward so the hands reach
+# the grip. The clip is in model units: the character tiks scale 0.52 (eachar), so 27 / 0.52 here
+MMG_FWD = 27.0 / 0.52
 MMG_ONE = {"enter": "58f52873", "exit": "647c2159", "death": "7a12045e", "death_explosion": "573a6031"}
 # ambient / scripted scenes, by the rig the level's ICS points name (level.ea_ps_rig / ea_sc_rig): the clips of that
 # rig's state graph that have length (single-frame state poses left out), longest first. Alias ea_ics_<rig>_<n>.
@@ -239,7 +244,7 @@ def build(stream, level, skd_bytes, files, log=print):
     def put(alias, h, loop, yaw=0.0):
         if h not in bank.clips:
             return
-        skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw)
+        skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw, fwd=MMG_FWD if alias.startswith("mmg_") else 0.0)
         if loop:
             skc = skc[:8] + struct.pack("<i", struct.unpack_from("<i", skc, 8)[0] | 0x20) + skc[12:]
         files["models/human/ea_%s/anim/%s.skc" % (level, alias)] = skc
