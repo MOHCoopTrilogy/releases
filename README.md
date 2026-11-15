@@ -50,6 +50,40 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.80 - Fire and Fog
+
+#### Their Dying Breath (bring-your-own-disc mission)
+- **The original cast.** All six of the mission's characters now use their own disc models: German infantry and officers, the SS officer, the partisan leader, the partisans and the partisan woman. Their textures are upscaled and their bodies smoothed.
+- **Your squad.** After the leader's plan, his three partisans join you and follow you, as on the disc. If one goes down, hold Use beside them to get them back on their feet. Leave them too long and they are lost.
+- **The night looks like the original.** Low mist lies in the creek and you can see over it from the ridge. Fires glow on the horizon, the village fires light the walls and snow around them, and the overall darkness is matched to the original.
+- **The missing pieces are back:** barbed wire, grass and wheat, snow along wall tops, and ground decals. The graveyard's tombstones and crosses break when shot.
+- **Real winter trees.** The lone orchard trees are 3D trees with solid trunks, and more trees stand along the edges of the map. The snowy ground uses a sharper snow texture, the sky is four times sharper, and the moon no longer has a bright outline.
+- **Fixes:** the partisans can now leave their cellar, the AI can find its way through the graveyard and church, soldiers no longer get stuck in a barn or under the railgun, and the railgun hull and radio tower look right.
+
+#### Sealed Orders (bring-your-own-disc mission)
+- **Fire and smoke from the original:** the burning car and its smoke column, street flames, and smoke at the bombed house, which now visibly loses its wall.
+- **The hedgerows** use the original's own dark hedge texture, sharpened, with no gaps to see through.
+- **The door** opens and closes properly and shows the use icon.
+- **Soldiers fight with the original's own combat lines** for each area.
+- **The mission is as dark as the original**, and the lane trees are no longer yellow.
+
+#### Both disc missions
+- **More players, more enemies.** With one player the fight is exactly the original's. With more players each wave grows (up to 2.5 times), and the extra soldiers always spawn out of sight. Story characters are never copied.
+- **No copied enemies and no end-of-mission waves** from the mod's own systems.
+- **Your disc is converted again automatically** with the new converter. Nothing from the disc ships with the mod.
+
+#### Water
+- **Ripples from bullets and explosions**, rain rings on open water, and wakes behind boats.
+- **Softer shore edges** where water meets walls and quays.
+- Omaha keeps its current water.
+
+#### Weapons
+- **Thompson sights:** you can see through the rear sight on every variant. The 1928 has a raised Lyman-style peep sight.
+
+#### Still needs playtesting
+- Dying Breath's squad (following, reviving) and the creek mist and fires at night.
+- Both disc missions from start to finish with several players, to check the extra enemies.
+
 ### v1.10.79 - Field Orders
 
 - **Sealed Orders follows the original's six objectives**, including manning the church-tower MG
