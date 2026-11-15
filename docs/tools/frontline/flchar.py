@@ -509,6 +509,10 @@ def character_surfaces(defn, files, tpk, L=None):
             if me["kind"] == 259:          # morph targets: the head stays at its base (neutral) shape
                 continue
             tn = {"MOHF_BODY": defn["bt"], "MOHF_HEAD": defn["ht"]}.get((me["tex"] or "").upper(), me["tex"])
+            if (tn or "").upper() not in tpk:
+                # a piece whose texture is not on the level at all (BM03's chest piece names GR4, which no level
+                # pack carries): not drawn - an untextured surface would show the engine's default shader
+                continue
             V, N, W, UV, T = [], [], [], [], []
             for pal, P, U in me["batches"]:
                 base = len(V)
