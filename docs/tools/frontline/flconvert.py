@@ -1335,7 +1335,16 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         files[f"maps/{mapname}.bsp"] = f.read()
     os.remove(bsp_path)
     files[f"scripts/fl_{level}.shader"] = "".join(shader_lines).encode()
-    pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base, grid=grid) if vgm else None
+    # [flchar] the disc's own characters as MOHAA models (flchar.py, user approval 2026-11-15); the mission script
+    # uses one only once its sheet passed QA (level.fl_chr_own). Never fails the conversion.
+    import flchar
+    try:
+        chr_lines = flchar.build(L, level, mohaa_base, files)
+    except Exception as e_:
+        chr_lines = []
+        print("flchar: characters skipped (%s)" % e_)
+    pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base, grid=grid,
+                        extra_lines=chr_lines) if vgm else None
     # [flfix2] tier-1 textures (TEXTURES.md, approved 2026-11-11): CC0 ground / roof / plank / stone, cut-out upscale
     import flhd
     hd_rep = flhd.apply(files, level, flpack.spec(level), mapname)

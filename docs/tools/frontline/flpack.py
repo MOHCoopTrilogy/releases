@@ -313,7 +313,12 @@ def _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, osp, log):
     log("one-shots: areas", na, "clips per bank", banks, "files", len(seen))
 
 
-def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
+def chr_hash(e):
+    """[flchar] the character definition a placed actor wears: .bpd record word 18 (levelfile.lfc, flchar.py)"""
+    return "%08x" % struct.unpack_from("<I", e["raw"], 72)[0] if e["size"] >= 76 else ""
+
+
+def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, extra_lines=None):
     sp = spec(level)
     d = f"DATA/{level.split('_')[0]}/{level}/"
     lines = ["// GENERATED on this PC by docs/tools/frontline/flpack.py from the player's own disc.",
@@ -479,11 +484,13 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
         yaw_ = flscene.yaw(e, X.m < 0)
         if cls in JEEP_CREW:
             lines.append(f'\tlevel.fl_jeepcrew["{JEEP_CREW[cls]}"] = {o}')
+            lines.append(f'\tlevel.fl_jeepcrew_chr["{JEEP_CREW[cls]}"] = "{chr_hash(e)}"')   # [flchar]
             continue
         if cls == "AlliedSoldier_DeadGuy":
             nl_ = lists.get(cls, 0) + 1
             lists[cls] = nl_
             lines.append(f'\tlevel.fl_list["{cls}"][{nl_}] = {o}')
+            lines.append(f'\tlevel.fl_list_chr["{cls}"][{nl_}] = "{chr_hash(e)}"')   # [flchar]
             continue
         if cls == "TankVehicle":
             # [flpolish] the Panzer's record carries the AXIS team byte like a soldier's: classified by team it was
@@ -503,6 +510,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             na += 1
             lines.append(f'\tlevel.fl_axis[{na}] = {o}')
             lines.append(f'\tlevel.fl_axis_cls[{na}] = "{cls}"')
+            lines.append(f'\tlevel.fl_axis_chr[{na}] = "{chr_hash(e)}"')   # [flchar] his character definition
             lines.append(f'\tlevel.fl_axis_alert[{na}] = {int(any("alert" in s.lower() or "ambush" in s.lower() for s in e["strs"]))}')
             lines.append(f'\tlevel.fl_axis_grp[{na}] = {grp_}')
             lines.append(f'\tlevel.fl_axis_state[{na}] = "{flscene.state(e)}"')
@@ -517,6 +525,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
             nl += 1
             lines.append(f'\tlevel.fl_ally[{nl}] = {o}')
             lines.append(f'\tlevel.fl_ally_cls[{nl}] = "{cls}"')
+            lines.append(f'\tlevel.fl_ally_chr[{nl}] = "{chr_hash(e)}"')   # [flchar]
             lines.append(f'\tlevel.fl_ally_grp[{nl}] = {grp_}')
             lines.append(f'\tlevel.fl_ally_state[{nl}] = "{flscene.state(e)}"')
             lines.append(f'\tlevel.fl_ally_yaw[{nl}] = {yaw_:.0f}')
@@ -755,6 +764,8 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None):
     lines.append(f"\tlevel.fl_ammo_n = {n_ammo}")
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
               "\tlevel.fl_conv = %d" % CONV_BUILD, "\tlevel.fl_data_ok = 1"]
+    # [flchar] the characters' own models (flchar.build: level.fl_chr_tik / fl_chr_own)
+    lines += list(extra_lines or [])
     # [flfix2 round 20] one greppable line read back from the vars just set (proves the data script ran to the end)
     summ = ['" conv " + level.fl_conv']
     if any(q.startswith("\tlevel.fl_pfx_n =") for q in lines):
