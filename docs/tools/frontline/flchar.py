@@ -49,6 +49,13 @@ import shpx
 ZIP_NOTE = "frontline characters"
 STOCK_SKD = "models/human/german_wehrmact_officer/german_officer.skd"
 EULER_ORDER = "yzx"
+# the head mesh carries 37 morph targets: 1-10 mouth shapes (lip-sync), 12-15 eyes and brows, 16-27 whole-face
+# expressions (grimace, smile, scream...), 28-37 head SHAPES (silhouette: long, broad, narrow jaw...). A definition's
+# first int (0-9, ten values for ten shapes) picks its head shape 28 + int (inferred: counts match, and the capped
+# Roamer's long face and heavy brow on the emulator, so_chars ger_cap_face_crop, matches shape 34 for his int 6). The
+# second int (0-11) is not an expression at rest (most Germans would scream: 10 -> 26). Off until the user approves the
+# look (MORPH_headshape_vs_emu sheets).
+HEAD_SHAPES = False
 
 # the character definitions whose own models have passed the client sheet QA (front, side, back, face, run, fire,
 # crouch, no breaks). Every other Frontline character keeps the stock model in game until the user approves its sheet.
@@ -510,8 +517,13 @@ def character_surfaces(defn, files, tpk, L=None):
     B = bind(skl, body)
     for fname in (defn["body"], defn["head"]):
         d = body if fname == defn["body"] else read_dmf(files[fname])
+        shape = None
+        if HEAD_SHAPES and fname == defn["head"] and defn.get("ints"):
+            k = 28 + defn["ints"][0]
+            if k < len(d["meshes"]) and d["meshes"][k]["kind"] == 259:
+                shape = [p for _pal, P, _U in d["meshes"][k]["batches"] for p in P]
         for mi, me in enumerate(d["meshes"]):
-            if me["kind"] == 259:          # morph targets: the head stays at its base (neutral) shape
+            if me["kind"] == 259:          # morph targets: only the definition's head shape is applied (HEAD_SHAPES)
                 continue
             tn = {"MOHF_BODY": defn["bt"], "MOHF_HEAD": defn["ht"]}.get((me["tex"] or "").upper(), me["tex"])
             if (tn or "").upper() not in tpk:
@@ -519,9 +531,13 @@ def character_surfaces(defn, files, tpk, L=None):
                 # pack carries): not drawn - an untextured surface would show the engine's default shader
                 continue
             V, N, W, UV, T = [], [], [], [], []
+            vi = 0
             for pal, P, U in me["batches"]:
                 base = len(V)
                 for p, u in zip(P, U):
+                    if shape is not None and me["kind"] == 167 and vi < len(shape):
+                        p = tuple(p[c] + shape[vi][c] for c in range(3)) + tuple(p[3:6])
+                    vi += 1
                     a, b, w = d["wts"][pal[min(int(round(u[2] / 3.0)), len(pal) - 1)]]
                     w = max(0.0, min(1.0, w / 4096.0))
                     J, R = B[d["names"][a]]
