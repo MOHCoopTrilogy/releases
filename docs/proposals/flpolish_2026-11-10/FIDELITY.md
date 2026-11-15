@@ -657,6 +657,11 @@ situational voice (Germans de_*, allies us_*; bank = the last area a player ente
 opt-out in aihandler.scr, b90c9272) and `level.coop_noCounter`: no ADDED clones or end waves. The door (rec 401) opens and
 closes with the use key from both sides; the ScriptSlave move had thrown the leaf to (-39 57 -1) on its first swing,
 now stepped by hand in place (`r17/doorc3_sheet.jpg`: open and closed from the face and the side), USE icon drawn (`r17/doorc_icon.jpg`).
+Round 20c (emulator stills `ref_xemu/so_fx`, mod f546ed7c): the bomb site matches (wrecked car and dark column, 10 s and 18 s
+after bomb A); the house front has no flame before trigger 41, so rec 13 now starts with the house blast (was: load);
+the roster fire (rec 10) burns before the player reaches the MG-nest street, so it now runs from load (was: not spawned).
+Rec 7 seen from walked ground is a burnt wreck with no smoke in that frame (decode says a hanging black smoke; kept,
+open). Recs 4-6 and the door are still to be captured.
 
 ## Deviations from the original (for the user; choices are not settled here)
 
