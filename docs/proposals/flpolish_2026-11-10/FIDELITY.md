@@ -704,8 +704,13 @@ followed where one runs past both the ally and his goal) is handed to the map ow
 
 | item | original | conversion | status |
 |---|---|---|---|
-| Cover points | 109 records, AISETCOVERPOINT | 112 data points, 101 MOHAA cover nodes | data and nodes built; script layer with the owner |
-| Named paths for soldiers | link not found | data only (`fl_npath`); layer follows one where it runs past both ends | undecoded |
+| Cover points | 109 records, AISETCOVERPOINT | 112 data points, 101 MOHAA cover nodes; script layer `fl_cov_think` (mod ba237365, on by default 22fb8b9f) | proven in a client: `r17/dp3` 44 FLCOV lines, Germans and allies take and hold points in the Panzer street, the nest yard and the dock and re-pick when the crate breaks, they are flanked or the enemy is on the point; stills `r17/cover_panzer_street.jpg`, `r17/cover_ally_dock.jpg` |
+| Named paths for soldiers | link not found | data only (`fl_npath`); `fl_path_via` follows one where it runs past both the ally and his goal (dp3: path 17 run once) | undecoded (choice: fit by distance) |
+
+Layer choices (round 21b): one man per point; allies never take a point closer to the enemy than the nearest player;
+MG crews on their marks or guns and men playing dead keep their own behaviour; the scaling extras get cover through
+`fl_mk_axis`; a point not reached in 12 s is dropped (some "cannot reach it" re-picks in dp3); `coop_flCover 0` /
+`coop_flPaths 0` switch the two parts off.
 
 ## Deviations from the original (for the user; choices are not settled here)
 
