@@ -69,7 +69,7 @@ def ea_globals(skel, sample):
     return G
 
 
-def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0, fwd=0.0):
+def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0, fwd=0.0, lat=0.0):
     """MOHAA .skc bytes of one EA clip for the stock human skeleton (bones = mohskel.read_skd_bones of the stock skd);
     yaw (degrees, about the model origin) turns the whole clip - the gunner clips are turned so the gun hands point
     straight ahead, since the engine yaws a gunner with his turret (actor_machinegunner.cpp ThinkHoldGun_TurretGun)"""
@@ -102,6 +102,7 @@ def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0, f
         dpm = [dp[1] * 100.0 * s, -dp[0] * 100.0 * s, dp[2] * 100.0 * s]
         porg = _mv(Rz, [J["Bip01 Pelvis"][0][k] + dpm[k] for k in range(3)])
         porg[0] += fwd                                  # after the turn: along the actor's forward (+X), model units
+        porg[1] += lat                                  # and to his left (+Y)
         ch["Bip01 pos"] = (porg[0], porg[1], porg[2], 0.0)
         ch["Bip01 rot"] = (0.0, 0.0, 0.0, 1.0)
         ch["Bip01 Pelvis pos"] = (0.0, 0.0, 0.0, 0.0)
@@ -158,10 +159,14 @@ MMG_GRID = {
     "hit": ("dfe9bcc3 f56b812f ac04dddd 0f17512d b40a4375 d4e07cfa dcba45dd 151cc681 4526f423 4f80852b", False),
 }
 MMG_CENTRE = "51f46f11"     # l9_z124: the idle point that needs the least turn; the one-shots (enter, exit, deaths) take its yaw
-# the engine seats a gunner 62-64u flat behind the gun pivot (dbx test 27, EAMMGSTATE log; the 39u in
-# actor_machinegunner.cpp is not the seat): every ea_mmg_* clip's root goes 27 world units forward so the hands reach
-# the grip. The clip is in model units: the character tiks scale 0.52 (eachar), so 27 / 0.52 here
-MMG_FWD = 0.0   # 0 since 2026-11-15: the fixer seats each disc crew with turretseat 36 74 (game.dll); was 27/0.52
+# the engine seats a gunner 62.4u flat behind and 71.8u under the gun pivot (stock seat; dbx test 27 measured 62-64).
+# Offsets here are in MODEL units: the character tiks scale 0.52 (eachar), so world / 0.52
+MMG_FWD = 0.0
+# Where the MG42's grip really is: the stock gunner (MG42_stand_idle_a, FK, x0.52) holds it 22.7u ahead, 8.6u to his
+# RIGHT and 68.7u up from his origin at the stock seat 62.4 back / 71.8 down, i.e. 39.7 behind, 8.6 right of and 3.1 below
+# the pivot. Our centre cell has its hands 23.0 ahead and 68.9 up on the centreline: on the STOCK seat it only needs the
+# 8.6u to the right (an earlier "13u behind the pivot" grip estimate led to the 27u shift and to turretseat 36 74: wrong)
+MMG_SIDE = -8.6 / 0.52
 MMG_ONE = {"enter": "58f52873", "exit": "647c2159", "death": "7a12045e", "death_explosion": "573a6031"}
 # ambient / scripted scenes, by the rig the level's ICS points name (level.ea_ps_rig / ea_sc_rig): the clips of that
 # rig's state graph that have length (single-frame state poses left out), longest first. Alias ea_ics_<rig>_<n>.
@@ -244,7 +249,9 @@ def build(stream, level, skd_bytes, files, log=print):
     def put(alias, h, loop, yaw=0.0):
         if h not in bank.clips:
             return
-        skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw, fwd=MMG_FWD if alias.startswith("mmg_") else 0.0)
+        mmg = alias.startswith("mmg_")
+        skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw, fwd=MMG_FWD if mmg else 0.0,
+                              lat=MMG_SIDE if mmg else 0.0)
         if loop:
             skc = skc[:8] + struct.pack("<i", struct.unpack_from("<i", skc, 8)[0] | 0x20) + skc[12:]
         files["models/human/ea_%s/anim/%s.skc" % (level, alias)] = skc
