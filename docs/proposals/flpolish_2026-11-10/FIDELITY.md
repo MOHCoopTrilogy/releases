@@ -712,6 +712,26 @@ MG crews on their marks or guns and men playing dead keep their own behaviour; t
 `fl_mk_axis`; a point not reached in 12 s is dropped (some "cannot reach it" re-picks in dp3); `coop_flCover 0` /
 `coop_flPaths 0` switch the two parts off.
 
+## Characters (flchar, 2026-11-15) - the disc's own soldiers
+
+Decode: `docs/tools/frontline/flchar.py` (formats in its header). Each actor record's word 18 names a character
+definition in `levelfile.lfc`: skeleton, body .dmf, body texture, head .dmf, head texture, two ints, hat .msh and its
+offset. 1_1 places 20 definitions on 9 bodies. Sheets: `H:\hzm_worklchar\` (offline bind and posed, in-game).
+
+| definition | body / texture / head / hat | who (count) | status |
+|---|---|---|---|
+| 645ffd2b | BM37 / BT01 / HT01 / German helmet | Roamers, StayOnPath (11) | in-game sheet pending; offline QA passed |
+| 9a138cf4, ed14bc62, 031add4e | BM01 / BT01 / HT01, HT02, HT03 / helmet | Roamers, shouters, MG lead, talkers (7, 6, 4) | built, off |
+| 2e091524, 590e25b2, c76ab011, b06d8087 | BM03 / BT01 / various / helmet | Roamers, MG feeder (4, 4, 4, 1) | built, off; GR4 chest piece not drawn (no texture on the disc) - to check on the emulator |
+| c18e036f, 588752d5 | BM33 / BT01c / HT03, HT02 / helmet | Roamers, MG gunner (5, 1) | built, off |
+| 3f817f27 | BM02 / BT01 / HT02 / helmet | Roamer, talkers (3) | built, off |
+| 7f9a5a86 | BM11 / BT02 / HT02b / officer cap | capped Roamers (3) - the emulator's capped Roamer (so_chars ger_cap_face_crop) | built, off; cap, tabs, tunic match; face shape and visor height differ (head morphs) |
+| e6930b3c | BM11 / BT02 / HT02b / officer cap | interrogation officer (1) | built, off |
+| 9719a637 | BM12 / BT02 / HT03 / side cap | talker (1) | built, off |
+| dca82ce9, 45a17d53, 42ccb94a, abaf1c7f, 35cb89dc | BM22 / BT21 / HT01b, HT02a, HT03a / M1 helmet with net | GIs, dead GI, jeep crew (6, 6, 2, 7, 2) | built, off |
+| 07d5b007 | BM22 / BT21 / HT02a / none | interrogation victim (1) | built, off |
+| adba9dd8 | BM37_20L / BT01 / UHM02 + HT01_128 | not placed on 1_1 (low-detail set) | not built |
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -751,6 +771,12 @@ MG crews on their marks or guns and men playing dead keep their own behaviour; t
 | Intro crates | BreakingWoodBoxSwap x20 | the disc's crate mesh and texture, collision sized to it; break sound is a stock stand-in; nothing dropped | forced (sound) |
 | Resistance drop | small package between the crates, hold ACTION about 1 s | the disc's mesh; taken on a single USE press | choice (hold time) |
 | Models | Frontline models | MOHAA stand-ins where no conversion exists | forced |
+| Characters (flchar, 2026-11-15) | 20 disc character definitions on 1_1: 9 bodies (BM01/02/03/11/12/22/33/37), one head with 37 morph targets, 10 head textures, 4 hats; each actor record names its definition | the disc's own meshes and textures (player's PC only), re-posed from the disc A-pose onto the stock Bip01 standing pose and driven by the stock animations; one level of body-only smoothing; textures 4x (insignia and lettering plain-resampled); OFF in game (stock models) until each sheet is approved (level.fl_chr_own) | forced (no disc animation decoder yet); gate = user QA |
+| Faces | the definition's two ints (A 0-9, B 0-11) pick the face (inferred: morph targets 16-27 = 12 face shapes, 28-37 = 10 head shapes; 1-10 mouth shapes = lip-sync) - e.g. the capped Roamer's long face and heavy brow (ref_xemu so_chars ger_cap_face_crop) | the head's base (neutral) shape for every character; head textures exact | open: preset mapping not verified (coordinator: neutral for now) |
+| Fingers | flat disc bind hands, disc finger animation | curled into the stock grip (30/45/30 degrees, thumb 10/15/15) so stock weapons sit in the hand | forced (stock animations never move fingers) |
+| Jeep riders | disc crew models faded out | stock fade-capable clones kept (the own models have no fade stage yet) | forced, for now |
+| Castro (interrogation challenge) | not on the disc (ours) | stock model | - |
+| Interrogation victim | BM22 US body, HT02a, no helmet | same (definition 07d5b007) | exact (when approved) |
 | Textures | disc textures (64-256 px, up to 8 units per texel on the ground) | 9 CC0 swaps, Poly Haven, tinted to the disc texture's mean colour with its own stains laid over (hd/CREDITS.txt): mud x3, roof slates, planks (round 7); look round 2026-11-12, user 'replace the smudged walls and ground': ground 54200 + b3600 -> stony_dirt_path, mossy whitewash 6180 + ccf80 -> worn_mossy_plasterwall (the plank wall 41180 swap was withdrawn after QA: too new; it is upscaled instead). Every other texture: the player's own image, 4x learned upscale on the player's PC by default (lettered sheets, blended sprites and fine leaf sprays keep the original) | user decisions 2026-11-11 and 2026-11-12 |
 | Tree and leaf cards 1dd980, 12c380, 15b680, 15f800, 1d5680, 1d9800 (look round 2026-11-13) | the disc's 128-512 px leafy tree and branch cards | the mod's own HD stock MOHAA tree cards (models/natural tree1_3/1_4/1_5, tree4_3/4_4; drawn at 1024 px), hard cut-out kept, graded to each disc card's mean colour on its solid texels; the 2:1 tree card 124280 keeps the disc's image (no stock card of that shape) | user-approved "Yes upgrade" |
 | Sky | 6-face box on the eye, unfogged | the six faces captured from the emulator, in the player's private pak only; stock sky when they are absent; drawn on a hull around the map | exact textures; hull forced (engine) |
