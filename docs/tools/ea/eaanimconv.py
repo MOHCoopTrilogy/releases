@@ -177,6 +177,30 @@ SCENES = {
 }
 
 
+# Ordinary soldier deaths: graph 84033c53 (HitReactions.aso). Its states pick by core pose (ChooseDeathPose), hit
+# type and hit location; the named states that follow are DEATH_REACT (low/prone), DEATH_REACT_EXPLOSION (by
+# GetHitDirection) and DEATH_REACT_HIT_BY_VEHICLE_BACK / _FRONT. The tree keys (which location takes which clip) are
+# not decoded: the clips are named by what they do, measured on the clip (facing +Y: a fall to -Y is a hit from the
+# FRONT, a fall to +X - the man's right - a hit from his LEFT). <side> = where the hit came from.
+DEATHS = {
+    "stand_front": "f70d21c3 8767d54c 10b50cc4 6d90c4aa 7275489a 9648062a 0f415790 17067651 b11393d6",
+    "stand_back": "88878a56 e622f2a5 73462e17 600146c7 6ca1f415 36d6a6d8 c83d990b",
+    "stand_left": "f060e5da d7d8153b c21f76c8",
+    "stand_right": "118edbec",
+    "stand_back_flung": "4b8f3976 6838e0ee",
+    "crouch_front": "ff247e71 5734ad48 81199f57 138f9b31",
+    "crouch_back": "0b05852a",
+    "crouch_right": "6140ebd2",
+    "prone": "ad7d9333 4fc34180 26e83893",
+    "explosion_front": "d5bce6d2",
+    "explosion_back": "6ca484ca",
+    "explosion_left": "a766919c",
+    "explosion_right": "2f5d3268",
+    "vehicle_front": "9125c233",
+    "vehicle_back": "9a258b22",
+}
+
+
 def aim_label(bank, skel, h):
     """'r<deg>_z<cm>' / 'l<deg>_z<cm>' of a gunner clip's first frame: the hands' yaw about the chest and their height"""
     bn = {b["name"]: i for i, b in enumerate(skel)}
@@ -235,5 +259,8 @@ def build(stream, level, skd_bytes, files, log=print):
     for rig, hs in SCENES.items():
         for n, hx in enumerate(hs.split()):
             put("ics_%s_%d" % (rig, n + 1), int(hx, 16), n == 0 and rig not in ("explainsplan", "partisanleadersaysgofight", "callsplayer", "guardstopsplayer"))
+    for kind, hs in DEATHS.items():
+        for n, hx in enumerate(hs.split()):
+            put("death_%s_%d" % (kind, n + 1), int(hx, 16), False)
     log("eaanimconv: %d clips -> models/human/ea_%s/anim" % (len(rows), level))
     return "animations\n{\n\t$path models/human/ea_%s\n%s\n}\n" % (level, "\n".join("\t" + r for r in rows))
