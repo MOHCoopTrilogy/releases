@@ -716,7 +716,7 @@ MG crews on their marks or guns and men playing dead keep their own behaviour; t
 
 Decode: `docs/tools/frontline/flchar.py` (formats in its header). Each actor record's word 18 names a character
 definition in `levelfile.lfc`: skeleton, body .dmf, body texture, head .dmf, head texture, two ints, hat .msh and its
-offset. 1_1 places 20 definitions on 9 bodies. Sheets: `H:\hzm_worklchar\` (offline bind and posed, in-game).
+offset. 1_1 places 20 definitions on 9 bodies. Sheets: `H:\hzm_work\flchar\` (offline bind and posed, in-game).
 
 | definition | body / texture / head / hat | who (count) | status |
 |---|---|---|---|
