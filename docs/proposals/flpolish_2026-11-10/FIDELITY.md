@@ -720,16 +720,16 @@ offset. 1_1 places 20 definitions on 9 bodies. Sheets: `H:\hzm_work\flchar\` (of
 
 | definition | body / texture / head / hat | who (count) | status |
 |---|---|---|---|
-| 645ffd2b | BM37 / BT01 / HT01 / German helmet | Roamers, StayOnPath (11) | in-game sheet pending; offline QA passed |
-| 9a138cf4, ed14bc62, 031add4e | BM01 / BT01 / HT01, HT02, HT03 / helmet | Roamers, shouters, MG lead, talkers (7, 6, 4) | built, off |
-| 2e091524, 590e25b2, c76ab011, b06d8087 | BM03 / BT01 / various / helmet | Roamers, MG feeder (4, 4, 4, 1) | built, off; GR4 chest piece not drawn (no texture on the disc); emulator rec 67 (so_chars bm03_rec67_*): the original shows a plain field-grey tunic there, no separate layer - leaving it out matches |
-| c18e036f, 588752d5 | BM33 / BT01c / HT03, HT02 / helmet | Roamers, MG gunner (5, 1) | built, off |
-| 3f817f27 | BM02 / BT01 / HT02 / helmet | Roamer, talkers (3) | built, off |
-| 7f9a5a86 | BM11 / BT02 / HT02b / officer cap | capped Roamers (3) - the emulator's capped Roamer (so_chars ger_cap_face_crop) | built, off; cap, tabs, tunic match; face shape and visor height differ (head morphs) |
-| e6930b3c | BM11 / BT02 / HT02b / officer cap | interrogation officer (1) | built, off |
-| 9719a637 | BM12 / BT02 / HT03 / side cap | talker (1) | built, off |
-| dca82ce9, 45a17d53, 42ccb94a, abaf1c7f, 35cb89dc | BM22 / BT21 / HT01b, HT02a, HT03a / M1 helmet with net | GIs, dead GI, jeep crew (6, 6, 2, 7, 2) | built, off |
-| 07d5b007 | BM22 / BT21 / HT02a / none | interrogation victim (1) | built, off |
+| 645ffd2b | BM37 / BT01 / HT01 / German helmet | Roamers, StayOnPath (11) | built, ON (all 20 approved and on) |
+| 9a138cf4, ed14bc62, 031add4e | BM01 / BT01 / HT01, HT02, HT03 / helmet | Roamers, shouters, MG lead, talkers (7, 6, 4) | built, ON (all 20 approved and on) |
+| 2e091524, 590e25b2, c76ab011, b06d8087 | BM03 / BT01 / various / helmet | Roamers, MG feeder (4, 4, 4, 1) | built, ON (all 20 approved and on); GR4 chest piece not drawn (no texture on the disc); emulator rec 67 (so_chars bm03_rec67_*): the original shows a plain field-grey tunic there, no separate layer - leaving it out matches |
+| c18e036f, 588752d5 | BM33 / BT01c / HT03, HT02 / helmet | Roamers, MG gunner (5, 1) | built, ON (all 20 approved and on) |
+| 3f817f27 | BM02 / BT01 / HT02 / helmet | Roamer, talkers (3) | built, ON (all 20 approved and on) |
+| 7f9a5a86 | BM11 / BT02 / HT02b / officer cap | capped Roamers (3) - the emulator's capped Roamer (so_chars ger_cap_face_crop) | built, ON (all 20 approved and on); cap, tabs, tunic match; face shape and visor height differ (head morphs) |
+| e6930b3c | BM11 / BT02 / HT02b / officer cap | interrogation officer (1) | built, ON (all 20 approved and on) |
+| 9719a637 | BM12 / BT02 / HT03 / side cap | talker (1) | built, ON (all 20 approved and on) |
+| dca82ce9, 45a17d53, 42ccb94a, abaf1c7f, 35cb89dc | BM22 / BT21 / HT01b, HT02a, HT03a / M1 helmet with net | GIs, dead GI, jeep crew (6, 6, 2, 7, 2) | built, ON (all 20 approved and on) |
+| 07d5b007 | BM22 / BT21 / HT02a / none | interrogation victim (1) | built, ON (all 20 approved and on) |
 | adba9dd8 | BM37_20L / BT01 / UHM02 + HT01_128 | not placed on 1_1 (low-detail set) | not built |
 
 ## Round 22 - final sweep (flfix2, 2026-11-15)
@@ -754,6 +754,16 @@ round-22 blocks, private home: FLPG / FLAMB / journal vars read, 0 Script Error)
 | Journal, 3 pages | DATA/SHELL/1_1_BLOG.VIV, three images with the text baked in (title "Seaside Stowaway", place, date, orders), Xbox prompts at the bottom | cut above the prompts, `textures/fl/1_1/journal1-3.tga`, `level.fl_journal*`; block `fl_journal_watch` shows them once per player on first spawn (Use next, Fire close) | data built; block with the owner |
 | 62 code-509 volumes | class-less spheres, slot 4 (used / damaged) = 509 (no listener), sound set 685 / 988 = sound 96 (a 0.31 s thump), along the whole route ~2 m above the road, none over the canal | not built | dead in script; at most an engine hit sound |
 
+Round 22b (map script, mod 23c52ebe): wired - generator 473 (`r17/dp7`: switched on by trigger 256, one round fired),
+trigger 91 from the data (`FLAMB trigger 91 at ( -1804 2722 -118 ) r 1949`), the journal (`r17/dp7_journal.jpg`: pages
+shown, Use next, Fire close), and the record start states on MOHAA's actor mood (StartAlert = alert, StartCurious =
+curious, StartIdle = the default bored; the idle talkers keep their scene). Cover proof stills: Germans at the dock
+crate cover point (`r17/cover_dock_germans.jpg`), a German at a corner point (`r17/cover_corner_german.jpg`), allies
+in cover in the Panzer street (`r17/cover_panzer_street.jpg`); no still yet of an ally standing ON a point (the dev
+camera found none within 80u of his point at the shot times). Approved additions (user, 2026-11-15) marked in the
+deviation table: floorless-house lid, hedge skirt, ground UV repair, crown clamp, execution timing, area-373 cap,
+110u crew spots, MG42 3u lower, single-press drop, .30 cal rest spot.
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -762,24 +772,24 @@ round-22 blocks, private home: FLPG / FLAMB / journal vars read, 0 Script Error)
 | Air strike on the Panzer | the P-47's rockets do not kill the tank (TRACE_panzer_kill.md: hull 180, tracks 80 each) | rockets hit and destroy the Panzer | user decision (rockets-to-Panzer) |
 | Canal water look | flat disc water | mod water under a stock shader name, up normals, world-space UVs (tile 512) | choice (user decision) |
 | MG42 yaw | record yaw = gunner's side | muzzle = record + 180 | forced (engine convention) |
-| MG42 height | 22u over the support | 19u (stock MOHAA mount) | choice, 3u |
+| MG42 height | 22u over the support | 19u (stock MOHAA mount) | choice, 3u - user-approved 2026-11-15 |
 | MG42 rest pose, unmanned | unknown | muzzle up about 45 degrees (MOHAA turret idle) | forced (engine) |
 | MG42 gun 3 (rec 302) | the jeep's .30 cal, spawned by message when the jeep's track ends, mountable | disc MG30_cal mesh on a stock turret; arc 180 each way | forced (engine turret); arc a choice |
 | Panzer drive | created at its trigger, 192u arc in 3.9 s, cannon +216 / +251 / +407 ticks, hull MG from +449 | same timings; stock VehicleTank, cannon at the nearest player, hidden MG42 on the hull (bug-11094) | MG a stand-in |
 | Jeep | body and four tyres on pre-authored tracks | disc meshes origin-stepped on the disc's keys (20 Hz); wreck = the disc body where its track ends | forced (script_model movement) |
 | Jeep crew poses and animations | disc animations 6500-6511 on body nodes | stock MOHAA poses: seated driver and passenger, gunner at the gun, thrown = death_mortar_high / death_mortar_twist on an invented 0.7 s arc, wounded gunner = A_22_driver_cover; no bump animation (6509-6511) | forced (no decoder for the disc's skeletal animations) |
 | Crew fades | 6 s fade-out of driver, passenger and gunner | 6 s fade on fade-capable clones of the stock skins (same textures) | forced (stock skins have no entity-alpha stage) |
-| Thrown crew rest spots | not traced | 110u either side of the wreck | choice |
+| Thrown crew rest spots | not traced | 110u either side of the wreck | choice - user-approved 2026-11-15 |
 | Death-ambush pair at the bomber (recs 69, 70) | created 267 ticks after the bomber starts | same, through the out-of-view spawn (may wait while a player watches the spot) (bug-11084) | timing exact unless watched |
 | German shouters at the bomber | one line with sound (planes above, +91 ticks), two animation only | same; the line plays from the shouter's record place even while his spawn is held out of view | exact (sound); animation not carried |
 | P-47 passes and rockets, speed | .mvd header rate (1 tick per key) | same since bug-11080 (twice the earlier speed) | exact by the header; not re-shot |
 | Mine blast effect | disc particle records | emitter built from the records; several fields "read as"; alpha 0.25 | inferred; alpha a choice |
 | Jeep crew fate | trace: driver and passenger thrown out at the blast and fade; gunner wounded, speaks when the player reaches the gun, then fades | default = trace; `coop_fljeepcrew 1` (off) = two stay in cover | settled by the trace |
 | Fire at the jeep | trace: no crew member fires; generators 471 / 472, 10 volleys from +70 to +122 ticks, from two points above and behind the jeep (the strafe) | generators at the disc points, aimed at the jeep (no direction is stored); tracer and gun sound are stock stand-ins | aim = inferred; `coop_fljeepcrew 1` (off) = gunner fires |
-| Jeep .30 cal position | created at +284 ticks | the mesh rides the body; the usable gun is created at +284 on the record's rest spot | choice |
-| Inside floorless houses (seen through windows) | nothing drawn: the sky box's flat dark lower band shows | a flat lid in that colour 4u under the street (bug-11115); same look from a window, but it is geometry: it hides the foot of a cut-out ruin card or wall where that runs below street level, and fog tints it with distance where the sky was unfogged | choice (stands in for the sky band; the edge fill it replaces is itself a deviation, R9). Round 19: colour 24 23 22, not the band's 83 81 76 (user: it read light grey) - choice |
-| Hedges (round 19c) | opaque hedge boxes (16c480) | the same disc boxes and texture (upscaled on the player's PC like the other textures), plus a 96u skirt of that texture under each face (bug-11199) | exact art; skirt a choice (hides the void where the ground falls away) |
-| Smeared out-of-bounds ground (round 19) | the disc's zero-UV-area triangles (c6 240, 358, 535, 741, 1242): a smeared line of texture | planar world UVs at the texture's own density (bug-11163) | choice (repairs disc data; no reference frame of that yard) |
+| Jeep .30 cal position | created at +284 ticks | the mesh rides the body; the usable gun is created at +284 on the record's rest spot | choice - user-approved 2026-11-15 |
+| Inside floorless houses (seen through windows) | nothing drawn: the sky box's flat dark lower band shows | a flat lid in that colour 4u under the street (bug-11115); same look from a window, but it is geometry: it hides the foot of a cut-out ruin card or wall where that runs below street level, and fog tints it with distance where the sky was unfogged | choice (stands in for the sky band) - user-approved 2026-11-15 |
+| Hedges (round 19c) | opaque hedge boxes (16c480) | the same disc boxes and texture (upscaled on the player's PC like the other textures), plus a 96u skirt of that texture under each face (bug-11199) | exact art; skirt a choice - user-approved 2026-11-15 |
+| Smeared out-of-bounds ground (round 19) | the disc's zero-UV-area triangles (c6 240, 358, 535, 741, 1242): a smeared line of texture | planar world UVs at the texture's own density (bug-11163) | choice (repairs disc data) - user-approved 2026-11-15 |
 | Gunner's line | sound 82 | stream 17 "mg_hurt" from the player's converted audio | inferred mapping, no reference audio |
 | Play-dead men | disc actors | MOHAA actors; scenery until they rise | forced |
 | Fly-throughs | 287, 289, 291, 292, 301 started by triggers; 288 and 290 never started | the five; 288 and 290 removed | - |
@@ -788,13 +798,13 @@ round-22 blocks, private home: FLPG / FLAMB / journal vars read, 0 Script Error)
 | Rockets | launch when an object (inferred: the tank) enters trigger 255 | launch when a player enters it | inferred |
 | AI behaviour, accuracy, health | Frontline AI | MOHAA AI with the mod's scaling | forced |
 | AI kept asleep until the player is near; spawns deferred out of view | unknown | fl_offscreen gating, deferred spawns | choice (user: no fights off-screen) |
-| Allied squad follows the player | unknown | follows | choice |
+| Allied squad behaviour | generic soldier AI (TRACE_allies): fight from the spawn, push when the area's Germans are down, trail 16-19 m behind the player, never lead, cover via AISETCOVERPOINT | the traced rule for every ally (fl_ally_trail), trail spots from the players' walked positions, the disc's cover points (fl_cov_think) | traced rule; balance user-approved 2026-11-13 |
 | One ally moved | (799,479) | (760,479), out of a wall | forced, 39u |
 | Intro crates | BreakingWoodBoxSwap x20 | the disc's crate mesh and texture, collision sized to it; break sound is a stock stand-in; nothing dropped | forced (sound) |
-| Resistance drop | small package between the crates, hold ACTION about 1 s | the disc's mesh; taken on a single USE press | choice (hold time) |
+| Resistance drop | small package between the crates, hold ACTION about 1 s | the disc's mesh; taken on a single USE press | choice (hold time) - user-approved 2026-11-15 |
 | Models | Frontline models | MOHAA stand-ins where no conversion exists | forced |
 | Characters (flchar, 2026-11-15) | 20 disc character definitions on 1_1: 9 bodies (BM01/02/03/11/12/22/33/37), one head with 37 morph targets, 10 head textures, 4 hats; each actor record names its definition | the disc's own meshes and textures (player's PC only), re-posed from the disc A-pose onto the stock Bip01 standing pose and driven by the stock animations; one level of body-only smoothing; every character texture 4x on the player's PC - bodies, heads, gear, hats and the fade twins (30 of 30 passed the upscale QA; insignia, lettering and the 32 px helmet decal kept as a plain resample); OFF in game (stock models) until each sheet is approved (level.fl_chr_own) | forced (no disc animation decoder yet); gate = user QA |
-| Faces | the head's 37 morph targets: 1-10 mouth shapes (lip-sync), 12-15 eyes/brows, 16-27 expressions, 28-37 head SHAPES; a definition's first int (0-9) picks shape 28+int (capped Roamer: shape 34 = the emulator's long face, heavy brow); the second int (0-11) is not a resting expression | each character's own head shape (user approved 2026-11-15); expressions and lip-sync not used. Under a helmet or cap the crown keeps the smaller of its neutral and shaped form (blended 4 cm below the rim), so no shaped head pokes through; hats keep the disc's size and offset (checked on all 19 hatted characters, HATS_clamp_check_v4) | exact shapes; crown clamp a choice (hidden under the hat) |
+| Faces | the head's 37 morph targets: 1-10 mouth shapes (lip-sync), 12-15 eyes/brows, 16-27 expressions, 28-37 head SHAPES; a definition's first int (0-9) picks shape 28+int (capped Roamer: shape 34 = the emulator's long face, heavy brow); the second int (0-11) is not a resting expression | each character's own head shape (user approved 2026-11-15); expressions and lip-sync not used. Under a helmet or cap the crown keeps the smaller of its neutral and shaped form (blended 4 cm below the rim), so no shaped head pokes through; hats keep the disc's size and offset (checked on all 19 hatted characters, HATS_clamp_check_v4) | exact shapes; crown clamp a choice (hidden under the hat) - user-approved 2026-11-15 |
 | Fingers | flat disc bind hands, disc finger animation | curled into the stock grip (30/45/30 degrees, thumb 10/15/15) so stock weapons sit in the hand | forced (stock animations never move fingers) |
 | Jeep riders | disc crew models faded out | their own disc models on fade-capable twin shaders (blend + entity alpha), the script's 6 s fade unchanged; stock fade paratrooper only as fallback | exact (models); fade look by the script |
 | Castro (interrogation challenge) | not on the disc (ours) | stock model | - |
@@ -834,7 +844,7 @@ round-22 blocks, private home: FLPG / FLAMB / journal vars read, 0 Script Error)
 | Bomber timing | real speed: bomb A and the house down within 0.4-0.8 s of trigger 41 (dock_early / house_early sheets); traced motion times are slowed | the bomber is inbound at the trigger (keys start 3.95 s in): bomb A +0.40 s, house with it, bomb B +1.20 s, ambush pair with bomb A (bug-11110) | lead derived from the frames |
 | Dock and exit | dock = trigger rec 1 (r 25 m); end = exit trigger rec 2 (r 2.6 m) walked into with 1-5 done, text 36, ENDLEVEL | same spots and radii; our crate objective completes at the exit, crate prop there (bug-11103) | exact (positions) |
 | Hints on entering | drop lid rec 383 (text 52), MG volumes 283 / 384 / 539 / 302 (text 274), molotov (501) | same texts on entering, once per player (and the coop cgame's once-per-profile rule) | exact text |
-| Area-373 ambush respawn | respawn on death, gaps 600-1050 ticks, held while inside trigger 91; limit not decoded | respawn 12 s after death, held inside trigger 91, cap 3 per spawner (bug-11103) | cap a choice |
+| Area-373 ambush respawn | respawn on death, gaps 600-1050 ticks, held while inside trigger 91; limit not decoded | respawn 12 s after death, held inside trigger 91, cap 3 per spawner (bug-11103) | cap a choice - user-approved 2026-11-15 |
 | Rec 539 MG | using it starts the MG-nest crew early | same (bug-11103) | exact |
 | Field phone | its volume (rec 387) plays sound 40 once | plays our bank's sound-40 cue once on entering (bug-11103) | cue mapping by id |
 | Allied soldiers (all groups) | generic soldier AI: fight from spawn, push when the area's Germans are down, trail 16-19 m behind the player | same rule for every allied soldier; they no longer follow closely (bug-11103) | trace rule applied to all groups |
@@ -847,13 +857,13 @@ round-22 blocks, private home: FLPG / FLAMB / journal vars read, 0 Script Error)
 | Church-tower MG mount | a tripod MG on the tower floor (the walk frames do not show its height) | the stock turret on sandbags at floor + 44, disc x/y and facing kept: MOHAA's use trace cannot reach a turret at floor height (bug-11112) | forced (engine use height) |
 | Other mounted guns (1, 2, 5, 6) | usable | reached and mounted on foot with use (run guns); facing from the records, not checked against frames | facing unverified |
 | Allied soldiers' strength | Frontline AI (not decoded); in the trace allies support and can die | kit accuracy 18, health 150, noticescale 100, no BAR, AI-vs-AI damage x0.5 (`coop_mod/discallies.scr`, `level.coop_aiVsAiDmg`) | user-approved 2026-11-13 ("balance the allies on the frontline missions") |
-| Trail goals | AISETCOVERPOINT on the player's route | a spot the player walked, 500-900u behind him on the ally's side; unseen placement of a stranded ally; round 21 layer: the free disc cover point within 300u of that spot | cover-point data built (round 21); layer not yet in the map |
+| Trail goals | AISETCOVERPOINT on the player's route | a spot the player walked, 500-900u behind him on the ally's side; unseen placement of a stranded ally; round 21 layer: the free disc cover point within 300u of that spot | cover-point layer ON (mod 22fb8b9f, proven r17/dp3-dp6): the move-up ends on a disc cover point near the trail spot; forced (no decoded route link) |
 | Cover points (round 21) | 109 records: facing, side, crate tag, type; the AI picks one per man | same points; placed up to ~44u off (mean 16u) where a MOHAA body fits; MOHAA cover nodes: corner types flipped 180 degrees and one node per spot (5 second records of a corner pair have none), 3 unreachable spots have none; the stock cover state fights from them (corner lean / over-the-crate), not Frontline's own | forced (engine body size, node conventions); group link inferred |
 | Mounted-gun points (round 21) | 3 MGPoint records | data only (`fl_cov_type` 8), no node | not used |
 | Soldiers on named paths (round 21) | link to a path not found | allies follow a disc path only where it runs past both them and their goal | inferred from sq_wave4 |
 | Jeep .30 cal, mounted | the disc gun seen from behind | the stock first-person 30cal for the gunner, the disc gun for everyone else | forced (engine turret view model) |
 | Wounded gunner's death pose | (no death: he fades) | settles into the stock on-back dead pose, body stays | user-approved 2026-11-12 (pose changed 2026-11-13) |
-| Interrogation execution | never happens (line 3 stalls) | after interrog_4 he aims 5 s, then the bang that opens interrog_5 = the shot | choice (kept from the user's rescue design) |
+| Interrogation execution | never happens (line 3 stalls) | after interrog_4 he aims 5 s, then the bang that opens interrog_5 = the shot | choice (kept from the user's rescue design) - user-approved 2026-11-15 |
 | Interrogation start | trigger 37, 54u from the officer | 350u, or 750u in line of sight of the officer | forced (our 200u rescue radius) |
 | Panzer first shot | +216 ticks from its trigger | same spacing, from when a player sees it or is within 2200u; rocket pass after the second shot | choice (user: it must be seen firing) |
 | House collapse dust and smoke | disc particle records | stock dust cloud and smoke column; round 20: the smoke column at the disc's own record 8 spot (tehao_firesmoke_long), once the map script takes the block | stand-in (forced: no disc sprite carried) |
