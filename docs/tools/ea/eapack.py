@@ -607,6 +607,10 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     # [0.7.23] the level's own character models (eachar.py: the partisan woman so far), into this pak only
     import eachar
     eachar.build(L.stream, level, mohaa_base, files, lines, log=log)
+    # [0.7.33] the level's own prop models (eaprops.py: the Panzer IV, intact and destroyed, on the stock tank entity),
+    # into this pak only; the map script uses one once the user approved it (level.ea_prop_tik / ea_prop_own)
+    import eaprops
+    eaprops.build(L.stream, level, mohaa_base, files, lines, log=log)
     # [dbfix] which disc clip families this pak carries (eaanimconv: models/human/<level>/anim/<family>_*.skc), so the map
     # script only plays a family the player's own conversion has (an older BYO pak: retail anims, no unknown-animation stall)
     _fams = {"mmg": "mmg_", "death": "death_"}

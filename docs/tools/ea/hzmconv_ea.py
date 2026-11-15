@@ -104,4 +104,12 @@ def convert(image, level, out_dir, mohaa, progress, opts):
                     files.append(cp)
             except Exception as e:
                 progress(step="upscale", game="ea", level=level, skipped="characters: %s" % e)
+            try:                       # the level's own prop models (eaprops.py textures): ESRGAN + CC0 detail
+                import eapropsup
+                pp = os.path.join(out_dir, "zzzz_ea_hdprops_%s.pk3" % level)
+                eapropsup.main(out, level, pp, up)
+                if os.path.exists(pp):
+                    files.append(pp)
+            except Exception as e:
+                progress(step="upscale", game="ea", level=level, skipped="props: %s" % e)
     return files

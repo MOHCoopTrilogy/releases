@@ -1,3 +1,10 @@
 CC0 textures shipped with the European Assault converter (ea_texmap.json "local"). Poly Haven, licence CC0 1.0 (https://polyhaven.com/license). 1k diffuse JPG, unmodified; tinted at conversion time.
 
 snow_03_diff_1k.jpg  page https://polyhaven.com/a/snow_03  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/snow_03/snow_03_diff_1k.jpg  CC0  (user-approved 2026-11-13: Dying Breath snow ground PUfh, qHPE)
+
+Prop detail sources (eapropsup.py RECIPES; user-approved 2026-11-15: online CC0 sources for the prop models). ambientCG, licence CC0 1.0 (https://docs.ambientcg.com/license/). 1K colour map, re-encoded JPG q88, unmodified otherwise; only their colourless fine high band is added over the disc's own texture at conversion time.
+
+PaintedMetal012_1K_Color.jpg  page https://ambientcg.com/view?id=PaintedMetal012  file https://ambientcg.com/get?file=PaintedMetal012_1K-JPG.zip  CC0  (Panzer IV hull / turret / skirts grain)
+Metal016_1K_Color.jpg         page https://ambientcg.com/view?id=Metal016         file https://ambientcg.com/get?file=Metal016_1K-JPG.zip         CC0  (Panzer IV hull / turret / skirts fine grain)
+Rubber004_1K_Color.jpg        page https://ambientcg.com/view?id=Rubber004        file https://ambientcg.com/get?file=Rubber004_1K-JPG.zip        CC0  (Panzer IV road-wheel tyres)
+Metal063_1K_Color.jpg         page https://ambientcg.com/view?id=Metal063         file https://ambientcg.com/get?file=Metal063_1K-JPG.zip         CC0  (Panzer IV wheel hubs, sprocket)
