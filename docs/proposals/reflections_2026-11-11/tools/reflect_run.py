@@ -20,9 +20,12 @@ import harness_window as hw  # noqa: E402
 tag, mapname, spotfile = sys.argv[1], sys.argv[2], sys.argv[3]
 perf = len(sys.argv) > 4 and sys.argv[4] == "perf"
 W, H, DW, DH = 1600, 900, 1920, 1080
-mon = [m for m in hw.monitors() if (m["rect"][2] - m["rect"][0], m["rect"][3] - m["rect"][1]) == (DW, DH)]
-if not mon:
-    raise SystemExit("no 1920x1080 display")
+# [user 2026-11-15] "use my primary display for testing": the harness's own pick (hw.test_display: the primary by
+# default, HZM_TEST_RES / HZM_TEST_DISPLAY override) instead of a fixed 1920x1080 search
+try:
+    mon = [hw.test_display()]
+except Exception as e:
+    raise SystemExit("no test display: %s" % e)
 
 GOG = r"G:\GOG\Medal of Honor - Allied Assault War Chest"
 CLIENT = r"G:\mohaa-reflect"
