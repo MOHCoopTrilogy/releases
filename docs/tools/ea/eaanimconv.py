@@ -202,6 +202,9 @@ MMG_FWD = 0.0
 # the pivot. Our centre cell has its hands 23.0 ahead and 68.9 up on the centreline: on the STOCK seat it only needs the
 # 8.6u to the right (an earlier "13u behind the pivot" grip estimate led to the 27u shift and to turretseat 36 74: wrong)
 MMG_SIDE = -8.6 / 0.52
+# the disc's own MG42 on its pintle pole (eaprops, user's "pole" pick 2026-11-15): its grip is 8.8 behind, 2.3 right and
+# 1.8 under the pivot; seated with turretseat 31.8 70.7 the ea_mmgp_* set holds the hands 2.3u right
+MMG_SIDE_POLE = -2.3 / 0.52
 MMG_ONE = {"enter": "58f52873", "exit": "647c2159", "death": "7a12045e", "death_explosion": "573a6031"}
 # ambient / scripted scenes, by the rig the level's ICS points name (level.ea_ps_rig / ea_sc_rig): the clips of that
 # rig's state graph that have length (single-frame state poses left out), longest first. Alias ea_ics_<rig>_<n>.
@@ -354,9 +357,9 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
     def put(alias, h, loop, yaw=0.0):
         if h not in bank.clips:
             return
-        mmg = alias.startswith("mmg_")
-        skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw, fwd=MMG_FWD if mmg else 0.0,
-                              lat=MMG_SIDE if mmg else 0.0)
+        mmg = alias.startswith(("mmg_", "mmgp_"))
+        lat = (MMG_SIDE_POLE if alias.startswith("mmgp_") else MMG_SIDE) if mmg else 0.0
+        skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw, fwd=MMG_FWD if mmg else 0.0, lat=lat)
         if loop:
             skc = skc[:8] + struct.pack("<i", struct.unpack_from("<i", skc, 8)[0] | 0x20) + skc[12:]
         files["models/human/ea_%s/anim/%s.skc" % (level, alias)] = skc
@@ -364,15 +367,16 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
     # the idle, aim and fire grids list their points in the same order: all three take the idle clip's label
     idle = [int(x, 16) for x in MMG_GRID["idle"][0].split()]
     lab = [aim_label(bank, skel, h) if h in bank.clips else None for h in idle]
-    for state, (hs, loop) in MMG_GRID.items():
-        for i, hx in enumerate(hs.split()):
-            h = int(hx, 16)
-            if h in bank.clips:
-                tag = lab[i] if state != "hit" and i < len(lab) and lab[i] else aim_label(bank, skel, h)
-                put("mmg_%s_%s" % (state, tag), h, loop, gun_yaw(bank, skel, bones, h))
     centre = gun_yaw(bank, skel, bones, int(MMG_CENTRE, 16))
-    for nm, hx in MMG_ONE.items():
-        put("mmg_" + nm, int(hx, 16), False, centre)
+    for pre in ("mmg_", "mmgp_"):          # mmgp_: the disc's own MG42 on its pintle pole (eaprops), grip 2.3u right
+        for state, (hs, loop) in MMG_GRID.items():
+            for i, hx in enumerate(hs.split()):
+                h = int(hx, 16)
+                if h in bank.clips:
+                    tag = lab[i] if state != "hit" and i < len(lab) and lab[i] else aim_label(bank, skel, h)
+                    put("%s%s_%s" % (pre, state, tag), h, loop, gun_yaw(bank, skel, bones, h))
+        for nm, hx in MMG_ONE.items():
+            put(pre + nm, int(hx, 16), False, centre)
     for rig, hs in SCENES.items():
         for n, hx in enumerate(hs.split()):
             put("ics_%s_%d" % (rig, n + 1), int(hx, 16), n == 0 and rig not in ("explainsplan", "partisanleadersaysgofight", "callsplayer", "guardstopsplayer"))
