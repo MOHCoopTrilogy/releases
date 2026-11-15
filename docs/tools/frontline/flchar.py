@@ -54,7 +54,10 @@ EULER_ORDER = "yzx"
 # crouch, no breaks). Every other Frontline character keeps the stock model in game until the user approves its sheet.
 OWN = {"645ffd2b",    # 2026-11-15 user approved (main German, SHEET_fl_645ffd2b_ingame_645_v11)
        "7f9a5a86",    # 2026-11-15 user approved (capped officer, SHEET_fl_7f9a5a86_ingame_7f9_v5)
-       "dca82ce9"}    # 2026-11-15 user approved (GI, SHEET_fl_dca82ce9_ingame_dca_v5)
+       "dca82ce9",    # 2026-11-15 user approved (GI, SHEET_fl_dca82ce9_ingame_dca_v5)
+       # 2026-11-15 user approved the remaining 17 (SHEET_fl_<hash>_ingame_b_*, QA_batch17_overview)
+       "031add4e", "9a138cf4", "ed14bc62", "2e091524", "590e25b2", "c76ab011", "b06d8087", "c18e036f", "588752d5",
+       "3f817f27", "e6930b3c", "9719a637", "45a17d53", "42ccb94a", "abaf1c7f", "35cb89dc", "07d5b007"}
 
 # Frontline bone -> MOHAA stock human bone (the stock animations drive only Bip01). Fingers have no counterpart:
 # they ride the hand.
