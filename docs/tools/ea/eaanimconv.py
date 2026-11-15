@@ -455,7 +455,7 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
             path, flags = _stock_alias(stock, alias)
             if not path or "random" in flags.lower() or int(hx, 16) not in bank.clips:
                 continue
-            skc, _ = convert_clip(bank, bank.clip(int(hx, 16)), skel, bones, root_motion=False)
+            skc, _ = convert_clip(bank, bank.clip(int(hx, 16)), skel, bones)   # root height kept: a crouch idle sits low
             if loop:
                 skc = skc[:8] + struct.pack("<i", struct.unpack_from("<i", skc, 8)[0] | 0x20) + skc[12:]
             sb = stock("models/human/animation/" + path)
