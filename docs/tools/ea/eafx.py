@@ -333,9 +333,11 @@ class Sprites:
             stage = ("animMap %.2f %s" % (max(0.5, fps), " ".join(paths))) if len(paths) > 1 else ("clampmap " + paths[0])
             blend = "blendFunc GL_SRC_ALPHA GL_ONE" if additive else "blendFunc blend"
             self.shaders[key] = name
-            # nofog: a distant system drawn the way the original draws its effects, in a pass with fog off
-            self.order.append("%s\n{\n\tcull none\n\tnomipmaps\n%s\tspriteGen parallel_oriented\n\t{\n\t\t%s\n\t\t%s\n"
-                              "\t\trgbGen vertex\n\t\talphaGen vertex\n\t}\n}\n\n" % (name, "\tnofog\n" if nofog else "", stage, blend))
+            # nofog: a distant system drawn the way the original draws its effects, in a pass with fog off. It is a STAGE
+            # keyword in both MOHAA renderers (gl1 and gl2 ParseStage); at shader level gl2 rejects the whole shader
+            # (unknown general shader parameter) and nothing of the system is drawn
+            self.order.append("%s\n{\n\tcull none\n\tnomipmaps\n\tspriteGen parallel_oriented\n\t{\n\t\t%s\n\t\t%s\n"
+                              "\t\trgbGen vertex\n\t\talphaGen vertex\n%s\t}\n}\n\n" % (name, stage, blend, "\t\tnofog\n" if nofog else ""))
         return self.shaders[key], tw
 
 
@@ -398,9 +400,8 @@ def emitter(d, idx, X, sprites, rate_scale=1.0, gain=1.0, off=(0.0, 0.0, 0.0), a
     additive = int(g("RenderType", 0)) == 0
     shader, tw = sprites.shader(d.tex(), int(g("HorizCount", 1)), int(g("VertCount", 1)), g("UVAnimRate", 0.0),
                                 min(16.0, max(1 / 16.0, wm / hm)), additive,
-                                # nofog OFF by default: in the 2026-11-13 stills the nofog systems did not draw at all on gl2
-                                # (the same systems with fog showed); EA_FX_NOFOG=1 brings it back for the engine investigation
-                                nofog=any(abs(v) > 1e-6 for v in off) and os.environ.get("EA_FX_NOFOG") == "1")
+                                # the pulled-in distant systems are drawn fog-free (EA_FX_FOGGED=1: with the global fog, as v1.10.80)
+                                nofog=any(abs(v) > 1e-6 for v in off) and os.environ.get("EA_FX_FOGGED") != "1")
     if shader is None:
         return None, on, life, 0
     L = ["originemitter e%d" % idx, "\t\t("]
