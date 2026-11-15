@@ -732,6 +732,28 @@ offset. 1_1 places 20 definitions on 9 bodies. Sheets: `H:\hzm_work\flchar\` (of
 | 07d5b007 | BM22 / BT21 / HT02a / none | interrogation victim (1) | built, off |
 | adba9dd8 | BM37_20L / BT01 / UHM02 + HT01_128 | not placed on 1_1 (low-detail set) | not built |
 
+## Round 22 - final sweep (flfix2, 2026-11-15)
+
+Converter f695ba5f, 143fd1ca, 760ebc18 (CONV_BUILD 10); test pak `H:\hzm_work\flpolish\v119_fl_1_1.pk3` (built from the
+committed tree), commit list beside it. Headless dedicated boots `fix2\r22\boot_a.log` (installed pak: `FLDATA conv 10`,
+the 10 generated emitter tiks cached and started, 0 Script Error) and `boot_b.log` (a test copy of the map script with the
+round-22 blocks, private home: FLPG / FLAMB / journal vars read, 0 Script Error). Map-script blocks: with the map owner
+(`fix2\r22\round22_blocks.scr`). Nothing seen or heard in a client yet. Buglog bug-11223..11230.
+
+| item | original (decoded) | conversion | status |
+|---|---|---|---|
+| Projectile generator 473 (Panzer street) | kind 10, ProjectileGenerator.lst + `trace/trig256`: on trigger 256 (player enters, msg 357) ONE round of the enemy Panzerschreck definition (weapbul 0x4f79c15b), silent, from its own spot (the end of the tank's path 66, 3.7 m up) at the middle of named path 17 (the road toward the player); one burst of one per switch-on, a second switch-on is ignored | `level.fl_pg*` (pos, kind, rate, burst, cycles, pause, path, aim points, switch trigger); block `fl_pg_all` fires a stock panzerschreckshell along the decoded line (probe: `FLPG rec 473 shot 1 of 1`) | data built; block with the owner |
+| Kind-10 layout | word 28 high = the named path the burst is spread along, shot s of N at (s + 0.5) / N of it (jeep pair: paths 43 / 44, the two lines of the jeep road, 10 rounds each at 15/s, one burst); 29 rate, 30 fire argument, 31 / 32 burst, 33 bursts per switch-on, 34 / 35 pause, 37 round | fl_jeep_gens still aims at the jeep (choice of round 10); fl_pg_aim[2..3] hold the original's road lines if wanted | decoded |
+| Distant battle fire 212 | no behaviour class, no links: never created | fl_pg_on 0, not built | MATCH (dead in the original) |
+| House sound 54 | PLAYSOUND(54) of ObjectivePickUp 293 is called (bq tick 4055) but the record has no sound-set link (11 / 12); the six sets with a 54 row are pickups. Same for 61 on BuildingExplosionParent 96. The blast's sound is the bombs' own sets | nothing to play | MATCH (silent in the original; decode, not heard) |
+| Trigger 91 / area 373 | enter = hold (51), leave = release (52); 405 / 425 hold only; release acts only while the spawner has no man up; a man is made when any area-373 member dies (talkers 71 / 72, ally 408, an ambusher); count / delay words not located; the walk's 3 creations of #11 each followed an event 46 (child aborted), not the child's death | `level.fl_area*` (also area 370: trigger 87, r 63 m, hold only, ambush 52); block `fl_amb91_data` reads 91 from data (= the numbers in the map) | data built; respawn 12 s / cap 3 stays a choice |
+| Path-finder triggers 49 / 227 | PATHFINDERSETLEVEL(word 14): music level 0 at the start, 60 at the Panzer street; every branch of 1_1M.mpf takes 0..127, so the level changes nothing here | `level.fl_pf*` | MATCH (no audible effect) |
+| 46 unplaced barks | 7 entry-1 digital silences, 2 cries (1:22 = 5:21), 37 voiced lines | 39 placed (re-transcribed with a combat-phrase prompt, checked against the placed sets' duration / envelope statistics); low-confidence ones: 1:43, 2:33, 2:35, 4:32, 5:31, 5:33, 5:34, 6:29 | ours (situation per clip) |
+| Particle size | [51, 52] start size, [53, 54] end size (metres) | own emitter per system `models/emitters/fl_1_1_pfx<rec>.tik` (stock syntax) with the decoded size, rate, life, colour, box, velocity, acceleration, spin; mod sprites stand in (cfx_puff / cfx_flame); recs 421 / 422 rate 0 -> 4.2 (ours); fl_pfx_stock keeps the old model | built, not seen: the decoded puffs (0.5-1 m) and flames (0.2-1 m) are far smaller than the stand-ins (3.5 m puffs) |
+| Entity scale and sprites | - | round 20's note was wrong: cg_tempmodels.cpp SpawnTempModel multiplies sprite scale, velocity and spawn offsets by the entity's scale; not used (it would scale speed too) | corrected |
+| Journal, 3 pages | DATA/SHELL/1_1_BLOG.VIV, three images with the text baked in (title "Seaside Stowaway", place, date, orders), Xbox prompts at the bottom | cut above the prompts, `textures/fl/1_1/journal1-3.tga`, `level.fl_journal*`; block `fl_journal_watch` shows them once per player on first spawn (Use next, Fire close) | data built; block with the owner |
+| 62 code-509 volumes | class-less spheres, slot 4 (used / damaged) = 509 (no listener), sound set 685 / 988 = sound 96 (a 0.31 s thump), along the whole route ~2 m above the road, none over the canal | not built | dead in script; at most an engine hit sound |
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
