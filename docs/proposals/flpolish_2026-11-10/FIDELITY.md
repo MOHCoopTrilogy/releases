@@ -763,6 +763,9 @@ in cover in the Panzer street (`r17/cover_panzer_street.jpg`); no still yet of a
 camera found none within 80u of his point at the shot times). Approved additions (user, 2026-11-15) marked in the
 deviation table: floorless-house lid, hedge skirt, ground UV repair, crown clamp, execution timing, area-373 cap,
 110u crew spots, MG42 3u lower, single-press drop, .30 cal rest spot.
+Round 22c (mod a4702840): the journal's key line sits above the page (it overlapped the pickup feed); a cover point
+with a living enemy within 160u is not free; clean still of a German holding the dock crate point against the
+camera player, no hit blur (`r17/cover_dock_german_clean.jpg`, run dp8).
 
 ## Deviations from the original (for the user; choices are not settled here)
 
