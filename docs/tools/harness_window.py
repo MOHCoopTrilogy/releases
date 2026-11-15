@@ -300,7 +300,13 @@ def test_display(name=None):
     # The user picks the test screen by RESOLUTION (2026-11-09: "Ultra wide" - the 34in 3440x1440, even while it is
     # the primary). HZM_TEST_RES overrides; "" disables the resolution pick (old non-primary rule).
     # [user 2026-11-11] ALL test clients on the small 1920x1080 screen only, never the ultrawide or the TV (supersedes 11-09).
-    res = os.environ.get("HZM_TEST_RES", "1920x1080")
+    # [user 2026-11-15] "use my primary display for testing" (supersedes 11-11): default is the PRIMARY display.
+    res = os.environ.get("HZM_TEST_RES", "1920x1080")  # [user 2026-11-15 later] "move testing to my small monitor"
+    if not name and res == "primary":
+        for m in mons:
+            if m["primary"]:
+                return m
+        raise NoTestDisplay("no primary display found")
     if not name and res:
         try:
             rw, rh = (int(v) for v in res.lower().split("x"))
@@ -310,6 +316,11 @@ def test_display(name=None):
             l, t, r, b = m["rect"]
             if (r - l, b - t) == (rw, rh):
                 return m
+        if rw:
+            # [user 2026-11-13] never fall back to another screen (after a reboot the 1080 screen was missing and test
+            # windows landed on the TV): no 1920x1080 display connected = no test window at all
+            raise NoTestDisplay("no %s display connected (have %s) - test windows only go on that screen" % (
+                res, ["%dx%d" % (m["rect"][2] - m["rect"][0], m["rect"][3] - m["rect"][1]) for m in mons]))
     for m in mons:
         if name and m["device"].lower() == name.lower():
             if m["primary"]:

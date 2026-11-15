@@ -53,7 +53,7 @@ class Client:
     # ---------------------------------------------------------------- launch
     def __enter__(self):
         # [user 2026-11-15] "use my primary display for testing": always the primary display
-        res = os.environ.get("BYO_TEST_RES") or "primary"
+        res = os.environ.get("BYO_TEST_RES") or "1920x1080"  # user 2026-11-15: the small monitor
         os.environ["HZM_TEST_RES"] = res
         os.makedirs(self.maintt, exist_ok=True)
         for fn in os.listdir(self.maintt):
