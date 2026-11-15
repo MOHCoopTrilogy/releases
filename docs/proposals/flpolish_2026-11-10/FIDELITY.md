@@ -666,6 +666,47 @@ smoke seen on the VINS LIQUEURS facade from street level (the system sits at z 1
 open); rec 7 = a burnt wreck with no smoke in two frames, so not spawned (choice: the frames over the decode); rec 10
 still burns, a thick black column over the roof, after the MG-nest street. The door was not in view; open.
 
+## Round 21 (flfix2, 2026-11-15) - cover and routes
+
+Decoded from the 1_1 .bpd and the VM traces (`docs/tools/frontline/flcover.py` holds the layout). The 113 kind-5
+records are 109 cover points (type hash 0x9101C906, 116 bytes), 3 mounted-gun points (0x5B607813, "MGPoint", word 28 = 8)
+and record 0 (0x2070A66D, not a point; undecoded). A cover point carries: position; the quaternion = its facing, toward
+the threat; word 13 byte 1 = the side that may use it (0 any 83, 1 Allied 18, 2 Axis 12 - the actor's own team byte);
+word 14 = a link tag shared with the BreakingWoodBoxSwap crate it leans on (19 points, one per side of a crate, facing
+each other across it); word 28 = type: 1 (28) corner with the wall on the right, 2 (21) wall on the left (measured on
+the converted collision: 23/28 and 20/21; a corner spot often holds a 1 and a 2 at one position, 90 degrees apart),
+4 (59) behind low cover or a crate, 80 (1, rec 112) not decoded. No message id or group link is stored.
+Evidence: 84 of the 85 traced AISETCOVERPOINT calls (and all 259 GETWAYPOINTINFO calls) take a section-3 record
+number of a 0x9101C906 record, the 85th is -1 (clear); allies took only team 0/1 points, Germans only 0/2; in run sr_D
+ally rec 64 took point 121 and stopped 18u from it, the shouters took 119 and 123 where they stood.
+
+Routes: no actor record holds a path id, and no soldier calls a path builtin in 60+ traces (only the tank's
+MECHFOLLOWPATH, argument 3 - path 3 is the stub beside it, but its traced 3.9 m arc follows neither path 3 nor 66: open).
+The gun wave's allies (recs 104-106, `sq_wave4`) run the jeep road, within 64u of path 67 for 37/47 and 54/84 of their
+samples and near path 99, not paths 43/44. So the actor-to-path link stays undecoded; the paths are data
+(`level.fl_npath[id][i]`, now with `fl_npath_id[j]` / `fl_npath_cnt`).
+
+Built (converter commits 804872a2, 4cf8f6b5; test pak v118): `level.fl_cov[k]` (MOHAA position, placed where a MOHAA
+body stands clear of the BSP's brushes and the crate boxes, mean 16u from the disc point), `fl_cov_yaw` (facing, toward
+the threat), `fl_cov_type` (1 / 2 / 4 / 8 MG / 80), `fl_cov_team`, `fl_cov_tag`, `fl_cov_om` (the crate's inline
+model, `$fl_om_<name>`), `fl_cov_grp` (INFERRED: the waking message of the nearest actor record within 15 m that may use
+it), `fl_cov_node`, `fl_cov_rec`, `fl_cov_n` = 112. 101 become MOHAA cover nodes (info_pathnode spawnflags + angle): disc
+1 -> corner_right (32), 2 -> corner_left (16), both turned 180 degrees (a stock corner node points away from the threat:
+measured on m1l1/m2l1/m2l3/m3l2/m4l0, 123 corner nodes), 4 -> crate (128), 80 -> cover (4). Left out: the 3 MG points,
+5 second records of a shared corner spot (one node per spot), 3 with no walkable link to a navpoint node.
+Proof: 1421 nodes (1320 + 101), 0 in solid, 0 floating, 0 in a crate box, 101/101 walk-linked to a navpoint node
+(approximate CheckMove; 100 in a part of >= 10 navpoint nodes, the navpoint parts are unchanged); headless boot: the
+engine rebuilt the .pth once (3.1 s) and reused it on the next boot, no Duplicate node / not linked / paths-per-node /
+Script Error, the data script compiles (`compilescript`).
+Not yet in the map: the script layer (each soldier tethered to the nearest free point of his side in combat, one man
+per point, re-pick when the crate breaks or he is flanked; the trail's move-up ends on a cover point; a disc path is
+followed where one runs past both the ally and his goal) is handed to the map owner.
+
+| item | original | conversion | status |
+|---|---|---|---|
+| Cover points | 109 records, AISETCOVERPOINT | 112 data points, 101 MOHAA cover nodes | data and nodes built; script layer with the owner |
+| Named paths for soldiers | link not found | data only (`fl_npath`); layer follows one where it runs past both ends | undecoded |
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -753,7 +794,10 @@ still burns, a thick black column over the roof, after the MG-nest street. The d
 | Church-tower MG mount | a tripod MG on the tower floor (the walk frames do not show its height) | the stock turret on sandbags at floor + 44, disc x/y and facing kept: MOHAA's use trace cannot reach a turret at floor height (bug-11112) | forced (engine use height) |
 | Other mounted guns (1, 2, 5, 6) | usable | reached and mounted on foot with use (run guns); facing from the records, not checked against frames | facing unverified |
 | Allied soldiers' strength | Frontline AI (not decoded); in the trace allies support and can die | kit accuracy 18, health 150, noticescale 100, no BAR, AI-vs-AI damage x0.5 (`coop_mod/discallies.scr`, `level.coop_aiVsAiDmg`) | user-approved 2026-11-13 ("balance the allies on the frontline missions") |
-| Trail goals | AISETCOVERPOINT on the player's route | a spot the player walked, 500-900u behind him on the ally's side; unseen placement of a stranded ally | forced (no cover-point data) |
+| Trail goals | AISETCOVERPOINT on the player's route | a spot the player walked, 500-900u behind him on the ally's side; unseen placement of a stranded ally; round 21 layer: the free disc cover point within 300u of that spot | cover-point data built (round 21); layer not yet in the map |
+| Cover points (round 21) | 109 records: facing, side, crate tag, type; the AI picks one per man | same points; placed up to ~44u off (mean 16u) where a MOHAA body fits; MOHAA cover nodes: corner types flipped 180 degrees and one node per spot (5 second records of a corner pair have none), 3 unreachable spots have none; the stock cover state fights from them (corner lean / over-the-crate), not Frontline's own | forced (engine body size, node conventions); group link inferred |
+| Mounted-gun points (round 21) | 3 MGPoint records | data only (`fl_cov_type` 8), no node | not used |
+| Soldiers on named paths (round 21) | link to a path not found | allies follow a disc path only where it runs past both them and their goal | inferred from sq_wave4 |
 | Jeep .30 cal, mounted | the disc gun seen from behind | the stock first-person 30cal for the gunner, the disc gun for everyone else | forced (engine turret view model) |
 | Wounded gunner's death pose | (no death: he fades) | settles into the stock on-back dead pose, body stays | user-approved 2026-11-12 (pose changed 2026-11-13) |
 | Interrogation execution | never happens (line 3 stalls) | after interrog_4 he aims 5 s, then the bang that opens interrog_5 = the shot | choice (kept from the user's rescue design) |
