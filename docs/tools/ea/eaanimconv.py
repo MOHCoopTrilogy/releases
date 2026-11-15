@@ -274,6 +274,14 @@ STATIC = {
     "rifle_crouch_alert": ("327c561f", True),                                                   # NONCOVER_CROUCH_IDLE
     "mp40_reload": ("70250ac8", False), "thompson_reload": ("70250ac8", False),                # STAND RELOAD, SMG
     "kar98_reload": ("d427e00d", False),                                                        # STAND RELOAD, rifle
+    # standing corner cover (graph 6c9b378b): STAND PEEK LEFT / RIGHT, STAND LEFT FIRE START (fire events copied and
+    # moved). The right-corner shoot is left stock: the stock intro / shoot move the gun to the off hand
+    "mp40_wall_peek_left": ("699c3539", False), "thompson_wall_peek_left": ("699c3539", False),
+    "rifle_wall_peek_left": ("699c3539", False),
+    "mp40_wall_peek_right": ("dec320dd", False), "thompson_wall_peek_right": ("dec320dd", False),
+    "rifle_wall_peek_right": ("dec320dd", False),
+    "mp40_wall_left_shoot": ("4141f9d4", False), "thompson_wall_left_shoot": ("4141f9d4", False),
+    "rifle_wall_left_shoot": ("4141f9d4", False),
 }
 HITS = {
     "stand_hit_head": "579d6c72", "stand_hit_larm": "140c7011", "stand_hit_rarm": "33bfbb81",
