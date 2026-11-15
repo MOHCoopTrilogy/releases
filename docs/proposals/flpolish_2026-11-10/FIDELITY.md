@@ -722,7 +722,7 @@ offset. 1_1 places 20 definitions on 9 bodies. Sheets: `H:\hzm_work\flchar\` (of
 |---|---|---|---|
 | 645ffd2b | BM37 / BT01 / HT01 / German helmet | Roamers, StayOnPath (11) | in-game sheet pending; offline QA passed |
 | 9a138cf4, ed14bc62, 031add4e | BM01 / BT01 / HT01, HT02, HT03 / helmet | Roamers, shouters, MG lead, talkers (7, 6, 4) | built, off |
-| 2e091524, 590e25b2, c76ab011, b06d8087 | BM03 / BT01 / various / helmet | Roamers, MG feeder (4, 4, 4, 1) | built, off; GR4 chest piece not drawn (no texture on the disc) - to check on the emulator |
+| 2e091524, 590e25b2, c76ab011, b06d8087 | BM03 / BT01 / various / helmet | Roamers, MG feeder (4, 4, 4, 1) | built, off; GR4 chest piece not drawn (no texture on the disc); emulator rec 67 (so_chars bm03_rec67_*): the original shows a plain field-grey tunic there, no separate layer - leaving it out matches |
 | c18e036f, 588752d5 | BM33 / BT01c / HT03, HT02 / helmet | Roamers, MG gunner (5, 1) | built, off |
 | 3f817f27 | BM02 / BT01 / HT02 / helmet | Roamer, talkers (3) | built, off |
 | 7f9a5a86 | BM11 / BT02 / HT02b / officer cap | capped Roamers (3) - the emulator's capped Roamer (so_chars ger_cap_face_crop) | built, off; cap, tabs, tunic match; face shape and visor height differ (head morphs) |
