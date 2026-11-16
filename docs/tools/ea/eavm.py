@@ -528,6 +528,13 @@ def build(db, X, spot, ground, text, lines, log=print):
             ml = Ms(ls)
             send = ml[0] if ml else ["Activate"]
             fire = "use"
+            # [0.7.34] StartActive (word 34 = the class schema's +0x4c, the code-decode agent's property names): a charge
+            # the original starts inactive listens on its first group list and is set only once that group is activated
+            # (1_11: the comm tower's two, by the graveyard spawn trigger / the leader's ammo-dump line)
+            gl_ = [v for k, v in ls if k == "g"]
+            if len(r.w) > 34 and r.u(34) == 0 and len(gl_) >= 2:
+                listen = gl_[0]
+                targets = [x for v in gl_[1:] for x in v]
         if not (targets or listen or gag or mus is not None):
             continue
         n += 1
@@ -566,6 +573,8 @@ def build(db, X, spot, ground, text, lines, log=print):
         # nothing switches them on): the cellar trigger BR_BasicTrigger_22 fired the leader's go-back line before his
         # plan speech; the original plays it only from the speech's own timer
         if r.cls == "BasicTrigger" and len(r.w) > 25 and r.u(25) == 0:
+            L(f"\tlevel.ea_lo_dis[{n}] = 1")
+        if r.cls == "DemoCharge" and len(r.w) > 34 and r.u(34) == 0:
             L(f"\tlevel.ea_lo_dis[{n}] = 1")
         send = send or ["Activate"]
         L(f"\tlevel.ea_lo_sn[{n}] = {len(send)}")
