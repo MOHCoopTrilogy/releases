@@ -1408,6 +1408,13 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     except Exception as e_:
         chr_lines = []
         print("flchar: characters skipped (%s)" % e_)
+    # [flprops] the disc's own prop models (flprops.py: the Panzer IV) on the stock entities, built only when
+    # fl_levels.json "props" switches them on (user-approved); never fails the conversion
+    try:
+        import flprops
+        chr_lines = chr_lines + flprops.build(L, level, mohaa_base, files)
+    except Exception as e_:
+        print("flprops: props skipped (%s)" % e_)
     pack = flpack.build(L.disc, L, level, X, vgm, files, mohaa_base=mohaa_base, grid=grid,
                         extra_lines=chr_lines) if vgm else None
     # [flfix2] tier-1 textures (TEXTURES.md, approved 2026-11-11): CC0 ground / roof / plank / stone, cut-out upscale
