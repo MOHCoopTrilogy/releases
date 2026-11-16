@@ -229,14 +229,22 @@ def pfx_tik(p, typ, X, gen):
     s, m = X.s, (-1.0 if X.m < 0 else 1.0)
     px = float(gen.get("sprite_px", 256))
     life = p["life"] if p["life"] > 0 else 1.0
-    s0 = [p["size_raw"][0] * s / px, p["size_raw"][1] * s / px]
-    s1 = [p["size_raw"][2] * s / px, p["size_raw"][3] * s / px]
+    # [look 2026-11-16] per-record look overrides (fl_levels.json particles.generate.rec): size_k scales the decoded size
+    # (the disc's size is relative to ITS smoke sprite, not metres - record 8, the house smoke, drew as 48-72u blobs where
+    # the original's plume is several metres wide, ref_xemu/trace/b41h_prepost.png), grow = end size / start size over
+    # the particle's life, alpha / color_k replace our per-type alpha and lift the colour
+    ov = dict(gen.get("look", {}).get(typ, {}), **gen.get("rec", {}).get(str(p.get("rec")), {}))     # per-type default, per-record override
+    k_ = float(ov.get("size_k", 1.0))
+    s0 = [p["size_raw"][0] * s / px * k_, p["size_raw"][1] * s / px * k_]
+    s1 = [p["size_raw"][2] * s / px * k_ * float(ov.get("grow", 1.0)), p["size_raw"][3] * s / px * k_ * float(ov.get("grow", 1.0))]
     a0, a1 = sum(s0) / 2.0, sum(s1) / 2.0
     srate = (a1 / a0 - 1.0) / life if a0 > 0 else 0.0
     rate = p["rate"] if p["rate"] > 0 else float(gen.get("rate0", {}).get(typ, 4.0))
     # cfx_flame is additive and ignores the vertex colour; for the flames the start colour (orange) is kept, the
     # smokes take the average of the two colour words (round 20's reading: the start colour range)
     r, g, b = (tuple(c / 255.0 for c in p["rgb0"]) if typ == "flame" else p["rgb"])
+    if ov.get("color_k"):
+        r, g, b = (min(1.0, c * float(ov["color_k"])) for c in (r, g, b))
 
     def ax(rng, k):
         lo, hi = rng[k]
@@ -244,7 +252,7 @@ def pfx_tik(p, typ, X, gen):
             lo, hi = -hi, -lo
         return _rv(lo, hi, s)
     spin = max(abs(p["spin"][0]), abs(p["spin"][1])) * 57.2958
-    alpha = gen.get("alpha", {}).get(typ, 0.8)
+    alpha = float(ov.get("alpha", gen.get("alpha", {}).get(typ, 0.8)))
     em = [f"\t\t\tspawnrate {rate:.2f}",
           f"\t\t\tmodel {gen['sprites'][typ]}",
           f"\t\t\tcolor {r:.2f} {g:.2f} {b:.2f}",
@@ -322,7 +330,7 @@ def _particles(L, X, lines, pfx, log, files=None, level=""):
         if gen and files is not None and typ in gen.get("sprites", {}):
             # [flfix2 round 22] the system's own emitter, sized / timed from the decode; the stock one stays listed
             rel = f"models/emitters/fl_{level}_pfx{rec}.tik"
-            files[rel] = pfx_tik(dict(p, size_raw=p["size_raw"]), typ, X, gen).encode("latin-1")
+            files[rel] = pfx_tik(dict(p, size_raw=p["size_raw"], rec=rec), typ, X, gen).encode("latin-1")
             lines.append(f'\tlevel.fl_pfx_stock[{n}] = "{model}"')
             model = rel
         lines.append(f'\tlevel.fl_pfx_model[{n}] = "{model}"')
