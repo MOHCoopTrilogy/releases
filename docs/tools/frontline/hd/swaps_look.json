@@ -1,5 +1,5 @@
 {
- "_comment": "look round 2026-11-12 (user: replace the smudged walls and ground with CC0 textures; listed in FIDELITY as deviations, credited in CREDITS.txt). Merged into fl_levels.json hd.swap by flhd.apply. 41180 (plank wall) withdrawn after QA: every CC0 plank read too new or lost the wall's frame boards; the learned upscale of the disc's own image is used.",
+ "_comment": "look round 2026-11-12 (user: replace the smudged walls and ground with CC0 textures; listed in FIDELITY as deviations, credited in CREDITS.txt). Merged into fl_levels.json hd.swap by flhd.apply. 41180 (plank wall) withdrawn after QA: every CC0 plank read too new or lost the wall's frame boards; the learned upscale of the disc's own image is used. Round 3 (2026-11-15, user standing permission for online CC0 textures): d080 / 67180 weathered board walls -> weathered_planks, 38280 corrugated sheet -> worn_corrugated_iron, 123b80 dark earth -> brown_mud_dry; tinted and graded to the disc texture by bake().",
  "1_1": {
   "54200": {
    "asset": "stony_dirt_path",
@@ -36,6 +36,53 @@
     1
    ],
    "overlay": 1.0
+  },
+  "d080": {
+   "asset": "weathered_planks",
+   "tile": 64,
+   "repeat": [
+    2,
+    1
+   ],
+   "overlay": 1.0
+  },
+  "67180": {
+   "asset": "weathered_planks",
+   "tile": 128,
+   "repeat": [
+    1,
+    1
+   ],
+   "overlay": 1.0
+  },
+  "38280": {
+   "asset": "worn_corrugated_iron",
+   "tile": 64,
+   "repeat": [
+    1,
+    1
+   ],
+   "overlay": 1.0
+  },
+  "123b80": {
+   "asset": "brown_mud_dry",
+   "tile": 32,
+   "repeat": [
+    1,
+    1
+   ],
+   "overlay": 1.0
+  },
+  "4aa80": {
+   "asset": "dark_brick_wall",
+   "tile": 112,
+   "repeat": [
+    2,
+    2
+   ],
+   "overlay": 1.0,
+   "mortar": 0.3,
+   "_doc": "[user 2026-11-15 'Online'] the muddy brick wall -> Poly Haven CC0 dark_brick_wall, two repeats per disc tile, tinted to the disc mean with its smoke stains laid over; mortar toned down (0.3) toward the disc's dark joints"
   }
  }
 }

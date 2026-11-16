@@ -87,7 +87,17 @@ def bake(orig, tile, sw):
     rows = int(sw.get("rows", 1))
     o = orig.convert("RGB")
     mean = np.asarray(o, np.float64).reshape(-1, 3).mean(0)
-    t = tint(tile.convert("RGB"), mean)
+    tile = tile.convert("RGB")
+    k_hi = float(sw.get("mortar", 1.0))
+    if k_hi < 1.0:
+        # [user 2026-11-15, dark_brick_wall on 4aa80] mortar toned down toward the original's dark joints: the CC0 tile's
+        # light end (above its 70th percentile luminance) compressed by `mortar`, so the joints stop reading bright
+        ta = np.asarray(tile, np.float64)
+        lum = ta @ np.array([0.299, 0.587, 0.114])
+        p = np.percentile(lum, 70)
+        k = np.where(lum > p, (p + (lum - p) * k_hi) / np.maximum(lum, 1.0), 1.0)
+        tile = Image.fromarray(np.clip(ta * k[:, :, None], 0, 255).astype(np.uint8), "RGB")
+    t = tint(tile, mean)
     px = min(1024, max(256, 4096 // max(rx, ry)))
     t = t.resize((px, px), Image.LANCZOS)
     W, H = px * rx, px * ry
