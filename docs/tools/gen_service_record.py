@@ -513,11 +513,16 @@ _mark("done").save("textures/hud/coop_sr/box_done.tga")
 # chal_def per weapon MODEL VARIANT. Reading only challenges.scr baked 367 SR rows while the running
 # game defined 444, which is precisely the mixed deployment the stamp below exists to catch - and it
 # duly caught it live: "SELFTEST FAIL: challenges live 444 vs SR pages baked 367".
+# [flchal 2026-11-16] SPLICED AT THE CALL, not appended: challenges.scr defines rows BELOW its mvchal_gen call too (the
+# Sealed Orders rows), and the running game numbers them after the 77 variant rows. Appending mvchal at the end would bake
+# those rows ahead of the variants and shift every variant index against the live game (the stamp would still agree - same count).
 src=open("coop_mod/challenges.scr",encoding="latin-1").read()
 import os as _os
+_MVCALL="waitthread coop_mod/mvchal_gen.scr::main"
+assert src.count(_MVCALL)==1, "challenges.scr must call mvchal_gen.scr exactly once"
 for _extra in ("coop_mod/mvchal_gen.scr",):
     if _os.path.exists(_extra):
-        src += chr(10) + open(_extra, encoding="latin-1").read()
+        src = src.replace(_MVCALL, _MVCALL + chr(10) + open(_extra, encoding="latin-1").read() + chr(10), 1)
 rx=re.compile(r'chal_def\s+"([^"]*)"\s+"([^"]*)"\s+"([^"]*)"\s+"([^"]*)"\s+"([^"]*)"\s+(\d+)\s+"([^"]*)"')
 rows=[m.groups() for m in rx.finditer(src)]
 idx={r[0]:i for i,r in enumerate(rows)}

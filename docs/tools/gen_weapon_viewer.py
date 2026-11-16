@@ -141,7 +141,9 @@ chal_src = scr("coop_mod/challenges.scr")
 mv_src = scr("coop_mod/mvchal_gen.scr")
 fin_src = scr("coop_mod/finchal_gen.scr")
 CHAL_RX = re.compile(r'chal_def\s+"([^"]*)"\s+"([^"]*)"\s+"([^"]*)"\s+"([^"]*)"\s+"([^"]*)"\s+(\d+)\s+"([^"]*)"')
-SR_ROWS = [m.groups() for m in CHAL_RX.finditer(chal_src + "\n" + mv_src)]      # the Service Record order (gen_service_record.py)
+_MVCALL = "waitthread coop_mod/mvchal_gen.scr::main"      # [flchal] mvchal is spliced AT its call: rows below it in challenges.scr come after the variants
+assert chal_src.count(_MVCALL) == 1, "challenges.scr must call mvchal_gen.scr exactly once"
+SR_ROWS = [m.groups() for m in CHAL_RX.finditer(chal_src.replace(_MVCALL, _MVCALL + "\n" + mv_src + "\n", 1))]      # the Service Record order (gen_service_record.py)
 SR_IDX = {r[0]: i for i, r in enumerate(SR_ROWS)}
 CHAL = {r[0]: r for r in SR_ROWS}
 for m in CHAL_RX.finditer(fin_src):
