@@ -899,6 +899,25 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     _sf = None
     if not sky_shader and os.environ.get("FL_SKY_DIR") and flpack.spec(level).get("sky_faces"):
         _sf = sky_faces(os.environ["FL_SKY_DIR"], flpack.spec(level)["sky_faces"], mirror)
+    # [anvil] fl_levels "sky_xsh": the level's own six sky textures in its level.viv (<prefix>_RT/LF/BK/FR/UP/DN.xsh),
+    # decoded from the player's disc. Face mapping calibrated on 1_1, whose level1test_*.xsh are texel-identical to the
+    # emulator-captured faces (RT=+x, LF=-x, BK=+y, FR=-y, UP=+z, DN=-z, no rotation). 1_1 has no key: unchanged
+    if not sky_shader and not _sf and flpack.spec(level).get("sky_xsh"):
+        import shpx
+        import tempfile
+        from PIL import Image
+        _px_ = flpack.spec(level)["sky_xsh"]
+        _td = tempfile.mkdtemp(prefix="flsky_")
+        _ok = True
+        for _f, _k in (("RT", "px"), ("LF", "nx"), ("BK", "py"), ("FR", "ny"), ("UP", "pz"), ("DN", "nz")):
+            _b = L.files.get("%s_%s.xsh" % (_px_, _f))
+            _t = list(shpx.decode(_b))[0] if _b else None
+            if not _t or _t.get("rgba") is None:
+                _ok = False
+                break
+            Image.frombytes("RGBA", (_t["w"], _t["h"]), bytes(_t["rgba"])).convert("RGB").save(os.path.join(_td, "s_%s.png" % _k))
+        if _ok:
+            _sf = sky_faces(_td, "s", mirror)
     if _sf:
         sky_shader = f"textures/fl/{level}/sky"
         for _suf, (_w, _h, _px) in _sf.items():
