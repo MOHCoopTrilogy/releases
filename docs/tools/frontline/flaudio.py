@@ -140,6 +140,26 @@ def vgm_decode(vgm, src, dst, stream=None):
     return r.returncode == 0 and os.path.exists(dst)
 
 
+def wav_mono(path):
+    """[discbot 2026-11-16] the client refuses stereo WAVs for sound effects ("is a stereo wav file", "Couldn't load
+    sound"), and the ambience beds are played as loopsounds: average the channels to one, 16-bit PCM kept"""
+    import wave, array, io
+    with wave.open(path, "rb") as w:
+        ch, sw, rate, n = w.getnchannels(), w.getsampwidth(), w.getframerate(), w.getnframes()
+        raw = w.readframes(n)
+    if ch == 1 or sw != 2:
+        return open(path, "rb").read()
+    a = array.array("h", raw)
+    m = array.array("h", ((a[i] + a[i + 1]) // 2 for i in range(0, len(a) - 1, 2)))
+    out = io.BytesIO()
+    with wave.open(out, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(rate)
+        w.writeframes(m.tobytes())
+    return out.getvalue()
+
+
 def wav_seconds(path):
     with wave.open(path) as w:
         return w.getnframes() / float(w.getframerate())

@@ -149,8 +149,7 @@ def _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log):
             log("ambience bed decode failed", n)
             continue
         rel = f"{sdir}amb{n + 1}.wav"
-        with open(dst, "rb") as f:
-            files[rel] = f.read()
+        files[rel] = flaudio.wav_mono(dst)      # [discbot] stereo WAVs do not load as sound effects on the client
         alias = f"{pre}_amb{n + 1}"
         # played levelwide (loopsound min distance "levelwide"), so the distances here do not matter
         ali.append(f'aliascache {alias} {rel} soundparms 1.0 0.0 1.0 0.0 10000 10000 auto loaded maps "coop_fl"')
