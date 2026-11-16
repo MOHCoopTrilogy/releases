@@ -815,6 +815,16 @@ def build(db, X, spot, ground, text, lines, log=print):
         q = ground(X(r.pos)) or X(r.pos)
         n += 1
         L(f"\tlevel.ea_mg_pos[{n}] = {P(q)}")
+        # [0.7.36] the MMG point's own height: ea_mg_pos is grounded, and on the railgun deck and the wall nests the ground
+        # under the point lies 30-40u lower; the disc's pole mount stands level.ea_poleH over THIS point. And the crew's
+        # own floor: the nearest SquadObjective (within 160u; 13-65u under the point on 1_11), where the original's crew
+        # stands behind the gun
+        _mp = X(r.pos)
+        L(f"\tlevel.ea_mg_pz[{n}] = {_mp[2]:.1f}")
+        _co = sorted(((((X(o.pos)[0] - _mp[0]) ** 2 + (X(o.pos)[1] - _mp[1]) ** 2) ** 0.5, X(o.pos))
+                      for o in db.of("SquadObjective_New")), key=lambda t: t[0])
+        if _co and _co[0][0] <= 160:
+            L(f"\tlevel.ea_mg_cz[{n}] = {_co[0][1][2]:.1f}")
         # the gun's squad: the one whose first SquadObjective the level places at this MMG point (within 120u);
         # MMG points carry no link of their own
         first = {}
