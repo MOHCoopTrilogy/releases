@@ -82,9 +82,26 @@ def to_map(p, off=(0.0, 0.0, 0.0)):
     return ((p[1] + off[1]) * SCALE, -(p[0] + off[0]) * SCALE, (p[2] + off[2]) * SCALE)
 
 
-def _mesh(L, name, off, texkey, files, tdir):
+def to_map_w(p, off=(0.0, 0.0, 0.0)):
+    """the hand-held / small objects (mg42gun, MG42GunTripod, the pickups, the phone) face -y on the disc (the tank +y):
+    turned 180 degrees about z, then to_map"""
+    return to_map((-(p[0] + off[0]), -(p[1] + off[1]), p[2] + off[2]))
+
+
+def _alpha_mode(rgba):
+    """False = opaque, True = cut-out (alpha ~0/255), "blend" = soft alpha (the pickups' drop-shadow cards)"""
+    a = rgba[3::4]
+    if min(a) >= 250:
+        return False
+    soft = sum(1 for v in a if 16 <= v <= 239)
+    return "blend" if soft > len(a) * 0.15 else True
+
+
+def _mesh(L, name, off, texkey, files, tdir, xf=None, small=False):
     """a disc object mesh as eaprops 'meshes' entries [(pos, uv, tris, shape)] (pos already in MOHAA map space, units),
-    textures written as TGA under tdir (keyed by the decoded image's hash: the same image in two meshes is one file)"""
+    textures written as TGA under tdir (keyed by the decoded image's hash: the same image in two meshes is one file).
+    small: the small-prop rules - untextured sub-meshes dropped (they would draw as the engine's notexture grid),
+    soft-alpha cards marked "blend" """
     import hashlib
     out = []
     for d in L.mesh(name):
@@ -97,8 +114,11 @@ def _mesh(L, name, off, texkey, files, tdir):
             tp = "%s/%s.tga" % (tdir, shape)
             if tp not in files:
                 files[tp] = eaprops._tga(t)
-            texkey[shape] = (tp, min(bytes(t["rgba"])[3::4]) < 250)
-        pos = [to_map(v, off) for v in d["verts"]]
+            rgba = bytes(t["rgba"])
+            texkey[shape] = (tp, _alpha_mode(rgba) if small else min(rgba[3::4]) < 250)
+        elif small:
+            continue
+        pos = [(xf or to_map)(v, off) for v in d["verts"]]
         out.append((pos, d["uvs"], list(d["tris"]), shape))
     return out
 
@@ -113,19 +133,186 @@ def enabled(level, prop):
         return False
 
 
+PROPS = ("panzer", "mg42", "health", "phone")     # the fl_levels.json "props" keys, one per approval
+
+
 def build(L, level, mohaa_base, files, log=print):
     """write the props' models into the converted pak; returns data-script lines (level.fl_prop_tik / fl_prop_own)"""
     lines = []
-    if not mohaa_base or not enabled(level, "panzer"):
+    want = [p for p in PROPS if enabled(level, p)]
+    if not mohaa_base or not want:
         return lines
     global eaprops
     import eaprops as _ep      # write_skd / write_skc / local_channels / axes / surfaces_for / effective_file
     eaprops = _ep
-    try:
-        _panzer(L, level, mohaa_base, files, lines, log)
-    except Exception as e:      # never fail the conversion: the tank keeps the stock models
-        log("flprops: Panzer skipped (%s)" % e)
+    for p in want:
+        try:
+            if p == "panzer":
+                _panzer(L, level, mohaa_base, files, lines, log)
+            elif p == "mg42":
+                _mg42(L, level, mohaa_base, files, lines, log)
+            else:
+                for kind, spec in SMALL.items():
+                    if spec["prop"] == p:
+                        _small(L, level, mohaa_base, files, lines, log, kind, spec)
+        except Exception as e:      # never fail the conversion: that prop keeps the stock model
+            log("flprops: %s skipped (%s)" % (p, e))
     return lines
+
+
+def _shader_text(pre, texkey):
+    """the stock tank's / items' lighting (lightingSpherical); cut-outs alpha-tested, soft cards blended"""
+    sh = []
+    for key, (tp, mode) in sorted(texkey.items()):
+        if mode == "blend":
+            st = "\t\tblendFunc blend\n"
+            head = "\tcull none\n\tpolygonOffset\n"
+        else:
+            st = "\t\talphaFunc GE128\n" if mode else ""
+            head = "\tcull none\n"
+        sh.append("%s_%s\n{\n%s\t{\n\t\tmap %s\n%s\t\trgbGen lightingSpherical\n\t}\n}\n" % (pre, key, head, tp, st))
+    return "\n".join(sh)
+
+
+def _add_shaders(files, level, text):
+    sp = "scripts/fl_%s_props.shader" % level
+    old = files.get(sp, b"")
+    files[sp] = (old + b"\n" + text.encode()) if old else text.encode()
+
+
+def _surf_lines(ss, pre):
+    seen, out = set(), []
+    for s in ss:
+        if s[0] not in seen and s[3]:
+            seen.add(s[0])
+            out.append("\tsurface %s shader %s_%s" % (s[0], pre, s[3]))
+    return out
+
+
+# the small props: the disc mesh on the stock entity's own (single) bone, frames measured in engine
+# (gettagposition / gettagangles, probe_flitems 2026-11-16). prop = the fl_levels.json "props" key that switches it on.
+# health10 / health50: Frontline's Health10 (MedicinalCanteen) and Health50 (MedicalKit) on the map's stand-ins
+# (amount < 50 -> item_25_healthbox, >= 50 -> item_50_healthbox). Health25's model is not settled from the disc data
+# (the class script names a powerup id, not a mesh) - it keeps the stock box until a reference still shows it
+SMALL = {
+    "health10": {"prop": "health", "mesh": "MedicinalCanteen.msh",
+                 "tik": "items/item_25_healthbox.tik", "bone": ("Box01", (0.0, 90.0, 90.0))},
+    "health50": {"prop": "health", "mesh": "MedicalKit.msh",
+                 "tik": "items/item_50_healthbox.tik", "bone": ("Box01", (0.0, 90.0, 0.0))},
+    "phone": {"prop": "phone", "mesh": "Field_Phone_1_1.msh",
+              "tik": "miscobj/phone_squarebase.tik", "bone": ("Box03", (0.0, 90.0, 90.0))},
+}
+
+
+def _stock(mohaa_base, tik):
+    t = eaprops.effective_file(mohaa_base, "models/" + tik)
+    if not t:
+        return None, None, None
+    t = t.decode("latin-1")
+    path = re.search(r"(?im)^\s*path\s+(\S+)", t).group(1)
+    skd = re.search(r"(?im)^\s*skelmodel\s+(\S+)", t).group(1)
+    sk = eaprops.effective_file(mohaa_base, path + "/" + skd)
+    return (t,) + (eaprops.skd_bones(sk) if sk else (None, None))
+
+
+def _bounds(surfs, scale, pad=0.0):
+    allv = [v[0] for s in surfs for v in s[1]]
+    lo = tuple(min(v[i] for v in allv) / scale - pad for i in range(3))
+    hi = tuple(max(v[i] for v in allv) / scale + pad for i in range(3))
+    return lo, hi, math.sqrt(max(eaprops._dot(lo, lo), eaprops._dot(hi, hi)))
+
+
+def _small(L, level, mohaa_base, files, lines, log, kind, spec):
+    if spec["mesh"] not in L.files:
+        log("flprops: %s not on this level; %s keeps the stock model" % (spec["mesh"], kind))
+        return
+    tik, bb, bn = _stock(mohaa_base, spec["tik"])
+    if not tik or not bn or spec["bone"][0] not in bn:
+        log("flprops: stock %s not found; %s keeps the stock model" % (spec["tik"], kind))
+        return
+    scale = float(re.search(r"(?im)^\s*scale\s+([\d.]+)", tik).group(1))
+    sub = spec["tik"].split("/")[0]
+    mdir = "models/%s/fl_%s" % (sub, level)
+    tdir = "textures/fl_%s_props" % level
+    pre = "fl_%s_%s" % (level, kind)
+    texkey = {}
+    ms = _mesh(L, spec["mesh"], (0, 0, 0), texkey, files, tdir, xf=to_map_w, small=True)
+    bone, ang = spec["bone"]
+    fr = ((0.0, 0.0, 0.0), eaprops.axes(ang))
+    ib = bn.index(bone)
+    ss = _surf_tris(ms, "fl%s" % kind, lambda k, j: (ib, fr, scale))
+    files["%s/%s.skd" % (mdir, kind)] = eaprops.write_skd("fl_" + kind, bb, len(bn), [s[:3] for s in ss])
+    lo, hi, rad = _bounds(ss, scale)
+    ch = eaprops.local_channels([bone], {bone: None}, {bone: fr}, scale)
+    files["%s/%s.skc" % (mdir, kind)] = eaprops.write_skc(0.05, [bone + " pos", bone + " rot"], [ch], (lo, hi), rad)
+    _add_shaders(files, level, _shader_text(pre, texkey))
+    t = eaprops._retarget_tik(tik, mdir, "%s.skd" % kind, _surf_lines(ss, pre))
+    t = re.sub(r"(?im)^(\s*idle\s+)\S+\.skc", lambda mm: mm.group(1) + "%s.skc" % kind, t)
+    name = "models/%s/fl_%s_%s.tik" % (sub, level, kind)
+    files[name] = t.encode("latin-1")
+    lines.append('\tlevel.fl_prop_tik["%s"] = "%s"' % (kind, name))
+    lines.append('\tlevel.fl_prop_own["%s"] = 1' % kind)
+    log("flprops: %s -> %s (%d surfaces, %d textures, %.0f x %.0f x %.0f u)" % (
+        spec["mesh"], name, len(ss), len(texkey), (hi[0] - lo[0]) * scale, (hi[1] - lo[1]) * scale, (hi[2] - lo[2]) * scale))
+
+
+# the nest guns: the disc's tripod-mount gun (MG42GunTripod.msh: no bipod, pivot at its origin in the receiver; attach
+# point 0 = muzzle, 2 = ejection port) on the stock statweapons/mg42_gun.tik (TurretGun: seat, clips, cone unchanged).
+# Its pistol grip goes where the stock gunner's hands are (eaprops STOCK grip, the EA 'grip' recipe), on the centreline
+MG_MESH = "MG42GunTripod.msh"
+
+
+def _mg42(L, level, mohaa_base, files, lines, log):
+    if MG_MESH not in L.files:
+        log("flprops: %s not on this level; the nest guns keep the stock model" % MG_MESH)
+        return
+    tik, bb, bn = _stock(mohaa_base, "statweapons/mg42_gun.tik")
+    if not tik or not bn:
+        log("flprops: stock MG42 turret not found; the nest guns keep the stock model")
+        return
+    SG = eaprops.STOCK["statweapons/mg42_gun.tik"]
+    ap = attach_points(L.files.get(MG_MESH))
+    verts = [v for d in L.mesh(MG_MESH) for v in d["verts"]]
+    gv = [v for v in verts if 0.12 < v[1] < 0.27 and v[2] < 0.0]
+    if len(ap) < 3 or not gv:
+        log("flprops: MG42 grip / attach points not found; the nest guns keep the stock model")
+        return
+    grip = (sum(v[0] for v in gv) / len(gv), sum(v[1] for v in gv) / len(gv), min(v[2] for v in gv) / 2)
+    g = to_map_w(grip)
+    off = (SG["grip"][0] - g[0], 0.0, SG["grip"][2] - g[2])
+    mdir = "models/statweapons/fl_%s" % level
+    tdir = "textures/fl_%s_props" % level
+    pre = "fl_%s_mg" % level
+    texkey = {}
+    ms = [([eaprops._add(p, off) for p in pos], uv, tris, sh) for pos, uv, tris, sh in
+          _mesh(L, MG_MESH, (0, 0, 0), texkey, files, tdir, xf=to_map_w, small=True)]
+
+    def frame(b):
+        p, a = SG["bones"][b]
+        return p, eaprops.axes(a)
+    ib = bn.index("MG42")
+    ss = _surf_tris(ms, "flmg", lambda k, j: (ib, frame("MG42"), SG["scale"]))
+    files["%s/mg42.skd" % mdir] = eaprops.write_skd("fl_mg42", bb, len(bn), [s[:3] for s in ss])
+    w = {b: frame(b) for b in SG["bones"]}
+    w["tag_barrel"] = (eaprops._add(to_map_w(ap[0]), off), w["tag_barrel"][1])
+    w["tag_eject"] = (eaprops._add(to_map_w(ap[2]), off), w["tag_eject"][1])
+    par = {"origin": None, "tag_barrel": "origin", "MG42": "origin", "tag_eject": "origin"}
+    names = list(SG["bones"])
+    ch = eaprops.local_channels(names, par, w, SG["scale"])
+    lo, hi, rad = _bounds(ss, SG["scale"])
+    chans = [c for b in names for c in (b + " pos", b + " rot")]
+    files["%s/mg42.skc" % mdir] = eaprops.write_skc(0.05, chans, [ch], (lo, hi), rad)
+    nf = max(1, int(round(SG["fire_len"] / 0.05)))
+    files["%s/mg42fire.skc" % mdir] = eaprops.write_skc(0.05, chans, [ch] * nf, (lo, hi), rad)
+    _add_shaders(files, level, _shader_text(pre, texkey))
+    t = eaprops._retarget_tik(tik, mdir, "mg42.skd", _surf_lines(ss, pre))
+    name = "models/statweapons/fl_%s_mg42.tik" % level
+    files[name] = t.encode("latin-1")
+    lines.append('\tlevel.fl_prop_tik["mg42"] = "%s"' % name)
+    lines.append('\tlevel.fl_prop_own["mg42"] = 1')
+    log("flprops: %s -> %s (%d surfaces; grip %s -> offset %s; muzzle %s)" % (
+        MG_MESH, name, len(ss), tuple(round(v, 1) for v in g), tuple(round(v, 1) for v in off),
+        tuple(round(v, 1) for v in w["tag_barrel"][0])))
 
 
 def _normals(pos, tris):
@@ -261,7 +448,7 @@ def _panzer(L, level, mohaa_base, files, lines, log):
     for key, (tp, cut) in sorted(texkey.items()):
         sh.append("%s_%s\n{\n\tcull none\n\t{\n\t\tmap %s\n%s\t\trgbGen lightingSpherical\n\t}\n}\n" % (
             pre, key, tp, "\t\talphaFunc GE128\n" if cut else ""))
-    files["scripts/fl_%s_props.shader" % level] = "\n".join(sh).encode()
+    _add_shaders(files, level, "\n".join(sh))
 
     def surf_lines(ss):
         seen, out = set(), []

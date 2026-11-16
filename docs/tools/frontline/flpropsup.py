@@ -33,6 +33,21 @@ PROTECT = {"fee481ff": [(0.6, 0.52, 0.85, 0.8)], "b07b1c51": [(0.44, 0.0, 0.64, 
            "8e1a0f98": [(0.44, 0.0, 0.64, 0.18)]}
 ESRGAN_KEYS = ("317971c7", "76f48835", "9362be6e", "aac16783", "c3961048", "dd715eff", "ff479a21", "0262ef25",
                "e1797701", "71d56509", "c32cdc11", "0262ef25")
+# the small props (nest MG42, canteen, medkit, field phone; same side-by-side): ESRGAN, the red crosses and the
+# phone's dial / lettering resampled only (protect rects); leather and bare steel with a CC0 grain; the rest resampled
+SMALL_ESRGAN = {"d77e4235": [], "05632ed4": [], "346f1668": [], "2f357a95": [], "b2a5a201": [],
+                "55a5bd02": [(0.25, 0.22, 0.75, 0.78)], "bcae40eb": [(0.33, 0.42, 0.78, 0.88)],
+                "9b5907d3": [(0.0, 0.45, 1.0, 1.0)]}
+SMALL_CC0 = {"be98d783": [("Metal016", 3.0, 1.0, (1, 1))], "46c54721": [("Metal016", 3.0, 1.0, (1, 1))],
+             "025442bf": [("Leather030", 5.0, 1.5, (1, 1))], "44e8a029": [("Leather030", 5.0, 1.5, (1, 1))]}
+KEEP = ("63307873", "2acf05fb", "286d3260", "b4c7de87")
+
+
+def _protect(b, bic, rects, w, h):
+    for x0, y0, x1, y1 in rects:
+        X0, Y0, X1, Y1 = int(x0 * w * 4), int(y0 * h * 4), int(x1 * w * 4), int(y1 * h * 4)
+        b[Y0:Y1, X0:X1] = bic[Y0:Y1, X0:X1]
+    return b
 
 
 def process(key, a, exe, tmp):
@@ -52,6 +67,21 @@ def process(key, a, exe, tmp):
     if key in ESRGAN_KEYS and exe:
         up, why = eacharup.upscale_one(exe, a, [], tmp)
         return (up, "ok esrgan") if up is not None else (None, why)
+    if key in SMALL_ESRGAN and exe:
+        up, why = eacharup.upscale_one(exe, a, [], tmp)
+        if up is None:
+            return None, why
+        up = np.array(up)
+        if up.shape[:2] != bic.shape[:2]:
+            up = np.asarray(Image.fromarray(up).resize((w * 4, h * 4), Image.BICUBIC)).copy()
+        return _protect(up, bic, SMALL_ESRGAN[key], w, h), "ok esrgan (small)"
+    if key in SMALL_CC0:
+        b = bic.astype(np.float32)
+        for name, amp, sig, reps in SMALL_CC0[key]:
+            b = eapropsup._detail(b, name, amp, sig, reps)
+        return b.clip(0, 255).astype(np.uint8), "ok cc0 (small)"
+    if key in KEEP:
+        return bic, "kept (bicubic)"
     return None, "no recipe"
 
 
