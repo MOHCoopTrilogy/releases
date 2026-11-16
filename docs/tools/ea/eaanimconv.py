@@ -205,6 +205,7 @@ MMG_SIDE = -8.6 / 0.52
 # the disc's own MG42 on its pintle pole (eaprops, user's "pole" pick 2026-11-15): its grip is 8.8 behind, 2.3 right and
 # 1.8 under the pivot; seated with turretseat 31.8 70.7 the ea_mmgp_* set holds the hands 2.3u right
 MMG_SIDE_POLE = -2.3 / 0.52
+MMG_CROUCH = 0x327c561f      # NONCOVER_CROUCH_IDLE aim loop (graph 9930d76b): the crouched gunner at a low gun
 MMG_ONE = {"enter": "58f52873", "exit": "647c2159", "death": "7a12045e", "death_explosion": "573a6031"}
 # ambient / scripted scenes, by the rig the level's ICS points name (level.ea_ps_rig / ea_sc_rig): the clips of that
 # rig's state graph that have length (single-frame state poses left out), longest first. Alias ea_ics_<rig>_<n>.
@@ -406,8 +407,8 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
     def put(alias, h, loop, yaw=0.0):
         if h not in bank.clips:
             return
-        mmg = alias.startswith(("mmg_", "mmgp_"))
-        lat = (MMG_SIDE_POLE if alias.startswith("mmgp_") else MMG_SIDE) if mmg else 0.0
+        mmg = alias.startswith(("mmg_", "mmgp_", "mmgc_"))
+        lat = (MMG_SIDE_POLE if alias.startswith(("mmgp_", "mmgc_")) else MMG_SIDE) if mmg else 0.0
         skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw, fwd=MMG_FWD if mmg else 0.0, lat=lat)
         if loop:
             skc = skc[:8] + struct.pack("<i", struct.unpack_from("<i", skc, 8)[0] | 0x20) + skc[12:]
@@ -426,6 +427,12 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
                     put("%s%s_%s" % (pre, state, tag), h, loop, gun_yaw(bank, skel, bones, h))
         for nm, hx in MMG_ONE.items():
             put(pre + nm, int(hx, 16), False, centre)
+    # a gun too low for the standing grid (the disc pole is 21.6u over its point; at the church's nest 1 that is ~36u
+    # over the gunner's floor): the original's gunner is crouched there with the butt at his shoulder (emulator
+    # reference 2026-11-16). The level has no crouched MMG clips; the original's crouched aim pose
+    # (NONCOVER_CROUCH_IDLE, hands 28.5u up / 18.9u ahead) is the posture in the reference.
+    if MMG_CROUCH in bank.clips:
+        put("mmgc_idle", MMG_CROUCH, True, gun_yaw(bank, skel, bones, MMG_CROUCH))
     for rig, hs in SCENES.items():
         for n, hx in enumerate(hs.split()):
             put("ics_%s_%d" % (rig, n + 1), int(hx, 16), n == 0 and rig not in ("explainsplan", "partisanleadersaysgofight", "callsplayer", "guardstopsplayer"))
