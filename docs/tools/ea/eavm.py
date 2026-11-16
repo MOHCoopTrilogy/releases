@@ -226,6 +226,22 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_so_num[{n}] = {int(m.group(2))}")
         L(f"\tlevel.ea_so_pos[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2] + 24:.0f} )")
         L(f"\tlevel.ea_so_grp[{n}] = {gid(g) if g else chr(34) * 2}")
+        # 0.7.38: on ObjectiveReached (a member inside the objective's sphere, radius w16 in m) the original sends every
+        # message of w47 to the target list w27 (code-decode agent: DEFAULT.XBE 0x1ce30 -> 0x1ccf0). Here: the group run
+        # just before the message run (the inline lists after the fixed words); 20 objectives on 1_11, e.g. the railgun
+        # centre squad's fall-back points 02 / 03 send the cellar partisans (Partisans_ComeandHelp) their objective 2
+        sl = lists(r, 46)
+        mi = next((i for i, (k, _v) in enumerate(sl) if k == "m"), None)
+        if mi and sl[mi - 1][0] == "g":
+            tg, ms = sl[mi - 1][1], sl[mi][1]
+            rad = r.f(16) or 3.0
+            L(f"\tlevel.ea_so_sr[{n}] = {max(64.0, rad * 48):.0f}")
+            L(f"\tlevel.ea_so_stn[{n}] = {len(tg)}")
+            for k, x in enumerate(tg, 1):
+                L(f'\tlevel.ea_so_st["{n}_{k}"] = {gid(x)}')
+            L(f"\tlevel.ea_so_smn[{n}] = {len(ms)}")
+            for k, x in enumerate(ms, 1):
+                L(f'\tlevel.ea_so_sm["{n}_{k}"] = "{x}"')
     L(f"\tlevel.ea_so_n = {n}")
     # ---- ICS points (0.7.16): flag word 15 set, an actor group in list B and a slot-1 send list. Words from 47:
     # three head lists (A listen, B actors, C), seven target lists, seven message lists; an empty list is one 0.
