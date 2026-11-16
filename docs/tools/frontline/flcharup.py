@@ -32,6 +32,8 @@ import flupscale as fu
 HERE = os.path.dirname(os.path.abspath(__file__))
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)
 CAP = 2048
+CAREFUL_SHARPEN = 0.6      # unsharp amount on the clean (bicubic) enlargement
+CAREFUL_ESRGAN = 0.2       # share of the ESRGAN detail on top
 
 
 def load_tga(b):
@@ -49,7 +51,7 @@ def save_tga(a):
             + np.ascontiguousarray(a[::-1][:, :, [2, 1, 0, 3]]).tobytes())
 
 
-def upscale_one(exe, a, protect, tmp):
+def upscale_one(exe, a, protect, tmp, careful=()):
     h, w = a.shape[:2]
     pw, ph = max(4, w // 4), max(4, h // 4)
     rgb = np.pad(a[:, :, :3], ((ph, ph), (pw, pw), (0, 0)), mode="edge")
@@ -90,6 +92,21 @@ def upscale_one(exe, a, protect, tmp):
             ImageFilter.GaussianBlur(sig))).astype(np.float32)
     H = E - 0.7 * hf(E) + 1.0 * hf(Bf)
     out = (Bf + 0.7 * (H - Bf)).clip(0, 255).astype(np.uint8)
+    if careful:
+        # [user 2026-11-15] "careful" regions (a 32 px decal, the ammo belt): a clean enlargement, light unsharp
+        # sharpening, a small share (20 %) of the ESRGAN detail, then held to the SOURCE's local colour range
+        # (3x3 min/max, no margin) - nothing brighter or darker than the original texels around it, so no invented
+        # feathers, letters or highlights. Same recipe as the world pass (shared with the look agent).
+        r = max(0.6, 0.5 * tw / float(w))
+        blur = np.asarray(Image.fromarray(Bf.clip(0, 255).astype(np.uint8)).filter(
+            ImageFilter.GaussianBlur(r))).astype(np.float32)
+        C = Bf + CAREFUL_SHARPEN * (Bf - blur) + CAREFUL_ESRGAN * (E - Bf)
+        cmx = np.asarray(src_im.filter(ImageFilter.MaxFilter(3)).resize((tw, th), Image.BILINEAR)).astype(np.float32)
+        cmn = np.asarray(src_im.filter(ImageFilter.MinFilter(3)).resize((tw, th), Image.BILINEAR)).astype(np.float32)
+        C = np.minimum(np.maximum(C, cmn), cmx).clip(0, 255).astype(np.uint8)
+        for x0, y0, x1, y1 in careful:
+            X0, Y0, X1, Y1 = int(x0 * tw), int(y0 * th), int(x1 * tw), int(y1 * th)
+            out[Y0:Y1, X0:X1] = C[Y0:Y1, X0:X1]
     al = np.asarray(Image.fromarray(a[:, :, 3]).resize((tw, th), Image.BILINEAR))
     return np.dstack([out, al]), "ok"
 
@@ -108,7 +125,8 @@ def main(pk3, level, out_pk3, exe_dir):
     for n in names:
         key = n.rsplit("/", 1)[-1][:-4]
         try:
-            res, why = upscale_one(exe, load_tga(z.read(n)), protect.get(key, []), tmp)
+            res, why = upscale_one(exe, load_tga(z.read(n)), protect.get(key, []), tmp,
+                                   protect.get("_careful", {}).get(key, ()))
         except Exception as e:  # never fail the conversion
             res, why = None, "error %s" % e
         report[key] = why
