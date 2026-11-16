@@ -2,6 +2,7 @@
  "_doc": "Extra stock 3D trees filling the bare fringes of a level (user-approved 2026-11-13: 'add more of those trees around the map too dimmed so it fits in, just make sure they are out of the way of where the players will most likely be'). Placed by flconvert at convert time from rules, never from a list: candidates on a jittered grid, seeded clumps of 2-6, kept route_margin from every AI path node, anchor_margin from spawn/objective/trigger/ICS points and the player start, mg_margin from mounted guns, setpiece_margin from the smart objects, wall_margin from walls/fences, off roofs/second floors/slopes (max_rise over 96u), and only on the ground the disc's own trees (learn_from) stand on. Same model, dimming and trunk box as the swap. Switch off: enabled false, or EA_NO_EXTRATREES=1. ground_exclude: ground textures never used (the rutted road blend, the frozen stream).",
  "1_11": {
   "enabled": true,
+  "view_clear": [{"eye": [3533, 183], "yaw": [-5, 135], "dist": 4000, "_doc": "the far-fires vantage behind the wall (ref_xemu atmo far_*c): the original shows open snow to the burning skyline"}],
   "model": "models/static/tree_caskawinter.tik",
   "model_height": 357,
   "verts": 175,

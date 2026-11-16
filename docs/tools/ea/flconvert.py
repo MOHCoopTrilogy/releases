@@ -258,14 +258,78 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
 
     _HD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hd")
 
+    for _k, _v in texmap.items():
+        if isinstance(_v, dict):
+            _v.setdefault("_key", _k)
+    _baked = {}
+
+    def _bake_local(up, fp):
+        """[user 2026-11-15 'Online', roof cKVL] a "bake" swap, as the Frontline flhd.bake: one repeat of the DISC texture
+        redrawn with the CC0 material - the tile repeated `repeat` times inside it (the surfaces' texture coordinates stay
+        the disc's), tinted to the disc texture's mean colour with a little contrast off, and the disc's own low-frequency
+        stains (a wrapped blur of it over its mean) multiplied back over it. JPEG bytes, or None."""
+        import io as _io
+        import numpy as _np
+        from PIL import Image as _I, ImageFilter as _F
+        t = L.texture(up["_key"])
+        if not (t and t["rgba"]):
+            return None
+        o = _I.frombytes("RGBA", (t["w"], t["h"]), bytes(t["rgba"])).convert("RGB")
+        bk = up["bake"]
+        rx, ry = (int(v) for v in bk.get("repeat", (1, 1)))
+        mean = _np.asarray(o, _np.float64).reshape(-1, 3).mean(0)
+        _src = _I.open(fp).convert("RGB")
+        if int(bk.get("rotate", 0)) % 360:      # the CC0 courses turned to run the way the disc tiles run
+            _src = _src.rotate(int(bk["rotate"]), expand=True)
+        a = _np.asarray(_src, _np.float64)
+        _ds = float(bk.get("desat", 0.0))
+        if _ds > 0:                         # the CC0 photo's own hue spread (terracotta tiles) pulled toward grey first,
+            _gy = (a @ _np.array([0.299, 0.587, 0.114]))[:, :, None]     # then the tint gives it the disc's palette
+            a = a * (1.0 - _ds) + _gy * _ds
+        m = a.reshape(-1, 3).mean(0)
+        a = (a - m) * float(bk.get("contrast", 0.85)) * (mean.mean() / max(m.mean(), 1.0)) ** 0.5 + m * (mean / _np.maximum(m, 1.0))
+        px = min(1024, max(256, 4096 // max(rx, ry)))
+        tile = _I.fromarray(_np.clip(a, 0, 255).astype(_np.uint8)).resize((px, px), _I.LANCZOS)
+        W, H = px * rx, px * ry
+        out = _I.new("RGB", (W, H))
+        for x in range(rx):
+            for y in range(ry):
+                out.paste(tile, (x * px, y * px))
+        k = float(bk.get("overlay", 1.0))
+        if k > 0:
+            w, h = o.size
+            big = _I.new("RGB", (3 * w, 3 * h))
+            for x in range(3):
+                for y in range(3):
+                    big.paste(o, (x * w, y * h))
+            lo = big.filter(_F.GaussianBlur(max(0.8, float(bk.get("blur", 0.045)) * w))).crop((w, h, 2 * w, 2 * h))
+            ratio = _np.asarray(lo.resize((W, H), _I.BICUBIC), _np.float64) / _np.maximum(mean, 1.0)
+            ratio = 1.0 + k * (_np.clip(ratio, 0.45, 1.8) - 1.0)
+            out = _I.fromarray(_np.clip(_np.asarray(out, _np.float64) * ratio, 0, 255).astype(_np.uint8))
+        b = _io.BytesIO()
+        out.save(b, "JPEG", quality=92, subsampling=0)
+        return b.getvalue()
+
     def _local(up):
         """[look 2026-11-13] a texture shipped next to the converter (hd/<file>, CC0, credited in hd/CREDITS.txt): its
-        bytes, or None. It is written into the converted pak under textures/hd/<file>."""
+        bytes, or None. It is written into the converted pak under textures/hd/<file>. With "bake" the texture is
+        redrawn per disc texture (_bake_local) and written under textures/hd/<key>_<file>."""
         if not up.get("local"):
             return None
         fp = os.path.join(_HD_DIR, up["local"])
         if not os.path.isfile(fp):
             return None
+        if up.get("bake") and up.get("_key"):
+            kk = up["_key"]
+            if kk not in _baked:
+                try:
+                    _baked[kk] = _bake_local(up, fp)
+                except Exception as e:      # a failed bake falls back to the plain local texture
+                    print("bake %s failed: %s" % (kk, e))
+                    _baked[kk] = None
+            if _baked[kk] is not None:
+                up.setdefault("path", "textures/hd/%s_%s" % (kk.replace("~", "-"), up["local"]))
+                return _baked[kk]
         up.setdefault("path", "textures/hd/" + up["local"])
         return open(fp, "rb").read()
 
@@ -548,6 +612,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             return (min(zs), max(zs)) if zs else (0.0, 0.0)
         return f
 
+    _skp = flpack.spec(level, game).get("skyline_pull") if game == "ea" else None
     batches = {}
     for m in meshes:
         if not m["tris"]:
@@ -563,6 +628,33 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             continue
         sh = tex_shader(m["tex"])
         P = [X(v) for v in m["verts"]]
+        # [2026-11-15] the distant city skyline (ea_levels.json skyline_pull: its texture keys, the distance to draw it
+        # at and the eye height it is scaled about). The original shows the ruined city along the whole horizon from the
+        # vantage (ref_xemu atmo far_*c); ours sat 6,000-11,000u out, past the 4,560u far plane, and never drew. Each
+        # mesh moves toward the map centre to `dist`, scaled about the eye so it covers the same part of the view.
+        if _skp and m["tex"] and str(m["tex"]).replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_").split("#")[0] in _skp["keys"]:
+            # about the vantage eye (skyline_pull eye: the place the original's horizon frames are taken from), so from
+            # there the skyline covers exactly the part of the view it does in the original
+            _ex, _ey = (_skp.get("eye") or (0.0, 0.0, 0.0))[:2]
+            _mx = sum(q[0] for q in P) / len(P) - _ex; _my = sum(q[1] for q in P) / len(P) - _ey
+            _d = math.hypot(_mx, _my)
+            if _d > float(_skp["dist"]):
+                _k = float(_skp["dist"]) / _d
+                # min_dist: no card nearer the vantage than this after the pull (coordinator QA trial 3: the near
+                # cards read sharp and close); the factor only grows, so each card still covers the same angle
+                _dmin = min(math.hypot(q[0] - _ex, q[1] - _ey) for q in P)
+                if _skp.get("min_dist") and _dmin * _k < float(_skp["min_dist"]):
+                    _k = float(_skp["min_dist"]) / max(_dmin, 1.0)
+                _ez = float(_skp.get("eye_z", -480.0))
+                P = [(_ex + (q[0] - _ex) * _k, _ey + (q[1] - _ey) * _k, _ez + (q[2] - _ez) * _k) for q in P]
+                stats["skyline_pulled"] = stats.get("skyline_pulled", 0) + 1
+                # haze: the original's skyline is a lighter, hazier silhouette backlit by the fire glow (coordinator QA
+                # 2026-11-15 on the trial sheet): the vertex colour pulled toward a haze colour by `mix`
+                _hz = _skp.get("haze")
+                if _hz:
+                    _hm = float(_hz[3])
+                    m = dict(m, cols=[(int(c[0] * (1 - _hm) + _hz[0] * _hm), int(c[1] * (1 - _hm) + _hz[1] * _hm),
+                                       int(c[2] * (1 - _hm) + _hz[2] * _hm), c[3]) for c in m["cols"]])
         tris = [wind(a, b, c, flip_render) for a, b, c in m["tris"]]
         # vertex normals
         acc = [[0.0, 0.0, 0.0] for _ in P]
@@ -746,14 +838,31 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         import easky
         _faces = easky.build(L, _sd)
         if _faces:
+            _clouds = _faces.pop("clouds", None)
             for _suf, (_w, _h, _px) in _faces.items():
                 files[f"env/{game}_{level}_sky_{_suf}.tga"] = tga_bytes(_w, _h, _px)
+            # [2026-11-15, sweep S5] the original's two alpha cloud layers (cAe3) as scrolling stages on the sky dome,
+            # fog-free like the box (ea_levels.json sky_disc cloud_layers: scale, scroll, colour, alpha)
+            _cst = ""
+            if _clouds:
+                files[f"textures/{game}/{level}/sky_clouds.tga"] = tga_bytes(*_clouds)
+                for _cl in _sd.get("cloud_layers", []):
+                    _cst += ("\t{\n\t\tmap textures/%s/%s/sky_clouds.tga\n\t\tblendFunc blend\n\t\ttcMod scale %g %g\n"
+                             "\t\ttcMod scroll %g %g\n\t\trgbGen const %g %g %g\n%s\t\tnofog\n\t}\n"
+                             % (game, level, _cl["scale"], _cl["scale"], _cl["scroll"][0], _cl["scroll"][1],
+                                _cl["rgb"][0], _cl["rgb"][1], _cl["rgb"][2],
+                                # (MOHAA's ParseVector takes no parentheses: "( r g b )" left a stray number and
+                                # the sky shader lost its box - trial 2026-11-15 sky = the no-box fallback 0.25)
+                                # no "alpha": the texture's own alpha (the original's cloud shapes); a const alpha
+                                # lays one even grey sheet over the whole dome (trial 2026-11-15: sky 63,72,81)
+                                ("\t\talphaGen const %g\n" % _cl["alpha"]) if "alpha" in _cl else ""))
+                stats["disc_sky_clouds"] = len(_sd.get("cloud_layers", []))
             _skyname = f"textures/{game}/{level}/sky"
             shader_lines.append(_skyname + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm noimpact\n\tsurfaceparm sky\n"
                                 f"\tskyParms env/{game}_{level}_sky 512 -\n"
                                 + ("" if os.environ.get("EA_SKY_FOGGED") else
                                    "\t{\n\t\tmap $whiteimage\n\t\tblendFunc GL_ZERO GL_ONE\n\t\tnofog\n\t}\n")
-                                + "}\n")
+                                + _cst + "}\n")
             stats["disc_sky"] = sorted(_faces)
     sky = B.shader(_skyname, 0x4 | flbsp.SURF_NOLIGHTMAP, 0)
     blo = [max(min(s["bounds"][0][k] for s in B.surfaces) - 1024, -16300) for k in range(3)]
@@ -762,6 +871,49 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     for q in ((0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)):
         vs = [(corners[i], (0.0, 0.0), (0.0, 0.0, 1.0), (255, 255, 255, 255)) for i in q]
         B.add_soup(sky, vs, [0, 1, 2, 0, 2, 3, 0, 2, 1, 0, 3, 2])
+
+    # [2026-11-15, coordinator QA trial 2] the burning city's horizon glow as a world-space arc behind the pulled-in
+    # skyline (ea_levels.json skyline_pull "glow_arc"): an additive, fog-free strip on a circle round the vantage eye,
+    # bright just above the horizon and fading up and down, feathered at both ends of its yaw range. Painted into the
+    # sky it showed from every place in the level (an orange band over the creek at rg_wreck_1 the original does not
+    # have); as geometry at `r` from the vantage it lies past the far plane from the rest of the map.
+    _ga = (_skp or {}).get("glow_arc") if game == "ea" else None
+    if _ga:
+        _ex, _ey = (_skp.get("eye") or (0.0, 0.0))[:2]
+        _ez = float(_ga.get("eye_z", -520.0))
+        _r = float(_ga.get("r", 4300.0))
+        _y0, _y1 = (float(v) for v in _ga["yaw"])
+        _fe = float(_ga.get("feather", 15.0))
+        _rows = [(-float(_ga.get("dn", 2.0)), 0.0), (float(_ga.get("peak", 1.5)), 1.0),
+                 (float(_ga.get("peak", 1.5)) + float(_ga.get("up", 3.5)), 0.35), (float(_ga.get("peak", 1.5)) + 2.6 * float(_ga.get("up", 3.5)), 0.0)]
+        _c = [float(v) for v in _ga["rgb"]]
+        _gname = f"textures/{game}/{level}/hzm_glowarc"
+        shader_lines.append(_gname + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm nonsolid\n\tsurfaceparm nomarks\n\tcull none\n"
+                            "\t{\n\t\tmap $whiteimage\n\t\tblendFunc GL_ONE GL_ONE\n\t\trgbGen vertex\n\t\tnofog\n\t}\n}\n")
+        _gsh = B.shader(_gname, flbsp.SURF_NOLIGHTMAP | flbsp.SURF_NODLIGHT if hasattr(flbsp, "SURF_NODLIGHT") else flbsp.SURF_NOLIGHTMAP, 0)
+        _steps = max(2, int((_y1 - _y0) / 3.0))
+        _gv, _gi = [], []
+        for _i in range(_steps + 1):
+            _yw = _y0 + (_y1 - _y0) * _i / _steps
+            _w = min(1.0, max(0.0, min(_yw - _y0, _y1 - _yw) / _fe))
+            _w = _w * _w * (3 - 2 * _w)
+            _cx, _cy = _ex + _r * math.cos(math.radians(_yw)), _ey + _r * math.sin(math.radians(_yw))
+            for _el, _k in _rows:
+                _z = _ez + _r * math.tan(math.radians(_el))
+                # hot: the original's glow is brightest over each fire, dimmer between ([yaw, gain] bumps on a base)
+                _ht = _ga.get("hot")
+                _hw = 1.0
+                if _ht:
+                    _hw = float(_ga.get("base", 0.4)) + sum(float(g_) * math.exp(-0.5 * ((_yw - float(y_)) / float(_ga.get("hot_sigma", 5.0))) ** 2) for y_, g_ in _ht)
+                _col = tuple(int(min(255, v * _w * _k * _hw)) for v in _c) + (255,)
+                _gv.append(((_cx, _cy, _z), (0.0, 0.0), (0.0, 0.0, 1.0), _col))
+        _nr = len(_rows)
+        for _i in range(_steps):
+            for _j in range(_nr - 1):
+                a_, b_ = _i * _nr + _j, (_i + 1) * _nr + _j
+                _gi += [a_, b_, b_ + 1, a_, b_ + 1, a_ + 1]
+        B.add_soup(_gsh, _gv, _gi)
+        stats["glow_arc"] = len(_gv)
 
     clip = B.shader("textures/common/fl_collision", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
     # 0.7.24 (EA) collision type 0 is the original's blocker volume: the only entry of the .cdb type table with
@@ -1882,7 +2034,15 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             for h_ in _have:
                 _hg.setdefault((int(h_[0] // 128), int(h_[1] // 128)), []).append(h_)
 
+            # [2026-11-15] view_clear: vista cones the original leaves open (the far-fires vantage, ref_xemu atmo
+            # far_*c) get no extra trees, so the added clumps never stand between the eye and the burning skyline
+            _vc = [(float(v["eye"][0]), float(v["eye"][1]), float(v["yaw"][0]), float(v["yaw"][1]), float(v["dist"]))
+                   for v in spec_.get("view_clear", [])]
+
             def _clear(x, y):
+                for ex_, ey_, y0_, y1_, d_ in _vc:
+                    if (x - ex_) ** 2 + (y - ey_) ** 2 < d_ * d_ and                             y0_ <= math.degrees(math.atan2(y - ey_, x - ex_)) <= y1_:
+                        return False
                 for dx in (-1, 0, 1):
                     for dy in (-1, 0, 1):
                         for q_ in _ng2.get((int(x // 256) + dx, int(y // 256) + dy), ()):
@@ -2112,6 +2272,25 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     with open(bsp_path, "rb") as f:
         files[f"maps/{mapname}.bsp"] = f.read()
     os.remove(bsp_path)
+    if _skp:
+        # the skyline is drawn fog-free, as the original draws its horizon (nofog is a stage keyword)
+        for _i, _sl in enumerate(shader_lines):
+            for _k2 in _skp["keys"]:
+                if _sl.startswith(tdir + _k2 + "\n") and "nofog" not in _sl:
+                    shader_lines[_i] = _sl.replace("\t\trgbGen vertex\n", "\t\trgbGen vertex\n\t\tnofog\n", 1)
+                # soft: the original's skyline is a soft, low-contrast silhouette that nearly merges with the glow -
+                # the cards draw a blurred, flattened copy of their texture (blur px, contrast kept)
+                _sf = _skp.get("soft")
+                if _sf and _sl.startswith(tdir + _k2 + "\n") and (tdir + _k2 + ".tga") in files:
+                    from PIL import Image as _I, ImageFilter as _F
+                    import numpy as _np
+                    _im = _I.open(io.BytesIO(files[tdir + _k2 + ".tga"])).convert("RGBA")
+                    _a = _np.asarray(_im.filter(_F.GaussianBlur(float(_sf.get("blur", 1.5)))), _np.float32)
+                    _m = _a[:, :, :3].reshape(-1, 3).mean(0)
+                    _a[:, :, :3] = _m + (_a[:, :, :3] - _m) * float(_sf.get("contrast", 0.6))
+                    _b = io.BytesIO(); _I.fromarray(_np.clip(_a, 0, 255).astype(_np.uint8), "RGBA").save(_b, "TGA")
+                    files[tdir + _k2 + "_soft.tga"] = _b.getvalue()
+                    shader_lines[_i] = shader_lines[_i].replace("map " + tdir + _k2 + ".tga", "map " + tdir + _k2 + "_soft.tga")
     files[f"scripts/{game}_{level}.shader"] = "".join(shader_lines).encode()
     if game == "ea":
         import eapack     # EA: level data script from the disc's object DB + strings (audio: separate step)

@@ -157,6 +157,14 @@ def build(L, spec, size=None):
         u, v = _uv_np(f, p0[0] + (p1[0] - p0[0]) * i, p0[1] + (p1[1] - p0[1]) * i, p0[2] + (p1[2] - p0[2]) * i)
         lows.append(_bilerp(src[f], u, v)[:, :3])
     low = np.concatenate(lows).mean(0)
+    # [2026-11-15, sweep S4] the original's skirt below the horizon: its own texture (T_jZ: a dark tree line over a grey
+    # band), on a ring from 0.84 m to 30.9 m below the eye at 100 m (TRACE_sky_fog draw 67), drawn with the box's own
+    # vertex colour. The skirt's uv are not in the trace: u runs once round each side of the box (as the side faces do),
+    # v from the horizon down. Below the skirt: its own bottom row.
+    sk = L.texture(spec["skirt"]) if spec.get("skirt") else None
+    sksrc = _arr(sk, False) if sk is not None and sk.get("rgba") is not None else None
+    if sksrc is not None:
+        low = sksrc[-2:, :, :3].reshape(-1, 3).mean(0)
     out = {}
     for suf in ("rt", "bk", "lf", "ft", "up", "dn"):
         dx, dy, dz = _dirs(suf, n)
@@ -173,7 +181,30 @@ def build(L, spec, size=None):
             if sel.any():
                 u, v = _uv_np(f, px[sel], py[sel], pz[sel])
                 col[sel] = _bilerp(src[f], u, v)[:, :3]
+        if sksrc is not None:
+            sk_sel = below & (pz >= -30.9)
+            if sk_sel.any():
+                ax = np.abs(px[sk_sel]) >= np.abs(py[sk_sel])
+                # u along the side the direction falls on (0..1 over 200 m), v down the skirt (0 at -0.84, 1 at -30.9)
+                su = np.where(ax, (py[sk_sel] + 100.0) / 200.0, (px[sk_sel] + 100.0) / 200.0)
+                sv = np.clip((-0.84 - pz[sk_sel]) / (30.9 - 0.84), 0.0, 1.0)
+                col[sk_sel] = _bilerp(sksrc, su, sv)[:, :3]
         col *= gain
+        if spec.get("tint"):
+            col *= np.asarray(spec["tint"], np.float32)    # [2026-11-15] the original's sky is darker and less blue (frames)
+        gb = spec.get("glow_band")
+        if gb:
+            # [2026-11-15, coordinator QA on the trial sheet] the original's horizon carries a continuous orange-pink glow
+            # behind the burning city across the whole skyline width (ref_xemu atmo far_*c); its distant glow particles
+            # do not draw in ours (open). The band is painted into the sky: a soft arc over the city's yaw range
+            # (feathered at the ends), peaking just above the horizon and fading up (sig_up) and below it (sig_dn)
+            yaw = np.degrees(np.arctan2(dy, dx)); el = np.degrees(np.arctan2(dz, np.hypot(dx, dy)))
+            y0, y1 = gb["yaw"]; fe = float(gb.get("feather", 15.0))
+            wy = np.clip(np.minimum(yaw - y0, y1 - yaw) / fe, 0.0, 1.0)
+            wy = wy * wy * (3 - 2 * wy)
+            de = el - float(gb.get("peak", 1.5))
+            we = np.exp(-0.5 * (de / np.where(de > 0, float(gb.get("sig_up", 5.0)), float(gb.get("sig_dn", 2.0)))) ** 2)
+            col += (wy * we)[:, :, None] * np.asarray(gb["rgb"], np.float32)[None, None, :] * 255.0
         if msrc is not None and mq:
             pos = dx > 0
             with np.errstate(divide="ignore", invalid="ignore"):
@@ -188,6 +219,12 @@ def build(L, spec, size=None):
         rgba[..., :3] = np.clip(col + 0.5, 0, 255).astype(np.uint8)
         rgba[..., 3] = 255
         out[suf] = (n, n, rgba.tobytes())
+    # the cloud layers' texture (cAe3, white with alpha), enlarged smoothly 4x: the shader draws it as two scrolling stages
+    cl = L.texture(spec["clouds"]) if spec.get("clouds") else None
+    if cl is not None and cl.get("rgba") is not None:
+        from PIL import Image
+        im = Image.frombytes("RGBA", (cl["w"], cl["h"]), bytes(cl["rgba"])).resize((cl["w"] * 4, cl["h"] * 4), Image.BICUBIC)
+        out["clouds"] = (im.width, im.height, im.tobytes())
     return out
 
 

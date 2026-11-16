@@ -93,8 +93,9 @@ c("echo ^~^~^ REFLECTRUN done"); c("quit")
 
 if hg.user_game_running_raw():
     raise SystemExit("the user's game is running: not launching a test client")
-if [p for p in hg.classify() if p["cls"] != "SERVER" and p["cls"] != "USER"]:
-    raise SystemExit("another test client is up: one at a time on the 1920x1080 screen")
+# [2026-11-15] screen_slot grants up to 3 test clients at once (PrintWindow captures, overlapping windows are fine)
+if len([p for p in hg.classify() if p["cls"] != "SERVER" and p["cls"] != "USER"]) >= 3:
+    raise SystemExit("another test client is up: three test clients already running")
 secs = sum(int(x.split()[1]) for x in L if x.startswith("wait ")) / 1000.0
 with open(r"H:\hzm_work\display_queue.txt", "a") as q:
     q.write("%s reflections %s/%s%s (1 client 1920x1080 screen, %dx%d, muted, ~%d min)\n" % (

@@ -198,11 +198,16 @@ def _distant_pull(db, X, level):
             continue
         low = _base(xp[0]).lower()
         P = X(r.pos)
-        A = min(anch, key=lambda a: (a[0] - P[0]) ** 2 + (a[1] - P[1]) ** 2)
+        # with an "eye" (the vantage the original's horizon frames are taken from) every distant package is placed from
+        # there, behind the pulled-in skyline (flconvert skyline_pull uses the same eye); else from the nearest AI place
+        A = tuple(dp["eye"]) if dp.get("eye") else min(anch, key=lambda a: (a[0] - P[0]) ** 2 + (a[1] - P[1]) ** 2)
         d = math.sqrt((A[0] - P[0]) ** 2 + (A[1] - P[1]) ** 2 + (A[2] - P[2]) ** 2)
-        if d <= D or low in out:
+        # glow_dist: the horizon glow drawn in front of the pulled skyline (whose near cards reach ~3,000u), so the
+        # band lights the haze over the ruins instead of hiding behind them (trial 2026-11-15: no band at 4,300u)
+        D_ = float(dp.get("glow_dist", D)) if "glow" in low else D
+        if d <= D_ or low in out:
             continue
-        k = D / d
+        k = D_ / d
         W = tuple((A[i] + (P[i] - A[i]) * k) - P[i] for i in range(3))       # world shift, our units
         f0, l0, u0 = r.rot[0:3], r.rot[3:6], r.rot[6:9]
         fw = (f0[0], f0[1] * X.m, f0[2]); lw = (l0[0], l0[1] * X.m, l0[2]); uw = (u0[0], u0[1] * X.m, u0[2])
@@ -259,6 +264,8 @@ def mist_key(stream, X, level):
     dsat = float(ms.get("desat", 0.0))
     gy = sum(c) / 3.0
     c = [v * (1.0 - dsat) + gy * dsat for v in c]
+    # tint: per-channel multiplier (the original's creek band reads 59:73:89, bluer than the cards' start colour)
+    c = [v * float(t) for v, t in zip(c, ms.get("tint", (1.0, 1.0, 1.0)))]
     return "%.0f %.0f %.0f %.0f %.0f %.0f %.6f %.0f %.3f %.3f %.3f" % (
         x0, y0, x1, y1, zc, ztop, float(ms.get("density", 0.001)), edge, *(min(1.0, v * g) for v in c))
 
@@ -574,7 +581,9 @@ def build(stream, db, X, level, files, lines, used=None, log=print, budget=2600,
                 continue
             if low in pull:
                 k_, off_, g_, ag_, halo_ = pull[low]
-                txt, on, life, _live = emitter(d, i, _Scaled(X, k_), sprites, rate_scale, g_, off_, ag_)
+                # glow_size: the horizon glow systems drawn wider (the original's glow runs the width of the horizon)
+                _gs = float((halo_ or {}).get("glow_size", 1.0)) if "glow" in dn.lower() and "distantglow" in low else 1.0
+                txt, on, life, _live = emitter(d, i, _Scaled(X, k_), sprites, rate_scale, g_, off_, ag_, _gs)
                 if txt is not None and halo_ and "glow" in dn.lower():
                     # the halo: the system's own glow again, wider and fainter, lighting the fog round the fire
                     p = parts.setdefault(on, {"txt": [], "names": [], "tail": 0.0})

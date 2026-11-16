@@ -34,6 +34,38 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)
 
 
+
+def _soft_bleed(a, thr=24, rounds=12):
+    """edge padding for a soft-alpha card: the colour of the texels that show pushed out into the near-clear ones"""
+    import flhd
+    al = a[:, :, 3]
+    im = Image.fromarray(np.dstack([a[:, :, :3], np.where(al >= thr, 255, 0).astype(np.uint8)]).astype(np.uint8), "RGBA")
+    return np.asarray(flhd.bleed(im, rounds))[:, :, :3]
+
+
+def careful_up(src_rgb, up_rgb, share=0.2):
+    """[user 2026-11-15 "You can upscale the ones you are worried about inventing as long as you are careful about it"]
+    a conservative 4x for textures whose plain or soft upscale invented shapes (glyphs, swirls, holes, cracks, sparkle):
+    mostly a clean enlargement (Lanczos plus a light unsharp mask), with only `share` of ESRGAN's own fine band on top,
+    the result held tightly to the source's local colour range (its 3x3 min / max, smoothed, +-4). up_rgb may be None
+    (no ESRGAN detail at all). -> uint8 (4h, 4w, 3)"""
+    h, w = src_rgb.shape[:2]
+    lz = np.asarray(Image.fromarray(src_rgb).resize((w * 4, h * 4), Image.LANCZOS)).astype(np.float32)
+    bl = np.asarray(Image.fromarray(np.clip(lz, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.2))).astype(np.float32)
+    out = lz + 0.5 * (lz - bl)
+    if up_rgb is not None and share > 0:
+        u = up_rgb.astype(np.float32)
+        ub = np.asarray(Image.fromarray(np.clip(u, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.5))).astype(np.float32)
+        out = out + share * (u - ub)
+    s = Image.fromarray(src_rgb)
+
+    def _sm(im):
+        return np.asarray(im.resize((w * 4, h * 4), Image.BICUBIC).filter(ImageFilter.GaussianBlur(1.5))).astype(np.float32)
+    lo_ = _sm(s.filter(ImageFilter.MinFilter(3))) - 4.0
+    hi_ = _sm(s.filter(ImageFilter.MaxFilter(3))) + 4.0
+    return np.clip(np.minimum(np.maximum(out, lo_), hi_), 0, 255).astype(np.uint8)
+
+
 def lap_energy(a):
     g = a.astype(np.float32).mean(axis=2)
     l = 4 * g[1:-1, 1:-1] - g[:-2, 1:-1] - g[2:, 1:-1] - g[1:-1, :-2] - g[1:-1, 2:]
@@ -210,6 +242,60 @@ def upscale_cutout(exe, a, tmp, threads, pre=1):
     return res, "ok cutout"
 
 
+def _gblur(x, s):
+    return np.asarray(Image.fromarray(np.clip(x, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(s))).astype(np.float32)
+
+
+def _opaque_qa(up, a, worm_k=1.0):
+    h, w = a.shape[:2]
+    orig = a[:, :, :3].astype(np.float32)
+    back = np.asarray(Image.fromarray(up).resize((w, h), Image.BOX)).astype(np.float32)
+    m0, m1 = orig.mean(), back.mean()
+    if m1 < 8 or m1 > 247:
+        return "black/blown frame"
+    if abs(m1 - m0) / max(1.0, m0) > DRIFT_LIMIT:
+        return "brightness drift"
+    if np.abs(back - orig).mean() > 14:
+        return "downscale-back mismatch"
+    # [look QA 2026-11-12] ESRGAN reads fine gravel / snow grain as noise and smooths it away: keep the original when the
+    # result, boxed back to the source size, has lost more than half of the source's fine detail
+    if lap_energy(back) < 0.5 * lap_energy(orig):
+        return "detail lost (smoothed)"
+    bic = np.asarray(Image.fromarray(a[:, :, :3]).resize((w * 4, h * 4), Image.BICUBIC))
+    if lap_energy(up) > WORM_LIMIT * worm_k * max(1.0, lap_energy(bic)):
+        return "worm-noise"
+    return None
+
+
+def _soft_retry(a, up, bic, why, worm_k=1.0):
+    """[2026-11-15, user: "everything ... if it doesn't look bad"] an opaque texture the plain upscale failed on gets
+    softer blends of the same ESRGAN output, each through the same checks: grain lost -> the source's own grain
+    (bicubic high band) laid back over it; worm noise -> ESRGAN's detail damped toward the bicubic; the rest -> a half
+    mix; every texel kept inside the source's own smoothed 5x5 min / max (+-10), so no sparkle or new highlight.
+    None passing keeps the original. Same as the European Assault flupscale. -> (uint8 image, label) or (None, None)"""
+    up = up.astype(np.float32); bic = bic.astype(np.float32)
+    if why.startswith("detail lost"):
+        cands = [("grain", up + 1.0 * (bic - _gblur(bic, 3.0))), ("grain+", up + 1.6 * (bic - _gblur(bic, 3.0))),
+                 ("mix50", 0.5 * up + 0.5 * bic)]
+    elif why.startswith("worm"):
+        cands = [("damp35", bic + 0.35 * (up - _gblur(up, 2.0))), ("mix50", 0.5 * up + 0.5 * bic),
+                 ("damp20", bic + 0.2 * (up - _gblur(up, 2.0)))]
+    else:
+        cands = [("mix50", 0.5 * up + 0.5 * bic)]
+    h, w = a.shape[:2]
+    src_rgb = Image.fromarray(a[:, :, :3])
+    lo_ = _gblur(np.asarray(src_rgb.filter(ImageFilter.MinFilter(5)).resize((w * 4, h * 4), Image.BICUBIC)), 3.0) - 10.0
+    hi_ = _gblur(np.asarray(src_rgb.filter(ImageFilter.MaxFilter(5)).resize((w * 4, h * 4), Image.BICUBIC)), 3.0) + 10.0
+    for nm, c in cands:
+        c8 = np.clip(np.minimum(np.maximum(c, lo_), hi_), 0, 255).astype(np.uint8)
+        if _opaque_qa(c8, a, worm_k) is None:
+            return c8, nm
+    return None, None
+
+
+NOSOFT = set()     # texmap "nosoft": keep the original rather than a soft retry (QA sheet 2026-11-15)
+
+
 def upscale_one(exe, im, tmp, threads, cut_pre=0, key=None):
     rgba = im.convert("RGBA")
     w, h = rgba.size
@@ -230,24 +316,17 @@ def upscale_one(exe, im, tmp, threads, cut_pre=0, key=None):
     up = np.asarray(Image.open(dst).convert("RGB"))
     up = up[ph * 4: ph * 4 + h * 4, pw * 4: pw * 4 + w * 4]
     up = colour_match(up, a[:, :, :3])
+    # checks against the original (after the colour match); a failed plain upscale gets the soft retry (_soft_retry)
+    wk = 2.5 if key in FOLIAGE else 1.0
+    why = _opaque_qa(up, a, wk)
+    how = "ok"
+    if why:
+        bic = np.asarray(Image.fromarray(a[:, :, :3]).resize((w * 4, h * 4), Image.BICUBIC))
+        up, lab = (None, None) if (os.environ.get("FLUP_NO_SOFT") or key in NOSOFT) else _soft_retry(a, up, bic, why, wk)
+        if up is None:
+            return None, why
+        how = "ok soft %s (was %s)" % (lab, why.split(" (")[0])
     up_im = Image.fromarray(up)
-    # checks against the original (after the colour match)
-    orig = a[:, :, :3].astype(np.float32)
-    back = np.asarray(up_im.resize((w, h), Image.BOX)).astype(np.float32)
-    m0, m1 = orig.mean(), back.mean()
-    if m1 < 8 or m1 > 247:
-        return None, "black/blown frame"
-    if abs(m1 - m0) / max(1.0, m0) > DRIFT_LIMIT:
-        return None, "brightness drift"
-    if np.abs(back - orig).mean() > 14:
-        return None, "downscale-back mismatch"
-    # [look QA 2026-11-12] ESRGAN reads fine gravel / snow grain as noise and smooths it away: keep the original when the
-    # result, boxed back to the source size, has lost more than half of the source's fine detail
-    if lap_energy(back) < 0.5 * lap_energy(orig):
-        return None, "detail lost (smoothed)"
-    bic = np.asarray(Image.fromarray(a[:, :, :3]).resize((w * 4, h * 4), Image.BICUBIC))
-    if lap_energy(up) > WORM_LIMIT * (2.5 if key in FOLIAGE else 1.0) * max(1.0, lap_energy(bic)):
-        return None, "worm-noise"
     long_side = max(w, h) * 4
     target = min(1024, max(512, max(w, h) * 4)) if long_side >= 512 else long_side
     sc = target / float(max(w, h) * 4)
@@ -261,20 +340,74 @@ def upscale_one(exe, im, tmp, threads, cut_pre=0, key=None):
         if not soft:
             al_a = np.where(al_a >= 128, 255, 0).astype(np.uint8)
         out = Image.fromarray(np.dstack([np.asarray(out), al_a]))
-    return out, "ok"
+    return out, how
 
+
+
+def careful_one(exe, im, tmp, threads, share=0.2):
+    """[user 2026-11-15: "upscale the ones you are worried about inventing as long as you are careful about it", "Just
+    double check the text"] the conservative 4x for held-back textures (texmap "nosoft" and the lettered "noupscale"
+    sheets): careful_up on the colour (Lanczos + light unsharp + `share` of ESRGAN's fine band, held to the source's
+    3x3 colour range; share 0 = a plain enlargement), the alpha resampled (smooth for blended sprites, the original
+    silhouette cut at 128 for alpha-tested cards). Checked per item on side-by-side sheets (letters must read the same)."""
+    a = np.asarray(im.convert("RGBA"))
+    h, w = a.shape[:2]
+    al0 = a[:, :, 3]
+    has_a = al0.min() < 250
+    soft = has_a and ((al0 > 8) & (al0 < 247)).mean() > 0.10
+    rgb = _soft_bleed(a) if has_a else a[:, :, :3].copy()
+    up = None
+    if share > 0:
+        pw, ph = max(4, w // 4), max(4, h // 4)
+        src, dst = os.path.join(tmp, "in.png"), os.path.join(tmp, "out.png")
+        Image.fromarray(np.pad(rgb, ((ph, ph), (pw, pw), (0, 0)), mode="edge" if has_a else "wrap")).save(src)
+        if os.path.exists(dst):
+            os.remove(dst)
+        if run_esrgan(exe, src, dst, threads):
+            up = colour_match(np.asarray(Image.open(dst).convert("RGB"))[ph * 4: ph * 4 + h * 4, pw * 4: pw * 4 + w * 4], rgb)
+        elif BATCH["mode"] == "collect":
+            return None, "collect"
+    c = careful_up(rgb, up, share if up is not None else 0.0)
+    res = Image.fromarray(c)
+    if has_a:
+        if soft:
+            al = Image.fromarray(al0).resize((w * 4, h * 4), Image.LANCZOS)
+        else:
+            al = Image.fromarray(al0).resize((w * 4, h * 4), Image.BICUBIC).filter(ImageFilter.GaussianBlur(2.4))
+            al = Image.fromarray(np.where(np.asarray(al) >= 128, 255, 0).astype(np.uint8))
+        res = Image.fromarray(np.dstack([c, np.asarray(al)]), "RGBA")
+    t = min(1024, w * 4) / float(w * 4)
+    if t < 1.0:
+        res = res.resize((int(round(w * 4 * t)), int(round(h * 4 * t))), Image.LANCZOS)
+    return res, "ok careful%s" % ("" if share > 0 and up is not None else " plain")
+
+
+
+KEEPDISC, PLAINTEXT, CAREFUL_TEXT = set(), set(), set()   # texmap "keepdisc" / "plaintext"; noupscale keys that get careful_one
 
 def _main_one(z, n, key, skip, report, files, exe, tmp, threads, cut_pre):
-    if key in skip or key == "untextured":
+    if key in KEEPDISC or key == "untextured" or (key in skip and key not in CAREFUL_TEXT):
         report[key] = "skipped (list)"
         return
     try:
         im = Image.open(io.BytesIO(z.read(n)))
-        res, why = upscale_one(exe, im, tmp, threads, cut_pre=cut_pre, key=key)
+        if key in skip or key in NOSOFT:
+            # held back (lettered sheets, or a soft retry that invented shapes): the careful 4x
+            res, why = careful_one(exe, im, tmp, threads, 0.0 if key in PLAINTEXT else 0.2)
+        else:
+            res, why = upscale_one(exe, im, tmp, threads, cut_pre=cut_pre, key=key)
     except Exception as e:  # never fail the conversion
         res, why = None, "error %s" % e
     if BATCH["mode"] == "collect":
         return
+    if res is None and not why.startswith(("skipped", "error", "esrgan failed")) and not os.environ.get("FLUP_NO_CAREFUL"):
+        # [user 2026-11-15 "everything", "as long as you are careful about it"] anything the normal passes rejected (snow
+        # masks, leaf sprays, over-saturated cards, a drifting sprite) takes the careful 4x rather than the disc image
+        try:
+            res, w2 = careful_one(exe, Image.open(io.BytesIO(z.read(n))), tmp, threads, 0.0 if key in PLAINTEXT else 0.2)
+            why = "%s (was %s)" % (w2, why)
+        except Exception as e:
+            res, why = None, "%s; careful error %s" % (why, e)
     report[key] = why
     if res is not None:
         b = io.BytesIO()
@@ -291,9 +424,13 @@ def main(pk3, level, out_pk3, exe_dir, threads="1:1:1", progress=None):
     p = os.path.join(HERE, "fl_texmap.json")
     if os.path.exists(p):
         tm = json.load(open(p)).get(level, {})
-    skip = set(tm.get("noupscale", [])) | {k for k in tm if not k.startswith("_") and k not in ("noupscale", "upscale_foliage")}
+    skip = set(tm.get("noupscale", [])) | {k for k in tm if not k.startswith("_") and k not in ("noupscale", "upscale_foliage", "nosoft", "keepdisc", "plaintext")}
     FOLIAGE.clear()
     FOLIAGE.update(tm.get("upscale_foliage", []))
+    NOSOFT.clear(); NOSOFT.update(tm.get("nosoft", []))
+    KEEPDISC.clear(); KEEPDISC.update(tm.get("keepdisc", []))
+    PLAINTEXT.clear(); PLAINTEXT.update(tm.get("plaintext", []))
+    CAREFUL_TEXT.clear(); CAREFUL_TEXT.update(tm.get("noupscale", []))
     # cards flhd already enlarged 4x (fl_levels.json "hd" -> "cutout"): boxed back down before the colour-only pass
     lv = {}
     p = os.path.join(HERE, "fl_levels.json")
