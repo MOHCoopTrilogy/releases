@@ -50,6 +50,14 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.84 - Hold the Bridge
+
+- **Sealed Orders' bridge is a fight now:** three snipers on upper floors and roofs, a gunner on the church-tower MG42, an officer in the square calling reinforcements, and Germans rushing you when you take the jeep's .30 cal (now a 150-round belt).
+- **Sealed Orders' own Panzer IV, MG42, canteen, medkit and field phone**, from your disc.
+- **Playtest fixes:** the bridge water reflects on both sides, no invisible wall around the burnt-out Panzer, see-through bushes and hedges no longer block you.
+- **Their Dying Breath:** machine-gun nests at the original's height, gunners crouching or standing with their aim.
+- **One spinning medal** on the intro and loading screens.
+
 ### v1.10.83 - The Original Cast (fixes)
 
 - **Their Dying Breath's ending follows the original:** the comm tower charges unlock when the original allows, the church objective appears only after the railgun falls, the church scene waits for the allied squad, and the mission ends when both counter-attack squads are wiped out.
