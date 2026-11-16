@@ -1167,6 +1167,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # [flpolish] each collision brush carries its SOURCE in its (nodraw) shader name, so the walk audit can tell an
     # original player-clip boundary from a wall, a fitted column, a headroom cap or our edge-of-world clip
     NOSHOT_ = bool(flpack.spec(level).get("clip_noshot"))
+    STEPS_ = {int(k_): {"rock": 0x10000, "gravel": 0x800000, "metal": 0x8000, "wood": 0x4000, "dirt": 0x20000}[v_]
+              for k_, v_ in (flpack.spec(level).get("footsteps") or {}).items()}
     def clip_for(tag):
         if tag == TAG_CLIFF:
             nm = "cliff"
@@ -1181,6 +1183,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         # [flfix2 round 19, bug-11164] the canal bed is a puddle surface: a round that goes through the water lands on
         # it and the cgame picked its impact by surface type - none = the stone puff and chips (seen through the water)
         sf_ = SURF_PUDDLE if tag == TAG_RIVERBED else 0
+        # [flfix2 2026-11-16] the disc's footstep class of this collision material (fl_levels "footsteps", decoded from
+        # the XBE: material record +4 -> 11MovBnk class): the player's footstep trace reads the brush side's surface parm
+        if STEPS_ and (tag & 0x7FFFF000) != 0x7FFFF000 and not (tag & COLL_VOLUME):
+            sf_ |= STEPS_.get(tag & 0x7FF, 0)
         # [flfix2 2026-11-16] fl_levels "clip_noshot": the invisible clips (kept wrap sheets: Frontline's player-only
         # material; our edge-of-world walls) stop players and AI but not bullets (0x10000 player clip | 0x20000 monster clip)
         if NOSHOT_ and (tag == TAG_CLIFF or ((tag & 0x7FF) == WRAP_MAT and (tag & COLL_SPECIAL) and tag < TAG_CLIFF)):
