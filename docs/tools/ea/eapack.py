@@ -293,9 +293,8 @@ def sounddefs(L, level, db, vgm, files, lines, log=print):
         u32 INDEX, u32 BANK, u32 hash, u32 class, u32 hash, u32 0xff..0200, u32 packed, u32, u32, u32 c, u32, u32
     BANK says where INDEX points: 0x80000000 = str.ast (the speech / stream archive), 0x40000000 = scr.abk, 1 / 2 /
     4 / 8 = L1 / L2 / L3 / L4.abk (decoded 2026-11-15 from the index ranges: the largest index of each bank kind fits
-    that bank's stream count; scr.abk sample 152 is the one looping sample there, the fires). byte 2 of packed reads as
-    the volume in percent and c >> 16 as the pitch in 1/4096 (fire A: 90 % and 0.87, fire B 100 % and 1.0) - read
-    from the two fire definitions sharing one sample, a guess. Each distinct sample is decoded once (vgmstream
+    that bank's stream count; scr.abk sample 152 is the one looping sample there, the fires). Volume, pitch (with their
+    random ranges), loop and falloff from the record's own named fields (0.7.33, see below). Each distinct sample is decoded once (vgmstream
     subsong INDEX + 1) to sound/ea/<level>/sd_<hash>.wav; level.ea_sd_alias["<hash>"] names its alias."""
     import os
     import shutil
@@ -316,24 +315,52 @@ def sounddefs(L, level, db, vgm, files, lines, log=print):
     tmp = tempfile.mkdtemp(prefix="easd_")
     ali, n = [], 0
     try:
+        # [0.7.33, bug-11257] Audio.ubr is self-describing (the code-decode agent, CODE_FINDINGS_ea_1_11.md F8): header
+        # 'UBER', 0, 2, 0, nfields, nrecords, stride, ?, then nfields x {CRC32(field name), type, byte offset}; records of
+        # `stride` bytes follow. Every field is read by NAME through that table (the fixed 12-word window read volume and
+        # pitch from the next record). The sample index field has no recovered name: CRC 0xbc1069ff.
+        import zlib
+        _nf, _nr, _st = struct.unpack_from("<III", ubr, 16)
+        _off = {}
+        for _i in range(_nf):
+            _c, _t, _o = struct.unpack_from("<III", ubr, 32 + 12 * _i)
+            _off[_c] = (_t, _o)
+        _base = 32 + 12 * _nf
+
+        def _fo(name):
+            return _off.get(zlib.crc32(name.encode()) & 0xffffffff, (None, None))[1]
+        F = {k: _fo(k) for k in ("Volume Min", "Volume Max", "Loop", "FalloffEnd", "Pitch Min", "Pitch Max", "FalloffStart",
+                                 "Bank Type", "Alias")}
+        F["Sample"] = _off.get(0xBC1069FF, (None, None))[1]
+        if None in F.values():
+            log("eapack: Audio.ubr field table lacks", [k for k, v in F.items() if v is None])
+            return 0
+        byalias = {}
+        for _r in range(_nr):
+            rs = _base + _r * _st
+            if rs + _st > len(ubr):
+                break
+            byalias.setdefault(struct.unpack_from("<I", ubr, rs + F["Alias"])[0], rs)
         for h in hashes:
             hv = int(h, 16)
-            rec = None
-            o = ubr.find(struct.pack("<I", hv))
-            while o >= 0:
-                if o >= 8:
-                    w = struct.unpack_from("<12I", ubr, o - 8)
-                    if w[2] == hv and w[4] == hv and (w[5] & 0xff00ffff) == 0xff000200:
-                        rec = w
-                        break
-                o = ubr.find(struct.pack("<I", hv), o + 4)
-            if rec is None or rec[1] not in banks:
-                log("eapack: sound definition not found or not in a bank", h, rec and hex(rec[1]))
+            rs = byalias.get(hv)
+            bk = struct.unpack_from("<I", ubr, rs + F["Bank Type"])[0] if rs is not None else None
+            if rs is None or bk not in banks:
+                log("eapack: sound definition not found or not in a bank", h, bk and hex(bk))
                 continue
-            idx, bank = rec[0], banks[rec[1]]
-            vol = max(0.1, min(1.5, ((rec[6] >> 8) & 0xff) / 100.0))
-            pit = (rec[9] >> 16) / 4096.0
-            pit = pit if 0.5 <= pit <= 2.0 else 1.0
+            idx, bank = struct.unpack_from("<I", ubr, rs + F["Sample"])[0], banks[bk]
+            vmin, vmax, loop = ubr[rs + F["Volume Min"]], ubr[rs + F["Volume Max"]], ubr[rs + F["Loop"]]
+            fend = struct.unpack_from("<H", ubr, rs + F["FalloffEnd"])[0]
+            fstart = struct.unpack_from("<H", ubr, rs + F["FalloffStart"])[0]
+            pmin = struct.unpack_from("<H", ubr, rs + F["Pitch Min"])[0]
+            pmax = struct.unpack_from("<H", ubr, rs + F["Pitch Max"])[0]
+            vol = max(0.05, min(1.5, vmin / 100.0))
+            vrnd = max(0.0, (vmax - vmin) / 100.0)
+            pit = pmin / 4096.0 if 1024 <= pmin <= 16384 else 1.0
+            prnd = max(0.0, (pmax - pmin) / 4096.0) if 1024 <= pmax <= 16384 else 0.0
+            mind = max(16, int(fstart * 48))
+            maxd = max(mind + 64, int(fend * 48))
+            lines.append(f'\tlevel.ea_sd_lp["{h}"] = {1 if loop else 0}')
             try:
                 raw = L.disc.read(d + bank)
             except Exception as e:
@@ -353,11 +380,12 @@ def sounddefs(L, level, db, vgm, files, lines, log=print):
                 files[rel] = f.read()
             os.remove(dst)
             alias = f"ea{level.replace('_', '')}_sd_{h}"
-            ali.append(f'aliascache {alias} {rel} soundparms {vol:.2f} 0.0 {pit:.3f} 0.0 160 1600 auto loaded maps "coop_ea"')
+            ali.append(f'aliascache {alias} {rel} soundparms {vol:.2f} {vrnd:.2f} {pit:.3f} {prnd:.3f} {mind} {maxd} auto loaded maps "coop_ea"')
             lines.append(f'\tlevel.ea_sd_alias["{h}"] = "{alias}"')
             lines.append(f'\tlevel.ea_sd_src["{h}"] = "{bank} #{idx}"')
             n += 1
-            log("eapack: sound definition", h, "=", bank, "sample", idx, "vol", vol, "pitch", round(pit, 3))
+            log("eapack: sound definition", h, "=", bank, "sample", idx, "vol", vol, "+", vrnd, "pitch", round(pit, 3), "+",
+                round(prnd, 3), "loop", loop, "dist", mind, maxd)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
     if ali:
