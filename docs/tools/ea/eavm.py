@@ -582,6 +582,13 @@ def build(db, X, spot, ground, text, lines, log=print):
             L(f"\tlevel.ea_lo_dis[{n}] = 1")
         if r.cls == "DemoCharge" and len(r.w) > 34 and r.u(34) == 0:
             L(f"\tlevel.ea_lo_dis[{n}] = 1")
+        # 0.7.37: a SoundDialogueTrigger's line comes from the first actor of its Team (w22; 3 = by TargetFilter) inside
+        # its own volume, and with HeadTurn (w23) the speaker's head is aimed at the player's position as the line
+        # starts - never his body (code-decode agent, DEFAULT.XBE 0x14a930 / 0x14a4f0; 1_11: recs 165, 395, 638)
+        if r.cls == "SoundDialogueTrigger" and len(r.w) > 23:
+            L(f"\tlevel.ea_lo_team[{n}] = {r.u(22)}")
+            if r.u(23) == 1:
+                L(f"\tlevel.ea_lo_head[{n}] = 1")
         send = send or ["Activate"]
         L(f"\tlevel.ea_lo_sn[{n}] = {len(send)}")
         for k, mm in enumerate(send, 1):
