@@ -1277,11 +1277,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
           # entity coordinates past +-8192 (the jeep's start behind the gate) and Frontline's own step height (its body
           # walks over the 19-34u lips and kerbs MOHAA's 18u step snags on). server/sv_init.c reads both.
           ("hzm_widecoords", "1"), ("hzm_stepsize", str(sp.get("step_height", FL_STEP)))]
+    # [anvil] fl_levels "nav_spacing" (default 64 = 1_1 unchanged): 1_3 has 5380 navpoints, and the engine stops the map
+    # at more than MAX_PATHNODES 4096 (navigate.h) path + cover nodes ("Exceeded MAX_PATHNODES", server crash, bug-11264)
+    NAV_SP = float(sp.get("nav_spacing", 64))
     kept = []
     for n in L.navpoints():
         p = X(n["pos"])
         # Frontline packs navpoints tighter than MOHAA's PathSearch accepts ("Duplicate node ... not linked")
-        if any((p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2 < 64 * 64 and abs(p[2] - q[2]) < 48 for q in kept):
+        if any((p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2 < NAV_SP * NAV_SP and abs(p[2] - q[2]) < 48 for q in kept):
             continue
         kept.append(p)
     # [flfix2 round 21] the disc's AI cover points as MOHAA cover nodes (flcover.py has the decode and the flag mapping);
@@ -1295,6 +1298,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     cnodes_ = [] if os.environ.get("FL_NO_COVER") else flcover.nodes(L.cover, taken_, nav_)
     stats["cover_points"] = len(L.cover)
     stats["cover_nodes"] = len(cnodes_)
+    if len(kept) + len(cnodes_) > 4000:   # [anvil bug-11264] MAX_PATHNODES 4096 less headroom
+        print("WARNING: %d path + %d cover nodes - over the engine limit, raise nav_spacing" % (len(kept), len(cnodes_)))
+    print("pathnodes %d + cover %d" % (len(kept), len(cnodes_)))
     # [flfix2] bug-10969: the engine keeps the AI path graph it builds for a map in <home>/maps/<map>.pth and reuses it
     # while the BSP's map_time matches (navigate.cpp ArchiveLoadNodes). We wrote none, so every conversion matched every
     # other: the graph of the FIRST conversion was used for all later ones (soldiers that stand still, 'couldn't find

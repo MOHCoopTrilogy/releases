@@ -29,6 +29,8 @@ ALLY_RX = re.compile(r"^(AlliedSoldier_A$|InterrogationVictim$)")
 HEALTH = {"Health10": 10, "Health25": 25, "Health50": 50}
 # [flpolish] Frontline's ammo pickups -> the stock MOHAA ammo boxes (models/items/item_<kind>_ammobox.tik)
 AMMO = {"GrenadeAmmo": "grenade", "Colt45Ammo": "pistol", "M1GarandAmmo": "rifle"}
+# [anvil 1_3] the 1_3 pickups (none of these classes is on 1_1, so its output is unchanged): stock MOHAA boxes
+AMMO.update({"MP40Ammo": "smg", "StickGrenadeAmmo": "grenade", "Springfield03Ammo": "rifle"})
 # set-piece placements the mission script rebuilds with MOHAA recipes (level.fl_list[cls][1..n])
 JEEP_CREW = {"Jeep_Driver": "driver", "Jeep_Gunner": "gunner", "Jeep_Passenger": "passenger"}
 LISTED = ("JeepBody_1_1", "LandMineTriggerParent", "ExplodingBarrelSwap_1_1", "BarrelMolotovSwap", "FlyThrough_1_1", "Rocket_1_1",
@@ -809,7 +811,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
         elif cls in ("MObjective_1_1", "M1_1_ResistanceDrop", "M1_1_ClipBoard", "M1_1_WallExplosion",
                      "M1_1_Field_Phone", "Conversation", "InterrogationOfficer"):
             lines.append(f'\tlevel.fl_pos["{cls}"] = {o}')
-        elif cls in LISTED or cls in mm_props:
+        elif cls in LISTED or cls in mm_props or cls in sp.get("list_classes", ()):   # [anvil] per-level list (1_1 has none)
             nl_ = lists.get(cls, 0) + 1
             lists[cls] = nl_
             lines.append(f'\tlevel.fl_list["{cls}"][{nl_}] = {o}')
