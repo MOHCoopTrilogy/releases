@@ -25,9 +25,11 @@ Differences from m3l1a, and why:
    whose stage-0 image is upscaled here is re-emitted in scripts/zz_hd_discstock.shader with
    spritescale *= old_w / new_w. Name overrides of retail shaders win on both renderers since the gl2
    FindShaderInShaderText fix (highest-priority pak); the pak sorts after every pak that defines these names.
-4. TEXT AND INSIGNIA ARE PROTECTED: rectangles in PROTECT (fractions of the sheet) are taken from a Lanczos 4x +
-   light unsharp instead of ESRGAN (DECISIONS "ESRGAN is for photos and text, not chrome": it invents strokes).
-   A whole-sheet protect (dial faces, radio panels) keeps the stock sheet. Where ESRGAN fails and nothing better
+4. TEXT AND INSIGNIA ARE PROTECTED: rectangles in PROTECT (fractions of the sheet) get a CAREFUL blend - 75 %
+   Lanczos 4x + light unsharp, 25 % ESRGAN, held to the source's 3x3 colour range - kept only if the glyphs pass
+   glyph_check (ink IoU vs the plain enlargement, 1:1 box-back error); otherwise the plain enlargement
+   (pure ESRGAN invents strokes: DECISIONS "ESRGAN is for photos and text, not chrome").
+   A whole-sheet protect (dial faces, radio panels) keeps the stock sheet if its careful blend fails. Where ESRGAN fails and nothing better
    exists, REPLACE grades a CC0 photo (docs/tools/ea/hd, CREDITS.txt) to the stock sheet's colour statistics.
 5. TINY SOURCES (< 64 px short side) are Lanczos-doubled before ESRGAN and boxed back (12-asset-conventions:
    ESRGAN outputs noise on tiny inputs).
@@ -216,17 +218,72 @@ def defringe(res, src_rgba):
 ATEST = set()      # images drawn through an alphaFunc (cut-out) shader: filled in main()
 
 
+# [user refinement 2026-11-15] lettering is upscaled too, carefully: inside a PROTECT rect the result is mostly a clean
+# Lanczos enlargement with a small ESRGAN share, held to the source's local colour range; it is kept only if every
+# glyph still reads the same (ink mask matches the plain enlargement, and the result boxed back to 1:1 matches the
+# source). A rect that fails keeps the plain enlargement.
+TEXT_ESRGAN_SHARE = 0.25
+GLYPH_IOU_MIN = 0.92        # ink-pixel IoU against the plain enlargement, per rect
+GLYPH_BACK_MAX = 6.0        # mean abs difference, boxed back to the source size, per rect (0-255)
+TEXT_LOG = {}               # key -> per-rect results, for the QA sheet
+
+
+def _otsu(g):
+    hist = np.bincount(g.astype(np.uint8).ravel(), minlength=256).astype(np.float64)
+    tot = hist.sum()
+    if tot == 0:
+        return 128
+    sum_all = (np.arange(256) * hist).sum()
+    wb = sb = 0.0
+    best, thr = -1.0, 128
+    for t in range(256):
+        wb += hist[t]
+        if wb == 0 or wb == tot:
+            continue
+        sb += t * hist[t]
+        mb, mf = sb / wb, (sum_all - sb) / (tot - wb)
+        v = wb * (tot - wb) * (mb - mf) ** 2
+        if v > best:
+            best, thr = v, t
+    return thr
+
+
+def glyph_check(cand, plain, src_rect):
+    """-> (ok, iou, back_err). Ink = the minority side of an Otsu split of the plain enlargement."""
+    lw = np.array([.299, .587, .114], np.float32)
+    gp, gc = plain.astype(np.float32) @ lw, cand.astype(np.float32) @ lw
+    t = _otsu(gp)
+    mp, mc = gp > t, gc > t
+    if mp.mean() > 0.5:
+        mp, mc = ~mp, ~mc
+    inter, union = (mp & mc).sum(), (mp | mc).sum()
+    iou = 1.0 if union == 0 else inter / float(union)
+    h, w = src_rect.shape[:2]
+    back = np.asarray(Image.fromarray(cand).resize((w, h), Image.BOX)).astype(np.float32)
+    err = float(np.abs(back - src_rect.astype(np.float32)).mean())
+    return (iou >= GLYPH_IOU_MIN and err <= GLYPH_BACK_MAX), float(iou), err
+
+
 def protect(up, rgb, key):
     rects = PROTECT.get(key)
     if not rects:
         return up, ""
     h4, w4 = up.shape[:2]
     lz = lanczos_sharp(rgb, w4, h4)
+    careful = np.clip((1 - TEXT_ESRGAN_SHARE) * lz.astype(np.float32) + TEXT_ESRGAN_SHARE * up.astype(np.float32),
+                      0, 255).astype(np.uint8)
+    careful = range_clamp(careful, rgb)
     out = up.copy()
+    res = []
     for x0, y0, x1, y1 in rects:
         a, b, c, d = int(x0 * w4), int(y0 * h4), int(x1 * w4), int(y1 * h4)
-        out[b:d, a:c] = lz[b:d, a:c]
-    return out, " +protect%d" % len(rects)
+        sa, sb_, sc, sd = a // 4, b // 4, c // 4, d // 4
+        ok, iou, err = glyph_check(careful[b:d, a:c], lz[b:d, a:c], rgb[sb_:sd, sa:sc])
+        out[b:d, a:c] = careful[b:d, a:c] if ok else lz[b:d, a:c]
+        res.append({"rect": [x0, y0, x1, y1], "careful": bool(ok), "iou": round(iou, 3), "back_err": round(err, 2)})
+    TEXT_LOG[key] = res
+    n_ok = sum(1 for r in res if r["careful"])
+    return out, " +text%d/%d careful" % (n_ok, len(res))
 
 
 def process(vfs, row):
@@ -256,10 +313,7 @@ def process(vfs, row):
         return {"image": key, "from": "%s@%s" % (f, os.path.basename(e[1])), "src": [w, h], "out": list(res.size),
                 "fmt": "DXT1", "how": "CC0 replacement %s, graded to the stock sheet" % REPLACE[key]}
     keep = {"image": key, "from": "%s@%s" % (f, os.path.basename(e[1])), "src": [w, h], "out": [w, h], "fmt": None}
-    if PROTECT.get(key) == [(0.0, 0.0, 1.0, 1.0)]:
-        # all lettering: a Lanczos sheet is a visual no-op next to GPU bilinear (12-asset-conventions), so no file
-        return dict(keep, how="kept stock (lettering over the whole sheet)")
-    if has_alpha and not soft:
+    if has_alpha and not soft and key not in PROTECT:
         # alpha-tested card (tree cards, branches): flupscale's cutout pass - colour-only ESRGAN, original silhouette,
         # thin features kept, no new highlights; on any reject the stock card stays (nothing staged)
         res, why = FU.upscale_cutout(ESR, rgba, WORK, "1:1:1", 1)
@@ -281,6 +335,11 @@ def process(vfs, row):
     if has_alpha:
         # bleed the colour into clear texels so ESRGAN and the mips never pull in the key colour
         rgb = np.asarray(FU._bleed(Image.fromarray(rgba, "RGBA")))[:, :, :3].copy()
+        if key not in ATEST:
+            # [text QA 2026-11-15, bug-11256] blended sheets draw their alpha 8..127 texels: only the truly clear ones may
+            # take bled colour (phone1 dial face sat under alpha < 128 and was painted over)
+            vis = al >= 8
+            rgb[vis] = rgba[:, :, :3][vis]
     up, how = up_rgb(rgb, key)
     if how.startswith("lanczos"):
         # the ESRGAN result was rejected; a Lanczos copy adds nothing over GPU bilinear, so ship nothing
@@ -293,6 +352,11 @@ def process(vfs, row):
         up = range_clamp(up, rgb)
         how += " +clamp"
     up, prot = protect(up, rgb, key)
+    if PROTECT.get(key) == [(0.0, 0.0, 1.0, 1.0)] and not any(r["careful"] for r in TEXT_LOG.get(key, [])):
+        # all lettering and the careful blend failed the glyph check: the plain enlargement is a visual no-op next to
+        # GPU bilinear (12-asset-conventions), so no file
+        return dict(keep, how="kept stock (lettering over the whole sheet; careful blend failed the glyph check)",
+                    text=TEXT_LOG.get(key))
     w4, h4 = w * 4, h * 4
     if has_alpha:
         a4 =Image.fromarray(al).resize((w4, h4), Image.LANCZOS if soft else Image.BICUBIC)
@@ -317,7 +381,7 @@ def process(vfs, row):
     os.makedirs(os.path.dirname(qa), exist_ok=True)
     res.save(qa)
     return {"image": key, "from": "%s@%s" % (f, os.path.basename(e[1])), "src": [w, h], "out": list(res.size),
-            "fmt": fmt, "how": how + prot}
+            "fmt": fmt, "how": how + prot, "text": TEXT_LOG.get(key)}
 
 
 def sprite_shaders(vfs, sh, done):
