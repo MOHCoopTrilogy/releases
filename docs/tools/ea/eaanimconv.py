@@ -434,7 +434,7 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
             hx, st = hs_.split(":")
             put("ics_%s_%d" % (rig, n + 1), int(hx, 16), st.endswith("IDLE"))
     # opt-in (EA_LOCO=1) until the engine build with "first definition wins" ships, then default on
-    if stock is not None and os.environ.get("EA_LOCO") == "1":
+    if stock is not None and os.environ.get("EA_LOCO", "1") == "1":
         for grp in LOCO_GROUPS:
             for suffix, hx in LOCO.items():
                 alias = "%s_%s" % (grp, suffix)

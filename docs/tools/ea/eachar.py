@@ -237,7 +237,7 @@ def _stock_bones(mohaa_base):
 # jaw verts follow it, and every converted voice line gets a jaw-only clip from its loudness (eajaw_v<NNN>), played in
 # the actor's say slot: a clip without the upper-body channels goes to its own slot and, channel by channel, only the
 # jaw is blended (fgame actor.cpp EventSetSayAnim, skeletorbones GetSlerpValue).
-JAW_ON = os.environ.get("EA_JAW") == "1"
+JAW_ON = os.environ.get("EA_JAW", "1") == "1"  # on by default from v1.10.81 (EA_JAW=0 = off)
 JAW_NAME = "Bip01 Jaw"
 JAW_MAX_DEG = 20.0            # the original: 0.349 rad at full-scale peak, quadratic in the peak level (XBE 0x44d70)
 JAW_SLEW = 0.25               # the original: the level moves at most 0.25 per update toward the frame's peak (0x52030)
