@@ -23,10 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 for _p in (os.path.join(HERE, "..", "ea"), os.path.join(HERE, "ea")):
     if os.path.isdir(_p) and _p not in sys.path:
         sys.path.append(_p)
-import numpy as np            # noqa: E402
-from PIL import Image         # noqa: E402
-import eacharup               # noqa: E402
-import eapropsup              # noqa: E402
+np = Image = eacharup = eapropsup = None    # imported in main() only when the pak carries prop textures
 
 ZIP_TIME = (2002, 5, 28, 0, 0, 0)
 STEEL = [("PaintedMetal005", 3.5, 2.0, (1, 1)), ("Metal016", 2.5, 1.2, (1, 1))]
@@ -64,6 +61,14 @@ def main(pk3, level, out_pk3, exe_dir):
         exe = None
     z = zipfile.ZipFile(pk3)
     pre = "textures/fl_%s_props/" % level
+    if not any(x.startswith(pre) and x.endswith(".tga") for x in z.namelist()):
+        return 0                # the props key off: nothing to do, no pak
+    global np, Image, eacharup, eapropsup
+    import numpy as np_
+    from PIL import Image as Image_
+    import eacharup as eacharup_
+    import eapropsup as eapropsup_
+    np, Image, eacharup, eapropsup = np_, Image_, eacharup_, eapropsup_
     tmp = tempfile.mkdtemp(prefix="flpropsup_")
     report, files = {}, {}
     for n in sorted(x for x in z.namelist() if x.startswith(pre) and x.endswith(".tga")):

@@ -27,7 +27,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 for _p in (os.path.join(HERE, "..", "ea"), os.path.join(HERE, "ea")):     # source tree / frozen _internal/ea
     if os.path.isdir(_p) and _p not in sys.path:
         sys.path.append(_p)
-import eaprops  # noqa: E402  (write_skd / write_skc / local_channels / axes / surfaces_for / effective_file)
+eaprops = None   # imported in build(), after the key check: a key-off run never needs the EA modules
 
 SCALE = 52.0      # the converted soldiers' scale (u/m)
 
@@ -118,6 +118,9 @@ def build(L, level, mohaa_base, files, log=print):
     lines = []
     if not mohaa_base or not enabled(level, "panzer"):
         return lines
+    global eaprops
+    import eaprops as _ep      # write_skd / write_skc / local_channels / axes / surfaces_for / effective_file
+    eaprops = _ep
     try:
         _panzer(L, level, mohaa_base, files, lines, log)
     except Exception as e:      # never fail the conversion: the tank keeps the stock models
