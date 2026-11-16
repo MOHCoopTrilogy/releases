@@ -324,7 +324,10 @@ def _jaw_clips(level, files, log=print):
             sm.append(cur)
         sm = [0.0] + sm + [0.0, 0.0]
         frames = [{JAW_NAME + " rot": _jaw_quat(JAW_MAX_DEG * v)} for v in sm]
-        skc = mohskel.write_skc(1.0 / 30.0, [JAW_NAME + " rot"], frames)
+        # flagged looping: as a one-shot the CLIENT dropped the say slot after ~1.5 s (mouth shut while the server's
+        # jaw tag stayed open, 2026-11-15); looped it renders the whole line. The map script stops it when the line
+        # ends (`say` with no argument), so the envelope never repeats audibly out of sync.
+        skc = mohskel.write_skc(1.0 / 30.0, [JAW_NAME + " rot"], frames, flags=0x20)
         alias = "eajaw_v%s" % m.group(1)
         files["models/human/ea_%s/anim/%s.skc" % (level, alias)] = skc
         rows.append("\t%s\t\tanim/%s.skc" % (alias, alias))
