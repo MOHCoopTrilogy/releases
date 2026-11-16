@@ -75,7 +75,9 @@ HIDES = ['scenemodelhide "hzm_hub69_n_daily_lit" 1', 'scenemodelhide "hzm_hub69_
          'scenemodelhide "hzm_hub69_n_bests_lit" 1', 'scenemodelhide "hzm_hub69_radio_lit" 1']
 # one loop, no cycles: the other card clips raise the cards to his face (coordinator QA 2026-11-10, see gen_mproom69.py)
 STAGE = ['actorstage "%s" %.1f %.1f %.1f "cardA" 6.0 11.0' % (AL, S["pos"][0], S["pos"][1], S["yaw"]),
-         'actorprop "%s" "models/miscobj/cardhand01.tik" "tag_weapon_left" "card" 0 0 0 1 0 0 0' % AL]
+         'actorprop "%s" "models/miscobj/cardhand01.tik" "tag_weapon_left" "card" 0 0 0 1 0 0 0' % AL,
+         # [joincards 2026-11-16] he wears the player's own coop character (engine scenemodellook; docs/tools/gen_menu_cardplayers.py)
+         'scenemodellook "%s" "models/human/hzm_menu/cards/%%s.tik"' % AL]
 MODELS = A["lines"]
 ROOM = MODELS + HIDES + LIGHTS
 
@@ -83,7 +85,7 @@ ROOM = MODELS + HIDES + LIGHTS
 def strip69(t):
     t = re.sub(r"(?m)^.*%s\n" % re.escape(TAG), "", t)          # (the first v1.10.69 drafts tagged their lines)
     t = re.sub(r'(?m)^(?:scenemodel|scenemodelhide|actorstage|actorcycle|actorprop) "(?:models/menu/)?hzm_hub69_[^\n]*\n', "", t)
-    t = re.sub(r'(?m)^(?:scenemodel|actorstage|actorcycle|actorprop) "models/human/hzm_menu/hub_gi_menu\.tik"[^\n]*\n', "", t)
+    t = re.sub(r'(?m)^(?:scenemodel|actorstage|actorcycle|actorprop|scenemodellook) "models/human/hzm_menu/hub_gi_menu\.tik"[^\n]*\n', "", t)
     t = re.sub(r'(?m)^scenelight (?:\S+ ){3}\d+\.69 [^\n]*\n', "", t)
     t = re.sub(r'(?m)^(?:scenehot|scenehotbox|scenehotfx) "(?:n_daily|n_record|n_ranks|n_bests|radio)" [^\n]*\n', "", t)
     t = re.sub(r'(?m)^scenelabel "hubcap1[01]" [^\n]*\n', "", t)        # the radio's caption: 10 until v1.10.72, 11 since

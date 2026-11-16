@@ -113,7 +113,7 @@ print("main.urc: hatch hotspot #%d, box %s, cue + back strip, corner QUIT confir
 # ---- hzm_quitconfirm.urc: the room held at DOWN + the card
 blk = re.search(r'(?m)^resource\nScene3D\n\{\nname "atticscene"\n(.*?)\n\}\n', m, re.S).group(1)
 keep = [l for l in blk.split("\n") if l.startswith(("scenemodel ", "scenemodelhide ", "scenewx ", "scenelight ", "actorstage ", "actorcycle ",
-                                                     "actorprop ", "rect ", "enabledcvar ", "fgcolor ", "bgcolor ", "borderstyle "))]
+                                                     "actorprop ", "scenemodellook ", "rect ", "enabledcvar ", "fgcolor ", "bgcolor ", "borderstyle "))]
 keep = [l for l in keep if not l.startswith("enabledcvar")] + ['enabledcvar "ui_atticActive==1"', "scenecam %s" % DOWN]
 card = []
 
