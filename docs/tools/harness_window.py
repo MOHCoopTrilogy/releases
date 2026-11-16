@@ -317,9 +317,10 @@ def test_display(name=None):
     # playing": the primary display, EXCEPT while a fullscreen game of the user's runs on it - then the small 1920x1080
     res = os.environ.get("HZM_TEST_RES", "auto")
     if not name and res == "auto":
-        # [user 2026-11-15, final] "you can still test just don't let it overtake my game": always the primary;
-        # while the user's game runs the window is placed BEHIND it (z-order bottom) and never activated
-        res = "primary"
+        # [user 2026-11-16] "Secondary monitor is up for you to use for testing": the small 1920x1080 screen
+        # (supersedes 11-15 primary). Never the 3840x2160 TV; no 1920x1080 screen connected = no test window.
+        # HZM_TEST_RES=primary restores the 11-15 rule (primary, placed behind the user's game).
+        res = "1920x1080"
     if not name and res == "primary":
         for m in mons:
             if m["primary"]:
