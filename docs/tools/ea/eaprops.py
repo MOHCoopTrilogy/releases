@@ -779,4 +779,10 @@ def _build_mg42(stream, level, mohaa_base, files, lines, log):
     if done and pole:
         bk, dn = MG42["pole_seat"]
         lines.append('\tlevel.ea_prop_mgseat = ( %.1f %.1f 0 )' % (bk, dn))
+        # the pole gun's pivot over the MMG point: the disc pole's own height (base -0.004 m .. fork top 0.391 m) plus
+        # the 2 cm the gun's origin sits over the fork, at the gun's scale (0.415 m = 21.6u). The original's smart-object
+        # gun on the same point has its receiver 0.43-0.45 m up: the same height
+        zlo = min(p[2] for pos, uv, tris, sh in pole for p in pos)
+        zhi = max(p[2] for pos, uv, tris, sh in pole for p in pos)
+        lines.append('\tlevel.ea_poleH = %.1f' % ((zhi - zlo + 0.02) * MG42["scale"]))
     return done
