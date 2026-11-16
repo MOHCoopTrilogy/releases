@@ -1015,6 +1015,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         rp, stats["ramps"] = flclear.ledge_ramps(wound, flpack.spec(level).get("headroom"))
         wound += rp
         wtags += [TAG_RAMP] * len(rp)
+    # [anvil] fl_levels "clip_boxes": [[lo xyz], [hi xyz], reason] in map units - a reviewed stand-in for an original
+    # player-only sheet that has to be moved (1_3: the beam's north guard, shortened so the walk onto the beam stays open).
+    # Built as the 12 faces of the box, tagged as our edge clip (nodraw, player + AI). 1_1: none -> unchanged
+    for lo_, hi_, *_r in flpack.spec(level).get("clip_boxes", []):
+        cs_ = [(x_, y_, z_) for z_ in (lo_[2], hi_[2]) for y_ in (lo_[1], hi_[1]) for x_ in (lo_[0], hi_[0])]
+        for q_ in ((0, 2, 3, 1), (4, 5, 7, 6), (0, 1, 5, 4), (2, 6, 7, 3), (0, 4, 6, 2), (1, 3, 7, 5)):
+            wound += [(cs_[q_[0]], cs_[q_[1]], cs_[q_[2]]), (cs_[q_[0]], cs_[q_[2]], cs_[q_[3]])]
+            wtags += [TAG_CLIFF, TAG_CLIFF]
     # the edges of the world: a clip wall wherever a walkable floor ends over nothing (flcliff.py)
     if not os.environ.get("FL_NO_CLIFF"):
         # against the collision AS BUILT (skins dropped, headroom carved), not the disc's: a dropped player-clip sheet

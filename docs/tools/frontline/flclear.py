@@ -429,6 +429,11 @@ def normalise(tris, opts=None, tags=None, render_tris=None):
     o = dict(DEFAULTS)
     o.update(opts or {})
     cells = low_cells(tris, o)
+    # [anvil] fl_levels "headroom": {"skip": [[x0, y0, x1, y1], ...]} - columns left exactly as the original built them
+    # (1_3: the stacked stair flights to the cache roof, where the under-stair crawl caps cut across the flight above)
+    if o.get("skip"):
+        c_ = o["cell"]
+        cells = {k: v for k, v in cells.items() if not any(bx[0] <= k[0] * c_ <= bx[2] and bx[1] <= k[1] * c_ <= bx[3] for bx in o["skip"])}
     n_low = len(cells)
     cells = visible_ceiling(cells, render_tris, o)
     n_vis = len(cells)
