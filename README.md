@@ -50,6 +50,13 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.83 - The Original Cast (fixes)
+
+- **Their Dying Breath's ending follows the original:** the comm tower charges unlock when the original allows, the church objective appears only after the railgun falls, the church scene waits for the allied squad, and the mission ends when both counter-attack squads are wiped out.
+- **Downed squadmates lie down** while they wait to be revived (all maps).
+- **Sealed Orders:** the original's overcast sky from your own disc, the background ambience, allies no longer stuck on a roof, and soft smoke plumes instead of black blobs.
+- Your disc missions are converted again automatically to pick up the fixes.
+
 ### v1.10.82 - The Original Cast (hotfix)
 
 - **Disc mission voice lines no longer go silent.** Conway at the tower, the interrogation and the enemy shouts play again in Sealed Orders.
