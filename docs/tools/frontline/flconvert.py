@@ -420,7 +420,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             if name not in files:
                 # [flpolish] white: Frontline draws these untextured (1974 tris on 1_1) in their vertex colour alone;
                 # the old blue-grey (40,70,90) stand-in tinted every one of them
-                files[name + ".tga"] = tga_bytes(4, 4, bytes((255, 255, 255, 255)) * 16)
+                # [anvil] fl_levels "untextured_grey" (default 255 = white, 1_1 unchanged): 1_3 at night - white x vertex
+                # colour reads ~3x brighter than the textured surfaces beside it (pale crane beams, U-boat wires, QA
+                # 2026-11-16); a mid grey keeps them in the world's range [PROV until the trace shows the original]
+                _ug = int(flpack.spec(level).get("untextured_grey", 255))
+                files[name + ".tga"] = tga_bytes(4, 4, bytes((_ug, _ug, _ug, 255)) * 16)
                 shader_lines.append(f"{name}\n{{\n\tsurfaceparm nolightmap\n\tcull none\n\t{{\n\t\tmap {name}.tga\n\t\trgbGen vertex\n\t}}\n}}\n")
             tex_names[key] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
             return tex_names[key]
@@ -1241,6 +1245,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             continue
         om_specs.append((spc["name"], spc, recs_.get(spc.get("object"))))
     nom = 0
+    MESH_LIGHT_ = float(flpack.spec(level).get("mesh_light", 2.0))
     for tag_, spc, rec_ in om_specs:
         draws = L.mesh(spc["mesh"])
         if not draws:
@@ -1264,7 +1269,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 l_ = math.sqrt(sum(x * x for x in acc[i])) or 1.0
                 r_, g_, b_, a_ = m["cols"][i]
                 # object meshes carry PS2-range vertex colour (0x80 = full): doubled, or they render near black
-                r_, g_, b_ = (min(255, 2 * c_) for c_ in (r_, g_, b_))
+                # [anvil] fl_levels "mesh_light" (default 2.0 = the doubling above, 1_1 unchanged). 1_3 at night: raw
+                # object colours average about the raw world's (cargo 97 vs world 77), so doubled they read 2-2.5x brighter
+                # than the world around them: pale, near-unlit crane cargo and U-boat wires (coordinator QA 2026-11-16) [PROV]
+                r_, g_, b_ = (min(255, int(MESH_LIGHT_ * c_)) for c_ in (r_, g_, b_))
                 verts.append((p_, m["uvs"][i], tuple(x / l_ for x in acc[i]), (r_, g_, b_, 255)))
                 for q in range(3):
                     lo_[q] = min(lo_[q], p_[q])
