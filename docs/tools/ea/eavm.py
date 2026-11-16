@@ -193,6 +193,12 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_sp_dmn[{n}] = {len(dm)}")
         for k, mm in enumerate(dm, 1):
             L(f'\tlevel.ea_sp_dm["{n}_{k}"] = "{mm}"')
+        # [0.7.35] when the death channel sends (code-decode agent, NPCSpawnPoint actor-gone handler 0xa1204): only if
+        # "send on death" (word 45, b3a7d3aa) is set, on every Nth death of the point's men (N: word 55, 718aa23a),
+        # once (deaths <= N) unless "repeat" (word 46, 98ac4b15). The counter-attack points send once, on their 4th death
+        L(f"\tlevel.ea_sp_dsend[{n}] = {1 if (len(r.w) > 45 and r.u(45)) else 0}")
+        L(f"\tlevel.ea_sp_drep[{n}] = {1 if (len(r.w) > 46 and r.u(46)) else 0}")
+        L(f"\tlevel.ea_sp_dN[{n}] = {max(1, r.u(55) or 1) if len(r.w) > 55 else 1}")
         L(f"\tlevel.ea_sp_name[{n}] = {S(r.name)}")
         sp_ix[r.name] = n
         dp = sorted((((pp[0] - r.pos[0]) ** 2 + (pp[1] - r.pos[1]) ** 2) ** 0.5, pp, nm2) for gg, pp, nm2 in dead_pts if r.group() and gg == r.group())
