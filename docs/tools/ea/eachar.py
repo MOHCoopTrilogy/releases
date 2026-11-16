@@ -231,6 +231,107 @@ def _stock_bones(mohaa_base):
     return None
 
 
+# ---- talking jaw (user-approved 2026-11-15; the original has NO mouth movement - FIDELITY records it as an addition).
+# The disc faces skin ~46 verts to JO_jaw; the stock MOHAA skeleton has no jaw. With EA_JAW=1 the disc characters' own
+# skeletons get a 'Bip01 Jaw' rotation bone under the head (stock clips carry no channel for it: it stays shut), the
+# jaw verts follow it, and every converted voice line gets a jaw-only clip from its loudness (eajaw_v<NNN>), played in
+# the actor's say slot: a clip without the upper-body channels goes to its own slot and, channel by channel, only the
+# jaw is blended (fgame actor.cpp EventSetSayAnim, skeletorbones GetSlerpValue).
+JAW_ON = os.environ.get("EA_JAW") == "1"
+JAW_NAME = "Bip01 Jaw"
+JAW_MAX_DEG = 13.0            # fully open (offline: 10 deg reads as speech, 20 as a shout)
+JAW_POS = {}                  # set by build(): the jaw pivot in the stock pose (model space, cm x girth scale)
+
+
+def _jaw_bone(skel):
+    """(skd bone record, pivot in the stock pose) for 'Bip01 Jaw' under 'Bip01 Head', or (None, None)"""
+    ji = next((i for i, b in enumerate(skel) if b["name"] == "JO_jaw"), None)
+    if ji is None:
+        return None, None
+    J = {nm: (p, _axes(*a)) for nm, (p, a) in POSE.items()}
+    T, s = repose(skel, J)
+    p = skel[ji]["pos"]
+    x = (p[1] * 100.0 * s, -p[0] * 100.0 * s, p[2] * 100.0 * s)
+    P = _xf(T.get(ji) or T[1], x)
+    hp, hax = J["Bip01 Head"]
+    off = [_dot(_sub(P, hp), hax[k]) for k in range(3)]
+    chan = (JAW_NAME + " rot").encode().ljust(20, b"\0")     # padded: readers take 10 floats at the value offset
+    rec = (JAW_NAME.encode().ljust(32, b"\0") + b"Bip01 Head".ljust(32, b"\0") +
+           struct.pack("<5i", 0, 84, 108, 108 + len(chan), 108 + len(chan)) +
+           struct.pack("<6f", off[0], off[1], off[2], 1.0, 1.0, 1.0) + chan)
+    return rec, P
+
+
+def _jaw_quat(deg):
+    """the jaw's local rotation (head space) for an opening of deg degrees: about the head's own left-right axis,
+    the mouth opening for positive deg (checked by FK: the chin goes down)"""
+    J = {nm: (p, _axes(*a)) for nm, (p, a) in POSE.items()}
+    hax = J["Bip01 Head"][1]
+    k = [hax[i][1] for i in range(3)]             # model +Y (the model's left) in head-local components
+    n = math.sqrt(sum(c * c for c in k)) or 1.0
+    k = [c / n for c in k]
+    h = math.radians(deg) * JAW_SIGN / 2.0
+    return (k[0] * math.sin(h), k[1] * math.sin(h), k[2] * math.sin(h), math.cos(h))
+
+
+JAW_SIGN = -1.0             # FK check 2026-11-15: +1 pressed the chin up into the lip
+
+
+def _wav_env(b, fps=30.0):
+    """per-frame loudness 0..1 of a PCM .wav (bytes): RMS in 1/fps windows, -40..-6 dB of full scale mapped to 0..1"""
+    import array
+    import io
+    import wave
+    with wave.open(io.BytesIO(b)) as w:
+        ch, sw, rate, n = w.getnchannels(), w.getsampwidth(), w.getframerate(), w.getnframes()
+        raw = w.readframes(n)
+    if sw != 2:
+        return []
+    a = array.array("h")
+    a.frombytes(raw[:len(raw) // 2 * 2])
+    if ch > 1:
+        a = a[::ch]
+    step = max(1, int(rate / fps))
+    out = []
+    for i in range(0, len(a), step):
+        seg = a[i:i + step]
+        if not seg:
+            break
+        rms = math.sqrt(sum(v * v for v in seg) / len(seg)) / 32768.0
+        db = 20.0 * math.log10(rms) if rms > 1e-6 else -120.0
+        out.append(min(1.0, max(0.0, (db + 40.0) / 34.0)))
+    return out
+
+
+def _jaw_clips(level, files, log=print):
+    """eajaw_v<NNN>: a jaw-only clip per converted voice line (sound/ea/<level>/v<NNN>.wav, written by eapack.voices
+    earlier in the conversion). Returns (tik rows, data-script lines)."""
+    import re as _re
+    import mohskel
+    rows, dl = [], []
+    for path in sorted(files):
+        m = _re.match(r"sound/ea/%s/v(\d+)\.wav$" % _re.escape(level), path)
+        if not m:
+            continue
+        env = _wav_env(files[path])
+        if len(env) < 3:
+            continue
+        # syllable-rate smoothing: fast open, slower close; a closed mouth at both ends
+        sm, cur = [], 0.0
+        for v in env:
+            cur = cur + (v - cur) * (0.65 if v > cur else 0.35)
+            sm.append(cur)
+        sm = [0.0] + sm + [0.0, 0.0]
+        frames = [{JAW_NAME + " rot": _jaw_quat(JAW_MAX_DEG * v)} for v in sm]
+        skc = mohskel.write_skc(1.0 / 30.0, [JAW_NAME + " rot"], frames)
+        alias = "eajaw_v%s" % m.group(1)
+        files["models/human/ea_%s/anim/%s.skc" % (level, alias)] = skc
+        rows.append("\t%s\t\tanim/%s.skc" % (alias, alias))
+        dl.append('\tlevel.ea_jaw["ea%s_v%s"] = "%s"' % (level.replace("_", ""), m.group(1), alias))
+    log("eachar: talking jaw: %d voice-line clips" % len(rows))
+    return rows, dl
+
+
 def _stock_reader(mohaa_base):
     """path -> bytes (or None) from the player's own install: main, mainta, maintt paks in the engine's order (a later
     pak overrides). Read only - nothing of it is written anywhere except what the caller derives (speeds, flags)."""
@@ -485,6 +586,8 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
     weighted with the disc's own one- and two-bone blends, each EA bone carried by its Bip01 counterpart"""
     J = {nm: (p, _axes(*a)) for nm, (p, a) in POSE.items()}
     T, s = repose(skel, J)
+    if JAW_NAME in bidx and "p" in JAW_POS:
+        J[JAW_NAME] = (JAW_POS["p"], J["Bip01 Head"][1])
     blobs, surf_names = [], []
     smooth = SUBDIV.get(label, SMOOTH)
     model["smoothed"] = smooth
@@ -501,6 +604,8 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
                 nacc = _add(nacc, _mul(_mv(t[2], n0), w))
                 tw += w
                 bip = easkin.EA_TO_BIP.get(skel[bi]["name"], "Bip01 Pelvis")
+                if skel[bi]["name"] == "JO_jaw" and JAW_NAME in J:
+                    bip = JAW_NAME
                 merged[bip] = merged.get(bip, 0.0) + w
             tw = tw or 1.0
             V.append(_mul(acc, 1.0 / tw))
@@ -586,6 +691,14 @@ def build(stream, level, mohaa_base, files, lines, log=print):
     bone_block, nbones, bidx = sk
     skel = easkin.skeleton(stream)
     made = 0
+    jaw_rows, jaw_lines = [], []
+    if JAW_ON and skel:
+        rec, P = _jaw_bone(skel)
+        if rec:
+            bone_block, bidx = bone_block + rec, dict(bidx)
+            bidx[JAW_NAME] = nbones
+            nbones += 1
+            JAW_POS["p"] = P
     # the level's own animations (eaanimconv: the MG gunner set, scene clips), one set for every character
     anim_block = ""
     if skel:
@@ -595,6 +708,18 @@ def build(stream, level, mohaa_base, files, lines, log=print):
                                           files, log=log, stock=_stock_reader(mohaa_base))
         except Exception as e:     # never fail the conversion: the characters keep the stock animations only
             log("eachar: animations skipped (%s)" % e)
+    if JAW_NAME in bidx:
+        try:
+            jaw_rows, jaw_lines = _jaw_clips(level, files, log)
+        except Exception as e:
+            log("eachar: talking jaw clips skipped (%s)" % e)
+        if jaw_rows:
+            if anim_block:
+                anim_block = anim_block.rstrip().rstrip("}") + "\n" + "\n".join(jaw_rows) + "\n}\n"
+            else:
+                anim_block = "animations\n{\n\t$path models/human/ea_%s\n%s\n}\n" % (level, "\n".join(jaw_rows))
+            lines.extend(jaw_lines)
+            lines.append("\tlevel.ea_jawOn = 1")
     for mname, chr_names, label in CHARS:
         m = read_model(stream, mname)
         if not m or not m["meshes"]:
