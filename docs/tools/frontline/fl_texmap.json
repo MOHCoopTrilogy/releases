@@ -15,7 +15,11 @@
   "1d9800": {"path": "textures/models/natural/tree1_3.tga", "pak": "Pak2.pk3", "tc_scale": 1.0, "alpha": true, "reason": "[look 2026-11-13, user-approved 'Yes upgrade'] the mod's own HD stock tree card (Pak2 path; the HD foliage pak draws it at 1024 px), cut-out kept, graded to the disc card's mean colour on its solid texels"},
   "upscale_foliage": ["16c480"],
   "_upscale_foliage": "[flfix2 round 19c] opaque dense-foliage textures: ESRGAN leaf detail is real here, the worm limit is the cards' 2.5x (the hedge box 16c480, back to the disc art by user decision 2026-11-13)",
-  "noupscale": [
+  "plaintext": ["c2_138800"],
+  "_plaintext_doc": "[careful-upscale sheet 2026-11-15] the coin c2_138800 read slightly swirlier with even 20 % ESRGAN detail: a plain enlargement (careful_up share 0). Every other held-back texture and every lettered sheet takes the careful 4x (letters checked one by one)",
+  "nosoft": ["Vehicle_Jeep_Body_msh_14a00", "Vehicle_Jeep_Wheel_msh_2c00", "3e280", "123b80", "Falling_Bomb_msh_b80", "a5000", "c2_138800", "c2_13fb80", "c2_e7c00", "c4_e7200", "c2_fc300", "c2_143c00", "c2_133080", "c5_135d00"],
+  "_nosoft_doc": "[QA sheet 2026-11-15] the soft retry made these worse side by side (wheel and coin swirls, invented pebbles on plaster a5000 / c2_e7c00 / c4_e7200 / c2_fc300, holes 123b80, sparkle on the bomb, a stripe on c2_143c00): they keep the disc texture. The cigar-box label and letter, the Renault sign and the Balkenkreuz went to noupscale (text and insignia)",
+  "noupscale": [ "CigarBox_Closed_msh_200", "CigarBox_Open_msh_c00", "c3_115f00", "c5_136d00",
    "49380",
    "49f00",
    "b2500",

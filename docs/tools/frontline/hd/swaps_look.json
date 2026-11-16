@@ -72,6 +72,17 @@
     1
    ],
    "overlay": 1.0
+  },
+  "4aa80": {
+   "asset": "dark_brick_wall",
+   "tile": 112,
+   "repeat": [
+    2,
+    2
+   ],
+   "overlay": 1.0,
+   "mortar": 0.3,
+   "_doc": "[user 2026-11-15 'Online'] the muddy brick wall -> Poly Haven CC0 dark_brick_wall, two repeats per disc tile, tinted to the disc mean with its smoke stains laid over; mortar toned down (0.3) toward the disc's dark joints"
   }
  }
 }
