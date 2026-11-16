@@ -50,6 +50,37 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.81 - The Original Cast
+
+#### Squad commands (both disc missions, and paratroopers everywhere)
+- **Hold N to send your squad** to where you are aiming: they spread out, take cover and hold there. **Tap N to call them back.** Rebind it under Options > Controls; on a gamepad it is a new "Squad" slot on the hold-Y wheel.
+- **Green stars on the compass** mark your squadmates and turn grey when one dies.
+- **In co-op the squad is shared out**: each player commands only his own men.
+- **Paratroopers can be commanded the same way** when they drop.
+
+#### Their Dying Breath (bring-your-own-disc mission)
+- **Soldiers move like the original.** Running, walking, hits, crouching, reloading, corner cover and deaths use the game's own animations; deaths depend on where a soldier is hit.
+- **Faces talk.** Mouths move with the voice, the way the original does it.
+- **The original's MG crews** man their guns with their own animations, and the tank is the original's white winter Panzer.
+- **The night looks like the original:** a burning city glows on the horizon, cold blue mist lies in the creek, and the sky is dark.
+- **The original's sounds** for fires, barbed wire and the plunger, plus a quieter sound mix indoors and a soft indoor glow.
+- **Tombstones and crosses** break after the original's amount of damage. Collapsed building corners now sit where they settle in the original.
+- **Sharper textures** throughout, including a new tiled roof and sharper fire and smoke.
+
+#### Sealed Orders (bring-your-own-disc mission)
+- **All 20 of the original's soldiers** in their own models, with their own faces, sharper textures and the original's head shapes. The jeep crew rides in and fades out as on the disc.
+- **Soldiers fight like the original:** they use the original's cover spots, walk their own patrol routes, and calm down from alert to idle on the original's timers.
+- **The mission journal** from the original is shown when you first spawn.
+- **The original's fire and smoke** at their own sizes, sharper brick and wood, and the original's shouts in combat.
+
+#### Both disc missions
+- **Your disc missions are converted again automatically** with the new converter. Nothing from the disc ships with the mod.
+- **Stock items borrowed by the missions** (crates, sandbags, trees, fire and smoke, uniforms) are now in HD.
+
+#### Still needs playtesting
+- Squad commands in co-op, the talking faces, and the new sounds and indoor mix.
+- Both disc missions start to finish.
+
 ### v1.10.80 - Fire and Fog
 
 #### Their Dying Breath (bring-your-own-disc mission)
