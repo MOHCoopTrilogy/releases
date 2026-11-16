@@ -126,7 +126,7 @@ Expected = the order of the original's triggers along the route (R1-R12). Actual
 | 9 | P-47 circle, rockets the tank; tank destroyed | 255 | after trig 52 | yes (flight to the Panzer is ours, decided) |
 | 10 | rockets fired from the square | 255 | after trig 30 | yes |
 | 11 | P-47 strafes the MG | its own trigger | ends 343.65 | yes |
-| 12 | patrols on paths 2 and 151 | group wake (42) | after trig 42 | yes |
+| 12 | patrols on path 2 (recs 247 / 248, 248 in reverse; 2:151 is a squad link, not a path - code decode 2026-11-15) | group wake (42) | after trig 42 | yes |
 | 13 | door opens | group 65552 (trig 3) | after trig 3 | yes |
 | 14 | P-47 fly-by | its own trigger | 586.3-596.3 | yes |
 | 15 | interrogation (posed at start, released at O1) | objective | posed 1.3, released 964.3 | yes; **not confirmed by a human** (item 15) |
@@ -705,7 +705,7 @@ followed where one runs past both the ally and his goal) is handed to the map ow
 | item | original | conversion | status |
 |---|---|---|---|
 | Cover points | 109 records, AISETCOVERPOINT | 112 data points, 101 MOHAA cover nodes; script layer `fl_cov_think` (mod ba237365, on by default 22fb8b9f) | proven in a client: `r17/dp3` 44 FLCOV lines, Germans and allies take and hold points in the Panzer street, the nest yard and the dock and re-pick when the crate breaks, they are flanked or the enemy is on the point; stills `r17/cover_panzer_street.jpg`, `r17/cover_ally_dock.jpg` |
-| Named paths for soldiers | link not found | data only (`fl_npath`); `fl_path_via` follows one where it runs past both the ally and his goal (dp3: path 17 run once) | undecoded (choice: fit by distance) |
+| Named paths for soldiers | per record: attr 42 = path id, attr 43 = direction (code decode, CODE_FINDINGS_fl_1_1.md) | `fl_axis_path` / `fl_ally_path` + `pathdir` from the record (flfix2 92c17e39); Germans patrol it (fl_pathbeat, reverse when attr 43 = 1), allies run it once (fl_ally_pathrun: the gun wave on path 67); the distance fit is dev-only | decoded |
 
 Layer choices (round 21b): one man per point; allies never take a point closer to the enemy than the nearest player;
 MG crews on their marks or guns and men playing dead keep their own behaviour; the scaling extras get cover through
@@ -792,6 +792,22 @@ Offline sheets: `H:\hzm_work\flanim\out\OFFLINE_fl_scenes_{a,b,c}_v2.jpg` (disc-
 | locomotion, deaths, hits, cover, reload | ids not identified yet | stock | next |
 | class 1010 (412 ids) | no skeleton: probably lip-sync for the head morph targets | not converted | queued after locomotion |
 
+## Round 23 - code decode applied (2026-11-15)
+
+Source: `H:\hzm_work\codedecode\CODE_FINDINGS_fl_1_1.md` (XBE + 1_1 scripts, static). Converter flfix2 92c17e39, test pak
+v120; map script mod (this round). Headless boot: 0 errors, `FLSET patrol on path 71 / 82` with directions.
+
+| item | decoded | now |
+|---|---|---|
+| Soldier paths | attr 42 path id, attr 43 direction; builtin 0x24 looks the path up by exact id | per record (26 Germans, 6 allies: the gun wave on path 67); the nearest-path fit and the "paths 2 and 151" note are gone |
+| Rec 51 landing-zone blast | its only starter shares link 6:240, which occurs once (in rec 51) | never started (was: with bomb A) |
+| Trigger 91 / area 373 | respawn 0, count 1; man made on any area death while not held; held deaths lost | no refill (was: 12 s, cap 3) |
+| Particle start | load loop makes every kind-9 record without a start script | start = load when word 16 = 0; rec 8 from load; rec 13 kept with the blast (frame) |
+| Moods | Idle / Curious 20 s / Alert 40 s re-armed by stimuli (allies 5 s), per-mood sight and fov | MOHAA mood + a decay thread; sight = record metres x 48 (at least 512u), fov = record degrees, set per mood |
+| Barks | only triggers 107 / 226 send 'say your line' | SayIncoming and SayGetOutOfTheOpen silent; SayPlanesAbove and AfterTheTanks as before |
+| One-shot banks | only the last entered area's bank is in memory | as built in round 20 (fl_os_watch) |
+
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -873,7 +889,7 @@ Offline sheets: `H:\hzm_work\flanim\out\OFFLINE_fl_scenes_{a,b,c}_v2.jpg` (disc-
 | Bomber timing | real speed: bomb A and the house down within 0.4-0.8 s of trigger 41 (dock_early / house_early sheets); traced motion times are slowed | the bomber is inbound at the trigger (keys start 3.95 s in): bomb A +0.40 s, house with it, bomb B +1.20 s, ambush pair with bomb A (bug-11110) | lead derived from the frames |
 | Dock and exit | dock = trigger rec 1 (r 25 m); end = exit trigger rec 2 (r 2.6 m) walked into with 1-5 done, text 36, ENDLEVEL | same spots and radii; our crate objective completes at the exit, crate prop there (bug-11103) | exact (positions) |
 | Hints on entering | drop lid rec 383 (text 52), MG volumes 283 / 384 / 539 / 302 (text 274), molotov (501) | same texts on entering, once per player (and the coop cgame's once-per-profile rule) | exact text |
-| Area-373 ambush respawn | respawn on death, gaps 600-1050 ticks, held while inside trigger 91; limit not decoded | respawn 12 s after death, held inside trigger 91, cap 3 per spawner (bug-11103) | cap a choice - user-approved 2026-11-15 |
+| Area-373 ambush respawn | respawn on death, gaps 600-1050 ticks, held while inside trigger 91; limit not decoded | none: respawn 0, count 1 on recs 90 / 92 / 407; a man is made the instant an area member dies while not held, a death while held is lost | exact (code decode): no refill - one man per spawner, finished once killed; the 12 s / cap-3 fill-in is gone |
 | Rec 539 MG | using it starts the MG-nest crew early | same (bug-11103) | exact |
 | Field phone | its volume (rec 387) plays sound 40 once | plays our bank's sound-40 cue once on entering (bug-11103) | cue mapping by id |
 | Allied soldiers (all groups) | generic soldier AI: fight from spawn, push when the area's Germans are down, trail 16-19 m behind the player | same rule for every allied soldier; they no longer follow closely (bug-11103) | trace rule applied to all groups |
@@ -897,7 +913,7 @@ Offline sheets: `H:\hzm_work\flanim\out\OFFLINE_fl_scenes_{a,b,c}_v2.jpg` (disc-
 | Panzer first shot | +216 ticks from its trigger | same spacing, from when a player sees it or is within 2200u; rocket pass after the second shot | choice (user: it must be seen firing) |
 | House collapse dust and smoke | disc particle records | stock dust cloud and smoke column; round 20: the smoke column at the disc's own record 8 spot (tehao_firesmoke_long), once the map script takes the block | stand-in (forced: no disc sprite carried) |
 | Placed particle systems (round 20) | 15 kind-9 systems with their own sprites | stock emitters chosen by decoded type (smoke, pall, flame, blast) at the disc spots; size not carried (engine ignores entity scale on emitter sprites) | forced (sprites not on the level); type mapping a choice |
-| Particle start rules (round 20) | record start field + messages | load / event from the record; rec 8 with the house (frames), rec 51 with bomb A (AUDIT), rec 10 not started (starter undecoded) | 8 = trace; 51 = inferred; 10 open |
+| Particle start rules (round 20) | record start field + messages | every kind-9 record with no start script (word 16 = 0) is made at level load (code decode); word 32 high = particles per emission; rec 51 never starts (its link 6:240 has no partner); rec 8 from load; rec 13's flame kept with the house blast (emulator still house_front_pre41 shows none before trigger 41) | decoded; rec 13 against the frames |
 | House wall section (round 20) | house_remove swapped out on message 74 | disc mesh on rec 293, clip on its two wall faces (0.18 m slabs, windows included), hidden by the map script with the house parts; sound 54 not played | clip shape a choice; timing exact once wired |
 | One-shot barks and pain (round 20) | 11LOAD bank of the area entered, clip chosen by the AI (not decoded) | same banks per area; clip -> situation by our transcription table; German lines to German AI, American lines to allied AI, grunts to both | situation mapping a choice; 46 clips unplaced |
 | Use prompt | hint text on approach | hint text plus the mod's USE icon when facing the spot | user-approved 2026-11-13 |
