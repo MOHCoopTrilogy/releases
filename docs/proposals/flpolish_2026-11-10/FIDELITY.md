@@ -767,6 +767,31 @@ Round 22c (mod a4702840): the journal's key line sits above the page (it overlap
 with a living enemy within 160u is not free; clean still of a German holding the dock crate point against the
 camera player, no hit blur (`r17/cover_dock_german_clean.jpg`, run dp8).
 
+## Animations (flanim, 2026-11-15) - the disc's own character clips
+
+Decoder `docs/tools/frontline/flanim.py` (format in its docstring; read from the XBE's eMotion code): `emt_1_1.emt`
+holds 967 animation ids over 1,446 clips; a clip is a stream of poses at 15 per second (4 ticks of 60 Hz) on the 55
+joints of Soldier.skl, plus game events (sounds, footsteps). Clip lengths match the emulator traces' re-issue times
+(901: 132 ticks against 126-128; 6506: 80 against 78). Retarget `flanimconv.py` (the EA route) writes them onto the
+stock Bip01 skeleton as `fl_a<id>` aliases in the disc character's own tik, gated by `flanimconv.OWN_ANIM` (empty).
+Offline sheets: `H:\hzm_worklanim\out\OFFLINE_fl_scenes_{a,b,c}_v2.jpg` (disc-native), `CONV_fl_jeep_v1.jpg`
+(native vs converted). Nothing in game yet; nothing wired into the mission script (the map owner integrates).
+
+| clip(s) | what the disc does | conversion | status |
+|---|---|---|---|
+| 6500 / 6502 / 6504 | driver, passenger, gunner ride loops (gunner stands at the gun, one foot up) | fl_a6500 / 6502 / 6504 | converted, gated |
+| 6501 / 6503 / 6505 | thrown out at the mine (6505: the gunner lands draped face-down) | the root travel kept in the clip (6501 flies 1.3 m) | converted, gated |
+| 6506 | gunner's wounded loop, face-down over the rear deck, legs hanging | fl_a6506 (loop) | converted, gated |
+| 6507 | gunner pushes up off the deck; the last pose is half-raised (torso up, legs trailing), not standing | fl_a6507 | converted, gated; "ends upright" awaits an emulator frame |
+| 6509-6511 | bumps | fl_a6509-6511 | converted, gated |
+| 903 / 900 / 2201 / 2209 / 2221 / 8301 | interrogation officer: talk, idles, hit, death (8301 has 65 alternatives, 41 distinct) | fl_a<id>, alternatives fl_a<id>_<n> | converted, gated |
+| 901 | the victim, seated and tied (the disc's chair is not part of the clip) | fl_a901 (loop) | converted, gated |
+| 14397 / 14419 / 14423 / 14140 / 14051 | talker, listener, notice, combat | fl_a<id> | converted, gated |
+| 784 / 826, 769-779, 764-767 | MG nest gunner (aim loops, 5 alternatives each), feeder, lead (points) | fl_a<id> | converted, gated |
+| play-dead men | not identified (no trace names their ids) | stock | open |
+| locomotion, deaths, hits, cover, reload | ids not identified yet | stock | next |
+| class 1010 (412 ids) | no skeleton: probably lip-sync for the head morph targets | not converted | queued after locomotion |
+
 ## Deviations from the original (for the user; choices are not settled here)
 
 | what | original | conversion | forced or choice |
@@ -812,7 +837,7 @@ camera player, no hit blur (`r17/cover_dock_german_clean.jpg`, run dp8).
 | Jeep riders | disc crew models faded out | their own disc models on fade-capable twin shaders (blend + entity alpha), the script's 6 s fade unchanged; stock fade paratrooper only as fallback | exact (models); fade look by the script |
 | Castro (interrogation challenge) | not on the disc (ours) | stock model | - |
 | Interrogation victim | BM22 US body, HT02a, no helmet | same (definition 07d5b007) | exact (when approved) |
-| Textures | disc textures (64-256 px, up to 8 units per texel on the ground) | 13 CC0 swaps, Poly Haven, tinted to the disc texture's mean colour with its own stains laid over (hd/CREDITS.txt): mud x3, roof slates, planks (round 7); look round 2026-11-12, user 'replace the smudged walls and ground': ground 54200 + b3600 -> stony_dirt_path, mossy whitewash 6180 + ccf80 -> worn_mossy_plasterwall (the plank wall 41180 swap was withdrawn after QA: too new; it is upscaled instead). Round 3 (2026-11-15, user standing permission for online CC0 textures): weathered board walls d080 + 67180 -> weathered_planks, corrugated sheet 38280 -> worn_corrugated_iron, dark earth 123b80 -> brown_mud_dry (13 swaps in all); brick, roof tiles and ground candidates rejected after preview (too new or the wrong style). Every other texture: the player's own image, 4x learned upscale on the player's PC by default (lettered sheets, blended sprites and fine leaf sprays keep the original) | user decisions 2026-11-11 and 2026-11-12 |
+| Textures | disc textures (64-256 px, up to 8 units per texel on the ground) | 9 CC0 swaps, Poly Haven, tinted to the disc texture's mean colour with its own stains laid over (hd/CREDITS.txt): mud x3, roof slates, planks (round 7); look round 2026-11-12, user 'replace the smudged walls and ground': ground 54200 + b3600 -> stony_dirt_path, mossy whitewash 6180 + ccf80 -> worn_mossy_plasterwall (the plank wall 41180 swap was withdrawn after QA: too new; it is upscaled instead). Every other texture: the player's own image, 4x learned upscale on the player's PC by default (lettered sheets, blended sprites and fine leaf sprays keep the original) | user decisions 2026-11-11 and 2026-11-12 |
 | Tree and leaf cards 1dd980, 12c380, 15b680, 15f800, 1d5680, 1d9800 (look round 2026-11-13) | the disc's 128-512 px leafy tree and branch cards | the mod's own HD stock MOHAA tree cards (models/natural tree1_3/1_4/1_5, tree4_3/4_4; drawn at 1024 px), hard cut-out kept, graded to each disc card's mean colour on its solid texels; the 2:1 tree card 124280 keeps the disc's image (no stock card of that shape) | user-approved "Yes upgrade" |
 | Sky | 6-face box on the eye, unfogged | the six faces captured from the emulator, in the player's private pak only; stock sky when they are absent; drawn on a hull around the map | exact textures; hull forced (engine) |
 | Fog and far plane | fog colour 104,106,109, linear 5..100 m of view depth (re-render proven, TRACE_fog_colour.md), far clip 100 m, clear colour 48,48,48 | linear 240..4800 units, same colour; no far cull (the sky box shows past the fog end); clear colour not represented | exact fog; no cull forced (bug-11058) |
@@ -879,3 +904,5 @@ camera player, no hit blur (`r17/cover_dock_german_clean.jpg`, run dp8).
 | Low openings the original crouched through, 56-82u high | crouch | can be walked through standing where the opening runs on level both sides | side effect of the row above |
 | Enemy count at 2+ players (coop_mod/discscale.scr) | one player | 1 player: exactly the disc. 2+ players: a wave (the level start, or a group's start trigger) gets extra men shared over its plain Roamer records, each at his record's place after that record's own man, only when no player sees the spot (fl_seen; after 90 s the nearest unseen German record within 1500u; never spawned in view), built by fl_mk_axis (same off-screen wake, voice, area); factor on the wave 1 / 1.5 / 2 / 2.5 for 1 / 2 / 3 / 4+ players (nearest man), at most 8 extras a wave, 24 live Germans level-wide, the live-German hardcap and a free-entity floor; the area clean-up removes them and the allies' area-clear test counts them; the area-373 respawn cap (3) scales the same way. Never scaled: ambush / play-dead men, talkers, shouters, the MG nest, the gun wave, path patrols, the interrogation officer. Extras send nothing. Accuracy scaling as on every map, no health scaling; generic cloner and end waves off | user-approved 2026-11-13 |
 | Door use prompt | 'Press ACTION to Open / Close Door' | the mod's USE icon (hand) facing it within 140u; use toggles | user-approved (use icon) |
+| Character animations (flanim, 2026-11-15) | the disc's own clips (emt_1_1.emt) | the scripted-scene clips retargeted onto the stock skeleton (fl_a<id>); stock bone lengths, fingers ride the hand (the disc animates them); everything else stock until decoded | gated off (flanimconv.OWN_ANIM) until the in-game sheets pass and the user approves |
+| Scene clip timing | 15 poses per second, interpolated by the engine | the same poses at the same rate (frametime 1/15 s) | exact |
