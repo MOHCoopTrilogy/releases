@@ -782,7 +782,7 @@ Offline sheets: `H:\hzm_work\flanim\out\OFFLINE_fl_scenes_{a,b,c}_v2.jpg` (disc-
 | 6500 / 6502 / 6504 | driver, passenger, gunner ride loops (gunner stands at the gun, one foot up) | fl_a6500 / 6502 / 6504 | converted, gated |
 | 6501 / 6503 / 6505 | thrown out at the mine (6505: the gunner lands draped face-down) | the root travel kept in the clip (6501 flies 1.3 m) | converted, gated |
 | 6506 | gunner's wounded loop, face-down over the rear deck, legs hanging | fl_a6506 (loop) | converted, gated |
-| 6507 | gunner pushes up off the deck; the last pose is half-raised (torso up, legs trailing), not standing | fl_a6507 | converted, gated; "ends upright" awaits an emulator frame |
+| 6507 | gunner pushes up off the deck; the last pose is half-raised (torso up, legs trailing), not standing | fl_a6507 | converted, gated; the decode matches the emulator (`ref_xemu\so_chars\gunner_rise`, 2026-11-16: he pushes up at +146, moves forward low along the jeep, ends half-raised at the front at windscreen height, not upright) |
 | 6509-6511 | bumps | fl_a6509-6511 | converted, gated |
 | 903 / 900 / 2201 / 2209 / 2221 / 8301 | interrogation officer: talk, idles, hit, death (8301 has 65 alternatives, 41 distinct) | fl_a<id>, alternatives fl_a<id>_<n> | converted, gated |
 | 901 | the victim, seated and tied (the disc's chair is not part of the clip) | fl_a901 (loop) | converted, gated |
