@@ -1250,7 +1250,24 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 for q in range(3):
                     lo_[q] = min(lo_[q], p_[q])
                     hi_[q] = max(hi_[q], p_[q])
-            surf_ids.append(B.add_soup(tex_shader(m["tex"]), verts, [i for t in tris for i in t]))
+            # [anvil bug-11271] one object-mesh draw can exceed the engine's SHADER_MAX_VERTEXES 2048 (1_3's U-boat: 3058):
+            # the client drops ("RB_CheckOverflow: verts > MAX") as soon as it is drawn. Split as the world batches are
+            # (<= 2000 verts per surface); a draw under the limit is written exactly as before (1_1 unchanged)
+            if len(verts) <= 2000:
+                surf_ids.append(B.add_soup(tex_shader(m["tex"]), verts, [i for t in tris for i in t]))
+            else:
+                cv_, ci_, mp_ = [], [], {}
+                for t_ in tris:
+                    if len(cv_) + 3 > 2000:
+                        surf_ids.append(B.add_soup(tex_shader(m["tex"]), cv_, ci_))
+                        cv_, ci_, mp_ = [], [], {}
+                    for i_ in t_:
+                        if i_ not in mp_:
+                            mp_[i_] = len(cv_)
+                            cv_.append(verts[i_])
+                        ci_.append(mp_[i_])
+                if cv_:
+                    surf_ids.append(B.add_soup(tex_shader(m["tex"]), cv_, ci_))
         if not surf_ids:
             continue
         brushes_ = []
