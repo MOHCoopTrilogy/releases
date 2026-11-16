@@ -24,6 +24,7 @@ ISOLATION
 import csv
 import io
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -115,7 +116,7 @@ def reward_name(reward):
     if kind == "wt" and len(parts) == 3:
         return "%s Tier %s weapon" % (parts[1].capitalize(), parts[2])
     if kind == "fin":
-        return "%s weapon finish" % parts[1].upper()
+        return ""      # [killchal-next 2026-10-20] per-gun kill ladders open finishes now; this token is only the legacy snapshot's source
     if kind == "sk":
         return "a uniform skin"
     if kind == "hl":
@@ -221,6 +222,9 @@ def authored():
 def all_challenges():
     byclass = load_roster()
     ch = weapon_challenges(byclass) + authored()
+    # [killchal-next 2026-10-20] the finish challenges no longer unlock a finish by themselves (kills WITH a gun do, per gun): keep them as feats and drop the promise
+    ch = [(cid, cat, title, re.sub(r" to unlock (the )?[A-Z_ ]+ (finish|camo)$", "", desc) if rw.startswith("fin:") else desc, stat, tgt, rw)
+          for (cid, cat, title, desc, stat, tgt, rw) in ch]
     # validate
     seen = set()
     for (cid, cat, title, desc, stat, tgt, rw) in ch:

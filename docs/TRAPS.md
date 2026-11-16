@@ -85,11 +85,12 @@ and stays, never the reported line.
 | What happened | Bug |
 |---|---|
 | `.pk3` bytes (already CRLF) written back in Python **text** mode → `\r\r\n`; TIKI dropped **every** `anims_shared.txt` alias. | 259 |
-| Hand patches to the pak copy of `anims_shared.txt` that WINS (stress sorts after the mod's) left an old copy cut off before its `}` with a full copy appended: names in the text, never LOADED; FG 42 reload state-looped. The mod tree is the one copy now; `check_anim_aliases.py` parses with the engine grammar. | 10394, 10899 |
-| A Python literal of script/C text (heredoc or not) made a `\n` escape a real newline → T1 kill, C2001. Use a fragment file. | 331, 962, 3002, 11247 |
+| Hand patches to the WINNING pak copy of `anims_shared.txt` left an old copy cut before its `}` plus a full copy: names in the text, never LOADED (FG 42 reload looped). One copy now, in the mod tree; `check_anim_aliases.py` parses with the engine grammar. | 10394, 10899 |
+| A Python literal of script/C text turned a `\n` escape into a real newline (T1 kill, C2001): use a fragment file. | 331, 962, 3002, 11247 |
 | A shader generator's brace matcher broke on mixed CRLF/LF + `//`-commented braces (45 open / 43 close) → white-square HUD icons. | 480 |
-| **Upscaler**: sharpen the 3x3 tile BEFORE cropping, clamp to source (else seams, alpha overshoot). **DXT**: Pillow DXT5 tilts normals ~14 deg (use `gen_terrain_pak_*.py`); a DXT1/.jpg repack DROPS alpha - the Thompson's alpha-drawn peep went solid in every pak: cut see-through features into the MESH. **TGA: bottom-up** (loader ignores the top-down bit, PIL obeys it). | 1247, 2953, 2994, 3019, 11150 |
-| A PowerShell harness assigned `$home`, a **built-in automatic variable**; the assignment silently no-op'd and logs landed in the user profile. | ps-home-var |
+| **Upscaler**: sharpen the 3x3 tile BEFORE cropping, clamp to source. **DXT**: Pillow DXT5 tilts normals ~14 deg (use `gen_terrain_pak_*.py`); DXT1/.jpg DROPS alpha (the Thompson peep went solid): cut see-through into the MESH. **TGA: bottom-up** (loader ignores the top-down bit). | 1247, 2953, 2994, 3019, 11150 |
+| PowerShell `$home` is a **built-in automatic variable**: assigning it no-ops (logs landed in the user profile). | ps-home-var |
+| A generator edit **only on a side branch** (f804844b), output in the mod: the next main regen (v1.10.78) reverted the MP per-gun ladder. Pre-regen `check` must be EXACT. Saved data: frozen append-only index (`MP_FIN_INDEX`), never `sorted()`. | 11308, 11309, 11311 |
 
 - **Binary mode on BOTH sides, repo files included.** `open(p, encoding=...)` translates newlines on
   *read*, so a CRLF file arrives as LF and `\r\n` patterns match nothing; `newline=""` on write then
@@ -97,9 +98,7 @@ and stays, never the reported line.
   raising. Use `rb`/`wb`; the tree is **not uniform** (`challenges.scr` CRLF, `lobbyui.scr` LF-only,
   `docs/TRAPS.md` LF - bug-1600 was this file flipped by a prune script). Detect per file and **assert
   the match count before every replace**.
-  Not Python-only: **`sed -i` and any shell in-place rewriter flip the whole file the same way** (bug-2081).
-  Detect endings by counting `b'\r\n'` vs bare `b'\n'` on RAW BYTES (`grep -c $'\r'` says 0 on CRLF) and
-  confirm the diff SHAPE (`git diff --numstat`): a whole-file diff on a 16-line edit is the tell.
+  **`sed -i` flips the whole file too** (bug-2081). Count `b'\r\n'` on RAW BYTES; a whole-file `git diff --numstat` on a small edit is the tell.
   With `core.autocrlf=true` (**both** sub-repos), git's smudge filter runs on `git apply` as well as
   `git checkout --`, so **a patch that applies cleanly still rewrites every line ending in the file**
   (bug-2453) while `git diff` shows nothing (blob is LF); `build.ps1` packs the WORKING COPY, so that

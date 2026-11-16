@@ -493,11 +493,14 @@ def finish_hover_text(fin, tok):
     """[bug-2779] The specific unlock line for a weapon-finish tile. OFF -> blank; otherwise its challenge."""
     if fin == "none":
         return ""
-    key = "fin:%s" % fin
-    if key in tok:
-        title, desc = tok[key]
-        return (desc.split(" to unlock")[0]).replace('"', "'")   # strip the redundant "to unlock the X finish"
-    return "Complete its Service Record challenge"
+    # [killchal-next 2026-10-20, restored bug-11308] per-gun ladders (finish_challenges.py): the rung is the same for every
+    # standard gun. f804844b put this here on a side branch only, so the 2026-11-12 regen put the challenge text back.
+    import finish_challenges as _fc
+    rung = dict(zip((_fc.FINISHES[f][0] for f in _fc.ORDER), _fc.LADDER))
+    k = fin.replace("camo_", "")
+    if k in rung:
+        return "%d kills with a gun unlock it (per gun)" % rung[k]
+    return "Kills with a gun unlock it (per gun)"
 
 
 def _cos_challenge_cvars():
@@ -1163,6 +1166,50 @@ def record_urc():
 
 # ---------------------------------------------------------------- emit: the roster .scr
 MP_FINISHES = ["gold", "chrome", "blued", "bloody", "camo_woodland", "camo_winter", "camo_desert"]
+
+# [bug-11309] THE FROZEN PER-GUN INDEX (models/weapons/<name>.tik). Position = the gun's slot in the carried progression blob:
+# its per-gun kill count (coop_mpGC<idx>, 2 base36 chars) and its mastery bit (coop_mpMasterStr). NEVER reorder, insert or
+# delete - a slot that moves hands every saved count to another gun. A new gun with finishes is APPENDED; a gun that loses
+# its finishes keeps its slot. finish_map_scr refuses to build if this list stops covering every finish-carrying gun, and
+# MP_FIN_INDEX_PREFIX_SHA pins the first MP_FIN_INDEX_PREFIX_N slots (appending never changes it).
+# Slots 0..39 = the order shipped v1.10.1 .. v1.10.77 (2026-09-27 .. 11-11; mastery bits since v1.10.1, per-gun counts since
+# v1.10.34); 40..66 = the 27 guns the 2026-11-12 regen added. That regen (v1.10.78 .. v1.10.84) used sorted() over all 67
+# instead (MP_FIN_ORDER_V4B), which is the order mp_progression.scr::seedFromBody migrates from.
+MP_FIN_INDEX = [
+    "bar", "bazooka", "colt45", "delisle", "dp28", "enfield", "fg42", "g43", "g43sniper", "it_w_beretta",
+    "it_w_breda", "it_w_carcano", "it_w_moschetto", "johnson_m1941", "kar98", "kar98_mortar", "kar98sniper",
+    "m10_revolver", "m1_garand", "mauser_c96", "mosin_nagant_rifle", "mp40", "mp44", "nagant_revolver", "p38",
+    "panzerschreck", "ppsh_smg", "shotgun", "silencedpistol", "springfield", "sten", "svt_rifle", "thompsonsmg",
+    "tt33", "tt33silenced", "uk_w_l42a1", "uk_w_piat", "uk_w_vickers", "webley_revolver", "welrod",
+    # ---- 40.. appended 2026-11-12
+    "30calportable", "arisaka", "arisakasniper", "berettasilenced", "carbine", "carcanosniper", "colt_silenced",
+    "enfieldsniper", "garand_scoped", "garand_silenced", "greasegun", "greasegun_silenced", "kar98snipersilenced",
+    "lugerp08", "lugerp08silenced", "mg42portable", "mp40silenced", "mp44scoped", "nagant_sniper",
+    "nagant_snipersilenced", "nambu", "p38silenced", "ppk", "ppsh43silenced", "springfield_unscoped", "thompson50",
+    "type100smg",
+    # ---- append new guns BELOW this line only
+]
+MP_FIN_INDEX_PREFIX_N = 67
+MP_FIN_INDEX_PREFIX_SHA = "7e820cc7a5c58148420982141936d9fbd551fa15"
+MP_FIN_ORDER_V4A = MP_FIN_INDEX[:40]            # v1.10.1 .. v1.10.77: 40 guns, counts string 80 chars, mastery string 40
+MP_FIN_ORDER_V4B = sorted(MP_FIN_INDEX[:67])    # v1.10.78 .. v1.10.84: 67 guns, counts string 134 chars, mastery string 67
+MP_FIN_FMT = "z1"                               # blob field 37: the counts/mastery fields are in MP_FIN_INDEX order
+
+
+def _fin_index_check(mastered_bases):
+    """[bug-11309] The generator assert: the frozen list is intact and covers every gun that has a finish."""
+    import hashlib
+    idx = MP_FIN_INDEX
+    if len(set(idx)) != len(idx):
+        raise SystemExit("MP_FIN_INDEX has a duplicate - never reorder or insert, only append")
+    pre = hashlib.sha1(",".join(idx[:MP_FIN_INDEX_PREFIX_N]).encode("ascii")).hexdigest()
+    if pre != MP_FIN_INDEX_PREFIX_SHA:
+        raise SystemExit("MP_FIN_INDEX: the first %d slots changed (sha %s) - saved per-gun counts would decode onto the "
+                         "wrong guns (bug-11309). Restore the order; new guns are appended." % (MP_FIN_INDEX_PREFIX_N, pre))
+    known = set("models/weapons/%s.tik" % n for n in idx)
+    missing = [b for b in mastered_bases if b not in known]
+    if missing:
+        raise SystemExit("MP_FIN_INDEX is missing gun(s) with finishes: %s - APPEND them to the end of MP_FIN_INDEX" % missing)
 # appearance-panel finish buttons: (index, finish token, short label). Index 0 = OFF (clears the pick,
 # always available). The name-bus marker carries the numeric INDEX (grammar ,q<side>f<digits>); the server
 # maps it back to the finish name in applyMarker.
@@ -1227,12 +1274,47 @@ def finish_map_scr(rows):
         if has_var:
             mastered_bases.append(base)
     # [bug-2770] PER-WEAPON MASTERY index table. Each variant-having base gets a FIXED bit index; the
-    # player's carried mastered-set bitstring (coop_mpMasterStr, persisted in the v3 progression blob) has a
-    # '1' at that index once they master the weapon. mpfin_mastered() reads it to gate the variant per-gun.
-    # Order is sorted+append-only: adding weapons appends higher indices, so existing persisted bits stay put.
-    for i, base in enumerate(mastered_bases):
+    # player's carried mastered-set bitstring (coop_mpMasterStr) has a '1' at that index once they master the weapon,
+    # and the per-gun kill counts (coop_mpGC<idx>) use the same index. [bug-11309] The index is MP_FIN_INDEX (frozen,
+    # append-only) - it used to be sorted(), which renumbered every gun the day new guns sorted in front (2026-11-12).
+    _fin_index_check(mastered_bases)
+    slots = ["models/weapons/%s.tik" % nm for nm in MP_FIN_INDEX]
+    for i, base in enumerate(slots):
         L.append('\tlevel.coop_mpFinIdx["%s"] = %d' % (base, i))
-    L.append('\tlevel.coop_mpFinIdxN = %d' % len(mastered_bases))
+    L.append('\tlevel.coop_mpFinIdxN = %d' % len(slots))
+    # [bug-11309] one-time migration tables (mp_progression.scr::seedFromBody): source slot -> frozen slot for the two
+    # orders blobs were written in before the freeze. A blob carrying field 37 = MP_FIN_FMT is already frozen.
+    pos = dict((nm, i) for i, nm in enumerate(MP_FIN_INDEX))
+    L.append('\tlevel.coop_mpFinFmt = "%s"' % MP_FIN_FMT)
+    L.append('\tlevel.coop_mpFinMigAN = %d' % len(MP_FIN_ORDER_V4A))
+    for i, nm in enumerate(MP_FIN_ORDER_V4A):
+        L.append('\tlevel.coop_mpFinMigA[%d] = %d' % (i, pos[nm]))
+    L.append('\tlevel.coop_mpFinMigBN = %d' % len(MP_FIN_ORDER_V4B))
+    for i, nm in enumerate(MP_FIN_ORDER_V4B):
+        L.append('\tlevel.coop_mpFinMigB[%d] = %d' % (i, pos[nm]))
+    # [killchal-next 2026-10-20, restored bug-11308] PER-GUN FINISH LADDER. Same rungs as coop (docs/tools/finish_challenges.py):
+    # kills with THIS gun unlock this gun's finishes. variant -> base (a FINISHED gun is still that gun: mp_progression.scr::
+    # mpBaseModel reads coop_mpFinBase), idx -> base / display name, and the two ladders (launchers climb the slow one).
+    # f804844b wrote all of this on a side branch that never reached main, so the 2026-11-12 regen (v1.10.78) dropped it:
+    # finished-gun kills earned nothing, and credit()/the armory called labels that no longer existed.
+    import finish_challenges as _fc
+    _std = dict(zip(_fc.ORDER, _fc.LADDER))
+    _slow = dict(zip(_fc.ORDER, _fc.LADDER_SLOW))
+    for i, base in enumerate(slots):
+        nm = next((w["name"] for w in rows if w.get("give") == base), base)
+        L.append('\tlevel.coop_mpFinBaseOf[%d] = "%s"' % (i, base))
+        L.append('\tlevel.coop_mpFinName[%d] = "%s"' % (i, nm.replace('"', "'")))
+        if next((w["pclass"] for w in rows if w.get("give") == base), "") == "rocket":
+            L.append('\tlevel.coop_mpFinSlow[%d] = 1' % i)
+        for fin in MP_FINISHES:
+            var = base.replace(".tik", "_" + fin + ".tik")
+            if var in variants:
+                L.append('\tlevel.coop_mpFinBase["%s"] = "%s"' % (var, base))
+    for fid, fin in enumerate(MP_FINISHES, start=1):
+        L.append('\tlevel.coop_mpFinNo["%s"] = %d' % (fin, fid))
+        L.append('\tlevel.coop_mpFinNeed[%d] = %d' % (fid, _std[fid]))
+        L.append('\tlevel.coop_mpFinNeedSlow[%d] = %d' % (fid, _slow[fid]))
+        L.append('\tlevel.coop_mpFinLabel[%d] = "%s"' % (fid, fin.replace("camo_", "").upper()))
     L.append('\tprintln( "^~^~^ MPFIN init combos=%d masterable=%d" )' % (n, len(mastered_bases)))
     L.append("}end")
     L.append("")
@@ -1252,6 +1334,98 @@ def finish_map_scr(rows):
         "\tif( local.str[local.idx] == \"1\" ){ end 1 }",
         "}end 0",
         "",
+        "//[killchal-next 2026-10-20] PER-GUN FINISHES. How many kills this player has with the gun at index local.idx.",
+        "mpfin_count local.p local.idx:{",
+        "\tlocal.c = local.p.flags[( \"coop_mpGC\" + local.idx )]",
+        "\tif( local.c == NIL ){ local.c = 0 }",
+        "}end local.c",
+        "",
+        "//Kills the gun at local.idx needs for finish number local.fid (1 gold .. 7 desert): the standard ladder, or the slow one for launchers.",
+        "mpfin_need local.idx local.fid:{",
+        "\twaitthread mpfin_init",
+        "\tlocal.n = level.coop_mpFinNeed[local.fid]",
+        "\tif( level.coop_mpFinSlow[local.idx] == 1 ){ local.n = level.coop_mpFinNeedSlow[local.fid] }",
+        "\tif( local.n == NIL ){ local.n = 0 }",
+        "}end local.n",
+        "",
+        "//Is finish local.fin (gold, chrome ...) OPEN on gun local.base for this player? Yes when the gun's own kill count reached the rung, or when the",
+        "//LEGACY snapshot (coop_mpFinLeg: the finishes the player held when per-gun ladders began, set once in mp_progression.scr::mpfin_snapshot) has the",
+        "//finish AND the gun is mastered (the old rule, kept so nothing earned is re-locked). A base with no finish index is ungated.",
+        "mpfin_open local.p local.base local.fin:{",
+        "\tif( local.p == NULL ){ end 0 }",
+        "\twaitthread mpfin_init",
+        "\tlocal.idx = level.coop_mpFinIdx[local.base]",
+        "\tif( local.idx == NIL ){ end 1 }",
+        "\tlocal.fid = level.coop_mpFinNo[local.fin]",
+        "\tif( local.fid == NIL ){ end 0 }",
+        "\tlocal.need = waitthread mpfin_need local.idx local.fid",
+        "\tlocal.cnt = waitthread mpfin_count local.p local.idx",
+        "\tif( local.need > 0 && local.cnt >= local.need ){ end 1 }",
+        "\tlocal.leg = local.p.flags[\"coop_mpFinLeg\"]",
+        "\tif( local.leg != NIL ){",
+        "\t\tif( local.leg.size >= local.fid ){",
+        "\t\t\tif( local.leg[( local.fid - 1 )] == \"1\" ){",
+        "\t\t\t\tlocal.m = waitthread mpfin_mastered local.p local.base",
+        "\t\t\t\tif( local.m == 1 ){ end 1 }",
+        "\t\t\t}",
+        "\t\t}",
+        "\t}",
+        "}end 0",
+        "",
+        "//Is finish local.fin open on ANY gun of this player's? (the MP pick is one finish for the whole kit; resolve() decides per gun at spawn)",
+        "mpfin_openAny local.p local.fin:{",
+        "\tif( local.p == NULL ){ end 0 }",
+        "\twaitthread mpfin_init",
+        "\tfor( local.i = 0; local.i < level.coop_mpFinIdxN; local.i++ ){",
+        "\t\tlocal.b = level.coop_mpFinBaseOf[local.i]",
+        "\t\tif( local.b != NIL ){",
+        "\t\t\tlocal.o = waitthread mpfin_open local.p local.b local.fin",
+        "\t\t\tif( local.o == 1 ){ end 1 }",
+        "\t\t}",
+        "\t}",
+        "}end 0",
+        "",
+        "//\"37 / 100 MP40 kills\" - this gun's progress toward finish local.fin.",
+        "mpfin_prog local.p local.base local.fin:{",
+        "\tlocal.t = \"\"",
+        "\tif( local.p == NULL ){ end local.t }",
+        "\twaitthread mpfin_init",
+        "\tlocal.idx = level.coop_mpFinIdx[local.base]",
+        "\tlocal.fid = level.coop_mpFinNo[local.fin]",
+        "\tif( local.idx == NIL || local.fid == NIL ){ end local.t }",
+        "\tlocal.need = waitthread mpfin_need local.idx local.fid",
+        "\tlocal.cnt = waitthread mpfin_count local.p local.idx",
+        "\tif( local.cnt > local.need ){ local.cnt = local.need }",
+        "\tlocal.t = ( \"\" + local.cnt + \" / \" + local.need + \" \" + level.coop_mpFinName[local.idx] + \" kills\" )",
+        "}end local.t",
+        "",
+        "//The progress line of the player's MOST-used gun toward finish local.fin (the refusal text of a locked pick).",
+        "mpfin_best local.p local.fin:{",
+        "\tlocal.t = \"\"",
+        "\tif( local.p == NULL ){ end local.t }",
+        "\twaitthread mpfin_init",
+        "\tlocal.bi = 0",
+        "\tlocal.bc = -1",
+        "\tfor( local.i = 0; local.i < level.coop_mpFinIdxN; local.i++ ){",
+        "\t\tlocal.c = waitthread mpfin_count local.p local.i",
+        "\t\tif( local.c > local.bc ){ local.bc = local.c; local.bi = local.i }",
+        "\t}",
+        "\tlocal.bb = level.coop_mpFinBaseOf[local.bi]",
+        "\tif( local.bb == NIL ){ end local.t }",
+        "\tlocal.t = waitthread mpfin_prog local.p local.bb local.fin",
+        "}end local.t",
+        "",
+        "//Called by mp_progression.scr::credit after a gun's count went up: a rung reached = a finish just opened on this gun.",
+        "mpfin_crossed local.p local.idx local.cnt:{",
+        "\tif( local.p == NULL ){ end }",
+        "\tfor( local.f = 1; local.f <= 7; local.f++ ){",
+        "\t\tlocal.n = waitthread mpfin_need local.idx local.f",
+        "\t\tif( local.n > 0 && local.n == local.cnt ){",
+        "\t\t\tlocal.p iprint ( level.coop_mpFinName[local.idx] + \": \" + level.coop_mpFinLabel[local.f] + \" finish unlocked (\" + local.cnt + \" kills)\" ) 1",
+        "\t\t}",
+        "\t}",
+        "}end",
+        "",
         "//Resolve a weapon give to its finish variant IF the player has earned + picked that finish AND has",
         "//MASTERED that specific weapon (bug-2770). Returns the variant tik, or the base unchanged. The pick is",
         "//the server flag coop_mpFinSel; finUnlocked re-checks the finish is earned; mpfin_mastered gates per-gun.",
@@ -1262,8 +1436,8 @@ def finish_map_scr(rows):
         "\twaitthread mpfin_init",
         "\tlocal.fin = local.p.flags[\"coop_mpFinSel\"]",
         "\tif( local.fin == NIL || local.fin == \"\" ){ end local.out }",
-        "\tif( waitthread coop_mod/mp_challenges.scr::finUnlocked local.p local.fin != 1 ){ end local.out }",
-        "\tif( waitthread mpfin_mastered local.p local.base != 1 ){ end local.out }",
+        "\tlocal.fo = waitthread mpfin_open local.p local.base local.fin",
+        "\tif( local.fo != 1 ){ end local.out }",
         "\tlocal.var = level.coop_mpFinVar[( local.base + \"|\" + local.fin )]",
         "\tif( local.var != NIL && local.var != \"\" ){ local.out = local.var }",
         "}end local.out",
@@ -1459,7 +1633,9 @@ def render_all(rows):
     files[os.path.join(MOD, "ui", "coop_mp_record.urc")] = record_urc()
     # [bug-2764] per-row hover cfgs for the Service Record mouseover (what each challenge unlocks).
     for i, (cid, cat, title, desc, stat, tgt, rw) in enumerate(gen_mp_challenges.all_challenges()):
-        hov = ("%s  ->  unlocks %s" % (desc, gen_mp_challenges.reward_name(rw))).replace('"', "'")
+        rn = gen_mp_challenges.reward_name(rw)
+        # a feat with no reward of its own (the fin: challenges since the per-gun ladders) shows just its text, not "->  unlocks "
+        hov = (("%s  ->  unlocks %s" % (desc, rn)) if rn else desc).replace('"', "'")
         files[os.path.join(MOD, "ui", "coop_mp_record", "srhov%d.cfg" % i)] = 'set coop_mpSrHover "%s"\n' % hov
     return files
 
