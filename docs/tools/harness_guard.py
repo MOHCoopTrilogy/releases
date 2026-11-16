@@ -280,6 +280,11 @@ HARNESSES = {
     # openmohaa.exe, home on H:, basepath = the GOG tree read-only, one test pak in the home, net_port 12971 (+12973 client 2)
     r"H:\hzm_work\escmenu\client": {"owner": "escmenu", "home": r"H:\hzm_work\escmenu\client\home"},
     r"H:\hzm_work\escmenu\client2": {"owner": "escmenu2", "home": r"H:\hzm_work\escmenu\client2\home"},
+    # disc guns lane (2026-11-16, H:\hzm_work\discguns\PLAN.md): byte copies of the LIVE G:\mohaa-gl2 exe + DLLs, basepath =
+    # G:\mohaa-gl2 read-only (its main / mainta / maintt; the BYO disc paks live in its HOME, never read here), test paks in
+    # the home only, net_port 12611 (client 2: 12613, dedicated 12615). client = has the override pak, client2 = has not
+    r"H:\hzm_work\discguns\client": {"owner": "discguns", "home": r"H:\hzm_work\discguns\client\home"},
+    r"H:\hzm_work\discguns\client2": {"owner": "discguns2", "home": r"H:\hzm_work\discguns\client2\home"},
 }
 # [2026-10-12] one slot PER OWNER (= per harness folder), no longer one for the whole PC: the user lifted the quiet rule
 # ("It's fine to hear the fans now"), so different harnesses run at the same time. Two clients of the SAME harness
