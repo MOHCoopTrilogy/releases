@@ -81,8 +81,9 @@ def main(pk3, level, out_pk3, exe_dir):
                 zi = zipfile.ZipInfo(n, ZIP_TIME)
                 zi.compress_type = zipfile.ZIP_DEFLATED
                 o.writestr(zi, files[n])
-    with open(out_pk3 + ".report.json", "w") as f:
-        json.dump(report, f, indent=0, sort_keys=True)
+    if files:                  # the props key off: no prop textures, no pak, no report
+        with open(out_pk3 + ".report.json", "w") as f:
+            json.dump(report, f, indent=0, sort_keys=True)
     print("FL props HD", sum(1 for v in report.values() if v.startswith(("ok", "kept"))), "of", len(report), "->", out_pk3)
     return 0
 

@@ -3,7 +3,7 @@
 destroyed - on the STOCK MOHAA entities, the European Assault recipe (docs/tools/ea/eaprops.py, user-approved Panzer
 2026-11-15). Our own code, stdlib only; runs on the PLAYER's PC inside the converter, and its output (mesh, textures)
 goes only into the player's own converted pak. Nothing disc-derived is shipped. Each prop is used by the mission script
-only once the user approved it (OWN -> level.fl_prop_own); until then the stock models play.
+only once the user approved it: fl_levels.json "props" per level (off or absent = nothing built, the pak unchanged).
 
 Reverse-engineered 2026-11-15 on the user's own Xbox USA disc (1_1, level.viv):
   - the tank is a set of object meshes (.msh, flcore.Level.mesh): Tank_PIV_Body, _Turret01, _Cannon01, _Mg01,
@@ -29,7 +29,6 @@ for _p in (os.path.join(HERE, "..", "ea"), os.path.join(HERE, "ea")):     # sour
         sys.path.append(_p)
 import eaprops  # noqa: E402  (write_skd / write_skc / local_channels / axes / surfaces_for / effective_file)
 
-OWN = set()       # props whose own model the user approved ("panzer")
 SCALE = 52.0      # the converted soldiers' scale (u/m)
 
 STOCK = {
@@ -104,10 +103,20 @@ def _mesh(L, name, off, texkey, files, tdir):
     return out
 
 
+def enabled(level, prop):
+    """fl_levels.json "props": {"<prop>": true} - flipped by the SO fixer only once the user approved the model. Off or
+    absent: nothing is written, and the converted pak is byte-identical to a build without this module"""
+    try:
+        import flpack
+        return bool((flpack.spec(level).get("props") or {}).get(prop))
+    except Exception:
+        return False
+
+
 def build(L, level, mohaa_base, files, log=print):
     """write the props' models into the converted pak; returns data-script lines (level.fl_prop_tik / fl_prop_own)"""
     lines = []
-    if not mohaa_base or level != "1_1":
+    if not mohaa_base or not enabled(level, "panzer"):
         return lines
     try:
         _panzer(L, level, mohaa_base, files, lines, log)
@@ -274,8 +283,7 @@ def _panzer(L, level, mohaa_base, files, lines, log):
     lines.append('\tlevel.fl_prop_tik["panzer"] = "models/vehicles/fl_%s_panzer.tik"' % level)
     lines.append('\tlevel.fl_prop_tik["panzer_static"] = "models/vehicles/fl_%s_panzer_static.tik"' % level)
     lines.append('\tlevel.fl_prop_tik["panzer_wreck"] = "models/vehicles/fl_%s_panzer_wreck.tik"' % level)
-    if "panzer" in OWN:
-        lines.append('\tlevel.fl_prop_own["panzer"] = 1')
+    lines.append('\tlevel.fl_prop_own["panzer"] = 1')     # built only once approved (the fl_levels key)
     log("flprops: Panzer IV -> fl_%s_panzer.tik (hull %d / turret+gun %d / static %d / wreck %d surfaces, %d textures; "
         "ring shift %.1f %.1f; trunnion %s muzzle %s)" % (level, len(hull_s), len(can_s), len(st_s), len(wr_s),
                                                            len(texkey), shift[0], shift[1],
