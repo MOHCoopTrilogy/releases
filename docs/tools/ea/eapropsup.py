@@ -41,6 +41,11 @@ RECIPES = {
                    "grain": [("Rubber004", 5.0, 1.2, "tyre"), ("Metal063", 6.0, 1.5, "metal")]},
     "panzer_005": {"mode": "esrgan"},
     "panzer_006": {"mode": "keep"},
+    # MG42 (crewed gun, 512 px; the pole 128 px): ESRGAN crisper than the CC0 grain on the side-by-side (cmp_ea_more,
+    # user 2026-11-15 "upscale everything we haven't"), capped at 1024
+    "mg42_p051": {"mode": "esrgan", "size": 1024},
+    "mg42_p052": {"mode": "esrgan", "size": 1024},
+    "mg42_00fq": {"mode": "esrgan"},
 }
 
 
