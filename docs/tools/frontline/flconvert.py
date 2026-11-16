@@ -931,13 +931,16 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     wtags = []
     volumes = 0
     idmap = {}                    # [flpolish] wound triangle -> (disc chunk, triangle index), for flsheets' keep list
+    # [anvil] fl_levels "volume_mats": more volume-flagged materials that are not solid (1_3: material 18 = a
+    # volume sheet across the health-135 alcove that the original's AI routes pass through; 1_1: none -> unchanged)
+    XVOL_ = tuple(flpack.spec(level).get("volume_mats", ()))
     riverbed = []
     for name, vs, ts in coll:
         if os.environ.get("FL_COLL_ONLY") and os.environ["FL_COLL_ONLY"] not in name:
             continue
         P = [X(v) for v in vs]
         for ti_, (a, b, c, f) in enumerate(ts):
-            if coll_is_volume(f):
+            if coll_is_volume(f) or ((f & COLL_VOLUME) and (f & 0x7FF) in XVOL_):
                 volumes += 1
                 if (f & 0x7FF) == 15:
                     # [flpolish] the river: no walkable surface, but a bed 160u under it so a player who falls in
@@ -957,6 +960,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     colboxes = []
     rtris = [(X(m["verts"][a]), X(m["verts"][b]), X(m["verts"][c])) for m in meshes if m["tris"]
              and (m["cell"], m["draw"]) not in hidden for a, b, c in m["tris"]]
+    # [anvil] the player-only wrap material: 3 on 1_1, 1 on 1_3 (1012 tris of material 1 + special; its m3 has no
+    # special bit). fl_levels "wrap_mat", default 3 = 1_1 unchanged; flfit's column pass reads the same material
+    WRAP_MAT = int(os.environ.get("FL_WRAP_MAT") or flpack.spec(level).get("wrap_mat", 3))   # env: dev baseline only
+    flfit.MAT_SPECIAL = WRAP_MAT
     if not os.environ.get("FL_NO_FIT"):
         # the floor under a column, measured WITHOUT the special-surface boxes themselves (their inner faces read as
         # floors and floated the fitted box ~50u up: a crawl-height slab under the tree)
@@ -968,7 +975,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # of gets collision of its own
     if not os.environ.get("FL_NO_SHEETS"):
         wound, wtags, drawn_coll, stats["sheets"] = flsheets.replace(
-            wound, wtags, [idmap.get(t) for t in wound], lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL),
+            wound, wtags, [idmap.get(t) for t in wound], lambda f: (f & 0x7FF) == WRAP_MAT and bool(f & COLL_SPECIAL),
             rtris, keep=flpack.spec(level).get("clip_keep", []))
         # the original's AI routes stay open (flroutes.py): no drawn-geometry collision across them, and the gaps the
         # original's narrower body walks through are cut wide enough for MOHAA's box (collision only)
@@ -977,7 +984,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         wound += drawn_coll
         wtags += [TAG_DRAWN] * len(drawn_coll)
         wound, wtags, stats["routes"] = flroutes.carve(
-            wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL) and f < TAG_CLIFF,
+            wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == WRAP_MAT and bool(f & COLL_SPECIAL) and f < TAG_CLIFF,
             dense=flpack.spec_xy(level, X, "route_widen"))
         # ...and the sheets that stay (the level's boundaries where nothing is drawn) get a VISIBLE edge: a barbed-wire
         # fence along their foot (MOHAA's own textures/mohcommon/barbwire from the player's install)
