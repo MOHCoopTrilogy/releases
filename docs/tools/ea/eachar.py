@@ -239,7 +239,9 @@ def _stock_bones(mohaa_base):
 # jaw is blended (fgame actor.cpp EventSetSayAnim, skeletorbones GetSlerpValue).
 JAW_ON = os.environ.get("EA_JAW") == "1"
 JAW_NAME = "Bip01 Jaw"
-JAW_MAX_DEG = 11.0            # fully open (offline: 10 deg reads as speech, 20 as a shout; 13 looked a grimace on the partisan)
+JAW_MAX_DEG = 20.0            # the original: 0.349 rad at full-scale peak, quadratic in the peak level (XBE 0x44d70)
+JAW_SLEW = 0.25               # the original: the level moves at most 0.25 per update toward the frame's peak (0x52030)
+JAW_CAP_DEG = 12.0            # DEVIATION (listed in FIDELITY): our re-posed partisan face creases at the chin from ~14 deg
 JAW_CORNER = (1.2, 3.0)       # cm off the head centre line: jaw share fades from full to 35 % (mouth corners)
 JAW_POS = {}                  # set by build(): the jaw pivot in the stock pose (model space, cm x girth scale)
 
@@ -279,7 +281,8 @@ JAW_SIGN = -1.0             # FK check 2026-11-15: +1 pressed the chin up into t
 
 
 def _wav_env(b, fps=30.0):
-    """per-frame loudness 0..1 of a PCM .wav (bytes): RMS in 1/fps windows, -40..-6 dB of full scale mapped to 0..1"""
+    """per-frame PEAK level 0..1 of a PCM .wav (bytes): max |sample| / 32768 in 1/fps windows - what the original's
+    speech code feeds its jaw (DEFAULT.XBE 0xf0935: peak of the decoded samples x 1/32768, kept per speaking entity)"""
     import array
     import io
     import wave
@@ -298,9 +301,7 @@ def _wav_env(b, fps=30.0):
         seg = a[i:i + step]
         if not seg:
             break
-        rms = math.sqrt(sum(v * v for v in seg) / len(seg)) / 32768.0
-        db = 20.0 * math.log10(rms) if rms > 1e-6 else -120.0
-        out.append(min(1.0, max(0.0, (db + 40.0) / 34.0)))
+        out.append(min(1.0, max(abs(min(seg)), abs(max(seg))) / 32768.0))
     return out
 
 
@@ -317,13 +318,14 @@ def _jaw_clips(level, files, log=print):
         env = _wav_env(files[path])
         if len(env) < 3:
             continue
-        # syllable-rate smoothing: fast open, slower close; a closed mouth at both ends
+        # the original's jaw (DEFAULT.XBE 0x52030 / 0x44d70): the value moves toward the frame's peak by at most
+        # JAW_SLEW per update, and the jaw opens -min(v^2 x 0.349, 0.349) rad (20 deg at full scale)
         sm, cur = [], 0.0
         for v in env:
-            cur = cur + (v - cur) * (0.65 if v > cur else 0.35)
+            cur = min(v, cur + JAW_SLEW) if v > cur else max(v, cur - JAW_SLEW)
             sm.append(cur)
         sm = [0.0] + sm + [0.0, 0.0]
-        frames = [{JAW_NAME + " rot": _jaw_quat(JAW_MAX_DEG * v)} for v in sm]
+        frames = [{JAW_NAME + " rot": _jaw_quat(min(min(v * v, 1.0) * JAW_MAX_DEG, JAW_CAP_DEG))} for v in sm]
         # flagged looping: as a one-shot the CLIENT dropped the say slot after ~1.5 s (mouth shut while the server's
         # jaw tag stayed open, 2026-11-15); looped it renders the whole line. The map script stops it when the line
         # ends (`say` with no argument), so the envelope never repeats audibly out of sync.
