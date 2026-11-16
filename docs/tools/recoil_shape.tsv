@@ -111,3 +111,4 @@ bazooka	bazooka	L	0	0	inline	none	1.0	0.00	0.05	2	0.10	0.20	1	[D] recoilless: th
 panzerschreck	panzerschreck	L	0	0	inline	none	1.0	0.00	0.05	2	0.10	0.20	1	[D] recoilless
 coop_panzerfaust	coop_panzerfaust	L	0	0	inline	none	1.0	0.00	0.05	2	0.10	0.20	1	[D] recoilless
 uk_w_piat	uk_w_piat	L	0	0	inline	none	1.0	0.04	0.10	2	0.10	0.20	6	[M] the one launcher that kicks: its spigot spring recoil is documented as powerful
+sten_mk2s_ea	sten	A	0.30	0.65	mid	suppressor	1.25	0.00	0.15	7	0.30	0.10	1	[D] [discguns] EA Sten Mk II(S): the Sten + its integral suppressor (heavier, gas trapped), its own row - never the plain Sten by stem stripping (coordinator 2026-11-16)

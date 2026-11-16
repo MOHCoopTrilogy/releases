@@ -1241,6 +1241,13 @@ def _coop_variants():
     return set(v for v, b in re.findall(r'coop_skinBase\["([^"]+)"\]\s*=\s*"([^"]+)"', txt))
 
 
+def _disc_stubs():
+    """(stub tik, base tik) for every shipped disc-gun stub (gen_disc_stubs.py STUBS)"""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen_disc_stubs
+    return [("models/weapons/byo/%s.tik" % r[0], "models/weapons/%s.tik" % r[1]) for r in gen_disc_stubs.STUBS]
+
+
 def finish_map_scr(rows):
     """coop_mod/mp_finish_map.scr - the MP-owned weapon-FINISH map + spawn resolver. For each MP weapon
     that has coop variant tiks, records base|finish -> variant tik. mp_armory.scr::giveKit calls resolve()
@@ -1315,6 +1322,8 @@ def finish_map_scr(rows):
         L.append('\tlevel.coop_mpFinNeed[%d] = %d' % (fid, _std[fid]))
         L.append('\tlevel.coop_mpFinNeedSlow[%d] = %d' % (fid, _slow[fid]))
         L.append('\tlevel.coop_mpFinLabel[%d] = "%s"' % (fid, fin.replace("camo_", "").upper()))
+    for stub, sbase in _disc_stubs():
+        L.append('\tlevel.coop_mpFinBase["%s"] = "%s"' % (stub, sbase))
     L.append('\tprintln( "^~^~^ MPFIN init combos=%d masterable=%d" )' % (n, len(mastered_bases)))
     L.append("}end")
     L.append("")

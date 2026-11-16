@@ -41,6 +41,7 @@ Avg TTK = the continuous form (round count un-rounded: the average across hit lo
 | DP-28 | dp28 | 522 | 550 | spec (https://en.wikipedia.org/wiki/Degtyaryov_machine_gun) | 32 | 32 | 1/1 | 0.24 | 0.23 | 0.35 | 0.33 | 0.12 | 0.11 | 5 |
 | M1919 30cal | 30calportable | 667 | 500 | spec (https://en.wikipedia.org/wiki/M1919_Browning_machine_gun) | 45 | 45 | 2/1 | 0.01 | 0.15 (free) | 0.09 | 0.24 | 0.00 | 0.12 | 6 |
 | MG42 | mg42portable | 857 | 1200 | MEASURED (https://lonesentry.com/articles/ttt/mg42.html) | 60 | 60 | 2/1 | 0.00 | 0.03 (free) | 0.00 | 0.05 | 0.00 | 0.00 | 7 |
+| Sten Mk II(S) (European Assault) | sten_mk2s_ea | 667 | 450 | tune: [discguns] Sten Mk II(S) about 450 rpm (suppressed, lighter-sprung bolt; PLAN 4b), n | 20 | 24 | 1/1 | 0.36 | 0.42 | 0.36 | 0.53 | 0.18 | 0.27 | 5 |
 
 ## Turret machine guns (AI gunners)
 

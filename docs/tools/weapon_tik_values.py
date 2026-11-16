@@ -41,6 +41,12 @@ def index():
                     l = ("models/weapons/" + os.path.basename(f)).lower()
                     if l.endswith(".tik") or l.endswith(".txt"):
                         _IDX[l] = ("file", f, None)
+                # [discguns] the shipped disc-gun stubs and their bodies (models/weapons/byo/, gen_disc_stubs.py)
+                for f in glob.glob(os.path.join(MOD, "models", "weapons", "byo", "*")) + \
+                        glob.glob(os.path.join(MOD, "models", "weapons", "byo", "body", "*")):
+                    rel = os.path.relpath(f, MOD).replace(os.sep, "/").lower()
+                    if rel.endswith(".tik") or rel.endswith(".txt"):
+                        _IDX[rel] = ("file", f, None)
     return _IDX
 
 
@@ -72,8 +78,16 @@ def text_with_includes(path, depth=0):
     return "\n".join(out)
 
 
+def tik_path(stem):
+    """models/weapons/<stem>.tik, or the disc-gun stub models/weapons/byo/<stem>.tik when only that exists"""
+    p = "models/weapons/%s.tik" % stem
+    if where(p) is None and where("models/weapons/byo/%s.tik" % stem) is not None:
+        return "models/weapons/byo/%s.tik" % stem
+    return p
+
+
 def values(stem):
-    t = text_with_includes("models/weapons/%s.tik" % stem)
+    t = text_with_includes(tik_path(stem))
     if not t:
         return None
     vals, prio = {}, {}
@@ -108,7 +122,7 @@ def values(stem):
         except ValueError:
             out[k] = None
     out["semiauto"] = "semiauto" in vals
-    out["tik"] = where("models/weapons/%s.tik" % stem)
+    out["tik"] = where(tik_path(stem))
     return out
 
 
