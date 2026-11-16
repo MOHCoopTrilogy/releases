@@ -241,7 +241,8 @@ JAW_ON = os.environ.get("EA_JAW") == "1"
 JAW_NAME = "Bip01 Jaw"
 JAW_MAX_DEG = 20.0            # the original: 0.349 rad at full-scale peak, quadratic in the peak level (XBE 0x44d70)
 JAW_SLEW = 0.25               # the original: the level moves at most 0.25 per update toward the frame's peak (0x52030)
-JAW_CAP_DEG = 12.0            # DEVIATION (listed in FIDELITY): our re-posed partisan face creases at the chin from ~14 deg
+JAW_CAP_DEG = 20.0            # = the original (user "Yes to 20"); the chin crease is handled by _jaw_falloff
+JAW_FALLOFF_ITERS = 5         # edge-relaxation passes of the jaw share below the lower lip
 JAW_CORNER = (1.2, 3.0)       # cm off the head centre line: jaw share fades from full to 35 % (mouth corners)
 JAW_POS = {}                  # set by build(): the jaw pivot in the stock pose (model space, cm x girth scale)
 
@@ -263,6 +264,67 @@ def _jaw_bone(skel):
            struct.pack("<5i", 0, 84, 108, 108 + len(chan), 108 + len(chan)) +
            struct.pack("<6f", off[0], off[1], off[2], 1.0, 1.0, 1.0) + chan)
     return rec, P
+
+
+def _jaw_falloff(V, W, tris, s, iters=JAW_FALLOFF_ITERS):
+    """a smooth jaw-to-head band under the mouth: the disc weights the chin fully to the jaw and the throat fully to
+    the head, which creased at the jawline once the jaw opened past ~14 deg. Below the lower lip (2 cm under the top of
+    the jaw-weighted verts) the jaw share is relaxed over the mesh edges a few times (head + jaw total kept), so the
+    skin between chin and throat stretches over several rows instead of one."""
+    jw = [dict(w).get(JAW_NAME, 0.0) for w in W]
+    js = [z for z, j in zip((v[2] for v in V), jw) if j > 0.5]
+    if not js:
+        return W
+    lim = max(js) - 2.0 * (s or 1.0)
+    nb = [set() for _ in V]
+    for a, b, c in tris:
+        nb[a].update((b, c)); nb[b].update((a, c)); nb[c].update((a, b))
+    hj = [dict(w).get(JAW_NAME, 0.0) + dict(w).get("Bip01 Head", 0.0) for w in W]
+    free = [V[i][2] < lim and hj[i] > 0.3 and (jw[i] > 0.0 or any(jw[n] > 0.0 for n in nb[i]))
+            for i in range(len(V))]
+    for _ in range(iters):
+        nj = list(jw)
+        for i, f in enumerate(free):
+            if f and nb[i]:
+                nj[i] = 0.5 * jw[i] + 0.5 * sum(jw[n] for n in nb[i]) / len(nb[i])
+        jw = nj
+        free = [f or (V[i][2] < lim and hj[i] > 0.3 and any(jw[n] > 0.0 for n in nb[i])) for i, f in enumerate(free)]
+    out = []
+    for i, w in enumerate(W):
+        d = dict(w)
+        if hj[i] > 0.3 and (JAW_NAME in d or jw[i] > 1e-4):
+            j = max(0.0, min(hj[i], jw[i]))
+            d[JAW_NAME], d["Bip01 Head"] = j, hj[i] - j
+            d = {k: v for k, v in d.items() if v > 1e-4}
+        out.append(sorted(d.items(), key=lambda q: -q[1]))
+    return out
+
+
+def _jaw_falloff_all(pre, s):
+    """_jaw_falloff over all sub-meshes at once: vertices at the same position in different sub-meshes (the seams
+    between face, head and collar surfaces) are welded for the relaxation, so the band crosses the seams and both
+    copies of a seam vertex end with the same jaw share (no crack)"""
+    key, V, W, T, back = {}, [], [], [], []
+    for m, (k, Vm, Nm, Wm, uv, tris, shape) in enumerate(pre):
+        loc = []
+        for i, v in enumerate(Vm):
+            q = (round(v[0] * 20), round(v[1] * 20), round(v[2] * 20))
+            if q not in key:
+                key[q] = len(V)
+                V.append(v)
+                W.append(Wm[i])
+            loc.append(key[q])
+            back.append((m, i, key[q]))
+        T += [(loc[a], loc[b], loc[c]) for a, b, c in tris]
+    W2 = _jaw_falloff(V, W, T, s)
+    for m, i, g in back:
+        if dict(W2[g]).get(JAW_NAME, 0.0) or JAW_NAME in dict(pre[m][3][i]):
+            hj = dict(pre[m][3][i]).get(JAW_NAME, 0.0) + dict(pre[m][3][i]).get("Bip01 Head", 0.0)
+            if hj > 0.3:
+                d = dict(pre[m][3][i])
+                j = min(hj, dict(W2[g]).get(JAW_NAME, 0.0))
+                d[JAW_NAME], d["Bip01 Head"] = j, hj - j
+                pre[m][3][i] = sorted(((bn, w) for bn, w in d.items() if w > 1e-4), key=lambda q: -q[1])
 
 
 def _jaw_quat(deg):
@@ -594,7 +656,7 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
     T, s = repose(skel, J)
     if JAW_NAME in bidx and "p" in JAW_POS:
         J[JAW_NAME] = (JAW_POS["p"], J["Bip01 Head"][1])
-    blobs, surf_names = [], []
+    blobs, surf_names, pre = [], [], []
     smooth = SUBDIV.get(label, SMOOTH)
     model["smoothed"] = smooth
     for k, ((pos, uv, tris, shape), sd) in enumerate(zip(model["meshes"], sdata)):
@@ -637,8 +699,8 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
                 # stretched the partisan's lips into a grin): from 1.2 cm off the head's centre line, down to 35 % of
                 # the jaw share by 3 cm, the rest to the head
                 yo = abs(V[-1][1] - J["Bip01 Head"][0][1]) / (s or 1.0)
-                f = 1.0 if yo <= JAW_CORNER[0] else max(0.35, 1.0 - (yo - JAW_CORNER[0]) /
-                                                         (JAW_CORNER[1] - JAW_CORNER[0]) * 0.65)
+                f = 1.0 if yo <= JAW_CORNER[0] else max(0.8, 1.0 - (yo - JAW_CORNER[0]) /
+                                                        (JAW_CORNER[1] - JAW_CORNER[0]) * 0.2)
                 if f < 1.0:
                     acc_ = {}
                     for bn, w in wl:
@@ -649,6 +711,10 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
                             acc_[bn] = acc_.get(bn, 0.0) + w
                     wl = list(acc_.items())
             W.append(sorted(wl, key=lambda q: -q[1]))
+        pre.append((k, V, N, W, uv, tris, shape))
+    if JAW_NAME in J:
+        _jaw_falloff_all(pre, s)
+    for k, V, N, W, uv, tris, shape in pre:
         # winding: each triangle faces the way the disc's own normals say (MOHAA wants (e1 x e2) outward)
         out_t = []
         for t in tris:
