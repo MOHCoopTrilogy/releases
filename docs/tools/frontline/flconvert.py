@@ -420,7 +420,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             if name not in files:
                 # [flpolish] white: Frontline draws these untextured (1974 tris on 1_1) in their vertex colour alone;
                 # the old blue-grey (40,70,90) stand-in tinted every one of them
-                files[name + ".tga"] = tga_bytes(4, 4, bytes((255, 255, 255, 255)) * 16)
+                # [anvil] fl_levels "untextured_grey" (default 255 = white, 1_1 unchanged): 1_3 at night - white x vertex
+                # colour reads ~3x brighter than the textured surfaces beside it (pale crane beams, U-boat wires, QA
+                # 2026-11-16); a mid grey keeps them in the world's range [PROV until the trace shows the original]
+                _ug = int(flpack.spec(level).get("untextured_grey", 255))
+                files[name + ".tga"] = tga_bytes(4, 4, bytes((_ug, _ug, _ug, 255)) * 16)
                 shader_lines.append(f"{name}\n{{\n\tsurfaceparm nolightmap\n\tcull none\n\t{{\n\t\tmap {name}.tga\n\t\trgbGen vertex\n\t}}\n}}\n")
             tex_names[key] = B.shader(name, flbsp.SURF_NOLIGHTMAP, 0)
             return tex_names[key]
@@ -899,6 +903,25 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     _sf = None
     if not sky_shader and os.environ.get("FL_SKY_DIR") and flpack.spec(level).get("sky_faces"):
         _sf = sky_faces(os.environ["FL_SKY_DIR"], flpack.spec(level)["sky_faces"], mirror)
+    # [anvil] fl_levels "sky_xsh": the level's own six sky textures in its level.viv (<prefix>_RT/LF/BK/FR/UP/DN.xsh),
+    # decoded from the player's disc. Face mapping calibrated on 1_1, whose level1test_*.xsh are texel-identical to the
+    # emulator-captured faces (RT=+x, LF=-x, BK=+y, FR=-y, UP=+z, DN=-z, no rotation). 1_1 has no key: unchanged
+    if not sky_shader and not _sf and flpack.spec(level).get("sky_xsh"):
+        import shpx
+        import tempfile
+        from PIL import Image
+        _px_ = flpack.spec(level)["sky_xsh"]
+        _td = tempfile.mkdtemp(prefix="flsky_")
+        _ok = True
+        for _f, _k in (("RT", "px"), ("LF", "nx"), ("BK", "py"), ("FR", "ny"), ("UP", "pz"), ("DN", "nz")):
+            _b = L.files.get("%s_%s.xsh" % (_px_, _f))
+            _t = list(shpx.decode(_b))[0] if _b else None
+            if not _t or _t.get("rgba") is None:
+                _ok = False
+                break
+            Image.frombytes("RGBA", (_t["w"], _t["h"]), bytes(_t["rgba"])).convert("RGB").save(os.path.join(_td, "s_%s.png" % _k))
+        if _ok:
+            _sf = sky_faces(_td, "s", mirror)
     if _sf:
         sky_shader = f"textures/fl/{level}/sky"
         for _suf, (_w, _h, _px) in _sf.items():
@@ -931,13 +954,16 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     wtags = []
     volumes = 0
     idmap = {}                    # [flpolish] wound triangle -> (disc chunk, triangle index), for flsheets' keep list
+    # [anvil] fl_levels "volume_mats": more volume-flagged materials that are not solid (1_3: material 18 = a
+    # volume sheet across the health-135 alcove that the original's AI routes pass through; 1_1: none -> unchanged)
+    XVOL_ = tuple(flpack.spec(level).get("volume_mats", ()))
     riverbed = []
     for name, vs, ts in coll:
         if os.environ.get("FL_COLL_ONLY") and os.environ["FL_COLL_ONLY"] not in name:
             continue
         P = [X(v) for v in vs]
         for ti_, (a, b, c, f) in enumerate(ts):
-            if coll_is_volume(f):
+            if coll_is_volume(f) or ((f & COLL_VOLUME) and (f & 0x7FF) in XVOL_):
                 volumes += 1
                 if (f & 0x7FF) == 15:
                     # [flpolish] the river: no walkable surface, but a bed 160u under it so a player who falls in
@@ -957,6 +983,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     colboxes = []
     rtris = [(X(m["verts"][a]), X(m["verts"][b]), X(m["verts"][c])) for m in meshes if m["tris"]
              and (m["cell"], m["draw"]) not in hidden for a, b, c in m["tris"]]
+    # [anvil] the player-only wrap material: 3 on 1_1, 1 on 1_3 (1012 tris of material 1 + special; its m3 has no
+    # special bit). fl_levels "wrap_mat", default 3 = 1_1 unchanged; flfit's column pass reads the same material
+    WRAP_MAT = int(os.environ.get("FL_WRAP_MAT") or flpack.spec(level).get("wrap_mat", 3))   # env: dev baseline only
+    flfit.MAT_SPECIAL = WRAP_MAT
     if not os.environ.get("FL_NO_FIT"):
         # the floor under a column, measured WITHOUT the special-surface boxes themselves (their inner faces read as
         # floors and floated the fitted box ~50u up: a crawl-height slab under the tree)
@@ -968,7 +998,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # of gets collision of its own
     if not os.environ.get("FL_NO_SHEETS"):
         wound, wtags, drawn_coll, stats["sheets"] = flsheets.replace(
-            wound, wtags, [idmap.get(t) for t in wound], lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL),
+            wound, wtags, [idmap.get(t) for t in wound], lambda f: (f & 0x7FF) == WRAP_MAT and bool(f & COLL_SPECIAL),
             rtris, keep=flpack.spec(level).get("clip_keep", []))
         # the original's AI routes stay open (flroutes.py): no drawn-geometry collision across them, and the gaps the
         # original's narrower body walks through are cut wide enough for MOHAA's box (collision only)
@@ -977,7 +1007,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         wound += drawn_coll
         wtags += [TAG_DRAWN] * len(drawn_coll)
         wound, wtags, stats["routes"] = flroutes.carve(
-            wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == 3 and bool(f & COLL_SPECIAL) and f < TAG_CLIFF,
+            wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == WRAP_MAT and bool(f & COLL_SPECIAL) and f < TAG_CLIFF,
             dense=flpack.spec_xy(level, X, "route_widen"))
         # ...and the sheets that stay (the level's boundaries where nothing is drawn) get a VISIBLE edge: a barbed-wire
         # fence along their foot (MOHAA's own textures/mohcommon/barbwire from the player's install)
@@ -1008,6 +1038,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         rp, stats["ramps"] = flclear.ledge_ramps(wound, flpack.spec(level).get("headroom"))
         wound += rp
         wtags += [TAG_RAMP] * len(rp)
+    # [anvil] fl_levels "clip_boxes": [[lo xyz], [hi xyz], reason] in map units - a reviewed stand-in for an original
+    # player-only sheet that has to be moved (1_3: the beam's north guard, shortened so the walk onto the beam stays open).
+    # Built as the 12 faces of the box, tagged as our edge clip (nodraw, player + AI). 1_1: none -> unchanged
+    for lo_, hi_, *_r in flpack.spec(level).get("clip_boxes", []):
+        cs_ = [(x_, y_, z_) for z_ in (lo_[2], hi_[2]) for y_ in (lo_[1], hi_[1]) for x_ in (lo_[0], hi_[0])]
+        for q_ in ((0, 2, 3, 1), (4, 5, 7, 6), (0, 1, 5, 4), (2, 6, 7, 3), (0, 4, 6, 2), (1, 3, 7, 5)):
+            wound += [(cs_[q_[0]], cs_[q_[1]], cs_[q_[2]]), (cs_[q_[0]], cs_[q_[2]], cs_[q_[3]])]
+            wtags += [TAG_CLIFF, TAG_CLIFF]
     # the edges of the world: a clip wall wherever a walkable floor ends over nothing (flcliff.py)
     if not os.environ.get("FL_NO_CLIFF"):
         # against the collision AS BUILT (skins dropped, headroom carved), not the disc's: a dropped player-clip sheet
@@ -1207,6 +1245,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             continue
         om_specs.append((spc["name"], spc, recs_.get(spc.get("object"))))
     nom = 0
+    MESH_LIGHT_ = float(flpack.spec(level).get("mesh_light", 2.0))
     for tag_, spc, rec_ in om_specs:
         draws = L.mesh(spc["mesh"])
         if not draws:
@@ -1230,12 +1269,32 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 l_ = math.sqrt(sum(x * x for x in acc[i])) or 1.0
                 r_, g_, b_, a_ = m["cols"][i]
                 # object meshes carry PS2-range vertex colour (0x80 = full): doubled, or they render near black
-                r_, g_, b_ = (min(255, 2 * c_) for c_ in (r_, g_, b_))
+                # [anvil] fl_levels "mesh_light" (default 2.0 = the doubling above, 1_1 unchanged). 1_3 at night: raw
+                # object colours average about the raw world's (cargo 97 vs world 77), so doubled they read 2-2.5x brighter
+                # than the world around them: pale, near-unlit crane cargo and U-boat wires (coordinator QA 2026-11-16) [PROV]
+                r_, g_, b_ = (min(255, int(MESH_LIGHT_ * c_)) for c_ in (r_, g_, b_))
                 verts.append((p_, m["uvs"][i], tuple(x / l_ for x in acc[i]), (r_, g_, b_, 255)))
                 for q in range(3):
                     lo_[q] = min(lo_[q], p_[q])
                     hi_[q] = max(hi_[q], p_[q])
-            surf_ids.append(B.add_soup(tex_shader(m["tex"]), verts, [i for t in tris for i in t]))
+            # [anvil bug-11271] one object-mesh draw can exceed the engine's SHADER_MAX_VERTEXES 2048 (1_3's U-boat: 3058):
+            # the client drops ("RB_CheckOverflow: verts > MAX") as soon as it is drawn. Split as the world batches are
+            # (<= 2000 verts per surface); a draw under the limit is written exactly as before (1_1 unchanged)
+            if len(verts) <= 2000:
+                surf_ids.append(B.add_soup(tex_shader(m["tex"]), verts, [i for t in tris for i in t]))
+            else:
+                cv_, ci_, mp_ = [], [], {}
+                for t_ in tris:
+                    if len(cv_) + 3 > 2000:
+                        surf_ids.append(B.add_soup(tex_shader(m["tex"]), cv_, ci_))
+                        cv_, ci_, mp_ = [], [], {}
+                    for i_ in t_:
+                        if i_ not in mp_:
+                            mp_[i_] = len(cv_)
+                            cv_.append(verts[i_])
+                        ci_.append(mp_[i_])
+                if cv_:
+                    surf_ids.append(B.add_soup(tex_shader(m["tex"]), cv_, ci_))
         if not surf_ids:
             continue
         brushes_ = []
