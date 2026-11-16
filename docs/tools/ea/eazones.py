@@ -6,7 +6,7 @@ Decoded 2026-11-15 on the user's disc (1_11, "Their Dying Breath"; AUDIT F4 / F5
 
 BloomTrigger (37 on 1_11): box (w15 = 2; w19..21 = FULL extents in metres along the record's local x / y / z; the
   local x axis is rot row 0 = r.yaw), w22 = 1 on the level's global record, w23 = bloom level 0..255, w24 = 1..3
-  (same on every 1_11 record: blur size, a reading), w25..28 = RGBA 255, w29 = 60 (fade in frames: 1 s), w30 = the
+  (the number of blur downsample passes, clamped 0-3: code decode, bug-11258), w25..28 = RGBA 255, w29 = 60 (fade in frames: 1 s), w30 = the
   debug string '@BloomTrigger Fired'. On 1_11 they are DOOR STRIPS: each doorway has an ENT strip on its inside
   (level 230) and an EXT strip on its outside (135, as the global record): the one a player crossed last decides,
   so the original blooms its interiors 230 / 135 = 1.70x harder than outdoors. Checked across the other levels on
@@ -17,13 +17,14 @@ IrradianceVolumeTrigger (17): box + w22 = volume index (0..16), w23 = 0..3, w24 
 SoundBusTrigger (12): box, w24 = the snapshot entered, w25 = the snapshot on leaving (Default_Mix on all eleven
   interior boxes); record 1 (off-map sphere) names Default_Mix alone.
 SOUND/AUDIO.BUS: 'UBUS' header, 8 (crc, n, index) triplets at 0x2c, then 28-byte records from 0x8c:
-  {u32 0, u16 fade in, u16 fade out (1/60 s), u32, s16 level (+ s16), u32, u32 bus crc, u32 snapshot crc}.
+  {u32 0, u16 Volume Ramp (1/60 s), u16 PITCH Ramp, u32 FX Ramp, s16 Volume Target, s16 Pitch Target,
+  u32 FX Target, u32 bus crc, u32 snapshot crc} (field names: the code decode, CODE_FINDINGS_ea_1_11 F9; bug-11258).
+  Only the Volume Ramp and Volume Target are used, entering and leaving a box alike (+6 is NOT a fade-out).
   Names by CRC32 of the string: buses Music, Speech, Vehicle, Explosions, BulletImpacts, Death, Debris, RailGun,
   Weapon_Mech, Weapon_Fire_Loop; snapshots Default_Mix, Rail_Gun, DialogDuck, Radio_Mix, Revive. SOUND/AUDIO.UBR
   routes each sound event to a bus (the word after the event's flags): the ambience streams and the fire loops
   (AmbienceTrigger, SoundDefTrigger) are on bus f645799c, the PA speech streams on fd0fb324.
-  LEVEL is read as a PERCENT attenuation (gain = (100 + level) / 100), not dB: Default_Mix holds always-on buses at
-  -65 and -85, which as dB would never be heard (a reading; documented in AUDIT F9).
+  The Volume Target is a PERCENT: the original applies gain = 1 + target / 100 (code decode), not dB.
 
 Our runtime (coop_mod/zonefx.scr) applies a snapshot RELATIVE to Default_Mix, so outdoors is identity:
   coop_zoneMix "<snapshot> <fadeMs> <music> <speech> <vehicle> <weapons> <ambience> <effects>" (dB, engine
