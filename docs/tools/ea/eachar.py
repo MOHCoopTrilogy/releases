@@ -239,7 +239,8 @@ def _stock_bones(mohaa_base):
 # jaw is blended (fgame actor.cpp EventSetSayAnim, skeletorbones GetSlerpValue).
 JAW_ON = os.environ.get("EA_JAW") == "1"
 JAW_NAME = "Bip01 Jaw"
-JAW_MAX_DEG = 13.0            # fully open (offline: 10 deg reads as speech, 20 as a shout)
+JAW_MAX_DEG = 11.0            # fully open (offline: 10 deg reads as speech, 20 as a shout; 13 looked a grimace on the partisan)
+JAW_CORNER = (1.2, 3.0)       # cm off the head centre line: jaw share fades from full to 35 % (mouth corners)
 JAW_POS = {}                  # set by build(): the jaw pivot in the stock pose (model space, cm x girth scale)
 
 
@@ -624,6 +625,23 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
                     acc_ = {}
                     for bn, w in wl:
                         acc_[bn] = acc_.get(bn, 0.0) + w
+                    wl = list(acc_.items())
+            jw = dict(wl).get(JAW_NAME, 0.0)
+            if jw:
+                # the mouth corners follow the jaw only partly (coordinator QA 2026-11-15: fully jaw-weighted corners
+                # stretched the partisan's lips into a grin): from 1.2 cm off the head's centre line, down to 35 % of
+                # the jaw share by 3 cm, the rest to the head
+                yo = abs(V[-1][1] - J["Bip01 Head"][0][1]) / (s or 1.0)
+                f = 1.0 if yo <= JAW_CORNER[0] else max(0.35, 1.0 - (yo - JAW_CORNER[0]) /
+                                                         (JAW_CORNER[1] - JAW_CORNER[0]) * 0.65)
+                if f < 1.0:
+                    acc_ = {}
+                    for bn, w in wl:
+                        if bn == JAW_NAME:
+                            acc_[JAW_NAME] = acc_.get(JAW_NAME, 0.0) + w * f
+                            acc_["Bip01 Head"] = acc_.get("Bip01 Head", 0.0) + w * (1.0 - f)
+                        else:
+                            acc_[bn] = acc_.get(bn, 0.0) + w
                     wl = list(acc_.items())
             W.append(sorted(wl, key=lambda q: -q[1]))
         # winding: each triangle faces the way the disc's own normals say (MOHAA wants (e1 x e2) outward)
