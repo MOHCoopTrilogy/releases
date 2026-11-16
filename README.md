@@ -50,6 +50,12 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.82 - The Original Cast (hotfix)
+
+- **Disc mission voice lines no longer go silent.** Conway at the tower, the interrogation and the enemy shouts play again in Sealed Orders.
+- **Sealed Orders: the roster objective completes at the clipboard** again, not at the tower MG.
+- Your disc missions are converted again automatically to pick up the fix.
+
 ### v1.10.81 - The Original Cast
 
 #### Squad commands (both disc missions, and paratroopers everywhere)
