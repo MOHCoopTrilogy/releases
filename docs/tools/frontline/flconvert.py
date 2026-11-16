@@ -63,6 +63,7 @@ CONTENTS_TRANSLUCENT = 0x20000000   # engine surfaceflags.h
 SURF_PUDDLE = 0x200000             # engine surfaceflags.h: puddle impact effects / sounds
 TAG_RIVERBED = 0x7FFFF005    # [flpolish] the bed under the canal's water volume (a player who falls in lands and drowns)
 TAG_DRAWN = 0x7FFFF004       # [flpolish] collision on drawn geometry that a dropped player-clip sheet stood in front of
+TAG_DRAWN_SOFT = 0x7FFFF006  # [flfix2] the same on a see-through card (fl_levels "seethru_nocoll"): removed after the edge pass
 
 
 def coll_is_volume(f):
@@ -996,6 +997,16 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # [flpolish] blocked only by what you can see (flsheets.py): Frontline's floating player-clip sheets are dropped
     # (all but the reviewed level-boundary ones, fl_levels.json "clip_keep") and the drawn geometry they stood in front
     # of gets collision of its own
+    # [flfix2] see-through cards listed in fl_levels "seethru_nocoll" (texture short names): the drawn-geometry collision
+    # flsheets gives them is tagged TAG_DRAWN_SOFT and taken out after the edge-of-world pass below (on 1_1 the bush and
+    # hedge cards became 225u invisible slabs the original's player walks through, walk s7)
+    soft_ = set()
+    nocoll_ = set(flpack.spec(level).get("seethru_nocoll", []))
+    if nocoll_:
+        def _short(k_):
+            return k_.replace(f"{level}_ART", "").replace(".cpt", "").replace("@", "_").strip("_") if k_ else ""
+        soft_ = {(X(m["verts"][a]), X(m["verts"][b]), X(m["verts"][c])) for m in meshes if m["tris"]
+                 and (m["cell"], m["draw"]) not in hidden and _short(m["tex"]) in nocoll_ for a, b, c in m["tris"]}
     if not os.environ.get("FL_NO_SHEETS"):
         wound, wtags, drawn_coll, stats["sheets"] = flsheets.replace(
             wound, wtags, [idmap.get(t) for t in wound], lambda f: (f & 0x7FF) == WRAP_MAT and bool(f & COLL_SPECIAL),
@@ -1005,7 +1016,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         route_segs = flroutes.routes([X(n_["pos"]) for n_ in L.navpoints()], flgeom.TriGrid(wound))
         drawn_coll, stats["sheets"]["drawn_kept_off_routes"] = flroutes.keep_drawn(drawn_coll, route_segs)
         wound += drawn_coll
-        wtags += [TAG_DRAWN] * len(drawn_coll)
+        wtags += [TAG_DRAWN_SOFT if t_ in soft_ else TAG_DRAWN for t_ in drawn_coll]
         wound, wtags, stats["routes"] = flroutes.carve(
             wound, wtags, route_segs, keep=lambda f: (f & 0x7FF) == WRAP_MAT and bool(f & COLL_SPECIAL) and f < TAG_CLIFF,
             dense=flpack.spec_xy(level, X, "route_widen"))
@@ -1058,6 +1069,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         pw, stats["parapets"] = flcliff.parapets(wound, flgeom.TriGrid([t for t, f in zip(wound, wtags) if f != TAG_RIVERBED]))
         wound += pw
         wtags += [TAG_CLIFF] * len(pw)
+        if soft_:
+            n_ = len(wound)
+            kept_ = [(t_, f_) for t_, f_ in zip(wound, wtags) if f_ != TAG_DRAWN_SOFT]
+            wound, wtags = [t_ for t_, _f in kept_], [f_ for _t, f_ in kept_]
+            stats["seethru_drawn_removed"] = n_ - len(wound)
         # [flpolish] ...and a DRAWN skirt under the same edge: the floor's own texture and light carried 512u straight
         # down, so a player at the edge sees a quay wall / bank instead of the white void under the level (visaudit:
         # 287 rays into the void along the town's west edge; user: "floors open and expose the underside of the map")
