@@ -218,7 +218,21 @@ def build(db, X, spot, ground, text, lines, log=print):
         if not m:
             continue
         q = spot(X(r.pos))
+        # 0.7.39: an objective whose own point is not standable (a wall foot, a prop) was DROPPED, and a squad whose first
+        # objective went missing stood at its spawn for ever (the counter-attack squad SQ01_GermanCounterattck: its _01 by
+        # the church, so the defence never ended - user 2026-11-16). The nearest standing spot within 4 m on a ring instead
         if q is None:
+            _b = X(r.pos)
+            for _rr in (24, 48, 96, 144, 192):
+                for _a in range(0, 360, 30):
+                    q = spot((_b[0] + _rr * math.cos(math.radians(_a)), _b[1] + _rr * math.sin(math.radians(_a)), _b[2]))
+                    if q is not None:
+                        break
+                if q is not None:
+                    log("  squad objective %s: its point is not standable, moved %du" % (r.name, _rr))
+                    break
+        if q is None:
+            log("  squad objective %s dropped: no standing spot within 4 m" % r.name)
             continue
         n += 1
         g = r.u(49) if len(r.w) > 49 and eadb.is_group(r.u(49)) else None
