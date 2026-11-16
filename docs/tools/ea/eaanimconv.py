@@ -427,10 +427,9 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
                     put("%s%s_%s" % (pre, state, tag), h, loop, gun_yaw(bank, skel, bones, h))
         for nm, hx in MMG_ONE.items():
             put(pre + nm, int(hx, 16), False, centre)
-    # a gun too low for the standing grid (the disc pole is 21.6u over its point; at the church's nest 1 that is ~36u
-    # over the gunner's floor): the original's gunner is crouched there with the butt at his shoulder (emulator
-    # reference 2026-11-16). The level has no crouched MMG clips; the original's crouched aim pose
-    # (NONCOVER_CROUCH_IDLE, hands 28.5u up / 18.9u ahead) is the posture in the reference.
+    # ea_mmgc_idle (the original's crouched aim pose) - written but NOT the original's MG crouch: the emulator's
+    # crouched gunner at the church's nest 1 is the standing grid's aim-UP cells (z111/z113: the gunner drops the grip
+    # to raise the muzzle; grid Y = pitch/40 with EA's sign, positive = up). Kept for a gun that truly sits too low.
     if MMG_CROUCH in bank.clips:
         put("mmgc_idle", MMG_CROUCH, True, gun_yaw(bank, skel, bones, MMG_CROUCH))
     for rig, hs in SCENES.items():
