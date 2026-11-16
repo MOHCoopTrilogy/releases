@@ -22,7 +22,7 @@ skeleton - <x>.skl ('SKL1'): u16 bone count at +6, u32 hierarchy offset at +8; a
   rt_hand, lt_hand. Metres, z up, the character faces +y, his left is -x (the EA convention).
 mesh - <x>.dmf ('DMF', version 6), u32 words from 0x1c: 1, weight count, weight table, mesh count, mesh records,
   texture-name count, texture names (16 bytes each), group count, groups, materials, ?, bone count (70), bone names
-  (16 bytes each, at 0x5c), bind rotations (at 0x4c0: per bone 3 x i16, 65536 = 360 degrees, x y z; the bone's local
+  (16 bytes each, at 0x5c), bind rotations (right after the names, 16-aligned - 0x4c0 for 70 bones: per bone 3 x i16, 65536 = 360 degrees, x y z; the bone's local
   rotation is Ry Rz Rx - picked of the six orders by the tightest joints), 1.0, 1.0.
   weights (4 bytes): u8 bone A, u8 bone B (A's parent), u16 weight of A / 4096 (B gets the rest).
   mesh record (60 bytes): word 11 kind (39 skinned, 167 the head's base shape, 259 a morph target), word 12 its
@@ -193,7 +193,10 @@ def read_dmf(b):
     W = lambda o: struct.unpack_from("<I", b, o)[0]
     nb = W(0x48)
     names = [b[0x5c + 16 * i:0x6c + 16 * i].split(b"\0")[0].decode("latin-1") for i in range(nb)]
-    rot = [struct.unpack_from("<3h", b, 0x4c0 + 6 * i) for i in range(nb)]
+    # [bug-11285] the bind rotations follow the bone names, 16-aligned (0x4c0 only for the 70-bone bodies; a weapon .dmf
+    # has 25-55 bones, and the fixed offset posed its parts with garbage rotations)
+    ro = (0x5c + 16 * nb + 15) & ~15
+    rot = [struct.unpack_from("<3h", b, ro + 6 * i) for i in range(nb)]
     wts = [struct.unpack_from("<BBH", b, W(0x24) + 4 * i) for i in range(W(0x20))]
     tex = [b[W(0x34) + 16 * i:W(0x34) + 16 * i + 16].split(b"\0")[0].decode("latin-1") for i in range(W(0x30))]
     meshes = []
