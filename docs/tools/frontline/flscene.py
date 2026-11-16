@@ -198,7 +198,7 @@ def particle(e):
     ax = lambda a, b: [tuple(sorted((f(a + i), f(b + i)))) for i in range(3)]   # noqa: E731
     c0, c1 = rgb(w[28]), rgb(w[29])
     return {"rgb": tuple((a + b) / 510.0 for a, b in zip(c0, c1)), "rgb0": c0, "rgb1": c1,
-            "start": w[32] >> 16, "w32lo": w[32] & 0xFFFF, "w33": w[33], "dur": f(34),
+            "start": w[32] >> 16, "w32lo": w[32] & 0xFFFF, "w33": w[33], "dur": f(34), "w16": w[16],
             "box": ax(36, 39), "vel": ax(42, 45), "acc": (f(48), f(49), f(50)),
             "size": (min(f(51), f(52), f(53), f(54)), max(f(51), f(52), f(53), f(54))),
             "size_raw": (min(f(51), f(52)), max(f(51), f(52)), min(f(53), f(54)), max(f(53), f(54))),

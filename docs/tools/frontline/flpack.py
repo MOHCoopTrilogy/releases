@@ -307,7 +307,9 @@ def _particles(L, X, lines, pfx, log, files=None, level=""):
         n += 1
         q = X(e["pos"])
         ref = sorted(by_typ[typ])[len(by_typ[typ]) // 2] or 1.0
-        start = pfx.get("start", {}).get(str(rec)) or ("load" if p["start"] == 1 else "event")
+        # [codedecode 2026-11-15] the level load loop creates every kind-9 record with no start script (word 16 == 0)
+        # at once (CODE_FINDINGS_fl_1_1.md item 4); word 32 high is particles per emission, not a start mode
+        start = pfx.get("start", {}).get(str(rec)) or ("load" if p.get("w16", 0) == 0 else "event")
         if typ == "blast":
             life = pfx.get("life", {}).get(str(rec), math.ceil(p["dur"] + p["life"]))
         else:
@@ -778,10 +780,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
             lines.append(f'\tlevel.fl_axis_yaw[{na}] = {yaw_:.0f}')
             lines.append(f'\tlevel.fl_axis_ambush[{na}] = {int(any("DeathAmbush" in s for s in e["strs"]))}')
             lines.append(f'\tlevel.fl_axis_rec[{na}] = {e["i"]}')  # [flfix2 bug-11084] the disc record number (the traces name records)
-            if any("StayOnPath" in s_ for s_ in e["strs"]):
-                pid_ = _nearest_path(e["pos"], tank_paths)
-                if pid_ is not None:
-                    lines.append(f'\tlevel.fl_axis_path[{na}] = {pid_}')
+            lines += _actor_ai(e, "axis", na)
         elif is_ally:
             nl += 1
             lines.append(f'\tlevel.fl_ally[{nl}] = {o}')
@@ -790,6 +789,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
             lines.append(f'\tlevel.fl_ally_grp[{nl}] = {grp_}')
             lines.append(f'\tlevel.fl_ally_state[{nl}] = "{flscene.state(e)}"')
             lines.append(f'\tlevel.fl_ally_yaw[{nl}] = {yaw_:.0f}')
+            lines += _actor_ai(e, "ally", nl)
         elif cls in AMMO:
             n_ammo += 1
             lines.append(f'\tlevel.fl_ammo[{n_ammo}] = {o}')
@@ -1040,3 +1040,23 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
     lines += ["\tprintln( \"^~^~^ FLDATA\" + " + " + ".join(summ) + " )", "}end", ""]
     files[f"maps/coop_fl_{level}_data.scr"] = "\n".join(lines).encode("latin-1")
     return {"nudged": nudged, "axis": na, "allies": nl, "health": nh, "cues": len(wavs), "music": len(segs)}
+
+
+def _actor_ai(e, side, n):
+    """[codedecode 2026-11-15, CODE_FINDINGS_fl_1_1.md items 1 and 5] an actor record's own AI fields (kind 3 getter
+    0x2b600): path id = attr 42 (s16 at byte 0x84), direction = attr 43 (byte 0x7a: 0 / 2 forward, 1 reverse); sight
+    range per mood = attrs 35 / 45 / 46 (s16 at 0x7e / 0x86 / 0x88, x 1/16, record units read as metres), fov per mood =
+    attrs 38 / 50 / 51 (bytes 0x76 / 0x7b / 0x7c, degrees)."""
+    r = e["raw"]
+    if len(r) < 0x8a:
+        return []
+    s16 = lambda o: struct.unpack_from("<h", r, o)[0]
+    out = []
+    pid = s16(0x84)
+    if pid > 0:
+        out.append('\tlevel.fl_%s_path[%d] = %d' % (side, n, pid))
+        out.append('\tlevel.fl_%s_pathdir[%d] = %d' % (side, n, r[0x7a]))
+    for m, (ro, fo) in (("idle", (0x7e, 0x76)), ("curious", (0x86, 0x7b)), ("alert", (0x88, 0x7c))):
+        out.append('\tlevel.fl_%s_sight[%d]["%s"] = %.1f' % (side, n, m, s16(ro) / 16.0))
+        out.append('\tlevel.fl_%s_fov[%d]["%s"] = %d' % (side, n, m, r[fo]))
+    return out
