@@ -573,7 +573,10 @@ def _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, osp, log):
                     files[rel] = data
                     seen[h] = rel
                 j += 1
-                ali.append(f'aliascache {pre}{bank}_{key}{j} {rel} soundparms 1.0 0.1 1.0 0.05 220 2400 dialog loaded maps "coop_fl"')
+                # [discbot 2026-11-15] 'alias', not 'aliascache': the 349 one-shot clips were registered at load and filled the
+                # 2048-entry sound index table (later sounds - the scripted disc lines - played silent); now a clip takes
+                # its index when it is first played
+                ali.append(f'alias {pre}{bank}_{key}{j} {rel} soundparms 1.0 0.1 1.0 0.05 220 2400 dialog loaded maps "coop_fl"')
             if j:
                 nb += j
                 lines.append(f'\tlevel.fl_os_alias[{bank}]["{key}"] = "{pre}{bank}_{key}"')
