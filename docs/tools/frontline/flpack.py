@@ -493,7 +493,7 @@ def _journal(disc, level, files, lines, jn, log):
     x0, y0, x1, y1 = jn["crop"]
     W, H = jn["size"]
     n = 0
-    for k in range(1, 10):
+    for k in range(1, int(jn.get("pages", 9)) + 1):   # [anvil] "pages" caps it (1_3: page 4 is an orphan page)
         name = next((m for m in mem if m.lower() == f"j{level}_pg{k}.xsh"), None)
         if name is None:
             break
@@ -501,6 +501,14 @@ def _journal(disc, level, files, lines, jn, log):
         if not img:
             break
         t = img[0]
+        if t.get("rgba") is None and len(mem[name]) >= t["w"] * t["h"] * 2:
+            # [anvil 1_3] the last 1_3 page is a 640 x 448 linear 16-bit RGB565 image (SHPX type 120), not DXT1:
+            # pixels are the file's last w*h*2 bytes (checked by eye against the page layout)
+            import numpy as np
+            raw_ = np.frombuffer(mem[name][-t["w"] * t["h"] * 2:], dtype="<u2").reshape(t["h"], t["w"]).astype(np.uint32)
+            rgb_ = np.dstack([((raw_ >> 11) & 31) * 255 // 31, ((raw_ >> 5) & 63) * 255 // 63, (raw_ & 31) * 255 // 31,
+                              np.full_like(raw_, 255)]).astype(np.uint8)
+            t = dict(t, rgba=rgb_.tobytes())
         im = Image.frombytes("RGBA", (t["w"], t["h"]), bytes(t["rgba"])).crop((x0, y0, x1, y1)).resize((W, H), Image.LANCZOS)
         im.putalpha(255)
         n += 1
