@@ -113,6 +113,12 @@ class FrontlineGame:
                     flcharup.main(out, level, cp, up)
                     if os.path.exists(cp):
                         files.append(cp)
+                    # [flprops] the disc props' textures (flpropsup.py: ESRGAN / CC0 grain), only if any were built
+                    import flpropsup
+                    pp = os.path.join(out_dir, "zzzz_fl_hdprops_%s.pk3" % level)
+                    flpropsup.main(out, level, pp, up)
+                    if os.path.exists(pp):
+                        files.append(pp)
                 except Exception as e:     # optional too
                     progress(step="upscale", level=level, skipped=str(e))
         return files

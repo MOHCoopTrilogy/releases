@@ -125,7 +125,7 @@ def main():
     # [v1.10.69] European Assault: its own copies of the shared modules, as source, in _internal/ea (hzmconv.py
     # _ea_modules_first puts them ahead of the frozen Frontline set for an EA run). Only what hzmconv_ea imports.
     ea_src = os.path.join(os.path.dirname(HERE), "ea")
-    need, todo = set(), ["hzmconv_ea"]
+    need, todo = set(), ["hzmconv_ea", "eaprops", "eapropsup"]    # [flprops] the FL props import these
     import re
     while todo:
         m = todo.pop()
