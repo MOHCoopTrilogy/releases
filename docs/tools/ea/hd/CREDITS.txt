@@ -12,3 +12,5 @@ Metal063_1K_Color.jpg         page https://ambientcg.com/view?id=Metal063       
 Stock-HD pass (docs/tools/upscale_discstock.py REPLACE; user-approved 2026-11-15: "If not that find replacements"). Poly Haven, licence CC0 1.0 (https://polyhaven.com/license). 1k diffuse JPG, unmodified; resized and graded to the stock sheet's colour statistics at build time, shipped as a DXT .dds in zzzzzzzzzz_coop_hd_discstock.pk3.
 
 bark_willow_02_diff_1k.jpg  page https://polyhaven.com/a/bark_willow_02  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_willow_02/bark_willow_02_diff_1k.jpg  CC0  (winter trunk bark textures/models/natural/tree1_1winter of tree_caskawinter, Their Dying Breath trees)
+PaintedMetal005_1K_Color.jpg  page https://ambientcg.com/view?id=PaintedMetal005  file https://ambientcg.com/get?file=PaintedMetal005_1K-JPG.zip  CC0  (Sealed Orders Panzer IV steel grain; user 2026-11-15 "use higher quality online content where possible")
+Leather030_1K_Color.jpg       page https://ambientcg.com/view?id=Leather030       file https://ambientcg.com/get?file=Leather030_1K-JPG.zip       CC0  (field phone case, Dying Breath dossier folder grain)
