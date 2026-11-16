@@ -7,6 +7,7 @@
   "farplane_bias": 240,
   "farplane_cull": 0,
   "sky_faces": "fl",
+  "sky_xsh": "level1test",
   "vis_radius": 7000,
   "farplane_color": "0.408 0.416 0.427",
   "pit_lid": {"rgb": [24, 23, 22], "rgb_original": [83, 81, 76], "reason": "[flfix2 round 19, bug-11161] darkened to the room interiors around it (user: the lid read light grey, ~112 on screen after r_gamma 1.3, against dark rooms): 24 23 22 shows about 40 on screen, like the shaded wall foot inside these shells; the original's band colour is kept in rgb_original. flat lid in floorless house pockets (flpit.py): the original's sky box below the horizon is this one flat colour (TRACE_sky_fog.md, -z face and the lower band of the side faces), which is what its player saw through a window into a house with no ground floor"},
