@@ -84,7 +84,8 @@ else:
     vw = re.search(r'local\.b\s*=\s*\(\s*"(\d+);"', build)
     if not vw:
         ERR.append("A: cannot read the blob version buildBody writes")
-    elif not re.search(r'local\.f\[0\]\s*==\s*"%s"' % vw.group(1), load):
+    # [v1.10.85, bug-11309] the version read moved into seedFromBody (ensureLoaded's decode helper): search both
+    elif not re.search(r'local\.f\[0\]\s*==\s*"%s"' % vw.group(1), load + (label(progc, "seedFromBody") or "")):
         ERR.append("A: buildBody writes blob v%s but ensureLoaded never reads that version" % vw.group(1))
     cl = os.path.join(ENG, "code", "client", "cl_main.cpp")
     if os.path.isfile(cl):
