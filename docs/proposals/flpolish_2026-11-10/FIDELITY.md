@@ -774,7 +774,7 @@ holds 967 animation ids over 1,446 clips; a clip is a stream of poses at 15 per 
 joints of Soldier.skl, plus game events (sounds, footsteps). Clip lengths match the emulator traces' re-issue times
 (901: 132 ticks against 126-128; 6506: 80 against 78). Retarget `flanimconv.py` (the EA route) writes them onto the
 stock Bip01 skeleton as `fl_a<id>` aliases in the disc character's own tik, gated by `flanimconv.OWN_ANIM` (empty).
-Offline sheets: `H:\hzm_worklanim\out\OFFLINE_fl_scenes_{a,b,c}_v2.jpg` (disc-native), `CONV_fl_jeep_v1.jpg`
+Offline sheets: `H:\hzm_work\flanim\out\OFFLINE_fl_scenes_{a,b,c}_v2.jpg` (disc-native), `CONV_fl_jeep_v1.jpg`
 (native vs converted). Nothing in game yet; nothing wired into the mission script (the map owner integrates).
 
 | clip(s) | what the disc does | conversion | status |
