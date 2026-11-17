@@ -506,8 +506,11 @@ coop_barricade_nail
 	}
 }
 """
-PLANK_SAT = 0.62        # weathered: about two thirds of the stock plank's colour
-PLANK_GAIN = 0.80       # and a little darker (the church's pews and panelling are dark, old wood)
+# [coordinator QA 2026-11-16] 0.62 / 0.80 read as near-black slabs once lit (board ~20 vs wall ~19); the target is a
+# little brighter and browner than the wall (~28-35 in the still's crop mean) with the grain and plank edges visible
+PLANK_SAT = 0.95        # nearly the stock plank's own brown
+PLANK_GAIN = 1.40       # brighter than stock: the light grid in the church is low (1.25 -> ~21-28, 1.50 -> ~36-44 luma)
+PLANK_CONTRAST = 1.25   # lifts the grain and the dark seams
 
 
 def plank_texture():
@@ -515,6 +518,7 @@ def plank_texture():
     with zipfile.ZipFile(os.path.join(GOG_MAIN, "Pak2.pk3")) as z:
         im = Image.open(io.BytesIO(z.read("textures/general_structure/plank_flat.jpg"))).convert("RGB")
     im = ImageEnhance.Color(im).enhance(PLANK_SAT)
+    im = ImageEnhance.Contrast(im).enhance(PLANK_CONTRAST)
     return ImageEnhance.Brightness(im).enhance(PLANK_GAIN)
 
 
