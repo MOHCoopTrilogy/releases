@@ -191,11 +191,14 @@ def _surf_lines(ss, pre):
 
 # the small props: the disc mesh on the stock entity's own (single) bone, frames measured in engine
 # (gettagposition / gettagangles, probe_flitems 2026-11-16). prop = the fl_levels.json "props" key that switches it on.
-# health10 / health50: Frontline's Health10 (MedicinalCanteen) and Health50 (MedicalKit) on the map's stand-ins
-# (amount < 50 -> item_25_healthbox, >= 50 -> item_50_healthbox). Health25's model is not settled from the disc data
-# (the class script names a powerup id, not a mesh) - it keeps the stock box until a reference still shows it
+# health10 / health25 / health50: Frontline's Health10 (MedicinalCanteen), Health25 and Health50 (both MedicalKit) on
+# the map's stand-ins (amount < 50 -> item_25_healthbox, >= 50 -> item_50_healthbox). The class scripts name a powerup
+# id, not a mesh: Health25 = the medkit case from the original (ref_xemu so_fx/health/h25_sheet, rec 333, 2026-11-17);
+# Health10 = the canteen, the level's only other health mesh
 SMALL = {
     "health10": {"prop": "health", "mesh": "MedicinalCanteen.msh",
+                 "tik": "items/item_25_healthbox.tik", "bone": ("Box01", (0.0, 90.0, 90.0))},
+    "health25": {"prop": "health", "mesh": "MedicalKit.msh",
                  "tik": "items/item_25_healthbox.tik", "bone": ("Box01", (0.0, 90.0, 90.0))},
     "health50": {"prop": "health", "mesh": "MedicalKit.msh",
                  "tik": "items/item_50_healthbox.tik", "bone": ("Box01", (0.0, 90.0, 0.0))},
