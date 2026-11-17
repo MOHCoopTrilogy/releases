@@ -257,6 +257,8 @@ def build(db, X, spot, ground, text, lines, log=print):
             for k, x in enumerate(ms, 1):
                 L(f'\tlevel.ea_so_sm["{n}_{k}"] = "{x}"')
     L(f"\tlevel.ea_so_n = {n}")
+    # 0.7.44: the disc characters carry eajaw_rest (eachar, 10b7117d): the map ends a jaw line with `say eajaw_rest`
+    L("\tlevel.ea_jawRest = 1")
     # ---- ICS points (0.7.16): flag word 15 set, an actor group in list B and a slot-1 send list. Words from 47:
     # three head lists (A listen, B actors, C), seven target lists, seven message lists; an empty list is one 0.
     # Only slot 1 is relayed (the one the original-game trace shows firing); the other slots' events are not decoded.
