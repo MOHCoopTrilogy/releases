@@ -1105,6 +1105,17 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                             best = (d2, tex, col)
             if best is None:
                 continue
+            # [flfix2 skirt_ground] no skirt where a drawn floor lies under the edge (upper-storey slabs inside house
+            # shells: their skirt filled the ground-floor door and window openings with a stretched plaster picture)
+            under_ = False
+            for dx in (-1, 0, 1):
+                for dy in (-1, 0, 1):
+                    for cen, _tex, _col in rgrid.get((int(mx // 64) + dx, int(my // 64) + dy), ()):
+                        if (cen[0] - mx) ** 2 + (cen[1] - my) ** 2 < 64 * 64 and mz - 500 < cen[2] < mz - 40:
+                            under_ = True
+            if under_:
+                stats["skirts_over_ground_skipped"] = stats.get("skirts_over_ground_skipped", 0) + 1
+                continue
             sh_ = tex_shader(best[1])
             L_ = math.hypot(b_[0] - a_[0], b_[1] - a_[1])
             top_a, top_b = a_[2] + 7, b_[2] + 7
