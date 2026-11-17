@@ -50,6 +50,13 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.85 - Hold the Bridge (fixes)
+
+- **Multiplayer progression fixed:** finish picks work again, kills with finished guns count again, and your per-gun stats are back on the right guns (converted automatically once).
+- **Mounted guns get the credit** for their kills, not the weapon in your hands.
+- **Their Dying Breath:** no floating MG42s, the comm tower charge is always there, the church counter-attack comes to you, revived partisans fight again, partisans speak and turn to you as in the original, footsteps match the ground.
+- **Sealed Orders:** bullets pass the invisible walls along the canal and bridge, footsteps match the ground, and eight new Service Record challenges.
+
 ### v1.10.84 - Hold the Bridge
 
 - **Sealed Orders' bridge is a fight now:** three snipers on upper floors and roofs, a gunner on the church-tower MG42, an officer in the square calling reinforcements, and Germans rushing you when you take the jeep's .30 cal (now a 150-round belt).
