@@ -50,6 +50,14 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.86 - Squad Orders
+
+- **Squad orders:** tap N to switch your squad between following and holding (they take cover), hold N for a placement marker that sends them into cover there. A squad icon by your item icons and on the ability wheel shows what they're doing. Squadmates attack enemies in sight instead of standing still.
+- **New default keys never replace yours.** If v1.10.81-.84 put the squad command over something you had on N, rebind it in Options > Controls (the Squad row).
+- **Join Game cards show your own coop soldier**, and scoped finish skins use the rifle's scoped animations.
+- **Sealed Orders:** take the bridge yourselves (a respawning bazooka against the Panzer, more defenders and snipers), new Secure the Bridge and Defend the Bridge objectives, Pvt Castro as a secondary objective, the officer in cover from the start, the house doors and windows back.
+- **Their Dying Breath:** board up the church windows (pick up planks, hold Use at a window), an enemies-remaining counter with Germans pushing in, an officer after the cellar, a tower sniper, mist hiding the distant town, and no more stalls at the end.
+
 ### v1.10.85 - Hold the Bridge (fixes)
 
 - **Multiplayer progression fixed:** finish picks work again, kills with finished guns count again, and your per-gun stats are back on the right guns (converted automatically once).
