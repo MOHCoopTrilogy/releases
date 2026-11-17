@@ -637,7 +637,7 @@ def main():
            "// Slot boards lie on the INSIDE face of the wall; every slot passed coverage / clearance / contact QA.\n\n")
     scr = hdr + "\n\n".join(labels) + "\n"
     scr.encode("ascii")
-    # [bug-11324] every table barricade.scr reads must be in the data (the blocker rows once went missing: no box, AI saw
+    # [bug-11325] every table barricade.scr reads must be in the data (the blocker rows once went missing: no box, AI saw
     # straight through every boarded window, and the only symptom was "Cannot cast 'none' to vector")
     for field in ("objText", "zoneMin", "zoneMax", "nSlots", "sName", "sNeed", "sUse", "sMid", "sNb", "xOrg", "xHalf",
                   "bOrg", "bAng", "bMdl", "bPlank", "nStacks", "kOrg", "kYaw", "kCount"):
