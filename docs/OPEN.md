@@ -153,6 +153,16 @@ Archived 2026-11-01 to `docs/archive/open-awaiting-playtest-2026-08-17.md` (stal
 
 ## Defects with evidence
 
+### Dying Breath cellar: lantern light on characters - parked (2026-11-17)
+In the original (ref_xemu anim/poses/leader_facing/partisan_vs_leader.png) Foshkovich by the cellar lantern is warm and
+about 2x the leader on the face (136/96/77 vs 61/55/50); ours lights both the same, slightly cool (discbot v213: 22/22/26
+vs 22/17/20). The baked vertex light does carry the lantern (128u means: lantern 36/32/24, his spot 25/23/17, leader
+12/12/12) but a local light grid built from it (0.7.45 trial, reverted) only lifted everyone 10-20% (ea_light_cmp_*.jpg),
+so a standing character in the original is lit by the lantern as a light, not the floor around him. Faithful route:
+decode the IrradianceVolumeTrigger probes (LTD_IRRAD_VTRIG_INT_01) or the lantern light's colour and falloff. A dlight
+we place at the lantern would be a deviation needing the user's OK. The yellow-green tint itself was our pickup glow
+(fixed, mod 134b0192).
+
 ### Dying Breath ICS head look - engine gate (2026-11-17)
 The full head look (head over the shoulder, body held on the ICS point's yaw, as the original) needs game.dll's
 `headlooklimit` (engine branch `dbhead-eng` 4f66b0af, to merge into rel-1.10.38-engine). Until that engine ships the map
