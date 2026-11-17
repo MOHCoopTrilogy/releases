@@ -396,7 +396,12 @@ def _jaw_clips(level, files, log=print):
         files["models/human/ea_%s/anim/%s.skc" % (level, alias)] = skc
         rows.append("\t%s\t\tanim/%s.skc" % (alias, alias))
         dl.append('\tlevel.ea_jaw["ea%s_v%s"] = "%s"' % (level.replace("_", ""), m.group(1), alias))
-    log("eachar: talking jaw: %d voice-line clips" % len(rows))
+    # eajaw_rest: a closed mouth, two frames, NOT looping - the map script ends a line with `say eajaw_rest`, valid
+    # whatever state the say slot is in (a bare `say` is refused once AI hand-back or pain has already ended the slot)
+    files["models/human/ea_%s/anim/eajaw_rest.skc" % level] = mohskel.write_skc(
+        1.0 / 30.0, [JAW_NAME + " rot"], [{JAW_NAME + " rot": _jaw_quat(0.0)}] * 2)
+    rows.append("\teajaw_rest\t\tanim/eajaw_rest.skc")
+    log("eachar: talking jaw: %d voice-line clips + eajaw_rest" % (len(rows) - 1))
     return rows, dl
 
 
