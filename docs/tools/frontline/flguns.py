@@ -27,13 +27,15 @@ ROWS_FILE = "scripts/hzm_adssights_byo_fl.txt"
 KEYS = ["fl_th", "fl_bar", "fl_mp40", "fl_stg44", "fl_sg",                      # batch 1
         "fl_m1", "fl_colt", "fl_p38", "fl_silpis",                                  # batch 2 (2026-11-16)
         "fl_spring", "fl_g43",                                                      # batch 3: scoped
-        "fl_bazooka", "fl_panzer"]                                                  # batch 4: launchers
+        "fl_bazooka", "fl_panzer",                                                  # batch 4: launchers
+        "fl_markIIgrenade", "fl_stickgrenade"]                                      # batch 5: grenades
 LEVEL = "7_1"                       # the level whose level.viv carries every Frontline first-person gun + GunBnk
 ZIP_TIME = (2026, 1, 1, 0, 0, 0)
 DMF = {"th": "th_weapon.dmf", "bar": "bar_weapon.dmf", "mp40": "mp40_weapon.dmf", "stg44": "stg44_weapon.dmf",
        "sg": "sg_weapon.dmf", "m1": "m1_weapon.dmf", "colt": "colt_weapon.dmf", "p38": "p38_weapon.dmf",
        "silpis": "silpis_weapon.dmf", "spring": "spring_weapon.dmf", "g43": "g43_weapon.dmf",
-       "bazooka": "bazooka_weapon.dmf", "panzer": "panzer_weapon.dmf"}
+       "bazooka": "bazooka_weapon.dmf", "panzer": "panzer_weapon.dmf",
+       "markIIgrenade": "markIIgrenade_weapon.dmf", "stickgrenade": "stickgrenade_weapon.dmf"}
 GUNBONES = ("weapon", "bolt", "mag", "clip", "hammer", "handgrip", "bipod", "weapon_0")
 
 
@@ -150,12 +152,13 @@ def build_files(image, home, mohaa, progress=lambda **kv: None, opts=None):
             except flgunfit.MissingBase as e:
                 progress(step="guns", gun=k, skipped="not in this mod build: %s" % e)
                 continue
-            rows.append(f.pop("_row").decode())
+            if "_row" in f:                  # a grenade has no sight row
+                rows.append(f.pop("_row").decode())
             files.update(f)
             report[k] = info
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
-    if not rows:
+    if not files:                       # nothing converted (a grenade-only key list still writes the marker)
         return {}, report
     files[ROWS_FILE] = ("// HZM coop discguns: converted on this PC (sight rows of the fitted disc meshes)\n"
                         + "\n".join(sorted(rows, key=lambda r: r.split()[1])) + "\n").encode()

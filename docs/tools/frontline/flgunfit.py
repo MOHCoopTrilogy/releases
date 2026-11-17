@@ -60,10 +60,20 @@ GUNS = {
                      drop=[{"tex": "G43Sight", "hmax": -0.2}]),
     # batch 4: the launchers. Frontline modelled no separate rocket (no rocket bone, nothing outside the tube): the BASE
     # rocket surface is carried over so the reload still shows one going in (the base anims toggle it)
+    # shift 14.5: the tube silhouette put the disc pistol grip 14.5 u behind the base grip (base parts under the tube at
+    # x -4..4, the disc grip assembly at -18..-12; QA 2026-11-16 run 1116_2107) - the hand held bare tube. Grips matched,
+    # the disc muzzle sits 14.5 u past tag_barrel (the flash / rocket spawn inside the tube mouth)
     "fl_bazooka": dict(base="bazooka", stub="bazooka_fl", name="Bazooka (Frontline)", keep_base=["bazookashell"],
-                       fit="bore", k=1.0, slide=12.0),
+                       fit="bore", k=1.0, slide=12.0, shift=14.5),
     "fl_panzer": dict(base="panzerschreck", stub="panzerschreck_fl", name="Panzerschreck (Frontline)", keep_base=["shell"],
                       fit="bore", k=1.0, slide=12.0),
+    # batch 5: the grenades. No sight row; the disc grenade is centred on the base grenade (true scale) and ALL of it is the
+    # surface the base anims hide after the throw (frag: `grenade` +nodraw -> every disc part takes the "mag" role; the
+    # stick grenade's anims use `surface all`, the TIKI keyword for every surface, so its parts keep the plain names)
+    "fl_markIIgrenade": dict(base="m2frag_grenade_sp_start", stub="m2frag_grenade_sp_start_fl",
+                             name="Frag Grenade (Frontline)", roles={"weapon": "mag"}),
+    "fl_stickgrenade": dict(base="steilhandgranate_start", stub="steilhandgranate_start_fl",
+                            name="Stielhandgranate (Frontline)"),
 }
 # disc sound per base alias slot (FL: the GunBnk stream index of level 7_1, identified by level presence + envelope).
 # Slots not listed keep the base sound. Server-side slots (pickup / ammo pickup / no-ammo) are always base.
@@ -195,6 +205,29 @@ def base_row(tik, rows_json=None):
                 relief=float(r["relief"]))
 
 
+def _row_or_none(tik, rows_json=None):
+    try:
+        return base_row(tik, rows_json)
+    except KeyError:                      # a grenade: no sight row in the engine table
+        return None
+
+
+def fit_center(fr, base, disc):
+    """a grenade: disc +y -> base +X, disc +z -> base up (-Z, the weapon frame every row uses), true scale, the disc mesh's
+    bounding-box centre on the base mesh's"""
+    M = np.array(fr["M"])
+    X = np.array([1.0, 0, 0])
+    up = np.array([0, 0, -1.0])
+    B0 = np.vstack([np.cross(X, up), X, up])
+    T = B0 * TRUE
+    Vd = np.vstack([p["V"] @ M.T for p in disc["parts"]]) @ T
+    PB = gungeo.all_points(base["g"])
+    t = (PB.min(0) + PB.max(0)) / 2 - (Vd.min(0) + Vd.max(0)) / 2
+    info = dict(scale_k=1.0, slide=0.0, iou=None, tilt_deg=0.0, turned_deg=0.0, muzzle_disc=None, tag_barrel=None,
+                size_base=np.round(np.ptp(PB, 0), 2).tolist(), size_disc=np.round(np.ptp(Vd, 0), 2).tolist())
+    return T, t, M, None, None, info
+
+
 def skd_bones(b):
     """the raw bone block of an SKD and its bone names (eaprops.skd_bones)"""
     nsurf, nbones, ofsb = struct.unpack_from("<3i", b, 72)
@@ -255,6 +288,12 @@ def base_gun(tik, rows_json=None):
                 cnt.setdefault(s["name"], {}).setdefault(bi, 0)
                 cnt[s["name"]][bi] += 1
     eff = vfs.read(path).decode("latin-1")
+    for _ in range(4):                  # the grenade tiks are include-only: inline them (gen_disc_stubs.inline_includes)
+        inc = re.search(r"(?mi)^[ \t]*\$include[ \t]+(\S+)[ \t\r]*$", eff)
+        if not inc:
+            break
+        sub = vfs.read(inc.group(1))
+        eff = eff[:inc.start()] + (sub.decode("latin-1") if sub else "") + eff[inc.end():]
     sn = [s["name"] for s in g["surfs"]]
     clip = [s for s in sorted(set(CLIP_RX.findall(eff))) if s in sn] or [s for s in sn if "clip" in s.lower()]
     gunb = {}
@@ -262,7 +301,8 @@ def base_gun(tik, rows_json=None):
         if sn not in clip:
             for bi, n in c.items():
                 gunb[bi] = gunb.get(bi, 0) + n
-    gun_bone = max(gunb, key=gunb.get)
+    # the frag grenade's only surface IS the hidden-after-throw one: its bone is the gun bone too
+    gun_bone = max(gunb, key=gunb.get) if gunb else max(cnt[clip[0]], key=cnt[clip[0]].get)
     lname = [n.lower() for n in names]
     used = {bi for c in cnt.values() for bi in c}
     bolt = next((lname.index(b) for b in BOLT_BONES if b in lname and lname.index(b) in used), None)
@@ -272,7 +312,7 @@ def base_gun(tik, rows_json=None):
                 clip=clip[0] if clip else None, roles={"gun": gun_bone, "bolt": bolt if bolt is not None else gun_bone,
                                                         "pump": pump if pump is not None else gun_bone,
                                                         "mag": mag_bone},
-                row=base_row(path, rows_json), eff=eff, skdpath=g["skd"], path=t["path"])
+                row=_row_or_none(path, rows_json), eff=eff, skdpath=g["skd"], path=t["path"])
 
 
 def _rotm(a, b):
@@ -316,7 +356,7 @@ def _dilate(m, iterations=2):
     return m
 
 
-def fit(fr, base, disc, maxtilt=None, kfix=None, mode=None, slide=8.0):
+def fit(fr, base, disc, maxtilt=None, kfix=None, mode=None, slide=8.0, shift=None):
     maxtilt = MAXTILT if maxtilt is None else maxtilt
     M = np.array(fr["M"])
     Fd, Rd = np.array(fr["F"]), np.array(fr["R"])
@@ -371,6 +411,8 @@ def fit(fr, base, disc, maxtilt=None, kfix=None, mode=None, slide=8.0):
         iou = (SB & SD).sum() / max(1, (SB | SD).sum())
         if best is None or iou > best[0]:
             best = (iou, dx)
+    if shift is not None:            # a fixed axial shift (GUNS "shift"): the grips, not the silhouettes, decide
+        best = (best[0], float(shift))
     t = t0 + dirn * best[1]
     info = dict(scale_k=round(k, 4), sr_base=round(sr_b, 2), sr_disc_true=round(sr_d, 2), slide=best[1],
                 iou=round(best[0], 3), len_base=round(float(np.ptp(PB[:, 0])), 2),
@@ -504,7 +546,11 @@ def write_gun(key, disc, fr, snd_paths, rows_json=None):
     for role, bn in (cfg.get("bones") or {}).items():     # a base bone the generic role names do not find
         base["roles"][role] = base["names"].index(bn)
     disc, dropped = drop_parts(disc, fr, cfg.get("drop"))
-    T, t, M, Ff, Rf, info = fit(fr, base, disc, cfg.get("maxtilt"), cfg.get("k"), cfg.get("fit"), cfg.get("slide", 8.0))
+    if fr["kind"] == "none":
+        T, t, M, Ff, Rf, info = fit_center(fr, base, disc)
+    else:
+        T, t, M, Ff, Rf, info = fit(fr, base, disc, cfg.get("maxtilt"), cfg.get("k"), cfg.get("fit"), cfg.get("slide", 8.0),
+                                    cfg.get("shift"))
     if dropped:
         info["dropped"] = dropped
     if fr["kind"] == "scope":      # the row keeps the base convention F = R + 12 u along the (disc) scope axis
@@ -564,6 +610,10 @@ def write_gun(key, disc, fr, snd_paths, rows_json=None):
     tik += ["$include models/weapons/byo/body/%s.txt" % cfg["base"], ""]
     files["models/weapons/byo/%s.tik" % stub] = "\n".join(tik).encode()
     row = base["row"]
+    if fr["kind"] == "none":
+        info.update(surfaces=[(s[0], len(s[1]), len(s[2]), s[3]) for s in surfs],
+                    sounds={a: i for a, i in SOUNDS.get(key, {}).items() if i in snd_paths})
+        return files, info
     files["_row"] = ('sight models/weapons/byo/%s.tik "%s" %.4f %.4f %.4f %.4f %.4f %.4f %.6f %.3f %.3f %.3f %.3f %s "%s"'
                      % (stub, cfg["name"], *Ff, *Rf, row["delta"], *row["U"], row["relief"], fr["kind"],
                         row["name"])).encode()

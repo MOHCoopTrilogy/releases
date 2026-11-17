@@ -99,7 +99,9 @@ def sel_block2(n):
     else:
         L.append("set coop_loF2On 0")
         L += ["set coop_loLkFV%d 0" % f for f in FS2_FIDS]
-        L += ["set coop_loDiscV%d 0" % f for f in DISC_FIDS]       # [discguns] no disc chip on the grenade slot
+        # [discguns grenades 2026-11-16] the grenade slot has disc variants too (Frontline Mk II / Stielhandgranate): the chip
+        # targets this slot; its visibility stays the inspected grenade page's coop_loDiscV<F> (gen_loadout) + the ROM cvar
+        L += ['set coop_loFgo%d "exec ui/loadout/fin%d_s%d.cfg"' % (f, f, n) for f in DISC_FIDS]
     return "\n".join(L) + "\n"
 
 
@@ -144,7 +146,7 @@ def build(out, read_sel, read_init=None):
         for n in GUN_SLOTS:
             out["fin%d_s%d.cfg" % (r["fid"], n)] = fin_slot(r["fid"], n, r["name"])
     for f, name, _cv in DISC:          # [discguns] the disc chips apply like a finish (the server re-checks ownership)
-        for n in GUN_SLOTS:
+        for n in SLOTS:                # [discguns grenades] slot 4 too
             out["fin%d_s%d.cfg" % (f, n)] = fin_slot(f, n, name)
     if read_init is not None:
         out["init.cfg"] = patch_init(read_init())

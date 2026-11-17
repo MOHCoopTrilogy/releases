@@ -239,6 +239,9 @@ def solve(gun, spec):
 def solve_key(key, disc, spec):
     """-> the per-gun record the fit reads (same shape as the private discsights_FR.json[key])"""
     g = Gun(key, disc, spec)
+    if spec.get("kind") == "none":       # a grenade: no sight - only the canonical frame for the fit
+        return {"F": None, "R": None, "kind": "none", "L": round(float(g.L), 4), "O": g.O.round(5).tolist(),
+                "M": g.M.round(6).tolist(), "punch": {}, "lens_r": 0.0}
     F, R = solve(g, spec)
     return {"F": F.round(5).tolist(), "R": R.round(5).tolist(), "kind": spec.get("kind", "iron"), "L": round(float(g.L), 4),
             "O": g.O.round(5).tolist(), "M": g.M.round(6).tolist(), "punch": g.punched,

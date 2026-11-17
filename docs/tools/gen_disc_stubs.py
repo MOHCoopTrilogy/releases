@@ -62,6 +62,9 @@ STUBS = [
     # Frontline batch 4: the launchers
     ("bazooka_fl", "bazooka", "Bazooka (Frontline)", 4011),
     ("panzerschreck_fl", "panzerschreck", "Panzerschreck (Frontline)", 4012),
+    # Frontline batch 5: the grenades (include-only base tiks, inlined)
+    ("m2frag_grenade_sp_start_fl", "m2frag_grenade_sp_start", "Frag Grenade (Frontline)", 4013),
+    ("steilhandgranate_start_fl", "steilhandgranate_start", "Stielhandgranate (Frontline)", 4014),
     # [coordinator 2026-11-16, 4b + decision 3] EA's Sten is the Mk II(S): its OWN weapon on the Sten rig. Its name does not
     # split to "Sten Mark II", so the base-name lookups (cgame CoopStripSkinSuffix, fgame CoopWeaponBaseName) reach the Sten
     # through its alias row below; its recoil / ROF / pattern rows are its own (coop_mod tables, stem sten_mk2s).
@@ -125,7 +128,23 @@ def split_setup(t):
 def clip_surface(base_text):
     """the surface the base anims toggle with frame commands (`surface <name> +/-nodraw`)"""
     names = sorted(set(re.findall(r"(?mi)^[^/\n]*\bsurface\s+(\S+)\s+[+-]\w+", base_text)))
-    return names
+    return [n for n in names if n.lower() != "all"]     # `surface all` is the TIKI keyword for every surface, not a name
+
+
+def inline_includes(text, depth=0):
+    """[discguns grenades 2026-11-16] the grenade tiks are include-only (`TIKI` + `$include models/weapons/<x>_base.txt` + an
+    extra init block): every `$include <file>` line is replaced by the effective copy of that file (recursively, 4 deep), so
+    the stub gets the real setup block and the shipped body is self-contained (no include chain left to resolve)."""
+    def sub(m):
+        if depth >= 4:
+            raise SystemExit("$include nested too deep: %s" % m.group(1))
+        inc, _pak = effective(m.group(1))
+        if inc is None:
+            raise SystemExit("$include target not found: %s" % m.group(1))
+        inc = re.sub(r"(?mi)^\s*TIKI\s*$", "", inc)
+        return "// [gen_disc_stubs] inlined from %s\n%s\n// [gen_disc_stubs] end of %s" % (m.group(1), inline_includes(inc, depth + 1),
+                                                                                         m.group(1))
+    return re.sub(r"(?mi)^[ \t]*\$include[ \t]+(\S+)[ \t\r]*$", sub, text)
 
 
 def make(stub, base, display, rank, opts=None):
@@ -134,6 +153,8 @@ def make(stub, base, display, rank, opts=None):
     text, pak = effective("models/weapons/%s.tik" % base)
     if text is None:
         raise SystemExit("base tik not found: %s" % base)
+    if re.search(r"(?mi)^\s*\$include", text):
+        text = inline_includes(text)
     pre, setup, post = split_setup(text)
     path = re.search(r"(?mi)^\s*path\s+(\S+)", setup).group(1)
     pre = re.sub(r"(?mi)^\s*TIKI\s*$", "", pre).strip()
