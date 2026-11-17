@@ -586,23 +586,28 @@ def hud_icon():
 
 
 def act_icon():
-    """512x512 action prompt in the icon-prompts finish (cream fill, dark keyline, soft halo): a window with two
-    crossed planks."""
+    """512x512 action prompt in the icon-prompts finish (cream fill, dark keyline, soft halo), drawn like the set's other
+    glyphs (solid shapes, cut details): a round-headed window frame with three planks nailed across it.
+    [coordinator QA 2026-11-16] the first version's thin pointed frame read as a house outline: the frame is now as heavy
+    as the set's strokes (44 u) with a round head, and the planks carry the weight."""
     sys.path.insert(0, os.path.join(ROOT, "docs", "proposals", "icon_prompts_2026-10-18", "tools"))
     import build_action_icons as bai
     p = bai.Pen()
-    # window frame: an arch outline
-    p.poly([(116, 470), (116, 200), (256, 60), (396, 200), (396, 470)])
-    p.poly([(156, 440), (156, 214), (256, 114), (356, 214), (356, 440)], v=0)
-    # two crossed planks over it, with a gap ring cut round each so they read as separate pieces
-    for (a, b) in (((60, 210), (452, 330)), ((60, 380), (452, 270))):
-        ang = math.atan2(b[1] - a[1], b[0] - a[0])
+    # frame: round-headed window, outer minus inner
+    p.rect(118, 190, 394, 482, r=6)
+    p.ell(256, 190, 138)
+    p.rect(162, 196, 350, 438, v=0)
+    p.ell(256, 196, 94, v=0)
+    # three planks across, a little crooked, each with a gap cut round it and a nail hole at each end
+    planks = (((52, 236), (460, 210)), ((44, 330), (468, 346)), ((56, 432), (456, 414)))
+    for (pa, pb) in planks:
+        ang = math.atan2(pb[1] - pa[1], pb[0] - pa[0])
         nx, ny = -math.sin(ang), math.cos(ang)
-        for hw, v in ((52, 0), (36, 255)):
-            p.poly([(a[0] + nx * hw, a[1] + ny * hw), (b[0] + nx * hw, b[1] + ny * hw),
-                    (b[0] - nx * hw, b[1] - ny * hw), (a[0] - nx * hw, a[1] - ny * hw)], v=v)
-        for e, sgn in ((a, 1), (b, -1)):
-            p.ell(e[0] + sgn * 30 * math.cos(ang), e[1] + sgn * 30 * math.sin(ang), 9, v=0)
+        for hw, v in ((42, 0), (28, 255)):
+            p.poly([(pa[0] + nx * hw, pa[1] + ny * hw), (pb[0] + nx * hw, pb[1] + ny * hw),
+                    (pb[0] - nx * hw, pb[1] - ny * hw), (pa[0] - nx * hw, pa[1] - ny * hw)], v=v)
+        for e, sgn in ((pa, 1), (pb, -1)):
+            p.ell(e[0] + sgn * 34 * math.cos(ang), e[1] + sgn * 34 * math.sin(ang), 10, v=0)
     return bai.finish(p.mask(), seed=11)
 
 
