@@ -50,6 +50,12 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.87 - Steady Aim
+
+- **M1 Garand and Mosin aimed reloads** stay in your shoulder and on target, with the action in view, in every stance.
+- **Sealed Orders:** MG gunners knocked off their gun pick up an MP40, shop windows have the original's frames and glass, nest MG42s sit on their sandbags, and the 25-point health pickup is the original's medkit case.
+- **Their Dying Breath:** the church defence always ends (no more "2 remaining" hang), partisans turn their heads to you as in the original, and the glowing-partisan and cut-line script errors are fixed.
+
 ### v1.10.86 - Squad Orders
 
 - **Squad orders:** tap N to switch your squad between following and holding (they take cover), hold N for a placement marker that sends them into cover there. A squad icon by your item icons and on the ability wheel shows what they're doing. Squadmates attack enemies in sight instead of standing still.
