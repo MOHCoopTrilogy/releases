@@ -1,0 +1,222 @@
+{
+ "gun": "mosin_up",
+ "holds": {
+  "bolt": {
+   "drop": 1.9,
+   "roll": 7.0,
+   "pitch": 0.6,
+   "side": 0.3,
+   "back": -3.2
+  },
+  "low": {
+   "drop": 0.6,
+   "roll": 13.0,
+   "pitch": 3.0,
+   "side": 0.7,
+   "back": -3.6
+  },
+  "reach": {
+   "drop": -0.5,
+   "roll": 14.0,
+   "pitch": 4.0,
+   "side": -0.7,
+   "back": -3.1
+  },
+  "push": {
+   "drop": 0.0,
+   "roll": 13.0,
+   "pitch": 4.0,
+   "side": 0.7,
+   "back": -3.6
+  },
+  "close": {
+   "drop": 1.9,
+   "roll": 8.0,
+   "pitch": 0.6,
+   "side": 0.3,
+   "back": -3.2
+  },
+  "down": {
+   "drop": 1.9,
+   "roll": 0.0,
+   "pitch": 0.6,
+   "side": 0.0,
+   "back": -0.6
+  },
+  "charge": {
+   "drop": 3.0,
+   "roll": 13.0,
+   "pitch": 2.0,
+   "side": 0.7,
+   "back": -3.4
+  }
+ },
+ "pose": [
+  [
+   0,
+   null
+  ],
+  [
+   5,
+   "down"
+  ],
+  [
+   9,
+   "bolt"
+  ],
+  [
+   16,
+   "bolt"
+  ],
+  [
+   21,
+   "low"
+  ],
+  [
+   27,
+   "reach"
+  ],
+  [
+   36,
+   "push"
+  ],
+  [
+   42,
+   "charge"
+  ],
+  [
+   52,
+   "charge"
+  ],
+  [
+   57,
+   "push"
+  ],
+  [
+   62,
+   "low"
+  ],
+  [
+   67,
+   "close"
+  ],
+  [
+   77,
+   "close"
+  ],
+  [
+   83,
+   "down"
+  ],
+  [
+   89,
+   null
+  ],
+  [
+   91,
+   null
+  ]
+ ],
+ "scale": 2.5,
+ "events": [
+  [
+   9,
+   "rb_up",
+   2.5
+  ],
+  [
+   13,
+   "rb_back",
+   2.5
+  ],
+  [
+   15,
+   "rb_stop",
+   2.5
+  ],
+  [
+   19,
+   "hand_off",
+   2.5
+  ],
+  [
+   23,
+   "body_reach",
+   2.5
+  ],
+  [
+   27,
+   "pouch_tug",
+   2.5
+  ],
+  [
+   31,
+   "pouch_tug",
+   3.25
+  ],
+  [
+   35,
+   "body_back",
+   2.5
+  ],
+  [
+   46,
+   "clip_set",
+   5.0
+  ],
+  [
+   49,
+   "clip_push",
+   5.0
+  ],
+  [
+   52,
+   "clip_push",
+   5.5
+  ],
+  [
+   58,
+   "hand_off",
+   1.5
+  ],
+  [
+   73,
+   "rb_fwd",
+   2.5
+  ],
+  [
+   75,
+   "rb_down",
+   2.5
+  ],
+  [
+   86,
+   "rb_grip",
+   2.5
+  ]
+ ],
+ "cls": {
+  "m": 4.1,
+  "f2": 2.6,
+  "f1": 2.0,
+  "z": 0.62,
+  "sag": [
+   0.04,
+   0.8,
+   0.1,
+   -0.03,
+   -0.04
+  ],
+  "magw": 0.0,
+  "tr": [
+   0.012,
+   0.1,
+   0.07,
+   0.01,
+   0.004
+  ],
+  "tr2": 0.5
+ },
+ "report": "class custom x1.00: peak pitch 4.31 deg at f33, roll 15.27 deg, drop 3.63 u, back 3.65 u; settles 0.20 s after the last action; left at the last frame before the fade: pitch 0.09 deg",
+ "md5": "18ea85c0aaff14299f300cb3b5519ab6"
+}
