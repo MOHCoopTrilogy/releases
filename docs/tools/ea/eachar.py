@@ -769,6 +769,71 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
     return head + bone_block + body, surf_names
 
 
+# Held props of the scene rigs (eaanimconv.ICS_PROP): the original's NPC weapon mesh as a static model in the frame of
+# the EA object joint it rides (JO_object_R; the disc attaches the NPC weapon there unturned - its left-hand grip checks
+# out on the walk / run / crouch clips, 3-6 cm from the barrel jacket). The scene clip writes that joint's frame onto
+# tag_weapon_right, so the model is attached to that tag at offset 0 / angles 0. 52 u/m, the characters' scale; the tik
+# is unscaled (an attached entity does not take the actor's 0.52)
+HELD = {"ppsh": "NpcWpn_PPSH_Art_0"}
+
+
+def held_props(stream, level, files, bone_block, log=print):
+    """write models/human/ea_<level>_held_<key>.tik per HELD entry; returns the data-script lines"""
+    import eaprops
+    out = []
+    S = eaprops._sob_store(stream)
+    jt, ov, oc, orf, oe = struct.unpack_from("<5i", bone_block, 64)
+    root = bone_block[:oe]                          # the stock root bone record (Bip01, pos + rot)
+    mdir = "models/human/ea_%s" % level
+    for key, part in HELD.items():
+        ms = S.mesh(part) if part in S.models else None
+        if not ms:
+            log("eachar: held prop %s not in the level stream" % part)
+            continue
+        tex = eaprops._shapes(stream, {(x["tex"] or "").split("+")[0] for x in ms})
+        surfs, tik_surf, sh = [], [], []
+        for k, x in enumerate(ms):
+            V = [tuple(v * 52.0 for v in q) for q in x["pos"]]
+            N = [(0.0, 0.0, 0.0)] * len(V)
+            for a, b, c in x["tris"]:
+                fn_ = _cross(_sub(V[b], V[a]), _sub(V[c], V[a]))
+                for i in (a, b, c):
+                    N[i] = _add(N[i], fn_)
+            N = [_norm(n) if any(n) else (0.0, 0.0, 1.0) for n in N]
+            verts = [(V[j], N[j], x["uv"][j], [(0, 1.0, V[j])]) for j in range(len(V))]
+            sn = "held_%s_%d" % (key, k)
+            surfs.append((sn, verts, [tuple(tr) for tr in x["tris"]]))
+            shape = (x["tex"] or "").split("+")[0]
+            im = tex.get(shape)
+            if im is None:
+                continue
+            tname = "textures/ea_%s/held_%s_%s.tga" % (level, key, shape.lower())
+            files[tname] = _tga(im)
+            shname = "ea_%s_held_%s_%s" % (level, key, shape.lower())
+            sh.append("%s\n{\n\tcull none\n\t{\n\t\tmap %s\n\t\trgbGen lightingSpherical\n\t}\n}\n" % (shname, tname))
+            tik_surf.append("\tsurface %s shader %s\n" % (sn, shname))
+        if any(len(s[1]) > TIKI_MAX_VERTS or len(s[2]) > TIKI_MAX_TRIS for s in surfs):
+            log("eachar: held prop %s over the engine's surface limits; skipped" % part)
+            continue
+        files["%s/held_%s.skd" % (mdir, key)] = eaprops.write_skd("held_" + key, root, 1, surfs)
+        allv = [v[0] for s in surfs for v in s[1]]
+        lo = tuple(min(v[i] for v in allv) for i in range(3))
+        hi = tuple(max(v[i] for v in allv) for i in range(3))
+        rad = math.sqrt(max(_dot(lo, lo), _dot(hi, hi)))
+        files["%s/held_%s.skc" % (mdir, key)] = eaprops.write_skc(
+            0.05, ["Bip01 pos", "Bip01 rot"], [{"Bip01 pos": (0.0, 0.0, 0.0, 0.0), "Bip01 rot": (0.0, 0.0, 0.0, 1.0)}],
+            (lo, hi), rad)
+        files.setdefault("scripts/ea_%s_chars.shader" % level, b"")
+        files["scripts/ea_%s_chars.shader" % level] += "".join(sh).encode()
+        tikp = "models/human/ea_%s_held_%s.tik" % (level, key)
+        files[tikp] = (("TIKI\nsetup\n{\n\tscale 1.0\n\tpath %s\n\tskelmodel held_%s.skd\n%s}\n\ninit\n{\n\tserver\n"
+                        "\t{\n\t\tclassname Animate\n\t}\n}\n\nanimations\n{\n\tidle held_%s.skc\n}\n") % (
+            mdir, key, "".join(tik_surf), key)).encode()
+        out.append('\tlevel.ea_held_tik["%s"] = "%s"' % (key, tikp))
+        log("eachar: held prop %s -> %s (%d verts)" % (part, tikp, len(allv)))
+    return out
+
+
 def build(stream, level, mohaa_base, files, lines, log=print):
     """write each known character's model into the converted pak; the data script names its .tik"""
     if not mohaa_base:
@@ -809,6 +874,11 @@ def build(stream, level, mohaa_base, files, lines, log=print):
                 anim_block = "animations\n{\n\t$path models/human/ea_%s\n%s\n}\n" % (level, "\n".join(jaw_rows))
             lines.extend(jaw_lines)
             lines.append("\tlevel.ea_jawOn = 1")
+    if skel and anim_block:
+        try:
+            lines.extend(held_props(stream, level, files, bone_block, log))
+        except Exception as e:     # never fail the conversion: the scene keeps the actor's own weapon
+            log("eachar: held props skipped (%s)" % e)
     for mname, chr_names, label in CHARS:
         m = read_model(stream, mname)
         if not m or not m["meshes"]:

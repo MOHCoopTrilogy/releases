@@ -71,10 +71,12 @@ def ea_globals(skel, sample):
     return G
 
 
-def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0, fwd=0.0, lat=0.0):
+def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0, fwd=0.0, lat=0.0, objtag=None):
     """MOHAA .skc bytes of one EA clip for the stock human skeleton (bones = mohskel.read_skd_bones of the stock skd);
     yaw (degrees, about the model origin) turns the whole clip - the gunner clips are turned so the gun hands point
-    straight ahead, since the engine yaws a gunner with his turret (actor_machinegunner.cpp ThinkHoldGun_TurretGun)"""
+    straight ahead, since the engine yaws a gunner with his turret (actor_machinegunner.cpp ThinkHoldGun_TurretGun).
+    objtag: an EA object joint (JO_object_R) whose frame the clip writes onto tag_weapon_right, so a prop attached to
+    that tag sits where the original's held object does (see ICS_PROP)"""
     cy, sy = math.cos(math.radians(yaw)), math.sin(math.radians(yaw))
     Rz = [[cy, -sy, 0.0], [sy, cy, 0.0], [0.0, 0.0, 1.0]]
     J = {nm: (p, eachar._axes(*a)) for nm, (p, a) in eachar.POSE.items()}
@@ -144,6 +146,17 @@ def convert_clip(bank, clip, skel, bones, fps=30.0, root_motion=True, yaw=0.0, f
             fo, toe = "Bip01 %s Foot" % side, "Bip01 %s Toe0" % side
             if fo in glob and toe in rows:
                 ch[toe + " rot"] = mohskel.rows_to_quat(_mm(rows[toe], _tr(glob[fo][:3])))
+        if objtag and objtag in byname and "Bip01 R Hand" in glob:
+            # the held object: the EA object joint's axes (MOHAA axes, the clip's yaw) as the tag's rows, at the stock
+            # hand plus the joint's own offset from the EA wrist (the hand piece is rigid: 100 x s model units / m)
+            Ro, po = G[byname[objtag]]
+            pw = G[byname["JO_wrist_R"]][1]
+            trow = [_mv(Rz, _mv(C3, [Ro[k][c] for k in range(3)])) for c in range(3)]
+            off = _mv(Rz, _mv(C3, [(po[k] - pw[k]) * 100.0 * s for k in range(3)]))
+            hand = glob["Bip01 R Hand"]
+            Tl = mohskel.mul(trow + [[hand[3][k] + off[k] for k in range(3)]], mohskel.inv(hand))
+            ch["tag_weapon_right rot"] = mohskel.rows_to_quat(Tl[:3])
+            ch["tag_weapon_right pos"] = tuple(Tl[3]) + (0.0,)
         ch["ORIGIN pos"], ch["ORIGIN rot"] = (0.0, 0.0, 0.0, 0.0), (0.0, 0.0, 0.7071068, 0.7071068)
         frames.append(ch)
     chans = sorted(frames[0], key=lambda c: [b[0] for b in bones].index(c.rsplit(" ", 1)[0])
@@ -212,6 +225,11 @@ MMG_ONE = {"enter": "58f52873", "exit": "647c2159", "death": "7a12045e", "death_
 # Each clip's root is the rig point on the floor, facing the point's yaw: the clip already carries the original's own
 # root turn (ExplainsPlan and PolishingWeapon play turned 180, TyingBootLaces 80, GuardIdling 90) and seat heights
 # (PolishingWeapon's pelvis 43 cm, TyingBootLaces' 51 cm over the root: the bench must be there).
+# scene rigs whose clip carries the original's held object on tag_weapon_right (eachar.held_props converts the
+# object; the scene attaches it to that tag at offset 0 / angles 0 and hides the actor's own weapon). ExplainsPlan: the
+# leader's PPSh (his spawn point's NpcWpn_PPSH, mesh NpcWpn_PPSH_Art_0) on JO_object_R - two grips, before and after
+# he stands at 11.7 s
+ICS_PROP = {"explainsplan": "JO_object_R"}
 SCENES = {
     "partisanidling": "d4f7a161 0a84ccf5 982e0d67",
     "crouchedpartisanfemale": "ad30af0a 614ca96c 29619877",
@@ -404,12 +422,13 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
     bones = mohskel.read_skd_bones(skd_bytes)
     rows = []
 
-    def put(alias, h, loop, yaw=0.0):
+    def put(alias, h, loop, yaw=0.0, objtag=None):
         if h not in bank.clips:
             return
         mmg = alias.startswith(("mmg_", "mmgp_", "mmgc_"))
         lat = (MMG_SIDE_POLE if alias.startswith(("mmgp_", "mmgc_")) else MMG_SIDE) if mmg else 0.0
-        skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw, fwd=MMG_FWD if mmg else 0.0, lat=lat)
+        skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw, fwd=MMG_FWD if mmg else 0.0, lat=lat,
+                              objtag=objtag)
         if loop:
             skc = skc[:8] + struct.pack("<i", struct.unpack_from("<i", skc, 8)[0] | 0x20) + skc[12:]
         files["models/human/ea_%s/anim/%s.skc" % (level, alias)] = skc
@@ -434,7 +453,8 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
         put("mmgc_idle", MMG_CROUCH, True, gun_yaw(bank, skel, bones, MMG_CROUCH))
     for rig, hs in SCENES.items():
         for n, hx in enumerate(hs.split()):
-            put("ics_%s_%d" % (rig, n + 1), int(hx, 16), n == 0 and rig not in ("explainsplan", "partisanleadersaysgofight", "callsplayer", "guardstopsplayer"))
+            put("ics_%s_%d" % (rig, n + 1), int(hx, 16), n == 0 and rig not in ("explainsplan", "partisanleadersaysgofight", "callsplayer", "guardstopsplayer"),
+                objtag=ICS_PROP.get(rig))
     for rig, hs in SCENES_STATES.items():
         for n, hs_ in enumerate(hs.split()):
             hx, st = hs_.split(":")
