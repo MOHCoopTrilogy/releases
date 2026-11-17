@@ -97,8 +97,20 @@ BANKS = {0x40000000: "SCR.ABK", 1: "L1.ABK", 2: "L2.ABK", 4: "L3.ABK", 8: "L4.AB
 
 # disc sound per base alias slot: (level, alias id in that level's Audio.ubr, pick) - pick = which of the alias's samples
 # (an EA alias is a random set; the first is taken). Slots not listed keep the base sound.
-SOUNDS = {}
-BASE_SND = {}
+# Read off the running original (2026-11-16, bug-11367): a gdb break on the DirectSound voice start (0x2F0FEA) gives each
+# voice's data pointer ([[voice+0x70]+0xbc]); those bytes sit in the level's SCR.ABK, and the BNKl PT table maps the offset to
+# the sample index. Only the player's own trigger pulls were counted (voices within 0.25 s of each pull, every pull).
+#   PPSh (1_11): main shot = sample 230 (stereo, 0.32 s, twice per burst step) + mech layer 79 + random tail 306 / 308.
+#   M1 (1_1): shots alternate 155 / 156 (stereo), layer 157 ~0.14 s later, the 8th shot adds 158 (ping) then 159 (reload).
+# One MOHAA alias = one clip, so the main shot is wired; the layers are listed as deviations.
+SOUNDS = {
+    "ea_SMG_PPSH": {"ppsh41_snd_fire": ("1_11", 0x6ae7dee1)},                         # alias = [230, 230]
+    "ea_rifle_m1": {"m1_snd_fire": ("1_1", 0x2cf5ecd1),                               # alias = [155, 156, 157, 158, ...]
+                    "snd_ping": ("1_1", 0x2cf5ecd1, 3)},                              # its 4th sample = 158, the ping
+}
+BASE_SND = {
+    "ppsh41_snd_fire": ("sound/weapons/fire/wpnfire_PPSH_SMG02.wav", "1.82 0.01 0.95 0.1 480 8000 weapon"),
+}
 
 
 def stub_of(key):
@@ -118,7 +130,7 @@ def register():
             row["body"] = stub_of(k)
         flgunfit.GUNS[k] = row
     for k, s in SOUNDS.items():
-        flgunfit.SOUNDS[k] = {a: "%s:%08x" % (lv, al) for a, (lv, al) in s.items()}
+        flgunfit.SOUNDS[k] = {a: "%s:%08x" % v[:2] + (":%d" % v[2] if len(v) > 2 and v[2] else "") for a, v in s.items()}
     flgunfit.BASE_SND.update(BASE_SND)
 
 
@@ -210,13 +222,15 @@ def ubr_aliases(ubr):
 
 
 def decode_sounds(disc, refs, tmp, vgm):
-    """refs: {"<level>:<alias hex>"} -> {ref: wav path} (the alias's first sample); {} without vgmstream"""
+    """refs: {"<level>:<alias hex>[:<pick>]"} -> {ref: wav path} (the alias's sample <pick>, default the first); {} without
+    vgmstream"""
     import subprocess
     if not vgm or not os.path.exists(vgm):
         return {}
     out, ubrs, banks = {}, {}, {}
     for ref in sorted(refs):
-        lv, ah = ref.split(":")
+        lv, ah = ref.split(":")[:2]
+        pick = int(ref.split(":")[2]) if ref.count(":") > 1 else 0
         d = "DATA/%s/%s/SOUND/" % (lv.split("_")[0], lv)
         if lv not in ubrs:
             try:
@@ -224,14 +238,14 @@ def decode_sounds(disc, refs, tmp, vgm):
             except Exception:
                 ubrs[lv] = {}
         smp = ubrs[lv].get(int(ah, 16))
-        if not smp or smp[0][0] not in BANKS:
+        if not smp or len(smp) <= pick or smp[pick][0] not in BANKS:
             continue
-        bk, idx = smp[0]
+        bk, idx = smp[pick]
         src = os.path.join(tmp, "%s_%s" % (lv, BANKS[bk]))
         if src not in banks:
             open(src, "wb").write(disc.read(d + BANKS[bk]))
             banks[src] = 1
-        dst = os.path.join(tmp, "%s_%s.wav" % (lv, ah))
+        dst = os.path.join(tmp, "%s_%s_%d.wav" % (lv, ah, pick))
         r = subprocess.run([vgm, "-s", str(idx + 1), "-i", "-o", dst, src], stdout=subprocess.DEVNULL,
                            stderr=subprocess.DEVNULL, creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
         if r.returncode == 0 and os.path.exists(dst):
