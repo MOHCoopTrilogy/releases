@@ -594,9 +594,9 @@ one place, `Actor::IdleTurn` (`actor.cpp:5032`), which no runner think reaches -
 the actor in `THINK_RUNNER` and any `waittill turndone` there blocks **forever**, while `waittill
 movedone` is safe because `CheckUnregister` (`actor.cpp:7793`) fires it even on `parm.movefail`.
 **`runto` → `turndone` hangs; `runto` → `movedone` does not.** **And `runto <vector>` only works where the mapper baked
-pathnodes** (bug-2246): a bare vector becomes a patrol node whose branch calls `SetPath()`, a graph
-search, so with no nodes the actor never takes a step and the only symptom is one `Path not found` per
-leg. The `IsSubclassOfWaypoint` branch instead does `SetDest` + `ANIM_MODE_DEST` and walks straight at
+pathnodes** (bug-2246): a bare vector is a patrol node (`SetPath()`): no nodes, no step,
+`Path not found`. **Pushes need `leash 4096` + `resetleash`**: at the default
+512 a fighting actor stops 512u from home (bug-11331). The `IsSubclassOfWaypoint` branch instead does `SetDest` + `ANIM_MODE_DEST` and walks straight at
 the point with no graph at all (`actor.cpp:3998`) - so for coop actors placed anywhere the map's own AI
 does not go, **`spawn info_waypoint`, move it, and `runto` that**. Related: **never invent an
 exit/placement offset when the model carries an authored one** - vehicles ship `driver_enter` /
