@@ -2431,5 +2431,173 @@
   "textures/hud/coop_db2/medal_11.tga": {
     "new": true,
     "why": "end-of-mission debrief art (docs/tools/gen_debrief2.py)"
+  },
+  "models/coop_barricade/board116a.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board116a.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board116a.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board116b.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board116b.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board116b.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board120a.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board120a.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board120a.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board120b.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board120b.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board120b.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board186a.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board186a.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board186a.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board186b.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board186b.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board186b.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board190a.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board190a.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board190a.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board190b.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board190b.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board190b.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board194a.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board194a.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board194a.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board194b.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board194b.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board194b.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board64a.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board64a.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board64a.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board64b.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board64b.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board64b.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board70a.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board70a.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board70a.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board70b.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board70b.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board70b.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board76a.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board76a.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board76a.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board76b.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board76b.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board76b.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board82a.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board82a.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board82a.tik": {
+    "new": "True"
+  },
+  "models/coop_barricade/board82b.skc": {
+    "new": "True"
+  },
+  "models/coop_barricade/board82b.skd": {
+    "new": "True"
+  },
+  "models/coop_barricade/board82b.tik": {
+    "new": "True"
+  },
+  "textures/hud/coop_plank_icon.tga": {
+    "new": "True"
+  },
+  "textures/hud/loot/coop_act_plank.tga": {
+    "new": "True"
   }
 }
