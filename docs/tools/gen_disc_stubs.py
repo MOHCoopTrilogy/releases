@@ -51,6 +51,17 @@ STUBS = [
     ("mp40_fl", "mp40", "MP40 (Frontline)", 4002),
     ("mp44_fl", "mp44", "StG 44 (Frontline)", 4003),
     ("shotgun_fl", "shotgun", "Shotgun (Frontline)", 4004),
+    # Frontline batch 2 (2026-11-16): the iron-sighted rifle and the three pistols
+    ("m1_garand_fl", "m1_garand", "M1 Garand (Frontline)", 4005),
+    ("colt45_fl", "colt45", "Colt 45 (Frontline)", 4006),
+    ("p38_fl", "p38", "Walther P38 (Frontline)", 4007),
+    ("silencedpistol_fl", "silencedpistol", "Hi-Standard Silenced (Frontline)", 4008),
+    # Frontline batch 3: the scoped rifles
+    ("springfield_fl", "springfield", "Springfield '03 Sniper (Frontline)", 4009),
+    ("g43_fl", "g43", "G 43 (Frontline)", 4010),
+    # Frontline batch 4: the launchers
+    ("bazooka_fl", "bazooka", "Bazooka (Frontline)", 4011),
+    ("panzerschreck_fl", "panzerschreck", "Panzerschreck (Frontline)", 4012),
     # [coordinator 2026-11-16, 4b + decision 3] EA's Sten is the Mk II(S): its OWN weapon on the Sten rig. Its name does not
     # split to "Sten Mark II", so the base-name lookups (cgame CoopStripSkinSuffix, fgame CoopWeaponBaseName) reach the Sten
     # through its alias row below; its recoil / ROF / pattern rows are its own (coop_mod tables, stem sten_mk2s).

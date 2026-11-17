@@ -19,6 +19,13 @@ CAP = 2048
 PROTECT = {
     # Thompson metal: MODEL stamp + AUTO-ORDNANCE legend + FIRE <-> SAFE in one box; the selector letters
     "tom_02met256.tga": [(0.37, 0.18, 0.93, 0.39), (0.55, 0.39, 0.67, 0.49)],
+    # Hi-Standard frame: the script logo + HIGH STANDARD block; SUPERMATIC + the line under it (batch 2, 2026-11-16)
+    "hs_sides_256.tga": [(0.33, 0.12, 0.75, 0.21), (0.30, 0.24, 0.53, 0.32)],
+    "hs_back_256.tga": [(0.31, 0.68, 0.50, 0.80)],          # the small stamp under the grip screw
+    "col_sid_256_4.tga": [(0.38, 0.06, 0.66, 0.22)],        # the (faint, 128 px) slide legend
+    "baz_scope_256.tga": [(0.60, 0.08, 0.69, 0.26)],        # the FIRE / SAFE letters on the grip plate
+    # M1 receiver heel: the (illegible at 256 px) receiver stamp - kept as the disc drew it, never re-drawn
+    "m1top_256.tga": [(0.75, 0.06, 0.96, 0.24)],
 }
 
 

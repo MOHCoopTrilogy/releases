@@ -129,6 +129,7 @@ class Gun:
             lo, hi = P.min(0), P.max(0)
             p = (lo + hi) / 2
             p[1] = P[:, 1].min()
+            self.lens_r = float((hi[0] - lo[0] + hi[2] - lo[2]) / 4)    # the ocular's mean half-size (lens disc)
         elif typ == "top":
             lo, hi = P.min(0), P.max(0)
             p = P[z >= z.max() - fs.get("tol", 0.0003) * self.L].mean(0)
@@ -240,4 +241,5 @@ def solve_key(key, disc, spec):
     g = Gun(key, disc, spec)
     F, R = solve(g, spec)
     return {"F": F.round(5).tolist(), "R": R.round(5).tolist(), "kind": spec.get("kind", "iron"), "L": round(float(g.L), 4),
-            "O": g.O.round(5).tolist(), "M": g.M.round(6).tolist(), "punch": g.punched}
+            "O": g.O.round(5).tolist(), "M": g.M.round(6).tolist(), "punch": g.punched,
+            "lens_r": round(float(getattr(g, "lens_r", 0.0)), 5)}

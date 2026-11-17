@@ -24,7 +24,10 @@ import numpy as np
 
 PAK = "zzzzzzzzzzzzzzzzzzzz_byo_guns_fl.pk3"
 ROWS_FILE = "scripts/hzm_adssights_byo_fl.txt"
-KEYS = ["fl_th", "fl_bar", "fl_mp40", "fl_stg44", "fl_sg"]
+KEYS = ["fl_th", "fl_bar", "fl_mp40", "fl_stg44", "fl_sg",                      # batch 1
+        "fl_m1", "fl_colt", "fl_p38", "fl_silpis",                                  # batch 2 (2026-11-16)
+        "fl_spring", "fl_g43",                                                      # batch 3: scoped
+        "fl_bazooka", "fl_panzer"]                                                  # batch 4: launchers
 LEVEL = "7_1"                       # the level whose level.viv carries every Frontline first-person gun + GunBnk
 ZIP_TIME = (2026, 1, 1, 0, 0, 0)
 DMF = {"th": "th_weapon.dmf", "bar": "bar_weapon.dmf", "mp40": "mp40_weapon.dmf", "stg44": "stg44_weapon.dmf",

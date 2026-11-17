@@ -17,6 +17,7 @@ import io
 import json
 import math
 import os
+import re
 import struct
 import sys
 import wave
@@ -43,6 +44,26 @@ GUNS = {
     # sight picture matches the base gun's (2026-11-16 QA flag 3).
     "fl_sg":    dict(base="shotgun", stub="shotgun_fl", name="Shotgun (Frontline)",
                      roles={"bolt_03": "pump", "bolt_04": "pump"}, maxtilt=4.0),
+    # batch 2 (2026-11-16): the FL pistols' slide is bone Bolt_02 (-> the base slide bone), the hammer rides the frame
+    "fl_m1":    dict(base="m1_garand", stub="m1_garand_fl", name="M1 Garand (Frontline)"),
+    "fl_colt":  dict(base="colt45", stub="colt45_fl", name="Colt 45 (Frontline)"),
+    "fl_p38":   dict(base="p38", stub="p38_fl", name="Walther P38 (Frontline)"),
+    "fl_silpis": dict(base="silencedpistol", stub="silencedpistol_fl", name="Hi-Standard Silenced (Frontline)"),
+    # batch 3: the scoped rifles - true scale (no sight radius to match), a fitted glass disc on the disc ocular
+    # (coop_scope_glass_<tint>, the base rifle's tint), the disc bolt on the base bolt bone
+    "fl_spring": dict(base="springfield", stub="springfield_fl", name="Springfield '03 Sniper (Frontline)", glass="blue", slide=0.0,
+                      bones={"bolt": "Object02"}),     # the base bolt handle rides Object02 (no BOLT_BONES name)
+    # slide 0 on the scoped rifles: the ocular stays ON the base ocular (eye relief = the base row's). The silhouette slide
+    # put the G43 ocular 2 u closer to the eye: the optic's exit-pupil vignette shrank the picture to a dot in the glass
+    "fl_g43":   dict(base="g43", stub="g43_fl", name="G 43 (Frontline)", glass="blue", slide=0.0,
+                     roles={"bolt_action": "bolt", "magazine": "mag"},
+                     drop=[{"tex": "G43Sight", "hmax": -0.2}]),
+    # batch 4: the launchers. Frontline modelled no separate rocket (no rocket bone, nothing outside the tube): the BASE
+    # rocket surface is carried over so the reload still shows one going in (the base anims toggle it)
+    "fl_bazooka": dict(base="bazooka", stub="bazooka_fl", name="Bazooka (Frontline)", keep_base=["bazookashell"],
+                       fit="bore", k=1.0, slide=12.0),
+    "fl_panzer": dict(base="panzerschreck", stub="panzerschreck_fl", name="Panzerschreck (Frontline)", keep_base=["shell"],
+                      fit="bore", k=1.0, slide=12.0),
 }
 # disc sound per base alias slot (FL: the GunBnk stream index of level 7_1, identified by level presence + envelope).
 # Slots not listed keep the base sound. Server-side slots (pickup / ammo pickup / no-ammo) are always base.
@@ -50,6 +71,20 @@ SOUNDS = {
     "fl_th": {"thompson_snd_fire": 16},
     "fl_bar": {"bar_snd_fire": 19},
     "fl_sg": {"shotgun_snd_fire": 13, "shotgun_snd_rechamber": 34, "shotgun_snd_reload_single": 97},
+    # the fire stream of every gun is DATA on the disc: halfword 36 (byte 72) of its 84-byte weapbul row = its 1-based
+    # slot in the GunBnk's first ref run, which is the vgmstream stream index on 7_1 (it reproduces every presence match:
+    # Colt 2, Hi-Standard 3, G43 9, Springfield 11, shotgun 13, Thompson 16, BAR 19, bazooka 22) - 2026-11-16, bug-11348
+    "fl_mp40": {"mp40_snd_fire": 15},
+    "fl_stg44": {"mp44_snd_fire": 18},
+    # M1: 95 = the clip ping (a single strike, ringing 0.34 s; run 7 of the bank = the per-gun stage clips, M1 = 0 / 1)
+    "fl_m1": {"m1_snd_fire": 7, "snd_ping": 95},
+    "fl_colt": {"colt45_snd_fire": 2},
+    "fl_p38": {"P38_snd_fire": 4},
+    "fl_silpis": {"silencer_snd_fire": 3},
+    "fl_spring": {"springfield_snd_fire": 11},
+    "fl_g43": {"gewehr43_snd_fire": 9},          # the SP GewehrSniper row (the MP G43 row is 8)
+    "fl_bazooka": {"bazooka_snd_fire": 22},
+    "fl_panzer": {"panzerschreck_snd_fire": 23},
 }
 # base wav each slot is loudness-matched to, and its soundparms (copied from the effective ubersound alias)
 BASE_SND = {
@@ -58,6 +93,17 @@ BASE_SND = {
     "shotgun_snd_fire": ("sound/weapons/fire/ShotgunFire1.wav", "1.95 0.0 0.8 0.1 480 8000 weapon"),
     "shotgun_snd_rechamber": ("sound/weapons/foley/ShotgunRechamber1.wav", "1.5 0.0 0.95 0.1 160 1000 item"),
     "shotgun_snd_reload_single": ("sound/weapons/foley/ShotgunFill1.wav", "1.2 0.01 0.95 0.1 160 1000 item"),
+    "mp40_snd_fire": ("sound/weapons/fire/MP40Fire2.wav", "1.32 0.01 0.95 0.1 480 8000 weapon"),
+    "mp44_snd_fire": ("sound/weapons/fire/MP44Fire1.wav", "1.32 0.05 0.95 0.1 480 8000 weapon"),
+    "m1_snd_fire": ("sound/weapons/fire/M1GarandFire2a.wav", "1.69 0.2 0.8 0.2 480 8000 weapon"),
+    "snd_ping": ("sound/weapons/foley/M1_Ping.WAV", "1.5 0.3 0.95 0.1 160 1000 auto"),
+    "colt45_snd_fire": ("sound/weapons/fire/Colt45Fire1.wav", "1.70 0.05 1.0 0.03 480 8000 weapon"),
+    "P38_snd_fire": ("sound/weapons/fire/P38Fire2.wav", "1.42 0.1 0.8 0.1 480 8000 weapon"),
+    "silencer_snd_fire": ("sound/weapons/fire/SilencedFire2.wav", "1.10 0.1 0.95 0.1 480 8000 weapon"),
+    "springfield_snd_fire": ("sound/weapons/fire/SpringfieldFire2.WAV", "1.69 0.2 0.95 0.1 480 8000 weapon"),
+    "gewehr43_snd_fire": ("sound/weapons/fire/gewehr43fire2.WAV", "1.52 0.2 1.0 0.05 480 8000 weapon"),
+    "bazooka_snd_fire": ("sound/weapons/fire/BazookaFire2.wav", "1.95 0.0 0.92 0.15 500 9000 weapon"),
+    "panzerschreck_snd_fire": ("sound/weapons/fire/PanzershrekFire2.wav", "1.95 0.0 0.92 0.15 500 9000 weapon"),
 }
 MAPS = 'always maps "m e t dm lib obj train c b"'
 
@@ -116,7 +162,12 @@ def sound_files(key, stub, snd_paths):
     return files, lines
 
 
-BOLT_BONES = ("coop_bolt", "bolt", "box02", "chamber", "m1garandchamber")
+# coop_slide before chamber: the mod's P38 / Hi-Standard slides ride coop_slide (the Hi-Standard's chamber bone carries no
+# vertex at all). A candidate counts only when base vertices are weighted to it.
+BOLT_BONES = ("coop_bolt", "coop_slide", "bolt", "box02", "chamber", "m1garandchamber")
+# the magazine surface = the one the base anims toggle (`surface <name> +/-nodraw`, gen_disc_stubs.clip_surface - the
+# shipped body wildcards exactly that name): M1 material8 (the en-bloc clip), G43 g43_Clip, bazooka bazookashell
+CLIP_RX = re.compile(r"(?mi)^[^/\n]*\bsurface\s+(\S+)\s+[+-]\w+")
 PUMP_BONES = ("object01",)
 
 
@@ -203,7 +254,9 @@ def base_gun(tik, rows_json=None):
             for bi, w, o in v[2]:
                 cnt.setdefault(s["name"], {}).setdefault(bi, 0)
                 cnt[s["name"]][bi] += 1
-    clip = [s["name"] for s in g["surfs"] if "clip" in s["name"].lower()]
+    eff = vfs.read(path).decode("latin-1")
+    sn = [s["name"] for s in g["surfs"]]
+    clip = [s for s in sorted(set(CLIP_RX.findall(eff))) if s in sn] or [s for s in sn if "clip" in s.lower()]
     gunb = {}
     for sn, c in cnt.items():
         if sn not in clip:
@@ -211,10 +264,10 @@ def base_gun(tik, rows_json=None):
                 gunb[bi] = gunb.get(bi, 0) + n
     gun_bone = max(gunb, key=gunb.get)
     lname = [n.lower() for n in names]
-    bolt = next((lname.index(b) for b in BOLT_BONES if b in lname), None)
+    used = {bi for c in cnt.values() for bi in c}
+    bolt = next((lname.index(b) for b in BOLT_BONES if b in lname and lname.index(b) in used), None)
     pump = next((lname.index(b) for b in PUMP_BONES if b in lname), None)
     mag_bone = max(cnt[clip[0]], key=cnt[clip[0]].get) if clip else gun_bone
-    eff = vfs.read(path).decode("latin-1")
     return dict(tik=path, g=g, skd=skd, raw=raw, block=block, names=names, mats=mats, scale=t["scale"],
                 clip=clip[0] if clip else None, roles={"gun": gun_bone, "bolt": bolt if bolt is not None else gun_bone,
                                                         "pump": pump if pump is not None else gun_bone,
@@ -263,7 +316,7 @@ def _dilate(m, iterations=2):
     return m
 
 
-def fit(fr, base, disc, maxtilt=None):
+def fit(fr, base, disc, maxtilt=None, kfix=None, mode=None, slide=8.0):
     maxtilt = MAXTILT if maxtilt is None else maxtilt
     M = np.array(fr["M"])
     Fd, Rd = np.array(fr["F"]), np.array(fr["R"])
@@ -276,7 +329,8 @@ def fit(fr, base, disc, maxtilt=None):
     B0 = np.vstack([a, X, up])     # row form: v_base = v_disc @ B0
     sr_b = np.linalg.norm(Fb - Rb)
     sr_d = np.linalg.norm(Fd - Rd) * TRUE
-    k = float(np.clip(sr_b / sr_d, 0.95, 1.05))
+    # a SCOPE row's F is synthetic (R + 12 u on the base, R + 0.3 m on the disc): no sight radius to match - true scale
+    k = float(kfix) if kfix is not None else (1.0 if fr.get("kind") == "scope" else float(np.clip(sr_b / sr_d, 0.95, 1.05)))
     s = TRUE * k
     Vd = np.vstack([p["V"] @ M.T for p in disc["parts"]])
     dD = (Fd - Rd) @ B0
@@ -293,6 +347,16 @@ def fit(fr, base, disc, maxtilt=None):
     Rf = Rd @ T
     Ff = Fd @ T
     t0 = Rb - Rf
+    if mode == "bore":
+        # a launcher's sight line is VIRTUAL (no usable hardware on the disc): the tube is what the hands hold, so the
+        # disc bore goes ON the base bore (muzzle point on tag_barrel, bore-parallel, no turn) and the row is measured
+        # from the fitted disc - the per-frame sight solve centres it like any other row (twin = the base gun)
+        T = B0 * s
+        Rf = Rd @ T
+        Ff = Fd @ T
+        t0 = np.array(base["g"]["tags"]["tag_barrel"][0], float) - np.array(fr["O"]) @ T
+        dB = np.array([1.0, 0.0, 0.0])
+        ang = 0.0
     P0 = Vd @ T + t0
     PB = gungeo.all_points(base["g"])
     x0 = min(PB[:, 0].min(), P0[:, 0].min()) - 25
@@ -302,7 +366,7 @@ def fit(fr, base, disc, maxtilt=None):
     SB = _dilate(silhouette(PB, x0, x1, z0, z1))
     best = None
     dirn = dB / np.linalg.norm(dB)
-    for dx in np.arange(-8.0, 8.01, 0.25):
+    for dx in np.arange(-slide, slide + 0.01, 0.25):
         SD = _dilate(silhouette(P0 + dirn * dx, x0, x1, z0, z1))
         iou = (SB & SD).sum() / max(1, (SB | SD).sum())
         if best is None or iou > best[0]:
@@ -381,6 +445,54 @@ def build_surfaces(base, disc, T, t, M, over, prefix):
     return out
 
 
+def drop_parts(disc, fr, rules):
+    """mesh defects the disc ships (GUNS "drop"): a part whose texture contains rule["tex"] and that lies wholly below
+    rule["hmax"] (height above the muzzle bore, in gun lengths, canonical frame) is left out - the FL G43's misassembled
+    G43Sight bar floats 0.24 L under the gun. Returns (disc copy, [dropped part summaries])."""
+    if not rules:
+        return disc, []
+    M, O, L = np.array(fr["M"]), np.array(fr["O"]), float(fr["L"])
+    keep, gone = [], []
+    for p in disc["parts"]:
+        h = ((np.round(np.asarray(p["V"], float), 5) @ M.T)[:, 2] - O[2]) / L
+        if any(r["tex"].lower() in p["tex"].lower() and h.max() < r["hmax"] for r in rules):
+            gone.append((p["tex"], len(p["V"]), round(float(h.max()), 3)))
+        else:
+            keep.append(p)
+    return dict(disc, parts=keep), gone
+
+
+def base_surface(base, name):
+    """a surface of the BASE mesh copied verbatim into the converted skd (GUNS "keep_base"): the bone block is the base's,
+    so its weights / offsets stay valid. For a part the disc never modelled (the FL launchers have no separate rocket:
+    the base rocket `bazookashell` / `shell` still rides in for the reload, as the base anims show it). -> surface tuple
+    with ("base", <the base tik's shader for it>) as the texture."""
+    import re as _re
+    for ss in base["skd"].surfaces:
+        if ss.name.lower() == name.lower():
+            m = _re.search(r"(?mi)^\s*surface\s+%s\s+shader\s+(\S+)" % _re.escape(ss.name), base["eff"])
+            tri = np.frombuffer(bytes(ss.tri_bytes), dtype="<i4").reshape(-1, 3)
+            verts = [((0.0, 0.0, 0.0), tuple(n), tuple(tc), [(bi, w, tuple(o)) for bi, w, o in wl]) for n, tc, wl, ml in ss.verts]
+            return (ss.name, verts, [tuple(map(int, x)) for x in tri], ("base", m.group(1) if m else "default"))
+    raise MissingBase("%s: no surface %s" % (base["tik"], name))
+
+
+def lens_surface(base, Rf, u, radius, bone):
+    """a double-sided 24-gon glass disc on the fitted ocular, facing the eye (scope_mesh.py recipe: the renderer's PiP
+    pass and coverage mask key on a view-model surface whose shader names glass / lens)"""
+    sc, Mb = base["scale"], base["mats"][bone]
+    e1 = np.cross(u, [0, 0, 1.0])
+    e1 = e1 / np.linalg.norm(e1)
+    e2 = np.cross(u, e1)
+    n = 24
+    pts = [Rf] + [Rf + radius * (math.cos(2 * math.pi * i / n) * e1 + math.sin(2 * math.pi * i / n) * e2) for i in range(n)]
+    tri = [(0, 1 + i, 1 + (i + 1) % n) for i in range(n)]
+    tri = tri + [(a, c, b) for (a, b, c) in tri]
+    nb = -u @ Mb[:3].T
+    verts = [(tuple(q), tuple(nb), (0.5, 0.5), [(bone, 1.0, tuple((q / sc - Mb[3]) @ Mb[:3].T))]) for q in pts]
+    return ("lens", verts, tri, None)
+
+
 def write_gun(key, disc, fr, snd_paths, rows_json=None):
     """-> ({pak path: bytes, "_row": sight row bytes}, info). Raises MissingBase when the install lacks the base gun
     or the shipped body the converted tik includes (an old mod build): the caller skips that gun."""
@@ -389,10 +501,25 @@ def write_gun(key, disc, fr, snd_paths, rows_json=None):
     if vfs.read("models/weapons/byo/body/%s.txt" % cfg["base"]) is None:
         raise MissingBase("models/weapons/byo/body/%s.txt" % cfg["base"])
     base = base_gun(cfg["base"], rows_json)
-    T, t, M, Ff, Rf, info = fit(fr, base, disc, cfg.get("maxtilt"))
+    for role, bn in (cfg.get("bones") or {}).items():     # a base bone the generic role names do not find
+        base["roles"][role] = base["names"].index(bn)
+    disc, dropped = drop_parts(disc, fr, cfg.get("drop"))
+    T, t, M, Ff, Rf, info = fit(fr, base, disc, cfg.get("maxtilt"), cfg.get("k"), cfg.get("fit"), cfg.get("slide", 8.0))
+    if dropped:
+        info["dropped"] = dropped
+    if fr["kind"] == "scope":      # the row keeps the base convention F = R + 12 u along the (disc) scope axis
+        Ff = Rf + (Ff - Rf) / np.linalg.norm(Ff - Rf) * 12.0
     stub = cfg["stub"]
     mdir = "models/weapons/byo/%s" % stub
     surfs = build_surfaces(base, disc, T, t, M, cfg.get("roles"), "disc")
+    for nm in cfg.get("keep_base", []):
+        surfs.append(base_surface(base, nm))
+    if fr["kind"] == "scope" and fr.get("lens_r"):
+        u = (Ff - Rf) / np.linalg.norm(Ff - Rf)
+        # 0.08 u toward the eye: the disc oculars carry a PAINTED glass cap in the rear-face plane - the glass disc sits
+        # just in front of it (no z-fight), and the PiP picture covers the painting
+        surfs.append(lens_surface(base, Rf - u * 0.08, u, fr["lens_r"] * TRUE * info["scale_k"] * 0.9, base["roles"]["gun"]))
+        info["lens_r"] = round(fr["lens_r"] * TRUE * info["scale_k"] * 0.9, 3)
     files = {}
     files["%s/%s.skd" % (mdir, stub)] = write_skd("byo_" + stub, base["block"], len(base["names"]),
                                                   [(s[0], s[1], s[2]) for s in surfs])
@@ -402,6 +529,12 @@ def write_gun(key, disc, fr, snd_paths, rows_json=None):
     punch = fr.get("punch") or {}
     for s in surfs:
         tn = s[3]
+        if isinstance(tn, tuple):     # a base surface carried over: the base gun's own shader
+            sl.append("\tsurface %s shader %s" % (s[0], tn[1]))
+            continue
+        if tn is None:            # the fitted glass disc: the mod's shipped glass shader (scopes_1025 glass_tiks TINT)
+            sl.append("\tsurface %s shader coop_scope_glass_%s" % (s[0], cfg.get("glass", "blue")))
+            continue
         sh = "byo_%s_%s" % (stub, tn.lower())
         if tn not in done:
             w, h, rgba = disc["tex"][tn]

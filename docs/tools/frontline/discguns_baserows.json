@@ -39,6 +39,27 @@
 "name": "Arisaka Type 99",
 "relief": 0.0
 },
+"models/weapons/arisakasniper.tik": {
+"F": [
+11.9419,
+-1.9775,
+-5.3179
+],
+"R": [
+-0.0581,
+-1.9775,
+-5.3179
+],
+"U": [
+-0.0,
+-0.768,
+-0.641
+],
+"delta": 0.0,
+"name": "Arisaka Sniper",
+"relief": 2.566,
+"scope": true
+},
 "models/weapons/bar.tik": {
 "F": [
 35.6267,
@@ -518,6 +539,27 @@
 "delta": 0.0,
 "name": "M1 Carbine",
 "relief": 0.0
+},
+"models/weapons/carcanosniper.tik": {
+"F": [
+13.2818,
+-0.9615,
+-6.6274
+],
+"R": [
+1.2818,
+-0.9615,
+-6.6274
+],
+"U": [
+0.0,
+-0.025,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano Sniper",
+"relief": 2.175,
+"scope": true
 },
 "models/weapons/colt45.tik": {
 "F": [
@@ -2639,6 +2681,636 @@
 "name": "Lee-Enfield (P14 Enfield)",
 "relief": 0.0
 },
+"models/weapons/enfieldsniper.tik": {
+"F": [
+16.1391,
+-0.8316,
+-5.7265
+],
+"R": [
+4.1391,
+-0.8316,
+-5.7265
+],
+"U": [
+-0.0,
+0.034,
+-0.999
+],
+"delta": 0.0,
+"name": "Lee-Enfield Sniper",
+"relief": 3.166,
+"scope": true
+},
+"models/weapons/fg42.tik": {
+"F": [
+8.0289,
+-0.826,
+-7.2001
+],
+"R": [
+-3.9711,
+-0.826,
+-7.2001
+],
+"U": [
+0.0,
+0.019,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42",
+"relief": 2.209,
+"scope": true
+},
+"models/weapons/fg42_bloody.tik": {
+"F": [
+8.0289,
+-0.826,
+-7.2001
+],
+"R": [
+-3.9711,
+-0.826,
+-7.2001
+],
+"U": [
+0.0,
+0.019,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 (Bloody)",
+"relief": 2.209,
+"scope": true
+},
+"models/weapons/fg42_blued.tik": {
+"F": [
+8.0289,
+-0.826,
+-7.2001
+],
+"R": [
+-3.9711,
+-0.826,
+-7.2001
+],
+"U": [
+0.0,
+0.019,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 (Blued)",
+"relief": 2.209,
+"scope": true
+},
+"models/weapons/fg42_camo_desert.tik": {
+"F": [
+8.0289,
+-0.826,
+-7.2001
+],
+"R": [
+-3.9711,
+-0.826,
+-7.2001
+],
+"U": [
+0.0,
+0.019,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 (Desert)",
+"relief": 2.209,
+"scope": true
+},
+"models/weapons/fg42_camo_winter.tik": {
+"F": [
+8.0289,
+-0.826,
+-7.2001
+],
+"R": [
+-3.9711,
+-0.826,
+-7.2001
+],
+"U": [
+0.0,
+0.019,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 (Winter)",
+"relief": 2.209,
+"scope": true
+},
+"models/weapons/fg42_camo_woodland.tik": {
+"F": [
+8.0289,
+-0.826,
+-7.2001
+],
+"R": [
+-3.9711,
+-0.826,
+-7.2001
+],
+"U": [
+0.0,
+0.019,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 (Woodland)",
+"relief": 2.209,
+"scope": true
+},
+"models/weapons/fg42_chrome.tik": {
+"F": [
+8.0289,
+-0.826,
+-7.2001
+],
+"R": [
+-3.9711,
+-0.826,
+-7.2001
+],
+"U": [
+0.0,
+0.019,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 (Chrome)",
+"relief": 2.209,
+"scope": true
+},
+"models/weapons/fg42_gold.tik": {
+"F": [
+8.0289,
+-0.826,
+-7.2001
+],
+"R": [
+-3.9711,
+-0.826,
+-7.2001
+],
+"U": [
+0.0,
+0.019,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 (Gold)",
+"relief": 2.209,
+"scope": true
+},
+"models/weapons/g43.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_bloody.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Bloody)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_blued.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Blued)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_camo_desert.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Desert)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_camo_winter.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Winter)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_camo_woodland.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Woodland)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_chrome.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Chrome)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_dhg43fleck.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Flecktarn)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_gold.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Gold)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_hobbsg43urb.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Urban Camo)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_hobbsg43wood.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Woodland Camo)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43_lv_ttg43.tik": {
+"F": [
+11.2115,
+-1.1801,
+-6.2676
+],
+"R": [
+-0.7885,
+-1.1801,
+-6.2676
+],
+"U": [
+0.0,
+0.003,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 (Team Tactics)",
+"relief": 2.707,
+"scope": true
+},
+"models/weapons/g43sniper.tik": {
+"F": [
+7.5657,
+-1.3233,
+-7.186
+],
+"R": [
+-4.4343,
+-1.3233,
+-7.186
+],
+"U": [
+0.0,
+-0.033,
+-0.999
+],
+"delta": 0.0,
+"name": "G43 Sniper",
+"relief": 2.251,
+"scope": true
+},
+"models/weapons/g43sniper_bloody.tik": {
+"F": [
+7.5657,
+-1.3233,
+-7.186
+],
+"R": [
+-4.4343,
+-1.3233,
+-7.186
+],
+"U": [
+0.0,
+-0.033,
+-0.999
+],
+"delta": 0.0,
+"name": "G43 Sniper (Bloody)",
+"relief": 2.251,
+"scope": true
+},
+"models/weapons/g43sniper_blued.tik": {
+"F": [
+7.5657,
+-1.3233,
+-7.186
+],
+"R": [
+-4.4343,
+-1.3233,
+-7.186
+],
+"U": [
+0.0,
+-0.033,
+-0.999
+],
+"delta": 0.0,
+"name": "G43 Sniper (Blued)",
+"relief": 2.251,
+"scope": true
+},
+"models/weapons/g43sniper_camo_desert.tik": {
+"F": [
+7.5657,
+-1.3233,
+-7.186
+],
+"R": [
+-4.4343,
+-1.3233,
+-7.186
+],
+"U": [
+0.0,
+-0.033,
+-0.999
+],
+"delta": 0.0,
+"name": "G43 Sniper (Desert)",
+"relief": 2.251,
+"scope": true
+},
+"models/weapons/g43sniper_camo_winter.tik": {
+"F": [
+7.5657,
+-1.3233,
+-7.186
+],
+"R": [
+-4.4343,
+-1.3233,
+-7.186
+],
+"U": [
+0.0,
+-0.033,
+-0.999
+],
+"delta": 0.0,
+"name": "G43 Sniper (Winter)",
+"relief": 2.251,
+"scope": true
+},
+"models/weapons/g43sniper_camo_woodland.tik": {
+"F": [
+7.5657,
+-1.3233,
+-7.186
+],
+"R": [
+-4.4343,
+-1.3233,
+-7.186
+],
+"U": [
+0.0,
+-0.033,
+-0.999
+],
+"delta": 0.0,
+"name": "G43 Sniper (Woodland)",
+"relief": 2.251,
+"scope": true
+},
+"models/weapons/g43sniper_chrome.tik": {
+"F": [
+7.5657,
+-1.3233,
+-7.186
+],
+"R": [
+-4.4343,
+-1.3233,
+-7.186
+],
+"U": [
+0.0,
+-0.033,
+-0.999
+],
+"delta": 0.0,
+"name": "G43 Sniper (Chrome)",
+"relief": 2.251,
+"scope": true
+},
+"models/weapons/g43sniper_gold.tik": {
+"F": [
+7.5657,
+-1.3233,
+-7.186
+],
+"R": [
+-4.4343,
+-1.3233,
+-7.186
+],
+"U": [
+0.0,
+-0.033,
+-0.999
+],
+"delta": 0.0,
+"name": "G43 Sniper (Gold)",
+"relief": 2.251,
+"scope": true
+},
+"models/weapons/garand_scoped.tik": {
+"F": [
+12.906,
+-2.3692,
+-4.9357
+],
+"R": [
+0.906,
+-2.3692,
+-4.9357
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand Sniper",
+"relief": 2.03,
+"scope": true
+},
 "models/weapons/garand_silenced.tik": {
 "F": [
 35.7403,
@@ -4098,6 +4770,258 @@
 "delta": 0.014,
 "name": "Mauser KAR 98K (Team Tactics)",
 "relief": 0.0
+},
+"models/weapons/kar98sniper.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98sniper_bloody.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper (Bloody)",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98sniper_blued.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper (Blued)",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98sniper_camo_desert.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper (Desert)",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98sniper_camo_winter.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper (Winter)",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98sniper_camo_woodland.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper (Woodland)",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98sniper_chrome.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper (Chrome)",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98sniper_g98scope.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper (G98 Scoped)",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98sniper_gold.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper (Gold)",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98sniper_lv_98ks.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper (98 KS)",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98sniper_lv_ttkar98sn.tik": {
+"F": [
+12.7036,
+-1.8994,
+-5.3585
+],
+"R": [
+0.7036,
+-1.8994,
+-5.3585
+],
+"U": [
+-0.0,
+-0.844,
+-0.537
+],
+"delta": 0.0,
+"name": "KAR98 - Sniper (Team Tactics)",
+"relief": 2.499,
+"scope": true
+},
+"models/weapons/kar98snipersilenced.tik": {
+"F": [
+12.1117,
+-0.8963,
+-6.3719
+],
+"R": [
+0.1117,
+-0.8963,
+-6.3719
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced Kar98 Sniper",
+"relief": 2.03,
+"scope": true
 },
 "models/weapons/lugerp08.tik": {
 "F": [
@@ -5779,6 +6703,27 @@
 "name": "StG 44 (Strapped)",
 "relief": 0.0
 },
+"models/weapons/mp44scoped.tik": {
+"F": [
+7.1268,
+-1.5684,
+-7.8297
+],
+"R": [
+-4.8732,
+-1.5684,
+-7.8297
+],
+"U": [
+0.0,
+-0.255,
+-0.967
+],
+"delta": 0.0,
+"name": "StG44 Scoped",
+"relief": 2.727,
+"scope": true
+},
 "models/weapons/nagant_revolver.tik": {
 "F": [
 11.4552,
@@ -5938,6 +6883,27 @@
 "delta": 0.0,
 "name": "Nagant Revolver (Gold)",
 "relief": 0.0
+},
+"models/weapons/nagant_sniper.tik": {
+"F": [
+14.7072,
+-0.7708,
+-5.7907
+],
+"R": [
+2.7072,
+-0.7708,
+-5.7907
+],
+"U": [
+-0.0,
+0.255,
+-0.967
+],
+"delta": 0.0,
+"name": "Mosin-Nagant Sniper",
+"relief": 2.351,
+"scope": true
 },
 "models/weapons/nambu.tik": {
 "F": [
@@ -7019,6 +7985,384 @@
 "name": "Hi-Standard Silenced (Gold)",
 "relief": 0.0
 },
+"models/weapons/springfield.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_bloody.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Bloody)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_blued.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Blued)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_camo_desert.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Desert)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_camo_winter.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Winter)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_camo_woodland.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Woodland)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_chrome.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Chrome)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_dhspdesert.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Desert Camo)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_dhspdigital.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Digital Camo)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_dhsptiger.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Tiger Camo)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_dhspwinter.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Winter Camo)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_gold.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Gold)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_guansp2.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Guanshire II)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_guansplight.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Lightwood)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_hobbsspurban.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Urban Camo)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_hobbsspwood.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Woodland Camo)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_lv_ttspring.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (Team Tactics)",
+"relief": 2.498,
+"scope": true
+},
+"models/weapons/springfield_m1903.tik": {
+"F": [
+14.586,
+-0.8663,
+-5.2335
+],
+"R": [
+2.586,
+-0.8663,
+-5.2335
+],
+"U": [
+0.0,
+0.024,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield '03 Sniper (M1903 Springfield)",
+"relief": 2.498,
+"scope": true
+},
 "models/weapons/springfield_unscoped.tik": {
 "F": [
 42.5482,
@@ -8058,6 +9402,195 @@
 "delta": 0.0,
 "name": "Type 100 SMG",
 "relief": 0.0
+},
+"models/weapons/uk_w_l42a1.tik": {
+"F": [
+9.7514,
+-1.7208,
+-6.2183
+],
+"R": [
+-2.2486,
+-1.7208,
+-6.2183
+],
+"U": [
+0.0,
+0.004,
+-1.0
+],
+"delta": 0.0,
+"name": "Enfield L42A1",
+"relief": 2.717,
+"scope": true
+},
+"models/weapons/uk_w_l42a1_bloody.tik": {
+"F": [
+9.7514,
+-1.7208,
+-6.2183
+],
+"R": [
+-2.2486,
+-1.7208,
+-6.2183
+],
+"U": [
+0.0,
+0.004,
+-1.0
+],
+"delta": 0.0,
+"name": "Enfield L42A1 (Bloody)",
+"relief": 2.717,
+"scope": true
+},
+"models/weapons/uk_w_l42a1_blued.tik": {
+"F": [
+9.7514,
+-1.7208,
+-6.2183
+],
+"R": [
+-2.2486,
+-1.7208,
+-6.2183
+],
+"U": [
+0.0,
+0.004,
+-1.0
+],
+"delta": 0.0,
+"name": "Enfield L42A1 (Blued)",
+"relief": 2.717,
+"scope": true
+},
+"models/weapons/uk_w_l42a1_camo_desert.tik": {
+"F": [
+9.7514,
+-1.7208,
+-6.2183
+],
+"R": [
+-2.2486,
+-1.7208,
+-6.2183
+],
+"U": [
+0.0,
+0.004,
+-1.0
+],
+"delta": 0.0,
+"name": "Enfield L42A1 (Desert)",
+"relief": 2.717,
+"scope": true
+},
+"models/weapons/uk_w_l42a1_camo_winter.tik": {
+"F": [
+9.7514,
+-1.7208,
+-6.2183
+],
+"R": [
+-2.2486,
+-1.7208,
+-6.2183
+],
+"U": [
+0.0,
+0.004,
+-1.0
+],
+"delta": 0.0,
+"name": "Enfield L42A1 (Winter)",
+"relief": 2.717,
+"scope": true
+},
+"models/weapons/uk_w_l42a1_camo_woodland.tik": {
+"F": [
+9.7514,
+-1.7208,
+-6.2183
+],
+"R": [
+-2.2486,
+-1.7208,
+-6.2183
+],
+"U": [
+0.0,
+0.004,
+-1.0
+],
+"delta": 0.0,
+"name": "Enfield L42A1 (Woodland)",
+"relief": 2.717,
+"scope": true
+},
+"models/weapons/uk_w_l42a1_chrome.tik": {
+"F": [
+9.7514,
+-1.7208,
+-6.2183
+],
+"R": [
+-2.2486,
+-1.7208,
+-6.2183
+],
+"U": [
+0.0,
+0.004,
+-1.0
+],
+"delta": 0.0,
+"name": "Enfield L42A1 (Chrome)",
+"relief": 2.717,
+"scope": true
+},
+"models/weapons/uk_w_l42a1_dhl42camo.tik": {
+"F": [
+9.7514,
+-1.7208,
+-6.2183
+],
+"R": [
+-2.2486,
+-1.7208,
+-6.2183
+],
+"U": [
+0.0,
+0.004,
+-1.0
+],
+"delta": 0.0,
+"name": "Enfield L42A1 (Camo)",
+"relief": 2.717,
+"scope": true
+},
+"models/weapons/uk_w_l42a1_gold.tik": {
+"F": [
+9.7514,
+-1.7208,
+-6.2183
+],
+"R": [
+-2.2486,
+-1.7208,
+-6.2183
+],
+"U": [
+0.0,
+0.004,
+-1.0
+],
+"delta": 0.0,
+"name": "Enfield L42A1 (Gold)",
+"relief": 2.717,
+"scope": true
 },
 "models/weapons/uk_w_piat.tik": {
 "F": [
