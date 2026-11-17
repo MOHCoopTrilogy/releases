@@ -141,34 +141,43 @@ def _active_rms(a):
 
 def sound_files(key, stub, snd_paths):
     """-> ({pak path: wav bytes}, [aliascache lines]); disc clip loudness-matched to the base alias's wav. A clip the
-    disc did not yield keeps the base sound (no alias line)."""
+    disc did not yield keeps the base sound (no alias line). A slot given as a LIST of clips (European Assault: the baked
+    variants of one shot) becomes <alias>1..<alias>N - the engine's alias pick takes one at random per play (a name that
+    goes on with "_" is not in the pick) - all at ONE gain (the first variant's match), so their relative level stays the
+    disc's; a list with a clip missing keeps the base sound for that slot."""
     files, lines = {}, []
     for alias, idx in SOUNDS.get(key, {}).items():
-        if idx not in snd_paths:
+        refs = idx if isinstance(idx, list) else [idx]
+        if not refs or any(r not in snd_paths for r in refs):
             continue
-        a, sr = _wav_read(open(snd_paths[idx], "rb").read())
         bpath, parms = BASE_SND[alias]
         bb = vfs.read(bpath)
-        if bb is not None:
-            ba, _ = _wav_read(bb)
-            g = _active_rms(ba) / max(1e-6, _active_rms(a))
+        g = None
+        for n, ref in enumerate(refs):
+            a, sr = _wav_read(open(snd_paths[ref], "rb").read())
+            if g is None:
+                g = 1.0
+                if bb is not None:
+                    ba, _ = _wav_read(bb)
+                    g = _active_rms(ba) / max(1e-6, _active_rms(a))
             a = a * g
-        pk = np.abs(a).max()
-        if pk > 32000:
-            a = a * (32000 / pk)
-        fi, fo = int(sr * 0.004), int(sr * 0.03)       # 4 ms fade-in / 30 ms fade-out: no click at the clip edges
-        a[:fi] *= np.linspace(0, 1, fi)
-        a[-fo:] *= np.linspace(1, 0, fo)
-        out = io.BytesIO()
-        w = wave.open(out, "wb")
-        w.setnchannels(1)
-        w.setsampwidth(2)
-        w.setframerate(sr)
-        w.writeframes(np.clip(a, -32768, 32767).astype("<i2").tobytes())
-        w.close()
-        p = "sound/weapons/byo/%s/%s.wav" % (stub, alias)
-        files[p] = out.getvalue()
-        lines.append("\t\taliascache %s %s soundparms %s loaded %s" % (alias, p, parms, MAPS))
+            pk = np.abs(a).max()
+            if pk > 32000:
+                a = a * (32000 / pk)
+            fi, fo = int(sr * 0.004), int(sr * 0.03)       # 4 ms fade-in / 30 ms fade-out: no click at the clip edges
+            a[:fi] *= np.linspace(0, 1, fi)
+            a[-fo:] *= np.linspace(1, 0, fo)
+            out = io.BytesIO()
+            w = wave.open(out, "wb")
+            w.setnchannels(1)
+            w.setsampwidth(2)
+            w.setframerate(sr)
+            w.writeframes(np.clip(a, -32768, 32767).astype("<i2").tobytes())
+            w.close()
+            name = alias if len(refs) == 1 else "%s%d" % (alias, n + 1)
+            p = "sound/weapons/byo/%s/%s.wav" % (stub, name)
+            files[p] = out.getvalue()
+            lines.append("\t\taliascache %s %s soundparms %s loaded %s" % (name, p, parms, MAPS))
     return files, lines
 
 
@@ -583,6 +592,10 @@ def write_gun(key, disc, fr, snd_paths, rows_json=None):
         # just in front of it (no z-fight), and the PiP picture covers the painting
         surfs.append(lens_surface(base, Rf - u * 0.08, u, fr["lens_r"] * TRUE * info["scale_k"] * 0.9, base["roles"]["gun"]))
         info["lens_r"] = round(fr["lens_r"] * TRUE * info["scale_k"] * 0.9, 3)
+        # eye relief from the disc's OWN eyepiece (gen_scope_rows rule: relief = 2.38 x bell, bell = 1.5 x lens radius). The
+        # engine sizes the PiP picture as relief / 3.57 at the eye distance, so with this relief the glass disc fills exactly the
+        # picture circle every base scope shows (the base relief put the Mosin PU's small ocular inside a bigger circle)
+        info["relief"] = round(float(np.clip(2.38 * 1.5 * info["lens_r"], 1.2, 5.0)), 3)
     files = {}
     files["%s/%s.skd" % (mdir, stub)] = write_skd("byo_" + stub, base["block"], len(base["names"]),
                                                   [(s[0], s[1], s[2]) for s in surfs])
@@ -629,14 +642,14 @@ def write_gun(key, disc, fr, snd_paths, rows_json=None):
     row = base["row"]
     if fr["kind"] == "none":
         info.update(surfaces=[(s[0], len(s[1]), len(s[2]), s[3]) for s in surfs],
-                    sounds={a: i for a, i in SOUNDS.get(key, {}).items() if i in snd_paths})
+                    sounds={a: i for a, i in SOUNDS.get(key, {}).items() if all(r in snd_paths for r in (i if isinstance(i, list) else [i]))})
         return files, info
     files["_row"] = ('sight models/weapons/byo/%s.tik "%s" %.4f %.4f %.4f %.4f %.4f %.4f %.6f %.3f %.3f %.3f %.3f %s "%s"'
-                     % (stub, cfg["name"], *Ff, *Rf, row["delta"], *row["U"], row["relief"], fr["kind"],
+                     % (stub, cfg["name"], *Ff, *Rf, row["delta"], *row["U"], info.get("relief", row["relief"]), fr["kind"],
                         row["name"])).encode()
     info.update(F=np.round(Ff, 3).tolist(), R=np.round(Rf, 3).tolist(), surfaces=[(s[0], len(s[1]), len(s[2]), s[3])
                                                                                     for s in surfs],
-                sounds={a: i for a, i in SOUNDS.get(key, {}).items() if i in snd_paths})
+                sounds={a: i for a, i in SOUNDS.get(key, {}).items() if all(r in snd_paths for r in (i if isinstance(i, list) else [i]))})
     return files, info
 
 

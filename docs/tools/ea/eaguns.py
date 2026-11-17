@@ -95,21 +95,48 @@ ZIP_TIME = (2026, 1, 1, 0, 0, 0)
 BANKS = {0x40000000: "SCR.ABK", 1: "L1.ABK", 2: "L2.ABK", 4: "L3.ABK", 8: "L4.ABK", 16: "L5.ABK", 32: "L6.ABK",
          64: "L7.ABK", 128: "L8.ABK"}
 
-# disc sound per base alias slot: (level, alias id in that level's Audio.ubr, pick) - pick = which of the alias's samples
-# (an EA alias is a random set; the first is taken). Slots not listed keep the base sound.
-# Read off the running original (2026-11-16, bug-11367): a gdb break on the DirectSound voice start (0x2F0FEA) gives each
-# voice's data pointer ([[voice+0x70]+0xbc]); those bytes sit in the level's SCR.ABK, and the BNKl PT table maps the offset to
-# the sample index. Only the player's own trigger pulls were counted (voices within 0.25 s of each pull, every pull).
-#   PPSh (1_11): main shot = sample 230 (stereo, 0.32 s, twice per burst step) + mech layer 79 + random tail 306 / 308.
-#   M1 (1_1): shots alternate 155 / 156 (stereo), layer 157 ~0.14 s later, the 8th shot adds 158 (ping) then 159 (reload).
-# One MOHAA alias = one clip, so the main shot is wired; the layers are listed as deviations.
+# disc sound per base alias slot: (level, [variant, ...]); a variant = [(sample, ms), ...] = the samples EA starts together for
+# ONE trigger pull and each one's start offset (ms, guest time) from the first. EA layers every shot (stereo main + mechanism
+# + a random tail, the M1 alternates two mains); a MOHAA alias plays one clip, so each variant is BAKED here into one clip at
+# the measured offsets, and the variants become <alias>1..<alias>N (the engine picks one at random per shot; names that go
+# on with "_" are not in the pick, so <alias>_loaded etc. stay out). sample = the index in the level's SCR.ABK (BNKl table) =
+# the vgmstream subsong - 1. level "mp" = the multiplayer bank DATA/2/MPAUDIO.
+# Read off the running original (ref_xemu vprobe3, bug-11367): a gdb break on the voice start (0x2F0FEA) gives each voice's
+# data ([[voice+0x70]+0xbc], size +0xc0); its first 96 bytes AND its size match exactly one sample channel of the level's
+# SCR.ABK; offsets in KeTickCount ms (the guest clock stops at a break). Only the player's own pulls (weapon event 49 of the
+# player character) and only layers present on EVERY pull are kept; a gun without an exact match keeps the base sound.
+# Measured 2026-11-17 (vprobe3 + p2/ea_layers2, offsets corrected for the break cost; each list = one trigger pull, a sample
+# listed twice is started twice together). Levels with the gun in hand at the start: 1_11 PPSh, 1_1 M1, 1_21 BAR, 1_22
+# Thompson, 1_8 Enfield No.4 (T), 1_9 shotgun. Mono world sounds (impacts, shell casings, other soldiers) are left out.
 SOUNDS = {
-    "ea_SMG_PPSH": {"ppsh41_snd_fire": ("1_11", 0x6ae7dee1)},                         # alias = [230, 230]
-    "ea_rifle_m1": {"m1_snd_fire": ("1_1", 0x2cf5ecd1),                               # alias = [155, 156, 157, 158, ...]
-                    "snd_ping": ("1_1", 0x2cf5ecd1, 3)},                              # its 4th sample = 158, the ping
+    # 230 x2 + mech 79, then ONE random tail of 306 / 307 / 308 at +105 ms (7 / 7 pulls)
+    "ea_SMG_PPSH": {"ppsh41_snd_fire": ("1_11", [[(230, 0), (230, 0), (79, 0), (t, 105)] for t in (306, 307, 308)])},
+    # mains alternate 155 / 156, mech 157 at +160 ms, tail 158 or 159 either with 157 or later (+310): 15 / 15 pulls.
+    # 262 = the clip ping (the anim event of M1.aso "Fire"), on the 8th shot only (one clip observed)
+    "ea_rifle_m1": {"m1_snd_fire": ("1_1", [[(155, 0), (157, 160), (158, 160)], [(156, 0), (157, 160), (159, 160)],
+                                            [(155, 0), (157, 160), (159, 310)], [(156, 0), (157, 160), (158, 310)]]),
+                    "snd_ping": ("1_1", [[(262, 0)]])},
+    # 280 / 281 (a left / right pair of mono samples) x2 + mech 134, tail 282 / 283 x3 at +305 ms (5 / 5 pulls). A random
+    # echo pair (111-116 + 117-120, +160 ms) came on 4 of 5 pulls only: left out
+    "ea_mg_bar": {"bar_snd_fire": ("1_21", [[(280, 0), (280, 0), (281, 0), (281, 0), (134, 0)]
+                                            + [(282, 305)] * 3 + [(283, 305)] * 3])},
+    # 47 + 48 + 51 at 0, then 52 + 301 or 53 + 302 (alternating) with 115 / 116 / 303 / 304 at +110 ms (8 / 8 pulls)
+    "ea_smg_thompson": {"thompson_snd_fire": ("1_22", [[(47, 0), (48, 0), (51, 0), (a, 110), (b, 110), (115, 110), (116, 110),
+                                                        (303, 110), (304, 110)] for a, b in ((52, 301), (53, 302))])},
+    # 145 x2 + 148 at 0, 147 + 47 + 48 at +103, 146 at +95 or +200 (5 / 5); the bolt: 95 at +375, 211 at +823 (5 / 5)
+    "ea_rifle_enfieldScoped": {"LeeEnfield_fire": ("1_8", [[(145, 0), (145, 0), (148, 0), (147, 103), (47, 103), (48, 103),
+                                                            (146, d)] for d in (95, 200)]),
+                               "gen_rifle_bolt": ("1_8", [[(95, 0), (211, 448)]])},
+    # 145 x2 at 0, 146 at +87, 147 at +180 or +260 (6 / 6); the pump: 133, then 136 156 ms later (6 / 6). The many mono
+    # samples in between are the pellets striking the corridor walls (world sounds)
+    "ea_rifle_shotgun": {"shotgun_snd_fire": ("1_9", [[(145, 0), (145, 0), (146, 87), (147, d)] for d in (180, 260)]),
+                         "shotgun_snd_rechamber": ("1_9", [[(133, 0), (136, 156)]])},
 }
 BASE_SND = {
     "ppsh41_snd_fire": ("sound/weapons/fire/wpnfire_PPSH_SMG02.wav", "1.82 0.01 0.95 0.1 480 8000 weapon"),
+    "LeeEnfield_fire": ("sound/weapons/fire/LeeEnfield_fire.wav", "1.7 0.1 1.0 0.0 400 8000 weapon"),
+    # gen_rifle_bolt's own clip is an mp3 (the loudness match reads wav): matched to the Kar98 bolt wav, its own soundparms
+    "gen_rifle_bolt": ("sound/weapons/foley/KARRechamber1.wav", "4.3 0.1 1.0 0.0 160 1000 item"),
 }
 
 
@@ -130,7 +157,7 @@ def register():
             row["body"] = stub_of(k)
         flgunfit.GUNS[k] = row
     for k, s in SOUNDS.items():
-        flgunfit.SOUNDS[k] = {a: "%s:%08x" % v[:2] + (":%d" % v[2] if len(v) > 2 and v[2] else "") for a, v in s.items()}
+        flgunfit.SOUNDS[k] = {a: [snd_ref(lv, var) for var in vs] for a, (lv, vs) in s.items()}
     flgunfit.BASE_SND.update(BASE_SND)
 
 
@@ -221,35 +248,89 @@ def ubr_aliases(ubr):
     return out
 
 
+def snd_ref(lv, var):
+    """one baked variant as a stable key: "<level>|<sample>@<ms>+..." """
+    return "%s|%s" % (lv, "+".join("%d@%d" % (i, ms) for i, ms in var))
+
+
+def _snd_dir(lv):
+    return "DATA/2/MPAUDIO/SOUND/" if lv == "mp" else "DATA/%s/%s/SOUND/" % (lv.split("_")[0], lv)
+
+
+def _wav_f(path):
+    import wave
+    w = wave.open(path)
+    ch, sw, sr, n = w.getnchannels(), w.getsampwidth(), w.getframerate(), w.getnframes()
+    a = np.frombuffer(w.readframes(n), "<i2" if sw == 2 else np.uint8).astype(np.float64)
+    if sw == 1:
+        a = (a - 128) * 256
+    return a.reshape(-1, ch), sr
+
+
+def bake(parts):
+    """[(stereo/mono float array, sr, ms)] -> one clip (all at the first part's rate, channel count = the widest), every
+    part summed in at its own offset, unity gain (the loudness match comes after, in flgunfit.sound_files)"""
+    sr = parts[0][1]
+    nch = max(a.shape[1] for a, _, _ in parts)
+    rs = []
+    for a, r, ms in parts:
+        if r != sr:          # one rate per clip: linear resample (EA banks use one rate per bank in practice)
+            t = np.arange(int(len(a) * sr / r)) * (r / sr)
+            a = np.stack([np.interp(t, np.arange(len(a)), a[:, c]) for c in range(a.shape[1])], 1)
+        if a.shape[1] < nch:
+            a = np.repeat(a, nch, 1)
+        rs.append((a, int(round(ms * sr / 1000.0))))
+    out = np.zeros((max(len(a) + o for a, o in rs), nch))
+    for a, o in rs:
+        out[o:o + len(a)] += a
+    return out, sr
+
+
 def decode_sounds(disc, refs, tmp, vgm):
-    """refs: {"<level>:<alias hex>[:<pick>]"} -> {ref: wav path} (the alias's sample <pick>, default the first); {} without
-    vgmstream"""
+    """refs: {snd_ref} -> {ref: baked wav path}; each sample of a variant decoded from its level's SCR.ABK with the converter's
+    vgmstream (subsong = index + 1), then baked at its offsets. {} without vgmstream; a ref whose bank or sample is missing
+    is left out (that alias keeps the base sound)."""
     import subprocess
+    import wave
     if not vgm or not os.path.exists(vgm):
         return {}
-    out, ubrs, banks = {}, {}, {}
+    out, banks, dec = {}, {}, {}
     for ref in sorted(refs):
-        lv, ah = ref.split(":")[:2]
-        pick = int(ref.split(":")[2]) if ref.count(":") > 1 else 0
-        d = "DATA/%s/%s/SOUND/" % (lv.split("_")[0], lv)
-        if lv not in ubrs:
-            try:
-                ubrs[lv] = ubr_aliases(disc.read(d + "AUDIO.UBR"))
-            except Exception:
-                ubrs[lv] = {}
-        smp = ubrs[lv].get(int(ah, 16))
-        if not smp or len(smp) <= pick or smp[pick][0] not in BANKS:
-            continue
-        bk, idx = smp[pick]
-        src = os.path.join(tmp, "%s_%s" % (lv, BANKS[bk]))
+        lv, body = ref.split("|")
+        src = os.path.join(tmp, "%s_SCR.ABK" % lv)
         if src not in banks:
-            open(src, "wb").write(disc.read(d + BANKS[bk]))
-            banks[src] = 1
-        dst = os.path.join(tmp, "%s_%s_%d.wav" % (lv, ah, pick))
-        r = subprocess.run([vgm, "-s", str(idx + 1), "-i", "-o", dst, src], stdout=subprocess.DEVNULL,
-                           stderr=subprocess.DEVNULL, creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
-        if r.returncode == 0 and os.path.exists(dst):
-            out[ref] = dst
+            try:
+                open(src, "wb").write(disc.read(_snd_dir(lv) + "SCR.ABK"))
+                banks[src] = True
+            except Exception:
+                banks[src] = False
+        if not banks[src]:
+            continue
+        parts = []
+        for tok in body.split("+"):
+            idx, ms = (int(x) for x in tok.split("@"))
+            k = (lv, idx)
+            if k not in dec:
+                dst = os.path.join(tmp, "%s_scr_%d.wav" % (lv, idx))
+                r = subprocess.run([vgm, "-s", str(idx + 1), "-i", "-o", dst, src], stdout=subprocess.DEVNULL,
+                                   stderr=subprocess.DEVNULL,
+                                   creationflags=(0x08000000 | 0x00000040) if os.name == "nt" else 0)
+                dec[k] = _wav_f(dst) if r.returncode == 0 and os.path.exists(dst) else None
+            if dec[k] is None:
+                parts = None
+                break
+            parts.append((dec[k][0], dec[k][1], ms))
+        if not parts:
+            continue
+        a, sr = bake(parts)
+        dst = os.path.join(tmp, "baked_%d.wav" % len(out))
+        w = wave.open(dst, "wb")
+        w.setnchannels(a.shape[1])
+        w.setsampwidth(2)
+        w.setframerate(sr)
+        w.writeframes(np.clip(a, -32768, 32767).astype("<i2").tobytes())
+        w.close()
+        out[ref] = dst
     return out
 
 
@@ -270,7 +351,7 @@ def build_files(image, home, mohaa, progress=lambda **kv: None, opts=None):
     files, rows, report = {}, [], {}
     try:
         keys = opts.get("keys", KEYS)
-        refs = sorted({r for k in keys for r in flgunfit.SOUNDS.get(k, {}).values()})
+        refs = sorted({r for k in keys for v in flgunfit.SOUNDS.get(k, {}).values() for r in (v if isinstance(v, list) else [v])})
         snd = decode_sounds(disc, refs, tmp, opts.get("vgm"))
         if refs and not snd:
             progress(step="guns_sounds", skipped="no vgmstream: the base sounds stay")
