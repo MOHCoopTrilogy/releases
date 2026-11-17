@@ -26,6 +26,25 @@ PROTECT = {
     "baz_scope_256.tga": [(0.60, 0.08, 0.69, 0.26)],        # the FIRE / SAFE letters on the grip plate
     # M1 receiver heel: the (illegible at 256 px) receiver stamp - kept as the disc drew it, never re-drawn
     "m1top_256.tga": [(0.75, 0.06, 0.96, 0.24)],
+    # European Assault (2026-11-16): EA texture names are per-gun indices (p036 is the Mosin AND a different sniper sheet),
+    # so these rows are keyed "<stub>/<name>" (tried before the bare name); checked letter by letter on the private sheets
+    "bar_ea/p016.tga": [(0.12, 0.0, 0.42, 0.38)],                                     # receiver stamp block
+    "bazooka_ea/p068.tga": [(0.23, 0.71, 0.32, 0.85), (0.67, 0.67, 0.86, 0.89)],      # ON / OFF, the star
+    "bazooka_ea2/p018.tga": [(0.74, 0.39, 1.0, 0.67), (0.64, 0.77, 0.89, 0.87)],      # range scale, blue label
+    "bazooka_ea2/p020.tga": [(0.10, 0.23, 0.96, 0.34)],                               # stencilled legend
+    "colt45_ea/h025.tga": [(0.58, 0.19, 0.67, 0.73), (0.78, 0.19, 0.87, 0.73)],       # slide legends
+    "coop_g43_irons_ea/p067.tga": [(0.71, 0.61, 0.84, 1.0)],                          # rear sight leaf numbers
+    "g43_ea/p067.tga": [(0.71, 0.61, 0.84, 1.0)],
+    "kar98_ea/p010.tga": [(0.0, 0.13, 0.19, 0.25)],                                   # serial 4452
+    "mills_grenade_sp_start_ea/p048.tga": [(0.09, 0.55, 0.19, 0.81)],                 # M / G
+    "mosin_nagant_rifle_ea/p036.tga": [(0.0, 0.40, 0.11, 0.55)],                      # rear sight ladder
+    "nagant_sniper_ea/p036.tga": [(0.0, 0.40, 0.11, 0.55)],
+    "mp40_ea/p044.tga": [(0.42, 0.76, 0.66, 0.87), (0.41, 0.88, 0.71, 1.0),           # MP40 bnz.43, 1110 b,
+                         (0.22, 0.23, 0.44, 0.29)],                                   # the sight scale
+    "ppsh_smg_ea/p009.tga": [(0.34, 0.66, 0.74, 0.72)],                               # receiver stamp line
+    "steilhandgranate_start_ea/p033.tga": [(0.72, 0.52, 0.93, 1.0)],                  # VOR GEBRAUCH ... EINSETZEN
+    "thompsonsmg_ea/h019.tga": [(0.17, 0.89, 0.46, 0.99)],                            # FULL AUTO / SINGLE
+    "thompsonsmg_ea/h020.tga": [(0.07, 0.27, 0.19, 0.83)],                            # model legend + FIRE / SAFE
 }
 
 
@@ -102,7 +121,8 @@ def upscale_files(files, exe, progress=lambda **kv: None):
             return {}
         for n in names:
             a = load_tga(files[n])
-            res, why = upscale_one(exe, a, PROTECT.get(os.path.basename(n).lower(), []), tmp)
+            key = "/".join(n.split("/")[-2:]).lower()
+            res, why = upscale_one(exe, a, PROTECT.get(key, PROTECT.get(os.path.basename(n).lower(), [])), tmp)
             if res is not None:
                 files[n] = save_tga(res)
             rep[n] = why
