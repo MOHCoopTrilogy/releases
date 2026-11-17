@@ -166,7 +166,7 @@ we place at the lantern would be a deviation needing the user's OK. The yellow-g
 ### Dying Breath ICS head look - engine gate (2026-11-17)
 The full head look (head over the shoulder, body held on the ICS point's yaw, as the original) needs game.dll's
 `headlooklimit` (engine branch `dbhead-eng` 4f66b0af, to merge into rel-1.10.38-engine). Until that engine ships the map
-keeps the probe off: **flip `coop_eaHeadLim` to on by default in maps/coop_ea_1_11.scr when it ships** (mod cd56b0e0;
+keeps the probe off. **Done 2026-11-17: `coop_eaHeadLim` is on by default (mod 51d38eb1), v1.10.87 ships the engine** (mod cd56b0e0;
 discbot v205 on the engine matched leader_04). Without it the head reaches the stock 60 deg and the body holds.
 Also open there: the leader's raised right foot rests on nothing in ExplainsPlan, and the original holds a long gun across
 his body while leaning (ours stands empty-handed) - FIDELITY C36.
