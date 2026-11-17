@@ -404,6 +404,10 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_sc_pos[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )")
         L(f"\tlevel.ea_sc_yaw[{n}] = {(r.yaw + 90) % 360:.0f}")
         L(f"\tlevel.ea_sc_a[{n}] = {gid(icl[0][0])}")
+        # 0.7.42: the ICSPoint's HeadTurn (record w15, CRC 0x48980d64): the emulator shows the leader's head tracking the
+        # player through his plan scene, the body on the point's yaw (ref_xemu anim/poses/leader_facing, 2026-11-17)
+        if r.cls == "ICSPoint" and len(r.w) > 15 and r.u(15) == 1:
+            L(f"\tlevel.ea_sc_head[{n}] = 1")
         if sc_sp:
             # the actor by his spawn point (a point with no group of its own): the script matches ea_sc_sp
             L(f'\tlevel.ea_sc_b[{n}] = "sp{sc_sp}"')
