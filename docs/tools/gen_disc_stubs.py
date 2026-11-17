@@ -41,7 +41,9 @@ GAMEDIRS = ("main", "mainta", "maintt")
 
 # stub, base tik (models/weapons/<base>.tik), display name, rank[, opts]. Rows are added as each disc gun passes its QA sheet.
 # opts (a NEW gun built on a base gun's rig, not a cosmetic variant - PLAN.md phase-1 finding 4b):
-#   body       the body file name (default: the base) - a new gun never shares the base's body
+#   body       the body file name (default: the base) - a new gun never shares the base's body, and a SECOND disc variant of
+#              the same base (European Assault next to Frontline) needs its own: the body carries the variant's name / rank
+#   new        a NEW gun (its own roster weapon), not a cosmetic variant: no disc-fid row in loadoutdisc.scr
 #   silenced   the fire alias that replaces the base's, and every live `model models/fx/muzflash.tik` frame command is
 #              commented out (the mod's silenced convention: greasegun_silenced / mp40silenced / ppsh43silenced)
 #   set        {"<mode> <key>": "<value>"} - stat lines of the body replaced (its OWN stats, the rest stay the base's)
@@ -69,8 +71,34 @@ STUBS = [
     # split to "Sten Mark II", so the base-name lookups (cgame CoopStripSkinSuffix, fgame CoopWeaponBaseName) reach the Sten
     # through its alias row below; its recoil / ROF / pattern rows are its own (coop_mod tables, stem sten_mk2s).
     ("sten_mk2s_ea", "sten", "Sten Mk II(S) (European Assault)", 4100,
-     {"body": "sten_mk2s_ea", "silenced": "sten_silenced",
+     {"body": "sten_mk2s_ea", "new": True, "silenced": "sten_silenced",
       "set": {"dm firedelay": "0.09", "realism firedelay": "0.09"}}),
+] + [
+    # European Assault (2026-11-16): every EA variant has its own body (its base's first body is the Frontline variant's).
+    # The M9 bazooka is the second EA variant of the bazooka (fid 71).
+    (stub, base, display, rank, {"body": stub}) for stub, base, display, rank in (
+        ("thompsonsmg_ea", "thompsonsmg", "Thompson (European Assault)", 4050),
+        ("bar_ea", "bar", "BAR (European Assault)", 4051),
+        ("mp40_ea", "mp40", "MP40 (European Assault)", 4052),
+        ("mp44_ea", "mp44", "StG 44 (European Assault)", 4053),
+        ("ppsh_smg_ea", "ppsh_smg", "PPSh-41 (European Assault)", 4054),
+        ("coop_bergmann_ea", "coop_bergmann", "MP28 (European Assault)", 4055),
+        ("m1_garand_ea", "m1_garand", "M1 Garand (European Assault)", 4056),
+        ("kar98_ea", "kar98", "Kar98k (European Assault)", 4057),
+        ("coop_g43_irons_ea", "coop_g43_irons", "G 43 (European Assault)", 4058),
+        ("mosin_nagant_rifle_ea", "mosin_nagant_rifle", "Mosin-Nagant 1891 (European Assault)", 4059),
+        ("shotgun_ea", "shotgun", "Shotgun (European Assault)", 4060),
+        ("colt45_ea", "colt45", "Colt 45 (European Assault)", 4061),
+        ("g43_ea", "g43", "G 43 Sniper (European Assault)", 4062),
+        ("garand_scoped_ea", "garand_scoped", "M1 Garand Sniper (European Assault)", 4063),
+        ("enfieldsniper_ea", "enfieldsniper", "Lee-Enfield No.4 (T) (European Assault)", 4064),
+        ("nagant_sniper_ea", "nagant_sniper", "Mosin-Nagant Sniper (European Assault)", 4065),
+        ("bazooka_ea", "bazooka", "M1 Bazooka (European Assault)", 4066),
+        ("bazooka_ea2", "bazooka", "M9 Bazooka (European Assault)", 4067),
+        ("m2frag_grenade_sp_start_ea", "m2frag_grenade_sp_start", "Frag Grenade (European Assault)", 4068),
+        ("mills_grenade_sp_start_ea", "mills_grenade_sp_start", "Mills Bomb (European Assault)", 4069),
+        ("steilhandgranate_start_ea", "steilhandgranate_start", "Stielhandgranate (European Assault)", 4070),
+    )
 ]
 HEADER = "// HZM coop discguns [gen_disc_stubs.py] - generated, do not edit. "
 
@@ -183,8 +211,9 @@ def make(stub, base, display, rank, opts=None):
         body, n = silence_flash(body)
         if not n:
             raise SystemExit("%s: silenced, but no muzzle flash frame command found" % base)
-    hdr = HEADER + ("Shared BODY of the disc-gun variants of models/weapons/%s.tik\n" % base if bodyname == base else
-                    "BODY of the NEW gun %s on the rig of models/weapons/%s.tik\n" % (display, base)) + \
+    hdr = HEADER + ("BODY of the NEW gun %s on the rig of models/weapons/%s.tik\n" % (display, base) if opts.get("new") else
+                    "Shared BODY of the disc-gun variants of models/weapons/%s.tik\n" % base if bodyname == base else
+                    "BODY of the disc-gun variant %s of models/weapons/%s.tik\n" % (display, base)) + \
         "// (effective copy: %s): everything below its setup block, name/rank of the variant, clip wildcard.\n" % pak + \
         "// Included by the shipped stub AND by a converted disc tik at the same path - one source of stats and anims.\n"
     body_txt = hdr + "$path %s\n\n" % path + (pre + "\n\n" if pre else "") + body.lstrip("\n")
@@ -299,9 +328,9 @@ def disc_table():
     for row in STUBS:
         stub, base = row[:2]
         opts = row[4] if len(row) > 4 else {}
-        if "body" in opts:
+        if opts.get("new"):
             continue
-        g = stub.rsplit("_", 1)[1]
+        g = stub.rsplit("_", 1)[1].rstrip("0123456789")      # bazooka_ea2 -> ea
         fid0 = DISC_GAMES[g][0]
         give = "models/weapons/%s.tik" % base
         fid = fid0 + used.get((give, g), 0)

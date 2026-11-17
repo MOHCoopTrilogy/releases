@@ -437,8 +437,9 @@ MAXV, MAXT = 999, 1999
 FLIP_WINDING = False
 
 
-def build_surfaces(base, disc, T, t, M, over, prefix):
-    """-> [(surface name, verts, tris, texname)] ; verts = (pos, nrm, uv, [(bone, 1.0, offset)])"""
+def build_surfaces(base, disc, T, t, M, over, prefix, shift=None):
+    """-> [(surface name, verts, tris, texname)] ; verts = (pos, nrm, uv, [(bone, 1.0, offset)]). shift: {role: base-frame
+    offset} added to that role's vertices (snap_mag)"""
     sc = base["scale"]
     mats = base["mats"]
     out, nclip = [], 0
@@ -448,6 +449,7 @@ def build_surfaces(base, disc, T, t, M, over, prefix):
         roles = np.array([role_of(b, over) for b in p["bone"]])
         for role in ("gun", "bolt", "pump", "mag"):
             sel = roles == role
+            Vr = V + np.asarray(shift[role]) if shift and role in shift else V
             tri = p["T"][sel[p["T"]].all(1)]
             if not len(tri):
                 continue
@@ -467,7 +469,7 @@ def build_surfaces(base, disc, T, t, M, over, prefix):
                 chunks.append((cur, cmap))
             for ct, cmap in chunks:
                 order = sorted(cmap, key=cmap.get)
-                Vs = V[order]
+                Vs = Vr[order]
                 lt = np.array([[cmap[x] for x in tr] for tr in ct])
                 lt = lt[:, ::-1] if FLIP_WINDING else lt
                 N = vnormals(Vs, lt)
@@ -540,8 +542,11 @@ def write_gun(key, disc, fr, snd_paths, rows_json=None):
     or the shipped body the converted tik includes (an old mod build): the caller skips that gun."""
     from PIL import Image
     cfg = GUNS[key]
-    if vfs.read("models/weapons/byo/body/%s.txt" % cfg["base"]) is None:
-        raise MissingBase("models/weapons/byo/body/%s.txt" % cfg["base"])
+    # the shipped body this tik includes: one per base gun for the first variant (Frontline), its own per-stub body for a
+    # second variant of the same base (European Assault: the body carries the variant's name / rank) - GUNS "body"
+    body = cfg.get("body", cfg["base"])
+    if vfs.read("models/weapons/byo/body/%s.txt" % body) is None:
+        raise MissingBase("models/weapons/byo/body/%s.txt" % body)
     base = base_gun(cfg["base"], rows_json)
     for role, bn in (cfg.get("bones") or {}).items():     # a base bone the generic role names do not find
         base["roles"][role] = base["names"].index(bn)
@@ -557,7 +562,19 @@ def write_gun(key, disc, fr, snd_paths, rows_json=None):
         Ff = Rf + (Ff - Rf) / np.linalg.norm(Ff - Rf) * 12.0
     stub = cfg["stub"]
     mdir = "models/weapons/byo/%s" % stub
-    surfs = build_surfaces(base, disc, T, t, M, cfg.get("roles"), "disc")
+    shift = None
+    if cfg.get("snap_mag") and base["clip"]:
+        # a reload part the disc poses somewhere else in its bind pose (the European Assault bazooka rockets hang behind the
+        # tube): its bounding-box centre goes onto the base gun's own reload surface at idle frame 0, so the base reload
+        # anims carry it in exactly as they carry the base part
+        mv = [(p["V"] @ M.T) @ T + t for p in disc["parts"]]
+        mv = np.vstack([V[np.array([role_of(b, cfg.get("roles")) == "mag" for b in p["bone"]])]
+                        for V, p in zip(mv, disc["parts"])])
+        bp = next(s["P"] for s in base["g"]["surfs"] if s["name"] == base["clip"])
+        if len(mv):
+            shift = {"mag": (bp.min(0) + bp.max(0)) / 2 - (mv.min(0) + mv.max(0)) / 2}
+            info["snap_mag"] = np.round(shift["mag"], 2).tolist()
+    surfs = build_surfaces(base, disc, T, t, M, cfg.get("roles"), "disc", shift)
     for nm in cfg.get("keep_base", []):
         surfs.append(base_surface(base, nm))
     if fr["kind"] == "scope" and fr.get("lens_r"):
@@ -607,7 +624,7 @@ def write_gun(key, disc, fr, snd_paths, rows_json=None):
     if al:
         tik += ["init", "{", "\tclient", "\t{", "\t\t// the disc's own clips, tiki-local: only this converted gun hears them"] \
             + al + ["\t}", "}", ""]
-    tik += ["$include models/weapons/byo/body/%s.txt" % cfg["base"], ""]
+    tik += ["$include models/weapons/byo/body/%s.txt" % body, ""]
     files["models/weapons/byo/%s.tik" % stub] = "\n".join(tik).encode()
     row = base["row"]
     if fr["kind"] == "none":
