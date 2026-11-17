@@ -28,11 +28,17 @@ FS2 = F2.table()
 FS2_FIDS = [r["fid"] for r in FS2]
 FIDS = list(range(1, 8)) + FS2_FIDS
 GUN_SLOTS = (1, 2, 3)                      # the second row: guns only (slot 4 = grenades, no finishes2)
+# [discguns 2026-11-16] the DISC variant chips (fids 60 Frontline / 70 European Assault, coop_mod/loadoutdisc.scr): a chip per disc on
+# the hero (gen_armory_urc.py), shown only when the inspected gun HAS that variant (coop_loDiscV<F>, the gun's p<id>.cfg) AND this PC
+# converted the disc (ROM coop_byoGunsFl / coop_byoGunsEa, engine CL_ByoInit). Click = coop_loFgo<F> = fin<F>_s<n>.cfg, as for finishes2;
+# the server gate is loadoutpick.scr loadout_discOwned (no padlock: a player without the disc never sees the chip).
+DISC = [(60, "FRONTLINE", "coop_byoGunsFl"), (70, "EUROPEAN ASSAULT", "coop_byoGunsEa")]
+DISC_FIDS = [d[0] for d in DISC]
 BLOCK_BEGIN = "// killchal: per-gun finish progress pointers (gen_finish_ui.py)"
 BLOCK2_BEGIN = "// finishes2: the second finish chip row (gen_finish_ui.py)"
 INIT_BEGIN = "// finishes2: second chip row hidden until a gun slot is clicked (gen_finish_ui.py)"
 # exactly the lines the finishes2 blocks write (a looser "set coop_lo..." swallowed the hand-written lines that follow them)
-B2_LINES = r"(?:(?:set coop_lo(?:F2On|Fgo[4-5]\d|FqCur[4-5]\d|LkFV[4-5]\d)|vstr coop_loMast\d_[4-5]\d)[^\n]*\n)+"
+B2_LINES = r"(?:(?:set coop_lo(?:F2On|Fgo[4-7]\d|FqCur[4-5]\d|LkFV[4-5]\d|DiscV[6-7]\d)|vstr coop_loMast\d_[4-5]\d)[^\n]*\n)+"
 
 
 def fids_of(n):
@@ -89,9 +95,11 @@ def sel_block2(n):
         # the row's padlocks NOW, from the archived verdicts (the server's last push, else armory_defaults' fail-locked lkc<F>_1): the
         # slot's coop_loMast<n> chain only exists once a server has pushed it, and the cold main menu has none
         L += ["vstr coop_loMast%d_%d" % (n, f) for f in FS2_FIDS]
+        L += ['set coop_loFgo%d "exec ui/loadout/fin%d_s%d.cfg"' % (f, f, n) for f in DISC_FIDS]   # [discguns]
     else:
         L.append("set coop_loF2On 0")
         L += ["set coop_loLkFV%d 0" % f for f in FS2_FIDS]
+        L += ["set coop_loDiscV%d 0" % f for f in DISC_FIDS]       # [discguns] no disc chip on the grenade slot
     return "\n".join(L) + "\n"
 
 
@@ -113,7 +121,8 @@ def patch_init(text):
     anchor = "set coop_loFinUIOn 0\n"
     assert t.count(anchor) == 1, ("init.cfg anchor", t.count(anchor))
     if FS2_FIDS:
-        t = t.replace(anchor, anchor + INIT_BEGIN + "\nset coop_loF2On 0\n" + "".join("set coop_loLkFV%d 0\n" % f for f in FS2_FIDS))
+        t = t.replace(anchor, anchor + INIT_BEGIN + "\nset coop_loF2On 0\n" + "".join("set coop_loLkFV%d 0\n" % f for f in FS2_FIDS)
+                      + "".join("set coop_loDiscV%d 0\n" % f for f in DISC_FIDS))
     return t
 
 
@@ -134,6 +143,9 @@ def build(out, read_sel, read_init=None):
     for r in FS2:
         for n in GUN_SLOTS:
             out["fin%d_s%d.cfg" % (r["fid"], n)] = fin_slot(r["fid"], n, r["name"])
+    for f, name, _cv in DISC:          # [discguns] the disc chips apply like a finish (the server re-checks ownership)
+        for n in GUN_SLOTS:
+            out["fin%d_s%d.cfg" % (f, n)] = fin_slot(f, n, name)
     if read_init is not None:
         out["init.cfg"] = patch_init(read_init())
     return out

@@ -140,6 +140,11 @@ def preview(w):
     # finishes pak, so "exists" = the gun has that row in loadoutskins.scr (gen_skins.py fs2, which checks the pak)
     _v2 = fs2_variants().get((w["give"] or w["tik"]).lower(), {})
     L += ['set coop_loFinP%d "%s"' % (_f, "exec ui/loadout/finp%s_%d.cfg" % (w["id"], _f) if _f in _v2 else "") for _f in FS2_FIDS]
+    # [discguns 2026-11-16] the disc variant chips (gen_finish_ui.DISC): shown when THIS gun has that disc's variant (the chip's
+    # enabledcvar also needs the engine's ROM coop_byoGuns<Fl|Ea>, so a PC without the disc never shows it)
+    _vd = disc_variants().get((w["give"] or w["tik"]).lower(), {})
+    L += ["set coop_loDiscV%d %d" % (_f, 1 if _f in _vd else 0) for _f in DISC_FIDS]
+    L += ['set coop_loFinP%d "%s"' % (_f, "exec ui/loadout/finp%s_%d.cfg" % (w["id"], _f) if _f in _vd else "") for _f in DISC_FIDS]
     L += [
         'set coop_loPrev "%s"' % w["tik"],
         'set coop_loXfmW "%s"' % w["xfm"],
@@ -472,6 +477,9 @@ def render_all(rows):
         for _f, _var in sorted(fs2_variants().get((w["give"] or w["tik"]).lower(), {}).items()):
             out["finp%s_%d.cfg" % (w["id"], _f)] = (
                 'set coop_loPrev "%s"\n' % _var + 'set coop_loNm "%s (%s)"\n' % (w["name"], FS2_NAME[_f]))
+        for _f, _var in sorted(disc_variants().get((w["give"] or w["tik"]).lower(), {}).items()):    # [discguns]
+            out["finp%s_%d.cfg" % (w["id"], _f)] = (
+                'set coop_loPrev "%s"\n' % _var + 'set coop_loNm "%s (%s)"\n' % (w["name"], DISC_NAME[_f]))
         out["t%s.cfg" % w["id"]] = tile(w)
         for s in w["slots"]:
             out["w%s_s%s.cfg" % (w["id"], s)] = slotfile(w, s)
@@ -500,6 +508,24 @@ import finishes2 as _F2  # noqa: E402
 FS2_FIDS = _F2.fids()
 FS2_NAME = {r["fid"]: r["name"] for r in _F2.table()}
 _FS2V = {}
+
+
+import gen_finish_ui as _GFU  # noqa: E402
+DISC_FIDS = _GFU.DISC_FIDS
+DISC_NAME = {f: n for f, n, _c in _GFU.DISC}
+_DISCV = {}
+
+
+def disc_variants():
+    """[discguns] {give (lower): {fid: stub tik}} for the disc fids, from coop_mod/loadoutdisc.scr (gen_disc_stubs.py)"""
+    if not _DISCV:
+        _DISCV[None] = 1
+        p = os.path.join(MOD, "coop_mod", "loadoutdisc.scr")
+        if os.path.exists(p):
+            for g, f, v in re.findall(r'coop_skinGive\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', _read(p)):
+                if int(f) in DISC_NAME:
+                    _DISCV.setdefault(g.lower(), {})[int(f)] = v
+    return _DISCV
 
 
 def fs2_variants():

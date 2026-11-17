@@ -1,0 +1,865 @@
+{
+ "_doc": "Sight landmark specs for the disc guns. Boxes are [a0,a1,s0,s1,h0,h1] in fractions of the gun's own length (a back from the muzzle, s lateral, h up from the bore at the muzzle) - no disc coordinates. Applied by discsights.py / the converter.",
+ "fl_th": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0,
+    0.03,
+    -0.01,
+    0.01,
+    0.005,
+    0.03
+   ]
+  },
+  "rear": {
+   "type": "top",
+   "box": [
+    0.66,
+    0.69,
+    -0.006,
+    0.007,
+    0.015,
+    0.04
+   ]
+  },
+  "zoomR": 0.012,
+  "note": "disc peep is a solid plate: rear = plate top (post tip level with it)"
+ },
+ "ea_smg_thompson": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.04,
+    0.08,
+    -0.01,
+    0.01,
+    0.015,
+    0.04
+   ]
+  },
+  "rear": {
+   "type": "ring",
+   "box": [
+    0.54,
+    0.66,
+    -0.015,
+    0.015,
+    0.015,
+    0.04
+   ]
+  },
+  "zoomR": 0.012
+ },
+ "fl_bar": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.05,
+    0.08,
+    -0.01,
+    0.01,
+    0.02,
+    0.04
+   ]
+  },
+  "rear": {
+   "type": "ears",
+   "box": [
+    0.7,
+    0.75,
+    -0.013,
+    0.013,
+    0.022,
+    0.031
+   ]
+  },
+  "note": "rear = ears with the aperture not modelled",
+  "zoomR": 0.02
+ },
+ "ea_mg_bar": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.085,
+    0.115,
+    -0.0015,
+    0.0015,
+    0.019,
+    0.0225
+   ]
+  },
+  "rear": {
+   "type": "ears",
+   "box": [
+    0.72,
+    0.75,
+    -0.013,
+    0.013,
+    0.022,
+    0.031
+   ]
+  },
+  "note": "hooded post; rear = ears with the aperture not modelled",
+  "zoomR": 0.02
+ },
+ "fl_mp40": {
+  "front": {
+   "type": "ring",
+   "box": [
+    0.02,
+    0.06,
+    -0.012,
+    0.012,
+    0.044,
+    0.065
+   ]
+  },
+  "rear": {
+   "type": "notch",
+   "box": [
+    0.66,
+    0.7,
+    -0.012,
+    0.012,
+    0.04,
+    0.06
+   ]
+  },
+  "note": "disc front has the hood only (no post): aim = hood centre"
+ },
+ "ea_smg_mp40": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.02,
+    0.07,
+    -0.003,
+    0.003,
+    0.03,
+    0.04
+   ]
+  },
+  "rear": {
+   "type": "notch",
+   "box": [
+    0.64,
+    0.7,
+    -0.015,
+    0.015,
+    0.04,
+    0.06
+   ]
+  }
+ },
+ "fl_stg44": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.02,
+    0.07,
+    -0.002,
+    0.003,
+    0.055,
+    0.066
+   ]
+  },
+  "rear": {
+   "type": "notch",
+   "box": [
+    0.52,
+    0.54,
+    -0.009,
+    0.009,
+    0.06,
+    0.072
+   ]
+  },
+  "note": "tangent leaf: notch at the leaf's rear end"
+ },
+ "ea_mg_stg": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.005,
+    0.04,
+    -0.003,
+    0.003,
+    0.06,
+    0.07
+   ]
+  },
+  "rear": {
+   "type": "top",
+   "box": [
+    0.44,
+    0.5,
+    -0.006,
+    0.006,
+    0.055,
+    0.072
+   ]
+  },
+  "note": "V notch on the leaf top"
+ },
+ "fl_m1": {
+  "front": {
+   "type": "notch",
+   "box": [
+    0.0,
+    0.06,
+    -0.009,
+    0.009,
+    0.02,
+    0.032
+   ]
+  },
+  "rear": {
+   "type": "ring",
+   "box": [
+    0.66,
+    0.69,
+    -0.005,
+    0.005,
+    0.033,
+    0.04
+   ]
+  },
+  "zoomR": 0.012,
+  "note": "front wings only (no post): aim = wing-gap centre at wing-top height; peep hole painted on the disc: converter opens it (alpha)",
+  "punch": {
+   "r": 0.0014,
+   "box": [
+    0.66,
+    0.69,
+    -0.006,
+    0.006,
+    0.032,
+    0.04
+   ]
+  }
+ },
+ "ea_rifle_m1": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.025,
+    0.05,
+    -0.002,
+    0.002,
+    0.02,
+    0.027
+   ]
+  },
+  "rear": {
+   "type": "ring",
+   "box": [
+    0.67,
+    0.69,
+    -0.0055,
+    0.0055,
+    0.0165,
+    0.026
+   ]
+  },
+  "zoomR": 0.012
+ },
+ "fl_sg": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.08,
+    0.12,
+    -0.004,
+    0.004,
+    0.012,
+    0.02
+   ]
+  },
+  "rear": {
+   "type": "over",
+   "box": [
+    0.45,
+    0.585,
+    -0.01,
+    0.01,
+    0.0,
+    0.04
+   ],
+   "dh": 0.006
+  },
+  "note": "no bead and no rear modelled: front = the barrel band top, rear VIRTUAL over the receiver (stock shotgun precedent); dh 0.006 (p2): the line clears the M1897 hammer spur (it sits behind the over box and blocked the sight picture)"
+ },
+ "ea_rifle_shotgun": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.01,
+    0.03,
+    -0.002,
+    0.002,
+    0.02,
+    0.03
+   ]
+  },
+  "rear": {
+   "type": "over",
+   "box": [
+    0.45,
+    0.62,
+    -0.01,
+    0.01,
+    0.0,
+    0.04
+   ]
+  },
+  "note": "bead front; no rear modelled: rear VIRTUAL over the receiver"
+ },
+ "ea_rifle_karabiner": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.02,
+    0.05,
+    -0.0015,
+    0.0015,
+    0.014,
+    0.021
+   ]
+  },
+  "rear": {
+   "type": "notch",
+   "box": [
+    0.36,
+    0.38,
+    -0.009,
+    0.009,
+    0.0165,
+    0.022
+   ],
+   "sym": true
+  },
+  "zoomR": 0.012
+ },
+ "ea_rifle_gewehr": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.02,
+    0.06,
+    -0.0015,
+    0.0015,
+    0.025,
+    0.034
+   ]
+  },
+  "rear": {
+   "type": "top",
+   "box": [
+    0.43,
+    0.46,
+    -0.008,
+    0.008,
+    0.02,
+    0.03
+   ]
+  },
+  "zoomR": 0.012,
+  "note": "rear hump has no modelled notch: post over its top"
+ },
+ "ea_rifle_mn1891": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.015,
+    0.05,
+    -0.0015,
+    0.0015,
+    0.014,
+    0.0215
+   ]
+  },
+  "rear": {
+   "type": "notch",
+   "box": [
+    0.503,
+    0.516,
+    -0.006,
+    0.006,
+    0.014,
+    0.022
+   ],
+   "sym": true
+  },
+  "zoomR": 0.012
+ },
+ "fl_spring": {
+  "align": "yaw",
+  "kind": "scope",
+  "rear": {
+   "type": "lens",
+   "box": [
+    0.6,
+    0.78,
+    -0.03,
+    0.03,
+    0.0,
+    0.07
+   ],
+   "part": "Sp_frnt"
+  },
+  "tube": {
+   "box": [
+    0.55,
+    0.76,
+    -0.02,
+    0.02,
+    0.01,
+    0.065
+   ],
+   "part": "Sp_frnt"
+  },
+  "zoom": 0.06
+ },
+ "fl_g43": {
+  "kind": "scope",
+  "rear": {
+   "type": "lens",
+   "box": [
+    0.595,
+    0.76,
+    -0.01,
+    0.03,
+    0.035,
+    0.08
+   ],
+   "part": "G43Sight"
+  },
+  "tube": {
+   "box": [
+    0.595,
+    0.76,
+    -0.01,
+    0.03,
+    0.035,
+    0.08
+   ],
+   "part": "G43Sight"
+  },
+  "zoom": 0.06,
+  "note": "a G43Sight bar floats 0.25 L below the gun (misassembled): converter must drop/reseat it"
+ },
+ "ea_rifle_gewehrScoped": {
+  "kind": "scope",
+  "rear": {
+   "type": "lens",
+   "box": [
+    0.6,
+    0.8,
+    -0.03,
+    0.03,
+    0.03,
+    0.08
+   ],
+   "part": "P066"
+  },
+  "tube": {
+   "box": [
+    0.62,
+    0.78,
+    -0.03,
+    0.03,
+    0.035,
+    0.08
+   ],
+   "part": "P066"
+  },
+  "zoom": 0.06
+ },
+ "ea_rifle_m1Scoped": {
+  "kind": "scope",
+  "rear": {
+   "type": "lens",
+   "box": [
+    0.44,
+    0.7,
+    -0.04,
+    0.0,
+    0.01,
+    0.05
+   ],
+   "part": "P068",
+   "slice": 0.03
+  },
+  "tube": {
+   "box": [
+    0.43,
+    0.7,
+    -0.04,
+    0.0,
+    0.015,
+    0.045
+   ],
+   "part": "P068"
+  },
+  "zoom": 0.06
+ },
+ "ea_rifle_enfieldScoped": {
+  "kind": "scope",
+  "rear": {
+   "type": "lens",
+   "box": [
+    0.7,
+    0.74,
+    -0.04,
+    -0.01,
+    0.02,
+    0.05
+   ],
+   "slice": 0.004
+  },
+  "tube": {
+   "box": [
+    0.52,
+    0.74,
+    -0.04,
+    -0.01,
+    0.02,
+    0.05
+   ]
+  },
+  "zoom": 0.06,
+  "note": "a 5-round charger floats over the scope (the reload pose part): converter must hide it"
+ },
+ "ea_rifle_mnvp": {
+  "kind": "scope",
+  "axis": "bore",
+  "rear": {
+   "type": "lens",
+   "box": [
+    0.69,
+    0.72,
+    -0.025,
+    0.025,
+    0.015,
+    0.055
+   ],
+   "slice": 0.005
+  },
+  "zoom": 0.06,
+  "note": "PU scope wrapped in camo cloth: axis = bore"
+ },
+ "ea_SMG_PPSH": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.06,
+    0.1,
+    -0.002,
+    0.002,
+    0.02,
+    0.032
+   ]
+  },
+  "rear": {
+   "type": "notch",
+   "box": [
+    0.5,
+    0.545,
+    -0.006,
+    0.006,
+    0.029,
+    0.0345
+   ],
+   "sym": true
+  },
+  "zoomR": 0.015
+ },
+ "ea_smg_sten": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.0,
+    0.06,
+    -0.003,
+    0.003,
+    0.025,
+    0.032
+   ]
+  },
+  "rear": {
+   "type": "ring",
+   "box": [
+    0.675,
+    0.69,
+    -0.005,
+    0.005,
+    0.031,
+    0.039
+   ]
+  },
+  "zoomR": 0.015,
+  "note": "Mk II(S): no front blade modelled - aim over the suppressor's front top; rear = the modelled hex peep"
+ },
+ "ea_smg_mp28": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.0,
+    0.04,
+    -0.004,
+    0.004,
+    0.03,
+    0.04
+   ]
+  },
+  "rear": {
+   "type": "notch",
+   "box": [
+    0.47,
+    0.485,
+    -0.008,
+    0.008,
+    0.04,
+    0.047
+   ],
+   "sym": true
+  },
+  "zoomR": 0.015
+ },
+ "fl_bazooka": {
+  "flip": true,
+  "front": {
+   "type": "overf",
+   "box": [
+    0.0,
+    0.7,
+    -0.012,
+    0.012,
+    0.0,
+    0.1
+   ],
+   "dh": 0.002
+  },
+  "rear": {
+   "type": "level",
+   "a": 0.68
+  },
+  "zoom": 0.06,
+  "zoomR": 0.08,
+  "note": "sight hardware not usable (left-side frames / box): VIRTUAL bore-parallel line clearing the whole tube top - NEEDS USER LOOK"
+ },
+ "ea_misc_M1bazooka": {
+  "flip": true,
+  "front": {
+   "type": "overf",
+   "box": [
+    0.0,
+    0.7,
+    -0.012,
+    0.012,
+    0.0,
+    0.1
+   ],
+   "dh": 0.002
+  },
+  "rear": {
+   "type": "level",
+   "a": 0.68
+  },
+  "zoom": 0.06,
+  "zoomR": 0.08,
+  "note": "sight hardware not usable (left-side frames / box): VIRTUAL bore-parallel line clearing the whole tube top - NEEDS USER LOOK"
+ },
+ "ea_misc_M9bazooka": {
+  "flip": true,
+  "front": {
+   "type": "overf",
+   "box": [
+    0.0,
+    0.7,
+    -0.012,
+    0.012,
+    0.0,
+    0.1
+   ],
+   "dh": 0.002
+  },
+  "rear": {
+   "type": "level",
+   "a": 0.68
+  },
+  "zoom": 0.06,
+  "zoomR": 0.08,
+  "note": "sight hardware not usable (left-side frames / box): VIRTUAL bore-parallel line clearing the whole tube top - NEEDS USER LOOK"
+ },
+ "fl_panzer": {
+  "front": {
+   "type": "tip",
+   "box": [
+    0.055,
+    0.065,
+    -0.05,
+    -0.046,
+    0.054,
+    0.06
+   ]
+  },
+  "rear": {
+   "type": "level",
+   "a": 0.32
+  },
+  "zoom": 0.06,
+  "zoomR": 0.08,
+  "note": "front = the centre mark of the left-side front frame, seen through the shield window; rear VIRTUAL bore-parallel (stock panzerschreck precedent)"
+ },
+ "fl_colt": {
+  "rot": [
+   [
+    "x",
+    -90
+   ]
+  ],
+  "muzzle": "+y",
+  "front": {
+   "type": "tip",
+   "box": [
+    0.03,
+    0.07,
+    -0.004,
+    0.004,
+    0.09,
+    0.11
+   ]
+  },
+  "rear": {
+   "type": "notch",
+   "box": [
+    0.78,
+    0.84,
+    -0.012,
+    0.012,
+    0.07,
+    0.09
+   ],
+   "sym": true
+  },
+  "zoom": 0.06,
+  "note": "FL first-person pistol is authored slide-along-z: rot x -90 brings it bore-on-y"
+ },
+ "fl_p38": {
+  "rot": [
+   [
+    "x",
+    -90
+   ]
+  ],
+  "muzzle": "+y",
+  "front": {
+   "type": "tip",
+   "box": [
+    0.0,
+    0.04,
+    -0.004,
+    0.004,
+    0.05,
+    0.065
+   ]
+  },
+  "rear": {
+   "type": "notch",
+   "box": [
+    0.85,
+    0.9,
+    -0.012,
+    0.012,
+    0.04,
+    0.05
+   ],
+   "sym": true
+  },
+  "zoom": 0.06,
+  "note": "FL first-person pistol is authored slide-along-z: rot x -90 brings it bore-on-y"
+ },
+ "fl_silpis": {
+  "rot": [
+   [
+    "x",
+    -90
+   ]
+  ],
+  "muzzle": "+y",
+  "front": {
+   "type": "tip",
+   "box": [
+    0.32,
+    0.4,
+    0.005,
+    0.02,
+    0.044,
+    0.05
+   ]
+  },
+  "rear": {
+   "type": "top",
+   "box": [
+    0.94,
+    0.96,
+    -0.03,
+    0.02,
+    0.04,
+    0.05
+   ],
+   "s_from_front": true
+  },
+  "zoom": 0.04,
+  "note": "FL first-person pistol is authored slide-along-z: rot x -90; front blade sits 0.013 L right of the suppressor axis; rear = a flat plate (no notch): blade tip on its top"
+ },
+ "ea_PISTOL_45auto": {
+  "muzzle": "+y",
+  "front": {
+   "type": "tip",
+   "box": [
+    0.04,
+    0.1,
+    -0.006,
+    0.006,
+    0.05,
+    0.065
+   ]
+  },
+  "rear": {
+   "type": "notch",
+   "box": [
+    0.8,
+    0.83,
+    -0.02,
+    0.02,
+    0.065,
+    0.075
+   ],
+   "sym": true
+  },
+  "zoom": 0.06
+ },
+ "fl_markIIgrenade": {
+  "kind": "none",
+  "note": "grenade: no sight row (hip only, as the base grenades)"
+ },
+ "fl_stickgrenade": {
+  "kind": "none",
+  "note": "grenade: no sight row (hip only, as the base grenades)"
+ },
+ "ea_grenade_frag": {
+  "kind": "none",
+  "note": "grenade: no sight row (hip only, as the base grenades)"
+ },
+ "ea_grenade_mills": {
+  "kind": "none",
+  "note": "grenade: no sight row (hip only, as the base grenades)"
+ },
+ "ea_grenade_stick": {
+  "kind": "none",
+  "note": "grenade: no sight row (hip only, as the base grenades)"
+ }
+}

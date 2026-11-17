@@ -275,6 +275,14 @@ def build_urc():
         o.new("Label", "fc2Lk%d" % q, (x + 5, sy2 + 2, 7, 7), shader="textures/mohmenu/coop_lo_lock.tga", enable="coop_loLkFV%d" % f)
         o.new("Button", "fc2Btn%d" % q, (x, sy2, 17, 11), fg=(1, 1, 1), bg=None, sound="sound/menu/apply.wav", enable="coop_loF2On", title="",
               stuff="vstr coop_loFcmt%d" % f, hover="exec ui/loadout/reqf%d.cfg" % f, away="exec ui/loadout/reqclear.cfg")
+    # [discguns 2026-11-16] the DISC variant chips (gen_finish_ui.DISC): stacked over CUSTOMIZE on the hero, one per disc, shown only
+    # when the inspected gun has that disc's variant (coop_loDiscV<F>) AND this PC converted the disc (ROM coop_byoGunsFl / Ea): a
+    # player without the disc never sees one. Click = the slot's coop_loFgo<F> (fin<F>_s<n>.cfg); the server re-checks ownership.
+    import gen_finish_ui as GFU
+    for q, (f, name, cv) in enumerate(GFU.DISC):
+        o.new("Button", "discBtn%d" % f, (404, HERO_Y + HERO_H - 52 - q * 17, 68, 14), fg=BLUE, bg=PANEL, title={60: "FRONTLINE", 70: "EUR ASSAULT"}.get(f, name),
+              font="verdana-12", align="center", sound="sound/menu/apply.wav", stuff="vstr coop_loFgo%d" % f,
+              enable="coop_loDiscV%d %s" % (f, cv), extra=[("hovershader", '"textures/mohmenu/hzm_theme/mpui_glow"')])
     # the finish caption + name (and a locked chip's "37 / 100 KAR98K kills") moved from under the first row to the hero's top right
     o.text("finCap", 318, HERO_Y + 3, 40, "FINISH", col=FAINT, enable="coop_loFinUIOn")
     o.text("finNm", 352, HERO_Y + 3, 122, link="coop_loFinNm", col=CREAM, enable="coop_loFinUIOn")

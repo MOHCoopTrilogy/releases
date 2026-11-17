@@ -21,12 +21,17 @@ import os
 import sys
 import zipfile
 
-LEAF = ["zzzz_coop_fl_*", "zzzz_coop_ea_*", "zzzz_fl_*", "zzzz_ea_*", "*.iso", "*.xiso", "*.xbe", "*.viv", "*.big"]
+LEAF = ["zzzz_coop_fl_*", "zzzz_coop_ea_*", "zzzz_fl_*", "zzzz_ea_*", "*.iso", "*.xiso", "*.xbe", "*.viv", "*.big",
+        "*_byo_guns_*"]   # [discguns] the converted guns pak (flguns.py / the EA twin)
 PATHS = ["maps/coop_fl_*.bsp", "maps/coop_ea_*.bsp", "maps/coop_fl_*_data.scr", "maps/coop_ea_*_data.scr",
          "maps/briefing/briefingfl*.bsp", "maps/briefing/briefingea*.bsp",
          "textures/fl/*", "textures/ea/*", "sound/fl/*", "sound/ea/*", "sound/music/fl_*", "sound/music/ea_*",
          "scripts/fl_*.shader", "scripts/ea_*.shader", "ubersound/fl_*.scr", "ubersound/ea_*.scr",
-         "video/flbrief*", "video/ea*intro*", "fl/have_*", "ea/have_*"]
+         "video/flbrief*", "video/ea*intro*", "fl/have_*", "ea/have_*",
+         # [discguns] what the guns stage writes (the shipped stubs models/weapons/byo/<stub>.tik + body/*.txt and
+         # scripts/hzm_adssights_stub.txt are ours and stay unmatched)
+         "models/weapons/byo/*.skd", "textures/byo_guns/*", "sound/weapons/byo/*", "scripts/byo_guns_*.shader",
+         "scripts/hzm_adssights_byo_*.txt"]
 # User decision (2026-11-09, again at v1.10.69): the Frontline SOUNDTRACK already in the shipped music pak stays -
 # zzzzzzzzzzzzz_coop_music.pk3 :: sound/music/frontline_*.mp3 and sound/frontline/*. It is never flagged.
 EXEMPT = ["sound/music/frontline_*", "sound/frontline/*"]

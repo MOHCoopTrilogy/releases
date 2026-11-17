@@ -1,0 +1,8722 @@
+{
+"models/weapons/30calportable.tik": {
+"F": [
+17.11,
+-0.005,
+-7.9
+],
+"R": [
+-0.55,
+-0.005,
+-7.9
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1919 30cal",
+"relief": 10.0
+},
+"models/weapons/arisaka.tik": {
+"F": [
+44.0557,
+-0.9035,
+-4.6376
+],
+"R": [
+3.5564,
+-0.9035,
+-4.3424
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Arisaka Type 99",
+"relief": 0.0
+},
+"models/weapons/bar.tik": {
+"F": [
+35.6267,
+-0.7789,
+-4.2493
+],
+"R": [
+-0.3181,
+-0.7833,
+-4.3841
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR",
+"relief": 0.0
+},
+"models/weapons/bar_bar1918.tik": {
+"F": [
+35.6064,
+-1.2984,
+-5.4866
+],
+"R": [
+-0.76,
+-1.2984,
+-5.121
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lewis Gun",
+"relief": 0.0
+},
+"models/weapons/bar_bar1918a.tik": {
+"F": [
+39.5157,
+-0.7207,
+-4.5786
+],
+"R": [
+-1.8449,
+-0.759,
+-4.207
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (M1918 Classic)",
+"relief": 0.0
+},
+"models/weapons/bar_bar1918a1.tik": {
+"F": [
+39.5157,
+-0.7207,
+-4.5786
+],
+"R": [
+-1.8449,
+-0.759,
+-4.207
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (M1918A1)",
+"relief": 0.0
+},
+"models/weapons/bar_bar1918a2.tik": {
+"F": [
+39.5157,
+-0.7207,
+-4.5786
+],
+"R": [
+-1.8449,
+-0.759,
+-4.207
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (M1918A2)",
+"relief": 0.0
+},
+"models/weapons/bar_bloody.tik": {
+"F": [
+35.6267,
+-0.7789,
+-4.2493
+],
+"R": [
+-0.3181,
+-0.7833,
+-4.3841
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (Bloody)",
+"relief": 0.0
+},
+"models/weapons/bar_blued.tik": {
+"F": [
+35.6267,
+-0.7789,
+-4.2493
+],
+"R": [
+-0.3181,
+-0.7833,
+-4.3841
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (Blued)",
+"relief": 0.0
+},
+"models/weapons/bar_camo_desert.tik": {
+"F": [
+35.6267,
+-0.7789,
+-4.2493
+],
+"R": [
+-0.3181,
+-0.7833,
+-4.3841
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (Desert)",
+"relief": 0.0
+},
+"models/weapons/bar_camo_winter.tik": {
+"F": [
+35.6267,
+-0.7789,
+-4.2493
+],
+"R": [
+-0.3181,
+-0.7833,
+-4.3841
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (Winter)",
+"relief": 0.0
+},
+"models/weapons/bar_camo_woodland.tik": {
+"F": [
+35.6267,
+-0.7789,
+-4.2493
+],
+"R": [
+-0.3181,
+-0.7833,
+-4.3841
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (Woodland)",
+"relief": 0.0
+},
+"models/weapons/bar_chrome.tik": {
+"F": [
+35.6267,
+-0.7789,
+-4.2493
+],
+"R": [
+-0.3181,
+-0.7833,
+-4.3841
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (Chrome)",
+"relief": 0.0
+},
+"models/weapons/bar_gold.tik": {
+"F": [
+35.6267,
+-0.7789,
+-4.2493
+],
+"R": [
+-0.3181,
+-0.7833,
+-4.3841
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (Gold)",
+"relief": 0.0
+},
+"models/weapons/bar_pabar.tik": {
+"F": [
+35.6267,
+-0.7789,
+-4.2493
+],
+"R": [
+-0.3181,
+-0.7833,
+-4.3841
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "BAR (Pacific)",
+"relief": 0.0
+},
+"models/weapons/bazooka.tik": {
+"F": [
+24.0418,
+-1.7442,
+-6.2576
+],
+"R": [
+-15.96,
+-1.744,
+-6.2575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bazooka",
+"relief": 0.0
+},
+"models/weapons/bazooka_bloody.tik": {
+"F": [
+24.0418,
+-1.7442,
+-6.2576
+],
+"R": [
+-15.96,
+-1.744,
+-6.2575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bazooka (Bloody)",
+"relief": 0.0
+},
+"models/weapons/bazooka_blued.tik": {
+"F": [
+24.0418,
+-1.7442,
+-6.2576
+],
+"R": [
+-15.96,
+-1.744,
+-6.2575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bazooka (Blued)",
+"relief": 0.0
+},
+"models/weapons/bazooka_camo_desert.tik": {
+"F": [
+24.0418,
+-1.7442,
+-6.2576
+],
+"R": [
+-15.96,
+-1.744,
+-6.2575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bazooka (Desert)",
+"relief": 0.0
+},
+"models/weapons/bazooka_camo_winter.tik": {
+"F": [
+24.0418,
+-1.7442,
+-6.2576
+],
+"R": [
+-15.96,
+-1.744,
+-6.2575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bazooka (Winter)",
+"relief": 0.0
+},
+"models/weapons/bazooka_camo_woodland.tik": {
+"F": [
+24.0418,
+-1.7442,
+-6.2576
+],
+"R": [
+-15.96,
+-1.744,
+-6.2575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bazooka (Woodland)",
+"relief": 0.0
+},
+"models/weapons/bazooka_chrome.tik": {
+"F": [
+24.0418,
+-1.7442,
+-6.2576
+],
+"R": [
+-15.96,
+-1.744,
+-6.2575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bazooka (Chrome)",
+"relief": 0.0
+},
+"models/weapons/bazooka_gold.tik": {
+"F": [
+24.0418,
+-1.7442,
+-6.2576
+],
+"R": [
+-15.96,
+-1.744,
+-6.2575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bazooka (Gold)",
+"relief": 0.0
+},
+"models/weapons/bazooka_guanbazooka.tik": {
+"F": [
+24.0418,
+-1.7442,
+-6.2576
+],
+"R": [
+-15.96,
+-1.744,
+-6.2575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bazooka (Realistic)",
+"relief": 0.0
+},
+"models/weapons/berettasilenced.tik": {
+"F": [
+22.642,
+-0.3,
+-4.166
+],
+"R": [
+0.2,
+-0.244,
+-3.9
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced Beretta",
+"relief": 0.0
+},
+"models/weapons/carbine.tik": {
+"F": [
+32.3431,
+-0.6477,
+-5.2364
+],
+"R": [
+2.5817,
+-0.9278,
+-5.2889
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Carbine",
+"relief": 0.0
+},
+"models/weapons/colt45.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45",
+"relief": 0.0
+},
+"models/weapons/colt45_bloody.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/colt45_bloodyeic.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (M1911 Bloody EiC)",
+"relief": 0.0
+},
+"models/weapons/colt45_blued.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Blued)",
+"relief": 0.0
+},
+"models/weapons/colt45_camo_desert.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Desert)",
+"relief": 0.0
+},
+"models/weapons/colt45_camo_winter.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Winter)",
+"relief": 0.0
+},
+"models/weapons/colt45_camo_woodland.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/colt45_chrome.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/colt45_colt1911w.tik": {
+"F": [
+12.3699,
+-0.7518,
+-5.1841
+],
+"R": [
+1.9802,
+-0.7098,
+-4.9767
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Webley Mk VI",
+"relief": 0.0
+},
+"models/weapons/colt45_coltpa.tik": {
+"F": [
+10.8861,
+-0.6965,
+-3.3219
+],
+"R": [
+0.7817,
+-0.6896,
+-3.443
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Pacific)",
+"relief": 0.0
+},
+"models/weapons/colt45_covert.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (M1911 Covert)",
+"relief": 0.0
+},
+"models/weapons/colt45_drbond.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (1911 Classic)",
+"relief": 0.0
+},
+"models/weapons/colt45_gold.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Gold)",
+"relief": 0.0
+},
+"models/weapons/colt45_guancolt.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Guanshire)",
+"relief": 0.0
+},
+"models/weapons/colt45_lv_ttcolt.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/colt_silenced.tik": {
+"F": [
+21.4745,
+-0.5994,
+-3.3279
+],
+"R": [
+0.7817,
+-0.6896,
+-3.443
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced Colt .45",
+"relief": 0.0
+},
+"models/weapons/coop_bergmann.tik": {
+"F": [
+23.2418,
+-0.7099,
+-4.5307
+],
+"R": [
+3.2229,
+-0.7099,
+-4.7487
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "MP28",
+"relief": 0.0
+},
+"models/weapons/coop_bergmann_bloody.tik": {
+"F": [
+23.2418,
+-0.7099,
+-4.5307
+],
+"R": [
+3.2229,
+-0.7099,
+-4.7487
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "MP28 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/coop_bergmann_blued.tik": {
+"F": [
+23.2418,
+-0.7099,
+-4.5307
+],
+"R": [
+3.2229,
+-0.7099,
+-4.7487
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "MP28 (Blued)",
+"relief": 0.0
+},
+"models/weapons/coop_bergmann_camo_desert.tik": {
+"F": [
+23.2418,
+-0.7099,
+-4.5307
+],
+"R": [
+3.2229,
+-0.7099,
+-4.7487
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "MP28 (Desert)",
+"relief": 0.0
+},
+"models/weapons/coop_bergmann_camo_winter.tik": {
+"F": [
+23.2418,
+-0.7099,
+-4.5307
+],
+"R": [
+3.2229,
+-0.7099,
+-4.7487
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "MP28 (Winter)",
+"relief": 0.0
+},
+"models/weapons/coop_bergmann_camo_woodland.tik": {
+"F": [
+23.2418,
+-0.7099,
+-4.5307
+],
+"R": [
+3.2229,
+-0.7099,
+-4.7487
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "MP28 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/coop_bergmann_chrome.tik": {
+"F": [
+23.2418,
+-0.7099,
+-4.5307
+],
+"R": [
+3.2229,
+-0.7099,
+-4.7487
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "MP28 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/coop_bergmann_gold.tik": {
+"F": [
+23.2418,
+-0.7099,
+-4.5307
+],
+"R": [
+3.2229,
+-0.7099,
+-4.7487
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "MP28 (Gold)",
+"relief": 0.0
+},
+"models/weapons/coop_bren.tik": {
+"F": [
+34.83,
+-1.94,
+-5.85
+],
+"R": [
+-9.6,
+-1.94,
+-5.85
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bren",
+"relief": 3.0
+},
+"models/weapons/coop_bren_bloody.tik": {
+"F": [
+34.83,
+-1.94,
+-5.85
+],
+"R": [
+-9.6,
+-1.94,
+-5.85
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bren (Bloody)",
+"relief": 3.0
+},
+"models/weapons/coop_bren_blued.tik": {
+"F": [
+34.83,
+-1.94,
+-5.85
+],
+"R": [
+-9.6,
+-1.94,
+-5.85
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bren (Blued)",
+"relief": 3.0
+},
+"models/weapons/coop_bren_camo_desert.tik": {
+"F": [
+34.83,
+-1.94,
+-5.85
+],
+"R": [
+-9.6,
+-1.94,
+-5.85
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bren (Desert)",
+"relief": 3.0
+},
+"models/weapons/coop_bren_camo_winter.tik": {
+"F": [
+34.83,
+-1.94,
+-5.85
+],
+"R": [
+-9.6,
+-1.94,
+-5.85
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bren (Winter)",
+"relief": 3.0
+},
+"models/weapons/coop_bren_camo_woodland.tik": {
+"F": [
+34.83,
+-1.94,
+-5.85
+],
+"R": [
+-9.6,
+-1.94,
+-5.85
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bren (Woodland)",
+"relief": 3.0
+},
+"models/weapons/coop_bren_chrome.tik": {
+"F": [
+34.83,
+-1.94,
+-5.85
+],
+"R": [
+-9.6,
+-1.94,
+-5.85
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bren (Chrome)",
+"relief": 3.0
+},
+"models/weapons/coop_bren_gold.tik": {
+"F": [
+34.83,
+-1.94,
+-5.85
+],
+"R": [
+-9.6,
+-1.94,
+-5.85
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Bren (Gold)",
+"relief": 3.0
+},
+"models/weapons/coop_dbshotgun.tik": {
+"F": [
+21.5216,
+-1.05,
+-5.3041
+],
+"R": [
+4.7933,
+-1.05,
+-5.0074
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.131,
+"name": "Shotgun (Double Barrel)",
+"relief": 11.0
+},
+"models/weapons/coop_fg42_irons.tik": {
+"F": [
+26.5331,
+-0.8531,
+-6.7008
+],
+"R": [
+-2.1978,
+-0.8535,
+-7.4159
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 Irons",
+"relief": 6.0
+},
+"models/weapons/coop_fg42_irons_bloody.tik": {
+"F": [
+26.5331,
+-0.8531,
+-6.7008
+],
+"R": [
+-2.1978,
+-0.8535,
+-7.4159
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 Irons (Bloody)",
+"relief": 6.0
+},
+"models/weapons/coop_fg42_irons_blued.tik": {
+"F": [
+26.5331,
+-0.8531,
+-6.7008
+],
+"R": [
+-2.1978,
+-0.8535,
+-7.4159
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 Irons (Blued)",
+"relief": 6.0
+},
+"models/weapons/coop_fg42_irons_camo_desert.tik": {
+"F": [
+26.5331,
+-0.8531,
+-6.7008
+],
+"R": [
+-2.1978,
+-0.8535,
+-7.4159
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 Irons (Desert)",
+"relief": 6.0
+},
+"models/weapons/coop_fg42_irons_camo_winter.tik": {
+"F": [
+26.5331,
+-0.8531,
+-6.7008
+],
+"R": [
+-2.1978,
+-0.8535,
+-7.4159
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 Irons (Winter)",
+"relief": 6.0
+},
+"models/weapons/coop_fg42_irons_camo_woodland.tik": {
+"F": [
+26.5331,
+-0.8531,
+-6.7008
+],
+"R": [
+-2.1978,
+-0.8535,
+-7.4159
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 Irons (Woodland)",
+"relief": 6.0
+},
+"models/weapons/coop_fg42_irons_chrome.tik": {
+"F": [
+26.5331,
+-0.8531,
+-6.7008
+],
+"R": [
+-2.1978,
+-0.8535,
+-7.4159
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 Irons (Chrome)",
+"relief": 6.0
+},
+"models/weapons/coop_fg42_irons_gold.tik": {
+"F": [
+26.5331,
+-0.8531,
+-6.7008
+],
+"R": [
+-2.1978,
+-0.8535,
+-7.4159
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "FG 42 Irons (Gold)",
+"relief": 6.0
+},
+"models/weapons/coop_g43_irons.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_bloody.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Bloody)",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_blued.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Blued)",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_camo_desert.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Desert)",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_camo_winter.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Winter)",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_camo_woodland.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Woodland)",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_chrome.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Chrome)",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_dhg43fleck.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Flecktarn)",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_gold.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Gold)",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_hobbsg43urb.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Urban Camo)",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_hobbsg43wood.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Woodland Camo)",
+"relief": 17.0
+},
+"models/weapons/coop_g43_irons_lv_ttg43.tik": {
+"F": [
+41.95,
+-1.1565,
+-4.388
+],
+"R": [
+12.0845,
+-1.1565,
+-5.33
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "G 43 Irons (Team Tactics)",
+"relief": 17.0
+},
+"models/weapons/coop_panzerfaust.tik": {
+"F": [
+28.5769,
+0.0,
+-8.0391
+],
+"R": [
+13.578,
+0.0,
+-7.5179
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerfaust",
+"relief": 0.0
+},
+"models/weapons/coop_panzerfaust_bloody.tik": {
+"F": [
+28.5769,
+0.0,
+-8.0391
+],
+"R": [
+13.578,
+0.0,
+-7.5179
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerfaust (Bloody)",
+"relief": 0.0
+},
+"models/weapons/coop_panzerfaust_blued.tik": {
+"F": [
+28.5769,
+0.0,
+-8.0391
+],
+"R": [
+13.578,
+0.0,
+-7.5179
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerfaust (Blued)",
+"relief": 0.0
+},
+"models/weapons/coop_panzerfaust_camo_desert.tik": {
+"F": [
+28.5769,
+0.0,
+-8.0391
+],
+"R": [
+13.578,
+0.0,
+-7.5179
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerfaust (Desert)",
+"relief": 0.0
+},
+"models/weapons/coop_panzerfaust_camo_winter.tik": {
+"F": [
+28.5769,
+0.0,
+-8.0391
+],
+"R": [
+13.578,
+0.0,
+-7.5179
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerfaust (Winter)",
+"relief": 0.0
+},
+"models/weapons/coop_panzerfaust_camo_woodland.tik": {
+"F": [
+28.5769,
+0.0,
+-8.0391
+],
+"R": [
+13.578,
+0.0,
+-7.5179
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerfaust (Woodland)",
+"relief": 0.0
+},
+"models/weapons/coop_panzerfaust_chrome.tik": {
+"F": [
+28.5769,
+0.0,
+-8.0391
+],
+"R": [
+13.578,
+0.0,
+-7.5179
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerfaust (Chrome)",
+"relief": 0.0
+},
+"models/weapons/coop_panzerfaust_gold.tik": {
+"F": [
+28.5769,
+0.0,
+-8.0391
+],
+"R": [
+13.578,
+0.0,
+-7.5179
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerfaust (Gold)",
+"relief": 0.0
+},
+"models/weapons/dbno_pistol.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45",
+"relief": 0.0
+},
+"models/weapons/dbno_pistol_bloody.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/dbno_pistol_blued.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Blued)",
+"relief": 0.0
+},
+"models/weapons/dbno_pistol_camo_desert.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Desert)",
+"relief": 0.0
+},
+"models/weapons/dbno_pistol_camo_winter.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Winter)",
+"relief": 0.0
+},
+"models/weapons/dbno_pistol_camo_woodland.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/dbno_pistol_chrome.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/dbno_pistol_gold.tik": {
+"F": [
+10.4327,
+-0.7252,
+-3.4478
+],
+"R": [
+0.5056,
+-0.7574,
+-3.1925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Colt 45 (Gold)",
+"relief": 0.0
+},
+"models/weapons/delisle.tik": {
+"F": [
+29.4883,
+-1.2419,
+-5.4481
+],
+"R": [
+12.5715,
+-1.2419,
+-5.5163
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DeLisle",
+"relief": 0.0
+},
+"models/weapons/delisle_bloody.tik": {
+"F": [
+29.4883,
+-1.2419,
+-5.4481
+],
+"R": [
+12.5715,
+-1.2419,
+-5.5163
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DeLisle (Bloody)",
+"relief": 0.0
+},
+"models/weapons/delisle_blued.tik": {
+"F": [
+29.4883,
+-1.2419,
+-5.4481
+],
+"R": [
+12.5715,
+-1.2419,
+-5.5163
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DeLisle (Blued)",
+"relief": 0.0
+},
+"models/weapons/delisle_camo_desert.tik": {
+"F": [
+29.4883,
+-1.2419,
+-5.4481
+],
+"R": [
+12.5715,
+-1.2419,
+-5.5163
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DeLisle (Desert)",
+"relief": 0.0
+},
+"models/weapons/delisle_camo_winter.tik": {
+"F": [
+29.4883,
+-1.2419,
+-5.4481
+],
+"R": [
+12.5715,
+-1.2419,
+-5.5163
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DeLisle (Winter)",
+"relief": 0.0
+},
+"models/weapons/delisle_camo_woodland.tik": {
+"F": [
+29.4883,
+-1.2419,
+-5.4481
+],
+"R": [
+12.5715,
+-1.2419,
+-5.5163
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DeLisle (Woodland)",
+"relief": 0.0
+},
+"models/weapons/delisle_chrome.tik": {
+"F": [
+29.4883,
+-1.2419,
+-5.4481
+],
+"R": [
+12.5715,
+-1.2419,
+-5.5163
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DeLisle (Chrome)",
+"relief": 0.0
+},
+"models/weapons/delisle_gold.tik": {
+"F": [
+29.4883,
+-1.2419,
+-5.4481
+],
+"R": [
+12.5715,
+-1.2419,
+-5.5163
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DeLisle (Gold)",
+"relief": 0.0
+},
+"models/weapons/delisle_lv_ttdelisle.tik": {
+"F": [
+29.4883,
+-1.2419,
+-5.4481
+],
+"R": [
+12.5715,
+-1.2419,
+-5.5163
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DeLisle (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/delisle_lv_wdelisle.tik": {
+"F": [
+29.4883,
+-1.2419,
+-5.4481
+],
+"R": [
+12.5715,
+-1.2419,
+-5.5163
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DeLisle (Wehrmacht)",
+"relief": 0.0
+},
+"models/weapons/dp28.tik": {
+"F": [
+27.192,
+-0.2823,
+-5.4864
+],
+"R": [
+1.5534,
+-0.2849,
+-5.1359
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DP-28",
+"relief": 0.0
+},
+"models/weapons/dp28_bloody.tik": {
+"F": [
+27.192,
+-0.2823,
+-5.4864
+],
+"R": [
+1.5534,
+-0.2849,
+-5.1359
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DP-28 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/dp28_blued.tik": {
+"F": [
+27.192,
+-0.2823,
+-5.4864
+],
+"R": [
+1.5534,
+-0.2849,
+-5.1359
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DP-28 (Blued)",
+"relief": 0.0
+},
+"models/weapons/dp28_camo_desert.tik": {
+"F": [
+27.192,
+-0.2823,
+-5.4864
+],
+"R": [
+1.5534,
+-0.2849,
+-5.1359
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DP-28 (Desert)",
+"relief": 0.0
+},
+"models/weapons/dp28_camo_winter.tik": {
+"F": [
+27.192,
+-0.2823,
+-5.4864
+],
+"R": [
+1.5534,
+-0.2849,
+-5.1359
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DP-28 (Winter)",
+"relief": 0.0
+},
+"models/weapons/dp28_camo_woodland.tik": {
+"F": [
+27.192,
+-0.2823,
+-5.4864
+],
+"R": [
+1.5534,
+-0.2849,
+-5.1359
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DP-28 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/dp28_chrome.tik": {
+"F": [
+27.192,
+-0.2823,
+-5.4864
+],
+"R": [
+1.5534,
+-0.2849,
+-5.1359
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DP-28 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/dp28_gold.tik": {
+"F": [
+27.192,
+-0.2823,
+-5.4864
+],
+"R": [
+1.5534,
+-0.2849,
+-5.1359
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "DP-28 (Gold)",
+"relief": 0.0
+},
+"models/weapons/enfield.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield",
+"relief": 0.0
+},
+"models/weapons/enfield_bloody.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Bloody)",
+"relief": 0.0
+},
+"models/weapons/enfield_blued.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Blued)",
+"relief": 0.0
+},
+"models/weapons/enfield_camo_desert.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Desert)",
+"relief": 0.0
+},
+"models/weapons/enfield_camo_winter.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Winter)",
+"relief": 0.0
+},
+"models/weapons/enfield_camo_woodland.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Woodland)",
+"relief": 0.0
+},
+"models/weapons/enfield_chrome.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Chrome)",
+"relief": 0.0
+},
+"models/weapons/enfield_gold.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Gold)",
+"relief": 0.0
+},
+"models/weapons/enfield_hobbsenfurb.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Urban Camo)",
+"relief": 0.0
+},
+"models/weapons/enfield_lite.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield",
+"relief": 0.0
+},
+"models/weapons/enfield_lite_bloody.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Bloody)",
+"relief": 0.0
+},
+"models/weapons/enfield_lite_blued.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Blued)",
+"relief": 0.0
+},
+"models/weapons/enfield_lite_camo_desert.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Desert)",
+"relief": 0.0
+},
+"models/weapons/enfield_lite_camo_winter.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Winter)",
+"relief": 0.0
+},
+"models/weapons/enfield_lite_camo_woodland.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Woodland)",
+"relief": 0.0
+},
+"models/weapons/enfield_lite_chrome.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Chrome)",
+"relief": 0.0
+},
+"models/weapons/enfield_lite_gold.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Gold)",
+"relief": 0.0
+},
+"models/weapons/enfield_lv_ttenfield.tik": {
+"F": [
+39.9964,
+-1.058,
+-4.6575
+],
+"R": [
+1.8809,
+-1.0166,
+-5.2061
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/enfield_p14.tik": {
+"F": [
+44.8347,
+-1.213,
+-4.6087
+],
+"R": [
+1.72,
+-1.0576,
+-5.8228
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Lee-Enfield (P14 Enfield)",
+"relief": 0.0
+},
+"models/weapons/garand_silenced.tik": {
+"F": [
+35.7403,
+-0.4476,
+-5.544
+],
+"R": [
+2.7682,
+-0.8965,
+-5.3283
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced M1 Garand",
+"relief": 0.0
+},
+"models/weapons/greasegun.tik": {
+"F": [
+17.3714,
+-1.039,
+-6.3154
+],
+"R": [
+-0.9848,
+-1.2664,
+-6.2047
+],
+"U": [
+0.012,
+-0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M3 Grease Gun",
+"relief": 0.0
+},
+"models/weapons/greasegun_silenced.tik": {
+"F": [
+17.3714,
+-1.039,
+-6.3154
+],
+"R": [
+-0.9848,
+-1.2664,
+-6.2047
+],
+"U": [
+0.012,
+-0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced Grease Gun",
+"relief": 0.0
+},
+"models/weapons/it_w_beretta.tik": {
+"F": [
+8.0632,
+0.0008,
+-4.0094
+],
+"R": [
+-1.2912,
+-0.1642,
+-3.7957
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Beretta",
+"relief": 0.0
+},
+"models/weapons/it_w_beretta_bloody.tik": {
+"F": [
+8.0632,
+0.0008,
+-4.0094
+],
+"R": [
+-1.2912,
+-0.1642,
+-3.7957
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Beretta (Bloody)",
+"relief": 0.0
+},
+"models/weapons/it_w_beretta_blued.tik": {
+"F": [
+8.0632,
+0.0008,
+-4.0094
+],
+"R": [
+-1.2912,
+-0.1642,
+-3.7957
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Beretta (Blued)",
+"relief": 0.0
+},
+"models/weapons/it_w_beretta_camo_desert.tik": {
+"F": [
+8.0632,
+0.0008,
+-4.0094
+],
+"R": [
+-1.2912,
+-0.1642,
+-3.7957
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Beretta (Desert)",
+"relief": 0.0
+},
+"models/weapons/it_w_beretta_camo_winter.tik": {
+"F": [
+8.0632,
+0.0008,
+-4.0094
+],
+"R": [
+-1.2912,
+-0.1642,
+-3.7957
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Beretta (Winter)",
+"relief": 0.0
+},
+"models/weapons/it_w_beretta_camo_woodland.tik": {
+"F": [
+8.0632,
+0.0008,
+-4.0094
+],
+"R": [
+-1.2912,
+-0.1642,
+-3.7957
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Beretta (Woodland)",
+"relief": 0.0
+},
+"models/weapons/it_w_beretta_chrome.tik": {
+"F": [
+8.0632,
+0.0008,
+-4.0094
+],
+"R": [
+-1.2912,
+-0.1642,
+-3.7957
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Beretta (Chrome)",
+"relief": 0.0
+},
+"models/weapons/it_w_beretta_gold.tik": {
+"F": [
+8.0632,
+0.0008,
+-4.0094
+],
+"R": [
+-1.2912,
+-0.1642,
+-3.7957
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Beretta (Gold)",
+"relief": 0.0
+},
+"models/weapons/it_w_beretta_lv_ttberetta.tik": {
+"F": [
+8.0632,
+0.0008,
+-4.0094
+],
+"R": [
+-1.2912,
+-0.1642,
+-3.7957
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Beretta (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/it_w_breda.tik": {
+"F": [
+30.0767,
+-0.017,
+-4.4031
+],
+"R": [
+-1.3,
+-0.018,
+-4.46
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Breda",
+"relief": 0.0
+},
+"models/weapons/it_w_breda_bloody.tik": {
+"F": [
+30.0767,
+-0.017,
+-4.4031
+],
+"R": [
+-1.3,
+-0.018,
+-4.46
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Breda (Bloody)",
+"relief": 0.0
+},
+"models/weapons/it_w_breda_blued.tik": {
+"F": [
+30.0767,
+-0.017,
+-4.4031
+],
+"R": [
+-1.3,
+-0.018,
+-4.46
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Breda (Blued)",
+"relief": 0.0
+},
+"models/weapons/it_w_breda_camo_desert.tik": {
+"F": [
+30.0767,
+-0.017,
+-4.4031
+],
+"R": [
+-1.3,
+-0.018,
+-4.46
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Breda (Desert)",
+"relief": 0.0
+},
+"models/weapons/it_w_breda_camo_winter.tik": {
+"F": [
+30.0767,
+-0.017,
+-4.4031
+],
+"R": [
+-1.3,
+-0.018,
+-4.46
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Breda (Winter)",
+"relief": 0.0
+},
+"models/weapons/it_w_breda_camo_woodland.tik": {
+"F": [
+30.0767,
+-0.017,
+-4.4031
+],
+"R": [
+-1.3,
+-0.018,
+-4.46
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Breda (Woodland)",
+"relief": 0.0
+},
+"models/weapons/it_w_breda_chrome.tik": {
+"F": [
+30.0767,
+-0.017,
+-4.4031
+],
+"R": [
+-1.3,
+-0.018,
+-4.46
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Breda (Chrome)",
+"relief": 0.0
+},
+"models/weapons/it_w_breda_gold.tik": {
+"F": [
+30.0767,
+-0.017,
+-4.4031
+],
+"R": [
+-1.3,
+-0.018,
+-4.46
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Breda (Gold)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_bloody.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Bloody)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_blued.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Blued)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_camo_desert.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Desert)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_camo_winter.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Winter)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_camo_woodland.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Woodland)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_chrome.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Chrome)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_gold.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Gold)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_lite.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_lite_bloody.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Bloody)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_lite_blued.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Blued)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_lite_camo_desert.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Desert)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_lite_camo_winter.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Winter)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_lite_camo_woodland.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Woodland)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_lite_chrome.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Chrome)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_lite_gold.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Gold)",
+"relief": 0.0
+},
+"models/weapons/it_w_carcano_lv_ttcarcano.tik": {
+"F": [
+36.2992,
+-1.3843,
+-4.6756
+],
+"R": [
+12.244,
+-1.3835,
+-4.917
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Carcano (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/it_w_moschetto.tik": {
+"F": [
+29.9974,
+0.5765,
+-4.6223
+],
+"R": [
+7.2603,
+-0.0116,
+-4.7814
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Moschetto",
+"relief": 0.0
+},
+"models/weapons/it_w_moschetto_bloody.tik": {
+"F": [
+29.9974,
+0.5765,
+-4.6223
+],
+"R": [
+7.2603,
+-0.0116,
+-4.7814
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Moschetto (Bloody)",
+"relief": 0.0
+},
+"models/weapons/it_w_moschetto_blued.tik": {
+"F": [
+29.9974,
+0.5765,
+-4.6223
+],
+"R": [
+7.2603,
+-0.0116,
+-4.7814
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Moschetto (Blued)",
+"relief": 0.0
+},
+"models/weapons/it_w_moschetto_camo_desert.tik": {
+"F": [
+29.9974,
+0.5765,
+-4.6223
+],
+"R": [
+7.2603,
+-0.0116,
+-4.7814
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Moschetto (Desert)",
+"relief": 0.0
+},
+"models/weapons/it_w_moschetto_camo_winter.tik": {
+"F": [
+29.9974,
+0.5765,
+-4.6223
+],
+"R": [
+7.2603,
+-0.0116,
+-4.7814
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Moschetto (Winter)",
+"relief": 0.0
+},
+"models/weapons/it_w_moschetto_camo_woodland.tik": {
+"F": [
+29.9974,
+0.5765,
+-4.6223
+],
+"R": [
+7.2603,
+-0.0116,
+-4.7814
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Moschetto (Woodland)",
+"relief": 0.0
+},
+"models/weapons/it_w_moschetto_chrome.tik": {
+"F": [
+29.9974,
+0.5765,
+-4.6223
+],
+"R": [
+7.2603,
+-0.0116,
+-4.7814
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Moschetto (Chrome)",
+"relief": 0.0
+},
+"models/weapons/it_w_moschetto_gold.tik": {
+"F": [
+29.9974,
+0.5765,
+-4.6223
+],
+"R": [
+7.2603,
+-0.0116,
+-4.7814
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Moschetto (Gold)",
+"relief": 0.0
+},
+"models/weapons/johnson_m1941.tik": {
+"F": [
+42.1745,
+-0.9927,
+-5.4646
+],
+"R": [
+2.6826,
+-0.901,
+-5.2696
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Johnson M1941",
+"relief": 0.0
+},
+"models/weapons/johnson_m1941_bloody.tik": {
+"F": [
+42.1745,
+-0.9927,
+-5.4646
+],
+"R": [
+2.6826,
+-0.901,
+-5.2696
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Johnson M1941 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/johnson_m1941_blued.tik": {
+"F": [
+42.1745,
+-0.9927,
+-5.4646
+],
+"R": [
+2.6826,
+-0.901,
+-5.2696
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Johnson M1941 (Blued)",
+"relief": 0.0
+},
+"models/weapons/johnson_m1941_camo_desert.tik": {
+"F": [
+42.1745,
+-0.9927,
+-5.4646
+],
+"R": [
+2.6826,
+-0.901,
+-5.2696
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Johnson M1941 (Desert)",
+"relief": 0.0
+},
+"models/weapons/johnson_m1941_camo_winter.tik": {
+"F": [
+42.1745,
+-0.9927,
+-5.4646
+],
+"R": [
+2.6826,
+-0.901,
+-5.2696
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Johnson M1941 (Winter)",
+"relief": 0.0
+},
+"models/weapons/johnson_m1941_camo_woodland.tik": {
+"F": [
+42.1745,
+-0.9927,
+-5.4646
+],
+"R": [
+2.6826,
+-0.901,
+-5.2696
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Johnson M1941 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/johnson_m1941_chrome.tik": {
+"F": [
+42.1745,
+-0.9927,
+-5.4646
+],
+"R": [
+2.6826,
+-0.901,
+-5.2696
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Johnson M1941 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/johnson_m1941_gold.tik": {
+"F": [
+42.1745,
+-0.9927,
+-5.4646
+],
+"R": [
+2.6826,
+-0.901,
+-5.2696
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Johnson M1941 (Gold)",
+"relief": 0.0
+},
+"models/weapons/kar98.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K",
+"relief": 0.0
+},
+"models/weapons/kar98_bloody.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Bloody)",
+"relief": 0.0
+},
+"models/weapons/kar98_blued.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Blued)",
+"relief": 0.0
+},
+"models/weapons/kar98_camo_desert.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Desert)",
+"relief": 0.0
+},
+"models/weapons/kar98_camo_winter.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Winter)",
+"relief": 0.0
+},
+"models/weapons/kar98_camo_woodland.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Woodland)",
+"relief": 0.0
+},
+"models/weapons/kar98_chrome.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Chrome)",
+"relief": 0.0
+},
+"models/weapons/kar98_g98.tik": {
+"F": [
+53.4789,
+-0.5328,
+-4.9143
+],
+"R": [
+15.7934,
+-0.6659,
+-5.4564
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mauser KAR 98K (Gewehr 98)",
+"relief": 0.0
+},
+"models/weapons/kar98_gold.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Gold)",
+"relief": 0.0
+},
+"models/weapons/kar98_hobbskarwood.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Woodland Camo)",
+"relief": 0.0
+},
+"models/weapons/kar98_hobbskarworn.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Worn)",
+"relief": 0.0
+},
+"models/weapons/kar98_lite.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K",
+"relief": 0.0
+},
+"models/weapons/kar98_lite_bloody.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Bloody)",
+"relief": 0.0
+},
+"models/weapons/kar98_lite_blued.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Blued)",
+"relief": 0.0
+},
+"models/weapons/kar98_lite_camo_desert.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Desert)",
+"relief": 0.0
+},
+"models/weapons/kar98_lite_camo_winter.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Winter)",
+"relief": 0.0
+},
+"models/weapons/kar98_lite_camo_woodland.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Woodland)",
+"relief": 0.0
+},
+"models/weapons/kar98_lite_chrome.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Chrome)",
+"relief": 0.0
+},
+"models/weapons/kar98_lite_gold.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Gold)",
+"relief": 0.0
+},
+"models/weapons/kar98_lv_ttkar98.tik": {
+"F": [
+43.8243,
+-0.7636,
+-5.4884
+],
+"R": [
+12.045,
+-0.7829,
+-4.8144
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.014,
+"name": "Mauser KAR 98K (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/lugerp08.tik": {
+"F": [
+12.3196,
+-0.4455,
+-3.3342
+],
+"R": [
+-1.0978,
+-0.516,
+-3.179
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Luger P08",
+"relief": 0.0
+},
+"models/weapons/lugerp08silenced.tik": {
+"F": [
+12.3196,
+-0.4455,
+-3.3342
+],
+"R": [
+-1.0978,
+-0.516,
+-3.179
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced Luger P08",
+"relief": 0.0
+},
+"models/weapons/m10_revolver.tik": {
+"F": [
+10.7147,
+-0.9724,
+-4.307
+],
+"R": [
+3.0,
+-0.85,
+-4.1528
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "S&W M10 .38",
+"relief": 0.0
+},
+"models/weapons/m10_revolver_bloody.tik": {
+"F": [
+10.7147,
+-0.9724,
+-4.307
+],
+"R": [
+3.0,
+-0.85,
+-4.1528
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "S&W M10 .38 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/m10_revolver_blued.tik": {
+"F": [
+10.7147,
+-0.9724,
+-4.307
+],
+"R": [
+3.0,
+-0.85,
+-4.1528
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "S&W M10 .38 (Blued)",
+"relief": 0.0
+},
+"models/weapons/m10_revolver_camo_desert.tik": {
+"F": [
+10.7147,
+-0.9724,
+-4.307
+],
+"R": [
+3.0,
+-0.85,
+-4.1528
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "S&W M10 .38 (Desert)",
+"relief": 0.0
+},
+"models/weapons/m10_revolver_camo_winter.tik": {
+"F": [
+10.7147,
+-0.9724,
+-4.307
+],
+"R": [
+3.0,
+-0.85,
+-4.1528
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "S&W M10 .38 (Winter)",
+"relief": 0.0
+},
+"models/weapons/m10_revolver_camo_woodland.tik": {
+"F": [
+10.7147,
+-0.9724,
+-4.307
+],
+"R": [
+3.0,
+-0.85,
+-4.1528
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "S&W M10 .38 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/m10_revolver_chrome.tik": {
+"F": [
+10.7147,
+-0.9724,
+-4.307
+],
+"R": [
+3.0,
+-0.85,
+-4.1528
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "S&W M10 .38 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/m10_revolver_gold.tik": {
+"F": [
+10.7147,
+-0.9724,
+-4.307
+],
+"R": [
+3.0,
+-0.85,
+-4.1528
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "S&W M10 .38 (Gold)",
+"relief": 0.0
+},
+"models/weapons/m1_garand.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand",
+"relief": 0.0
+},
+"models/weapons/m1_garand_bloody.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Bloody)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_blued.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Blued)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_camo_desert.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Desert)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_camo_winter.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Winter)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_camo_woodland.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Woodland)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_chrome.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Chrome)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_gold.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Gold)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_guangarand.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Guanshire)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_lite.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand",
+"relief": 0.0
+},
+"models/weapons/m1_garand_lite_bloody.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Bloody)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_lite_blued.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Blued)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_lite_camo_desert.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Desert)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_lite_camo_winter.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Winter)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_lite_camo_woodland.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Woodland)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_lite_chrome.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Chrome)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_lite_gold.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Gold)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_lv_ttgarand.tik": {
+"F": [
+40.661,
+-0.4358,
+-5.6579
+],
+"R": [
+3.588,
+-0.8877,
+-5.4777
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/m1_garand_pagarand.tik": {
+"F": [
+35.7871,
+-0.9522,
+-5.211
+],
+"R": [
+2.8589,
+-0.9514,
+-5.1679
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "M1 Garand (Pacific)",
+"relief": 0.0
+},
+"models/weapons/mauser_c96.tik": {
+"F": [
+15.4048,
+-0.8,
+-3.8262
+],
+"R": [
+4.5035,
+-0.8461,
+-4.3355
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mauser C96",
+"relief": 0.0
+},
+"models/weapons/mauser_c96_bloody.tik": {
+"F": [
+15.4048,
+-0.8,
+-3.8262
+],
+"R": [
+4.5035,
+-0.8461,
+-4.3355
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mauser C96 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/mauser_c96_blued.tik": {
+"F": [
+15.4048,
+-0.8,
+-3.8262
+],
+"R": [
+4.5035,
+-0.8461,
+-4.3355
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mauser C96 (Blued)",
+"relief": 0.0
+},
+"models/weapons/mauser_c96_c96trench.tik": {
+"F": [
+15.9643,
+-0.5887,
+-4.5297
+],
+"R": [
+1.1567,
+-0.6979,
+-4.6554
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mauser C96 (Trench C96)",
+"relief": 0.0
+},
+"models/weapons/mauser_c96_camo_desert.tik": {
+"F": [
+15.4048,
+-0.8,
+-3.8262
+],
+"R": [
+4.5035,
+-0.8461,
+-4.3355
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mauser C96 (Desert)",
+"relief": 0.0
+},
+"models/weapons/mauser_c96_camo_winter.tik": {
+"F": [
+15.4048,
+-0.8,
+-3.8262
+],
+"R": [
+4.5035,
+-0.8461,
+-4.3355
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mauser C96 (Winter)",
+"relief": 0.0
+},
+"models/weapons/mauser_c96_camo_woodland.tik": {
+"F": [
+15.4048,
+-0.8,
+-3.8262
+],
+"R": [
+4.5035,
+-0.8461,
+-4.3355
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mauser C96 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/mauser_c96_chrome.tik": {
+"F": [
+15.4048,
+-0.8,
+-3.8262
+],
+"R": [
+4.5035,
+-0.8461,
+-4.3355
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mauser C96 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/mauser_c96_gold.tik": {
+"F": [
+15.4048,
+-0.8,
+-3.8262
+],
+"R": [
+4.5035,
+-0.8461,
+-4.3355
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mauser C96 (Gold)",
+"relief": 0.0
+},
+"models/weapons/mg42portable.tik": {
+"F": [
+36.5299,
+-1.5014,
+-6.2511
+],
+"R": [
+14.0737,
+-1.642,
+-6.6459
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.003,
+"name": "MG42",
+"relief": 0.0
+},
+"models/weapons/moschetto.tik": {
+"F": [
+29.9974,
+0.5765,
+-4.6223
+],
+"R": [
+7.2603,
+-0.0116,
+-4.7814
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Beretta M38",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_bloody.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Bloody)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_blued.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Blued)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_camo_desert.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Desert)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_camo_winter.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Winter)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_camo_woodland.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Woodland)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_chrome.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Chrome)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_gold.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Gold)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_hobbsmosinur.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Urban Camo)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_lite.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_lite_bloody.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Bloody)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_lite_blued.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Blued)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_lite_camo_desert.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Desert)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_lite_camo_winter.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Winter)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_lite_camo_woodland.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Woodland)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_lite_chrome.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Chrome)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_lite_gold.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Gold)",
+"relief": 0.0
+},
+"models/weapons/mosin_nagant_rifle_lv_ttmosin.tik": {
+"F": [
+45.544,
+-0.8946,
+-4.5793
+],
+"R": [
+14.6681,
+-1.0825,
+-4.8724
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Mosin Nagant Rifle (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/mp40.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40",
+"relief": 0.0
+},
+"models/weapons/mp40_bloody.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/mp40_blued.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40 (Blued)",
+"relief": 0.0
+},
+"models/weapons/mp40_camo_desert.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40 (Desert)",
+"relief": 0.0
+},
+"models/weapons/mp40_camo_winter.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40 (Winter)",
+"relief": 0.0
+},
+"models/weapons/mp40_camo_woodland.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/mp40_chrome.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/mp40_gold.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40 (Gold)",
+"relief": 0.0
+},
+"models/weapons/mp40_guanmp40.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40 (Guanshire)",
+"relief": 0.0
+},
+"models/weapons/mp40_guanmp40s.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40 (Silver)",
+"relief": 0.0
+},
+"models/weapons/mp40_lv_mp75.tik": {
+"F": [
+28.426,
+-0.8863,
+-5.8894
+],
+"R": [
+6.9961,
+-0.885,
+-5.8909
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.016,
+"name": "MP40 (MP 75 Ausf D)",
+"relief": 0.0
+},
+"models/weapons/mp40_mp18.tik": {
+"F": [
+25.728,
+-2.2582,
+-5.412
+],
+"R": [
+1.9786,
+-2.3928,
+-6.4721
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "MP40 (MP18)",
+"relief": 16.0
+},
+"models/weapons/mp40_mp40r2.tik": {
+"F": [
+28.197,
+-0.9201,
+-6.007
+],
+"R": [
+6.9434,
+-1.1789,
+-6.0653
+],
+"U": [
+0.012,
+-0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "MP40 (Reactivated)",
+"relief": 0.0
+},
+"models/weapons/mp40silenced.tik": {
+"F": [
+28.263,
+-1.082,
+-6.0254
+],
+"R": [
+6.7486,
+-0.9251,
+-6.341
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced MP40",
+"relief": 0.0
+},
+"models/weapons/mp44.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44",
+"relief": 0.0
+},
+"models/weapons/mp44_bloody.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/mp44_blued.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44 (Blued)",
+"relief": 0.0
+},
+"models/weapons/mp44_camo_desert.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44 (Desert)",
+"relief": 0.0
+},
+"models/weapons/mp44_camo_winter.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44 (Winter)",
+"relief": 0.0
+},
+"models/weapons/mp44_camo_woodland.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/mp44_chrome.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/mp44_dhstg44ss.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44 (SS Edition)",
+"relief": 0.0
+},
+"models/weapons/mp44_gold.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44 (Gold)",
+"relief": 0.0
+},
+"models/weapons/mp44_guanmp44.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44 (Guanshire)",
+"relief": 0.0
+},
+"models/weapons/mp44_lv_ttmp44.tik": {
+"F": [
+28.9093,
+-0.8875,
+-7.0093
+],
+"R": [
+6.582,
+-0.8896,
+-7.552
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "StG 44 (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/mp44_mp44strap.tik": {
+"F": [
+28.8579,
+-0.8523,
+-6.7881
+],
+"R": [
+6.5802,
+-0.9143,
+-7.1918
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.022,
+"name": "StG 44 (Strapped)",
+"relief": 0.0
+},
+"models/weapons/nagant_revolver.tik": {
+"F": [
+11.4552,
+-0.7404,
+-3.8464
+],
+"R": [
+2.401,
+-0.7014,
+-3.523
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Nagant Revolver",
+"relief": 0.0
+},
+"models/weapons/nagant_revolver_bloody.tik": {
+"F": [
+11.4552,
+-0.7404,
+-3.8464
+],
+"R": [
+2.401,
+-0.7014,
+-3.523
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Nagant Revolver (Bloody)",
+"relief": 0.0
+},
+"models/weapons/nagant_revolver_blued.tik": {
+"F": [
+11.4552,
+-0.7404,
+-3.8464
+],
+"R": [
+2.401,
+-0.7014,
+-3.523
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Nagant Revolver (Blued)",
+"relief": 0.0
+},
+"models/weapons/nagant_revolver_camo_desert.tik": {
+"F": [
+11.4552,
+-0.7404,
+-3.8464
+],
+"R": [
+2.401,
+-0.7014,
+-3.523
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Nagant Revolver (Desert)",
+"relief": 0.0
+},
+"models/weapons/nagant_revolver_camo_winter.tik": {
+"F": [
+11.4552,
+-0.7404,
+-3.8464
+],
+"R": [
+2.401,
+-0.7014,
+-3.523
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Nagant Revolver (Winter)",
+"relief": 0.0
+},
+"models/weapons/nagant_revolver_camo_woodland.tik": {
+"F": [
+11.4552,
+-0.7404,
+-3.8464
+],
+"R": [
+2.401,
+-0.7014,
+-3.523
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Nagant Revolver (Woodland)",
+"relief": 0.0
+},
+"models/weapons/nagant_revolver_chrome.tik": {
+"F": [
+11.4552,
+-0.7404,
+-3.8464
+],
+"R": [
+2.401,
+-0.7014,
+-3.523
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Nagant Revolver (Chrome)",
+"relief": 0.0
+},
+"models/weapons/nagant_revolver_gold.tik": {
+"F": [
+11.4552,
+-0.7404,
+-3.8464
+],
+"R": [
+2.401,
+-0.7014,
+-3.523
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Nagant Revolver (Gold)",
+"relief": 0.0
+},
+"models/weapons/nambu.tik": {
+"F": [
+10.4347,
+-0.6205,
+-3.602
+],
+"R": [
+-1.3752,
+-0.6205,
+-3.6038
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Nambu Type 14",
+"relief": 0.0
+},
+"models/weapons/p38 - copy.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38",
+"relief": 0.0
+},
+"models/weapons/p38.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38",
+"relief": 0.0
+},
+"models/weapons/p38_bloody.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/p38_blued.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38 (Blued)",
+"relief": 0.0
+},
+"models/weapons/p38_camo_desert.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38 (Desert)",
+"relief": 0.0
+},
+"models/weapons/p38_camo_winter.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38 (Winter)",
+"relief": 0.0
+},
+"models/weapons/p38_camo_woodland.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/p38_chrome.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/p38_gold.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38 (Gold)",
+"relief": 0.0
+},
+"models/weapons/p38_guanp38.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38 (Guanshire)",
+"relief": 0.0
+},
+"models/weapons/p38_lv_ttp38.tik": {
+"F": [
+10.4137,
+-0.701,
+-3.2568
+],
+"R": [
+0.3414,
+-0.7074,
+-3.1553
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther P38 (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/p38silenced.tik": {
+"F": [
+10.3777,
+-0.632,
+-3.3742
+],
+"R": [
+0.4237,
+-0.547,
+-3.2825
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced Walther P38",
+"relief": 0.0
+},
+"models/weapons/panzerschreck.tik": {
+"F": [
+25.5321,
+-2.5166,
+-8.4989
+],
+"R": [
+-14.47,
+-2.5165,
+-8.499
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerschreck",
+"relief": 0.0
+},
+"models/weapons/panzerschreck_bloody.tik": {
+"F": [
+25.5321,
+-2.5166,
+-8.4989
+],
+"R": [
+-14.47,
+-2.5165,
+-8.499
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerschreck (Bloody)",
+"relief": 0.0
+},
+"models/weapons/panzerschreck_blued.tik": {
+"F": [
+25.5321,
+-2.5166,
+-8.4989
+],
+"R": [
+-14.47,
+-2.5165,
+-8.499
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerschreck (Blued)",
+"relief": 0.0
+},
+"models/weapons/panzerschreck_camo_desert.tik": {
+"F": [
+25.5321,
+-2.5166,
+-8.4989
+],
+"R": [
+-14.47,
+-2.5165,
+-8.499
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerschreck (Desert)",
+"relief": 0.0
+},
+"models/weapons/panzerschreck_camo_winter.tik": {
+"F": [
+25.5321,
+-2.5166,
+-8.4989
+],
+"R": [
+-14.47,
+-2.5165,
+-8.499
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerschreck (Winter)",
+"relief": 0.0
+},
+"models/weapons/panzerschreck_camo_woodland.tik": {
+"F": [
+25.5321,
+-2.5166,
+-8.4989
+],
+"R": [
+-14.47,
+-2.5165,
+-8.499
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerschreck (Woodland)",
+"relief": 0.0
+},
+"models/weapons/panzerschreck_chrome.tik": {
+"F": [
+25.5321,
+-2.5166,
+-8.4989
+],
+"R": [
+-14.47,
+-2.5165,
+-8.499
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerschreck (Chrome)",
+"relief": 0.0
+},
+"models/weapons/panzerschreck_gold.tik": {
+"F": [
+25.5321,
+-2.5166,
+-8.4989
+],
+"R": [
+-14.47,
+-2.5165,
+-8.499
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerschreck (Gold)",
+"relief": 0.0
+},
+"models/weapons/panzerschreck_lv_ofenrohr.tik": {
+"F": [
+25.5321,
+-2.5166,
+-8.4989
+],
+"R": [
+-14.47,
+-2.5165,
+-8.499
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Panzerschreck (Ofenrohr)",
+"relief": 0.0
+},
+"models/weapons/ppk.tik": {
+"F": [
+16.2018,
+-0.761,
+-2.7442
+],
+"R": [
+0.9415,
+-0.7234,
+-2.6925
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Walther PPK",
+"relief": 0.0
+},
+"models/weapons/ppsh43silenced.tik": {
+"F": [
+28.1032,
+-0.1726,
+-6.9711
+],
+"R": [
+7.7039,
+-0.467,
+-6.1481
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced PPS-43",
+"relief": 0.0
+},
+"models/weapons/ppsh_smg.tik": {
+"F": [
+20.3483,
+0.2231,
+-5.854
+],
+"R": [
+2.7031,
+0.2195,
+-5.575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "PPSH SMG",
+"relief": 0.0
+},
+"models/weapons/ppsh_smg_bloody.tik": {
+"F": [
+20.3483,
+0.2231,
+-5.854
+],
+"R": [
+2.7031,
+0.2195,
+-5.575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "PPSH SMG (Bloody)",
+"relief": 0.0
+},
+"models/weapons/ppsh_smg_blued.tik": {
+"F": [
+20.3483,
+0.2231,
+-5.854
+],
+"R": [
+2.7031,
+0.2195,
+-5.575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "PPSH SMG (Blued)",
+"relief": 0.0
+},
+"models/weapons/ppsh_smg_camo_desert.tik": {
+"F": [
+20.3483,
+0.2231,
+-5.854
+],
+"R": [
+2.7031,
+0.2195,
+-5.575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "PPSH SMG (Desert)",
+"relief": 0.0
+},
+"models/weapons/ppsh_smg_camo_winter.tik": {
+"F": [
+20.3483,
+0.2231,
+-5.854
+],
+"R": [
+2.7031,
+0.2195,
+-5.575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "PPSH SMG (Winter)",
+"relief": 0.0
+},
+"models/weapons/ppsh_smg_camo_woodland.tik": {
+"F": [
+20.3483,
+0.2231,
+-5.854
+],
+"R": [
+2.7031,
+0.2195,
+-5.575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "PPSH SMG (Woodland)",
+"relief": 0.0
+},
+"models/weapons/ppsh_smg_chrome.tik": {
+"F": [
+20.3483,
+0.2231,
+-5.854
+],
+"R": [
+2.7031,
+0.2195,
+-5.575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "PPSH SMG (Chrome)",
+"relief": 0.0
+},
+"models/weapons/ppsh_smg_gold.tik": {
+"F": [
+20.3483,
+0.2231,
+-5.854
+],
+"R": [
+2.7031,
+0.2195,
+-5.575
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "PPSH SMG (Gold)",
+"relief": 0.0
+},
+"models/weapons/shotgun.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun",
+"relief": 14.11
+},
+"models/weapons/shotgun_authwinch.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Authentic Wood)",
+"relief": 14.11
+},
+"models/weapons/shotgun_bloody.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Bloody)",
+"relief": 14.11
+},
+"models/weapons/shotgun_blued.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Blued)",
+"relief": 14.11
+},
+"models/weapons/shotgun_camo_desert.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Desert)",
+"relief": 14.11
+},
+"models/weapons/shotgun_camo_winter.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Winter)",
+"relief": 14.11
+},
+"models/weapons/shotgun_camo_woodland.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Woodland)",
+"relief": 14.11
+},
+"models/weapons/shotgun_chrome.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Chrome)",
+"relief": 14.11
+},
+"models/weapons/shotgun_dhshotblack.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Black Tactical)",
+"relief": 14.11
+},
+"models/weapons/shotgun_dhshotchrome.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Chrome Tactical)",
+"relief": 14.11
+},
+"models/weapons/shotgun_gold.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Gold)",
+"relief": 14.11
+},
+"models/weapons/shotgun_guanshotty.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Guanshire)",
+"relief": 14.11
+},
+"models/weapons/shotgun_hobbsshotty.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Recoil)",
+"relief": 14.11
+},
+"models/weapons/shotgun_lv_ttshotgun.tik": {
+"F": [
+30.7989,
+-1.3824,
+-4.7204
+],
+"R": [
+6.5813,
+-1.4207,
+-4.0041
+],
+"U": [
+-0.043,
+-0.139,
+-0.989
+],
+"delta": 0.03,
+"name": "Shotgun (Team Tactics)",
+"relief": 14.11
+},
+"models/weapons/silencedpistol.tik": {
+"F": [
+23.1712,
+-0.4575,
+-3.2698
+],
+"R": [
+0.5516,
+-0.4621,
+-3.3157
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Hi-Standard Silenced",
+"relief": 0.0
+},
+"models/weapons/silencedpistol_bloody.tik": {
+"F": [
+23.1712,
+-0.4575,
+-3.2698
+],
+"R": [
+0.5516,
+-0.4621,
+-3.3157
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Hi-Standard Silenced (Bloody)",
+"relief": 0.0
+},
+"models/weapons/silencedpistol_blued.tik": {
+"F": [
+23.1712,
+-0.4575,
+-3.2698
+],
+"R": [
+0.5516,
+-0.4621,
+-3.3157
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Hi-Standard Silenced (Blued)",
+"relief": 0.0
+},
+"models/weapons/silencedpistol_camo_desert.tik": {
+"F": [
+23.1712,
+-0.4575,
+-3.2698
+],
+"R": [
+0.5516,
+-0.4621,
+-3.3157
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Hi-Standard Silenced (Desert)",
+"relief": 0.0
+},
+"models/weapons/silencedpistol_camo_winter.tik": {
+"F": [
+23.1712,
+-0.4575,
+-3.2698
+],
+"R": [
+0.5516,
+-0.4621,
+-3.3157
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Hi-Standard Silenced (Winter)",
+"relief": 0.0
+},
+"models/weapons/silencedpistol_camo_woodland.tik": {
+"F": [
+23.1712,
+-0.4575,
+-3.2698
+],
+"R": [
+0.5516,
+-0.4621,
+-3.3157
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Hi-Standard Silenced (Woodland)",
+"relief": 0.0
+},
+"models/weapons/silencedpistol_chrome.tik": {
+"F": [
+23.1712,
+-0.4575,
+-3.2698
+],
+"R": [
+0.5516,
+-0.4621,
+-3.3157
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Hi-Standard Silenced (Chrome)",
+"relief": 0.0
+},
+"models/weapons/silencedpistol_gold.tik": {
+"F": [
+23.1712,
+-0.4575,
+-3.2698
+],
+"R": [
+0.5516,
+-0.4621,
+-3.3157
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Hi-Standard Silenced (Gold)",
+"relief": 0.0
+},
+"models/weapons/springfield_unscoped.tik": {
+"F": [
+42.5482,
+-0.7081,
+-5.4116
+],
+"R": [
+13.6566,
+-0.9664,
+-5.0911
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Springfield M1903",
+"relief": 0.0
+},
+"models/weapons/sten.tik": {
+"F": [
+21.7245,
+-0.6818,
+-4.799
+],
+"R": [
+-2.0997,
+-0.6892,
+-5.6021
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Sten Mark II",
+"relief": 0.0
+},
+"models/weapons/sten_bloody.tik": {
+"F": [
+21.7245,
+-0.6818,
+-4.799
+],
+"R": [
+-2.0997,
+-0.6892,
+-5.6021
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Sten Mark II (Bloody)",
+"relief": 0.0
+},
+"models/weapons/sten_blued.tik": {
+"F": [
+21.7245,
+-0.6818,
+-4.799
+],
+"R": [
+-2.0997,
+-0.6892,
+-5.6021
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Sten Mark II (Blued)",
+"relief": 0.0
+},
+"models/weapons/sten_camo_desert.tik": {
+"F": [
+21.7245,
+-0.6818,
+-4.799
+],
+"R": [
+-2.0997,
+-0.6892,
+-5.6021
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Sten Mark II (Desert)",
+"relief": 0.0
+},
+"models/weapons/sten_camo_winter.tik": {
+"F": [
+21.7245,
+-0.6818,
+-4.799
+],
+"R": [
+-2.0997,
+-0.6892,
+-5.6021
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Sten Mark II (Winter)",
+"relief": 0.0
+},
+"models/weapons/sten_camo_woodland.tik": {
+"F": [
+21.7245,
+-0.6818,
+-4.799
+],
+"R": [
+-2.0997,
+-0.6892,
+-5.6021
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Sten Mark II (Woodland)",
+"relief": 0.0
+},
+"models/weapons/sten_chrome.tik": {
+"F": [
+21.7245,
+-0.6818,
+-4.799
+],
+"R": [
+-2.0997,
+-0.6892,
+-5.6021
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Sten Mark II (Chrome)",
+"relief": 0.0
+},
+"models/weapons/sten_gold.tik": {
+"F": [
+21.7245,
+-0.6818,
+-4.799
+],
+"R": [
+-2.0997,
+-0.6892,
+-5.6021
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Sten Mark II (Gold)",
+"relief": 0.0
+},
+"models/weapons/svt_rifle.tik": {
+"F": [
+46.62,
+-0.1311,
+-4.416
+],
+"R": [
+15.3284,
+-0.0697,
+-5.4181
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "SVT 40",
+"relief": 0.0
+},
+"models/weapons/svt_rifle_bloody.tik": {
+"F": [
+46.62,
+-0.1311,
+-4.416
+],
+"R": [
+15.3284,
+-0.0697,
+-5.4181
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "SVT 40 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/svt_rifle_blued.tik": {
+"F": [
+46.62,
+-0.1311,
+-4.416
+],
+"R": [
+15.3284,
+-0.0697,
+-5.4181
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "SVT 40 (Blued)",
+"relief": 0.0
+},
+"models/weapons/svt_rifle_camo_desert.tik": {
+"F": [
+46.62,
+-0.1311,
+-4.416
+],
+"R": [
+15.3284,
+-0.0697,
+-5.4181
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "SVT 40 (Desert)",
+"relief": 0.0
+},
+"models/weapons/svt_rifle_camo_winter.tik": {
+"F": [
+46.62,
+-0.1311,
+-4.416
+],
+"R": [
+15.3284,
+-0.0697,
+-5.4181
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "SVT 40 (Winter)",
+"relief": 0.0
+},
+"models/weapons/svt_rifle_camo_woodland.tik": {
+"F": [
+46.62,
+-0.1311,
+-4.416
+],
+"R": [
+15.3284,
+-0.0697,
+-5.4181
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "SVT 40 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/svt_rifle_chrome.tik": {
+"F": [
+46.62,
+-0.1311,
+-4.416
+],
+"R": [
+15.3284,
+-0.0697,
+-5.4181
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "SVT 40 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/svt_rifle_gold.tik": {
+"F": [
+46.62,
+-0.1311,
+-4.416
+],
+"R": [
+15.3284,
+-0.0697,
+-5.4181
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "SVT 40 (Gold)",
+"relief": 0.0
+},
+"models/weapons/svt_rifle_hobbssvtwood.tik": {
+"F": [
+46.62,
+-0.1311,
+-4.416
+],
+"R": [
+15.3284,
+-0.0697,
+-5.4181
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "SVT 40 (Woodland Camo)",
+"relief": 0.0
+},
+"models/weapons/thompson50.tik": {
+"F": [
+23.0038,
+-0.7292,
+-5.3662
+],
+"R": [
+-7.8194,
+-0.7285,
+-6.3634
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson 50rd",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_bloody.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (Bloody)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_blued.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (Blued)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_camo_desert.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (Desert)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_camo_winter.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (Winter)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_camo_woodland.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (Woodland)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_chrome.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (Chrome)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_gold.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (Gold)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_guantommy.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (Guanshire)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_hobbstomworn.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (Worn)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_lv_famastommy.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (FAMAS II)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_lv_tttommy.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_m1a1dk.tik": {
+"F": [
+21.8651,
+-0.79,
+-5.1164
+],
+"R": [
+-6.3288,
+-0.8099,
+-5.1702
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (M1A1 Remodel)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_tommy1928d.tik": {
+"F": [
+23.6157,
+-0.7918,
+-5.6185
+],
+"R": [
+-6.69,
+-0.7918,
+-5.6
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (1928 Tommy)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_tommy27a1.tik": {
+"F": [
+22.4168,
+-0.8148,
+-5.1548
+],
+"R": [
+-6.7622,
+-0.7969,
+-5.5601
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (27A1 Commando)",
+"relief": 0.0
+},
+"models/weapons/thompsonsmg_tommy28.tik": {
+"F": [
+22.6248,
+-0.7292,
+-5.5323
+],
+"R": [
+-6.3361,
+-0.7285,
+-5.812
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Thompson (M1928)",
+"relief": 0.0
+},
+"models/weapons/tt33.tik": {
+"F": [
+10.8151,
+-0.6104,
+-3.3761
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "TT-33 Tokarev",
+"relief": 0.0
+},
+"models/weapons/tt33_bloody.tik": {
+"F": [
+10.8151,
+-0.6104,
+-3.3761
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "TT-33 Tokarev (Bloody)",
+"relief": 0.0
+},
+"models/weapons/tt33_blued.tik": {
+"F": [
+10.8151,
+-0.6104,
+-3.3761
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "TT-33 Tokarev (Blued)",
+"relief": 0.0
+},
+"models/weapons/tt33_camo_desert.tik": {
+"F": [
+10.8151,
+-0.6104,
+-3.3761
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "TT-33 Tokarev (Desert)",
+"relief": 0.0
+},
+"models/weapons/tt33_camo_winter.tik": {
+"F": [
+10.8151,
+-0.6104,
+-3.3761
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "TT-33 Tokarev (Winter)",
+"relief": 0.0
+},
+"models/weapons/tt33_camo_woodland.tik": {
+"F": [
+10.8151,
+-0.6104,
+-3.3761
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "TT-33 Tokarev (Woodland)",
+"relief": 0.0
+},
+"models/weapons/tt33_chrome.tik": {
+"F": [
+10.8151,
+-0.6104,
+-3.3761
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "TT-33 Tokarev (Chrome)",
+"relief": 0.0
+},
+"models/weapons/tt33_gold.tik": {
+"F": [
+10.8151,
+-0.6104,
+-3.3761
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "TT-33 Tokarev (Gold)",
+"relief": 0.0
+},
+"models/weapons/tt33silenced.tik": {
+"F": [
+19.8777,
+-0.662,
+-3.7022
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced TT-33",
+"relief": 0.0
+},
+"models/weapons/tt33silenced_bloody.tik": {
+"F": [
+19.8777,
+-0.662,
+-3.7022
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced TT-33 (Bloody)",
+"relief": 0.0
+},
+"models/weapons/tt33silenced_blued.tik": {
+"F": [
+19.8777,
+-0.662,
+-3.7022
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced TT-33 (Blued)",
+"relief": 0.0
+},
+"models/weapons/tt33silenced_camo_desert.tik": {
+"F": [
+19.8777,
+-0.662,
+-3.7022
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced TT-33 (Desert)",
+"relief": 0.0
+},
+"models/weapons/tt33silenced_camo_winter.tik": {
+"F": [
+19.8777,
+-0.662,
+-3.7022
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced TT-33 (Winter)",
+"relief": 0.0
+},
+"models/weapons/tt33silenced_camo_woodland.tik": {
+"F": [
+19.8777,
+-0.662,
+-3.7022
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced TT-33 (Woodland)",
+"relief": 0.0
+},
+"models/weapons/tt33silenced_chrome.tik": {
+"F": [
+19.8777,
+-0.662,
+-3.7022
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced TT-33 (Chrome)",
+"relief": 0.0
+},
+"models/weapons/tt33silenced_gold.tik": {
+"F": [
+19.8777,
+-0.662,
+-3.7022
+],
+"R": [
+0.3725,
+-0.5703,
+-3.3384
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Silenced TT-33 (Gold)",
+"relief": 0.0
+},
+"models/weapons/type100smg.tik": {
+"F": [
+22.4771,
+-0.38,
+-3.4977
+],
+"R": [
+-0.9447,
+-1.3123,
+-7.1554
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Type 100 SMG",
+"relief": 0.0
+},
+"models/weapons/uk_w_piat.tik": {
+"F": [
+6.1039,
+-2.0896,
+-7.2842
+],
+"R": [
+-9.2023,
+-2.2167,
+-7.4166
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.003,
+"name": "PIAT",
+"relief": 0.0
+},
+"models/weapons/uk_w_piat_bloody.tik": {
+"F": [
+6.1039,
+-2.0896,
+-7.2842
+],
+"R": [
+-9.2023,
+-2.2167,
+-7.4166
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.003,
+"name": "PIAT (Bloody)",
+"relief": 0.0
+},
+"models/weapons/uk_w_piat_blued.tik": {
+"F": [
+6.1039,
+-2.0896,
+-7.2842
+],
+"R": [
+-9.2023,
+-2.2167,
+-7.4166
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.003,
+"name": "PIAT (Blued)",
+"relief": 0.0
+},
+"models/weapons/uk_w_piat_camo_desert.tik": {
+"F": [
+6.1039,
+-2.0896,
+-7.2842
+],
+"R": [
+-9.2023,
+-2.2167,
+-7.4166
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.003,
+"name": "PIAT (Desert)",
+"relief": 0.0
+},
+"models/weapons/uk_w_piat_camo_winter.tik": {
+"F": [
+6.1039,
+-2.0896,
+-7.2842
+],
+"R": [
+-9.2023,
+-2.2167,
+-7.4166
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.003,
+"name": "PIAT (Winter)",
+"relief": 0.0
+},
+"models/weapons/uk_w_piat_camo_woodland.tik": {
+"F": [
+6.1039,
+-2.0896,
+-7.2842
+],
+"R": [
+-9.2023,
+-2.2167,
+-7.4166
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.003,
+"name": "PIAT (Woodland)",
+"relief": 0.0
+},
+"models/weapons/uk_w_piat_chrome.tik": {
+"F": [
+6.1039,
+-2.0896,
+-7.2842
+],
+"R": [
+-9.2023,
+-2.2167,
+-7.4166
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.003,
+"name": "PIAT (Chrome)",
+"relief": 0.0
+},
+"models/weapons/uk_w_piat_gold.tik": {
+"F": [
+6.1039,
+-2.0896,
+-7.2842
+],
+"R": [
+-9.2023,
+-2.2167,
+-7.4166
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.003,
+"name": "PIAT (Gold)",
+"relief": 0.0
+},
+"models/weapons/uk_w_vickers.tik": {
+"F": [
+40.1472,
+0.005,
+-5.8223
+],
+"R": [
+3.0,
+-1.6,
+-5.8225
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Vickers-Berthier",
+"relief": 0.0
+},
+"models/weapons/uk_w_vickers_bloody.tik": {
+"F": [
+40.1472,
+0.005,
+-5.8223
+],
+"R": [
+3.0,
+-1.6,
+-5.8225
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Vickers-Berthier (Bloody)",
+"relief": 0.0
+},
+"models/weapons/uk_w_vickers_blued.tik": {
+"F": [
+40.1472,
+0.005,
+-5.8223
+],
+"R": [
+3.0,
+-1.6,
+-5.8225
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Vickers-Berthier (Blued)",
+"relief": 0.0
+},
+"models/weapons/uk_w_vickers_camo_desert.tik": {
+"F": [
+40.1472,
+0.005,
+-5.8223
+],
+"R": [
+3.0,
+-1.6,
+-5.8225
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Vickers-Berthier (Desert)",
+"relief": 0.0
+},
+"models/weapons/uk_w_vickers_camo_winter.tik": {
+"F": [
+40.1472,
+0.005,
+-5.8223
+],
+"R": [
+3.0,
+-1.6,
+-5.8225
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Vickers-Berthier (Winter)",
+"relief": 0.0
+},
+"models/weapons/uk_w_vickers_camo_woodland.tik": {
+"F": [
+40.1472,
+0.005,
+-5.8223
+],
+"R": [
+3.0,
+-1.6,
+-5.8225
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Vickers-Berthier (Woodland)",
+"relief": 0.0
+},
+"models/weapons/uk_w_vickers_chrome.tik": {
+"F": [
+40.1472,
+0.005,
+-5.8223
+],
+"R": [
+3.0,
+-1.6,
+-5.8225
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Vickers-Berthier (Chrome)",
+"relief": 0.0
+},
+"models/weapons/uk_w_vickers_gold.tik": {
+"F": [
+40.1472,
+0.005,
+-5.8223
+],
+"R": [
+3.0,
+-1.6,
+-5.8225
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Vickers-Berthier (Gold)",
+"relief": 0.0
+},
+"models/weapons/webley_revolver.tik": {
+"F": [
+14.8364,
+-0.7711,
+-4.7374
+],
+"R": [
+4.3864,
+-0.7711,
+-4.4848
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Webley Revolver",
+"relief": 0.0
+},
+"models/weapons/webley_revolver_bloody.tik": {
+"F": [
+14.8364,
+-0.7711,
+-4.7374
+],
+"R": [
+4.3864,
+-0.7711,
+-4.4848
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Webley Revolver (Bloody)",
+"relief": 0.0
+},
+"models/weapons/webley_revolver_blued.tik": {
+"F": [
+14.8364,
+-0.7711,
+-4.7374
+],
+"R": [
+4.3864,
+-0.7711,
+-4.4848
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Webley Revolver (Blued)",
+"relief": 0.0
+},
+"models/weapons/webley_revolver_camo_desert.tik": {
+"F": [
+14.8364,
+-0.7711,
+-4.7374
+],
+"R": [
+4.3864,
+-0.7711,
+-4.4848
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Webley Revolver (Desert)",
+"relief": 0.0
+},
+"models/weapons/webley_revolver_camo_winter.tik": {
+"F": [
+14.8364,
+-0.7711,
+-4.7374
+],
+"R": [
+4.3864,
+-0.7711,
+-4.4848
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Webley Revolver (Winter)",
+"relief": 0.0
+},
+"models/weapons/webley_revolver_camo_woodland.tik": {
+"F": [
+14.8364,
+-0.7711,
+-4.7374
+],
+"R": [
+4.3864,
+-0.7711,
+-4.4848
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Webley Revolver (Woodland)",
+"relief": 0.0
+},
+"models/weapons/webley_revolver_chrome.tik": {
+"F": [
+14.8364,
+-0.7711,
+-4.7374
+],
+"R": [
+4.3864,
+-0.7711,
+-4.4848
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Webley Revolver (Chrome)",
+"relief": 0.0
+},
+"models/weapons/webley_revolver_gold.tik": {
+"F": [
+14.8364,
+-0.7711,
+-4.7374
+],
+"R": [
+4.3864,
+-0.7711,
+-4.4848
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Webley Revolver (Gold)",
+"relief": 0.0
+},
+"models/weapons/webley_revolver_lv_ttwebley.tik": {
+"F": [
+14.8364,
+-0.7711,
+-4.7374
+],
+"R": [
+4.3864,
+-0.7711,
+-4.4848
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Webley Revolver (Team Tactics)",
+"relief": 0.0
+},
+"models/weapons/welrod.tik": {
+"F": [
+8.4192,
+-0.5264,
+-3.5844
+],
+"R": [
+-2.8424,
+-0.6541,
+-3.3819
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Welrod",
+"relief": 0.0
+},
+"models/weapons/welrod_bloody.tik": {
+"F": [
+8.4192,
+-0.5264,
+-3.5844
+],
+"R": [
+-2.8424,
+-0.6541,
+-3.3819
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Welrod (Bloody)",
+"relief": 0.0
+},
+"models/weapons/welrod_blued.tik": {
+"F": [
+8.4192,
+-0.5264,
+-3.5844
+],
+"R": [
+-2.8424,
+-0.6541,
+-3.3819
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Welrod (Blued)",
+"relief": 0.0
+},
+"models/weapons/welrod_camo_desert.tik": {
+"F": [
+8.4192,
+-0.5264,
+-3.5844
+],
+"R": [
+-2.8424,
+-0.6541,
+-3.3819
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Welrod (Desert)",
+"relief": 0.0
+},
+"models/weapons/welrod_camo_winter.tik": {
+"F": [
+8.4192,
+-0.5264,
+-3.5844
+],
+"R": [
+-2.8424,
+-0.6541,
+-3.3819
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Welrod (Winter)",
+"relief": 0.0
+},
+"models/weapons/welrod_camo_woodland.tik": {
+"F": [
+8.4192,
+-0.5264,
+-3.5844
+],
+"R": [
+-2.8424,
+-0.6541,
+-3.3819
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Welrod (Woodland)",
+"relief": 0.0
+},
+"models/weapons/welrod_chrome.tik": {
+"F": [
+8.4192,
+-0.5264,
+-3.5844
+],
+"R": [
+-2.8424,
+-0.6541,
+-3.3819
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Welrod (Chrome)",
+"relief": 0.0
+},
+"models/weapons/welrod_gold.tik": {
+"F": [
+8.4192,
+-0.5264,
+-3.5844
+],
+"R": [
+-2.8424,
+-0.6541,
+-3.3819
+],
+"U": [
+0.0,
+0.0,
+-1.0
+],
+"delta": 0.0,
+"name": "Welrod (Gold)",
+"relief": 0.0
+}
+}
