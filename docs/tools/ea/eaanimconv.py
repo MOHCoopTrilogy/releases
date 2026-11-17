@@ -230,6 +230,12 @@ MMG_ONE = {"enter": "58f52873", "exit": "647c2159", "death": "7a12045e", "death_
 # leader's PPSh (his spawn point's NpcWpn_PPSH, mesh NpcWpn_PPSH_Art_0) on JO_object_R - two grips, before and after
 # he stands at 11.7 s
 ICS_PROP = {"explainsplan": "JO_object_R"}
+# An ACTOR does not take the clip's tag_weapon_right channels (discbot v220 + server tag dumps 2026-11-17: on the
+# scene actor the tag keeps the stock weapon grip against the hand whatever the clip writes, while a script_model of
+# the same tik follows them): the held prop therefore rides "Bip01 R Hand" and carries the object joint's frame
+# against the hand as its own clip, frame for frame with the scene clip. {scene alias: [(pos, rot) per 30 fps frame]}
+# in MODEL units (eachar.held_props scales the positions by the characters' 0.52)
+HELD_CLIPS = {}
 SCENES = {
     "partisanidling": "d4f7a161 0a84ccf5 982e0d67",
     "crouchedpartisanfemale": "ad30af0a 614ca96c 29619877",
@@ -421,14 +427,18 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
     skel = easkin.skeleton(stream)
     bones = mohskel.read_skd_bones(skd_bytes)
     rows = []
+    HELD_CLIPS.clear()
 
     def put(alias, h, loop, yaw=0.0, objtag=None):
         if h not in bank.clips:
             return
         mmg = alias.startswith(("mmg_", "mmgp_", "mmgc_"))
         lat = (MMG_SIDE_POLE if alias.startswith(("mmgp_", "mmgc_")) else MMG_SIDE) if mmg else 0.0
-        skc, _ = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw, fwd=MMG_FWD if mmg else 0.0, lat=lat,
-                              objtag=objtag)
+        skc, frs = convert_clip(bank, bank.clip(h), skel, bones, yaw=yaw, fwd=MMG_FWD if mmg else 0.0, lat=lat,
+                                objtag=objtag)
+        if objtag and frs and "tag_weapon_right rot" in frs[0]:
+            # the held object's frame relative to the hand, per frame, for the prop's own clip (HELD_CLIPS)
+            HELD_CLIPS["ea_" + alias] = [(fr["tag_weapon_right pos"], fr["tag_weapon_right rot"]) for fr in frs]
         if loop:
             skc = skc[:8] + struct.pack("<i", struct.unpack_from("<i", skc, 8)[0] | 0x20) + skc[12:]
         files["models/human/ea_%s/anim/%s.skc" % (level, alias)] = skc

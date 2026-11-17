@@ -779,7 +779,12 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
 # out on the walk / run / crouch clips, 3-6 cm from the barrel jacket). The scene clip writes that joint's frame onto
 # tag_weapon_right, so the model is attached to that tag at offset 0 / angles 0. 52 u/m, the characters' scale; the tik
 # is unscaled (an attached entity does not take the actor's 0.52)
+# 0.7.46: an actor ignores the clip's tag channels (eaanimconv.HELD_CLIPS), so the prop also carries one clip per scene
+# clip, named as the actor's scene alias (e.g. ea_ics_explainsplan_1): its root follows the object joint against
+# the stock right hand, and the scene attaches it to "Bip01 R Hand" at 0 / 0 and plays that clip with the actor's
+# (level.ea_held_hand)
 HELD = {"ppsh": "NpcWpn_PPSH_Art_0"}
+HELD_SCALE = 0.52      # the character tiks' scale: the hand-relative positions are model units
 
 
 def held_props(stream, level, files, bone_block, log=print):
@@ -828,12 +833,26 @@ def held_props(stream, level, files, bone_block, log=print):
         files["%s/held_%s.skc" % (mdir, key)] = eaprops.write_skc(
             0.05, ["Bip01 pos", "Bip01 rot"], [{"Bip01 pos": (0.0, 0.0, 0.0, 0.0), "Bip01 rot": (0.0, 0.0, 0.0, 1.0)}],
             (lo, hi), rad)
+        hand_rows = []
+        try:
+            import eaanimconv
+            clips = dict(eaanimconv.HELD_CLIPS)
+        except Exception:
+            clips = {}
+        for alias, frs in sorted(clips.items()):
+            pf = [{"Bip01 pos": tuple(p[k] * HELD_SCALE for k in range(3)) + (0.0,), "Bip01 rot": tuple(q)}
+                  for p, q in frs]
+            far = max(math.sqrt(sum(f["Bip01 pos"][k] ** 2 for k in range(3))) for f in pf) + rad
+            files["%s/held_%s_%s.skc" % (mdir, key, alias)] = eaprops.write_skc(
+                1.0 / 30.0, ["Bip01 pos", "Bip01 rot"], pf, ((-far,) * 3, (far,) * 3), far)
+            hand_rows.append("\t%s held_%s_%s.skc\n" % (alias, key, alias))
+            out.append('\tlevel.ea_held_hand["%s"] = 1' % alias)
         files.setdefault("scripts/ea_%s_chars.shader" % level, b"")
         files["scripts/ea_%s_chars.shader" % level] += "".join(sh).encode()
         tikp = "models/human/ea_%s_held_%s.tik" % (level, key)
         files[tikp] = (("TIKI\nsetup\n{\n\tscale 1.0\n\tpath %s\n\tskelmodel held_%s.skd\n%s}\n\ninit\n{\n\tserver\n"
-                        "\t{\n\t\tclassname Animate\n\t}\n}\n\nanimations\n{\n\tidle held_%s.skc\n}\n") % (
-            mdir, key, "".join(tik_surf), key)).encode()
+                        "\t{\n\t\tclassname Animate\n\t}\n}\n\nanimations\n{\n\tidle held_%s.skc\n%s}\n") % (
+            mdir, key, "".join(tik_surf), key, "".join(hand_rows))).encode()
         out.append('\tlevel.ea_held_tik["%s"] = "%s"' % (key, tikp))
         log("eachar: held prop %s -> %s (%d verts)" % (part, tikp, len(allv)))
     return out
