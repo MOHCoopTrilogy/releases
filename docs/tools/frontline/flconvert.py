@@ -29,6 +29,7 @@ import flseam  # noqa: E402
 import flgeom  # noqa: E402
 import flclear
 import flsheets  # noqa: E402
+import flglass  # noqa: E402
 import flroutes  # noqa: E402
 import flscene  # noqa: E402
 import flpit  # noqa: E402
@@ -1035,6 +1036,31 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             B.add_soup(wire, [(pp, st, (0.0, 0.0, 1.0), med_light + (255,)) for pp, st in q], [0, 1, 2, 0, 2, 3])
             nfe += 1
         stats["sheets"]["visible_edges"] = nfe
+    # [flfix2] window glass (flglass.py): Frontline draws its intact panes itself from material-13 collision; without them
+    # every window showed through to the room behind. Each pane is one cell of the level's intact window texture
+    # ("pane_tex", st rect "pane_st"), the way the level's own broken-pane cards (1c0900) map one cell of the broken one.
+    # fl_levels.json "glass" per level (absent / enabled false = unchanged). Static: the original's panes do not break.
+    gl_ = flpack.spec(level).get("glass") or {}
+    if gl_.get("enabled"):
+        cov_ = set(gl_.get("cover_tex", []))
+        cards_ = [(X(m["verts"][a]), X(m["verts"][b]), X(m["verts"][c])) for m in meshes
+                  if m["tex"] and m["tex"].split("@")[-1] in cov_ and m["tris"] and (m["cell"], m["draw"]) not in hidden
+                  for a, b, c in m["tris"]]
+        gp_, stats["glass"] = flglass.panes(coll, X, cards_)
+        gname_ = tdir + "hzm_glass"
+        if gl_.get("pane_tex"):
+            gimg_ = tdir + gl_["pane_tex"] + ".tga"
+        else:
+            gimg_ = gname_ + ".tga"
+            files[gimg_] = tga_bytes(4, 4, bytes(tuple(gl_.get("placeholder", [40, 46, 52, 128]))) * 16)
+        shader_lines.append(gname_ + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm trans\n\tpolygonOffset\n\tcull none\n"
+                            "\t{\n\t\tmap " + gimg_ + "\n\t\tblendFunc blend\n\t\trgbGen vertex\n\t}\n}\n")
+        gsh_ = B.shader(gname_, flbsp.SURF_NOLIGHTMAP, 0)
+        s0_, t0_, s1_, t1_ = gl_.get("pane_st", [0.0, 0.0, 1.0, 1.0])
+        for tris_ in gp_:
+            v_, i_ = flglass.surface(tris_, med_light)
+            v_ = [(p_, (s0_ + st_[0] * (s1_ - s0_), t0_ + st_[1] * (t1_ - t0_)), n_, c_) for p_, st_, n_, c_ in v_]
+            B.add_soup(gsh_, v_, i_)
     # headroom: crawl holes / doorways sized for Frontline's smaller player get MOHAA crouch / stand clearance
     # (flclear.py; collision only, the drawn walls are untouched)
     caps = []
