@@ -2599,5 +2599,14 @@
   },
   "textures/hud/loot/coop_act_plank.tga": {
     "new": "True"
+  },
+  "scripts/coop_barricade.shader": {
+    "new": "True"
+  },
+  "textures/coop_barricade/nail.tga": {
+    "new": "True"
+  },
+  "textures/coop_barricade/plank.tga": {
+    "new": "True"
   }
 }
