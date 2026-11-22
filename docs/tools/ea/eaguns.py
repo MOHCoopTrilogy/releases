@@ -186,6 +186,84 @@ SOUNDS = {
                                                                          (355, 867)]])},
     "ea_smg_sten": {"sten_silenced": ("mp", [[(137, 0), (74, 0), (75, 96), (138, 0)]])},   # WpnFire_PC_Sten
 }
+# RELOAD / BOLT / PUMP (2026-11-22): the guns" own animation sound records (PlayerWeapons\<gun>\*.aso in the level stream,
+# 12-byte [u16 frame][f0ca][event alias][0]; a state"s records come BEFORE its name - the M1 clip ping sits ahead of
+# "FireLast", probe-proven). Per state: every event"s non-foley, non-casing layers, at frame / 30 s (+ the layer"s Delay by the
+# fit above); random picks are variants. A slot the stub"s body already defines locally (the *_loaded reloads) gets ONE clip
+# under its plain name (an alias name the body also defines would join the random pick). Coverage, see PLAN.md.
+RELOADS = {
+    "ea_smg_thompson": {
+        "thompson_snd_reload": ("1_22", [[(121, 433), (5, 933), (39, 1667), (164, 2067)]]),
+        "coop_thompson_snd_reload_loaded": ("1_22", [[(121, 433), (5, 933), (39, 1667), (164, 2067)]]),
+    },
+    "ea_mg_bar": {
+        "bar_snd_reload": ("1_21", [[(145, 600), (342, 1067)]]),
+        "bar_snd_reload_loaded": ("1_21", [[(145, 600), (342, 1067)]]),
+    },
+    "ea_smg_mp40": {
+        "mp40_snd_reload": ("1_1", [[(142, 100), (60, 433), (142, 933), (261, 1267), (187, 2167)]]),
+        "coop_mp40_snd_reload_loaded": ("1_1", [[(142, 100), (60, 433), (142, 933), (261, 1267), (187, 2167)]]),
+    },
+    "ea_mg_stg": {
+        "mp44_snd_reload": ("1_22", [[(179, 400), (46, 1000), (189, 1933)]]),
+        "mp44_snd_reload_loaded": ("1_22", [[(179, 400), (46, 1000), (189, 1933)]]),
+    },
+    "ea_SMG_PPSH": {
+        "ppsh41_snd_reload": ("1_11", [[(174, 433), (341, 600), (312, 1367), (129, 1733), (181, 2633), (343, 3233)]]),
+        "coop_ppsh41_snd_reload_loaded": ("1_11", [[(174, 433), (341, 600), (312, 1367), (129, 1733), (181, 2633), (343, 3233)]]),
+    },
+    "ea_smg_mp28": {
+        "sten_snd_reload": ("mp", [[(38, 267), (182, 300), (38, 867), (152, 933), (140, 1167)]]),
+        "coop_sten_snd_reload_loaded": ("mp", [[(38, 267), (182, 300), (38, 867), (152, 933), (140, 1167)]]),
+    },
+    "ea_smg_sten": {
+        "sten_snd_reload": ("mp", [[(20, 500), (170, 933), (134, 1333)], [(117, 500), (170, 933), (134, 1333)]]),
+        "coop_sten_snd_reload_loaded": ("mp", [[(20, 500), (170, 933), (134, 1333)]]),
+    },
+    "ea_rifle_m1": {
+        "m1_snd_reload": ("1_1", [[(279, 733), (359, 800), (258, 967)]]),
+    },
+    "ea_rifle_m1Scoped": {
+        "m1_snd_reload": ("1_22", [[(150, 733), (132, 800), (234, 967)]]),
+    },
+    "ea_rifle_karabiner": {
+        "kar98_snd_reload": ("1_2", [[(160, 467), (265, 933), (200, 1262), (220, 2040), (200, 2229)]]),
+        "kar98_snd_bolt": ("1_2", [[(160, 467), (220, 907)]]),
+    },
+    "ea_rifle_gewehr": {
+        "gewehr43_snd_reload": ("1_11", [[(35, 300), (35, 300), (35, 2433)]]),
+    },
+    "ea_rifle_gewehrScoped": {
+        "gewehr43_snd_reload": ("1_21", [[(50, 300), (279, 467), (200, 1400), (360, 1900), (50, 2433), (307, 2563)]]),
+        "coop_gewehr43_snd_reload_loaded": ("1_21", [[(50, 300), (279, 467), (200, 1400), (360, 1900), (50, 2433), (307, 2563)]]),
+    },
+    "ea_rifle_mn1891": {
+        "kar98_snd_bolt": ("1_15", [[(194, 100), (96, 422)], [(194, 100), (95, 422)], [(194, 100), (97, 422)]]),
+        "nagantRif_snd_reload": ("1_15", [[(194, 0), (96, 322)], [(194, 0), (95, 322)], [(194, 0), (97, 322)]]),
+    },
+    "ea_rifle_shotgun": {
+        "shotgun_snd_reload_single": ("1_9", [[(289, 100)], [(290, 100)]]),
+        "shotgun_snd_reload_end": ("1_9", [[(133, 567), (136, 900)]]),
+    },
+    "ea_PISTOL_45auto": {
+        "colt45_snd_reload": ("1_2", [[(197, 233), (297, 1000), (263, 2007), (170, 2196)]]),
+        "colt45_snd_reload_loaded": ("1_2", [[(197, 233), (297, 1000), (263, 2007), (170, 2196)]]),
+    },
+    "ea_rifle_enfieldScoped": {
+        "springfield_snd_reload_start": ("1_8", [[(95, 367), (113, 967), (211, 1674)]]),
+    },
+    "ea_rifle_mnvp": {
+        "WaWnagant_bolt": ("mp", [[(153, 100)]]),
+        "kar98sniper_snd_reload_start": ("mp", [[(153, 233)]]),
+        "kar98sniper_snd_reload_single": ("mp", [[(157, 0)], [(158, 107)]]),
+        "kar98sniper_snd_reload_end": ("mp", [[(107, 362)]]),
+    },
+    "ea_misc_M9bazooka": {
+        "bazooka_snd_reload": ("1_21", [[(153, 0)]]),
+    },
+}
+for _k, _sl in RELOADS.items():
+    SOUNDS.setdefault(_k, {}).update(_sl)
 # Each layer's own VOLUME and PITCH come from its Audio.ubr record (fields read by name: Volume Min / Max in %, Pitch Min / Max
 # in 1/4096; the game picks a random value in each range, the bake uses the middle). EA builds a weapon's event names as
 # CRC32("WpnFire_PC_<name>") (+ "_LP" held, "_END" released; XBE sprintf 0x14302c, name table .data 0x377188 - code-decode
@@ -214,6 +292,28 @@ EVENTS = {
     "ea_grenade_mills": [0x067545a0, 0x9f7c141a, 0xe87b248c, 0x761fb12f],      # BritHands.aso Prep
     "ea_grenade_stick": [0xf17d0945, 0x687458ff, 0x1f736869, 0x8117fdca, 0xf610cd5c],  # StickHands.aso Prep
 }
+# the reload / bolt / pump states' own events (the hand / gun anim records above)
+for _k, _hs in {
+    "ea_smg_thompson": [0x98487620, 0x0141279a, 0x7646170c, 0xe82282af],
+    "ea_mg_bar": [0x2d75e3d4, 0xc41646e1],
+    "ea_smg_mp40": [0x230cb156, 0xba05e0ec, 0xcd02d07a, 0x536645d9],
+    "ea_mg_stg": [0xa1604ac2, 0x628ca299, 0x64772c69],
+    "ea_SMG_PPSH": [0x581a10a1, 0xc113411b, 0xb614718d, 0x2870e42e, 0x5f77d4b8, 0xc67e8502],
+    "ea_smg_mp28": [0x0874bf32, 0x917dee88, 0xe67ade1e, 0x781e4bbd],
+    "ea_smg_sten": [0x3b023004, 0xd50c5128, 0x4b68c48b],
+    "ea_rifle_m1": [0x919b89d5, 0xe69cb943, 0x78f82ce0],
+    "ea_rifle_m1Scoped": [0x919b89d5, 0xe69cb943, 0x78f82ce0],
+    "ea_rifle_karabiner": [0x1aa3ec84, 0xf9efa08e, 0x412f7f6f, 0x4c4eab5c],
+    "ea_rifle_gewehr": [0xc2587ffb],
+    "ea_rifle_gewehrScoped": [0x189dd9ce, 0x977eeba8, 0x5ef2bcf7, 0xff10e740, 0xb5d4af15],
+    "ea_rifle_mn1891": [0x67388582],
+    "ea_rifle_shotgun": [0xd6b3b6e1, 0x3fd013d4, 0x48d72342],
+    "ea_PISTOL_45auto": [0x3ac77b35, 0xa3ce2a8f, 0xd4c91a19, 0x4aad8fba],
+    "ea_rifle_enfieldScoped": [0x25d2163f, 0x3eb10c31, 0x745d699d],
+    "ea_rifle_mnvp": [0x67388582, 0x6c21e33e, 0x24bb455b],
+    "ea_misc_M9bazooka": [0x3c56ee92],
+}.items():
+    EVENTS[_k] = EVENTS.get(_k, []) + [_h for _h in _hs if _h not in EVENTS.get(_k, [])]
 BASE_SND = {
     "ppsh41_snd_fire": ("sound/weapons/fire/wpnfire_PPSH_SMG02.wav", "1.82 0.01 0.95 0.1 480 8000 weapon"),
     "LeeEnfield_fire": ("sound/weapons/fire/LeeEnfield_fire.wav", "1.7 0.1 1.0 0.0 400 8000 weapon"),
@@ -225,6 +325,33 @@ BASE_SND = {
     "m2frag_snd_grenade_pull": ("sound/weapons/foley/Grenade_Pull.wav", "1.0 0.2 0.98 0.2 160 1000 weapon"),
     "britgrenade_snd_grenade_pull": ("sound/weapons/foley/wpn_Mills_pinpull.wav", "0.9 0.2 1.0 0.05 160 1000 weapon"),
     "steilhandgranate_snd_grenade_pull": ("sound/weapons/fire/Grenade_Pull.wav", "1.17 0.2 0.8 0.2 480 1000 weapon"),
+    "thompson_snd_reload": ("sound/weapons/foley/ThompsonReload1a.wav", "0.9 0.2 0.95 0.1 160 1000 item"),
+    "coop_thompson_snd_reload_loaded": ("sound/weapons/foley/coop_thompson_snd_reload_loaded.wav", "1.5 0.0 1.0 0.05 160 1000 item"),
+    "bar_snd_reload": ("sound/weapons/foley/BARReload1.wav", "0.9 0.2 1.0 0.05 160 1000 auto"),
+    "bar_snd_reload_loaded": ("sound/weapons/foley/coop_bar_reload_loaded.wav", "0.9 0.2 1.0 0.0 160 1000 auto"),
+    "mp40_snd_reload": ("sound/weapons/foley/MP40Reload1a.wav", "1.5 0.0 1.0 0.05 160 1000 item"),
+    "coop_mp40_snd_reload_loaded": ("sound/weapons/foley/coop_mp40_snd_reload_loaded.wav", "1.5 0.0 1.0 0.05 160 1000 item"),
+    "mp44_snd_reload": ("sound/weapons/foley/MP44Reload1.wav", "0.9 0.2 1.0 0.05 160 1000 item"),
+    "mp44_snd_reload_loaded": ("sound/weapons/foley/coop_mp44_reload_loaded.wav", "0.9 0.2 1.0 0.0 160 1000 item"),
+    "ppsh41_snd_reload": ("sound/weapons/foley/wpn_PPSH_reload.wav", "1.2 0.2 0.95 0.1 160 1000 item"),
+    "coop_ppsh41_snd_reload_loaded": ("sound/weapons/foley/coop_ppsh41_snd_reload_loaded.wav", "1.5 0.0 1.0 0.05 160 1000 item"),
+    "sten_snd_reload": ("sound/weapons/foley/wpn_Sten_reload.wav", "1.0 0.1 1.0 0.1 160 1000 item"),
+    "coop_sten_snd_reload_loaded": ("sound/weapons/foley/coop_sten_snd_reload_loaded.wav", "1.5 0.0 1.0 0.05 160 1000 item"),
+    "m1_snd_reload": ("sound/weapons/foley/m1_reload.wav", "0.9 0.2 0.95 0.1 160 1000 item"),
+    "kar98_snd_reload": ("sound/weapons/foley/KARReload1.wav", "1.2 0.1 1.0 0.05 160 1000 item"),
+    "kar98_snd_bolt": ("sound/weapons/foley/KARRechamber1.wav", "1.3 0.1 1.0 0.05 160 1000 item"),
+    "gewehr43_snd_reload": ("sound/weapons/foley/wpn_G43_reload.wav", "1.0 0.2 0.95 0.1 160 1000 item"),
+    "coop_gewehr43_snd_reload_loaded": ("sound/weapons/foley/coop_gewehr43_snd_reload_loaded.wav", "1.5 0.0 1.0 0.05 160 1000 item"),
+    "nagantRif_snd_reload": ("sound/weapons/foley/wpn_NagantRif_reload.wav", "1.2 0.1 1.0 0.05 160 1000 item"),
+    "colt45_snd_reload": ("sound/weapons/foley/Colt45Reload1b.wav", "0.9 0.2 1.0 0.0 160 1000 item"),
+    "colt45_snd_reload_loaded": ("sound/weapons/foley/coop_colt45_reload_loaded.wav", "0.9 0.2 1.0 0.0 160 1000 item"),
+    "springfield_snd_reload_start": ("sound/weapons/foley/SpringfieldReloadStart1.wav", "1.3 0.2 1.0 0.0 160 1000 item"),
+    "WaWnagant_bolt": ("sound/weapons/foley/KARRechamber1.wav", "9.3 0.1 1.0 0.0 160 1000 item"),
+    "kar98sniper_snd_reload_start": ("sound/weapons/foley/KARSniperReloadStart1.wav", "1.3 0.2 1.0 0.0 160 1000 item"),
+    "kar98sniper_snd_reload_single": ("sound/weapons/foley/KARSniperReloadFill2.wav", "1.3 0.2 0.92 0.15 160 1000 auto"),
+    "kar98sniper_snd_reload_end": ("sound/weapons/foley/KARSniperReloadEnd1.wav", "0.9 0.2 0.95 0.1 160 1000 item"),
+    "bazooka_snd_reload": ("sound/weapons/foley/BazookaReload1.wav", "0.9 0.2 1.0 0.0 160 1000 item"),
+    "shotgun_snd_reload_end": ("sound/weapons/foley/ShotgunReloadEnd1.wav", "1.5 0.0 0.95 0.1 160 1000 item"),
     # gen_rifle_bolt's own clip is an mp3 (the loudness match reads wav): matched to the Kar98 bolt wav, its own soundparms
     "gen_rifle_bolt": ("sound/weapons/foley/KARRechamber1.wav", "4.3 0.1 1.0 0.0 160 1000 item"),
 }
