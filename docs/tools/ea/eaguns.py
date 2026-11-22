@@ -176,6 +176,10 @@ SOUNDS = {
     # record carries the M1's clip ping 7f95e8f9 at frame 0 of M1.aso Fire, proven by probe). Each event's samples + volume +
     # pitch from Audio.ubr as above; offsets = the record frames at the converter's EA anim rate (eaanim.FPS 30), the first at 0.
     # Frag (1_21, FragHands.aso): 0c64635b f2, 956d32e1 f2, e26a0277 f8, 7c0e97d4 f10
+    # Mosin PU sniper FIRE - an ASSUMPTION, not proven: the disc has no WpnFire_PC_Moisan_Sniper event, and the PU's hand anim
+    # (MPMNVPHands.aso) plays the SAME bolt event as the Mosin 1891 (67388582), so it gets the 1891's WpnFire_PC_Moisan
+    # (multiplayer bank: 97 at 0, 96 + 100 at d1, 98 + 99 at d6, fit offsets as the static guns). Coordinator decision 2026-11-22.
+    "ea_rifle_mnvp": {"wawnagant_fire": ("mp", [[(97, 0), (96, 96), (100, 96), (98, 151), (99, 151)]])},
     "ea_grenade_frag": {"m2frag_snd_grenade_pull": ("1_21", [[(49, 0), (a, 0), (b, 200), (256, 267)]
                                                              for a in (277, 278) for b in (36, 35)])},
     # Mills (1_1, BritHands.aso): 067545a0 f2, 9f7c141a f2, e87b248c f8, 761fb12f f24
@@ -288,6 +292,7 @@ EVENTS = {
     "ea_rifle_gewehrScoped": [0x2467d0b8],                        # WpnFire_PC_Gewehr_Sniper
     "ea_smg_mp28": [0x9052cc3d],                                  # WpnFire_PC_MP28
     "ea_smg_sten": [0x68223dff],                                  # WpnFire_PC_Sten
+    "ea_rifle_mnvp": [0x2cbd97e4],                                # WpnFire_PC_Moisan (ASSUMED for the PU, see SOUNDS)
     "ea_grenade_frag": [0x0c64635b, 0x956d32e1, 0xe26a0277, 0x7c0e97d4],       # FragHands.aso Prep
     "ea_grenade_mills": [0x067545a0, 0x9f7c141a, 0xe87b248c, 0x761fb12f],      # BritHands.aso Prep
     "ea_grenade_stick": [0xf17d0945, 0x687458ff, 0x1f736869, 0x8117fdca, 0xf610cd5c],  # StickHands.aso Prep
@@ -318,6 +323,7 @@ BASE_SND = {
     "ppsh41_snd_fire": ("sound/weapons/fire/wpnfire_PPSH_SMG02.wav", "1.82 0.01 0.95 0.1 480 8000 weapon"),
     "LeeEnfield_fire": ("sound/weapons/fire/LeeEnfield_fire.wav", "1.7 0.1 1.0 0.0 400 8000 weapon"),
     "wawgarand_fire": ("sound/weapons/fire/WAWgarand_fire.wav", "3.3 0.2 1.0 0.0 400 8000 weapon"),
+    "wawnagant_fire": ("sound/weapons/fire/WAWnagant_fire.wav", "2.7 0.1 1.0 0.0 400 8000 weapon"),
     "kar98_snd_fire": ("sound/weapons/fire/Mauser98Fire1.wav", "1.22 0.1 0.8 0.1 480 8000 weapon"),
     "nagantRif_snd_fire": ("sound/weapons/fire/wpnfire_NagantRiffle_2.wav", "1.56 0.1 1.0 0.1 480 8000 weapon"),
     "sten_snd_fire": ("sound/weapons/fire/wpnfire_sten02.wav", "1.82 0.01 0.95 0.1 480 8000 weapon"),
