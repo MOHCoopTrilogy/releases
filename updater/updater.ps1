@@ -4,6 +4,12 @@
 #   2. Never install an unverified file (sha256 checked before any swap).
 #   3. Never re-hash the full install at launch: diff remote manifest vs installed_manifest.json.
 # Runs hidden via launch_coop.vbs; shows a progress window only when there is work to do.
+# -NoLaunch [servergui 2026-11-22]: update only, never start the game (the MOH Coop Server window uses it to update
+# the server files; its servers are stopped first, since a running omohaaded.exe holds its files open).
+# MOHCOOP_UPDATER_TEST_DESKTOP (env, sandbox tests only): shortcuts go to that folder instead of the Desktop, and no
+# window or popup is shown (a test must never take the screen or focus). Players never set it.
+param([switch]$NoLaunch)
+$script:testDesk = $env:MOHCOOP_UPDATER_TEST_DESKTOP
 # Continue, not Stop: native stderr (curl) must never become a terminating error in PS 5.1.
 $ErrorActionPreference = "Continue"
 
@@ -145,7 +151,41 @@ function ByoMaintain {
     } catch { Log "byo: skipped ($_)" }
 }
 
+# [servergui 2026-11-22] "MOH Coop Server" desktop shortcut, ONCE: the first launch that finds the server host window
+# (hzm_server_gui.ps1, shipped through the manifest) creates it and writes servergui_shortcut.done. The marker is never
+# removed, so a player who deletes the shortcut does not get it back. The installer writes the same marker when it makes
+# the shortcut itself. Never blocks, never fails a launch.
+function EnsureServerShortcut {
+    try {
+        $marker = Join-Path $app "servergui_shortcut.done"
+        if (Test-Path -LiteralPath $marker) { return }
+        $vbs = Join-Path $app "hzm_server_gui.vbs"
+        if (-not (Test-Path -LiteralPath (Join-Path $app "hzm_server_gui.ps1")) -or -not (Test-Path -LiteralPath $vbs)) { return }
+        $name = "MOH Coop Server.lnk"
+        $desk = [Environment]::GetFolderPath("Desktop")
+        $pub = [Environment]::GetFolderPath("CommonDesktopDirectory")
+        if ($script:testDesk) { $desk = $script:testDesk; $pub = "" }
+        $have = (Test-Path -LiteralPath (Join-Path $desk $name)) -or ($pub -and (Test-Path -LiteralPath (Join-Path $pub $name)))
+        if (-not $have -and $desk) {
+            $ws = New-Object -ComObject WScript.Shell
+            $lnk = $ws.CreateShortcut((Join-Path $desk $name))
+            $lnk.TargetPath = "$env:SystemRoot\System32\wscript.exe"
+            $lnk.Arguments = "`"$vbs`""
+            $lnk.WorkingDirectory = $app
+            $ico = Join-Path $app "mohcoop_server.ico"
+            if (-not (Test-Path -LiteralPath $ico)) { $ico = Join-Path $app "mohcoop.ico" }
+            $lnk.IconLocation = "$ico,0"
+            $lnk.Description = "Host the MOH Coop Trilogy: dedicated server or host-and-play"
+            $lnk.Save()
+            Log "created the MOH Coop Server desktop shortcut"
+        }
+        Set-Content -LiteralPath $marker -Value "MOH Coop Server shortcut made $(Get-Date -Format s) - delete the shortcut freely, it is not recreated" -Encoding ascii
+    } catch { Log "server shortcut skipped: $_" }
+}
+
 function LaunchGame {
+    EnsureServerShortcut
+    if ($NoLaunch) { Log "-NoLaunch: update pass done, game not started"; exit }
     try {
         # never start a second copy (a game launched mid-update, or by another shortcut)
         if (Get-Process openmohaa -ErrorAction SilentlyContinue) { exit }
@@ -366,6 +406,7 @@ try {
 # other windows, and the download loop pumps messages so it never ghosts to "Not Responding".
 $ui = $null
 try {
+    if ($script:testDesk) { throw "sandbox test: no window" }
     Add-Type -AssemblyName System.Windows.Forms
     Add-Type -AssemblyName System.Drawing
     $form = New-Object System.Windows.Forms.Form
@@ -506,7 +547,9 @@ if ($ui) { try { $ui.form.Close() } catch {} }
 # always confirm a completed update with the version received - shown even when the
 # progress-bar UI could not open. Auto-dismisses after 15s so it can never block play.
 try {
+    if ($script:testDesk) { throw "sandbox test: no popup" }
     $pop = New-Object -ComObject WScript.Shell
-    [void]$pop.Popup("MOH Coop Trilogy updated to v$($remote.version).`n`nThe game will now start.", 15, "MOH Coop Trilogy - Update Complete", 64)
+    $tail = if ($NoLaunch) { "The server files are up to date." } else { "The game will now start." }
+    [void]$pop.Popup("MOH Coop Trilogy updated to v$($remote.version).`n`n$tail", 15, "MOH Coop Trilogy - Update Complete", 64)
 } catch {}
 LaunchGame

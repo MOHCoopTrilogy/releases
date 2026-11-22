@@ -1,0 +1,94 @@
+{
+  "_README": "HAND-AUTHORED overlay for the server host GUI's settings catalogue. docs/tools/gen_server_catalogue.py (called by docgen.py build) merges it into docs/generated/server_settings.json. Holds ONLY what the code cannot say: grouping, labels, ranges, page placement, and what to hide. Every cvar name, default, flag, seed and description comes from the sweep. A name listed here that the sweep does not find is reported in the catalogue's 'overlay_unknown' list rather than invented.",
+
+  "exclude_name_regex": [
+    "^coop_selftest", "^coop_st_", "^coop_maptest", "^coop_regress", "^coop_discbot", "^coop_bot",
+    "Probe$", "probe", "Debug$", "^coop_dbg", "Dbg$", "_dbg", "Test$", "^coop_test",
+    "Step$", "Do$", "^coop_tileArt", "^coop_ded(Keep|Status|Log|Timeout)$", "^coop_report",
+    "^coop_lobbyFresh$", "^coop_helmet(X|Y|Z|Pitch|Roll|Yaw)$", "^coop_campaignNext$", "^coop_prevMapList$", "^coop_modVersion$"
+  ],
+  "exclude_files_regex": [
+    "coop_selftest", "discbot\\.scr$", "probe\\.scr$", "aiaudit\\.scr$", "ads_dbg\\.scr$", "maptest",
+    "tracescan\\.scr$", "regression"
+  ],
+
+  "category_order": [
+    "Players and lives", "Difficulty and AI", "Allies and squad", "Alarms and counter-attacks",
+    "Weather and world", "Progression", "Campaign and lobby", "Multiplayer modes", "Admin", "Build mode",
+    "Mission tuning", "Own-disc missions", "Engine coop features", "Engine game rules", "Engine server", "Other", "No shipped default"
+  ],
+  "file_categories": {
+    "player.scr": "Players and lives", "dbno.scr": "Players and lives", "hardcore.scr": "Players and lives",
+    "wounded.scr": "Players and lives", "helmet.scr": "Players and lives", "medkit.scr": "Players and lives",
+    "carry.scr": "Players and lives", "tinnitus.scr": "Players and lives", "loadoutpick.scr": "Players and lives",
+    "loot.scr": "Players and lives", "ammobox.scr": "Players and lives", "itemhandler.scr": "Players and lives",
+    "atsupply.scr": "Players and lives", "loadout.scr": "Players and lives", "emotes.scr": "Players and lives",
+    "aihandler.scr": "Difficulty and AI", "officer.scr": "Difficulty and AI", "reinf.scr": "Difficulty and AI",
+    "reinf_mg.scr": "Difficulty and AI", "aicombat.scr": "Difficulty and AI", "aibehav.scr": "Difficulty and AI",
+    "aimaneuver.scr": "Difficulty and AI", "attack.scr": "Difficulty and AI", "morale.scr": "Difficulty and AI",
+    "director.scr": "Difficulty and AI", "discscale.scr": "Difficulty and AI", "aivoice.scr": "Difficulty and AI",
+    "mortar.scr": "Difficulty and AI", "blastreact.scr": "Difficulty and AI", "dog_attack.scr": "Difficulty and AI",
+    "cornerleft.scr": "Difficulty and AI", "runto_inopen.scr": "Difficulty and AI", "reload.scr": "Difficulty and AI",
+    "covwalk.scr": "Difficulty and AI", "mg42_active.scr": "Difficulty and AI", "bust.scr": "Difficulty and AI",
+    "bunker.scr": "Difficulty and AI", "wallgun.scr": "Difficulty and AI", "aircraft.scr": "Difficulty and AI",
+    "allysquad.scr": "Allies and squad", "aisquad.scr": "Allies and squad", "squadcmd.scr": "Allies and squad",
+    "parasquad.scr": "Allies and squad", "paradrop.scr": "Allies and squad", "flchatter.scr": "Allies and squad",
+    "alarm.scr": "Alarms and counter-attacks", "alarmveh.scr": "Alarms and counter-attacks",
+    "alarmsnipers.scr": "Alarms and counter-attacks", "coop_counter.scr": "Alarms and counter-attacks",
+    "objx.scr": "Alarms and counter-attacks", "barricade.scr": "Alarms and counter-attacks",
+    "weather.scr": "Weather and world", "wxextreme.scr": "Weather and world", "duststorm.scr": "Weather and world",
+    "stormlight.scr": "Weather and world", "ambience.scr": "Weather and world", "fogmode.scr": "Weather and world",
+    "gurgle.scr": "Weather and world", "fxwreck.scr": "Weather and world", "subsink.scr": "Weather and world",
+    "corpse.scr": "Weather and world", "flmusic.scr": "Weather and world",
+    "xp.scr": "Progression", "challenges.scr": "Progression", "daily.scr": "Progression",
+    "blueprint.scr": "Progression", "coopified.scr": "Progression",
+    "lobby.scr": "Campaign and lobby", "chrono.scr": "Campaign and lobby", "byo_campaign.scr": "Campaign and lobby",
+    "holdout.scr": "Campaign and lobby", "main.scr": "Campaign and lobby", "server.scr": "Campaign and lobby",
+    "objectives.scr": "Campaign and lobby", "missioncomplete.scr": "Campaign and lobby",
+    "at_course.scr": "Campaign and lobby",
+    "admin.scr": "Admin", "buildmode.scr": "Build mode"
+  },
+  "file_prefix_categories": { "mp": "Multiplayer modes", "finale_": "Mission tuning" },
+  "byo_map_regex": "^coop_(fl|ea)_",
+
+  "engine_server_dirs": ["server", "fgame", "gamespy"],
+  "engine_qcommon_include": ["net_port", "net_ip", "net_enabled", "developer", "logfile", "sv_packetdelay"],
+  "engine_exclude_flags": ["CVAR_ROM", "CVAR_CHEAT", "CVAR_INIT"],
+
+  "server_tab": ["sv_hostname", "password", "rconPassword", "sv_maxclients", "net_port", "net_gamespy_port",
+                 "sv_gamespy", "coop_campaign", "g_gametype", "dedicated", "com_target_game", "fs_basepath",
+                 "fs_homepath", "logfile", "net_ip", "net_enabled", "developer", "config", "rconpassword"],
+  "tuning_tab": ["sv_fps", "sv_maxRate", "sv_minRate", "sv_maxPing", "sv_minPing", "sv_timeout",
+                 "sv_floodProtect", "sv_lanForceRate", "maxentities", "sv_privateClients", "sv_packetdelay",
+                 "sv_allowDownload", "g_inactivespectate", "g_inactivekick", "g_teamkillwarn", "g_teamkillkick"],
+
+  "overrides": {
+    "coop_health":        { "label": "Player health", "category": "Players and lives", "type": "int", "min": 1, "max": 99999 },
+    "coop_lmsLives":      { "label": "Last Man Standing lives (0 = off)", "category": "Players and lives", "type": "int", "min": 0, "max": 99 },
+    "coop_dbno":          { "label": "Down-But-Not-Out revives", "category": "Players and lives", "type": "bool" },
+    "coop_hardcore":      { "label": "Hardcore", "type": "bool" },
+    "coop_campaign":      { "type": "bool" },
+    "coop_dev":           { "label": "Developer cheats (noclip, console)", "type": "bool" },
+    "coop_check":         { "label": "Admin password checks", "type": "bool" },
+    "coop_paraShootdownChance": { "type": "int", "min": 0, "max": 100 },
+    "coop_airstrikeFlakChance": { "type": "int", "min": 0, "max": 100 },
+    "coop_paraGreaseChance":    { "type": "int", "min": 0, "max": 100 },
+    "sv_fps":             { "label": "Server frames per second", "type": "int", "min": 10, "max": 120,
+                            "description": "How many times a second the server simulates the world. The coop servers run 40." },
+    "sv_maxRate":         { "label": "Max bytes/s per player (0 = no cap)", "type": "int", "min": 0, "max": 90000 },
+    "sv_minRate":         { "label": "Min bytes/s per player (0 = none)", "type": "int", "min": 0, "max": 90000 },
+    "sv_maxPing":         { "type": "int", "min": 0, "max": 9999 },
+    "sv_minPing":         { "type": "int", "min": 0, "max": 9999 },
+    "sv_timeout":         { "label": "Drop a silent player after (s)", "type": "int", "min": 10, "max": 600 },
+    "sv_floodProtect":    { "type": "bool" },
+    "sv_lanForceRate":    { "type": "bool" },
+    "sv_allowDownload":   { "type": "bool" },
+    "sv_privateClients":  { "type": "int", "min": 0, "max": 64 },
+    "maxentities":        { "label": "Entity pool (never above the engine's 4096)", "type": "int", "min": 1024, "max": 4096 },
+    "sv_maxclients":      { "type": "int", "min": 1, "max": 64 },
+    "g_inactivespectate": { "type": "int", "min": 0, "max": 86400 },
+    "g_inactivekick":     { "type": "int", "min": 0, "max": 86400 },
+    "g_teamkillwarn":     { "type": "int", "min": 0, "max": 99 },
+    "g_teamkillkick":     { "type": "int", "min": 0, "max": 99 }
+  }
+}

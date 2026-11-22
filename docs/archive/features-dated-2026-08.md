@@ -146,3 +146,25 @@ force-drawn, kill unseen = papers back + 10s clean = "Situation Contained"; seen
 corpse stays findable, 15s loiter = cover blown. VERIFIED: contain loop, escalation loadout, body
 investigation. UNVERIFIED: loiter escalation, stun-witness route, Naxos prompts/sabotage bar.
 
+---
+
+<!-- moved from FEATURES.md 2026-11-22 (budget prune), verbatim -->
+
+## Gun Bracing (weapon mounting) - SHIPPED 2026-08-27, UNTESTED IN PLAY
+
+Automatic (`coop_brace 0` opts out), buff-only. Supports, cheapest first: cover-peek; a corner lean past 22 deg PLUS
+a confirming trace (never lean alone); a muzzle-support trace that must HIT below the gun line while the eye line
+stays CLEAR (you brace on what you can shoot OVER). Eased 0..1 envelope (rise 6/s, fall 3/s): spread x0.5, recoil
+x0.6, view-shove x0.5, ADS sway x0.35, weapon-lag x0.4, stress x0.7; stacks with crouch, stays behind prone; prone and
+blindfire never brace. Gated on stillness (20 in / 35 out u/s), ground, not dead/vehicle/turret/ladder; dwell 0.25s,
+grace 0.35s. Feedback: local rest thunk, sway dying, a procedural crosshair pip. Transport `coop_braceView` 0-100
+stufftext (no protocol change). **Third person too** (bug-2916, 2026-09-25): brace + over-the-shoulder camera + prompt.
+
+## v1.10.33 quick update (2026-10-19) - SHIPPED-UNVERIFIED (harness-proven per branch)
+
+- **Cutscene lock** (`cutscene.scr`, bug-4094): freezecontrols + coop_cineHud 1 + nodamage + weapon pin on 7 scenes (m2l2b, m6l2a, t2l2, t3l2, e3l4, e2l2).
+- **Text sweep** (engine `textsweep-engine`, bug-4097): one cgame rule sizes scripted huddraw text (`coop_hudTextStyle`); centerprints go to the feed.
+- **m3l3 rework** (`m3l3_nebel.scr`, `alarmveh.scr`): halftracks after the church hold, rockets, Nebelwerfer waves, shared-squad paratroopers; halftrack gunner mans the MG42.
+- **Airstrike flak** (`aircraft.scr`, bug-4123): `coop_airstrikeFlakChance` 15 per plane; hit planes crash away from players.
+- **Weapon animations** (docs ads*-next, engine `adsfx-next`): other players' fire/reload shown locally (`coop_vmAdsOthers`), aimed reloads, FG 42 Irons (armory id 79).
+- **Gamepad** (engine `gamepad-next`): `in_padGame -1` Auto, AIM page, `{key:use}` tokens.

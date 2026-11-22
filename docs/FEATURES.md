@@ -9,24 +9,9 @@ Anchors are bug ids or `file:line`. Cvars listed are the ones you would actually
 > nobody wrote it down; the record cannot tell the two apart. See
 > [SOURCE_OF_TRUTH.md § Confidence](SOURCE_OF_TRUTH.md#7-confidence).
 
-## Gun Bracing (weapon mounting) - SHIPPED 2026-08-27, UNTESTED IN PLAY
+## Gun Bracing, v1.10.33 quick update
 
-Automatic (`coop_brace 0` opts out), buff-only. Supports, cheapest first: cover-peek; a corner lean past 22 deg PLUS
-a confirming trace (never lean alone); a muzzle-support trace that must HIT below the gun line while the eye line
-stays CLEAR (you brace on what you can shoot OVER). Eased 0..1 envelope (rise 6/s, fall 3/s): spread x0.5, recoil
-x0.6, view-shove x0.5, ADS sway x0.35, weapon-lag x0.4, stress x0.7; stacks with crouch, stays behind prone; prone and
-blindfire never brace. Gated on stillness (20 in / 35 out u/s), ground, not dead/vehicle/turret/ladder; dwell 0.25s,
-grace 0.35s. Feedback: local rest thunk, sway dying, a procedural crosshair pip. Transport `coop_braceView` 0-100
-stufftext (no protocol change). **Third person too** (bug-2916, 2026-09-25): brace + over-the-shoulder camera + prompt.
-
-## v1.10.33 quick update (2026-10-19) - SHIPPED-UNVERIFIED (harness-proven per branch)
-
-- **Cutscene lock** (`cutscene.scr`, bug-4094): freezecontrols + coop_cineHud 1 + nodamage + weapon pin on 7 scenes (m2l2b, m6l2a, t2l2, t3l2, e3l4, e2l2).
-- **Text sweep** (engine `textsweep-engine`, bug-4097): one cgame rule sizes scripted huddraw text (`coop_hudTextStyle`); centerprints go to the feed.
-- **m3l3 rework** (`m3l3_nebel.scr`, `alarmveh.scr`): halftracks after the church hold, rockets, Nebelwerfer waves, shared-squad paratroopers; halftrack gunner mans the MG42.
-- **Airstrike flak** (`aircraft.scr`, bug-4123): `coop_airstrikeFlakChance` 15 per plane; hit planes crash away from players.
-- **Weapon animations** (docs ads*-next, engine `adsfx-next`): other players' fire/reload shown locally (`coop_vmAdsOthers`), aimed reloads, FG 42 Irons (armory id 79).
-- **Gamepad** (engine `gamepad-next`): `in_padGame -1` Auto, AIM page, `{key:use}` tokens.
+Both records moved verbatim to [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md) (2026-11-22). Both still ship; neither is superseded.
 
 ## Domain index
 
@@ -1105,6 +1090,8 @@ port forwarding. ⚠️ MOHAA OOB packets are `4×FF` + a **direction byte** —
 silently runs nothing (bug-1143). ⚠️ The engine-side commit records an unresolved **dedicated-server
 crash under investigation** with no follow-up found.
 
+**MOH Coop Server window** - `SHIPPED-UNVERIFIED` (v1.10.88; harness-tested, no player yet). Shortcut "MOH Coop Server" -> `installer/servergui/hzm_server_gui.ps1` (PS 5.1 + WPF; design notes in its header). Dedicated via a hidden WMI-started supervisor (bug-11282) or host-and-play (listen; iGPU-only = gl1 + Low preset). Settings pages come from the GENERATED `docs/generated/server_settings.json` (`gen_server_catalogue.py` + `servergui_overlay.json`); only changes are written. Ships via the manifest; `updater.ps1` makes the shortcut once (`servergui_shortcut.done`). Rig: `H:\hzm_work\servergui\tools\selftest.ps1`.
+
 **Server-command filter hardening (SEC1)** - layer 1 `SHIPPED-VERIFIED` (bug-2580, runtime-verified
 2026-09-13): `cg_servercmds_filter.cpp` splits statements exactly like `Cbuf_Execute` and checks what a
 server-stuffed `vstr` would expand to, failing closed (rules: [TRAPS T8](TRAPS.md#t8)). **Layer 2**
@@ -1166,21 +1153,9 @@ arena maps it script-spawns authored spawns + hand-placed bases (generated `mp_b
 
 ---
 
-## Archived feature records (2026-08-02 to 08-07)
+## Archived feature records (2026-08 / 09)
 
-Low-health limp, AI voice nationality, the covtrace/covwalk coverage sweep, the m1l1 corkboard
-loading screen and the 2026-08-30 inert-feature sweep (bugs 2176-2182): full write-ups in [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md).
-All four still ship; none is superseded.
-
-## Omaha batch and m2l2a Phase C contain (2026-08/09) - SHIPPED
-
-Moved to [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md) (2026-10-19). Nothing in it is superseded.
-
-## m2l2a stealth foundations (v1.2.5, 2026-08-10) - SHIPPED, verified in play
-
-The fixed layer under the stealth feature (papers checkers, five always-true disguise gates, latch-free
-`attackentity`, scene-actor protection, the disguise sight-trace NULL deref): moved 2026-09-27 to
-[`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md). Nothing in it is superseded.
+Low-health limp, AI voice nationality, the covtrace/covwalk coverage sweep, the m1l1 corkboard loading screen, the 2026-08-30 inert-feature sweep (bugs 2176-2182), the Omaha batch and m2l2a Phase C contain, and the m2l2a stealth foundations (v1.2.5, verified in play): full write-ups in [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md). All still ship; none is superseded.
 
 ## Ragdoll physics (v1.4.0 opt-in, v1.4.1 ON by default) - SHIPPED, NEWEST SYSTEM
 

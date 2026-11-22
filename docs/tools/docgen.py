@@ -1235,6 +1235,7 @@ def gen_readme(names: list[str], fp: str) -> str:
          "| `filemap.tsv` | every in-scope file, one row, greppable | same sweep |\n"
          "| `CVARS_COOP.md` | all `coop_*` cvars: engine default, cfg seed, script sites, ui | `.scr` + `.cfg` + `.urc` + `Cvar_Get` |\n"
          "| `CVARS_ENGINE.md` | every cvar the engine registers, with default and flags | `Cvar_Get` under `openmohaa-hzm/code/` |\n"
+         "| `server_settings.json` | the server host GUI's settings catalogue (server-relevant cvars, defaults, groups) + mission boards; ships as `hzm_server_settings.json` | same cvar sweep + `docs/tools/servergui_overlay.json` + `ui/coop_start/*.cfg` |\n"
          "| `SUBSYSTEMS.md` | `coop_mod/` scripts, boot order, coop-integrated maps | `coop_mod/*.scr`, `maps/*.scr` |\n"
          "| `FIX_LEDGER.md` | every buglog entry, chronological | `.wolf/buglog.json` |\n"
          "| `FIX_INDEX.md` | **file -> ordered bug ids**, and tag index | `.wolf/buglog.json` |\n"
@@ -1286,6 +1287,10 @@ def build_outputs() -> tuple[dict[str, str], str, dict]:
     t = time.time()
     out["CVARS_ENGINE.md"] = gen_cvars_engine(eng_regs, eng_dyn, eng_scanned)
     out["CVARS_COOP.md"] = gen_cvars_coop(script_use, cfg_seed, ui_ref, dyn_prefix, eng_regs)
+    # [servergui 2026-11-22] the server host GUI's settings catalogue (installer/servergui), from the same sweep
+    import gen_server_catalogue
+    out["server_settings.json"] = gen_server_catalogue.build(ROOT, MOD, eng_regs, script_use, cfg_seed, ui_ref,
+                                                             read_text)
     fmap, ftsv = gen_filemap(files)
     out["FILEMAP.md"] = fmap
     out["filemap.tsv"] = ftsv

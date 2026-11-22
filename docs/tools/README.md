@@ -31,6 +31,8 @@ So this system is built on two rules:
 |---|---|
 | `docgen.py` | The generator. No third-party dependencies. |
 | `docs.ps1` / `docs.cmd` | Thin wrappers so you can type `docs check`. |
+| `gen_server_catalogue.py` | Called by `docgen.py build`: the MOH Coop Server window's settings catalogue (`generated/server_settings.json`). `--check <file>` is publish_release.ps1's staleness gate. |
+| `servergui_overlay.json` | Hand-authored overlay for that catalogue: groups, labels, ranges, exclusions. Never names a default. |
 
 Output goes to `docs/generated/`, visibly separate from the authored files and carrying a
 DO-NOT-EDIT banner. The authored files (`SOURCE_OF_TRUTH.md`, `TRAPS.md`, `DECISIONS.md`,

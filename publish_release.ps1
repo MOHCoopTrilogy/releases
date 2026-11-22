@@ -208,11 +208,23 @@ $stage["home/maintt/zzzzz_xw_weapons.pk3"] = "$gog\maintt\zzzzz_xw_weapons.pk3"
 # Both live at the install root beside openmohaa.exe. The converted paks are NEVER staged (BYO guard below).
 $stage["byo_convert.ps1"] = "$dev\installer\byo_convert.ps1"
 $stage["hzmconv.zip"]     = $HzmconvZip
+# [v1.10.88, servergui 2026-11-22] the MOH Coop Server window (dedicated / host-and-play host GUI), beside the exe like
+# byo_convert.ps1, so EXISTING players get it through the updater; updater.ps1 makes its desktop shortcut once
+# (servergui_shortcut.done). hzm_server_settings.json is the GENERATED settings catalogue (docs/tools/docgen.py build ->
+# docs/generated/server_settings.json): never hand-edit it, and it must match the code being shipped (checked below).
+$serverGuiKeys = @('hzm_server_gui.ps1', 'hzm_server_gui.vbs', 'mohcoop_server.ico', 'hzm_server_settings.json')
+$stage["hzm_server_gui.ps1"]       = "$dev\installer\servergui\hzm_server_gui.ps1"
+$stage["hzm_server_gui.vbs"]       = "$dev\installer\servergui\hzm_server_gui.vbs"
+$stage["mohcoop_server.ico"]       = "$dev\installer\servergui\mohcoop_server.ico"
+$stage["hzm_server_settings.json"] = "$dev\docs\generated\server_settings.json"
 # KUN weapons pack (Surgical Ops KUN HD guns) removed per design - no longer built or shipped.
 # NOTE: omconfig default is deliberately NOT in the update manifest - the installer seeds it
 # once; auto-updates never stomp player settings.
 
 foreach ($k in $stage.Keys) { if (-not (Test-Path $stage[$k])) { throw "staged file missing: $($stage[$k])" } }
+# the server GUI's catalogue must describe the mod being shipped: regenerate it in memory (~10 s) and compare
+& python "$dev\docs\tools\gen_server_catalogue.py" --check "$dev\docs\generated\server_settings.json"
+if ($LASTEXITCODE -ne 0) { throw "docs/generated/server_settings.json is stale - run: python docs\tools\docgen.py build" }
 
 # >>> GFX FLIP GUARD [2026-09-25, gl2 MSAA/shadow plan section 3.5]. That work is built in an isolated engine copy
 # (openmohaa-hzm-gfx) and tested ONLY as G:\mohaa-gl2\renderer_opengl2flip.dll. Nothing from it may ship before its
@@ -407,7 +419,7 @@ try {
         if ($k -like 'home/maintt/*') {
             $e = @{ name = ("maintt/" + $k.Substring('home/maintt/'.Length)); src = $stage[$k] }
             $entriesAll += $e; $entriesMod += $e
-        } elseif ($k -in $engineKeys -or $k -in @('byo_convert.ps1', 'hzmconv.zip')) {   # [v1.10.68] beside the exe
+        } elseif ($k -in $engineKeys -or $k -in @('byo_convert.ps1', 'hzmconv.zip') -or $k -in $serverGuiKeys) {   # [v1.10.68] beside the exe
             $entriesAll += @{ name = $k; src = $stage[$k] }
         }
     }

@@ -71,6 +71,12 @@ Source: "{#Crt}\vcruntime140_1.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Crt}\msvcp140.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Dev}\installer\mohcoop.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Dev}\installer\report_problem.ps1"; DestDir: "{app}"; Flags: ignoreversion
+; [v1.10.88, servergui 2026-11-22] the MOH Coop Server window (dedicated / host-and-play) + its generated settings
+; catalogue. Also in the update manifest (publish_release.ps1), which is how existing installs get it.
+Source: "{#Dev}\installer\servergui\hzm_server_gui.ps1"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#Dev}\installer\servergui\hzm_server_gui.vbs"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#Dev}\installer\servergui\mohcoop_server.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#Dev}\docs\generated\server_settings.json"; DestDir: "{app}"; DestName: "hzm_server_settings.json"; Flags: ignoreversion
 Source: "{#Dev}\updater\updater.ps1"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Dev}\updater\launch_coop.vbs"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Dev}\installer\installed_manifest_seed.json"; DestDir: "{app}"; DestName: "installed_manifest.json"; Flags: ignoreversion
@@ -122,6 +128,12 @@ Name: "{autoprograms}\MOH Trilogy Coop"; Filename: "{sys}\wscript.exe"; \
   Parameters: """{app}\launch_coop.vbs"""; \
   WorkingDir: "{app}"; IconFilename: "{app}\mohcoop.ico"
 Name: "{autoprograms}\MOH Trilogy Coop - Report a Problem"; Filename: "powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\report_problem.ps1"""; WorkingDir: "{app}"; IconFilename: "{app}\mohcoop.ico"
+Name: "{autodesktop}\MOH Coop Server"; Filename: "{sys}\wscript.exe"; \
+  Parameters: """{app}\hzm_server_gui.vbs"""; \
+  WorkingDir: "{app}"; IconFilename: "{app}\mohcoop_server.ico"; Comment: "Host the MOH Coop Trilogy: dedicated server or host-and-play"
+Name: "{autoprograms}\MOH Coop Server"; Filename: "{sys}\wscript.exe"; \
+  Parameters: """{app}\hzm_server_gui.vbs"""; \
+  WorkingDir: "{app}"; IconFilename: "{app}\mohcoop_server.ico"
 
 [Code]
 var
@@ -316,6 +328,8 @@ procedure CurStepChanged(CurStep: TSetupStep);
 begin
   if CurStep = ssPostInstall then
   begin
+    { the installer made the MOH Coop Server shortcut: tell updater.ps1 never to make it again (deleted = stays deleted) }
+    SaveStringToFile(ExpandConstant('{app}') + '\servergui_shortcut.done', 'made by the installer', False);
     SaveStringToFile(ExpandConstant('{app}') + '\install_info.txt',
       'Version=' + '{#AppVer}' + #13#10 +
       'GogPath=' + GetGogPath('') + #13#10 +

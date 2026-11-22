@@ -53,6 +53,11 @@ $stage["home/maintt/dedicated_example.cfg"] = "$mod\coop_mod\cfg\dedicated_examp
 $stage["updater.ps1"]          = "$dev\updater\updater.ps1"
 $stage["launch_coop.vbs"]      = "$dev\updater\launch_coop.vbs"
 $stage["report_problem.ps1"]   = "$dev\installer\report_problem.ps1"
+# [v1.10.88] MOH Coop Server window - lockstep with hzm_coop.iss [Files] and publish_release.ps1
+$stage["hzm_server_gui.ps1"]       = "$dev\installer\servergui\hzm_server_gui.ps1"
+$stage["hzm_server_gui.vbs"]       = "$dev\installer\servergui\hzm_server_gui.vbs"
+$stage["mohcoop_server.ico"]       = "$dev\installer\servergui\mohcoop_server.ico"
+$stage["hzm_server_settings.json"] = "$dev\docs\generated\server_settings.json"
 # [2026-08-30] zzzzzzzzz_coop_terrain.pk3 joins the three mod paks here AND at its Source line
 # in hzm_coop.iss. The two lists must agree: this one seeds installed_manifest.json, which is
 # the updater's idea of what is on disk, so a file shipped but not seeded is re-downloaded on
