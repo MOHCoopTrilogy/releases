@@ -33,6 +33,7 @@ import bisect
 import hashlib
 import json
 import os
+import pickle
 import re
 import subprocess
 import sys
@@ -53,6 +54,11 @@ OUT_DIR = os.path.join(ROOT, "docs", "generated")
 # committed tree - and .wolf/ is already excluded from the sweep, so writing it
 # there cannot feed back into the fingerprint.
 STATE_PATH = os.path.join(ROOT, ".wolf", "hooks", "docgen-state.json")
+# [2026-11-22] per-file cache of the two values gen_filemap READS each file for (line count, summary), keyed on
+# (size, mtime_ns). On this machine os.open costs ~2.8 ms per file (on-access scanning), and the sweep indexes ~1.1M
+# files (68 hzm-mod-* working copies at the workspace root), so reading them all took ~60 min per build. A hit returns
+# exactly what the read would have returned, so the output is byte-identical; delete the file to force a cold run.
+FILECACHE_PATH = os.path.join(ROOT, ".wolf", "hooks", "docgen-filecache.pickle")
 
 MOD = "hzm-mohaa-coop-mod"
 ENGINE = "openmohaa-hzm"
@@ -280,6 +286,9 @@ class FileRec:
         self.area = area
 
 
+_FILE_META: dict[str, tuple[int, int]] = {}      # abspath -> (size, mtime_ns), filled by sweep()
+
+
 def sweep() -> list[FileRec]:
     """Full recursive sweep of the workspace. ~0.1s for 34k files on Windows
     because entry.stat() reuses the FindNextFile data."""
@@ -304,6 +313,7 @@ def sweep() -> list[FileRec]:
                     st = entry.stat()
                     ext = os.path.splitext(entry.name)[1].lower()
                     files.append(FileRec(r, st.st_size, ext, area or "<root>"))
+                    _FILE_META[os.path.join(ROOT, r)] = (st.st_size, st.st_mtime_ns)
             except OSError:
                 continue
 
@@ -777,11 +787,102 @@ _SUMMARY_COMMENT = {
 }
 
 
+_PCACHE: dict = {}       # abspath -> [size, mtime_ns, lines-or-None, {ext: summary}]  (loaded from FILECACHE_PATH)
+_PCACHE_USED: dict = {}  # the entries this run looked at: the next cache is exactly these (deleted files drop out)
+
+
+def _pcache_entry(abspath: str):
+    """The cache entry for this file if its size+mtime still match, else a fresh one. None if the sweep never saw it."""
+    meta = _FILE_META.get(abspath)
+    if meta is None:
+        return None
+    e = _PCACHE_USED.get(abspath)
+    if e is None:
+        e = _PCACHE.get(abspath)
+        if e is None or e[0] != meta[0] or e[1] != meta[1]:
+            e = [meta[0], meta[1], None, {}]
+        _PCACHE_USED[abspath] = e
+    return e
+
+
+def load_filecache() -> None:
+    global _PCACHE
+    try:
+        with open(FILECACHE_PATH, "rb") as fh:
+            data = pickle.load(fh)
+        _PCACHE = data if isinstance(data, dict) and data.get("_v") == 1 else {}
+    except Exception:
+        _PCACHE = {}
+    _PCACHE.pop("_v", None)
+
+
+def save_filecache() -> None:
+    try:
+        os.makedirs(os.path.dirname(FILECACHE_PATH), exist_ok=True)
+        tmp = FILECACHE_PATH + ".tmp"
+        data = dict(_PCACHE_USED)
+        data["_v"] = 1
+        with open(tmp, "wb") as fh:
+            pickle.dump(data, fh, protocol=pickle.HIGHEST_PROTOCOL)
+        os.replace(tmp, FILECACHE_PATH)
+    except OSError:
+        pass
+
+
+def prefetch_file_facts(line_paths, summary_items) -> None:
+    """Fill the cache misses in parallel: each miss is an os.open that waits ~3 ms on this machine, and open() drops
+    the GIL. Fills exactly the values count_lines / derive_summary would compute (same functions, same route), so the
+    output is unchanged; only the order in which files are opened differs."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    def lines_job(ap):
+        e = _pcache_entry(ap)
+        if e is None or e[2] is not None or ap in _TEXT_CACHE:
+            return
+        raw = read_bytes(ap)
+        e[2] = 0 if not raw else raw.count(b"\n") + (0 if raw.endswith(b"\n") else 1)
+
+    def summary_job(item):
+        ap, ext = item
+        marker = _SUMMARY_COMMENT.get(ext)
+        e = _pcache_entry(ap)
+        if not marker or e is None or ext in e[3]:
+            return
+        e[3][ext] = _derive_summary_read(ap, marker)
+
+    # only the MISSES go to the pool (a warm build has none): entries are created here, single-threaded, so the
+    # workers only ever fill their own entry
+    todo_l, todo_s = [], []
+    for ap in line_paths:
+        e = _pcache_entry(ap)
+        if e is not None and e[2] is None and ap not in _TEXT_CACHE:
+            todo_l.append(ap)
+    for it in summary_items:
+        e = _pcache_entry(it[0])
+        if e is not None and it[1] in _SUMMARY_COMMENT and it[1] not in e[3]:
+            todo_s.append(it)
+    if not todo_l and not todo_s:
+        return
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        list(pool.map(lines_job, todo_l, chunksize=256))
+        list(pool.map(summary_job, todo_s, chunksize=256))
+
+
 def derive_summary(abspath: str, ext: str) -> str:
     """First meaningful comment line - derived, never hand-written."""
     marker = _SUMMARY_COMMENT.get(ext)
     if not marker:
         return ""
+    e = _pcache_entry(abspath)
+    if e is not None and ext in e[3]:
+        return e[3][ext]
+    r = _derive_summary_read(abspath, marker)
+    if e is not None:
+        e[3][ext] = r
+    return r
+
+
+def _derive_summary_read(abspath: str, marker: str) -> str:
     try:
         with open(abspath, "rb") as fh:
             head = fh.read(4096)
@@ -813,8 +914,15 @@ def count_lines(abspath: str) -> int:
     if cached_text is not None:
         n = cached_text.count("\n") + (0 if cached_text.endswith("\n") or not cached_text else 1)
     else:
-        raw = read_bytes(abspath)
-        n = 0 if not raw else raw.count(b"\n") + (0 if raw.endswith(b"\n") else 1)
+        # the persistent cache only ever holds RAW-route counts, so a hit is what this branch would compute
+        e = _pcache_entry(abspath)
+        if e is not None and e[2] is not None:
+            n = e[2]
+        else:
+            raw = read_bytes(abspath)
+            n = 0 if not raw else raw.count(b"\n") + (0 if raw.endswith(b"\n") else 1)
+            if e is not None:
+                e[2] = n
     _LINES_CACHE[abspath] = n
     return n
 
@@ -881,6 +989,9 @@ def gen_filemap(files: list[FileRec]):
         c = dir_stats[d]
         tops = ", ".join(f"{e}\u00d7{n}" for e, n in c.most_common(4))
         L.append(f"| `{d}` | {sum(c.values()):,} | {dir_bytes[d] / 1e6:.2f} MB | {md_cell(tops)} |\n")
+
+    prefetch_file_facts([os.path.join(ROOT, f.relpath) for f in indexed if f.ext in TEXT_EXT or f.ext in SOURCE_EXT],
+                        [(os.path.join(ROOT, f.relpath), f.ext) for f in src])
 
     # --- source index, grouped by the directory the reader thinks in ---
     L.append("\n## Source index\n")
@@ -1271,6 +1382,7 @@ def gen_readme(names: list[str], fp: str) -> str:
 
 def build_outputs() -> tuple[dict[str, str], str, dict]:
     t0 = time.time()
+    load_filecache()
     files = sweep()
     t_sweep = time.time() - t0
 
@@ -1316,6 +1428,7 @@ def build_outputs() -> tuple[dict[str, str], str, dict]:
                   for k, v in sorted(out.items())},
     }
     out["manifest.json"] = json.dumps(manifest, indent=2, sort_keys=True) + "\n"
+    save_filecache()
 
     timings = {
         "sweep_s": round(t_sweep, 3),
