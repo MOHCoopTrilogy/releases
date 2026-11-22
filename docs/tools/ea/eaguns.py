@@ -161,8 +161,12 @@ SOUNDS = {
     # guns (0 -> 0 ms, d -> 85 + 11 d ms) and an _END tail 200 ms after the shot (a tap"s release; probed 105-276 ms), the
     # earliest layer moved to 0. MP28 / Sten from DATA/2/MPAUDIO (level "mp", their only bank); the Sten"s event is
     # WpnFire_PC_Sten (no Sten_Silenced event exists on the disc).
-    "ea_smg_mp40": {"mp40_snd_fire": ("1_1", [[(345, 0), (346, 96), (153, 0), (154, 0), (276, 200)], [(345, 0), (346, 96), (153, 0), (154, 0), (275, 200)]])},   # WpnFire_PC_MP40
-    "ea_rifle_karabiner": {"kar98_snd_fire": ("1_1", [[(63, 0), (64, 151), (65, 96), (66, 0)]])},   # WpnFire_PC_Kar98
+    # MP40 (1_1): the event layers are static; the offsets are the ones the probes saw (in hand from its pickup, dg_stn_mp40:
+    # 346 +280 after the shot, the _END tail 275 / 276 +273; under the break the MP40 fired erratically, so 1-2 sightings each)
+    "ea_smg_mp40": {"mp40_snd_fire": ("1_1", [[(345, 0), (153, 0), (154, 0), (346, 280), (t, 273)] for t in (275, 276)])},
+    # Kar98k PROBED (1_2, its pickup, 2 / 2 pulls; the same event WpnFire_PC_Kar98 under 1_2's sample numbers): 75 + 78 at 0,
+    # tail 76 + 77 at +210
+    "ea_rifle_karabiner": {"kar98_snd_fire": ("1_2", [[(75, 0), (78, 0), (76, 210), (77, 210)]])},
     "ea_PISTOL_45auto": {"colt45_snd_fire": ("1_2", [[(208, 0), (211, 11)], [(209, 0), (211, 11)], [(210, 0), (211, 11)]])},   # WpnFire_PC_Colt_45
     "ea_rifle_mn1891": {"nagantRif_snd_fire": ("1_15", [[(80, 96), (81, 0), (82, 151), (83, 151), (84, 96)]])},   # WpnFire_PC_Moisan
     "ea_rifle_gewehrScoped": {"gewehr43_snd_fire": ("1_21", [[(132, 0), (133, 0), (134, 0), (135, 0), (136, 0), (137, 96), (135, 0), (136, 0), (135, 0), (136, 0)]])},   # WpnFire_PC_Gewehr_Sniper
