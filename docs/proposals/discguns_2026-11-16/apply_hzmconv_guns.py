@@ -1,6 +1,8 @@
-"""[discguns] wire the Frontline disc-guns stage (docs/tools/frontline/flguns.py) into hzmconv - the exact edits of
-flguns_hzmconv.patch, applied in binary mode with a count assert per edit (hzmconv.py is LF, hzmconv.spec is CRLF;
+"""[discguns] wire the disc-guns stages into hzmconv: Frontline (docs/tools/frontline/flguns.py, the edits of
+flguns_hzmconv.patch) and European Assault (docs/tools/ea/eaguns.py, a module-level convert_guns in hzmconv_ea.py),
+applied in binary mode with a count assert per edit (hzmconv.py / hzmconv_ea.py are LF, hzmconv.spec is CRLF;
 TRAPS T2: never `git apply` these). Idempotent: an already-applied file is reported and left alone.
+2026-11-22: the FL anchor moved to the Armory change-sound block (it now sits between `return files` and add_marker).
 
     python -I docs/proposals/discguns_2026-11-16/apply_hzmconv_guns.py [--check]
 
@@ -15,7 +17,7 @@ PY = [
     (b'''        return files
 
 
-def add_marker(pk3, name, text):''',
+# ------------------------------------------------------------------ the Armory change sound''',
      b'''        return files
 
     @staticmethod
@@ -37,7 +39,7 @@ def add_marker(pk3, name, text):''',
             return []
 
 
-def add_marker(pk3, name, text):'''),
+# ------------------------------------------------------------------ the Armory change sound'''),
     (b'''    a.add_argument("--level", action="append")
 ''',
      b'''    a.add_argument("--level", action="append")
@@ -51,6 +53,36 @@ def add_marker(pk3, name, text):'''),
                                      {"films": o.films, "upscale": o.upscale})
             if o.guns and hasattr(g, "convert_guns"):
                 written += g.convert_guns(img.path, home, o.mohaa, lambda **kv: emit(**kv), {"upscale": o.upscale})
+'''),
+]
+# [discguns EA] the same hook for European Assault: hzmconv's loop calls g.convert_guns when the game module has one,
+# and for "ea" g IS the module hzmconv_ea, so this is a module-level function. eaguns.py writes its own pak
+# (zzzzzzzzzzzzzzzzzzzz_byo_guns_ea.pk3) whose scripts/hzm_adssights_byo_ea.txt is the "guns_ea" ownership marker.
+# build_hzmconv.py bundles eaguns (and eachar/eaprops) automatically: it follows hzmconv_ea's imports, nested ones
+# included; the flgun* helpers it shares with Frontline come from the frozen set (the SPEC edits below).
+EA = [
+    (b'''def levels():
+    return list(LEVELS)
+''',
+     b'''def levels():
+    return list(LEVELS)
+
+
+def convert_guns(image, out_dir, mohaa, progress, opts):
+    """[discguns] the disc's first-person guns as cosmetic variants (eaguns.py), with their own disc sounds (decoded
+    from the player's banks at convert time) and upscaled skins: ONE pak of its own, never touching the level paks.
+    Optional like the films: a failure never fails the conversion."""
+    try:
+        import eaguns
+        progress(step="guns", game="ea")
+        vgm = os.path.join(TOOLS, "vgmstream", "vgmstream-cli.exe")
+        up = os.path.join(TOOLS, "upscaler", "realesrgan-ncnn-vulkan.exe")
+        return eaguns.convert(image, out_dir, mohaa, progress,
+                              {"upscale": opts.get("upscale", True), "vgm": vgm if os.path.exists(vgm) else None,
+                               "esrgan": up if os.path.exists(up) else None})
+    except Exception as e:
+        progress(step="guns", game="ea", skipped=str(e))
+        return []
 '''),
 ]
 SPEC = [
@@ -91,3 +123,5 @@ if __name__ == "__main__":
         assert os.path.exists(os.path.join(FL, f)), "missing docs/tools/frontline/" + f
     apply(os.path.join(FL, "hzmconv.py"), PY, chk)
     apply(os.path.join(FL, "hzmconv.spec"), SPEC, chk)
+    assert os.path.exists(os.path.join(FL, "..", "ea", "eaguns.py")), "missing docs/tools/ea/eaguns.py"
+    apply(os.path.join(FL, "..", "ea", "hzmconv_ea.py"), EA, chk)

@@ -135,6 +135,32 @@ for b, f, v in re.findall(r'coop_skinGive\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"'
     GIVE.setdefault(b.lower(), {})[int(f)] = v
 FINNAME = {int(f): n for f, n in re.findall(r'coop_skinFinName\[(\d+)\]\s*=\s*"([^"]+)"', skins)}
 MVNAME = {(b.lower(), int(f)): n for b, f, n in re.findall(r'coop_skinMvName\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', skins)}
+# [discguns 2026-11-22] the bring-your-own-disc variants (fids 60-79, gen_disc_stubs.py -> loadoutdisc.scr): owner-only, exactly like
+# the Armory's FRONTLINE / EUR ASSAULT chips. The gate is the engine's ROM cvar coop_byoGunsFl / coop_byoGunsEa (CL_ByoInit: 1 only
+# when this PC holds the converted guns pak), so a player without the pak never reaches the entry and never sees the bare stub.
+_disc = scr("coop_mod/loadoutdisc.scr") if os.path.exists(os.path.join(MOD, "coop_mod", "loadoutdisc.scr")) else ""
+DISCGAME = {int(f): g for f, g in re.findall(r'coop_discGame\[(\d+)\]\s*=\s*"([^"]+)"', _disc)}
+DISCTITLE = {int(f): t for f, t in re.findall(r'coop_discTitle\[(\d+)\]\s*=\s*"([^"]+)"', _disc)}
+DISCLABEL = {"fl": "Frontline", "ea": "European Assault"}
+DISCCVAR = {"fl": "coop_byoGunsFl", "ea": "coop_byoGunsEa"}
+# the Armory chips that exist (gen_finish_ui.py DISC): a disc fid without one (71, the M9 bazooka) cannot be picked there yet
+_fu = io.open(os.path.join(HERE, "gen_finish_ui.py"), encoding="utf-8").read()
+DISCCHIP = {int(f): n for f, n in re.findall(r'\((\d+), "([A-Z ]+)", "coop_byoGuns\w+"\)', _fu)}
+assert DISCCHIP, "gen_finish_ui.py DISC not parsed"
+DISCGIVE = {}
+for b, f, v in re.findall(r'coop_skinGive\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', _disc):
+    assert int(f) in DISCGAME, "loadoutdisc.scr: fid %s has no coop_discGame row" % f
+    DISCGIVE.setdefault(b.lower(), {})[int(f)] = v
+_stubtxt = os.path.join(MOD, "scripts", "hzm_adssights_stub.txt")
+DISCNAME = {t.lower(): n for t, n in re.findall(r'(?m)^alias (\S+) \S+ "([^"]+)"', io.open(_stubtxt, encoding="latin-1").read())} \
+    if os.path.exists(_stubtxt) else {}
+# the four ownership combinations a viewer can be in: (Frontline guns, EA guns). The chain without a suffix is "both" - it is
+# also what the engine's bench prefetch reads (cl_uiscene.cpp SceneBenchPump), and preloading a stub nobody reaches is harmless.
+COMBOS = [((1, 1), ""), ((0, 0), "00"), ((1, 0), "10"), ((0, 1), "01")]
+
+
+def combo_gate(own):
+    return " ".join(("" if o else "!") + DISCCVAR[g] for g, o in zip(("fl", "ea"), own))
 
 # ---------------------------------------------------------------- 3. challenges, ranks, finish and variant ladders
 chal_src = scr("coop_mod/challenges.scr")
@@ -253,6 +279,9 @@ def name_author(vname):
 
 
 def credits_for(gid, model, vstem, fid):
+    if fid in DISCGAME and DISCGIVE.get(GIVE_OF[gid], {}).get(fid) == model:
+        # nothing of the disc ships: the model, skins and sounds are converted from the player's own copy, on their PC
+        return [clean("Model, skins, sounds: your own %s disc," % DISCLABEL[DISCGAME[fid]]), "converted on this PC."]
     lines = []
     if vstem and vstem in CREDIT:
         lines += CREDIT[vstem].split(" | ")
@@ -305,10 +334,20 @@ for i in sorted(RID, key=lambda i: (RTAB[i], i)):
     g = {"gid": gid, "give": give, "tab": tab, "name": clean(pg.get("coop_loNm", gid)), "cd": clean(pg.get("coop_loCd", "")),
          "model": model, "xfm": xfm, "entries": []}
     guns.append(g)
-    var = GIVE.get(give.lower(), {})
+    var = dict(GIVE.get(give.lower(), {}))
+    disc = DISCGIVE.get(give.lower(), {})
+    assert not set(var) & set(disc), "loadoutdisc.scr fid collides with a loadoutskins.scr fid for " + give
+    var.update(disc)
     for fid in [0] + sorted(var):
         tik = model if fid == 0 else var[fid]
         stem = os.path.splitext(os.path.basename(tik))[0].lower()
+        if fid in disc:
+            # the variant's own name (its stub's alias row), e.g. "M9 Bazooka (European Assault)"; the disc label alone if it is long
+            vname = DISCNAME.get(tik.lower(), "%s (%s)" % (g["name"], DISCLABEL[DISCGAME[fid]])).upper()
+            e ={"g": g, "fid": fid, "tik": tik, "stem": stem, "vname": clean(vname), "disc": DISCGAME[fid]}
+            g["entries"].append(e)
+            entries.append(e)
+            continue
         if fid == 0:
             vname = "STANDARD ISSUE"
         elif is_finish(fid):
@@ -356,6 +395,12 @@ def unlock(e):
         if len(ways) > 2:
             ways = ways[:2] + ["(or %d other way%s)" % (len(ways) - 2, "" if len(ways) == 3 else "s")]
         return ways, ("gun", g["gid"], chal_idx)
+    if e.get("disc"):
+        # loadoutpick.scr loadout_discOwned: no challenge, no mastery - owning the converted disc is the unlock
+        return (["Convert your own %s disc: Field Settings, Own Discs." % DISCLABEL[e["disc"]],
+                 ("Then pick the gun's %s chip in the Armory." % {"fl": "FRONTLINE", "ea": "EUR ASSAULT"}[e["disc"]]) if fid in DISCCHIP
+                 else "The Armory has no chip for it yet."],
+                ("disc", e["disc"]))
     wid = wid_of(give)
     if is_finish(fid):
         cid = FINCID.get((wid, fid))
@@ -418,6 +463,11 @@ HIST_Y, HIST_W, HIST_N = 398, 566, 4
 FIT = 0.88
 RIGHT_W = (RIGHT[2] - 2) * FIT
 N_CRED, N_UNL = 4, 7
+# [discguns] a disc variant's own name ("LEE-ENFIELD NO.4 (T) (EUROPEAN ASSAULT)") falls back to the disc label when the variant bar
+# (VNAME_W, section 8) cannot hold it; every other name is asserted there
+for _e in entries:
+    if _e.get("disc") and width(_e["vname"]) > (VIEW[0] + VIEW[2] - LIST[0] - 110) * FIT:
+        _e["vname"] = "%s VARIANT" % DISCLABEL[_e["disc"]].upper()
 
 
 def c4(c):
@@ -575,6 +625,19 @@ def ecfg(e):
     return "exec ui/wpnview/e%03d.cfg" % e["n"]
 
 
+def visible(e, own):
+    return not e.get("disc") or own[("fl", "ea").index(e["disc"])]
+
+
+def chain(e, ents, own):
+    """(prev, next, k, N) of e among the entries `ents` this ownership combination can see; an entry it cannot see (never shown
+    to it) borrows its gun's base entry's neighbours"""
+    vis = [x for x in ents if visible(x, own)]
+    at = e if e in vis else vis[0]
+    k = vis.index(at)
+    return vis[k - 1], vis[(k + 1) % len(vis)], k, len(vis)
+
+
 clipped = []
 for gi, g in enumerate(guns):
     ents = g["entries"]
@@ -582,6 +645,8 @@ for gi, g in enumerate(guns):
         fid = e["fid"]
         hist = HISTORY[g["gid"]]
         note = HISTORY.get("mv:" + e["stem"]) or (HISTORY.get("fin:%d" % fid) if is_finish(fid) else None)
+        if e.get("disc") and not note:
+            note = "The gun as %s drew it, converted from your own disc with its original sounds." % DISCTITLE.get(fid, DISCLABEL[e["disc"]])
         sent = re.split(r"(?<=\.)\s+", hist)
         while True:
             body = ((note + " ") if note else "") + " ".join(sent)
@@ -617,8 +682,14 @@ for gi, g in enumerate(guns):
              "set ui_wvE %d" % e["n"], "set ui_wvG %d" % int(g["gid"]), "set ui_wvTab %d" % g["tab"],
              'set ui_wvModel "%s"' % ("" if g["gid"] in ICON2D else e["tik"]), 'set ui_wvXfm "%s"' % g["xfm"],
              'set ui_wvName "%s"' % g["name"], 'set ui_wvCd "%s"' % g["cd"],
-             'set ui_wvVar "%s"' % e["vname"], 'set ui_wvVarN "%d / %d"' % (k + 1, len(ents)),
-             'set ui_wvNum "%d of %d on the rack"' % (e["n"], len(entries))]
+             'set ui_wvVar "%s"' % e["vname"]]
+        # per ownership combination: the variant / rack counters and the prev / next pointers skip the disc entries it cannot see
+        # (the menu shows the matching copy of each, enabledcvar on coop_byoGunsFl / Ea); "" = both owned
+        for own, sfx in COMBOS:
+            _, _, vk, vn = chain(e, ents, own)
+            allv = [x for x in entries if visible(x, own)]
+            L += ['set ui_wvVarN%s "%d / %d"' % (sfx, vk + 1, vn),
+                  'set ui_wvNum%s "%d of %d on the rack"' % (sfx, allv.index(e if e in allv else ents[0]) + 1, len(allv))]
         L += ['set ui_wvH%d "%s"' % (j + 1, lines[j] if j < len(lines) else "") for j in range(HIST_N)]
         L += ['set ui_wvC%d "%s"' % (j + 1, cl[j] if j < len(cl) else "") for j in range(N_CRED)]
         L += ['set ui_wvU%d "%s"' % (j + 1, ul[j] if j < len(ul) else "") for j in range(N_UNL)]
@@ -629,8 +700,11 @@ for gi, g in enumerate(guns):
             # the Armory's own padlock state, archived by the server (loadoutpick.scr: seta coop_loLkA<id> "set coop_loLkV<id> 0|1");
             # fail-locked like the Armory's lktab pages when the profile has never joined a game
             L += ["set coop_loLkV%s 1" % g["gid"], "vstr coop_loLkA%s" % g["gid"]]
-        L += ['set ui_wvPrevE "%s"' % ecfg(prev_e), 'set ui_wvNextE "%s"' % ecfg(next_e),
-              'set ui_wvPrevV "%s"' % ecfg(ents[k - 1]), 'set ui_wvNextV "%s"' % ecfg(ents[(k + 1) % len(ents)]),
+        L += ['set ui_wvPrevE "%s"' % ecfg(prev_e), 'set ui_wvNextE "%s"' % ecfg(next_e)]
+        for own, sfx in COMBOS:
+            pv, nv, _, _ = chain(e, ents, own)
+            L += ['set ui_wvPrevV%s "%s"' % (sfx, ecfg(pv)), 'set ui_wvNextV%s "%s"' % (sfx, ecfg(nv))]
+        L += [
               'set ui_wvPrevG "%s"' % ecfg(prev_g), 'set ui_wvNextG "%s"' % ecfg(next_g),
               'set ui_wvLast "%s"' % ecfg(e)]
         put("ui/wpnview/e%03d.cfg" % e["n"], L)
@@ -704,12 +778,15 @@ for gid in ICON2D:
 U += text("wvHint", (vx, vy + vh - 16, vw, 13), "DRAG TO TURN  -  WHEEL TO ZOOM", "verdana-12", (0.62, 0.57, 0.45, 0.8), "center")
 by = vy + vh + 4
 bx0, bw0 = LIST[0], vx + vw - LIST[0]          # the variant bar and the buttons span the list and the viewer
-U += plate("vPrev", (bx0, by, 24, 20), "<", "vstr ui_wvPrevV", font="verdana-14")
+# [discguns] one copy of each counter / pointer per disc-ownership combination (COMBOS), the engine's ROM coop_byoGunsFl / Ea
+# choosing which is live: an owner steps onto the disc variants, everyone else steps past them
 U += W("Label", "vPlate", (bx0 + 26, by, bw0 - 52, 20), bg=PLATE, border="3D_BORDER")
 VNAME_W = bw0 - 110
 U += cvl("vName", (bx0 + 30, by + 3, VNAME_W, 14), "ui_wvVar", "verdana-12", BEIGE)
-U += cvl("vNum", (bx0 + bw0 - 76, by + 3, 46, 14), "ui_wvVarN", "verdana-12", BEIGE, "right")
-U += plate("vNext", (bx0 + bw0 - 24, by, 24, 20), ">", "vstr ui_wvNextV", font="verdana-14")
+for own, sfx in COMBOS:
+    U += plate("vPrev" + sfx, (bx0, by, 24, 20), "<", "vstr ui_wvPrevV" + sfx, font="verdana-14", enabledcvar=combo_gate(own))
+    U += cvl("vNum" + sfx, (bx0 + bw0 - 76, by + 3, 46, 14), "ui_wvVarN" + sfx, "verdana-12", BEIGE, "right", enabledcvar=combo_gate(own))
+    U += plate("vNext" + sfx, (bx0 + bw0 - 24, by, 24, 20), ">", "vstr ui_wvNextV" + sfx, font="verdana-14", enabledcvar=combo_gate(own))
 for e in entries:
     assert width(e["vname"]) <= VNAME_W * FIT, "variant name %r does not fit" % e["vname"]
 cy = by + 24
@@ -717,7 +794,8 @@ bw = (bw0 - 6) / 4.0
 for k, (nm, t, cmd) in enumerate((("gPrev", "PREV GUN", "vstr ui_wvPrevG"), ("gNext", "NEXT GUN", "vstr ui_wvNextG"),
                                   ("wvZoomB", "ZOOM", "vstr ui_wvZoomNext"), ("wvReset", "RESET VIEW", "set ui_wvSpin 0; set ui_wvTilt 0; exec ui/wpnview/z0.cfg"))):
     U += plate(nm, (bx0 + k * (bw + 2), cy, bw, 20), t, cmd)
-U += cvl("wvNum", (RIGHT[0], cy + 4, RIGHT[2], 14), "ui_wvNum", "verdana-12", MUTED)
+for own, sfx in COMBOS:
+    U += cvl("wvNum" + sfx, (RIGHT[0], cy + 4, RIGHT[2], 14), "ui_wvNum" + sfx, "verdana-12", MUTED, enabledcvar=combo_gate(own))
 # the info column
 rx, ry, rw = RIGHT
 y = ry
@@ -741,7 +819,9 @@ for g in guns:
     for e in g["entries"]:
         st = e["status"]
         gate = "ui_wvE==%d" % e["n"]
-        if st[0] == "free":
+        if st[0] == "disc":
+            U += text("st%d" % e["n"], (rx, SY, rw, 13), "YOURS - FROM YOUR OWN DISC", fg=GREEN, enabledcvar=gate + " " + DISCCVAR[st[1]])
+        elif st[0] == "free":
             U += text("st%d" % e["n"], (rx, SY, rw, 13), "FREE - ALWAYS YOURS", fg=GREEN, enabledcvar=gate)
         elif st[0] == "gun":
             U += text("stU%d" % e["n"], (rx, SY, rw, 13), "UNLOCKED - IN YOUR ARMORY", fg=GREEN, enabledcvar=gate + " !coop_loLkV" + g["gid"])
@@ -813,8 +893,9 @@ if cmd == "build":
     for f in old:
         os.remove(os.path.join(MOD, "ui", "wpnview", f))
     json.dump(manifest(), open(os.path.join(ROOT, "docs", "proposals", "wpnviewer_2026-11-04", "entries.json"), "w"), indent=1)
-print("weapon viewer: %d guns, %d entries (%d finishes, %d model variants); rack hotspot %s; %d files %s" % (
-    len(guns), len(entries), sum(1 for e in entries if is_finish(e["fid"])), sum(1 for e in entries if e["fid"] >= 8 and not is_finish(e["fid"])), how,
+print("weapon viewer: %d guns, %d entries (%d finishes, %d model variants, %d disc variants - owners only); rack hotspot %s; %d files %s" % (
+    len(guns), len(entries), sum(1 for e in entries if is_finish(e["fid"])),
+    sum(1 for e in entries if e["fid"] >= 8 and not is_finish(e["fid"]) and not e.get("disc")), sum(1 for e in entries if e.get("disc")), how,
     len(stale), "written" if cmd == "build" else "stale"))
 for c in clipped:
     print("  clipped:", c)
