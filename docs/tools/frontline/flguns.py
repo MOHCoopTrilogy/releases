@@ -123,41 +123,6 @@ def decode_sounds(disc, streams, tmp, vgm, lv=LEVEL):
     return out
 
 
-# ------------------------------------------------------------------ the Armory change sound (user 2026-11-22)
-# Frontline's own "Continue" pistol cock: 1_1 ScrBnk sample 0 (vgmstream stream 1), 0.157 s, two slide clicks. Read off the running
-# original (ref_xemu, 2026-11-22): the voice that starts when CONTINUE is chosen points ([voice+0x238]) at exactly that sample's
-# data in the loaded 11ScrBnk; every level's ScrBnk carries the same clip. It goes into THIS player's guns pak only, as
-# sound/menu/coop_fl_cock.wav plus ui/coop_armory_snd.cfg - the same path as the mod's fallback cfg (apply.wav), so the
-# higher-priority BYO pak swaps the Armory change sound for players who converted Frontline and nobody else.
-MENU_LEVEL, MENU_STREAM = "1_1", 1
-MENU_WAV = "sound/menu/coop_fl_cock.wav"
-MENU_CFG = "ui/coop_armory_snd.cfg"
-
-
-def menu_sound_files(disc, tmp, vgm):
-    """-> {pak path: bytes} for the Armory change sound; {} without vgmstream or the bank (the mod's fallback then plays)"""
-    import flcore
-    import flaudio
-    if not vgm or not os.path.exists(vgm):
-        return {}
-    lv = MENU_LEVEL
-    try:
-        ab = disc.read(flcore.level_dir(lv) + lv.replace("_", "") + "ScrBnk.abk")
-    except Exception:
-        return {}
-    bnk, ents = flaudio.bnk_entries(ab)
-    if not bnk or MENU_STREAM not in {e["stream"] for e in ents}:
-        return {}
-    src = os.path.join(tmp, "menu.bnk")
-    open(src, "wb").write(bnk)
-    dst = os.path.join(tmp, "menu_cock.wav")
-    if not flaudio.vgm_decode(vgm, src, dst, MENU_STREAM):
-        return {}
-    return {MENU_WAV: open(dst, "rb").read(),
-            MENU_CFG: ("// HZM coop: converted on this PC - the Armory change sound is Frontline's own Continue pistol cock\n"
-                       "play %s\n" % MENU_WAV).encode()}
-
-
 # ------------------------------------------------------------------ the stage
 def build_files(image, home, mohaa, progress=lambda **kv: None, opts=None):
     """-> ({pak path: bytes}, {key: fit info}) - everything the guns pak holds, nothing written yet"""
@@ -191,8 +156,6 @@ def build_files(image, home, mohaa, progress=lambda **kv: None, opts=None):
                 rows.append(f.pop("_row").decode())
             files.update(f)
             report[k] = info
-        if files:
-            files.update(menu_sound_files(disc, tmp, opts.get("vgm")))
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
     if not files:                       # nothing converted (a grenade-only key list still writes the marker)

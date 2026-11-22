@@ -71,7 +71,24 @@ class FrontlineGame:
         tmp = out + ".tmp"
         try:
             flconvert.convert(image, level, tmp, mirror=False, vgm=vgm if os.path.exists(vgm) else None, mohaa_base=mohaa)
-            add_marker(tmp, "fl/have_%s.cfg" % level, 'set coop_flHave_%s "1"\nset coop_flHave "1"\n' % level)
+            # [armory change sound 2026-11-22] Frontline's Continue pistol cock (menu_sound_files below) rides the mission pak
+            # every Frontline owner gets; the marker switches the Armory to it (autoexec sets the apply.wav default first)
+            arm = {}
+            try:
+                import flcore
+                import shutil
+                import tempfile
+                td = tempfile.mkdtemp(prefix="flarm_")
+                try:
+                    arm = menu_sound_files(flcore.Disc(image), td, vgm if os.path.exists(vgm) else None)
+                finally:
+                    shutil.rmtree(td, ignore_errors=True)
+            except Exception as e:     # optional: the mod's own Armory sound stays
+                progress(step="armory_sound", level=level, skipped=str(e))
+            for n, b in arm.items():
+                add_marker(tmp, n, b)
+            add_marker(tmp, "fl/have_%s.cfg" % level, 'set coop_flHave_%s "1"\nset coop_flHave "1"\n' % level
+                       + (MENU_SET if arm else ""))
             os.replace(tmp, out)
             # [flfix2 bug-10969] the engine caches the AI path graph it built for this map name in <home>/maps/<map>.pth;
             # one left from an older conversion is reused silently (soldiers stand still). A new pak always drops it.
@@ -124,6 +141,40 @@ class FrontlineGame:
         return files
 
 
+# ------------------------------------------------------------------ the Armory change sound (user 2026-11-22)
+# Frontline's own "Continue" pistol cock: 1_1 ScrBnk stream 1 (vgmstream index; BNKl sample 0), 0.157 s, two slide clicks. Read
+# off the running original (ref_xemu, 2026-11-22): the voice started when CONTINUE is chosen points ([voice+0x238]) at exactly
+# that sample's data in the loaded 11ScrBnk; every level's ScrBnk carries the same clip. FrontlineGame.convert puts it into THIS
+# player's Frontline mission pak (zzzz_coop_fl_<l>.pk3, built for every Frontline owner) as MENU_WAV, and MENU_SET into the pak's
+# own fl/have_<l>.cfg marker: autoexec.cfg sets the mod default (apply.wav) and then execs the marker, and the Armory's
+# ui/coop_armory_snd.cfg is `vstr coop_armorySnd`. No file overrides another, so pak load order cannot decide it.
+MENU_LEVEL, MENU_STREAM = "1_1", 1
+MENU_WAV = "sound/menu/coop_fl_cock.wav"
+MENU_SET = 'set coop_armorySnd "play %s"\n' % MENU_WAV
+
+
+def menu_sound_files(disc, tmp, vgm):
+    """-> {MENU_WAV: wav bytes}; {} without vgmstream or the bank (the mod's own Armory sound then plays)"""
+    import flcore
+    import flaudio
+    if not vgm or not os.path.exists(vgm):
+        return {}
+    lv = MENU_LEVEL
+    try:
+        ab = disc.read(flcore.level_dir(lv) + lv.replace("_", "") + "ScrBnk.abk")
+    except Exception:
+        return {}
+    bnk, ents = flaudio.bnk_entries(ab)
+    if not bnk or MENU_STREAM not in {e["stream"] for e in ents}:
+        return {}
+    src = os.path.join(tmp, "menu.bnk")
+    open(src, "wb").write(bnk)
+    dst = os.path.join(tmp, "menu_cock.wav")
+    if not flaudio.vgm_decode(vgm, src, dst, MENU_STREAM):
+        return {}
+    return {MENU_WAV: open(dst, "rb").read()}
+
+
 def add_marker(pk3, name, text):
     """The detection marker (INTEGRATION section 1) as an entry of the level pak itself: autoexec.cfg execs it, so it
     exists exactly as long as the pak does."""
@@ -132,7 +183,7 @@ def add_marker(pk3, name, text):
         zi = zipfile.ZipInfo(name, (2026, 1, 1, 0, 0, 0))
         zi.compress_type = zipfile.ZIP_DEFLATED
         zi.external_attr = 0o644 << 16
-        z.writestr(zi, text.encode("ascii"))
+        z.writestr(zi, text if isinstance(text, bytes) else text.encode("ascii"))
 
 
 def drop_loose_marker(out_dir, sub, level):
