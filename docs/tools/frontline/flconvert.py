@@ -1400,6 +1400,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
           # entity coordinates past +-8192 (the jeep's start behind the gate) and Frontline's own step height (its body
           # walks over the 19-34u lips and kerbs MOHAA's 18u step snags on). server/sv_init.c reads both.
           ("hzm_widecoords", "1"), ("hzm_stepsize", str(sp.get("step_height", FL_STEP)))]
+    # [flfix2 2026-11-17] the capsule step rule (HZM engine bg_public.h pm_hzmCapsuleStep): Frontline's player is a capsule
+    # with no step-up routine (code decode: fl_player_move_notes.md) - it rides over a sill under any ceiling its body
+    # fits and keeps a step onto a steep face. Without it our step refused both: low "invisible walls" a player had
+    # to jump, where the original (no jump) walked. fl_levels.json "capsule_step" per level (absent = stock rule)
+    if sp.get("capsule_step"):
+        ws.append(("hzm_capsulestep", "1"))
     # [anvil] fl_levels "nav_spacing" (default 64 = 1_1 unchanged): 1_3 has 5380 navpoints, and the engine stops the map
     # at more than MAX_PATHNODES 4096 (navigate.h) path + cover nodes ("Exceeded MAX_PATHNODES", server crash, bug-11264)
     NAV_SP = float(sp.get("nav_spacing", 64))

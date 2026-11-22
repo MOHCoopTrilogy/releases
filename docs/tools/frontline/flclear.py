@@ -90,7 +90,10 @@ def low_cells(tris, o):
         g = gap[i]
         key = (int(col[i, 0]), int(col[i, 1]))
         if o["crawl_min"] <= g < o["crawl_to"]:
-            kind, top = "crawl", z[i] + o["slab"] + o["crawl_to"]
+            # [flfix2 2026-11-17] "crawl_cap": the cap's height over the floor, apart from the crawl_to that classifies the
+            # gap (doorways from door_min stay doorways): a 60u cap gave MOHAA's 54u crouch box no room for the engine's
+            # step test (it lifts the box 29-38u) over a rubble lip, where Frontline's 38u crouch went (1_1, the tunnel)
+            kind, top = "crawl", z[i] + o["slab"] + o.get("crawl_cap", o["crawl_to"])
         elif o["door_min"] <= g < o["door_to"]:
             kind, top = "door", z[i] + o["slab"] + o.get("door_cap", o["door_to"])
         else:
@@ -442,6 +445,10 @@ def normalise(tris, opts=None, tags=None, render_tris=None):
     m = o["margin"]
     carve = [((b["lo"][0] - m, b["lo"][1] - m, b["lo"][2] + o["carve_lo"] - o["slab"]),
               (b["hi"][0] + m, b["hi"][1] + m, b["hi"][2] + o["slab"] + 0.5)) for b in boxes]
+    # [flfix2 2026-11-17] "carve_extra": level-listed boxes carved the same way (collision only; the drawn geometry stays) -
+    # rubble that juts into a crawl passage where no low ceiling marks it (1_1: the mound in the tunnel to the interrogation
+    # room, where the user got stuck crouched)
+    carve += [(tuple(lo_), tuple(hi_)) for lo_, hi_ in o.get("carve_extra", [])]
     # bucket carve boxes for the overlap test
     out = []
     otags = []
