@@ -21,6 +21,7 @@ import re
 import struct
 import sys
 import wave
+import zlib
 
 import numpy as np
 
@@ -176,6 +177,9 @@ def sound_files(key, stub, snd_paths):
             w.close()
             name = alias if len(refs) == 1 else "%s%d" % (alias, n + 1)
             p = "sound/weapons/byo/%s/%s.wav" % (stub, name)
+            if len(p) > 63:      # MAX_QPATH 64 with the NUL: a longer name is refused at load ("Sound name too long",
+                # the grenade pulls / sniper reload singles, 2026-11-22) - the alias keeps its name, the file a short one
+                p = "sound/weapons/byo/%s/s%08x.wav" % (stub, zlib.crc32(name.encode()) & 0xffffffff)
             files[p] = out.getvalue()
             lines.append("\t\taliascache %s %s soundparms %s loaded %s" % (name, p, parms, MAPS))
     return files, lines
