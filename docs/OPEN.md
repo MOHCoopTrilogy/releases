@@ -153,15 +153,13 @@ Archived 2026-11-01 to `docs/archive/open-awaiting-playtest-2026-08-17.md` (stal
 
 ## Defects with evidence
 
-### Dying Breath cellar: lantern light on characters - parked (2026-11-17)
-In the original (ref_xemu anim/poses/leader_facing/partisan_vs_leader.png) Foshkovich by the cellar lantern is warm and
-about 2x the leader on the face (136/96/77 vs 61/55/50); ours lights both the same, slightly cool (discbot v213: 22/22/26
-vs 22/17/20). The baked vertex light does carry the lantern (128u means: lantern 36/32/24, his spot 25/23/17, leader
-12/12/12) but a local light grid built from it (0.7.45 trial, reverted) only lifted everyone 10-20% (ea_light_cmp_*.jpg),
-so a standing character in the original is lit by the lantern as a light, not the floor around him. Faithful route:
-decode the IrradianceVolumeTrigger probes (LTD_IRRAD_VTRIG_INT_01) or the lantern light's colour and falloff. A dlight
-we place at the lantern would be a deviation needing the user's OK. The yellow-green tint itself was our pickup glow
-(fixed, mod 134b0192).
+### Dying Breath character light + bloom (converter 0.7.48, engine bloommix-eng; 2026-11-22)
+Characters are lit from the original's decoded probes (FIDELITY C42) and the bloom zones mix as the original's
+additive bloom renormalised (C43). Validated: the partisan cellar (3 emulator spots, faces +6 % / +11-15 %) and the
+outdoor caller. UNVALIDATED: the church nave (INT_10/11), INT_12 and the huts - the emulator's walker cannot reach
+them yet (stuck at (52,63) / (19.8,55.8)); check them when it can. Parked (option C): a pre-bloom world (world gain
+/ (1 + k) per zone) with a truly ADDITIVE bloom, which would drop C42's 1 + 0.5 k character approximation - a re-grade
+of the whole map. The cellar lantern's warm directional side is averaged into the colour-only grid.
 
 ### Dying Breath ICS head look - engine gate (2026-11-17)
 The full head look (head over the shoulder, body held on the ICS point's yaw, as the original) needs game.dll's
