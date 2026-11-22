@@ -14,6 +14,11 @@ import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.path.join(HERE, "assets", "armory_base.urc")
+# [armory change sound 2026-11-22] every CHANGE (equip, finish, disc variant) plays ui/coop_armory_snd.cfg instead of a clicksound:
+# the mod ships it as the current apply.wav; the Frontline converter overrides the same path in the player's own BYO pak with the
+# Frontline Continue-game pistol cock (flguns.menu_sound_files). `play` is a CHAN_MENU local sound, so rapid clicks restart it
+# instead of stacking.
+CHANGE = "exec ui/coop_armory_snd.cfg;"
 
 # palette (the hdring HUD set + the cream icon finish)
 TRACK = (0.075, 0.071, 0.067)
@@ -246,8 +251,8 @@ def build_urc():
           extra=[("hovershader", '"textures/mohmenu/hzm_theme/mpui_glow"')])
     o.text("heroLk", 404, HERO_Y + HERO_H - 18, 68, "LOCKED", col=RED, enable="coop_loHeroLk", align="right")
     sy = HERO_Y + HERO_H + 3                  # the strip under the render
-    o.new("Button", "equipBtn", (398, sy, 76, 16), title="EQUIP", fg=TRACK, bg=ORANGE, font="verdana-12", sound="sound/menu/apply.wav",
-          enable="coop_loCanEq", stuff="vstr coop_loCcur")
+    o.new("Button", "equipBtn", (398, sy, 76, 16), title="EQUIP", fg=TRACK, bg=ORANGE, font="verdana-12", sound=None,
+          enable="coop_loCanEq", stuff=CHANGE + "vstr coop_loCcur")
     # finish swatches: 8 positions (STD fixed first, then open, then locked finishes; gen_armory.py ffill<slot>.cfg); the colour of position p is the finish it shows
     for p in range(8):
         x = 146 + p * 22
@@ -257,8 +262,8 @@ def build_urc():
             o.new("Label", "fcCol%d_%d" % (p, f), (x, sy, 19, 12), bg=FINCOL[f], enable="coop_loFp%dC%d" % (p, f))
         o.new("Label", "fcDim%d" % p, (x, sy, 19, 12), bg=(TRACK, 0.55), enable="coop_loFp%dL" % p)
         o.new("Label", "fcLk%d" % p, (x + 6, sy + 3, 7, 7), shader="textures/mohmenu/coop_lo_lock.tga", enable="coop_loFp%dL" % p)
-        o.new("Button", "fcBtn%d" % p, (x, sy, 19, 12), fg=(1, 1, 1), bg=None, sound="sound/menu/apply.wav", enable=e, title="",
-              stuff="vstr coop_loFp%dGo" % p, hover="vstr coop_loFp%dHov" % p, away="exec ui/loadout/reqclear.cfg")
+        o.new("Button", "fcBtn%d" % p, (x, sy, 19, 12), fg=(1, 1, 1), bg=None, sound=None, enable=e, title="",
+              stuff=CHANGE + "vstr coop_loFp%dGo" % p, hover="vstr coop_loFp%dHov" % p, away="exec ui/loadout/reqclear.cfg")
     # [v1.10.68 finishes2] the SECOND chip row (fids 40+, docs/tools/finishes2.tsv): 13 fixed positions under the first row, one per
     # finish in fid order (no sort chain), each chip a swatch of the real pattern (textures/coop_finishes_hd/sw/<key>.jpg, shipped in the
     # finishes pak). Padlock = coop_loLkFV<F> (lkc<F>_<0|1>.cfg, pushed per slot), click = coop_loFcmt<F> (open: fin<F>_s<n>.cfg, locked:
@@ -273,15 +278,15 @@ def build_urc():
         o.new("Label", "fc2Sw%d" % q, (x, sy2, 17, 11), shader="textures/coop_finishes_hd/sw/%s.jpg" % r["key"], enable="coop_loF2On")
         o.new("Label", "fc2Dim%d" % q, (x, sy2, 17, 11), bg=(TRACK, 0.55), enable="coop_loLkFV%d" % f)
         o.new("Label", "fc2Lk%d" % q, (x + 5, sy2 + 2, 7, 7), shader="textures/mohmenu/coop_lo_lock.tga", enable="coop_loLkFV%d" % f)
-        o.new("Button", "fc2Btn%d" % q, (x, sy2, 17, 11), fg=(1, 1, 1), bg=None, sound="sound/menu/apply.wav", enable="coop_loF2On", title="",
-              stuff="vstr coop_loFcmt%d" % f, hover="exec ui/loadout/reqf%d.cfg" % f, away="exec ui/loadout/reqclear.cfg")
+        o.new("Button", "fc2Btn%d" % q, (x, sy2, 17, 11), fg=(1, 1, 1), bg=None, sound=None, enable="coop_loF2On", title="",
+              stuff=CHANGE + "vstr coop_loFcmt%d" % f, hover="exec ui/loadout/reqf%d.cfg" % f, away="exec ui/loadout/reqclear.cfg")
     # [discguns 2026-11-16] the DISC variant chips (gen_finish_ui.DISC): stacked over CUSTOMIZE on the hero, one per disc, shown only
     # when the inspected gun has that disc's variant (coop_loDiscV<F>) AND this PC converted the disc (ROM coop_byoGunsFl / Ea): a
     # player without the disc never sees one. Click = the slot's coop_loFgo<F> (fin<F>_s<n>.cfg); the server re-checks ownership.
     import gen_finish_ui as GFU
     for q, (f, name, cv) in enumerate(GFU.DISC):
         o.new("Button", "discBtn%d" % f, (404, HERO_Y + HERO_H - 52 - q * 17, 68, 14), fg=BLUE, bg=PANEL, title={60: "FRONTLINE", 70: "EUR ASSAULT"}.get(f, name),
-              font="verdana-12", align="center", sound="sound/menu/apply.wav", stuff="vstr coop_loFgo%d" % f,
+              font="verdana-12", align="center", sound=None, stuff=CHANGE + "vstr coop_loFgo%d" % f,
               enable="coop_loDiscV%d %s" % (f, cv), extra=[("hovershader", '"textures/mohmenu/hzm_theme/mpui_glow"')])
     # the finish caption + name (and a locked chip's "37 / 100 KAR98K kills") moved from under the first row to the hero's top right
     o.text("finCap", 318, HERO_Y + 3, 40, "FINISH", col=FAINT, enable="coop_loFinUIOn")

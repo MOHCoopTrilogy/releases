@@ -849,7 +849,13 @@ def w_label(name, rect, text=None, link=None, order=None, model=False, xfmcvar=N
     return L
 
 
-def w_button(name, rect, title, stuff, enabled=None, hover=None, away=None):
+# [armory change sound 2026-11-22] a CHANGE button (weapon pick, finish pick) plays ui/coop_armory_snd.cfg (mod: apply.wav; the
+# Frontline converter overrides it in the player's BYO pak with the Frontline pistol cock) instead of its clicksound
+CHANGE = "exec ui/coop_armory_snd.cfg;"
+SHARED_EXEC = {"ui/coop_armory_snd.cfg"}   # hand-kept mod file (+ the Frontline converter's override), not an output
+
+
+def w_button(name, rect, title, stuff, enabled=None, hover=None, away=None, change=False):
     L = ["resource", "Button", "{",
          'name "%s"' % name,
          'title "%s"' % title,
@@ -857,11 +863,10 @@ def w_button(name, rect, title, stuff, enabled=None, hover=None, away=None):
          "fgcolor 0.84 0.82 0.76 1.00",
          "bgcolor 0.09 0.10 0.13 0.90",
          'borderstyle "3D_BORDER"',
-         'font "verdana-12"',
-         'clicksound "sound/menu/apply.wav"']
+         'font "verdana-12"'] + ([] if change else ['clicksound "sound/menu/apply.wav"'])
     if enabled is not None:
         L.append('enabledcvar "%s"' % enabled)
-    L.append('stuffcommand "%s"' % stuff)
+    L.append('stuffcommand "%s"' % ((CHANGE + stuff) if change else stuff))
     if hover is not None:
         L.append('hovercommand "%s"' % hover)
     if away is not None:
@@ -962,7 +967,7 @@ def urc(side, rows, defaults=False):
             y = 97 + 19 * pos
             L += w_button("tile%s" % w["mpid"], (306, y, 162, 16), w["name"],
                           "exec ui/%s/%s%s.cfg" % (dir_, cfg_prefix, w["mpid"]),
-                          enabled=cvar(side, "Tab%d" % k),
+                          enabled=cvar(side, "Tab%d" % k), change=True,
                           hover="exec ui/%s/h%s.cfg" % (dir_, w["mpid"]))   # [bug-2779] coop-parity unlock hint
             if not w["starter"]:
                 # two AND-ed conditions (engine enabledcvar multi-token form, uiwidget.cpp isEnabled): its tab is
@@ -987,7 +992,7 @@ def urc(side, rows, defaults=False):
         # unlock condition - so you see the full locked/unlocked list + how to earn each, instead of the old
         # greyed-out buttons that read as "just OFF/ON".
         L += w_button("optf_%d" % idx, (153, y, 128, 16), lbl,
-                      "exec ui/%s/f%d.cfg" % (dir_, idx),
+                      "exec ui/%s/f%d.cfg" % (dir_, idx), change=True,
                       hover="exec ui/%s/hf%d.cfg" % (dir_, idx))   # [bug-2779] coop-parity unlock hint
         if fin != "none":
             L += w_label("lkf_%d" % idx, (285, y + 1, 13, 13), order=8,
@@ -1691,7 +1696,7 @@ def assert_clean(files):
         if "\n" in text and any('"' in ln and ln.count('"') % 2 for ln in text.split("\n")):
             raise SystemExit("gen_mp_armory: %s has an odd-quote line" % rel)
         for m in exec_rx.finditer(text):
-            if m.group(1) not in outset:
+            if m.group(1) not in outset and m.group(1) not in SHARED_EXEC:
                 raise SystemExit("gen_mp_armory: %s execs %s which is not an output" % (rel, m.group(1)))
         for m in marker_rx.finditer(text):
             if not grammar_rx.match(m.group(1)):
