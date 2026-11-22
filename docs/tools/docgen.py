@@ -126,6 +126,7 @@ NON_SOURCE_AREAS = {
 # The bare `server_home` (the documented dedicated-harness homepath) does not match `server_home_*` and stays indexed.
 NON_SOURCE_PATTERNS = {
     "hzm-mod-*": "scratch working copy of the mod (per-feature worktree)",
+    "openmohaa-hzm-*": "scratch working copy of the engine (per-feature worktree); the bare openmohaa-hzm stays indexed",
     "server_home_*": "soak / A-B harness server homepath",
     "_soak_*": "soak / A-B harness run output",
 }

@@ -13,11 +13,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `65936aa8 2026-11-22 docgen: per-file (size, mtime) cache for gen_filemap reads - full build 3593 s -> 37 s, output byte-identical` |
-| commits | 1,564 |
+| HEAD | `d73aacfd 2026-11-22 docgen: hzm-mod-*, server_home_*, _soak_* are reference areas (counted, not indexed); regenerated docs` |
+| commits | 1,565 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **5210 modified, 2226 untracked** |
-| unstaged diff | 5210 files changed, 20413 insertions(+), 1492568 deletions(-) |
+| unstaged diff | 5210 files changed, 20388 insertions(+), 1492565 deletions(-) |
 
 > Working tree is dirty. Everything in those 7436 files exists only here - a `git checkout` destroys it with no restore point.
 
@@ -25,7 +25,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-11 | 812 |
+| 2026-11 | 813 |
 | 2026-10 | 421 |
 | 2026-09 | 120 |
 | 2026-08 | 157 |
@@ -33,10 +33,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1564)
+### Commits since 2026-01-01 (1565)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `d73aacfd` | 2026-11-22 | joncurry94-tech | docgen: hzm-mod-*, server_home_*, _soak_* are reference areas (counted, not indexed); regenerated docs |
 | `65936aa8` | 2026-11-22 | joncurry94-tech | docgen: per-file (size, mtime) cache for gen_filemap reads - full build 3593 s -> 37 s, output byte-identical |
 | `9cdfe360` | 2026-11-22 | joncurry94-tech | docs/generated/README.md: list server_settings.json (docgen build) |
 | `0efe8c85` | 2026-11-22 | joncurry94-tech | gfx flip gate: register the bloommix-eng renderer (bba498e2; per-zone bloom mix, 0 = off; smoked menu + m1l1 + coop_ea_1_11) |
