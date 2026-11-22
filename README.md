@@ -50,6 +50,14 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.88 - Host and Hold
+
+- **New MOH Coop Server app** (desktop icon): easy setup, every coop setting, dedicated or host-and-play, pick the CPU thread the server runs on, automatic per-map recording, router and firewall setup (asks first), auto-restart, Discord notices.
+- **Disc missions:** no more invisible low walls to jump, and the crawl tunnels and crouch spots work.
+- **Sealed Orders:** hold the bridge until the paratroopers land, the far-bank wave waits for the tower MG, snipers in real cover, a proper officer fight.
+- **Their Dying Breath:** hold the church until a friendly squad arrives; the partisan leader faces the room and holds his PPSh; people lit from the original game's own light, with its soft indoor haze.
+- **Also:** dogs fight without errors, the officer's binoculars are easy to spot, and Frontline owners hear its pistol cock in the Armory.
+
 ### v1.10.87 - Steady Aim
 
 - **M1 Garand and Mosin aimed reloads** stay in your shoulder and on target, with the action in view, in every stance.
