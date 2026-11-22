@@ -26,6 +26,7 @@ The rule: **anything extractable from code, git or buglog.json must be generated
 | `filemap.tsv` | every in-scope file, one row, greppable | same sweep |
 | `CVARS_COOP.md` | all `coop_*` cvars: engine default, cfg seed, script sites, ui | `.scr` + `.cfg` + `.urc` + `Cvar_Get` |
 | `CVARS_ENGINE.md` | every cvar the engine registers, with default and flags | `Cvar_Get` under `openmohaa-hzm/code/` |
+| `server_settings.json` | the server host GUI's settings catalogue (server-relevant cvars, defaults, groups) + mission boards; ships as `hzm_server_settings.json` | same cvar sweep + `docs/tools/servergui_overlay.json` + `ui/coop_start/*.cfg` |
 | `SUBSYSTEMS.md` | `coop_mod/` scripts, boot order, coop-integrated maps | `coop_mod/*.scr`, `maps/*.scr` |
 | `FIX_LEDGER.md` | every buglog entry, chronological | `.wolf/buglog.json` |
 | `FIX_INDEX.md` | **file -> ordered bug ids**, and tag index | `.wolf/buglog.json` |
@@ -51,10 +52,10 @@ The authored files carry judgement, so they cannot be generated - but they can s
 | `docs/21-user-preferences.md` | 13 KB | 12 KB | **OVER - prune** |
 | `docs/DECISIONS.md` | 46 KB | 45 KB | **OVER - prune** |
 | `docs/ENGINE.md` | 40 KB | 40 KB | ok |
-| `docs/FEATURES.md` | 92 KB | 90 KB | **OVER - prune** |
-| `docs/HISTORY.md` | 20 KB | 30 KB | ok |
-| `docs/OPEN.md` | 51 KB | 50 KB | **OVER - prune** |
-| `docs/SOURCE_OF_TRUTH.md` | 32 KB | 40 KB | ok |
-| `docs/TRAPS.md` | 71 KB | 70 KB | **OVER - prune** |
+| `docs/FEATURES.md` | 90 KB | 90 KB | ok |
+| `docs/HISTORY.md` | 27 KB | 30 KB | ok |
+| `docs/OPEN.md` | 49 KB | 50 KB | ok |
+| `docs/SOURCE_OF_TRUTH.md` | 33 KB | 40 KB | ok |
+| `docs/TRAPS.md` | 70 KB | 70 KB | ok |
 
-Input fingerprint of this generation: `31be855a0233225bea6c3f2d07c337a7bd5c2fad8c47b079cdae2ede9b825f32`
+Input fingerprint of this generation: `ff9cd9f4cc5037df8e0bfdc18d6b0c281151812e1093374bb15f38ad8e86f56c`
