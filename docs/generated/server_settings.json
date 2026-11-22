@@ -41,6 +41,7 @@
   "coop_alarmSnipersMin",
   "coop_alarmSnipersPer",
   "coop_alarmSnipersRange",
+  "coop_armorySnd",
   "coop_armoryStatus",
   "coop_autoReverb",
   "coop_barrelSmoke",
@@ -5205,7 +5206,7 @@
   "coop_xp_totalOwn"
  ],
  "counts": {
-  "client_only": 5181,
+  "client_only": 5182,
   "excluded_name": 279,
   "excluded_test_only": 41,
   "page_gameplay": 1403,
@@ -12690,7 +12691,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1702,
+     "line": 1705,
      "value": "1",
      "verb": "seta"
     },
@@ -18320,7 +18321,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1661,
+     "line": 1664,
      "value": "1",
      "verb": "seta"
     }
@@ -18444,7 +18445,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1716,
+     "line": 1719,
      "value": "300",
      "verb": "seta"
     },
@@ -21668,7 +21669,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1830,
+     "line": 1833,
      "value": "1",
      "verb": "set"
     }
@@ -23059,7 +23060,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1690,
+     "line": 1693,
      "value": "1",
      "verb": "seta"
     },
@@ -23543,7 +23544,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1963,
+     "line": 1966,
      "value": "0",
      "verb": "seta"
     }
@@ -24999,7 +25000,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1605,
+     "line": 1608,
      "value": "1",
      "verb": "seta"
     }
@@ -25077,7 +25078,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1606,
+     "line": 1609,
      "value": "1",
      "verb": "seta"
     }
@@ -25100,7 +25101,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1611,
+     "line": 1614,
      "value": "75",
      "verb": "seta"
     }
@@ -25123,7 +25124,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1612,
+     "line": 1615,
      "value": "2500",
      "verb": "seta"
     }
@@ -25185,7 +25186,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1607,
+     "line": 1610,
      "value": "28",
      "verb": "seta"
     }
@@ -26567,7 +26568,7 @@
    "seeds": [
     {
      "cfg": "autoexec.cfg",
-     "line": 1601,
+     "line": 1604,
      "value": "",
      "verb": "seta"
     }
@@ -28530,7 +28531,7 @@
     },
     {
      "cfg": "autoexec.cfg",
-     "line": 1807,
+     "line": 1810,
      "value": "2",
      "verb": "set"
     }

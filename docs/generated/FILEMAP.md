@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 1,134,387 |
+| files in the workspace | 1,134,392 |
 | bytes | 120.4 GB |
-| files in project scope (indexed per-file) | 114,533 |
-| source files (per-file rows with line counts) | 26,054 |
+| files in project scope (indexed per-file) | 114,538 |
+| source files (per-file rows with line counts) | 26,055 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -25,7 +25,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
 | `docs` | 73,434 | 42244.0 MB | **yes** | this documentation set (authored + generated) |
-| `hzm-mohaa-coop-mod` | 26,835 | 15442.5 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 26,836 | 15442.5 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `hzm-mod-attic` | 17,780 | 502.1 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
 | `hzm-mod-benchfix` | 17,754 | 423.0 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
 | `hzm-mod-engrave` | 15,476 | 420.2 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
@@ -192,7 +192,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `_research` | 175 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `manifests` | 166 | 3.1 MB | **yes** | release manifests consumed by the auto-updater |
 | `_gl2test_home` | 149 | 26.4 MB | **yes** |  |
-| `<root>` | 145 | 161.9 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
+| `<root>` | 146 | 161.9 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `_hd_m3l1a` | 145 | 305.8 MB | **yes** |  |
 | `_hd_discstock` | 115 | 132.1 MB | **yes** |  |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
@@ -203,7 +203,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `server_home_ttnav_sliv2` | 93 | 152.1 MB | no - reference | soak / A-B harness server homepath |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
-| `public_servers` | 77 | 9.3 MB | **yes** |  |
+| `public_servers` | 80 | 9.3 MB | **yes** |  |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `server_home` | 63 | 14.8 MB | **yes** |  |
 | `_tools` | 61 | 153.0 MB | no - reference | downloaded third-party binaries |
@@ -1627,7 +1627,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Extension census (whole workspace)
 | ext | files |
 |---|---:|
-| `.cfg` | 462,177 |
+| `.cfg` | 462,178 |
 | `.tik` | 112,325 |
 | `.pre_upscale_nobuild` | 86,388 |
 | `.h` | 83,725 |
@@ -1636,7 +1636,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.jpg` | 61,343 |
 | `.cpp` | 41,195 |
 | `.txt` | 17,357 |
-| `.md` | 13,277 |
+| `.md` | 13,278 |
 | `.urc` | 12,902 |
 | `.obj` | 11,402 |
 | `.tga` | 10,643 |
@@ -1672,7 +1672,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | directory | files | size | top extensions |
 |---|---:|---:|---|
 | `--help` | 25 | 6.55 MB | .tga×25 |
-| `.` | 145 | 161.91 MB | .md×55, .log×24, .txt×16, .ps1×15 |
+| `.` | 146 | 161.91 MB | .md×56, .log×24, .txt×16, .ps1×15 |
 | `.harness_queue` | 2,009 | 0.23 MB | .done×2007, .json×2 |
 | `_backups` | 1 | 0.02 MB | .bak×1 |
 | `_backups/cmake_stash` | 27 | 64.09 MB | .dll×12, .pdb×12, .map×3 |
@@ -2480,7 +2480,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/duststorm_2026-09-28/sim` | 6 | 0.02 MB | .py×4, .json×1, .txt×1 |
 | `docs/proposals/duststorm_2026-09-28/staged` | 7 | 0.12 MB | .scr×3, .shader×2, .tik×2 |
 | `docs/proposals/duststorm_2026-09-28/staged/textures/coop_dust` | 30 | 1.97 MB | .tga×30 |
-| `docs/proposals/eapolish_2026-11-10` | 2 | 0.07 MB | .md×2 |
+| `docs/proposals/eapolish_2026-11-10` | 2 | 0.08 MB | .md×2 |
 | `docs/proposals/emotes_2026-11-03` | 4 | 0.93 MB | .jpg×3, .png×1 |
 | `docs/proposals/emotes_2026-11-03/over/coop_mod` | 1 | 0.00 MB | .scr×1 |
 | `docs/proposals/emotes_2026-11-03/tools` | 1 | 0.02 MB | .py×1 |
@@ -3968,7 +3968,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/tools/ea/hd` | 10 | 4.04 MB | .jpg×9, .txt×1 |
 | `docs/tools/engrave` | 11 | 0.10 MB | .py×11 |
 | `docs/tools/engrave/qa` | 7 | 0.04 MB | .py×4, .json×3 |
-| `docs/tools/frontline` | 61 | 0.86 MB | .py×51, .json×7, .sh×1, .txt×1 |
+| `docs/tools/frontline` | 61 | 0.87 MB | .py×51, .json×7, .sh×1, .txt×1 |
 | `docs/tools/frontline/hd` | 10 | 6.24 MB | .jpg×8, .txt×1, .json×1 |
 | `docs/tools/harness_cbt` | 1 | 0.00 MB | .c×1 |
 | `docs/tools/hzm_lodfog_selftest` | 3 | 0.01 MB | .bat×1, .c×1, .py×1 |
@@ -4245,7 +4245,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-eng-snipers2/misc/cmake` | 1 | 0.01 MB | .cmake×1 |
 | `hzm-eng-snipers2/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `hzm-eng-snipers2/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
-| `hzm-mohaa-coop-mod` | 73 | 9740.80 MB | .pk3×34, .txt×12, .jpg×10, .cfg×5 |
+| `hzm-mohaa-coop-mod` | 73 | 9740.81 MB | .pk3×34, .txt×12, .jpg×10, .cfg×5 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -4860,7 +4860,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/wilderness` | 2 | 3.72 MB | .jpg×2 |
 | `hzm-mohaa-coop-mod/ubermode` | 6 | 0.15 MB | .scr×6 |
 | `hzm-mohaa-coop-mod/ubersound` | 26 | 7.22 MB | .scr×26 |
-| `hzm-mohaa-coop-mod/ui` | 299 | 3.76 MB | .urc×225, .cfg×58, .inc×8, .txt×5 |
+| `hzm-mohaa-coop-mod/ui` | 300 | 3.76 MB | .urc×225, .cfg×59, .inc×8, .txt×5 |
 | `hzm-mohaa-coop-mod/ui/coop_fov` | 33 | 0.01 MB | .cfg×31, .bat×2 |
 | `hzm-mohaa-coop-mod/ui/coop_menumusic` | 25 | 0.01 MB | .cfg×25 |
 | `hzm-mohaa-coop-mod/ui/coop_mp_record` | 79 | 0.01 MB | .cfg×79 |
@@ -5317,7 +5317,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/cmake` | 1 | 0.01 MB | .cmake×1 |
 | `openmohaa-hzm/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
-| `public_servers` | 9 | 0.02 MB | .py×6, .ps1×3 |
+| `public_servers` | 12 | 0.02 MB | .py×6, .ps1×3, .stop×3 |
 | `public_servers/_superseded_lobby_patch/srv1` | 1 | 0.06 MB | .scr×1 |
 | `public_servers/_superseded_lobby_patch/srv1_hudtest` | 1 | 0.06 MB | .scr×1 |
 | `public_servers/_superseded_lobby_patch/srv2` | 1 | 0.06 MB | .scr×1 |
@@ -11075,7 +11075,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_armory.py` | 571 | 33.0 KB | !/usr/bin/env python3 |
 | `gen_armory_bg.py` | 254 | 10.8 KB | plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only). |
 | `gen_armory_cos.py` | 147 | 7.3 KB | !/usr/bin/env python3 |
-| `gen_armory_urc.py` | 394 | 25.6 KB | !/usr/bin/env python3 |
+| `gen_armory_urc.py` | 399 | 26.0 KB | !/usr/bin/env python3 |
 | `gen_barricade.py` | 727 | 36.6 KB | !/usr/bin/env python3 |
 | `gen_baseassault_maps.py` | 149 | 6.2 KB | !/usr/bin/env python |
 | `gen_basebuild_maps.py` | 92 | 4.1 KB | !/usr/bin/env python3 |
@@ -11139,7 +11139,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_menu_slider.py` | 193 | 7.6 KB | !/usr/bin/env python3 |
 | `gen_metal_brushes.py` | 214 | 9.5 KB | !/usr/bin/env python |
 | `gen_mp_ambience.py` | 178 | 8.7 KB | !/usr/bin/env python3 |
-| `gen_mp_armory.py` | 1,759 | 98.8 KB | !/usr/bin/env python |
+| `gen_mp_armory.py` | 1,764 | 99.3 KB | !/usr/bin/env python |
 | `gen_mp_challenges.py` | 515 | 24.5 KB | !/usr/bin/env python |
 | `gen_mp_gungame.py` | 167 | 7.7 KB | !/usr/bin/env python |
 | `gen_navheat.py` | 206 | 10.7 KB | !/usr/bin/env python3 |
@@ -12121,9 +12121,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `eazones.py` | 223 | 11.3 KB | !/usr/bin/env python3 |
 | `fl_gates.py` | 136 | 5.0 KB | !/usr/bin/env python3 |
 | `flaudio.py` | 96 | 3.6 KB | !/usr/bin/env python3 |
-| `flbsp.py` | 535 | 28.3 KB | !/usr/bin/env python3 |
+| `flbsp.py` | 538 | 28.5 KB | !/usr/bin/env python3 |
 | `flcliff.py` | 97 | 4.5 KB | !/usr/bin/env python3 |
-| `flconvert.py` | 2,470 | 153.1 KB | !/usr/bin/env python3 |
+| `flconvert.py` | 2,488 | 155.0 KB | !/usr/bin/env python3 |
 | `flcoop2.py` | 190 | 9.7 KB | !/usr/bin/env python3 |
 | `flcore.py` | 190 | 8.2 KB | !/usr/bin/env python3 |
 | `flgeom.py` | 117 | 4.7 KB | !/usr/bin/env python3 |
@@ -12190,9 +12190,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `flbsp.py` | 370 | 18.4 KB | !/usr/bin/env python3 |
 | `flchar.py` | 829 | 41.4 KB | !/usr/bin/env python3 |
 | `flcharup.py` | 149 | 7.5 KB | !/usr/bin/env python3 |
-| `flclear.py` | 549 | 26.4 KB | !/usr/bin/env python3 |
+| `flclear.py` | 556 | 27.1 KB | !/usr/bin/env python3 |
 | `flcliff.py` | 145 | 7.0 KB | !/usr/bin/env python3 |
-| `flconvert.py` | 1,527 | 91.8 KB | !/usr/bin/env python3 |
+| `flconvert.py` | 1,533 | 92.3 KB | !/usr/bin/env python3 |
 | `flcoop2.py` | 131 | 6.7 KB | !/usr/bin/env python3 |
 | `flcore.py` | 255 | 11.9 KB | !/usr/bin/env python3 |
 | `flcover.py` | 231 | 12.2 KB | !/usr/bin/env python3 |
@@ -12225,7 +12225,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `fltexmatch.py` | 117 | 5.3 KB | !/usr/bin/env python3 |
 | `flupscale.py` | 490 | 26.3 KB | !/usr/bin/env python3 |
 | `flvis.py` | 77 | 3.7 KB | !/usr/bin/env python3 |
-| `hzmconv.py` | 296 | 17.6 KB | !/usr/bin/env python3 |
+| `hzmconv.py` | 347 | 20.8 KB | !/usr/bin/env python3 |
 | `mkoverlay.py` | 15 | 0.7 KB | !/usr/bin/env python3 |
 | `mohskel.py` | 181 | 8.1 KB | !/usr/bin/env python3 |
 | `poc_render.py` | 65 | 3.2 KB | !/usr/bin/env python3 |
@@ -15537,7 +15537,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `autoexec.cfg` | 1,967 | 149.1 KB | HZM Extended Coop Mod |
+| `autoexec.cfg` | 1,970 | 149.4 KB | HZM Extended Coop Mod |
 | `coop.cfg` | 3 | 0.1 KB | DEVELOPER CONFIG FILE |
 | `coop_defaults.cfg` | 841 | 59.5 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `net_cl.cfg` | 18 | 1.2 KB | HZM Coop recommended CLIENT settings. |
@@ -19001,7 +19001,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `uberdialog.scr` | 42,284 | 6036.6 KB | UBERDIALOG |
 | `ubersound.scr` | 5,720 | 621.3 KB | start chrissstrahl - fix sound issue |
 
-### `hzm-mohaa-coop-mod/ui/` — 285 source files
+### `hzm-mohaa-coop-mod/ui/` — 286 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -19059,6 +19059,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coopAdmin.urc` | 782 | 13.2 KB |  |
 | `coopDev.urc` | 276 | 5.6 KB |  |
 | `coopMomMenuExample.urc` | 276 | 5.4 KB |  |
+| `coop_armory_snd.cfg` | 5 | 0.4 KB | HZM coop [armory change sound 2026-11-22]: played by every Armory CHANGE (equip, finish, disc variant, MP wea… |
 | `coop_byodisc.urc` | 415 | 8.2 KB |  |
 | `coop_chronoresume.urc` | 175 | 3.8 KB |  |
 | `coop_controls.urc` | 335 | 6.7 KB |  |
@@ -19066,19 +19067,19 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_hostrules.urc` | 735 | 14.0 KB |  |
 | `coop_jeepEnter.urc` | 31 | 0.5 KB |  |
 | `coop_lastmission.urc` | 171 | 3.3 KB |  |
-| `coop_loadout.urc` | 12,875 | 187.1 KB |  |
+| `coop_loadout.urc` | 12,851 | 187.0 KB |  |
 | `coop_login.urc` | 280 | 5.1 KB |  |
 | `coop_mom.urc` | 287 | 5.5 KB |  |
 | `coop_mp_options.urc` | 171 | 3.5 KB |  |
 | `coop_mp_record.urc` | 8,534 | 121.7 KB |  |
 | `coop_mpa_appearance.urc` | 3,575 | 70.7 KB |  |
-| `coop_mpa_armory.urc` | 1,601 | 30.2 KB |  |
-| `coop_mpa_defaults.urc` | 1,600 | 30.2 KB |  |
+| `coop_mpa_armory.urc` | 1,552 | 30.0 KB |  |
+| `coop_mpa_defaults.urc` | 1,551 | 29.9 KB |  |
 | `coop_mphostrules.urc` | 944 | 19.8 KB |  |
 | `coop_mpmenu.urc` | 534 | 13.3 KB |  |
 | `coop_mpx_appearance.urc` | 3,109 | 61.2 KB |  |
-| `coop_mpx_armory.urc` | 1,405 | 26.4 KB |  |
-| `coop_mpx_defaults.urc` | 1,404 | 26.3 KB |  |
+| `coop_mpx_armory.urc` | 1,363 | 26.1 KB |  |
+| `coop_mpx_defaults.urc` | 1,362 | 26.1 KB |  |
 | `coop_objectives.urc` | 1,509 | 27.5 KB |  |
 | `coop_padaim.urc` | 637 | 12.5 KB |  |
 | `coop_padlayout.urc` | 1,571 | 29.0 KB |  |

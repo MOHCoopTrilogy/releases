@@ -17,9 +17,9 @@ Union of four sources, all swept fresh:
 
 | metric | count |
 |---|---:|
-| distinct `coop_*` cvars | 6466 |
+| distinct `coop_*` cvars | 6467 |
 | registered with a default by the engine | 623 |
-| seeded by a shipped cfg | 4035 |
+| seeded by a shipped cfg | 4036 |
 | seeded nowhere at all | 2010 |
 | **&nbsp;&nbsp;of those, read by a script** | **668** |
 | &nbsp;&nbsp;of those, menu-only (set at runtime by the UI) | 1342 |
@@ -373,9 +373,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_adsSpeedMult` | `1.0` | `CVAR_ARCHIVE` | `fgame/player.cpp:5035` | FORCED `1.0` @ `autoexec.cfg:388` |  |  |
 | `coop_adsSpeedMult3p` | `0.7` | `CVAR_ARCHIVE` | `fgame/player.cpp:5226` | FORCED `1.0` @ `autoexec.cfg:268` |  |  |
 | `coop_adsSpread` | `0.55` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2058` (+1) |  |  |  |
-| `coop_adsTrace` | `0` | `0` | `cgame/cg_view.c:4281` (+2) | FORCED `0` @ `autoexec.cfg:1803` |  |  |
+| `coop_adsTrace` | `0` | `0` | `cgame/cg_view.c:4281` (+2) | FORCED `0` @ `autoexec.cfg:1806` |  |  |
 | `coop_advTraining` |  |  |  |  | `maps/m4l0.scr:23` (+1) | `ui/coop_training.urc` |
-| `coop_aggroDebug` |  |  |  | FORCED `0` @ `autoexec.cfg:1710` | `anim/disguise_deny.scr:34` (+47) |  |
+| `coop_aggroDebug` |  |  |  | FORCED `0` @ `autoexec.cfg:1713` | `anim/disguise_deny.scr:34` (+47) |  |
 | `coop_aiaudit` |  |  |  |  | `maps/coop_ea_1_11.scr:169` (+2) |  |
 | `coop_aiauditEvery` |  |  |  |  | `coop_mod/aiaudit.scr:35` |  |
 | `coop_aiBehav` | `0` | `0` | `fgame/actor_cover.cpp:534` (+4) | FORCED `0` @ `autoexec.cfg:739` | `coop_mod/aibehav.scr:20` (+18) |  |
@@ -487,6 +487,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_arcclipTest` |  |  |  |  | `coop_mod/bunker.scr:540` |  |
 | `coop_arenaAmb` |  |  |  | FORCED `forest_night` @ `autoexec.cfg:1348`<br>other `forest_night` @ `coop_mod/cfg/wallgun.cfg:31` | `coop_mod/ambience.scr:125` |  |
 | `coop_arenaUnlockDoors` |  |  |  |  | `maps/e3l4_arena.scr:494` |  |
+| `coop_armorySnd` |  |  |  | FORCED `play sound/menu/apply.w…` @ `autoexec.cfg:1588` |  |  |
 | `coop_armoryStatus` |  | `0` | `cgame/cg_coopfeed.c:129` |  |  |  |
 | `coop_artery` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4415` | DEFAULT `1` @ `coop_defaults.cfg:605` |  |  |
 | `coop_arteryBleedTime` | `8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4568` | DEFAULT `8` @ `coop_defaults.cfg:607` |  |  |
@@ -792,7 +793,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_discScaleSelfTest` |  |  |  |  | `coop_mod/discscale.scr:38` |  |
 | `coop_discScaleTest` |  |  |  |  | `coop_mod/discscale.scr:46` (+1) |  |
 | `coop_discScaleWaveCap` |  |  |  |  | `coop_mod/discscale.scr:119` |  |
-| `coop_disgAggroParity` |  |  |  | FORCED `1` @ `autoexec.cfg:1702`<br>DEFAULT `1` @ `coop_defaults.cfg:466` | `coop_mod/aihandler.scr:1362` (+2) |  |
+| `coop_disgAggroParity` |  |  |  | FORCED `1` @ `autoexec.cfg:1705`<br>DEFAULT `1` @ `coop_defaults.cfg:466` | `coop_mod/aihandler.scr:1362` (+2) |  |
 | `coop_disRespawnWarp` |  |  |  |  | `coop_mod/server.scr:276` (+1) |  |
 | `coop_distantFire` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:628` | DEFAULT `1` @ `coop_defaults.cfg:167`<br>other `1` @ `coop_mod/cfg/coop_fielddefaults.cfg:26`<br>other `1` @ `coop_mod/cfg/coop_wr_audiodefaults.cfg:14` |  | `ui/coop_settings.urc` (+1) |
 | `coop_distantFireDist` | `2500` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:629` | FORCED `2500` @ `autoexec.cfg:1335` |  |  |
@@ -1180,14 +1181,14 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_heftStamina` | `0.6` | `CVAR_ARCHIVE` | `fgame/player.cpp:18776` |  |  |  |
 | `coop_heftSuppress` | `0.6` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2702` |  |  |  |
 | `coop_heftTorsoLag` | `0.9` | `CVAR_ARCHIVE` | `fgame/player.cpp:17376` |  |  |  |
-| `coop_helmetDebug` |  |  |  | FORCED `0` @ `autoexec.cfg:1678` | `coop_mod/helmet.scr:200` |  |
-| `coop_helmetPitch` |  |  |  | FORCED `0` @ `autoexec.cfg:1651` | `coop_mod/helmet.scr:679` (+2) |  |
-| `coop_helmetRoll` |  |  |  | FORCED `0` @ `autoexec.cfg:1653` | `coop_mod/helmet.scr:681` (+2) |  |
-| `coop_helmetScale` |  |  |  | FORCED `1` @ `autoexec.cfg:1654` |  |  |
-| `coop_helmetX` |  |  |  | FORCED `0` @ `autoexec.cfg:1648` | `coop_mod/helmet.scr:667` (+2) |  |
-| `coop_helmetY` |  |  |  | FORCED `0` @ `autoexec.cfg:1649` | `coop_mod/helmet.scr:668` (+2) |  |
-| `coop_helmetYaw` |  |  |  | FORCED `0` @ `autoexec.cfg:1652` | `coop_mod/helmet.scr:680` (+2) |  |
-| `coop_helmetZ` |  |  |  | FORCED `6` @ `autoexec.cfg:1650` | `coop_mod/helmet.scr:669` (+2) |  |
+| `coop_helmetDebug` |  |  |  | FORCED `0` @ `autoexec.cfg:1681` | `coop_mod/helmet.scr:200` |  |
+| `coop_helmetPitch` |  |  |  | FORCED `0` @ `autoexec.cfg:1654` | `coop_mod/helmet.scr:679` (+2) |  |
+| `coop_helmetRoll` |  |  |  | FORCED `0` @ `autoexec.cfg:1656` | `coop_mod/helmet.scr:681` (+2) |  |
+| `coop_helmetScale` |  |  |  | FORCED `1` @ `autoexec.cfg:1657` |  |  |
+| `coop_helmetX` |  |  |  | FORCED `0` @ `autoexec.cfg:1651` | `coop_mod/helmet.scr:667` (+2) |  |
+| `coop_helmetY` |  |  |  | FORCED `0` @ `autoexec.cfg:1652` | `coop_mod/helmet.scr:668` (+2) |  |
+| `coop_helmetYaw` |  |  |  | FORCED `0` @ `autoexec.cfg:1655` | `coop_mod/helmet.scr:680` (+2) |  |
+| `coop_helmetZ` |  |  |  | FORCED `6` @ `autoexec.cfg:1653` | `coop_mod/helmet.scr:669` (+2) |  |
 | `coop_helmtest` |  |  |  | other `1` @ `coop_mod/cfg/helmtest.cfg:2` | `coop_mod/main.scr:218` |  |
 | `coop_hideObjCards` | `0` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_keys.cpp:1039` | DEFAULT `0` @ `coop_defaults.cfg:159`<br>other `0` @ `coop_mod/cfg/coop_fielddefaults.cfg:16`<br>other `0` @ `coop_mod/cfg/coop_wr_gameplaydefaults.cfg:22` |  | `ui/coop_settings.urc` (+1) |
 | `coop_hints` | `1` | `CVAR_ARCHIVE` | `cgame/cg_coopfeed.c:115` |  |  |  |
@@ -3586,13 +3587,13 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_maptest_waypoints` |  |  |  | other `20` @ `coop_mod/cfg/maptest_phase2_start.cfg:8`<br>other `20` @ `coop_mod/cfg/maptest_start.cfg:13`<br>other `20` @ `coop_mod/cfg/maptest_start_sh.cfg:20` | `coop_mod/maptest_phase2.scr:153` |  |
 | `coop_medals` |  |  |  |  | `coop_mod/medals.scr:28` (+2) |  |
 | `coop_medkitView` | `0` | `0` | `cgame/cg_view.c:3616` |  |  |  |
-| `coop_mg42AiAccuracyScale` |  |  |  | FORCED `1` @ `autoexec.cfg:1661` | `global/mg42_active.scr:530` |  |
+| `coop_mg42AiAccuracyScale` |  |  |  | FORCED `1` @ `autoexec.cfg:1664` | `global/mg42_active.scr:530` |  |
 | `coop_mg42AiAimOff` | `100` | `0` | `fgame/weapturret.cpp:1745` | DEFAULT `100` @ `coop_defaults.cfg:450` |  |  |
 | `coop_mg42AiBurst` | `1` | `0` | `fgame/weapturret.cpp:1765` |  |  |  |
 | `coop_mg42AiDamage` | `40` | `0` | `fgame/weapturret.cpp:1696` | DEFAULT `40` @ `coop_defaults.cfg:457` |  |  |
 | `coop_mg42AiOverheat` | `1` | `0` | `fgame/weapturret.cpp:1775` |  |  |  |
 | `coop_mg42AiRangeMult` |  |  |  | DEFAULT `3.5` @ `coop_defaults.cfg:455` | `global/mg42_active.scr:542` |  |
-| `coop_mg42AiSpread` | `180` | `0` | `fgame/weapturret.cpp:1723` | FORCED `300` @ `autoexec.cfg:1716`<br>DEFAULT `300` @ `coop_defaults.cfg:456` |  |  |
+| `coop_mg42AiSpread` | `180` | `0` | `fgame/weapturret.cpp:1723` | FORCED `300` @ `autoexec.cfg:1719`<br>DEFAULT `300` @ `coop_defaults.cfg:456` |  |  |
 | `coop_mg_co_lobby1` |  |  |  | other `1.00 1.03 0.95 -0.01` @ `coop_mod/cfg/mapgrade.cfg:65` |  |  |
 | `coop_mg_co_lobby2` |  |  |  | other `1.00 1.05 0.80 -0.12` @ `coop_mod/cfg/mapgrade.cfg:66` |  |  |
 | `coop_mg_co_lobby3` |  |  |  | other `1.00 1.05 0.80 -0.12` @ `coop_mod/cfg/mapgrade.cfg:67` |  |  |
@@ -3671,7 +3672,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mgnestPitch` |  |  |  | DEFAULT `60` @ `coop_defaults.cfg:439` | `coop_mod/bunker.scr:576` |  |
 | `coop_mgStay` | `1` | `0` | `fgame/actor_machinegunner.cpp:41` (+1) | DEFAULT `1` @ `coop_defaults.cfg:437` |  |  |
 | `coop_missionItemDebug` |  |  |  | FORCED `0` @ `autoexec.cfg:25` | `coop_mod/itemhandler.scr:2163` (+2) |  |
-| `coop_modVersion` |  | `0` | `client/cl_ui.cpp:2000` | other `v1.10.87` @ `ui/coop_version.cfg:4` |  | `ui/main.urc` |
+| `coop_modVersion` |  | `0` | `client/cl_ui.cpp:2000` | other `v1.10.88` @ `ui/coop_version.cfg:4` |  | `ui/main.urc` |
 | `coop_moraleEnable` |  |  |  | FORCED `1` @ `autoexec.cfg:734` | `coop_mod/main.scr:350` (+1) |  |
 | `coop_moraleFrac` |  |  |  |  | `coop_mod/morale.scr:31` |  |
 | `coop_mortar` |  |  |  |  | `coop_mod/mortar.scr:61` |  |
@@ -4413,7 +4414,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_qdrawSticky` | `0` | `0` | `cgame/cg_qdrawmotion.c:607` (+1) | DEFAULT `0` @ `coop_defaults.cfg:757` |  |  |
 | `coop_qdrawVDbg` | `0` | `0` | `cgame/cg_modelanim.c:1524` |  |  |  |
 | `coop_quickNade` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:17469` (+1) |  |  |  |
-| `coop_quickNadeCook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:17526` | FORCED `1` @ `autoexec.cfg:1830` |  |  |
+| `coop_quickNadeCook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:17526` | FORCED `1` @ `autoexec.cfg:1833` |  |  |
 | `coop_quickNadeInstant` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:17507` |  |  |  |
 | `coop_quickNadeReturn` | `0.9` | `CVAR_ARCHIVE` | `fgame/player.cpp:17567` |  |  |  |
 | `coop_ragdoll` | `1` | `CVAR_ARCHIVE` | `cgame/cg_ragdoll.c:387` | DEFAULT `1` @ `coop_defaults.cfg:585`<br>other `1` @ `coop_mod/cfg/coop_fielddefaults.cfg:9`<br>other `1` @ `coop_mod/cfg/coop_wr_gameplaydefaults.cfg:7` |  | `ui/coop_settings.urc` (+1) |
@@ -5183,9 +5184,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_staminaRegenDelay` | `1.2` | `CVAR_ARCHIVE` | `fgame/player.cpp:15539` |  |  |  |
 | `coop_staminaVault` | `2.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:20705` |  |  |  |
 | `coop_stealthHolster` |  |  |  |  | `maps/m6l2a.scr:1369` |  |
-| `coop_stealthNoAggro` |  |  |  | FORCED `0` @ `autoexec.cfg:1691`<br>DEFAULT `0` @ `coop_defaults.cfg:465` | `maps/m2l2a.scr:556` (+1) |  |
-| `coop_stealthRecoverAlarm` |  |  |  | FORCED `1` @ `autoexec.cfg:1703`<br>DEFAULT `1` @ `coop_defaults.cfg:469` |  |  |
-| `coop_stealthStart` |  |  |  | FORCED `1` @ `autoexec.cfg:1690`<br>DEFAULT `1` @ `coop_defaults.cfg:461` | `coop_mod/bust.scr:989` (+7) |  |
+| `coop_stealthNoAggro` |  |  |  | FORCED `0` @ `autoexec.cfg:1694`<br>DEFAULT `0` @ `coop_defaults.cfg:465` | `maps/m2l2a.scr:556` (+1) |  |
+| `coop_stealthRecoverAlarm` |  |  |  | FORCED `1` @ `autoexec.cfg:1706`<br>DEFAULT `1` @ `coop_defaults.cfg:469` |  |  |
+| `coop_stealthStart` |  |  |  | FORCED `1` @ `autoexec.cfg:1693`<br>DEFAULT `1` @ `coop_defaults.cfg:461` | `coop_mod/bust.scr:989` (+7) |  |
 | `coop_stingers` |  |  |  |  | `coop_mod/flmusic.scr:23` (+1) |  |
 | `coop_storm` |  | `0` | `cgame/cg_hzmstorm.c:64` |  |  |  |
 | `coop_stormCells` |  |  |  |  | `coop_mod/stormlight.scr:212` |  |
@@ -5218,7 +5219,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_subSinkTime` |  |  |  |  | `coop_mod/subsink.scr:201` |  |
 | `coop_subStartAdvance` |  |  |  |  | `maps/m2l2b.scr:672` (+1) |  |
 | `coop_subYawFlip` |  |  |  |  | `coop_mod/subsink.scr:93` (+3) |  |
-| `coop_supine` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15736` | FORCED `0` @ `autoexec.cfg:1963` |  |  |
+| `coop_supine` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15736` | FORCED `0` @ `autoexec.cfg:1966` |  |  |
 | `coop_supineArms` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15928` |  |  |  |
 | `coop_supineArmsAng` | `180` | `CVAR_ARCHIVE` | `fgame/player.cpp:17193` |  |  |  |
 | `coop_supineCone` | `60` | `CVAR_ARCHIVE` | `fgame/player.cpp:15780` |  |  |  |
@@ -5228,7 +5229,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_supineMode` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15831` |  |  |  |
 | `coop_supineMove` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:5080` (+1) |  |  |  |
 | `coop_supineSpine` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:17120` |  |  |  |
-| `coop_supineTest` | `0` | `0` | `fgame/player_conditionals.cpp:1091` | FORCED `0` @ `autoexec.cfg:1964` |  |  |
+| `coop_supineTest` | `0` | `0` | `fgame/player_conditionals.cpp:1091` | FORCED `0` @ `autoexec.cfg:1967` |  |  |
 | `coop_suppBump` | `0` | `0` | `cgame/cg_view.c:7809` |  |  |  |
 | `coop_suppHold` | `0` | `0` | `cgame/cg_view.c:7799` |  |  |  |
 | `coop_suppressFade` | `1.4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7720` | FORCED `1.8` @ `autoexec.cfg:606` |  |  |
@@ -6804,7 +6805,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_wxFog` |  |  |  |  | `coop_mod/wxextreme.scr:553` |  |
 | `coop_wxFogMin` |  |  |  |  | `coop_mod/finale_m2l3_wx.scr:116` (+2) |  |
 | `coop_wxNow` |  |  |  |  | `coop_mod/finale_m2l3_air.scr:178` (+9) |  |
-| `coop_xp` |  |  |  | FORCED `1` @ `autoexec.cfg:1605` | `coop_mod/xp.scr:22` |  |
+| `coop_xp` |  |  |  | FORCED `1` @ `autoexec.cfg:1608` | `coop_mod/xp.scr:22` |  |
 | `coop_xp_barMark` |  |  |  |  |  | `ui/coop_mp_record.urc` |
 | `coop_xp_mpMatchCap` |  |  |  |  | `coop_mod/xp.scr:760` |  |
 | `coop_xp_mpRoundCardTime` |  |  |  |  | `coop_mod/xp.scr:820` |  |
@@ -6813,12 +6814,12 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_xp_prestige` |  |  |  |  |  | `ui/coop_mp_record.urc` (+1) |
 | `coop_xp_rankName` |  |  |  |  |  | `ui/coop_mp_record.urc` (+1) |
 | `coop_xp_rankShader` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_xp_scale` |  |  |  | FORCED `1` @ `autoexec.cfg:1606` | `coop_mod/xp.scr:27` |  |
+| `coop_xp_scale` |  |  |  | FORCED `1` @ `autoexec.cfg:1609` | `coop_mod/xp.scr:27` |  |
 | `coop_xp_totalOwn` |  |  |  |  |  | `ui/coop_mp_record.urc` (+1) |
-| `coop_xpEndBonus` |  |  |  | FORCED `75` @ `autoexec.cfg:1611` | `coop_mod/xp.scr:1981` |  |
-| `coop_xpEndRadius` |  |  |  | FORCED `2500` @ `autoexec.cfg:1612` | `coop_mod/xp.scr:1984` |  |
+| `coop_xpEndBonus` |  |  |  | FORCED `75` @ `autoexec.cfg:1614` | `coop_mod/xp.scr:1981` |  |
+| `coop_xpEndRadius` |  |  |  | FORCED `2500` @ `autoexec.cfg:1615` | `coop_mod/xp.scr:1984` |  |
 | `coop_xpKillPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:148` | `coop_mod/xp.scr:31` (+2) | `ui/coop_hostrules.urc` |
 | `coop_xpRankBar` |  |  |  |  | `coop_mod/xp.scr:681` |  |
-| `coop_xpSummaryTime` |  |  |  | FORCED `28` @ `autoexec.cfg:1607` | `coop_mod/xp.scr:1953` |  |
+| `coop_xpSummaryTime` |  |  |  | FORCED `28` @ `autoexec.cfg:1610` | `coop_mod/xp.scr:1953` |  |
 | `coop_xptest` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:46`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:15` | `coop_mod/main.scr:260` |  |
 | `coop_zntest` |  |  |  |  | `coop_mod/zonefx.scr:32` |  |

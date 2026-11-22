@@ -13,19 +13,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `d73aacfd 2026-11-22 docgen: hzm-mod-*, server_home_*, _soak_* are reference areas (counted, not indexed); regenerated docs` |
-| commits | 1,565 |
+| HEAD | `57ccc001 2026-11-22 gfx flip gate: register the v1.10.88 renderer 40b18330 (rel-1.10.38-engine a8ca2e5f: bloommix + capsule)` |
+| commits | 1,578 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **5210 modified, 2226 untracked** |
-| unstaged diff | 5210 files changed, 20388 insertions(+), 1492565 deletions(-) |
+| **uncommitted** | **5204 modified, 2225 untracked** |
+| unstaged diff | 5204 files changed, 20297 insertions(+), 1492558 deletions(-) |
 
-> Working tree is dirty. Everything in those 7436 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 7429 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-11 | 813 |
+| 2026-11 | 826 |
 | 2026-10 | 421 |
 | 2026-09 | 120 |
 | 2026-08 | 157 |
@@ -33,10 +33,20 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1565)
+### Commits since 2026-01-01 (1578)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `57ccc001` | 2026-11-22 | joncurry94-tech | gfx flip gate: register the v1.10.88 renderer 40b18330 (rel-1.10.38-engine a8ca2e5f: bloommix + capsule) |
+| `da3c4a3a` | 2026-11-22 | joncurry94-tech | hzmconv 1.10.88.1: capsule step, tunnel, Armory cock sound; EA converter 0.7.48 |
+| `f1445d8e` | 2026-11-22 | joncurry94-tech | Merge flfix2 for v1.10.88: capsule step key, interrogation-room tunnel (caps/carve/seal), live-playtest FIDELITY rows |
+| `e07e00ba` | 2026-11-22 | joncurry94-tech | FIDELITY C42 (probe character light) + C43 (bloom mix); OPEN: Dying Breath light/bloom validated in the cellar, nave/huts unvalid… |
+| `8140496a` | 2026-11-22 | joncurry94-tech | EA converter 0.7.48: characters lit from the original's baked irradiance probes (eairrad, x 255 / world gain, x the zone's bloom… |
+| `3248a65a` | 2026-11-22 | joncurry94-tech | Armory change sound rides the Frontline MISSION pak (built for every Frontline owner), not the held guns pak |
+| `643e3d24` | 2026-11-22 | joncurry94-tech | Armory change sound: Frontline's Continue pistol cock from the player's own disc (converter) + the Armory generators exec one sou… |
+| `0d6e8f21` | 2026-11-22 | joncurry94-tech | FEATURES.md: keep under its 90 KB ceiling |
+| `ec537eea` | 2026-11-22 | joncurry94-tech | MOH Coop Server window: match recording (Advanced > Recording, Status record buttons) |
+| `ba1403eb` | 2026-11-22 | joncurry94-tech | docgen: openmohaa-hzm-* engine working copies are reference areas too; regenerated docs |
 | `d73aacfd` | 2026-11-22 | joncurry94-tech | docgen: hzm-mod-*, server_home_*, _soak_* are reference areas (counted, not indexed); regenerated docs |
 | `65936aa8` | 2026-11-22 | joncurry94-tech | docgen: per-file (size, mtime) cache for gen_filemap reads - full build 3593 s -> 37 s, output byte-identical |
 | `9cdfe360` | 2026-11-22 | joncurry94-tech | docs/generated/README.md: list server_settings.json (docgen build) |
@@ -44,12 +54,15 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | `1ccfd913` | 2026-11-22 | joncurry94-tech | FIDELITY C41: leader speech facing (0.7.47 turn), head reach 90, raised foot on nothing as in the original |
 | `250a90fd` | 2026-11-22 | joncurry94-tech | EA converter 0.7.47: the leader's ExplainsPlan clip turned +90 (eaanimconv ICS_TURN, level.ea_icsTurn) - his body faces north thr… |
 | `84eb2e0c` | 2026-11-22 | joncurry94-tech | MOH Coop Server window: server host GUI (dedicated / host-and-play) for v1.10.88 |
+| `44600021` | 2026-11-22 | joncurry94-tech | FIDELITY: Sealed Orders live-playtest batch rows (far-bank wave on the tower MG, tank area, sniper perches, officer shield, hurt… |
+| `c5d20fca` | 2026-11-17 | joncurry94-tech | flclear crawl_cap + carve_extra; 1_1: tunnel to the interrogation room passable crouched (caps +86, rubble edge carved, north end… |
 | `049d13af` | 2026-11-17 | joncurry94-tech | FIDELITY C39 (leader's held PPSh, free left hand listed) and C40 (hzm_capsulestep, Frontline/EA capsule player) |
 | `8a19fec8` | 2026-11-17 | joncurry94-tech | EA converter version 0.7.46 (held prop hand clip, 399353ce) |
 | `197d0fa0` | 2026-11-17 | joncurry94-tech | EA converter 0.7.45: worldspawn hzm_capsulestep 1 - the engine's capsule step rule (capsule-eng, merged rel-1.10.38-engine b36434… |
 | `399353ce` | 2026-11-17 | joncurry94-tech | EA converter 0.7.46: the held prop carries its own clip of the disc object joint against the stock right hand (eaanimconv.HELD_CL… |
 | `4e8d0c9a` | 2026-11-17 | joncurry94-tech | discguns: EA sounds as baked layer composites (6 guns, exact disc samples) + disc scope eye relief from the disc eyepiece |
 | `8223efd3` | 2026-11-17 | joncurry94-tech | FIDELITY C38: Dying Breath church defence - hold until reinforcements (user request) |
+| `5fe8f2b2` | 2026-11-17 | joncurry94-tech | flconvert: worldspawn hzm_capsulestep 1 on 1_1 (fl_levels "capsule_step") - the HZM engine's capsule step rule (engine branch cap… |
 | `490ccd8a` | 2026-11-17 | joncurry94-tech | v1.10.87 - Steady Aim: README What's new |
 | `67839989` | 2026-11-17 | joncurry94-tech | v1.10.87 shipped: converter stamp from the build commit bce7e66d (1.10.87.1) |
 | `706edaae` | 2026-11-17 | joncurry94-tech | manifest 1.10.87 |
@@ -1608,16 +1621,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hotfix-1.10.53` |
-| HEAD | `bfb129ef 2026-11-22 Dying Breath leader speech: head look turns with the 0.7.47 clip turn (level.ea_icsTurn) and reaches 90 deg in ExplainsPlan (user: the head turned completely around); other scenes keep 130` |
-| commits | 3,100 |
+| HEAD | `bf8c4f63 2026-11-22 v1.10.88 version + What's New card (Host and Hold)` |
+| commits | 3,103 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **1 modified, 0 untracked** |
+| unstaged diff | 1 file changed, 212 insertions(+), 7 deletions(-) |
+
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-11 | 666 |
+| 2026-11 | 669 |
 | 2026-10 | 727 |
 | 2026-09 | 116 |
 | 2026-08 | 198 |
@@ -1660,10 +1676,13 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1751)
+### Commits since 2026-01-01 (1754)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `bf8c4f63` | 2026-11-22 | joncurry94 | v1.10.88 version + What's New card (Host and Hold) |
+| `b3707f28` | 2026-11-22 | joncurry94 | Armory change sound: ui/coop_armory_snd.cfg = vstr coop_armorySnd; autoexec sets the apply.wav default before the Frontline marker |
+| `aa72ee21` | 2026-11-22 | joncurry94 | Armory: every change (equip, finish, disc variant, weapon / finish pick) plays ui/coop_armory_snd.cfg |
 | `bfb129ef` | 2026-11-22 | joncurry94 | Dying Breath leader speech: head look turns with the 0.7.47 clip turn (level.ea_icsTurn) and reaches 90 deg in ExplainsPlan (user… |
 | `d89dcd13` | 2026-11-22 | joncurry94 | Sealed Orders live-playtest batch (user 2026-11-17): far-bank wave waits for the tower MG42; tank area = at the tank; tower gunne… |
 | `81ba30a0` | 2026-11-17 | joncurry94 | Dying Breath leader scenes: the body holds the point's yaw (ea_ally_cue no longer puts a scene actor in the fight on the Play tha… |

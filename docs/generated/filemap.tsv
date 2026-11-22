@@ -3275,10 +3275,10 @@ docs/BUGLOG_INDEX.md	2705	.md	47	docs
 docs/CUT_CONTENT.md	20431	.md	318	docs
 docs/DECISIONS.md	47030	.md	664	docs
 docs/ENGINE.md	41425	.md	483	docs
-docs/FEATURES.md	92631	.md	1172	docs
+docs/FEATURES.md	92669	.md	1172	docs
 docs/HANDOFF-2026-09-05.md	12702	.md	139	docs
-docs/HISTORY.md	27524	.md	161	docs
-docs/OPEN.md	50609	.md	600	docs
+docs/HISTORY.md	27848	.md	162	docs
+docs/OPEN.md	50446	.md	598	docs
 docs/PROPOSED_CLAUDE.md	11428	.md	182	docs
 docs/README.md	6634	.md	109	docs
 docs/SESSION_HANDOFF.md	7032	.md	126	docs
@@ -13032,7 +13032,7 @@ docs/proposals/duststorm_2026-09-28/staged/textures/coop_dust/moonveil0029.tga	6
 docs/proposals/duststorm_2026-09-28/staged/textures/coop_dust/moonveil0030.tga	65580	.tga	0	docs
 docs/proposals/duststorm_2026-09-28/staged/weather.base.scr	33404	.scr	573	docs
 docs/proposals/duststorm_2026-09-28/vet.md	5752	.md	28	docs
-docs/proposals/eapolish_2026-11-10/FIDELITY.md	70601	.md	358	docs
+docs/proposals/eapolish_2026-11-10/FIDELITY.md	72425	.md	360	docs
 docs/proposals/eapolish_2026-11-10/README.md	3387	.md	48	docs
 docs/proposals/emotes_2026-11-03/emote_icons_sheet.png	204084	.png	0	docs
 docs/proposals/emotes_2026-11-03/over/coop_mod/em_probe.scr	2681	.scr	70	docs
@@ -76143,9 +76143,9 @@ docs/tools/ea/fl_levels.json	7532	.json	374	docs
 docs/tools/ea/fl_modelmap.json	2574	.json	33	docs
 docs/tools/ea/fl_texmap.json	1165	.json	17	docs
 docs/tools/ea/flaudio.py	3653	.py	96	docs
-docs/tools/ea/flbsp.py	28983	.py	535	docs
+docs/tools/ea/flbsp.py	29141	.py	538	docs
 docs/tools/ea/flcliff.py	4655	.py	97	docs
-docs/tools/ea/flconvert.py	156746	.py	2470	docs
+docs/tools/ea/flconvert.py	158704	.py	2488	docs
 docs/tools/ea/flcoop2.py	9890	.py	190	docs
 docs/tools/ea/flcore.py	8353	.py	190	docs
 docs/tools/ea/flgeom.py	4849	.py	117	docs
@@ -76219,7 +76219,7 @@ docs/tools/frontline/discguns_sights.json	12931	.json	865	docs
 docs/tools/frontline/ffmpeg_build.sh	1378	.sh	28	docs
 docs/tools/frontline/fl_charprotect.json	1990	.json	148	docs
 docs/tools/frontline/fl_gates.py	5108	.py	136	docs
-docs/tools/frontline/fl_levels.json	64386	.json	722	docs
+docs/tools/frontline/fl_levels.json	65618	.json	722	docs
 docs/tools/frontline/fl_modelmap.json	4830	.json	44	docs
 docs/tools/frontline/fl_texmap.json	5135	.json	30	docs
 docs/tools/frontline/flanim.py	8558	.py	164	docs
@@ -76228,9 +76228,9 @@ docs/tools/frontline/flaudio.py	10141	.py	241	docs
 docs/tools/frontline/flbsp.py	18833	.py	370	docs
 docs/tools/frontline/flchar.py	42417	.py	829	docs
 docs/tools/frontline/flcharup.py	7650	.py	149	docs
-docs/tools/frontline/flclear.py	26996	.py	549	docs
+docs/tools/frontline/flclear.py	27767	.py	556	docs
 docs/tools/frontline/flcliff.py	7184	.py	145	docs
-docs/tools/frontline/flconvert.py	93953	.py	1527	docs
+docs/tools/frontline/flconvert.py	94507	.py	1533	docs
 docs/tools/frontline/flcoop2.py	6837	.py	131	docs
 docs/tools/frontline/flcore.py	12171	.py	255	docs
 docs/tools/frontline/flcover.py	12483	.py	231	docs
@@ -76274,7 +76274,7 @@ docs/tools/frontline/hd/swaps_look.json	2052	.json	88	docs
 docs/tools/frontline/hd/weathered_planks.jpg	599581	.jpg	0	docs
 docs/tools/frontline/hd/worn_corrugated_iron.jpg	868207	.jpg	0	docs
 docs/tools/frontline/hd/worn_mossy_plasterwall.jpg	964249	.jpg	0	docs
-docs/tools/frontline/hzmconv.py	18070	.py	296	docs
+docs/tools/frontline/hzmconv.py	21265	.py	347	docs
 docs/tools/frontline/hzmconv.spec	1478	.spec	0	docs
 docs/tools/frontline/mkoverlay.py	681	.py	15	docs
 docs/tools/frontline/mohskel.py	8325	.py	181	docs
@@ -76291,7 +76291,7 @@ docs/tools/gen_arenamaps_menu.py	5779	.py	117	docs
 docs/tools/gen_armory.py	33832	.py	571	docs
 docs/tools/gen_armory_bg.py	11046	.py	254	docs
 docs/tools/gen_armory_cos.py	7472	.py	147	docs
-docs/tools/gen_armory_urc.py	26190	.py	394	docs
+docs/tools/gen_armory_urc.py	26611	.py	399	docs
 docs/tools/gen_barricade.py	37517	.py	727	docs
 docs/tools/gen_baseassault_maps.py	6372	.py	149	docs
 docs/tools/gen_basebuild_maps.py	4247	.py	92	docs
@@ -76355,7 +76355,7 @@ docs/tools/gen_menu_padlayout.py	5222	.py	81	docs
 docs/tools/gen_menu_slider.py	7815	.py	193	docs
 docs/tools/gen_metal_brushes.py	9760	.py	214	docs
 docs/tools/gen_mp_ambience.py	8875	.py	178	docs
-docs/tools/gen_mp_armory.py	101142	.py	1759	docs
+docs/tools/gen_mp_armory.py	101669	.py	1764	docs
 docs/tools/gen_mp_challenges.py	25101	.py	515	docs
 docs/tools/gen_mp_gungame.py	7859	.py	167	docs
 docs/tools/gen_navheat.py	10912	.py	206	docs
@@ -76400,7 +76400,7 @@ docs/tools/gen_weapon_viewer.py	46274	.py	827	docs
 docs/tools/gen_wetsand.py	6745	.py	121	docs
 docs/tools/gen_wheel_art.py	5918	.py	129	docs
 docs/tools/gen_wpnfix_pak.py	6691	.py	141	docs
-docs/tools/gfx_flip_gate.json	16349	.json	70	docs
+docs/tools/gfx_flip_gate.json	16734	.json	72	docs
 docs/tools/gfx_live_audit.py	52053	.py	1066	docs
 docs/tools/glsl_glslang.py	4482	.py	96	docs
 docs/tools/glsl_post_baseline.json	500	.json	10	docs
@@ -80444,7 +80444,7 @@ hzm-mohaa-coop-mod/anim/reload.scr	17209	.scr	502	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/runto_casual.scr	2743	.scr	100	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/runto_inopen.scr	4012	.scr	122	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/shoot.scr	7367	.scr	270	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/autoexec.cfg	152693	.cfg	1967	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/autoexec.cfg	152983	.cfg	1970	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/cmpatch/e1l2.txt	472	.txt	7	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/cmpatch/e3l2_mp.txt	2113	.txt	29	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/cmpatch/e3l2_mp_sm.txt	449	.txt	5	hzm-mohaa-coop-mod
@@ -92906,6 +92906,7 @@ hzm-mohaa-coop-mod/ui/briefing6d2.urc	3770	.urc	217	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coopAdmin.urc	13559	.urc	782	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coopDev.urc	5697	.urc	276	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coopMomMenuExample.urc	5490	.urc	276	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_armory_snd.cfg	452	.cfg	5	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_byodisc.urc	8359	.urc	415	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_chronoresume.urc	3910	.urc	175	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_controls.urc	6892	.urc	335	hzm-mohaa-coop-mod
@@ -92946,7 +92947,7 @@ hzm-mohaa-coop-mod/ui/coop_fov/generateFovMenuCode.bat	359	.bat	14	hzm-mohaa-coo
 hzm-mohaa-coop-mod/ui/coop_hostrules.urc	14316	.urc	735	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_jeepEnter.urc	507	.urc	31	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_lastmission.urc	3400	.urc	171	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_loadout.urc	191598	.urc	12875	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_loadout.urc	191454	.urc	12851	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_login.urc	5262	.urc	280	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_maps.inc	8745	.inc	443	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_menumusic/p0.cfg	559	.cfg	10	hzm-mohaa-coop-mod
@@ -93058,7 +93059,7 @@ hzm-mohaa-coop-mod/ui/coop_mp_record/srhov78.cfg	62	.cfg	1	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mp_record/srhov8.cfg	105	.cfg	1	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mp_record/srhov9.cfg	105	.cfg	1	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpa_appearance.urc	72442	.urc	3575	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_mpa_armory.urc	30967	.urc	1601	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_mpa_armory.urc	30673	.urc	1552	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpa_armory/c01.cfg	350	.cfg	10	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpa_armory/c02.cfg	389	.cfg	10	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpa_armory/c05.cfg	400	.cfg	10	hzm-mohaa-coop-mod
@@ -93445,7 +93446,7 @@ hzm-mohaa-coop-mod/ui/coop_mpa_armory/v3.cfg	111	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpa_armory/v4.cfg	109	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpa_armory/v5.cfg	112	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpa_armory/v6.cfg	112	.cfg	3	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_mpa_defaults.urc	30935	.urc	1600	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_mpa_defaults.urc	30641	.urc	1551	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mphostrules.urc	20294	.urc	944	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpmenu.urc	13652	.urc	534	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpmenu/armory_allied.cfg	467	.cfg	5	hzm-mohaa-coop-mod
@@ -93524,7 +93525,7 @@ hzm-mohaa-coop-mod/ui/coop_mpmenu/start_prophunt.cfg	1127	.cfg	21	hzm-mohaa-coop
 hzm-mohaa-coop-mod/ui/coop_mpmenu/start_push.cfg	1266	.cfg	22	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpmenu/start_snd.cfg	1060	.cfg	22	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpx_appearance.urc	62654	.urc	3109	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_mpx_armory.urc	26997	.urc	1405	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_mpx_armory.urc	26745	.urc	1363	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpx_armory/c03.cfg	329	.cfg	10	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpx_armory/c04.cfg	379	.cfg	10	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpx_armory/c07.cfg	408	.cfg	10	hzm-mohaa-coop-mod
@@ -93860,7 +93861,7 @@ hzm-mohaa-coop-mod/ui/coop_mpx_armory/v3.cfg	111	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpx_armory/v4.cfg	109	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpx_armory/v5.cfg	112	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mpx_armory/v6.cfg	112	.cfg	3	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_mpx_defaults.urc	26965	.urc	1404	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_mpx_defaults.urc	26713	.urc	1362	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_objectives.urc	28130	.urc	1509	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_objectives/obj_1active.cfg	516	.cfg	19	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_objectives/obj_1clearb.cfg	124	.cfg	3	hzm-mohaa-coop-mod
@@ -93989,7 +93990,7 @@ hzm-mohaa-coop-mod/ui/coop_tiles/t3l2.jpg	52040	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_training.urc	5950	.urc	290	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_version.cfg	280	.cfg	4	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_weaponselect_suppress.urc	3061	.urc	78	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_whatsnew.urc	4211	.urc	181	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_whatsnew.urc	4221	.urc	181	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/dm_main.urc	31832	.urc	1615	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/dm_round_scoreboard.urc	3041	.urc	213	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/dm_scoreboard.urc	3036	.urc	213	hzm-mohaa-coop-mod
@@ -106296,7 +106297,7 @@ hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	631409208	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1309147470	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tey.pk3	146160584	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	32704121	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	32712543	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3	74724479	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzzz_coop_finishes_hd.pk3	199323880	.pk3	0	hzm-mohaa-coop-mod
@@ -112537,6 +112538,7 @@ public_servers/path_test.py	1011	.py	22	public_servers
 public_servers/query_check.py	405	.py	10	public_servers
 public_servers/run_server.ps1	2839	.ps1	44	public_servers
 public_servers/setup_trilogy.py	2651	.py	53	public_servers
+public_servers/srv1.stop	0	.stop	0	public_servers
 public_servers/srv1/maintt/OpenMoHAA_server.pid	5	.pid	0	public_servers
 public_servers/srv1/maintt/coop_freeze/freeze_20261015-221416.txt	1612	.txt	38	public_servers
 public_servers/srv1/maintt/coop_freeze/freeze_20261105-200857.txt	2501	.txt	60	public_servers
@@ -112569,6 +112571,7 @@ public_servers/srv1/maintt/maps/t3l2.scr	58624	.scr	1819	public_servers
 public_servers/srv1/maintt/public_start.cfg	621	.cfg	24	public_servers
 public_servers/srv1/maintt/qconsole.log	2071436	.log	0	public_servers
 public_servers/srv1/maintt/qconsole_prev.log	582652	.log	0	public_servers
+public_servers/srv2.stop	0	.stop	0	public_servers
 public_servers/srv2/maintt/OpenMoHAA_server.pid	5	.pid	0	public_servers
 public_servers/srv2/maintt/coop_freeze/freeze_20261029-163702.txt	3444	.txt	86	public_servers
 public_servers/srv2/maintt/coop_freeze/freeze_20261105-200857.txt	2473	.txt	60	public_servers
@@ -112591,6 +112594,7 @@ public_servers/srv2/maintt/maps/t3l2.scr	58624	.scr	1819	public_servers
 public_servers/srv2/maintt/public_start.cfg	621	.cfg	24	public_servers
 public_servers/srv2/maintt/qconsole.log	1995813	.log	0	public_servers
 public_servers/srv2/maintt/qconsole_prev.log	584708	.log	0	public_servers
+public_servers/srv3.stop	0	.stop	0	public_servers
 public_servers/srv3/maintt/OpenMoHAA_server.pid	5	.pid	0	public_servers
 public_servers/srv3/maintt/coop_freeze/freeze_20261105-200857.txt	2381	.txt	58	public_servers
 public_servers/srv3/maintt/coop_freeze/freeze_20261105-200927.txt	3230	.txt	79	public_servers
@@ -112659,6 +112663,7 @@ release_notes_1.10.84.md	1416	.md	22	<root>
 release_notes_1.10.85.md	2213	.md	28	<root>
 release_notes_1.10.86.md	3867	.md	57	<root>
 release_notes_1.10.87.md	1523	.md	24	<root>
+release_notes_1.10.88.md	3080	.md	47	<root>
 release_notes_1.4.8.md	2963	.md	35	<root>
 release_notes_1.9.2.md	1794	.md	13	<root>
 resume_publish.ps1	8738	.ps1	157	<root>

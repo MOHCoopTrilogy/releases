@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**4673** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**4677** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -19,7 +19,7 @@
 | 2026-08 | 918 |
 | 2026-09 | 1030 |
 | 2026-10 | 900 |
-| 2026-11 | 1157 |
+| 2026-11 | 1161 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -4693,6 +4693,10 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-11390` | 2026-11-22 | `docs/FEATURES.md` | - | FEATURES.md entry gained a TAB ('servergui<TAB>ools') from a Python patch written through a Git-Bash heredoc | replaced the byte; patch scripts with backslashes are written with the Write tool, not a heredoc |
 | `bug-11391` | 2026-11-22 | `docs/tools/ea/eaanimconv.py` | - | Dying Breath cellar leader: 'Body faces the wrong way and he will turn his head completely around to look at you ... His leg is still held up placed… | Converter 0.7.47 (250a90fd): eaanimconv.ICS_TURN {explainsplan: 90} turns the clip (and its held-prop clips), level.ea_icsTurn; map (bfb129ef): the h… |
 | `bug-11392` | 2026-11-22 | `docs/tools/docgen.py` | V | docgen.py build took 3593 s (render_s 3580) and the Stop hook runs it after every session | persistent per-file cache keyed on (size, mtime_ns) from the sweep (.wolf/hooks/docgen-filecache.pickle) for line counts and summaries; misses filled… |
+| `bug-11393` | 2026-11-22 | `H:/hzm_work/servergui/tools/rectest.py` | - | record test on a dedicated server: client demo, server auto demo and both MP4 renders were all black with 'Next respawn in N seconds' | harness spawns first (discbot.spawn_in recipe: popmenu, primarydmweapon, +attackprimary) and runs without -I; stills also cut from the rendered MP4s… |
+| `bug-11394` | 2026-11-22 | `docs/tools/gen_mp_armory.py` | - | gen_mp_armory: ui/coop_mpa_armory.urc execs ui/coop_armory_snd.cfg which is not an output | SHARED_EXEC = {ui/coop_armory_snd.cfg} allowed by the exec check. gen_mp_armory / gen_loadout check EXACT after the build. Root 643e3d24, mod aa72ee2… |
+| `bug-11395` | 2026-11-22 | `docs/tools/frontline/hzmconv.py` | - | Armory change sound (643e3d24) would reach nobody in the next release: it rode the Frontline GUNS pak, which is only built once the held discguns hzm… | hzmconv.FrontlineGame.convert adds sound/menu/coop_fl_cock.wav to the mission pak zzzz_coop_fl_<l>.pk3 and 'set coop_armorySnd ...' to its fl/have_<l… |
+| `bug-11396` | 2026-11-22 | `docs/tools/ea/flbsp.py` | - | Dying Breath partisan cellar: 'That partisan room is pretty dark. Is it that dark in vanilla?' - character faces 3-3.5x darker than the original (lea… | Converter 0.7.48 (8140496a): eairrad probe light in the grid (x255 / world gain 2.83, x (1 + 0.5 k) bloom share), rgbGen lightingGrid on disc charact… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |
