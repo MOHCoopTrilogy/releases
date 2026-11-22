@@ -107,7 +107,7 @@ BANKS = {0x40000000: "SCR.ABK", 1: "L1.ABK", 2: "L2.ABK", 4: "L3.ABK", 8: "L4.AB
 # player character) and only layers present on EVERY pull are kept; a gun without an exact match keeps the base sound.
 # Measured 2026-11-17 (vprobe3 + p2/ea_layers2, offsets corrected for the break cost; each list = one trigger pull, a sample
 # listed twice is started twice together). Levels with the gun in hand at the start: 1_11 PPSh, 1_1 M1, 1_21 BAR, 1_22
-# Thompson, 1_8 Enfield No.4 (T), 1_9 shotgun. Mono world sounds (impacts, shell casings, other soldiers) are left out.
+# Thompson, 1_8 Enfield No.4 (T), 1_9 shotgun (+ the pickups below). Mono world sounds (impacts, shell casings, other soldiers) are left out.
 SOUNDS = {
     # 230 x2 + mech 79, then ONE random tail of 306 / 307 / 308 at +105 ms (7 / 7 pulls)
     "ea_SMG_PPSH": {"ppsh41_snd_fire": ("1_11", [[(230, 0), (230, 0), (79, 0), (t, 105)] for t in (306, 307, 308)])},
@@ -131,10 +131,29 @@ SOUNDS = {
     # samples in between are the pellets striking the corridor walls (world sounds)
     "ea_rifle_shotgun": {"shotgun_snd_fire": ("1_9", [[(145, 0), (145, 0), (146, 87), (147, d)] for d in (180, 260)]),
                          "shotgun_snd_rechamber": ("1_9", [[(133, 0), (136, 156)]])},
+    # --- pickups (2026-11-22): the level's own WeaponPowerup brought onto the player (ref_xemu ea_pullpu.py), then A / B (swap).
+    # These rifles and launchers fire without event 49 on the player character: each pull is anchored on its first stereo voice.
+    # G 43 (1_11): 298 + 299 at 0, then 300 + 301 + 155 at +130 ms (7 / 7 pulls); shell casings (41-43, mono) left out
+    "ea_rifle_gewehr": {"gewehr43_snd_fire": ("1_11", [[(298, 0), (299, 0), (300, 130), (301, 130), (155, 130)]])},
+    # M1 bazooka (1_11): 244 at 0, 243 + 245 + 247 at +128, 246 + 248 at +370 (5 shots, each from the same snapshot); the
+    # rocket's impact (265, +1.3 s) left out
+    "ea_misc_M1bazooka": {"bazooka_snd_fire": ("1_11", [[(244, 0), (243, 128), (245, 128), (247, 128), (246, 370),
+                                                         (248, 370)]])},
+    # StG 44 (1_15): 117 + 144 at 0, then 46 with ONE of 92 / 93 / 94 at +207 ms (4 / 4 pulls); 133 (2 of 4) left out
+    "ea_mg_stg": {"mp44_snd_fire": ("1_15", [[(117, 0), (144, 0), (46, 207), (t, 207)] for t in (92, 93, 94)])},
+    # M9 bazooka (1_21): the trigger click 243 + 247 x2 at 0, the blast 242 + 244 x3 + 246 at +245, 245 + 247 at +490 (3 shots,
+    # at the sky and at a wall alike: the blast is the launcher's, not the impact)
+    "ea_misc_M9bazooka": {"bazooka_snd_fire": ("1_21", [[(243, 0), (247, 0), (247, 0), (242, 245), (244, 245), (244, 245),
+                                                         (244, 245), (246, 245), (245, 490), (247, 490)]])},
+    # M1 Garand sniper (1_22): ONE of 105 / 123 / 124 at 0, mech 125 at +147, ONE of 106 / 126 at +300 (6 / 6 pulls); the
+    # mono 112-114 (+300..490, one per pull) read as the casing and are left out
+    "ea_rifle_m1Scoped": {"wawgarand_fire": ("1_22", [[(m, 0), (125, 147), (t, 300)] for m in (105, 123, 124)
+                                                       for t in (106, 126)])},
 }
 BASE_SND = {
     "ppsh41_snd_fire": ("sound/weapons/fire/wpnfire_PPSH_SMG02.wav", "1.82 0.01 0.95 0.1 480 8000 weapon"),
     "LeeEnfield_fire": ("sound/weapons/fire/LeeEnfield_fire.wav", "1.7 0.1 1.0 0.0 400 8000 weapon"),
+    "wawgarand_fire": ("sound/weapons/fire/WAWgarand_fire.wav", "3.3 0.2 1.0 0.0 400 8000 weapon"),
     # gen_rifle_bolt's own clip is an mp3 (the loudness match reads wav): matched to the Kar98 bolt wav, its own soundparms
     "gen_rifle_bolt": ("sound/weapons/foley/KARRechamber1.wav", "4.3 0.1 1.0 0.0 160 1000 item"),
 }
