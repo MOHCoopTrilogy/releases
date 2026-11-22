@@ -127,9 +127,15 @@ SOUNDS = {
     "ea_rifle_enfieldScoped": {"LeeEnfield_fire": ("1_8", [[(145, 0), (145, 0), (148, 0), (147, 103), (47, 103), (48, 103),
                                                             (146, d)] for d in (95, 200)]),
                                "gen_rifle_bolt": ("1_8", [[(95, 0), (211, 448)]])},
-    # 145 x2 at 0, 146 at +87, 147 at +180 or +260 (6 / 6); the pump: 133, then 136 156 ms later (6 / 6). The many mono
-    # samples in between are the pellets striking the corridor walls (world sounds)
-    "ea_rifle_shotgun": {"shotgun_snd_fire": ("1_9", [[(145, 0), (145, 0), (146, 87), (147, d)] for d in (180, 260)]),
+    # 145 x2 at 0, 146 at +87, 147 at +180 or +260 (6 / 6); the pump: 133, then 136 156 ms later (6 / 6). The shot's own event
+    # (Audio.ubr 4a8b953e) also carries 151 / 152 / 153 / 154 (mix classes 50c9584e / bab086c4, the same environment layers the
+    # BAR and Thompson play): each starts with 146 (+87) or with 147 (+180); the four splits seen over 6 pulls are the variants.
+    # The other mono samples (91-107) are the pellets striking the corridor walls (world sounds)
+    "ea_rifle_shotgun": {"shotgun_snd_fire": ("1_9", [[(145, 0), (145, 0), (146, 87), (147, d)]
+                                                      + [(e, 87) for e in early] + [(e, 180) for e in (151, 152, 153, 154)
+                                                                                    if e not in early]
+                                                      for d in (180, 260)
+                                                      for early in ((152, 153), (151, 152), (), (151, 152, 153, 154))]),
                          "shotgun_snd_rechamber": ("1_9", [[(133, 0), (136, 156)]])},
     # --- pickups (2026-11-22): the level's own WeaponPowerup brought onto the player (ref_xemu ea_pullpu.py), then A / B (swap).
     # These rifles and launchers fire without event 49 on the player character: each pull is anchored on its first stereo voice.
@@ -149,11 +155,53 @@ SOUNDS = {
     # mono 112-114 (+300..490, one per pull) read as the casing and are left out
     "ea_rifle_m1Scoped": {"wawgarand_fire": ("1_22", [[(m, 0), (125, 147), (t, 300)] for m in (105, 123, 124)
                                                        for t in (106, 126)])},
+    # --- STATIC (2026-11-22): guns no probe could hold. The layers are the gun"s own PC events read off Audio.ubr by name
+    # (CRC32 "WpnFire_PC_<name>" + "_LP" / "_END", the scheme the 11 probed guns reproduce exactly); shell casings left out as
+    # above; a random pick is one variant each. Offsets are NOT measured: each layer"s Delay Min / Max by the fit to the probed
+    # guns (0 -> 0 ms, d -> 85 + 11 d ms) and an _END tail 200 ms after the shot (a tap"s release; probed 105-276 ms), the
+    # earliest layer moved to 0. MP28 / Sten from DATA/2/MPAUDIO (level "mp", their only bank); the Sten"s event is
+    # WpnFire_PC_Sten (no Sten_Silenced event exists on the disc).
+    "ea_smg_mp40": {"mp40_snd_fire": ("1_1", [[(345, 0), (346, 96), (153, 0), (154, 0), (276, 200)], [(345, 0), (346, 96), (153, 0), (154, 0), (275, 200)]])},   # WpnFire_PC_MP40
+    "ea_rifle_karabiner": {"kar98_snd_fire": ("1_1", [[(63, 0), (64, 151), (65, 96), (66, 0)]])},   # WpnFire_PC_Kar98
+    "ea_PISTOL_45auto": {"colt45_snd_fire": ("1_2", [[(208, 0), (211, 11)], [(209, 0), (211, 11)], [(210, 0), (211, 11)]])},   # WpnFire_PC_Colt_45
+    "ea_rifle_mn1891": {"nagantRif_snd_fire": ("1_15", [[(80, 96), (81, 0), (82, 151), (83, 151), (84, 96)]])},   # WpnFire_PC_Moisan
+    "ea_rifle_gewehrScoped": {"gewehr43_snd_fire": ("1_21", [[(132, 0), (133, 0), (134, 0), (135, 0), (136, 0), (137, 96), (135, 0), (136, 0), (135, 0), (136, 0)]])},   # WpnFire_PC_Gewehr_Sniper
+    "ea_smg_mp28": {"sten_snd_fire": ("mp", [[(155, 0), (72, 96)], [(155, 0)]])},   # WpnFire_PC_MP28
+    "ea_smg_sten": {"sten_silenced": ("mp", [[(137, 0), (74, 0), (75, 96), (138, 0)]])},   # WpnFire_PC_Sten
+}
+# Each layer's own VOLUME and PITCH come from its Audio.ubr record (fields read by name: Volume Min / Max in %, Pitch Min / Max
+# in 1/4096; the game picks a random value in each range, the bake uses the middle). EA builds a weapon's event names as
+# CRC32("WpnFire_PC_<name>") (+ "_LP" held, "_END" released; XBE sprintf 0x14302c, name table .data 0x377188 - code-decode
+# agent 2026-11-22), so the records are looked up in the gun's own events, listed here as those hashes. A sample of a variant
+# that none of the gun's events carries keeps 100 % and pitch 1.
+EVENTS = {
+    "ea_SMG_PPSH": [0xa8fb3cc4, 0x1ec268a5, 0xb0e30b14],         # WpnFire_PC_PPSH_LP, WpnFire_PC_PPSH, the PPSh tail event
+    "ea_rifle_m1": [0x2cf5ecd1, 0x7f95e8f9],                      # WpnFire_PC_M1_Garand, the M1.aso Fire (clip ping) event
+    "ea_mg_bar": [0xf78cd964],                                    # WpnFire_PC_BAR
+    "ea_smg_thompson": [0x0e4eebd3, 0x0c272cb5, 0xc3240e7b],      # WpnFire_PC_Thompson, _LP, _END
+    "ea_rifle_enfieldScoped": [0x84d7e9de, 0x25d2163f, 0x745d699d],  # WpnFire_PC_Enfield_Sniper, the bolt events
+    "ea_rifle_shotgun": [0x4a8b953e],                             # WpnFire_PC_Shotgun (the pump is in it: 133 / 136)
+    "ea_rifle_gewehr": [0xaa38b44b],                              # WpnFire_PC_Gewehr
+    "ea_misc_M1bazooka": [0xc9d8e816],                            # WpnFire_PC_Bazooka
+    "ea_misc_M9bazooka": [0xc9d8e816],
+    "ea_mg_stg": [0xa541f1d8, 0x20e024b5, 0xc308c973],            # WpnFire_PC_StG44, _LP, _END
+    "ea_rifle_m1Scoped": [0x2cf5ecd1],                            # WpnFire_PC_M1_Garand
+    "ea_smg_mp40": [0xc8d3e389, 0x2b6be2e4, 0xdf6f23d7],          # WpnFire_PC_MP40, _LP, _END
+    "ea_rifle_karabiner": [0x0cae9f2b],                           # WpnFire_PC_Kar98
+    "ea_PISTOL_45auto": [0x48530188],                             # WpnFire_PC_Colt_45
+    "ea_rifle_mn1891": [0x2cbd97e4],                              # WpnFire_PC_Moisan
+    "ea_rifle_gewehrScoped": [0x2467d0b8],                        # WpnFire_PC_Gewehr_Sniper
+    "ea_smg_mp28": [0x9052cc3d],                                  # WpnFire_PC_MP28
+    "ea_smg_sten": [0x68223dff],                                  # WpnFire_PC_Sten
 }
 BASE_SND = {
     "ppsh41_snd_fire": ("sound/weapons/fire/wpnfire_PPSH_SMG02.wav", "1.82 0.01 0.95 0.1 480 8000 weapon"),
     "LeeEnfield_fire": ("sound/weapons/fire/LeeEnfield_fire.wav", "1.7 0.1 1.0 0.0 400 8000 weapon"),
     "wawgarand_fire": ("sound/weapons/fire/WAWgarand_fire.wav", "3.3 0.2 1.0 0.0 400 8000 weapon"),
+    "kar98_snd_fire": ("sound/weapons/fire/Mauser98Fire1.wav", "1.22 0.1 0.8 0.1 480 8000 weapon"),
+    "nagantRif_snd_fire": ("sound/weapons/fire/wpnfire_NagantRiffle_2.wav", "1.56 0.1 1.0 0.1 480 8000 weapon"),
+    "sten_snd_fire": ("sound/weapons/fire/wpnfire_sten02.wav", "1.82 0.01 0.95 0.1 480 8000 weapon"),
+    "sten_silenced": ("sound/weapons/fire/sten_silenced.wav", "1.4 0.1 1.0 0.0 400 8000 weapon"),
     # gen_rifle_bolt's own clip is an mp3 (the loudness match reads wav): matched to the Kar98 bolt wav, its own soundparms
     "gen_rifle_bolt": ("sound/weapons/foley/KARRechamber1.wav", "4.3 0.1 1.0 0.0 160 1000 item"),
 }
@@ -176,7 +224,7 @@ def register():
             row["body"] = stub_of(k)
         flgunfit.GUNS[k] = row
     for k, s in SOUNDS.items():
-        flgunfit.SOUNDS[k] = {a: [snd_ref(lv, var) for var in vs] for a, (lv, vs) in s.items()}
+        flgunfit.SOUNDS[k] = {a: [snd_ref(lv, var, EVENTS.get(k)) for var in vs] for a, (lv, vs) in s.items()}
     flgunfit.BASE_SND.update(BASE_SND)
 
 
@@ -267,9 +315,45 @@ def ubr_aliases(ubr):
     return out
 
 
-def snd_ref(lv, var):
-    """one baked variant as a stable key: "<level>|<sample>@<ms>+..." """
-    return "%s|%s" % (lv, "+".join("%d@%d" % (i, ms) for i, ms in var))
+def snd_ref(lv, var, events=None):
+    """one baked variant as a stable key: "<level>|<event hex>,...|<sample>@<ms>+..." """
+    return "%s|%s|%s" % (lv, ",".join("%08x" % e for e in (events or [])), "+".join("%d@%d" % (i, ms) for i, ms in var))
+
+
+def layer_params(ubr, events):
+    """{SCR.ABK sample: [(volume 0..1, pitch), ...]} from the records of the given events, in event then layer order (a sample
+    a gun plays twice, e.g. the BAR's 280 on layers 1 and 3, has one entry per layer: the n-th use in a variant takes the n-th),
+    the middle of each random range; fields by name (Audio.ubr is self-describing)"""
+    nf, nr, st = struct.unpack_from("<III", ubr, 16)
+    off = {}
+    for i in range(nf):
+        c, t, o = struct.unpack_from("<III", ubr, 32 + 12 * i)
+        off[c] = o
+    crc = lambda n: zlib.crc32(n.encode()) & 0xffffffff
+    need = [crc(n) for n in ("Alias", "Bank Type", "Volume Min", "Volume Max", "Pitch Min", "Pitch Max")]
+    if any(c not in off for c in need) or 0xBC1069FF not in off:
+        return {}
+    fa, fb, v0, v1, p0, p1 = (off[c] for c in need)
+    fs = off[0xBC1069FF]
+    fl = off.get(0xC016BADA)      # the layer number (a byte)
+    base = 32 + 12 * nf
+    found = {}
+    for r in range(nr):
+        rs = base + r * st
+        if rs + st > len(ubr):
+            break
+        a = struct.unpack_from("<I", ubr, rs + fa)[0]
+        if a not in events or struct.unpack_from("<I", ubr, rs + fb)[0] != 0x40000000:
+            continue
+        idx = struct.unpack_from("<H", ubr, rs + fs)[0]
+        vol = (ubr[rs + v0] + ubr[rs + v1]) / 200.0
+        pit = (struct.unpack_from("<H", ubr, rs + p0)[0] + struct.unpack_from("<H", ubr, rs + p1)[0]) / 8192.0
+        layer = ubr[rs + fl] if fl is not None else 0
+        found.setdefault((events.index(a), layer, r), (idx, vol, pit))
+    out = {}
+    for _k, (idx, vol, pit) in sorted(found.items()):
+        out.setdefault(idx, []).append((vol, pit))
+    return out
 
 
 def _snd_dir(lv):
@@ -287,15 +371,20 @@ def _wav_f(path):
 
 
 def bake(parts):
-    """[(stereo/mono float array, sr, ms)] -> one clip (all at the first part's rate, channel count = the widest), every
-    part summed in at its own offset, unity gain (the loudness match comes after, in flgunfit.sound_files)"""
+    """[(stereo/mono float array, sr, ms[, volume, pitch])] -> one clip (all at the first part's rate, channel count = the
+    widest), every part at its own offset, its record's volume and its pitch (played faster / slower = resampled), summed (the
+    loudness match of the whole clip comes after, in flgunfit.sound_files)"""
     sr = parts[0][1]
-    nch = max(a.shape[1] for a, _, _ in parts)
+    nch = max(p[0].shape[1] for p in parts)
     rs = []
-    for a, r, ms in parts:
-        if r != sr:          # one rate per clip: linear resample (EA banks use one rate per bank in practice)
-            t = np.arange(int(len(a) * sr / r)) * (r / sr)
+    for part in parts:
+        a, r, ms = part[:3]
+        vol, pit = (part[3], part[4]) if len(part) > 4 else (1.0, 1.0)    # part[5] (the sample index) is bookkeeping only
+        step = (r / sr) * pit    # source samples per output sample: the rate change and the record's pitch together
+        if abs(step - 1.0) > 1e-9:
+            t = np.arange(int(len(a) / step)) * step
             a = np.stack([np.interp(t, np.arange(len(a)), a[:, c]) for c in range(a.shape[1])], 1)
+        a = a * vol
         if a.shape[1] < nch:
             a = np.repeat(a, nch, 1)
         rs.append((a, int(round(ms * sr / 1000.0))))
@@ -313,9 +402,16 @@ def decode_sounds(disc, refs, tmp, vgm):
     import wave
     if not vgm or not os.path.exists(vgm):
         return {}
-    out, banks, dec = {}, {}, {}
+    out, banks, dec, prm = {}, {}, {}, {}
     for ref in sorted(refs):
-        lv, body = ref.split("|")
+        lv, evs, body = ref.split("|")
+        evs = [int(e, 16) for e in evs.split(",") if e]
+        pk = (lv, tuple(evs))
+        if pk not in prm:
+            try:
+                prm[pk] = layer_params(disc.read(_snd_dir(lv) + "AUDIO.UBR"), evs) if evs else {}
+            except Exception:
+                prm[pk] = {}
         src = os.path.join(tmp, "%s_SCR.ABK" % lv)
         if src not in banks:
             try:
@@ -338,7 +434,10 @@ def decode_sounds(disc, refs, tmp, vgm):
             if dec[k] is None:
                 parts = None
                 break
-            parts.append((dec[k][0], dec[k][1], ms))
+            uses = sum(1 for q in parts if q[5] == idx)
+            got = prm[pk].get(idx) or [(1.0, 1.0)]
+            vol, pit = got[min(uses, len(got) - 1)]
+            parts.append((dec[k][0], dec[k][1], ms, vol, pit, idx))
         if not parts:
             continue
         a, sr = bake(parts)
