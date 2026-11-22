@@ -1333,7 +1333,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_loGlove` | `0` | `0` | `client/cl_invrender.cpp:319` |
 | `coop_loHelmOnChar` | `1` | `0` | `client/cl_invrender.cpp:286` |
 | `coop_lootCone` | `7` | `0` | `fgame/player.cpp:16115` |
-| `coop_lootH` | `0` | `0` | `cgame/cg_coopfeed.c:1568` |
+| `coop_lootH` | `0` | `0` | `cgame/cg_coopfeed.c:1571` |
 | `coop_lootHoldTime` | `0.5` | `0` | `fgame/player.cpp:16116` |
 | `coop_lootProbe` | `0` | `0` | `fgame/player.cpp:16119` |
 | `coop_lootProbe` | `0` | `0` | `fgame/weapon.cpp:4203` |
@@ -1341,7 +1341,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_lootRange` | `80` | `0` | `fgame/player.cpp:16114` |
 | `coop_lootSearch` | `1` | `0` | `fgame/player.cpp:16118` |
 | `coop_lootSearchTime` | `1.75` | `0` | `fgame/player.cpp:16117` |
-| `coop_lootT` | `0` | `0` | `cgame/cg_coopfeed.c:1567` |
+| `coop_lootT` | `0` | `0` | `cgame/cg_coopfeed.c:1570` |
 | `coop_lootUse` | `1` | `0` | `fgame/weapon.cpp:4238` |
 | `coop_loSpinSens` | `0.6` | `CVAR_ARCHIVE` | `client/cl_uistd.cpp:594` |
 | `coop_lowAmmoTell` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3767` |
@@ -1387,7 +1387,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_mpCompass` | `0` | `0` | `cgame/cg_drawtools.cpp:2643` |
 | `coop_mpCorpseLinger` | `300` | `CVAR_ARCHIVE` | `fgame/body.cpp:90` |
 | `coop_mpCorpseMax` | `48` | `CVAR_ARCHIVE` | `fgame/body.cpp:93` |
-| `coop_mpProgBlob` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `cgame/cg_main.c:1068` |
+| `coop_mpProgBlob` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `cgame/cg_main.c:1069` |
 | `coop_mpx_Char` | `models/player/german_wehrmacht_soldier_nohat.tik` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4328` |
 | `coop_mpx_Helm` | `models/coop_helmets/coop_helmet_ger_helmet.tik` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4329` |
 | `coop_muffle` | `0` | `0` | `client/snd_dma_new.cpp:120` |
@@ -3375,7 +3375,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `ui_HeadShots` | `0` | `0` | `client/cl_ui.cpp:5927` |
 | `ui_health_end` | `0` | `0` | `client/cl_ui.cpp:5919` |
 | `ui_health_start` | `0` | `0` | `client/cl_ui.cpp:5918` |
-| `ui_hudAlpha` | `1` | `0` | `cgame/cg_coopfeed.c:1028` |
+| `ui_hudAlpha` | `1` | `0` | `cgame/cg_coopfeed.c:1031` |
 | `ui_hudAlpha` | `1` | `0` | `client/cl_ui.cpp:1914` |
 | `ui_hudHealthAlpha` | `1` | `0` | `client/cl_ui.cpp:1928` |
 | `ui_inventoryfile` | `global/inventory.txt` | `0` | `client/cl_ui.cpp:5916` |

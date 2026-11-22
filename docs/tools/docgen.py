@@ -30,6 +30,7 @@ DETERMINISM CONTRACT
 from __future__ import annotations
 
 import bisect
+import fnmatch
 import hashlib
 import json
 import os
@@ -118,6 +119,27 @@ NON_SOURCE_AREAS = {
     "research_extracted": "extracted research payloads",
     "installer": "Inno Setup output + payload staging",
 }
+
+# Scratch FAMILIES at the workspace root, matched by pattern (fnmatch on the area name): counted in the census, never
+# indexed per file. [2026-11-22, bug-11392] 68 hzm-mod-* working copies (~864k duplicate mod files) plus the soak
+# harness trees made the file map 1.1M rows and the build an hour; a duplicate of the mod is not a source of truth.
+# The bare `server_home` (the documented dedicated-harness homepath) does not match `server_home_*` and stays indexed.
+NON_SOURCE_PATTERNS = {
+    "hzm-mod-*": "scratch working copy of the mod (per-feature worktree)",
+    "server_home_*": "soak / A-B harness server homepath",
+    "_soak_*": "soak / A-B harness run output",
+}
+
+
+def non_source_note(area: str):
+    """The census note if this area is reference-only (counted, not indexed per file), else None."""
+    if area in NON_SOURCE_AREAS:
+        return NON_SOURCE_AREAS[area]
+    for pat, note in NON_SOURCE_PATTERNS.items():
+        if fnmatch.fnmatchcase(area, pat):
+            return note
+    return None
+
 
 # Areas that ARE the project. Descriptions here are authored once and shown in
 # the census - everything else about them is derived.
@@ -324,7 +346,7 @@ def sweep() -> list[FileRec]:
 
 def is_indexed(f: FileRec) -> bool:
     """Per-file indexing scope: project source, not reference dumps."""
-    return f.area not in NON_SOURCE_AREAS
+    return non_source_note(f.area) is None
 
 
 # --------------------------------------------------------------------------
@@ -973,8 +995,9 @@ def gen_filemap(files: list[FileRec]):
     L.append("| area | files | size | indexed per-file | what it is |\n|---|---:|---:|---|---|\n")
     for area in sorted(area_stats, key=lambda a: (-area_stats[a][0], a.lower())):
         n, b = area_stats[area]
-        is_ref = area in NON_SOURCE_AREAS
-        note = NON_SOURCE_AREAS.get(area) or SOURCE_AREAS.get(area, "")
+        ref_note = non_source_note(area)
+        is_ref = ref_note is not None
+        note = ref_note or SOURCE_AREAS.get(area, "")
         flag = "no - reference" if is_ref else "**yes**"
         L.append(f"| `{area}` | {n:,} | {b / 1e6:.1f} MB | {flag} | {note} |\n")
 

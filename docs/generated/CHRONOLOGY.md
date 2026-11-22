@@ -13,19 +13,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `d96ed278 2026-11-10 manifest 1.10.74` |
-| commits | 1,026 |
+| HEAD | `65936aa8 2026-11-22 docgen: per-file (size, mtime) cache for gen_filemap reads - full build 3593 s -> 37 s, output byte-identical` |
+| commits | 1,564 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **5274 modified, 2290 untracked** |
-| unstaged diff | 5274 files changed, 21041 insertions(+), 1492761 deletions(-) |
+| **uncommitted** | **5210 modified, 2226 untracked** |
+| unstaged diff | 5210 files changed, 20413 insertions(+), 1492568 deletions(-) |
 
-> Working tree is dirty. Everything in those 7564 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 7436 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-11 | 274 |
+| 2026-11 | 812 |
 | 2026-10 | 421 |
 | 2026-09 | 120 |
 | 2026-08 | 157 |
@@ -33,18 +33,556 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1026)
+### Commits since 2026-01-01 (1564)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `65936aa8` | 2026-11-22 | joncurry94-tech | docgen: per-file (size, mtime) cache for gen_filemap reads - full build 3593 s -> 37 s, output byte-identical |
+| `9cdfe360` | 2026-11-22 | joncurry94-tech | docs/generated/README.md: list server_settings.json (docgen build) |
+| `0efe8c85` | 2026-11-22 | joncurry94-tech | gfx flip gate: register the bloommix-eng renderer (bba498e2; per-zone bloom mix, 0 = off; smoked menu + m1l1 + coop_ea_1_11) |
+| `1ccfd913` | 2026-11-22 | joncurry94-tech | FIDELITY C41: leader speech facing (0.7.47 turn), head reach 90, raised foot on nothing as in the original |
+| `250a90fd` | 2026-11-22 | joncurry94-tech | EA converter 0.7.47: the leader's ExplainsPlan clip turned +90 (eaanimconv ICS_TURN, level.ea_icsTurn) - his body faces north thr… |
+| `84eb2e0c` | 2026-11-22 | joncurry94-tech | MOH Coop Server window: server host GUI (dedicated / host-and-play) for v1.10.88 |
+| `049d13af` | 2026-11-17 | joncurry94-tech | FIDELITY C39 (leader's held PPSh, free left hand listed) and C40 (hzm_capsulestep, Frontline/EA capsule player) |
+| `8a19fec8` | 2026-11-17 | joncurry94-tech | EA converter version 0.7.46 (held prop hand clip, 399353ce) |
+| `197d0fa0` | 2026-11-17 | joncurry94-tech | EA converter 0.7.45: worldspawn hzm_capsulestep 1 - the engine's capsule step rule (capsule-eng, merged rel-1.10.38-engine b36434… |
+| `399353ce` | 2026-11-17 | joncurry94-tech | EA converter 0.7.46: the held prop carries its own clip of the disc object joint against the stock right hand (eaanimconv.HELD_CL… |
+| `4e8d0c9a` | 2026-11-17 | joncurry94-tech | discguns: EA sounds as baked layer composites (6 guns, exact disc samples) + disc scope eye relief from the disc eyepiece |
+| `8223efd3` | 2026-11-17 | joncurry94-tech | FIDELITY C38: Dying Breath church defence - hold until reinforcements (user request) |
+| `490ccd8a` | 2026-11-17 | joncurry94-tech | v1.10.87 - Steady Aim: README What's new |
+| `67839989` | 2026-11-17 | joncurry94-tech | v1.10.87 shipped: converter stamp from the build commit bce7e66d (1.10.87.1) |
+| `706edaae` | 2026-11-17 | joncurry94-tech | manifest 1.10.87 |
+| `b4cd7f83` | 2026-11-17 | joncurry94-tech | FIDELITY C37 (church defence backstop, safety net) + OPEN: coop_eaHeadLim on by default with the v1.10.87 engine |
+| `bce7e66d` | 2026-11-17 | joncurry94-tech | hzmconv 1.10.87.1: Frontline window glass + Health25 medkit; EA converter 0.7.44 |
+| `21c0a08d` | 2026-11-17 | joncurry94-tech | Merge flfix2 for v1.10.87: Frontline window glass (bug-11371), Health25 = disc medkit case, FIDELITY (MP40 gunners) |
+| `10c0777f` | 2026-11-17 | joncurry94-tech | M1 Garand + Mosin aimed reload kept up (STAGED, not deployed): rifle held up with the receiver in view, lowered only as far as th… |
+| `70c2bff5` | 2026-11-17 | joncurry94-tech | OPEN: Dying Breath cellar lantern light on characters parked - measured numbers, the reverted local-grid trial, the faithful rout… |
+| `d1ce93ca` | 2026-11-17 | joncurry94-tech | FIDELITY: MG gunners off their gun get an MP40 (user request 2026-11-17) |
+| `650e68fb` | 2026-11-17 | joncurry94-tech | v1.10.86 - Squad Orders: README What's new |
+| `03b5f5aa` | 2026-11-17 | joncurry94-tech | v1.10.86 shipped: converter stamp from the build commit fd19b88a (1.10.86.1; later converter commits stay unshipped) + release no… |
+| `eb76f99e` | 2026-11-17 | joncurry94-tech | manifest 1.10.86 |
+| `8097aec8` | 2026-11-17 | joncurry94-tech | EA converter 0.7.43 / 0.7.44: the leader's held PPSh (ExplainsPlan object joint, character agent 150099bd) and level.ea_jawRest (… |
+| `10b7117d` | 2026-11-17 | joncurry94-tech | EA jaw: eajaw_rest - a closed-mouth two-frame non-looping say clip on every disc character, so a line can always end with 'say ea… |
+| `150099bd` | 2026-11-17 | joncurry94-tech | EA ExplainsPlan: the leader's held PPSh in the disc's own frame - the scene clip writes JO_object_R onto tag_weapon_right (two gr… |
+| `2ef8801b` | 2026-11-17 | joncurry94-tech | FIDELITY: Health25 pickup model settled - the disc's medkit case (ref_xemu so_fx/health/h25_sheet, rec 333) |
+| `a6d1a485` | 2026-11-17 | joncurry94-tech | Sealed Orders props: Health25 = the disc's medkit case (seen in the original, ref_xemu rec 333), under the approved health key |
+| `70707fcc` | 2026-11-17 | joncurry94-tech | Sealed Orders props: Health25 = the disc's medkit case (seen in the original, ref_xemu rec 333), under the approved health key |
+| `bdd6bdbd` | 2026-11-17 | joncurry94-tech | EA converter 0.7.42: ICS scenes carry the point's HeadTurn (ea_sc_head; 1_11: leader PLE_01/03/06 + the crouched woman); FIDELITY… |
+| `3232ec4f` | 2026-11-17 | joncurry94-tech | Frontline window glass (bug-11371): intact panes drawn from the disc's material-13 collision, each one cell of the level's intact… |
+| `296a9e07` | 2026-11-17 | joncurry94-tech | gfx flip gate: register the v1.10.86 renderer 544cdcc8 (rel-1.10.38-engine 13b8cab3: far-water floor fix + multi-box low mist) |
+| `fd19b88a` | 2026-11-17 | joncurry94-tech | hzmconv 1.10.86.1: Frontline skirt fix, crunch footsteps, stock HD nest MG42; EA converter 0.7.41 far mist |
+| `f168b3f3` | 2026-11-17 | joncurry94-tech | Merge flfix2: Sealed Orders skirt fix (bug-11345), footsteps crunch class, nest MG42 stock HD turret (user chose B), FIDELITY bat… |
+| `9c19f020` | 2026-11-17 | joncurry94-tech | FIDELITY C35: commit reference |
+| `8c625584` | 2026-11-17 | joncurry94-tech | FIDELITY C35: Nemesis_SQ02 spawns east of the church (his disc point is a sealed pocket under the nave; engine-forced) |
+| `dd3a9d91` | 2026-11-16 | joncurry94-tech | discguns: EA PPSh + M1 Garand fire / ping sounds from the disc (samples read off the running original), alias pick support |
+| `f069a473` | 2026-11-16 | joncurry94-tech | discguns: EA texture PROTECT boxes (stamps / legends / sight scales), keyed <stub>/<name> since EA names are per-gun indices |
+| `7d787d2f` | 2026-11-16 | joncurry94-tech | discguns: European Assault guns in the converter (eaguns.py) + EA stub rows |
+| `0f9497c2` | 2026-11-16 | joncurry94-tech | discguns: Frontline grenades + bazooka grip fit; stub generator inlines include-only tiks |
+| `18c1beb0` | 2026-11-16 | joncurry94-tech | discguns: Frontline batches 2-4 in the converter (M1, Colt, P38, Hi-Standard, Springfield, G43, bazooka, panzerschreck) |
+| `efbed72b` | 2026-11-16 | joncurry94-tech | barricade prompt icon: nailed board brace, no arch (the arch read as a padlock) |
+| `c4f6c315` | 2026-11-16 | joncurry94-tech | barricade prompt icon redrawn in the action-prompt set's style (round-headed window, three nailed planks) |
+| `5552946b` | 2026-11-16 | joncurry94-tech | flconvert: no drawn edge skirt where a drawn floor lies under the edge (bug-11345) - upper-storey slab skirts inside the brick ho… |
+| `14577916` | 2026-11-16 | joncurry94-tech | FIDELITY: the far-mist row is U16 (U15 is the roof tiles) |
+| `714a09f4` | 2026-11-16 | joncurry94-tech | EA converter 0.7.41: far ground mist, user-approved 2026-11-16 (trial A) - ea_levels 1_11 mist_extra boxes as worldspawn hzm_mist… |
+| `04cf6b34` | 2026-11-16 | joncurry94-tech | discguns: Frontline guns converter stage + unlock menu generators |
+| `ef2bf93b` | 2026-11-16 | joncurry94-tech | barricade plank tone: brown, grain visible, a step brighter than the church wall |
+| `2ecaeac5` | 2026-11-16 | joncurry94-tech | HISTORY: squad redesign + revive fix (guard off by default) |
+| `f42894c8` | 2026-11-16 | joncurry94-tech | FIDELITY: Sealed Orders 2026-11-16 batch - officer at load + ignored by allies, .30 cal road group + push leash, bridge Panzer fo… |
+| `a1d195b4` | 2026-11-16 | joncurry94-tech | barricade boards: lit model shaders + toned plank (were fullbright) |
+| `114b42b0` | 2026-11-16 | joncurry94-tech | TRAPS: runto/push leash - the engine's 512u combat leash stops pushers; set a long leash (bug-11331) |
+| `b8342894` | 2026-11-16 | joncurry94-tech | docs/tools/gen_squad_icons.py: the squad state icons (follow / hold / move) and the marker's white texture (mod 4085684c) |
+| `739e8c20` | 2026-11-16 | joncurry94-tech | joincard TITLES: e2l1 COFFIN CORNER (user) |
+| `d5499e73` | 2026-11-16 | joncurry94-tech | gen_barricade: cite bug-11325 for the data self-check |
+| `fcd8762b` | 2026-11-16 | joncurry94-tech | Sealed Orders footsteps: the crunch class plays dirt, not gravel (no snd_step_gravel alias on these maps: 'needs an alias' x18 in… |
+| `5e54668a` | 2026-11-16 | joncurry94-tech | barricade: board up the church windows - generator, plank meshes, icons, fixes-pak pins, FIDELITY C30 |
+| `ac6fd969` | 2026-11-16 | joncurry94-tech | v1.10.85 - Hold the Bridge (fixes): README What's new |
+| `3be3a828` | 2026-11-16 | joncurry94-tech | manifest 1.10.85 |
+| `87cac74f` | 2026-11-16 | joncurry94-tech | Sealed Orders props: the nest MG42 back to the stock HD turret (user chose B, 2026-11-16) + FIDELITY verdict updated in place |
+| `b4db3de4` | 2026-11-16 | joncurry94-tech | FIDELITY C31-C34 + P8b: comm-tower charge arming, coop officer, counter-attack push + enemies-remaining readout, church-tower sni… |
+| `a499d835` | 2026-11-16 | joncurry94-tech | Revert the nest MG42 switch-off (c09c7c7e): the coordinator is putting the choice to the user |
+| `c09c7c7e` | 2026-11-16 | joncurry94-tech | Sealed Orders props: the nest MG42 back to the stock turret (disc gun too low-res from the seat; user playtest) + FIDELITY row up… |
+| `8de1774e` | 2026-11-16 | joncurry94-tech | hzmconv 1.10.85.1 (v1.10.85) |
+| `ccfca69e` | 2026-11-16 | joncurry94-tech | merge flfix2 for v1.10.85 (SO clip_noshot, footsteps, gun-wave FIDELITY) |
+| `fca75b78` | 2026-11-16 | joncurry94-tech | conv_shipped.json as published for 1.10.84.1 |
+| `fdf9ddc6` | 2026-11-16 | joncurry94-tech | FIDELITY (Sealed Orders): gun-wave push row - the original's pacing traced (TRACE_gun_wave: it holds) |
+| `7e5d1766` | 2026-11-16 | joncurry94-tech | Sealed Orders footsteps: collision brushes carry the disc's footstep class (fl_levels footsteps) |
+| `0224d187` | 2026-11-16 | joncurry94-tech | EA converter 0.7.40: footsteps - each collision triangle's brush carries the surfaceparm of the original's step surface for its .… |
+| `8da59e46` | 2026-11-16 | joncurry94-tech | joincards: the MP room's card player wears your coop character - generator + room patch scripts |
+| `a8761443` | 2026-11-16 | joncurry94-tech | mp_unlock_audit: the blob version read lives in seedFromBody since the bug-11309 migration (false BUILD BLOCKED) |
+| `1570a9e9` | 2026-11-16 | joncurry94-tech | EA converter 0.7.39: a squad objective whose point is not standable moves to the nearest standing spot within 4 m instead of bein… |
+| `df98b7b1` | 2026-11-16 | joncurry94-tech | EA converter 0.7.38: squad objectives send on ObjectiveReached (ea_so_sr / stn / st / smn / sm: the w47 messages to the w27 targe… |
+| `64f6741a` | 2026-11-16 | joncurry94-tech | Service Record readers splice mvchal_gen.scr at its call (bug-11314) |
+| `81a53564` | 2026-11-16 | joncurry94-tech | discguns: disc-gun stub generator + its data hooks (Sten Mk II(S) own rows, engraving, MP credit) |
+| `898e75a3` | 2026-11-16 | joncurry94-tech | EA converter 0.7.37: SoundDialogueTriggers carry their Team (ea_lo_team, w22) and HeadTurn (ea_lo_head, w23) - the line comes fro… |
+| `66269332` | 2026-11-16 | joncurry94-tech | gen_mp_armory: frozen per-gun index (MP_FIN_INDEX + assert), migration tables, per-gun finish ladder restored from f804844b; gen_… |
+| `3878ac7c` | 2026-11-16 | joncurry94-tech | Sealed Orders: invisible clips block players and AI, not bullets (fl_levels clip_noshot) |
+| `57728864` | 2026-11-16 | joncurry94-tech | v1.10.84 - Hold the Bridge: README What's new |
+| `b6ee5f85` | 2026-11-16 | joncurry94-tech | manifest 1.10.84 |
+| `9c54a2cb` | 2026-11-16 | joncurry94-tech | test display: the 1920x1080 secondary screen by default (user 2026-11-16) |
+| `1d7d70f5` | 2026-11-16 | joncurry94-tech | hzmconv 1.10.84.1 (v1.10.84) |
+| `47ac40c1` | 2026-11-16 | joncurry94-tech | merge flfix2 for v1.10.84 (SO props on, foliage collision, bazar clip, flchar bind offset, 1_3 groundwork) |
+| `f6c8eb8c` | 2026-11-16 | joncurry94-tech | gfx flip gate: renderer b67269bb (9af44e9b water mirror height) for v1.10.84 |
+| `6a819fae` | 2026-11-16 | joncurry94-tech | flchar read_dmf: bind rotations follow the bone names, 16-aligned (bug-11285) |
+| `c4435e31` | 2026-11-16 | joncurry94-tech | FIDELITY (Sealed Orders): Panzer wreck collision, foliage collision, gun-wave push, tower gunner, bridge snipers, coop officer, 1… |
+| `ea89769e` | 2026-11-16 | joncurry94-tech | Sealed Orders props: the disc's nest MG42, Health10/Health50 and field phone switched on (user-approved 2026-11-16) + FIDELITY ro… |
+| `c51888dd` | 2026-11-16 | joncurry94-tech | Sealed Orders props: the disc's nest MG42, canteen, medkit and field phone (flprops.py), each OFF until approved |
+| `14abd844` | 2026-11-16 | joncurry94-tech | Sealed Orders props: the disc's nest MG42, canteen, medkit and field phone (flprops.py), each OFF until approved |
+| `6e6b5c51` | 2026-11-16 | joncurry94-tech | harness_guard: register the disc guns lane's private clients (H:\hzm_work\discguns\client, client2) |
+| `a52a63eb` | 2026-11-16 | joncurry94-tech | Sealed Orders props: the disc's own Panzer IV switched on (user-approved 2026-11-16) + FIDELITY rows (scale, still track frame, s… |
+| `532276a9` | 2026-11-16 | joncurry94-tech | Sealed Orders invisible walls: bush/hedge cards lose the drawn-geometry collision flsheets gave them |
+| `7054aba9` | 2026-11-16 | joncurry94-tech | Sealed Orders props: the disc's own Panzer IV (props agent), gated OFF ("props": {"panzer": false}) |
+| `4e8dff50` | 2026-11-16 | joncurry94-tech | Sealed Orders props: EA helpers imported lazily (key on only), so a key-off conversion on a tree without them is unaffected |
+| `c6af5f9d` | 2026-11-16 | joncurry94-tech | FIDELITY C29: the down cells fixed (aim-motion slots), nest 1 M for up, level and down |
+| `11d53b17` | 2026-11-16 | joncurry94-tech | Sealed Orders props: built only when fl_levels.json "props" switches a prop on (key off = nothing written, the pak unchanged); fl… |
+| `6460607e` | 2026-11-16 | joncurry94-tech | Sealed Orders props: the disc's own Panzer IV (live tank, parked copy, wreck) on the stock panzer_tank_europe / cannon / static /… |
+| `ba66620e` | 2026-11-16 | joncurry94-tech | FIDELITY C29: MG42 pole crews - aim cell by gun pitch, nest 1 aim-up / level M from forced-aim stills; the down cells open (gunne… |
+| `c66f87a8` | 2026-11-16 | joncurry94-tech | EA MG grid: comment - the original's crouched gunner is the aim-UP cells (grid Y positive = pitch up); ea_mmgc_idle kept but not… |
+| `27166661` | 2026-11-16 | joncurry94-tech | EA converter 0.7.36: MMG points carry their own height (ea_mg_pz; ea_mg_pos is grounded 30-40u low on the railgun deck and wall n… |
+| `f74b181b` | 2026-11-16 | joncurry94-tech | FIDELITY (Sealed Orders): shop fronts - ours stops at the drawn trim where the disc's facade clip slides the player along (Bazar… |
+| `42b7bca6` | 2026-11-16 | joncurry94-tech | FIDELITY (Sealed Orders): shop fronts - ours stops at the drawn trim where the disc's facade clip slides the player along (Bazar… |
+| `e3583140` | 2026-11-16 | joncurry94-tech | Sealed Orders: keep the disc's clip sheet over the Bazar de Varzy window recess (c1 324/325) |
+| `b2b4f179` | 2026-11-16 | joncurry94-tech | EA crouched MG gunner ea_mmgc_idle for low guns (disc pole 21.6u): the original's NONCOVER_CROUCH_IDLE aim loop turned to the gun… |
+| `5b542d06` | 2026-11-16 | joncurry94-tech | EA props: level.ea_poleH, the pole MG42's pivot over its MMG point from the disc pole model (21.6u at 52 u/m) |
+| `13da1fa7` | 2026-11-16 | joncurry94-tech | FIDELITY: 6507 (gunner rise) end pose confirmed by the emulator - half-raised at the front, not upright |
+| `f1eaa313` | 2026-11-16 | joncurry94-tech | v1.10.83 - The Original Cast (fixes): README What's new |
+| `4efdbb16` | 2026-11-16 | joncurry94-tech | manifest 1.10.83 |
+| `53290be5` | 2026-11-16 | joncurry94-tech | hzmconv 1.10.83.1 (v1.10.83); conv_shipped.json as published for 1.10.82.1 |
+| `33972a06` | 2026-11-16 | joncurry94-tech | merge flfix2 for v1.10.83 (SO sky from the disc, mono beds, U-boat split, smoke look, 1_3 groundwork) |
+| `505d31df` | 2026-11-16 | joncurry94-tech | EA converter 0.7.35: spawn points carry when their death channel sends (send-on-death, repeat, every Nth death) |
+| `e36effff` | 2026-11-16 | joncurry94-tech | FIDELITY (Sealed Orders): generated smoke / pall emitters - size relative to the disc's smoke sprite, soft grow, dark grey (look… |
+| `3d71485d` | 2026-11-16 | joncurry94-tech | FIDELITY (Sealed Orders): generated smoke / pall emitters - size relative to the disc's smoke sprite, soft grow, dark grey (look… |
+| `c08c76c0` | 2026-11-16 | joncurry94-tech | Sealed Orders smoke look (look agent's smoke_look patch): generated smoke / pall emitters read the disc size relative to its own… |
+| `02658c5a` | 2026-11-16 | joncurry94-tech | Anchor & Anvil agent's patch 8 + 1_3 entry v8: per-level mesh_light (object-mesh vertex colour factor, default 2.0) and untexture… |
+| `08e2f1c6` | 2026-11-16 | joncurry94-tech | Sealed Orders: the original's own sky for every player - 1_1 sky_xsh level1test (the level's six sky textures from the player's d… |
+| `fe71bcf6` | 2026-11-16 | joncurry94-tech | Anchor & Anvil agent's patch 7 + 1_3 entry v7: per-level sky_xsh (the level's own <prefix>_RT..DN.xsh sky faces through sky_faces… |
+| `90a8299e` | 2026-11-16 | joncurry94-tech | grade_profiles: coop_fl_1_3 neutral PROV night row (Anchor & Anvil; replace with a measured row once the 1_3 emulator walk exists) |
+| `21447e23` | 2026-11-16 | joncurry94-tech | Anchor & Anvil agent's patch 6 + 1_3 entry v6: object-mesh draws over 2000 verts split into surfaces of at most 2000 (1_3 U-boat… |
+| `b44e9b5d` | 2026-11-16 | joncurry94-tech | EA converter 0.7.34: a DemoCharge the original starts inactive (StartActive, word 34) listens on its first group and is set only… |
+| `e0a9e92e` | 2026-11-16 | joncurry94-tech | 1_3 level entry v5 (Anchor & Anvil agent): three provisional ladders under the hatch (platform west / east, hatch shaft). JSON on… |
+| `5e3769d8` | 2026-11-16 | joncurry94-tech | Anchor & Anvil agent's patch 4 + its 1_3 level entry v4: per-level headroom skip boxes (flclear.normalise) and clip_boxes (12 fac… |
+| `13588e5a` | 2026-11-15 | joncurry94-tech | Sealed Orders ambience beds written mono (flaudio.wav_mono): the client refused the stereo beds as sound effects ('is a stereo wa… |
+| `2c8b3403` | 2026-11-15 | joncurry94-tech | v1.10.82 - The Original Cast (hotfix): README What's new |
+| `3988a761` | 2026-11-15 | joncurry94-tech | manifest 1.10.82 |
+| `ce313ff0` | 2026-11-15 | joncurry94-tech | Anchor & Anvil agent's patch 3 + its 1_3 level entry v3: per-level wrap_mat (default 3; flsheets drop, flroutes carve keep, flfit… |
+| `ff4d35e9` | 2026-11-15 | joncurry94-tech | hzmconv 1.10.82.1 (v1.10.82) |
+| `5f5a180b` | 2026-11-15 | joncurry94-tech | merge flfix2 for v1.10.82 (sound index: bank clips as alias) |
+| `1839ac5f` | 2026-11-15 | joncurry94-tech | flpack: the one-shot bank clips as 'alias', not 'aliascache' - the 349 clips were registered at load and the 2048-entry sound ind… |
+| `283bd78e` | 2026-11-15 | joncurry94-tech | Anchor & Anvil agent's patch 2 + its 1_3 level entry: AMMO adds MP40Ammo / StickGrenadeAmmo / Springfield03Ammo; optional per-lev… |
+| `be1385b0` | 2026-11-15 | joncurry94-tech | flpack._journal (Anchor & Anvil agent's patch): optional pages cap; a page whose SHPX decode gives no rgba is read as linear RGB5… |
+| `96d0c51f` | 2026-11-15 | joncurry94-tech | v1.10.81 - The Original Cast: README What's new |
+| `d44341f4` | 2026-11-15 | joncurry94-tech | manifest 1.10.81 |
+| `86d74129` | 2026-11-15 | joncurry94-tech | hzmconv 1.10.81.1 (v1.10.81) |
+| `0550c3ad` | 2026-11-15 | joncurry94-tech | merge flfix2 for v1.10.81 |
+| `96f43ecf` | 2026-11-15 | joncurry94-tech | EA FIDELITY C19: tombstones and crosses break at the original's damage thresholds (mod 9fcac7df) |
+| `e61d37cd` | 2026-11-15 | joncurry94-tech | FIDELITY: round 23 - code decode applied (paths, rec 51, area 373, particle start, moods, barks) |
+| `1d0c92f2` | 2026-11-15 | joncurry94-tech | Sealed Orders textures (user-approved 2026-11-15): brick 4aa80 -> CC0 dark_brick_wall, soft retry + careful 4x |
+| `70289a71` | 2026-11-15 | joncurry94-tech | Dying Breath look pass (user-approved 2026-11-15) + both converters' texture upscale |
+| `617407a4` | 2026-11-15 | joncurry94-tech | EA converter: disc locomotion/hit clips (EA_LOCO) and the talking jaw (EA_JAW) on by default for v1.10.81 (engine fe58992c + 89b0… |
+| `5ebc3f34` | 2026-11-15 | joncurry94-tech | eazones / FIDELITY: audio.bus field names from the code decode (bug-11258) - +6 is the PITCH ramp, not a fade-out |
+| `cfa070e0` | 2026-11-15 | joncurry94-tech | EA converter 0.7.33: sound definitions read by field name through Audio.ubr's property table (bug-11257) |
+| `92c17e39` | 2026-11-15 | joncurry94-tech | Frontline 1_1 code decode (CODE_FINDINGS_fl_1_1.md): soldiers' own path id / direction (attrs 42 / 43) instead of the nearest-pat… |
+| `c8bf0b43` | 2026-11-15 | joncurry94-tech | Dying Breath FIDELITY U13: jaw at the original's full 20 deg (cap deviation removed); chin falloff band noted |
+| `38a3f52a` | 2026-11-15 | joncurry94-tech | EA FIDELITY C25: ChooseDeathPose's order (prone by location, flung = killed running; Rally tree, agony and melee types noted) |
+| `9af4b3d1` | 2026-11-15 | joncurry94-tech | EA talking jaw at the original's full 20 deg: a jaw-to-head falloff band below the lower lip (edge relaxation over all sub-meshes… |
+| `50f938de` | 2026-11-15 | joncurry94-tech | Dying Breath FIDELITY U13: the original does move the jaw while speaking (speech peak level, XBE-decoded); ours follows the same… |
+| `bd98767c` | 2026-11-15 | joncurry94-tech | EA talking jaw follows the original's own controller (DEFAULT.XBE): per-frame peak level of the speech, moved at most 0.25 per up… |
+| `28212200` | 2026-11-15 | joncurry94-tech | discstock: careful text/insignia blend with glyph check; blended sheets keep their own colour under alpha |
+| `517c10a8` | 2026-11-15 | joncurry94-tech | Frontline characters: a careful upscale pass for the 32 px helmet eagle and the ammo-belt bullets (user 2026-11-15) - clean enlar… |
+| `d2f7aafd` | 2026-11-15 | joncurry94-tech | EA talking jaw clips flagged looping: as one-shots the client dropped the say slot after ~1.5 s; the map script stops the say at… |
+| `379e8c08` | 2026-11-15 | joncurry94-tech | EA talking jaw: max opening 11 deg (13 read as a grimace on the partisan) and the mouth corners follow the jaw only partly (from… |
+| `24da16ca` | 2026-11-15 | joncurry94-tech | Props HD: MG42 textures (P051/P052 capped 1024, pole 00Fq) through ESRGAN |
+| `ff117260` | 2026-11-15 | joncurry94-tech | Props HD: CC0 PaintedMetal005 (Sealed Orders Panzer steel grain) and Leather030 (field phone case, dossier) from ambientCG, credi… |
+| `e7b2740b` | 2026-11-15 | joncurry94-tech | Dying Breath FIDELITY: talking jaw recorded as a user-approved addition (the original has no mouth movement) |
+| `0537b94a` | 2026-11-15 | joncurry94-tech | EA talking jaw (opt-in EA_JAW=1, user-approved addition): a 'Bip01 Jaw' bone under the head in the disc characters' own skeletons… |
+| `976277b9` | 2026-11-15 | joncurry94-tech | FIDELITY: fix a path in the animations section |
+| `884da632` | 2026-11-15 | joncurry94-tech | FIDELITY: Frontline animations section (flanim decode, scene clips converted and gated) and deviation rows |
+| `22b56909` | 2026-11-15 | joncurry94-tech | Frontline animations: flanim (eMotion decoder), flanimconv (retarget onto Bip01, the EA route; scene clips as fl_a<id> aliases pe… |
+| `4800ec88` | 2026-11-15 | joncurry94-tech | Frontline animations: flanim.py decodes the disc's eMotion bank (emt_<level>.emt) - animation ids, clips, pose stream, base pose… |
+| `de44e705` | 2026-11-15 | joncurry94-tech | docs: Dying Breath bloom / area light / sound mix - FIDELITY C26-C28, HISTORY line, TRAPS heredoc ids |
+| `dae22acd` | 2026-11-15 | joncurry94-tech | EA converter: the original's bloom strips, mixer-snapshot boxes and interior volumes (eazones.py); interior volumes light the ent… |
+| `04e4c9f2` | 2026-11-15 | joncurry94-tech | discstock HD pak: QA fixes, HD-pack sprite size fix, ship it in build + release |
+| `b975181c` | 2026-11-15 | joncurry94-tech | EA FIDELITY E7: the disc's own Panzer IV and wreck, user-approved 2026-11-15 (eaprops P1; headless boot ded_approved2) |
+| `f85e1969` | 2026-11-15 | joncurry94-tech | Stock-HD pass for the own-disc missions: upscale_discstock.py builds zzzzzzzzzz_coop_hd_discstock.pk3 (not deployed) |
+| `0f4a1c94` | 2026-11-15 | joncurry94-tech | EA props: hull-MG tik animation lines lost their idle/fire names (a control character in place of the regex backreference) - TIKI… |
+| `2460648e` | 2026-11-15 | joncurry94-tech | EA props: the converted winter Panzer IV (intact + destroyed) approved by the user, on by default (eaprops OWN); FIDELITY P1-P7 u… |
+| `cfc4ef6f` | 2026-11-15 | joncurry94-tech | EA live-AI static overrides keep the root height (crouch idle / reload converted with root_motion=False floated the feet 35-40u o… |
+| `b51dc0f8` | 2026-11-15 | joncurry94-tech | EA props: Panzer at the soldiers' scale (52 u/m) and whitewash lift (x1.8, second pass) after coordinator QA; FIDELITY rows P1-P8 |
+| `0037786c` | 2026-11-15 | joncurry94-tech | HISTORY: squad commands (mod d93b373e..27a92dea, cgame 29f554b8) |
+| `0c8cc299` | 2026-11-15 | joncurry94-tech | EA live-AI corner cover (opt-in EA_LOCO=1): STAND PEEK LEFT/RIGHT on <group>_wall_peek_*, STAND LEFT FIRE START on <group>_wall_l… |
+| `644fdcaa` | 2026-11-15 | joncurry94-tech | EA props: pole MG42 seat 31.8/70.7 (character agent's hand numbers); level.ea_anim["mmgp"] flag for the pole crew set; Panzer kee… |
+| `54f2b661` | 2026-11-15 | joncurry94-tech | EA live-AI crouch idle and reloads (opt-in EA_LOCO=1): NONCOVER_CROUCH_IDLE on <group>_crouch_alert, STAND RELOAD (SMG / rifle) o… |
+| `47216ebc` | 2026-11-15 | joncurry94-tech | EA gunner clips: second set ea_mmgp_* for the disc's own MG42 on its pintle pole (eaprops): hands 2.3u right (MMG_SIDE_POLE), sea… |
+| `7def6d09` | 2026-11-15 | joncurry94-tech | Sealed Orders texture round 3: four CC0 swaps (user standing permission for online CC0 textures) |
+| `0b87dd8a` | 2026-11-15 | joncurry94-tech | FIDELITY: round 22c (journal footer, cover still) |
+| `a315fbbb` | 2026-11-15 | joncurry94-tech | EA props: the disc's own Panzer IV (intact + destroyed) and MG42 on the stock entities (eaprops.py), gated off |
+| `c25c3311` | 2026-11-15 | joncurry94-tech | FIDELITY: round 22b wiring, stale rows (trail goals, characters on, allied squad), user approvals of 2026-11-15 |
+| `2048f7b6` | 2026-11-15 | joncurry94-tech | FIDELITY: round 22 - final sweep (generators 473 / 212, house sound 54, trigger 91 and area 373, path finders, 39 barks, per-syst… |
+| `760ebc18` | 2026-11-15 | joncurry94-tech | Sealed Orders spec: 39 more one-shot clips placed by situation (37 voiced lines left out as unclear in round 20, 2 cries), partic… |
+| `143fd1ca` | 2026-11-15 | joncurry94-tech | Frontline converter: projectile generators, AI-area hold / release triggers and music path-finder levels as data vars; every plac… |
+| `f695ba5f` | 2026-11-15 | joncurry94-tech | Frontline converter: decode record links / slots, the kind-10 projectile generator (named path, rate, burst, bursts per switch-on… |
+| `5dbe8857` | 2026-11-15 | joncurry94-tech | EA FIDELITY U11: the gable fire (StrawRoofFireD_01) matched to the four ref_xemu gable frames (per-package size 2.5x; stills pxga… |
+| `e468f374` | 2026-11-15 | joncurry94-tech | EA FIDELITY C25: deaths by the joint hit, as the original's HitReactions tree (mod a18a65a3) |
+| `617f7687` | 2026-11-15 | joncurry94-tech | EA converter: ChangeGPSBehavior names its squad (ea_ga_sq); eafx fire_tune takes a per-package size ("per") |
+| `b03772c4` | 2026-11-15 | joncurry94-tech | EA live-AI hit reactions (opt-in EA_LOCO=1): the original's stand/crouch flinches by hit zone under the stock <group>_stand_hit_*… |
+| `be8b62e3` | 2026-11-15 | joncurry94-tech | EA live-AI locomotion (opt-in EA_LOCO=1): the original's RUN and WALK cycles under the stock aliases <group>_run_forward / _walk_… |
+| `9401d586` | 2026-11-15 | joncurry94-tech | EA FIDELITY U11: the gable fire's placement worded as seen (a little left of the emulator frame's) |
+| `d4ebd3a9` | 2026-11-15 | joncurry94-tech | EA FIDELITY: U3 / U7 duplicates renumbered (snow ground U13, enemy scaling U14); C3, C7, C9, C13, C20 user-approved 2026-11-15; S… |
+| `be036ab5` | 2026-11-15 | joncurry94-tech | EA converter 0.7.32: ICS send slots 2-7 (ea_isl_*) and the SoundDefTriggers' own disc samples (eapack.sounddefs) |
+| `63fe64fd` | 2026-11-15 | joncurry94-tech | merge flfix2: Sealed Orders disc characters (flchar), cover points (flcover), particles, hedges, head shapes |
+| `e4711906` | 2026-11-15 | joncurry94-tech | test windows: primary display always; while the user's game runs they go behind it (HWND_BOTTOM, never activated) - user 2026-11-… |
+| `ca267b3b` | 2026-11-15 | joncurry94-tech | test display: primary, or the small 1920x1080 while the user plays Anno 117 on the primary; no test window when neither fits (use… |
+| `9cfd200b` | 2026-11-15 | joncurry94-tech | test display back to the small 1920x1080 monitor (user 2026-11-15) |
+| `05fdc632` | 2026-11-15 | joncurry94-tech | FIDELITY: characters - head shapes on (crown clamp under hats), every character texture upscaled |
+| `bb10d3c4` | 2026-11-15 | joncurry94-tech | Frontline characters: head shapes ON (user approved the original's head shapes); under a hat the crown keeps the smaller of its n… |
+| `c2387cbd` | 2026-11-15 | joncurry94-tech | FIDELITY: characters - jeep riders in their own models (fade twins), head shapes decoded (off until approved) |
+| `0805f026` | 2026-11-15 | joncurry94-tech | Frontline characters: every character also gets a fade-capable twin (fl_<level>_chr_<hash>_fade.tik, shaders *_fade: blend + alph… |
+| `d458e440` | 2026-11-15 | joncurry94-tech | Frontline characters: head shapes decoded (morph targets 28-37, picked by the definition's first int), applied only with flchar.H… |
+| `1f8994c8` | 2026-11-15 | joncurry94-tech | Frontline characters: the user approved the remaining 17 sheets - every Sealed Orders character definition is in flchar.OWN (own… |
+| `b38ad8a2` | 2026-11-15 | joncurry94-tech | Frontline characters: the user approved the first three sheets - 645ffd2b (main German), 7f9a5a86 (capped officer), dca82ce9 (GI)… |
+| `e309491f` | 2026-11-15 | joncurry94-tech | EA scenes: 17 more ICS rigs + DeathFromAbove as ea_ics_<rig>_<n> (blocking door, gate kick, microphone, orders, placing charge, w… |
+| `c1fbfa33` | 2026-11-15 | joncurry94-tech | FIDELITY C24: disc MG crews on by default on the stock seat (all nine nests pass, mod 122ed3db) |
+| `77c7fedb` | 2026-11-15 | joncurry94-tech | FIDELITY: characters - BM03 chest piece checked on the emulator (plain tunic in the original) |
+| `f1b6c4c9` | 2026-11-15 | joncurry94-tech | EA gunner clips on the STOCK seat: hands 8.6u to the gunner's right like the stock MG42 gunner (FK of MG42_stand_idle_a: grip 39.… |
+| `ccf0cd5c` | 2026-11-15 | joncurry94-tech | FIDELITY: characters section - sheet folder path |
+| `2f75907e` | 2026-11-15 | joncurry94-tech | FIDELITY: Frontline characters - the 20 disc character definitions, status per definition, deviations (re-pose onto Bip01, neutra… |
+| `872c4238` | 2026-11-15 | joncurry94-tech | EA gunner clips unshifted again (MMG_FWD 0): the fixer seats the disc crews with turretseat 36 74; centre cell l9_z124 hands at 2… |
+| `38368bfa` | 2026-11-15 | joncurry94-tech | FIDELITY: round 21b - cover layer proven in a client, on by default |
+| `c1650c00` | 2026-11-15 | joncurry94-tech | Frontline characters: a piece whose texture no level pack carries (BM03's chest piece, GR4) is not drawn - it showed the engine's… |
+| `e009ffc4` | 2026-11-15 | joncurry94-tech | byoclient: test clients on the primary display (user 2026-11-15) |
+| `205f2c0d` | 2026-11-15 | joncurry94-tech | Frontline characters: the disc's own soldiers as MOHAA models (flchar.py), gated off until each sheet passes QA |
+| `4b65345f` | 2026-11-15 | joncurry94-tech | FIDELITY: round 21 - cover and routes (cover points decoded, MOHAA cover nodes, paths undecoded) |
+| `cf6d34f2` | 2026-11-15 | joncurry94-tech | Dying Breath FIDELITY C25: soldier deaths |
+| `0a37e1c3` | 2026-11-15 | joncurry94-tech | EA converter: level.ea_anim[mmg\|death\|ics] - which disc clip families the pak carries, so the map script plays only what the pl… |
+| `4cf8f6b5` | 2026-11-15 | joncurry94-tech | Frontline converter: cover nodes stand on the floor at the disc point's height and must walk-link to a navpoint node |
+| `804872a2` | 2026-11-15 | joncurry94-tech | Frontline converter: the disc's AI cover points as MOHAA cover nodes and level.fl_cov_* data (round 21) |
+| `89257f28` | 2026-11-15 | joncurry94-tech | harness_guard: a G:\mohaa-<x> client whose fs_homepath is under H:\hzm_work is an agent's harness, not the user's game |
+| `ccbb54b1` | 2026-11-15 | joncurry94-tech | EA gunner clips: every ea_mmg_* root 27 world units forward (27/0.52 model units, after the per-cell turn) - the engine seats a g… |
+| `f94d1be6` | 2026-11-15 | joncurry94-tech | EA deaths: the ordinary soldier deaths of HitReactions.aso (graph 84033c53) converted as ea_death_<pose>_<side>_<n> (37 clips: st… |
+| `eec19cd8` | 2026-11-15 | joncurry94-tech | EA converter 0.7.31: XD_108 building corners settled at conversion (easettle.py: gravity-only fall-and-tip onto the .cdb, pieces… |
+| `b6686d51` | 2026-11-15 | joncurry94-tech | Dying Breath FIDELITY C24: MG crews (engine-forced; opt-in until QA) |
+| `b7ef3fbf` | 2026-11-15 | joncurry94-tech | EA scene clips by ICS rig (ea_ics_<rig>_<n>): partisan idling, crouched woman, the leader's plan and go-fight, weapon polishing,… |
+| `51b5b9f6` | 2026-11-15 | joncurry94-tech | EA gunner clips turned so the gun hands point straight ahead (the engine yaws a gunner with his turret); the one-shots take the l… |
+| `f2182066` | 2026-11-15 | joncurry94-tech | EA FIDELITY: U11 village fire flames matched to the emulator reference |
+| `028da3e4` | 2026-11-15 | joncurry94-tech | EA converter: village roof, straw-roof and medium fire flames matched to the original (2.5x size, x1.6 colour, x1.5 alpha) |
+| `65287206` | 2026-11-15 | joncurry94-tech | FIDELITY: round 20c - walked emulator stills (recs 4-7, 10) |
+| `83a4213d` | 2026-11-15 | joncurry94-tech | reflect_run: the test display from harness_window.test_display (user 2026-11-15: primary display for testing), not a fixed 1920x1… |
+| `476db151` | 2026-11-15 | joncurry94-tech | EA converter: distant fires drawn fog-free - nofog belongs inside the sprite stage |
+| `dee0bb31` | 2026-11-15 | joncurry94-tech | EA animations into MOHAA: mohskel.py (the engine's skeletal FK incl. the leg IK, SKAN v13 read/write; verified exact against engi… |
+| `7ea0960a` | 2026-11-15 | joncurry94-tech | v1.10.80 - Fire and Fog: README What's new; renderer d0cb5af6 in the gfx gate |
+| `931be269` | 2026-11-15 | joncurry94-tech | manifest 1.10.80 |
+| `224612a8` | 2026-11-15 | joncurry94-tech | FIDELITY: round 20c - particle starts to the emulator stills |
+| `9d83d906` | 2026-11-15 | joncurry94-tech | hzmconv 1.10.80.1 (v1.10.80) |
+| `31bf9611` | 2026-11-15 | joncurry94-tech | merge flfix2 for v1.10.80 |
+| `9716045d` | 2026-11-15 | joncurry94-tech | EA animations: the disc's own clip bank decoded (eaanim.py: AnimationData/KeyList/JointList, the engine's channel codecs and type… |
+| `0cae3234` | 2026-11-15 | joncurry94-tech | grade: coop_ea_1_11 measured row (expo 0.90, temp -0.06) matched to the original emulator frames (bug-11204) |
+| `f10f2e1b` | 2026-11-13 | joncurry94-tech | grade: coop_fl_1_1 measured row (expo 0.50, sat 0.92) - Sealed Orders lane matches the original's darkness (bug-11204) |
+| `99db6431` | 2026-11-13 | joncurry94-tech | FIDELITY: round 19d - neutral display chain never built (measured, grade row handed over), tree card hue, hedge foot sliver |
+| `0ef203eb` | 2026-11-13 | joncurry94-tech | Sealed Orders tree cards: recolour by luminance onto the disc card's hue (a per-channel gain blew the bark's blue noise into blue… |
+| `57c5860e` | 2026-11-13 | joncurry94-tech | Sealed Orders hedges: the foot skirt continues the texture downward (UV gradient along -z) instead of stretching one row (bug-111… |
+| `ce1d4398` | 2026-11-13 | joncurry94-tech | ea_levels.json: restore the creek-mist desat and distant-fire values (385f5835 / 88381a36) that 220ffbb0 staged over from a stale… |
+| `220ffbb0` | 2026-11-13 | joncurry94-tech | EA converter 0.7.30: door clearances - ea_levels.json headroom_carve boxes cut the collision only; the barn by the hut point (200… |
+| `9caba2c1` | 2026-11-13 | joncurry94-tech | EA FIDELITY: U10 distant fires keep the fog for now (nofog made them vanish on gl2), engine follow-up open |
+| `95ec3ec3` | 2026-11-13 | joncurry94-tech | Sealed Orders: upgraded tree cards recoloured to the disc card from the image the engine actually draws (HD DDS), and the hedge f… |
+| `3090775d` | 2026-11-13 | joncurry94-tech | FIDELITY: round 19c - hedges back to the disc's own boxes (user option 1), upscaled, foot skirt |
+| `dd970a90` | 2026-11-13 | joncurry94-tech | flupscale: opaque dense-foliage textures (fl_texmap upscale_foliage) get the cards' wider worm limit; Sealed Orders hedge box 16c… |
+| `385f5835` | 2026-11-13 | joncurry94-tech | EA converter: distant fires keep the global fog for now (nofog systems did not draw on gl2), halo narrowed to 2.2x at 0.3 |
+| `7e21243e` | 2026-11-13 | joncurry94-tech | Sealed Orders hedges: back to the disc's own hedge boxes (16c480, user option 1), MOHAA hedgerow card dropped; a 96u foot skirt k… |
+| `ee4a87c3` | 2026-11-13 | joncurry94-tech | FIDELITY: round 19b - hedge look (v112), user choice card vs disc texture |
+| `584d3bc7` | 2026-11-13 | joncurry94-tech | EA FIDELITY: U9 creek mist as engine height mist (same layout, artifacts fixed), U10 distant fires fog-free (user-approved) |
+| `32d3d105` | 2026-11-13 | joncurry94-tech | Sealed Orders hedges: card rows 0.15-0.97 (leaf body up to the old top, no seam line), core 0.95, crown height varied per face (b… |
+| `e06139ec` | 2026-11-13 | joncurry94-tech | FIDELITY: round 19 path fix |
+| `a4720ce7` | 2026-11-13 | joncurry94-tech | FIDELITY: round 19 - v109 seen in a client, water impact (puddle bed) row |
+| `03b73434` | 2026-11-13 | joncurry94-tech | gfx_flip_gate: register renderer 5052f07f (rel-1.10.38-engine @ 6b9ad322: water extras v2 + low mist) after menu + m1l1 smoke |
+| `8ebfc56e` | 2026-11-13 | joncurry94-tech | Sealed Orders water: the water volume as stock water (CONTENTS_WATER\|TRANSLUCENT, puddle surface) and a puddle canal bed (bug-11… |
+| `0cb0cecf` | 2026-11-13 | joncurry94-tech | EA characters: optional pelvis share for loose thigh cloth (DRAPE, off: tested on the partisan woman's skirt in the downed/collap… |
+| `88381a36` | 2026-11-13 | joncurry94-tech | EA converter: creek mist pulled half-way to grey (desat 0.55: white mist against the blue night, user's memory of it) |
+| `6e9101cb` | 2026-11-13 | joncurry94-tech | Dying Breath FIDELITY C17: downed squadmates are not targeted; marker without the red light |
+| `7024d362` | 2026-11-13 | joncurry94-tech | FIDELITY: door swing proven (round 20b) |
+| `544d938a` | 2026-11-13 | joncurry94-tech | FIDELITY: round 20b - sweep items wired in the map script (particles, house wall, one-shots, no replicas / counter, door use) |
+| `e64dc93a` | 2026-11-13 | joncurry94-tech | islandsweep.py: import pthread from its own folder |
+| `33adb0ce` | 2026-11-13 | joncurry94-tech | EA converter 0.7.29: path nodes the engine never links to the main graph, with no AI place on their floor within 160u, are droppe… |
+| `94effddc` | 2026-11-13 | joncurry94-tech | EA converter: the creek mist as the engine's height mist (hzm_mist), distant fires drawn fog-free |
+| `785b0d97` | 2026-11-13 | joncurry94-tech | EA FIDELITY: U7 distant fires drawn inside the far plane, U8 village fire light (user-approved) |
+| `49d7d0df` | 2026-11-13 | joncurry94-tech | EA effects: distant fires switched on (user-approved), brightened keeping their hue, with a soft halo |
+| `d12c4d0f` | 2026-11-13 | joncurry94-tech | EA effects: distant fire/glow packages can be drawn inside the far plane (prepared, off until approved) |
+| `33c5140d` | 2026-11-13 | joncurry94-tech | EA converter: breakable smart objects - a placement whose sob has a broken variant <sob>_d (the 18 graveyard tombstones and cross… |
+| `cee5e0b6` | 2026-11-13 | joncurry94-tech | Sealed Orders FIDELITY: enemy count scaling at 2+ players (discscale.scr, user-approved 2026-11-13) |
+| `57826f23` | 2026-11-13 | joncurry94-tech | Dying Breath FIDELITY: U7 enemy count scaling at 2+ players (discscale.scr, user-approved 2026-11-13) |
+| `e566da41` | 2026-11-13 | joncurry94-tech | EA converter 0.7.28: no step-lip clip box on a ramp where its own downhill side would be over a step (the partisan cellar stair:… |
+| `298ae0f4` | 2026-11-13 | joncurry94-tech | FIDELITY: round 20 - particles, house wall, one-shots (+ deviation rows) |
+| `ffbf73a3` | 2026-11-13 | joncurry94-tech | Sealed Orders round 20: LoadOneShotSound banks 11LOAD1-7 -> per-area combat barks and pain sounds (numbered alias sets fl11_os<n>… |
+| `94765973` | 2026-11-13 | joncurry94-tech | Sealed Orders round 20: the bombed house's wall section (house_remove_1_1.msh) as script_object fl_om_house_remove on ObjectivePi… |
+| `0bf6e1bd` | 2026-11-13 | joncurry94-tech | Sealed Orders round 20: placed particle systems (kind 9) -> stock emitters as level.fl_pfx_* (flscene.particle decodes colour, mo… |
+| `971d3191` | 2026-11-13 | joncurry94-tech | EA converter: squadmates' names from their archetype strings (level.ea_sp_shown: Foshkovich, Vasileva, Maldavonov) and the death… |
+| `9d9374d7` | 2026-11-13 | joncurry94-tech | EA converter 0.7.27: the cells' second ELF object decoded - barbed wire, grass and wheat cards, wall-top snow and ground decals (… |
+| `e124d528` | 2026-11-13 | joncurry94-tech | Dying Breath FIDELITY: C18 no mod replicas / end waves |
+| `d4b21b22` | 2026-11-13 | joncurry94-tech | Dying Breath FIDELITY: U3 ally damage halved (approved) |
+| `a118f957` | 2026-11-13 | joncurry94-tech | Dying Breath FIDELITY: R1 start squad removed |
+| `873d1c88` | 2026-11-13 | joncurry94-tech | Dying Breath FIDELITY: C17 player squad follows (approved deviation) |
+| `0a33e4c5` | 2026-11-13 | joncurry94-tech | EA converter: ship the 3D trees (dimmed, fitted trunk box) and extra trees around the map (user-approved) |
+| `644276ed` | 2026-11-13 | joncurry94-tech | Dying Breath FIDELITY: C13-C16 (scene actor hold, provisional sound triggers, flicker light, dossier art) |
+| `897a1321` | 2026-11-13 | joncurry94-tech | EA characters: OWN comment tidy |
+| `0a768683` | 2026-11-13 | joncurry94-tech | EA characters: all six Dying Breath characters in their own models (user approved the officer, SS officer, partisan leader and pa… |
+| `16567983` | 2026-11-13 | joncurry94-tech | EA fidelity: U4 now 5~LX only (huO~ back to the disc card); U5 3D-tree trial row (not shipped) |
+| `f217ee53` | 2026-11-13 | joncurry94-tech | EA converter: tree cards -> stock 3D trees (BSP static models), trial only |
+| `5690d295` | 2026-11-13 | joncurry94-tech | EA characters: the German infantryman in his own model (user approved his sheet, form C) |
+| `e054b811` | 2026-11-13 | joncurry94-tech | EA converter texmap: cut-out cards get nomipmaps (stock trees.shader/TAnatural.shader recipe); thin twigs dissolved into dashes u… |
+| `c5033926` | 2026-11-13 | joncurry94-tech | FL converter texmap: cut-out cards get nomipmaps (stock trees.shader/TAnatural.shader recipe); thin twigs dissolved into dashes u… |
+| `f795b272` | 2026-11-13 | joncurry94-tech | EA converter texmap: look for a stock texture in every game dir's pak of that name, not just the first that exists (same shadowin… |
+| `261aa6a8` | 2026-11-13 | joncurry94-tech | FL converter texmap: look for a stock texture in every game dir's pak of that name, not just the first that exists (maintt/mainta… |
+| `363e75ea` | 2026-11-13 | joncurry94-tech | build_hzmconv: bundle the EA converter's hd/ CC0 files (snow) with their credits |
+| `16ed5aa2` | 2026-11-13 | joncurry94-tech | Sealed Orders (user-approved 'Yes upgrade'): six leafy tree/branch cards -> the mod's HD stock tree cards, cut-out kept; FIDELITY… |
+| `8b0e5553` | 2026-11-13 | joncurry94-tech | flconvert texmap: cut-out cards keep their hard alpha (alphaFunc GE128 + depthWrite) and are graded on their solid texels; a text… |
+| `83e660f7` | 2026-11-13 | joncurry94-tech | EA FIDELITY: U3 CC0 snow ground, U4 stock bare-tree cards (user-approved) |
+| `6ba51ba9` | 2026-11-13 | joncurry94-tech | EA converter: Dying Breath snow-ground base layers PUfh and qHPE -> Poly Haven CC0 snow_03 shipped next to the converter (hd/, CR… |
+| `0abd3a60` | 2026-11-13 | joncurry94-tech | EA converter texmap: cut-out cards keep their hard alpha (alphaFunc GE128 + depthWrite) and are graded on their solid texels; a t… |
+| `ed733099` | 2026-11-13 | joncurry94-tech | gfx_flip_gate: register renderer b0882386 (eng e334a43d: cold water deep at every angle, user decision 'rework water') after menu… |
+| `7e0657bb` | 2026-11-13 | joncurry94-tech | Thompson knob/Lyman fix applied to fixes2 after in-engine stills; hip-reload capture fixed (give all for spare ammo) |
+| `b578be8e` | 2026-11-13 | joncurry94-tech | FIDELITY: round 18b (Panzer in earshot, line speakers, nest deaths) |
+| `76384eb0` | 2026-11-13 | joncurry94-tech | easky moon: soft edge (look QA: the 2048 moon had a crisp bright outline). The texture's light-coloured rim texels take the disc'… |
+| `9d5c2bb4` | 2026-11-13 | joncurry94-tech | EA characters: surfaces cut to the skeletal loader's 1,000-vertex / 2,000-triangle limit (a smoothed German failed to load); smoo… |
+| `35c59e27` | 2026-11-13 | joncurry94-tech | flconvert.sky_faces: 512 px faces sampled bilinearly from the captured 128 px faces (were re-cut texel for texel at 128, magnifie… |
+| `003dbef4` | 2026-11-13 | joncurry94-tech | easky: 2048 px sky faces (was 512) sampled from smoothly enlarged sources (bicubic clouds, nothing invented; Lanczos moon clamped… |
+| `4a6d16cd` | 2026-11-13 | joncurry94-tech | EA characters: insignia kept plain in the character upscale (officer badges, cap eagles, collar tabs, partisan stars) |
+| `144b2f62` | 2026-11-13 | joncurry94-tech | EA characters: upscaled textures (eacharup.py, own hdchr pak, called from hzmconv_ea's upscale step) + body smoothing on for ever… |
+| `fa1c2798` | 2026-11-13 | joncurry94-tech | EA characters: optional one-level body smoothing (SUBDIV, off; head/neck untouched, 2,000-vertex surface guard) for the upscale/s… |
+| `4ead8e77` | 2026-11-13 | joncurry94-tech | 1928 Tommy: raised Lyman aperture leaf (lyman.py), staged in apply_knob.py with the 50rd/M1928 knob stems |
+| `830d82ac` | 2026-11-13 | joncurry94-tech | EA converter: the SoundDefTriggers other than the PA points as data (level.ea_sd_*: sphere radius, sound-definition hash, loop /… |
+| `bfd9f713` | 2026-11-13 | joncurry94-tech | FIDELITY: round 19 - visuals (pit lid, hedge core, smeared ground UVs, crate roll, water contents open, culling) and deviation ro… |
+| `30044c51` | 2026-11-13 | joncurry94-tech | Thompson 50rd / M1928: stage knob-stem shortening so the front blade shows over the actuator knob |
+| `901ba215` | 2026-11-13 | joncurry94-tech | EA converter: damage detection volumes (level.ea_dv_*: box, yaw, targets), animated dynamic lights (level.ea_dl_*), the shared st… |
+| `1d8b5f7d` | 2026-11-13 | joncurry94-tech | gfx_flip_gate: register renderer 69cd7872 (eng c409fb3a, reworked cold water: darker straight down only) after menu + m1l1 smoke |
+| `c05273a9` | 2026-11-13 | joncurry94-tech | EA characters: '#a' pieces alpha-blended as on the disc (the German helmet's brim shadow card was a black band); German tiks germ… |
+| `dabbc700` | 2026-11-13 | joncurry94-tech | FIDELITY: one copy - rounds 15, 16/16b/16c, 17, 18 and their deviation rows merged (main working copy = this file) |
+| `75f82b24` | 2026-11-13 | joncurry94-tech | EA characters: the partisan woman in her own model (user approved her client sheet) |
+| `92a1a1a3` | 2026-11-13 | joncurry94-tech | Sealed Orders: hedge core foot (core_skirt) and planar UVs on zero-UV-area slopes down to n.z 0.4 (bug-11162, bug-11163) |
+| `90c3f927` | 2026-11-13 | joncurry94-tech | Sealed Orders hedges: core 0.85, its foot 96u lower (the void showed under hedges where the ground falls away) (bug-11162) |
+| `9860d275` | 2026-11-13 | joncurry94-tech | EA converter 0.7.27: smart-object index blocks with a pointer header decoded (the radio tower's guy wires split at their own dege… |
+| `e5cc91d2` | 2026-11-13 | joncurry94-tech | Frontline object rotations: roll had the wrong sign for the engine (bug-11165) |
+| `0c6cc254` | 2026-11-13 | joncurry94-tech | Sealed Orders ground: zero-UV-area floor triangles get planar world UVs at the texture's own floor density (bug-11163) |
+| `45cc2230` | 2026-11-13 | joncurry94-tech | Sealed Orders hedges: an opaque core in each original hedge face behind the reskin card (bug-11162) |
+| `f123d82d` | 2026-11-13 | joncurry94-tech | Sealed Orders pit lid: darkened to the room interiors (24 23 22, about 40 on screen) - the sky-band colour read light grey throug… |
+| `97bbcc6b` | 2026-11-13 | joncurry94-tech | FIDELITY: round 16c - screens 12-18 located from the user's log, the capped lane is the original's own block |
+| `98bcdf40` | 2026-11-13 | joncurry94-tech | Thompson M1/M1A1 rear peep: real 0.22 u aperture cut into the site plate (bug-11150) |
+| `c2331368` | 2026-11-13 | joncurry94-tech | FIDELITY: round 16b - live-engine walk, per-screen results, step-lip counts |
+| `49a362f4` | 2026-11-13 | joncurry94-tech | Sealed Orders ambience (round 17): the original's three streamed ambience beds and the fire crackle loop, with their zones |
+| `49763745` | 2026-11-13 | joncurry94-tech | EA converter 0.7.27: stair profile per ramp plane fitted to the room over it (church basement stair under the west wall footing,… |
+| `3b64319d` | 2026-11-12 | joncurry94-tech | FIDELITY: round 16 collision (doorways, arches): results, what is not verified, deviation rows |
+| `31725dc3` | 2026-11-12 | joncurry94-tech | Sealed Orders collision: arch chamfers and soffits lifted too (round 16) |
+| `5e3b9cbc` | 2026-11-12 | joncurry94-tech | EA characters: textures written bottom-up (the engine ignores the TGA top-down flag; her face got the boot texture, her legs the… |
+| `d87e29f2` | 2026-11-12 | joncurry94-tech | gfx_flip_gate: register renderer 6b665247 (eng 9f23b446: occlusion-gated water mirror, cold water steep-view look) after menu + m… |
+| `6258f4fd` | 2026-11-12 | joncurry94-tech | hd: drop the unused weathered_planks asset and credit |
+| `0367c148` | 2026-11-12 | joncurry94-tech | look: plank wall 41180 CC0 swap withdrawn after QA (read too new, lost the frame boards) - the upscale of the disc's own image is… |
+| `ce0179f2` | 2026-11-12 | joncurry94-tech | EA characters: the disc's own rig and skin weights (easkin.py: skeleton, matrix-palette blends, packed normals); re-pose onto the… |
+| `4c4df407` | 2026-11-12 | joncurry94-tech | EA converter 0.7.26: step-lip half steps (lip_steps generated by the walk-audit lip sweep) |
+| `8af40870` | 2026-11-12 | joncurry94-tech | Sealed Orders collision: doorways/arches pass standing (round 16) |
+| `65bdacf1` | 2026-11-12 | joncurry94-tech | FIDELITY: CC0 texture swaps of the look round and the default upscale listed as deviations |
+| `e28693f0` | 2026-11-12 | joncurry94-tech | flhd: CC0 replacements for the worst smudged Sealed Orders surfaces (Poly Haven CC0, credited): ground 54200 + b3600 -> stony_dir… |
+| `46c6c14b` | 2026-11-12 | joncurry94-tech | flupscale (both): 512 px ESRGAN tiles (128 px tiles left square seams in noisy ground, EA PUfh_NMVX) and a detail-loss reject (ES… |
+| `aadb60a8` | 2026-11-12 | joncurry94-tech | EA flupscale: the alpha-safe card pass with the QA clamp (ported from Frontline); two labelled panels protected (BzsC, vgu2). 1_1… |
+| `deefcf46` | 2026-11-12 | joncurry94-tech | EA converter 0.7.25: PVS to the fog's reach, stepped stair ramps, column floors |
+| `36821910` | 2026-11-12 | joncurry94-tech | flupscale cards: no new highlights (clamped to the source's local 3x3 range), saturation/highlight rejects, fine leaf sprays keep… |
+| `e153e245` | 2026-11-12 | joncurry94-tech | gfx_flip_gate: register renderer 4ef85eb7 (eng 59a59d41: water mirror at Real for nearby water, per-level plane, far sea rule) af… |
+| `50141193` | 2026-11-12 | joncurry94-tech | byo: texture upscale on by default for every conversion (user: 'Yes for everyone'); one ESRGAN batch per level (1_1: 110 s, was 1… |
+| `2d4bb55b` | 2026-11-12 | joncurry94-tech | Dying Breath FIDELITY: user-approved no culling and extra bazookas; choices C1-C9 |
+| `78c94496` | 2026-11-12 | joncurry94-tech | EA converter: skirt hem follows the thigh; squad-goal snap stays opt-in (walk-tested variant also worse) |
+| `672084ae` | 2026-11-12 | joncurry94-tech | water_audit: every map in the install (MP, lobbies, _sml copies) + converted disc paks via WA_EXTRA; regenerated (28 far-plane ma… |
+| `37e9b496` | 2026-11-12 | joncurry94-tech | water_audit: mirror the engine's second far-plane rule (water reaching the edge of the land above its waterline; engine a28b00a1)… |
+| `74a6f517` | 2026-11-12 | joncurry94-tech | EA converter: knee/elbow weight blend for disc characters; squad-goal node snap opt-in only |
+| `f29e38d6` | 2026-11-12 | joncurry94-tech | FIDELITY: the original's fog applied (look round), deviation row updated |
+| `37521cf6` | 2026-11-12 | joncurry94-tech | EA converter 0.7.24: collision types, no PVS, bridge deck, two-layer smart objects, unindexed draws |
+| `a30eafe7` | 2026-11-12 | joncurry94-tech | flpit: flat lid in floorless house pockets (bug-11115) |
+| `3921e5cf` | 2026-11-12 | joncurry94-tech | flupscale: colour-only ESRGAN pass for alpha-tested cards (bled leaf colour, original silhouette rounded, erosion and thin-featur… |
+| `002f71d7` | 2026-11-12 | joncurry94-tech | fl_levels 1_1: the original's fog, linear 240..4800 planar depth (emulator re-render, TRACE_fog_colour.md); replaces the fitted 6… |
+| `183311f0` | 2026-11-12 | joncurry94-tech | README: v1.10.79 What's new |
+| `84301096` | 2026-11-12 | joncurry94-tech | manifest 1.10.79 |
+| `bfb7149b` | 2026-11-12 | joncurry94-tech | HZMCONV 1.10.79.1 for v1.10.79 |
+| `4dc689cc` | 2026-11-12 | joncurry94-tech | Merge branch 'flfix2' (Sealed Orders converter rounds 14b-14h) for v1.10.79 |
+| `9522a8df` | 2026-11-12 | joncurry94-tech | conv_guard: shipped baseline = 1.10.78.1 |
+| `6604c299` | 2026-11-12 | joncurry94-tech | fl_levels: the two German combat lines as cues (bark_away, bark_pig); FIDELITY: barks, other guns |
+| `2f7cadb3` | 2026-11-12 | joncurry94-tech | Dying Breath FIDELITY: partisan woman's own model, vault/tower poses, gun-caller radius |
+| `a615062c` | 2026-11-12 | joncurry94-tech | EA converter 0.7.23: the partisan woman in her own disc model; vault and tower pose points |
+| `e5e70c98` | 2026-11-12 | joncurry94-tech | FIDELITY: tower MG reachable on foot; forced mount height |
+| `4740d5e5` | 2026-11-12 | joncurry94-tech | FIDELITY: bomber inbound timing, six objectives (user), disc barks only (user) |
+| `9737a008` | 2026-11-12 | joncurry94-tech | fl_levels: house parts back on the bomber clock (4.35, with bomb A); objective 2 texts (obj_mg / done_mg ordinals) |
+| `6d93b20c` | 2026-11-12 | joncurry94-tech | Dying Breath FIDELITY: disc barks only flag, pose stand-ins, gun callers, woman model |
+| `7fe8c3e4` | 2026-11-12 | joncurry94-tech | EA converter 0.7.22: pose points for the scripted scenes with no voice cue |
+| `f6bb7e82` | 2026-11-12 | joncurry94-tech | FIDELITY: full-walk findings (house timing, dock/exit, hints, respawn, rec 539, phone, allies, dead triggers) |
+| `b8c53f62` | 2026-11-12 | joncurry94-tech | fl_levels: house parts at real speed (+0.03 s on the bomber clock; house_early_sheet.png shows them down by +51 ticks) |
+| `6286c4e1` | 2026-11-12 | joncurry94-tech | Dying Breath FIDELITY: AI bark mapping, corpse note |
+| `e444391d` | 2026-11-12 | joncurry94-tech | Dying Breath FIDELITY: rounds after v1.10.78 (corpses, Halt, scene queueing, railgun Disable/Vanish, officer off) |
+| `d9c0fc3d` | 2026-11-12 | joncurry94-tech | FIDELITY: interrogation kept (user), gun wave user rule, trigger messages, scene 4 squad, ambush pair, clipboard |
+| `d54fea0b` | 2026-11-12 | joncurry94-tech | EA converter 0.7.22: dead-body prefabs are corpses on their dead-pose ICS points |
+| `80f2496e` | 2026-11-12 | joncurry94-tech | FIDELITY: jeep gun facing, wave rule, gunner death |
+| `bd031bb0` | 2026-11-12 | joncurry94-tech | FIDELITY round 14c: gunner (user decision), officer off, scene 5 to the traces |
+| `a11d1bf9` | 2026-11-12 | joncurry94-tech | EA converter 0.7.22: message names, every Action_Message message, MMG point groups, scene actor by spawn point |
+| `d6a94176` | 2026-11-12 | joncurry94-tech | FIDELITY: deviation rows inside the table |
+| `367966c4` | 2026-11-12 | joncurry94-tech | FIDELITY round 14b: shot breach, jeep wreck to the traces, bomber pair, P-47 re-shoot |
+| `1552591b` | 2026-11-12 | joncurry94-tech | README: v1.10.78 What's new |
+| `cebfbcd7` | 2026-11-12 | joncurry94-tech | manifest 1.10.78 |
+| `44ee0b2b` | 2026-11-12 | joncurry94-tech | gfx flip gate: v1.10.78 renderer; harness test screen defaults to 1920x1080 (bug-11086) |
+| `ce83c7dc` | 2026-11-12 | joncurry94-tech | release pipeline: deploy byo_convert.ps1 + hzmconv.zip beside the exe; converter version gate (conv_guard) in publish |
+| `843ba11b` | 2026-11-12 | joncurry94-tech | mp armory roster: drop Axis tile 34 (the two M38s became one BERETTA M38A, id 33, on 2026-11-08) - bug-10673 |
+| `804a7d8a` | 2026-11-12 | joncurry94-tech | v1.10.78 converters: HZMCONV 1.10.78.1 (Frontline 0.6.0, EA 0.7.21), game-started re-convert waits for the game and drops stale p… |
+| `15b750cc` | 2026-11-12 | joncurry94-tech | Merge branch 'flfix2' (Sealed Orders converter rounds 7-14) for v1.10.78 |
+| `d5e4149c` | 2026-11-12 | joncurry94-tech | frontline round 14: chars.bum text ids (molotov hint = Ignite Rag, gun hint exact id), disc record number per axis soldier, FIDEL… |
+| `54c25dc7` | 2026-11-12 | joncurry94-tech | frontline round 13: bomber pass on the trace clock (.mvd key rate from the header, child set pieces), FIDELITY round 13 |
+| `83dc9b40` | 2026-11-12 | joncurry94-tech | frontline round 12: wall breach meshes, UV inset, fog refit from measurement, light measurement notes |
+| `7e4c3daf` | 2026-11-12 | joncurry94-tech | Sealed Orders round 11: light gain, traced fog and sky, hedge skirt restored, fidelity notes |
+| `6b84490c` | 2026-11-12 | joncurry94-tech | frontline: object-mesh shader names and rotation (bug-11034, bug-11035); Sealed Orders round 10 notes |
+| `8ad37f8a` | 2026-11-11 | joncurry94-tech | water notes: correct bug ids (11030-11033) |
+| `07233adc` | 2026-11-11 | joncurry94-tech | water: generated audit, one-look and far-plane results, stills and clips |
+| `25c5a154` | 2026-11-11 | joncurry94-tech | Sealed Orders round 9: FIDELITY ladder and canal rows in the deviations table |
+| `9bd7a067` | 2026-11-11 | joncurry94-tech | Sealed Orders round 9: jeep scene from decoded disc data, MMGPoint gun runners, plane-released bombs, unflown set pieces removed,… |
+| `26570565` | 2026-11-11 | joncurry94-tech | reflections round 2: water cause and fix, rooms behind glass, mask samples; stills, clips, tools |
+| `a361ad8f` | 2026-11-11 | joncurry94-tech | Sealed Orders round 8: MG42 muzzle yaw (+180), canal water under a stock shader name with up normals and world UVs, client checks… |
+| `c1399322` | 2026-11-11 | joncurry94-tech | reflections: study, first-build results and interiors note; menu generator row; runner and stills |
+| `64a04792` | 2026-11-11 | joncurry94-tech | Engraving QA: test clients on the 1920x1080 screen only, anywhere pass; plan + What's New wording |
+| `7c0cb38d` | 2026-11-11 | joncurry94-tech | Engraving tools: optic classifier (gunclass.py), solver keeps off optics, EG_ONLY merge, bench click QA runner, plan + What's New… |
+| `87741496` | 2026-11-11 | joncurry94-tech | Sealed Orders round 7b: ground decals, route nubs, texture second pass, stale path file |
+| `b74aa70b` | 2026-11-11 | joncurry94-tech | Sealed Orders round 7: un-mirror, water, ladder, tier-1 textures, Frontline reference |
+| `979aeda7` | 2026-11-11 | joncurry94-tech | manifest 1.10.77 |
+| `ac1bcce2` | 2026-11-11 | joncurry94-tech | v1.10.77 notes: README, history |
+| `bf28530b` | 2026-11-11 | joncurry94-tech | Merge branch 'eapolish' (EA converter 0.7.5: night models, light grid) |
+| `780cba80` | 2026-11-11 | joncurry94-tech | EA converter 0.7.5: night models lit by the level's own light |
+| `f9b71039` | 2026-11-11 | joncurry94-tech | v1.10.76 shipped: history line |
+| `9a184ab4` | 2026-11-11 | joncurry94-tech | manifest 1.10.76 |
+| `fe9bf5ba` | 2026-11-11 | joncurry94-tech | v1.10.76 README (Liberation); liveops_test: LIVEOPS_MOD override |
+| `890297bf` | 2026-11-11 | joncurry94-tech | Merge branch 'liberacion-root' (LIBERATION contract tools) |
+| `d103f38d` | 2026-11-11 | joncurry94-tech | liveops_test: idle case, challenge + caption files in the test pak |
+| `d75bc824` | 2026-11-11 | joncurry94-tech | Liberation lean pass: idle no longer fails the hunt, result banner, radio caption, spawn clutter off, localization rows, 3 dead m… |
+| `314051cc` | 2026-11-11 | joncurry94-tech | flpolish: start loadout decision closed (co-op loadout stays) |
+| `38f20e42` | 2026-11-11 | joncurry94-tech | manifest 1.10.75 |
+| `9e82bb8d` | 2026-11-11 | joncurry94-tech | v1.10.75: README section, stills, renderer gate hash |
+| `93e41d5d` | 2026-11-11 | joncurry94-tech | Merge branch 'eapolish' |
+| `75c1fb8e` | 2026-11-11 | joncurry94-tech | Merge branch 'flpolish' |
+| `a3e07086` | 2026-11-11 | joncurry94-tech | Merge branch 'shootfix' |
+| `d935657c` | 2026-11-11 | joncurry94-tech | Merge branch 'recoil' |
+| `35a4c8f3` | 2026-11-11 | joncurry94-tech | Merge branch 'fg42fix' |
+| `9f553f4f` | 2026-11-11 | joncurry94-tech | Merge branch 'escmenu' |
+| `8d899b83` | 2026-11-11 | joncurry94-tech | Merge branch 'rain73' |
+| `69887072` | 2026-11-11 | joncurry94-tech | Merge branch 'mapclipshd' |
+| `ebc20cfa` | 2026-11-11 | joncurry94-tech | Merge branch 'opsfix2' |
+| `4e62ccb4` | 2026-11-11 | joncurry94-tech | Merge branch 'mpprog' |
+| `2fa181b0` | 2026-11-11 | joncurry94-tech | Merge branch 'usefix' |
+| `5da2f904` | 2026-11-11 | joncurry94-tech | Merge branch 'trainfix' |
+| `863ab3d7` | 2026-11-11 | joncurry94-tech | Merge branch 'menuload' |
+| `d0d3719b` | 2026-11-11 | joncurry94-tech | docs: authored and generated doc state before the 1.10.75 integration |
+| `5d0f0177` | 2026-11-11 | joncurry94-tech | gen_ops: Ardennes tops out at 18 Germans (18 unique hidden spots in placement sweep 3) |
+| `be84dd62` | 2026-11-11 | joncurry94-tech | EA converter 0.7.3: particle sizes are half extents, night fog with the level's own ceiling |
+| `f22963e3` | 2026-11-11 | joncurry94-tech | shootfix: runner, repro scenarios and results for bug-10935 (anim/shoot.scr took over 10 seconds) |
+| `1e87107c` | 2026-11-10 | joncurry94-tech | flpolish round 6: barks from the script bank, music play order, Frontline's own barrel meshes (hzmconv 1.10.73.8) |
+| `3f80176e` | 2026-11-10 | joncurry94-tech | eapolish: converter 0.7.0 - the level's own particle systems (fires, smoke, fog, blasts), placement turns, FIDELITY S6/S7/A2 |
+| `41fc2136` | 2026-11-10 | joncurry94-tech | liveops_test: Liberation client cases (win inside the opening grace, clock case with frozen Germans and warning stills), case par… |
+| `73b91aff` | 2026-11-10 | joncurry94-tech | flpolish: last narrow route gaps cut at reviewed spots (route_widen), posts exempt from the edge rule, progwalk crouches only whe… |
+| `25f561d0` | 2026-11-10 | joncurry94-tech | eapolish FIDELITY: trigger marks and the full Panzer drive on screen |
+| `2e4abdca` | 2026-11-10 | joncurry94-tech | EA converter 0.6.1: Panzer legs routed over open ground on the collision (tank_route: A* on 48u cells, kept off walls, string-pul… |
+| `47b7dd70` | 2026-11-10 | joncurry94-tech | rain73: trapdoor leaf legible - mid-dark weathered planks, battens + Z-brace in frame wood, lit edge trim; stills 16:9 + 21:9 wit… |
+| `118cf6e6` | 2026-11-10 | joncurry94-tech | real rof: in-game measurements (player within 1% after the cadence fix, AI bursts 4-7 rounds, MG42 nest 1244 rpm) + run_rof.py |
+| `9ad57760` | 2026-11-10 | joncurry94-tech | LIBERATION: per-map counts and limits measured by the placement sweep (lib_limits.py); liveops_test packs mp_armory.scr |
+| `bff9896e` | 2026-11-10 | joncurry94-tech | rain73: perf timings (WXRAIN 0.15 ms/frame at storm peak), weathered trapdoor stills 16:9 + 21:9, lid set in stillsrain73.py |
+| `a3f89151` | 2026-11-10 | joncurry94-tech | escmenu: proposal README (design, merge steps, results), final stills (all modes x 4:3 / 16:9 / 21:9, before/after, confirm cards… |
+| `63fa6192` | 2026-11-10 | joncurry94-tech | EA converter 0.6.1: music triggers play the score's own event -> section table (eamusic.py reads the .mpf: intro, looping tail, s… |
+| `5d1adb7f` | 2026-11-10 | joncurry94-tech | byoaudit aiaudit: stop at once on a server crash and say so |
+| `77c16e90` | 2026-11-10 | joncurry94-tech | eapolish: FIDELITY on the original-collision basis (extra vs original 0, progression walk 90 points 0 blocks, co-op run 6/6), ea_… |
+| `6c1b63ef` | 2026-11-10 | joncurry94-tech | fg42fix: in-game results (co-op Armory no-fix crash / fix clean; SP, MP 7 variants x 4 reloads clean) + harness fixes (parked ove… |
+| `031cd43c` | 2026-11-10 | joncurry94-tech | rain73: weathered trapdoor underside (half-size texture), amb_rain73_table.py + table (rain vs music dB at each intensity, thunde… |
+| `27939f8d` | 2026-11-10 | joncurry94-tech | rain73 v3 (content): skylight bead sprite; storm QA stills 16:9 + 21:9 with zooms |
+| `dd4fd5a1` | 2026-11-10 | joncurry94-tech | flpolish: progression walk (byoaudit/progwalk.py) - 0 blocks over all 63 triggers + 4 objectives; no barbed wire the original did… |
+| `2a970efd` | 2026-11-10 | joncurry94-tech | mapclipshd: mapclips_test.py map@on@thread tokens (cl_loadCineThread A/B in one session) |
+| `be9982c5` | 2026-11-10 | joncurry94-tech | escmenu harness: real clicks (private test exe hzm_testclick), scoreboard toggle checks, listen-host join, volume check; dedicate… |
+| `852f1e44` | 2026-11-10 | joncurry94-tech | eapolish: 1:1 collision (user: invisible walls are fine where the original has them) - the clip-sheet rebuild and its barbed wire… |
+| `fbf378c3` | 2026-11-10 | joncurry94-tech | liberacion tools: placement sweep at each map's most Germans, spot coordinates kept for the clear-time estimate |
+| `ab55430f` | 2026-11-10 | joncurry94-tech | eapolish: FIDELITY round 4 (21/5/0): voices matched; 2-player co-op and SP camera walks to the mission end, 0 Script Errors |
+| `004680c3` | 2026-11-10 | joncurry94-tech | flpolish: Frontline step height 38 (its routes climb 35-37u lips), fences on the land floor beside the kept sheets (not the canal… |
+| `383c1820` | 2026-11-10 | joncurry94-tech | escmenu: ESC board harness (esc_test.py: shots / buttons / dedjoin on private H: clients, 1080p screen, muted) |
+| `c449c30c` | 2026-11-10 | joncurry94-tech | opsfix2 tools: Bologna OBJ out of the pool, harness clean-ups (pak temp outside maintt, early-press / hosted / dedicated / two-hu… |
+| `b805749d` | 2026-11-10 | joncurry94-tech | mpprog: proof harness uses the real credited totals and opens the Service Record on page 1; v1.10.74 proof shots; OPEN notes the… |
+| `023d2f66` | 2026-11-10 | joncurry94-tech | eapolish: long steep collision triangles judged piece by piece (split to 192u) and sheets judged at their corners - invisible con… |
+| `61ee4483` | 2026-11-10 | joncurry94-tech | flpolish README: round 4 ship gates (fall-outs 0, coop complete) |
+| `ca41f6b9` | 2026-11-10 | joncurry94-tech | usefix harness: AI-drop cases (UF_ONLY=D) take the German's own gun, forcedropweapon; port 12987 (12971 collided) |
+| `3eb907c4` | 2026-11-10 | joncurry94-tech | mpprog: gen_mp_armory gates each tile padlock on its tier unlock; mp_unlock_audit checks it (bug-10926) |
+| `d00b110d` | 2026-11-10 | joncurry94-tech | flpolish FIDELITY: R11 cut along the original's routes - 32/15/0 of 47 |
+| `96f0eb40` | 2026-11-10 | joncurry94-tech | liberacion tools: clear-time phase; the hold check and harness policy come from the LIVE docs/tools guard |
+| `1c70bf2c` | 2026-11-10 | joncurry94-tech | eapolish: the original's voice lines - UBER event (CRC32 of the cue key) -> str.ast stream index (eavoice; durations vs subtitle… |
+| `93044c2a` | 2026-11-10 | joncurry94-tech | liberacion tools: hold check before every launch (user game, build/publish script, lane HOLD file); tools resolve from this workt… |
+| `8b91822a` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into usefix |
+| `b2272e66` | 2026-11-10 | joncurry94-tech | Merge branch 'polish73' into rain73 |
+| `095054c1` | 2026-11-10 | joncurry94-tech | mpprog: MP unlock-progress gate + isolation bridge + in-game proof harness (bugs 10912/10913) |
+| `fbff6f73` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into trainfix |
+| `0a68f573` | 2026-11-10 | joncurry94-tech | Merge main (v1.10.74) into benchsize-docs |
+| `b8353da1` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into menuload |
+| `aee43aa0` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into polish73 |
+| `1a90a6a3` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into eapolish |
+| `9507adbe` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into flpolish |
 | `d96ed278` | 2026-11-10 | joncurry94-tech | manifest 1.10.74 |
+| `6ebde4d5` | 2026-11-10 | joncurry94-tech | flpolish: kept boundary sheets get their barbed-wire edge on the floor under the whole sheet (73 edges; m3s invisible contacts 63… |
+| `fb4e57ff` | 2026-11-10 | joncurry94-tech | real rof: README section + run_rof.py harness (player rpm from the server trace, AI rpm and burst lengths from the AI trace) |
+| `fb246edd` | 2026-11-10 | joncurry94-tech | liberacion tools: register the G:\mohaa-lib harness folder (queue slot liberacion) |
+| `56dc8254` | 2026-11-10 | joncurry94-tech | liberacion tools: LIBERATION contracts in gen_ops (pool, roll, weights, limits, hunt spots), isolation clause 19 (read-only co-op… |
+| `dfa8a7e2` | 2026-11-10 | joncurry94-tech | real rof: turret MG table for AI gunners |
+| `54282d71` | 2026-11-10 | joncurry94-tech | flpolish: the original's AI routes stay open (flroutes: no drawn collision across them, gaps cut to the MOHAA box above the step,… |
+| `d7bbd140` | 2026-11-10 | joncurry94-tech | eapolish: FIDELITY round 3 re-score (20/6/0 of 26), geometry table with the thin-obstacle recount |
+| `8aa658f0` | 2026-11-10 | joncurry94-tech | real rof: gen_weapon_rof.py (rates from the recoil research, TTK-holding damage retune, AI bursts) + weapon_tik_values.py (tik va… |
+| `7883d228` | 2026-11-10 | joncurry94-tech | eapolish: overlapping ground search for z-0 triggers |
+| `114cf047` | 2026-11-10 | joncurry94-tech | eapolish: triggers recorded at z 0 grounded further down (music triggers never fired) |
+| `7b97c536` | 2026-11-10 | joncurry94-tech | polish73: hatch v3 - ladder stiles rise 36 u (were 48), trapdoor open to 115 deg resting on a stop post, hinge line on the frame'… |
+| `4ad41521` | 2026-11-10 | joncurry94-tech | polish73: hatch toned to the lightmapped floor beside it (measured in-game, 1.29x after 1.45x), hover ~1.35x; re-shot stills; men… |
+| `6eae8160` | 2026-11-10 | joncurry94-tech | fg42fix (bug-10899): check_anim_aliases parses the player anim files with the engine's grammar |
+| `b751bda8` | 2026-11-10 | joncurry94-tech | mapclipshd: mapclips_test.py re-posts F7 when a load has not started after 30 s (the menu can miss the first key) |
+| `ecd11892` | 2026-11-10 | joncurry94-tech | eapolish: hzmconv 1.10.73.4 (above flpolish 1.10.73.3) |
+| `bee98ea7` | 2026-11-10 | joncurry94-tech | eapolish: converter 0.5.0 - effects packages, destroyed variants, hinged gates, relit smart objects, Panzer path legs (info_vehic… |
+| `1540b6a6` | 2026-11-10 | joncurry94-tech | recoil: A/B impact sheet (coop_recoilPattern 0), results table in the README |
+| `4f7a2512` | 2026-11-10 | joncurry94-tech | flpolish: canal quays keep their edge (bed + drowning for whoever gets in), cliff probe restored, geoaudit ends walks where the m… |
+| `b115d375` | 2026-11-10 | joncurry94-tech | recoil: in-game impact sheet (13 guns x aimed / hip / crouched / prone), stills contact sheet, harness reads the log incrementally |
+| `74dbdf2c` | 2026-11-10 | joncurry94-tech | opsfix2 tools: Allied-only pool, real-click spawn/normal-MP/dedicated/co-op harness cases, Live Operations bot watch (ops_sweep -… |
+| `c40e0584` | 2026-11-10 | joncurry94-tech | eapolish: FIDELITY score after round 2 (full mission end-to-end headless) |
+| `c303fcb9` | 2026-11-10 | joncurry94-tech | benchsize tools: urc field names + focus on show |
+| `34bb94d6` | 2026-11-10 | joncurry94-tech | menuload: README (measurements, causes, fix, revert, harness traps), ml_sheet.py, ml_rooms ESC/in-game legs, HISTORY line |
 | `c0daacd4` | 2026-11-10 | joncurry94-tech | publish_release: write release zips to H:\hzm_archive\release_zips instead of TEMP (TEMP grew to 365 GB and filled C:) |
+| `a879694c` | 2026-11-10 | joncurry94-tech | eapolish: path nodes on a 160u grid (1,534; 224u left the graph disconnected), FIDELITY round 2 (smart objects, sheets, geometry… |
+| `2ae59ebc` | 2026-11-10 | joncurry94-tech | byoaudit aiaudit: BYO_SRVPORT private port block (parallel agents' audit servers collided on 12391) |
+| `af5deab5` | 2026-11-10 | joncurry94-tech | polish73: hatch v2 - the attic floor's own boards at the floor's scale (planked trapdoor with battens, Z-brace and strap hinges;… |
+| `d467544d` | 2026-11-10 | joncurry94-tech | rain73 v2 (content): refractive drop sprites (round / irregular / trickle), five patchy fog banks with clear top and bottom rows… |
+| `b02f104c` | 2026-11-10 | joncurry94-tech | usefix: in-engine harness for tap = ammo / hold = gun (private client G:\mohaa-usefix, real +use by rcon) |
+| `d2b16a4d` | 2026-11-10 | joncurry94-tech | benchsize tools: gen_engrave_slots.py (per-gun word slot shaders from hzm_engrave.shader), bench urc words fields + size note, QA… |
+| `bd6d4b13` | 2026-11-10 | joncurry94-tech | flpolish: Frontline meshes in their own frame (raw rotations, PS2 vertex colour), cliff probe at the edge only, river bed + water… |
+| `d96befbf` | 2026-11-10 | joncurry94-tech | eapolish: blocked only by what you can see - floating clip sheets in front of drawn geometry dropped and the drawn geometry gets… |
+| `d695343d` | 2026-11-10 | joncurry94-tech | rain73: QA stills - every intensity band (home / LOOK OUTSIDE / LOOK UP, 3-frame sequences at the storm) at 16:9 and 21:9, fog th… |
+| `4bea5cae` | 2026-11-10 | joncurry94-tech | recoil: in-game harness - Armory route for the guns (cheats are off on a coop server), key turns (face is a cheat), RCP aim start… |
+| `53a7a6c3` | 2026-11-10 | joncurry94-tech | rain73: fog banks profiled by height (dense to the roofs' / ridges' height, gone by z 300) and heavier weights - the storm haze n… |
+| `faa61907` | 2026-11-10 | joncurry94-tech | rain73 stages 2+3 (content): gen_rainparts73.py sprites, patch_rainparts73.py retires the static sheets / drops |
+| `21a65e52` | 2026-11-10 | joncurry94-tech | Merge branch 'polish73' into rain73 |
+| `8cbb45dc` | 2026-11-10 | joncurry94-tech | polish73: in-game QA stills 16:9 + 21:9 (hatch idle/hover/mid-fly/confirm, LOOK UP / LOOK OUTSIDE in rain and storm, the briefing… |
+| `ecae4030` | 2026-11-10 | joncurry94-tech | polish73 in-game QA fixes: hatch light baked into texture copies (rgbGen const drew it teal / see-through), trapdoor hinged on th… |
+| `2437058f` | 2026-11-10 | joncurry94-tech | eapolish: smart-object meshes converted (easob: per-part ELF + RTC symbols, int16 positions in the __BBOX, per-RM textures) - sta… |
+| `d43b9099` | 2026-11-10 | joncurry94-tech | recoil: per-gun recoil pattern sources + generator + offline pattern plots |
+| `03d74457` | 2026-11-10 | joncurry94-tech | rain73 stage 4 (content): gen_fog73.py fog banks + patch_fog73.py |
+| `df089b07` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into flpolish |
+| `a49b0eef` | 2026-11-10 | joncurry94-tech | flpolish: blocked only by what you can see - converter 0.5.0 / hzmconv 1.10.73.3 |
+| `de9dcd5b` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into menuload |
+| `46413d59` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into eapolish |
+| `ab30560f` | 2026-11-10 | joncurry94-tech | Merge branch 'main' into polish73 |
 | `034a2813` | 2026-11-10 | joncurry94-tech | manifest 1.10.73 |
+| `9e2bb646` | 2026-11-10 | joncurry94-tech | mapclipshd: HD 21:9 loading clips (2446x1024 frames, stored 2048x1024 q85 4:4:4), 4:3-safe card block |
+| `1bb00557` | 2026-11-10 | joncurry94-tech | polish73: void sweep tools (voidprobe/voidtrace/voidraster), MP room + attic closures (close_hub73, close_ring73, crack_backer73)… |
+| `34462b1e` | 2026-11-10 | joncurry94-tech | menuload: in-game -> menu timing harness (ml_run.py) and the 3D room transition frame capture (ml_rooms.py) |
+| `0c43fae0` | 2026-11-10 | joncurry94-tech | trainfix: harness - TRAINING sheet hover repro/verify (trainfix_run.py, globalwidgetcommand activate = the hover's ActivateContro… |
+| `5eec1167` | 2026-11-10 | joncurry94-tech | flpolish README: round 2 numbers, engine extensions, collision sources |
+| `77d5eefc` | 2026-11-10 | joncurry94-tech | flpolish: converter 0.4.0 / hzmconv 1.10.73.2 - engine opt-ins, skins, cliffs, river, set pieces, named paths |
+| `9e8830a4` | 2026-11-10 | joncurry94-tech | eapolish: FIDELITY score and verification status |
+| `b329df30` | 2026-11-10 | joncurry94-tech | eapolish: eavm chains an unreferenced gag after the gag that activates the group it deactivates (partisan leader speech -> go-bac… |
 | `c5ea45a4` | 2026-11-10 | joncurry94-tech | Merge branch 'opsfix' |
 | `4ac140ac` | 2026-11-10 | joncurry94-tech | Merge branch 'benchfix-docs' |
+| `74d29d9b` | 2026-11-10 | joncurry94-tech | eapolish: EA object DB decoded properly (eadb: pool-index names, activation groups, CRC32 messages; the eaents names were wrong),… |
 | `63ff0a21` | 2026-11-10 | joncurry94-tech | benchfix2 QA runner: user-path scenarios (save / equip / finish / ESC / in hand / restart with the kept config) |
 | `6195549f` | 2026-11-10 | joncurry94-tech | opsfix tools: card buttons emitted after the card's labels (asserted at generation); real-click harness case (liveops_test.py cli… |
 | `0ceba602` | 2026-11-10 | joncurry94-tech | benchfix2: gen_custom_urc - escapecommand + SAVE/BACK run hzmcust done |
+| `ce4a5ea8` | 2026-11-10 | joncurry94-tech | byoaudit walkshots: BYO_PORT picks the client port (parallel private clients) |
+| `678da786` | 2026-11-10 | joncurry94-tech | flpolish: converter - drawn skirts and ground under the level (no void), ammo / MG facing / motion_first scene data, jeep keys gr… |
+| `f7804199` | 2026-11-10 | joncurry94-tech | polish73: wall shadows shaped to show past the prop (shade73 halo); PERSONAL BESTS 4th notice (gen_mproom69 four sheets, patch_mp… |
+| `aadf42a2` | 2026-11-10 | joncurry94-tech | flpolish: own-disc map audits (docs/tools/byoaudit: geoaudit walkability/invisible walls/crawl holes/holes/grounding/route blocks… |
+| `37266874` | 2026-11-10 | joncurry94-tech | polish73: rack + projector-screen wall shadows -> alpha blend (multiply draws nothing in the menu scene, bug-10768 follow-up); sh… |
 | `a56884d0` | 2026-11-10 | joncurry94-tech | README: v1.10.72 Live Operations, Advanced Training, bench, loading clips |
 | `3a1b1b75` | 2026-11-10 | joncurry94-tech | manifest 1.10.72 |
 | `4db2a9c2` | 2026-11-10 | joncurry94-tech | Merge main (v1.10.72) into benchfix-docs |
@@ -1069,8 +1607,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hotfix-1.10.53` |
-| HEAD | `42d9d018 2026-11-10 v1.10.74 hotfix: What's New + version (MP DEPLOY spawn fix)` |
-| commits | 2,806 |
+| HEAD | `bfb129ef 2026-11-22 Dying Breath leader speech: head look turns with the 0.7.47 clip turn (level.ea_icsTurn) and reaches 90 deg in ExplainsPlan (user: the head turned completely around); other scenes keep 130` |
+| commits | 3,100 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -1078,7 +1616,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-11 | 372 |
+| 2026-11 | 666 |
 | 2026-10 | 727 |
 | 2026-09 | 116 |
 | 2026-08 | 198 |
@@ -1121,17 +1659,311 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1457)
+### Commits since 2026-01-01 (1751)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `bfb129ef` | 2026-11-22 | joncurry94 | Dying Breath leader speech: head look turns with the 0.7.47 clip turn (level.ea_icsTurn) and reaches 90 deg in ExplainsPlan (user… |
+| `d89dcd13` | 2026-11-22 | joncurry94 | Sealed Orders live-playtest batch (user 2026-11-17): far-bank wave waits for the tower MG42; tank area = at the tank; tower gunne… |
+| `81ba30a0` | 2026-11-17 | joncurry94 | Dying Breath leader scenes: the body holds the point's yaw (ea_ally_cue no longer puts a scene actor in the fight on the Play tha… |
+| `d27ec92e` | 2026-11-17 | joncurry94 | Dying Breath held PPSh: the prop rides Bip01 R Hand with its own clip of the disc object joint (converter 0.7.46 level.ea_held_ha… |
+| `3d384e48` | 2026-11-17 | joncurry94 | motionblend: a dog (type_idle dog_idle or the german_shepherd model) that reaches the human blend runs its own dog_run (backstop… |
+| `e3fec500` | 2026-11-17 | joncurry94 | officer: no personality roll for a dog (type_idle dog_idle) - the cover / flank roles set type_attack cover, which sends a German… |
+| `8910f997` | 2026-11-17 | joncurry94 | EA church hold: the reinforcement squad spawns man by man on engine path nodes with straight-line paths to the nave (12 around th… |
+| `0483b5bb` | 2026-11-17 | joncurry94 | EA church defence: hold until reinforcements (user decision 2026-11-17, FIDELITY C38) - from the counter-attack's arrival a REINF… |
+| `cfd5d707` | 2026-11-17 | joncurry94 | officer binoculars drop: ground-snapped reward recipe, standard pickup glow, binoc action prompt (bug-11375) |
+| `51d38eb1` | 2026-11-17 | joncurry94 | EA church defence: counter men judged on progress to the church (distance must fall 48u per 20 s; no progress -> gate objective w… |
+| `b68540c1` | 2026-11-17 | joncurry94 | coop_mod/discbot.scr: DISCBOT chip - small health losses (1-40 per tick) summed every 5 s with how many germans have a sight line… |
+| `4ead3b11` | 2026-11-17 | joncurry94 | v1.10.87 version + What's New card (Steady Aim) |
+| `ebac36e4` | 2026-11-17 | joncurry94 | Sealed Orders: an MG gunner who comes off his gun gets an MP40 and the cover think (user 2026-11-17: "Give them an mp40") |
+| `134b0192` | 2026-11-17 | joncurry94 | EA: no pickup glow within 300u of a scene or pose point - the cellar's two bazooka-crate glows lit Foshkovich yellow-green, near… |
+| `4e420e2c` | 2026-11-17 | joncurry94 | EA: jaw lines end with the closed-mouth one-shot eajaw_rest when the pak carries it (converter 0.7.44 level.ea_jawRest): no 'bad… |
+| `ccf0c9c6` | 2026-11-17 | joncurry94 | Sealed Orders: Health25 pickups use the disc's medkit case (fl_prop_m health25; stock box when the pak has none) |
+| `5e064ec0` | 2026-11-17 | joncurry94 | Sealed Orders nest MG42s: gun on its bags with at least 36u over the ground behind (the stock gunner's stand), per-nest position… |
+| `cd56b0e0` | 2026-11-17 | joncurry94 | EA ICS head look (user: 'this partisan isnt facing me when he talks'; emulator leader_facing): in scenes whose point has HeadTurn… |
+| `740bfabf` | 2026-11-17 | joncurry94 | v1.10.86 version + What's New card (Squad Orders) |
+| `dad57dec` | 2026-11-17 | joncurry94 | EA end-chain hardening (discbot v137 + overlay_v199, byte-identical: mission complete, 0 Script Errors, 0 unarmed_shoot, HUD 8 ->… |
+| `fbdfdbd5` | 2026-11-17 | joncurry94 | coop_mod/discbot.scr: coop_discbotHoldFireEnt - the bot holds fire on one entnum (the DB pit-failsafe test: let the unseen-stuck… |
+| `b3de46a6` | 2026-11-16 | joncurry94 | discguns: regenerate coop_mpFinBase + engrave use rows for every disc stub (FL batches 2-5, EA) |
+| `28f37a73` | 2026-11-16 | joncurry94 | EA: an unarmed German (not surrendered) gets his spawn weapon back (EAARM) - Script Error 'unknown animation unarmed_shoot' (disc… |
+| `d96970cf` | 2026-11-16 | joncurry94 | discguns: European Assault variant stubs + bodies, disc fid 70/71 rows, loadout pages |
+| `f2e96912` | 2026-11-16 | joncurry94 | EA Dying Breath: coop officer (user request) + church door/window push for every wave + jaw-stop and pit soft-lock fixes - discbo… |
+| `588a3a44` | 2026-11-16 | joncurry94 | discguns: Frontline grenade stubs (Frag Grenade / Stielhandgranate) + disc chips on the grenade slot |
+| `dc5deb8a` | 2026-11-16 | joncurry94 | aihandler: no health reset on an actor the hit already killed (bug-11352); overattack: unarmed actors stay off the crate branch (… |
+| `7103ecf7` | 2026-11-16 | joncurry94 | discguns: Frontline batch 2-4 stubs (M1, Colt, P38, Hi-Standard, Springfield, G43, bazooka, panzerschreck) |
+| `0c870b22` | 2026-11-16 | joncurry94 | barricade: boarding is a HOLD on USE (ring, knocks, final thunk); release keeps the plank |
+| `1aecbd4f` | 2026-11-16 | joncurry94 | Sealed Orders objectives + bridge set piece: Secure the Bridge (radio trigger), tower MG, Defend the Bridge (105 s ring hold, wav… |
+| `ee0f225e` | 2026-11-16 | joncurry94 | discguns unlock: disc-variant loadout fids 60-79, owner-only Armory chips |
+| `56b5ff99` | 2026-11-16 | joncurry94 | squadcmd: SHARE - an idle squadmate who can see an enemy his mates are fighting takes it; dev ambush riflemen are replaced when t… |
+| `45fca08d` | 2026-11-16 | joncurry94 | squadcmd: WAKE - a squadmate idle with a live enemy for 2 s is told to attack it; one left unable to pick up enemies with nothing… |
+| `10383ada` | 2026-11-16 | joncurry94 | squadcmd dev instrumentation (inert unless coop_dev): per-man hit counter, SQFIRE with hits / can-acquire / has-enemy / busy / le… |
+| `815c5e05` | 2026-11-16 | joncurry94 | squadcmd guard (still off by default, coop_sqGuard 1): cover hidden from every known shooter, moves with the attack think on, a m… |
+| `9cb92763` | 2026-11-16 | joncurry94 | coop_mod/discbot.scr: tester-driven route controls - hold a named spot (coop_discbotHold + HoldX/Y), go via a point before a name… |
+| `356bd01c` | 2026-11-16 | joncurry94 | joincard_titles.tsv: e2l1 COFFIN CORNER (source of the generated table, user 2026-11-16) |
+| `415e86fa` | 2026-11-16 | joncurry94 | Sniper's Last Stand: every far-side sniper dead in one run, whoever kills him (user 2026-11-16: 'Let their sniper deaths count') |
+| `51e90eda` | 2026-11-16 | joncurry94 | squadcmd: the under-fire guard's response is off by default (coop_sqGuard 1 turns it on) until it beats doing nothing |
+| `4085684c` | 2026-11-16 | joncurry94 | squad redesign: tap = follow/hold, hold = placement marker -> move into cover there; squad state icon; hits by health drop; gunne… |
+| `ed6a4366` | 2026-11-16 | joncurry94 | Sealed Orders officer: spawns at map load in cover, first contact only from a player (user 2026-11-16) |
+| `0f56856d` | 2026-11-16 | joncurry94 | join card e2l1 title: COFFIN CORNER (user 2026-11-16) |
+| `98606309` | 2026-11-16 | joncurry94 | EA Dying Breath batch (discbot ea_normal v136 + overlay_v190, mission complete, 0 Script Errors): church-gate kicker not woken of… |
+| `5f5ff40e` | 2026-11-16 | joncurry94 | barricade.scr: board up the church windows (Their Dying Breath first) |
+| `aeb13640` | 2026-11-16 | joncurry94 | fl_chal selftest: report when armed, wait for an active player without indexing an empty $player |
+| `4e2c146e` | 2026-11-16 | joncurry94 | Sealed Orders bridge rework phase 1 (user 2026-11-16): the tank is the players', bazooka, far-side defenders, more snipers, respa… |
+| `9e777d42` | 2026-11-16 | joncurry94 | default binds never overwrite a player's key: bindifunbound / bindfirstfree in #2-#5 (bug-11315) |
+| `97ce7562` | 2026-11-16 | joncurry94 | vehicles_thinkers: no 'anim fire' on a gun removed while the tank waited (Script Error 'anim' applied to NULL listener when Dying… |
+| `9475c20a` | 2026-11-16 | joncurry94 | joincards: the MP room's card player is your coop character (join game and every room view) |
+| `ce2b76b6` | 2026-11-16 | joncurry94 | Service Record layout regenerated for the Sealed Orders challenge categories |
+| `c69f2357` | 2026-11-16 | joncurry94 | Sealed Orders challenges in their categories: Breakthrough vehicles; Rolling Thunder + Bell Tolls support weapons; Brass Tacks co… |
+| `61fba067` | 2026-11-16 | joncurry94 | mp_progression selftest: drop the coop challenges.scr call (MP/coop isolation [10a]); coop turret credit is tested on the coop si… |
+| `600234bf` | 2026-11-16 | joncurry94 | Sealed Orders challenge renamed 'Signed, Sealed, Delivered' (title clashed with the daily order 'Return to Sender'; id unchanged) |
+| `087cd803` | 2026-11-16 | joncurry94 | EA: a revived partisan's idle think is reset to idle (type_idle "idle" after enable_ai) - the down pose's anim loop left it on TH… |
+| `61b8367b` | 2026-11-16 | joncurry94 | squad: a revived man fights again (idle think back from the down anim), under-fire guard in every state |
+| `da7f6f44` | 2026-11-16 | joncurry94 | EA live fix: a squad whose first objective the pak dropped (converter < 0.7.39: point not standable) takes its lowest-numbered ob… |
+| `44c94d1a` | 2026-11-16 | joncurry94 | EA v1.10.84 live fixes: MG42s no longer float - the pole mount (user's pick, FIDELITY P8) is used whenever the pak carries it and… |
+| `25160076` | 2026-11-16 | joncurry94 | Sealed Orders: eight own-disc Service Record challenges (bug-11314) |
+| `ecbcd96e` | 2026-11-16 | joncurry94 | discguns: shipped disc-gun stubs + their data rows (bug-11307, Sten Mk II(S)) |
+| `0c3797ad` | 2026-11-16 | joncurry94 | v1.10.85 version + What's New card (progression hotfix) |
+| `08edb196` | 2026-11-16 | joncurry94 | MP progression: frozen per-gun index + one-time blob migration, restore the per-gun finish ladder, mounted-gun kill credit (bugs… |
+| `ea3786b9` | 2026-11-16 | joncurry94 | v1.10.84 version + What's New card (Hold the Bridge) |
+| `bf2dc167` | 2026-11-16 | joncurry94 | wounded.scr: limp loop guards a removed actor and a NIL rear point (Script Errors) |
+| `83cb85d9` | 2026-11-16 | joncurry94 | Sealed Orders props: nest MG42, Health10/Health50 and field phone through fl_prop_m (props agent's props_scr2) |
+| `12dde601` | 2026-11-16 | joncurry94 | Sealed Orders user requests 2026-11-16: .30 cal wave push, church-tower MG42 gunner, bridge snipers, coop officer, 150-round jeep… |
+| `7db4993d` | 2026-11-16 | joncurry94 | Sealed Orders: the bridge Panzer's wreck collides as its hull, not its model bounds |
+| `79afb8eb` | 2026-11-16 | joncurry94 | Sealed Orders: Panzer IV model picked by fl_prop_m (disc model only when approved, else stock) |
+| `d3e5fecf` | 2026-11-16 | joncurry94 | EA MG crews: every crew clip starts with setaimmotionanim X X X (idle, enter, fire, crouched idle, hit) - the engine re-weights a… |
+| `1910ee99` | 2026-11-16 | joncurry94 | EA dev test 27: the aim-at thread always runs (idle while coop_eaMmgAimAt is empty), so the spot can be set by rcon after map sta… |
+| `91850746` | 2026-11-16 | joncurry94 | EA dev test 27: coop_eaMmgAimAt "x y z" aims gun coop_eaMmgAimK (default 1) at a spot (targettype none + setAimTarget on a script… |
+| `41bd7713` | 2026-11-16 | joncurry94 | EA MG crews: the cell's pitch sign corrected - gun UP takes the low knees-bent cells (he crouches under a raised muzzle, the emul… |
+| `dc737776` | 2026-11-16 | joncurry94 | EA MG42 pole: pivot over the MMG point's own height, seat on the crew floor where it exists, crouched gunner (ea_mmgc_idle) at a… |
+| `ebc2eb3d` | 2026-11-16 | joncurry94 | EA MG crews: the cell by the original's decoded selection - blend Y = clamp(pitch 40 deg)/40 picks the row (gun down -> low knees… |
+| `6348ba5c` | 2026-11-16 | joncurry94 | EA MG42 pole: a nest where point + pole height would stand over 85u above the crew floor (nest 3) keeps its old height and the le… |
+| `bf843513` | 2026-11-16 | joncurry94 | EA MG42 pole: the gun at a fixed height over its MMG point (pivot = point + 38u, level.ea_poleH) as the original - the gunner's p… |
+| `ece13a86` | 2026-11-16 | joncurry94 | v1.10.83 version + What's New card |
+| `7f90974a` | 2026-11-16 | joncurry94 | coop_mod/discbot.scr: EA use spots only once armed, and a spot skipped before it armed is retried when it arms (converter 0.7.34… |
+| `ee2cb21d` | 2026-11-16 | joncurry94 | EA: a spawn point's death channel sends on every Nth death, once unless it repeats (converter 0.7.35) - "2 reinforcements killed"… |
+| `1bbdcbf8` | 2026-11-16 | joncurry94 | coop_mod/discbot.scr: one walker per goal (walk ids), use-hop/pin for use spots, dismount, back to the street after the tower MG,… |
+| `36f29fd7` | 2026-11-16 | joncurry94 | coop_fl_1_1: trailing allies no longer stranded on an upper level (discbot FINDINGS 8) - move-up skips crumbs >96u off both the a… |
+| `902c4e99` | 2026-11-16 | joncurry94 | EA: GagDialogueTrigger01 / 02 run as volumes their TargetFilter squad must enter (they were fired by the Activate that spawns the… |
+| `3235b382` | 2026-11-16 | joncurry94 | coop_mod/discbot.scr: dev-only playthrough bot for the BYO disc missions (coop_dev 1 + coop_discbot 1 god / 2 normal / 9 park; co… |
+| `a17804da` | 2026-11-16 | joncurry94 | mapgrade: coop_fl_1_3 neutral PROV night row (generated from grade_profiles.tsv; look agent's values until ref_xemu frames) |
+| `31335aca` | 2026-11-16 | joncurry94 | coop_fl_1_3 ANCHOR & ANVIL: the disc's own object meshes in play (trucks appear with trigger 55 / 499 and swap to their wrecks at… |
+| `db6ecfcd` | 2026-11-16 | joncurry94 | EA end chain as the original: the church gag triggers fire on their TargetFilter squad, charges wait for their own group, a never… |
+| `ef55ed87` | 2026-11-16 | joncurry94 | coop_fl_1_3 ANCHOR & ANVIL: the two drawn ladders (stair landing -> cache roof, the train ladder -> the roof route) built with Se… |
+| `ebd47601` | 2026-11-15 | joncurry94 | coop_fl_1_3 ANCHOR & ANVIL: the mission flow from the code decode (anvil/decode/DECODE_1_3.md) - the five objectives complete ind… |
+| `9af480bb` | 2026-11-15 | joncurry94 | v1.10.82 version + What's New card (hotfix: silent disc lines, roster objective) |
+| `200e7df1` | 2026-11-15 | joncurry94 | coop_fl_1_1: the disc's scripted lines, barks, beds and fire loop cached first (the sound index table, 2048, is full at load - di… |
+| `1d3fa1f4` | 2026-11-15 | joncurry94 | coop_fl_1_3 ANCHOR & ANVIL (Frontline 1_3) skeleton: areas wake on the disc's start triggers, clean-up removes, death log (clean-… |
+| `28eb3fb9` | 2026-11-15 | joncurry94 | coop_fl_1_1: objective 3 waits for the clipboard (objPos[3]), not the tower MG - objPos[2] became the tower when that objective w… |
+| `04bf9057` | 2026-11-15 | joncurry94 | v1.10.81 What's New card (The Original Cast) + version |
+| `9fcac7df` | 2026-11-15 | joncurry94 | EA (v1.10.81): code-findings fixes - breakables by the original's damage thresholds, the gate kick's rig event fires OpenGate slo… |
+| `2103ac67` | 2026-11-15 | joncurry94 | coop_fl_1_1: code decode applied (CODE_FINDINGS_fl_1_1.md) - soldiers patrol their own record path in its direction, allies run t… |
+| `b05acf3b` | 2026-11-15 | joncurry94 | EA deaths: the original's ChooseDeathPose order (character agent's Lua disassembly) - prone by location (head/neck prone_1, else… |
+| `741693c1` | 2026-11-15 | joncurry94 | coop_fl_1_1: dev hook for the playthrough bot (coop_dev 1 + coop_discbot, coop_mod/discbot.scr); off otherwise |
+| `756b4365` | 2026-11-15 | joncurry94 | EA: dev hook for the discbot playthrough bot (coop_mod/discbot.scr::run "ea" with coop_dev and coop_discbot; nothing without them) |
+| `d1c4ad61` | 2026-11-15 | joncurry94 | EA jaw: the looping jaw clip is stopped (say with no anim) when the line's voice ends; guarded against a dead or removed speaker |
+| `2aeded95` | 2026-11-15 | joncurry94 | EA: talking jaw hook in ea_say - the line's jaw-only clip (level.ea_jaw[alias]) in a disc-model speaker's say slot, behind coop_e… |
+| `f2e35382` | 2026-11-15 | joncurry94 | EA: thread coop_mod/zonefx.scr::boot after main (the bloom / mix agent's zones, level.coop_zn_*; a no-op on an older pak - live-t… |
+| `da783b6c` | 2026-11-15 | joncurry94 | coop_mod/zonefx.scr: per-player area zones from a converter's level.coop_zn_* (bloom door strips, mixer boxes, interiors) |
+| `99f80435` | 2026-11-15 | joncurry94 | EA MG42 pole: after the first levelling only a lower settled height moves the gun (nest 5's gunner steps between the sandbag edge… |
+| `58bec30b` | 2026-11-15 | joncurry94 | EA MG42 pole: level the gun only once the gunner has settled (same z on two checks 1 s apart), and again if he settles elsewhere,… |
+| `81a7c5b9` | 2026-11-15 | joncurry94 | textures/hud/coop_sq_star_live\|down\|dead.tga: squadmate stars for the classic round compass (cgame CG_CoopSquadRadar) |
+| `933ea690` | 2026-11-15 | joncurry94 | EA MG42 pole: a second levelling pass 5 s in (nests 3 and 5: the engine stands the gunner on the sandbag ring after the first rai… |
+| `593ab97e` | 2026-11-15 | joncurry94 | EA MG42 pole: the gun rises so its pivot stands level.ea_prop_mgseat[1] (70.7u) over the seated gunner (ea_mg_level pole target;… |
+| `daef239a` | 2026-11-15 | joncurry94 | EA MG42: the disc's pole mount (user's choice) wired, off until the model is approved: pole -> grip -> stock gun |
+| `98640ab6` | 2026-11-15 | joncurry94 | EA: turretseat moved to maps/coop_ea_1_11_seat.scr - on the live game.dll (no turretseat) the whole map script failed to compile… |
+| `27a92dea` | 2026-11-15 | joncurry94 | squad key: one-time default bind N = +coopsquad (hold send, tap recall), Options > Controls row |
+| `22200c6d` | 2026-11-15 | joncurry94 | name bus 54 ( ,sq ): squad send / recall -> coop_mod/squadcmd.scr::cmd |
+| `ad0e4840` | 2026-11-15 | joncurry94 | parasquad.scr brain: squad-command hooks - starts squadcmd.scr::run, skips a man holding a sent order, each man follows his own p… |
+| `d93b373e` | 2026-11-15 | joncurry94 | squadcmd.scr: co-op squad commands - send to the aim point / recall, the per-player split, compass stars feed |
+| `a4702840` | 2026-11-15 | joncurry94 | coop_fl_1_1: journal footer above the page (it sat on the pickup feed); a cover point with a living enemy within 160u is not free… |
+| `23c52ebe` | 2026-11-15 | joncurry94 | coop_fl_1_1: round 22 wiring - projectile generator 473 (one Panzerschreck round on trigger 256), trigger 91 from the converter d… |
+| `31d7f09c` | 2026-11-15 | joncurry94 | EA: the disc's own Panzer IV and its wreck when eaprops built them and the user approved (level.ea_prop_own["panzer"]), or in dev… |
+| `a18a65a3` | 2026-11-15 | joncurry94 | EA: deaths by hit location (the original's HitReactions tree); the squad AI switch (ChangeGPSBehavior); coop_eaFireName dev hook |
+| `5fc317a9` | 2026-11-15 | joncurry94 | EA: ICS send slots 2-7 relayed when a point's scene or pose ends; the sound triggers play the disc's own samples |
+| `0a9a566a` | 2026-11-15 | joncurry94 | atsupply: one ATSUPPLY respawn armed line per supply item, so a log proves each launcher and shell box respawns (LAUNCHER-RESPAWN… |
+| `ca6e815b` | 2026-11-15 | joncurry94 | EA dev test 30: coop_eaGalDelay <s> starts the scene gallery later (a gallery actor placed 12 s in was not drawn by the client; a… |
+| `8e9b569e` | 2026-11-15 | joncurry94 | coop_fl_1_1: the jeep crew (driver, passenger, gunner) ride and fade in their own disc models once approved (level.fl_chr_fade by… |
+| `e4a710d3` | 2026-11-15 | joncurry94 | coop_fl_1_1: Frontline characters - one log line per soldier spawned in his own disc model (FLCHR own axis\|ally <i> <hash>); coo… |
+| `b4e55bc7` | 2026-11-15 | joncurry94 | EA tower fall: drop measured 115u ahead (the pelvis landing) and _9's corpse set by its head (294u down, not 319) |
+| `3f0d94fd` | 2026-11-15 | joncurry94 | EA tower sniper: the rig's own DEATH_REACT fall (ea_ics_deathfromabove _8 / _9 by the drop ahead), corpse set on the ground |
+| `e0266681` | 2026-11-15 | joncurry94 | EA scenes: the rest of the level's ICS rigs play their disc clips (converter e309491f); the woman holds her rig's IDLE |
+| `04635196` | 2026-11-15 | joncurry94 | coop_fl_1_1: character sheet (coop_fltest 20) for approval stills - the camera player is kept alive every frame (fl_sheetkeep), t… |
+| `0ccbb548` | 2026-11-15 | joncurry94 | EA: no pickup glow by an MG crew (the yellow-green gunners at mg1/mg8/mg9); dev cvars for scene stills |
+| `122ed3db` | 2026-11-15 | joncurry94 | EA MG crews on the STOCK seat, disc clips on by default (coop_eaMmgAnims 0 = stock set) |
+| `385b3624` | 2026-11-15 | joncurry94 | coop_fl_1_1: character sheet (coop_fltest 20) - the camera player takes no damage (no cheats on a coop server; the character fire… |
+| `0f717ce2` | 2026-11-15 | joncurry94 | coop_ea_1_11: disc MG crews seated at the original's distance through game.dll turretseat (back 36 / down 74, engine 9f5b0846): t… |
+| `22fb8b9f` | 2026-11-15 | joncurry94 | coop_fl_1_1: disc cover points and paths ON by default - r17/dp3 client run: 44 FLCOV lines, Germans and allies take and hold the… |
+| `3ecfe661` | 2026-11-15 | joncurry94 | coop_fl_1_1: Frontline characters - a soldier wears his own disc model (converter flchar.py: level.fl_chr_tik by his record's cha… |
+| `bfa65dbd` | 2026-11-15 | joncurry94 | coop_ea_1_11: dev test 29 (five disc-model Germans killed from the front / back / left / right and by a blast) and an EADEATH log… |
+| `ba237365` | 2026-11-15 | joncurry94 | coop_fl_1_1: round 21 - the disc's cover points (fl_cov_think: one man per point, re-pick when lost/flanked, allies never ahead o… |
+| `c56ab275` | 2026-11-15 | joncurry94 | coop_ea_1_11: the original's own soldier deaths for disc-model actors (anim/killed.scr -> ea_death_pick: the ea_death_<pose>_<sid… |
+| `a4d2626e` | 2026-11-15 | joncurry94 | coop_ea_1_11: the woman waits at ICSPoint02 in the disc's own crouch clip (ea_ics_crouchedpartisanfemale_1, root on the floor und… |
+| `4c600a0f` | 2026-11-15 | joncurry94 | coop_ea_1_11: an ICS actor leaving his pose or scene is set on the nearest free floor before physics comes back (a standing box s… |
+| `61af0e1d` | 2026-11-15 | joncurry94 | coop_ea_1_11: the disc's own ICS clips at their points (ea_ics_<rig>_1 from the converter: partisans polishing, lacing boots, idl… |
+| `78e30f41` | 2026-11-15 | joncurry94 | coop_wounded.tik: coop_dbno_collapse / coop_dbno_idle for AI (allysquad's downed allies and coop_ea_1_11's downed squadmates logg… |
+| `55a7b197` | 2026-11-15 | joncurry94 | restore 74 files ff4f3896 reverted by mistake (the post-build tey restore put stale copies in the tree; the shipped v1.10.80 paks… |
+| `2451dc60` | 2026-11-15 | joncurry94 | coop_fl_1_1: walked emulator stills - rec 5 a low street haze (stock linger_smoke, not a rising column), rec 7 not spawned (burnt… |
+| `ff4f3896` | 2026-11-15 | joncurry94 | v1.10.80 shipped state: water extras menu rows + cvar seeds (coop_defaults, coop_fxdefaults, coop_postfx3), gfx presets, m3l1a me… |
+| `f546ed7c` | 2026-11-15 | joncurry94 | coop_fl_1_1: particle starts to the emulator stills - rec 13 (house-front flame) starts with the house blast, rec 10 (roster flam… |
+| `31199a22` | 2026-11-15 | joncurry94 | v1.10.80 What's New card (Fire and Fog) + version |
+| `8deabb39` | 2026-11-15 | joncurry94 | mapgrade.cfg: regenerate with coop_ea_1_11 (bug-11204) |
+| `3c5a79b6` | 2026-11-13 | joncurry94 | mapgrade.cfg: regenerate with coop_fl_1_1 (bug-11204) |
+| `71a3c073` | 2026-11-13 | joncurry94 | coop_ea_1_11: the downed woman squadmate lies on her back with straight legs (coop_supine_pose; the DBNO writhe raised both knees… |
+| `4287bfb3` | 2026-11-13 | joncurry94 | coop_ea_1_11: downed squadmate - own medkit marker without allysquad's red glow light (a full red dynamic light painted him and e… |
+| `2eaa64f2` | 2026-11-13 | joncurry94 | coop_fl_1_1: the door swings in place - the ScriptSlave move put the converted leaf at ( -39 57 -1 ) on its first swing (gone for… |
+| `3c8e943d` | 2026-11-13 | joncurry94 | coop_fl_1_1: round 20 wiring - the disc's particle systems (load / house / bombA rules), house_remove wall hidden at the blast, a… |
+| `551228c0` | 2026-11-13 | joncurry94 | coop_ea_1_11: squad revive (user-approved 2026-11-13, FIDELITY C17) - Foshkovich, Vasileva and Maldavonov go down instead of dyin… |
+| `135a1fa4` | 2026-11-13 | joncurry94 | Dying Breath: warm flickering fire light round the village fires (user-approved) |
+| `1cfbaf78` | 2026-11-13 | joncurry94 | coop_ea_1_11: graveyard gates stand open while the engine links the path nodes (the graveyard and church, 641 nodes, were off the… |
+| `67f119e3` | 2026-11-13 | joncurry94 | discscale.scr: floor gap logged 1 s after the spawn (droptofloor lands later), the EA self-test keeps the real death channels for… |
+| `83e1eb2d` | 2026-11-13 | joncurry94 | coop_fl_1_1: scaling hooks - discscale.scr extras for the load wave and each fl_grp_start wave, clean-up removes the area's extra… |
+| `df59cb68` | 2026-11-13 | joncurry94 | coop_ea_1_11: scaling hook - ea_sp_run asks discscale.scr for extras after a point's disc count; a man made past the disc count i… |
+| `98330563` | 2026-11-13 | joncurry94 | discscale.scr: player-count enemy scaling for the disc missions (Sealed Orders, Their Dying Breath; user-approved 2026-11-13): 1… |
+| `f4f82075` | 2026-11-13 | joncurry94 | coop_ea_1_11: a named squadmate's death shows the original's '<name> has died!' (PlayerSquadNPCDeath) |
+| `b90c9272` | 2026-11-13 | joncurry94 | aihandler: per-map opt-out level.coop_noReplicas (unset = stock unchanged); coop_fl_1_1 sets it and coop_noCounter (sweep 2026-11… |
+| `0bd7e5fd` | 2026-11-13 | joncurry94 | coop_ea_1_11: no mod enemy replicas at 2+ players and no coop_counter end waves (sweep 2026-11-13: not in the original; the disc'… |
+| `e305db0c` | 2026-11-13 | joncurry94 | coop_ea_1_11: allies deal half damage to AI of the other side (level.coop_aiVsAiDmg 0.5, the Sealed Orders opt-in; user 2026-11-1… |
+| `45aecebc` | 2026-11-13 | joncurry94 | coop_ea_1_11: the original's PlayerSquad (the three meeting-house partisans, the woman among them) follows the players with the p… |
+| `1e673e70` | 2026-11-13 | joncurry94 | coop_ea_1_11: ICSPoint02 (the crouched partisan woman, 'Come with me') - an ally spawned for a scene is held out of the fight unt… |
+| `84497cd1` | 2026-11-13 | joncurry94 | coop_fl_1_1: Panzer fires in earshot (2200u), German-line speakers exclude the officer and play-dead men, MG-nest men without roo… |
+| `e7d2326b` | 2026-11-13 | joncurry94 | coop_ea_1_11: checkpoint damage volume breaks the checkpoint scene (AUDIT I4, proven: shot -> Deactivate -> three guards hostile)… |
+| `042f3792` | 2026-11-13 | joncurry94 | coop_ea_1_11: the railgun charge counter shows the original's own line '%1 of %2 Charges Placed' (MO_Place3_Charges, AUDIT P5) on… |
+| `77b868a1` | 2026-11-13 | joncurry94 | coop_fl_1_1: playtest round 18 - allies balanced and trailing, one .30 cal, gunner dies lying down, atomic execution, speakers fo… |
+| `123898bf` | 2026-11-13 | joncurry94 | coop_ea_1_11: railgun MG42 gunners on their guns - the caller's delayed runto no longer overwrites a seated gunner's machinegunne… |
+| `a11a9afc` | 2026-11-12 | joncurry94 | coop_ea_1_11: dev test 21 near-probe (converted actors within 160u of a player, logged each second; dev only) |
+| `ac4b738e` | 2026-11-12 | joncurry94 | coop_ea_1_11: MG gunners stay on their guns (railgun tower guns) |
+| `1ca2bcbc` | 2026-11-12 | joncurry94 | coop_ea_1_11: dev test 17 (character sheet) also keeps the player at nodamage |
+| `e6edf45c` | 2026-11-12 | joncurry94 | coop_ea_1_11: dev tests 20/21 keep proof-run players at nodamage (god does not answer) |
+| `b607d1e7` | 2026-11-12 | joncurry94 | Liberation holdout: keep the player untouchable through the hold; void path total |
+| `80daa8b4` | 2026-11-12 | joncurry94 | coop_ea_1_11: dev test 20 (railgun and radio tower wreck on coop_eawreck 1, for proof stills) |
+| `1b4cf887` | 2026-11-12 | joncurry94 | coop_ea_1_11: playtest round (poses, scenes, objectives, gunners, allies, charges, salvo, culling) |
+| `8ec71705` | 2026-11-12 | joncurry94 | aivoice: opt-in per-line cooldown and AIVOICE log (level.coop_avLineCd) |
+| `2c70e9f5` | 2026-11-12 | joncurry94 | Liberation: void the contract when fewer than 4 Germans can be placed out of sight |
+| `1527f91b` | 2026-11-12 | joncurry94 | Liberation: 5 s holdout before the Germans appear, placed against the player's current eye |
+| `365b6b3c` | 2026-11-12 | joncurry94 | v1.10.79: What's New + version |
+| `9cdc72e5` | 2026-11-12 | joncurry94 | coop_ea_1_11: the partisan woman's own model held back for v1.10.79 (feet/legs failed client QA); on with level.ea_chr_own = 1 |
+| `72077597` | 2026-11-12 | joncurry94 | coop_fl_1_1: the disc's own German combat lines on the situational AI voice; every mounted gun logs its first use |
+| `507b11df` | 2026-11-12 | joncurry94 | coop_ea_1_11: gun callers' move radius, squad-bound poses and the tower fall, own character models |
+| `185c2467` | 2026-11-12 | joncurry94 | coop_fl_1_1: church-tower MG usable on foot (turret at standing height on sandbags, disc x/y and facing kept) - objective 2 prove… |
+| `cf7b0b67` | 2026-11-12 | joncurry94 | coop_fl_1_1: bomber inbound at trigger 41 (bomb A and the house at +0.4 s, real speed); disc barks only; objective 2 'Man Machine… |
+| `e5ba7315` | 2026-11-12 | joncurry94 | coop_ea_1_11: pose stand-ins, gun callers off friendly follow, disc-only barks flag |
+| `8a9ca421` | 2026-11-12 | joncurry94 | coop_fl_1_1: bug id for the allied trailing rule (11103) |
+| `79eaeb9c` | 2026-11-12 | joncurry94 | coop_fl_1_1: built from the full walk (dock and exit triggers, hints on entering, MG hints, rec 539, phone sound, area-373 respaw… |
+| `7f7c082e` | 2026-11-12 | joncurry94 | level.coop_discBarksOnly: only the original's own barks on converted disc missions |
+| `275d809c` | 2026-11-12 | joncurry94 | coop_fl_1_1: correct bug id (11102) |
+| `f4c1bb53` | 2026-11-12 | joncurry94 | coop_fl_1_1: trigger leave messages and the use-fired trigger (TRIGGERS_fl_1_1.md slots 1 and 4) |
+| `1be23eb2` | 2026-11-12 | joncurry94 | coop_ea_1_11: the original's AI barks mapped onto the situational AI voice |
+| `ffbe3154` | 2026-11-12 | joncurry94 | coop_fl_1_1: trigger messages honoured (start / clean-up / disable / enable); scene 4 squad hold-push-trail and clean-up; ambush… |
+| `1bde1b57` | 2026-11-12 | joncurry94 | coop_ea_1_11: dead-body prefabs spawn as corpses on their pose points |
+| `e6ba6283` | 2026-11-12 | joncurry94 | coop_fl_1_1: gunner dies from the floor (death_prone), .30 cal mounts facing the square, wave only from the gun (walk-away / trig… |
+| `a09a3d4a` | 2026-11-12 | joncurry94 | coop_fl_1_1: gunner thrown off and downed (DBNO), line then death (user decision); officer waves off; scene 5 to the traces (Panz… |
+| `99b21976` | 2026-11-12 | joncurry94 | coop_ea_1_11: railgun guns Disable/Vanish, checkpoint Halt scene actor, scene queueing |
+| `1f139534` | 2026-11-12 | joncurry94 | coop_fl_1_1: the risen jeep gunner stands on the ground at the front (trace frames wa1, wa2), not in the tub |
+| `07abce8c` | 2026-11-12 | joncurry94 | coop_fl_1_1: jeep wreck to TRACE_jeep_wreck.md (gunner face-down on the rear deck, rises at the front, helmet stays; gun wave 2 s… |
+| `f9158a0b` | 2026-11-12 | joncurry94 | coop_fl_1_1: shot breach restored to the emulator trace (3 hits on one barrel, no fuse, all five at once), use path unchanged |
+| `d126edd6` | 2026-11-12 | joncurry94 | MP challenges regenerated: finish rewards named in the challenge text |
+| `0fe870a6` | 2026-11-12 | joncurry94 | MP Armory: remove the stale Axis tile 34 pages |
+| `67a0204c` | 2026-11-12 | joncurry94 | MP Armory regenerated (gen_mp_armory build): Axis M38 duplicate tile gone, padlocks gated on tier unlocks (bug-10926), MP finish… |
+| `8ecb6d12` | 2026-11-12 | joncurry94 | coop_fl_1_1: placeholder bug id -> bug-11084 |
+| `588d3864` | 2026-11-12 | joncurry94 | v1.10.78: What's New + version; Sealed Orders and Their Dying Breath scripted scenes; Liberation playtest fixes; no co-op time li… |
+| `775eebd3` | 2026-11-11 | joncurry94 | Post-FX Atmosphere: Real Reflections row (r_hzmReflect: Off / Real / Real + You), seeded -1 |
+| `2bc3cd1e` | 2026-11-11 | joncurry94 | Engraving: no spot on an optic (27 anchors / spots on 14 guns re-solved or dropped), triangle classes, bench click placement |
+| `383deef0` | 2026-11-11 | joncurry94 | Liberation: Hardcore hunter starts at 125 health (was 250, the kit give overwrote Hardcore's half) |
+| `574291d0` | 2026-11-11 | joncurry94 | v1.10.77: What's New + version |
+| `143e912f` | 2026-11-11 | joncurry94 | Merge branch 'eapolish' into hotfix-1.10.53 (Dying Breath fx broadcast) |
+| `0086f740` | 2026-11-11 | joncurry94 | coop_ea_1_11: fx parts broadcast, ea_nofog test cvar |
+| `872da34f` | 2026-11-11 | joncurry94 | localization: Liberation rows where the weapon-viewer generator keeps them |
+| `e00ce732` | 2026-11-11 | joncurry94 | v1.10.76: What's New + version; armory finish seed no longer errors for a client with no saved finish |
+| `cd592eb0` | 2026-11-11 | joncurry94 | Merge branch 'liberacion' into hotfix-1.10.53 (LIBERATION contract; war-map widgets + ops table regenerated) |
+| `4abdd72c` | 2026-11-11 | joncurry94 | Liberation: centred HUD, caption slot, result banner clear of the scoreboard, challenge init race |
+| `8c1064d1` | 2026-11-11 | joncurry94 | Liberation lean pass: idle no longer fails the hunt, result banner, radio caption, spawn clutter off, localization rows, 3 dead m… |
+| `be80c900` | 2026-11-11 | joncurry94 | LIBERATION: player health 250 (user 2026-11-11) |
+| `177f27a0` | 2026-11-11 | joncurry94 | v1.10.75: What's New + version |
+| `f024840d` | 2026-11-11 | joncurry94 | Merge branch 'eapolish' into hotfix-1.10.53 |
+| `aa93bb3e` | 2026-11-11 | joncurry94 | Merge branch 'flpolish' into hotfix-1.10.53 |
+| `f582a94d` | 2026-11-11 | joncurry94 | Merge branch 'shootfix-mod' into hotfix-1.10.53 |
+| `18a5c47a` | 2026-11-11 | joncurry94 | Merge branch 'recoil-mod' into hotfix-1.10.53 |
+| `c2e6fb99` | 2026-11-11 | joncurry94 | Merge branch 'fg42fix' into hotfix-1.10.53 |
+| `4ed64801` | 2026-11-11 | joncurry94 | Merge branch 'escmenu' into hotfix-1.10.53 |
+| `5af9adf6` | 2026-11-11 | joncurry94 | Merge branch 'rain73' into hotfix-1.10.53 |
+| `bc684e0d` | 2026-11-11 | joncurry94 | Merge branch 'opsfix2' into hotfix-1.10.53 |
+| `18ce9a20` | 2026-11-11 | joncurry94 | Merge branch 'mpprog' into hotfix-1.10.53 |
+| `de990bd6` | 2026-11-11 | joncurry94 | Merge branch 'usefix' into hotfix-1.10.53 |
+| `8f710b5c` | 2026-11-11 | joncurry94 | Merge branch 'trainfix' into hotfix-1.10.53 |
+| `28a0b26a` | 2026-11-11 | joncurry94 | LIBERATION: two-tier sight test at placement (margin-hidden spots first, exact-eye-hidden before any doubling up), Germans shield… |
+| `a2d4f26b` | 2026-11-10 | joncurry94 | SEALED ORDERS round 6: barks, music order, shootable barrels, ambushers lie and rise |
+| `8d906e74` | 2026-11-10 | joncurry94 | coop_ea_1_11: play the converted particle systems at their placements, music fades and stinger hold |
+| `47aff171` | 2026-11-10 | joncurry94 | AI melee: never wait on a butt-strike animation the weapon does not have (bug-10935) |
+| `690062bd` | 2026-11-10 | joncurry94 | LIBERATION: sight margin and opening grace at placement, 'left' for a spectating player, engine round clock held off for the whol… |
+| `ab950011` | 2026-11-10 | joncurry94 | coop_fl_1_1: molotov barrel at the MG nest (explodes, burns 10 s), music opens on its intro segment before the ambient loop, self… |
+| `b087b15e` | 2026-11-10 | joncurry94 | coop_ea_1_11: Panzers pivot to face a leg before driving it, wait a second before a chained leg, record the leg reached; Panzer t… |
+| `ba25b03e` | 2026-11-10 | joncurry94 | coop_ea_1_11: score cues as the original plays them (once, intro then loop, stinger then back); Panzer test parks the player with… |
+| `13e7494f` | 2026-11-10 | joncurry94 | coop_ea_1_11: spawns never in view (hidden same-side fallback after 20 s), self-test kills at any range, artillery lead-in uses t… |
+| `6ebac4c3` | 2026-11-10 | joncurry94 | eapolish: the original's invisible collision blocker at the partisan leader (on with Activate, off with Deactivate, as the origin… |
+| `c535a991` | 2026-11-10 | joncurry94 | escmenu: review polish + SCOREBOARD row - title and mode line above a narrow card centred at every aspect, the Armory's row plate… |
+| `08ac281b` | 2026-11-10 | joncurry94 | liberacion: the dedicated test modes never wait for a human (test 2 waited and refused); the test prints its stand-in eye |
+| `0e183581` | 2026-11-10 | joncurry94 | flpolish: health kits carry Frontline's own amounts (its 10 kit on the 25 box) |
+| `e3764b7b` | 2026-11-10 | joncurry94 | escmenu: the in-game ESC board (WIP, co-op host verified) - ui/dm_main.urc + ui/hzm_escconfirm.urc GENERATED by docs/tools/gen_es… |
+| `8d630916` | 2026-11-10 | joncurry94 | eapolish: self-test fights through our own registry (SP has no coop actor array; the church stalled) and stands at the latest sce… |
+| `3c31311f` | 2026-11-10 | joncurry94 | mpprog: MP Armory padlocks clear when the tier is unlocked (bug-10926) |
+| `2001fd0f` | 2026-11-10 | joncurry94 | eapolish: scripted lines play the original's voice (subtitle kept; the gag waits for the line) |
+| `8f01412c` | 2026-11-10 | joncurry94 | Merge branch 'polish73' into rain73 |
+| `adfa0c68` | 2026-11-10 | joncurry94 | mpprog: shared-rank weapon tiers are in the MP unlock store from the first armory open (bug-10913) |
+| `9a246be3` | 2026-11-10 | joncurry94 | mpprog: bug id is bug-10912 (10886 was taken by a parallel session) - comments only |
+| `8ecd7bc3` | 2026-11-10 | joncurry94 | mpprog: MP unlock progress now survives the session (bug-10886) |
+| `74397e4f` | 2026-11-10 | joncurry94 | mpprog: harness hook - the idle test client takes no damage (it cannot respawn itself) |
+| `6104fdaf` | 2026-11-10 | joncurry94 | mpprog: harness hook - NIL-safe report lines (a fresh record has no total yet) |
+| `b2646c60` | 2026-11-10 | joncurry94 | mpprog: dev-only human-attacker harness hook (coop_mpProgHumanTest, seeded nowhere) |
+| `5cf8cf40` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into usefix |
+| `24a7f2fc` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into trainfix |
+| `604f5299` | 2026-11-10 | joncurry94 | Merge hotfix-1.10.53 (v1.10.74) into benchsize |
+| `64e473c0` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into polish73 |
+| `fa37a732` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into opsfix2 |
+| `41c27961` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into liberacion |
+| `b80a423d` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into eapolish |
+| `8ebb15f7` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into flpolish |
+| `3e3cb740` | 2026-11-10 | joncurry94 | real rof: turret MG rows (AI gunners) |
+| `b7e71cfa` | 2026-11-10 | joncurry94 | flpolish: FLSP log names whether a set piece plays Frontline's own mesh |
+| `ff50c21c` | 2026-11-10 | joncurry94 | real rof: Armory regenerated (gen_loadout.py build) - rate and damage bars show the real rates (armory_stats via weapon_rof.txt) |
+| `01fe9dbf` | 2026-11-10 | joncurry94 | real rof: coop_mod/weapon_rof.txt (generated by docs/tools/gen_weapon_rof.py, 35 automatics) |
+| `19488703` | 2026-11-10 | joncurry94 | eapolish: tanks die through our own wreck swap (the winter Panzer's destroyed base + turret; the stock death read a collision bru… |
+| `89166068` | 2026-11-10 | joncurry94 | liberacion: LIBERATION contract (WIP, not yet harness-verified) - solo, one life, the co-op kit, Germans that never respawn |
+| `33a45ec8` | 2026-11-10 | joncurry94 | fg42fix (bug-10899): anims_shared.txt is the one copy - 60 aliases that lived only in the shadowing pak copies merged in |
 | `42d9d018` | 2026-11-10 | joncurry94 | v1.10.74 hotfix: What's New + version (MP DEPLOY spawn fix) |
 | `e2127e96` | 2026-11-10 | joncurry94 | opsfix2-hotfix: the MP poll no longer stalls on mp_deploy (dedicated joiners' armory armed ~30 s late) |
 | `8539dd18` | 2026-11-10 | joncurry94 | opsfix2: MP armory DEPLOY never spawned the player on objective / round / TOW / LIB maps |
+| `7be0a566` | 2026-11-10 | joncurry94 | eapolish: effects packages (fires/smoke/fog/blasts as stock emitters), destroyed smart-object variants shown with the blast, gate… |
+| `f1259147` | 2026-11-10 | joncurry94 | opsfix2: Field Operations - humans always Allied, objective players spawn, kill-limit result, per-side objective nodes; MP poll n… |
+| `3c520453` | 2026-11-10 | joncurry94 | eapolish: Panzers dropped to the floor at spawn |
+| `e9fd394b` | 2026-11-10 | joncurry94 | benchsize: wood cuts twice as wide and bright (offset second clear + raw-wood stage: readable on light stocks at the hip), word f… |
+| `f8d7cafa` | 2026-11-10 | joncurry94 | eapolish: self-test fights within 4500u (the church counter-attack forms up 2700u out) |
+| `eadaf46d` | 2026-11-10 | joncurry94 | rain73 v2: five fog banks |
+| `b0627b2e` | 2026-11-10 | joncurry94 | opsfix2: MP armory DEPLOY never spawned the player on objective / round / TOW / LIB maps |
+| `5bfb3d7a` | 2026-11-10 | joncurry94 | benchsize: bench WORDS FOR THIS GUN / DEFAULT WORDS (ALL GUNS) fields, own/default state + USE DEFAULT, SIZE 25 % steps + MAX FOR… |
+| `f56e3396` | 2026-11-10 | joncurry94 | flpolish: Frontline object meshes in the set pieces ($fl_om_*), the door swings on its group, wheels on the jeep's clock, the riv… |
+| `0fa7b451` | 2026-11-10 | joncurry94 | eapolish: coop officer waves off on coop_ea_1_11 (the original's own counter-attacks run; the officer objective completed and res… |
+| `26528e0c` | 2026-11-10 | joncurry94 | eapolish: converted smart objects (no stand-ins; gates open, railgun/tower/ammo dump/bridge go with their blast), friendly.scr af… |
+| `c835552b` | 2026-11-10 | joncurry94 | rain73: fog bank weights 25 / 55 / 85 / 100 |
+| `321ec769` | 2026-11-10 | joncurry94 | rain73: static rain sheets and glass drops retired (engine dynamic rain) |
+| `583b1f4f` | 2026-11-10 | joncurry94 | rain73: fog banks (scenewx fog role) in every scene that shows the town |
+| `e8b73da7` | 2026-11-10 | joncurry94 | recoil: coop_mod/recoil_pattern.txt - per-gun recoil patterns (generated by docs/tools/gen_recoil_pattern.py, 92 rows) |
+| `77072cb7` | 2026-11-10 | joncurry94 | usefix: hint + comments for tap = ammo / hold = gun; Norway loot self-test holds Use (0.8 s) to take a gun |
+| `f69a4462` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into flpolish |
+| `c476a88d` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into polish73 |
+| `afcb88f9` | 2026-11-10 | joncurry94 | Merge branch 'hotfix-1.10.53' into eapolish |
+| `92e1a8bf` | 2026-11-10 | joncurry94 | v1.10.73: attic closure + crack patch + ladder hatch in every attic copy, QUIT GAME hatch hotspot with turn cue and hzm_quitconfi… |
+| `1fdcb055` | 2026-11-10 | joncurry94 | flpolish: SEALED ORDERS fidelity - Frontline set pieces (fl_sp/fl_motion), tank drives its path, patrol beats, death ambushers, m… |
+| `14fbe6d3` | 2026-11-10 | joncurry94 | eapolish: THEIR DYING BREATH runs the original's own logic graph (converter 0.3.0 data): triggers / dispatchers / counters / time… |
 | `3280c803` | 2026-11-10 | joncurry94 | v1.10.73 hotfix: What's New + version (Live Ops buttons, bench keeps work, all guns engravable) |
 | `3e473274` | 2026-11-10 | joncurry94 | Merge branch 'opsfix' into hotfix-1.10.53 |
+| `43c05732` | 2026-11-10 | joncurry94 | v1.10.73: SOUND tab HIGH; LOOK UP framed on the skylight; sky scud layer; hub closure model in every hub room copy |
 | `0dc1fec1` | 2026-11-10 | joncurry94 | opsfix: Field Operations card DEPLOY / FILE AWAY did nothing on a real click (v1.10.72) |
+| `7c7f87de` | 2026-11-10 | joncurry94 | trainfix: sandbags/ammo box on player-clip ground (cover.scr down-trace + ammobox crate floor include PLAYERCLIP, view-hit far be… |
 | `2e34f9ad` | 2026-11-10 | joncurry94 | benchfix2: bench SAVE / BACK / ESC (escapecommand) all run hzmcust done - keep the work and return to the Armory; 'leaving keeps… |
+| `ea9fd457` | 2026-11-10 | joncurry94 | trainfix: TRAINING sheet card pictures no longer vanish on hover (v1.10.72 user report) - the whole-card buttons are transparent… |
+| `6d136166` | 2026-11-10 | joncurry94 | flpolish: SEALED ORDERS - Frontline's ammo pickups, MG42s on the working mounted-gun spots manned by the nest gunners, the dead G… |
+| `6abb7b66` | 2026-11-10 | joncurry94 | v1.10.73 PERSONAL BESTS: bests.scr (own records in the chal record, max-merge keys), challenges.scr hooks, ui/coop_pb.urc + bests… |
+| `63f39cac` | 2026-11-10 | joncurry94 | flpolish: SEALED ORDERS AI + jeep scene - Frontline's trigger groups spawn out of sight (fl_trig_wait/fl_spawn_hidden), allies ho… |
 | `ef7b07ae` | 2026-11-10 | joncurry94 | Merge hotfix-1.10.53 (v1.10.72) into benchfix |
 | `9a4e16c6` | 2026-11-10 | joncurry94 | benchfix: engraving spots for the 21 newer armory guns (Bren, MP28, Panzerfaust, BAR / Lewis variants, Pacific / Trench / G98 / P… |
 | `768b0aa3` | 2026-11-10 | joncurry94 | v1.10.72 What's New card + version (Live Fire: Live Operations, Advanced Training, bench, loading clips) |
@@ -2588,8 +3420,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `277bdb9d 2026-10-12 fgame: (1) bug-3639 - the trigger held on an EMPTY belt no longer heats any belted gun: the empty test moved out of the firing branches (where the frame's heat had already been added, and P_UserAim raises m_iFiring again on every command) to one branch in front of them; a gun the ammo box refills keeps its centre print, re-sent while the trigger is held, as before. Measured on a retail mg42_gun.tik with a 300-round belt against the previous build: with rounds in the belt the same (cooks in 1.9-2.0 s / 30-31 rounds at 15.5-15.8 a second, dead 2.0 s, cold 9.0 s after the cook-off), on the empty belt heat 7-8 and falling where it was 98.75 and a cook-off. (2) bug-3658 - a player on a LOW ground turret crouches behind it. Low = the AI gunner's own test (Actor::ThinkHoldGun_TurretGun: crouch weight (71.8 - h) / 33.1 of 0.5 and over, a gun under 55.25 u over the ground he is held on), decided once per mount in Player::EnterTurret (TurretGun::CoopUserLow): hull 54, view height 48 (TurretMove runs no pmove, so what he had is kept and put back in ExitTurret - Use, killed on it, the gun removed under him all come through there), held on the AI's crouched seat (62.4 - 3.0 w back, 10.3 - 1.6 w left for 64 u of user distance) so the crouched clips' hands are on the gun, and the new condition COOP_TURRET_LOW for the state files (mod: player_Torso.st TURRET_IDLE / TURRET_FIRE_LOW, aliases coop_turret_crouch_idle / _fire). Coop missions only, never a vehicle or portable turret; coop_turretCrouch 0 switches it off; developer 1 prints TURRETSEAT enter / exit. A gun at 55.25 u or over is not touched: same seat, hull 94, view 82, same stills (m3l2 scene7_mg1, 61.9 u). The first-person view is the turret camera on the gun and does not change.` |
-| commits | 5,259 |
+| HEAD | `e95e19e1 2026-11-16 cgame: plank slot in the item row (coop_hudPlank, +use key) for coop_mod/barricade.scr` |
+| commits | 5,260 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 3 untracked** |
 
@@ -2599,6 +3431,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
+| 2026-11 | 1 |
 | 2026-10 | 130 |
 | 2026-09 | 46 |
 | 2026-08 | 103 |
@@ -2662,10 +3495,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (294)
+### Commits since 2026-01-01 (295)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e95e19e1` | 2026-11-16 | joncurry94 | cgame: plank slot in the item row (coop_hudPlank, +use key) for coop_mod/barricade.scr |
 | `277bdb9d` | 2026-10-12 | joncurry94 | fgame: (1) bug-3639 - the trigger held on an EMPTY belt no longer heats any belted gun: the empty test moved out of the firing br… |
 | `92944d37` | 2026-10-12 | joncurry94 | fgame: the paratroopers' left .30 cal - per-gun belt / heat / rest settings on TurretGun (all off or at the MG42's numbers unless… |
 | `a9a00da9` | 2026-10-12 | joncurry94 | Merge branch 'fg2-next' into integ-1.10.22 |
