@@ -784,6 +784,11 @@ def skin(model, sdata, skel, bone_block, nbones, bidx, label):
 # the stock right hand, and the scene attaches it to "Bip01 R Hand" at 0 / 0 and plays that clip with the actor's
 # (level.ea_held_hand)
 HELD = {"ppsh": "NpcWpn_PPSH_Art_0"}
+# 0.7.48: the disc characters (and their held props) take the light grid as it is - the original lights a character
+# with its probe x texture (eairrad), and the grid now carries that probe. MOHAA's lightingSpherical would scale the
+# grid by 0.18 over the worldspawn ambientlight (gl2 tr_sphere_shade.cpp RB_Sphere_ResetPointColors), which is why a
+# 3x grid moved the cellar faces only 1.2-1.3x. EA_CHAR_GRIDLIGHT=0 = lightingSpherical as before
+CHAR_RGBGEN = "lightingGrid" if os.environ.get("EA_CHAR_GRIDLIGHT", "1") != "0" else "lightingSpherical"
 HELD_SCALE = 0.52      # the character tiks' scale: the hand-relative positions are model units
 
 
@@ -820,7 +825,7 @@ def held_props(stream, level, files, bone_block, log=print):
             tname = "textures/ea_%s/held_%s_%s.tga" % (level, key, shape.lower())
             files[tname] = _tga(im)
             shname = "ea_%s_held_%s_%s" % (level, key, shape.lower())
-            sh.append("%s\n{\n\tcull none\n\t{\n\t\tmap %s\n\t\trgbGen lightingSpherical\n\t}\n}\n" % (shname, tname))
+            sh.append("%s\n{\n\tcull none\n\t{\n\t\tmap %s\n\t\trgbGen %s\n\t}\n}\n" % (shname, tname, CHAR_RGBGEN))
             tik_surf.append("\tsurface %s shader %s\n" % (sn, shname))
         if any(len(s[1]) > TIKI_MAX_VERTS or len(s[2]) > TIKI_MAX_TRIS for s in surfs):
             log("eachar: held prop %s over the engine's surface limits; skipped" % part)
@@ -929,9 +934,9 @@ def build(stream, level, mohaa_base, files, lines, log=print):
                 shader_lines.append(shname)
                 files.setdefault("scripts/ea_%s_chars.shader" % level, b"")
                 files["scripts/ea_%s_chars.shader" % level] += (
-                    "%s\n{\n\tcull none\n\t{\n\t\tmap %s\n%s\t\trgbGen lightingSpherical\n\t}\n}\n\n" % (
+                    "%s\n{\n\tcull none\n\t{\n\t\tmap %s\n%s\t\trgbGen %s\n\t}\n}\n\n" % (
                         shname, tname, "\t\tblendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n\t\tdepthWrite\n" if cut
-                        else "")).encode()
+                        else "", CHAR_RGBGEN)).encode()
                 # '#a' (GeoPrimState ABM_BLEND) pieces are alpha-BLENDED as on the disc: the German helmet carries a
                 # soft shadow card under its brim (alpha 0..222 gradient) that an alpha test drew as a solid black
                 # band across his eyes; the opaque texels still write depth

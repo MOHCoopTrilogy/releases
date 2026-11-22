@@ -64,6 +64,8 @@ class BSP:
         self.vis_radius = 0        # cluster sees cluster when their cell centres are within this distance
         self.grid_light = 0.0      # >0: write an entity light grid from the world vertex colours, times this gain
         self.light_volumes = []    # [bloommix] opt-in interior volumes [(centre, yaw, hx, hy, hz)] for the light grid
+        self.probe_volumes = []    # 0.7.48 (EA) [(box, eairrad volume in map xy, name)]: columns inside take the probe blend
+        self.probe_gain = 60.0     # probe mean irradiance (texture multiplier) -> grid colour
         # MOHAA static models (LUMP_STATICMODELDEF 25 / DATA 24): (model path, origin, angles, scale, rgb per vertex)
         # render-only, client-side, no entity; the renderer walks them all (frustum + radius cull, no leaf lists)
         self.static_models = []
@@ -308,6 +310,13 @@ class BSP:
             if n:
                 vol_light.append((vc, ca, sa, vhx, vhy, [sm[k] / n for k in range(3)]))
         self.light_volume_report = [(round(vl[0][0]), round(vl[0][1]), [round(x, 1) for x in vl[5]]) for vl in vol_light]
+        probe_vol = []
+        for pvt in self.probe_volumes:
+            (pbox, pvol, pname), pfac = pvt[:3], (pvt[3] if len(pvt) > 3 else 1.0)
+            (pc, pyaw, phx, phy, _phz) = pbox
+            probe_vol.append((pc, math.cos(math.radians(pyaw)), math.sin(math.radians(pyaw)), phx, phy, pvol, pname,
+                              pfac))
+        self.probe_report = {}
         cols = []                                # per column, bilinear between the coarse cells
         for x in range(bx):
             fx = (x + 0.5) / C - 0.5
@@ -327,6 +336,23 @@ class BSP:
                            and abs((py - vl[0][1]) * vl[1] - (px - vl[0][0]) * vl[2]) <= vl[4]]
                     if hit:
                         cols[-1] = tuple(sum(h[k] for h in hit) / len(hit) for k in range(3))
+                if probe_vol:
+                    import eairrad
+                    px, py = org[0] + 32.0 * x, org[1] + 32.0 * y
+                    ph = [pv for pv in probe_vol if abs((px - pv[0][0]) * pv[1] + (py - pv[0][1]) * pv[2]) <= pv[3]
+                          and abs((py - pv[0][1]) * pv[1] - (px - pv[0][0]) * pv[2]) <= pv[4]]
+                    if ph:
+                        ph = [min(ph, key=lambda pv: pv[3] * pv[4])]     # the most specific volume holds the column
+                        pe = [eairrad.probe_at(pv[5], px, py) for pv in ph]
+                        prev = cols[-1]
+                        cols[-1] = tuple(min(255.0, self.probe_gain * ph[0][7] * sum(e[k] for e in pe) / len(pe))
+                                         for k in range(3))
+                        for pv in ph:
+                            rep = self.probe_report.setdefault(pv[6], [0, [0.0] * 3, [0.0] * 3])
+                            rep[0] += 1
+                            for k in range(3):
+                                rep[1][k] += prev[k]
+                                rep[2][k] += cols[-1][k]
         step = 1.0                               # coarsen until the map's colours fit the 255 palette slots
         while True:
             q = [(int(c[0] / step + 0.5), int(c[1] / step + 0.5), int(c[2] / step + 0.5)) for c in cols]

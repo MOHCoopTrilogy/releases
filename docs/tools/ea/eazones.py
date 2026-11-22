@@ -98,6 +98,14 @@ def _bloom_level(r):
     return r.u(23)
 
 
+def bloom_mix(level, passes_level):
+    """the original's bloom add k = (247/255)^(2n) x Bloom/255 (n = Level + 1 blur passes, Level clamped 0..3; the tent
+    weights sum to 247/255 by truncation - code decode F4) as the renormalised mix weight k / (1 + k)"""
+    n = max(0, min(3, int(passes_level or 0))) + 1
+    k = (247.0 / 255.0) ** (2 * n) * max(0, min(255, level)) / 255.0
+    return k / (1.0 + k)
+
+
 def zones(db, snaps):
     """[(name, kind, record, enter value, exit value)] - kind 'bloom' (latched door strip) or 'mix' (box)"""
     out = []
@@ -110,7 +118,12 @@ def zones(db, snaps):
         lv = _bloom_level(r)
         tag = "bloom_in" if lv > base else ("bloom_out" if lv == base else "bloom_%d" % lv)
         fade = int(round((r.u(29) or 60) * 1000.0 / 60.0))
-        out.append((r.name, "bloom", r, "%s %d %.3f" % (tag, fade, lv / float(base)), ""))
+        # 4th field (0.7.48): the original's bloom as cgame's r_ppZoneMix (code decode F4 exact, 2026-11-22: ADDITIVE,
+        # out = S + k blur(S), k = (247/255)^(2n) x Bloom/255, n = Level + 1 tent passes). Our world light is matched
+        # to the original's FINAL frames, which already carry that add, so ours takes it renormalised: out =
+        # (S + k blur) / (1 + k) = mix(S, blur, k / (1 + k)) - flat areas keep their level, the dark ones gain the
+        # share of light the original spreads into them. Engines without the mix read the first three fields only
+        out.append((r.name, "bloom", r, "%s %d %.3f %.3f" % (tag, fade, lv / float(base), bloom_mix(lv, r.u(24))), ""))
     for r in db.of("SoundBusTrigger"):
         if r.u(15) != 2:
             continue                             # the off-map global record (Default_Mix alone)
@@ -135,7 +148,7 @@ def emit(L, level, db, X, lines, log=print):
     zs = zones(db, snaps)
     k = 0
     for name, kind, r, val, out in zs:
-        q, yaw, hx, hy, hz = _box(r, X)
+        q, yaw, hx, hy, hz = irrad_box(r, X) if kind == "interior" else _box(r, X)
         if kind == "bloom":
             hx, hy = max(hx, 40.0), max(hy, 40.0)    # a 0.66 m strip is 16u: at a 0.1 s poll a runner steps over it
         k += 1
@@ -151,7 +164,9 @@ def emit(L, level, db, X, lines, log=print):
     lines.append(f"\tlevel.coop_zn_n = {k}")
     if snaps:
         lines.append(f'\tlevel.coop_zn_mixDefault = "{mix_value(snaps, DEFAULT_MIX)}"')
-    lines.append('\tlevel.coop_zn_fxDefault = "bloom_out 1000 1.000"')
+    _glb = [r for r in db.of("BloomTrigger") if r.u(22) == 1]
+    lines.append('\tlevel.coop_zn_fxDefault = "bloom_out 1000 1.000 %.3f"' % (
+        bloom_mix(_bloom_level(_glb[0]) if _glb else 135, _glb[0].u(24) if _glb else 1)))
     ins = [z[3] for z in zs if z[1] == "bloom" and z[3].startswith("bloom_in")]
     if ins:
         lines.append(f'\tlevel.coop_zn_fxIndoor = "{ins[0]}"')
@@ -161,10 +176,18 @@ def emit(L, level, db, X, lines, log=print):
     return k
 
 
+def irrad_box(r, X):
+    """an IrradianceVolumeTrigger's map-frame box: its w19..21 are HALF extents (code decode 2026-11-17: the cellar's
+    INT_01 holds its own probe nodes and the leader's ICS point only at 3.35 / 4.61 m each way; read as full extents
+    (_box) it held neither), so x48, not x24"""
+    q = X(r.pos)
+    return q, r.yaw, abs(r.f(19) or 0) * 48.0, abs(r.f(20) or 0) * 48.0, abs(r.f(21) or 0) * 48.0
+
+
 def light_volumes(db, X):
     """the interior irradiance volumes as oriented map-frame boxes for flbsp's entity light grid:
-    [(centre, yaw_degrees, half_x, half_y, half_z)] in ea_am_in's convention (see _box)"""
-    return [_box(r, X) for r in db.of("IrradianceVolumeTrigger") if "_INT_" in r.name]
+    [(centre, yaw_degrees, half_x, half_y, half_z)] in ea_am_in's convention (see irrad_box)"""
+    return [irrad_box(r, X) for r in db.of("IrradianceVolumeTrigger") if "_INT_" in r.name]
 
 
 def inside(box, p):
