@@ -153,6 +153,12 @@ Archived 2026-11-01 to `docs/archive/open-awaiting-playtest-2026-08-17.md` (stal
 
 ## Defects with evidence
 
+### Dying Breath night to dawn - engine `dawn-eng`, awaiting merge + playtest (2026-11-22)
+User request (FIDELITY C44): coop_mod/eadawn.scr runs the dawn on the mission clock. Needs renderer `dawn-eng` (alphaGen
+skyAlpha, hzm_mist_dawn, SHADER_MAX_VERTEXES 8192); until it ships ea_levels `dawn.enabled` stays false (an older
+renderer crashes on the 8-stage dome). At merge: flip it, re-convert, playtest the pacing, the sun bearing (70) and
+the new snow / blizzard odds (C45; hzm_skystorm fogs the sky in a blizzard).
+
 ### Dying Breath character light + bloom (converter 0.7.48, engine bloommix-eng; 2026-11-22)
 Characters are lit from the original's decoded probes (FIDELITY C42) and the bloom zones mix as the original's
 additive bloom renormalised (C43). Validated: the partisan cellar (3 emulator spots, faces +6 % / +11-15 %) and the

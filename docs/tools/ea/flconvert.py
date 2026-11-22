@@ -870,12 +870,30 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                                 # lays one even grey sheet over the whole dome (trial 2026-11-15: sky 63,72,81)
                                 ("\t\talphaGen const %g\n" % _cl["alpha"]) if "alpha" in _cl else ""))
                 stats["disc_sky_clouds"] = len(_sd.get("cloud_layers", []))
+            # [2026-11-22, user request: night to dawn over the mission, FIDELITY C44] ea_levels.json "dawn": computed (not
+            # disc) sky layers on the dome, each blended in over its own window of the dawn progress (alphaGen
+            # oneMinusSkyAlpha lo hi; coop_mod/eadawn.scr moves $world skyalpha 1 -> 0 on the mission clock, renderer
+            # dawn-eng). They go UNDER the original's cloud layers, which then draw over the dawn sky, and the clouds come
+            # in again lit by the morning. At skyalpha 1 (dawn off, or before it starts) every dawn stage is at alpha 0.
+            _dawn = flpack.spec(level, game).get("dawn") if game == "ea" and not os.environ.get("EA_NO_DAWN") else None
+            _dst = ""
+            if _dawn and (_dawn.get("enabled", True) or os.environ.get("EA_DAWN") == "1"):
+                import eadawn_sky
+                _dl = eadawn_sky.build(_dawn)
+                for _dn, (_dw, _dh, _dpx, _lo, _hi) in _dl.items():
+                    files[f"textures/{game}/{level}/dawn_{_dn}.tga"] = tga_bytes(_dw, _dh, _dpx)
+                _dst = eadawn_sky.shader_stages(game, level, _dl)
+                _cst += eadawn_sky.cloud_dawn_stages(game, level, _sd.get("cloud_layers", []) if _clouds else [], _dawn)
+                stats["dawn_layers"] = sorted(_dl)
             _skyname = f"textures/{game}/{level}/sky"
             shader_lines.append(_skyname + "\n{\n\tsurfaceparm nolightmap\n\tsurfaceparm noimpact\n\tsurfaceparm sky\n"
                                 f"\tskyParms env/{game}_{level}_sky 512 -\n"
-                                + ("" if os.environ.get("EA_SKY_FOGGED") else
+                                # the no-op nofog stage is only there to make the shader nofog (shader-level flag); the
+                                # dawn stages carry nofog themselves, and the engine takes at most 8 stages (4 dawn + 2
+                                # clouds + 2 morning clouds = 8: with the no-op the WHOLE sky shader was rejected)
+                                + ("" if os.environ.get("EA_SKY_FOGGED") or _dst else
                                    "\t{\n\t\tmap $whiteimage\n\t\tblendFunc GL_ZERO GL_ONE\n\t\tnofog\n\t}\n")
-                                + _cst + "}\n")
+                                + _dst + _cst + "}\n")
             stats["disc_sky"] = sorted(_faces)
     sky = B.shader(_skyname, 0x4 | flbsp.SURF_NOLIGHTMAP, 0)
     blo = [max(min(s["bounds"][0][k] for s in B.surfaces) - 1024, -16300) for k in range(3)]
@@ -1736,6 +1754,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         # undo a step that lands on a steep face - the low "invisible walls" the user could jump but not walk over
         ws.append(("hzm_capsulestep", "1"))
     if game == "ea":
+        # [2026-11-22] the sky is nofog (0.7.18), so a blizzard / dust storm closed the ground fog under a clear sky.
+        # hzm_skystorm: the renderer (dawn-eng) fogs the sky by the share the fog has closed in from the map's own
+        # distance toward 1250 (wxextreme.scr's murk). Unknown to an older renderer, which ignores it.
+        ws.append(("hzm_skystorm", "1250"))
+    if game == "ea":
         # the original's standing low mist as the engine's height mist (eafx.mist_key; tr_hzm_mist.c, user-approved 2026-11-13)
         import eafx as _eafx
         _mist = _eafx.mist_key(L.stream, X, level)
@@ -1751,6 +1774,13 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 ws.append(("hzm_mist%d" % (_k + 2), "%.0f %.0f %.0f %.0f %.0f %.0f %.6f %.0f %s" % (
                     *_mx["box"], *_mx["z"], float(_mx["density"]), float(_mx.get("edge", 500)), " ".join(_c))))
                 stats["hzm_mist_extra"] = _k + 1
+            # [2026-11-22, dawn, FIDELITY C44] the mist's morning colour / density factor: the renderer moves every mist box
+            # toward it by the dawn progress (1 - $world skyalpha; tr_hzm_mist.c, dawn-eng). Only with the dawn sky.
+            _dsp = flpack.spec(level, game).get("dawn") or {}
+            _dmist = _dsp.get("mist") if not os.environ.get("EA_NO_DAWN") and (_dsp.get("enabled", True) or os.environ.get("EA_DAWN") == "1") else None
+            if _dmist:
+                ws.append(("hzm_mist_dawn", "%.3f %.3f %.3f %.3f" % tuple(float(v) for v in _dmist)))
+                stats["hzm_mist_dawn"] = ws[-1][1]
     B.entity(ws)
     if game == "ea":
         # [eapolish] the Panzers' driving paths: each tank squad's SquadObjective points in order (the original orders
@@ -2397,6 +2427,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         dk = f"maps/coop_ea_{level}_data.scr"
         if sob_static or sob_dyn:      # [eapolish] the smart objects are real geometry: the script drops its stand-ins
             files[dk] = files[dk].replace(b"\tlevel.ea_data_ok = 1", b"\tlevel.ea_sob = 1\n\tlevel.ea_data_ok = 1")
+        if stats.get("dawn_layers"):  # [2026-11-22] the sky carries the dawn layers: coop_mod/eadawn.scr may run
+            files[dk] = files[dk].replace(b"\tlevel.ea_data_ok = 1", b"\tlevel.ea_dawnSky = 1\n\tlevel.ea_data_ok = 1")
         # 0.7.25: a squad goal off the path-node graph ("couldn't find end node": the order never ran) is moved to
         # the nearest path node within 192u across and 64u up or down; one within 48u of a node is left alone
         import re as _re
