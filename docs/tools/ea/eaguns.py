@@ -171,6 +171,19 @@ SOUNDS = {
     "ea_rifle_mn1891": {"nagantRif_snd_fire": ("1_15", [[(80, 96), (81, 0), (82, 151), (83, 151), (84, 96)]])},   # WpnFire_PC_Moisan
     "ea_rifle_gewehrScoped": {"gewehr43_snd_fire": ("1_21", [[(132, 0), (133, 0), (134, 0), (135, 0), (136, 0), (137, 96), (135, 0), (136, 0), (135, 0), (136, 0)]])},   # WpnFire_PC_Gewehr_Sniper
     "ea_smg_mp28": {"sten_snd_fire": ("mp", [[(155, 0), (72, 96)], [(155, 0)]])},   # WpnFire_PC_MP28
+    # --- the grenades' PIN PULL (2026-11-22): EA plays it from the grenade's hand animation, state "Prep" of
+    # PlayerWeapons\GRENADE_<x>\<x>Hands.aso (level stream): 12-byte anim sound records [u16 frame][f0ca][alias u32][0] (the same
+    # record carries the M1's clip ping 7f95e8f9 at frame 0 of M1.aso Fire, proven by probe). Each event's samples + volume +
+    # pitch from Audio.ubr as above; offsets = the record frames at the converter's EA anim rate (eaanim.FPS 30), the first at 0.
+    # Frag (1_21, FragHands.aso): 0c64635b f2, 956d32e1 f2, e26a0277 f8, 7c0e97d4 f10
+    "ea_grenade_frag": {"m2frag_snd_grenade_pull": ("1_21", [[(49, 0), (a, 0), (b, 200), (256, 267)]
+                                                             for a in (277, 278) for b in (36, 35)])},
+    # Mills (1_1, BritHands.aso): 067545a0 f2, 9f7c141a f2, e87b248c f8, 761fb12f f24
+    "ea_grenade_mills": {"britgrenade_snd_grenade_pull": ("1_1", [[(34, 0), (281, 0), (b, 200), (256, 733)]
+                                                                  for b in (151, 150)])},
+    # Stielhandgranate (1_11, StickHands.aso): f17d0945 f12, 687458ff f15, 1f736869 f18, 8117fdca f19, f610cd5c f38
+    "ea_grenade_stick": {"steilhandgranate_snd_grenade_pull": ("1_11", [[(262, 0), (225, 100), (120, 200), (262, 233),
+                                                                         (355, 867)]])},
     "ea_smg_sten": {"sten_silenced": ("mp", [[(137, 0), (74, 0), (75, 96), (138, 0)]])},   # WpnFire_PC_Sten
 }
 # Each layer's own VOLUME and PITCH come from its Audio.ubr record (fields read by name: Volume Min / Max in %, Pitch Min / Max
@@ -197,6 +210,9 @@ EVENTS = {
     "ea_rifle_gewehrScoped": [0x2467d0b8],                        # WpnFire_PC_Gewehr_Sniper
     "ea_smg_mp28": [0x9052cc3d],                                  # WpnFire_PC_MP28
     "ea_smg_sten": [0x68223dff],                                  # WpnFire_PC_Sten
+    "ea_grenade_frag": [0x0c64635b, 0x956d32e1, 0xe26a0277, 0x7c0e97d4],       # FragHands.aso Prep
+    "ea_grenade_mills": [0x067545a0, 0x9f7c141a, 0xe87b248c, 0x761fb12f],      # BritHands.aso Prep
+    "ea_grenade_stick": [0xf17d0945, 0x687458ff, 0x1f736869, 0x8117fdca, 0xf610cd5c],  # StickHands.aso Prep
 }
 BASE_SND = {
     "ppsh41_snd_fire": ("sound/weapons/fire/wpnfire_PPSH_SMG02.wav", "1.82 0.01 0.95 0.1 480 8000 weapon"),
@@ -206,6 +222,9 @@ BASE_SND = {
     "nagantRif_snd_fire": ("sound/weapons/fire/wpnfire_NagantRiffle_2.wav", "1.56 0.1 1.0 0.1 480 8000 weapon"),
     "sten_snd_fire": ("sound/weapons/fire/wpnfire_sten02.wav", "1.82 0.01 0.95 0.1 480 8000 weapon"),
     "sten_silenced": ("sound/weapons/fire/sten_silenced.wav", "1.4 0.1 1.0 0.0 400 8000 weapon"),
+    "m2frag_snd_grenade_pull": ("sound/weapons/foley/Grenade_Pull.wav", "1.0 0.2 0.98 0.2 160 1000 weapon"),
+    "britgrenade_snd_grenade_pull": ("sound/weapons/foley/wpn_Mills_pinpull.wav", "0.9 0.2 1.0 0.05 160 1000 weapon"),
+    "steilhandgranate_snd_grenade_pull": ("sound/weapons/fire/Grenade_Pull.wav", "1.17 0.2 0.8 0.2 480 1000 weapon"),
     # gen_rifle_bolt's own clip is an mp3 (the loudness match reads wav): matched to the Kar98 bolt wav, its own soundparms
     "gen_rifle_bolt": ("sound/weapons/foley/KARRechamber1.wav", "4.3 0.1 1.0 0.0 160 1000 item"),
 }
