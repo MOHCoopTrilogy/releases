@@ -1090,7 +1090,7 @@ port forwarding. ⚠️ MOHAA OOB packets are `4×FF` + a **direction byte** —
 silently runs nothing (bug-1143). ⚠️ The engine-side commit records an unresolved **dedicated-server
 crash under investigation** with no follow-up found.
 
-**MOH Coop Server window** - `SHIPPED-UNVERIFIED` (v1.10.88; harness-tested). Shortcut "MOH Coop Server" -> `installer/servergui/hzm_server_gui.ps1` (PS 5.1 + WPF; design notes in its header). Dedicated via a hidden WMI-started supervisor (bug-11282) or host-and-play (listen; iGPU-only = gl1 + Low preset). Settings pages come from the GENERATED `docs/generated/server_settings.json` (`gen_server_catalogue.py` + `servergui_overlay.json`); only changes are written. Ships via the manifest; `updater.ps1` makes the shortcut once (`servergui_shortcut.done`). Records matches (sv_autoRecord + a capped copy folder). Rig: `H:\hzm_work\servergui\tools\selftest.ps1`.
+**MOH Coop Server window** - `SHIPPED-UNVERIFIED` (v1.10.88; harness-tested). Shortcut "MOH Coop Server" -> `installer/servergui/hzm_server_gui.ps1` (PS 5.1 + WPF; design notes in its header). Dedicated via a hidden WMI-started supervisor (bug-11282) or host-and-play (listen; iGPU-only = gl1 + Low preset). Settings pages come from the GENERATED `docs/generated/server_settings.json` (`gen_server_catalogue.py` + `servergui_overlay.json`); only changes are written. Ships via the manifest; `updater.ps1` makes the shortcut once (`servergui_shortcut.done`). Records matches (sv_autoRecord, capped copy folder). Rig: `H:\hzm_work\servergui\tools\selftest.ps1`.
 
 **Server-command filter hardening (SEC1)** - layer 1 `SHIPPED-VERIFIED` (bug-2580, runtime-verified
 2026-09-13): `cg_servercmds_filter.cpp` splits statements exactly like `Cbuf_Execute` and checks what a
