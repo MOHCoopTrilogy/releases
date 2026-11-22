@@ -230,6 +230,13 @@ MMG_ONE = {"enter": "58f52873", "exit": "647c2159", "death": "7a12045e", "death_
 # leader's PPSh (his spawn point's NpcWpn_PPSH, mesh NpcWpn_PPSH_Art_0) on JO_object_R - two grips, before and after
 # he stands at 11.7 s
 ICS_PROP = {"explainsplan": "JO_object_R"}
+# scene clips whose root facing does not come out as the original shows it: a turn (degrees, counter-clockwise from
+# above) applied to the whole clip. Filled from emulator frames only (ref_xemu leader_facing).
+# ExplainsPlan: the clip's character_root is turned 180 and its body came out facing the point's yaw + 180 (east,
+# into the cellar wall: user 2026-11-22 "body faces the wrong way"); the original's leader faces NORTH through the
+# speech (leader_00..06, leader_retry_centre_down at ~17 s: profile facing north from an east-looking camera; he
+# stands on ICS_03 - two retry cameras triangulate him 0.35 m from it). +90 brings the body to north
+ICS_TURN = {"explainsplan": 90.0}
 # An ACTOR does not take the clip's tag_weapon_right channels (discbot v220 + server tag dumps 2026-11-17: on the
 # scene actor the tag keeps the stock weapon grip against the hand whatever the clip writes, while a script_model of
 # the same tik follows them): the held prop therefore rides "Bip01 R Hand" and carries the object joint's frame
@@ -464,7 +471,7 @@ def build(stream, level, skd_bytes, files, log=print, stock=None):
     for rig, hs in SCENES.items():
         for n, hx in enumerate(hs.split()):
             put("ics_%s_%d" % (rig, n + 1), int(hx, 16), n == 0 and rig not in ("explainsplan", "partisanleadersaysgofight", "callsplayer", "guardstopsplayer"),
-                objtag=ICS_PROP.get(rig))
+                objtag=ICS_PROP.get(rig), yaw=ICS_TURN.get(rig, 0.0))
     for rig, hs in SCENES_STATES.items():
         for n, hs_ in enumerate(hs.split()):
             hx, st = hs_.split(":")

@@ -884,6 +884,8 @@ def build(stream, level, mohaa_base, files, lines, log=print):
             import eaanimconv
             anim_block = eaanimconv.build(stream, level, bytes(72) + struct.pack("<3i", 0, nbones, 84) + bone_block,
                                           files, log=log, stock=_stock_reader(mohaa_base))
+            for _rig, _turn in sorted(eaanimconv.ICS_TURN.items()):     # the map script turns the head look with it
+                lines.append('\tlevel.ea_icsTurn["%s"] = %g' % (_rig, _turn))
         except Exception as e:     # never fail the conversion: the characters keep the stock animations only
             log("eachar: animations skipped (%s)" % e)
     if JAW_NAME in bidx:
