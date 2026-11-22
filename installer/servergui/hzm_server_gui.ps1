@@ -148,6 +148,10 @@ function New-Profile([string]$name, [int]$port = 12203) {
         motd = ""; motdRepeatMin = 0; hookUp = $true; hookDown = $true; hookJoin = $true; hookLeave = $true
         logKeepDays = 14; bans = @(); whitelist = @(); whitelistOn = $false; updateOnStart = $false
         lightGraphics = "auto"; upnp = $false
+        # match recording: the engine's server recorder (sv_demo.c) - sv_autoRecord = one demo per map, every player
+        # and AI on it; the engine keeps sv_autoRecordMax files / sv_autoRecordMaxMB in <home>\maintt\demos
+        recordMatches = $true; recordMaxFiles = 30; recordMaxMB = 2048
+        recordFolder = ""; recordFolderMaxGB = 20; recordFolderMaxDays = 30
     }
 }
 function Get-ProfileNames {
@@ -241,6 +245,11 @@ function New-ServerCfgText($p, $sec, $cat, [switch]$Listen, [switch]$LightGraphi
     }
     $campaign = if ($p.missionMode -eq "campaign") { 1 } else { 0 }
     $L.Add("set coop_campaign $campaign")
+    if (-not $Listen) {
+        $L.Add("set sv_autoRecord $(if ($p.recordMatches) { 1 } else { 0 })")
+        $L.Add("set sv_autoRecordMax $([math]::Max(1, [int]$p.recordMaxFiles))")
+        $L.Add("set sv_autoRecordMaxMB $([math]::Max(50, [int]$p.recordMaxMB))")
+    }
     # bans and whitelist (ioq3 ban list: banaddr / exceptaddr, written to sv_banFile)
     $L.Add("flushbans")
     foreach ($b in @($p.bans)) { $ip = Get-CleanValue $b; if ($ip -match '^[0-9./]+$') { $L.Add("banaddr $ip") } }
@@ -660,6 +669,42 @@ function Remove-OldLogs($p) {
         ForEach-Object { Remove-Item -LiteralPath $_.FullName -Force -ErrorAction SilentlyContinue }
 }
 
+function Sync-MatchDemos($p, $inst) {
+    # a demo is FINISHED once the recorder wrote its .dmi info file (SVR_Close); copy every finished auto_ demo and its
+    # side files to the chosen folder, then keep that folder under its size and age caps (oldest first). The engine's
+    # own demos\ copy and its rotation are left alone (the Film Room downloads "@last" from there).
+    if (-not $p.recordFolder) { return }
+    $src = Join-Path $inst.Maintt "demos"
+    if (-not (Test-Path -LiteralPath $src)) { return }
+    if (-not (Test-Path -LiteralPath $p.recordFolder)) { New-Item -ItemType Directory -Force -Path $p.recordFolder | Out-Null }
+    # a ledger of what was copied once: a demo the caps removed from the folder is never copied back
+    $ledger = Join-Path $p.recordFolder "copied_demos.txt"
+    $done = @{}
+    if (Test-Path -LiteralPath $ledger) { foreach ($l in Get-Content -LiteralPath $ledger) { $done[$l] = 1 } }
+    $oldestCopy = (Get-Date).AddDays(-[math]::Max(1, [int]$p.recordFolderMaxDays))
+    foreach ($dmi in @(Get-ChildItem -LiteralPath $src -Filter "auto_*.dmi" -File -ErrorAction SilentlyContinue)) {
+        $base = [IO.Path]::GetFileNameWithoutExtension($dmi.Name)
+        if ($done.ContainsKey($base) -or $dmi.LastWriteTime -lt $oldestCopy) { continue }
+        foreach ($f in @(Get-ChildItem -LiteralPath $src -Filter "$base.*" -File -ErrorAction SilentlyContinue)) {
+            $dst = Join-Path $p.recordFolder $f.Name
+            if (-not (Test-Path -LiteralPath $dst)) { Copy-Item -LiteralPath $f.FullName -Destination $dst -ErrorAction SilentlyContinue }
+        }
+        Add-Content -LiteralPath $ledger -Value $base -Encoding ascii
+    }
+    $all = @(Get-ChildItem -LiteralPath $p.recordFolder -Filter "auto_*.*" -File -ErrorAction SilentlyContinue)
+    $groups = @($all | Group-Object { [IO.Path]::GetFileNameWithoutExtension($_.Name) } |
+        Sort-Object { ($_.Group | Measure-Object LastWriteTime -Maximum).Maximum })
+    $total = ($all | Measure-Object Length -Sum).Sum
+    $capBytes = [double]$p.recordFolderMaxGB * 1GB
+    $oldest = (Get-Date).AddDays(-[math]::Max(1, [int]$p.recordFolderMaxDays))
+    foreach ($g in $groups) {
+        $age = ($g.Group | Measure-Object LastWriteTime -Maximum).Maximum
+        if (($capBytes -gt 0 -and $total -gt $capBytes) -or $age -lt $oldest) {
+            foreach ($f in $g.Group) { $total -= $f.Length; Remove-Item -LiteralPath $f.FullName -Force -ErrorAction SilentlyContinue }
+        }
+    }
+}
+
 function Invoke-Supervisor([string]$name) {
     $p = Read-Profile $name
     $tag = Get-ProfileTag $p
@@ -709,7 +754,7 @@ function Invoke-Supervisor([string]$name) {
             SLog "server pid $($pr.Id) port $($p.port) log $log"
             $pos = 0; $booted = $false; $known = @{}; $nextPoll = (Get-Date).AddSeconds(15); $nextMotd = $null
             $rotIdx = 0; $rot = @($p.rotation | Where-Object { Test-MapSpec $_ }); $rotPending = $false; $rotCmd = $null
-            $loaded = $false; $seenMap = ""; $nextStatus = Get-Date
+            $loaded = $false; $seenMap = ""; $nextStatus = Get-Date; $nextDemoSync = (Get-Date).AddSeconds(30)
             if ($p.motdRepeatMin -gt 0) { $nextMotd = (Get-Date).AddMinutes([int]$p.motdRepeatMin) }
             while (-not $pr.HasExited) {
                 Start-Sleep -Milliseconds 1000
@@ -782,6 +827,10 @@ function Invoke-Supervisor([string]$name) {
                         $state.restarts++; break
                     }
                 }
+                if ($p.recordFolder -and (Get-Date) -ge $nextDemoSync) {
+                    $nextDemoSync = (Get-Date).AddSeconds(30)
+                    try { Sync-MatchDemos $p $inst } catch { SLog "demo copy: $_" }
+                }
                 # --- scheduled daily restart ---
                 if ($p.dailyRestart -match '^(\d{1,2}):(\d{2})$') {
                     $now = Get-Date; $today = $now.ToString("yyyy-MM-dd")
@@ -824,6 +873,7 @@ function Invoke-Supervisor([string]$name) {
                 }
             }
             Remove-Item -LiteralPath $cfg -Force -ErrorAction SilentlyContinue
+            try { Sync-MatchDemos $p $inst } catch {}      # the map's demo was closed on exit
             $code = -1; try { $code = $pr.ExitCode } catch {}
             SLog "server exited (code $code)"
             if ($userStop) { break }
@@ -1110,6 +1160,24 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
               <StackPanel Orientation="Horizontal" Margin="0,6"><TextBlock Text="Keep server logs for (days)  "/><TextBox x:Name="tbLogDays" Width="60"/></StackPanel>
             </StackPanel></ScrollViewer>
           </TabItem>
+          <TabItem Header="Recording">
+            <ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel Margin="10">
+              <CheckBox x:Name="cbRecord" Content="Record matches: one demo per map, with every player and every AI on it"/>
+              <TextBlock Foreground="{StaticResource Muted}" Margin="22,0,0,8" Text="The server's own recorder writes the whole map (not one player's view), so the Film Room's free camera can go anywhere. Play a demo with the game's Film Room or 'demo name' in the console; F10 there renders it to MP4. The recorder starts when the first player is in and costs well under a millisecond a frame."/>
+              <StackPanel Orientation="Horizontal" Margin="0,2">
+                <TextBlock Text="Keep at most  "/><TextBox x:Name="tbRecMax" Width="60"/><TextBlock Text="  demos and  "/><TextBox x:Name="tbRecMaxMB" Width="70"/>
+                <TextBlock Text="  MB in the server's demos folder (oldest go first)"/>
+              </StackPanel>
+              <GroupBox Header="Also keep a copy in a folder of your choice" Margin="0,10,0,0"><StackPanel>
+                <DockPanel><Button x:Name="btnRecBrowse" Content="Browse..." DockPanel.Dock="Right" Margin="6,2,0,2"/><TextBox x:Name="tbRecFolder"/></DockPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,4">
+                  <TextBlock Text="Keep at most  "/><TextBox x:Name="tbRecFolderGB" Width="60"/><TextBlock Text="  GB, and nothing older than  "/>
+                  <TextBox x:Name="tbRecFolderDays" Width="50"/><TextBlock Text="  days (empty folder = no copy)"/>
+                </StackPanel>
+                <TextBlock x:Name="txtRecDir" Foreground="{StaticResource Muted}"/>
+              </StackPanel></GroupBox>
+            </StackPanel></ScrollViewer>
+          </TabItem>
           <TabItem Header="Admin and integrations">
             <ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel Margin="10">
               <GroupBox Header="Message of the day"><StackPanel>
@@ -1142,6 +1210,9 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
             <Button x:Name="btnStart2" Content="Start" Background="#FF4B5A2A"/>
             <Button x:Name="btnStop2" Content="Stop"/>
             <Button x:Name="btnRestart" Content="Restart"/>
+            <Button x:Name="btnRecStart" Content="Record now" Margin="18,2,6,2"/>
+            <Button x:Name="btnRecStop" Content="Stop recording"/>
+            <Button x:Name="btnRecStatus" Content="Recording?"/>
             <TextBlock x:Name="txtRunState" Margin="10,0,0,0" FontWeight="SemiBold"/>
           </StackPanel>
           <DockPanel Grid.Row="1" Margin="0,8,0,4">
@@ -1250,6 +1321,9 @@ function Load-ProfileToUi($p) {
     $ui.cbAutoRestart.IsChecked = [bool]$p.autoRestart; $ui.cbDaily.IsChecked = [bool]$p.dailyRestart; $ui.tbDaily.Text = if ($p.dailyRestart) { $p.dailyRestart } else { "05:00" }
     $ui.cbStartup.IsChecked = [bool]$p.startWithWindows; $ui.cbUpdate.IsChecked = [bool]$p.updateOnStart; $ui.tbLogDays.Text = "$($p.logKeepDays)"
     $ui.tbMotd.Text = $p.motd; $ui.tbMotdRepeat.Text = "$($p.motdRepeatMin)"
+    $ui.cbRecord.IsChecked = [bool]$p.recordMatches; $ui.tbRecMax.Text = "$($p.recordMaxFiles)"; $ui.tbRecMaxMB.Text = "$($p.recordMaxMB)"
+    $ui.tbRecFolder.Text = $p.recordFolder; $ui.tbRecFolderGB.Text = "$($p.recordFolderMaxGB)"; $ui.tbRecFolderDays.Text = "$($p.recordFolderMaxDays)"
+    $ui.txtRecDir.Text = "The server writes its demos to $(Join-Path $script:Inst.Maintt 'demos') (auto_<map>_<date>...)."
     $ui.tbBans.Text = (@($p.bans) -join "`r`n"); $ui.tbWhitelist.Text = (@($p.whitelist) -join "`r`n"); $ui.cbWhitelist.IsChecked = [bool]$p.whitelistOn
     $ui.pwWebhook.Password = $script:Sec.webhook
     $ui.cbHookUp.IsChecked = [bool]$p.hookUp; $ui.cbHookDown.IsChecked = [bool]$p.hookDown; $ui.cbHookJoin.IsChecked = [bool]$p.hookJoin; $ui.cbHookLeave.IsChecked = [bool]$p.hookLeave
@@ -1278,6 +1352,12 @@ function Read-UiToProfile {
     $p.updateOnStart = [bool]$ui.cbUpdate.IsChecked
     if ([int]::TryParse($ui.tbLogDays.Text, [ref]$n) -and $n -ge 1) { $p.logKeepDays = $n }
     $p.motd = Get-CleanValue $ui.tbMotd.Text
+    $p.recordMatches = [bool]$ui.cbRecord.IsChecked
+    if ([int]::TryParse($ui.tbRecMax.Text, [ref]$n) -and $n -ge 1) { $p.recordMaxFiles = $n }
+    if ([int]::TryParse($ui.tbRecMaxMB.Text, [ref]$n) -and $n -ge 50) { $p.recordMaxMB = $n }
+    $p.recordFolder = $ui.tbRecFolder.Text.Trim()
+    $dd = 0.0; if ([double]::TryParse($ui.tbRecFolderGB.Text, [ref]$dd) -and $dd -gt 0) { $p.recordFolderMaxGB = $dd }
+    if ([int]::TryParse($ui.tbRecFolderDays.Text, [ref]$n) -and $n -ge 1) { $p.recordFolderMaxDays = $n }
     if ([int]::TryParse($ui.tbMotdRepeat.Text, [ref]$n) -and $n -ge 0) { $p.motdRepeatMin = $n }
     $p.bans = @($ui.tbBans.Text -split "[`r`n]+" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^[0-9./]+$' })
     $p.whitelist = @($ui.tbWhitelist.Text -split "[`r`n]+" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^[0-9./]+$' })
@@ -1659,6 +1739,20 @@ $ui.btnUpdateNow.Add_Click({
 $ui.btnSave.Add_Click({ Save-All })
 foreach ($b in @($ui.btnStart, $ui.btnStart2)) { $b.Add_Click({ Start-Current }) }
 foreach ($b in @($ui.btnStop, $ui.btnStop2)) { $b.Add_Click({ Stop-Current }) }
+function Invoke-RecordCmd([string]$c) {
+    if ($script:P.mode -ne "dedicated" -and -not (Get-ServerStatus $script:P.port)) { Set-Status "Not running"; return }
+    $r = Invoke-Rcon $script:P.port $script:Sec.rcon $c
+    $ui.tbConsole.AppendText("`n] $c`n$r"); $ui.tbConsole.ScrollToEnd(); Set-Status (($r -split "`n" | Where-Object { $_.Trim() } | Select-Object -First 1))
+}
+$ui.btnRecStart.Add_Click({ Invoke-RecordCmd "sv_record" })
+$ui.btnRecStop.Add_Click({ Invoke-RecordCmd "sv_stoprecord" })
+$ui.btnRecStatus.Add_Click({ Invoke-RecordCmd "sv_recordstatus" })
+$ui.btnRecBrowse.Add_Click({
+    Add-Type -AssemblyName System.Windows.Forms
+    $d = New-Object System.Windows.Forms.FolderBrowserDialog
+    $d.Description = "Folder for copies of the match recordings"
+    if ($ui.tbRecFolder.Text -and (Test-Path -LiteralPath $ui.tbRecFolder.Text)) { $d.SelectedPath = $ui.tbRecFolder.Text }
+    if ($d.ShowDialog() -eq "OK") { $ui.tbRecFolder.Text = $d.SelectedPath } })
 $ui.btnRestart.Add_Click({ if (Test-Running $script:P) { Send-SupervisorCommand $script:P "restart"; Set-Status "Restarting..." } })
 $ui.btnRcon.Add_Click({
     $c = $ui.tbRcon.Text.Trim(); if (-not $c) { return }
@@ -1774,8 +1868,8 @@ if ($Snapshot) {
         Save-Shot $names[$t]
         if ($t -eq 2) { $ui.tbSearch.Text = "lives"; Save-Shot "3b_gameplay_search"; $ui.tbSearch.Text = "" }
         if ($t -eq 4) {
-            $an = @("5a_adv_cpu", "5b_adv_tuning", "5c_adv_network", "5d_adv_reliability", "5e_adv_admin")
-            for ($a = 0; $a -lt 5; $a++) { $ui.advTabs.SelectedIndex = $a; Save-Shot $an[$a] }
+            $an = @("5a_adv_cpu", "5b_adv_tuning", "5c_adv_network", "5d_adv_reliability", "5f_adv_recording", "5e_adv_admin")
+            for ($a = 0; $a -lt 6; $a++) { $ui.advTabs.SelectedIndex = $a; Save-Shot $an[$a] }
         }
     }
     try { Read-UiToProfile } catch { $report.Add("ERROR Read-UiToProfile: $_") }    # the Save path, minus the write
