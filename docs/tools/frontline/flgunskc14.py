@@ -14,7 +14,7 @@ HMAX = 256
 NYT = HMAX
 INTERNAL = HMAX + 1
 import sys
-_HERE = os.path.dirname(os.path.abspath(getattr(sys, '_MEIPASS', None) or __file__))
+_HERE = getattr(sys, '_MEIPASS', None) or os.path.dirname(os.path.abspath(__file__))  # frozen: data files sit IN _MEIPASS (_internal), not beside it
 
 
 class Node:
