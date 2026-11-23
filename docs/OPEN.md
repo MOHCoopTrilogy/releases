@@ -162,8 +162,8 @@ at 3440x1440. Church "extremely dark": ours median 15-19 vs the original's 21 at
 vehicle / impact / grenade fx packages (#3). Not started: archetypes (#4), #11, #20, #22 (sky mesh located).
 Navmesh (#2) DONE in converter 0.7.55 (FIDELITY C57, hand-off H:\hzm_work\decodeaudit\EA_NAV.md); open from it:
 the Nemesis pocket ramp (47 deg, C35) stays cut off from the node graph (the cellar stair is chained since 0.7.56,
-the cover-anim errors fixed in mod 5cc59e324); the partisan leader stayed in the cellar in 2 of 3 runs (also on the
-old graph); the live install's BYO pak is not re-converted.
+the cover-anim errors fixed in mod 5cc59e324); the partisan leader staying in the cellar matches the disc (FIDELITY
+C57: his only objective is in the cellar); the live install's BYO pak is not re-converted.
 
 ### Dying Breath night to dawn - engine `dawn-eng`, awaiting merge + playtest (2026-11-22)
 User request (FIDELITY C44): coop_mod/eadawn.scr runs the dawn on the mission clock. Needs renderer `dawn-eng` (alphaGen
