@@ -153,6 +153,14 @@ Archived 2026-11-01 to `docs/archive/open-awaiting-playtest-2026-08-17.md` (stal
 
 ## Defects with evidence
 
+### Dying Breath decode audit, EA half - converter 0.7.50 (2026-11-22)
+Progress and hand-off: H:\hzm_work\decodeaudit\EA_PROGRESS.md. Built: fire damage (C47), Panzer sheet speed (C48),
+pickups by skill (C50), flicker light (C15). Fog (C46): the decoded fog caps at 44 % (EA_FOG_CEIL=1); it held frame
+rate in a contended GPU timing (fps/), so by the user's rule it becomes the default next batch, after one clean re-measure
+at 3440x1440. Church "extremely dark": ours median 15-19 vs the original's 21 at the emulator's nave spot - fix next
+(world gain, west-door bloom strip, dawn indoors). Decoded, not built: cemetery weather STN_weather01 (#9), the 7
+vehicle / impact / grenade fx packages (#3). Not started: navmesh (#2), archetypes (#4), #11, #20, #22 (sky mesh located).
+
 ### Dying Breath night to dawn - engine `dawn-eng`, awaiting merge + playtest (2026-11-22)
 User request (FIDELITY C44): coop_mod/eadawn.scr runs the dawn on the mission clock. Needs renderer `dawn-eng` (alphaGen
 skyAlpha, hzm_mist_dawn, SHADER_MAX_VERTEXES 8192); until it ships ea_levels `dawn.enabled` stays false (an older

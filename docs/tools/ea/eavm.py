@@ -745,6 +745,12 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_pu_pos[{n}] = {P(q)}")
         L(f'\tlevel.ea_pu_item[{n}] = "{it}"')
         L(f"\tlevel.ea_pu_grp[{n}] = {gid(g) if g else chr(34) * 2}")
+        # [0.7.50, AUDIT gap 16] the difficulty flags Green / Veteran / Elite / Hero (w21-24, schema names) as a bit mask
+        # (1 2 4 8), and Ammo (w25: 71 PPSh rounds, 15 Gewehr, 2 rockets, 1 stick grenade, 1 kit). 1_11: 11 of the 12
+        # medkits are not placed on Hero
+        if len(r.w) > 25:
+            L(f"\tlevel.ea_pu_diff[{n}] = {sum(1 << k for k in range(4) if r.u(21 + k))}")
+            L(f"\tlevel.ea_pu_ammo[{n}] = {r.u(25) if r.u(25) < 10000 else 1}")
     L(f"\tlevel.ea_pu_n = {n}")
     n = 0
     for r in db.recs:
@@ -786,6 +792,37 @@ def build(db, X, spot, ground, text, lines, log=print):
             L(f'\tlevel.ea_dv_t["{n}_{k}"] = {gid(t)}')
             L(f'\tlevel.ea_dv_m["{n}_{k}"] = "{msgs[min(k, len(msgs)) - 1]}"')
     L(f"\tlevel.ea_dv_n = {n}")
+    # ---- [0.7.50] DirectDamageTrigger (AUDIT gap 19; DEFAULT.XBE ctor 0x8f370, tick 0x8f490): a volume that hurts
+    # whatever is inside every 15 ticks (0x14cc50(15.0)) by float a3503e39 x 0.25 ([0x2ff224]); list 681e73a6 is a
+    # filter, empty = everyone; StartActive (3543808e) picks the starting state. It sends no message, so the logic
+    # table skipped it. 1_11: two, each 0.5-0.7 m from a BL_medFire package (5.0 = 5 % of the player's 100 hit
+    # points a second) - the village fires burn ----
+    n = 0
+    for r in db.of("DirectDamageTrigger"):
+        if len(r.w) < 26 or r.pos == (0.0, 0.0, 0.0):
+            continue
+        dps = r.f(25) or 0.0
+        if dps <= 0:
+            continue
+        n += 1
+        k, rad, hx, hy, hz = shape(r, X)
+        if k == 1:
+            rad = abs(r.f(16) or 1.0) * 48
+        L(f"\tlevel.ea_dd_pos[{n}] = {P(X(r.pos))}")
+        L(f"\tlevel.ea_dd_shape[{n}] = {k}")
+        L(f"\tlevel.ea_dd_r[{n}] = {rad:.0f}")
+        L(f"\tlevel.ea_dd_half[{n}] = ( {hx:.0f} {hy:.0f} {hz:.0f} )")
+        L(f"\tlevel.ea_dd_dps[{n}] = {dps:.2f}")
+        L(f"\tlevel.ea_dd_on[{n}] = {1 if r.u(24) else 0}")
+        L(f"\tlevel.ea_dd_grp[{n}] = {gid(r.group()) if r.group() else chr(34) * 2}")
+        L(f"\tlevel.ea_dd_name[{n}] = {S(r.name)}")
+        log("  direct damage %s: %.1f /s in %s %.0fu" % (r.name, dps, "sphere" if k == 1 else "box", rad))
+    L(f"\tlevel.ea_dd_n = {n}")
+    # [0.7.50] a trigger with no target, no listen group and no members is inert on the disc too: log it, never drop
+    # it silently (1_11: BasicTrigger04, a 10 x 2 m box by the start, all lists empty)
+    for r in db.recs:
+        if r.cls == "BasicTrigger" and not r.group_fields():
+            log("  inert trigger %s: no targets, no listen group, no members (no-op on the disc)" % r.name)
     # ---- [dbfix 0.7.27] dynamic lights with an animated light (DynamicLight_Generic + AnimLightFlicker: the
     # flickering light in the village). Colour, radius and the flicker's timing are not decoded: the script uses a
     # stock firelight (a listed deviation) ----
@@ -798,6 +835,23 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_dl_pos[{n}] = {P(X(r.pos))}")
         L(f"\tlevel.ea_dl_anim[{n}] = {S(anim[0] if anim else '')}")
         L(f"\tlevel.ea_dl_name[{n}] = {S(r.name)}")
+        # [0.7.50, AUDIT gap 15] the AnimLightDef record by its schema: Type (w15, 4 = flicker), two key counts
+        # (w16 / w17 = 2 / 2), colour keys from w18 in RGB triplets (AnimLightFlicker: 255 156 0, 255 186 0, then the dim
+        # pair 40 29 0, 40 29 0), radius w48 (3cd06b6c, m; 4), FadeStart / FadeEnd w49 / w50 (10 / 25 m), and three
+        # floats w51-53 (0.2, 1.5, 30: read as the flicker's min / max period and a rate - the consumer is not traced)
+        ad = db.by_name.get(anim[0]) if anim else None
+        if ad is not None and ad.cls == "AnimLightDef" and len(ad.w) > 53:
+            nb = max(1, min(8, ad.u(16)))
+            keys = [tuple(ad.u(18 + 3 * k + j) for j in range(3)) for k in range(8)]
+            br = [c for c in keys[:nb] if any(c)] or [(255, 160, 80)]
+            dm = [c for c in keys[nb:nb + max(1, min(8, ad.u(17)))] if any(c)] or [(0, 0, 0)]
+            avg = [sum(c[j] for c in br) / len(br) / 255.0 for j in range(3)]
+            dav = [sum(c[j] for c in dm) / len(dm) / 255.0 for j in range(3)]
+            L(f"\tlevel.ea_dl_rgb[{n}] = ( {avg[0]:.3f} {avg[1]:.3f} {avg[2]:.3f} )")
+            L(f"\tlevel.ea_dl_dim[{n}] = {max(dav) / max(1e-3, max(avg)):.3f}")
+            L(f"\tlevel.ea_dl_rad[{n}] = {abs(ad.f(48) or 4.0) * 48:.0f}")
+            L(f"\tlevel.ea_dl_pmin[{n}] = {ad.f(51) or 0.05:.2f}")
+            L(f"\tlevel.ea_dl_pmax[{n}] = {ad.f(52) or 0.2:.2f}")
     L(f"\tlevel.ea_dl_n = {n}")
     # ---- [dbfix 0.7.27] the other SoundDefTriggers (fire loops, barbed wire, the plunger; the PA points are above):
     # sphere radius (word 16, m), the sound definition's hash (word 30: 6 distinct sounds on 1_11, ref_xemu
@@ -852,7 +906,34 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_tk_tn[{n}] = {len(ts)}")
         for k, g in enumerate(ts, 1):
             L(f'\tlevel.ea_tk_t["{n}_{k}"] = {gid(g)}')
+        # [0.7.50, AUDIT gap 14] TreadedVehicle EnableWeapons (w27, 087ec7f5) and StartActive (w25); Tactics is the
+        # Tactic_Vehicle_Default sheet on all three of 1_11 (word 17)
+        L(f"\tlevel.ea_tk_wpn[{n}] = {1 if (len(r.w) > 27 and r.u(27)) else 0}")
     L(f"\tlevel.ea_tk_n = {n}")
+    # [0.7.50, AUDIT gap 14] the Panzer's behaviour sheet: the <treadedVehicle> XML in the level file (chunk 0c5ba43d),
+    # metres / radians / seconds. Read by name; the map script turns them into the stock VehicleTank's units
+    xs = db.raw.find(b"<treadedVehicle")
+    if xs >= 0:
+        xe = db.raw.find(b"</treadedVehicle>", xs)
+        xt = db.raw[xs:xe if xe > 0 else xs + 20000].decode("latin-1", "replace")
+        for key in ("maxForwardSpeed", "maxReverseSpeed", "maxAcceleration", "maxDeceleration", "turningRate",
+                    "turretAzimuthSpeed", "turretElevationSpeed", "turretElevationMin", "turretElevationMax",
+                    "minimumHit", "hitPointThreshold", "damageThreshold", "destroyedParticleDelay", "dieDelay",
+                    "aiMainGunShootingTime", "aiMainGunWaitTime", "aiMainGunPauseTime", "aiCoaxShootingTime",
+                    "aiCoaxWaitTime", "aiCoaxPauseTime", "aiCoaxEngagementDistance"):
+            m_ = re.search(r'<%s value="([-0-9.]+)"' % key, xt)
+            if m_:
+                v_ = float(m_.group(1))
+                # no bare negative literal in the data script (a parse killer, TRAPS)
+                L(f'\tlevel.ea_tkx["{key}"] = ' + (f"{v_:g}" if v_ >= 0 else f"( 0 - {-v_:g} )"))
+        ex = re.findall(r'<explosionParticle value="([^"]+)"', xt)
+        L(f"\tlevel.ea_tkx_exn = {len(ex)}")
+        for k, v in enumerate(ex, 1):
+            L(f"\tlevel.ea_tkx_ex[{k}] = {S(v)}")
+        dpm = re.search(r'<destroyedParticle value="([^"]+)"', xt)
+        if dpm:
+            L(f"\tlevel.ea_tkx_dp = {S(dpm.group(1))}")
+        log("  tank sheet: %d values, %d death particles" % (xt.count("value="), len(ex)))
     n = 0
     for r in db.of("MMGPoint"):
         q = ground(X(r.pos)) or X(r.pos)
