@@ -53,9 +53,9 @@ The authored files carry judgement, so they cannot be generated - but they can s
 | `docs/DECISIONS.md` | 46 KB | 45 KB | **OVER - prune** |
 | `docs/ENGINE.md` | 40 KB | 40 KB | ok |
 | `docs/FEATURES.md` | 90 KB | 90 KB | ok |
-| `docs/HISTORY.md` | 27 KB | 30 KB | ok |
-| `docs/OPEN.md` | 49 KB | 50 KB | ok |
+| `docs/HISTORY.md` | 28 KB | 30 KB | ok |
+| `docs/OPEN.md` | 50 KB | 50 KB | ok |
 | `docs/SOURCE_OF_TRUTH.md` | 33 KB | 40 KB | ok |
-| `docs/TRAPS.md` | 70 KB | 70 KB | ok |
+| `docs/TRAPS.md` | 71 KB | 70 KB | **OVER - prune** |
 
-Input fingerprint of this generation: `7c29b511a450752a84b62f3da72218be2781b7eaec648d2b48bd28b2a6800ec5`
+Input fingerprint of this generation: `6fa48e11aad09ec1ae171e0b913733ea8b25ad71ffea5e6b7956d8201c4b56bc`

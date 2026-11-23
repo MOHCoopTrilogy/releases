@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 1,134,392 |
+| files in the workspace | 1,134,613 |
 | bytes | 120.4 GB |
-| files in project scope (indexed per-file) | 114,538 |
-| source files (per-file rows with line counts) | 26,055 |
+| files in project scope (indexed per-file) | 114,759 |
+| source files (per-file rows with line counts) | 26,264 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,8 +24,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `docs` | 73,434 | 42244.0 MB | **yes** | this documentation set (authored + generated) |
-| `hzm-mohaa-coop-mod` | 26,836 | 15442.5 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `docs` | 73,435 | 42244.1 MB | **yes** | this documentation set (authored + generated) |
+| `hzm-mohaa-coop-mod` | 27,043 | 15444.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `hzm-mod-attic` | 17,780 | 502.1 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
 | `hzm-mod-benchfix` | 17,754 | 423.0 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
 | `hzm-mod-engrave` | 15,476 | 420.2 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
@@ -183,16 +183,16 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm-hudfeed` | 2,613 | 60.5 MB | no - reference | scratch working copy of the engine (per-feature worktree); the bare openmohaa-hzm stays indexed |
 | `openmohaa-hzm-gore` | 2,577 | 60.7 MB | no - reference | scratch working copy of the engine (per-feature worktree); the bare openmohaa-hzm stays indexed |
 | `.harness_queue` | 2,009 | 0.2 MB | **yes** |  |
-| `symbols` | 1,277 | 5668.6 MB | **yes** |  |
+| `symbols` | 1,289 | 5727.4 MB | **yes** |  |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
 | `scratchpad` | 346 | 67.4 MB | **yes** |  |
 | `player1_home` | 291 | 2.1 MB | no - reference | test client profile dir |
 | `_hd_sky` | 237 | 1512.5 MB | **yes** |  |
 | `_research` | 175 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
-| `manifests` | 166 | 3.1 MB | **yes** | release manifests consumed by the auto-updater |
+| `manifests` | 167 | 3.1 MB | **yes** | release manifests consumed by the auto-updater |
 | `_gl2test_home` | 149 | 26.4 MB | **yes** |  |
-| `<root>` | 146 | 161.9 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
+| `<root>` | 148 | 161.9 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `_hd_m3l1a` | 145 | 305.8 MB | **yes** |  |
 | `_hd_discstock` | 115 | 132.1 MB | **yes** |  |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
@@ -203,7 +203,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `server_home_ttnav_sliv2` | 93 | 152.1 MB | no - reference | soak / A-B harness server homepath |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
-| `public_servers` | 80 | 9.3 MB | **yes** |  |
+| `public_servers` | 78 | 7.8 MB | **yes** |  |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `server_home` | 63 | 14.8 MB | **yes** |  |
 | `_tools` | 61 | 153.0 MB | no - reference | downloaded third-party binaries |
@@ -1627,16 +1627,16 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Extension census (whole workspace)
 | ext | files |
 |---|---:|
-| `.cfg` | 462,178 |
+| `.cfg` | 462,383 |
 | `.tik` | 112,325 |
 | `.pre_upscale_nobuild` | 86,388 |
 | `.h` | 83,725 |
 | `.c` | 64,742 |
-| `.scr` | 63,011 |
+| `.scr` | 63,013 |
 | `.jpg` | 61,343 |
 | `.cpp` | 41,195 |
 | `.txt` | 17,357 |
-| `.md` | 13,278 |
+| `.md` | 13,279 |
 | `.urc` | 12,902 |
 | `.obj` | 11,402 |
 | `.tga` | 10,643 |
@@ -1644,13 +1644,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.png` | 5,316 |
 | `.glsl` | 5,066 |
 | `.wav` | 4,782 |
-| `.py` | 4,670 |
+| `.py` | 4,672 |
 | `.dat` | 4,547 |
 | `(none)` | 4,096 |
 | `.log` | 3,888 |
 | `.skc` | 3,425 |
 | `.tlog` | 3,270 |
-| `.json` | 2,453 |
+| `.json` | 2,454 |
 | `.vcxproj` | 2,452 |
 | `.filters` | 2,452 |
 | `.lod` | 2,208 |
@@ -1661,7 +1661,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.skd` | 1,370 |
 | `.dds` | 1,161 |
 | `.slg` | 1,104 |
-| `.pdb` | 1,031 |
+| `.pdb` | 1,037 |
 | `.in` | 946 |
 | `.rc` | 946 |
 | `.js` | 941 |
@@ -1672,7 +1672,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | directory | files | size | top extensions |
 |---|---:|---:|---|
 | `--help` | 25 | 6.55 MB | .tga×25 |
-| `.` | 146 | 161.91 MB | .md×56, .log×24, .txt×16, .ps1×15 |
+| `.` | 148 | 161.92 MB | .md×57, .log×24, .txt×16, .ps1×15 |
 | `.harness_queue` | 2,009 | 0.23 MB | .done×2007, .json×2 |
 | `_backups` | 1 | 0.02 MB | .bak×1 |
 | `_backups/cmake_stash` | 27 | 64.09 MB | .dll×12, .pdb×12, .map×3 |
@@ -2480,7 +2480,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/duststorm_2026-09-28/sim` | 6 | 0.02 MB | .py×4, .json×1, .txt×1 |
 | `docs/proposals/duststorm_2026-09-28/staged` | 7 | 0.12 MB | .scr×3, .shader×2, .tik×2 |
 | `docs/proposals/duststorm_2026-09-28/staged/textures/coop_dust` | 30 | 1.97 MB | .tga×30 |
-| `docs/proposals/eapolish_2026-11-10` | 2 | 0.08 MB | .md×2 |
+| `docs/proposals/eapolish_2026-11-10` | 2 | 0.09 MB | .md×2 |
 | `docs/proposals/emotes_2026-11-03` | 4 | 0.93 MB | .jpg×3, .png×1 |
 | `docs/proposals/emotes_2026-11-03/over/coop_mod` | 1 | 0.00 MB | .scr×1 |
 | `docs/proposals/emotes_2026-11-03/tools` | 1 | 0.02 MB | .py×1 |
@@ -3812,7 +3812,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/wpnfix2_2026-11-08/media` | 3 | 0.84 MB | .jpg×3 |
 | `docs/proposals/wpnfix_2026-11-08` | 1 | 0.01 MB | .md×1 |
 | `docs/proposals/wpnfix_2026-11-08/media` | 4 | 0.75 MB | .jpg×4 |
-| `docs/proposals/wpnviewer_2026-11-04` | 3 | 2.60 MB | .json×2, .md×1 |
+| `docs/proposals/wpnviewer_2026-11-04` | 3 | 2.61 MB | .json×2, .md×1 |
 | `docs/proposals/wpnviewer_2026-11-04/media` | 22 | 6.05 MB | .jpg×22 |
 | `docs/proposals/wpnviewer_2026-11-04/tools` | 2 | 0.02 MB | .py×2 |
 | `docs/proposals/wx_extreme_2026-10-12` | 20 | 13.72 MB | .jpg×16, .gif×4 |
@@ -3820,7 +3820,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/public/fixes` | 11 | 1.53 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
 | `docs/screenshots` | 110 | 111.39 MB | .jpg×79, .gif×31 |
-| `docs/tools` | 303 | 6.84 MB | .py×232, .json×25, .tsv×25, .txt×11 |
+| `docs/tools` | 303 | 6.86 MB | .py×232, .json×25, .tsv×25, .txt×11 |
 | `docs/tools/assets` | 4 | 0.10 MB | .urc×1, .json×1, .txt×1, .png×1 |
 | `docs/tools/assets/finish_src` | 8 | 2.79 MB | .png×4, .npy×3, .json×1 |
 | `docs/tools/assets/fixes` | 1 | 0.10 MB | .json×1 |
@@ -3964,7 +3964,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/tools/assets/wpnfix/textures/models/weapons/coop_fg42hd` | 1 | 0.56 MB | .jpg×1 |
 | `docs/tools/assets/wpnfix/textures/models/weapons/coop_panzerfaust` | 1 | 0.86 MB | .jpg×1 |
 | `docs/tools/byoaudit` | 8 | 0.08 MB | .py×7, .md×1 |
-| `docs/tools/ea` | 80 | 0.94 MB | .py×70, .json×9, .md×1 |
+| `docs/tools/ea` | 81 | 0.98 MB | .py×71, .json×9, .md×1 |
 | `docs/tools/ea/hd` | 10 | 4.04 MB | .jpg×9, .txt×1 |
 | `docs/tools/engrave` | 11 | 0.10 MB | .py×11 |
 | `docs/tools/engrave/qa` | 7 | 0.04 MB | .py×4, .json×3 |
@@ -4245,7 +4245,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-eng-snipers2/misc/cmake` | 1 | 0.01 MB | .cmake×1 |
 | `hzm-eng-snipers2/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `hzm-eng-snipers2/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
-| `hzm-mohaa-coop-mod` | 73 | 9740.81 MB | .pk3×34, .txt×12, .jpg×10, .cfg×5 |
+| `hzm-mohaa-coop-mod` | 73 | 9741.07 MB | .pk3×34, .txt×12, .jpg×10, .cfg×5 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -4297,7 +4297,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/alienx` | 3 | 0.08 MB | .scr×3 |
 | `hzm-mohaa-coop-mod/anim` | 24 | 0.18 MB | .scr×24 |
 | `hzm-mohaa-coop-mod/cmpatch` | 6 | 0.01 MB | .txt×6 |
-| `hzm-mohaa-coop-mod/coop_mod` | 275 | 8.62 MB | .scr×267, .st×3, .txt×3, .cfg×2 |
+| `hzm-mohaa-coop-mod/coop_mod` | 276 | 8.66 MB | .scr×268, .st×3, .txt×3, .cfg×2 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
@@ -4319,7 +4319,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/htr` | 12 | 0.10 MB | .scr×12 |
 | `hzm-mohaa-coop-mod/hzm_preload` | 1 | 0.00 MB | .txt×1 |
 | `hzm-mohaa-coop-mod/maintt` | 1 | 0.00 MB | .cfg×1 |
-| `hzm-mohaa-coop-mod/maps` | 138 | 99.97 MB | .scr×127, .bsp×9, .pth×2 |
+| `hzm-mohaa-coop-mod/maps` | 138 | 99.99 MB | .scr×127, .bsp×9, .pth×2 |
 | `hzm-mohaa-coop-mod/maps/briefing` | 14 | 0.09 MB | .scr×14 |
 | `hzm-mohaa-coop-mod/maps/cov` | 220 | 0.97 MB | .scr×220 |
 | `hzm-mohaa-coop-mod/maps/dm` | 9 | 0.01 MB | .scr×9 |
@@ -4859,8 +4859,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/sprites` | 5 | 0.14 MB | .tga×5 |
 | `hzm-mohaa-coop-mod/textures/wilderness` | 2 | 3.72 MB | .jpg×2 |
 | `hzm-mohaa-coop-mod/ubermode` | 6 | 0.15 MB | .scr×6 |
-| `hzm-mohaa-coop-mod/ubersound` | 26 | 7.22 MB | .scr×26 |
-| `hzm-mohaa-coop-mod/ui` | 300 | 3.76 MB | .urc×225, .cfg×59, .inc×8, .txt×5 |
+| `hzm-mohaa-coop-mod/ubersound` | 27 | 7.23 MB | .scr×27 |
+| `hzm-mohaa-coop-mod/ui` | 300 | 3.78 MB | .urc×225, .cfg×59, .inc×8, .txt×5 |
 | `hzm-mohaa-coop-mod/ui/coop_fov` | 33 | 0.01 MB | .cfg×31, .bat×2 |
 | `hzm-mohaa-coop-mod/ui/coop_menumusic` | 25 | 0.01 MB | .cfg×25 |
 | `hzm-mohaa-coop-mod/ui/coop_mp_record` | 79 | 0.01 MB | .cfg×79 |
@@ -4872,13 +4872,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/coop_tiles` | 14 | 0.79 MB | .jpg×14 |
 | `hzm-mohaa-coop-mod/ui/hzm_loadscreen` | 33 | 8.14 MB | .tga×33 |
 | `hzm-mohaa-coop-mod/ui/hzm_memorial` | 7 | 12.58 MB | .tga×7 |
-| `hzm-mohaa-coop-mod/ui/loadout` | 10,258 | 2.97 MB | .cfg×10258 |
+| `hzm-mohaa-coop-mod/ui/loadout` | 10,426 | 3.02 MB | .cfg×10426 |
 | `hzm-mohaa-coop-mod/ui/loadout/glove` | 8 | 0.01 MB | .cfg×8 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 49 | 0.04 MB | .cfg×49 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 136 | 0.17 MB | .cfg×136 |
 | `hzm-mohaa-coop-mod/ui/proto` | 11 | 0.14 MB | .urc×6, .cfg×3, .inc×2 |
-| `hzm-mohaa-coop-mod/ui/wpnview` | 1,630 | 2.37 MB | .cfg×1630 |
-| `manifests` | 166 | 3.07 MB | .json×166 |
+| `hzm-mohaa-coop-mod/ui/wpnview` | 1,667 | 3.67 MB | .cfg×1667 |
+| `manifests` | 167 | 3.10 MB | .json×167 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `mohaa-coop-dev_soak` | 25 | 30.64 MB | .log×24, .json×1 |
 | `mohaa-coop-dev_soak_val` | 1 | 0.40 MB | .log×1 |
@@ -5321,17 +5321,17 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `public_servers/_superseded_lobby_patch/srv1` | 1 | 0.06 MB | .scr×1 |
 | `public_servers/_superseded_lobby_patch/srv1_hudtest` | 1 | 0.06 MB | .scr×1 |
 | `public_servers/_superseded_lobby_patch/srv2` | 1 | 0.06 MB | .scr×1 |
-| `public_servers/srv1/maintt` | 4 | 2.65 MB | .log×2, .pid×1, .cfg×1 |
+| `public_servers/srv1/maintt` | 3 | 2.15 MB | .log×2, .cfg×1 |
 | `public_servers/srv1/maintt/coop_freeze` | 3 | 0.01 MB | .txt×3 |
 | `public_servers/srv1/maintt/coop_mod/save` | 20 | 0.01 MB | .dat×20 |
 | `public_servers/srv1/maintt/maps` | 4 | 0.58 MB | .pth×2, .scr×2 |
 | `public_servers/srv1/maintt/maps/e3l4` | 1 | 0.02 MB | .scr×1 |
-| `public_servers/srv2/maintt` | 4 | 2.58 MB | .log×2, .pid×1, .cfg×1 |
+| `public_servers/srv2/maintt` | 3 | 2.07 MB | .log×2, .cfg×1 |
 | `public_servers/srv2/maintt/coop_freeze` | 3 | 0.01 MB | .txt×3 |
 | `public_servers/srv2/maintt/coop_mod/save` | 11 | 0.01 MB | .dat×11 |
 | `public_servers/srv2/maintt/maps` | 3 | 0.26 MB | .scr×2, .pth×1 |
 | `public_servers/srv2/maintt/maps/e3l4` | 1 | 0.02 MB | .scr×1 |
-| `public_servers/srv3/maintt` | 5 | 2.59 MB | .log×2, .pid×1, .cfg×1, .trilogy_bak×1 |
+| `public_servers/srv3/maintt` | 5 | 2.08 MB | .log×2, .pid×1, .cfg×1, .trilogy_bak×1 |
 | `public_servers/srv3/maintt/coop_freeze` | 2 | 0.01 MB | .txt×2 |
 | `public_servers/srv3/maintt/maps` | 3 | 0.31 MB | .scr×2, .pth×1 |
 | `public_servers/srv3/maintt/maps/e3l4` | 1 | 0.02 MB | .scr×1 |
@@ -5497,6 +5497,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `symbols/1.10.85` | 12 | 58.78 MB | .map×6, .pdb×6 |
 | `symbols/1.10.86` | 12 | 58.78 MB | .map×6, .pdb×6 |
 | `symbols/1.10.87` | 12 | 58.83 MB | .map×6, .pdb×6 |
+| `symbols/1.10.88` | 12 | 58.83 MB | .map×6, .pdb×6 |
 | `symbols/1.10.9` | 12 | 50.66 MB | .map×6, .pdb×6 |
 | `symbols/1.7.2` | 2 | 8.45 MB | .pdb×2 |
 | `symbols/1.7.3` | 2 | 8.45 MB | .pdb×2 |
@@ -5526,13 +5527,14 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Source index
 Line counts and summaries are derived (summary = first meaningful comment line). A blank summary means the file has no header comment, not that it is unimportant.
 
-### `./` — 18 source files
+### `./` — 19 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `ai_ab_test.ps1` | 78 | 3.9 KB | ai_ab_test.ps1 - controlled A/B for the dynamic-AI layer. |
 | `autotest_rcon.py` | 79 | 2.7 KB | !/usr/bin/env python3 |
 | `build.ps1` | 733 | 58.0 KB | (every player re-downloads it). Same as $env:HZM_ALLOW_TEX_PAK_CHANGE = '1', which also works through |
+| `flconvert.py` | 0 | 0.0 KB |  |
 | `launch_2player_m2l2a.ps1` | 216 | 11.1 KB | MOH Coop Trilogy - 2-player STEALTH test launcher (m2l2a) |
 | `launch_2player_test.ps1` | 78 | 3.7 KB | MOH Coop Trilogy - 2-player local test launcher |
 | `launch_dedicated_2player.ps1` | 242 | 11.8 KB | Replaces the listen-server harness for testing. Why it matters, measured 2026-08-10: |
@@ -7876,7 +7878,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `apply_hzmconv_guns.py` | 93 | 4.7 KB |  |
+| `apply_hzmconv_guns.py` | 127 | 6.8 KB | the Armory change sound''', |
 
 ### `docs/proposals/duststorm_2026-09-28/` — 2 source files
 
@@ -11044,7 +11046,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `check_empty_rhs.py` | 95 | 3.8 KB |  |
 | `check_map_anims.py` | 412 | 19.2 KB |  |
 | `check_map_compiles.py` | 107 | 4.4 KB | !/usr/bin/env python |
-| `check_mp_isolation.py` | 980 | 60.4 KB | !/usr/bin/env python |
+| `check_mp_isolation.py` | 980 | 60.5 KB | !/usr/bin/env python |
 | `check_mp_isolation_selftest.py` | 794 | 40.6 KB | !/usr/bin/env python |
 | `check_say_aliases.py` | 196 | 9.4 KB | !/usr/bin/env python |
 | `check_tex_pak_baseline.py` | 264 | 11.2 KB | !/usr/bin/env python3 |
@@ -11102,13 +11104,13 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_cybersnd_maps.py` | 118 | 5.0 KB | !/usr/bin/env python3 |
 | `gen_daily_orders.py` | 546 | 39.1 KB | gen_daily_orders.py - HZM Daily Orders (v1.10.63, user 2026-11-03 "Build daily as approved"). |
 | `gen_debrief2.py` | 967 | 46.6 KB | !/usr/bin/env python3 |
-| `gen_disc_stubs.py` | 371 | 19.5 KB |  |
+| `gen_disc_stubs.py` | 376 | 20.0 KB |  |
 | `gen_east_lift.py` | 157 | 7.2 KB | !/usr/bin/env python3 |
 | `gen_emote_icons.py` | 324 | 11.0 KB | !/usr/bin/env python |
 | `gen_emotes.py` | 400 | 20.1 KB | !/usr/bin/env python |
 | `gen_explosion_aliases.py` | 110 | 5.9 KB |  |
 | `gen_finale.py` | 96 | 6.2 KB | !/usr/bin/env python |
-| `gen_finish_ui.py` | 153 | 8.8 KB |  |
+| `gen_finish_ui.py` | 156 | 9.0 KB |  |
 | `gen_fixes_pak.py` | 156 | 8.2 KB |  |
 | `gen_flvo_pools.py` | 146 | 7.2 KB | !/usr/bin/env python |
 | `gen_fog_profiles.py` | 140 | 5.0 KB | !/usr/bin/env python3 |
@@ -11123,7 +11125,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_lktab.py` | 126 | 5.4 KB | !/usr/bin/env python3 |
 | `gen_loadart_pak.py` | 96 | 4.0 KB |  |
 | `gen_loadclip.py` | 145 | 7.1 KB | !/usr/bin/env python3 |
-| `gen_loadout.py` | 726 | 37.5 KB | !/usr/bin/env python |
+| `gen_loadout.py` | 734 | 38.1 KB | !/usr/bin/env python |
 | `gen_loadscreen_medal.py` | 382 | 18.4 KB |  |
 | `gen_m3l1a_obstacles.py` | 245 | 11.6 KB |  |
 | `gen_m3l3_rock_clips.py` | 491 | 26.2 KB | !/usr/bin/env python3 |
@@ -11180,7 +11182,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_weapon_rof.py` | 187 | 9.5 KB |  |
 | `gen_weapon_skins.py` | 189 | 8.3 KB |  |
 | `gen_weapon_stats.py` | 345 | 14.2 KB | !/usr/bin/env python3 |
-| `gen_weapon_viewer.py` | 827 | 45.2 KB | !/usr/bin/env python3 |
+| `gen_weapon_viewer.py` | 938 | 52.9 KB | !/usr/bin/env python3 |
 | `gen_wetsand.py` | 121 | 6.6 KB | coding: utf-8 |
 | `gen_wheel_art.py` | 129 | 5.8 KB |  |
 | `gen_wpnfix_pak.py` | 141 | 6.5 KB | !/usr/bin/env python3 |
@@ -11237,7 +11239,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `test_armory_sim.py` | 145 | 8.0 KB | !/usr/bin/env python3 |
 | `tiki_anims.py` | 60 | 2.3 KB | top level: find the 'animations' section(s); everything else (includes, setup...) is skipped |
 | `ui_wiring_audit.py` | 145 | 6.8 KB | !/usr/bin/env python |
-| `unlock_audit.py` | 177 | 9.2 KB | !/usr/bin/env python |
+| `unlock_audit.py` | 184 | 9.8 KB | !/usr/bin/env python |
 | `upscale_discstock.py` | 533 | 26.5 KB | coding: utf-8 |
 | `upscale_m3l1a.py` | 233 | 9.2 KB | coding: utf-8 |
 | `upscale_skins.py` | 104 | 4.6 KB |  |
@@ -12076,7 +12078,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `visaudit.py` | 133 | 5.6 KB | !/usr/bin/env python3 |
 | `walkshots.py` | 113 | 5.3 KB | !/usr/bin/env python3 |
 
-### `docs/tools/ea/` — 70 source files
+### `docs/tools/ea/` — 71 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -12098,12 +12100,13 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `eacharup.py` | 131 | 5.9 KB | !/usr/bin/env python3 |
 | `eacore.py` | 148 | 6.9 KB | !/usr/bin/env python3 |
 | `eacpt.py` | 147 | 6.5 KB | !/usr/bin/env python3 |
+| `eadawn_sky.py` | 159 | 8.3 KB |  |
 | `eadb.py` | 180 | 7.7 KB | !/usr/bin/env python3 |
 | `eaelf.py` | 88 | 3.4 KB | !/usr/bin/env python3 |
 | `eaents.py` | 97 | 4.0 KB | !/usr/bin/env python3 |
 | `eafidelity.py` | 136 | 7.3 KB | !/usr/bin/env python3 |
 | `eafx.py` | 626 | 30.5 KB |  |
-| `eaguns.py` | 398 | 22.0 KB |  |
+| `eaguns.py` | 672 | 43.1 KB |  |
 | `eairrad.py` | 89 | 4.1 KB | !/usr/bin/env python3 |
 | `eamovies.py` | 86 | 4.4 KB | !/usr/bin/env python3 |
 | `eamusic.py` | 115 | 5.0 KB | !/usr/bin/env python3 |
@@ -12116,28 +12119,28 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `easky.py` | 287 | 15.3 KB | face -> strip corners (x, y, z in metres from the eye, z up) and their uv (0..1023 = 0..1), in the original's… |
 | `easob.py` | 292 | 14.5 KB | !/usr/bin/env python3 |
 | `eastrings.py` | 43 | 1.5 KB | !/usr/bin/env python3 |
-| `eavm.py` | 927 | 45.3 KB | !/usr/bin/env python3 |
+| `eavm.py` | 1,008 | 50.8 KB | !/usr/bin/env python3 |
 | `eavoice.py` | 56 | 2.1 KB | !/usr/bin/env python3 |
 | `eazones.py` | 223 | 11.3 KB | !/usr/bin/env python3 |
 | `fl_gates.py` | 136 | 5.0 KB | !/usr/bin/env python3 |
 | `flaudio.py` | 96 | 3.6 KB | !/usr/bin/env python3 |
 | `flbsp.py` | 538 | 28.5 KB | !/usr/bin/env python3 |
 | `flcliff.py` | 97 | 4.5 KB | !/usr/bin/env python3 |
-| `flconvert.py` | 2,488 | 155.0 KB | !/usr/bin/env python3 |
+| `flconvert.py` | 2,538 | 161.1 KB | !/usr/bin/env python3 |
 | `flcoop2.py` | 190 | 9.7 KB | !/usr/bin/env python3 |
 | `flcore.py` | 190 | 8.2 KB | !/usr/bin/env python3 |
 | `flgeom.py` | 117 | 4.7 KB | !/usr/bin/env python3 |
 | `flgif.py` | 76 | 3.8 KB | !/usr/bin/env python3 |
 | `flharness.py` | 473 | 23.8 KB | !/usr/bin/env python3 |
 | `flmovies.py` | 81 | 3.6 KB | !/usr/bin/env python3 |
-| `flpack.py` | 238 | 12.1 KB | !/usr/bin/env python3 |
+| `flpack.py` | 245 | 12.7 KB | !/usr/bin/env python3 |
 | `flseam.py` | 212 | 10.3 KB | !/usr/bin/env python3 |
 | `flsheets.py` | 131 | 6.2 KB | !/usr/bin/env python3 |
 | `flsp.py` | 84 | 4.0 KB | !/usr/bin/env python3 |
 | `fltexmatch.py` | 122 | 5.9 KB | !/usr/bin/env python3 |
 | `flupscale.py` | 602 | 32.7 KB | !/usr/bin/env python3 |
 | `flvis.py` | 77 | 3.7 KB | !/usr/bin/env python3 |
-| `hzmconv_ea.py` | 115 | 5.8 KB | !/usr/bin/env python3 |
+| `hzmconv_ea.py` | 132 | 6.7 KB | !/usr/bin/env python3 |
 | `islandsweep.py` | 63 | 2.5 KB |  |
 | `mkoverlay.py` | 15 | 0.7 KB | !/usr/bin/env python3 |
 | `mohskel.py` | 181 | 8.1 KB | !/usr/bin/env python3 |
@@ -12201,12 +12204,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `flgeom.py` | 117 | 4.7 KB | !/usr/bin/env python3 |
 | `flgif.py` | 89 | 4.8 KB | !/usr/bin/env python3 |
 | `flglass.py` | 90 | 4.0 KB | !/usr/bin/env python3 |
-| `flgunfit.py` | 665 | 35.5 KB |  |
+| `flgunfit.py` | 669 | 35.9 KB |  |
 | `flgungeo.py` | 171 | 7.5 KB |  |
 | `flgunrows.py` | 39 | 1.7 KB |  |
 | `flguns.py` | 197 | 9.1 KB |  |
-| `flgunsight.py` | 248 | 11.1 KB |  |
-| `flgunskc14.py` | 264 | 8.4 KB |  |
+| `flgunsight.py` | 248 | 11.2 KB |  |
+| `flgunskc14.py` | 264 | 8.5 KB |  |
 | `flgunskd.py` | 234 | 9.3 KB | SKD reading |
 | `flgunup.py` | 133 | 7.6 KB | texture (lower-case file name) -> [(x0, y0, x1, y1)] fractions: stamped legends, selector markings |
 | `flgunvfs.py` | 73 | 2.5 KB |  |
@@ -12225,7 +12228,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `fltexmatch.py` | 117 | 5.3 KB | !/usr/bin/env python3 |
 | `flupscale.py` | 490 | 26.3 KB | !/usr/bin/env python3 |
 | `flvis.py` | 77 | 3.7 KB | !/usr/bin/env python3 |
-| `hzmconv.py` | 347 | 20.8 KB | !/usr/bin/env python3 |
+| `hzmconv.py` | 369 | 22.5 KB | !/usr/bin/env python3 |
 | `mkoverlay.py` | 15 | 0.7 KB | !/usr/bin/env python3 |
 | `mohskel.py` | 181 | 8.1 KB | !/usr/bin/env python3 |
 | `poc_render.py` | 65 | 3.2 KB | !/usr/bin/env python3 |
@@ -15645,7 +15648,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `runto_inopen.scr` | 122 | 3.9 KB | HZM coop [2026-08-06] extracted from maintt/pak1.pk3 (bug-1490) to add a dog branch. Retail's own |
 | `shoot.scr` | 270 | 7.2 KB | Shoot |
 
-### `hzm-mohaa-coop-mod/coop_mod/` — 272 source files
+### `hzm-mohaa-coop-mod/coop_mod/` — 273 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -15734,6 +15737,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `discscale.scr` | 694 | 28.1 KB | HZM coop - player-count enemy scaling for the converted disc missions (Sealed Orders coop_fl_1_1, Their |
 | `duststorm.scr` | 855 | 41.9 KB | HZM coop - DUST STORM ROLL-IN [user 2026-09-26, bug-2963] |
 | `e1l4alarm.scr` | 76 | 3.3 KB | coop_mod/e1l4alarm.scr |
+| `eadawn.scr` | 272 | 12.2 KB | HZM coop - NIGHT TO DAWN for the converted European Assault night level Their Dying Breath (coop_ea_1_11). |
 | `emotes.scr` | 290 | 13.9 KB | emotes.scr - the Tab wheel's EMOTES page, server side (v1.10.62/63) |
 | `emotes_gen.scr` | 284 | 10.9 KB | GENERATED by docs/tools/gen_emotes.py BEGIN - DO NOT EDIT BY HAND |
 | `emotes_seek.scr` | 18 | 0.9 KB | emotes_seek.scr - the one call that needs the emotes-seek game.dll (v1.10.63) |
@@ -15765,17 +15769,17 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `holdout.scr` | 762 | 32.3 KB | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
 | `hudresend.scr` | 105 | 4.9 KB | hudresend.scr - make a one-shot ihuddraw teardown STICK on a remote client |
 | `indoor_maps.scr` | 16 | 0.7 KB | GENERATED by docs/tools/gen_indoor_maps.py from the retail BSPs + officer_positions.scr. |
-| `itemhandler.scr` | 4,171 | 222.8 KB | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
-| `joincard.scr` | 150 | 7.0 KB | joincard.scr - JOIN CARD [user 2026-11-08, v1.10.64] |
+| `itemhandler.scr` | 4,173 | 223.0 KB | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
+| `joincard.scr` | 159 | 7.6 KB | joincard.scr - JOIN CARD [user 2026-11-08, v1.10.64] |
 | `joincard_table.scr` | 537 | 28.1 KB | joincard_table.scr - GENERATED by docs/tools/gen_joincard.py from docs/tools/joincard_titles.tsv. DO NOT EDIT. |
 | `keyitems.scr` | 168 | 9.2 KB | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
 | `ladder.scr` | 295 | 15.6 KB | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 1.2 KB | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
 | `libbridge.scr` | 132 | 6.5 KB | LIBBRIDGE.SCR - the ONE read-only bridge from a Field Operations LIBERATION contract (an MP match) to the pla… |
 | `loadout.scr` | 765 | 47.5 KB | [200] Smithy - this contains the weaponsloadout for coop |
-| `loadoutdisc.scr` | 53 | 4.5 KB | GENERATED by docs/tools/gen_disc_stubs.py - do not edit. The bring-your-own-disc gun variants: fids 60-79 of… |
-| `loadoutpick.scr` | 1,978 | 114.2 KB | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
-| `loadoutroster.scr` | 892 | 29.8 KB | GENERATED by scratchpad/gen_loadout3.py -- DO NOT HAND-EDIT (regenerate instead) |
+| `loadoutdisc.scr` | 54 | 4.5 KB | GENERATED by docs/tools/gen_disc_stubs.py - do not edit. The bring-your-own-disc gun variants: fids 60-79 of… |
+| `loadoutpick.scr` | 2,009 | 115.9 KB | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
+| `loadoutroster.scr` | 903 | 30.3 KB | GENERATED by scratchpad/gen_loadout3.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `loadoutskins.scr` | 1,905 | 184.9 KB | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
 | `loadoutskins_base.scr` | 1,625 | 160.6 KB | GENERATED by docs/tools/gen_skinbase.py from loadoutskins.scr - DO NOT EDIT. |
 | `lobby.scr` | 1,389 | 65.4 KB | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
@@ -15897,7 +15901,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `spawnlocations.scr` | 3,730 | 176.1 KB | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
 | `spcampaign.scr` | 61 | 3.7 KB | HZM Coop - SINGLE-PLAYER CAMPAIGN PROGRESS [sp3camp 2026-11-08, bug-10616] |
 | `spcampaign_table.scr` | 21 | 1.2 KB | GENERATED by docs/proposals/sp3camp_2026-11-08/make_ng3campaigns.py from missions.json - do not hand-edit. |
-| `squadcmd.scr` | 1,371 | 59.1 KB | squadcmd.scr - HZM coop SQUAD COMMANDS (user-approved 2026-11-15, "All") |
+| `squadcmd.scr` | 1,857 | 81.0 KB | squadcmd.scr - HZM coop SQUAD COMMANDS (user-approved 2026-11-15, "All") |
 | `start_server.cfg` | 64 | 4.7 KB | used cfg to start server, executed from within game menu coop_start.urc |
 | `stormlight.scr` | 456 | 17.9 KB | HZM coop - STORM DARKNESS [user 2026-09-28] (docs/proposals/storm_darkness_2026-09-28/plan.md section 1) |
 | `stow_m2l2a.scr` | 281 | 12.4 KB | stow_m2l2a.scr - HZM coop, m2l2a (U-boat pens) [user 2026-10-28] |
@@ -15908,7 +15912,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `thirdperson.scr` | 52 | 1.9 KB | HZM coop [237] - the 3rd-person bind now CYCLES three view modes (user): |
 | `tinnitus.scr` | 244 | 11.5 KB | HZM coop - TINNITUS / MUFFLED HEARING (per-player). |
 | `tracescan.scr` | 132 | 5.1 KB | coop_mod/tracescan.scr - server-side collision grid scanner (dev tool) |
-| `unlockprog_gen.scr` | 290 | 16.5 KB | GENERATED by docs/tools/gen_armory.py (progress_scr) - DO NOT EDIT BY HAND |
+| `unlockprog_gen.scr` | 291 | 16.2 KB | GENERATED by docs/tools/gen_armory.py (progress_scr) - DO NOT EDIT BY HAND |
 | `unlockreq_gen.scr` | 273 | 31.7 KB | GENERATED by docs/tools/armory_unlocks.py --emit DO NOT EDIT BY HAND |
 | `unlockset.scr` | 50 | 2.5 KB | unlockset.scr - O(1) membership for a player's unlock set [v1.10.64, bug-10495] |
 | `variables.scr` | 319 | 22.4 KB | started by chrissstrahl on 2020.10.16 ([202]) |
@@ -15916,9 +15920,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `voidguard.scr` | 56 | 2.3 KB | coop_mod/voidguard.scr - universal out-of-bounds safety net (all maps) |
 | `wallgun.scr` | 555 | 23.4 KB | HZM coop - INVISIBLE BARRIER TOOL [user 2026-08-04] bug-1378 |
 | `weaponstate.scr` | 134 | 7.6 KB | [200] Smithy |
-| `weather.scr` | 626 | 36.2 KB | HZM coop - WEATHER (v2): coop now drives the NATIVE SP trilogy weather system (global/weather.scr) so |
+| `weather.scr` | 641 | 37.2 KB | HZM coop - WEATHER (v2): coop now drives the NATIVE SP trilogy weather system (global/weather.scr) so |
 | `wounded.scr` | 610 | 33.2 KB | [user 2026-07-17] WOUNDED GERMAN LIMP-AWAY. |
-| `wxextreme.scr` | 767 | 37.7 KB | HZM coop - BLIZZARD / TORRENTIAL DOWNPOUR: the extreme weather tier [user 2026-10-12] |
+| `wxextreme.scr` | 772 | 38.0 KB | HZM coop - BLIZZARD / TORRENTIAL DOWNPOUR: the extreme weather tier [user 2026-10-12] |
 | `xp.scr` | 2,556 | 128.4 KB | [302] HZM XP SYSTEM - Phase 1 (tracking + persistence + end-of-map debrief + own-rank HUD) |
 | `zonefx.scr` | 213 | 8.7 KB | HZM coop - AREA ZONES (server side): per-player bloom and sound mix by the area a player stands in. |
 
@@ -16198,11 +16202,11 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `co_lobby6.scr` | 64 | 2.7 KB | LEVEL: co_lobby6.bsp (a copy of m2l1.bsp, axis AI stripped - same geometry as co_lobby5) |
 | `co_lobby7.scr` | 54 | 2.6 KB | LEVEL: co_lobby7.bsp (a copy of m2l2c.bsp) |
 | `co_lobby8.scr` | 246 | 9.3 KB | LEVEL: co_lobby8.bsp (a copy of e1l4.bsp - Breakthrough "Bizerte Harbor") |
-| `coop_ea_1_11.scr` | 7,079 | 342.4 KB | HZM coop - European Assault: "coop_ea_1_11" THEIR DYING BREATH (MOH European Assault RUS1, Gorodishche near |
+| `coop_ea_1_11.scr` | 7,088 | 350.0 KB | HZM coop - European Assault: "coop_ea_1_11" THEIR DYING BREATH (MOH European Assault RUS1, Gorodishche near |
 | `coop_ea_1_11_head.scr` | 14 | 0.7 KB | [2026-11-17] the per-actor head-look reach (game.dll event headlooklimit <yaw> <notorso>, engine dbhead-eng)… |
 | `coop_ea_1_11_seat.scr` | 15 | 0.8 KB | [dbfix 2026-11-15] the per-actor turret seat (game.dll event turretseat <back> <down>, engine 9f5b0846) kept… |
-| `coop_fl_1_1.scr` | 6,508 | 306.7 KB | HZM coop - Frontline pilot: "coop_fl_1_1" (MOH Frontline level 1_1, St. Mathieu, 17 Aug 1944). |
-| `coop_fl_1_3.scr` | 1,720 | 71.9 KB | HZM coop - Frontline: "coop_fl_1_3" ANCHOR & ANVIL (MOH Frontline level 1_3, Lorient, 18 Aug 1944, 0500 hrs). |
+| `coop_fl_1_1.scr` | 6,508 | 313.0 KB | HZM coop - Frontline pilot: "coop_fl_1_1" (MOH Frontline level 1_1, St. Mathieu, 17 Aug 1944). |
+| `coop_fl_1_3.scr` | 1,877 | 78.8 KB | HZM coop - Frontline: "coop_fl_1_3" ANCHOR & ANVIL (MOH Frontline level 1_3, Lorient, 18 Aug 1944, 0500 hrs). |
 | `e1l1.scr` | 755 | 23.9 KB | This stuff in hacks.scr now |
 | `e1l1_precache.scr` | 95 | 4.0 KB | Stripped 92 global-duplicate cache lines (2026-06-23) |
 | `e1l2.scr` | 401 | 16.2 KB | chrissstrahl - relevant stuff |
@@ -18965,12 +18969,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `cybersnd.scr` | 2,149 | 100.8 KB |  |
 | `flickerrotate.scr` | 127 | 4.0 KB | Random Rotations & Light Flicker script for triggers. Much better than continuously changing trigger model's… |
-| `get_player_weaponclass.scr` | 107 | 7.6 KB | This script serves as a local.player.getcurrentdmweapontype or a local.player.dmweaponclass module for develo… |
+| `get_player_weaponclass.scr` | 108 | 7.7 KB | This script serves as a local.player.getcurrentdmweapontype or a local.player.dmweaponclass module for develo… |
 | `math.scr` | 280 | 12.1 KB | These basic sine and cosine threads are used mainly for the bangalore bomb explosions. Usually, the bangalore… |
 | `messagetrig_print.scr` | 70 | 1.9 KB | displays text in the center of the screen |
 | `victory_podium.scr` | 583 | 22.5 KB | This script spawns 3 crates for creating a 1st, 2nd, 3rd place podium for those with the highest kills in the… |
 
-### `hzm-mohaa-coop-mod/ubersound/` — 26 source files
+### `hzm-mohaa-coop-mod/ubersound/` — 27 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -18995,11 +18999,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_pain.scr` | 97 | 10.0 KB | HZM coop [user 2026-08-21] PLAYER PAIN + DEATH VOICE - the whole pool, on every map. |
 | `coop_paintiers.scr` | 50 | 5.9 KB | HZM coop - SEVERITY-TIERED PLAYER PAIN. GENERATED by docs/tools/gen_pain_tiers.py. |
 | `coop_pickup.scr` | 59 | 8.5 KB | GENERATED by docs/proposals/normguns_2026-11-03/gen_coop_pickup.py - every weapon pickup alias a weapon .tik… |
+| `coop_squadvox.scr` | 61 | 11.3 KB | HZM coop - squad command voice lines (coop_mod/squadcmd.scr::sqVoice). Stock trilogy takes only, by path: |
 | `coop_taunt.scr` | 56 | 8.7 KB | GENERATED by docs/tools/gen_flvo_pools.py from docs/tools/vo_curation.tsv - DO NOT EDIT. |
 | `coop_vehsounds.scr` | 50 | 6.2 KB | HZM coop - halftrack (sdkfz) engine sounds on the maps the vanilla aliases skip. [v1.10.61] user 2026-11-02: |
 | `coop_wounded.scr` | 17 | 1.3 KB | HZM coop - WOUNDED BREATHING aliases (coop_mod/wounded.scr). |
 | `uberdialog.scr` | 42,284 | 6036.6 KB | UBERDIALOG |
-| `ubersound.scr` | 5,720 | 621.3 KB | start chrissstrahl - fix sound issue |
+| `ubersound.scr` | 5,722 | 621.5 KB | start chrissstrahl - fix sound issue |
 
 ### `hzm-mohaa-coop-mod/ui/` — 286 source files
 
@@ -19067,7 +19072,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_hostrules.urc` | 735 | 14.0 KB |  |
 | `coop_jeepEnter.urc` | 31 | 0.5 KB |  |
 | `coop_lastmission.urc` | 171 | 3.3 KB |  |
-| `coop_loadout.urc` | 12,851 | 187.0 KB |  |
+| `coop_loadout.urc` | 12,867 | 187.3 KB |  |
 | `coop_login.urc` | 280 | 5.1 KB |  |
 | `coop_mom.urc` | 287 | 5.5 KB |  |
 | `coop_mp_options.urc` | 171 | 3.5 KB |  |
@@ -19267,7 +19272,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `hzm_radio_video.urc` | 3,077 | 76.5 KB |  |
 | `hzm_radios.urc` | 708 | 19.0 KB |  |
 | `hzm_records3d.urc` | 310 | 14.4 KB |  |
-| `hzm_wpnview.urc` | 11,153 | 203.5 KB |  |
+| `hzm_wpnview.urc` | 11,936 | 218.9 KB |  |
 | `joingame.urc` | 601 | 11.9 KB |  |
 | `joininternetgame.urc` | 113 | 2.4 KB |  |
 | `lib_scoreboard.urc` | 210 | 3.0 KB |  |
@@ -20327,11 +20332,11 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t2.cfg` | 78 | 3.5 KB | HZM coop - GENERATED by docs/proposals/mission_tile_art_2026-09-29/tools/gen_wiring.py - do not hand-edit. |
 | `t3.cfg` | 76 | 3.4 KB | HZM coop - GENERATED by docs/proposals/mission_tile_art_2026-09-29/tools/gen_wiring.py - do not hand-edit. |
 
-### `hzm-mohaa-coop-mod/ui/loadout/` — 10258 source files
+### `hzm-mohaa-coop-mod/ui/loadout/` — 10426 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `armory_defaults.cfg` | 705 | 32.9 KB | GENERATED - ARMORY defaults, exec'd by coop_defaults.cfg. The saved config loads after this and wins, so a se… |
+| `armory_defaults.cfg` | 708 | 33.0 KB | GENERATED - ARMORY defaults, exec'd by coop_defaults.cfg. The saved config loads after this and wins, so a se… |
 | `cand01.cfg` | 14 | 0.4 KB | GENERATED - inspect gun 01: candidate stats (raw text) + the compare join against the active slot's gun |
 | `cand02.cfg` | 14 | 0.4 KB | GENERATED - inspect gun 02: candidate stats (raw text) + the compare join against the active slot's gun |
 | `cand03.cfg` | 14 | 0.4 KB | GENERATED - inspect gun 03: candidate stats (raw text) + the compare join against the active slot's gun |
@@ -20413,6 +20418,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cand82.cfg` | 14 | 0.4 KB | GENERATED - inspect gun 82: candidate stats (raw text) + the compare join against the active slot's gun |
 | `cand83.cfg` | 14 | 0.4 KB | GENERATED - inspect gun 83: candidate stats (raw text) + the compare join against the active slot's gun |
 | `cand84.cfg` | 14 | 0.4 KB | GENERATED - inspect gun 84: candidate stats (raw text) + the compare join against the active slot's gun |
+| `cand85.cfg` | 14 | 0.4 KB | GENERATED - inspect gun 85: candidate stats (raw text) + the compare join against the active slot's gun |
 | `clr3.cfg` | 10 | 0.3 KB | GENERATED - full clear of slot 3 (sidearm) chips + archive (no class registry on this slot) |
 | `clr4.cfg` | 10 | 0.3 KB | GENERATED - full clear of slot 4 (grenade) chips + archive (no class registry on this slot) |
 | `clrP1.cfg` | 12 | 0.3 KB | GENERATED - clear PRIMARY slot 1 chips + unregister its class (one-per-class machine) |
@@ -20429,28 +20435,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_0_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #0 (level 2) |
 | `dm0_0_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #1 (level 2) |
 | `dm0_0_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #10 (level 3) |
-| `dm0_0_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #11 (level 4) |
+| `dm0_0_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #11 (level 3) |
 | `dm0_0_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #12 (level 4) |
 | `dm0_0_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #13 (level 4) |
 | `dm0_0_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #14 (level 4) |
 | `dm0_0_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #15 (level 4) |
-| `dm0_0_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #16 (level 5) |
-| `dm0_0_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #17 (level 6) |
+| `dm0_0_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #16 (level 4) |
+| `dm0_0_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #17 (level 5) |
 | `dm0_0_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #18 (level 6) |
-| `dm0_0_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #19 (level 7) |
+| `dm0_0_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #19 (level 6) |
 | `dm0_0_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #2 (level 2) |
-| `dm0_0_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #20 (level 8) |
+| `dm0_0_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #20 (level 7) |
 | `dm0_0_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #21 (level 8) |
-| `dm0_0_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #22 (level 10) |
+| `dm0_0_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #22 (level 8) |
 | `dm0_0_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #23 (level 10) |
 | `dm0_0_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #24 (level 10) |
 | `dm0_0_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #25 (level 10) |
 | `dm0_0_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #26 (level 10) |
 | `dm0_0_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #27 (level 10) |
-| `dm0_0_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #28 (level n/a) |
+| `dm0_0_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #28 (level 10) |
+| `dm0_0_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #29 (level n/a) |
 | `dm0_0_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #3 (level 2) |
 | `dm0_0_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #4 (level 2) |
-| `dm0_0_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #5 (level 3) |
+| `dm0_0_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #5 (level 2) |
 | `dm0_0_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #6 (level 3) |
 | `dm0_0_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #7 (level 3) |
 | `dm0_0_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #0 (level 2), candidate value #8 (level 3) |
@@ -20458,86 +20465,89 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_10_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #0 (level 2) |
 | `dm0_10_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #1 (level 2) |
 | `dm0_10_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #10 (level 3) |
-| `dm0_10_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #11 (level 4) |
+| `dm0_10_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #11 (level 3) |
 | `dm0_10_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #12 (level 4) |
 | `dm0_10_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #13 (level 4) |
 | `dm0_10_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #14 (level 4) |
 | `dm0_10_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #15 (level 4) |
-| `dm0_10_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #16 (level 5) |
-| `dm0_10_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #17 (level 6) |
+| `dm0_10_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #16 (level 4) |
+| `dm0_10_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #17 (level 5) |
 | `dm0_10_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #18 (level 6) |
-| `dm0_10_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #19 (level 7) |
+| `dm0_10_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #19 (level 6) |
 | `dm0_10_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #2 (level 2) |
-| `dm0_10_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #20 (level 8) |
+| `dm0_10_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #20 (level 7) |
 | `dm0_10_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #21 (level 8) |
-| `dm0_10_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #22 (level 10) |
+| `dm0_10_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #22 (level 8) |
 | `dm0_10_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #23 (level 10) |
 | `dm0_10_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #24 (level 10) |
 | `dm0_10_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #25 (level 10) |
 | `dm0_10_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #26 (level 10) |
 | `dm0_10_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #27 (level 10) |
-| `dm0_10_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #28 (level n/a) |
+| `dm0_10_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #28 (level 10) |
+| `dm0_10_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #29 (level n/a) |
 | `dm0_10_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #3 (level 2) |
 | `dm0_10_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #4 (level 2) |
-| `dm0_10_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #5 (level 3) |
+| `dm0_10_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #5 (level 2) |
 | `dm0_10_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #6 (level 3) |
 | `dm0_10_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #7 (level 3) |
 | `dm0_10_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #8 (level 3) |
 | `dm0_10_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #10 (level 3), candidate value #9 (level 3) |
-| `dm0_11_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #0 (level 2) |
-| `dm0_11_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #1 (level 2) |
-| `dm0_11_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #10 (level 3) |
-| `dm0_11_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #11 (level 4) |
-| `dm0_11_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #12 (level 4) |
-| `dm0_11_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #13 (level 4) |
-| `dm0_11_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #14 (level 4) |
-| `dm0_11_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #15 (level 4) |
-| `dm0_11_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #16 (level 5) |
-| `dm0_11_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #17 (level 6) |
-| `dm0_11_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #18 (level 6) |
-| `dm0_11_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #19 (level 7) |
-| `dm0_11_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #2 (level 2) |
-| `dm0_11_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #20 (level 8) |
-| `dm0_11_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #21 (level 8) |
-| `dm0_11_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #22 (level 10) |
-| `dm0_11_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #23 (level 10) |
-| `dm0_11_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #24 (level 10) |
-| `dm0_11_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #25 (level 10) |
-| `dm0_11_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #26 (level 10) |
-| `dm0_11_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #27 (level 10) |
-| `dm0_11_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #28 (level n/a) |
-| `dm0_11_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #3 (level 2) |
-| `dm0_11_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #4 (level 2) |
-| `dm0_11_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #5 (level 3) |
-| `dm0_11_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #6 (level 3) |
-| `dm0_11_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #7 (level 3) |
-| `dm0_11_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #8 (level 3) |
-| `dm0_11_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 4), candidate value #9 (level 3) |
+| `dm0_11_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #0 (level 2) |
+| `dm0_11_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #1 (level 2) |
+| `dm0_11_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #10 (level 3) |
+| `dm0_11_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #11 (level 3) |
+| `dm0_11_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #12 (level 4) |
+| `dm0_11_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #13 (level 4) |
+| `dm0_11_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #14 (level 4) |
+| `dm0_11_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #15 (level 4) |
+| `dm0_11_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #16 (level 4) |
+| `dm0_11_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #17 (level 5) |
+| `dm0_11_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #18 (level 6) |
+| `dm0_11_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #19 (level 6) |
+| `dm0_11_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #2 (level 2) |
+| `dm0_11_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #20 (level 7) |
+| `dm0_11_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #21 (level 8) |
+| `dm0_11_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #22 (level 8) |
+| `dm0_11_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #23 (level 10) |
+| `dm0_11_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #24 (level 10) |
+| `dm0_11_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #25 (level 10) |
+| `dm0_11_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #26 (level 10) |
+| `dm0_11_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #27 (level 10) |
+| `dm0_11_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #28 (level 10) |
+| `dm0_11_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #29 (level n/a) |
+| `dm0_11_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #3 (level 2) |
+| `dm0_11_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #4 (level 2) |
+| `dm0_11_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #5 (level 2) |
+| `dm0_11_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #6 (level 3) |
+| `dm0_11_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #7 (level 3) |
+| `dm0_11_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #8 (level 3) |
+| `dm0_11_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #11 (level 3), candidate value #9 (level 3) |
 | `dm0_12_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #0 (level 2) |
 | `dm0_12_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #1 (level 2) |
 | `dm0_12_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #10 (level 3) |
-| `dm0_12_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #11 (level 4) |
+| `dm0_12_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #11 (level 3) |
 | `dm0_12_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #12 (level 4) |
 | `dm0_12_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #13 (level 4) |
 | `dm0_12_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #14 (level 4) |
 | `dm0_12_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #15 (level 4) |
-| `dm0_12_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #16 (level 5) |
-| `dm0_12_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #17 (level 6) |
+| `dm0_12_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #16 (level 4) |
+| `dm0_12_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #17 (level 5) |
 | `dm0_12_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #18 (level 6) |
-| `dm0_12_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #19 (level 7) |
+| `dm0_12_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #19 (level 6) |
 | `dm0_12_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #2 (level 2) |
-| `dm0_12_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #20 (level 8) |
+| `dm0_12_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #20 (level 7) |
 | `dm0_12_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #21 (level 8) |
-| `dm0_12_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #22 (level 10) |
+| `dm0_12_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #22 (level 8) |
 | `dm0_12_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #23 (level 10) |
 | `dm0_12_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #24 (level 10) |
 | `dm0_12_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #25 (level 10) |
 | `dm0_12_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #26 (level 10) |
 | `dm0_12_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #27 (level 10) |
-| `dm0_12_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #28 (level n/a) |
+| `dm0_12_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #28 (level 10) |
+| `dm0_12_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #29 (level n/a) |
 | `dm0_12_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #3 (level 2) |
 | `dm0_12_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #4 (level 2) |
-| `dm0_12_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #5 (level 3) |
+| `dm0_12_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #5 (level 2) |
 | `dm0_12_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #6 (level 3) |
 | `dm0_12_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #7 (level 3) |
 | `dm0_12_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #12 (level 4), candidate value #8 (level 3) |
@@ -20545,28 +20555,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_13_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #0 (level 2) |
 | `dm0_13_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #1 (level 2) |
 | `dm0_13_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #10 (level 3) |
-| `dm0_13_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #11 (level 4) |
+| `dm0_13_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #11 (level 3) |
 | `dm0_13_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #12 (level 4) |
 | `dm0_13_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #13 (level 4) |
 | `dm0_13_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #14 (level 4) |
 | `dm0_13_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #15 (level 4) |
-| `dm0_13_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #16 (level 5) |
-| `dm0_13_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #17 (level 6) |
+| `dm0_13_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #16 (level 4) |
+| `dm0_13_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #17 (level 5) |
 | `dm0_13_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #18 (level 6) |
-| `dm0_13_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #19 (level 7) |
+| `dm0_13_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #19 (level 6) |
 | `dm0_13_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #2 (level 2) |
-| `dm0_13_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #20 (level 8) |
+| `dm0_13_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #20 (level 7) |
 | `dm0_13_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #21 (level 8) |
-| `dm0_13_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #22 (level 10) |
+| `dm0_13_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #22 (level 8) |
 | `dm0_13_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #23 (level 10) |
 | `dm0_13_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #24 (level 10) |
 | `dm0_13_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #25 (level 10) |
 | `dm0_13_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #26 (level 10) |
 | `dm0_13_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #27 (level 10) |
-| `dm0_13_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #28 (level n/a) |
+| `dm0_13_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #28 (level 10) |
+| `dm0_13_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #29 (level n/a) |
 | `dm0_13_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #3 (level 2) |
 | `dm0_13_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #4 (level 2) |
-| `dm0_13_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #5 (level 3) |
+| `dm0_13_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #5 (level 2) |
 | `dm0_13_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #6 (level 3) |
 | `dm0_13_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #7 (level 3) |
 | `dm0_13_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #13 (level 4), candidate value #8 (level 3) |
@@ -20574,28 +20585,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_14_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #0 (level 2) |
 | `dm0_14_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #1 (level 2) |
 | `dm0_14_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #10 (level 3) |
-| `dm0_14_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #11 (level 4) |
+| `dm0_14_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #11 (level 3) |
 | `dm0_14_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #12 (level 4) |
 | `dm0_14_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #13 (level 4) |
 | `dm0_14_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #14 (level 4) |
 | `dm0_14_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #15 (level 4) |
-| `dm0_14_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #16 (level 5) |
-| `dm0_14_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #17 (level 6) |
+| `dm0_14_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #16 (level 4) |
+| `dm0_14_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #17 (level 5) |
 | `dm0_14_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #18 (level 6) |
-| `dm0_14_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #19 (level 7) |
+| `dm0_14_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #19 (level 6) |
 | `dm0_14_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #2 (level 2) |
-| `dm0_14_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #20 (level 8) |
+| `dm0_14_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #20 (level 7) |
 | `dm0_14_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #21 (level 8) |
-| `dm0_14_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #22 (level 10) |
+| `dm0_14_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #22 (level 8) |
 | `dm0_14_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #23 (level 10) |
 | `dm0_14_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #24 (level 10) |
 | `dm0_14_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #25 (level 10) |
 | `dm0_14_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #26 (level 10) |
 | `dm0_14_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #27 (level 10) |
-| `dm0_14_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #28 (level n/a) |
+| `dm0_14_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #28 (level 10) |
+| `dm0_14_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #29 (level n/a) |
 | `dm0_14_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #3 (level 2) |
 | `dm0_14_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #4 (level 2) |
-| `dm0_14_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #5 (level 3) |
+| `dm0_14_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #5 (level 2) |
 | `dm0_14_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #6 (level 3) |
 | `dm0_14_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #7 (level 3) |
 | `dm0_14_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #14 (level 4), candidate value #8 (level 3) |
@@ -20603,289 +20615,299 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_15_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #0 (level 2) |
 | `dm0_15_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #1 (level 2) |
 | `dm0_15_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #10 (level 3) |
-| `dm0_15_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #11 (level 4) |
+| `dm0_15_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #11 (level 3) |
 | `dm0_15_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #12 (level 4) |
 | `dm0_15_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #13 (level 4) |
 | `dm0_15_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #14 (level 4) |
 | `dm0_15_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #15 (level 4) |
-| `dm0_15_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #16 (level 5) |
-| `dm0_15_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #17 (level 6) |
+| `dm0_15_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #16 (level 4) |
+| `dm0_15_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #17 (level 5) |
 | `dm0_15_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #18 (level 6) |
-| `dm0_15_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #19 (level 7) |
+| `dm0_15_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #19 (level 6) |
 | `dm0_15_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #2 (level 2) |
-| `dm0_15_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #20 (level 8) |
+| `dm0_15_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #20 (level 7) |
 | `dm0_15_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #21 (level 8) |
-| `dm0_15_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #22 (level 10) |
+| `dm0_15_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #22 (level 8) |
 | `dm0_15_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #23 (level 10) |
 | `dm0_15_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #24 (level 10) |
 | `dm0_15_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #25 (level 10) |
 | `dm0_15_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #26 (level 10) |
 | `dm0_15_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #27 (level 10) |
-| `dm0_15_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #28 (level n/a) |
+| `dm0_15_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #28 (level 10) |
+| `dm0_15_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #29 (level n/a) |
 | `dm0_15_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #3 (level 2) |
 | `dm0_15_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #4 (level 2) |
-| `dm0_15_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #5 (level 3) |
+| `dm0_15_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #5 (level 2) |
 | `dm0_15_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #6 (level 3) |
 | `dm0_15_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #7 (level 3) |
 | `dm0_15_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #8 (level 3) |
 | `dm0_15_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #15 (level 4), candidate value #9 (level 3) |
-| `dm0_16_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #0 (level 2) |
-| `dm0_16_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #1 (level 2) |
-| `dm0_16_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #10 (level 3) |
-| `dm0_16_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #11 (level 4) |
-| `dm0_16_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #12 (level 4) |
-| `dm0_16_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #13 (level 4) |
-| `dm0_16_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #14 (level 4) |
-| `dm0_16_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #15 (level 4) |
-| `dm0_16_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #16 (level 5) |
-| `dm0_16_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #17 (level 6) |
-| `dm0_16_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #18 (level 6) |
-| `dm0_16_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #19 (level 7) |
-| `dm0_16_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #2 (level 2) |
-| `dm0_16_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #20 (level 8) |
-| `dm0_16_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #21 (level 8) |
-| `dm0_16_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #22 (level 10) |
-| `dm0_16_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #23 (level 10) |
-| `dm0_16_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #24 (level 10) |
-| `dm0_16_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #25 (level 10) |
-| `dm0_16_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #26 (level 10) |
-| `dm0_16_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #27 (level 10) |
-| `dm0_16_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #28 (level n/a) |
-| `dm0_16_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #3 (level 2) |
-| `dm0_16_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #4 (level 2) |
-| `dm0_16_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #5 (level 3) |
-| `dm0_16_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #6 (level 3) |
-| `dm0_16_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #7 (level 3) |
-| `dm0_16_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #8 (level 3) |
-| `dm0_16_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 5), candidate value #9 (level 3) |
-| `dm0_17_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #0 (level 2) |
-| `dm0_17_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #1 (level 2) |
-| `dm0_17_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #10 (level 3) |
-| `dm0_17_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #11 (level 4) |
-| `dm0_17_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #12 (level 4) |
-| `dm0_17_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #13 (level 4) |
-| `dm0_17_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #14 (level 4) |
-| `dm0_17_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #15 (level 4) |
-| `dm0_17_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #16 (level 5) |
-| `dm0_17_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #17 (level 6) |
-| `dm0_17_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #18 (level 6) |
-| `dm0_17_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #19 (level 7) |
-| `dm0_17_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #2 (level 2) |
-| `dm0_17_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #20 (level 8) |
-| `dm0_17_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #21 (level 8) |
-| `dm0_17_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #22 (level 10) |
-| `dm0_17_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #23 (level 10) |
-| `dm0_17_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #24 (level 10) |
-| `dm0_17_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #25 (level 10) |
-| `dm0_17_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #26 (level 10) |
-| `dm0_17_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #27 (level 10) |
-| `dm0_17_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #28 (level n/a) |
-| `dm0_17_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #3 (level 2) |
-| `dm0_17_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #4 (level 2) |
-| `dm0_17_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #5 (level 3) |
-| `dm0_17_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #6 (level 3) |
-| `dm0_17_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #7 (level 3) |
-| `dm0_17_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #8 (level 3) |
-| `dm0_17_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 6), candidate value #9 (level 3) |
+| `dm0_16_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #0 (level 2) |
+| `dm0_16_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #1 (level 2) |
+| `dm0_16_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #10 (level 3) |
+| `dm0_16_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #11 (level 3) |
+| `dm0_16_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #12 (level 4) |
+| `dm0_16_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #13 (level 4) |
+| `dm0_16_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #14 (level 4) |
+| `dm0_16_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #15 (level 4) |
+| `dm0_16_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #16 (level 4) |
+| `dm0_16_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #17 (level 5) |
+| `dm0_16_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #18 (level 6) |
+| `dm0_16_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #19 (level 6) |
+| `dm0_16_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #2 (level 2) |
+| `dm0_16_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #20 (level 7) |
+| `dm0_16_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #21 (level 8) |
+| `dm0_16_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #22 (level 8) |
+| `dm0_16_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #23 (level 10) |
+| `dm0_16_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #24 (level 10) |
+| `dm0_16_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #25 (level 10) |
+| `dm0_16_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #26 (level 10) |
+| `dm0_16_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #27 (level 10) |
+| `dm0_16_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #28 (level 10) |
+| `dm0_16_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #29 (level n/a) |
+| `dm0_16_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #3 (level 2) |
+| `dm0_16_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #4 (level 2) |
+| `dm0_16_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #5 (level 2) |
+| `dm0_16_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #6 (level 3) |
+| `dm0_16_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #7 (level 3) |
+| `dm0_16_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #8 (level 3) |
+| `dm0_16_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #16 (level 4), candidate value #9 (level 3) |
+| `dm0_17_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #0 (level 2) |
+| `dm0_17_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #1 (level 2) |
+| `dm0_17_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #10 (level 3) |
+| `dm0_17_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #11 (level 3) |
+| `dm0_17_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #12 (level 4) |
+| `dm0_17_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #13 (level 4) |
+| `dm0_17_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #14 (level 4) |
+| `dm0_17_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #15 (level 4) |
+| `dm0_17_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #16 (level 4) |
+| `dm0_17_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #17 (level 5) |
+| `dm0_17_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #18 (level 6) |
+| `dm0_17_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #19 (level 6) |
+| `dm0_17_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #2 (level 2) |
+| `dm0_17_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #20 (level 7) |
+| `dm0_17_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #21 (level 8) |
+| `dm0_17_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #22 (level 8) |
+| `dm0_17_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #23 (level 10) |
+| `dm0_17_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #24 (level 10) |
+| `dm0_17_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #25 (level 10) |
+| `dm0_17_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #26 (level 10) |
+| `dm0_17_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #27 (level 10) |
+| `dm0_17_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #28 (level 10) |
+| `dm0_17_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #29 (level n/a) |
+| `dm0_17_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #3 (level 2) |
+| `dm0_17_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #4 (level 2) |
+| `dm0_17_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #5 (level 2) |
+| `dm0_17_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #6 (level 3) |
+| `dm0_17_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #7 (level 3) |
+| `dm0_17_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #8 (level 3) |
+| `dm0_17_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #17 (level 5), candidate value #9 (level 3) |
 | `dm0_18_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #0 (level 2) |
 | `dm0_18_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #1 (level 2) |
 | `dm0_18_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #10 (level 3) |
-| `dm0_18_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #11 (level 4) |
+| `dm0_18_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #11 (level 3) |
 | `dm0_18_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #12 (level 4) |
 | `dm0_18_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #13 (level 4) |
 | `dm0_18_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #14 (level 4) |
 | `dm0_18_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #15 (level 4) |
-| `dm0_18_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #16 (level 5) |
-| `dm0_18_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #17 (level 6) |
+| `dm0_18_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #16 (level 4) |
+| `dm0_18_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #17 (level 5) |
 | `dm0_18_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #18 (level 6) |
-| `dm0_18_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #19 (level 7) |
+| `dm0_18_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #19 (level 6) |
 | `dm0_18_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #2 (level 2) |
-| `dm0_18_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #20 (level 8) |
+| `dm0_18_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #20 (level 7) |
 | `dm0_18_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #21 (level 8) |
-| `dm0_18_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #22 (level 10) |
+| `dm0_18_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #22 (level 8) |
 | `dm0_18_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #23 (level 10) |
 | `dm0_18_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #24 (level 10) |
 | `dm0_18_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #25 (level 10) |
 | `dm0_18_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #26 (level 10) |
 | `dm0_18_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #27 (level 10) |
-| `dm0_18_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #28 (level n/a) |
+| `dm0_18_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #28 (level 10) |
+| `dm0_18_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #29 (level n/a) |
 | `dm0_18_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #3 (level 2) |
 | `dm0_18_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #4 (level 2) |
-| `dm0_18_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #5 (level 3) |
+| `dm0_18_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #5 (level 2) |
 | `dm0_18_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #6 (level 3) |
 | `dm0_18_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #7 (level 3) |
 | `dm0_18_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #8 (level 3) |
 | `dm0_18_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #18 (level 6), candidate value #9 (level 3) |
-| `dm0_19_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #0 (level 2) |
-| `dm0_19_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #1 (level 2) |
-| `dm0_19_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #10 (level 3) |
-| `dm0_19_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #11 (level 4) |
-| `dm0_19_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #12 (level 4) |
-| `dm0_19_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #13 (level 4) |
-| `dm0_19_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #14 (level 4) |
-| `dm0_19_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #15 (level 4) |
-| `dm0_19_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #16 (level 5) |
-| `dm0_19_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #17 (level 6) |
-| `dm0_19_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #18 (level 6) |
-| `dm0_19_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #19 (level 7) |
-| `dm0_19_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #2 (level 2) |
-| `dm0_19_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #20 (level 8) |
-| `dm0_19_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #21 (level 8) |
-| `dm0_19_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #22 (level 10) |
-| `dm0_19_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #23 (level 10) |
-| `dm0_19_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #24 (level 10) |
-| `dm0_19_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #25 (level 10) |
-| `dm0_19_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #26 (level 10) |
-| `dm0_19_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #27 (level 10) |
-| `dm0_19_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #28 (level n/a) |
-| `dm0_19_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #3 (level 2) |
-| `dm0_19_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #4 (level 2) |
-| `dm0_19_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #5 (level 3) |
-| `dm0_19_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #6 (level 3) |
-| `dm0_19_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #7 (level 3) |
-| `dm0_19_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #8 (level 3) |
-| `dm0_19_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 7), candidate value #9 (level 3) |
+| `dm0_19_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #0 (level 2) |
+| `dm0_19_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #1 (level 2) |
+| `dm0_19_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #10 (level 3) |
+| `dm0_19_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #11 (level 3) |
+| `dm0_19_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #12 (level 4) |
+| `dm0_19_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #13 (level 4) |
+| `dm0_19_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #14 (level 4) |
+| `dm0_19_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #15 (level 4) |
+| `dm0_19_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #16 (level 4) |
+| `dm0_19_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #17 (level 5) |
+| `dm0_19_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #18 (level 6) |
+| `dm0_19_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #19 (level 6) |
+| `dm0_19_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #2 (level 2) |
+| `dm0_19_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #20 (level 7) |
+| `dm0_19_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #21 (level 8) |
+| `dm0_19_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #22 (level 8) |
+| `dm0_19_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #23 (level 10) |
+| `dm0_19_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #24 (level 10) |
+| `dm0_19_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #25 (level 10) |
+| `dm0_19_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #26 (level 10) |
+| `dm0_19_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #27 (level 10) |
+| `dm0_19_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #28 (level 10) |
+| `dm0_19_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #29 (level n/a) |
+| `dm0_19_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #3 (level 2) |
+| `dm0_19_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #4 (level 2) |
+| `dm0_19_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #5 (level 2) |
+| `dm0_19_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #6 (level 3) |
+| `dm0_19_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #7 (level 3) |
+| `dm0_19_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #8 (level 3) |
+| `dm0_19_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #19 (level 6), candidate value #9 (level 3) |
 | `dm0_1_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #0 (level 2) |
 | `dm0_1_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #1 (level 2) |
 | `dm0_1_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #10 (level 3) |
-| `dm0_1_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #11 (level 4) |
+| `dm0_1_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #11 (level 3) |
 | `dm0_1_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #12 (level 4) |
 | `dm0_1_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #13 (level 4) |
 | `dm0_1_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #14 (level 4) |
 | `dm0_1_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #15 (level 4) |
-| `dm0_1_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #16 (level 5) |
-| `dm0_1_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #17 (level 6) |
+| `dm0_1_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #16 (level 4) |
+| `dm0_1_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #17 (level 5) |
 | `dm0_1_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #18 (level 6) |
-| `dm0_1_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #19 (level 7) |
+| `dm0_1_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #19 (level 6) |
 | `dm0_1_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #2 (level 2) |
-| `dm0_1_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #20 (level 8) |
+| `dm0_1_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #20 (level 7) |
 | `dm0_1_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #21 (level 8) |
-| `dm0_1_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #22 (level 10) |
+| `dm0_1_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #22 (level 8) |
 | `dm0_1_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #23 (level 10) |
 | `dm0_1_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #24 (level 10) |
 | `dm0_1_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #25 (level 10) |
 | `dm0_1_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #26 (level 10) |
 | `dm0_1_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #27 (level 10) |
-| `dm0_1_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #28 (level n/a) |
+| `dm0_1_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #28 (level 10) |
+| `dm0_1_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #29 (level n/a) |
 | `dm0_1_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #3 (level 2) |
 | `dm0_1_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #4 (level 2) |
-| `dm0_1_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #5 (level 3) |
+| `dm0_1_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #5 (level 2) |
 | `dm0_1_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #6 (level 3) |
 | `dm0_1_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #7 (level 3) |
 | `dm0_1_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #8 (level 3) |
 | `dm0_1_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #1 (level 2), candidate value #9 (level 3) |
-| `dm0_20_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #0 (level 2) |
-| `dm0_20_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #1 (level 2) |
-| `dm0_20_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #10 (level 3) |
-| `dm0_20_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #11 (level 4) |
-| `dm0_20_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #12 (level 4) |
-| `dm0_20_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #13 (level 4) |
-| `dm0_20_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #14 (level 4) |
-| `dm0_20_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #15 (level 4) |
-| `dm0_20_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #16 (level 5) |
-| `dm0_20_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #17 (level 6) |
-| `dm0_20_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #18 (level 6) |
-| `dm0_20_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #19 (level 7) |
-| `dm0_20_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #2 (level 2) |
-| `dm0_20_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #20 (level 8) |
-| `dm0_20_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #21 (level 8) |
-| `dm0_20_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #22 (level 10) |
-| `dm0_20_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #23 (level 10) |
-| `dm0_20_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #24 (level 10) |
-| `dm0_20_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #25 (level 10) |
-| `dm0_20_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #26 (level 10) |
-| `dm0_20_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #27 (level 10) |
-| `dm0_20_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #28 (level n/a) |
-| `dm0_20_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #3 (level 2) |
-| `dm0_20_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #4 (level 2) |
-| `dm0_20_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #5 (level 3) |
-| `dm0_20_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #6 (level 3) |
-| `dm0_20_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #7 (level 3) |
-| `dm0_20_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #8 (level 3) |
-| `dm0_20_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 8), candidate value #9 (level 3) |
+| `dm0_20_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #0 (level 2) |
+| `dm0_20_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #1 (level 2) |
+| `dm0_20_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #10 (level 3) |
+| `dm0_20_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #11 (level 3) |
+| `dm0_20_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #12 (level 4) |
+| `dm0_20_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #13 (level 4) |
+| `dm0_20_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #14 (level 4) |
+| `dm0_20_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #15 (level 4) |
+| `dm0_20_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #16 (level 4) |
+| `dm0_20_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #17 (level 5) |
+| `dm0_20_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #18 (level 6) |
+| `dm0_20_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #19 (level 6) |
+| `dm0_20_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #2 (level 2) |
+| `dm0_20_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #20 (level 7) |
+| `dm0_20_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #21 (level 8) |
+| `dm0_20_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #22 (level 8) |
+| `dm0_20_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #23 (level 10) |
+| `dm0_20_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #24 (level 10) |
+| `dm0_20_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #25 (level 10) |
+| `dm0_20_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #26 (level 10) |
+| `dm0_20_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #27 (level 10) |
+| `dm0_20_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #28 (level 10) |
+| `dm0_20_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #29 (level n/a) |
+| `dm0_20_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #3 (level 2) |
+| `dm0_20_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #4 (level 2) |
+| `dm0_20_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #5 (level 2) |
+| `dm0_20_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #6 (level 3) |
+| `dm0_20_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #7 (level 3) |
+| `dm0_20_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #8 (level 3) |
+| `dm0_20_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #20 (level 7), candidate value #9 (level 3) |
 | `dm0_21_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #0 (level 2) |
 | `dm0_21_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #1 (level 2) |
 | `dm0_21_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #10 (level 3) |
-| `dm0_21_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #11 (level 4) |
+| `dm0_21_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #11 (level 3) |
 | `dm0_21_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #12 (level 4) |
 | `dm0_21_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #13 (level 4) |
 | `dm0_21_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #14 (level 4) |
 | `dm0_21_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #15 (level 4) |
-| `dm0_21_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #16 (level 5) |
-| `dm0_21_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #17 (level 6) |
+| `dm0_21_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #16 (level 4) |
+| `dm0_21_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #17 (level 5) |
 | `dm0_21_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #18 (level 6) |
-| `dm0_21_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #19 (level 7) |
+| `dm0_21_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #19 (level 6) |
 | `dm0_21_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #2 (level 2) |
-| `dm0_21_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #20 (level 8) |
+| `dm0_21_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #20 (level 7) |
 | `dm0_21_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #21 (level 8) |
-| `dm0_21_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #22 (level 10) |
+| `dm0_21_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #22 (level 8) |
 | `dm0_21_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #23 (level 10) |
 | `dm0_21_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #24 (level 10) |
 | `dm0_21_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #25 (level 10) |
 | `dm0_21_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #26 (level 10) |
 | `dm0_21_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #27 (level 10) |
-| `dm0_21_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #28 (level n/a) |
+| `dm0_21_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #28 (level 10) |
+| `dm0_21_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #29 (level n/a) |
 | `dm0_21_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #3 (level 2) |
 | `dm0_21_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #4 (level 2) |
-| `dm0_21_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #5 (level 3) |
+| `dm0_21_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #5 (level 2) |
 | `dm0_21_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #6 (level 3) |
 | `dm0_21_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #7 (level 3) |
 | `dm0_21_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #8 (level 3) |
 | `dm0_21_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #21 (level 8), candidate value #9 (level 3) |
-| `dm0_22_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #0 (level 2) |
-| `dm0_22_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #1 (level 2) |
-| `dm0_22_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #10 (level 3) |
-| `dm0_22_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #11 (level 4) |
-| `dm0_22_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #12 (level 4) |
-| `dm0_22_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #13 (level 4) |
-| `dm0_22_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #14 (level 4) |
-| `dm0_22_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #15 (level 4) |
-| `dm0_22_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #16 (level 5) |
-| `dm0_22_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #17 (level 6) |
-| `dm0_22_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #18 (level 6) |
-| `dm0_22_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #19 (level 7) |
-| `dm0_22_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #2 (level 2) |
-| `dm0_22_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #20 (level 8) |
-| `dm0_22_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #21 (level 8) |
-| `dm0_22_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #22 (level 10) |
-| `dm0_22_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #23 (level 10) |
-| `dm0_22_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #24 (level 10) |
-| `dm0_22_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #25 (level 10) |
-| `dm0_22_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #26 (level 10) |
-| `dm0_22_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #27 (level 10) |
-| `dm0_22_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #28 (level n/a) |
-| `dm0_22_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #3 (level 2) |
-| `dm0_22_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #4 (level 2) |
-| `dm0_22_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #5 (level 3) |
-| `dm0_22_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #6 (level 3) |
-| `dm0_22_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #7 (level 3) |
-| `dm0_22_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #8 (level 3) |
-| `dm0_22_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 10), candidate value #9 (level 3) |
+| `dm0_22_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #0 (level 2) |
+| `dm0_22_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #1 (level 2) |
+| `dm0_22_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #10 (level 3) |
+| `dm0_22_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #11 (level 3) |
+| `dm0_22_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #12 (level 4) |
+| `dm0_22_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #13 (level 4) |
+| `dm0_22_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #14 (level 4) |
+| `dm0_22_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #15 (level 4) |
+| `dm0_22_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #16 (level 4) |
+| `dm0_22_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #17 (level 5) |
+| `dm0_22_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #18 (level 6) |
+| `dm0_22_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #19 (level 6) |
+| `dm0_22_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #2 (level 2) |
+| `dm0_22_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #20 (level 7) |
+| `dm0_22_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #21 (level 8) |
+| `dm0_22_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #22 (level 8) |
+| `dm0_22_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #23 (level 10) |
+| `dm0_22_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #24 (level 10) |
+| `dm0_22_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #25 (level 10) |
+| `dm0_22_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #26 (level 10) |
+| `dm0_22_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #27 (level 10) |
+| `dm0_22_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #28 (level 10) |
+| `dm0_22_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #29 (level n/a) |
+| `dm0_22_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #3 (level 2) |
+| `dm0_22_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #4 (level 2) |
+| `dm0_22_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #5 (level 2) |
+| `dm0_22_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #6 (level 3) |
+| `dm0_22_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #7 (level 3) |
+| `dm0_22_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #8 (level 3) |
+| `dm0_22_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #22 (level 8), candidate value #9 (level 3) |
 | `dm0_23_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #0 (level 2) |
 | `dm0_23_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #1 (level 2) |
 | `dm0_23_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #10 (level 3) |
-| `dm0_23_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #11 (level 4) |
+| `dm0_23_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #11 (level 3) |
 | `dm0_23_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #12 (level 4) |
 | `dm0_23_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #13 (level 4) |
 | `dm0_23_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #14 (level 4) |
 | `dm0_23_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #15 (level 4) |
-| `dm0_23_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #16 (level 5) |
-| `dm0_23_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #17 (level 6) |
+| `dm0_23_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #16 (level 4) |
+| `dm0_23_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #17 (level 5) |
 | `dm0_23_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #18 (level 6) |
-| `dm0_23_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #19 (level 7) |
+| `dm0_23_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #19 (level 6) |
 | `dm0_23_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #2 (level 2) |
-| `dm0_23_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #20 (level 8) |
+| `dm0_23_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #20 (level 7) |
 | `dm0_23_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #21 (level 8) |
-| `dm0_23_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #22 (level 10) |
+| `dm0_23_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #22 (level 8) |
 | `dm0_23_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #23 (level 10) |
 | `dm0_23_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #24 (level 10) |
 | `dm0_23_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #25 (level 10) |
 | `dm0_23_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #26 (level 10) |
 | `dm0_23_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #27 (level 10) |
-| `dm0_23_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #28 (level n/a) |
+| `dm0_23_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #28 (level 10) |
+| `dm0_23_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #29 (level n/a) |
 | `dm0_23_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #3 (level 2) |
 | `dm0_23_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #4 (level 2) |
-| `dm0_23_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #5 (level 3) |
+| `dm0_23_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #5 (level 2) |
 | `dm0_23_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #6 (level 3) |
 | `dm0_23_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #7 (level 3) |
 | `dm0_23_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #23 (level 10), candidate value #8 (level 3) |
@@ -20893,28 +20915,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_24_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #0 (level 2) |
 | `dm0_24_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #1 (level 2) |
 | `dm0_24_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #10 (level 3) |
-| `dm0_24_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #11 (level 4) |
+| `dm0_24_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #11 (level 3) |
 | `dm0_24_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #12 (level 4) |
 | `dm0_24_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #13 (level 4) |
 | `dm0_24_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #14 (level 4) |
 | `dm0_24_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #15 (level 4) |
-| `dm0_24_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #16 (level 5) |
-| `dm0_24_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #17 (level 6) |
+| `dm0_24_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #16 (level 4) |
+| `dm0_24_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #17 (level 5) |
 | `dm0_24_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #18 (level 6) |
-| `dm0_24_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #19 (level 7) |
+| `dm0_24_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #19 (level 6) |
 | `dm0_24_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #2 (level 2) |
-| `dm0_24_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #20 (level 8) |
+| `dm0_24_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #20 (level 7) |
 | `dm0_24_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #21 (level 8) |
-| `dm0_24_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #22 (level 10) |
+| `dm0_24_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #22 (level 8) |
 | `dm0_24_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #23 (level 10) |
 | `dm0_24_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #24 (level 10) |
 | `dm0_24_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #25 (level 10) |
 | `dm0_24_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #26 (level 10) |
 | `dm0_24_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #27 (level 10) |
-| `dm0_24_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #28 (level n/a) |
+| `dm0_24_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #28 (level 10) |
+| `dm0_24_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #29 (level n/a) |
 | `dm0_24_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #3 (level 2) |
 | `dm0_24_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #4 (level 2) |
-| `dm0_24_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #5 (level 3) |
+| `dm0_24_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #5 (level 2) |
 | `dm0_24_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #6 (level 3) |
 | `dm0_24_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #7 (level 3) |
 | `dm0_24_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #24 (level 10), candidate value #8 (level 3) |
@@ -20922,28 +20945,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_25_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #0 (level 2) |
 | `dm0_25_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #1 (level 2) |
 | `dm0_25_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #10 (level 3) |
-| `dm0_25_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #11 (level 4) |
+| `dm0_25_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #11 (level 3) |
 | `dm0_25_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #12 (level 4) |
 | `dm0_25_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #13 (level 4) |
 | `dm0_25_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #14 (level 4) |
 | `dm0_25_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #15 (level 4) |
-| `dm0_25_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #16 (level 5) |
-| `dm0_25_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #17 (level 6) |
+| `dm0_25_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #16 (level 4) |
+| `dm0_25_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #17 (level 5) |
 | `dm0_25_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #18 (level 6) |
-| `dm0_25_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #19 (level 7) |
+| `dm0_25_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #19 (level 6) |
 | `dm0_25_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #2 (level 2) |
-| `dm0_25_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #20 (level 8) |
+| `dm0_25_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #20 (level 7) |
 | `dm0_25_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #21 (level 8) |
-| `dm0_25_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #22 (level 10) |
+| `dm0_25_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #22 (level 8) |
 | `dm0_25_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #23 (level 10) |
 | `dm0_25_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #24 (level 10) |
 | `dm0_25_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #25 (level 10) |
 | `dm0_25_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #26 (level 10) |
 | `dm0_25_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #27 (level 10) |
-| `dm0_25_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #28 (level n/a) |
+| `dm0_25_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #28 (level 10) |
+| `dm0_25_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #29 (level n/a) |
 | `dm0_25_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #3 (level 2) |
 | `dm0_25_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #4 (level 2) |
-| `dm0_25_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #5 (level 3) |
+| `dm0_25_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #5 (level 2) |
 | `dm0_25_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #6 (level 3) |
 | `dm0_25_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #7 (level 3) |
 | `dm0_25_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #25 (level 10), candidate value #8 (level 3) |
@@ -20951,28 +20975,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_26_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #0 (level 2) |
 | `dm0_26_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #1 (level 2) |
 | `dm0_26_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #10 (level 3) |
-| `dm0_26_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #11 (level 4) |
+| `dm0_26_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #11 (level 3) |
 | `dm0_26_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #12 (level 4) |
 | `dm0_26_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #13 (level 4) |
 | `dm0_26_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #14 (level 4) |
 | `dm0_26_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #15 (level 4) |
-| `dm0_26_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #16 (level 5) |
-| `dm0_26_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #17 (level 6) |
+| `dm0_26_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #16 (level 4) |
+| `dm0_26_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #17 (level 5) |
 | `dm0_26_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #18 (level 6) |
-| `dm0_26_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #19 (level 7) |
+| `dm0_26_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #19 (level 6) |
 | `dm0_26_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #2 (level 2) |
-| `dm0_26_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #20 (level 8) |
+| `dm0_26_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #20 (level 7) |
 | `dm0_26_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #21 (level 8) |
-| `dm0_26_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #22 (level 10) |
+| `dm0_26_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #22 (level 8) |
 | `dm0_26_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #23 (level 10) |
 | `dm0_26_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #24 (level 10) |
 | `dm0_26_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #25 (level 10) |
 | `dm0_26_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #26 (level 10) |
 | `dm0_26_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #27 (level 10) |
-| `dm0_26_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #28 (level n/a) |
+| `dm0_26_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #28 (level 10) |
+| `dm0_26_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #29 (level n/a) |
 | `dm0_26_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #3 (level 2) |
 | `dm0_26_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #4 (level 2) |
-| `dm0_26_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #5 (level 3) |
+| `dm0_26_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #5 (level 2) |
 | `dm0_26_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #6 (level 3) |
 | `dm0_26_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #7 (level 3) |
 | `dm0_26_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #26 (level 10), candidate value #8 (level 3) |
@@ -20980,86 +21005,119 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_27_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #0 (level 2) |
 | `dm0_27_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #1 (level 2) |
 | `dm0_27_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #10 (level 3) |
-| `dm0_27_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #11 (level 4) |
+| `dm0_27_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #11 (level 3) |
 | `dm0_27_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #12 (level 4) |
 | `dm0_27_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #13 (level 4) |
 | `dm0_27_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #14 (level 4) |
 | `dm0_27_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #15 (level 4) |
-| `dm0_27_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #16 (level 5) |
-| `dm0_27_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #17 (level 6) |
+| `dm0_27_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #16 (level 4) |
+| `dm0_27_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #17 (level 5) |
 | `dm0_27_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #18 (level 6) |
-| `dm0_27_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #19 (level 7) |
+| `dm0_27_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #19 (level 6) |
 | `dm0_27_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #2 (level 2) |
-| `dm0_27_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #20 (level 8) |
+| `dm0_27_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #20 (level 7) |
 | `dm0_27_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #21 (level 8) |
-| `dm0_27_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #22 (level 10) |
+| `dm0_27_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #22 (level 8) |
 | `dm0_27_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #23 (level 10) |
 | `dm0_27_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #24 (level 10) |
 | `dm0_27_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #25 (level 10) |
 | `dm0_27_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #26 (level 10) |
 | `dm0_27_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #27 (level 10) |
-| `dm0_27_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #28 (level n/a) |
+| `dm0_27_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #28 (level 10) |
+| `dm0_27_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #29 (level n/a) |
 | `dm0_27_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #3 (level 2) |
 | `dm0_27_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #4 (level 2) |
-| `dm0_27_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #5 (level 3) |
+| `dm0_27_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #5 (level 2) |
 | `dm0_27_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #6 (level 3) |
 | `dm0_27_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #7 (level 3) |
 | `dm0_27_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #8 (level 3) |
 | `dm0_27_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #27 (level 10), candidate value #9 (level 3) |
-| `dm0_28_0.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #0 (level 2) |
-| `dm0_28_1.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #1 (level 2) |
-| `dm0_28_10.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #10 (level 3) |
-| `dm0_28_11.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #11 (level 4) |
-| `dm0_28_12.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #12 (level 4) |
-| `dm0_28_13.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #13 (level 4) |
-| `dm0_28_14.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #14 (level 4) |
-| `dm0_28_15.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #15 (level 4) |
-| `dm0_28_16.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #16 (level 5) |
-| `dm0_28_17.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #17 (level 6) |
-| `dm0_28_18.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #18 (level 6) |
-| `dm0_28_19.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #19 (level 7) |
-| `dm0_28_2.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #2 (level 2) |
-| `dm0_28_20.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #20 (level 8) |
-| `dm0_28_21.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #21 (level 8) |
-| `dm0_28_22.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #22 (level 10) |
-| `dm0_28_23.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #23 (level 10) |
-| `dm0_28_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #24 (level 10) |
-| `dm0_28_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #25 (level 10) |
-| `dm0_28_26.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #26 (level 10) |
-| `dm0_28_27.cfg` | 4 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #27 (level 10) |
-| `dm0_28_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #28 (level n/a) |
-| `dm0_28_3.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #3 (level 2) |
-| `dm0_28_4.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #4 (level 2) |
-| `dm0_28_5.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #5 (level 3) |
-| `dm0_28_6.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #6 (level 3) |
-| `dm0_28_7.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #7 (level 3) |
-| `dm0_28_8.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #8 (level 3) |
-| `dm0_28_9.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level n/a), candidate value #9 (level 3) |
+| `dm0_28_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #0 (level 2) |
+| `dm0_28_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #1 (level 2) |
+| `dm0_28_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #10 (level 3) |
+| `dm0_28_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #11 (level 3) |
+| `dm0_28_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #12 (level 4) |
+| `dm0_28_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #13 (level 4) |
+| `dm0_28_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #14 (level 4) |
+| `dm0_28_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #15 (level 4) |
+| `dm0_28_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #16 (level 4) |
+| `dm0_28_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #17 (level 5) |
+| `dm0_28_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #18 (level 6) |
+| `dm0_28_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #19 (level 6) |
+| `dm0_28_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #2 (level 2) |
+| `dm0_28_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #20 (level 7) |
+| `dm0_28_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #21 (level 8) |
+| `dm0_28_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #22 (level 8) |
+| `dm0_28_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #23 (level 10) |
+| `dm0_28_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #24 (level 10) |
+| `dm0_28_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #25 (level 10) |
+| `dm0_28_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #26 (level 10) |
+| `dm0_28_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #27 (level 10) |
+| `dm0_28_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #28 (level 10) |
+| `dm0_28_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #29 (level n/a) |
+| `dm0_28_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #3 (level 2) |
+| `dm0_28_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #4 (level 2) |
+| `dm0_28_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #5 (level 2) |
+| `dm0_28_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #6 (level 3) |
+| `dm0_28_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #7 (level 3) |
+| `dm0_28_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #8 (level 3) |
+| `dm0_28_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #28 (level 10), candidate value #9 (level 3) |
+| `dm0_29_0.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #0 (level 2) |
+| `dm0_29_1.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #1 (level 2) |
+| `dm0_29_10.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #10 (level 3) |
+| `dm0_29_11.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #11 (level 3) |
+| `dm0_29_12.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #12 (level 4) |
+| `dm0_29_13.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #13 (level 4) |
+| `dm0_29_14.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #14 (level 4) |
+| `dm0_29_15.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #15 (level 4) |
+| `dm0_29_16.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #16 (level 4) |
+| `dm0_29_17.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #17 (level 5) |
+| `dm0_29_18.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #18 (level 6) |
+| `dm0_29_19.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #19 (level 6) |
+| `dm0_29_2.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #2 (level 2) |
+| `dm0_29_20.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #20 (level 7) |
+| `dm0_29_21.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #21 (level 8) |
+| `dm0_29_22.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #22 (level 8) |
+| `dm0_29_23.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #23 (level 10) |
+| `dm0_29_24.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #24 (level 10) |
+| `dm0_29_25.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #25 (level 10) |
+| `dm0_29_26.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #26 (level 10) |
+| `dm0_29_27.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #27 (level 10) |
+| `dm0_29_28.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #28 (level 10) |
+| `dm0_29_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #29 (level n/a) |
+| `dm0_29_3.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #3 (level 2) |
+| `dm0_29_4.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #4 (level 2) |
+| `dm0_29_5.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #5 (level 2) |
+| `dm0_29_6.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #6 (level 3) |
+| `dm0_29_7.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #7 (level 3) |
+| `dm0_29_8.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #8 (level 3) |
+| `dm0_29_9.cfg` | 4 | 0.1 KB | GENERATED - stat row 0: slot value #29 (level n/a), candidate value #9 (level 3) |
 | `dm0_2_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #0 (level 2) |
 | `dm0_2_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #1 (level 2) |
 | `dm0_2_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #10 (level 3) |
-| `dm0_2_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #11 (level 4) |
+| `dm0_2_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #11 (level 3) |
 | `dm0_2_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #12 (level 4) |
 | `dm0_2_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #13 (level 4) |
 | `dm0_2_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #14 (level 4) |
 | `dm0_2_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #15 (level 4) |
-| `dm0_2_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #16 (level 5) |
-| `dm0_2_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #17 (level 6) |
+| `dm0_2_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #16 (level 4) |
+| `dm0_2_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #17 (level 5) |
 | `dm0_2_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #18 (level 6) |
-| `dm0_2_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #19 (level 7) |
+| `dm0_2_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #19 (level 6) |
 | `dm0_2_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #2 (level 2) |
-| `dm0_2_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #20 (level 8) |
+| `dm0_2_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #20 (level 7) |
 | `dm0_2_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #21 (level 8) |
-| `dm0_2_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #22 (level 10) |
+| `dm0_2_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #22 (level 8) |
 | `dm0_2_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #23 (level 10) |
 | `dm0_2_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #24 (level 10) |
 | `dm0_2_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #25 (level 10) |
 | `dm0_2_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #26 (level 10) |
 | `dm0_2_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #27 (level 10) |
-| `dm0_2_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #28 (level n/a) |
+| `dm0_2_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #28 (level 10) |
+| `dm0_2_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #29 (level n/a) |
 | `dm0_2_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #3 (level 2) |
 | `dm0_2_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #4 (level 2) |
-| `dm0_2_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #5 (level 3) |
+| `dm0_2_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #5 (level 2) |
 | `dm0_2_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #6 (level 3) |
 | `dm0_2_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #7 (level 3) |
 | `dm0_2_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #2 (level 2), candidate value #8 (level 3) |
@@ -21067,28 +21125,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_3_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #0 (level 2) |
 | `dm0_3_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #1 (level 2) |
 | `dm0_3_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #10 (level 3) |
-| `dm0_3_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #11 (level 4) |
+| `dm0_3_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #11 (level 3) |
 | `dm0_3_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #12 (level 4) |
 | `dm0_3_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #13 (level 4) |
 | `dm0_3_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #14 (level 4) |
 | `dm0_3_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #15 (level 4) |
-| `dm0_3_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #16 (level 5) |
-| `dm0_3_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #17 (level 6) |
+| `dm0_3_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #16 (level 4) |
+| `dm0_3_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #17 (level 5) |
 | `dm0_3_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #18 (level 6) |
-| `dm0_3_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #19 (level 7) |
+| `dm0_3_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #19 (level 6) |
 | `dm0_3_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #2 (level 2) |
-| `dm0_3_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #20 (level 8) |
+| `dm0_3_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #20 (level 7) |
 | `dm0_3_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #21 (level 8) |
-| `dm0_3_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #22 (level 10) |
+| `dm0_3_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #22 (level 8) |
 | `dm0_3_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #23 (level 10) |
 | `dm0_3_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #24 (level 10) |
 | `dm0_3_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #25 (level 10) |
 | `dm0_3_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #26 (level 10) |
 | `dm0_3_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #27 (level 10) |
-| `dm0_3_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #28 (level n/a) |
+| `dm0_3_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #28 (level 10) |
+| `dm0_3_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #29 (level n/a) |
 | `dm0_3_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #3 (level 2) |
 | `dm0_3_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #4 (level 2) |
-| `dm0_3_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #5 (level 3) |
+| `dm0_3_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #5 (level 2) |
 | `dm0_3_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #6 (level 3) |
 | `dm0_3_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #7 (level 3) |
 | `dm0_3_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #3 (level 2), candidate value #8 (level 3) |
@@ -21096,86 +21155,89 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_4_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #0 (level 2) |
 | `dm0_4_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #1 (level 2) |
 | `dm0_4_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #10 (level 3) |
-| `dm0_4_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #11 (level 4) |
+| `dm0_4_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #11 (level 3) |
 | `dm0_4_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #12 (level 4) |
 | `dm0_4_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #13 (level 4) |
 | `dm0_4_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #14 (level 4) |
 | `dm0_4_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #15 (level 4) |
-| `dm0_4_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #16 (level 5) |
-| `dm0_4_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #17 (level 6) |
+| `dm0_4_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #16 (level 4) |
+| `dm0_4_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #17 (level 5) |
 | `dm0_4_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #18 (level 6) |
-| `dm0_4_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #19 (level 7) |
+| `dm0_4_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #19 (level 6) |
 | `dm0_4_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #2 (level 2) |
-| `dm0_4_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #20 (level 8) |
+| `dm0_4_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #20 (level 7) |
 | `dm0_4_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #21 (level 8) |
-| `dm0_4_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #22 (level 10) |
+| `dm0_4_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #22 (level 8) |
 | `dm0_4_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #23 (level 10) |
 | `dm0_4_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #24 (level 10) |
 | `dm0_4_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #25 (level 10) |
 | `dm0_4_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #26 (level 10) |
 | `dm0_4_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #27 (level 10) |
-| `dm0_4_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #28 (level n/a) |
+| `dm0_4_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #28 (level 10) |
+| `dm0_4_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #29 (level n/a) |
 | `dm0_4_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #3 (level 2) |
 | `dm0_4_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #4 (level 2) |
-| `dm0_4_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #5 (level 3) |
+| `dm0_4_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #5 (level 2) |
 | `dm0_4_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #6 (level 3) |
 | `dm0_4_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #7 (level 3) |
 | `dm0_4_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #8 (level 3) |
 | `dm0_4_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #4 (level 2), candidate value #9 (level 3) |
-| `dm0_5_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #0 (level 2) |
-| `dm0_5_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #1 (level 2) |
-| `dm0_5_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #10 (level 3) |
-| `dm0_5_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #11 (level 4) |
-| `dm0_5_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #12 (level 4) |
-| `dm0_5_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #13 (level 4) |
-| `dm0_5_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #14 (level 4) |
-| `dm0_5_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #15 (level 4) |
-| `dm0_5_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #16 (level 5) |
-| `dm0_5_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #17 (level 6) |
-| `dm0_5_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #18 (level 6) |
-| `dm0_5_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #19 (level 7) |
-| `dm0_5_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #2 (level 2) |
-| `dm0_5_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #20 (level 8) |
-| `dm0_5_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #21 (level 8) |
-| `dm0_5_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #22 (level 10) |
-| `dm0_5_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #23 (level 10) |
-| `dm0_5_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #24 (level 10) |
-| `dm0_5_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #25 (level 10) |
-| `dm0_5_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #26 (level 10) |
-| `dm0_5_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #27 (level 10) |
-| `dm0_5_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #28 (level n/a) |
-| `dm0_5_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #3 (level 2) |
-| `dm0_5_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #4 (level 2) |
-| `dm0_5_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #5 (level 3) |
-| `dm0_5_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #6 (level 3) |
-| `dm0_5_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #7 (level 3) |
-| `dm0_5_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #8 (level 3) |
-| `dm0_5_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 3), candidate value #9 (level 3) |
+| `dm0_5_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #0 (level 2) |
+| `dm0_5_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #1 (level 2) |
+| `dm0_5_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #10 (level 3) |
+| `dm0_5_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #11 (level 3) |
+| `dm0_5_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #12 (level 4) |
+| `dm0_5_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #13 (level 4) |
+| `dm0_5_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #14 (level 4) |
+| `dm0_5_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #15 (level 4) |
+| `dm0_5_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #16 (level 4) |
+| `dm0_5_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #17 (level 5) |
+| `dm0_5_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #18 (level 6) |
+| `dm0_5_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #19 (level 6) |
+| `dm0_5_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #2 (level 2) |
+| `dm0_5_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #20 (level 7) |
+| `dm0_5_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #21 (level 8) |
+| `dm0_5_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #22 (level 8) |
+| `dm0_5_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #23 (level 10) |
+| `dm0_5_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #24 (level 10) |
+| `dm0_5_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #25 (level 10) |
+| `dm0_5_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #26 (level 10) |
+| `dm0_5_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #27 (level 10) |
+| `dm0_5_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #28 (level 10) |
+| `dm0_5_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #29 (level n/a) |
+| `dm0_5_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #3 (level 2) |
+| `dm0_5_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #4 (level 2) |
+| `dm0_5_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #5 (level 2) |
+| `dm0_5_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #6 (level 3) |
+| `dm0_5_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #7 (level 3) |
+| `dm0_5_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #8 (level 3) |
+| `dm0_5_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #5 (level 2), candidate value #9 (level 3) |
 | `dm0_6_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #0 (level 2) |
 | `dm0_6_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #1 (level 2) |
 | `dm0_6_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #10 (level 3) |
-| `dm0_6_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #11 (level 4) |
+| `dm0_6_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #11 (level 3) |
 | `dm0_6_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #12 (level 4) |
 | `dm0_6_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #13 (level 4) |
 | `dm0_6_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #14 (level 4) |
 | `dm0_6_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #15 (level 4) |
-| `dm0_6_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #16 (level 5) |
-| `dm0_6_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #17 (level 6) |
+| `dm0_6_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #16 (level 4) |
+| `dm0_6_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #17 (level 5) |
 | `dm0_6_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #18 (level 6) |
-| `dm0_6_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #19 (level 7) |
+| `dm0_6_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #19 (level 6) |
 | `dm0_6_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #2 (level 2) |
-| `dm0_6_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #20 (level 8) |
+| `dm0_6_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #20 (level 7) |
 | `dm0_6_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #21 (level 8) |
-| `dm0_6_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #22 (level 10) |
+| `dm0_6_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #22 (level 8) |
 | `dm0_6_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #23 (level 10) |
 | `dm0_6_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #24 (level 10) |
 | `dm0_6_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #25 (level 10) |
 | `dm0_6_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #26 (level 10) |
 | `dm0_6_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #27 (level 10) |
-| `dm0_6_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #28 (level n/a) |
+| `dm0_6_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #28 (level 10) |
+| `dm0_6_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #29 (level n/a) |
 | `dm0_6_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #3 (level 2) |
 | `dm0_6_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #4 (level 2) |
-| `dm0_6_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #5 (level 3) |
+| `dm0_6_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #5 (level 2) |
 | `dm0_6_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #6 (level 3) |
 | `dm0_6_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #7 (level 3) |
 | `dm0_6_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #6 (level 3), candidate value #8 (level 3) |
@@ -21183,28 +21245,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_7_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #0 (level 2) |
 | `dm0_7_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #1 (level 2) |
 | `dm0_7_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #10 (level 3) |
-| `dm0_7_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #11 (level 4) |
+| `dm0_7_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #11 (level 3) |
 | `dm0_7_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #12 (level 4) |
 | `dm0_7_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #13 (level 4) |
 | `dm0_7_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #14 (level 4) |
 | `dm0_7_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #15 (level 4) |
-| `dm0_7_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #16 (level 5) |
-| `dm0_7_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #17 (level 6) |
+| `dm0_7_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #16 (level 4) |
+| `dm0_7_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #17 (level 5) |
 | `dm0_7_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #18 (level 6) |
-| `dm0_7_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #19 (level 7) |
+| `dm0_7_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #19 (level 6) |
 | `dm0_7_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #2 (level 2) |
-| `dm0_7_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #20 (level 8) |
+| `dm0_7_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #20 (level 7) |
 | `dm0_7_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #21 (level 8) |
-| `dm0_7_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #22 (level 10) |
+| `dm0_7_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #22 (level 8) |
 | `dm0_7_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #23 (level 10) |
 | `dm0_7_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #24 (level 10) |
 | `dm0_7_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #25 (level 10) |
 | `dm0_7_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #26 (level 10) |
 | `dm0_7_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #27 (level 10) |
-| `dm0_7_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #28 (level n/a) |
+| `dm0_7_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #28 (level 10) |
+| `dm0_7_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #29 (level n/a) |
 | `dm0_7_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #3 (level 2) |
 | `dm0_7_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #4 (level 2) |
-| `dm0_7_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #5 (level 3) |
+| `dm0_7_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #5 (level 2) |
 | `dm0_7_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #6 (level 3) |
 | `dm0_7_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #7 (level 3) |
 | `dm0_7_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #7 (level 3), candidate value #8 (level 3) |
@@ -21212,28 +21275,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_8_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #0 (level 2) |
 | `dm0_8_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #1 (level 2) |
 | `dm0_8_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #10 (level 3) |
-| `dm0_8_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #11 (level 4) |
+| `dm0_8_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #11 (level 3) |
 | `dm0_8_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #12 (level 4) |
 | `dm0_8_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #13 (level 4) |
 | `dm0_8_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #14 (level 4) |
 | `dm0_8_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #15 (level 4) |
-| `dm0_8_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #16 (level 5) |
-| `dm0_8_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #17 (level 6) |
+| `dm0_8_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #16 (level 4) |
+| `dm0_8_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #17 (level 5) |
 | `dm0_8_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #18 (level 6) |
-| `dm0_8_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #19 (level 7) |
+| `dm0_8_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #19 (level 6) |
 | `dm0_8_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #2 (level 2) |
-| `dm0_8_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #20 (level 8) |
+| `dm0_8_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #20 (level 7) |
 | `dm0_8_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #21 (level 8) |
-| `dm0_8_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #22 (level 10) |
+| `dm0_8_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #22 (level 8) |
 | `dm0_8_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #23 (level 10) |
 | `dm0_8_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #24 (level 10) |
 | `dm0_8_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #25 (level 10) |
 | `dm0_8_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #26 (level 10) |
 | `dm0_8_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #27 (level 10) |
-| `dm0_8_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #28 (level n/a) |
+| `dm0_8_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #28 (level 10) |
+| `dm0_8_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #29 (level n/a) |
 | `dm0_8_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #3 (level 2) |
 | `dm0_8_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #4 (level 2) |
-| `dm0_8_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #5 (level 3) |
+| `dm0_8_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #5 (level 2) |
 | `dm0_8_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #6 (level 3) |
 | `dm0_8_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #7 (level 3) |
 | `dm0_8_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #8 (level 3), candidate value #8 (level 3) |
@@ -21241,28 +21305,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm0_9_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #0 (level 2) |
 | `dm0_9_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #1 (level 2) |
 | `dm0_9_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #10 (level 3) |
-| `dm0_9_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #11 (level 4) |
+| `dm0_9_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #11 (level 3) |
 | `dm0_9_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #12 (level 4) |
 | `dm0_9_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #13 (level 4) |
 | `dm0_9_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #14 (level 4) |
 | `dm0_9_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #15 (level 4) |
-| `dm0_9_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #16 (level 5) |
-| `dm0_9_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #17 (level 6) |
+| `dm0_9_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #16 (level 4) |
+| `dm0_9_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #17 (level 5) |
 | `dm0_9_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #18 (level 6) |
-| `dm0_9_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #19 (level 7) |
+| `dm0_9_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #19 (level 6) |
 | `dm0_9_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #2 (level 2) |
-| `dm0_9_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #20 (level 8) |
+| `dm0_9_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #20 (level 7) |
 | `dm0_9_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #21 (level 8) |
-| `dm0_9_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #22 (level 10) |
+| `dm0_9_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #22 (level 8) |
 | `dm0_9_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #23 (level 10) |
 | `dm0_9_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #24 (level 10) |
 | `dm0_9_25.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #25 (level 10) |
 | `dm0_9_26.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #26 (level 10) |
 | `dm0_9_27.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #27 (level 10) |
-| `dm0_9_28.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #28 (level n/a) |
+| `dm0_9_28.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #28 (level 10) |
+| `dm0_9_29.cfg` | 3 | 0.1 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #29 (level n/a) |
 | `dm0_9_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #3 (level 2) |
 | `dm0_9_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #4 (level 2) |
-| `dm0_9_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #5 (level 3) |
+| `dm0_9_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #5 (level 2) |
 | `dm0_9_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #6 (level 3) |
 | `dm0_9_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #7 (level 3) |
 | `dm0_9_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 0: slot value #9 (level 3), candidate value #8 (level 3) |
@@ -23005,9 +23070,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_0_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #20 (level 4) |
 | `dm4_0_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #21 (level 4) |
 | `dm4_0_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #22 (level 4) |
-| `dm4_0_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #23 (level 3) |
-| `dm4_0_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #24 (level 0) |
-| `dm4_0_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #25 (level n/a) |
+| `dm4_0_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #23 (level 4) |
+| `dm4_0_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #24 (level 3) |
+| `dm4_0_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #25 (level 0) |
+| `dm4_0_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #26 (level n/a) |
 | `dm4_0_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #3 (level 8) |
 | `dm4_0_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #4 (level 8) |
 | `dm4_0_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #0 (level 10), candidate value #5 (level 8) |
@@ -23031,9 +23097,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_10_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #20 (level 4) |
 | `dm4_10_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #21 (level 4) |
 | `dm4_10_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #22 (level 4) |
-| `dm4_10_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #23 (level 3) |
-| `dm4_10_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #24 (level 0) |
-| `dm4_10_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #25 (level n/a) |
+| `dm4_10_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #23 (level 4) |
+| `dm4_10_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #24 (level 3) |
+| `dm4_10_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #25 (level 0) |
+| `dm4_10_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #26 (level n/a) |
 | `dm4_10_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #3 (level 8) |
 | `dm4_10_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #4 (level 8) |
 | `dm4_10_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #10 (level 6), candidate value #5 (level 8) |
@@ -23057,9 +23124,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_11_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #20 (level 4) |
 | `dm4_11_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #21 (level 4) |
 | `dm4_11_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #22 (level 4) |
-| `dm4_11_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #23 (level 3) |
-| `dm4_11_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #24 (level 0) |
-| `dm4_11_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #25 (level n/a) |
+| `dm4_11_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #23 (level 4) |
+| `dm4_11_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #24 (level 3) |
+| `dm4_11_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #25 (level 0) |
+| `dm4_11_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #26 (level n/a) |
 | `dm4_11_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #3 (level 8) |
 | `dm4_11_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #4 (level 8) |
 | `dm4_11_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #11 (level 6), candidate value #5 (level 8) |
@@ -23083,9 +23151,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_12_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #20 (level 4) |
 | `dm4_12_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #21 (level 4) |
 | `dm4_12_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #22 (level 4) |
-| `dm4_12_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #23 (level 3) |
-| `dm4_12_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #24 (level 0) |
-| `dm4_12_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #25 (level n/a) |
+| `dm4_12_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #23 (level 4) |
+| `dm4_12_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #24 (level 3) |
+| `dm4_12_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #25 (level 0) |
+| `dm4_12_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #26 (level n/a) |
 | `dm4_12_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #3 (level 8) |
 | `dm4_12_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #4 (level 8) |
 | `dm4_12_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #12 (level 6), candidate value #5 (level 8) |
@@ -23109,9 +23178,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_13_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #20 (level 4) |
 | `dm4_13_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #21 (level 4) |
 | `dm4_13_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #22 (level 4) |
-| `dm4_13_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #23 (level 3) |
-| `dm4_13_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #24 (level 0) |
-| `dm4_13_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #25 (level n/a) |
+| `dm4_13_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #23 (level 4) |
+| `dm4_13_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #24 (level 3) |
+| `dm4_13_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #25 (level 0) |
+| `dm4_13_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #26 (level n/a) |
 | `dm4_13_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #3 (level 8) |
 | `dm4_13_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #4 (level 8) |
 | `dm4_13_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #13 (level 5), candidate value #5 (level 8) |
@@ -23135,9 +23205,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_14_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #20 (level 4) |
 | `dm4_14_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #21 (level 4) |
 | `dm4_14_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #22 (level 4) |
-| `dm4_14_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #23 (level 3) |
-| `dm4_14_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #24 (level 0) |
-| `dm4_14_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #25 (level n/a) |
+| `dm4_14_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #23 (level 4) |
+| `dm4_14_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #24 (level 3) |
+| `dm4_14_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #25 (level 0) |
+| `dm4_14_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #26 (level n/a) |
 | `dm4_14_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #3 (level 8) |
 | `dm4_14_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #4 (level 8) |
 | `dm4_14_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #14 (level 5), candidate value #5 (level 8) |
@@ -23161,9 +23232,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_15_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #20 (level 4) |
 | `dm4_15_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #21 (level 4) |
 | `dm4_15_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #22 (level 4) |
-| `dm4_15_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #23 (level 3) |
-| `dm4_15_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #24 (level 0) |
-| `dm4_15_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #25 (level n/a) |
+| `dm4_15_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #23 (level 4) |
+| `dm4_15_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #24 (level 3) |
+| `dm4_15_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #25 (level 0) |
+| `dm4_15_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #26 (level n/a) |
 | `dm4_15_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #3 (level 8) |
 | `dm4_15_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #4 (level 8) |
 | `dm4_15_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #15 (level 5), candidate value #5 (level 8) |
@@ -23187,9 +23259,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_16_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #20 (level 4) |
 | `dm4_16_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #21 (level 4) |
 | `dm4_16_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #22 (level 4) |
-| `dm4_16_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #23 (level 3) |
-| `dm4_16_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #24 (level 0) |
-| `dm4_16_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #25 (level n/a) |
+| `dm4_16_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #23 (level 4) |
+| `dm4_16_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #24 (level 3) |
+| `dm4_16_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #25 (level 0) |
+| `dm4_16_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #26 (level n/a) |
 | `dm4_16_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #3 (level 8) |
 | `dm4_16_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #4 (level 8) |
 | `dm4_16_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #16 (level 4), candidate value #5 (level 8) |
@@ -23213,9 +23286,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_17_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #20 (level 4) |
 | `dm4_17_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #21 (level 4) |
 | `dm4_17_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #22 (level 4) |
-| `dm4_17_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #23 (level 3) |
-| `dm4_17_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #24 (level 0) |
-| `dm4_17_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #25 (level n/a) |
+| `dm4_17_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #23 (level 4) |
+| `dm4_17_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #24 (level 3) |
+| `dm4_17_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #25 (level 0) |
+| `dm4_17_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #26 (level n/a) |
 | `dm4_17_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #3 (level 8) |
 | `dm4_17_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #4 (level 8) |
 | `dm4_17_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #17 (level 4), candidate value #5 (level 8) |
@@ -23239,9 +23313,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_18_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #20 (level 4) |
 | `dm4_18_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #21 (level 4) |
 | `dm4_18_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #22 (level 4) |
-| `dm4_18_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #23 (level 3) |
-| `dm4_18_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #24 (level 0) |
-| `dm4_18_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #25 (level n/a) |
+| `dm4_18_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #23 (level 4) |
+| `dm4_18_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #24 (level 3) |
+| `dm4_18_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #25 (level 0) |
+| `dm4_18_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #26 (level n/a) |
 | `dm4_18_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #3 (level 8) |
 | `dm4_18_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #4 (level 8) |
 | `dm4_18_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #18 (level 4), candidate value #5 (level 8) |
@@ -23265,9 +23340,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_19_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #20 (level 4) |
 | `dm4_19_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #21 (level 4) |
 | `dm4_19_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #22 (level 4) |
-| `dm4_19_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #23 (level 3) |
-| `dm4_19_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #24 (level 0) |
-| `dm4_19_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #25 (level n/a) |
+| `dm4_19_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #23 (level 4) |
+| `dm4_19_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #24 (level 3) |
+| `dm4_19_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #25 (level 0) |
+| `dm4_19_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #26 (level n/a) |
 | `dm4_19_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #3 (level 8) |
 | `dm4_19_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #4 (level 8) |
 | `dm4_19_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #19 (level 4), candidate value #5 (level 8) |
@@ -23291,9 +23367,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_1_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #20 (level 4) |
 | `dm4_1_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #21 (level 4) |
 | `dm4_1_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #22 (level 4) |
-| `dm4_1_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #23 (level 3) |
-| `dm4_1_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #24 (level 0) |
-| `dm4_1_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #25 (level n/a) |
+| `dm4_1_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #23 (level 4) |
+| `dm4_1_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #24 (level 3) |
+| `dm4_1_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #25 (level 0) |
+| `dm4_1_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #26 (level n/a) |
 | `dm4_1_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #3 (level 8) |
 | `dm4_1_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #4 (level 8) |
 | `dm4_1_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #1 (level 10), candidate value #5 (level 8) |
@@ -23317,9 +23394,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_20_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #20 (level 4) |
 | `dm4_20_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #21 (level 4) |
 | `dm4_20_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #22 (level 4) |
-| `dm4_20_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #23 (level 3) |
-| `dm4_20_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #24 (level 0) |
-| `dm4_20_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #25 (level n/a) |
+| `dm4_20_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #23 (level 4) |
+| `dm4_20_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #24 (level 3) |
+| `dm4_20_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #25 (level 0) |
+| `dm4_20_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #26 (level n/a) |
 | `dm4_20_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #3 (level 8) |
 | `dm4_20_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #4 (level 8) |
 | `dm4_20_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #20 (level 4), candidate value #5 (level 8) |
@@ -23343,9 +23421,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_21_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #20 (level 4) |
 | `dm4_21_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #21 (level 4) |
 | `dm4_21_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #22 (level 4) |
-| `dm4_21_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #23 (level 3) |
-| `dm4_21_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #24 (level 0) |
-| `dm4_21_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #25 (level n/a) |
+| `dm4_21_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #23 (level 4) |
+| `dm4_21_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #24 (level 3) |
+| `dm4_21_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #25 (level 0) |
+| `dm4_21_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #26 (level n/a) |
 | `dm4_21_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #3 (level 8) |
 | `dm4_21_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #4 (level 8) |
 | `dm4_21_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #21 (level 4), candidate value #5 (level 8) |
@@ -23369,9 +23448,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_22_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #20 (level 4) |
 | `dm4_22_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #21 (level 4) |
 | `dm4_22_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #22 (level 4) |
-| `dm4_22_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #23 (level 3) |
-| `dm4_22_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #24 (level 0) |
-| `dm4_22_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #25 (level n/a) |
+| `dm4_22_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #23 (level 4) |
+| `dm4_22_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #24 (level 3) |
+| `dm4_22_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #25 (level 0) |
+| `dm4_22_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #26 (level n/a) |
 | `dm4_22_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #3 (level 8) |
 | `dm4_22_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #4 (level 8) |
 | `dm4_22_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #5 (level 8) |
@@ -23379,84 +23459,114 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_22_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #7 (level 6) |
 | `dm4_22_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #8 (level 6) |
 | `dm4_22_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #22 (level 4), candidate value #9 (level 6) |
-| `dm4_23_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #0 (level 10) |
-| `dm4_23_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #1 (level 10) |
-| `dm4_23_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #10 (level 6) |
-| `dm4_23_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #11 (level 6) |
-| `dm4_23_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #12 (level 6) |
-| `dm4_23_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #13 (level 5) |
-| `dm4_23_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #14 (level 5) |
-| `dm4_23_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #15 (level 5) |
-| `dm4_23_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #16 (level 4) |
-| `dm4_23_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #17 (level 4) |
-| `dm4_23_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #18 (level 4) |
-| `dm4_23_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #19 (level 4) |
-| `dm4_23_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #2 (level 9) |
-| `dm4_23_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #20 (level 4) |
-| `dm4_23_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #21 (level 4) |
-| `dm4_23_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #22 (level 4) |
-| `dm4_23_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #23 (level 3) |
-| `dm4_23_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #24 (level 0) |
-| `dm4_23_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #25 (level n/a) |
-| `dm4_23_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #3 (level 8) |
-| `dm4_23_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #4 (level 8) |
-| `dm4_23_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #5 (level 8) |
-| `dm4_23_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #6 (level 7) |
-| `dm4_23_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #7 (level 6) |
-| `dm4_23_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #8 (level 6) |
-| `dm4_23_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 3), candidate value #9 (level 6) |
-| `dm4_24_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #0 (level 10) |
-| `dm4_24_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #1 (level 10) |
-| `dm4_24_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #10 (level 6) |
-| `dm4_24_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #11 (level 6) |
-| `dm4_24_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #12 (level 6) |
-| `dm4_24_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #13 (level 5) |
-| `dm4_24_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #14 (level 5) |
-| `dm4_24_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #15 (level 5) |
-| `dm4_24_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #16 (level 4) |
-| `dm4_24_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #17 (level 4) |
-| `dm4_24_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #18 (level 4) |
-| `dm4_24_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #19 (level 4) |
-| `dm4_24_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #2 (level 9) |
-| `dm4_24_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #20 (level 4) |
-| `dm4_24_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #21 (level 4) |
-| `dm4_24_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #22 (level 4) |
-| `dm4_24_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #23 (level 3) |
-| `dm4_24_24.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #24 (level 0) |
-| `dm4_24_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #25 (level n/a) |
-| `dm4_24_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #3 (level 8) |
-| `dm4_24_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #4 (level 8) |
-| `dm4_24_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #5 (level 8) |
-| `dm4_24_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #6 (level 7) |
-| `dm4_24_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #7 (level 6) |
-| `dm4_24_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #8 (level 6) |
-| `dm4_24_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 0), candidate value #9 (level 6) |
-| `dm4_25_0.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #0 (level 10) |
-| `dm4_25_1.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #1 (level 10) |
-| `dm4_25_10.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #10 (level 6) |
-| `dm4_25_11.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #11 (level 6) |
-| `dm4_25_12.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #12 (level 6) |
-| `dm4_25_13.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #13 (level 5) |
-| `dm4_25_14.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #14 (level 5) |
-| `dm4_25_15.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #15 (level 5) |
-| `dm4_25_16.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #16 (level 4) |
-| `dm4_25_17.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #17 (level 4) |
-| `dm4_25_18.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #18 (level 4) |
-| `dm4_25_19.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #19 (level 4) |
-| `dm4_25_2.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #2 (level 9) |
-| `dm4_25_20.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #20 (level 4) |
-| `dm4_25_21.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #21 (level 4) |
-| `dm4_25_22.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #22 (level 4) |
-| `dm4_25_23.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #23 (level 3) |
-| `dm4_25_24.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #24 (level 0) |
-| `dm4_25_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #25 (level n/a) |
-| `dm4_25_3.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #3 (level 8) |
-| `dm4_25_4.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #4 (level 8) |
-| `dm4_25_5.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #5 (level 8) |
-| `dm4_25_6.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #6 (level 7) |
-| `dm4_25_7.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #7 (level 6) |
-| `dm4_25_8.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #8 (level 6) |
-| `dm4_25_9.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level n/a), candidate value #9 (level 6) |
+| `dm4_23_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #0 (level 10) |
+| `dm4_23_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #1 (level 10) |
+| `dm4_23_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #10 (level 6) |
+| `dm4_23_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #11 (level 6) |
+| `dm4_23_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #12 (level 6) |
+| `dm4_23_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #13 (level 5) |
+| `dm4_23_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #14 (level 5) |
+| `dm4_23_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #15 (level 5) |
+| `dm4_23_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #16 (level 4) |
+| `dm4_23_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #17 (level 4) |
+| `dm4_23_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #18 (level 4) |
+| `dm4_23_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #19 (level 4) |
+| `dm4_23_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #2 (level 9) |
+| `dm4_23_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #20 (level 4) |
+| `dm4_23_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #21 (level 4) |
+| `dm4_23_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #22 (level 4) |
+| `dm4_23_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #23 (level 4) |
+| `dm4_23_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #24 (level 3) |
+| `dm4_23_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #25 (level 0) |
+| `dm4_23_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #26 (level n/a) |
+| `dm4_23_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #3 (level 8) |
+| `dm4_23_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #4 (level 8) |
+| `dm4_23_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #5 (level 8) |
+| `dm4_23_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #6 (level 7) |
+| `dm4_23_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #7 (level 6) |
+| `dm4_23_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #8 (level 6) |
+| `dm4_23_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #23 (level 4), candidate value #9 (level 6) |
+| `dm4_24_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #0 (level 10) |
+| `dm4_24_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #1 (level 10) |
+| `dm4_24_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #10 (level 6) |
+| `dm4_24_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #11 (level 6) |
+| `dm4_24_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #12 (level 6) |
+| `dm4_24_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #13 (level 5) |
+| `dm4_24_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #14 (level 5) |
+| `dm4_24_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #15 (level 5) |
+| `dm4_24_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #16 (level 4) |
+| `dm4_24_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #17 (level 4) |
+| `dm4_24_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #18 (level 4) |
+| `dm4_24_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #19 (level 4) |
+| `dm4_24_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #2 (level 9) |
+| `dm4_24_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #20 (level 4) |
+| `dm4_24_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #21 (level 4) |
+| `dm4_24_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #22 (level 4) |
+| `dm4_24_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #23 (level 4) |
+| `dm4_24_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #24 (level 3) |
+| `dm4_24_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #25 (level 0) |
+| `dm4_24_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #26 (level n/a) |
+| `dm4_24_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #3 (level 8) |
+| `dm4_24_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #4 (level 8) |
+| `dm4_24_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #5 (level 8) |
+| `dm4_24_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #6 (level 7) |
+| `dm4_24_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #7 (level 6) |
+| `dm4_24_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #8 (level 6) |
+| `dm4_24_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #24 (level 3), candidate value #9 (level 6) |
+| `dm4_25_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #0 (level 10) |
+| `dm4_25_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #1 (level 10) |
+| `dm4_25_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #10 (level 6) |
+| `dm4_25_11.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #11 (level 6) |
+| `dm4_25_12.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #12 (level 6) |
+| `dm4_25_13.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #13 (level 5) |
+| `dm4_25_14.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #14 (level 5) |
+| `dm4_25_15.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #15 (level 5) |
+| `dm4_25_16.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #16 (level 4) |
+| `dm4_25_17.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #17 (level 4) |
+| `dm4_25_18.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #18 (level 4) |
+| `dm4_25_19.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #19 (level 4) |
+| `dm4_25_2.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #2 (level 9) |
+| `dm4_25_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #20 (level 4) |
+| `dm4_25_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #21 (level 4) |
+| `dm4_25_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #22 (level 4) |
+| `dm4_25_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #23 (level 4) |
+| `dm4_25_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #24 (level 3) |
+| `dm4_25_25.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #25 (level 0) |
+| `dm4_25_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #26 (level n/a) |
+| `dm4_25_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #3 (level 8) |
+| `dm4_25_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #4 (level 8) |
+| `dm4_25_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #5 (level 8) |
+| `dm4_25_6.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #6 (level 7) |
+| `dm4_25_7.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #7 (level 6) |
+| `dm4_25_8.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #8 (level 6) |
+| `dm4_25_9.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #25 (level 0), candidate value #9 (level 6) |
+| `dm4_26_0.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #0 (level 10) |
+| `dm4_26_1.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #1 (level 10) |
+| `dm4_26_10.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #10 (level 6) |
+| `dm4_26_11.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #11 (level 6) |
+| `dm4_26_12.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #12 (level 6) |
+| `dm4_26_13.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #13 (level 5) |
+| `dm4_26_14.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #14 (level 5) |
+| `dm4_26_15.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #15 (level 5) |
+| `dm4_26_16.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #16 (level 4) |
+| `dm4_26_17.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #17 (level 4) |
+| `dm4_26_18.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #18 (level 4) |
+| `dm4_26_19.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #19 (level 4) |
+| `dm4_26_2.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #2 (level 9) |
+| `dm4_26_20.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #20 (level 4) |
+| `dm4_26_21.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #21 (level 4) |
+| `dm4_26_22.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #22 (level 4) |
+| `dm4_26_23.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #23 (level 4) |
+| `dm4_26_24.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #24 (level 3) |
+| `dm4_26_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #25 (level 0) |
+| `dm4_26_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #26 (level n/a) |
+| `dm4_26_3.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #3 (level 8) |
+| `dm4_26_4.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #4 (level 8) |
+| `dm4_26_5.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #5 (level 8) |
+| `dm4_26_6.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #6 (level 7) |
+| `dm4_26_7.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #7 (level 6) |
+| `dm4_26_8.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #8 (level 6) |
+| `dm4_26_9.cfg` | 4 | 0.1 KB | GENERATED - stat row 4: slot value #26 (level n/a), candidate value #9 (level 6) |
 | `dm4_2_0.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #0 (level 10) |
 | `dm4_2_1.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #1 (level 10) |
 | `dm4_2_10.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #10 (level 6) |
@@ -23473,9 +23583,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_2_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #20 (level 4) |
 | `dm4_2_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #21 (level 4) |
 | `dm4_2_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #22 (level 4) |
-| `dm4_2_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #23 (level 3) |
-| `dm4_2_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #24 (level 0) |
-| `dm4_2_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #25 (level n/a) |
+| `dm4_2_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #23 (level 4) |
+| `dm4_2_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #24 (level 3) |
+| `dm4_2_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #25 (level 0) |
+| `dm4_2_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #26 (level n/a) |
 | `dm4_2_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #3 (level 8) |
 | `dm4_2_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #4 (level 8) |
 | `dm4_2_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #2 (level 9), candidate value #5 (level 8) |
@@ -23499,9 +23610,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_3_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #20 (level 4) |
 | `dm4_3_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #21 (level 4) |
 | `dm4_3_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #22 (level 4) |
-| `dm4_3_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #23 (level 3) |
-| `dm4_3_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #24 (level 0) |
-| `dm4_3_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #25 (level n/a) |
+| `dm4_3_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #23 (level 4) |
+| `dm4_3_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #24 (level 3) |
+| `dm4_3_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #25 (level 0) |
+| `dm4_3_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #26 (level n/a) |
 | `dm4_3_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #3 (level 8) |
 | `dm4_3_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #4 (level 8) |
 | `dm4_3_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #3 (level 8), candidate value #5 (level 8) |
@@ -23525,9 +23637,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_4_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #20 (level 4) |
 | `dm4_4_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #21 (level 4) |
 | `dm4_4_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #22 (level 4) |
-| `dm4_4_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #23 (level 3) |
-| `dm4_4_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #24 (level 0) |
-| `dm4_4_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #25 (level n/a) |
+| `dm4_4_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #23 (level 4) |
+| `dm4_4_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #24 (level 3) |
+| `dm4_4_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #25 (level 0) |
+| `dm4_4_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #26 (level n/a) |
 | `dm4_4_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #3 (level 8) |
 | `dm4_4_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #4 (level 8) |
 | `dm4_4_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #4 (level 8), candidate value #5 (level 8) |
@@ -23551,9 +23664,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_5_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #20 (level 4) |
 | `dm4_5_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #21 (level 4) |
 | `dm4_5_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #22 (level 4) |
-| `dm4_5_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #23 (level 3) |
-| `dm4_5_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #24 (level 0) |
-| `dm4_5_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #25 (level n/a) |
+| `dm4_5_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #23 (level 4) |
+| `dm4_5_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #24 (level 3) |
+| `dm4_5_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #25 (level 0) |
+| `dm4_5_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #26 (level n/a) |
 | `dm4_5_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #3 (level 8) |
 | `dm4_5_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #4 (level 8) |
 | `dm4_5_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #5 (level 8), candidate value #5 (level 8) |
@@ -23577,9 +23691,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_6_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #20 (level 4) |
 | `dm4_6_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #21 (level 4) |
 | `dm4_6_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #22 (level 4) |
-| `dm4_6_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #23 (level 3) |
-| `dm4_6_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #24 (level 0) |
-| `dm4_6_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #25 (level n/a) |
+| `dm4_6_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #23 (level 4) |
+| `dm4_6_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #24 (level 3) |
+| `dm4_6_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #25 (level 0) |
+| `dm4_6_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #26 (level n/a) |
 | `dm4_6_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #3 (level 8) |
 | `dm4_6_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #4 (level 8) |
 | `dm4_6_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #6 (level 7), candidate value #5 (level 8) |
@@ -23603,9 +23718,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_7_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #20 (level 4) |
 | `dm4_7_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #21 (level 4) |
 | `dm4_7_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #22 (level 4) |
-| `dm4_7_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #23 (level 3) |
-| `dm4_7_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #24 (level 0) |
-| `dm4_7_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #25 (level n/a) |
+| `dm4_7_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #23 (level 4) |
+| `dm4_7_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #24 (level 3) |
+| `dm4_7_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #25 (level 0) |
+| `dm4_7_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #26 (level n/a) |
 | `dm4_7_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #3 (level 8) |
 | `dm4_7_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #4 (level 8) |
 | `dm4_7_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #7 (level 6), candidate value #5 (level 8) |
@@ -23629,9 +23745,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_8_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #20 (level 4) |
 | `dm4_8_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #21 (level 4) |
 | `dm4_8_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #22 (level 4) |
-| `dm4_8_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #23 (level 3) |
-| `dm4_8_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #24 (level 0) |
-| `dm4_8_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #25 (level n/a) |
+| `dm4_8_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #23 (level 4) |
+| `dm4_8_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #24 (level 3) |
+| `dm4_8_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #25 (level 0) |
+| `dm4_8_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #26 (level n/a) |
 | `dm4_8_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #3 (level 8) |
 | `dm4_8_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #4 (level 8) |
 | `dm4_8_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #8 (level 6), candidate value #5 (level 8) |
@@ -23655,9 +23772,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dm4_9_20.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #20 (level 4) |
 | `dm4_9_21.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #21 (level 4) |
 | `dm4_9_22.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #22 (level 4) |
-| `dm4_9_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #23 (level 3) |
-| `dm4_9_24.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #24 (level 0) |
-| `dm4_9_25.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #25 (level n/a) |
+| `dm4_9_23.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #23 (level 4) |
+| `dm4_9_24.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #24 (level 3) |
+| `dm4_9_25.cfg` | 4 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #25 (level 0) |
+| `dm4_9_26.cfg` | 3 | 0.1 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #26 (level n/a) |
 | `dm4_9_3.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #3 (level 8) |
 | `dm4_9_4.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #4 (level 8) |
 | `dm4_9_5.cfg` | 5 | 0.2 KB | GENERATED - stat row 4: slot value #9 (level 6), candidate value #5 (level 8) |
@@ -23669,35 +23787,36 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `done.cfg` | 10 | 0.5 KB | [done gate 2026-10-15] the Armory DONE button (ui/coop_loadout.urc closeBtn: exec ui/loadout/done.cfg). |
 | `donebad.cfg` | 3 | 0.1 KB | DONE with a LOCKED item selected: show the EQUIPMENT PRE-REQUISITE NOT MET banner, beep, keep the menu open. |
 | `donego.cfg` | 4 | 0.2 KB | DONE with only unlocked equipment: the original close (it used to be the closeBtn stuffcommand itself). |
-| `dpub0_0.cfg` | 40 | 1.6 KB | GENERATED - stat row 0: the slot's gun has raw value #0 (level 2) |
-| `dpub0_1.cfg` | 40 | 1.6 KB | GENERATED - stat row 0: the slot's gun has raw value #1 (level 2) |
-| `dpub0_10.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #10 (level 3) |
-| `dpub0_11.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #11 (level 4) |
-| `dpub0_12.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #12 (level 4) |
-| `dpub0_13.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #13 (level 4) |
-| `dpub0_14.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #14 (level 4) |
-| `dpub0_15.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #15 (level 4) |
-| `dpub0_16.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #16 (level 5) |
-| `dpub0_17.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #17 (level 6) |
-| `dpub0_18.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #18 (level 6) |
-| `dpub0_19.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #19 (level 7) |
-| `dpub0_2.cfg` | 40 | 1.6 KB | GENERATED - stat row 0: the slot's gun has raw value #2 (level 2) |
-| `dpub0_20.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #20 (level 8) |
-| `dpub0_21.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #21 (level 8) |
-| `dpub0_22.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #22 (level 10) |
-| `dpub0_23.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #23 (level 10) |
-| `dpub0_24.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #24 (level 10) |
-| `dpub0_25.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #25 (level 10) |
-| `dpub0_26.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #26 (level 10) |
-| `dpub0_27.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #27 (level 10) |
-| `dpub0_28.cfg` | 40 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #28 (n/a) (level n/a) |
-| `dpub0_3.cfg` | 40 | 1.6 KB | GENERATED - stat row 0: the slot's gun has raw value #3 (level 2) |
-| `dpub0_4.cfg` | 40 | 1.6 KB | GENERATED - stat row 0: the slot's gun has raw value #4 (level 2) |
-| `dpub0_5.cfg` | 40 | 1.6 KB | GENERATED - stat row 0: the slot's gun has raw value #5 (level 3) |
-| `dpub0_6.cfg` | 40 | 1.6 KB | GENERATED - stat row 0: the slot's gun has raw value #6 (level 3) |
-| `dpub0_7.cfg` | 40 | 1.6 KB | GENERATED - stat row 0: the slot's gun has raw value #7 (level 3) |
-| `dpub0_8.cfg` | 40 | 1.6 KB | GENERATED - stat row 0: the slot's gun has raw value #8 (level 3) |
-| `dpub0_9.cfg` | 40 | 1.6 KB | GENERATED - stat row 0: the slot's gun has raw value #9 (level 3) |
+| `dpub0_0.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #0 (level 2) |
+| `dpub0_1.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #1 (level 2) |
+| `dpub0_10.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #10 (level 3) |
+| `dpub0_11.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #11 (level 3) |
+| `dpub0_12.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #12 (level 4) |
+| `dpub0_13.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #13 (level 4) |
+| `dpub0_14.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #14 (level 4) |
+| `dpub0_15.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #15 (level 4) |
+| `dpub0_16.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #16 (level 4) |
+| `dpub0_17.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #17 (level 5) |
+| `dpub0_18.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #18 (level 6) |
+| `dpub0_19.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #19 (level 6) |
+| `dpub0_2.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #2 (level 2) |
+| `dpub0_20.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #20 (level 7) |
+| `dpub0_21.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #21 (level 8) |
+| `dpub0_22.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #22 (level 8) |
+| `dpub0_23.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #23 (level 10) |
+| `dpub0_24.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #24 (level 10) |
+| `dpub0_25.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #25 (level 10) |
+| `dpub0_26.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #26 (level 10) |
+| `dpub0_27.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #27 (level 10) |
+| `dpub0_28.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #28 (level 10) |
+| `dpub0_29.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #29 (n/a) (level n/a) |
+| `dpub0_3.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #3 (level 2) |
+| `dpub0_4.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #4 (level 2) |
+| `dpub0_5.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #5 (level 2) |
+| `dpub0_6.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #6 (level 3) |
+| `dpub0_7.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #7 (level 3) |
+| `dpub0_8.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #8 (level 3) |
+| `dpub0_9.cfg` | 41 | 1.7 KB | GENERATED - stat row 0: the slot's gun has raw value #9 (level 3) |
 | `dpub1_0.cfg` | 40 | 1.6 KB | GENERATED - stat row 1: the slot's gun has raw value #0 (level 0) |
 | `dpub1_1.cfg` | 40 | 1.6 KB | GENERATED - stat row 1: the slot's gun has raw value #1 (level 0) |
 | `dpub1_10.cfg` | 40 | 1.7 KB | GENERATED - stat row 1: the slot's gun has raw value #10 (level 4) |
@@ -23768,32 +23887,33 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `dpub3_7.cfg` | 27 | 1.0 KB | GENERATED - stat row 3: the slot's gun has raw value #7 (level 7) |
 | `dpub3_8.cfg` | 27 | 1.0 KB | GENERATED - stat row 3: the slot's gun has raw value #8 (level 7) |
 | `dpub3_9.cfg` | 27 | 1.0 KB | GENERATED - stat row 3: the slot's gun has raw value #9 (level 8) |
-| `dpub4_0.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #0 (level 10) |
-| `dpub4_1.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #1 (level 10) |
-| `dpub4_10.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #10 (level 6) |
-| `dpub4_11.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #11 (level 6) |
-| `dpub4_12.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #12 (level 6) |
-| `dpub4_13.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #13 (level 5) |
-| `dpub4_14.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #14 (level 5) |
-| `dpub4_15.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #15 (level 5) |
-| `dpub4_16.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #16 (level 4) |
-| `dpub4_17.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #17 (level 4) |
-| `dpub4_18.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #18 (level 4) |
-| `dpub4_19.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #19 (level 4) |
-| `dpub4_2.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #2 (level 9) |
-| `dpub4_20.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #20 (level 4) |
-| `dpub4_21.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #21 (level 4) |
-| `dpub4_22.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #22 (level 4) |
-| `dpub4_23.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #23 (level 3) |
-| `dpub4_24.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #24 (level 0) |
-| `dpub4_25.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #25 (n/a) (level n/a) |
-| `dpub4_3.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #3 (level 8) |
-| `dpub4_4.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #4 (level 8) |
-| `dpub4_5.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #5 (level 8) |
-| `dpub4_6.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #6 (level 7) |
-| `dpub4_7.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #7 (level 6) |
-| `dpub4_8.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #8 (level 6) |
-| `dpub4_9.cfg` | 37 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #9 (level 6) |
+| `dpub4_0.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #0 (level 10) |
+| `dpub4_1.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #1 (level 10) |
+| `dpub4_10.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #10 (level 6) |
+| `dpub4_11.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #11 (level 6) |
+| `dpub4_12.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #12 (level 6) |
+| `dpub4_13.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #13 (level 5) |
+| `dpub4_14.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #14 (level 5) |
+| `dpub4_15.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #15 (level 5) |
+| `dpub4_16.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #16 (level 4) |
+| `dpub4_17.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #17 (level 4) |
+| `dpub4_18.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #18 (level 4) |
+| `dpub4_19.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #19 (level 4) |
+| `dpub4_2.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #2 (level 9) |
+| `dpub4_20.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #20 (level 4) |
+| `dpub4_21.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #21 (level 4) |
+| `dpub4_22.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #22 (level 4) |
+| `dpub4_23.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #23 (level 4) |
+| `dpub4_24.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #24 (level 3) |
+| `dpub4_25.cfg` | 38 | 1.6 KB | GENERATED - stat row 4: the slot's gun has raw value #25 (level 0) |
+| `dpub4_26.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #26 (n/a) (level n/a) |
+| `dpub4_3.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #3 (level 8) |
+| `dpub4_4.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #4 (level 8) |
+| `dpub4_5.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #5 (level 8) |
+| `dpub4_6.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #6 (level 7) |
+| `dpub4_7.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #7 (level 6) |
+| `dpub4_8.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #8 (level 6) |
+| `dpub4_9.cfg` | 38 | 1.5 KB | GENERATED - stat row 4: the slot's gun has raw value #9 (level 6) |
 | `eq01.cfg` | 5 | 0.2 KB | GENERATED - earned weapon click: inspect (hero + compare + selected mark); EQUIP commits into the active slot |
 | `eq02.cfg` | 5 | 0.2 KB | GENERATED - earned weapon click: inspect (hero + compare + selected mark); EQUIP commits into the active slot |
 | `eq03.cfg` | 5 | 0.2 KB | GENERATED - earned weapon click: inspect (hero + compare + selected mark); EQUIP commits into the active slot |
@@ -23873,6 +23993,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `eq82.cfg` | 5 | 0.2 KB | GENERATED - earned weapon click: inspect (hero + compare + selected mark); EQUIP commits into the active slot |
 | `eq83.cfg` | 5 | 0.2 KB | GENERATED - earned weapon click: inspect (hero + compare + selected mark); EQUIP commits into the active slot |
 | `eq84.cfg` | 5 | 0.2 KB | GENERATED - earned weapon click: inspect (hero + compare + selected mark); EQUIP commits into the active slot |
+| `eq85.cfg` | 5 | 0.2 KB | GENERATED - earned weapon click: inspect (hero + compare + selected mark); EQUIP commits into the active slot |
 | `eqclr1.cfg` | 8 | 0.3 KB | GENERATED by patch_armory_locks.py - slot 1 no longer holds a gun: clear its EQUIPPED marker archives |
 | `eqclr2.cfg` | 8 | 0.3 KB | GENERATED by patch_armory_locks.py - slot 2 no longer holds a gun: clear its EQUIPPED marker archives |
 | `eqclr3.cfg` | 8 | 0.3 KB | GENERATED by patch_armory_locks.py - slot 3 no longer holds a gun: clear its EQUIPPED marker archives |
@@ -23912,7 +24033,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ffill4.cfg` | 22 | 0.6 KB | GENERATED - fill the finish chips for slot 4 (STD first, then unlocked, then locked finishes) |
 | `fill0.cfg` | 38 | 1.0 KB | GENERATED - fill the card grid of tab 0 (RIFLE): unlocked guns first, then locked on their own rows (pass A /… |
 | `fill1.cfg` | 36 | 0.9 KB | GENERATED - fill the card grid of tab 1 (SNIPER): unlocked guns first, then locked on their own rows (pass A… |
-| `fill2.cfg` | 36 | 0.9 KB | GENERATED - fill the card grid of tab 2 (SMG): unlocked guns first, then locked on their own rows (pass A / p… |
+| `fill2.cfg` | 38 | 1.0 KB | GENERATED - fill the card grid of tab 2 (SMG): unlocked guns first, then locked on their own rows (pass A / p… |
 | `fill3.cfg` | 48 | 1.2 KB | GENERATED - fill the card grid of tab 3 (HEAVY): unlocked guns first, then locked on their own rows (pass A /… |
 | `fill4.cfg` | 48 | 1.2 KB | GENERATED - fill the card grid of tab 4 (PISTOL): unlocked guns first, then locked on their own rows (pass A… |
 | `fill5.cfg` | 24 | 0.7 KB | GENERATED - fill the card grid of tab 5 (NADES): unlocked guns first, then locked on their own rows (pass A /… |
@@ -23991,6 +24112,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `fin70_s2.cfg` | 10 | 0.5 KB | GENERATED by gen_finish_ui.py - apply finish 70 to slot 2 (0 = back to standard). seta persists the |
 | `fin70_s3.cfg` | 10 | 0.5 KB | GENERATED by gen_finish_ui.py - apply finish 70 to slot 3 (0 = back to standard). seta persists the |
 | `fin70_s4.cfg` | 10 | 0.5 KB | GENERATED by gen_finish_ui.py - apply finish 70 to slot 4 (0 = back to standard). seta persists the |
+| `fin71_s1.cfg` | 10 | 0.5 KB | GENERATED by gen_finish_ui.py - apply finish 71 to slot 1 (0 = back to standard). seta persists the |
+| `fin71_s2.cfg` | 10 | 0.5 KB | GENERATED by gen_finish_ui.py - apply finish 71 to slot 2 (0 = back to standard). seta persists the |
+| `fin71_s3.cfg` | 10 | 0.5 KB | GENERATED by gen_finish_ui.py - apply finish 71 to slot 3 (0 = back to standard). seta persists the |
+| `fin71_s4.cfg` | 10 | 0.5 KB | GENERATED by gen_finish_ui.py - apply finish 71 to slot 4 (0 = back to standard). seta persists the |
 | `fin7_s1.cfg` | 10 | 0.4 KB | GENERATED - apply finish 7 to slot 1 (0 = back to standard). seta persists the |
 | `fin7_s2.cfg` | 10 | 0.4 KB | GENERATED - apply finish 7 to slot 2 (0 = back to standard). seta persists the |
 | `fin7_s3.cfg` | 10 | 0.4 KB | GENERATED - apply finish 7 to slot 3 (0 = back to standard). seta persists the |
@@ -24762,6 +24887,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `finp45_60.cfg` | 2 | 0.1 KB |  |
 | `finp45_7.cfg` | 2 | 0.1 KB |  |
 | `finp45_70.cfg` | 2 | 0.1 KB |  |
+| `finp45_71.cfg` | 2 | 0.1 KB |  |
 | `finp46_1.cfg` | 2 | 0.1 KB |  |
 | `finp46_2.cfg` | 2 | 0.1 KB |  |
 | `finp46_3.cfg` | 2 | 0.1 KB |  |
@@ -25470,7 +25596,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `hpg8.cfg` | 11 | 0.2 KB | GENERATED - hero progress level 8 |
 | `hpg9.cfg` | 11 | 0.2 KB | GENERATED - hero progress level 9 |
 | `hpub.cfg` | 12 | 0.5 KB | GENERATED - progress join for the hero bar |
-| `init.cfg` | 153 | 5.3 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
+| `init.cfg` | 154 | 5.4 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
 | `kbs0_0.cfg` | 11 | 0.2 KB | GENERATED - card 0 progress level 0 |
 | `kbs0_1.cfg` | 11 | 0.2 KB | GENERATED - card 0 progress level 1 |
 | `kbs0_10.cfg` | 11 | 0.2 KB | GENERATED - card 0 progress level 10 |
@@ -25694,17 +25820,17 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `lj21.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 21 |
 | `lj22.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 22 |
 | `lj23.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 23 |
-| `lj24.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 24 |
-| `lj25.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 25 |
-| `lj26.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 26 |
-| `lj27.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 27 |
-| `lj28.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 28 |
-| `lj29.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 29 |
-| `lj30.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 30 |
-| `lj31.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 31 |
-| `lj32.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 32 |
-| `lj33.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 33 |
-| `lj35.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 35 |
+| `lj24.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 24 |
+| `lj25.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 25 |
+| `lj26.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 26 |
+| `lj27.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 27 |
+| `lj28.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 28 |
+| `lj29.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 29 |
+| `lj30.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 30 |
+| `lj31.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 31 |
+| `lj32.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 32 |
+| `lj33.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 33 |
+| `lj35.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 35 |
 | `lj36.cfg` | 23 | 1.1 KB | GENERATED - publish the locked placements of gun 36 |
 | `lj37.cfg` | 23 | 1.1 KB | GENERATED - publish the locked placements of gun 37 |
 | `lj38.cfg` | 23 | 1.1 KB | GENERATED - publish the locked placements of gun 38 |
@@ -25748,8 +25874,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `lj80.cfg` | 23 | 1.1 KB | GENERATED - publish the locked placements of gun 80 |
 | `lj81.cfg` | 23 | 1.1 KB | GENERATED - publish the locked placements of gun 81 |
 | `lj82.cfg` | 23 | 1.1 KB | GENERATED - publish the locked placements of gun 82 |
-| `lj83.cfg` | 17 | 0.8 KB | GENERATED - publish the locked placements of gun 83 |
+| `lj83.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 83 |
 | `lj84.cfg` | 23 | 1.1 KB | GENERATED - publish the locked placements of gun 84 |
+| `lj85.cfg` | 18 | 0.8 KB | GENERATED - publish the locked placements of gun 85 |
 | `lkc1_0.cfg` | 3 | 0.1 KB | GENERATED by gen_finish_ui.py - finish chip 1 OPEN for the active slot's gun |
 | `lkc1_1.cfg` | 3 | 0.2 KB | GENERATED by gen_finish_ui.py - finish chip 1 LOCKED for the active slot's gun: padlock + the click shows wha… |
 | `lkc2_0.cfg` | 3 | 0.1 KB | GENERATED by gen_finish_ui.py - finish chip 2 OPEN for the active slot's gun |
@@ -25882,6 +26009,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `lkw82.cfg` | 23 | 0.6 KB | GENERATED - locked weapon click: show what unlocks it, beep, change nothing |
 | `lkw83.cfg` | 23 | 0.6 KB | GENERATED - locked weapon click: show what unlocks it, beep, change nothing |
 | `lkw84.cfg` | 23 | 0.7 KB | GENERATED - locked weapon click: show what unlocks it, beep, change nothing |
+| `lkw85.cfg` | 23 | 0.6 KB | GENERATED - locked weapon click: show what unlocks it, beep, change nothing |
 | `mvp01_0_s1.cfg` | 7 | 0.3 KB | GENERATED - variant chain 0/3, host 01, slot 1 (exact-fid archive) |
 | `mvp01_0_s2.cfg` | 7 | 0.3 KB | GENERATED - variant chain 0/3, host 01, slot 2 (exact-fid archive) |
 | `mvp01_0_s3.cfg` | 7 | 0.3 KB | GENERATED - variant chain 0/3, host 01, slot 3 (exact-fid archive) |
@@ -26341,7 +26469,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `nl2_1.cfg` | 3 | 0.1 KB | GENERATED - locked pointer, tab 2 state 1 (place card 1, then advance) |
 | `nl2_10.cfg` | 3 | 0.1 KB | GENERATED - locked pointer, tab 2 state 10 (place card 10, then advance) |
 | `nl2_11.cfg` | 3 | 0.1 KB | GENERATED - locked pointer, tab 2 state 11 (place card 11, then advance) |
-| `nl2_12.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2 state 12 (place card 12, then advance) |
+| `nl2_12.cfg` | 3 | 0.1 KB | GENERATED - locked pointer, tab 2 state 12 (place card 12, then advance) |
 | `nl2_13.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2 state 13 (place card 13, then advance) |
 | `nl2_2.cfg` | 3 | 0.1 KB | GENERATED - locked pointer, tab 2 state 2 (place card 2, then advance) |
 | `nl2_3.cfg` | 3 | 0.1 KB | GENERATED - locked pointer, tab 2 state 3 (place card 3, then advance) |
@@ -26510,13 +26638,13 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `nlw2_0_3.cfg` | 4 | 0.1 KB | GENERATED - locked pointer, tab 2: 0 unlocked, ledger row 3 (card 3) |
 | `nlw2_10_0.cfg` | 4 | 0.2 KB | GENERATED - locked pointer, tab 2: 10 unlocked, ledger row 0 (card 10) |
 | `nlw2_10_1.cfg` | 4 | 0.2 KB | GENERATED - locked pointer, tab 2: 10 unlocked, ledger row 1 (card 11) |
-| `nlw2_10_2.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2: 10 unlocked, ledger row 2 (card 12) |
+| `nlw2_10_2.cfg` | 4 | 0.2 KB | GENERATED - locked pointer, tab 2: 10 unlocked, ledger row 2 (card 12) |
 | `nlw2_10_3.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2: 10 unlocked, ledger row 3 (card 13) |
 | `nlw2_11_0.cfg` | 4 | 0.2 KB | GENERATED - locked pointer, tab 2: 11 unlocked, ledger row 0 (card 11) |
-| `nlw2_11_1.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2: 11 unlocked, ledger row 1 (card 12) |
+| `nlw2_11_1.cfg` | 4 | 0.2 KB | GENERATED - locked pointer, tab 2: 11 unlocked, ledger row 1 (card 12) |
 | `nlw2_11_2.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2: 11 unlocked, ledger row 2 (card 13) |
 | `nlw2_11_3.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2: 11 unlocked, ledger row 3 (card 14) |
-| `nlw2_12_0.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2: 12 unlocked, ledger row 0 (card 12) |
+| `nlw2_12_0.cfg` | 4 | 0.2 KB | GENERATED - locked pointer, tab 2: 12 unlocked, ledger row 0 (card 12) |
 | `nlw2_12_1.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2: 12 unlocked, ledger row 1 (card 13) |
 | `nlw2_12_2.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2: 12 unlocked, ledger row 2 (card 14) |
 | `nlw2_12_3.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2: 12 unlocked, ledger row 3 (card 15) |
@@ -26559,7 +26687,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `nlw2_9_0.cfg` | 4 | 0.1 KB | GENERATED - locked pointer, tab 2: 9 unlocked, ledger row 0 (card 9) |
 | `nlw2_9_1.cfg` | 4 | 0.2 KB | GENERATED - locked pointer, tab 2: 9 unlocked, ledger row 1 (card 10) |
 | `nlw2_9_2.cfg` | 4 | 0.2 KB | GENERATED - locked pointer, tab 2: 9 unlocked, ledger row 2 (card 11) |
-| `nlw2_9_3.cfg` | 2 | 0.1 KB | GENERATED - locked pointer, tab 2: 9 unlocked, ledger row 3 (card 12) |
+| `nlw2_9_3.cfg` | 4 | 0.1 KB | GENERATED - locked pointer, tab 2: 9 unlocked, ledger row 3 (card 12) |
 | `nlw3_0_0.cfg` | 4 | 0.1 KB | GENERATED - locked pointer, tab 3: 0 unlocked, ledger row 0 (card 0) |
 | `nlw3_0_1.cfg` | 4 | 0.1 KB | GENERATED - locked pointer, tab 3: 0 unlocked, ledger row 1 (card 1) |
 | `nlw3_0_2.cfg` | 4 | 0.1 KB | GENERATED - locked pointer, tab 3: 0 unlocked, ledger row 2 (card 2) |
@@ -26821,6 +26949,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `nsn1_82.cfg` | 2 | 0.1 KB | GENERATED - slot 1 tile name for gun 82 |
 | `nsn1_83.cfg` | 2 | 0.1 KB | GENERATED - slot 1 tile name for gun 83 |
 | `nsn1_84.cfg` | 2 | 0.1 KB | GENERATED - slot 1 tile name for gun 84 |
+| `nsn1_85.cfg` | 2 | 0.1 KB | GENERATED - slot 1 tile name for gun 85 |
 | `nsn2_01.cfg` | 2 | 0.1 KB | GENERATED - slot 2 tile name for gun 01 |
 | `nsn2_02.cfg` | 2 | 0.1 KB | GENERATED - slot 2 tile name for gun 02 |
 | `nsn2_03.cfg` | 2 | 0.1 KB | GENERATED - slot 2 tile name for gun 03 |
@@ -26902,6 +27031,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `nsn2_82.cfg` | 2 | 0.1 KB | GENERATED - slot 2 tile name for gun 82 |
 | `nsn2_83.cfg` | 2 | 0.1 KB | GENERATED - slot 2 tile name for gun 83 |
 | `nsn2_84.cfg` | 2 | 0.1 KB | GENERATED - slot 2 tile name for gun 84 |
+| `nsn2_85.cfg` | 2 | 0.1 KB | GENERATED - slot 2 tile name for gun 85 |
 | `nsn3_01.cfg` | 2 | 0.1 KB | GENERATED - slot 3 tile name for gun 01 |
 | `nsn3_02.cfg` | 2 | 0.1 KB | GENERATED - slot 3 tile name for gun 02 |
 | `nsn3_03.cfg` | 2 | 0.1 KB | GENERATED - slot 3 tile name for gun 03 |
@@ -26983,6 +27113,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `nsn3_82.cfg` | 2 | 0.1 KB | GENERATED - slot 3 tile name for gun 82 |
 | `nsn3_83.cfg` | 2 | 0.1 KB | GENERATED - slot 3 tile name for gun 83 |
 | `nsn3_84.cfg` | 2 | 0.1 KB | GENERATED - slot 3 tile name for gun 84 |
+| `nsn3_85.cfg` | 2 | 0.1 KB | GENERATED - slot 3 tile name for gun 85 |
 | `nsn4_01.cfg` | 2 | 0.1 KB | GENERATED - slot 4 tile name for gun 01 |
 | `nsn4_02.cfg` | 2 | 0.1 KB | GENERATED - slot 4 tile name for gun 02 |
 | `nsn4_03.cfg` | 2 | 0.1 KB | GENERATED - slot 4 tile name for gun 03 |
@@ -27064,6 +27195,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `nsn4_82.cfg` | 2 | 0.1 KB | GENERATED - slot 4 tile name for gun 82 |
 | `nsn4_83.cfg` | 2 | 0.1 KB | GENERATED - slot 4 tile name for gun 83 |
 | `nsn4_84.cfg` | 2 | 0.1 KB | GENERATED - slot 4 tile name for gun 84 |
+| `nsn4_85.cfg` | 2 | 0.1 KB | GENERATED - slot 4 tile name for gun 85 |
 | `nu0_0.cfg` | 8 | 0.3 KB | GENERATED - unlocked pointer, tab 0 state 0 (place card 0, then advance) |
 | `nu0_1.cfg` | 7 | 0.3 KB | GENERATED - unlocked pointer, tab 0 state 1 (place card 1, then advance) |
 | `nu0_10.cfg` | 7 | 0.3 KB | GENERATED - unlocked pointer, tab 0 state 10 (place card 10, then advance) |
@@ -27095,7 +27227,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `nu2_1.cfg` | 7 | 0.3 KB | GENERATED - unlocked pointer, tab 2 state 1 (place card 1, then advance) |
 | `nu2_10.cfg` | 7 | 0.3 KB | GENERATED - unlocked pointer, tab 2 state 10 (place card 10, then advance) |
 | `nu2_11.cfg` | 7 | 0.3 KB | GENERATED - unlocked pointer, tab 2 state 11 (place card 11, then advance) |
-| `nu2_12.cfg` | 2 | 0.1 KB | GENERATED - unlocked pointer, tab 2 state 12 (place card 12, then advance) |
+| `nu2_12.cfg` | 7 | 0.3 KB | GENERATED - unlocked pointer, tab 2 state 12 (place card 12, then advance) |
 | `nu2_13.cfg` | 2 | 0.1 KB | GENERATED - unlocked pointer, tab 2 state 13 (place card 13, then advance) |
 | `nu2_2.cfg` | 7 | 0.3 KB | GENERATED - unlocked pointer, tab 2 state 2 (place card 2, then advance) |
 | `nu2_3.cfg` | 7 | 0.3 KB | GENERATED - unlocked pointer, tab 2 state 3 (place card 3, then advance) |
@@ -27151,85 +27283,86 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `nu5_5.cfg` | 7 | 0.3 KB | GENERATED - unlocked pointer, tab 5 state 5 (place card 5, then advance) |
 | `nu5_6.cfg` | 2 | 0.1 KB | GENERATED - unlocked pointer, tab 5 state 6 (place card 6, then advance) |
 | `open.cfg` | 15 | 0.8 KB | GENERATED - open the armory: seed view state, push the menu, ping the bus. |
-| `p01.cfg` | 61 | 2.4 KB |  |
-| `p02.cfg` | 61 | 2.0 KB |  |
-| `p03.cfg` | 61 | 2.3 KB |  |
-| `p04.cfg` | 61 | 2.3 KB |  |
-| `p05.cfg` | 61 | 2.3 KB |  |
-| `p06.cfg` | 61 | 2.0 KB |  |
-| `p07.cfg` | 61 | 2.3 KB |  |
-| `p08.cfg` | 61 | 2.3 KB |  |
-| `p09.cfg` | 61 | 2.4 KB |  |
-| `p10.cfg` | 61 | 2.0 KB |  |
-| `p11.cfg` | 61 | 2.0 KB |  |
-| `p12.cfg` | 61 | 2.3 KB |  |
-| `p13.cfg` | 61 | 2.3 KB |  |
-| `p14.cfg` | 61 | 2.3 KB |  |
-| `p15.cfg` | 61 | 2.0 KB |  |
-| `p16.cfg` | 61 | 2.2 KB |  |
-| `p17.cfg` | 61 | 2.0 KB |  |
-| `p18.cfg` | 61 | 2.0 KB |  |
-| `p19.cfg` | 61 | 2.0 KB |  |
-| `p20.cfg` | 61 | 2.0 KB |  |
-| `p21.cfg` | 61 | 2.0 KB |  |
-| `p22.cfg` | 61 | 2.0 KB |  |
-| `p23.cfg` | 61 | 2.3 KB |  |
-| `p24.cfg` | 61 | 2.4 KB |  |
-| `p25.cfg` | 61 | 2.1 KB |  |
-| `p26.cfg` | 61 | 2.3 KB |  |
-| `p27.cfg` | 61 | 2.0 KB |  |
-| `p28.cfg` | 61 | 2.2 KB |  |
-| `p29.cfg` | 61 | 2.2 KB |  |
-| `p30.cfg` | 61 | 2.0 KB |  |
-| `p31.cfg` | 61 | 2.0 KB |  |
-| `p32.cfg` | 61 | 2.0 KB |  |
-| `p33.cfg` | 61 | 2.3 KB |  |
-| `p35.cfg` | 61 | 2.0 KB |  |
-| `p36.cfg` | 61 | 2.4 KB |  |
-| `p37.cfg` | 61 | 2.4 KB |  |
-| `p38.cfg` | 61 | 2.0 KB |  |
-| `p39.cfg` | 61 | 2.2 KB |  |
-| `p40.cfg` | 61 | 2.2 KB |  |
-| `p41.cfg` | 61 | 2.2 KB |  |
-| `p42.cfg` | 61 | 2.0 KB |  |
-| `p43.cfg` | 61 | 2.0 KB |  |
-| `p44.cfg` | 61 | 2.4 KB |  |
-| `p45.cfg` | 61 | 2.4 KB |  |
-| `p46.cfg` | 61 | 2.3 KB |  |
-| `p47.cfg` | 61 | 2.2 KB |  |
-| `p48.cfg` | 61 | 2.3 KB |  |
-| `p49.cfg` | 61 | 2.0 KB |  |
-| `p50.cfg` | 61 | 2.3 KB |  |
-| `p51.cfg` | 61 | 2.0 KB |  |
-| `p52.cfg` | 61 | 2.2 KB |  |
-| `p53.cfg` | 61 | 2.3 KB |  |
-| `p54.cfg` | 61 | 2.2 KB |  |
-| `p55.cfg` | 61 | 2.3 KB |  |
-| `p56.cfg` | 61 | 2.0 KB |  |
-| `p57.cfg` | 61 | 2.0 KB |  |
-| `p58.cfg` | 61 | 2.0 KB |  |
-| `p59.cfg` | 61 | 2.0 KB |  |
-| `p60.cfg` | 61 | 2.2 KB |  |
-| `p61.cfg` | 61 | 2.2 KB |  |
-| `p62.cfg` | 61 | 2.0 KB |  |
-| `p63.cfg` | 61 | 2.2 KB |  |
-| `p64.cfg` | 61 | 1.7 KB |  |
-| `p65.cfg` | 61 | 1.7 KB |  |
-| `p66.cfg` | 61 | 1.6 KB |  |
-| `p67.cfg` | 61 | 1.6 KB |  |
-| `p68.cfg` | 61 | 1.6 KB |  |
-| `p69.cfg` | 61 | 1.6 KB |  |
-| `p70.cfg` | 61 | 2.2 KB |  |
-| `p72.cfg` | 61 | 2.2 KB |  |
-| `p74.cfg` | 61 | 2.3 KB |  |
-| `p75.cfg` | 61 | 2.2 KB |  |
-| `p78.cfg` | 61 | 2.4 KB |  |
-| `p79.cfg` | 61 | 2.0 KB |  |
-| `p80.cfg` | 61 | 2.2 KB |  |
-| `p81.cfg` | 61 | 2.0 KB |  |
-| `p82.cfg` | 61 | 2.0 KB |  |
-| `p83.cfg` | 61 | 2.0 KB |  |
-| `p84.cfg` | 61 | 2.0 KB |  |
+| `p01.cfg` | 63 | 2.4 KB |  |
+| `p02.cfg` | 63 | 2.0 KB |  |
+| `p03.cfg` | 63 | 2.4 KB |  |
+| `p04.cfg` | 63 | 2.4 KB |  |
+| `p05.cfg` | 63 | 2.3 KB |  |
+| `p06.cfg` | 63 | 2.1 KB |  |
+| `p07.cfg` | 63 | 2.4 KB |  |
+| `p08.cfg` | 63 | 2.3 KB |  |
+| `p09.cfg` | 63 | 2.4 KB |  |
+| `p10.cfg` | 63 | 2.0 KB |  |
+| `p11.cfg` | 63 | 2.1 KB |  |
+| `p12.cfg` | 63 | 2.4 KB |  |
+| `p13.cfg` | 63 | 2.4 KB |  |
+| `p14.cfg` | 63 | 2.4 KB |  |
+| `p15.cfg` | 63 | 2.1 KB |  |
+| `p16.cfg` | 63 | 2.2 KB |  |
+| `p17.cfg` | 63 | 2.1 KB |  |
+| `p18.cfg` | 63 | 2.0 KB |  |
+| `p19.cfg` | 63 | 2.0 KB |  |
+| `p20.cfg` | 63 | 2.1 KB |  |
+| `p21.cfg` | 63 | 2.1 KB |  |
+| `p22.cfg` | 63 | 2.1 KB |  |
+| `p23.cfg` | 63 | 2.3 KB |  |
+| `p24.cfg` | 63 | 2.4 KB |  |
+| `p25.cfg` | 63 | 2.2 KB |  |
+| `p26.cfg` | 63 | 2.4 KB |  |
+| `p27.cfg` | 63 | 2.0 KB |  |
+| `p28.cfg` | 63 | 2.2 KB |  |
+| `p29.cfg` | 63 | 2.3 KB |  |
+| `p30.cfg` | 63 | 2.1 KB |  |
+| `p31.cfg` | 63 | 2.0 KB |  |
+| `p32.cfg` | 63 | 2.1 KB |  |
+| `p33.cfg` | 63 | 2.4 KB |  |
+| `p35.cfg` | 63 | 2.0 KB |  |
+| `p36.cfg` | 63 | 2.4 KB |  |
+| `p37.cfg` | 63 | 2.4 KB |  |
+| `p38.cfg` | 63 | 2.0 KB |  |
+| `p39.cfg` | 63 | 2.2 KB |  |
+| `p40.cfg` | 63 | 2.2 KB |  |
+| `p41.cfg` | 63 | 2.2 KB |  |
+| `p42.cfg` | 63 | 2.1 KB |  |
+| `p43.cfg` | 63 | 2.0 KB |  |
+| `p44.cfg` | 63 | 2.4 KB |  |
+| `p45.cfg` | 63 | 2.4 KB |  |
+| `p46.cfg` | 63 | 2.4 KB |  |
+| `p47.cfg` | 63 | 2.2 KB |  |
+| `p48.cfg` | 63 | 2.4 KB |  |
+| `p49.cfg` | 63 | 2.0 KB |  |
+| `p50.cfg` | 63 | 2.3 KB |  |
+| `p51.cfg` | 63 | 2.0 KB |  |
+| `p52.cfg` | 63 | 2.3 KB |  |
+| `p53.cfg` | 63 | 2.3 KB |  |
+| `p54.cfg` | 63 | 2.2 KB |  |
+| `p55.cfg` | 63 | 2.3 KB |  |
+| `p56.cfg` | 63 | 2.0 KB |  |
+| `p57.cfg` | 63 | 2.0 KB |  |
+| `p58.cfg` | 63 | 2.0 KB |  |
+| `p59.cfg` | 63 | 2.0 KB |  |
+| `p60.cfg` | 63 | 2.2 KB |  |
+| `p61.cfg` | 63 | 2.2 KB |  |
+| `p62.cfg` | 63 | 2.0 KB |  |
+| `p63.cfg` | 63 | 2.2 KB |  |
+| `p64.cfg` | 63 | 1.7 KB |  |
+| `p65.cfg` | 63 | 1.7 KB |  |
+| `p66.cfg` | 63 | 1.7 KB |  |
+| `p67.cfg` | 63 | 1.7 KB |  |
+| `p68.cfg` | 63 | 1.7 KB |  |
+| `p69.cfg` | 63 | 1.7 KB |  |
+| `p70.cfg` | 63 | 2.2 KB |  |
+| `p72.cfg` | 63 | 2.2 KB |  |
+| `p74.cfg` | 63 | 2.3 KB |  |
+| `p75.cfg` | 63 | 2.2 KB |  |
+| `p78.cfg` | 63 | 2.4 KB |  |
+| `p79.cfg` | 63 | 2.1 KB |  |
+| `p80.cfg` | 63 | 2.2 KB |  |
+| `p81.cfg` | 63 | 2.0 KB |  |
+| `p82.cfg` | 63 | 2.0 KB |  |
+| `p83.cfg` | 63 | 2.1 KB |  |
+| `p84.cfg` | 63 | 2.1 KB |  |
+| `p85.cfg` | 63 | 1.6 KB |  |
 | `pgpub0.cfg` | 12 | 0.5 KB | GENERATED - progress join for card 0 |
 | `pgpub1.cfg` | 12 | 0.5 KB | GENERATED - progress join for card 1 |
 | `pgpub10.cfg` | 12 | 0.5 KB | GENERATED - progress join for card 10 |
@@ -28374,6 +28507,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `pll_83_1.cfg` | 13 | 0.4 KB | GENERATED - card 1 shows gun 83 (locked) |
 | `pll_83_10.cfg` | 13 | 0.4 KB | GENERATED - card 10 shows gun 83 (locked) |
 | `pll_83_11.cfg` | 13 | 0.4 KB | GENERATED - card 11 shows gun 83 (locked) |
+| `pll_83_12.cfg` | 13 | 0.4 KB | GENERATED - card 12 shows gun 83 (locked) |
 | `pll_83_2.cfg` | 13 | 0.4 KB | GENERATED - card 2 shows gun 83 (locked) |
 | `pll_83_3.cfg` | 13 | 0.4 KB | GENERATED - card 3 shows gun 83 (locked) |
 | `pll_83_4.cfg` | 13 | 0.4 KB | GENERATED - card 4 shows gun 83 (locked) |
@@ -28400,6 +28534,19 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `pll_84_7.cfg` | 13 | 0.4 KB | GENERATED - card 7 shows gun 84 (locked) |
 | `pll_84_8.cfg` | 13 | 0.4 KB | GENERATED - card 8 shows gun 84 (locked) |
 | `pll_84_9.cfg` | 13 | 0.4 KB | GENERATED - card 9 shows gun 84 (locked) |
+| `pll_85_0.cfg` | 13 | 0.4 KB | GENERATED - card 0 shows gun 85 (locked) |
+| `pll_85_1.cfg` | 13 | 0.4 KB | GENERATED - card 1 shows gun 85 (locked) |
+| `pll_85_10.cfg` | 13 | 0.4 KB | GENERATED - card 10 shows gun 85 (locked) |
+| `pll_85_11.cfg` | 13 | 0.4 KB | GENERATED - card 11 shows gun 85 (locked) |
+| `pll_85_12.cfg` | 13 | 0.4 KB | GENERATED - card 12 shows gun 85 (locked) |
+| `pll_85_2.cfg` | 13 | 0.4 KB | GENERATED - card 2 shows gun 85 (locked) |
+| `pll_85_3.cfg` | 13 | 0.4 KB | GENERATED - card 3 shows gun 85 (locked) |
+| `pll_85_4.cfg` | 13 | 0.4 KB | GENERATED - card 4 shows gun 85 (locked) |
+| `pll_85_5.cfg` | 13 | 0.4 KB | GENERATED - card 5 shows gun 85 (locked) |
+| `pll_85_6.cfg` | 13 | 0.4 KB | GENERATED - card 6 shows gun 85 (locked) |
+| `pll_85_7.cfg` | 13 | 0.4 KB | GENERATED - card 7 shows gun 85 (locked) |
+| `pll_85_8.cfg` | 13 | 0.4 KB | GENERATED - card 8 shows gun 85 (locked) |
+| `pll_85_9.cfg` | 13 | 0.4 KB | GENERATED - card 9 shows gun 85 (locked) |
 | `plu_01_0.cfg` | 11 | 0.4 KB | GENERATED - card 0 shows gun 01 (unlocked) |
 | `plu_01_1.cfg` | 11 | 0.4 KB | GENERATED - card 1 shows gun 01 (unlocked) |
 | `plu_01_10.cfg` | 11 | 0.4 KB | GENERATED - card 10 shows gun 01 (unlocked) |
@@ -29526,6 +29673,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `plu_83_1.cfg` | 11 | 0.4 KB | GENERATED - card 1 shows gun 83 (unlocked) |
 | `plu_83_10.cfg` | 11 | 0.4 KB | GENERATED - card 10 shows gun 83 (unlocked) |
 | `plu_83_11.cfg` | 11 | 0.4 KB | GENERATED - card 11 shows gun 83 (unlocked) |
+| `plu_83_12.cfg` | 11 | 0.4 KB | GENERATED - card 12 shows gun 83 (unlocked) |
 | `plu_83_2.cfg` | 11 | 0.4 KB | GENERATED - card 2 shows gun 83 (unlocked) |
 | `plu_83_3.cfg` | 11 | 0.4 KB | GENERATED - card 3 shows gun 83 (unlocked) |
 | `plu_83_4.cfg` | 11 | 0.4 KB | GENERATED - card 4 shows gun 83 (unlocked) |
@@ -29552,6 +29700,19 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `plu_84_7.cfg` | 11 | 0.4 KB | GENERATED - card 7 shows gun 84 (unlocked) |
 | `plu_84_8.cfg` | 11 | 0.4 KB | GENERATED - card 8 shows gun 84 (unlocked) |
 | `plu_84_9.cfg` | 11 | 0.4 KB | GENERATED - card 9 shows gun 84 (unlocked) |
+| `plu_85_0.cfg` | 11 | 0.4 KB | GENERATED - card 0 shows gun 85 (unlocked) |
+| `plu_85_1.cfg` | 11 | 0.4 KB | GENERATED - card 1 shows gun 85 (unlocked) |
+| `plu_85_10.cfg` | 11 | 0.4 KB | GENERATED - card 10 shows gun 85 (unlocked) |
+| `plu_85_11.cfg` | 11 | 0.4 KB | GENERATED - card 11 shows gun 85 (unlocked) |
+| `plu_85_12.cfg` | 11 | 0.4 KB | GENERATED - card 12 shows gun 85 (unlocked) |
+| `plu_85_2.cfg` | 11 | 0.4 KB | GENERATED - card 2 shows gun 85 (unlocked) |
+| `plu_85_3.cfg` | 11 | 0.4 KB | GENERATED - card 3 shows gun 85 (unlocked) |
+| `plu_85_4.cfg` | 11 | 0.4 KB | GENERATED - card 4 shows gun 85 (unlocked) |
+| `plu_85_5.cfg` | 11 | 0.4 KB | GENERATED - card 5 shows gun 85 (unlocked) |
+| `plu_85_6.cfg` | 11 | 0.4 KB | GENERATED - card 6 shows gun 85 (unlocked) |
+| `plu_85_7.cfg` | 11 | 0.4 KB | GENERATED - card 7 shows gun 85 (unlocked) |
+| `plu_85_8.cfg` | 11 | 0.4 KB | GENERATED - card 8 shows gun 85 (unlocked) |
+| `plu_85_9.cfg` | 11 | 0.4 KB | GENERATED - card 9 shows gun 85 (unlocked) |
 | `pubgun01.cfg` | 11 | 0.3 KB | GENERATED - publish gun 01 as the EQUIPPED side of the compare |
 | `pubgun02.cfg` | 11 | 0.3 KB | GENERATED - publish gun 02 as the EQUIPPED side of the compare |
 | `pubgun03.cfg` | 11 | 0.3 KB | GENERATED - publish gun 03 as the EQUIPPED side of the compare |
@@ -29633,6 +29794,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `pubgun82.cfg` | 11 | 0.3 KB | GENERATED - publish gun 82 as the EQUIPPED side of the compare |
 | `pubgun83.cfg` | 11 | 0.3 KB | GENERATED - publish gun 83 as the EQUIPPED side of the compare |
 | `pubgun84.cfg` | 11 | 0.3 KB | GENERATED - publish gun 84 as the EQUIPPED side of the compare |
+| `pubgun85.cfg` | 11 | 0.3 KB | GENERATED - publish gun 85 as the EQUIPPED side of the compare |
 | `req02.cfg` | 2 | 0.1 KB |  |
 | `req03.cfg` | 2 | 0.1 KB |  |
 | `req04.cfg` | 2 | 0.1 KB |  |
@@ -29708,6 +29870,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `req82.cfg` | 2 | 0.1 KB |  |
 | `req83.cfg` | 2 | 0.1 KB |  |
 | `req84.cfg` | 2 | 0.1 KB |  |
+| `req85.cfg` | 2 | 0.1 KB |  |
 | `reqclear.cfg` | 2 | 0.0 KB |  |
 | `reqf1.cfg` | 2 | 0.1 KB |  |
 | `reqf2.cfg` | 2 | 0.1 KB |  |
@@ -29757,10 +29920,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `reqmv74.cfg` | 2 | 0.1 KB |  |
 | `reqmv78.cfg` | 2 | 0.2 KB |  |
 | `reset.cfg` | 34 | 0.9 KB | GENERATED - clear all armory picks (client cvars + tell the server). |
-| `s1sel.cfg` | 91 | 3.4 KB | GENERATED - activate loadout slot 1 |
-| `s2sel.cfg` | 91 | 3.4 KB | GENERATED - activate loadout slot 2 |
-| `s3sel.cfg` | 91 | 3.4 KB | GENERATED - activate loadout slot 3 |
-| `s4sel.cfg` | 65 | 2.3 KB | GENERATED - activate loadout slot 4 |
+| `s1sel.cfg` | 92 | 3.5 KB | GENERATED - activate loadout slot 1 |
+| `s2sel.cfg` | 92 | 3.5 KB | GENERATED - activate loadout slot 2 |
+| `s3sel.cfg` | 92 | 3.5 KB | GENERATED - activate loadout slot 3 |
+| `s4sel.cfg` | 66 | 2.3 KB | GENERATED - activate loadout slot 4 |
 | `seed_s1.cfg` | 7 | 0.4 KB | [user 2026-08-18] SEED CHIP DISPLAY ONLY (deep-trace F9): plain `set`, session-local. |
 | `seed_s3.cfg` | 7 | 0.4 KB | [user 2026-08-18] SEED CHIP DISPLAY ONLY (deep-trace F9): plain `set`, session-local. |
 | `srl01.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 01 LOCKED |
@@ -29842,6 +30005,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `srl82.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 82 LOCKED |
 | `srl83.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 83 LOCKED |
 | `srl84.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 84 LOCKED |
+| `srl85.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 85 LOCKED |
 | `sru01.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 01 UNLOCKED |
 | `sru02.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 02 UNLOCKED |
 | `sru03.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 03 UNLOCKED |
@@ -29921,6 +30085,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `sru82.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 82 UNLOCKED |
 | `sru83.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 83 UNLOCKED |
 | `sru84.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 84 UNLOCKED |
+| `sru85.cfg` | 3 | 0.1 KB | GENERATED - sort step, gun 85 UNLOCKED |
 | `t01.cfg` | 2 | 0.1 KB | GENERATED - the click is coop_loCmt<id>: eq<id>.cfg when earned, lkw<id>.cfg when locked |
 | `t02.cfg` | 2 | 0.1 KB | GENERATED - the click is coop_loCmt<id>: eq<id>.cfg when earned, lkw<id>.cfg when locked |
 | `t03.cfg` | 2 | 0.1 KB | GENERATED - the click is coop_loCmt<id>: eq<id>.cfg when earned, lkw<id>.cfg when locked |
@@ -30000,6 +30165,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t82.cfg` | 2 | 0.1 KB | GENERATED - the click is coop_loCmt<id>: eq<id>.cfg when earned, lkw<id>.cfg when locked |
 | `t83.cfg` | 2 | 0.1 KB | GENERATED - the click is coop_loCmt<id>: eq<id>.cfg when earned, lkw<id>.cfg when locked |
 | `t84.cfg` | 2 | 0.1 KB | GENERATED - the click is coop_loCmt<id>: eq<id>.cfg when earned, lkw<id>.cfg when locked |
+| `t85.cfg` | 2 | 0.1 KB | GENERATED - the click is coop_loCmt<id>: eq<id>.cfg when earned, lkw<id>.cfg when locked |
 | `uj01.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 01 |
 | `uj02.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 02 |
 | `uj03.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 03 |
@@ -30023,17 +30189,17 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `uj21.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 21 |
 | `uj22.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 22 |
 | `uj23.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 23 |
-| `uj24.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 24 |
-| `uj25.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 25 |
-| `uj26.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 26 |
-| `uj27.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 27 |
-| `uj28.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 28 |
-| `uj29.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 29 |
-| `uj30.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 30 |
-| `uj31.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 31 |
-| `uj32.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 32 |
-| `uj33.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 33 |
-| `uj35.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 35 |
+| `uj24.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 24 |
+| `uj25.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 25 |
+| `uj26.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 26 |
+| `uj27.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 27 |
+| `uj28.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 28 |
+| `uj29.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 29 |
+| `uj30.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 30 |
+| `uj31.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 31 |
+| `uj32.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 32 |
+| `uj33.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 33 |
+| `uj35.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 35 |
 | `uj36.cfg` | 19 | 0.9 KB | GENERATED - publish the unlocked placements of gun 36 |
 | `uj37.cfg` | 19 | 0.9 KB | GENERATED - publish the unlocked placements of gun 37 |
 | `uj38.cfg` | 19 | 0.9 KB | GENERATED - publish the unlocked placements of gun 38 |
@@ -30077,8 +30243,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `uj80.cfg` | 19 | 0.9 KB | GENERATED - publish the unlocked placements of gun 80 |
 | `uj81.cfg` | 19 | 0.9 KB | GENERATED - publish the unlocked placements of gun 81 |
 | `uj82.cfg` | 19 | 0.9 KB | GENERATED - publish the unlocked placements of gun 82 |
-| `uj83.cfg` | 13 | 0.6 KB | GENERATED - publish the unlocked placements of gun 83 |
+| `uj83.cfg` | 14 | 0.7 KB | GENERATED - publish the unlocked placements of gun 83 |
 | `uj84.cfg` | 19 | 0.9 KB | GENERATED - publish the unlocked placements of gun 84 |
+| `uj85.cfg` | 14 | 0.6 KB | GENERATED - publish the unlocked placements of gun 85 |
 | `unreg_heavy.cfg` | 2 | 0.1 KB | GENERATED - unregister heavy from the one-per-class registry |
 | `unreg_rifle.cfg` | 2 | 0.1 KB | GENERATED - unregister rifle from the one-per-class registry |
 | `unreg_smg.cfg` | 2 | 0.1 KB | GENERATED - unregister smg from the one-per-class registry |
@@ -30217,6 +30384,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `w83_s2.cfg` | 30 | 0.9 KB |  |
 | `w84_s1.cfg` | 31 | 1.0 KB |  |
 | `w84_s2.cfg` | 30 | 0.9 KB |  |
+| `w85_s1.cfg` | 31 | 0.9 KB |  |
+| `w85_s2.cfg` | 30 | 0.9 KB |  |
 | `wbs0_0.cfg` | 12 | 0.3 KB | GENERATED - ledger row 0 progress level 0 |
 | `wbs0_1.cfg` | 12 | 0.3 KB | GENERATED - ledger row 0 progress level 1 |
 | `wbs0_10.cfg` | 12 | 0.3 KB | GENERATED - ledger row 0 progress level 10 |
@@ -30585,6 +30754,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `wl_84_1.cfg` | 6 | 0.2 KB | GENERATED - ledger row 1 shows gun 84 (what unlocks next) |
 | `wl_84_2.cfg` | 6 | 0.2 KB | GENERATED - ledger row 2 shows gun 84 (what unlocks next) |
 | `wl_84_3.cfg` | 6 | 0.2 KB | GENERATED - ledger row 3 shows gun 84 (what unlocks next) |
+| `wl_85_0.cfg` | 6 | 0.2 KB | GENERATED - ledger row 0 shows gun 85 (what unlocks next) |
+| `wl_85_1.cfg` | 6 | 0.2 KB | GENERATED - ledger row 1 shows gun 85 (what unlocks next) |
+| `wl_85_2.cfg` | 6 | 0.2 KB | GENERATED - ledger row 2 shows gun 85 (what unlocks next) |
+| `wl_85_3.cfg` | 6 | 0.2 KB | GENERATED - ledger row 3 shows gun 85 (what unlocks next) |
 | `wpub0.cfg` | 12 | 0.5 KB | GENERATED - progress join for ledger row 0 |
 | `wpub1.cfg` | 12 | 0.5 KB | GENERATED - progress join for ledger row 1 |
 | `wpub2.cfg` | 12 | 0.5 KB | GENERATED - progress join for ledger row 2 |
@@ -30812,1630 +30985,1667 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_proto_c_open.cfg` | 39 | 2.0 KB | MOH Trilogy Coop - open PROTOTYPE C ("Minimal"). PROTOTYPE ONLY. |
 | `coop_proto_c_play.urc` | 181 | 6.6 KB |  |
 
-### `hzm-mohaa-coop-mod/ui/wpnview/` — 1630 source files
+### `hzm-mohaa-coop-mod/ui/wpnview/` — 1667 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `e001.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / STANDARD ISSUE |
-| `e002.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / GOLD FINISH |
-| `e003.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / CHROME FINISH |
-| `e004.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / BLUED FINISH |
-| `e005.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / BLOODY FINISH |
-| `e006.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / WOODLAND FINISH |
-| `e007.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / WINTER FINISH |
-| `e008.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / DESERT FINISH |
-| `e009.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / M1 GARAND (PACIFIC) (ACME313) |
-| `e010.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / M1 GARAND (GUANSHIRE) |
-| `e011.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / TEAM TACTICS (LEON) |
-| `e012.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / WHITEWASH FINISH |
-| `e013.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / AFRIKA KORPS FINISH |
-| `e014.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / KRIEGSMARINE FINISH |
-| `e015.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / AIRBORNE FINISH |
-| `e016.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / SPLINTER FINISH |
-| `e017.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / PEA DOT FINISH |
-| `e018.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / TELO FINISH |
-| `e019.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / AMOEBA FINISH |
-| `e020.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / AIRBORNE 101ST FINISH |
-| `e021.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / BATTLE-WORN FINISH |
-| `e022.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / TRENCH ART FINISH |
-| `e023.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / PARADE FINISH |
-| `e024.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / CAPTURED FINISH |
-| `e025.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / STANDARD ISSUE |
-| `e026.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / GOLD FINISH |
-| `e027.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / CHROME FINISH |
-| `e028.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / BLUED FINISH |
-| `e029.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / BLOODY FINISH |
-| `e030.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / WOODLAND FINISH |
-| `e031.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / WINTER FINISH |
-| `e032.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / DESERT FINISH |
-| `e033.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / WHITEWASH FINISH |
-| `e034.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / AFRIKA KORPS FINISH |
-| `e035.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / KRIEGSMARINE FINISH |
-| `e036.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / AIRBORNE FINISH |
-| `e037.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / SPLINTER FINISH |
-| `e038.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / PEA DOT FINISH |
-| `e039.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / TELO FINISH |
-| `e040.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / AMOEBA FINISH |
-| `e041.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / AIRBORNE 101ST FINISH |
-| `e042.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / BATTLE-WORN FINISH |
-| `e043.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / TRENCH ART FINISH |
-| `e044.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / PARADE FINISH |
-| `e045.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / CAPTURED FINISH |
-| `e046.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / STANDARD ISSUE |
-| `e047.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / GOLD FINISH |
-| `e048.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / CHROME FINISH |
-| `e049.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / BLUED FINISH |
-| `e050.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / BLOODY FINISH |
-| `e051.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / WOODLAND FINISH |
-| `e052.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / WINTER FINISH |
-| `e053.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / DESERT FINISH |
-| `e054.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / WORN KAR 98K (HOBBS) |
-| `e055.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / WOODLAND KAR 98K (HOBBS) |
-| `e056.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / TEAM TACTICS (LEON) |
-| `e057.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / WHITEWASH FINISH |
-| `e058.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / AFRIKA KORPS FINISH |
-| `e059.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / KRIEGSMARINE FINISH |
-| `e060.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / AIRBORNE FINISH |
-| `e061.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / SPLINTER FINISH |
-| `e062.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / PEA DOT FINISH |
-| `e063.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / TELO FINISH |
-| `e064.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / AMOEBA FINISH |
-| `e065.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / AIRBORNE 101ST FINISH |
-| `e066.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / BATTLE-WORN FINISH |
-| `e067.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / TRENCH ART FINISH |
-| `e068.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / PARADE FINISH |
-| `e069.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / CAPTURED FINISH |
-| `e070.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / STANDARD ISSUE |
-| `e071.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / GOLD FINISH |
-| `e072.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / CHROME FINISH |
-| `e073.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / BLUED FINISH |
-| `e074.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / BLOODY FINISH |
-| `e075.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / WOODLAND FINISH |
-| `e076.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / WINTER FINISH |
-| `e077.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / DESERT FINISH |
-| `e078.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / GEWEHR 98 (BOLT) (EAST) |
-| `e079.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / FLECKTARN G43 (DIRTYHARRY) |
-| `e080.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / WOODLAND G43 (HOBBS) |
-| `e081.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / URBAN G43 (HOBBS) |
-| `e082.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / TEAM TACTICS (LEON) |
-| `e083.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / WHITEWASH FINISH |
-| `e084.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / AFRIKA KORPS FINISH |
-| `e085.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / KRIEGSMARINE FINISH |
-| `e086.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / AIRBORNE FINISH |
-| `e087.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / SPLINTER FINISH |
-| `e088.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / PEA DOT FINISH |
-| `e089.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / TELO FINISH |
-| `e090.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / AMOEBA FINISH |
-| `e091.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / AIRBORNE 101ST FINISH |
-| `e092.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / BATTLE-WORN FINISH |
-| `e093.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / TRENCH ART FINISH |
-| `e094.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / PARADE FINISH |
-| `e095.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / CAPTURED FINISH |
-| `e096.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / STANDARD ISSUE |
-| `e097.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / GOLD FINISH |
-| `e098.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / CHROME FINISH |
-| `e099.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / BLUED FINISH |
-| `e100.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / BLOODY FINISH |
-| `e1000.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / TELO FINISH |
-| `e1001.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / AMOEBA FINISH |
-| `e1002.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / AIRBORNE 101ST FINISH |
-| `e1003.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / BATTLE-WORN FINISH |
-| `e1004.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / TRENCH ART FINISH |
-| `e1005.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / PARADE FINISH |
-| `e1006.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / CAPTURED FINISH |
-| `e1007.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / STANDARD ISSUE |
-| `e1008.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / GOLD FINISH |
-| `e1009.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / CHROME FINISH |
-| `e101.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / WOODLAND FINISH |
-| `e1010.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / BLUED FINISH |
-| `e1011.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / BLOODY FINISH |
-| `e1012.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / WOODLAND FINISH |
-| `e1013.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / WINTER FINISH |
-| `e1014.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / DESERT FINISH |
-| `e1015.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / AUTHENTIC WOOD |
-| `e1016.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / BLACK TACTICAL (DIRTYHARRY) |
-| `e1017.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / CHROME TACTICAL (DIRTYHARRY) |
-| `e1018.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / RECOIL SHOTTY (HOBBS & RECOIL) |
-| `e1019.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / SHOTGUN (GUANSHIRE) |
-| `e102.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / WINTER FINISH |
-| `e1020.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / TEAM TACTICS (LEON) |
-| `e1021.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / WHITEWASH FINISH |
-| `e1022.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / AFRIKA KORPS FINISH |
-| `e1023.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / KRIEGSMARINE FINISH |
-| `e1024.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / AIRBORNE FINISH |
-| `e1025.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / SPLINTER FINISH |
-| `e1026.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / PEA DOT FINISH |
-| `e1027.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / TELO FINISH |
-| `e1028.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / AMOEBA FINISH |
-| `e1029.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / AIRBORNE 101ST FINISH |
-| `e103.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / DESERT FINISH |
-| `e1030.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / BATTLE-WORN FINISH |
-| `e1031.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / TRENCH ART FINISH |
-| `e1032.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / PARADE FINISH |
-| `e1033.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / CAPTURED FINISH |
-| `e1034.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / STANDARD ISSUE |
-| `e1035.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / GOLD FINISH |
-| `e1036.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / CHROME FINISH |
-| `e1037.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / BLUED FINISH |
-| `e1038.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / BLOODY FINISH |
-| `e1039.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / WOODLAND FINISH |
-| `e104.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / P14 ENFIELD (EAST) |
-| `e1040.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / WINTER FINISH |
-| `e1041.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / DESERT FINISH |
-| `e1042.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / REALISTIC BAZOOKA (GUANSHIRE) |
-| `e1043.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / WHITEWASH FINISH |
-| `e1044.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / AFRIKA KORPS FINISH |
-| `e1045.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / KRIEGSMARINE FINISH |
-| `e1046.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / AIRBORNE FINISH |
-| `e1047.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / SPLINTER FINISH |
-| `e1048.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / PEA DOT FINISH |
-| `e1049.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / TELO FINISH |
-| `e105.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / URBAN ENFIELD (HOBBS) |
-| `e1050.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / AMOEBA FINISH |
-| `e1051.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / AIRBORNE 101ST FINISH |
-| `e1052.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / BATTLE-WORN FINISH |
-| `e1053.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / TRENCH ART FINISH |
-| `e1054.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / PARADE FINISH |
-| `e1055.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / CAPTURED FINISH |
-| `e1056.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / STANDARD ISSUE |
-| `e1057.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / GOLD FINISH |
-| `e1058.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / CHROME FINISH |
-| `e1059.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / BLUED FINISH |
-| `e106.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / TEAM TACTICS (LEON) |
-| `e1060.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / BLOODY FINISH |
-| `e1061.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / WOODLAND FINISH |
-| `e1062.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / WINTER FINISH |
-| `e1063.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / DESERT FINISH |
-| `e1064.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / OFENROHR (LEON) |
-| `e1065.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / WHITEWASH FINISH |
-| `e1066.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / AFRIKA KORPS FINISH |
-| `e1067.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / KRIEGSMARINE FINISH |
-| `e1068.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / AIRBORNE FINISH |
-| `e1069.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / SPLINTER FINISH |
-| `e107.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / WHITEWASH FINISH |
-| `e1070.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / PEA DOT FINISH |
-| `e1071.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / TELO FINISH |
-| `e1072.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / AMOEBA FINISH |
-| `e1073.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / AIRBORNE 101ST FINISH |
-| `e1074.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / BATTLE-WORN FINISH |
-| `e1075.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / TRENCH ART FINISH |
-| `e1076.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / PARADE FINISH |
-| `e1077.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / CAPTURED FINISH |
-| `e1078.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / STANDARD ISSUE |
-| `e1079.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / GOLD FINISH |
-| `e108.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / AFRIKA KORPS FINISH |
-| `e1080.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / CHROME FINISH |
-| `e1081.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / BLUED FINISH |
-| `e1082.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / BLOODY FINISH |
-| `e1083.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / WOODLAND FINISH |
-| `e1084.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / WINTER FINISH |
-| `e1085.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / DESERT FINISH |
-| `e1086.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / WHITEWASH FINISH |
-| `e1087.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / AFRIKA KORPS FINISH |
-| `e1088.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / KRIEGSMARINE FINISH |
-| `e1089.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / AIRBORNE FINISH |
-| `e109.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / KRIEGSMARINE FINISH |
-| `e1090.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / SPLINTER FINISH |
-| `e1091.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / PEA DOT FINISH |
-| `e1092.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / TELO FINISH |
-| `e1093.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / AMOEBA FINISH |
-| `e1094.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / AIRBORNE 101ST FINISH |
-| `e1095.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / BATTLE-WORN FINISH |
-| `e1096.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / TRENCH ART FINISH |
-| `e1097.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / PARADE FINISH |
-| `e1098.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / CAPTURED FINISH |
-| `e1099.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / STANDARD ISSUE |
-| `e110.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / AIRBORNE FINISH |
-| `e1100.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / GOLD FINISH |
-| `e1101.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / CHROME FINISH |
-| `e1102.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / BLUED FINISH |
-| `e1103.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / BLOODY FINISH |
-| `e1104.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / WOODLAND FINISH |
-| `e1105.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / WINTER FINISH |
-| `e1106.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / DESERT FINISH |
-| `e1107.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / WHITEWASH FINISH |
-| `e1108.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / AFRIKA KORPS FINISH |
-| `e1109.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / KRIEGSMARINE FINISH |
-| `e111.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / SPLINTER FINISH |
-| `e1110.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / AIRBORNE FINISH |
-| `e1111.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / SPLINTER FINISH |
-| `e1112.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / PEA DOT FINISH |
-| `e1113.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / TELO FINISH |
-| `e1114.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / AMOEBA FINISH |
-| `e1115.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / AIRBORNE 101ST FINISH |
-| `e1116.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / BATTLE-WORN FINISH |
-| `e1117.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / TRENCH ART FINISH |
-| `e1118.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / PARADE FINISH |
-| `e1119.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / CAPTURED FINISH |
-| `e112.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / PEA DOT FINISH |
-| `e1120.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / STANDARD ISSUE |
-| `e1121.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / GOLD FINISH |
-| `e1122.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / CHROME FINISH |
-| `e1123.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / BLUED FINISH |
-| `e1124.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / BLOODY FINISH |
-| `e1125.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / WOODLAND FINISH |
-| `e1126.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / WINTER FINISH |
-| `e1127.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / DESERT FINISH |
-| `e1128.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / WHITEWASH FINISH |
-| `e1129.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / AFRIKA KORPS FINISH |
-| `e113.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / TELO FINISH |
-| `e1130.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / KRIEGSMARINE FINISH |
-| `e1131.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / AIRBORNE FINISH |
-| `e1132.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / SPLINTER FINISH |
-| `e1133.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / PEA DOT FINISH |
-| `e1134.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / TELO FINISH |
-| `e1135.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / AMOEBA FINISH |
-| `e1136.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / AIRBORNE 101ST FINISH |
-| `e1137.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / BATTLE-WORN FINISH |
-| `e1138.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / TRENCH ART FINISH |
-| `e1139.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / PARADE FINISH |
-| `e114.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / AMOEBA FINISH |
-| `e1140.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / CAPTURED FINISH |
-| `e1141.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / STANDARD ISSUE |
-| `e1142.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / GOLD FINISH |
-| `e1143.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / CHROME FINISH |
-| `e1144.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / BLUED FINISH |
-| `e1145.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / BLOODY FINISH |
-| `e1146.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / WOODLAND FINISH |
-| `e1147.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / WINTER FINISH |
-| `e1148.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / DESERT FINISH |
-| `e1149.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / WHITEWASH FINISH |
-| `e115.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / AIRBORNE 101ST FINISH |
-| `e1150.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / AFRIKA KORPS FINISH |
-| `e1151.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / KRIEGSMARINE FINISH |
-| `e1152.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / AIRBORNE FINISH |
-| `e1153.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / SPLINTER FINISH |
-| `e1154.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / PEA DOT FINISH |
-| `e1155.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / TELO FINISH |
-| `e1156.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / AMOEBA FINISH |
-| `e1157.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / AIRBORNE 101ST FINISH |
-| `e1158.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / BATTLE-WORN FINISH |
-| `e1159.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / TRENCH ART FINISH |
-| `e116.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / BATTLE-WORN FINISH |
-| `e1160.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / PARADE FINISH |
-| `e1161.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / CAPTURED FINISH |
-| `e1162.cfg` | 37 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / STANDARD ISSUE |
-| `e1163.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / GOLD FINISH |
-| `e1164.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / CHROME FINISH |
-| `e1165.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / BLUED FINISH |
-| `e1166.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / BLOODY FINISH |
-| `e1167.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / WOODLAND FINISH |
-| `e1168.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / WINTER FINISH |
-| `e1169.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / DESERT FINISH |
-| `e117.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / TRENCH ART FINISH |
-| `e1170.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / WHITEWASH FINISH |
-| `e1171.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / AFRIKA KORPS FINISH |
-| `e1172.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / KRIEGSMARINE FINISH |
-| `e1173.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / AIRBORNE FINISH |
-| `e1174.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / SPLINTER FINISH |
-| `e1175.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / PEA DOT FINISH |
-| `e1176.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / TELO FINISH |
-| `e1177.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / AMOEBA FINISH |
-| `e1178.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / AIRBORNE 101ST FINISH |
-| `e1179.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / BATTLE-WORN FINISH |
-| `e118.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / PARADE FINISH |
-| `e1180.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / TRENCH ART FINISH |
-| `e1181.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / PARADE FINISH |
-| `e1182.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / CAPTURED FINISH |
-| `e1183.cfg` | 37 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / STANDARD ISSUE |
-| `e1184.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / GOLD FINISH |
-| `e1185.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / CHROME FINISH |
-| `e1186.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / BLUED FINISH |
-| `e1187.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / BLOODY FINISH |
-| `e1188.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / WOODLAND FINISH |
-| `e1189.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / WINTER FINISH |
-| `e119.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / CAPTURED FINISH |
-| `e1190.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / DESERT FINISH |
-| `e1191.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / WHITEWASH FINISH |
-| `e1192.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / AFRIKA KORPS FINISH |
-| `e1193.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / KRIEGSMARINE FINISH |
-| `e1194.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / AIRBORNE FINISH |
-| `e1195.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / SPLINTER FINISH |
-| `e1196.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / PEA DOT FINISH |
-| `e1197.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / TELO FINISH |
-| `e1198.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / AMOEBA FINISH |
-| `e1199.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / AIRBORNE 101ST FINISH |
-| `e120.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / STANDARD ISSUE |
-| `e1200.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / BATTLE-WORN FINISH |
-| `e1201.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / TRENCH ART FINISH |
-| `e1202.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / PARADE FINISH |
-| `e1203.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / CAPTURED FINISH |
-| `e1204.cfg` | 37 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / STANDARD ISSUE |
-| `e1205.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / GOLD FINISH |
-| `e1206.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / CHROME FINISH |
-| `e1207.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / BLUED FINISH |
-| `e1208.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / BLOODY FINISH |
-| `e1209.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / WOODLAND FINISH |
-| `e121.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / GOLD FINISH |
-| `e1210.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / WINTER FINISH |
-| `e1211.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / DESERT FINISH |
-| `e1212.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / WHITEWASH FINISH |
-| `e1213.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / AFRIKA KORPS FINISH |
-| `e1214.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / KRIEGSMARINE FINISH |
-| `e1215.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / AIRBORNE FINISH |
-| `e1216.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / SPLINTER FINISH |
-| `e1217.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / PEA DOT FINISH |
-| `e1218.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / TELO FINISH |
-| `e1219.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / AMOEBA FINISH |
-| `e122.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / CHROME FINISH |
-| `e1220.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / AIRBORNE 101ST FINISH |
-| `e1221.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / BATTLE-WORN FINISH |
-| `e1222.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / TRENCH ART FINISH |
-| `e1223.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / PARADE FINISH |
-| `e1224.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / CAPTURED FINISH |
-| `e1225.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / STANDARD ISSUE |
-| `e1226.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / GOLD FINISH |
-| `e1227.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / CHROME FINISH |
-| `e1228.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / BLUED FINISH |
-| `e1229.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / BLOODY FINISH |
-| `e123.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / BLUED FINISH |
-| `e1230.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / WOODLAND FINISH |
-| `e1231.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / WINTER FINISH |
-| `e1232.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / DESERT FINISH |
-| `e1233.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / COLT 45 (PACIFIC) (ACME313) |
-| `e1234.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / WEBLEY MK VI (EAST) |
-| `e1235.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / M1911 COVERT |
-| `e1236.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / 1911 CLASSIC |
-| `e1237.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / M1911 BLOODY EIC (SCHUTZE) |
-| `e1238.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / COLT 1911 (GUANSHIRE) |
-| `e1239.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / TEAM TACTICS (LEON) |
-| `e124.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / BLOODY FINISH |
-| `e1240.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / WHITEWASH FINISH |
-| `e1241.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / AFRIKA KORPS FINISH |
-| `e1242.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / KRIEGSMARINE FINISH |
-| `e1243.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / AIRBORNE FINISH |
-| `e1244.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / SPLINTER FINISH |
-| `e1245.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / PEA DOT FINISH |
-| `e1246.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / TELO FINISH |
-| `e1247.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / AMOEBA FINISH |
-| `e1248.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / AIRBORNE 101ST FINISH |
-| `e1249.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / BATTLE-WORN FINISH |
-| `e125.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / WOODLAND FINISH |
-| `e1250.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / TRENCH ART FINISH |
-| `e1251.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / PARADE FINISH |
-| `e1252.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / CAPTURED FINISH |
-| `e1253.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / STANDARD ISSUE |
-| `e1254.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / GOLD FINISH |
-| `e1255.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / CHROME FINISH |
-| `e1256.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / BLUED FINISH |
-| `e1257.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / BLOODY FINISH |
-| `e1258.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / WOODLAND FINISH |
-| `e1259.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / WINTER FINISH |
-| `e126.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / WINTER FINISH |
-| `e1260.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / DESERT FINISH |
-| `e1261.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / WHITEWASH FINISH |
-| `e1262.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / AFRIKA KORPS FINISH |
-| `e1263.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / KRIEGSMARINE FINISH |
-| `e1264.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / AIRBORNE FINISH |
-| `e1265.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / SPLINTER FINISH |
-| `e1266.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / PEA DOT FINISH |
-| `e1267.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / TELO FINISH |
-| `e1268.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / AMOEBA FINISH |
-| `e1269.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / AIRBORNE 101ST FINISH |
-| `e127.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / DESERT FINISH |
-| `e1270.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / BATTLE-WORN FINISH |
-| `e1271.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / TRENCH ART FINISH |
-| `e1272.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / PARADE FINISH |
-| `e1273.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / CAPTURED FINISH |
-| `e1274.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / STANDARD ISSUE |
-| `e1275.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / GOLD FINISH |
-| `e1276.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / CHROME FINISH |
-| `e1277.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / BLUED FINISH |
-| `e1278.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / BLOODY FINISH |
-| `e1279.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / WOODLAND FINISH |
-| `e128.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / WHITEWASH FINISH |
-| `e1280.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / WINTER FINISH |
-| `e1281.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / DESERT FINISH |
-| `e1282.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / WALTHER P38 (GUANSHIRE) |
-| `e1283.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / TEAM TACTICS (LEON) |
-| `e1284.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / WHITEWASH FINISH |
-| `e1285.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / AFRIKA KORPS FINISH |
-| `e1286.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / KRIEGSMARINE FINISH |
-| `e1287.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / AIRBORNE FINISH |
-| `e1288.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / SPLINTER FINISH |
-| `e1289.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / PEA DOT FINISH |
-| `e129.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / AFRIKA KORPS FINISH |
-| `e1290.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / TELO FINISH |
-| `e1291.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / AMOEBA FINISH |
-| `e1292.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / AIRBORNE 101ST FINISH |
-| `e1293.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / BATTLE-WORN FINISH |
-| `e1294.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / TRENCH ART FINISH |
-| `e1295.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / PARADE FINISH |
-| `e1296.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / CAPTURED FINISH |
-| `e1297.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / STANDARD ISSUE |
-| `e1298.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / GOLD FINISH |
-| `e1299.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / CHROME FINISH |
-| `e130.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / KRIEGSMARINE FINISH |
-| `e1300.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / BLUED FINISH |
-| `e1301.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / BLOODY FINISH |
-| `e1302.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / WOODLAND FINISH |
-| `e1303.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / WINTER FINISH |
-| `e1304.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / DESERT FINISH |
-| `e1305.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / WHITEWASH FINISH |
-| `e1306.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / AFRIKA KORPS FINISH |
-| `e1307.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / KRIEGSMARINE FINISH |
-| `e1308.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / AIRBORNE FINISH |
-| `e1309.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / SPLINTER FINISH |
-| `e131.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / AIRBORNE FINISH |
-| `e1310.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / PEA DOT FINISH |
-| `e1311.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / TELO FINISH |
-| `e1312.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / AMOEBA FINISH |
-| `e1313.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / AIRBORNE 101ST FINISH |
-| `e1314.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / BATTLE-WORN FINISH |
-| `e1315.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / TRENCH ART FINISH |
-| `e1316.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / PARADE FINISH |
-| `e1317.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / CAPTURED FINISH |
-| `e1318.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / STANDARD ISSUE |
-| `e1319.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / GOLD FINISH |
-| `e132.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / SPLINTER FINISH |
-| `e1320.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / CHROME FINISH |
-| `e1321.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / BLUED FINISH |
-| `e1322.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / BLOODY FINISH |
-| `e1323.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / WOODLAND FINISH |
-| `e1324.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / WINTER FINISH |
-| `e1325.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / DESERT FINISH |
-| `e1326.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / WHITEWASH FINISH |
-| `e1327.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / AFRIKA KORPS FINISH |
-| `e1328.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / KRIEGSMARINE FINISH |
-| `e1329.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / AIRBORNE FINISH |
-| `e133.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / PEA DOT FINISH |
-| `e1330.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / SPLINTER FINISH |
-| `e1331.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / PEA DOT FINISH |
-| `e1332.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / TELO FINISH |
-| `e1333.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / AMOEBA FINISH |
-| `e1334.cfg` | 35 | 1.6 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / AIRBORNE 101ST FINISH |
-| `e1335.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / BATTLE-WORN FINISH |
-| `e1336.cfg` | 35 | 1.6 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / TRENCH ART FINISH |
-| `e1337.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / PARADE FINISH |
-| `e1338.cfg` | 35 | 1.6 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / CAPTURED FINISH |
-| `e1339.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / STANDARD ISSUE |
-| `e134.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / TELO FINISH |
-| `e1340.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / GOLD FINISH |
-| `e1341.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / CHROME FINISH |
-| `e1342.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / BLUED FINISH |
-| `e1343.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / BLOODY FINISH |
-| `e1344.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / WOODLAND FINISH |
-| `e1345.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / WINTER FINISH |
-| `e1346.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / DESERT FINISH |
-| `e1347.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / TEAM TACTICS (LEON) |
-| `e1348.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / WHITEWASH FINISH |
-| `e1349.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / AFRIKA KORPS FINISH |
-| `e135.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / AMOEBA FINISH |
-| `e1350.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / KRIEGSMARINE FINISH |
-| `e1351.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / AIRBORNE FINISH |
-| `e1352.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / SPLINTER FINISH |
-| `e1353.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / PEA DOT FINISH |
-| `e1354.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / TELO FINISH |
-| `e1355.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / AMOEBA FINISH |
-| `e1356.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / AIRBORNE 101ST FINISH |
-| `e1357.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / BATTLE-WORN FINISH |
-| `e1358.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / TRENCH ART FINISH |
-| `e1359.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / PARADE FINISH |
-| `e136.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / AIRBORNE 101ST FINISH |
-| `e1360.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / CAPTURED FINISH |
-| `e1361.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / STANDARD ISSUE |
-| `e1362.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / GOLD FINISH |
-| `e1363.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / CHROME FINISH |
-| `e1364.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / BLUED FINISH |
-| `e1365.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / BLOODY FINISH |
-| `e1366.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / WOODLAND FINISH |
-| `e1367.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / WINTER FINISH |
-| `e1368.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / DESERT FINISH |
-| `e1369.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / WHITEWASH FINISH |
-| `e137.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / BATTLE-WORN FINISH |
-| `e1370.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / AFRIKA KORPS FINISH |
-| `e1371.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / KRIEGSMARINE FINISH |
-| `e1372.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / AIRBORNE FINISH |
-| `e1373.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / SPLINTER FINISH |
-| `e1374.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / PEA DOT FINISH |
-| `e1375.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / TELO FINISH |
-| `e1376.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / AMOEBA FINISH |
-| `e1377.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / AIRBORNE 101ST FINISH |
-| `e1378.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / BATTLE-WORN FINISH |
-| `e1379.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / TRENCH ART FINISH |
-| `e138.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / TRENCH ART FINISH |
-| `e1380.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / PARADE FINISH |
-| `e1381.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / CAPTURED FINISH |
-| `e1382.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / STANDARD ISSUE |
-| `e1383.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / GOLD FINISH |
-| `e1384.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / CHROME FINISH |
-| `e1385.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / BLUED FINISH |
-| `e1386.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / BLOODY FINISH |
-| `e1387.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / WOODLAND FINISH |
-| `e1388.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / WINTER FINISH |
-| `e1389.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / DESERT FINISH |
-| `e139.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / PARADE FINISH |
-| `e1390.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / TEAM TACTICS (LEON) |
-| `e1391.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / WHITEWASH FINISH |
-| `e1392.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / AFRIKA KORPS FINISH |
-| `e1393.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / KRIEGSMARINE FINISH |
-| `e1394.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / AIRBORNE FINISH |
-| `e1395.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / SPLINTER FINISH |
-| `e1396.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / PEA DOT FINISH |
-| `e1397.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / TELO FINISH |
-| `e1398.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / AMOEBA FINISH |
-| `e1399.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / AIRBORNE 101ST FINISH |
-| `e140.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / CAPTURED FINISH |
-| `e1400.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / BATTLE-WORN FINISH |
-| `e1401.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / TRENCH ART FINISH |
-| `e1402.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / PARADE FINISH |
-| `e1403.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / CAPTURED FINISH |
-| `e1404.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / STANDARD ISSUE |
-| `e1405.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / GOLD FINISH |
-| `e1406.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / CHROME FINISH |
-| `e1407.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / BLUED FINISH |
-| `e1408.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / BLOODY FINISH |
-| `e1409.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / WOODLAND FINISH |
-| `e141.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / STANDARD ISSUE |
-| `e1410.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / WINTER FINISH |
-| `e1411.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / DESERT FINISH |
-| `e1412.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / WHITEWASH FINISH |
-| `e1413.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / AFRIKA KORPS FINISH |
-| `e1414.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / KRIEGSMARINE FINISH |
-| `e1415.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / AIRBORNE FINISH |
-| `e1416.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / SPLINTER FINISH |
-| `e1417.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / PEA DOT FINISH |
-| `e1418.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / TELO FINISH |
-| `e1419.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / AMOEBA FINISH |
-| `e142.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / GOLD FINISH |
-| `e1420.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / AIRBORNE 101ST FINISH |
-| `e1421.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / BATTLE-WORN FINISH |
-| `e1422.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / TRENCH ART FINISH |
-| `e1423.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / PARADE FINISH |
-| `e1424.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / CAPTURED FINISH |
-| `e1425.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / STANDARD ISSUE |
-| `e1426.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / GOLD FINISH |
-| `e1427.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / CHROME FINISH |
-| `e1428.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / BLUED FINISH |
-| `e1429.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / BLOODY FINISH |
-| `e143.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / CHROME FINISH |
-| `e1430.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / WOODLAND FINISH |
-| `e1431.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / WINTER FINISH |
-| `e1432.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / DESERT FINISH |
-| `e1433.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / WHITEWASH FINISH |
-| `e1434.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / AFRIKA KORPS FINISH |
-| `e1435.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / KRIEGSMARINE FINISH |
-| `e1436.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / AIRBORNE FINISH |
-| `e1437.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / SPLINTER FINISH |
-| `e1438.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / PEA DOT FINISH |
-| `e1439.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / TELO FINISH |
-| `e144.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / BLUED FINISH |
-| `e1440.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / AMOEBA FINISH |
-| `e1441.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / AIRBORNE 101ST FINISH |
-| `e1442.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / BATTLE-WORN FINISH |
-| `e1443.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / TRENCH ART FINISH |
-| `e1444.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / PARADE FINISH |
-| `e1445.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / CAPTURED FINISH |
-| `e1446.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / STANDARD ISSUE |
-| `e1447.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / GOLD FINISH |
-| `e1448.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / CHROME FINISH |
-| `e1449.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / BLUED FINISH |
-| `e145.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / BLOODY FINISH |
-| `e1450.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / BLOODY FINISH |
-| `e1451.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / WOODLAND FINISH |
-| `e1452.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / WINTER FINISH |
-| `e1453.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / DESERT FINISH |
-| `e1454.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / WHITEWASH FINISH |
-| `e1455.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / AFRIKA KORPS FINISH |
-| `e1456.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / KRIEGSMARINE FINISH |
-| `e1457.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / AIRBORNE FINISH |
-| `e1458.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / SPLINTER FINISH |
-| `e1459.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / PEA DOT FINISH |
-| `e146.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / WOODLAND FINISH |
-| `e1460.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / TELO FINISH |
-| `e1461.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / AMOEBA FINISH |
-| `e1462.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / AIRBORNE 101ST FINISH |
-| `e1463.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / BATTLE-WORN FINISH |
-| `e1464.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / TRENCH ART FINISH |
-| `e1465.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / PARADE FINISH |
-| `e1466.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / CAPTURED FINISH |
-| `e1467.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / STANDARD ISSUE |
-| `e1468.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / GOLD FINISH |
-| `e1469.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / CHROME FINISH |
-| `e147.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / WINTER FINISH |
-| `e1470.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / BLUED FINISH |
-| `e1471.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / BLOODY FINISH |
-| `e1472.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / WOODLAND FINISH |
-| `e1473.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / WINTER FINISH |
-| `e1474.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / DESERT FINISH |
-| `e1475.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / WHITEWASH FINISH |
-| `e1476.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / AFRIKA KORPS FINISH |
-| `e1477.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / KRIEGSMARINE FINISH |
-| `e1478.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / AIRBORNE FINISH |
-| `e1479.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / SPLINTER FINISH |
-| `e148.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / DESERT FINISH |
-| `e1480.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / PEA DOT FINISH |
-| `e1481.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / TELO FINISH |
-| `e1482.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / AMOEBA FINISH |
-| `e1483.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / AIRBORNE 101ST FINISH |
-| `e1484.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / BATTLE-WORN FINISH |
-| `e1485.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / TRENCH ART FINISH |
-| `e1486.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / PARADE FINISH |
-| `e1487.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / CAPTURED FINISH |
-| `e1488.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / STANDARD ISSUE |
-| `e1489.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / GOLD FINISH |
-| `e149.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / TEAM TACTICS (LEON) |
-| `e1490.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / CHROME FINISH |
-| `e1491.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / BLUED FINISH |
-| `e1492.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / BLOODY FINISH |
-| `e1493.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / WOODLAND FINISH |
-| `e1494.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / WINTER FINISH |
-| `e1495.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / DESERT FINISH |
-| `e1496.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / WHITEWASH FINISH |
-| `e1497.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / AFRIKA KORPS FINISH |
-| `e1498.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / KRIEGSMARINE FINISH |
-| `e1499.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / AIRBORNE FINISH |
-| `e150.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / WHITEWASH FINISH |
-| `e1500.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / SPLINTER FINISH |
-| `e1501.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / PEA DOT FINISH |
-| `e1502.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / TELO FINISH |
-| `e1503.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / AMOEBA FINISH |
-| `e1504.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / AIRBORNE 101ST FINISH |
-| `e1505.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / BATTLE-WORN FINISH |
-| `e1506.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / TRENCH ART FINISH |
-| `e1507.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / PARADE FINISH |
-| `e1508.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / CAPTURED FINISH |
-| `e1509.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / STANDARD ISSUE |
-| `e151.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / AFRIKA KORPS FINISH |
-| `e1510.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / GOLD FINISH |
-| `e1511.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / CHROME FINISH |
-| `e1512.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / BLUED FINISH |
-| `e1513.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / BLOODY FINISH |
-| `e1514.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / WOODLAND FINISH |
-| `e1515.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / WINTER FINISH |
-| `e1516.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / DESERT FINISH |
-| `e1517.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / WHITEWASH FINISH |
-| `e1518.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / AFRIKA KORPS FINISH |
-| `e1519.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / KRIEGSMARINE FINISH |
-| `e152.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / KRIEGSMARINE FINISH |
-| `e1520.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / AIRBORNE FINISH |
-| `e1521.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / SPLINTER FINISH |
-| `e1522.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / PEA DOT FINISH |
-| `e1523.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / TELO FINISH |
-| `e1524.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / AMOEBA FINISH |
-| `e1525.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / AIRBORNE 101ST FINISH |
-| `e1526.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / BATTLE-WORN FINISH |
-| `e1527.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / TRENCH ART FINISH |
-| `e1528.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / PARADE FINISH |
-| `e1529.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / CAPTURED FINISH |
-| `e153.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / AIRBORNE FINISH |
-| `e1530.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / STANDARD ISSUE |
-| `e1531.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / GOLD FINISH |
-| `e1532.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / CHROME FINISH |
-| `e1533.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / BLUED FINISH |
-| `e1534.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / BLOODY FINISH |
-| `e1535.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / WOODLAND FINISH |
-| `e1536.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / WINTER FINISH |
-| `e1537.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / DESERT FINISH |
-| `e1538.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / WHITEWASH FINISH |
-| `e1539.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / AFRIKA KORPS FINISH |
-| `e154.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / SPLINTER FINISH |
-| `e1540.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / KRIEGSMARINE FINISH |
-| `e1541.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / AIRBORNE FINISH |
-| `e1542.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / SPLINTER FINISH |
-| `e1543.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / PEA DOT FINISH |
-| `e1544.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / TELO FINISH |
-| `e1545.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / AMOEBA FINISH |
-| `e1546.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / AIRBORNE 101ST FINISH |
-| `e1547.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / BATTLE-WORN FINISH |
-| `e1548.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / TRENCH ART FINISH |
-| `e1549.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / PARADE FINISH |
-| `e155.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / PEA DOT FINISH |
-| `e1550.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / CAPTURED FINISH |
-| `e1551.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / STANDARD ISSUE |
-| `e1552.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / GOLD FINISH |
-| `e1553.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / CHROME FINISH |
-| `e1554.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / BLUED FINISH |
-| `e1555.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / BLOODY FINISH |
-| `e1556.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / WOODLAND FINISH |
-| `e1557.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / WINTER FINISH |
-| `e1558.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / DESERT FINISH |
-| `e1559.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / WHITEWASH FINISH |
-| `e156.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / TELO FINISH |
-| `e1560.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / AFRIKA KORPS FINISH |
-| `e1561.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / KRIEGSMARINE FINISH |
-| `e1562.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / AIRBORNE FINISH |
-| `e1563.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / SPLINTER FINISH |
-| `e1564.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / PEA DOT FINISH |
-| `e1565.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / TELO FINISH |
-| `e1566.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / AMOEBA FINISH |
-| `e1567.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / AIRBORNE 101ST FINISH |
-| `e1568.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / BATTLE-WORN FINISH |
-| `e1569.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / TRENCH ART FINISH |
-| `e157.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / AMOEBA FINISH |
-| `e1570.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / PARADE FINISH |
-| `e1571.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / CAPTURED FINISH |
-| `e1572.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / STANDARD ISSUE |
-| `e1573.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / GOLD FINISH |
-| `e1574.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / CHROME FINISH |
-| `e1575.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / BLUED FINISH |
-| `e1576.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / BLOODY FINISH |
-| `e1577.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / WOODLAND FINISH |
-| `e1578.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / WINTER FINISH |
-| `e1579.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / DESERT FINISH |
-| `e158.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / AIRBORNE 101ST FINISH |
-| `e1580.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / C96 (TRENCH) (EAST) |
-| `e1581.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / WHITEWASH FINISH |
-| `e1582.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / AFRIKA KORPS FINISH |
-| `e1583.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / KRIEGSMARINE FINISH |
-| `e1584.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / AIRBORNE FINISH |
-| `e1585.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / SPLINTER FINISH |
-| `e1586.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / PEA DOT FINISH |
-| `e1587.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / TELO FINISH |
-| `e1588.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / AMOEBA FINISH |
-| `e1589.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / AIRBORNE 101ST FINISH |
-| `e159.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / BATTLE-WORN FINISH |
-| `e1590.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / BATTLE-WORN FINISH |
-| `e1591.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / TRENCH ART FINISH |
-| `e1592.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / PARADE FINISH |
-| `e1593.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / CAPTURED FINISH |
-| `e1594.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / STANDARD ISSUE |
-| `e1595.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / GOLD FINISH |
-| `e1596.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / CHROME FINISH |
-| `e1597.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / BLUED FINISH |
-| `e1598.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / BLOODY FINISH |
-| `e1599.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / WOODLAND FINISH |
-| `e160.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / TRENCH ART FINISH |
-| `e1600.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / WINTER FINISH |
-| `e1601.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / DESERT FINISH |
-| `e1602.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / WHITEWASH FINISH |
-| `e1603.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / AFRIKA KORPS FINISH |
-| `e1604.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / KRIEGSMARINE FINISH |
-| `e1605.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / AIRBORNE FINISH |
-| `e1606.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / SPLINTER FINISH |
-| `e1607.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / PEA DOT FINISH |
-| `e1608.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / TELO FINISH |
-| `e1609.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / AMOEBA FINISH |
-| `e161.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / PARADE FINISH |
-| `e1610.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / AIRBORNE 101ST FINISH |
-| `e1611.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / BATTLE-WORN FINISH |
-| `e1612.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / TRENCH ART FINISH |
-| `e1613.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / PARADE FINISH |
-| `e1614.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / CAPTURED FINISH |
-| `e1615.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M2 FRAG / STANDARD ISSUE |
-| `e1616.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STIELHANDGRANATE / STANDARD ISSUE |
-| `e1617.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MILLS BOMB / STANDARD ISSUE |
-| `e1618.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA MOD.35 / STANDARD ISSUE |
-| `e1619.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M18 SMOKE / STANDARD ISSUE |
-| `e162.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / CAPTURED FINISH |
-| `e1620.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NEBELHANDGRANATE / STANDARD ISSUE |
-| `e163.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / STANDARD ISSUE |
-| `e164.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / GOLD FINISH |
-| `e165.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / CHROME FINISH |
-| `e166.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / BLUED FINISH |
-| `e167.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / BLOODY FINISH |
-| `e168.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / WOODLAND FINISH |
-| `e169.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / WINTER FINISH |
-| `e170.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / DESERT FINISH |
-| `e171.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / WOODLAND SVT-40 (HOBBS) |
-| `e172.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / WHITEWASH FINISH |
-| `e173.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / AFRIKA KORPS FINISH |
-| `e174.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / KRIEGSMARINE FINISH |
-| `e175.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / AIRBORNE FINISH |
-| `e176.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / SPLINTER FINISH |
-| `e177.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / PEA DOT FINISH |
-| `e178.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / TELO FINISH |
-| `e179.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / AMOEBA FINISH |
-| `e180.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / AIRBORNE 101ST FINISH |
-| `e181.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / BATTLE-WORN FINISH |
-| `e182.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / TRENCH ART FINISH |
-| `e183.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / PARADE FINISH |
-| `e184.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / CAPTURED FINISH |
-| `e185.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / STANDARD ISSUE |
-| `e186.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / GOLD FINISH |
-| `e187.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / CHROME FINISH |
-| `e188.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / BLUED FINISH |
-| `e189.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / BLOODY FINISH |
-| `e190.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / WOODLAND FINISH |
-| `e191.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / WINTER FINISH |
-| `e192.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / DESERT FINISH |
-| `e193.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / URBAN MOSIN (HOBBS) |
-| `e194.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / TEAM TACTICS (LEON) |
-| `e195.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / WHITEWASH FINISH |
-| `e196.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / AFRIKA KORPS FINISH |
-| `e197.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / KRIEGSMARINE FINISH |
-| `e198.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / AIRBORNE FINISH |
-| `e199.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / SPLINTER FINISH |
-| `e200.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / PEA DOT FINISH |
-| `e201.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / TELO FINISH |
-| `e202.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / AMOEBA FINISH |
-| `e203.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / AIRBORNE 101ST FINISH |
-| `e204.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / BATTLE-WORN FINISH |
-| `e205.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / TRENCH ART FINISH |
-| `e206.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / PARADE FINISH |
-| `e207.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / CAPTURED FINISH |
-| `e208.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / STANDARD ISSUE |
-| `e209.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / GOLD FINISH |
-| `e210.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / CHROME FINISH |
-| `e211.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / BLUED FINISH |
-| `e212.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / BLOODY FINISH |
-| `e213.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / WOODLAND FINISH |
-| `e214.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / WINTER FINISH |
-| `e215.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / DESERT FINISH |
-| `e216.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / WHITEWASH FINISH |
-| `e217.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / AFRIKA KORPS FINISH |
-| `e218.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / KRIEGSMARINE FINISH |
-| `e219.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / AIRBORNE FINISH |
-| `e220.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / SPLINTER FINISH |
-| `e221.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / PEA DOT FINISH |
-| `e222.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / TELO FINISH |
-| `e223.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / AMOEBA FINISH |
-| `e224.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / AIRBORNE 101ST FINISH |
-| `e225.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / BATTLE-WORN FINISH |
-| `e226.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / TRENCH ART FINISH |
-| `e227.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / PARADE FINISH |
-| `e228.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / CAPTURED FINISH |
-| `e229.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / STANDARD ISSUE |
-| `e230.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / GOLD FINISH |
-| `e231.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / CHROME FINISH |
-| `e232.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / BLUED FINISH |
-| `e233.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / BLOODY FINISH |
-| `e234.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / WOODLAND FINISH |
-| `e235.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / WINTER FINISH |
-| `e236.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / DESERT FINISH |
-| `e237.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / WHITEWASH FINISH |
-| `e238.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / AFRIKA KORPS FINISH |
-| `e239.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / KRIEGSMARINE FINISH |
-| `e240.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / AIRBORNE FINISH |
-| `e241.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / SPLINTER FINISH |
-| `e242.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / PEA DOT FINISH |
-| `e243.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / TELO FINISH |
-| `e244.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / AMOEBA FINISH |
-| `e245.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / AIRBORNE 101ST FINISH |
-| `e246.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / BATTLE-WORN FINISH |
-| `e247.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / TRENCH ART FINISH |
-| `e248.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / PARADE FINISH |
-| `e249.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / CAPTURED FINISH |
-| `e250.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / STANDARD ISSUE |
-| `e251.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / GOLD FINISH |
-| `e252.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / CHROME FINISH |
-| `e253.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / BLUED FINISH |
-| `e254.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / BLOODY FINISH |
-| `e255.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / WOODLAND FINISH |
-| `e256.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / WINTER FINISH |
-| `e257.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / DESERT FINISH |
-| `e258.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / WHITEWASH FINISH |
-| `e259.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / AFRIKA KORPS FINISH |
-| `e260.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / KRIEGSMARINE FINISH |
-| `e261.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / AIRBORNE FINISH |
-| `e262.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / SPLINTER FINISH |
-| `e263.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / PEA DOT FINISH |
-| `e264.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / TELO FINISH |
-| `e265.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / AMOEBA FINISH |
-| `e266.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / AIRBORNE 101ST FINISH |
-| `e267.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / BATTLE-WORN FINISH |
-| `e268.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / TRENCH ART FINISH |
-| `e269.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / PARADE FINISH |
-| `e270.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / CAPTURED FINISH |
-| `e271.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / STANDARD ISSUE |
-| `e272.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / GOLD FINISH |
-| `e273.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / CHROME FINISH |
-| `e274.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / BLUED FINISH |
-| `e275.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / BLOODY FINISH |
-| `e276.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / WOODLAND FINISH |
-| `e277.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / WINTER FINISH |
-| `e278.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / DESERT FINISH |
-| `e279.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / FLECKTARN G43 (DIRTYHAR… |
-| `e280.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / WOODLAND G43 (HOBBS) |
-| `e281.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / URBAN G43 (HOBBS) |
-| `e282.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / TEAM TACTICS (LEON) |
-| `e283.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / WHITEWASH FINISH |
-| `e284.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / AFRIKA KORPS FINISH |
-| `e285.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / KRIEGSMARINE FINISH |
-| `e286.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / AIRBORNE FINISH |
-| `e287.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / SPLINTER FINISH |
-| `e288.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / PEA DOT FINISH |
-| `e289.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / TELO FINISH |
-| `e290.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / AMOEBA FINISH |
-| `e291.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / AIRBORNE 101ST FINISH |
-| `e292.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / BATTLE-WORN FINISH |
-| `e293.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / TRENCH ART FINISH |
-| `e294.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / PARADE FINISH |
-| `e295.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / CAPTURED FINISH |
-| `e296.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / STANDARD ISSUE |
-| `e297.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / GOLD FINISH |
-| `e298.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / CHROME FINISH |
-| `e299.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / BLUED FINISH |
-| `e300.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / BLOODY FINISH |
-| `e301.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / WOODLAND FINISH |
-| `e302.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / WINTER FINISH |
-| `e303.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / DESERT FINISH |
-| `e304.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / SMLE SCOPED (EAST) |
-| `e305.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / M1903 SPRINGFIELD (EAST) |
-| `e306.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / DESERT CAMO '03 (DIRTYHARRY) |
-| `e307.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / DIGITAL CAMO '03 (DIRTYHARRY) |
-| `e308.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / TIGER CAMO '03 (DIRTYHARRY) |
-| `e309.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / WINTER CAMO '03 (DIRTYHARRY) |
-| `e310.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / LIGHTWOOD '03 (GUANSHIRE) |
-| `e311.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / SPRINGFIELD II (GUANSHIRE) |
-| `e312.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / WOODLAND '03 (HOBBS) |
-| `e313.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / URBAN '03 (HOBBS) |
-| `e314.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / TEAM TACTICS (LEON) |
-| `e315.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / WHITEWASH FINISH |
-| `e316.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / AFRIKA KORPS FINISH |
-| `e317.cfg` | 35 | 1.6 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / KRIEGSMARINE FINISH |
-| `e318.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / AIRBORNE FINISH |
-| `e319.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / SPLINTER FINISH |
-| `e320.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / PEA DOT FINISH |
-| `e321.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / TELO FINISH |
-| `e322.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / AMOEBA FINISH |
-| `e323.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / AIRBORNE 101ST FINISH |
-| `e324.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / BATTLE-WORN FINISH |
-| `e325.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / TRENCH ART FINISH |
-| `e326.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / PARADE FINISH |
-| `e327.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / CAPTURED FINISH |
-| `e328.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / STANDARD ISSUE |
-| `e329.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / GOLD FINISH |
-| `e330.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / CHROME FINISH |
-| `e331.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / BLUED FINISH |
-| `e332.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / BLOODY FINISH |
-| `e333.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / WOODLAND FINISH |
-| `e334.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / WINTER FINISH |
-| `e335.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / DESERT FINISH |
-| `e336.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / G98 SCOPED (EAST) |
-| `e337.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / TEAM TACTICS (LEON) |
-| `e338.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / MAUSER 98 KS (LEON) |
-| `e339.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / WHITEWASH FINISH |
-| `e340.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / AFRIKA KORPS FINISH |
-| `e341.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / KRIEGSMARINE FINISH |
-| `e342.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / AIRBORNE FINISH |
-| `e343.cfg` | 35 | 1.6 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / SPLINTER FINISH |
-| `e344.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / PEA DOT FINISH |
-| `e345.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / TELO FINISH |
-| `e346.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / AMOEBA FINISH |
-| `e347.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / AIRBORNE 101ST FINISH |
-| `e348.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / BATTLE-WORN FINISH |
-| `e349.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / TRENCH ART FINISH |
-| `e350.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / PARADE FINISH |
-| `e351.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / CAPTURED FINISH |
-| `e352.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / STANDARD ISSUE |
-| `e353.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / GOLD FINISH |
-| `e354.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / CHROME FINISH |
-| `e355.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / BLUED FINISH |
-| `e356.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / BLOODY FINISH |
-| `e357.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / WOODLAND FINISH |
-| `e358.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / WINTER FINISH |
-| `e359.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / DESERT FINISH |
-| `e360.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / CAMO L42A1 (DIRTYHARRY) |
-| `e361.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / WHITEWASH FINISH |
-| `e362.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / AFRIKA KORPS FINISH |
-| `e363.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / KRIEGSMARINE FINISH |
-| `e364.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / AIRBORNE FINISH |
-| `e365.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / SPLINTER FINISH |
-| `e366.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / PEA DOT FINISH |
-| `e367.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / TELO FINISH |
-| `e368.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / AMOEBA FINISH |
-| `e369.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / AIRBORNE 101ST FINISH |
-| `e370.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / BATTLE-WORN FINISH |
-| `e371.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / TRENCH ART FINISH |
-| `e372.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / PARADE FINISH |
-| `e373.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / CAPTURED FINISH |
-| `e374.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / STANDARD ISSUE |
-| `e375.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / GOLD FINISH |
-| `e376.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / CHROME FINISH |
-| `e377.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / BLUED FINISH |
-| `e378.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / BLOODY FINISH |
-| `e379.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / WOODLAND FINISH |
-| `e380.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / WINTER FINISH |
-| `e381.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / DESERT FINISH |
-| `e382.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / WHITEWASH FINISH |
-| `e383.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / AFRIKA KORPS FINISH |
-| `e384.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / KRIEGSMARINE FINISH |
-| `e385.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / AIRBORNE FINISH |
-| `e386.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / SPLINTER FINISH |
-| `e387.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / PEA DOT FINISH |
-| `e388.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / TELO FINISH |
-| `e389.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / AMOEBA FINISH |
-| `e390.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / AIRBORNE 101ST FINISH |
-| `e391.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / BATTLE-WORN FINISH |
-| `e392.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / TRENCH ART FINISH |
-| `e393.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / PARADE FINISH |
-| `e394.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / CAPTURED FINISH |
-| `e395.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / STANDARD ISSUE |
-| `e396.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / GOLD FINISH |
-| `e397.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / CHROME FINISH |
-| `e398.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / BLUED FINISH |
-| `e399.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / BLOODY FINISH |
-| `e400.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / WOODLAND FINISH |
-| `e401.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / WINTER FINISH |
-| `e402.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / DESERT FINISH |
-| `e403.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / WHITEWASH FINISH |
-| `e404.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / AFRIKA KORPS FINISH |
-| `e405.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / KRIEGSMARINE FINISH |
-| `e406.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / AIRBORNE FINISH |
-| `e407.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / SPLINTER FINISH |
-| `e408.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / PEA DOT FINISH |
-| `e409.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / TELO FINISH |
-| `e410.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / AMOEBA FINISH |
-| `e411.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / AIRBORNE 101ST FINISH |
-| `e412.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / BATTLE-WORN FINISH |
-| `e413.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / TRENCH ART FINISH |
-| `e414.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / PARADE FINISH |
-| `e415.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / CAPTURED FINISH |
-| `e416.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / STANDARD ISSUE |
-| `e417.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / GOLD FINISH |
-| `e418.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / CHROME FINISH |
-| `e419.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / BLUED FINISH |
-| `e420.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / BLOODY FINISH |
-| `e421.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / WOODLAND FINISH |
-| `e422.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / WINTER FINISH |
-| `e423.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / DESERT FINISH |
-| `e424.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / WHITEWASH FINISH |
-| `e425.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / AFRIKA KORPS FINISH |
-| `e426.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / KRIEGSMARINE FINISH |
-| `e427.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / AIRBORNE FINISH |
-| `e428.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / SPLINTER FINISH |
-| `e429.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / PEA DOT FINISH |
-| `e430.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / TELO FINISH |
-| `e431.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / AMOEBA FINISH |
-| `e432.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / AIRBORNE 101ST FINISH |
-| `e433.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / BATTLE-WORN FINISH |
-| `e434.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / TRENCH ART FINISH |
-| `e435.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / PARADE FINISH |
-| `e436.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / CAPTURED FINISH |
-| `e437.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / STANDARD ISSUE |
-| `e438.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / GOLD FINISH |
-| `e439.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / CHROME FINISH |
-| `e440.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / BLUED FINISH |
-| `e441.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / BLOODY FINISH |
-| `e442.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / WOODLAND FINISH |
-| `e443.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / WINTER FINISH |
-| `e444.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / DESERT FINISH |
-| `e445.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / WHITEWASH FINISH |
-| `e446.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / AFRIKA KORPS FINISH |
-| `e447.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / KRIEGSMARINE FINISH |
-| `e448.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / AIRBORNE FINISH |
-| `e449.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / SPLINTER FINISH |
-| `e450.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / PEA DOT FINISH |
-| `e451.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / TELO FINISH |
-| `e452.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / AMOEBA FINISH |
-| `e453.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / AIRBORNE 101ST FINISH |
-| `e454.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / BATTLE-WORN FINISH |
-| `e455.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / TRENCH ART FINISH |
-| `e456.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / PARADE FINISH |
-| `e457.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / CAPTURED FINISH |
-| `e458.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / STANDARD ISSUE |
-| `e459.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / GOLD FINISH |
-| `e460.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / CHROME FINISH |
-| `e461.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / BLUED FINISH |
-| `e462.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / BLOODY FINISH |
-| `e463.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / WOODLAND FINISH |
-| `e464.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / WINTER FINISH |
-| `e465.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / DESERT FINISH |
-| `e466.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / WHITEWASH FINISH |
-| `e467.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / AFRIKA KORPS FINISH |
-| `e468.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / KRIEGSMARINE FINISH |
-| `e469.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / AIRBORNE FINISH |
-| `e470.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / SPLINTER FINISH |
-| `e471.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / PEA DOT FINISH |
-| `e472.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / TELO FINISH |
-| `e473.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / AMOEBA FINISH |
-| `e474.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / AIRBORNE 101ST FINISH |
-| `e475.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / BATTLE-WORN FINISH |
-| `e476.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / TRENCH ART FINISH |
-| `e477.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / PARADE FINISH |
-| `e478.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / CAPTURED FINISH |
-| `e479.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / STANDARD ISSUE |
-| `e480.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / GOLD FINISH |
-| `e481.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / CHROME FINISH |
-| `e482.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / BLUED FINISH |
-| `e483.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / BLOODY FINISH |
-| `e484.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / WOODLAND FINISH |
-| `e485.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / WINTER FINISH |
-| `e486.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / DESERT FINISH |
-| `e487.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / WHITEWASH FINISH |
-| `e488.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / AFRIKA KORPS FINISH |
-| `e489.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / KRIEGSMARINE FINISH |
-| `e490.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / AIRBORNE FINISH |
-| `e491.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / SPLINTER FINISH |
-| `e492.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / PEA DOT FINISH |
-| `e493.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / TELO FINISH |
-| `e494.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / AMOEBA FINISH |
-| `e495.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / AIRBORNE 101ST FINISH |
-| `e496.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / BATTLE-WORN FINISH |
-| `e497.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / TRENCH ART FINISH |
-| `e498.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / PARADE FINISH |
-| `e499.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / CAPTURED FINISH |
-| `e500.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / STANDARD ISSUE |
-| `e501.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / GOLD FINISH |
-| `e502.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / CHROME FINISH |
-| `e503.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / BLUED FINISH |
-| `e504.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / BLOODY FINISH |
-| `e505.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / WOODLAND FINISH |
-| `e506.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / WINTER FINISH |
-| `e507.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / DESERT FINISH |
-| `e508.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / WHITEWASH FINISH |
-| `e509.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / AFRIKA KORPS FINISH |
-| `e510.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / KRIEGSMARINE FINISH |
-| `e511.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / AIRBORNE FINISH |
-| `e512.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / SPLINTER FINISH |
-| `e513.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / PEA DOT FINISH |
-| `e514.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / TELO FINISH |
-| `e515.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / AMOEBA FINISH |
-| `e516.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / AIRBORNE 101ST FINISH |
-| `e517.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / BATTLE-WORN FINISH |
-| `e518.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / TRENCH ART FINISH |
-| `e519.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / PARADE FINISH |
-| `e520.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / CAPTURED FINISH |
-| `e521.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / STANDARD ISSUE |
-| `e522.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / GOLD FINISH |
-| `e523.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / CHROME FINISH |
-| `e524.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / BLUED FINISH |
-| `e525.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / BLOODY FINISH |
-| `e526.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / WOODLAND FINISH |
-| `e527.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / WINTER FINISH |
-| `e528.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / DESERT FINISH |
-| `e529.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / WHITEWASH FINISH |
-| `e530.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / AFRIKA KORPS FINISH |
-| `e531.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / KRIEGSMARINE FINISH |
-| `e532.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / AIRBORNE FINISH |
-| `e533.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / SPLINTER FINISH |
-| `e534.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / PEA DOT FINISH |
-| `e535.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / TELO FINISH |
-| `e536.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / AMOEBA FINISH |
-| `e537.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / AIRBORNE 101ST FINISH |
-| `e538.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / BATTLE-WORN FINISH |
-| `e539.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / TRENCH ART FINISH |
-| `e540.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / PARADE FINISH |
-| `e541.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / CAPTURED FINISH |
-| `e542.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / STANDARD ISSUE |
-| `e543.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / GOLD FINISH |
-| `e544.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / CHROME FINISH |
-| `e545.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / BLUED FINISH |
-| `e546.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / BLOODY FINISH |
-| `e547.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / WOODLAND FINISH |
-| `e548.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / WINTER FINISH |
-| `e549.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / DESERT FINISH |
-| `e550.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / TEAM TACTICS (LEON) |
-| `e551.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / WEHRMACHT DELISLE (LEON) |
-| `e552.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / WHITEWASH FINISH |
-| `e553.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / AFRIKA KORPS FINISH |
-| `e554.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / KRIEGSMARINE FINISH |
-| `e555.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / AIRBORNE FINISH |
-| `e556.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / SPLINTER FINISH |
-| `e557.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / PEA DOT FINISH |
-| `e558.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / TELO FINISH |
-| `e559.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / AMOEBA FINISH |
-| `e560.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / AIRBORNE 101ST FINISH |
-| `e561.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / BATTLE-WORN FINISH |
-| `e562.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / TRENCH ART FINISH |
-| `e563.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / PARADE FINISH |
-| `e564.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / CAPTURED FINISH |
-| `e565.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / STANDARD ISSUE |
-| `e566.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / GOLD FINISH |
-| `e567.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / CHROME FINISH |
-| `e568.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / BLUED FINISH |
-| `e569.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / BLOODY FINISH |
-| `e570.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / WOODLAND FINISH |
-| `e571.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / WINTER FINISH |
-| `e572.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / DESERT FINISH |
-| `e573.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / THOMPSON (M1928) (STATIC) |
-| `e574.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / THOMPSON (27A1 COMMANDO) (FLAKRIDER) |
-| `e575.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / M1A1 REMODEL (DARKANGEL) |
-| `e576.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / WORN THOMPSON (HOBBS) |
-| `e577.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / THOMPSON (GUANSHIRE) |
-| `e578.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / TEAM TACTICS (LEON) |
-| `e579.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / FAMAS THOMPSON II (LEON) |
-| `e580.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / WHITEWASH FINISH |
-| `e581.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / AFRIKA KORPS FINISH |
-| `e582.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / KRIEGSMARINE FINISH |
-| `e583.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / AIRBORNE FINISH |
-| `e584.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / SPLINTER FINISH |
-| `e585.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / PEA DOT FINISH |
-| `e586.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / TELO FINISH |
-| `e587.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / AMOEBA FINISH |
-| `e588.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / AIRBORNE 101ST FINISH |
-| `e589.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / BATTLE-WORN FINISH |
-| `e590.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / TRENCH ART FINISH |
-| `e591.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / PARADE FINISH |
-| `e592.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / CAPTURED FINISH |
-| `e593.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / STANDARD ISSUE |
-| `e594.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / GOLD FINISH |
-| `e595.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / CHROME FINISH |
-| `e596.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / BLUED FINISH |
-| `e597.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / BLOODY FINISH |
-| `e598.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / WOODLAND FINISH |
-| `e599.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / WINTER FINISH |
-| `e600.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / DESERT FINISH |
-| `e601.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / THOMPSON (1928 TOMMY) (DR.DELETO) |
-| `e602.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / WHITEWASH FINISH |
-| `e603.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / AFRIKA KORPS FINISH |
-| `e604.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / KRIEGSMARINE FINISH |
-| `e605.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / AIRBORNE FINISH |
-| `e606.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / SPLINTER FINISH |
-| `e607.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / PEA DOT FINISH |
-| `e608.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / TELO FINISH |
-| `e609.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / AMOEBA FINISH |
-| `e610.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / AIRBORNE 101ST FINISH |
-| `e611.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / BATTLE-WORN FINISH |
-| `e612.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / TRENCH ART FINISH |
-| `e613.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / PARADE FINISH |
-| `e614.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / CAPTURED FINISH |
-| `e615.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / STANDARD ISSUE |
-| `e616.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / GOLD FINISH |
-| `e617.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / CHROME FINISH |
-| `e618.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / BLUED FINISH |
-| `e619.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / BLOODY FINISH |
-| `e620.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / WOODLAND FINISH |
-| `e621.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / WINTER FINISH |
-| `e622.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / DESERT FINISH |
-| `e623.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / MP40 (REACTIVATED) |
-| `e624.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / MP18 (EAST) |
-| `e625.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / MP40 (GUANSHIRE) |
-| `e626.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / SILVER MP40 (GUANSHIRE) |
-| `e627.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / MP 75 AUSF D (LEON) |
-| `e628.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / WHITEWASH FINISH |
-| `e629.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / AFRIKA KORPS FINISH |
-| `e630.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / KRIEGSMARINE FINISH |
-| `e631.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / AIRBORNE FINISH |
-| `e632.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / SPLINTER FINISH |
-| `e633.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / PEA DOT FINISH |
-| `e634.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / TELO FINISH |
-| `e635.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / AMOEBA FINISH |
-| `e636.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / AIRBORNE 101ST FINISH |
-| `e637.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / BATTLE-WORN FINISH |
-| `e638.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / TRENCH ART FINISH |
-| `e639.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / PARADE FINISH |
-| `e640.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / CAPTURED FINISH |
-| `e641.cfg` | 37 | 1.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / STANDARD ISSUE |
-| `e642.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / GOLD FINISH |
-| `e643.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / CHROME FINISH |
-| `e644.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / BLUED FINISH |
-| `e645.cfg` | 35 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / BLOODY FINISH |
-| `e646.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / WOODLAND FINISH |
-| `e647.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / WINTER FINISH |
-| `e648.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / DESERT FINISH |
-| `e649.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / WHITEWASH FINISH |
-| `e650.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / AFRIKA KORPS FINISH |
-| `e651.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / KRIEGSMARINE FINISH |
-| `e652.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / AIRBORNE FINISH |
-| `e653.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / SPLINTER FINISH |
-| `e654.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / PEA DOT FINISH |
-| `e655.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / TELO FINISH |
-| `e656.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / AMOEBA FINISH |
-| `e657.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / AIRBORNE 101ST FINISH |
-| `e658.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / BATTLE-WORN FINISH |
-| `e659.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / TRENCH ART FINISH |
-| `e660.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / PARADE FINISH |
-| `e661.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / CAPTURED FINISH |
-| `e662.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / STANDARD ISSUE |
-| `e663.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / GOLD FINISH |
-| `e664.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / CHROME FINISH |
-| `e665.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / BLUED FINISH |
-| `e666.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / BLOODY FINISH |
-| `e667.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / WOODLAND FINISH |
-| `e668.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / WINTER FINISH |
-| `e669.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / DESERT FINISH |
-| `e670.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / WHITEWASH FINISH |
-| `e671.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / AFRIKA KORPS FINISH |
-| `e672.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / KRIEGSMARINE FINISH |
-| `e673.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / AIRBORNE FINISH |
-| `e674.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / SPLINTER FINISH |
-| `e675.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / PEA DOT FINISH |
-| `e676.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / TELO FINISH |
-| `e677.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / AMOEBA FINISH |
-| `e678.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / AIRBORNE 101ST FINISH |
-| `e679.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / BATTLE-WORN FINISH |
-| `e680.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / TRENCH ART FINISH |
-| `e681.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / PARADE FINISH |
-| `e682.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / CAPTURED FINISH |
-| `e683.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / STANDARD ISSUE |
-| `e684.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / GOLD FINISH |
-| `e685.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / CHROME FINISH |
-| `e686.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / BLUED FINISH |
-| `e687.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / BLOODY FINISH |
-| `e688.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / WOODLAND FINISH |
-| `e689.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / WINTER FINISH |
-| `e690.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / DESERT FINISH |
-| `e691.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / WHITEWASH FINISH |
-| `e692.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / AFRIKA KORPS FINISH |
-| `e693.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / KRIEGSMARINE FINISH |
-| `e694.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / AIRBORNE FINISH |
-| `e695.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / SPLINTER FINISH |
-| `e696.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / PEA DOT FINISH |
-| `e697.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / TELO FINISH |
-| `e698.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / AMOEBA FINISH |
-| `e699.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / AIRBORNE 101ST FINISH |
-| `e700.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / BATTLE-WORN FINISH |
-| `e701.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / TRENCH ART FINISH |
-| `e702.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / PARADE FINISH |
-| `e703.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / CAPTURED FINISH |
-| `e704.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / STANDARD ISSUE |
-| `e705.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / GOLD FINISH |
-| `e706.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / CHROME FINISH |
-| `e707.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / BLUED FINISH |
-| `e708.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / BLOODY FINISH |
-| `e709.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / WOODLAND FINISH |
-| `e710.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / WINTER FINISH |
-| `e711.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / DESERT FINISH |
-| `e712.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / WHITEWASH FINISH |
-| `e713.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / AFRIKA KORPS FINISH |
-| `e714.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / KRIEGSMARINE FINISH |
-| `e715.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / AIRBORNE FINISH |
-| `e716.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / SPLINTER FINISH |
-| `e717.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / PEA DOT FINISH |
-| `e718.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / TELO FINISH |
-| `e719.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / AMOEBA FINISH |
-| `e720.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / AIRBORNE 101ST FINISH |
-| `e721.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / BATTLE-WORN FINISH |
-| `e722.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / TRENCH ART FINISH |
-| `e723.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / PARADE FINISH |
-| `e724.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / CAPTURED FINISH |
-| `e725.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / STANDARD ISSUE |
-| `e726.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / GOLD FINISH |
-| `e727.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / CHROME FINISH |
-| `e728.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / BLUED FINISH |
-| `e729.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / BLOODY FINISH |
-| `e730.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / WOODLAND FINISH |
-| `e731.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / WINTER FINISH |
-| `e732.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / DESERT FINISH |
-| `e733.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / WHITEWASH FINISH |
-| `e734.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / AFRIKA KORPS FINISH |
-| `e735.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / KRIEGSMARINE FINISH |
-| `e736.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / AIRBORNE FINISH |
-| `e737.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / SPLINTER FINISH |
-| `e738.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / PEA DOT FINISH |
-| `e739.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / TELO FINISH |
-| `e740.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / AMOEBA FINISH |
-| `e741.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / AIRBORNE 101ST FINISH |
-| `e742.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / BATTLE-WORN FINISH |
-| `e743.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / TRENCH ART FINISH |
-| `e744.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / PARADE FINISH |
-| `e745.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / CAPTURED FINISH |
-| `e746.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / STANDARD ISSUE |
-| `e747.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / GOLD FINISH |
-| `e748.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / CHROME FINISH |
-| `e749.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / BLUED FINISH |
-| `e750.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / BLOODY FINISH |
-| `e751.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / WOODLAND FINISH |
-| `e752.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / WINTER FINISH |
-| `e753.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / DESERT FINISH |
-| `e754.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / WHITEWASH FINISH |
-| `e755.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / AFRIKA KORPS FINISH |
-| `e756.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / KRIEGSMARINE FINISH |
-| `e757.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / AIRBORNE FINISH |
-| `e758.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / SPLINTER FINISH |
-| `e759.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / PEA DOT FINISH |
-| `e760.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / TELO FINISH |
-| `e761.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / AMOEBA FINISH |
-| `e762.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / AIRBORNE 101ST FINISH |
-| `e763.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / BATTLE-WORN FINISH |
-| `e764.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / TRENCH ART FINISH |
-| `e765.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / PARADE FINISH |
-| `e766.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / CAPTURED FINISH |
-| `e767.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / STANDARD ISSUE |
-| `e768.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / GOLD FINISH |
-| `e769.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / CHROME FINISH |
-| `e770.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / BLUED FINISH |
-| `e771.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / BLOODY FINISH |
-| `e772.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / WOODLAND FINISH |
-| `e773.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / WINTER FINISH |
-| `e774.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / DESERT FINISH |
-| `e775.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / BERETTA M38A (SOARES93) |
-| `e776.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / WHITEWASH FINISH |
-| `e777.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / AFRIKA KORPS FINISH |
-| `e778.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / KRIEGSMARINE FINISH |
-| `e779.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / AIRBORNE FINISH |
-| `e780.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / SPLINTER FINISH |
-| `e781.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / PEA DOT FINISH |
-| `e782.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / TELO FINISH |
-| `e783.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / AMOEBA FINISH |
-| `e784.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / AIRBORNE 101ST FINISH |
-| `e785.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / BATTLE-WORN FINISH |
-| `e786.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / TRENCH ART FINISH |
-| `e787.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / PARADE FINISH |
-| `e788.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / CAPTURED FINISH |
-| `e789.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / STANDARD ISSUE |
-| `e790.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / GOLD FINISH |
-| `e791.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / CHROME FINISH |
-| `e792.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / BLUED FINISH |
-| `e793.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / BLOODY FINISH |
-| `e794.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / WOODLAND FINISH |
-| `e795.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / WINTER FINISH |
-| `e796.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / DESERT FINISH |
-| `e797.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / WHITEWASH FINISH |
-| `e798.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / AFRIKA KORPS FINISH |
-| `e799.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / KRIEGSMARINE FINISH |
-| `e800.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / AIRBORNE FINISH |
-| `e801.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / SPLINTER FINISH |
-| `e802.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / PEA DOT FINISH |
-| `e803.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / TELO FINISH |
-| `e804.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / AMOEBA FINISH |
-| `e805.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / AIRBORNE 101ST FINISH |
-| `e806.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / BATTLE-WORN FINISH |
-| `e807.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / TRENCH ART FINISH |
-| `e808.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / PARADE FINISH |
-| `e809.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / CAPTURED FINISH |
-| `e810.cfg` | 37 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / STANDARD ISSUE |
-| `e811.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / GOLD FINISH |
-| `e812.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / CHROME FINISH |
-| `e813.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / BLUED FINISH |
-| `e814.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / BLOODY FINISH |
-| `e815.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / WOODLAND FINISH |
-| `e816.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / WINTER FINISH |
-| `e817.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / DESERT FINISH |
-| `e818.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / WHITEWASH FINISH |
-| `e819.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / AFRIKA KORPS FINISH |
-| `e820.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / KRIEGSMARINE FINISH |
-| `e821.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / AIRBORNE FINISH |
-| `e822.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / SPLINTER FINISH |
-| `e823.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / PEA DOT FINISH |
-| `e824.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / TELO FINISH |
-| `e825.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / AMOEBA FINISH |
-| `e826.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / AIRBORNE 101ST FINISH |
-| `e827.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / BATTLE-WORN FINISH |
-| `e828.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / TRENCH ART FINISH |
-| `e829.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / PARADE FINISH |
-| `e830.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / CAPTURED FINISH |
-| `e831.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / STANDARD ISSUE |
-| `e832.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / GOLD FINISH |
-| `e833.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / CHROME FINISH |
-| `e834.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / BLUED FINISH |
-| `e835.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / BLOODY FINISH |
-| `e836.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / WOODLAND FINISH |
-| `e837.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / WINTER FINISH |
-| `e838.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / DESERT FINISH |
-| `e839.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / BAR (PACIFIC) (MOH:PA) |
-| `e840.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / M1918 CLASSIC (STLKID) |
-| `e841.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / M1918A1 (STLKID) |
-| `e842.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / M1918A2 (STLKID) |
-| `e843.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / WHITEWASH FINISH |
-| `e844.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / AFRIKA KORPS FINISH |
-| `e845.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / KRIEGSMARINE FINISH |
-| `e846.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / AIRBORNE FINISH |
-| `e847.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / SPLINTER FINISH |
-| `e848.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / PEA DOT FINISH |
-| `e849.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / TELO FINISH |
-| `e850.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / AMOEBA FINISH |
-| `e851.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / AIRBORNE 101ST FINISH |
-| `e852.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / BATTLE-WORN FINISH |
-| `e853.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / TRENCH ART FINISH |
-| `e854.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / PARADE FINISH |
-| `e855.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / CAPTURED FINISH |
-| `e856.cfg` | 37 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / STANDARD ISSUE |
-| `e857.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / GOLD FINISH |
-| `e858.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / CHROME FINISH |
-| `e859.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / BLUED FINISH |
-| `e860.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / BLOODY FINISH |
-| `e861.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / WOODLAND FINISH |
-| `e862.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / WINTER FINISH |
-| `e863.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / DESERT FINISH |
-| `e864.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / STG 44 (STRAPPED) (DARKANGEL) |
-| `e865.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / SS STG 44 (DIRTYHARRY) |
-| `e866.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / STG 44 (GUANSHIRE) |
-| `e867.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / TEAM TACTICS (LEON) |
-| `e868.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / WHITEWASH FINISH |
-| `e869.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / AFRIKA KORPS FINISH |
-| `e870.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / KRIEGSMARINE FINISH |
-| `e871.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / AIRBORNE FINISH |
-| `e872.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / SPLINTER FINISH |
-| `e873.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / PEA DOT FINISH |
-| `e874.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / TELO FINISH |
-| `e875.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / AMOEBA FINISH |
-| `e876.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / AIRBORNE 101ST FINISH |
-| `e877.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / BATTLE-WORN FINISH |
-| `e878.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / TRENCH ART FINISH |
-| `e879.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / PARADE FINISH |
-| `e880.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / CAPTURED FINISH |
-| `e881.cfg` | 37 | 1.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / STANDARD ISSUE |
-| `e882.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / GOLD FINISH |
-| `e883.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / CHROME FINISH |
-| `e884.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / BLUED FINISH |
-| `e885.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / BLOODY FINISH |
-| `e886.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / WOODLAND FINISH |
-| `e887.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / WINTER FINISH |
-| `e888.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / DESERT FINISH |
-| `e889.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / WHITEWASH FINISH |
-| `e890.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / AFRIKA KORPS FINISH |
-| `e891.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / KRIEGSMARINE FINISH |
-| `e892.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / AIRBORNE FINISH |
-| `e893.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / SPLINTER FINISH |
-| `e894.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / PEA DOT FINISH |
-| `e895.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / TELO FINISH |
-| `e896.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / AMOEBA FINISH |
-| `e897.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / AIRBORNE 101ST FINISH |
-| `e898.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / BATTLE-WORN FINISH |
-| `e899.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / TRENCH ART FINISH |
-| `e900.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / PARADE FINISH |
-| `e901.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / CAPTURED FINISH |
-| `e902.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / STANDARD ISSUE |
-| `e903.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / GOLD FINISH |
-| `e904.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / CHROME FINISH |
-| `e905.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / BLUED FINISH |
-| `e906.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / BLOODY FINISH |
-| `e907.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / WOODLAND FINISH |
-| `e908.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / WINTER FINISH |
-| `e909.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / DESERT FINISH |
-| `e910.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / WHITEWASH FINISH |
-| `e911.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / AFRIKA KORPS FINISH |
-| `e912.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / KRIEGSMARINE FINISH |
-| `e913.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / AIRBORNE FINISH |
-| `e914.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / SPLINTER FINISH |
-| `e915.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / PEA DOT FINISH |
-| `e916.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / TELO FINISH |
-| `e917.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / AMOEBA FINISH |
-| `e918.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / AIRBORNE 101ST FINISH |
-| `e919.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / BATTLE-WORN FINISH |
-| `e920.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / TRENCH ART FINISH |
-| `e921.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / PARADE FINISH |
-| `e922.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / CAPTURED FINISH |
-| `e923.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / STANDARD ISSUE |
-| `e924.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / GOLD FINISH |
-| `e925.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / CHROME FINISH |
-| `e926.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / BLUED FINISH |
-| `e927.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / BLOODY FINISH |
-| `e928.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / WOODLAND FINISH |
-| `e929.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / WINTER FINISH |
-| `e930.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / DESERT FINISH |
-| `e931.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / WHITEWASH FINISH |
-| `e932.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / AFRIKA KORPS FINISH |
-| `e933.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / KRIEGSMARINE FINISH |
-| `e934.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / AIRBORNE FINISH |
-| `e935.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / SPLINTER FINISH |
-| `e936.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / PEA DOT FINISH |
-| `e937.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / TELO FINISH |
-| `e938.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / AMOEBA FINISH |
-| `e939.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / AIRBORNE 101ST FINISH |
-| `e940.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / BATTLE-WORN FINISH |
-| `e941.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / TRENCH ART FINISH |
-| `e942.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / PARADE FINISH |
-| `e943.cfg` | 35 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / CAPTURED FINISH |
-| `e944.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / STANDARD ISSUE |
-| `e945.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / GOLD FINISH |
-| `e946.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / CHROME FINISH |
-| `e947.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / BLUED FINISH |
-| `e948.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / BLOODY FINISH |
-| `e949.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / WOODLAND FINISH |
-| `e950.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / WINTER FINISH |
-| `e951.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / DESERT FINISH |
-| `e952.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / WHITEWASH FINISH |
-| `e953.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / AFRIKA KORPS FINISH |
-| `e954.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / KRIEGSMARINE FINISH |
-| `e955.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / AIRBORNE FINISH |
-| `e956.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / SPLINTER FINISH |
-| `e957.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / PEA DOT FINISH |
-| `e958.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / TELO FINISH |
-| `e959.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / AMOEBA FINISH |
-| `e960.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / AIRBORNE 101ST FINISH |
-| `e961.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / BATTLE-WORN FINISH |
-| `e962.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / TRENCH ART FINISH |
-| `e963.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / PARADE FINISH |
-| `e964.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / CAPTURED FINISH |
-| `e965.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / STANDARD ISSUE |
-| `e966.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / GOLD FINISH |
-| `e967.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / CHROME FINISH |
-| `e968.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / BLUED FINISH |
-| `e969.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / BLOODY FINISH |
-| `e970.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / WOODLAND FINISH |
-| `e971.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / WINTER FINISH |
-| `e972.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / DESERT FINISH |
-| `e973.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / WHITEWASH FINISH |
-| `e974.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / AFRIKA KORPS FINISH |
-| `e975.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / KRIEGSMARINE FINISH |
-| `e976.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / AIRBORNE FINISH |
-| `e977.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / SPLINTER FINISH |
-| `e978.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / PEA DOT FINISH |
-| `e979.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / TELO FINISH |
-| `e980.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / AMOEBA FINISH |
-| `e981.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / AIRBORNE 101ST FINISH |
-| `e982.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / BATTLE-WORN FINISH |
-| `e983.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / TRENCH ART FINISH |
-| `e984.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / PARADE FINISH |
-| `e985.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / CAPTURED FINISH |
-| `e986.cfg` | 37 | 1.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / STANDARD ISSUE |
-| `e987.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / GOLD FINISH |
-| `e988.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / CHROME FINISH |
-| `e989.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / BLUED FINISH |
-| `e990.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / BLOODY FINISH |
-| `e991.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / WOODLAND FINISH |
-| `e992.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / WINTER FINISH |
-| `e993.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / DESERT FINISH |
-| `e994.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / WHITEWASH FINISH |
-| `e995.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / AFRIKA KORPS FINISH |
-| `e996.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / KRIEGSMARINE FINISH |
-| `e997.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / AIRBORNE FINISH |
-| `e998.cfg` | 35 | 1.5 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / SPLINTER FINISH |
-| `e999.cfg` | 35 | 1.4 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / PEA DOT FINISH |
+| `e001.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / STANDARD ISSUE |
+| `e002.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / GOLD FINISH |
+| `e003.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / CHROME FINISH |
+| `e004.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / BLUED FINISH |
+| `e005.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / BLOODY FINISH |
+| `e006.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / WOODLAND FINISH |
+| `e007.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / WINTER FINISH |
+| `e008.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / DESERT FINISH |
+| `e009.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / M1 GARAND (PACIFIC) (ACME313) |
+| `e010.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / M1 GARAND (GUANSHIRE) |
+| `e011.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / TEAM TACTICS (LEON) |
+| `e012.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / WHITEWASH FINISH |
+| `e013.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / AFRIKA KORPS FINISH |
+| `e014.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / KRIEGSMARINE FINISH |
+| `e015.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / AIRBORNE FINISH |
+| `e016.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / SPLINTER FINISH |
+| `e017.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / PEA DOT FINISH |
+| `e018.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / TELO FINISH |
+| `e019.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / AMOEBA FINISH |
+| `e020.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / AIRBORNE 101ST FINISH |
+| `e021.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / BATTLE-WORN FINISH |
+| `e022.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / TRENCH ART FINISH |
+| `e023.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / PARADE FINISH |
+| `e024.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / CAPTURED FINISH |
+| `e025.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / M1 GARAND (FRONTLINE) |
+| `e026.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND / M1 GARAND (EUROPEAN ASSAULT) |
+| `e027.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / STANDARD ISSUE |
+| `e028.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / GOLD FINISH |
+| `e029.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / CHROME FINISH |
+| `e030.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / BLUED FINISH |
+| `e031.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / BLOODY FINISH |
+| `e032.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / WOODLAND FINISH |
+| `e033.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / WINTER FINISH |
+| `e034.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / DESERT FINISH |
+| `e035.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / WHITEWASH FINISH |
+| `e036.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / AFRIKA KORPS FINISH |
+| `e037.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / KRIEGSMARINE FINISH |
+| `e038.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / AIRBORNE FINISH |
+| `e039.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / SPLINTER FINISH |
+| `e040.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / PEA DOT FINISH |
+| `e041.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / TELO FINISH |
+| `e042.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / AMOEBA FINISH |
+| `e043.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / AIRBORNE 101ST FINISH |
+| `e044.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / BATTLE-WORN FINISH |
+| `e045.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / TRENCH ART FINISH |
+| `e046.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / PARADE FINISH |
+| `e047.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 CARBINE / CAPTURED FINISH |
+| `e048.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / STANDARD ISSUE |
+| `e049.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / GOLD FINISH |
+| `e050.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / CHROME FINISH |
+| `e051.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / BLUED FINISH |
+| `e052.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / BLOODY FINISH |
+| `e053.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / WOODLAND FINISH |
+| `e054.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / WINTER FINISH |
+| `e055.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / DESERT FINISH |
+| `e056.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / WORN KAR 98K (HOBBS) |
+| `e057.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / WOODLAND KAR 98K (HOBBS) |
+| `e058.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / TEAM TACTICS (LEON) |
+| `e059.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / WHITEWASH FINISH |
+| `e060.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / AFRIKA KORPS FINISH |
+| `e061.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / KRIEGSMARINE FINISH |
+| `e062.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / AIRBORNE FINISH |
+| `e063.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / SPLINTER FINISH |
+| `e064.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / PEA DOT FINISH |
+| `e065.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / TELO FINISH |
+| `e066.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / AMOEBA FINISH |
+| `e067.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / AIRBORNE 101ST FINISH |
+| `e068.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / BATTLE-WORN FINISH |
+| `e069.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / TRENCH ART FINISH |
+| `e070.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / PARADE FINISH |
+| `e071.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / CAPTURED FINISH |
+| `e072.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K / KAR98K (EUROPEAN ASSAULT) |
+| `e073.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / STANDARD ISSUE |
+| `e074.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / GOLD FINISH |
+| `e075.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / CHROME FINISH |
+| `e076.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / BLUED FINISH |
+| `e077.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / BLOODY FINISH |
+| `e078.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / WOODLAND FINISH |
+| `e079.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / WINTER FINISH |
+| `e080.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / DESERT FINISH |
+| `e081.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / GEWEHR 98 (BOLT) (EAST) |
+| `e082.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / FLECKTARN G43 (DIRTYHARRY) |
+| `e083.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / WOODLAND G43 (HOBBS) |
+| `e084.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / URBAN G43 (HOBBS) |
+| `e085.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / TEAM TACTICS (LEON) |
+| `e086.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / WHITEWASH FINISH |
+| `e087.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / AFRIKA KORPS FINISH |
+| `e088.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / KRIEGSMARINE FINISH |
+| `e089.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / AIRBORNE FINISH |
+| `e090.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / SPLINTER FINISH |
+| `e091.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / PEA DOT FINISH |
+| `e092.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / TELO FINISH |
+| `e093.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / AMOEBA FINISH |
+| `e094.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / AIRBORNE 101ST FINISH |
+| `e095.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / BATTLE-WORN FINISH |
+| `e096.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / TRENCH ART FINISH |
+| `e097.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / PARADE FINISH |
+| `e098.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / CAPTURED FINISH |
+| `e099.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / G 43 (FRONTLINE) |
+| `e100.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 / G 43 SNIPER (EUROPEAN ASSAULT) |
+| `e1000.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / PEA DOT FINISH |
+| `e1001.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / TELO FINISH |
+| `e1002.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / AMOEBA FINISH |
+| `e1003.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / AIRBORNE 101ST FINISH |
+| `e1004.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / BATTLE-WORN FINISH |
+| `e1005.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / TRENCH ART FINISH |
+| `e1006.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / PARADE FINISH |
+| `e1007.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / CAPTURED FINISH |
+| `e1008.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / STANDARD ISSUE |
+| `e1009.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / GOLD FINISH |
+| `e101.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / STANDARD ISSUE |
+| `e1010.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / CHROME FINISH |
+| `e1011.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / BLUED FINISH |
+| `e1012.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / BLOODY FINISH |
+| `e1013.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / WOODLAND FINISH |
+| `e1014.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / WINTER FINISH |
+| `e1015.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / DESERT FINISH |
+| `e1016.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / WHITEWASH FINISH |
+| `e1017.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / AFRIKA KORPS FINISH |
+| `e1018.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / KRIEGSMARINE FINISH |
+| `e1019.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / AIRBORNE FINISH |
+| `e102.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / GOLD FINISH |
+| `e1020.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / SPLINTER FINISH |
+| `e1021.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / PEA DOT FINISH |
+| `e1022.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / TELO FINISH |
+| `e1023.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / AMOEBA FINISH |
+| `e1024.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / AIRBORNE 101ST FINISH |
+| `e1025.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / BATTLE-WORN FINISH |
+| `e1026.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / TRENCH ART FINISH |
+| `e1027.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / PARADE FINISH |
+| `e1028.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MG42 / CAPTURED FINISH |
+| `e1029.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / STANDARD ISSUE |
+| `e103.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / CHROME FINISH |
+| `e1030.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / GOLD FINISH |
+| `e1031.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / CHROME FINISH |
+| `e1032.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / BLUED FINISH |
+| `e1033.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / BLOODY FINISH |
+| `e1034.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / WOODLAND FINISH |
+| `e1035.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / WINTER FINISH |
+| `e1036.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / DESERT FINISH |
+| `e1037.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / AUTHENTIC WOOD |
+| `e1038.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / BLACK TACTICAL (DIRTYHARRY) |
+| `e1039.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / CHROME TACTICAL (DIRTYHARRY) |
+| `e104.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / BLUED FINISH |
+| `e1040.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / RECOIL SHOTTY (HOBBS & RECOIL) |
+| `e1041.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / SHOTGUN (GUANSHIRE) |
+| `e1042.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / TEAM TACTICS (LEON) |
+| `e1043.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / WHITEWASH FINISH |
+| `e1044.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / AFRIKA KORPS FINISH |
+| `e1045.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / KRIEGSMARINE FINISH |
+| `e1046.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / AIRBORNE FINISH |
+| `e1047.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / SPLINTER FINISH |
+| `e1048.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / PEA DOT FINISH |
+| `e1049.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / TELO FINISH |
+| `e105.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / BLOODY FINISH |
+| `e1050.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / AMOEBA FINISH |
+| `e1051.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / AIRBORNE 101ST FINISH |
+| `e1052.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / BATTLE-WORN FINISH |
+| `e1053.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / TRENCH ART FINISH |
+| `e1054.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / PARADE FINISH |
+| `e1055.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / CAPTURED FINISH |
+| `e1056.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / SHOTGUN (FRONTLINE) |
+| `e1057.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TRENCH GUN / SHOTGUN (EUROPEAN ASSAULT) |
+| `e1058.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / STANDARD ISSUE |
+| `e1059.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / GOLD FINISH |
+| `e106.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / WOODLAND FINISH |
+| `e1060.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / CHROME FINISH |
+| `e1061.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / BLUED FINISH |
+| `e1062.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / BLOODY FINISH |
+| `e1063.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / WOODLAND FINISH |
+| `e1064.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / WINTER FINISH |
+| `e1065.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / DESERT FINISH |
+| `e1066.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / REALISTIC BAZOOKA (GUANSHIRE) |
+| `e1067.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / WHITEWASH FINISH |
+| `e1068.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / AFRIKA KORPS FINISH |
+| `e1069.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / KRIEGSMARINE FINISH |
+| `e107.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / WINTER FINISH |
+| `e1070.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / AIRBORNE FINISH |
+| `e1071.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / SPLINTER FINISH |
+| `e1072.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / PEA DOT FINISH |
+| `e1073.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / TELO FINISH |
+| `e1074.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / AMOEBA FINISH |
+| `e1075.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / AIRBORNE 101ST FINISH |
+| `e1076.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / BATTLE-WORN FINISH |
+| `e1077.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / TRENCH ART FINISH |
+| `e1078.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / PARADE FINISH |
+| `e1079.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / CAPTURED FINISH |
+| `e108.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / DESERT FINISH |
+| `e1080.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / BAZOOKA (FRONTLINE) |
+| `e1081.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / M1 BAZOOKA (EUROPEAN ASSAULT) |
+| `e1082.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1A1 BAZOOKA / M9 BAZOOKA (EUROPEAN ASSAULT) |
+| `e1083.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / STANDARD ISSUE |
+| `e1084.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / GOLD FINISH |
+| `e1085.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / CHROME FINISH |
+| `e1086.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / BLUED FINISH |
+| `e1087.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / BLOODY FINISH |
+| `e1088.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / WOODLAND FINISH |
+| `e1089.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / WINTER FINISH |
+| `e109.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / P14 ENFIELD (EAST) |
+| `e1090.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / DESERT FINISH |
+| `e1091.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / OFENROHR (LEON) |
+| `e1092.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / WHITEWASH FINISH |
+| `e1093.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / AFRIKA KORPS FINISH |
+| `e1094.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / KRIEGSMARINE FINISH |
+| `e1095.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / AIRBORNE FINISH |
+| `e1096.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / SPLINTER FINISH |
+| `e1097.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / PEA DOT FINISH |
+| `e1098.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / TELO FINISH |
+| `e1099.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / AMOEBA FINISH |
+| `e110.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / URBAN ENFIELD (HOBBS) |
+| `e1100.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / AIRBORNE 101ST FINISH |
+| `e1101.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / BATTLE-WORN FINISH |
+| `e1102.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / TRENCH ART FINISH |
+| `e1103.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / PARADE FINISH |
+| `e1104.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / CAPTURED FINISH |
+| `e1105.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERSCHRECK / PANZERSCHRECK (FRONTLINE) |
+| `e1106.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / STANDARD ISSUE |
+| `e1107.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / GOLD FINISH |
+| `e1108.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / CHROME FINISH |
+| `e1109.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / BLUED FINISH |
+| `e111.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / TEAM TACTICS (LEON) |
+| `e1110.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / BLOODY FINISH |
+| `e1111.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / WOODLAND FINISH |
+| `e1112.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / WINTER FINISH |
+| `e1113.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / DESERT FINISH |
+| `e1114.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / WHITEWASH FINISH |
+| `e1115.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / AFRIKA KORPS FINISH |
+| `e1116.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / KRIEGSMARINE FINISH |
+| `e1117.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / AIRBORNE FINISH |
+| `e1118.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / SPLINTER FINISH |
+| `e1119.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / PEA DOT FINISH |
+| `e112.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / WHITEWASH FINISH |
+| `e1120.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / TELO FINISH |
+| `e1121.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / AMOEBA FINISH |
+| `e1122.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / AIRBORNE 101ST FINISH |
+| `e1123.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / BATTLE-WORN FINISH |
+| `e1124.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / TRENCH ART FINISH |
+| `e1125.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / PARADE FINISH |
+| `e1126.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PIAT / CAPTURED FINISH |
+| `e1127.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / STANDARD ISSUE |
+| `e1128.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / GOLD FINISH |
+| `e1129.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / CHROME FINISH |
+| `e113.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / AFRIKA KORPS FINISH |
+| `e1130.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / BLUED FINISH |
+| `e1131.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / BLOODY FINISH |
+| `e1132.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / WOODLAND FINISH |
+| `e1133.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / WINTER FINISH |
+| `e1134.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / DESERT FINISH |
+| `e1135.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / WHITEWASH FINISH |
+| `e1136.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / AFRIKA KORPS FINISH |
+| `e1137.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / KRIEGSMARINE FINISH |
+| `e1138.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / AIRBORNE FINISH |
+| `e1139.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / SPLINTER FINISH |
+| `e114.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / KRIEGSMARINE FINISH |
+| `e1140.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / PEA DOT FINISH |
+| `e1141.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / TELO FINISH |
+| `e1142.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / AMOEBA FINISH |
+| `e1143.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / AIRBORNE 101ST FINISH |
+| `e1144.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / BATTLE-WORN FINISH |
+| `e1145.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / TRENCH ART FINISH |
+| `e1146.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / PARADE FINISH |
+| `e1147.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DP-28 / CAPTURED FINISH |
+| `e1148.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / STANDARD ISSUE |
+| `e1149.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / GOLD FINISH |
+| `e115.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / AIRBORNE FINISH |
+| `e1150.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / CHROME FINISH |
+| `e1151.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / BLUED FINISH |
+| `e1152.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / BLOODY FINISH |
+| `e1153.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / WOODLAND FINISH |
+| `e1154.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / WINTER FINISH |
+| `e1155.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / DESERT FINISH |
+| `e1156.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / WHITEWASH FINISH |
+| `e1157.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / AFRIKA KORPS FINISH |
+| `e1158.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / KRIEGSMARINE FINISH |
+| `e1159.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / AIRBORNE FINISH |
+| `e116.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / SPLINTER FINISH |
+| `e1160.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / SPLINTER FINISH |
+| `e1161.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / PEA DOT FINISH |
+| `e1162.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / TELO FINISH |
+| `e1163.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / AMOEBA FINISH |
+| `e1164.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / AIRBORNE 101ST FINISH |
+| `e1165.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / BATTLE-WORN FINISH |
+| `e1166.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / TRENCH ART FINISH |
+| `e1167.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / PARADE FINISH |
+| `e1168.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DOUBLE BARREL / CAPTURED FINISH |
+| `e1169.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / STANDARD ISSUE |
+| `e117.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / PEA DOT FINISH |
+| `e1170.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / GOLD FINISH |
+| `e1171.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / CHROME FINISH |
+| `e1172.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / BLUED FINISH |
+| `e1173.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / BLOODY FINISH |
+| `e1174.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / WOODLAND FINISH |
+| `e1175.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / WINTER FINISH |
+| `e1176.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / DESERT FINISH |
+| `e1177.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / WHITEWASH FINISH |
+| `e1178.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / AFRIKA KORPS FINISH |
+| `e1179.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / KRIEGSMARINE FINISH |
+| `e118.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / TELO FINISH |
+| `e1180.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / AIRBORNE FINISH |
+| `e1181.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / SPLINTER FINISH |
+| `e1182.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / PEA DOT FINISH |
+| `e1183.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / TELO FINISH |
+| `e1184.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / AMOEBA FINISH |
+| `e1185.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / AIRBORNE 101ST FINISH |
+| `e1186.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / BATTLE-WORN FINISH |
+| `e1187.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / TRENCH ART FINISH |
+| `e1188.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / PARADE FINISH |
+| `e1189.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 (IRON SIGHTS) / CAPTURED FINISH |
+| `e119.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / AMOEBA FINISH |
+| `e1190.cfg` | 55 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / STANDARD ISSUE |
+| `e1191.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / GOLD FINISH |
+| `e1192.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / CHROME FINISH |
+| `e1193.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / BLUED FINISH |
+| `e1194.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / BLOODY FINISH |
+| `e1195.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / WOODLAND FINISH |
+| `e1196.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / WINTER FINISH |
+| `e1197.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / DESERT FINISH |
+| `e1198.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / WHITEWASH FINISH |
+| `e1199.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / AFRIKA KORPS FINISH |
+| `e120.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / AIRBORNE 101ST FINISH |
+| `e1200.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / KRIEGSMARINE FINISH |
+| `e1201.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / AIRBORNE FINISH |
+| `e1202.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / SPLINTER FINISH |
+| `e1203.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / PEA DOT FINISH |
+| `e1204.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / TELO FINISH |
+| `e1205.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / AMOEBA FINISH |
+| `e1206.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / AIRBORNE 101ST FINISH |
+| `e1207.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / BATTLE-WORN FINISH |
+| `e1208.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / TRENCH ART FINISH |
+| `e1209.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / PARADE FINISH |
+| `e121.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / BATTLE-WORN FINISH |
+| `e1210.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEWIS GUN / CAPTURED FINISH |
+| `e1211.cfg` | 55 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / STANDARD ISSUE |
+| `e1212.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / GOLD FINISH |
+| `e1213.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / CHROME FINISH |
+| `e1214.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / BLUED FINISH |
+| `e1215.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / BLOODY FINISH |
+| `e1216.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / WOODLAND FINISH |
+| `e1217.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / WINTER FINISH |
+| `e1218.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / DESERT FINISH |
+| `e1219.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / WHITEWASH FINISH |
+| `e122.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / TRENCH ART FINISH |
+| `e1220.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / AFRIKA KORPS FINISH |
+| `e1221.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / KRIEGSMARINE FINISH |
+| `e1222.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / AIRBORNE FINISH |
+| `e1223.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / SPLINTER FINISH |
+| `e1224.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / PEA DOT FINISH |
+| `e1225.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / TELO FINISH |
+| `e1226.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / AMOEBA FINISH |
+| `e1227.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / AIRBORNE 101ST FINISH |
+| `e1228.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / BATTLE-WORN FINISH |
+| `e1229.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / TRENCH ART FINISH |
+| `e123.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / PARADE FINISH |
+| `e1230.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / PARADE FINISH |
+| `e1231.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREN MK I / CAPTURED FINISH |
+| `e1232.cfg` | 55 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / STANDARD ISSUE |
+| `e1233.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / GOLD FINISH |
+| `e1234.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / CHROME FINISH |
+| `e1235.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / BLUED FINISH |
+| `e1236.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / BLOODY FINISH |
+| `e1237.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / WOODLAND FINISH |
+| `e1238.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / WINTER FINISH |
+| `e1239.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / DESERT FINISH |
+| `e124.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD NO.4 / CAPTURED FINISH |
+| `e1240.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / WHITEWASH FINISH |
+| `e1241.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / AFRIKA KORPS FINISH |
+| `e1242.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / KRIEGSMARINE FINISH |
+| `e1243.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / AIRBORNE FINISH |
+| `e1244.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / SPLINTER FINISH |
+| `e1245.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / PEA DOT FINISH |
+| `e1246.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / TELO FINISH |
+| `e1247.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / AMOEBA FINISH |
+| `e1248.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / AIRBORNE 101ST FINISH |
+| `e1249.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / BATTLE-WORN FINISH |
+| `e125.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / STANDARD ISSUE |
+| `e1250.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / TRENCH ART FINISH |
+| `e1251.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / PARADE FINISH |
+| `e1252.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PANZERFAUST 60 / CAPTURED FINISH |
+| `e1253.cfg` | 53 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / STANDARD ISSUE |
+| `e1254.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / GOLD FINISH |
+| `e1255.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / CHROME FINISH |
+| `e1256.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / BLUED FINISH |
+| `e1257.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / BLOODY FINISH |
+| `e1258.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / WOODLAND FINISH |
+| `e1259.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / WINTER FINISH |
+| `e126.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / GOLD FINISH |
+| `e1260.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / DESERT FINISH |
+| `e1261.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / COLT 45 (PACIFIC) (ACME313) |
+| `e1262.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / WEBLEY MK VI (EAST) |
+| `e1263.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / M1911 COVERT |
+| `e1264.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / 1911 CLASSIC |
+| `e1265.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / M1911 BLOODY EIC (SCHUTZE) |
+| `e1266.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / COLT 1911 (GUANSHIRE) |
+| `e1267.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / TEAM TACTICS (LEON) |
+| `e1268.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / WHITEWASH FINISH |
+| `e1269.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / AFRIKA KORPS FINISH |
+| `e127.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / CHROME FINISH |
+| `e1270.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / KRIEGSMARINE FINISH |
+| `e1271.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / AIRBORNE FINISH |
+| `e1272.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / SPLINTER FINISH |
+| `e1273.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / PEA DOT FINISH |
+| `e1274.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / TELO FINISH |
+| `e1275.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / AMOEBA FINISH |
+| `e1276.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / AIRBORNE 101ST FINISH |
+| `e1277.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / BATTLE-WORN FINISH |
+| `e1278.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / TRENCH ART FINISH |
+| `e1279.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / PARADE FINISH |
+| `e128.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / BLUED FINISH |
+| `e1280.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / CAPTURED FINISH |
+| `e1281.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / COLT 45 (FRONTLINE) |
+| `e1282.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 / COLT 45 (EUROPEAN ASSAULT) |
+| `e1283.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / STANDARD ISSUE |
+| `e1284.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / GOLD FINISH |
+| `e1285.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / CHROME FINISH |
+| `e1286.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / BLUED FINISH |
+| `e1287.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / BLOODY FINISH |
+| `e1288.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / WOODLAND FINISH |
+| `e1289.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / WINTER FINISH |
+| `e129.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / BLOODY FINISH |
+| `e1290.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / DESERT FINISH |
+| `e1291.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / WHITEWASH FINISH |
+| `e1292.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / AFRIKA KORPS FINISH |
+| `e1293.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / KRIEGSMARINE FINISH |
+| `e1294.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / AIRBORNE FINISH |
+| `e1295.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / SPLINTER FINISH |
+| `e1296.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / PEA DOT FINISH |
+| `e1297.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / TELO FINISH |
+| `e1298.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / AMOEBA FINISH |
+| `e1299.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / AIRBORNE 101ST FINISH |
+| `e130.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / WOODLAND FINISH |
+| `e1300.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / BATTLE-WORN FINISH |
+| `e1301.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / TRENCH ART FINISH |
+| `e1302.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / PARADE FINISH |
+| `e1303.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. COLT M1911 SILENCED / CAPTURED FINISH |
+| `e1304.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / STANDARD ISSUE |
+| `e1305.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / GOLD FINISH |
+| `e1306.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / CHROME FINISH |
+| `e1307.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / BLUED FINISH |
+| `e1308.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / BLOODY FINISH |
+| `e1309.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / WOODLAND FINISH |
+| `e131.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / WINTER FINISH |
+| `e1310.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / WINTER FINISH |
+| `e1311.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / DESERT FINISH |
+| `e1312.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / WALTHER P38 (GUANSHIRE) |
+| `e1313.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / TEAM TACTICS (LEON) |
+| `e1314.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / WHITEWASH FINISH |
+| `e1315.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / AFRIKA KORPS FINISH |
+| `e1316.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / KRIEGSMARINE FINISH |
+| `e1317.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / AIRBORNE FINISH |
+| `e1318.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / SPLINTER FINISH |
+| `e1319.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / PEA DOT FINISH |
+| `e132.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / DESERT FINISH |
+| `e1320.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / TELO FINISH |
+| `e1321.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / AMOEBA FINISH |
+| `e1322.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / AIRBORNE 101ST FINISH |
+| `e1323.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / BATTLE-WORN FINISH |
+| `e1324.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / TRENCH ART FINISH |
+| `e1325.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / PARADE FINISH |
+| `e1326.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / CAPTURED FINISH |
+| `e1327.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 / WALTHER P38 (FRONTLINE) |
+| `e1328.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / STANDARD ISSUE |
+| `e1329.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / GOLD FINISH |
+| `e133.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / WHITEWASH FINISH |
+| `e1330.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / CHROME FINISH |
+| `e1331.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / BLUED FINISH |
+| `e1332.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / BLOODY FINISH |
+| `e1333.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / WOODLAND FINISH |
+| `e1334.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / WINTER FINISH |
+| `e1335.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / DESERT FINISH |
+| `e1336.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / WHITEWASH FINISH |
+| `e1337.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / AFRIKA KORPS FINISH |
+| `e1338.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / KRIEGSMARINE FINISH |
+| `e1339.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / AIRBORNE FINISH |
+| `e134.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / AFRIKA KORPS FINISH |
+| `e1340.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / SPLINTER FINISH |
+| `e1341.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / PEA DOT FINISH |
+| `e1342.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / TELO FINISH |
+| `e1343.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / AMOEBA FINISH |
+| `e1344.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / AIRBORNE 101ST FINISH |
+| `e1345.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / BATTLE-WORN FINISH |
+| `e1346.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / TRENCH ART FINISH |
+| `e1347.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / PARADE FINISH |
+| `e1348.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER P38 SILENCED / CAPTURED FINISH |
+| `e1349.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / STANDARD ISSUE |
+| `e135.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / KRIEGSMARINE FINISH |
+| `e1350.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / GOLD FINISH |
+| `e1351.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / CHROME FINISH |
+| `e1352.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / BLUED FINISH |
+| `e1353.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / BLOODY FINISH |
+| `e1354.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / WOODLAND FINISH |
+| `e1355.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / WINTER FINISH |
+| `e1356.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / DESERT FINISH |
+| `e1357.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / WHITEWASH FINISH |
+| `e1358.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / AFRIKA KORPS FINISH |
+| `e1359.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / KRIEGSMARINE FINISH |
+| `e136.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / AIRBORNE FINISH |
+| `e1360.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / AIRBORNE FINISH |
+| `e1361.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / SPLINTER FINISH |
+| `e1362.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / PEA DOT FINISH |
+| `e1363.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / TELO FINISH |
+| `e1364.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / AMOEBA FINISH |
+| `e1365.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / AIRBORNE 101ST FINISH |
+| `e1366.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / BATTLE-WORN FINISH |
+| `e1367.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / TRENCH ART FINISH |
+| `e1368.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / PARADE FINISH |
+| `e1369.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / CAPTURED FINISH |
+| `e137.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / SPLINTER FINISH |
+| `e1370.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. HI-STANDARD HDM / HI-STANDARD SILENCED (FRONTLINE) |
+| `e1371.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / STANDARD ISSUE |
+| `e1372.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / GOLD FINISH |
+| `e1373.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / CHROME FINISH |
+| `e1374.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / BLUED FINISH |
+| `e1375.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / BLOODY FINISH |
+| `e1376.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / WOODLAND FINISH |
+| `e1377.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / WINTER FINISH |
+| `e1378.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / DESERT FINISH |
+| `e1379.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / TEAM TACTICS (LEON) |
+| `e138.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / PEA DOT FINISH |
+| `e1380.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / WHITEWASH FINISH |
+| `e1381.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / AFRIKA KORPS FINISH |
+| `e1382.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / KRIEGSMARINE FINISH |
+| `e1383.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / AIRBORNE FINISH |
+| `e1384.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / SPLINTER FINISH |
+| `e1385.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / PEA DOT FINISH |
+| `e1386.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / TELO FINISH |
+| `e1387.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / AMOEBA FINISH |
+| `e1388.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / AIRBORNE 101ST FINISH |
+| `e1389.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / BATTLE-WORN FINISH |
+| `e139.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / TELO FINISH |
+| `e1390.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / TRENCH ART FINISH |
+| `e1391.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / PARADE FINISH |
+| `e1392.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WEBLEY MK VI / CAPTURED FINISH |
+| `e1393.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / STANDARD ISSUE |
+| `e1394.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / GOLD FINISH |
+| `e1395.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / CHROME FINISH |
+| `e1396.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / BLUED FINISH |
+| `e1397.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / BLOODY FINISH |
+| `e1398.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / WOODLAND FINISH |
+| `e1399.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / WINTER FINISH |
+| `e140.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / AMOEBA FINISH |
+| `e1400.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / DESERT FINISH |
+| `e1401.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / WHITEWASH FINISH |
+| `e1402.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / AFRIKA KORPS FINISH |
+| `e1403.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / KRIEGSMARINE FINISH |
+| `e1404.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / AIRBORNE FINISH |
+| `e1405.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / SPLINTER FINISH |
+| `e1406.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / PEA DOT FINISH |
+| `e1407.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / TELO FINISH |
+| `e1408.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / AMOEBA FINISH |
+| `e1409.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / AIRBORNE 101ST FINISH |
+| `e141.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / AIRBORNE 101ST FINISH |
+| `e1410.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / BATTLE-WORN FINISH |
+| `e1411.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / TRENCH ART FINISH |
+| `e1412.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / PARADE FINISH |
+| `e1413.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAGANT M1895 / CAPTURED FINISH |
+| `e1414.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / STANDARD ISSUE |
+| `e1415.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / GOLD FINISH |
+| `e1416.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / CHROME FINISH |
+| `e1417.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / BLUED FINISH |
+| `e1418.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / BLOODY FINISH |
+| `e1419.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / WOODLAND FINISH |
+| `e142.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / BATTLE-WORN FINISH |
+| `e1420.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / WINTER FINISH |
+| `e1421.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / DESERT FINISH |
+| `e1422.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / TEAM TACTICS (LEON) |
+| `e1423.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / WHITEWASH FINISH |
+| `e1424.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / AFRIKA KORPS FINISH |
+| `e1425.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / KRIEGSMARINE FINISH |
+| `e1426.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / AIRBORNE FINISH |
+| `e1427.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / SPLINTER FINISH |
+| `e1428.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / PEA DOT FINISH |
+| `e1429.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / TELO FINISH |
+| `e143.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / TRENCH ART FINISH |
+| `e1430.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / AMOEBA FINISH |
+| `e1431.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / AIRBORNE 101ST FINISH |
+| `e1432.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / BATTLE-WORN FINISH |
+| `e1433.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / TRENCH ART FINISH |
+| `e1434.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / PARADE FINISH |
+| `e1435.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M1934 / CAPTURED FINISH |
+| `e1436.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / STANDARD ISSUE |
+| `e1437.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / GOLD FINISH |
+| `e1438.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / CHROME FINISH |
+| `e1439.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / BLUED FINISH |
+| `e144.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / PARADE FINISH |
+| `e1440.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / BLOODY FINISH |
+| `e1441.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / WOODLAND FINISH |
+| `e1442.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / WINTER FINISH |
+| `e1443.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / DESERT FINISH |
+| `e1444.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / WHITEWASH FINISH |
+| `e1445.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / AFRIKA KORPS FINISH |
+| `e1446.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / KRIEGSMARINE FINISH |
+| `e1447.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / AIRBORNE FINISH |
+| `e1448.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / SPLINTER FINISH |
+| `e1449.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / PEA DOT FINISH |
+| `e145.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD M1903 / CAPTURED FINISH |
+| `e1450.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / TELO FINISH |
+| `e1451.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / AMOEBA FINISH |
+| `e1452.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / AIRBORNE 101ST FINISH |
+| `e1453.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / BATTLE-WORN FINISH |
+| `e1454.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / TRENCH ART FINISH |
+| `e1455.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / PARADE FINISH |
+| `e1456.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA SILENCED / CAPTURED FINISH |
+| `e1457.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / STANDARD ISSUE |
+| `e1458.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / GOLD FINISH |
+| `e1459.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / CHROME FINISH |
+| `e146.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / STANDARD ISSUE |
+| `e1460.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / BLUED FINISH |
+| `e1461.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / BLOODY FINISH |
+| `e1462.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / WOODLAND FINISH |
+| `e1463.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / WINTER FINISH |
+| `e1464.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / DESERT FINISH |
+| `e1465.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / WHITEWASH FINISH |
+| `e1466.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / AFRIKA KORPS FINISH |
+| `e1467.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / KRIEGSMARINE FINISH |
+| `e1468.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / AIRBORNE FINISH |
+| `e1469.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / SPLINTER FINISH |
+| `e147.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / GOLD FINISH |
+| `e1470.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / PEA DOT FINISH |
+| `e1471.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / TELO FINISH |
+| `e1472.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / AMOEBA FINISH |
+| `e1473.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / AIRBORNE 101ST FINISH |
+| `e1474.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / BATTLE-WORN FINISH |
+| `e1475.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / TRENCH ART FINISH |
+| `e1476.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / PARADE FINISH |
+| `e1477.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 / CAPTURED FINISH |
+| `e1478.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / STANDARD ISSUE |
+| `e1479.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / GOLD FINISH |
+| `e148.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / CHROME FINISH |
+| `e1480.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / CHROME FINISH |
+| `e1481.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / BLUED FINISH |
+| `e1482.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / BLOODY FINISH |
+| `e1483.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / WOODLAND FINISH |
+| `e1484.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / WINTER FINISH |
+| `e1485.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / DESERT FINISH |
+| `e1486.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / WHITEWASH FINISH |
+| `e1487.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / AFRIKA KORPS FINISH |
+| `e1488.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / KRIEGSMARINE FINISH |
+| `e1489.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / AIRBORNE FINISH |
+| `e149.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / BLUED FINISH |
+| `e1490.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / SPLINTER FINISH |
+| `e1491.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / PEA DOT FINISH |
+| `e1492.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / TELO FINISH |
+| `e1493.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / AMOEBA FINISH |
+| `e1494.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / AIRBORNE 101ST FINISH |
+| `e1495.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / BATTLE-WORN FINISH |
+| `e1496.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / TRENCH ART FINISH |
+| `e1497.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / PARADE FINISH |
+| `e1498.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LUGER P08 SILENCED / CAPTURED FINISH |
+| `e1499.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / STANDARD ISSUE |
+| `e150.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / BLOODY FINISH |
+| `e1500.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / GOLD FINISH |
+| `e1501.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / CHROME FINISH |
+| `e1502.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / BLUED FINISH |
+| `e1503.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / BLOODY FINISH |
+| `e1504.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / WOODLAND FINISH |
+| `e1505.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / WINTER FINISH |
+| `e1506.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / DESERT FINISH |
+| `e1507.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / WHITEWASH FINISH |
+| `e1508.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / AFRIKA KORPS FINISH |
+| `e1509.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / KRIEGSMARINE FINISH |
+| `e151.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / WOODLAND FINISH |
+| `e1510.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / AIRBORNE FINISH |
+| `e1511.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / SPLINTER FINISH |
+| `e1512.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / PEA DOT FINISH |
+| `e1513.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / TELO FINISH |
+| `e1514.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / AMOEBA FINISH |
+| `e1515.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / AIRBORNE 101ST FINISH |
+| `e1516.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / BATTLE-WORN FINISH |
+| `e1517.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / TRENCH ART FINISH |
+| `e1518.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / PARADE FINISH |
+| `e1519.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WALTHER PPK / CAPTURED FINISH |
+| `e152.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / WINTER FINISH |
+| `e1520.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / STANDARD ISSUE |
+| `e1521.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / GOLD FINISH |
+| `e1522.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / CHROME FINISH |
+| `e1523.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / BLUED FINISH |
+| `e1524.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / BLOODY FINISH |
+| `e1525.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / WOODLAND FINISH |
+| `e1526.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / WINTER FINISH |
+| `e1527.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / DESERT FINISH |
+| `e1528.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / WHITEWASH FINISH |
+| `e1529.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / AFRIKA KORPS FINISH |
+| `e153.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / DESERT FINISH |
+| `e1530.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / KRIEGSMARINE FINISH |
+| `e1531.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / AIRBORNE FINISH |
+| `e1532.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / SPLINTER FINISH |
+| `e1533.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / PEA DOT FINISH |
+| `e1534.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / TELO FINISH |
+| `e1535.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / AMOEBA FINISH |
+| `e1536.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / AIRBORNE 101ST FINISH |
+| `e1537.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / BATTLE-WORN FINISH |
+| `e1538.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / TRENCH ART FINISH |
+| `e1539.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / PARADE FINISH |
+| `e154.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / TEAM TACTICS (LEON) |
+| `e1540.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TOKAREV TT-33 / CAPTURED FINISH |
+| `e1541.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / STANDARD ISSUE |
+| `e1542.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / GOLD FINISH |
+| `e1543.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / CHROME FINISH |
+| `e1544.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / BLUED FINISH |
+| `e1545.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / BLOODY FINISH |
+| `e1546.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / WOODLAND FINISH |
+| `e1547.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / WINTER FINISH |
+| `e1548.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / DESERT FINISH |
+| `e1549.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / WHITEWASH FINISH |
+| `e155.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / WHITEWASH FINISH |
+| `e1550.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / AFRIKA KORPS FINISH |
+| `e1551.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / KRIEGSMARINE FINISH |
+| `e1552.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / AIRBORNE FINISH |
+| `e1553.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / SPLINTER FINISH |
+| `e1554.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / PEA DOT FINISH |
+| `e1555.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / TELO FINISH |
+| `e1556.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / AMOEBA FINISH |
+| `e1557.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / AIRBORNE 101ST FINISH |
+| `e1558.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / BATTLE-WORN FINISH |
+| `e1559.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / TRENCH ART FINISH |
+| `e156.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / AFRIKA KORPS FINISH |
+| `e1560.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / PARADE FINISH |
+| `e1561.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TT-33 SILENCED / CAPTURED FINISH |
+| `e1562.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / STANDARD ISSUE |
+| `e1563.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / GOLD FINISH |
+| `e1564.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / CHROME FINISH |
+| `e1565.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / BLUED FINISH |
+| `e1566.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / BLOODY FINISH |
+| `e1567.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / WOODLAND FINISH |
+| `e1568.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / WINTER FINISH |
+| `e1569.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / DESERT FINISH |
+| `e157.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / KRIEGSMARINE FINISH |
+| `e1570.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / WHITEWASH FINISH |
+| `e1571.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / AFRIKA KORPS FINISH |
+| `e1572.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / KRIEGSMARINE FINISH |
+| `e1573.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / AIRBORNE FINISH |
+| `e1574.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / SPLINTER FINISH |
+| `e1575.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / PEA DOT FINISH |
+| `e1576.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / TELO FINISH |
+| `e1577.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / AMOEBA FINISH |
+| `e1578.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / AIRBORNE 101ST FINISH |
+| `e1579.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / BATTLE-WORN FINISH |
+| `e158.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / AIRBORNE FINISH |
+| `e1580.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / TRENCH ART FINISH |
+| `e1581.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / PARADE FINISH |
+| `e1582.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NAMBU TYPE 14 / CAPTURED FINISH |
+| `e1583.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / STANDARD ISSUE |
+| `e1584.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / GOLD FINISH |
+| `e1585.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / CHROME FINISH |
+| `e1586.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / BLUED FINISH |
+| `e1587.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / BLOODY FINISH |
+| `e1588.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / WOODLAND FINISH |
+| `e1589.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / WINTER FINISH |
+| `e159.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / SPLINTER FINISH |
+| `e1590.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / DESERT FINISH |
+| `e1591.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / WHITEWASH FINISH |
+| `e1592.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / AFRIKA KORPS FINISH |
+| `e1593.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / KRIEGSMARINE FINISH |
+| `e1594.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / AIRBORNE FINISH |
+| `e1595.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / SPLINTER FINISH |
+| `e1596.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / PEA DOT FINISH |
+| `e1597.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / TELO FINISH |
+| `e1598.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / AMOEBA FINISH |
+| `e1599.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / AIRBORNE 101ST FINISH |
+| `e160.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / PEA DOT FINISH |
+| `e1600.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / BATTLE-WORN FINISH |
+| `e1601.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / TRENCH ART FINISH |
+| `e1602.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / PARADE FINISH |
+| `e1603.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. WELROD MK II / CAPTURED FINISH |
+| `e1604.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / STANDARD ISSUE |
+| `e1605.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / GOLD FINISH |
+| `e1606.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / CHROME FINISH |
+| `e1607.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / BLUED FINISH |
+| `e1608.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / BLOODY FINISH |
+| `e1609.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / WOODLAND FINISH |
+| `e161.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / TELO FINISH |
+| `e1610.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / WINTER FINISH |
+| `e1611.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / DESERT FINISH |
+| `e1612.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / C96 (TRENCH) (EAST) |
+| `e1613.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / WHITEWASH FINISH |
+| `e1614.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / AFRIKA KORPS FINISH |
+| `e1615.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / KRIEGSMARINE FINISH |
+| `e1616.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / AIRBORNE FINISH |
+| `e1617.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / SPLINTER FINISH |
+| `e1618.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / PEA DOT FINISH |
+| `e1619.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / TELO FINISH |
+| `e162.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / AMOEBA FINISH |
+| `e1620.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / AMOEBA FINISH |
+| `e1621.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / AIRBORNE 101ST FINISH |
+| `e1622.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / BATTLE-WORN FINISH |
+| `e1623.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / TRENCH ART FINISH |
+| `e1624.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / PARADE FINISH |
+| `e1625.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MAUSER C96 / CAPTURED FINISH |
+| `e1626.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / STANDARD ISSUE |
+| `e1627.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / GOLD FINISH |
+| `e1628.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / CHROME FINISH |
+| `e1629.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / BLUED FINISH |
+| `e163.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / AIRBORNE 101ST FINISH |
+| `e1630.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / BLOODY FINISH |
+| `e1631.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / WOODLAND FINISH |
+| `e1632.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / WINTER FINISH |
+| `e1633.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / DESERT FINISH |
+| `e1634.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / WHITEWASH FINISH |
+| `e1635.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / AFRIKA KORPS FINISH |
+| `e1636.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / KRIEGSMARINE FINISH |
+| `e1637.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / AIRBORNE FINISH |
+| `e1638.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / SPLINTER FINISH |
+| `e1639.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / PEA DOT FINISH |
+| `e164.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / BATTLE-WORN FINISH |
+| `e1640.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / TELO FINISH |
+| `e1641.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / AMOEBA FINISH |
+| `e1642.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / AIRBORNE 101ST FINISH |
+| `e1643.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / BATTLE-WORN FINISH |
+| `e1644.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / TRENCH ART FINISH |
+| `e1645.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / PARADE FINISH |
+| `e1646.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. S&W M10 .38 / CAPTURED FINISH |
+| `e1647.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M2 FRAG / STANDARD ISSUE |
+| `e1648.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M2 FRAG / FRAG GRENADE (FRONTLINE) |
+| `e1649.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M2 FRAG / FRAG GRENADE (EUROPEAN ASSAULT) |
+| `e165.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / TRENCH ART FINISH |
+| `e1650.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STIELHANDGRANATE / STANDARD ISSUE |
+| `e1651.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STIELHANDGRANATE / STIELHANDGRANATE (FRONTLINE) |
+| `e1652.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STIELHANDGRANATE / STIELHANDGRANATE (EUROPEAN ASS… |
+| `e1653.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MILLS BOMB / STANDARD ISSUE |
+| `e1654.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MILLS BOMB / MILLS BOMB (EUROPEAN ASSAULT) |
+| `e1655.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA MOD.35 / STANDARD ISSUE |
+| `e1656.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M18 SMOKE / STANDARD ISSUE |
+| `e1657.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. NEBELHANDGRANATE / STANDARD ISSUE |
+| `e166.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / PARADE FINISH |
+| `e167.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO M91/38 / CAPTURED FINISH |
+| `e168.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / STANDARD ISSUE |
+| `e169.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / GOLD FINISH |
+| `e170.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / CHROME FINISH |
+| `e171.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / BLUED FINISH |
+| `e172.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / BLOODY FINISH |
+| `e173.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / WOODLAND FINISH |
+| `e174.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / WINTER FINISH |
+| `e175.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / DESERT FINISH |
+| `e176.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / WOODLAND SVT-40 (HOBBS) |
+| `e177.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / WHITEWASH FINISH |
+| `e178.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / AFRIKA KORPS FINISH |
+| `e179.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / KRIEGSMARINE FINISH |
+| `e180.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / AIRBORNE FINISH |
+| `e181.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / SPLINTER FINISH |
+| `e182.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / PEA DOT FINISH |
+| `e183.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / TELO FINISH |
+| `e184.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / AMOEBA FINISH |
+| `e185.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / AIRBORNE 101ST FINISH |
+| `e186.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / BATTLE-WORN FINISH |
+| `e187.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / TRENCH ART FINISH |
+| `e188.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / PARADE FINISH |
+| `e189.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SVT-40 / CAPTURED FINISH |
+| `e190.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / STANDARD ISSUE |
+| `e191.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / GOLD FINISH |
+| `e192.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / CHROME FINISH |
+| `e193.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / BLUED FINISH |
+| `e194.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / BLOODY FINISH |
+| `e195.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / WOODLAND FINISH |
+| `e196.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / WINTER FINISH |
+| `e197.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / DESERT FINISH |
+| `e198.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / URBAN MOSIN (HOBBS) |
+| `e199.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / TEAM TACTICS (LEON) |
+| `e200.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / WHITEWASH FINISH |
+| `e201.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / AFRIKA KORPS FINISH |
+| `e202.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / KRIEGSMARINE FINISH |
+| `e203.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / AIRBORNE FINISH |
+| `e204.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / SPLINTER FINISH |
+| `e205.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / PEA DOT FINISH |
+| `e206.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / TELO FINISH |
+| `e207.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / AMOEBA FINISH |
+| `e208.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / AIRBORNE 101ST FINISH |
+| `e209.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / BATTLE-WORN FINISH |
+| `e210.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / TRENCH ART FINISH |
+| `e211.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / PARADE FINISH |
+| `e212.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / CAPTURED FINISH |
+| `e213.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN-NAGANT / MOSIN-NAGANT 1891 (EUROPEAN ASSAUL… |
+| `e214.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / STANDARD ISSUE |
+| `e215.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / GOLD FINISH |
+| `e216.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / CHROME FINISH |
+| `e217.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / BLUED FINISH |
+| `e218.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / BLOODY FINISH |
+| `e219.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / WOODLAND FINISH |
+| `e220.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / WINTER FINISH |
+| `e221.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / DESERT FINISH |
+| `e222.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / WHITEWASH FINISH |
+| `e223.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / AFRIKA KORPS FINISH |
+| `e224.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / KRIEGSMARINE FINISH |
+| `e225.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / AIRBORNE FINISH |
+| `e226.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / SPLINTER FINISH |
+| `e227.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / PEA DOT FINISH |
+| `e228.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / TELO FINISH |
+| `e229.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / AMOEBA FINISH |
+| `e230.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / AIRBORNE 101ST FINISH |
+| `e231.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / BATTLE-WORN FINISH |
+| `e232.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / TRENCH ART FINISH |
+| `e233.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / PARADE FINISH |
+| `e234.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA TYPE 99 / CAPTURED FINISH |
+| `e235.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / STANDARD ISSUE |
+| `e236.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / GOLD FINISH |
+| `e237.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / CHROME FINISH |
+| `e238.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / BLUED FINISH |
+| `e239.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / BLOODY FINISH |
+| `e240.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / WOODLAND FINISH |
+| `e241.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / WINTER FINISH |
+| `e242.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / DESERT FINISH |
+| `e243.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / WHITEWASH FINISH |
+| `e244.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / AFRIKA KORPS FINISH |
+| `e245.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / KRIEGSMARINE FINISH |
+| `e246.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / AIRBORNE FINISH |
+| `e247.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / SPLINTER FINISH |
+| `e248.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / PEA DOT FINISH |
+| `e249.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / TELO FINISH |
+| `e250.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / AMOEBA FINISH |
+| `e251.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / AIRBORNE 101ST FINISH |
+| `e252.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / BATTLE-WORN FINISH |
+| `e253.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / TRENCH ART FINISH |
+| `e254.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / PARADE FINISH |
+| `e255.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SILENCED / CAPTURED FINISH |
+| `e256.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / STANDARD ISSUE |
+| `e257.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / GOLD FINISH |
+| `e258.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / CHROME FINISH |
+| `e259.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / BLUED FINISH |
+| `e260.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / BLOODY FINISH |
+| `e261.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / WOODLAND FINISH |
+| `e262.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / WINTER FINISH |
+| `e263.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / DESERT FINISH |
+| `e264.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / WHITEWASH FINISH |
+| `e265.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / AFRIKA KORPS FINISH |
+| `e266.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / KRIEGSMARINE FINISH |
+| `e267.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / AIRBORNE FINISH |
+| `e268.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / SPLINTER FINISH |
+| `e269.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / PEA DOT FINISH |
+| `e270.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / TELO FINISH |
+| `e271.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / AMOEBA FINISH |
+| `e272.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / AIRBORNE 101ST FINISH |
+| `e273.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / BATTLE-WORN FINISH |
+| `e274.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / TRENCH ART FINISH |
+| `e275.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / PARADE FINISH |
+| `e276.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. JOHNSON M1941 / CAPTURED FINISH |
+| `e277.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / STANDARD ISSUE |
+| `e278.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / GOLD FINISH |
+| `e279.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / CHROME FINISH |
+| `e280.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / BLUED FINISH |
+| `e281.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / BLOODY FINISH |
+| `e282.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / WOODLAND FINISH |
+| `e283.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / WINTER FINISH |
+| `e284.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / DESERT FINISH |
+| `e285.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / FLECKTARN G43 (DIRTYHAR… |
+| `e286.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / WOODLAND G43 (HOBBS) |
+| `e287.cfg` | 53 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / URBAN G43 (HOBBS) |
+| `e288.cfg` | 53 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / TEAM TACTICS (LEON) |
+| `e289.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / WHITEWASH FINISH |
+| `e290.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / AFRIKA KORPS FINISH |
+| `e291.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / KRIEGSMARINE FINISH |
+| `e292.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / AIRBORNE FINISH |
+| `e293.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / SPLINTER FINISH |
+| `e294.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / PEA DOT FINISH |
+| `e295.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / TELO FINISH |
+| `e296.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / AMOEBA FINISH |
+| `e297.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / AIRBORNE 101ST FINISH |
+| `e298.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / BATTLE-WORN FINISH |
+| `e299.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / TRENCH ART FINISH |
+| `e300.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / PARADE FINISH |
+| `e301.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / CAPTURED FINISH |
+| `e302.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. GEWEHR 43 (IRON SIGHTS) / G 43 (EUROPEAN ASSAULT) |
+| `e303.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / STANDARD ISSUE |
+| `e304.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / GOLD FINISH |
+| `e305.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / CHROME FINISH |
+| `e306.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / BLUED FINISH |
+| `e307.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / BLOODY FINISH |
+| `e308.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / WOODLAND FINISH |
+| `e309.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / WINTER FINISH |
+| `e310.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / DESERT FINISH |
+| `e311.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / SMLE SCOPED (EAST) |
+| `e312.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / M1903 SPRINGFIELD (EAST) |
+| `e313.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / DESERT CAMO '03 (DIRTYHARRY) |
+| `e314.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / DIGITAL CAMO '03 (DIRTYHARRY) |
+| `e315.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / TIGER CAMO '03 (DIRTYHARRY) |
+| `e316.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / WINTER CAMO '03 (DIRTYHARRY) |
+| `e317.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / LIGHTWOOD '03 (GUANSHIRE) |
+| `e318.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / SPRINGFIELD II (GUANSHIRE) |
+| `e319.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / WOODLAND '03 (HOBBS) |
+| `e320.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / URBAN '03 (HOBBS) |
+| `e321.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / TEAM TACTICS (LEON) |
+| `e322.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / WHITEWASH FINISH |
+| `e323.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / AFRIKA KORPS FINISH |
+| `e324.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / KRIEGSMARINE FINISH |
+| `e325.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / AIRBORNE FINISH |
+| `e326.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / SPLINTER FINISH |
+| `e327.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / PEA DOT FINISH |
+| `e328.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / TELO FINISH |
+| `e329.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / AMOEBA FINISH |
+| `e330.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / AIRBORNE 101ST FINISH |
+| `e331.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / BATTLE-WORN FINISH |
+| `e332.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / TRENCH ART FINISH |
+| `e333.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / PARADE FINISH |
+| `e334.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / CAPTURED FINISH |
+| `e335.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. SPRINGFIELD SNIPER / SPRINGFIELD '03 SNIPER (FRON… |
+| `e336.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / STANDARD ISSUE |
+| `e337.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / GOLD FINISH |
+| `e338.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / CHROME FINISH |
+| `e339.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / BLUED FINISH |
+| `e340.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / BLOODY FINISH |
+| `e341.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / WOODLAND FINISH |
+| `e342.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / WINTER FINISH |
+| `e343.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / DESERT FINISH |
+| `e344.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / G98 SCOPED (EAST) |
+| `e345.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / TEAM TACTICS (LEON) |
+| `e346.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / MAUSER 98 KS (LEON) |
+| `e347.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / WHITEWASH FINISH |
+| `e348.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / AFRIKA KORPS FINISH |
+| `e349.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / KRIEGSMARINE FINISH |
+| `e350.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / AIRBORNE FINISH |
+| `e351.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / SPLINTER FINISH |
+| `e352.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / PEA DOT FINISH |
+| `e353.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / TELO FINISH |
+| `e354.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / AMOEBA FINISH |
+| `e355.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / AIRBORNE 101ST FINISH |
+| `e356.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / BATTLE-WORN FINISH |
+| `e357.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / TRENCH ART FINISH |
+| `e358.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / PARADE FINISH |
+| `e359.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER / CAPTURED FINISH |
+| `e360.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / STANDARD ISSUE |
+| `e361.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / GOLD FINISH |
+| `e362.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / CHROME FINISH |
+| `e363.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / BLUED FINISH |
+| `e364.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / BLOODY FINISH |
+| `e365.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / WOODLAND FINISH |
+| `e366.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / WINTER FINISH |
+| `e367.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / DESERT FINISH |
+| `e368.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / CAMO L42A1 (DIRTYHARRY) |
+| `e369.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / WHITEWASH FINISH |
+| `e370.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / AFRIKA KORPS FINISH |
+| `e371.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / KRIEGSMARINE FINISH |
+| `e372.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / AIRBORNE FINISH |
+| `e373.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / SPLINTER FINISH |
+| `e374.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / PEA DOT FINISH |
+| `e375.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / TELO FINISH |
+| `e376.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / AMOEBA FINISH |
+| `e377.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / AIRBORNE 101ST FINISH |
+| `e378.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / BATTLE-WORN FINISH |
+| `e379.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / TRENCH ART FINISH |
+| `e380.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / PARADE FINISH |
+| `e381.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ENFIELD L42A1 / CAPTURED FINISH |
+| `e382.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / STANDARD ISSUE |
+| `e383.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / GOLD FINISH |
+| `e384.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / CHROME FINISH |
+| `e385.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / BLUED FINISH |
+| `e386.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / BLOODY FINISH |
+| `e387.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / WOODLAND FINISH |
+| `e388.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / WINTER FINISH |
+| `e389.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / DESERT FINISH |
+| `e390.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / WHITEWASH FINISH |
+| `e391.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / AFRIKA KORPS FINISH |
+| `e392.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / KRIEGSMARINE FINISH |
+| `e393.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / AIRBORNE FINISH |
+| `e394.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / SPLINTER FINISH |
+| `e395.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / PEA DOT FINISH |
+| `e396.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / TELO FINISH |
+| `e397.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / AMOEBA FINISH |
+| `e398.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / AIRBORNE 101ST FINISH |
+| `e399.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / BATTLE-WORN FINISH |
+| `e400.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / TRENCH ART FINISH |
+| `e401.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / PARADE FINISH |
+| `e402.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / CAPTURED FINISH |
+| `e403.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1 GARAND SCOPED / M1 GARAND SNIPER (EUROPEAN ASS… |
+| `e404.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / STANDARD ISSUE |
+| `e405.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / GOLD FINISH |
+| `e406.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / CHROME FINISH |
+| `e407.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / BLUED FINISH |
+| `e408.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / BLOODY FINISH |
+| `e409.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / WOODLAND FINISH |
+| `e410.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / WINTER FINISH |
+| `e411.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / DESERT FINISH |
+| `e412.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / WHITEWASH FINISH |
+| `e413.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / AFRIKA KORPS FINISH |
+| `e414.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / KRIEGSMARINE FINISH |
+| `e415.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / AIRBORNE FINISH |
+| `e416.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / SPLINTER FINISH |
+| `e417.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / PEA DOT FINISH |
+| `e418.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / TELO FINISH |
+| `e419.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / AMOEBA FINISH |
+| `e420.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / AIRBORNE 101ST FINISH |
+| `e421.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / BATTLE-WORN FINISH |
+| `e422.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / TRENCH ART FINISH |
+| `e423.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / PARADE FINISH |
+| `e424.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. G43 SNIPER / CAPTURED FINISH |
+| `e425.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / STANDARD ISSUE |
+| `e426.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / GOLD FINISH |
+| `e427.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / CHROME FINISH |
+| `e428.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / BLUED FINISH |
+| `e429.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / BLOODY FINISH |
+| `e430.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / WOODLAND FINISH |
+| `e431.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / WINTER FINISH |
+| `e432.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / DESERT FINISH |
+| `e433.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / WHITEWASH FINISH |
+| `e434.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / AFRIKA KORPS FINISH |
+| `e435.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / KRIEGSMARINE FINISH |
+| `e436.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / AIRBORNE FINISH |
+| `e437.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / SPLINTER FINISH |
+| `e438.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / PEA DOT FINISH |
+| `e439.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / TELO FINISH |
+| `e440.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / AMOEBA FINISH |
+| `e441.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / AIRBORNE 101ST FINISH |
+| `e442.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / BATTLE-WORN FINISH |
+| `e443.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / TRENCH ART FINISH |
+| `e444.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / PARADE FINISH |
+| `e445.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / CAPTURED FINISH |
+| `e446.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. LEE-ENFIELD SNIPER / LEE-ENFIELD NO.4 (T) (EUROPE… |
+| `e447.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / STANDARD ISSUE |
+| `e448.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / GOLD FINISH |
+| `e449.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / CHROME FINISH |
+| `e450.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / BLUED FINISH |
+| `e451.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / BLOODY FINISH |
+| `e452.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / WOODLAND FINISH |
+| `e453.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / WINTER FINISH |
+| `e454.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / DESERT FINISH |
+| `e455.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / WHITEWASH FINISH |
+| `e456.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / AFRIKA KORPS FINISH |
+| `e457.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / KRIEGSMARINE FINISH |
+| `e458.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / AIRBORNE FINISH |
+| `e459.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / SPLINTER FINISH |
+| `e460.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / PEA DOT FINISH |
+| `e461.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / TELO FINISH |
+| `e462.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / AMOEBA FINISH |
+| `e463.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / AIRBORNE 101ST FINISH |
+| `e464.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / BATTLE-WORN FINISH |
+| `e465.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / TRENCH ART FINISH |
+| `e466.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / PARADE FINISH |
+| `e467.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. CARCANO SNIPER / CAPTURED FINISH |
+| `e468.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / STANDARD ISSUE |
+| `e469.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / GOLD FINISH |
+| `e470.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / CHROME FINISH |
+| `e471.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / BLUED FINISH |
+| `e472.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / BLOODY FINISH |
+| `e473.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / WOODLAND FINISH |
+| `e474.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / WINTER FINISH |
+| `e475.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / DESERT FINISH |
+| `e476.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / WHITEWASH FINISH |
+| `e477.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / AFRIKA KORPS FINISH |
+| `e478.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / KRIEGSMARINE FINISH |
+| `e479.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / AIRBORNE FINISH |
+| `e480.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / SPLINTER FINISH |
+| `e481.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / PEA DOT FINISH |
+| `e482.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / TELO FINISH |
+| `e483.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / AMOEBA FINISH |
+| `e484.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / AIRBORNE 101ST FINISH |
+| `e485.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / BATTLE-WORN FINISH |
+| `e486.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / TRENCH ART FINISH |
+| `e487.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / PARADE FINISH |
+| `e488.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. ARISAKA SNIPER / CAPTURED FINISH |
+| `e489.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / STANDARD ISSUE |
+| `e490.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / GOLD FINISH |
+| `e491.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / CHROME FINISH |
+| `e492.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / BLUED FINISH |
+| `e493.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / BLOODY FINISH |
+| `e494.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / WOODLAND FINISH |
+| `e495.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / WINTER FINISH |
+| `e496.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / DESERT FINISH |
+| `e497.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / WHITEWASH FINISH |
+| `e498.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / AFRIKA KORPS FINISH |
+| `e499.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / KRIEGSMARINE FINISH |
+| `e500.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / AIRBORNE FINISH |
+| `e501.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / SPLINTER FINISH |
+| `e502.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / PEA DOT FINISH |
+| `e503.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / TELO FINISH |
+| `e504.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / AMOEBA FINISH |
+| `e505.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / AIRBORNE 101ST FINISH |
+| `e506.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / BATTLE-WORN FINISH |
+| `e507.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / TRENCH ART FINISH |
+| `e508.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / PARADE FINISH |
+| `e509.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / CAPTURED FINISH |
+| `e510.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER / MOSIN-NAGANT SNIPER (EUROPEAN ASSA… |
+| `e511.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / STANDARD ISSUE |
+| `e512.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / GOLD FINISH |
+| `e513.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / CHROME FINISH |
+| `e514.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / BLUED FINISH |
+| `e515.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / BLOODY FINISH |
+| `e516.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / WOODLAND FINISH |
+| `e517.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / WINTER FINISH |
+| `e518.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / DESERT FINISH |
+| `e519.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / WHITEWASH FINISH |
+| `e520.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / AFRIKA KORPS FINISH |
+| `e521.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / KRIEGSMARINE FINISH |
+| `e522.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / AIRBORNE FINISH |
+| `e523.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / SPLINTER FINISH |
+| `e524.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / PEA DOT FINISH |
+| `e525.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / TELO FINISH |
+| `e526.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / AMOEBA FINISH |
+| `e527.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / AIRBORNE 101ST FINISH |
+| `e528.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / BATTLE-WORN FINISH |
+| `e529.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / TRENCH ART FINISH |
+| `e530.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / PARADE FINISH |
+| `e531.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MOSIN SNIPER SILENCED / CAPTURED FINISH |
+| `e532.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / STANDARD ISSUE |
+| `e533.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / GOLD FINISH |
+| `e534.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / CHROME FINISH |
+| `e535.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / BLUED FINISH |
+| `e536.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / BLOODY FINISH |
+| `e537.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / WOODLAND FINISH |
+| `e538.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / WINTER FINISH |
+| `e539.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / DESERT FINISH |
+| `e540.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / WHITEWASH FINISH |
+| `e541.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / AFRIKA KORPS FINISH |
+| `e542.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / KRIEGSMARINE FINISH |
+| `e543.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / AIRBORNE FINISH |
+| `e544.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / SPLINTER FINISH |
+| `e545.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / PEA DOT FINISH |
+| `e546.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / TELO FINISH |
+| `e547.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / AMOEBA FINISH |
+| `e548.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / AIRBORNE 101ST FINISH |
+| `e549.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / BATTLE-WORN FINISH |
+| `e550.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / TRENCH ART FINISH |
+| `e551.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / PARADE FINISH |
+| `e552.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. KAR98K SNIPER SILENCED / CAPTURED FINISH |
+| `e553.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / STANDARD ISSUE |
+| `e554.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / GOLD FINISH |
+| `e555.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / CHROME FINISH |
+| `e556.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / BLUED FINISH |
+| `e557.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / BLOODY FINISH |
+| `e558.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / WOODLAND FINISH |
+| `e559.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / WINTER FINISH |
+| `e560.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / DESERT FINISH |
+| `e561.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / TEAM TACTICS (LEON) |
+| `e562.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / WEHRMACHT DELISLE (LEON) |
+| `e563.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / WHITEWASH FINISH |
+| `e564.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / AFRIKA KORPS FINISH |
+| `e565.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / KRIEGSMARINE FINISH |
+| `e566.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / AIRBORNE FINISH |
+| `e567.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / SPLINTER FINISH |
+| `e568.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / PEA DOT FINISH |
+| `e569.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / TELO FINISH |
+| `e570.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / AMOEBA FINISH |
+| `e571.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / AIRBORNE 101ST FINISH |
+| `e572.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / BATTLE-WORN FINISH |
+| `e573.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / TRENCH ART FINISH |
+| `e574.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / PARADE FINISH |
+| `e575.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. DE LISLE CARBINE / CAPTURED FINISH |
+| `e576.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / STANDARD ISSUE |
+| `e577.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / GOLD FINISH |
+| `e578.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / CHROME FINISH |
+| `e579.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / BLUED FINISH |
+| `e580.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / BLOODY FINISH |
+| `e581.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / WOODLAND FINISH |
+| `e582.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / WINTER FINISH |
+| `e583.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / DESERT FINISH |
+| `e584.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / THOMPSON (M1928) (STATIC) |
+| `e585.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / THOMPSON (27A1 COMMANDO) (FLAKRIDER) |
+| `e586.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / M1A1 REMODEL (DARKANGEL) |
+| `e587.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / WORN THOMPSON (HOBBS) |
+| `e588.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / THOMPSON (GUANSHIRE) |
+| `e589.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / TEAM TACTICS (LEON) |
+| `e590.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / FAMAS THOMPSON II (LEON) |
+| `e591.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / WHITEWASH FINISH |
+| `e592.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / AFRIKA KORPS FINISH |
+| `e593.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / KRIEGSMARINE FINISH |
+| `e594.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / AIRBORNE FINISH |
+| `e595.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / SPLINTER FINISH |
+| `e596.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / PEA DOT FINISH |
+| `e597.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / TELO FINISH |
+| `e598.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / AMOEBA FINISH |
+| `e599.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / AIRBORNE 101ST FINISH |
+| `e600.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / BATTLE-WORN FINISH |
+| `e601.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / TRENCH ART FINISH |
+| `e602.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / PARADE FINISH |
+| `e603.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / CAPTURED FINISH |
+| `e604.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / THOMPSON (FRONTLINE) |
+| `e605.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON M1 / THOMPSON (EUROPEAN ASSAULT) |
+| `e606.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / STANDARD ISSUE |
+| `e607.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / GOLD FINISH |
+| `e608.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / CHROME FINISH |
+| `e609.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / BLUED FINISH |
+| `e610.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / BLOODY FINISH |
+| `e611.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / WOODLAND FINISH |
+| `e612.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / WINTER FINISH |
+| `e613.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / DESERT FINISH |
+| `e614.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / THOMPSON (1928 TOMMY) (DR.DELETO) |
+| `e615.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / WHITEWASH FINISH |
+| `e616.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / AFRIKA KORPS FINISH |
+| `e617.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / KRIEGSMARINE FINISH |
+| `e618.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / AIRBORNE FINISH |
+| `e619.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / SPLINTER FINISH |
+| `e620.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / PEA DOT FINISH |
+| `e621.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / TELO FINISH |
+| `e622.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / AMOEBA FINISH |
+| `e623.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / AIRBORNE 101ST FINISH |
+| `e624.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / BATTLE-WORN FINISH |
+| `e625.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / TRENCH ART FINISH |
+| `e626.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / PARADE FINISH |
+| `e627.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. THOMPSON DRUM / CAPTURED FINISH |
+| `e628.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / STANDARD ISSUE |
+| `e629.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / GOLD FINISH |
+| `e630.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / CHROME FINISH |
+| `e631.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / BLUED FINISH |
+| `e632.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / BLOODY FINISH |
+| `e633.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / WOODLAND FINISH |
+| `e634.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / WINTER FINISH |
+| `e635.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / DESERT FINISH |
+| `e636.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / MP40 (REACTIVATED) |
+| `e637.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / MP18 (EAST) |
+| `e638.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / MP40 (GUANSHIRE) |
+| `e639.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / SILVER MP40 (GUANSHIRE) |
+| `e640.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / MP 75 AUSF D (LEON) |
+| `e641.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / WHITEWASH FINISH |
+| `e642.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / AFRIKA KORPS FINISH |
+| `e643.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / KRIEGSMARINE FINISH |
+| `e644.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / AIRBORNE FINISH |
+| `e645.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / SPLINTER FINISH |
+| `e646.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / PEA DOT FINISH |
+| `e647.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / TELO FINISH |
+| `e648.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / AMOEBA FINISH |
+| `e649.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / AIRBORNE 101ST FINISH |
+| `e650.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / BATTLE-WORN FINISH |
+| `e651.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / TRENCH ART FINISH |
+| `e652.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / PARADE FINISH |
+| `e653.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / CAPTURED FINISH |
+| `e654.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / MP40 (FRONTLINE) |
+| `e655.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 / MP40 (EUROPEAN ASSAULT) |
+| `e656.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / STANDARD ISSUE |
+| `e657.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / GOLD FINISH |
+| `e658.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / CHROME FINISH |
+| `e659.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / BLUED FINISH |
+| `e660.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / BLOODY FINISH |
+| `e661.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / WOODLAND FINISH |
+| `e662.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / WINTER FINISH |
+| `e663.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / DESERT FINISH |
+| `e664.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / WHITEWASH FINISH |
+| `e665.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / AFRIKA KORPS FINISH |
+| `e666.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / KRIEGSMARINE FINISH |
+| `e667.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / AIRBORNE FINISH |
+| `e668.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / SPLINTER FINISH |
+| `e669.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / PEA DOT FINISH |
+| `e670.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / TELO FINISH |
+| `e671.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / AMOEBA FINISH |
+| `e672.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / AIRBORNE 101ST FINISH |
+| `e673.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / BATTLE-WORN FINISH |
+| `e674.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / TRENCH ART FINISH |
+| `e675.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / PARADE FINISH |
+| `e676.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP40 SILENCED / CAPTURED FINISH |
+| `e677.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / STANDARD ISSUE |
+| `e678.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / GOLD FINISH |
+| `e679.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / CHROME FINISH |
+| `e680.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / BLUED FINISH |
+| `e681.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / BLOODY FINISH |
+| `e682.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / WOODLAND FINISH |
+| `e683.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / WINTER FINISH |
+| `e684.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / DESERT FINISH |
+| `e685.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / WHITEWASH FINISH |
+| `e686.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / AFRIKA KORPS FINISH |
+| `e687.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / KRIEGSMARINE FINISH |
+| `e688.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / AIRBORNE FINISH |
+| `e689.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / SPLINTER FINISH |
+| `e690.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / PEA DOT FINISH |
+| `e691.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / TELO FINISH |
+| `e692.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / AMOEBA FINISH |
+| `e693.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / AIRBORNE 101ST FINISH |
+| `e694.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / BATTLE-WORN FINISH |
+| `e695.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / TRENCH ART FINISH |
+| `e696.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / PARADE FINISH |
+| `e697.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II / CAPTURED FINISH |
+| `e698.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / STANDARD ISSUE |
+| `e699.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / GOLD FINISH |
+| `e700.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / CHROME FINISH |
+| `e701.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / BLUED FINISH |
+| `e702.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / BLOODY FINISH |
+| `e703.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / WOODLAND FINISH |
+| `e704.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / WINTER FINISH |
+| `e705.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / DESERT FINISH |
+| `e706.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / WHITEWASH FINISH |
+| `e707.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / AFRIKA KORPS FINISH |
+| `e708.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / KRIEGSMARINE FINISH |
+| `e709.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / AIRBORNE FINISH |
+| `e710.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / SPLINTER FINISH |
+| `e711.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / PEA DOT FINISH |
+| `e712.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / TELO FINISH |
+| `e713.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / AMOEBA FINISH |
+| `e714.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / AIRBORNE 101ST FINISH |
+| `e715.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / BATTLE-WORN FINISH |
+| `e716.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / TRENCH ART FINISH |
+| `e717.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / PARADE FINISH |
+| `e718.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / CAPTURED FINISH |
+| `e719.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPSH-41 / PPSH-41 (EUROPEAN ASSAULT) |
+| `e720.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / STANDARD ISSUE |
+| `e721.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / GOLD FINISH |
+| `e722.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / CHROME FINISH |
+| `e723.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / BLUED FINISH |
+| `e724.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / BLOODY FINISH |
+| `e725.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / WOODLAND FINISH |
+| `e726.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / WINTER FINISH |
+| `e727.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / DESERT FINISH |
+| `e728.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / WHITEWASH FINISH |
+| `e729.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / AFRIKA KORPS FINISH |
+| `e730.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / KRIEGSMARINE FINISH |
+| `e731.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / AIRBORNE FINISH |
+| `e732.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / SPLINTER FINISH |
+| `e733.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / PEA DOT FINISH |
+| `e734.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / TELO FINISH |
+| `e735.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / AMOEBA FINISH |
+| `e736.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / AIRBORNE 101ST FINISH |
+| `e737.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / BATTLE-WORN FINISH |
+| `e738.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / TRENCH ART FINISH |
+| `e739.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / PARADE FINISH |
+| `e740.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. PPS-43 SILENCED / CAPTURED FINISH |
+| `e741.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / STANDARD ISSUE |
+| `e742.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / GOLD FINISH |
+| `e743.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / CHROME FINISH |
+| `e744.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / BLUED FINISH |
+| `e745.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / BLOODY FINISH |
+| `e746.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / WOODLAND FINISH |
+| `e747.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / WINTER FINISH |
+| `e748.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / DESERT FINISH |
+| `e749.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / WHITEWASH FINISH |
+| `e750.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / AFRIKA KORPS FINISH |
+| `e751.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / KRIEGSMARINE FINISH |
+| `e752.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / AIRBORNE FINISH |
+| `e753.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / SPLINTER FINISH |
+| `e754.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / PEA DOT FINISH |
+| `e755.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / TELO FINISH |
+| `e756.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / AMOEBA FINISH |
+| `e757.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / AIRBORNE 101ST FINISH |
+| `e758.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / BATTLE-WORN FINISH |
+| `e759.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / TRENCH ART FINISH |
+| `e760.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / PARADE FINISH |
+| `e761.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE GUN / CAPTURED FINISH |
+| `e762.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / STANDARD ISSUE |
+| `e763.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / GOLD FINISH |
+| `e764.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / CHROME FINISH |
+| `e765.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / BLUED FINISH |
+| `e766.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / BLOODY FINISH |
+| `e767.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / WOODLAND FINISH |
+| `e768.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / WINTER FINISH |
+| `e769.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / DESERT FINISH |
+| `e770.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / WHITEWASH FINISH |
+| `e771.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / AFRIKA KORPS FINISH |
+| `e772.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / KRIEGSMARINE FINISH |
+| `e773.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / AIRBORNE FINISH |
+| `e774.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / SPLINTER FINISH |
+| `e775.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / PEA DOT FINISH |
+| `e776.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / TELO FINISH |
+| `e777.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / AMOEBA FINISH |
+| `e778.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / AIRBORNE 101ST FINISH |
+| `e779.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / BATTLE-WORN FINISH |
+| `e780.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / TRENCH ART FINISH |
+| `e781.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / PARADE FINISH |
+| `e782.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M3 GREASE SILENCED / CAPTURED FINISH |
+| `e783.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / STANDARD ISSUE |
+| `e784.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / GOLD FINISH |
+| `e785.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / CHROME FINISH |
+| `e786.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / BLUED FINISH |
+| `e787.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / BLOODY FINISH |
+| `e788.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / WOODLAND FINISH |
+| `e789.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / WINTER FINISH |
+| `e790.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / DESERT FINISH |
+| `e791.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / BERETTA M38A (SOARES93) |
+| `e792.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / WHITEWASH FINISH |
+| `e793.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / AFRIKA KORPS FINISH |
+| `e794.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / KRIEGSMARINE FINISH |
+| `e795.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / AIRBORNE FINISH |
+| `e796.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / SPLINTER FINISH |
+| `e797.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / PEA DOT FINISH |
+| `e798.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / TELO FINISH |
+| `e799.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / AMOEBA FINISH |
+| `e800.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / AIRBORNE 101ST FINISH |
+| `e801.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / BATTLE-WORN FINISH |
+| `e802.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / TRENCH ART FINISH |
+| `e803.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / PARADE FINISH |
+| `e804.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BERETTA M38A / CAPTURED FINISH |
+| `e805.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / STANDARD ISSUE |
+| `e806.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / GOLD FINISH |
+| `e807.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / CHROME FINISH |
+| `e808.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / BLUED FINISH |
+| `e809.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / BLOODY FINISH |
+| `e810.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / WOODLAND FINISH |
+| `e811.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / WINTER FINISH |
+| `e812.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / DESERT FINISH |
+| `e813.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / WHITEWASH FINISH |
+| `e814.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / AFRIKA KORPS FINISH |
+| `e815.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / KRIEGSMARINE FINISH |
+| `e816.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / AIRBORNE FINISH |
+| `e817.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / SPLINTER FINISH |
+| `e818.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / PEA DOT FINISH |
+| `e819.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / TELO FINISH |
+| `e820.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / AMOEBA FINISH |
+| `e821.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / AIRBORNE 101ST FINISH |
+| `e822.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / BATTLE-WORN FINISH |
+| `e823.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / TRENCH ART FINISH |
+| `e824.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / PARADE FINISH |
+| `e825.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. TYPE 100 SMG / CAPTURED FINISH |
+| `e826.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / STANDARD ISSUE |
+| `e827.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / GOLD FINISH |
+| `e828.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / CHROME FINISH |
+| `e829.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / BLUED FINISH |
+| `e830.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / BLOODY FINISH |
+| `e831.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / WOODLAND FINISH |
+| `e832.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / WINTER FINISH |
+| `e833.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / DESERT FINISH |
+| `e834.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / WHITEWASH FINISH |
+| `e835.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / AFRIKA KORPS FINISH |
+| `e836.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / KRIEGSMARINE FINISH |
+| `e837.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / AIRBORNE FINISH |
+| `e838.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / SPLINTER FINISH |
+| `e839.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / PEA DOT FINISH |
+| `e840.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / TELO FINISH |
+| `e841.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / AMOEBA FINISH |
+| `e842.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / AIRBORNE 101ST FINISH |
+| `e843.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / BATTLE-WORN FINISH |
+| `e844.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / TRENCH ART FINISH |
+| `e845.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / PARADE FINISH |
+| `e846.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / CAPTURED FINISH |
+| `e847.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. MP 28 / MP28 (EUROPEAN ASSAULT) |
+| `e848.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STEN MK II(S) / EUROPEAN ASSAULT |
+| `e849.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / STANDARD ISSUE |
+| `e850.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / GOLD FINISH |
+| `e851.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / CHROME FINISH |
+| `e852.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / BLUED FINISH |
+| `e853.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / BLOODY FINISH |
+| `e854.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / WOODLAND FINISH |
+| `e855.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / WINTER FINISH |
+| `e856.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / DESERT FINISH |
+| `e857.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / BAR (PACIFIC) (MOH:PA) |
+| `e858.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / M1918 CLASSIC (STLKID) |
+| `e859.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / M1918A1 (STLKID) |
+| `e860.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / M1918A2 (STLKID) |
+| `e861.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / WHITEWASH FINISH |
+| `e862.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / AFRIKA KORPS FINISH |
+| `e863.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / KRIEGSMARINE FINISH |
+| `e864.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / AIRBORNE FINISH |
+| `e865.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / SPLINTER FINISH |
+| `e866.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / PEA DOT FINISH |
+| `e867.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / TELO FINISH |
+| `e868.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / AMOEBA FINISH |
+| `e869.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / AIRBORNE 101ST FINISH |
+| `e870.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / BATTLE-WORN FINISH |
+| `e871.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / TRENCH ART FINISH |
+| `e872.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / PARADE FINISH |
+| `e873.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / CAPTURED FINISH |
+| `e874.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / BAR (FRONTLINE) |
+| `e875.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BAR M1918 / BAR (EUROPEAN ASSAULT) |
+| `e876.cfg` | 55 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / STANDARD ISSUE |
+| `e877.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / GOLD FINISH |
+| `e878.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / CHROME FINISH |
+| `e879.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / BLUED FINISH |
+| `e880.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / BLOODY FINISH |
+| `e881.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / WOODLAND FINISH |
+| `e882.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / WINTER FINISH |
+| `e883.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / DESERT FINISH |
+| `e884.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / STG 44 (STRAPPED) (DARKANGEL) |
+| `e885.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / SS STG 44 (DIRTYHARRY) |
+| `e886.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / STG 44 (GUANSHIRE) |
+| `e887.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / TEAM TACTICS (LEON) |
+| `e888.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / WHITEWASH FINISH |
+| `e889.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / AFRIKA KORPS FINISH |
+| `e890.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / KRIEGSMARINE FINISH |
+| `e891.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / AIRBORNE FINISH |
+| `e892.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / SPLINTER FINISH |
+| `e893.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / PEA DOT FINISH |
+| `e894.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / TELO FINISH |
+| `e895.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / AMOEBA FINISH |
+| `e896.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / AIRBORNE 101ST FINISH |
+| `e897.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / BATTLE-WORN FINISH |
+| `e898.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / TRENCH ART FINISH |
+| `e899.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / PARADE FINISH |
+| `e900.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / CAPTURED FINISH |
+| `e901.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / STG 44 (FRONTLINE) |
+| `e902.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 / STG 44 (EUROPEAN ASSAULT) |
+| `e903.cfg` | 55 | 1.9 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / STANDARD ISSUE |
+| `e904.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / GOLD FINISH |
+| `e905.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / CHROME FINISH |
+| `e906.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / BLUED FINISH |
+| `e907.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / BLOODY FINISH |
+| `e908.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / WOODLAND FINISH |
+| `e909.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / WINTER FINISH |
+| `e910.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / DESERT FINISH |
+| `e911.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / WHITEWASH FINISH |
+| `e912.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / AFRIKA KORPS FINISH |
+| `e913.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / KRIEGSMARINE FINISH |
+| `e914.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / AIRBORNE FINISH |
+| `e915.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / SPLINTER FINISH |
+| `e916.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / PEA DOT FINISH |
+| `e917.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / TELO FINISH |
+| `e918.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / AMOEBA FINISH |
+| `e919.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / AIRBORNE 101ST FINISH |
+| `e920.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / BATTLE-WORN FINISH |
+| `e921.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / TRENCH ART FINISH |
+| `e922.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / PARADE FINISH |
+| `e923.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. STG 44 SCOPED / CAPTURED FINISH |
+| `e924.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / STANDARD ISSUE |
+| `e925.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / GOLD FINISH |
+| `e926.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / CHROME FINISH |
+| `e927.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / BLUED FINISH |
+| `e928.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / BLOODY FINISH |
+| `e929.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / WOODLAND FINISH |
+| `e930.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / WINTER FINISH |
+| `e931.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / DESERT FINISH |
+| `e932.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / WHITEWASH FINISH |
+| `e933.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / AFRIKA KORPS FINISH |
+| `e934.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / KRIEGSMARINE FINISH |
+| `e935.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / AIRBORNE FINISH |
+| `e936.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / SPLINTER FINISH |
+| `e937.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / PEA DOT FINISH |
+| `e938.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / TELO FINISH |
+| `e939.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / AMOEBA FINISH |
+| `e940.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / AIRBORNE 101ST FINISH |
+| `e941.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / BATTLE-WORN FINISH |
+| `e942.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / TRENCH ART FINISH |
+| `e943.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / PARADE FINISH |
+| `e944.cfg` | 53 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. FG 42 / CAPTURED FINISH |
+| `e945.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / STANDARD ISSUE |
+| `e946.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / GOLD FINISH |
+| `e947.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / CHROME FINISH |
+| `e948.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / BLUED FINISH |
+| `e949.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / BLOODY FINISH |
+| `e950.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / WOODLAND FINISH |
+| `e951.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / WINTER FINISH |
+| `e952.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / DESERT FINISH |
+| `e953.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / WHITEWASH FINISH |
+| `e954.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / AFRIKA KORPS FINISH |
+| `e955.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / KRIEGSMARINE FINISH |
+| `e956.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / AIRBORNE FINISH |
+| `e957.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / SPLINTER FINISH |
+| `e958.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / PEA DOT FINISH |
+| `e959.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / TELO FINISH |
+| `e960.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / AMOEBA FINISH |
+| `e961.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / AIRBORNE 101ST FINISH |
+| `e962.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / BATTLE-WORN FINISH |
+| `e963.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / TRENCH ART FINISH |
+| `e964.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / PARADE FINISH |
+| `e965.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. VICKERS-BERTHIER / CAPTURED FINISH |
+| `e966.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / STANDARD ISSUE |
+| `e967.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / GOLD FINISH |
+| `e968.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / CHROME FINISH |
+| `e969.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / BLUED FINISH |
+| `e970.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / BLOODY FINISH |
+| `e971.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / WOODLAND FINISH |
+| `e972.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / WINTER FINISH |
+| `e973.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / DESERT FINISH |
+| `e974.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / WHITEWASH FINISH |
+| `e975.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / AFRIKA KORPS FINISH |
+| `e976.cfg` | 53 | 2.3 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / KRIEGSMARINE FINISH |
+| `e977.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / AIRBORNE FINISH |
+| `e978.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / SPLINTER FINISH |
+| `e979.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / PEA DOT FINISH |
+| `e980.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / TELO FINISH |
+| `e981.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / AMOEBA FINISH |
+| `e982.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / AIRBORNE 101ST FINISH |
+| `e983.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / BATTLE-WORN FINISH |
+| `e984.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / TRENCH ART FINISH |
+| `e985.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / PARADE FINISH |
+| `e986.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. BREDA M30 / CAPTURED FINISH |
+| `e987.cfg` | 55 | 2.0 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / STANDARD ISSUE |
+| `e988.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / GOLD FINISH |
+| `e989.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / CHROME FINISH |
+| `e990.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / BLUED FINISH |
+| `e991.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / BLOODY FINISH |
+| `e992.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / WOODLAND FINISH |
+| `e993.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / WINTER FINISH |
+| `e994.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / DESERT FINISH |
+| `e995.cfg` | 53 | 2.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / WHITEWASH FINISH |
+| `e996.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / AFRIKA KORPS FINISH |
+| `e997.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / KRIEGSMARINE FINISH |
+| `e998.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / AIRBORNE FINISH |
+| `e999.cfg` | 53 | 2.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - do not edit. M1919 .30 CAL / SPLINTER FINISH |
 | `open.cfg` | 6 | 0.2 KB | GENERATED by docs/tools/gen_weapon_viewer.py - the viewer opens on the gun shown last (or the first) |
 | `t0.cfg` | 2 | 0.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - the RIFLES tab |
 | `t1.cfg` | 2 | 0.1 KB | GENERATED by docs/tools/gen_weapon_viewer.py - the SNIPERS tab |
