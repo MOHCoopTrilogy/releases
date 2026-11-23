@@ -164,6 +164,7 @@ Navmesh (#2) DONE in converter 0.7.55 (FIDELITY C57, hand-off H:\hzm_work\decode
 the Nemesis pocket ramp (47 deg, C35) stays cut off from the node graph (the cellar stair is chained since 0.7.56,
 the cover-anim errors fixed in mod 5cc59e324); the partisan leader staying in the cellar matches the disc (FIDELITY
 C57: his only objective is in the cellar); the live install's BYO pak is not re-converted.
+**0.7.59 (2026-11-23, root 22c52ae1, mod de2c3dce4): engine branch `eadecode-eng` 34eda88a AWAITS MERGE + build** (game.dll `projectile_exploded` delegate for the disc's detonation packages; gl1/gl2 `tcMod hzmSkyFade` cloud fade - older engines: stock blasts, unfaded clouds). Then: re-measure the re-graded night sky (predicted only), film one package at a blast. Closed: FIDELITY C62-C69 (impossibles listed there); C69 Nemesis ramp = converter clip-stair only.
 
 ### Dying Breath night to dawn - engine `dawn-eng`, awaiting merge + playtest (2026-11-22)
 User request (FIDELITY C44): coop_mod/eadawn.scr runs the dawn on the mission clock. Needs renderer `dawn-eng` (alphaGen
