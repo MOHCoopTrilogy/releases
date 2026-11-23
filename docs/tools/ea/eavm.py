@@ -28,6 +28,9 @@ TRIGGERS = ("BasicTrigger", "SoundDialogueTrigger", "GagDialogueTrigger", "GagTr
             "DirectDamageTrigger")
 # AI weapon names global/weapon.scr knows ('ppsh smg' fell to "setting to none": the partisans fought unarmed,
 # bug-eap-aikills); the AI rifle is the Kar98k: anim/reload.scr has no AI G43 reload
+# [0.7.53, gap 4] the disc's NPC Gewehr is the Gewehr 43 (its DroppedPlayerWeapon is PlayerGewehr = the G43 of the
+# kit), but it stays the Kar98k: on "G 43" the mod's AI reload (anim/reload.scr) has no case and the soldier never
+# reloads (discbot 0.7.53: 1,361 "weapon type not supported"); FIDELITY C56 deviation
 GUNS = {"npcwpn_mp40": "mp40", "npcwpn_nem_mp40": "mp40", "npcwpn_gewehr": "mauser kar 98k",
         "npcwpn_ps_gewehr": "mauser kar 98k",
         "npcwpn_ppsh": "ppsh", "npcwpn_ps_ppsh": "ppsh", "npcwpn_kar98": "mauser kar 98k",
@@ -176,6 +179,7 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f'\tlevel.ea_sp_team[{n}] = "{team}"')
         L(f'\tlevel.ea_sp_wpn[{n}] = "{GUNS.get(base(npc["weapon"]).lower(), "mp40" if team == "axis" else "ppsh")}"')
         L(f'\tlevel.ea_sp_chr[{n}] = {S(base(npc["character"]))}')
+        L(f'\tlevel.ea_sp_arch[{n}] = {S(base(npc["archetype"] or ""))}')      # [0.7.53, gap 4] level.ea_ar_*
         # [dbfix] a named squadmate: the archetype's own name string (PartisanVasileva -> "Vasileva"), for the
         # original's "<name> has died!" (PlayerSquadNPCDeath)
         _an = base(npc["archetype"] or "")

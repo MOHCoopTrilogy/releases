@@ -616,6 +616,34 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
         g = grid.ground(q[0], q[1], q[2] + 48, q[2] - 160)
         return (q[0], q[1], g + 2) if g is not None else None
     vm = eavm.build(db, X, strict_spot, ground_pt, text, lines, log)
+    # [0.7.53, decode audit gap 4] the archetypes' hit points, skill tier, reaction and fighting distance, and the
+    # weapons' per-hit damage, from the level's own definition blocks (eadefs.py; field meanings [PROV]). Health is
+    # carried by the Frontline agent's shots-to-kill parity: K so that the co-op kit's G43 / PPSh need the same body
+    # hits on a 50-hp German as the disc's PlayerGewehr / PlayerPPSH (level.ea_hpScale)
+    import eadefs
+    _dd = eadefs.read(L.stream)
+    _arch = sorted({eavm.base(r.s(18)) for r in db.of("NPCSpawnPoint") if (r.s(18) or "").lower().endswith(".xdd")})
+    for a in _arch:
+        x = _dd["ArchetypeType"].get(eadefs.crc(a))
+        if not x:
+            log("eadefs: archetype not found", a)
+            continue
+        lines.append(f'\tlevel.ea_ar_hp["{a}"] = {int(x.get(eadefs.F_HP, 0))}')
+        lines.append(f'\tlevel.ea_ar_tier["{a}"] = {int(x.get(eadefs.F_TIER, 0))}')
+        lines.append(f'\tlevel.ea_ar_react["{a}"] = {float(x.get(eadefs.F_REACT, 0.0)):.2f}')
+        lines.append(f'\tlevel.ea_ar_range["{a}"] = {float(x.get(eadefs.F_RANGE, 0.0)) * 48:.0f}')
+    _disc = [eadefs.bullet_damage(_dd, w, "PlayerWeaponType") for w in eadefs.OUR_KIT]
+    if all(_disc):
+        _k, _rng = eadefs.hp_scale(50, [d_[0] for d_ in _disc], list(eadefs.OUR_KIT.values()))
+        if _k:
+            lines.append(f"\tlevel.ea_hpScale = {_k}")
+        log("eadefs: kit damage disc %s ours %s -> hp scale %s (feasible %s)" % ([d_[0] for d_ in _disc],
+                                                                              list(eadefs.OUR_KIT.values()), _k, _rng))
+    for w in sorted({eavm.base(r.s(20)) for r in db.of("NPCSpawnPoint") if (r.s(20) or "").lower().endswith(".xdd")}):
+        bd = eadefs.bullet_damage(_dd, w)
+        if bd:
+            lines.append(f'\tlevel.ea_wd_dmg["{w}"] = {bd[0]:g}')
+            log("eadefs: %s per-hit damage %g (head x%g)" % (w, bd[0], bd[1] or 1))
     nvoice = 0
     if vgm:
         nvoice = voices(L, level, text, vgm, files, lines, log, vm.get("pa_events", ()))
