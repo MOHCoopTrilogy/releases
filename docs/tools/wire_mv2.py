@@ -282,13 +282,15 @@ for give, tile, elite, base_name, vlist in resolved:
                     + 'seta coop_loS%dF "%d"' % (sl, fid) + N
                     + 'seta coop_loFA%d "append name ,f%d%d"' % (sl, sl, fid) + N
                     + 'set coop_loMvPN_s%d "exec ui/loadout/mvp%s_%d_s%d.cfg"' % (sl, tile, nxt, sl) + N)
+            # [bug-11472] this page is the gun's pending pick: EQUIP (w<id>_s<n>.cfg vstr coop_loFPk<id>) replays it after the reset
+            fpk = 'set coop_loFPk%s "exec ui/loadout/mvp%s_%d_s%d.cfg"' % (tile, tile, k, sl) + N
             # [v1.10.66 armoryfix] a variant is ANOTHER mesh: it brings its own measured hero framing (armory_variant_fit.tsv, solved
             # like armory_hero_fit.tsv), and the standard entry puts the host's back - the host's framing made the 1928 Tommy or the
             # Soares93 M38A spill out of the box or float in a corner
             hx = (VARFIT.get("%s_%d" % (tile, fid)) if k else HEROFIT.get(tile))
             if hx:
                 body += 'set coop_loXfmHero "%s"' % hx + N
-            wr(UI + "mvp%s_%d_s%d.cfg" % (tile, k, sl), body)
+            wr(UI + "mvp%s_%d_s%d.cfg" % (tile, k, sl), body + fpk)
 # [v1.10.64 wpnfix2] a ladder that SHRANK (a retired fid) leaves its old last pages behind: delete every chain page past the end
 import glob as _glob
 for give, tile, elite, base_name, vlist in resolved:

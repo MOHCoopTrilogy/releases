@@ -652,22 +652,18 @@ the caller still reports success. **Tell:** a feature that "does nothing" with n
 <a name="t20"></a>
 ## T20 — One flag, two states; and one-way latches
 
-Shapes where the symptom pointed away from the cause.
+Symptom pointed away from the cause.
 
 - **A flag that answers two questions gets tested for the wrong one.** `is_disguised` is the engine's
-  per-frame opinion (`player.cpp:5519-5545`); `has_disguise` is the mod's own grant. Testing the first
-  where the second was meant read "someone is shooting at you" as "the grant failed" (bugs 1701,
-  1701b, 1703). Tell: **the viewmodel and HUD stutter** - AI churn alone does not stutter a client.
-  **Count how many things can make a flag false before testing it, and bound every self-re-threading
-  retry.**
+  per-frame opinion; `has_disguise` is the mod's grant. Testing the first read "someone is shooting at
+  you" as "the grant failed" (bugs 1701-1703); tell: **the viewmodel and HUD stutter.** **Count what can
+  make a flag false before testing it; bound every self-re-threading retry.**
 - **A one-way primitive lives in more files than you grepped.** Bare `attackplayer` is
-  `Actor::ForceAttackPlayer`, cleared **only in the Actor constructor** (`actor.cpp:3092`), and while
-  set `EnemyIsDisguised()` is false unconditionally - one call blinds that actor for the map.
-  `attackentity <ent>` is the reversible form; four sites, three sweeps (bugs 1700, 1704, 1708).
-- **An absorbing state hides everything downstream.** `EnemyIsDisguised()` returned false for any actor in
-  `THINKSTATE_ATTACK` (a ratchet); real-threat gating took blocked aggro **1051 -> 0** (bug-1707).
+  `Actor::ForceAttackPlayer`, cleared only in the constructor: one call blinds that actor for the map. `attackentity <ent>` is the reversible form (bugs 1700-1708).
+- **An absorbing state hides everything downstream.** `EnemyIsDisguised()` was false for any actor in
+  `THINKSTATE_ATTACK`; threat gating took blocked aggro 1051 -> 0 (bug-1707).
 - **A flag two systems both own is a race, and it comes back.** `coop_clickablePapersEnabled` re-armed
-  mid-bash force-equipped papers into the pistol hand - five rounds to kill (bugs 1709-1736). **One writer
+  mid-bash force-equipped papers into the pistol hand (bugs 1709-1736). **One writer
   per player; split the latch from the state and clear it on every exit.**
 - **State the client PREDICTS must come from the playerstate, never a stuffed cvar.** Cover v2's stuffed side
   snapped the view (bugs 2171, 10358). v3 packs the cover into
@@ -678,6 +674,9 @@ Shapes where the symptom pointed away from the cause.
 - **Harness cheats on a listen server:** `cheats` is LATCH - a later `set` only latches until the cvar is
   re-registered, and `Entity::CheckEventFlags` zeroes it unless `thereisnomonkey 1`. Join, then
   `vid_restart`, wait ~25 s, then `tele` (bug-10362).
+- **The Armory has two "current guns".** Chips follow the INSPECTED gun's `p<id>.cfg`, a chip click archives the
+  fid for the SLOT's gun, EQUIP (`w<id>_s<n>.cfg`) resets the slot: "inspect, FRONTLINE, EQUIP" landed standard
+  (bug-11472). **A new chip page must set `coop_loFPk<id>`** (pending pick), which EQUIP replays.
 - **A one-shot guard is not an invariant** (bugs 2544, 1957-2546). **If a property must always hold, assert it in a
   routine that already runs unprompted** (pin publisher, `Actor::Think`).
 - **`hide` on a player is a latch.** cgame never submits a hidden (RF_DONTDRAW) player, so everything attached

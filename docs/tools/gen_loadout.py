@@ -135,16 +135,21 @@ def preview(w):
     L += ['set coop_loMvPN_s%d "%s"' % (_sl + 1, _v) for _sl, _v in enumerate(mv_pns)]
     L += [
     ]
-    L += ['set coop_loFinP%d "%s"' % (_i + 1, _v) for _i, _v in enumerate(finp)]
+    # [bug-11472] PENDING PICK: a chip clicked while this gun is only INSPECTED (not yet in the slot) is remembered for this gun
+    # (coop_loFPk<id>, set by its finp page) and EQUIP (w<id>_s<n>.cfg) replays it after the new-gun reset. A chip with no page for
+    # this gun, and STANDARD (fin0_s<n>.cfg vstr coop_loFinP0), drop the pending pick instead.
+    _clr = "set coop_loFPk%s set coop_loNop 0" % w["id"]
+    L += ['set coop_loFinP0 "%s"' % _clr]
+    L += ['set coop_loFinP%d "%s"' % (_i + 1, _v or _clr) for _i, _v in enumerate(finp)]
     # [v1.10.68 finishes2] the second chip row's offline previews (fin<F>_s<n>.cfg vstr coop_loFinP<F>); the variant tiks live in the
     # finishes pak, so "exists" = the gun has that row in loadoutskins.scr (gen_skins.py fs2, which checks the pak)
     _v2 = fs2_variants().get((w["give"] or w["tik"]).lower(), {})
-    L += ['set coop_loFinP%d "%s"' % (_f, "exec ui/loadout/finp%s_%d.cfg" % (w["id"], _f) if _f in _v2 else "") for _f in FS2_FIDS]
+    L += ['set coop_loFinP%d "%s"' % (_f, "exec ui/loadout/finp%s_%d.cfg" % (w["id"], _f) if _f in _v2 else _clr) for _f in FS2_FIDS]
     # [discguns 2026-11-16] the disc variant chips (gen_finish_ui.DISC): shown when THIS gun has that disc's variant (the chip's
     # enabledcvar also needs the engine's ROM coop_byoGuns<Fl|Ea>, so a PC without the disc never shows it)
     _vd = disc_variants().get((w["give"] or w["tik"]).lower(), {})
     L += ["set coop_loDiscV%d %d" % (_f, 1 if _f in _vd else 0) for _f in DISC_FIDS]
-    L += ['set coop_loFinP%d "%s"' % (_f, "exec ui/loadout/finp%s_%d.cfg" % (w["id"], _f) if _f in _vd else "") for _f in DISC_FIDS]
+    L += ['set coop_loFinP%d "%s"' % (_f, "exec ui/loadout/finp%s_%d.cfg" % (w["id"], _f) if _f in _vd else _clr) for _f in DISC_FIDS]
     L += [
         'set coop_loPrev "%s"' % w["tik"],
         'set coop_loXfmW "%s"' % w["xfm"],
@@ -241,6 +246,9 @@ def slotfile(w, s):
     L.append('set lp_w%s "%s"' % (s, w["id"]))
     L.append('set lp_f%s "0"' % s)
     L.append("vstr coop_loEqRe")
+    # [bug-11472] the finish / variant / disc chip picked while this gun was inspected (its finp / mvp page set coop_loFPk<id>):
+    # "inspect, pick FRONTLINE, EQUIP" used to land standard because the reset above wiped the pick made a click earlier
+    L.append("vstr coop_loFPk%s" % w["id"])
     return "\n".join(L) + "\n"
 
 
@@ -466,6 +474,12 @@ def splice_roster(rows, text):
     return text[:m.start()] + roster(rows).replace("\n", nl) + text[m.end():]
 
 
+def _fpk(w, f):
+    """[bug-11472] a finp page = this gun's chip F was clicked (or re-previewed): remember it as the gun's pending pick, replayed by
+    EQUIP (w<id>_s<n>.cfg vstr coop_loFPk<id>) through the ACTIVE slot's chip command (s<n>sel arms coop_loFgo<F>)"""
+    return 'set coop_loFPk%s "vstr coop_loFgo%d"\n' % (w["id"], f)
+
+
 def render_all(rows):
     out = {}
     for w in rows:
@@ -480,14 +494,14 @@ def render_all(rows):
             if _tik_exists("%s_%s.tik" % (_stem2, _k)):
                 out["finp%s_%d.cfg" % (w["id"], _i + 1)] = (
                     'set coop_loPrev "models/weapons/%s_%s.tik"\n' % (_stem2, _k)
-                    + 'set coop_loNm "%s (%s)"\n' % (w["name"], _lab))
+                    + 'set coop_loNm "%s (%s)"\n' % (w["name"], _lab) + _fpk(w, _i + 1))
         # [v1.10.68 finishes2] the second set's preview pages (the tik is in the finishes pak)
         for _f, _var in sorted(fs2_variants().get((w["give"] or w["tik"]).lower(), {}).items()):
             out["finp%s_%d.cfg" % (w["id"], _f)] = (
-                'set coop_loPrev "%s"\n' % _var + 'set coop_loNm "%s (%s)"\n' % (w["name"], FS2_NAME[_f]))
+                'set coop_loPrev "%s"\n' % _var + 'set coop_loNm "%s (%s)"\n' % (w["name"], FS2_NAME[_f]) + _fpk(w, _f))
         for _f, _var in sorted(disc_variants().get((w["give"] or w["tik"]).lower(), {}).items()):    # [discguns]
             out["finp%s_%d.cfg" % (w["id"], _f)] = (
-                'set coop_loPrev "%s"\n' % _var + 'set coop_loNm "%s (%s)"\n' % (w["name"], DISC_NAME[_f]))
+                'set coop_loPrev "%s"\n' % _var + 'set coop_loNm "%s (%s)"\n' % (w["name"], DISC_NAME[_f]) + _fpk(w, _f))
         out["t%s.cfg" % w["id"]] = tile(w)
         for s in w["slots"]:
             out["w%s_s%s.cfg" % (w["id"], s)] = slotfile(w, s)
