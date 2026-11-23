@@ -91,6 +91,7 @@ and stays, never the reported line.
 | **Upscaler**: sharpen the 3x3 tile BEFORE cropping, clamp to source. **DXT**: Pillow DXT5 tilts normals ~14 deg (use `gen_terrain_pak_*.py`); DXT1/.jpg DROPS alpha (the Thompson peep went solid): cut see-through into the MESH. **TGA: bottom-up** (loader ignores the top-down bit). | 1247, 2953, 2994, 3019, 11150 |
 | PowerShell `$home` is a **built-in automatic variable**: assigning it no-ops (logs landed in the user profile). | ps-home-var |
 | A generator edit **only on a side branch** (f804844b), output in the mod: the next main regen (v1.10.78) reverted the MP per-gun ladder. Pre-regen `check` must be EXACT. Saved data: frozen append-only index (`MP_FIN_INDEX`), never `sorted()`. | 11308, 11309, 11311 |
+| **hzmconv frozen paths:** data files sit IN `sys._MEIPASS` (`_internal`), so `dirname(_MEIPASS or __file__)` works from source and breaks only in the release exe. Optional steps (guns, films) swallow errors, so the add still says done: grep the frozen smoke log for `skipped` and check every expected pak exists. | 11427 |
 
 - **Binary mode on BOTH sides, repo files included.** `open(p, encoding=...)` translates newlines on
   *read*, so a CRLF file arrives as LF and `\r\n` patterns match nothing; `newline=""` on write then
@@ -566,7 +567,7 @@ cut-offs at object edges (a 1-tap height map traces outlines).
 SERVER: `coop_tinnitusBaseVol 0`, `coop_tinnitusMuffle 0`, `coop_woundMuffleVol 0`; run `watch_audio=True`.
 **Cheats die three ways**: `ui_startdmmap` sets `cheats 0`; `map` does with `developer 0` (autoexec); EV_CHEAT
 (`testthread`) does unless the server has `thereisnomonkey 1`. A `map` restart for cheats lost the weather (bug-3174). **one frame = `wait 1; wait 1`** (bug-3314), **`cg_drawviewmodel 1` hides
-the arms**, **one frame keeps ONE `screenshot` name** (static fileName): give each shot its own frame (bug-3253). A client is in `status` before its Player exists (`Could not find entity *0`). **A test client boots SPECTATING**; `join_team` alone leaves it out: send `primarydmweapon rifle` (smg is BANNED) then `+attackprimary`. spectator is FINE for filming (origin/viewangles stepping works): the 'interior never renders' was a MIRRORED Y in the cine abs rig (angles_toleft(0)=-Y; negate pose y), bug-4154. Launch via `harness_window.py` (bug-3147). **A violation-planting self-test** writes only `zzselftest` names and
+the arms**, **one frame keeps ONE `screenshot` name** (static fileName): own frame per shot (bug-3253); it reads a BACK BUFFER (lags at a load: use `capture_png`); rcon ~1/s max (bug-11404). A client is in `status` before its Player exists (`Could not find entity *0`). **A test client boots SPECTATING**; `join_team` alone leaves it out: send `primarydmweapon rifle` (smg is BANNED) then `+attackprimary`. spectator films fine (bug-4154 was a mirrored Y in the cine abs rig: negate pose y). Launch via `harness_window.py` (bug-3147). **A violation-planting self-test** writes only `zzselftest` names and
 anchors in the checker's comment-stripped view (bug-2579).
 **`god` is a no-op - the cheat is `dog`** (`god` = a NULL forwarder; bare `god` in rkeep/vcl/lt_ab did
 nothing). Send `dog 1`/`notarget 1` and require `CHEAT: godmode ON`; add `g_ai 0`,

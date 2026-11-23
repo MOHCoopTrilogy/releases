@@ -50,6 +50,14 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.89 - Own Your Arsenal
+
+- **Guns from your own discs:** converting Frontline or European Assault unlocks that game's guns (15 + 22) with their original sounds and full aimed sights, in the Armory and on the weapon rack. Nothing from the discs ships with the mod.
+- **New gun:** the silenced Sten Mk II(S).
+- **Their Dying Breath:** fight from night to dawn as the sun rises; snow really falls, with more snow and blizzards; no more phantom charge-planting sound.
+- **Your squad:** takes cover first, then fights from it; squad orders have randomized voice lines from the trilogy.
+- **Mission start:** the title card appears instantly and the typewriter clicks for every letter.
+
 ### v1.10.88 - Host and Hold
 
 - **New MOH Coop Server app** (desktop icon): easy setup, every coop setting, dedicated or host-and-play, pick the CPU thread the server runs on, automatic per-map recording, router and firewall setup (asks first), auto-restart, Discord notices.
