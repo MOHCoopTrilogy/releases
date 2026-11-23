@@ -586,6 +586,41 @@ def _journal(disc, level, files, lines, jn, log):
     log("journal pages", n)
 
 
+def _prop_sounds(disc, L, level, files, lines, ali, tmp, d, vgm, psp, log):
+    """[anvil] fl_levels "prop_sounds": [{name, rec, sound, som, bank, min, max}] - the record's own PLAYSOUND(sound)
+    through its sound set (link category 11) and <l>propSnd.som, decoded from the player's bank like the fire loop"""
+    pre = f"fl{level.replace('_', '')}_ps"
+    sdir = f"sound/fl/{level}/"
+    recs = {e.get("i"): e for e in L.entities()}
+    for ps in psp:
+        e = recs.get(ps["rec"])
+        if e is None:
+            log("prop sound", ps["name"], "record missing")
+            continue
+        sets_ = [x & 0xFFFF for x in flscene.words(e)[13:] if x >> 16 == 11]
+        som = L.files.get(ps["som"], b"")
+        row = flaudio.som_sound(som, sets_[0], ps["sound"]) if sets_ else None
+        if not row:
+            log("prop sound", ps["name"], "no row for set", sets_, "sound", ps["sound"])
+            continue
+        abk = disc.read(d + ps["bank"])
+        stream = flaudio.bank_stream(abk, row["code"], row["first"])
+        bnk_path = os.path.join(tmp, "ps_%s.bnk" % ps["name"])
+        with open(bnk_path, "wb") as f:
+            f.write(abk[abk.find(b"BNKl"):])
+        dst = os.path.join(tmp, "ps_%s.wav" % ps["name"])
+        if not (stream and flaudio.vgm_decode(vgm, bnk_path, dst, stream)):
+            log("prop sound", ps["name"], "decode failed", row, stream)
+            continue
+        rel = f"{sdir}ps_{ps['name']}.wav"
+        files[rel] = flaudio.wav_mono(dst)
+        alias = f"{pre}_{ps['name']}"
+        ali.append(f'aliascache {alias} {rel} soundparms {row["volume"]:.2f} 0.0 1.0 0.0 {ps.get("min", 384)} {ps.get("max", 4000)} auto loaded maps "coop_fl"')
+        lines.append(f'\tlevel.fl_psnd["{ps["name"]}"] = "{alias}"')
+        lines.append(f'\tlevel.fl_psnd_len["{ps["name"]}"] = {flaudio.wav_seconds(dst):.2f}')
+        log("prop sound", ps["name"], "set", sets_[0], "row", row, "stream", stream, f"{flaudio.wav_seconds(dst):.2f} s")
+
+
 def _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, osp, log):
     """[flfix2 round 20] LoadOneShotSound areas (entering one loads bank 11LOAD<n>, n = record word 14 = the class's
     attr 2): the bank's clips are the area's AI combat barks and pain sounds, both sides. Which clip is which situation
@@ -695,6 +730,9 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
     amb = sp.get("ambience")
     if amb:
         _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log)
+    # ---- [anvil] a record's own PLAYSOUND (fl_levels "prop_sounds"; 1_3: the falling walkway) ----
+    if sp.get("prop_sounds"):
+        _prop_sounds(disc, L, level, files, lines, ali, tmp, d, vgm, sp["prop_sounds"], log)
     # ---- [flfix2 round 20] one-shot banks: the areas' combat barks and pain sounds ----
     if sp.get("oneshots"):
         _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, sp["oneshots"], log)
