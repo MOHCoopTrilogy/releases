@@ -231,7 +231,7 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
         }
         lab = labels.get(key)
         if lab:
-            e["label"] = lab          # the plain name shown in the app (bug-11490); "overrides" below can still change it
+            e["label"] = lab          # the plain name shown in the app (bug-11498); "overrides" below can still change it
         o = overrides.get(key)
         if o:
             for k2, v2 in o.items():
@@ -290,7 +290,7 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
     except OSError:
         pass
 
-    # the start-list groups (bug-11489): a whole game's campaign in story order, and the mod's own Chronological
+    # the start-list groups (bug-11497): a whole game's campaign in story order, and the mod's own Chronological
     # Campaign - read from coop_mod/chrono.scr::nextMission ("last map of a chapter -> the next chapter's briefing"),
     # never a hand list. The chain starts at the chapter no edge leads into.
     games = []

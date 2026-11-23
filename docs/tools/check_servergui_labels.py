@@ -1,4 +1,4 @@
-"""Fail (exit 1) when a setting the MOH Coop Server app shows has no plain label (bug-11490).
+"""Fail (exit 1) when a setting the MOH Coop Server app shows has no plain label (bug-11498).
 
 The app (installer/servergui/hzm_server_gui.ps1) lists every catalogue setting on the Gameplay, Server tuning and
 Server tabs; each needs a short "label" (docs/tools/servergui_overlay.json "labels" / "overrides", merged by

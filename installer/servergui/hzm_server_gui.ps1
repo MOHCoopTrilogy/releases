@@ -382,7 +382,7 @@ function Format-Duration([double]$sec) {
     $t = [TimeSpan]::FromSeconds([math]::Max(0, $sec))
     if ($t.TotalHours -ge 1) { "{0}h {1:00}m" -f [int][math]::Floor($t.TotalHours), $t.Minutes } else { "{0}m {1:00}s" -f $t.Minutes, $t.Seconds }
 }
-# ---- one-click crash report (bug-11492): dumps, logs and the profile in one zip; secrets never leave this PC ----------
+# ---- one-click crash report (bug-11500): dumps, logs and the profile in one zip; secrets never leave this PC ----------
 function Get-ReportSecrets($p) {
     $sec = Read-Secrets $p.name
     @(@($sec.password, $sec.rcon, $sec.webhook) | Where-Object { $_ -and $_.Length -ge 3 })
@@ -469,7 +469,7 @@ function Export-CrashReport($p, $inst, [string]$outDir = [Environment]::GetFolde
     $zip
 }
 
-# ---- "can my friends reach me?" (bug-11493): what can honestly be told from this PC alone ---------------------------
+# ---- "can my friends reach me?" (bug-11501): what can honestly be told from this PC alone ---------------------------
 function Test-Reach([int]$port, [string]$publicIp, [bool]$firewallRule) {
     $r = [ordered]@{ Verdict = ""; Detail = ""; Share = "" }
     $local = Send-Oob "getinfo reach" $port "127.0.0.1" 1500
@@ -490,7 +490,7 @@ function Test-Reach([int]$port, [string]$publicIp, [bool]$firewallRule) {
     [pscustomobject]$r
 }
 
-# ---- demo library (bug-11494) -------------------------------------------------------------------------------------
+# ---- demo library (bug-11502) -------------------------------------------------------------------------------------
 function Read-DemoInfo([string]$dmi) {
     $kv = @{}
     try { $f = ([IO.File]::ReadAllText($dmi)).Split('\'); for ($i = 1; $i + 1 -lt $f.Count; $i += 2) { $kv[$f[$i]] = $f[$i + 1] } } catch {}
@@ -520,7 +520,7 @@ function Get-DemoFiles([string]$path) {
     @(Get-ChildItem -LiteralPath $dir -File -ErrorAction SilentlyContinue | Where-Object { [IO.Path]::GetFileNameWithoutExtension($_.Name) -eq $base } | ForEach-Object { $_.FullName })
 }
 
-# ---- start-list groups (bug-11489): chapters, a game's whole campaign, the Chronological Campaign -------------------
+# ---- start-list groups (bug-11497): chapters, a game's whole campaign, the Chronological Campaign -------------------
 # all from the generated catalogue: boards = the mod's own campaign menus (ui/coop_start), games / chrono = its
 # campaign_games overlay and coop_mod/chrono.scr::nextMission. A disc board shows only when this PC converted the disc.
 function Get-StartGroups($cat, $byo) {
@@ -912,7 +912,7 @@ function Get-State($p) {
     $null
 }
 function Test-Running($p) {
-    # bug-11491: a supervisor holds "Local\MOHCoopServer_<tag>" for its whole life, so the mutex IS the answer. The old
+    # bug-11499: a supervisor holds "Local\MOHCoopServer_<tag>" for its whole life, so the mutex IS the answer. The old
     # test (state.json's supervisorPid is alive and named powershell) stayed true when Windows reused that PID for
     # another PowerShell - this window's own one included - and Start never came back without a restart of the UI.
     $m = $null
@@ -1001,7 +1001,7 @@ function Invoke-Supervisor([string]$name) {
     function SLog($m) { Write-Log $m $slog }
     $cat = Import-Catalogue
     $inst = Get-Install
-    # bug-11491: a server left behind by a supervisor that was killed (Task Manager, a crash) still holds the port, and
+    # bug-11499: a server left behind by a supervisor that was killed (Task Manager, a crash) still holds the port, and
     # the strict bind would then wait on "port busy" for ever. It is ours when its PID is in the old state file, it is
     # omohaaded.exe and its command line carries this profile's config name.
     $old = Get-State $p
@@ -1990,7 +1990,7 @@ function New-SettingRow($e) {
     $g.Margin = "0,1,0,1"
     foreach ($w in @(300, 200, 170, 70)) { $cd = New-Object Windows.Controls.ColumnDefinition; $cd.Width = New-Object Windows.GridLength $w; [void]$g.ColumnDefinitions.Add($cd) }
     $cd = New-Object Windows.Controls.ColumnDefinition; $cd.Width = New-Object Windows.GridLength(1, "Star"); [void]$g.ColumnDefinitions.Add($cd)
-    # bug-11490: the plain label (overlay "labels"), with the cvar name small beneath it for admins
+    # bug-11498: the plain label (overlay "labels"), with the cvar name small beneath it for admins
     $lab = New-Object Windows.Controls.StackPanel
     $label = if ($e.ContainsKey("label") -and $e["label"]) { $e["label"] } else { $e["name"] }
     $l1 = New-Object Windows.Controls.TextBlock; $l1.Text = $label; $l1.TextTrimming = "CharacterEllipsis"; $l1.TextWrapping = "NoWrap"
@@ -2277,7 +2277,7 @@ function Start-Current {
 function Stop-Current {
     $p = $script:P
     if ($p.mode -eq "listen") {
-        # one UDP rcon, no status poll first: a game that is not hosting simply does not answer (bug-11491: the old
+        # one UDP rcon, no status poll first: a game that is not hosting simply does not answer (bug-11499: the old
         # getstatus waited up to 1.5 s on the UI thread)
         [void](Invoke-Rcon $p.port $script:Sec.rcon "killserver"); Set-Status "Asked the game to stop hosting"
         return
@@ -2289,7 +2289,7 @@ function Stop-Current {
         Update-RunButtons
     } else { Set-Status "Not running" }
 }
-# Start / Stop / Force stop follow the supervisor itself (its mutex), on every tab, every 2 s (bug-11491: the buttons
+# Start / Stop / Force stop follow the supervisor itself (its mutex), on every tab, every 2 s (bug-11499: the buttons
 # were only refreshed while the Status tab was showing, so a Stop from the Server tab left Start greyed out for good)
 function Update-RunButtons {
     $p = $script:P
@@ -2432,7 +2432,7 @@ $ui.btnDelProfile.Add_Click({
     $n = @(Get-ProfileNames)[0]; Refresh-ProfileList $n; Select-Profile $n })
 
 # ---------------------------------------------------------------------------------------------------- async work
-# bug-11491: nothing that can wait on the network, a process or WMI runs on the UI thread. Invoke-Async runs a script
+# bug-11499: nothing that can wait on the network, a process or WMI runs on the UI thread. Invoke-Async runs a script
 # block in a runspace that has this app's own helper functions, and calls $done back on the UI thread with its result.
 $script:AsyncJobs = New-Object System.Collections.Generic.List[object]
 function Invoke-Async([scriptblock]$work, [object[]]$argList, [scriptblock]$done) {

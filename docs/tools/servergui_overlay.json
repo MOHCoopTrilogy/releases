@@ -68,7 +68,7 @@
     { "name": "Breakthrough", "prefix": "e" }
   ],
 
-  "_labels_note": "labels: the short plain name the MOH Coop Server app shows for each setting (bug-11490). The cvar name stays visible beside it. An overrides label wins. docs/tools/check_servergui_labels.py fails on a visible setting without one.",
+  "_labels_note": "labels: the short plain name the MOH Coop Server app shows for each setting (bug-11498). The cvar name stays visible beside it. An overrides label wins. docs/tools/check_servergui_labels.py fails on a visible setting without one.",
   "labels": {
     "ai_debugpath": "Debug: show AI path debugging",
     "ai_editmode": "Debug: AI node edit mode",
