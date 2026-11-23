@@ -940,17 +940,12 @@ Wire-state neighbours (weapon-command enum, `surfaces[]` bit 6): `archive/traps-
 <a name="t23"></a>
 ## T23 — Wired, plausible, and doing nothing
 
-**Bugs:** 2099 (prone). Two causes, one feature, no error message from either; the first is the
-missing-notetrack rule, now filed once under [TIKI/sound](#tiki).
+**Bugs:** 2099, 2547 (prone; five unrelated causes all read "prone is broken" - probe each symptom). Missing notetracks: see [TIKI/sound](#tiki).
 
-**⭐ `last_ucmd` is not continuous** - one frame of `upmove 0` mid-hold (usercmd not yet refreshed) reset the hold timer and
-read as "only works on certain terrain". Hold-to-do-X needs a 150 ms grace before treating a key as released.
+**⭐ `last_ucmd` is not continuous:** one frame of `upmove 0` mid-hold resets a hold timer. Give hold-to-do-X a 150 ms release grace.
 
-**⭐ `startsolid` says where you ARE, not where you are GOING** (bug-2547): a prone box on a slope is already in solid,
-so rejecting every `startsolid` candidate discarded all sixteen. Skip the trace while embedded; let the DESTINATION test carry
-the safety, capped in distance.
-
-**Shape:** five unrelated causes all read "prone is broken"; none was found by reasoning about code - probe each symptom.
+**⭐ `startsolid` says where you ARE, not where you are GOING:** a prone box on a slope is already in solid, so rejecting
+every `startsolid` candidate discarded all sixteen. Skip the trace while embedded; let the capped DESTINATION test carry safety.
 
 <a name="t24"></a>
 ## T25 - Converted (BYO) stairs: MOHAA steps only with room over the 94u box
@@ -962,7 +957,6 @@ profile (bug-11144, 11146).
 
 ## T24 - A text fix applied per call site never holds: route the channel, then check the sink
 
-**Bugs:** 3426, 3520, 3542, 3952, 4007. Four rounds converted `iprint`/`iprintlnbold` SITES to `feed.scr`; every later
-print was born on the old top-left box again. **Route at the channel:** cgame `CG_CoopFeedRouteUntagged`
-takes every untagged coop `print`/`hudprint` ("fail" lines, Hardcore, `coop_feed 0`, a hidden HUD stay old-box). **The sink lost text too**: check truncation, replacement, read time. Subtitles are drawn by the exe
-(`cl_uiview3d.cpp`, `subtitle0-3`): cgame cannot move them, so the feed stands above them.
+**Bugs:** 3426, 3520, 3542, 3952, 4007. Four rounds moved `iprint` SITES to `feed.scr`; every new print landed in the old
+box again. **Route at the channel:** cgame `CG_CoopFeedRouteUntagged` takes every untagged coop `print`/`hudprint`.
+**Check the sink too** (truncation, replacement, read time). Subtitles are drawn by the exe (`subtitle0-3`), so the feed sits above them.
