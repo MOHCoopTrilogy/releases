@@ -25,7 +25,7 @@ sys.path.insert(0, HERE)
 # [v1.10.69] the converter's own version. Bump it whenever a change alters what a conversion writes: the updater
 # (updater.ps1 BYO RE-CONVERT) re-converts every remembered disc silently when this differs from the version that
 # wrote the player's paks (maintt\byo_converted.txt). Unchanged = no work at all.
-HZMCONV_VERSION = "1.10.91.1"   # .91.1 [v1.10.91] Frontline: Armory change sound = the disc main-menu select (ShellBnk streams 2 + 30 mixed 1:1), not the pause-menu click (bug-11463); .89.1 [v1.10.89] disc guns converted from the player's own disc (Frontline 15, European Assault 22: upscaled models, original fire / reload / bolt sounds, own guns pak); EA converter 0.7.49 (sky ceiling so snow and rain fall, the item_drop alias fix, night-to-dawn sky on, blizzard sky key); Frontline 1_3 data; .88.1 [v1.10.88] Frontline: capsule step key (hzm_capsulestep), interrogation-room tunnel crawlable (caps +86, rubble edge carved, north end sealed), Armory pistol cock from the disc (Continue sound) into the mission pak; EA converter 0.7.48 (leader ExplainsPlan clip turned to face the room, held-PPSh hand clips, character light from the disc irradiance probes + bloom share, lightingGrid character shaders, irradiance boxes at full size, zone bloom mix, capsule step key); .87.1 [v1.10.87] Frontline: intact window panes drawn from the disc collision as cells of the level's own window texture (frame bars + glass, static as in the original, bug-11371), Health25 = the disc's medkit case; EA converter 0.7.44 (head-turn scene flags, the disc PPSh held-prop data, closed-mouth jaw rest clip); .86.1 [v1.10.86] Frontline: no edge skirts over drawn ground (Sealed Orders doors and windows, bug-11345), the crunch footstep class plays dirt, nest MG42s on the stock HD turret (user chose B); EA converter 0.7.41 (far ground mist, skyline pull); .85.1 [v1.10.85] Frontline: invisible clips block players and AI but not bullets, footstep surfaces from the disc collision class; EA converter 0.7.40 (dialogue speaker + head turn, squad-objective sends, unstandable objectives moved, footstep surfaces); .84.1 [v1.10.84] Frontline: Sealed Orders disc Panzer IV, MG42, canteen, medkit, field phone (user-approved), see-through foliage cards lose their collision slabs, the shop-front clip sheet kept, flchar bind-rotation offset from the bone count; EA converter 0.7.36 (MMG point and crew heights, crouched-gunner clip); 1_3 groundwork not a listed level; .83.1 [v1.10.83] Frontline: the original sky from the player's disc, mono ambience beds, object meshes over 2000 verts split, smoke sized to the disc sprite; EA converter 0.7.35 (comm-tower charges wait for their group, spawn-point death channels every Nth death); 1_3 groundwork not a listed level; .82.1 [v1.10.82] Frontline: one-shot bank clips registered as alias, not aliascache (sound index table no longer full at load, bug-11266); journal RGB565 page fallback, per-level nav_spacing, extra ammo classes (1_3 groundwork, not a listed level); .81.1 [v1.10.81] Frontline: all 20 disc characters (own models, head shapes, fade copies, upscale), disc cover points, per-record paths, mood timers, particle sizes, journal, careful upscale + CC0 brick/planks; EA converter 0.7.33 (disc locomotion/hit/death/scene/MG clips, talking jaw, MG pole crews, snow Panzer, physics-settled corners, breakables, sounds read by field name, bloom/mix zones, creek mist + glow arc + city skyline, careful upscale, barrel-tile roof); .80.1 [v1.10.80] Frontline: disc particle systems, bombed-house wall piece, area combat lines, disc hedge boxes (upscaled), tree-card hue from the drawn image, water contents, crate roll; EA converter 0.7.30 (all six disc characters upscaled+smoothed, cut-out pass: wire/grass/wheat/decals, creek mist box, distant fires pulled in, 3D winter trees + extra trees, CC0 snow, breakable tombstones, path islands dropped, door clearances, sky 2048); .79.1 [v1.10.79] Frontline: house/bomber at real speed, objective 2 texts, the two German combat cues, trigger message fields; EA converter 0.7.23 (pose points, eachar character models - the woman held back in script); .78.1 .78.1 [v1.10.78] Frontline converter 0.6.0 rounds 9-14 (jeep ambush data, wall breach meshes, mvd key rate from the header, light gain, traced fog and sky, hedge skirts, shader-name dot fix, inverse quaternions, hint text ids, axis record numbers) + EA converter 0.7.21 (MG squads, loudspeakers, scene cue tables, sky box sides, fog, path-node bridges, facings); .77.1 .77.1 [flfix2] Frontline converter 0.6.0 - the world is no longer mirrored (signs read the right way round, bug-10965), build marker in the data script; .76.1 [eapolish] EA converter 0.7.5 - models lit by the level's own night light (light grid from the baked vertex colours); .73.14 [eapolish] EA converter 0.7.4 - night light matched to the disc (world gain divided out), crater rims, silent partisan bark aliases; .73.12 [eapolish] EA converter 0.7.2 - particle sizes are half extents; .73.11 [eapolish] EA converter 0.7.1 - the level's own fog record (night), particle width/height end scales; .73.10 [eapolish] (above flpolish .73.8, .73.9 left free for it): EA converter 0.7.0 - the level's own particle systems (eafx); .73.7 [eapolish] (above flpolish .73.6): EA converter 0.6.1 - the score's own event -> section table (eamusic), original collision 1:1; .73.5 [eapolish] EA converter 0.6.0 - the original voice lines (eavoice); .73.4 [eapolish] (above flpolish .73.3): EA converter 0.5.0 - destroyed variants, hinged gates, relit smart objects; .73.3 [eapolish]: EA converter 0.3.0 - real object-DB names (eadb) + the mission logic tables (eavm) (bug-eap-dbnames)
+HZMCONV_VERSION = "1.10.91.1"   # .91.1 [v1.10.91] Frontline: Armory change sound = the disc pistol slide rack (ShellBnk stream 36, picked by the user), not the pause-menu click (bug-11463); .89.1 [v1.10.89] disc guns converted from the player's own disc (Frontline 15, European Assault 22: upscaled models, original fire / reload / bolt sounds, own guns pak); EA converter 0.7.49 (sky ceiling so snow and rain fall, the item_drop alias fix, night-to-dawn sky on, blizzard sky key); Frontline 1_3 data; .88.1 [v1.10.88] Frontline: capsule step key (hzm_capsulestep), interrogation-room tunnel crawlable (caps +86, rubble edge carved, north end sealed), Armory pistol cock from the disc (Continue sound) into the mission pak; EA converter 0.7.48 (leader ExplainsPlan clip turned to face the room, held-PPSh hand clips, character light from the disc irradiance probes + bloom share, lightingGrid character shaders, irradiance boxes at full size, zone bloom mix, capsule step key); .87.1 [v1.10.87] Frontline: intact window panes drawn from the disc collision as cells of the level's own window texture (frame bars + glass, static as in the original, bug-11371), Health25 = the disc's medkit case; EA converter 0.7.44 (head-turn scene flags, the disc PPSh held-prop data, closed-mouth jaw rest clip); .86.1 [v1.10.86] Frontline: no edge skirts over drawn ground (Sealed Orders doors and windows, bug-11345), the crunch footstep class plays dirt, nest MG42s on the stock HD turret (user chose B); EA converter 0.7.41 (far ground mist, skyline pull); .85.1 [v1.10.85] Frontline: invisible clips block players and AI but not bullets, footstep surfaces from the disc collision class; EA converter 0.7.40 (dialogue speaker + head turn, squad-objective sends, unstandable objectives moved, footstep surfaces); .84.1 [v1.10.84] Frontline: Sealed Orders disc Panzer IV, MG42, canteen, medkit, field phone (user-approved), see-through foliage cards lose their collision slabs, the shop-front clip sheet kept, flchar bind-rotation offset from the bone count; EA converter 0.7.36 (MMG point and crew heights, crouched-gunner clip); 1_3 groundwork not a listed level; .83.1 [v1.10.83] Frontline: the original sky from the player's disc, mono ambience beds, object meshes over 2000 verts split, smoke sized to the disc sprite; EA converter 0.7.35 (comm-tower charges wait for their group, spawn-point death channels every Nth death); 1_3 groundwork not a listed level; .82.1 [v1.10.82] Frontline: one-shot bank clips registered as alias, not aliascache (sound index table no longer full at load, bug-11266); journal RGB565 page fallback, per-level nav_spacing, extra ammo classes (1_3 groundwork, not a listed level); .81.1 [v1.10.81] Frontline: all 20 disc characters (own models, head shapes, fade copies, upscale), disc cover points, per-record paths, mood timers, particle sizes, journal, careful upscale + CC0 brick/planks; EA converter 0.7.33 (disc locomotion/hit/death/scene/MG clips, talking jaw, MG pole crews, snow Panzer, physics-settled corners, breakables, sounds read by field name, bloom/mix zones, creek mist + glow arc + city skyline, careful upscale, barrel-tile roof); .80.1 [v1.10.80] Frontline: disc particle systems, bombed-house wall piece, area combat lines, disc hedge boxes (upscaled), tree-card hue from the drawn image, water contents, crate roll; EA converter 0.7.30 (all six disc characters upscaled+smoothed, cut-out pass: wire/grass/wheat/decals, creek mist box, distant fires pulled in, 3D winter trees + extra trees, CC0 snow, breakable tombstones, path islands dropped, door clearances, sky 2048); .79.1 [v1.10.79] Frontline: house/bomber at real speed, objective 2 texts, the two German combat cues, trigger message fields; EA converter 0.7.23 (pose points, eachar character models - the woman held back in script); .78.1 .78.1 [v1.10.78] Frontline converter 0.6.0 rounds 9-14 (jeep ambush data, wall breach meshes, mvd key rate from the header, light gain, traced fog and sky, hedge skirts, shader-name dot fix, inverse quaternions, hint text ids, axis record numbers) + EA converter 0.7.21 (MG squads, loudspeakers, scene cue tables, sky box sides, fog, path-node bridges, facings); .77.1 .77.1 [flfix2] Frontline converter 0.6.0 - the world is no longer mirrored (signs read the right way round, bug-10965), build marker in the data script; .76.1 [eapolish] EA converter 0.7.5 - models lit by the level's own night light (light grid from the baked vertex colours); .73.14 [eapolish] EA converter 0.7.4 - night light matched to the disc (world gain divided out), crater rims, silent partisan bark aliases; .73.12 [eapolish] EA converter 0.7.2 - particle sizes are half extents; .73.11 [eapolish] EA converter 0.7.1 - the level's own fog record (night), particle width/height end scales; .73.10 [eapolish] (above flpolish .73.8, .73.9 left free for it): EA converter 0.7.0 - the level's own particle systems (eafx); .73.7 [eapolish] (above flpolish .73.6): EA converter 0.6.1 - the score's own event -> section table (eamusic), original collision 1:1; .73.5 [eapolish] EA converter 0.6.0 - the original voice lines (eavoice); .73.4 [eapolish] (above flpolish .73.3): EA converter 0.5.0 - destroyed variants, hinged gates, relit smart objects; .73.3 [eapolish]: EA converter 0.3.0 - real object-DB names (eadb) + the mission logic tables (eavm) (bug-eap-dbnames)
 TOOLS = os.path.join(os.path.dirname(os.path.abspath(sys.executable if getattr(sys, "frozen", False) else __file__)), "tools")
 
 
@@ -160,28 +160,25 @@ class FrontlineGame:
 
 
 # ------------------------------------------------------------------ the Armory change sound (user 2026-11-22)
-# Frontline's own main-menu select sound (the pistol cock the user remembers from choosing a menu item; user 2026-11-23: "when
-# you select the continue game button, not actually proceed with it"). The Xbox disc's main menu has no "Continue Game" item: A on
-# Play / Multiplayer / Records / Gallery / Options starts TWO ShellBnk voices together at equal gain - ShellBnk.abk streams 2
-# (1.109 s) and 30 (0.444 s), vgmstream indices - so the clip is both mixed 1:1. Evidence (ref_xemu, SDL disk-audio capture,
-# 2026-11-23, flcock rec2, 3 presses): the 1:1 mix correlates 0.933 / 0.597 / 0.634 with the recording, stream 2 alone 0.80 /
-# 0.51 / 0.55, stream 30 alone 0.80 / 0.54 / 0.54, least-squares gains 0.14 / 0.13, the pair explains 86% of the first press.
-# bug-11463: 1.10.88-1.10.90 shipped 1_1 ScrBnk stream 1 (0.157 s) instead - the PAUSE menu's open/CONTINUE click (rec1: 0.70 /
-# 0.62 against 4 presses each), which the user heard as "a typewriter click"; against the main-menu select it scores 0.095.
-# FrontlineGame.convert puts the clip into THIS player's Frontline mission pak (zzzz_coop_fl_<l>.pk3, built for every Frontline
-# owner) as MENU_WAV, and MENU_SET into the pak's own fl/have_<l>.cfg marker: autoexec.cfg sets the mod default (apply.wav) and
-# then execs the marker, and the Armory's ui/coop_armory_snd.cfg is `vstr coop_armorySnd`. No file overrides another, so pak
-# load order cannot decide it.
-MENU_BANK, MENU_STREAMS = "DATA/SHELL/ShellBnk.abk", (2, 30)
+# Frontline's own pistol slide rack: ShellBnk.abk stream 36 (vgmstream index), 0.258 s, mono 44.1 kHz, the shell bank's sound
+# the user remembers from selecting "continue game" (user 2026-11-23, picking by ear from all 37 decoded ShellBnk streams:
+# "Sound 36 is the slide noise"). Shipped as decoded, alone, no gain change.
+# bug-11463: 1.10.88-1.10.90 shipped 1_1 ScrBnk stream 1 (0.157 s), the PAUSE menu's open/CONTINUE click (ref_xemu SDL
+# disk-audio capture 2026-11-23: ncc 0.70 / 0.62 over 4 presses each), which the user heard as "a typewriter click". A 1:1 mix of
+# ShellBnk streams 2 + 30 (what A on a main-menu carousel item plays; ncc 0.93 on the first press) was tried next and rejected by
+# ear: not the slide either. Where stream 36 plays in the original menus was not recorded (the Xbox main menu has no "Continue
+# Game" item). FrontlineGame.convert puts the clip into THIS player's Frontline mission pak (zzzz_coop_fl_<l>.pk3, built for every
+# Frontline owner) as MENU_WAV, and MENU_SET into the pak's own fl/have_<l>.cfg marker: autoexec.cfg sets the mod default
+# (apply.wav) and then execs the marker, and the Armory's ui/coop_armory_snd.cfg is `vstr coop_armorySnd`. No file overrides
+# another, so pak load order cannot decide it.
+MENU_BANK, MENU_STREAM = "DATA/SHELL/ShellBnk.abk", 36
 MENU_WAV = "sound/menu/coop_fl_cock.wav"
 MENU_SET = 'set coop_armorySnd "play %s"\n' % MENU_WAV
 
 
 def menu_sound_files(disc, tmp, vgm):
     """-> {MENU_WAV: wav bytes}; {} without vgmstream or the bank (the mod's own Armory sound then plays)"""
-    import array
     import flaudio
-    import wave
     if not vgm or not os.path.exists(vgm):
         return {}
     try:
@@ -189,36 +186,14 @@ def menu_sound_files(disc, tmp, vgm):
     except Exception:
         return {}
     bnk, ents = flaudio.bnk_entries(ab)
-    if not bnk or not set(MENU_STREAMS) <= {e["stream"] for e in ents}:
+    if not bnk or MENU_STREAM not in {e["stream"] for e in ents}:
         return {}
     src = os.path.join(tmp, "menu.bnk")
     open(src, "wb").write(bnk)
-    layers, rate = [], None
-    for k in MENU_STREAMS:
-        dst = os.path.join(tmp, "menu_%d.wav" % k)
-        if not flaudio.vgm_decode(vgm, src, dst, k):
-            return {}
-        with wave.open(dst, "rb") as w:
-            if w.getsampwidth() != 2 or rate not in (None, w.getframerate()):
-                return {}
-            rate, ch = w.getframerate(), w.getnchannels()
-            pcm = array.array("h", w.readframes(w.getnframes()))
-        if ch > 1:      # mono for the client (flaudio.wav_mono)
-            pcm = array.array("h", [sum(pcm[i:i + ch]) // ch for i in range(0, len(pcm), ch)])
-        layers.append(pcm)
-    mix = [0] * max(len(p) for p in layers)
-    for p in layers:    # equal gain, both from the same instant (the shell starts them together)
-        for i, v in enumerate(p):
-            mix[i] += v
-    peak = max(1, max(abs(v) for v in mix))
-    g = min(1.0, 32767 * 0.95 / peak)
-    out = os.path.join(tmp, "menu_cock.wav")
-    with wave.open(out, "wb") as w:
-        w.setnchannels(1)
-        w.setsampwidth(2)
-        w.setframerate(rate)
-        w.writeframes(array.array("h", [int(round(v * g)) for v in mix]).tobytes())
-    return {MENU_WAV: open(out, "rb").read()}
+    dst = os.path.join(tmp, "menu_cock.wav")
+    if not flaudio.vgm_decode(vgm, src, dst, MENU_STREAM):
+        return {}
+    return {MENU_WAV: flaudio.wav_mono(dst)}     # the client refuses stereo effect wavs (the disc clip is mono: bytes as decoded)
 
 
 def add_marker(pk3, name, text):
