@@ -7,6 +7,8 @@
   "sky": "textures/sky/mohnightfog",
   "farplane": 9000,
   "vis_radius": 0, "far_fx_gain": 1.79,
+  "interior_gain": {"LTD_IRRAD_VTRIG_INT_10": 1.35, "LTD_IRRAD_VTRIG_INT_11": 1.35, "LTD_IRRAD_VTRIG_INT_12": 1.35, "LTD_IRRAD_VTRIG_INT_13": 1.35, "LTD_IRRAD_VTRIG_INT_14": 1.35},
+  "_interior_gain_doc": "0.7.51 church world light (user 2026-11-22 'extremely dark inside'): ours measured median 15-19 vs the emulator's 21 at the same nave spot (sky matched 1:1 at the far-city vantage); x1.35 on the baked vertex light inside the church's irradiance volumes. FIDELITY C52",
   "mist": {"enabled": true, "density": 0.0011, "gain": 1.0, "desat": 0.0, "tint": [0.76, 0.9, 1.1], "_doc": "the creek mist (RUS1_Fog_02) as the engine's height mist hzm_mist (eafx.mist_key, tr_hzm_mist.c): user-approved 2026-11-13, the original's layout with its artifacts fixed; density per unit at the core, gain on the cards' start colour"},
   "mist_extra": [{"box": [1500, 2300, 8200, 5200], "z": [-620, -300], "density": 0.0007, "edge": 700}, {"box": [5600, -1200, 8200, 2300], "z": [-620, -300], "density": 0.0007, "edge": 700}],
   "mist_rgb": [0.166, 0.218, 0.352],
