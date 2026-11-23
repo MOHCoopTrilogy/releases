@@ -293,6 +293,26 @@ function New-ServerCfgText($p, $sec, $cat, [switch]$Listen, [switch]$LightGraphi
 function Get-ProfileTag($p) { $p.name -replace '[^A-Za-z0-9_-]', '_' }
 # the address a friend types: the game adds 12203 (PORT_SERVER, NET_StringToAdr) when no port is given
 function Get-JoinAddress([string]$ip, [int]$port) { if ($port -eq 12203) { "$ip" } else { "${ip}:$port" } }
+# the first port pair (game port + 97 for the browser) from 12203 up that no OTHER profile needs: one that is running now or
+# starts with Windows. A saved profile that is never run does not hold its ports (bug-11454: a second profile used to get
+# 12204 for good, and friends then had to type :12204)
+function Get-FreePort([string]$exceptName = "") {
+    $used = @(Get-ProfileNames | Where-Object { $_ -ne $exceptName } | ForEach-Object {
+        $o = Read-Profile $_
+        if ($o.startWithWindows -or (Test-Running $o)) { [int]$o.port; [int]$o.queryPort }
+    })
+    $port = 12203; while ($used -contains $port -or $used -contains ($port + 97)) { $port++ }
+    $port
+}
+function Test-PortClash($p) {
+    foreach ($n in Get-ProfileNames) {
+        if ($n -eq $p.name) { continue }
+        $o = Read-Profile $n
+        if (-not (Test-Running $o)) { continue }
+        if (@($o.port, $o.queryPort) | Where-Object { $_ -eq $p.port -or $_ -eq $p.queryPort }) { return $o.name }
+    }
+    ""
+}
 # the UDP port the server really bound, from its console ("Opening IP socket: 0.0.0.0:12204" - one line per try, the
 # last one is the bind that held) and whether a strict bind found the port taken (NET_OpenIP, net_portStrict 1)
 function Get-BoundPort([string]$text) {
@@ -1092,11 +1112,13 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
               <TextBlock x:Name="txtSuggest" Foreground="{StaticResource Muted}" Margin="10,0,0,0"/>
             </StackPanel>
             <TextBlock Text="Game port (UDP)" Grid.Row="5"/>
-            <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+            <StackPanel Grid.Row="5" Grid.Column="1"><StackPanel Orientation="Horizontal">
               <TextBox x:Name="tbPort" Width="80"/>
               <TextBlock Text="   server-browser port (UDP)  " Foreground="{StaticResource Muted}"/>
               <TextBox x:Name="tbQueryPort" Width="80"/>
+              <Button x:Name="btnStdPort" Content="Use the standard port (12203)" Margin="10,0,0,0"/>
             </StackPanel>
+            <TextBlock x:Name="txtPortHint" Foreground="#FFE0B050" TextWrapping="Wrap"/></StackPanel>
             <TextBlock Text="Visibility" Grid.Row="6"/>
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
               <RadioButton x:Name="rbPublic" Content="Public (listed on the master server)" GroupName="vis"/>
@@ -1392,7 +1414,7 @@ function Load-ProfileToUi($p) {
     $ui.tbBans.Text = (@($p.bans) -join "`r`n"); $ui.tbWhitelist.Text = (@($p.whitelist) -join "`r`n"); $ui.cbWhitelist.IsChecked = [bool]$p.whitelistOn
     $ui.pwWebhook.Password = $script:Sec.webhook
     $ui.cbHookUp.IsChecked = [bool]$p.hookUp; $ui.cbHookDown.IsChecked = [bool]$p.hookDown; $ui.cbHookJoin.IsChecked = [bool]$p.hookJoin; $ui.cbHookLeave.IsChecked = [bool]$p.hookLeave
-    Update-Preview; Set-ModeHelp; Set-MissionHelp
+    Update-Preview; Set-ModeHelp; Set-MissionHelp; Update-PortHint
     Build-Affinity; Build-Tuning
     $script:Built = @{}; Build-Gameplay
     $ui.txtFirewall.Text = if (Test-FirewallRule $p) { "a rule for this profile exists" } else { "no rule for this profile yet" }
@@ -1435,15 +1457,6 @@ function Read-UiToProfile {
     $script:Sec.webhook = $wh
 }
 
-function Test-PortClash($p) {
-    foreach ($n in Get-ProfileNames) {
-        if ($n -eq $p.name) { continue }
-        $o = Read-Profile $n
-        if (-not (Test-Running $o)) { continue }
-        if (@($o.port, $o.queryPort) | Where-Object { $_ -eq $p.port -or $_ -eq $p.queryPort }) { return $o.name }
-    }
-    ""
-}
 
 function Save-All {
     Read-UiToProfile
@@ -1742,7 +1755,12 @@ function Start-Current {
     Save-All
     $p = $script:P
     $clash = Test-PortClash $p
-    if ($clash) { Tell "Profile '$clash' is already running on port $($p.port) or $($p.queryPort). Give this profile other ports (Server tab)."; return }
+    if ($clash) {
+        $free = Get-FreePort $p.name
+        if (-not (Ask "Profile '$clash' is already running on port $($p.port) or $($p.queryPort).`n`nUse the next free ports for '$($p.name)' ($free, server browser $($free + 97)) and start it?`n`nFriends would then type the address followed by :$free.")) { return }
+        $ui.tbPort.Text = "$free"; $ui.tbQueryPort.Text = "$($free + 97)"
+        Save-All; $p = $script:P
+    }
     if ($p.mode -eq "listen") {
         $gp = if ($script:Specs) { @($script:Specs.Gpus) } else { @(Get-GpuInfo) }
         $light = $gp.Count -gt 0 -and @($gp | Where-Object { -not $_.Integrated }).Count -eq 0
@@ -1769,6 +1787,22 @@ function Stop-Current {
 # ---------------------------------------------------------------------------------------------------- wiring
 $ui.cbPriority.ItemsSource = @("Normal", "AboveNormal", "High", "BelowNormal")
 $ui.tbHostname.Add_TextChanged({ Update-Preview })
+# friends type only the address when the game port is 12203 (the game adds it); any other port they must type
+function Update-PortHint {
+    $n = 0; $ok = [int]::TryParse($ui.tbPort.Text, [ref]$n)
+    if ($ok -and $n -ne 12203) {
+        $ui.txtPortHint.Text = "Not the standard port: friends must type the address followed by :$n (for example 192.168.1.20:$n)."
+        $ui.txtPortHint.Visibility = "Visible"; $ui.btnStdPort.Visibility = "Visible"
+    } else { $ui.txtPortHint.Text = ""; $ui.txtPortHint.Visibility = "Collapsed"; $ui.btnStdPort.Visibility = "Collapsed" }
+}
+$ui.tbPort.Add_TextChanged({ Update-PortHint })
+$ui.btnStdPort.Add_Click({
+    $t = [pscustomobject]@{ name = $script:P.name; port = 12203; queryPort = 12300 }
+    $c = Test-PortClash $t
+    if ($c) { Tell "Profile '$c' is running on 12203 right now. Stop it first, or keep this port."; return }
+    $ui.tbPort.Text = "12203"; $ui.tbQueryPort.Text = "12300"
+    Set-Status "Standard port set - press Save (or Start) to keep it"
+})
 $ui.rbDedicated.Add_Checked({ Set-ModeHelp }); $ui.rbListen.Add_Checked({ Set-ModeHelp; if ($script:Specs) { Show-Specs } })
 foreach ($r in @($ui.rbCampaign, $ui.rbSingle, $ui.rbRotation)) { $r.Add_Checked({ if (-not $script:Loading) { Read-UiToProfile }; Set-MissionHelp; Fill-RightList }) }
 $ui.rbPublic.Add_Checked({ $ui.cbMaster.IsChecked = $true }); $ui.rbLan.Add_Checked({ $ui.cbMaster.IsChecked = $false })
@@ -1860,8 +1894,7 @@ function New-ProfileUi([switch]$Copy) {
     if (-not $n) { return }
     if (-not (Test-ProfileName $n)) { Tell "That name cannot be used."; return }
     if (@(Get-ProfileNames) -contains $n) { Tell "A profile '$n' already exists."; return }
-    $used = @(Get-ProfileNames | ForEach-Object { $o = Read-Profile $_; $o.port; $o.queryPort })
-    $port = 12203; while ($used -contains $port -or $used -contains ($port + 97)) { $port++ }
+    $port = Get-FreePort
     if ($Copy) { Read-UiToProfile; $np = Read-Profile $script:P.name; $np.name = $n; $np.port = $port; $np.queryPort = $port + 97; $np.startWithWindows = $false; $np.settings = $script:P.settings; Save-Profile $np; Save-Secrets $n $script:Sec }
     else { Save-Profile (New-Profile $n $port) }
     Refresh-ProfileList $n; Select-Profile $n
