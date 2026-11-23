@@ -16,9 +16,19 @@ CLIPS   u32 n, n x ptr clip.
 clip    +0 u8 frame time (x 1/16; the stream unit, see TIME), u8 (count), u8 flags (see FLAGS), u8 0, +4 ptr SKEL,
         +8 u16 stream: a value whose two top bits are not both set is a POSE index; 0xc000 / 0xc001 end the clip;
         0xc002 marks a loop start, 0xc003 <n> repeats it, 0xc004 <n> adds n/16 to the frame time, 0xc005 / 0xc006 set
-        player flags; 0xc800-0xcfff are game ("user animation") opcodes - sounds, footsteps, weapon events - and with
-        0x1000 set take one argument word; 0xe000 opcodes with 0x1000 set also take one. An argument word: 12 bits
-        signed, and with 0x1000 set a second u16 below it (0x384a0).
+        player flags; 0xc800-0xcfff are game ("user animation") opcodes, see OPS. An argument word: 12 bits signed, and
+        with 0x1000 set a second u16 below it (0x384a0 / 0x38860).
+OPS     (decodeaudit 2026-11-22) the stream reader (0x38625) hands a game opcode to the callback the game installs
+        (0x37830 -> 0x34060: 0x37300; jump table 0x376a0 for 0xc803-0xc812, byte table 0x376e8 for 0xca00-0xca5d). The
+        callback reads its own argument words from the stream (0x38860); an opcode it does not handle skips one word
+        when its 0x1000 bit is set. 0xc803 <n> / 0xc804 / 0xc805 / 0xc807 / 0xc808 / 0xc809 / 0xc80a / 0xc810 /
+        0xc811 <n> post object events 0x7e / 0x7d / 0x7f / 0x81 / 0xe2 / 0xe3 / 0xa7 / 0xfc / 0xff to the character's
+        script (anim markers); 0xc806 <n> (0x80270) and 0xc80f <n> (0x80f70 -> the PLAYSOUND player 0x80860: sound n
+        of the character's animation sound map, 1_1animSnd.som) are sounds; 0xc80b <a> <b>, 0xc80d / 0xc80e <n>
+        (0x67d10 on / off), 0xc812 <n> (flags at +0xc30) are state; 0xc900 sets flag 0x10 (0x35e40: the clip's
+        last-pose marker); 0xca00-0xca5d <n> (20 of them) send a movement-sound event (0x80150 -> 0x80226, the same
+        AEMS block as the player's steps: action = opcode - 0xca01, surface = the ground under the man, source 2 =
+        AI; fl_footsteps_notes.md): actions 4-8 steps, 9 land, 0x12 hard land, 22-99 other movement sounds.
 SKEL    'SKEL' (0x534b454c), ptr BASE, ptr RANGES, u32 bones (55), u32 0.
 BASE    u16 bones, then per bone 3 x int16 angles (x, y, z; 65536 = 360 degrees): the clip's base pose.
 RANGES  u16 r, r x (u8 first bone, u8 count): the bones this clip animates. Every other bone holds its BASE angles.
@@ -39,6 +49,11 @@ import struct
 
 POSE_HEADER = 26
 TICKS_PER_SECOND = 60.0
+# game opcodes -> the argument words their handler reads (OPS above); every 0xca opcode the byte table routes to
+# the movement-sound case takes one
+OP_ARGS = {0xc803: 1, 0xc806: 1, 0xc80b: 2, 0xc80d: 1, 0xc80e: 1, 0xc80f: 1, 0xc811: 1, 0xc812: 1}
+OP_ARGS.update({0xca00 + k: 1 for k in (0x00, 0x0a, 0x13, 0x16, 0x18, 0x19, 0x1e, 0x22, 0x24, 0x29, 0x2f, 0x34, 0x38,
+                                         0x39, 0x3b, 0x3d, 0x43, 0x53, 0x5a, 0x5d)})
 
 
 class Emt:
@@ -101,12 +116,15 @@ class Emt:
                 out.append(("pose", w, tick))
                 tick += ft
                 continue
-            if w & 0x800:                       # game opcode (sound, footstep, weapon...)
-                arg = None
-                if w & 0x1000:
-                    arg = struct.unpack_from("<H", d, o)[0]
+            if w & 0x800:                       # game opcode (OPS): its handler reads its own argument words
+                args = []
+                for _k in range(OP_ARGS.get(w, 0)):
+                    v, o = self._arg(o)
+                    args.append(v)
+                if w not in OP_ARGS and w & 0x1000:
+                    args.append(struct.unpack_from("<H", d, o)[0])
                     o += 2
-                out.append(("op", (w, arg), tick))
+                out.append(("op", (w, args[0] if len(args) == 1 else (tuple(args) or None)), tick))
                 continue
             k = w - 0xc000
             if k in (0, 1):

@@ -8,7 +8,11 @@ motion paths of set pieces - never Frontline text or art.
 [4..6] position, [7..10] quaternion (w, x, y, z). Actor word [13] byte 1 = team (1 Allied, 2 Axis, 0 neutral).
 Message ids are words in 65536..69999 past word 12: an object/actor ANSWERS to them; a trigger holds at [28] the count N,
 then the N ids it SENDS, then a 2-word action (1, code) (4 = player enters, 51/52 = proximity/sight, 42 = clean-up). The trigger's
-size is the high half of word [11] in decimetres.
+volume (code decode 2026-11-22, the native containment test 0x32d90; words as s16, every length x 1/16 m = 0x12e2ac):
+word [11] low = shape, [11] high = a, [12] low = b, [12] high = c. Shape 0 = sphere, radius a (0x32be0); shape 1 =
+upright cylinder, radius a, from c to b above / below the record's centre (0x32c30; 189 of the 1_1 triggers, mostly
+c = -5 m, b = +2 m); shape 2 = box turned by the record's quaternion, a wide (+-a/2), +-|c|/2 deep and up to b/2
+(0x32ca0, 12 on 1_1). The old reading (word [11] high in decimetres, a sphere) made every trigger 1.6x too wide.
 .mvd v2: header u32 [1] version, [2] frame count, [3] flags; frames from byte 16, 32 bytes {f32 x,y,z; u32 tag;
 f32 quaternion w,x,y,z}, 30 per second. Model forward = local -y (heading = quaternion yaw - 90).
 """
@@ -40,6 +44,36 @@ def ids(e):
     return [x for k, x in enumerate(w) if k > 12 and ID_LO <= x < ID_HI]
 
 
+def volume(e):
+    """{shape, r (m), zlo, zhi (m, relative to the record's centre)} of a record's trigger volume (see the header):
+    the native test's own numbers; for the box (shape 2) r = the half width, zlo / zhi its z extent"""
+    w = words(e)
+    if len(w) < 13:
+        return None
+    s16 = lambda v: v - 65536 if v & 0x8000 else v      # noqa: E731
+    shp, a = w[11] & 0xFFFF, s16(w[11] >> 16) / 16.0
+    b, c = s16(w[12] & 0xFFFF) / 16.0, s16(w[12] >> 16) / 16.0
+    if shp == 0:
+        return {"shape": 0, "r": a, "zlo": -a, "zhi": a}
+    if shp == 1:
+        return {"shape": 1, "r": a, "zlo": min(b, c), "zhi": max(b, c)}
+    # the box: local x / y / z = the rows of the record quaternion's matrix (0x54ce0, w first) dotted with the offset
+    # (row . d, as 0x32ca0 does); |x| <= a / 2, |y| <= |c| / 2; z read as |z| <= b / 2 (ASSUMPTION: the z compare's
+    # flag tests were not followed to the end)
+    qw, qx, qy, qz = struct.unpack_from("<4f", e["raw"], 28)
+    rows = [(1 - 2 * (qy * qy + qz * qz), 2 * (qx * qy - qw * qz), 2 * (qx * qz + qw * qy)),
+            (2 * (qx * qy + qw * qz), 1 - 2 * (qx * qx + qz * qz), 2 * (qy * qz - qw * qx)),
+            (2 * (qx * qz - qw * qy), 2 * (qy * qz + qw * qx), 1 - 2 * (qx * qx + qy * qy))]
+    return {"shape": shp, "r": math.hypot(a / 2.0, abs(c) / 2.0), "hx": a / 2.0, "hy": abs(c) / 2.0,
+            "zlo": -abs(b) / 2.0, "zhi": abs(b) / 2.0, "rows": rows}
+
+
+def radius_m(e):
+    """the trigger volume's radius in metres (the native test: word [11] high / 16; a box: its corner distance)"""
+    v = volume(e)
+    return v["r"] if v else 0.0
+
+
 def trigger(e):
     """(radius_m, sends[ids], code) of a kind-1 record, or None"""
     w = words(e)
@@ -52,7 +86,7 @@ def trigger(e):
     # after the ids: a 2-word action, (1, code): 4 = start on player enter, 51 = proximity, 42/73/103 seen on
     # later triggers (follow-up messages to groups already started)
     code = w[30 + n] if 30 + n < len(w) else 0
-    return (w[11] >> 16) / 10.0, sends, code
+    return radius_m(e), sends, code
 
 
 def state(e):

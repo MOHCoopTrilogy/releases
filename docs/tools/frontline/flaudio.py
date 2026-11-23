@@ -211,14 +211,17 @@ def schl_at(data, off):
     return s[0] if s else None
 
 
-def som_sound(som, sound_set, sound_id):
-    """-> {first, last, code, volume (0..1), flags} of a sound set's PLAYSOUND id, or None"""
+def som_sound(som, sound_set, sound_id, sub=None):
+    """-> {first, last, code, volume (0..1), flags} of a sound set's PLAYSOUND id, or None.
+    [anvil 2026-11-23] A set can hold several rows for one id, told apart by the second key word = the record's
+    category-12 link (1_3 Alarm_ParentScript set 449 id 57: sub 786 -> an empty bank slot, sub 991 -> the alarm bell
+    the emulator plays). sub=None keeps the first row (the converter's behaviour so far)."""
     if som[:4] != b"SOMI":
         return None
     na, nb, oa, ob = struct.unpack_from("<4I", som, 0x10)
     for i in range(na):
         key, _sub, sid, bi = struct.unpack_from("<4H", som, oa + 8 * i)
-        if key == sound_set and sid == sound_id and bi < nb:
+        if key == sound_set and sid == sound_id and bi < nb and (sub is None or _sub == sub):
             lo, hi, code, _p0, _p1, vol, fl, _z = struct.unpack_from("<BBHHHHHH", som, ob + 14 * bi)
             return {"first": lo, "last": hi, "code": code, "volume": vol / 32767.0, "flags": fl}
     return None
@@ -239,3 +242,188 @@ def bank_stream(abk, code, entry):
     table = 0x0C if bnk[4] == 2 else 0x14
     live = [i for i in range(n) if struct.unpack_from("<I", bnk, table + 4 * i)[0]]
     return live.index(slot) + 1 if slot in live else None
+
+
+# ---- [decodeaudit 2026-11-23] AEMS module graphs of an .ABK header (gap 5 barks, gap 11 vehicle bank) ----
+# Header word [0x10] -> module descriptors, 0x1c bytes {u16 sub, u16 ?, u32 objects (root included), u32 EventSystem
+# module index, u32 object offset, ...}, running up to the first object list. Object {u32 id, u8 type, u8 sub,
+# u16 nout, u32 link}; link block = nout x (u32 ptr, u32 count) then the targets (port << 16 | node); objects follow
+# the root (node 0) in link-chain order (each link block starts where the previous one ended). Same reading as
+# codedecode tools/fl_aemsobj.py, which documents the node types.
+
+def aems_modules(abk):
+    H = abk[:abk.find(b"BNKl")]
+    t = struct.unpack_from("<I", H, 0x10)[0]
+    out, end = [], len(H)
+    while t + 0x1C <= end:
+        sub, _u, nobj, mi, oo = struct.unpack_from("<HHIII", H, t)
+        if not (0 < nobj < 4096 and 0x40 <= oo < len(H)):
+            break
+        out.append({"sub": sub, "objects": nobj, "module": mi, "off": oo})
+        end = min(end, oo)
+        t += 0x1C
+    return out
+
+
+def _link_end(H, link, n):
+    if n == 0:
+        return link + 4
+    pairs = struct.unpack_from("<%dI" % (2 * n), H, link)
+    return link + 8 * n + 4 * sum(pairs[1::2])
+
+
+def aems_graph(abk, module):
+    """-> {node: {id, type, inl, out: [[(port, node)..] per output]}} of the module with EventSystem index `module`"""
+    H = abk[:abk.find(b"BNKl")]
+    md = [m for m in aems_modules(abk) if m["module"] == module]
+    if not md:
+        return {}
+    root = md[0]["off"]
+    _i, _t, _s, rn, rl = struct.unpack_from("<IBBHI", H, root)
+    objs, nxt, o = [], _link_end(H, rl, rn), root + 12
+    while o < len(H) - 12 and len(objs) < md[0]["objects"] - 1:
+        oid, t, s, n, link = struct.unpack_from("<IBBHI", H, o)
+        if (0x40 < oid < 0x10000 or oid == 0) and 0 < t < 0x40 and n < 64 and nxt <= link <= nxt + 8 \
+                and link < len(H) and link % 4 == 0:
+            objs.append((o, oid, t, s, n, link))
+            nxt = _link_end(H, link, n)
+            o += 12
+        else:
+            o += 4
+    g = {}
+    for k, (o, oid, t, s, n, link) in enumerate(objs):
+        end = objs[k + 1][0] if k + 1 < len(objs) else o + 12
+        inl = struct.unpack_from("<%di" % max(0, (end - o - 12) // 4), H, o + 12)
+        pairs = struct.unpack_from("<%dI" % (2 * n), H, link) if n else ()
+        outs, p = [], link + 8 * n
+        for c in pairs[1::2]:
+            outs.append([(x >> 16, x & 0xFFFF) for x in struct.unpack_from("<%dI" % c, H, p)])
+            p += 4 * c
+        g[k + 1] = {"id": oid, "type": (t, s), "inl": inl, "out": outs}
+    return g
+
+
+def aems_set_slots(abk, node):
+    """BNK slots of a 04.0b sample-set node"""
+    H = abk[:abk.find(b"BNKl")]
+    p, c = struct.unpack_from("<II", H, node["inl"][0])
+    return [x & 0xFFF for x in struct.unpack_from("<%dI" % c, H, p)]
+
+
+def aems_table(abk, node):
+    """a 1e.01 lookup node -> {index: value} over its whole input range lo..hi (n entries spread evenly over it:
+    the 11VehBnk gates hold 128 entries for 0..255)"""
+    H = abk[:abk.find(b"BNKl")]
+    to, n, lo, hi, es = node["inl"][:5]
+    vals = list(H[to:to + n]) if es == 1 else list(struct.unpack_from("<%dh" % n, H, to))
+    span = hi - lo + 1
+    if span == n or span > 4096:
+        return {lo + i: v for i, v in enumerate(vals)}
+    return {lo + x: vals[min(n - 1, x * n // span)] for x in range(span)}
+
+
+def bark_slots(abk, module=15, event_param=0x968, events=range(1, 11)):
+    """[decodeaudit 2026-11-23, gap 5] the AI bark module of an 11LOAD bank (EventSystem module 15; sent by the soldier
+    classes' voice behaviour 2, L0040: AEMSEVENT block {15, event, speaker type, GETSOUNDINFO(0,2), (1,2), 0}).
+    Param 0x968 = the event (1..10) picks, per voice family, a sample index range inside the family's sample set:
+    a 09.xx selector node whose input 0 is the event (directly or through a 1e.01 table) and whose inputs 1..n are
+    08.01 random-range nodes (lo, hi); the selector feeds port 6 (sample index) of the set. The family order is the
+    5-way switch on the speaker-type class (0x969 -> table [1,1,1,1,2,2,2,3,4,3,5,5,5]): family 0 = German speakers,
+    family 1 = American. -> {family: {event: [BNK slots]}} (slots that are empty in the BNK are kept; the caller
+    drops them)."""
+    g = aems_graph(abk, module)
+    if not g:
+        return {}
+    feeds = {}                                              # (node, port) -> [source node]
+    for k, nd in g.items():
+        for outs in nd["out"]:
+            for port, dst in outs:
+                feeds.setdefault((dst, port), []).append(k)
+    sets = [k for k, nd in g.items() if nd["type"] == (4, 0x0B)]
+    pnode = [k for k, nd in g.items() if nd["id"] == event_param and nd["type"] == (1, 0)]
+    if not pnode:
+        return {}
+    pnode = pnode[0]
+    # family order: the switch (type 0a.xx) whose outputs reach the sets' port 7
+    sw = [k for k, nd in g.items() if nd["type"][0] == 0x0A]
+    order = []
+    if sw:
+        for outs in g[sw[0]]["out"]:
+            for port, dst in outs:
+                if port == 7 and dst in sets:
+                    order.append(dst)
+    res = {}
+    for fam, sk in enumerate(order):
+        base = aems_set_slots(abk, g[sk])
+        sel = [s for s in feeds.get((sk, 6), []) if g[s]["type"][0] == 0x09]
+        if not sel:
+            continue
+        sel = sel[0]
+        src0 = feeds.get((sel, 0), [])
+        if pnode in src0:
+            pick = {e: e for e in events}
+        else:
+            tabs = [s for s in src0 if g[s]["type"] == (0x1E, 1) and pnode in feeds.get((s, 0), [])]
+            if not tabs:
+                continue
+            tb = aems_table(abk, g[tabs[0]])
+            pick = {e: tb.get(e, 0) for e in events}
+        ranges = {}
+        for port in range(1, 16):
+            rn = [s for s in feeds.get((sel, port), []) if g[s]["type"] == (8, 1)]
+            if rn:
+                lo, hi = g[rn[0]]["inl"][:2]
+                ranges[port] = (lo, hi)
+        fam_res = {}
+        for e in events:
+            r = ranges.get(pick[e])
+            if r:
+                fam_res[e] = [base[i] for i in range(r[0], r[1] + 1) if i < len(base)]
+        res[fam] = fam_res
+    return res
+
+
+def bnk_live_streams(abk):
+    """BNK slot -> 1-based vgmstream stream index (live slots only)"""
+    bnk = abk[abk.find(b"BNKl"):]
+    n = struct.unpack_from("<H", bnk, 6)[0]
+    table = 0x0C if bnk[4] == 2 else 0x14
+    live = [i for i in range(n) if struct.unpack_from("<I", bnk, table + 4 * i)[0]]
+    return {s: k + 1 for k, s in enumerate(live)}
+
+
+def vehicle_loops(abk, vtype, module=16, speed_param=0x12E2, type_param=0x1CB9):
+    """[decodeaudit 2026-11-23, gap 11] the engine loops of a vehicle bank (11VehBnk, EventSystem module 16). The
+    vehicle classes send AEMSEVENT {16, GETSOUNDINFO(3,5), (1,5), (0,5), 32000, 0, type} while the engine runs
+    (HierobjVehicle behaviour 1: start on event 209 state 1 = the path is taken, stop at state 2 = death);
+    type = behaviour-1 m4: HierobjVehicle 2, GunVehicle 3, TankVehicle 1. Param 0x1cb9 (type) -> a 1e.01 table ->
+    port 6 (sample index) of each set; param 0x12e2 (0..255, the running level the engine feeds) -> 1e.01 gate tables
+    -> port 7 (on / off): the set on at level 0 and off at 255 is the idle loop (1_1: on 0..11), the one off at 0 and
+    on at 255 the drive loop (on from 4). The two remaining sets are one-shots fired when the level crosses a band (gear changes); not taken.
+    -> {"idle": slot, "drive": slot} (BNK slots; None where the type's slot is empty)"""
+    g = aems_graph(abk, module)
+    if not g:
+        return {}
+    feeds = {}
+    for k, nd in g.items():
+        for outs in nd["out"]:
+            for port, dst in outs:
+                feeds.setdefault((dst, port), []).append(k)
+    pid = {nd["id"]: k for k, nd in g.items() if nd["type"] == (1, 0)}
+    live = bnk_live_streams(abk)
+    out = {}
+    for sk, nd in g.items():
+        if nd["type"] != (4, 0x0B):
+            continue
+        gate = [s for s in feeds.get((sk, 7), []) if g[s]["type"] == (0x1E, 1) and pid.get(speed_param) in feeds.get((s, 0), [])]
+        tsel = [s for s in feeds.get((sk, 6), []) if g[s]["type"] == (0x1E, 1) and pid.get(type_param) in feeds.get((s, 0), [])]
+        if not gate or not tsel:
+            continue
+        gt = aems_table(abk, g[gate[0]])
+        idx = aems_table(abk, g[tsel[0]]).get(vtype)
+        base = aems_set_slots(abk, nd)
+        slot = base[idx] if idx is not None and idx < len(base) else None
+        kind = "idle" if gt.get(0) and not gt.get(255) else ("drive" if gt.get(255) and not gt.get(0) else None)
+        if kind:
+            out[kind] = slot if slot in live else None
+    return out

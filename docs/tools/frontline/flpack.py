@@ -185,7 +185,7 @@ def _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log):
     for e in L.entities():
         w = flscene.words(e)
         q = X(e["pos"])
-        r_ = (w[11] >> 16) / 10.0 * X.s
+        r_ = flscene.radius_m(e) * X.s
         if amb["zone_cls"] in e["strs"] and len(w) > 14 and w[14] in beds:
             nz += 1
             lines.append(f'\tlevel.fl_ambz[{nz}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
@@ -201,6 +201,61 @@ def _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log):
     lines.append(f"\tlevel.fl_ambz_n = {nz}")
     lines.append(f"\tlevel.fl_fire_n = {nf}")
     log("ambience: beds", len(beds), "zones", nz, "fire loops", nf)
+
+
+def _fakedoors(disc, L, level, X, vgm, files, lines, ali, tmp, d, fd, log):
+    """[decodeaudit 2026-11-22, gap 7] Frontline's locked doors. 62 class-less trigger volumes (upright cylinders,
+    flscene.volume) stand in front of the doors that never open; their slot 4 (the player presses ACTION inside) sends
+    msg 509. RemoteFakeDoorTrigger (rec 478 on 1_1) watches 509 from ANY sender (p2 0x010001fd, filter 0): HUD text 5
+    (bi_70), PLAYSOUND 96 of the SENDER's sound set at the sender (bi_a8(sender, 96, -1); 11:685 -> SOMI row -> a
+    0.31 s rattle in the script bank), an AI noise at the sender (bi_b0(sender, 0, 1.0) -> 0x29ae0, event 51 =
+    "a sound"), then REGISTERTIMEREVENT(3, 77): back to listening 3 ticks later. No listener, nothing happens."""
+    pre = f"fl{level.replace('_', '')}"
+    sdir = f"sound/fl/{level}/"
+    ents = L.entities()
+    if not any(fd["cls"] in e["strs"] for e in ents):
+        log("fake doors: no", fd["cls"], "record - the volumes are dead")
+        return
+    som = L.files.get(fd["som"], b"")
+    abk = disc.read(d + fd["bank"])
+    bnk_path = os.path.join(tmp, "fdoor.bnk")
+    with open(bnk_path, "wb") as f:
+        f.write(abk[abk.find(b"BNKl"):])
+    snd, n = {}, 0
+    for e in ents:
+        if fd["msg"] not in _slots(e, 4):
+            continue
+        v = flscene.volume(e)
+        if not v:
+            continue
+        sets_ = [x & 0xFFFF for x in flscene.words(e)[13:] if x >> 16 == 11]
+        alias = ""
+        row = flaudio.som_sound(som, sets_[0], fd["sound"]) if sets_ else None
+        if row:
+            key = (row["code"], row["first"])
+            if key not in snd:
+                stream = flaudio.bank_stream(abk, row["code"], row["first"])
+                dst = os.path.join(tmp, f"fdoor{len(snd)}.wav")
+                if stream and flaudio.vgm_decode(vgm, bnk_path, dst, stream):
+                    rel = f"{sdir}fakedoor{len(snd) + 1}.wav"
+                    files[rel] = flaudio.wav_mono(dst)
+                    a_ = f"{pre}_fakedoor{len(snd) + 1}"
+                    ali.append(f'aliascache {a_} {rel} soundparms {row["volume"]:.2f} 0.0 1.0 0.0 160 1600 auto loaded maps "coop_fl"')
+                    snd[key] = a_
+                else:
+                    snd[key] = ""
+            alias = snd[key]
+        n += 1
+        q = X(e["pos"])
+        lines.append(f'\tlevel.fl_fdoor[{n}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
+        lines.append(f'\tlevel.fl_fdoor_r[{n}] = {v["r"] * X.s:.0f}')
+        lines.append(f'\tlevel.fl_fdoor_zlo[{n}] = {v["zlo"] * X.s:.0f}')
+        lines.append(f'\tlevel.fl_fdoor_zhi[{n}] = {v["zhi"] * X.s:.0f}')
+        lines.append(f'\tlevel.fl_fdoor_snd[{n}] = "{alias}"')
+        lines.append(f'\tlevel.fl_fdoor_rec[{n}] = {e["i"]}')
+    lines.append(f"\tlevel.fl_fdoor_n = {n}")
+    lines.append(f"\tlevel.fl_fdoor_rearm = {fd['rearm_ticks'] / 60.0:.3f}")
+    log("fake doors:", n, "volumes,", len([a for a in snd.values() if a]), "sound(s)")
 
 
 def _rv(lo, hi, s):
@@ -284,6 +339,41 @@ def pfx_tik(p, typ, X, gen):
         "\t\t\tenter emitteroff flpfx", "\t\t}", "\t}", "}", ""])
 
 
+def _pfx_lifts(L, ents, log, below=2.0, above=2.0, clear=0.1):
+    """[decodeaudit 2026-11-23, bug-11480] a placed system whose origin lies UNDER the walkable ground (a solid,
+    up-facing collision triangle covers it 0..`below` m above, and none lies under it within `above` m) is never drawn
+    here: the engine sends an entity only when its origin's cluster is in view, and an origin inside the world has no
+    cluster (1_1 rec 4, the burning truck down the dock street: origin z -4.49 m, cobbles at -3.65 m). Frontline draws
+    the system anyway (its sprites rise out of the street). -> {rec: z to use} = the ground + `clear` m."""
+    tris = []
+    for _cn, vs_, ts_ in L.collision():
+        for a_, b_, c_, f_ in ts_:
+            if f_ & (1 << 22):
+                continue                                    # volumes are not ground
+            A, B, C = vs_[a_], vs_[b_], vs_[c_]
+            nz = (B[0] - A[0]) * (C[1] - A[1]) - (B[1] - A[1]) * (C[0] - A[0])
+            if abs(nz) > 1e-9:
+                tris.append((A, B, C, nz))
+    out = {}
+    for e in ents:
+        x, y, z = e["pos"]
+        zs = []
+        for A, B, C, d in tris:
+            if max(A[0], B[0], C[0]) < x or min(A[0], B[0], C[0]) > x or max(A[1], B[1], C[1]) < y or min(A[1], B[1], C[1]) > y:
+                continue
+            l1 = ((B[0] - x) * (C[1] - y) - (B[1] - y) * (C[0] - x)) / d
+            l2 = ((C[0] - x) * (A[1] - y) - (C[1] - y) * (A[0] - x)) / d
+            l3 = 1.0 - l1 - l2
+            if min(l1, l2, l3) >= 0:
+                zs.append(l1 * A[2] + l2 * B[2] + l3 * C[2])
+        up = [g for g in zs if z < g <= z + below]
+        down = [g for g in zs if z - above <= g <= z]
+        if up and not down:
+            out[e["i"]] = max(up) + clear
+            log("particle", e["i"], "origin %.2f m under the ground at %.2f: lifted" % (max(up) - z, max(up)))
+    return out
+
+
 def _particles(L, X, lines, pfx, log, files=None, level=""):
     """[flfix2 round 20] Frontline's placed particle systems (.bpd section-3 kind 9, flscene.particle) -> level vars for
     the mission script: where, which STOCK MOHAA emitter stands in for it (fl_levels.json "particles": type -> model,
@@ -307,6 +397,7 @@ def _particles(L, X, lines, pfx, log, files=None, level=""):
     by_typ = {}
     for _e, p, typ in rows:
         by_typ.setdefault(typ, []).append(sum(p["size"]) / 2.0)
+    lifts = _pfx_lifts(L, [e for e, _p, _t in rows], log)
     n = 0
     for e, p, typ in rows:
         rec = e["i"]
@@ -315,6 +406,8 @@ def _particles(L, X, lines, pfx, log, files=None, level=""):
             continue
         n += 1
         q = X(e["pos"])
+        if rec in lifts:
+            q = X((e["pos"][0], e["pos"][1], lifts[rec]))
         ref = sorted(by_typ[typ])[len(by_typ[typ]) // 2] or 1.0
         # [codedecode 2026-11-15] the level load loop creates every kind-9 record with no start script (word 16 == 0)
         # at once (CODE_FINDINGS_fl_1_1.md item 4); word 32 high is particles per emission, not a start mode
@@ -413,7 +506,7 @@ def _projgens(L, X, lines, log, grid=None):
                     nt += 1
                     w = flscene.words(t_)
                     lines.append(f"\tlevel.fl_pg_trig[{k}][{nt}] = {_vec(X(t_['pos']))}")
-                    lines.append(f"\tlevel.fl_pg_trig_r[{k}][{nt}] = {(w[11] >> 16) / 10.0 * X.s:.0f}")
+                    lines.append(f"\tlevel.fl_pg_trig_r[{k}][{nt}] = {flscene.radius_m(t_) * X.s:.0f}")
                     lines.append(f"\tlevel.fl_pg_trig_rec[{k}][{nt}] = {t_['i']}")
                     lines.append(f"\tlevel.fl_pg_trig_slot[{k}][{nt}] = {sl}")
         lines.append(f"\tlevel.fl_pg_trig_n[{k}] = {nt}")
@@ -446,7 +539,7 @@ def _areas(L, X, lines, log):
         for j, t_ in enumerate(trigs, 1):
             w = flscene.words(t_)
             lines.append(f"\tlevel.fl_area_trig[{na}][{j}] = {_vec(X(t_['pos']))}")
-            lines.append(f"\tlevel.fl_area_trig_r[{na}][{j}] = {(w[11] >> 16) / 10.0 * X.s:.0f}")
+            lines.append(f"\tlevel.fl_area_trig_r[{na}][{j}] = {flscene.radius_m(t_) * X.s:.0f}")
             lines.append(f"\tlevel.fl_area_trig_rec[{na}][{j}] = {t_['i']}")
             lines.append(f"\tlevel.fl_area_trig_hold[{na}][{j}] = {int(51 in flscene.slots(t_, 0))}")
             lines.append(f"\tlevel.fl_area_trig_release[{na}][{j}] = {int(52 in flscene.slots(t_, 1))}")
@@ -474,7 +567,7 @@ def _pathfinders(L, X, lines, log):
         w = flscene.words(e)
         n += 1
         lines.append(f"\tlevel.fl_pf[{n}] = {_vec(X(e['pos']))}")
-        lines.append(f"\tlevel.fl_pf_r[{n}] = {(w[11] >> 16) / 10.0 * X.s:.0f}")
+        lines.append(f"\tlevel.fl_pf_r[{n}] = {flscene.radius_m(e) * X.s:.0f}")
         lines.append(f"\tlevel.fl_pf_level[{n}] = {w[14] if len(w) > 14 else 0}")
         lines.append(f"\tlevel.fl_pf_rec[{n}] = {e['i']}")
         log("pathfinder", e["i"], "level", w[14] if len(w) > 14 else 0)
@@ -531,6 +624,73 @@ def _journal(disc, level, files, lines, jn, log):
     log("journal pages", n)
 
 
+def _prop_sounds(disc, L, level, files, lines, ali, tmp, d, vgm, psp, log):
+    """[anvil] fl_levels "prop_sounds": [{name, rec, sound, som, bank, min, max}] - the record's own PLAYSOUND(sound)
+    through its sound set (link category 11) and <l>propSnd.som, decoded from the player's bank like the fire loop"""
+    pre = f"fl{level.replace('_', '')}_ps"
+    sdir = f"sound/fl/{level}/"
+    recs = {e.get("i"): e for e in L.entities()}
+    for ps in psp:
+        e = recs.get(ps["rec"])
+        if e is None:
+            log("prop sound", ps["name"], "record missing")
+            continue
+        sets_ = [x & 0xFFFF for x in flscene.words(e)[13:] if x >> 16 == 11]
+        som = L.files.get(ps["som"], b"")
+        subs_ = [x & 0xFFFF for x in flscene.words(e)[13:] if x >> 16 == 12] if ps.get("sub_link") else []
+        row = flaudio.som_sound(som, sets_[0], ps["sound"], subs_[0] if subs_ else None) if sets_ else None
+        if not row:
+            log("prop sound", ps["name"], "no row for set", sets_, "sound", ps["sound"])
+            continue
+        abk = disc.read(d + ps["bank"])
+        stream = flaudio.bank_stream(abk, row["code"], row["first"])
+        bnk_path = os.path.join(tmp, "ps_%s.bnk" % ps["name"])
+        with open(bnk_path, "wb") as f:
+            f.write(abk[abk.find(b"BNKl"):])
+        dst = os.path.join(tmp, "ps_%s.wav" % ps["name"])
+        if not (stream and flaudio.vgm_decode(vgm, bnk_path, dst, stream)):
+            log("prop sound", ps["name"], "decode failed", row, stream)
+            continue
+        rel = f"{sdir}ps_{ps['name']}.wav"
+        files[rel] = flaudio.wav_mono(dst)
+        alias = f"{pre}_{ps['name']}"
+        ali.append(f'aliascache {alias} {rel} soundparms {row["volume"]:.2f} 0.0 1.0 0.0 {ps.get("min", 384)} {ps.get("max", 4000)} auto loaded maps "coop_fl"')
+        lines.append(f'\tlevel.fl_psnd["{ps["name"]}"] = "{alias}"')
+        lines.append(f'\tlevel.fl_psnd_len["{ps["name"]}"] = {flaudio.wav_seconds(dst):.2f}')
+        log("prop sound", ps["name"], "set", sets_[0], "row", row, "stream", stream, f"{flaudio.wav_seconds(dst):.2f} s")
+
+
+def _vehicle_engines(disc, level, files, lines, ali, tmp, d, vgm, vep, log):
+    """[decodeaudit 2026-11-23, gap 11] fl_levels "vehicle_engines": [{name, type, bank, min, max}] - the engine loops
+    the vehicle bank's graph gives that vehicle type (flaudio.vehicle_loops: idle = on at a low running level, drive =
+    on from a higher one). -> level.fl_veh_snd["<name>_idle" / "<name>_drive"] = alias; a type whose slot is empty
+    gets nothing (the original plays nothing for it)."""
+    pre = f"fl{level.replace('_', '')}_veh"
+    sdir = f"sound/fl/{level}/"
+    for ve in vep:
+        abk = disc.read(d + ve["bank"])
+        loops = flaudio.vehicle_loops(abk, ve["type"])
+        live = flaudio.bnk_live_streams(abk)
+        bnk_path = os.path.join(tmp, "veh.bnk")
+        with open(bnk_path, "wb") as f:
+            f.write(abk[abk.find(b"BNKl"):])
+        for kind in ("idle", "drive"):
+            slot = loops.get(kind)
+            if slot is None:
+                log("vehicle engine", ve["name"], kind, "none for type", ve["type"])
+                continue
+            dst = os.path.join(tmp, f"veh_{ve['name']}_{kind}.wav")
+            if not flaudio.vgm_decode(vgm, bnk_path, dst, live[slot]):
+                log("vehicle engine", ve["name"], kind, "decode failed", slot)
+                continue
+            rel = f"{sdir}veh_{ve['name']}_{kind}.wav"
+            files[rel] = flaudio.wav_mono(dst)
+            alias = f"{pre}_{ve['name']}_{kind}"
+            ali.append(f'aliascache {alias} {rel} soundparms 1.0 0.0 1.0 0.0 {ve.get("min", 320)} {ve.get("max", 3200)} auto loaded maps "coop_fl"')
+            lines.append(f'	level.fl_veh_snd["{ve["name"]}_{kind}"] = "{alias}"')
+            log("vehicle engine", ve["name"], kind, "slot", slot, "stream", live[slot], f"{flaudio.wav_seconds(dst):.1f} s")
+
+
 def _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, osp, log):
     """[flfix2 round 20] LoadOneShotSound areas (entering one loads bank 11LOAD<n>, n = record word 14 = the class's
     attr 2): the bank's clips are the area's AI combat barks and pain sounds, both sides. Which clip is which situation
@@ -549,12 +709,14 @@ def _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, osp, log):
         w = flscene.words(e)
         bank = w[14] if len(w) > 14 else 0
         sets = osp.get("sets", {}).get(str(bank))
+        if osp.get("events"):
+            sets = bark_sets(disc.read(d + osp["bank"].format(n=bank)), osp["events"]) or None
         if not sets:
             continue
         na += 1
         q = X(e["pos"])
         lines.append(f'\tlevel.fl_os[{na}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
-        lines.append(f'\tlevel.fl_os_r[{na}] = {(w[11] >> 16) / 10.0 * X.s:.0f}')
+        lines.append(f'\tlevel.fl_os_r[{na}] = {flscene.radius_m(e) * X.s:.0f}')
         lines.append(f'\tlevel.fl_os_bank[{na}] = {bank}')
         lines.append(f'\tlevel.fl_os_rec[{na}] = {e["i"]}')
         if bank in banks:
@@ -591,6 +753,23 @@ def _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, osp, log):
         banks[bank] = nb
     lines.append(f"\tlevel.fl_os_n = {na}")
     log("one-shots: areas", na, "clips per bank", banks, "files", len(seen))
+
+
+def bark_sets(abk, events):
+    """[decodeaudit 2026-11-23, gap 5] the bank's clips per situation as the ORIGINAL groups them: the AI bark module
+    (EventSystem module 15) maps event k -> a sample range per voice family (flaudio.bark_slots); fl_levels "events"
+    {side: {event: our aivoice situation}} names them (de = family 0, the German speakers; us = family 1). Slot 0 (a
+    digital silence that every non-speaking family points at) and empty slots are dropped.
+    -> {"<side>_<situation>": [1-based vgmstream streams]}"""
+    fam = flaudio.bark_slots(abk)
+    live = flaudio.bnk_live_streams(abk)
+    out = {}
+    for side, fi in (("de", 0), ("us", 1)):
+        for ev, name in sorted(events.get(side, {}).items(), key=lambda kv: int(kv[0])):
+            st = [live[x] for x in fam.get(fi, {}).get(int(ev), []) if x and x in live]
+            if st:
+                out.setdefault(f"{side}_{name}", []).extend(st)
+    return out
 
 
 def chr_hash(e):
@@ -640,9 +819,24 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
     amb = sp.get("ambience")
     if amb:
         _ambience(disc, L, level, X, vgm, files, lines, ali, tmp, d, amb, log)
+    # ---- [anvil] a record's own PLAYSOUND (fl_levels "prop_sounds"; 1_3: the falling walkway) ----
+    if sp.get("prop_sounds"):
+        _prop_sounds(disc, L, level, files, lines, ali, tmp, d, vgm, sp["prop_sounds"], log)
+    if sp.get("vehicle_engines"):
+        _vehicle_engines(disc, level, files, lines, ali, tmp, d, vgm, sp["vehicle_engines"], log)
     # ---- [flfix2 round 20] one-shot banks: the areas' combat barks and pain sounds ----
     if sp.get("oneshots"):
         _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, sp["oneshots"], log)
+    # ---- [decodeaudit 2026-11-22, gap 3] particle systems on the disc's own sprites (flpfx) ----
+    if sp.get("pfx_bytype"):
+        try:
+            import flpfx
+            flpfx.build(L, X, files, level, sp["pfx_bytype"], lines, log)
+        except Exception as e_:         # never fail the conversion: the stock stand-ins stay
+            log("flpfx: skipped (%s)" % e_)
+    # ---- [decodeaudit 2026-11-22] the locked doors (RemoteFakeDoorTrigger) ----
+    if sp.get("fakedoors"):
+        _fakedoors(disc, L, level, X, vgm, files, lines, ali, tmp, d, sp["fakedoors"], log)
     # ---- [flfix2 round 22] the mission journal pages (images) ----
     if sp.get("journal"):
         _journal(disc, level, files, lines, sp["journal"], log)
@@ -728,7 +922,8 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
     tank_paths = set()
     for e in L.entities():
         if "TankVehicle" in e["strs"]:
-            t_ = _nearest_path(e["pos"])
+            t_ = struct.unpack_from("<h", e["raw"], 0x84)[0] if len(e["raw"]) >= 0x86 else 0
+            t_ = t_ if t_ > 0 else _nearest_path(e["pos"])
             if t_ is not None:
                 tank_paths.add(t_)
 
@@ -781,9 +976,18 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
             # P-47 run over it either) - caught in the 2026-11-10 fidelity pass
             lines.append(f'\tlevel.fl_pos["{cls}"] = {o}')
             lines.append(f'\tlevel.fl_tank_yaw = {yaw_:.0f}')
-            pid_ = _nearest_path(e["pos"])
+            # [decodeaudit 2026-11-22, gap 8] the tank's route is its record's own path (actor attr 42 = s16 at 0x84;
+            # HierobjVehicle L00eb MECHFOLLOWPATH(m1.f23 = it)): path 3, mode attr 43 = 2 (L0122: the direction flips at
+            # each end, a back-and-forth). It was a nearest-path fit (66). Navpoint 225 could hand it a new path
+            # (watcher L019d, msg 189 over a category-6 link: GETOBJINFO(64) = the navpoint's word 14 low = 1), but
+            # its only link 6:253 is shared by no record (filter 3 needs the identical link word on both): never sent
+            r_ = e["raw"]
+            pid_ = struct.unpack_from("<h", r_, 0x84)[0] if len(r_) >= 0x86 else 0
+            if pid_ <= 0:
+                pid_ = _nearest_path(e["pos"])
             if pid_ is not None:
                 lines.append(f'\tlevel.fl_tank_path = {pid_}')
+                lines.append(f'\tlevel.fl_tank_pathdir = {r_[0x7a] if len(r_) > 0x7a else 0}')
             continue
         is_axis = (tm_ == 2) if (k_ == 3 and tm_ in (1, 2)) else bool(AXIS_RX.match(cls))
         is_ally = (tm_ == 1) if (k_ == 3 and tm_ in (1, 2)) else bool(ALLY_RX.match(cls))
@@ -847,6 +1051,28 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
                 yaw = math.degrees(math.atan2(-p[1], -p[0])) % 360     # face the level centre
                 lines.append(f'\tlevel.fl_start = {o}')
                 lines.append(f'\tlevel.fl_start_yaw = {yaw:.0f}')
+    # [decodeaudit 2026-11-22, gap 21] every trigger record's own volume (flscene.volume = the native test 0x32d90):
+    # shape 0 sphere / 1 upright cylinder (radius, z band) / 2 turned box (half extents along two axes, z band)
+    nv_ = 0
+    for e in L.entities():
+        if flscene.kind(e) != 1:
+            continue
+        v_ = flscene.volume(e)
+        if not v_:
+            continue
+        nv_ += 1
+        ri_ = e["i"]
+        lines.append(f'\tlevel.fl_vol_shape[{ri_}] = {v_["shape"]}')
+        lines.append(f'\tlevel.fl_vol_r[{ri_}] = {v_["r"] * X.s:.0f}')
+        lines.append(f'\tlevel.fl_vol_zlo[{ri_}] = {v_["zlo"] * X.s:.0f}')
+        lines.append(f'\tlevel.fl_vol_zhi[{ri_}] = {v_["zhi"] * X.s:.0f}')
+        if v_["shape"] == 2:
+            # the disc's rows are disc-space directions; MOHAA's y is mirrored (X.m), so a row's y flips with it
+            for nm_, r_ in (("ax", v_["rows"][0]), ("ay", v_["rows"][1])):
+                lines.append(f'\tlevel.fl_vol_{nm_}[{ri_}] = ( {r_[0]:.4f} {r_[1] * X.m:.4f} {r_[2]:.4f} )')
+            lines.append(f'\tlevel.fl_vol_hx[{ri_}] = {v_["hx"] * X.s:.0f}')
+            lines.append(f'\tlevel.fl_vol_hy[{ri_}] = {v_["hy"] * X.s:.0f}')
+    lines.append(f'\tlevel.fl_vol_n = {nv_}')
     # [flpolish] activation: which group each trigger wakes (Frontline spawns most placements only when the player
     # reaches a trigger - the "StartByIdObject" records), and the groups the set-piece objects answer to
     nt = 0
@@ -861,6 +1087,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
         q = X(e["pos"])
         lines.append(f'\tlevel.fl_trig[{nt}] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
         lines.append(f'\tlevel.fl_trig_r[{nt}] = {r_m * X.s:.0f}')
+        lines.append(f'\tlevel.fl_trig_rec[{nt}] = {e["i"]}')      # [decodeaudit] its volume: level.fl_vol_*[rec]
         lines.append(f'\tlevel.fl_trig_code[{nt}] = {code}')
         for j, g in enumerate(sends, 1):
             lines.append(f'\tlevel.fl_trig_send[{nt}][{j}] = {g}')
@@ -875,7 +1102,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
         q = X(e_["pos"])
         w_ = flscene.words(e_)
         lines.append(f'\tlevel.fl_mark["{mk_}"] = ( {q[0]:.0f} {q[1]:.0f} {q[2]:.0f} )')
-        lines.append(f'\tlevel.fl_mark_r["{mk_}"] = {(w_[11] >> 16) / 10.0 * X.s:.0f}')
+        lines.append(f'\tlevel.fl_mark_r["{mk_}"] = {flscene.radius_m(e_) * X.s:.0f}')
     for e in L.entities():
         nm_ = [s for s in e["strs"] if not s.lower().startswith("start")]
         g_ = flscene.ids(e)
@@ -1062,6 +1289,17 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
     return {"nudged": nudged, "axis": na, "allies": nl, "health": nh, "cues": len(wavs), "music": len(segs)}
 
 
+
+# [decodeaudit 2026-11-22] Frontline weapbul hashes (the weapon definition a record names; codedecode
+# fl_weapbul_1_1.txt) -> the stock MOHAA gun an AI carries (closest match by the disc mesh name)
+WEAPBUL_GUN = {0x5760e46d: "Mauser KAR 98K", 0x8efb8e12: "Mauser KAR 98K", 0x104bea2b: "Mauser KAR 98K",
+               0xb6790ca7: "Mauser KAR 98K", 0xb975b217: "MP40", 0xc662e91e: "MP40", 0x1e78ab5f: "Walther P38",
+               0xa2401755: "Panzerschreck", 0x4f79c15b: "Panzerschreck", 0x2b31aa85: "Panzerschreck",
+               0x751c43a8: "G 43", 0x12b546f4: "StG 44", 0x6b16e90b: "StG 44", 0x21136a7d: "Shotgun",
+               0x27bf8d69: "KAR98 - Sniper", 0x5623e8f2: "M1 Garand", 0xe1f06306: "Thompson", 0x392805e6: "Thompson",
+               0xe058ce20: "BAR", 0x9d0e7c6c: "BAR", 0x92ba0807: "Springfield '03 Sniper",
+               0x6e584c98: "Springfield '03 Sniper"}
+
 def _actor_ai(e, side, n):
     """[codedecode 2026-11-15, CODE_FINDINGS_fl_1_1.md items 1 and 5] an actor record's own AI fields (kind 3 getter
     0x2b600): path id = attr 42 (s16 at byte 0x84), direction = attr 43 (byte 0x7a: 0 / 2 forward, 1 reverse); sight
@@ -1076,6 +1314,14 @@ def _actor_ai(e, side, n):
     if pid > 0:
         out.append('\tlevel.fl_%s_path[%d] = %d' % (side, n, pid))
         out.append('\tlevel.fl_%s_pathdir[%d] = %d' % (side, n, r[0x7a]))
+    # [decodeaudit 2026-11-22, gap 4; CODE_FINDINGS_fl_1_1_audit.md part 1] health = attr 22 (u8 at 0x70: the script's
+    # hit points, a hit subtracts the bullet's damage), weapon slot 0 = attr 27 (weapbul hash at 0x98; 0 = the Kar98
+    # 5760e46d, native 0x304ca), aim skill = attr 30 (u8 at 0x73: 0 / 1 / 2 = cone 3 / 2 / 1 degrees)
+    out.append('\tlevel.fl_%s_hp[%d] = %d' % (side, n, r[0x70]))
+    wh = struct.unpack_from("<I", r, 0x98)[0] or 0x5760e46d
+    if wh in WEAPBUL_GUN:
+        out.append('\tlevel.fl_%s_gun[%d] = "%s"' % (side, n, WEAPBUL_GUN[wh]))
+    out.append('\tlevel.fl_%s_aim[%d] = %d' % (side, n, r[0x73]))
     for m, (ro, fo) in (("idle", (0x7e, 0x76)), ("curious", (0x86, 0x7b)), ("alert", (0x88, 0x7c))):
         out.append('\tlevel.fl_%s_sight[%d]["%s"] = %.1f' % (side, n, m, s16(ro) / 16.0))
         out.append('\tlevel.fl_%s_fov[%d]["%s"] = %d' % (side, n, m, r[fo]))

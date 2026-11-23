@@ -1315,6 +1315,7 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         if not draws:
             continue
         surf_ids = []
+        ctris_ = []
         lo_ = [1e9] * 3
         hi_ = [-1e9] * 3
         for m in draws:
@@ -1322,6 +1323,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 continue
             P = [Xr(v) for v in m["verts"]]
             tris = [wind(a, b, c, flip_render) for a, b, c in m["tris"]]
+            if spc.get("clip_tris"):
+                ctris_ += [(P[a], P[b], P[c]) for a, b, c in tris]
             acc = [[0.0, 0.0, 0.0] for _ in P]
             for a, b, c in tris:
                 n = face_normal(P[a], P[b], P[c])
@@ -1370,6 +1373,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             c0_, c1_ = Xr(b0_), Xr(b1_)
             brushes_.append(B.add_brush_planes(clip, [], [min(c0_[q], c1_[q]) for q in range(3)],
                                                [max(c0_[q], c1_[q]) for q in range(3)]))
+        for a3_, b3_, c3_ in ctris_:
+            # [anvil] the falling walkway (1_3 ramp): Frontline's own triangles as thin slabs, in the mesh's frame [PROV]
+            bi_ = B.add_prism(clip, a3_, b3_, c3_, thickness=4.0, centered=True)
+            if bi_ is not None:
+                brushes_.append(bi_)
         B.models.append({"surfaces": surf_ids, "brushes": brushes_})
         nom += 1
         kv = [("classname", "script_object"), ("model", "*%d" % len(B.models)), ("targetname", "fl_om_" + tag_)]

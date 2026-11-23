@@ -25,8 +25,30 @@ import flanim
 import flchar
 import mohskel
 
-# definitions (flchar hashes) whose tik carries the disc's own clips; empty until the user approves the sheets
-OWN_ANIM = set()
+# definitions (flchar hashes) whose tik carries the disc's own clips; "*" = every placed definition (the
+# decodeaudit 2026-11-22 "Everything" pass: the scene clips go in; the mission script plays them by name, a
+# coop_flOwnAnim 0 server keeps the stock poses). Empty = converter output byte-identical to the old one.
+OWN_ANIM = {"*"}
+
+
+def own(h):
+    return "*" in OWN_ANIM or h in OWN_ANIM
+
+
+# [decodeaudit 2026-11-22, gap 17] a clip's movement-sound opcodes (flanim OPS: action = opcode - 0xca01, the ground
+# decides the sample) -> the stock cgame commands that pick the sound by the surface under the man (cg_commands.cpp
+# footstep / landing / bodyfall). 0xca00 is one of the two special ids (23 / 27 in 0x80226): read as a shuffle step.
+# The argument word (9 / 10 / 1 / 2 in the scene clips) is not decoded; ASSUMPTION: 10 = the right foot.
+def step_cmd(op, arg):
+    a = op - 0xca01
+    if op == 0xca00 or 4 <= a <= 8:
+        foot = "Bip01 R Foot" if arg == 10 else "Bip01 L Foot"
+        return 'footstep "%s" %s' % (foot, "run" if a >= 6 else "walk")
+    if a == 9:
+        return "landing 0.6"
+    if a == 0x12:
+        return "bodyfall 1.0"
+    return None
 
 # stock bone <- the disc joint whose motion it carries (flchar.FL_TO_BIP's primary joint per stock bone)
 PRIMARY = {"Bip01 Pelvis": "Hip", "Bip01 Spine": "spine1", "Bip01 Spine1": "spine2", "Bip01 Spine2": "chest",
@@ -50,6 +72,8 @@ SCENES = {
     900: True, 901: True, 903: False, 2201: True, 2209: True, 2221: False, 8301: False,
     # talkers (TRACE_germans): talker 14397, listener 14419 / 14423, notice 14140, combat 14051
     14397: True, 14419: True, 14423: True, 14140: False, 14051: False,
+    # the Soldier_Say* shout (state 79 PLAYANIMATION 14228, with the line)
+    14228: False,
     # MG nest crew (TRACE_mg_ambush_end): gunner 784 / 826 loops, 776 / 777 / 769 transitions; feeder 770 / 771 /
     # 778 / 779; lead 775 / 774 / 767 / 764 / 765 / 773
     784: True, 826: True, 776: False, 777: False, 769: False, 770: True, 771: False, 778: False, 779: False,
@@ -190,14 +214,26 @@ def build(emt_bytes, level, skl, B, skd_bytes, files, label, log=print):
                 rows.append("%s		anim/%s/%s.skc" % (alias, label, alias))
                 continue
             try:
-                skc, _ = convert_clip(emt, ci, skl, B, bones)
+                skc, _ = convert_clip(emt, ci, skl, B, bones)       # _ = the frames
             except Exception as e:      # never fail the conversion: this alias is left out
                 log("flanimconv: %s clip %d skipped (%s)" % (alias, ci, e))
                 continue
             if loop:
                 skc = skc[:8] + struct.pack("<i", struct.unpack_from("<i", skc, 8)[0] | 0x20) + skc[12:]
             files[path] = skc
-            rows.append("%s\t\tanim/%s/%s.skc" % (alias, label, alias))
+            cmds = []
+            nframes = max(1, len(_))
+            for kind_, v_, t_ in emt.events(ci):
+                if kind_ == "op":
+                    c_ = step_cmd(v_[0], v_[1] if not isinstance(v_[1], tuple) else None)
+                    if c_:
+                        fr = min(nframes - 1, int(round(t_ / emt.clip_info(ci)["frame_time"])))
+                        cmds.append("\t\t\t%d %s" % (fr, c_))
+            if cmds:
+                rows.append("%s\t\tanim/%s/%s.skc\n\t{\n\t\tclient\n\t\t{\n%s\n\t\t}\n\t}" % (
+                    alias, label, alias, "\n".join(cmds)))
+            else:
+                rows.append("%s\t\tanim/%s/%s.skc" % (alias, label, alias))
     if not rows:
         return ""
     log("flanimconv: %s: %d clips -> models/human/fl_%s/anim/%s" % (label, len(rows), level, label))
