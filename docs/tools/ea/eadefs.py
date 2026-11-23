@@ -92,3 +92,23 @@ def hp_scale(hp, disc_dmg, our_dmg):
     if lo >= hi:
         return None, (lo, hi)
     return round((lo + hi) / 2, 3), (round(lo, 3), round(hi, 3))
+
+
+def best_scale(hp, disc_dmg, our_dmg):
+    """[0.7.54] the hp_scale K when one exists; otherwise the K whose worst relative shots-to-kill error over the weapon
+    pairs is smallest (ties: the smaller total error), searched in steps of 0.005. -> (K, [(disc hits, our hits), ...])"""
+    import math
+    k, _r = hp_scale(hp, disc_dmg, our_dmg)
+    want = [math.ceil(hp / d_ - 1e-9) for d_ in disc_dmg]
+    if k is None:
+        best = None
+        for i in range(100, 1000):
+            kk = i * 0.005
+            got = [math.ceil(hp * kk / o_ - 1e-9) for o_ in our_dmg]
+            err = [abs(g - w) / w for g, w in zip(got, want)]
+            key = (round(max(err), 4), round(sum(err), 4))
+            if best is None or key < best[0]:
+                best = (key, round(kk, 3))
+        k = best[1]
+    return k, [(w, math.ceil(hp * k / o_ - 1e-9)) for w, o_ in zip(want, our_dmg)]
+

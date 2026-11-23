@@ -28,11 +28,11 @@ TRIGGERS = ("BasicTrigger", "SoundDialogueTrigger", "GagDialogueTrigger", "GagTr
             "DirectDamageTrigger")
 # AI weapon names global/weapon.scr knows ('ppsh smg' fell to "setting to none": the partisans fought unarmed,
 # bug-eap-aikills); the AI rifle is the Kar98k: anim/reload.scr has no AI G43 reload
-# [0.7.53, gap 4] the disc's NPC Gewehr is the Gewehr 43 (its DroppedPlayerWeapon is PlayerGewehr = the G43 of the
-# kit), but it stays the Kar98k: on "G 43" the mod's AI reload (anim/reload.scr) has no case and the soldier never
-# reloads (discbot 0.7.53: 1,361 "weapon type not supported"); FIDELITY C56 deviation
-GUNS = {"npcwpn_mp40": "mp40", "npcwpn_nem_mp40": "mp40", "npcwpn_gewehr": "mauser kar 98k",
-        "npcwpn_ps_gewehr": "mauser kar 98k",
+# [0.7.54, gap 4] the disc's NPC Gewehr is the Gewehr 43 (its DroppedPlayerWeapon is PlayerGewehr = the G43 of the
+# kit): "G 43" (was the Kar98k; needs the g 43 case in the mod's anim/reload.scr, 2026-11-23 - without it the soldier
+# never reloaded)
+GUNS = {"npcwpn_mp40": "mp40", "npcwpn_nem_mp40": "mp40", "npcwpn_gewehr": "G 43",
+        "npcwpn_ps_gewehr": "G 43",
         "npcwpn_ppsh": "ppsh", "npcwpn_ps_ppsh": "ppsh", "npcwpn_kar98": "mauser kar 98k",
         "npcwpn_mg42": "mg42", "npcwpn_stg44": "stg44", "npcwpn_panzerschreck": "panzerschrek"}
 ITEMS = {"medkit": "health", "revive": "health", "rus1_playerstick": "grenade", "playerm1bazooka": "bazooka",

@@ -639,6 +639,18 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
             lines.append(f"\tlevel.ea_hpScale = {_k}")
         log("eadefs: kit damage disc %s ours %s -> hp scale %s (feasible %s)" % ([d_[0] for d_ in _disc],
                                                                               list(eadefs.OUR_KIT.values()), _k, _rng))
+        # [0.7.54] an enemy archetype whose hit points differ (the Nemesis, 800) gets its own K, the closest one number
+        # allows (eadefs.best_scale); the allies keep level.ea_hpScale: the player never shoots them, and their hits come
+        # from German AI on the mod's AI-vs-AI damage, so the disc gives no parity for them (FIDELITY C56)
+        _axis = {eavm.base(r.s(18)) for r in db.of("NPCSpawnPoint")
+                 if (r.s(18) or "").lower().endswith(".xdd") and eadb.team_of(r.npc()["character"]) == "axis"}
+        for a in sorted(_axis):
+            x = _dd["ArchetypeType"].get(eadefs.crc(a))
+            hp = int(x.get(eadefs.F_HP, 0)) if x else 0
+            if hp > 0 and hp != 50:
+                kk, hits = eadefs.best_scale(hp, [d_[0] for d_ in _disc], list(eadefs.OUR_KIT.values()))
+                lines.append(f'	level.ea_ar_hpk["{a}"] = {kk}')
+                log("eadefs: %s hp %d -> own scale %s, hits disc/ours %s" % (a, hp, kk, hits))
     for w in sorted({eavm.base(r.s(20)) for r in db.of("NPCSpawnPoint") if (r.s(20) or "").lower().endswith(".xdd")}):
         bd = eadefs.bullet_damage(_dd, w)
         if bd:
