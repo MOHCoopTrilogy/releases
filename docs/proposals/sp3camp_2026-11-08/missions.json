@@ -317,7 +317,8 @@
    ],
    "brief": "briefing/briefingfl1",
    "last": [
-    "coop_fl_1_1"
+    "coop_fl_1_1",
+    "coop_fl_1_3"
    ],
    "chrono": 10,
    "optional_cvar": "coop_flHave_1_1",
@@ -327,7 +328,20 @@
     "token": "fl_1_1",
     "brief_token": "briefingfl1",
     "title": "SEALED ORDERS",
-    "game": "Medal of Honor: Frontline"
+    "game": "Medal of Honor: Frontline",
+    "levels": [
+     {
+      "map": "coop_fl_1_1",
+      "token": "fl_1_1",
+      "cvar": "coop_flHave_1_1"
+     },
+     {
+      "map": "coop_fl_1_3",
+      "token": "fl_1_3",
+      "cvar": "coop_flHave_1_3"
+     }
+    ],
+    "_levels": "[v1.10.91] the mission's own-disc levels in play order (byo_campaign.scr levelNext / redirect; gen_mapclips). byo.map / token stay the FIRST level: the mission's entry and its campaign gate"
    }
   },
   {
@@ -384,6 +398,10 @@
   "e3l4": [
    44.217,
    11.551
+  ],
+  "coop_fl_1_3": [
+   47.73,
+   -3.37
   ]
  }
 }

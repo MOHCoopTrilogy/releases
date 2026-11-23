@@ -38,7 +38,7 @@ $verFile = Join-Path $GameHome "byo_converted.txt"      # game|converter version
 $script:outDir = $GameHome
 
 $G = @{
-    frontline = @{ Name = "Medal of Honor: Frontline"; Short = "Frontline"; Key = "frontline"; Missions = "SEALED ORDERS (St. Mathieu, 1944)" }
+    frontline = @{ Name = "Medal of Honor: Frontline"; Short = "Frontline"; Key = "frontline"; Missions = "SEALED ORDERS (St. Mathieu) and ANCHOR & ANVIL (Lorient), 1944" }
     ea        = @{ Name = "Medal of Honor: European Assault"; Short = "European Assault"; Key = "european"; Missions = "THEIR DYING BREATH (Stalingrad, 1943)" }
 }[$Game]
 
@@ -217,7 +217,7 @@ if ($Reconvert) {
                   Where-Object { $have[$_[0]] -ne $cur })
         foreach ($kv in $todo) {
             $Game = $kv[0]; $img = $kv[1]
-            $G = @{ frontline = @{ Short = "Frontline"; Missions = "SEALED ORDERS" }; ea = @{ Short = "European Assault"; Missions = "THEIR DYING BREATH" } }[$Game]
+            $G = @{ frontline = @{ Short = "Frontline"; Missions = "SEALED ORDERS and ANCHOR & ANVIL" }; ea = @{ Short = "European Assault"; Missions = "THEIR DYING BREATH" } }[$Game]
             if (-not $G) { continue }
             if (-not (Test-Path -LiteralPath $img)) { Log "reconvert $Game skipped: image gone ($img), old paks kept"; continue }
             Log "reconvert $Game (converter $($have[$Game]) -> $cur)"
@@ -299,7 +299,8 @@ $hdr.SetBounds(16, 12, 590, 28)
 $f.Controls.Add($hdr)
 
 $txt = New-Object System.Windows.Forms.Label
-$txt.Text = "Pick your Xbox (USA) disc image of $($G.Short) - an .iso, or a .zip holding one. It is converted on this PC into a co-op mission: $($G.Missions). Nothing is downloaded and nothing leaves your PC."
+$txt.UseMnemonic = $false   # [v1.10.91] "ANCHOR & ANVIL": a Label would take the & as an accelerator
+$txt.Text = "Pick your Xbox (USA) disc image of $($G.Short) - an .iso, or a .zip holding one. It is converted on this PC into co-op play: $($G.Missions). Nothing is downloaded and nothing leaves your PC."
 $txt.ForeColor = $ink
 $txt.SetBounds(16, 42, 590, 56)
 $f.Controls.Add($txt)

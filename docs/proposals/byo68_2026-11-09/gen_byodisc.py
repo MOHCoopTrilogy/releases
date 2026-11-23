@@ -56,12 +56,12 @@ txt("body2", (76, 119, 488, 15), "disc image (Xbox, USA: an .iso, or a .zip hold
 txt("body3", (76, 134, 488, 15), "on this PC into a co-op mission. Nothing is downloaded; nothing leaves your PC.")
 
 for i, (key, game, title, sub, cvar) in enumerate((
-        ("Fl", "frontline", "FRONTLINE", "SEALED ORDERS - St. Mathieu, France, 1944", "coop_flHave_1_1"),
+        ("Fl", "frontline", "FRONTLINE", "SEALED ORDERS, ANCHOR & ANVIL - Brittany, France, 1944", "coop_flHave_1_1"),   # [v1.10.91] two missions, one disc
         ("Ea", "ea", "EUROPEAN ASSAULT", "THEIR DYING BREATH - Stalingrad, 1943", "coop_eaHave_1_11"))):
     y = 162 + i * 70
     lab("row%s" % key, (64, y, 512, 58), "0.84 0.78 0.62 1.00", "NONE")
     txt("title%s" % key, (76, y + 6, 300, 20), title, "facfont-20", RUST)
-    txt("sub%s" % key, (76, y + 30, 300, 15), sub, "verdana-12", INK)
+    txt("sub%s" % key, (76, y + 30, 350, 15), sub, "verdana-12", INK)     # [v1.10.91] 350: the two-mission line (ends before the buttons, x 432)
     lab("lampOn%s" % key, (304, y + 12, 8, 8), LAMP_ON, enabledcvar=cvar)
     txt("stOn%s" % key, (316, y + 8, 110, 15), "ADDED", "verdana-12", INK, enabledcvar=cvar)
     lab("lampOff%s" % key, (304, y + 12, 8, 8), LAMP_OFF, enabledcvar="!" + cvar)

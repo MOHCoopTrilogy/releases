@@ -151,7 +151,7 @@ begin
     'into a co-op mission. Nothing from those games is downloaded or shipped: the conversion reads your own disc ' +
     'image. Leave both unticked to skip - you can add them later in the game (Settings -> OWN DISCS).',
     False, False);
-  ByoPage.Add('Medal of Honor: Frontline - SEALED ORDERS (St. Mathieu, 1944)');
+  ByoPage.Add('Medal of Honor: Frontline - SEALED ORDERS, ANCHOR AND ANVIL (Brittany, 1944)');  { [v1.10.91] 'AND': an & in a caption is an accelerator }
   ByoPage.Add('Medal of Honor: European Assault - THEIR DYING BREATH (Stalingrad, 1943)');
   ByoFiles := CreateInputFilePage(ByoPage.ID,
     'Your own discs (optional)',

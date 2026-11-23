@@ -574,3 +574,8 @@ Ring art is git-ignored: bake with `gen_wheel_art.py <mod> --only 8,9` at merge.
 - Undecoded, with agents: AI tuning (accuracy / health / weapon / reaction, soldier*.cls, weapbul), the .bpd sec4 particle templates + CREATEEXPLOSION, kind-0 / sec2/5/6 / .psp / cdb bits 11-21 (codedecode: CODE_FINDINGS_fl_1_1_audit.md); bark clip choice (ref_xemu TRACE_barks_fl.md).
 - Decoded, not converted: 11VehBnk / 11ImpBnk / 11VocBnk / 11GunBnk samples (which is which needs the AEMS graph); in-clip sounds c806 / c80f (1_1animSnd.som bank unresolved).
 - Disc scene clips on (jeep ride / thrown, talkers, shout): need the user's look in a client; seat offsets on the jeep unverified. Progress: H:\hzm_work\decodeaudit\FL_PROGRESS.md.
+
+## Anchor & Anvil (coop_fl_1_3) integration (v1.10.91, 2026-11-23) - awaiting a playtest
+- Verified by harness only (H:\hzm_worknvinteg): source-converter run writes both paks + markers, tile / lock / hidden states, join card, 0 Script Errors, 1_1 coop end (its own exitNext + missioncomplete lines, test-only hook) -> co_lobby1 -> coop_fl_1_3 loaded. A human should play the 1_1 -> 1_3 hand-off in a listen game and the Full / Chronological campaigns.
+- The engine's refused-join text (sv_client.c SV_ByoMissionText) names only SEALED ORDERS / THEIR DYING BREATH; 1_3 gets the generic Frontline line (engine change, not made).
+- The board header and campaign row now read 'Brittany' (was 'St. Mathieu'): user review.

@@ -55,7 +55,8 @@ def map_mission(m):
     """the mission key of a map name (levels + their briefings), None for anything else"""
     for x in MJ["missions"]:                      # [mapclips70] an own-disc mission: missions.json byo.map / byo.brief_token
         b = x.get("byo") or {}
-        if b and m.split("/")[-1].lower() in (b["map"].lower(), b["brief_token"].lower()):
+        # [v1.10.91] + every level of a multi-level own-disc mission (byo.levels: coop_fl_1_3)
+        if b and m.split("/")[-1].lower() in [b["map"].lower(), b["brief_token"].lower()] + [l["map"].lower() for l in b.get("levels", [])]:
             return x["key"]
     for pat, camp in ((r"^m(\d)l", "aa"), (r"^t(\d)l", "sh"), (r"^e(\d)l", "bt"), (r"^briefing(\d)$", "aa"), (r"^briefingt(\d)$", "sh"), (r"^briefinge(\d)$", "bt")):
         mm = re.match(pat, m.split("/")[-1].lower())
@@ -260,7 +261,8 @@ def parse_joincard(mod):
     # against the retail paks, which have no such level): read those rows too, so its clip types the card's own lines
     for x in MJ["missions"]:
         if x.get("byo"):
-            t += "\n" + open(os.path.join(mod, "maps", x["byo"]["map"] + ".scr"), encoding="latin-1").read()
+            for bm in dict.fromkeys([x["byo"]["map"]] + [l["map"] for l in x["byo"].get("levels", [])]):    # [v1.10.91] every level
+                t += "\n" + open(os.path.join(mod, "maps", bm + ".scr"), encoding="latin-1").read()
     out = {}
     for f, m, v in re.findall(r'level\.coop_jc(\w+)\["([^"]+)"\]\s*=\s*"((?:[^"\\]|\\.)*)"', t):
         out.setdefault(m, {})[f] = v
@@ -361,6 +363,11 @@ def pack(mod, work):
     clips = []
     for m in sorted(os.listdir(os.path.join(work, "clips"))):
         name = "nm_%s" % m
+        # [v1.10.91] a clip already encoded from these very frames is kept (adding one map no longer re-encodes all 57)
+        hz, src = os.path.join(cdir, name + ".hzlc"), os.path.join(work, "clips", m)
+        if os.path.exists(hz) and os.path.getmtime(hz) >= max(os.path.getmtime(os.path.join(src, f)) for f in os.listdir(src)):
+            clips.append(hz)
+            continue
         subprocess.check_call([sys.executable, "-P", "-E", tool, "clip", os.path.join(work, "clips", m), name, "--out", cdir, "--fps", "24",
                                "--src-fps", str(FPS), "--size", STORE, "--quality", str(QUALITY), "--subsampling", "0",
                                "--aspect", "%.4f" % ASPECT, "--once"])   # [mapclipshd] 2048x1024 q90 4:4:4: red ink and thin lines stay crisp
