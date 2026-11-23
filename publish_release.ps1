@@ -544,7 +544,7 @@ Write-Host "release $tag is LIVE"
 $relJson = & $gh api "repos/$repoSlug/releases/tags/$tag" | ConvertFrom-Json
 $asset = $relJson.assets | Where-Object { $_.name -eq "manifest-$Version.json" }
 if ($asset) { & $gh api -X PATCH "repos/$repoSlug/releases/assets/$($asset.id)" -f name=manifest.json | Out-Null; Write-Host "manifest.json published" }
-& python "$dev\docs\tools\frontline\conv_guard.py" stamp   # what shipped is the new baseline for the converter version gate
+& python "$dev\docs\tools\frontline\conv_guard.py" stamp $HzmconvZip   # what shipped is the new baseline for the converter version gate
 
 # --- 6. record manifests in the repo (raw.githubusercontent fallback + audit trail) ---
 # release is LIVE at this point, so NOW the local baseline may advance

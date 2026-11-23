@@ -66,8 +66,16 @@ def tree_at(commit):
     return sorted(out)
 
 
-def write(ver, dig, note):
-    json.dump({"version": ver, "sha256": dig, "note": note}, open(STAMP, "w"), indent=1)
+def zip_sha(z):
+    import hashlib
+    return hashlib.sha256(open(z, "rb").read()).hexdigest()
+
+
+def write(ver, dig, note, zsha=None):
+    d = {"version": ver, "sha256": dig, "note": note}
+    if zsha:
+        d["zip_sha256"] = zsha   # the exact hzmconv.zip that shipped: re-shipping it (a hotfix) needs no version bump
+    json.dump(d, open(STAMP, "w"), indent=1)
     print("conv_guard: shipped = %s %s (%s)" % (ver, dig[:12], note))
 
 
@@ -81,13 +89,19 @@ def main():
     items, newest = tree_now()
     ver = version_of(dict(items)["docs/tools/frontline/hzmconv.py"].decode("latin-1"))
     dig = digest(items)
-    if mode == "stamp":
-        write(ver, dig, "publish")
-        return 0
-    if not os.path.exists(STAMP):
+    if not os.path.exists(STAMP) and mode != "stamp":
         print("conv_guard: no conv_shipped.json - run: conv_guard.py init <last release commit>")
         return 1
-    was = json.load(open(STAMP))
+    was = json.load(open(STAMP)) if os.path.exists(STAMP) else {}
+    # [v1.10.90 hotfix] a release that re-ships the byte-identical converter that already shipped changes nobody's missions,
+    # whatever the working tree's converter sources say (agents keep editing them between releases): the stamp stays put.
+    z = sys.argv[2] if len(sys.argv) > 2 else None
+    if z and os.path.exists(z) and was.get("zip_sha256") == zip_sha(z):
+        print("conv_guard: ok (%s, the same hzmconv.zip that already shipped)" % was["version"])
+        return 0
+    if mode == "stamp":
+        write(ver, dig, "publish", zip_sha(z) if z and os.path.exists(z) else None)
+        return 0
     if dig != was["sha256"] and ver == was["version"]:
         print("conv_guard: the converter sources changed since %s shipped but HZMCONV_VERSION is still %s.\n"
               "  Players who already converted a disc would keep their old missions. Raise HZMCONV_VERSION in\n"
