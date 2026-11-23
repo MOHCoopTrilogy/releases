@@ -577,5 +577,5 @@ Ring art is git-ignored: bake with `gen_wheel_art.py <mod> --only 8,9` at merge.
 
 ## Anchor & Anvil (coop_fl_1_3) integration (v1.10.91, 2026-11-23) - awaiting a playtest
 - Verified by harness only (H:\hzm_worknvinteg): source-converter run writes both paks + markers, tile / lock / hidden states, join card, 0 Script Errors, 1_1 coop end (its own exitNext + missioncomplete lines, test-only hook) -> co_lobby1 -> coop_fl_1_3 loaded. A human should play the 1_1 -> 1_3 hand-off in a listen game and the Full / Chronological campaigns.
-- The engine's refused-join text (sv_client.c SV_ByoMissionText) names only SEALED ORDERS / THEIR DYING BREATH; 1_3 gets the generic Frontline line (engine change, not made).
+- Engine refused-join text names ANCHOR & ANVIL: rel-1.10.38-engine 402fee29 (bug-11523), verified on a test server; not built into the release yet.
 - The board header and campaign row now read 'Brittany' (was 'St. Mathieu'): user review.
