@@ -929,6 +929,31 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         _skyclip = B.shader(_skyname + "_clip", 0x4 | flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, flbsp.CONTENTS_SOLID)
         B.add_brush_planes(_skyclip, [], (blo[0], blo[1], bhi[2] - 16.0), (bhi[0], bhi[1], bhi[2]))
         stats["sky_ceiling_brush"] = [blo[0], blo[1], bhi[0], bhi[1], bhi[2]]
+    # [0.7.59, EA decode 2026-11-23, FIDELITY C69] ea_levels "clip_stairs": invisible MONSTER-clip steps over a ramp the
+    # original's soldier walks but MOHAA's cannot (walkable normal z >= 0.7 = 45.6 deg): the crypt ramp out of the
+    # Nemesis pocket (navmesh polygons 0 -> 1 -> 4, ~46 deg, 84u wide). Each step: a box over [x, x + step] along the
+    # ramp, from just under the ramp to the highest floor under the step's run (risers <= 17u: the actor steps 18u).
+    # Players are not affected (monsterclip only). Path nodes on the steps come from path_nodes_extra
+    _cs = flpack.spec(level, game).get("clip_stairs", []) if game == "ea" and os.environ.get("EA_CLIP_STAIRS") != "0" else []
+    if _cs:
+        _mclip = B.shader(f"textures/{game}/{level}/hzm_monsterclip", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP, 0x20000)
+        _ns = 0
+        for _st in _cs:
+            (_x0, _x1), (_y0, _y1), _stp = _st["x"], _st["y"], float(_st.get("step", 16.0))
+            _ym = (_y0 + _y1) / 2.0
+            _z = grid.ground(_x0, _ym, _st["z0"] + 24.0, _st["z0"] - 40.0)
+            _x = _x0
+            while _x < _x1 - 0.5 and _z is not None:
+                _xe = min(_x1, _x + _stp)
+                _top = max(g_ for g_ in (grid.ground(_xx, _yy, _z + 40.0, _z - 30.0) for _xx in (_x, (_x + _xe) / 2, _xe)
+                                         for _yy in (_y0 + 8, _ym, _y1 - 8)) if g_ is not None)
+                _lo = _z - 4.0
+                if _top - _lo > 4.0:
+                    B.add_brush_planes(_mclip, [], (_x, _y0, _lo), (_xe, _y1, _top))
+                    _ns += 1
+                _z = _top
+                _x = _xe
+        stats["clip_stairs"] = _ns
 
     # [2026-11-15, coordinator QA trial 2] the burning city's horizon glow as a world-space arc behind the pulled-in
     # skyline (ea_levels.json skyline_pull "glow_arc"): an additive, fog-free strip on a circle round the vantage eye,
@@ -2514,6 +2539,8 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             files[dk] = files[dk].replace(b"\tlevel.ea_data_ok = 1", b"\tlevel.ea_sob = 1\n\tlevel.ea_data_ok = 1")
         if stats.get("dawn_layers"):  # [2026-11-22] the sky carries the dawn layers: coop_mod/eadawn.scr may run
             files[dk] = files[dk].replace(b"\tlevel.ea_data_ok = 1", b"\tlevel.ea_dawnSky = 1\n\tlevel.ea_data_ok = 1")
+        if stats.get("clip_stairs") and dk in files:   # [0.7.59] the map lets the pocket Nemesis spawn in place
+            files[dk] = files[dk].replace(b"\tlevel.ea_data_ok = 1", b"\tlevel.ea_clipStairs = 1\n\tlevel.ea_data_ok = 1")
         # 0.7.25: a squad goal off the path-node graph ("couldn't find end node": the order never ran) is moved to
         # the nearest path node within 192u across and 64u up or down; one within 48u of a node is left alone
         import re as _re
