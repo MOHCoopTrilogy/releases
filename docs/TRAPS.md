@@ -634,18 +634,18 @@ the caller still reports success. **Tell:** a feature that "does nothing" with n
     the feature's own kill switch. `== NIL` and `!= 1` are safe on `none`; `+ - / <` are not.
 - **Map entity keyvalues arrive as STRINGS** — `int()`-coerce once at the top, not per comparison.
   (bug-1352, bug-1372)
+- **`x = exec f::label` returns the value ONLY if the label runs no wait/waitframe/waittill and NO
+  `waitthread`** (nested `exec` is fine); else x is unresolved - not the value, not NULL, not NIL
+  (bug-11470). `waitthread` always returns it. Audit: `docs/tools/exec_audit.py`.
 - **A command registered on `ScriptThread` is NOT a Player event** — `iprintlnbold`/`iprintln` are
   ScriptThread-only, so `<player> iprintlnbold "..."` silently fails; the Player form is
-  `iprint <text> 1`. **The same shape one level up: a primitive that reads per-player and is actually
-  the whole SERVER.** In coop `missionfailed` runs `replace.scr:2644` -> `main.scr:2015`
-  `stuffsrv "map <this map>"` - a full reload for everyone, so failing one player with it restarts the
-  other three. `fadeout`/`fadein`/`clearfade` write `level.m_fade_*`, which `Player::CalcBlend` copies
-  to **every** client, so one player's blackout blacks out the server. Per-player failure and
-  per-player screen state must be built from per-player primitives - `self.flags[...]` and an
-  `ihuddraw_*` slot, which is per client (bug-2528).
+  `iprint <text> 1`. **Same shape one level up: a per-player-looking primitive that is the whole
+  SERVER.** `missionfailed` ends in `stuffsrv "map <this map>"` (replace.scr -> main.scr): failing one
+  player restarts all. `fadeout`/`fadein`/`clearfade` write `level.m_fade_*`, copied to **every**
+  client. Build per-player failure and screen state from `self.flags[...]` and a per-client
+  `ihuddraw_*` slot (bug-2528).
 
-  Worked examples and the failure histories for these three are in
-  [`archive/traps-pruned-2026-08-20.md`](archive/traps-pruned-2026-08-20.md).
+  Worked examples: [`archive/traps-pruned-2026-08-20.md`](archive/traps-pruned-2026-08-20.md).
 
 ---
 
