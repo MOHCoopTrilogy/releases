@@ -50,6 +50,12 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.90 - Own Your Arsenal (hotfix)
+
+- **No more crash when joining a server from the main menu** on the default OpenGL 2 renderer.
+- **MOH Coop Server app:** 0 keeps every demo, start with Windows with the window open, the real port shown (and no silent move off 12203 when the game is open), new profiles on 12203, automatic restart after an error, timeout up to 3600 s.
+- **Menu bird calls play again.**
+
 ### v1.10.89 - Own Your Arsenal
 
 - **Guns from your own discs:** converting Frontline or European Assault unlocks that game's guns (15 + 22) with their original sounds and full aimed sights, in the Armory and on the weapon rack. Nothing from the discs ships with the mod.
