@@ -98,11 +98,10 @@ Fix pattern: a `case "maps/<map>.scr":` entry. **t1l1 and t3l\* still have this 
 > Several of these are wired into `main.scr` behind gates testing `== "1"` on cvars that are seeded
 > in **no shipped cfg** — they have never executed in a player session.
 
-**Officer boss / reinforcement waves** — `SHIPPED-VERIFIED` (2026-06-21 re-test). A high-HP German
-officer spawns mid-map and calls waves by radio; killing the officer or destroying the radio stops
-future waves. 8 wave types, bodyguards, sniper, dogs, AT team, death battalions. Confirmed live:
-spawn, dogs, heal trigger, stuka. **Post-06-21 tuning batches are unverified.**
-*Anchor:* `coop_mod/officer.scr` (188 KB, the largest coop script).
+**Officer boss / reinforcement waves** — `SHIPPED-VERIFIED` (2026-06-21). High-HP officer radios
+waves; killing him or the radio stops them. 8 wave types. **Post-06-21 tuning unverified.** Spawn policy
+USER-APPROVED 2026-11-23: none / deferred maps as listed in `coop_officer_policy` (before a269485ba every
+map ran combat: exec bug, bug-11471). *Anchor:* `coop_mod/officer.scr`.
 
 **Officer wave scaling by player count** — `SHIPPED-UNVERIFIED`. Authored wave stats are a
 **2-player baseline**; solo scales *down*, 3–4p scale *up* (health/accuracy/unit size). Sets
