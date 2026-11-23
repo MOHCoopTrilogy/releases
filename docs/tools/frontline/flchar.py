@@ -800,13 +800,14 @@ def build(L, level, mohaa_base, files, log=print):
         # is unchanged); the block precedes new_generic_human.tik so its aliases are defined first
         try:
             import flanimconv
-            if h in flanimconv.OWN_ANIM and L.files.get("emt_%s.emt" % level):
+            if flanimconv.own(h) and L.files.get("emt_%s.emt" % level):
                 ablk = flanimconv.build(L.files["emt_%s.emt" % level], level, read_skl(L.files[defn["skl"]]), B,
                                         bytes(72) + struct.pack("<3i", 0, nbones, 84) + bone_block, files,
                                         defn["body"].lower().rsplit(".", 1)[0], log)
                 if ablk:
                     tik = tik.replace("$include models/human/new_generic_human.tik",
                                       ablk + "$include models/human/new_generic_human.tik", 1)
+                    lines.append('\tlevel.fl_chr_anim["%s"] = 1' % h)    # [decodeaudit] his tik has the fl_a clips
         except Exception as e_:         # never fail the conversion: the man keeps the stock clips
             log("flchar: %s animations skipped (%s)" % (h, e_))
         tikp = "models/human/fl_%s_%s.tik" % (level, label)

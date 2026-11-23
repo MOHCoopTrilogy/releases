@@ -27,7 +27,8 @@
    "hint_drop": 182,
    "hint_wall": 1750,
    "hint_gun": 968,
-   "warn_incomplete": 170
+   "warn_incomplete": 170,
+   "hint_fakedoor": 10
   },
   "music": {
    "bank": "main.mus",
@@ -41,6 +42,8 @@
   },
   "dialogue_bank": "11ScrBnk.abk",
   "_ambience": "[flfix2 round 17] the original's ambience zones and fire loops (TRACE_ambience.md): AmbienceTrigger records start streamed bed (record word 14) from <beds>.abk/.ast; PlayFireLoopParent records play their sound set's PLAYSOUND(sound) (PlaySoundLoop.cbs) through the level's propSnd .som into bank, stopped on leave when slot 1 sends stop_msg",
+  "fakedoors": {"cls": "RemoteFakeDoorTrigger", "msg": 509, "sound": 96, "som": "1_1propSnd.som", "bank": "11ScrBnk.abk", "rearm_ticks": 3},
+  "_fakedoors": "[decodeaudit 2026-11-22] locked doors: trigger volumes whose slot 4 (ACTION) sends 509 to RemoteFakeDoorTrigger (HUD text 5 = hint_fakedoor, sound 96 of the volume's sound set, an AI noise; flpack._fakedoors)",
   "ambience": {"beds": "11STRBNK", "zone_cls": "AmbienceTrigger", "fire": {"cls": "PlayFireLoopParent", "som": "1_1propSnd.som", "sound": 57, "bank": "11ScrBnk.abk", "stop_msg": 67}},
   "cues": {
    "interrog_1": 4,
