@@ -159,7 +159,11 @@ pickups by skill (C50), flicker light (C15). Fog (C46): the decoded fog caps at 
 rate in a contended GPU timing (fps/), so by the user's rule it becomes the default next batch, after one clean re-measure
 at 3440x1440. Church "extremely dark": ours median 15-19 vs the original's 21 at the emulator's nave spot - fix next
 (world gain, west-door bloom strip, dawn indoors). Decoded, not built: cemetery weather STN_weather01 (#9), the 7
-vehicle / impact / grenade fx packages (#3). Not started: navmesh (#2), archetypes (#4), #11, #20, #22 (sky mesh located).
+vehicle / impact / grenade fx packages (#3). Not started: archetypes (#4), #11, #20, #22 (sky mesh located).
+Navmesh (#2) DONE in converter 0.7.55 (FIDELITY C57, hand-off H:\hzm_work\decodeaudit\EA_NAV.md); open from it:
+the cover nodes send dogs and unarmed officer-wave men into crate / cover anims they lack ("unarmed_crate_*",
+"unarmed_stand_nervous_*" unknown-anim Script Errors, 46 in the A/B run); the partisan cellar stair (~30u) and the
+Nemesis pocket ramp (47 deg, C35) stay cut off from the node graph; the live install's BYO pak is not re-converted.
 
 ### Dying Breath night to dawn - engine `dawn-eng`, awaiting merge + playtest (2026-11-22)
 User request (FIDELITY C44): coop_mod/eadawn.scr runs the dawn on the mission clock. Needs renderer `dawn-eng` (alphaGen
