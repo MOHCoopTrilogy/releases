@@ -5,6 +5,8 @@
 # docs/tools/gen_server_catalogue.py (docgen.py build) from the mod's cvar sweep - nothing here lists cvars by hand.
 #
 #   hzm_server_gui.ps1                         the window (normally via hzm_server_gui.vbs, no console)
+#   hzm_server_gui.ps1 -StartProfile <profile> the window on that profile, its server started (start-with-Windows,
+#                                              "open the window" choice)
 #   hzm_server_gui.ps1 -Supervise <profile>    headless server supervisor: start, restart on crash, daily restart,
 #                                              rotation, Discord webhook, MOTD. The GUI starts one per running profile
 #                                              through WMI (bug-11282: a child of a shell dies with the shell's job).
@@ -21,6 +23,7 @@ param(
     [string]$DataDir = (Join-Path $env:LOCALAPPDATA "MOHCoopServer"),
     [string]$Catalogue = "",
     [string]$Supervise = "",
+    [string]$StartProfile = "",
     [string]$Snapshot = "",
     [int]$SnapshotDpi = 96,
     [int]$SnapshotWidth = 1100,
@@ -145,6 +148,9 @@ function New-Profile([string]$name, [int]$port = 12203) {
         name = $name; mode = "dedicated"; hostname = "^3MOH ^7Coop ^2Server"; port = $port; queryPort = $port + 97
         maxPlayers = 4; public = $false; missionMode = "campaign"; map = "m1l1"; rotation = @(); settings = @{}
         affinity = @(); priority = "AboveNormal"; autoRestart = $true; dailyRestart = ""; startWithWindows = $false
+        # how start-with-Windows starts it: "hidden" = the supervisor alone (no window), "window" = this window opens on
+        # the profile and starts its server. A profile saved before the field existed reads "hidden", as it ran then.
+        startupMode = "hidden"
         motd = ""; motdRepeatMin = 0; hookUp = $true; hookDown = $true; hookJoin = $true; hookLeave = $true
         logKeepDays = 14; bans = @(); whitelist = @(); whitelistOn = $false; updateOnStart = $false
         lightGraphics = "auto"; upnp = $false
@@ -247,8 +253,9 @@ function New-ServerCfgText($p, $sec, $cat, [switch]$Listen, [switch]$LightGraphi
     $L.Add("set coop_campaign $campaign")
     if (-not $Listen) {
         $L.Add("set sv_autoRecord $(if ($p.recordMatches) { 1 } else { 0 })")
-        $L.Add("set sv_autoRecordMax $([math]::Max(1, [int]$p.recordMaxFiles))")
-        $L.Add("set sv_autoRecordMaxMB $([math]::Max(50, [int]$p.recordMaxMB))")
+        # 0 = keep all: SVR_Rotate (sv_demo.c) skips a cap that is <= 0; a size cap is at least 50 MB
+        $L.Add("set sv_autoRecordMax $([math]::Max(0, [int]$p.recordMaxFiles))")
+        $rmb = [int]$p.recordMaxMB; $L.Add("set sv_autoRecordMaxMB $(if ($rmb -le 0) { 0 } else { [math]::Max(50, $rmb) })")
     }
     # bans and whitelist (ioq3 ban list: banaddr / exceptaddr, written to sv_banFile)
     $L.Add("flushbans")
@@ -626,7 +633,8 @@ function Set-StartWithWindows($p, [bool]$on) {
     $key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
     $val = "MOHCoopServer_$(Get-ProfileTag $p)"
     $vbs = Join-Path $script:GuiDir "hzm_server_gui.vbs"
-    $cmd = "wscript.exe `"$vbs`" -Supervise `"$($p.name)`""
+    $how = if ("$($p.startupMode)" -eq "window") { "-StartProfile" } else { "-Supervise" }
+    $cmd = "wscript.exe `"$vbs`" $how `"$($p.name)`""
     if ($DryRun) { Write-DryRun "HKCU Run $val = $(if ($on) { $cmd } else { '(removed)' })"; return }
     if ($on) { New-ItemProperty -Path $key -Name $val -Value $cmd -PropertyType String -Force | Out-Null }
     else { Remove-ItemProperty -Path $key -Name $val -ErrorAction SilentlyContinue }
@@ -681,7 +689,9 @@ function Sync-MatchDemos($p, $inst) {
     $ledger = Join-Path $p.recordFolder "copied_demos.txt"
     $done = @{}
     if (Test-Path -LiteralPath $ledger) { foreach ($l in Get-Content -LiteralPath $ledger) { $done[$l] = 1 } }
-    $oldestCopy = (Get-Date).AddDays(-[math]::Max(1, [int]$p.recordFolderMaxDays))
+    # 0 days = no age limit (0 GB = no size limit, below)
+    $maxDays = [int]$p.recordFolderMaxDays
+    $oldestCopy = if ($maxDays -gt 0) { (Get-Date).AddDays(-$maxDays) } else { [datetime]::MinValue }
     foreach ($dmi in @(Get-ChildItem -LiteralPath $src -Filter "auto_*.dmi" -File -ErrorAction SilentlyContinue)) {
         $base = [IO.Path]::GetFileNameWithoutExtension($dmi.Name)
         if ($done.ContainsKey($base) -or $dmi.LastWriteTime -lt $oldestCopy) { continue }
@@ -696,7 +706,7 @@ function Sync-MatchDemos($p, $inst) {
         Sort-Object { ($_.Group | Measure-Object LastWriteTime -Maximum).Maximum })
     $total = ($all | Measure-Object Length -Sum).Sum
     $capBytes = [double]$p.recordFolderMaxGB * 1GB
-    $oldest = (Get-Date).AddDays(-[math]::Max(1, [int]$p.recordFolderMaxDays))
+    $oldest = $oldestCopy
     foreach ($g in $groups) {
         $age = ($g.Group | Measure-Object LastWriteTime -Maximum).Maximum
         if (($capBytes -gt 0 -and $total -gt $capBytes) -or $age -lt $oldest) {
@@ -1153,7 +1163,11 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
             <ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel Margin="10">
               <CheckBox x:Name="cbAutoRestart" Content="Restart the server automatically if it crashes or quits"/>
               <StackPanel Orientation="Horizontal"><CheckBox x:Name="cbDaily" Content="Restart every day at (24 h, HH:MM)  "/><TextBox x:Name="tbDaily" Width="70"/></StackPanel>
-              <CheckBox x:Name="cbStartup" Content="Start this server when I sign in to Windows (runs hidden, no window)"/>
+              <CheckBox x:Name="cbStartup" Content="Start this server when I sign in to Windows"/>
+              <StackPanel Orientation="Horizontal" Margin="22,0,0,4">
+                <RadioButton x:Name="rbStartHidden" Content="hidden (no window)" GroupName="startup"/>
+                <RadioButton x:Name="rbStartWindow" Content="open this window and start the server" GroupName="startup"/>
+              </StackPanel>
               <CheckBox x:Name="cbUpdate" Content="Check for mod updates before each start (via the MOH Coop updater; only while no other server of this install runs)"/>
               <StackPanel Orientation="Horizontal" Margin="0,6"><Button x:Name="btnUpdateNow" Content="Update the server files now"/><TextBlock x:Name="txtUpdate" Foreground="{StaticResource Muted}"/></StackPanel>
               <TextBlock Foreground="{StaticResource Muted}" Margin="0,8,0,0" Text="Several profiles can run side by side: give each its own game and browser ports. Each profile keeps its own logs."/>
@@ -1166,13 +1180,13 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
               <TextBlock Foreground="{StaticResource Muted}" Margin="22,0,0,8" Text="The server's own recorder writes the whole map (not one player's view), so the Film Room's free camera can go anywhere. Play a demo with the game's Film Room or 'demo name' in the console; F10 there renders it to MP4. The recorder starts when the first player is in and costs well under a millisecond a frame."/>
               <StackPanel Orientation="Horizontal" Margin="0,2">
                 <TextBlock Text="Keep at most  "/><TextBox x:Name="tbRecMax" Width="60"/><TextBlock Text="  demos and  "/><TextBox x:Name="tbRecMaxMB" Width="70"/>
-                <TextBlock Text="  MB in the server's demos folder (oldest go first)"/>
+                <TextBlock Text="  MB in the server's demos folder (oldest go first; 0 = keep all)"/>
               </StackPanel>
               <GroupBox Header="Also keep a copy in a folder of your choice" Margin="0,10,0,0"><StackPanel>
                 <DockPanel><Button x:Name="btnRecBrowse" Content="Browse..." DockPanel.Dock="Right" Margin="6,2,0,2"/><TextBox x:Name="tbRecFolder"/></DockPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,4">
                   <TextBlock Text="Keep at most  "/><TextBox x:Name="tbRecFolderGB" Width="60"/><TextBlock Text="  GB, and nothing older than  "/>
-                  <TextBox x:Name="tbRecFolderDays" Width="50"/><TextBlock Text="  days (empty folder = no copy)"/>
+                  <TextBox x:Name="tbRecFolderDays" Width="50"/><TextBlock Text="  days (0 = keep all; empty folder = no copy)"/>
                 </StackPanel>
                 <TextBlock x:Name="txtRecDir" Foreground="{StaticResource Muted}"/>
               </StackPanel></GroupBox>
@@ -1319,7 +1333,8 @@ function Load-ProfileToUi($p) {
     Fill-RightList
     $ui.cbPriority.SelectedItem = "$($p.priority)"
     $ui.cbAutoRestart.IsChecked = [bool]$p.autoRestart; $ui.cbDaily.IsChecked = [bool]$p.dailyRestart; $ui.tbDaily.Text = if ($p.dailyRestart) { $p.dailyRestart } else { "05:00" }
-    $ui.cbStartup.IsChecked = [bool]$p.startWithWindows; $ui.cbUpdate.IsChecked = [bool]$p.updateOnStart; $ui.tbLogDays.Text = "$($p.logKeepDays)"
+    $ui.cbStartup.IsChecked = [bool]$p.startWithWindows; $ui.rbStartWindow.IsChecked = ("$($p.startupMode)" -eq "window"); $ui.rbStartHidden.IsChecked = ("$($p.startupMode)" -ne "window")
+    $ui.cbUpdate.IsChecked = [bool]$p.updateOnStart; $ui.tbLogDays.Text = "$($p.logKeepDays)"
     $ui.tbMotd.Text = $p.motd; $ui.tbMotdRepeat.Text = "$($p.motdRepeatMin)"
     $ui.cbRecord.IsChecked = [bool]$p.recordMatches; $ui.tbRecMax.Text = "$($p.recordMaxFiles)"; $ui.tbRecMaxMB.Text = "$($p.recordMaxMB)"
     $ui.tbRecFolder.Text = $p.recordFolder; $ui.tbRecFolderGB.Text = "$($p.recordFolderMaxGB)"; $ui.tbRecFolderDays.Text = "$($p.recordFolderMaxDays)"
@@ -1353,11 +1368,12 @@ function Read-UiToProfile {
     if ([int]::TryParse($ui.tbLogDays.Text, [ref]$n) -and $n -ge 1) { $p.logKeepDays = $n }
     $p.motd = Get-CleanValue $ui.tbMotd.Text
     $p.recordMatches = [bool]$ui.cbRecord.IsChecked
-    if ([int]::TryParse($ui.tbRecMax.Text, [ref]$n) -and $n -ge 1) { $p.recordMaxFiles = $n }
-    if ([int]::TryParse($ui.tbRecMaxMB.Text, [ref]$n) -and $n -ge 50) { $p.recordMaxMB = $n }
+    # 0 = keep all (no cap) in every recording limit; a server size cap below 50 MB is raised to 50
+    if ([int]::TryParse($ui.tbRecMax.Text, [ref]$n) -and $n -ge 0) { $p.recordMaxFiles = $n }
+    if ([int]::TryParse($ui.tbRecMaxMB.Text, [ref]$n) -and $n -ge 0) { $p.recordMaxMB = $(if ($n -eq 0) { 0 } else { [math]::Max(50, $n) }) }
     $p.recordFolder = $ui.tbRecFolder.Text.Trim()
-    $dd = 0.0; if ([double]::TryParse($ui.tbRecFolderGB.Text, [ref]$dd) -and $dd -gt 0) { $p.recordFolderMaxGB = $dd }
-    if ([int]::TryParse($ui.tbRecFolderDays.Text, [ref]$n) -and $n -ge 1) { $p.recordFolderMaxDays = $n }
+    $dd = 0.0; if ([double]::TryParse($ui.tbRecFolderGB.Text, [ref]$dd) -and $dd -ge 0) { $p.recordFolderMaxGB = $dd }
+    if ([int]::TryParse($ui.tbRecFolderDays.Text, [ref]$n) -and $n -ge 0) { $p.recordFolderMaxDays = $n }
     if ([int]::TryParse($ui.tbMotdRepeat.Text, [ref]$n) -and $n -ge 0) { $p.motdRepeatMin = $n }
     $p.bans = @($ui.tbBans.Text -split "[`r`n]+" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^[0-9./]+$' })
     $p.whitelist = @($ui.tbWhitelist.Text -split "[`r`n]+" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^[0-9./]+$' })
@@ -1384,11 +1400,19 @@ function Save-All {
     if (-not $script:Sec.rcon) { $script:Sec.rcon = New-RandomPassword; $ui.pwRcon.Password = $script:Sec.rcon }
     Save-Profile $script:P; Save-Secrets $script:P.name $script:Sec
     $want = [bool]$ui.cbStartup.IsChecked
-    if ($want -ne [bool]$script:P.startWithWindows) {
-        if (Ask ("{0} start-with-Windows for '{1}'?`n`nThis {2} an entry under your account's Run key (HKCU\...\Run). Nothing else changes." -f $(if ($want) { "Turn on" } else { "Turn off" }), $script:P.name, $(if ($want) { "adds" } else { "removes" }))) {
+    $wantMode = if ($ui.rbStartWindow.IsChecked) { "window" } else { "hidden" }
+    $oldMode = if ("$($script:P.startupMode)" -eq "window") { "window" } else { "hidden" }
+    if ($want -ne [bool]$script:P.startWithWindows -or ($want -and $wantMode -ne $oldMode)) {
+        $how = if ($wantMode -eq "window") { "opens this window and starts the server" } else { "starts the server hidden, with no window" }
+        $verb = if (-not $want) { "Turn off" } elseif ([bool]$script:P.startWithWindows) { "Change" } else { "Turn on" }
+        if (Ask ("{0} start-with-Windows for '{1}'?`n`nThis {2} an entry under your account's Run key (HKCU\...\Run). {3}Nothing else changes." -f $verb, $script:P.name, $(if ($want) { "writes" } else { "removes" }), $(if ($want) { "At sign-in it $how. " } else { "" }))) {
+            $script:P.startupMode = $wantMode
             Set-StartWithWindows $script:P $want; $script:P.startWithWindows = $want; Save-Profile $script:P
-        } else { $ui.cbStartup.IsChecked = [bool]$script:P.startWithWindows }
-    }
+        } else {
+            $ui.cbStartup.IsChecked = [bool]$script:P.startWithWindows
+            $ui.rbStartWindow.IsChecked = ($oldMode -eq "window"); $ui.rbStartHidden.IsChecked = ($oldMode -ne "window")
+        }
+    } elseif (-not $want) { $script:P.startupMode = $wantMode; Save-Profile $script:P }
     $gs = Get-GuiSettings; $gs.lastProfile = $script:P.name; Save-GuiSettings $gs
     Set-Status "Saved profile '$($script:P.name)'"
 }
@@ -1810,6 +1834,10 @@ Get-ChildItem -LiteralPath (Join-Path $script:Inst.Maintt "hzm_servergui") -Filt
     }
 $gs = Get-GuiSettings
 $first = if (@(Get-ProfileNames) -contains $gs.lastProfile) { $gs.lastProfile } else { @(Get-ProfileNames)[0] }
+if ($StartProfile) {
+    if (@(Get-ProfileNames) -contains $StartProfile) { $first = $StartProfile }
+    else { Write-Log "-StartProfile '$StartProfile': no such profile - the window opens without starting a server"; $StartProfile = "" }
+}
 $script:Specs = Get-PcSpecs
 $ui.txtInstall.Text = "Game files: $($script:Inst.Root)`nGame data (base): $($script:Inst.Base)`nMod files (home): $($script:Inst.Home)`nCatalogue: $($script:Cat['_path']) ($(@($script:Cat['settings']).Count) settings)$(if ($DryRun) { "`nDRY RUN: firewall, UPnP and start-with-Windows are logged, never executed" })"
 Refresh-ProfileList $first
@@ -1879,4 +1907,12 @@ if ($Snapshot) {
     exit 0
 }
 
+if ($StartProfile) {
+    # start-with-Windows, "open this window" choice: the window first, then the same Start button path as a click
+    $win.Add_ContentRendered({
+        Write-Log "-StartProfile '$StartProfile': starting its server"
+        try { Start-Current } catch { Write-Log "-StartProfile start failed: $_" }
+        $ui.tabs.SelectedIndex = 5
+    })
+}
 [void]$win.ShowDialog()

@@ -1,5 +1,5 @@
 ' MOH Coop Trilogy - "MOH Coop Server" shortcut shim: opens the server host window (hzm_server_gui.ps1) with no
-' console window. Arguments pass through (start-with-Windows uses: -Supervise "<profile>").
+' console window. Arguments pass through (start-with-Windows uses: -Supervise "<profile>" hidden, or -StartProfile "<profile>" for the window).
 Dim sh, fso, here, a, i
 Set sh = CreateObject("WScript.Shell")
 Set fso = CreateObject("Scripting.FileSystemObject")
