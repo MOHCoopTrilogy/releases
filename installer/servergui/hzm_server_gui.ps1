@@ -23,6 +23,7 @@ param(
     [string]$DataDir = (Join-Path $env:LOCALAPPDATA "MOHCoopServer"),
     [string]$Catalogue = "",
     [string]$Supervise = "",
+    [switch]$SkipUpdateOnce,      # set by a supervisor that relaunched itself after an update replaced this script
     [string]$StartProfile = "",
     [string]$Snapshot = "",
     [int]$SnapshotDpi = 96,
@@ -153,6 +154,7 @@ function New-Profile([string]$name, [int]$port = 12203) {
         startupMode = "hidden"
         motd = ""; motdRepeatMin = 0; hookUp = $true; hookDown = $true; hookJoin = $true; hookLeave = $true
         logKeepDays = 14; bans = @(); whitelist = @(); whitelistOn = $false; updateOnStart = $false
+        hookLag = $false          # Discord: the server fell badly behind (off by default)
         lightGraphics = "auto"; upnp = $false
         # match recording: the engine's server recorder (sv_demo.c) - sv_autoRecord = one demo per map, every player
         # and AI on it; the engine keeps sv_autoRecordMax files / sv_autoRecordMaxMB in <home>\maintt\demos
@@ -321,6 +323,26 @@ function Get-BoundPort([string]$text) {
     if ($text -match 'NETPORT busy port=\d+|net_portStrict: UDP port \d+ is already in use') { $r.Busy = $true; $r.Port = 0 }
     $r
 }
+# the engine's tick-rate lines (sv_main.c SV_TpsLog_Frame, bug-11486)
+function Read-TpsLine([string]$ln) {
+    if ($ln -match '\^~\^~\^ SVTPS target=([\d.]+) actual=([\d.]+) avg=([\d.]+) max=([\d.]+) gap=(\d+) late=(\d+) dropped=(\d+)') {
+        return [pscustomobject]@{ Kind = "tps"; Target = [double]$Matches[1]; Actual = [double]$Matches[2]; AvgMs = [double]$Matches[3]
+            MaxMs = [double]$Matches[4]; GapMs = [int]$Matches[5]; Late = [int]$Matches[6]; Dropped = [int]$Matches[7] }
+    }
+    if ($ln -match '\^~\^~\^ SVBEHIND behind=(\d+) ticks=(\d+) frame=(\d+)') {
+        return [pscustomobject]@{ Kind = "behind"; BehindMs = [int]$Matches[1]; Ticks = [int]$Matches[2]; FrameMs = [int]$Matches[3] }
+    }
+    if ($ln -match '^Hitch warning: (\d+) msec frame time') { return [pscustomobject]@{ Kind = "hitch"; Ms = [int]$Matches[1] } }
+    $null
+}
+# "badly behind" for the optional Discord notice: under 90 % of the target tick rate, or a frame a second late
+function Test-BadLag($t) {
+    if (-not $t) { return $false }
+    if ($t.Kind -eq "tps") { return ($t.Target -gt 0 -and $t.Actual -lt 0.9 * $t.Target) }
+    if ($t.Kind -eq "behind") { return ($t.BehindMs -ge 1000) }
+    if ($t.Kind -eq "hitch") { return ($t.Ms -ge 1000) }
+    $false
+}
 function Get-PortNote([int]$want, [int]$got) {
     "UDP $want was busy (probably the game is open on this PC), so the server took $got. Friends must type :$got after " +
     "the address, and firewall/router rules made for $want do not cover it. Close the game and restart the server to get $want back."
@@ -337,6 +359,8 @@ function Get-DedicatedArgs($p, $inst) {
       # bind net_port exactly or stop (bug-11450): stock ioq3 silently moves to +1..+9 when the port is taken - the
       # game's own client socket holds 12203 while it is open - and friends joining by IP alone then reach nothing
       '+set', 'net_portStrict', '1',
+      # tick-rate log (bug-11486): SVTPS every 10 s for the Status graph, SVBEHIND when a frame is a tick late
+      '+set', 'sv_tpsLog', '1', '+set', 'sv_tpsLogInterval', '10',
       '+exec', "hzm_servergui/$tag.cfg")
 }
 
@@ -680,6 +704,7 @@ function Set-StartWithWindows($p, [bool]$on) {
 # ======================================================================================================================
 # supervisor: state files, start/stop, the loop
 # ======================================================================================================================
+function Get-FileSig([string]$f) { if (Test-Path -LiteralPath $f) { (Get-FileHash -LiteralPath $f -Algorithm SHA256).Hash } else { "" } }
 function Get-RunPath($p, [string]$ext) { Join-Path $DataDir ("run\{0}.{1}" -f (Get-ProfileTag $p), $ext) }
 function Get-State($p) {
     $f = Get-RunPath $p "state.json"
@@ -692,10 +717,11 @@ function Test-Running($p) {
     $pr = Get-Process -Id $s.supervisorPid -ErrorAction SilentlyContinue
     [bool]($pr -and $pr.ProcessName -match 'powershell')
 }
-function Start-Supervisor($p) {
+function Start-Supervisor($p, [switch]$SkipUpdate) {
     Remove-Item -LiteralPath (Get-RunPath $p "stop") -Force -ErrorAction SilentlyContinue
     $self = $script:GuiPath
     $cmd = "powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$self`" -Supervise `"$($p.name)`" -DataDir `"$DataDir`" -InstallRoot `"$InstallRoot`""
+    if ($SkipUpdate) { $cmd += " -SkipUpdateOnce" }
     if ($Catalogue) { $cmd += " -Catalogue `"$Catalogue`"" }
     if ($DryRun) { $cmd += " -DryRun" }
     # WMI: the supervisor's parent is WmiPrvSE, so it outlives this window and any shell (bug-11282); window hidden
@@ -756,14 +782,17 @@ function Invoke-Supervisor([string]$name) {
     $p = Read-Profile $name
     $tag = Get-ProfileTag $p
     $mutex = New-Object Threading.Mutex($false, "Local\MOHCoopServer_$tag")
-    if (-not $mutex.WaitOne(0)) { Write-Log "supervisor '$name' already running - exit"; return }
+    # a supervisor that relaunched itself after an update releases the mutex just before it exits: wait for it
+    if (-not $mutex.WaitOne($(if ($SkipUpdateOnce) { 15000 } else { 0 }))) { Write-Log "supervisor '$name' already running - exit"; return }
     $logDir = Join-Path $DataDir "logs\$tag"
     if (-not (Test-Path -LiteralPath $logDir)) { New-Item -ItemType Directory -Force -Path $logDir | Out-Null }
     $slog = Join-Path $logDir "supervisor.log"
     function SLog($m) { Write-Log $m $slog }
     $cat = Import-Catalogue
     $inst = Get-Install
-    $state = [ordered]@{ profile = $name; supervisorPid = $PID; serverPid = 0; state = "starting"; started = ""; restarts = 0; log = ""; map = ""; port = $p.port; boundPort = 0; portNote = ""; players = 0; playerList = @() }
+    $state = [ordered]@{ profile = $name; supervisorPid = $PID; serverPid = 0; state = "starting"; started = ""; restarts = 0; log = ""; map = ""; port = $p.port; boundPort = 0; portNote = ""; players = 0; playerList = @()
+        tps = 0.0; tpsTarget = 0.0; tpsAvgMs = 0.0; tpsMaxMs = 0.0; tpsDropped = 0; tpsHist = @(); behindMs = 0; behindTicks = 0
+        behindAt = ""; lagLog = ""; appUpdated = "" }
     function Save-State { $state | ConvertTo-Json | Set-Content -LiteralPath (Get-RunPath $p "state.json") -Encoding UTF8 }
     Save-State
     $stopFile = Get-RunPath $p "stop"; $cmdFile = Get-RunPath $p "cmd"
@@ -771,6 +800,9 @@ function Invoke-Supervisor([string]$name) {
     $lastDaily = ""
     $userStop = $false
     $portBusySince = $null
+    $handedOver = $false          # this supervisor relaunched itself (new script): leave state and mutex to the new one
+    $skipUpdate = [bool]$SkipUpdateOnce
+    $lastLagHook = [datetime]::MinValue
     try {
         while ($true) {
             if (Test-Path -LiteralPath $stopFile) { $userStop = $true; break }
@@ -778,17 +810,36 @@ function Invoke-Supervisor([string]$name) {
             $sec = Read-Secrets $name
             if (-not $sec.rcon) { $sec.rcon = New-RandomPassword; Save-Secrets $name $sec }
             Remove-OldLogs $p
-            if ($p.updateOnStart -and (Test-Path -LiteralPath $inst.Updater)) {
+            if ($skipUpdate) { $skipUpdate = $false; SLog "update already applied by the previous supervisor - starting on the new files" }
+            elseif ($p.updateOnStart -and (Test-Path -LiteralPath $inst.Updater)) {
                 $others = @(Get-CimInstance Win32_Process -Filter "Name='omohaaded.exe'" -ErrorAction SilentlyContinue | Where-Object { $_.ExecutablePath -eq $inst.Ded })
                 if ($others.Count -eq 0) {
+                    # the update runs BEFORE the server starts, so the server always boots on the files it brought. What
+                    # it cannot reach is this supervisor: PowerShell already parsed the old hzm_server_gui.ps1, so a new
+                    # app version would only take over on the next start (bug-11487, Grahn on v1.10.90: "start the
+                    # server, update it that way and then restart"). If the update replaced this script, relaunch on it.
+                    $selfHash = Get-FileSig $script:GuiPath
+                    $manHash = Get-FileSig (Join-Path $inst.Root "installed_manifest.json")
                     SLog "checking for updates (updater.ps1 -NoLaunch)"
                     $state.state = "updating"; Save-State
                     $u = Start-Process -FilePath "powershell.exe" -WindowStyle Hidden -PassThru -Wait -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$($inst.Updater)`"", "-NoLaunch")
                     SLog "updater exit $($u.ExitCode)"
-                } else { SLog "update check skipped: another server of this install is running" }
+                    if ((Get-FileSig (Join-Path $inst.Root "installed_manifest.json")) -ne $manHash) { SLog "update applied" }
+                    if ((Get-FileSig $script:GuiPath) -ne $selfHash) {
+                        SLog "the update replaced the server app - relaunching this supervisor on the new version before the server starts"
+                        $state.appUpdated = (Get-Date).ToString("s"); $state.state = "restarting"; Save-State
+                        $handedOver = $true
+                        try { $mutex.ReleaseMutex() } catch {}
+                        [void](Start-Supervisor $p -SkipUpdate)
+                        break
+                    }
+                } else { SLog "update check skipped: another server of this install is running (it holds the files open)" }
             }
             $cfg = Write-ServerCfg $p $sec $cat $inst
             $log = Join-Path $logDir ("server_{0:yyyyMMdd_HHmmss}.log" -f (Get-Date))
+            $lagLog = $log -replace 'server_(\d+_\d+)\.log$', 'lag_$1.log'
+            $state.lagLog = $lagLog; $state.tps = 0.0; $state.tpsHist = @(); $state.behindMs = 0; $state.behindAt = ""
+            $tail = ""
             # a hidden server must never wait on a modal error box (Sys_ErrorDialog): HZM_NO_DIALOGS=1 prints the error
             # and exits, so a fatal error ends the process and the restart / port-busy logic below can act on it
             $env:HZM_NO_DIALOGS = "1"
@@ -834,7 +885,33 @@ function Invoke-Supervisor([string]$name) {
                                     Save-State
                                 }
                             }
-                            foreach ($ln in ($chunk -split "`n")) {
+                            $lines = ($tail + $chunk) -split "`n"
+                            $tail = $lines[-1]                     # a line still being written finishes next second
+                            foreach ($ln in ($lines | Select-Object -SkipLast 1)) {
+                                $ln = $ln.TrimEnd("`r")
+                                $tl = Read-TpsLine $ln
+                                if ($tl) {
+                                    $now = Get-Date
+                                    switch ($tl.Kind) {
+                                        "tps" {
+                                            $state.tps = $tl.Actual; $state.tpsTarget = $tl.Target; $state.tpsAvgMs = $tl.AvgMs
+                                            $state.tpsMaxMs = $tl.MaxMs; $state.tpsDropped = $tl.Dropped
+                                            $state.tpsHist = @(@($state.tpsHist) + $tl.Actual | Select-Object -Last 60)
+                                            $lagLine = "{0:HH:mm:ss}  {1:0.0} of {2:0} ticks/s   work per tick avg {3:0.00} ms, max {4:0.0} ms   longest gap {5} ms   late frames {6}   lost ticks {7}" -f $now, $tl.Actual, $tl.Target, $tl.AvgMs, $tl.MaxMs, $tl.GapMs, $tl.Late, $tl.Dropped
+                                        }
+                                        "behind" {
+                                            $state.behindMs = $tl.BehindMs; $state.behindTicks = $tl.Ticks; $state.behindAt = $now.ToString("s")
+                                            $lagLine = "{0:HH:mm:ss}  RUNNING BEHIND: {1} ms late, {2} tick(s) caught up (longest frame {3} ms)" -f $now, $tl.BehindMs, $tl.Ticks, $tl.FrameMs
+                                        }
+                                        "hitch" { $lagLine = "{0:HH:mm:ss}  HITCH: one frame took {1} ms" -f $now, $tl.Ms }
+                                    }
+                                    try { Add-Content -LiteralPath $lagLog -Value $lagLine -Encoding ascii } catch {}
+                                    Save-State
+                                    if ($p.hookLag -and (Test-BadLag $tl) -and ($now - $lastLagHook).TotalMinutes -ge 10) {
+                                        $lastLagHook = $now
+                                        [void](Send-Webhook $sec.webhook ("Server falling behind: **{0}** - {1}" -f (Remove-ColorCodes $p.hostname), ($lagLine -replace '^\S+\s+', '')))
+                                    }
+                                }
                                 if ($ln -match '^Server: (\S+)') {
                                     $state.map = $Matches[1]; $state.state = "loading"; $loaded = $false; Save-State
                                     Remove-Item -LiteralPath $cfg -Force -ErrorAction SilentlyContinue   # it held the passwords
@@ -964,11 +1041,14 @@ function Invoke-Supervisor([string]$name) {
             for ($i = 0; $i -lt 10; $i++) { if (Test-Path -LiteralPath $stopFile) { break }; Start-Sleep -Seconds 1 }
         }
     } finally {
-        if ($userStop -and $p.hookDown) { [void](Send-Webhook $sec.webhook ("Server stopped: **{0}**" -f (Remove-ColorCodes $p.hostname))) }
-        $state.state = "stopped"; $state.serverPid = 0; $state.players = 0; $state.playerList = @(); Save-State
-        Remove-Item -LiteralPath $stopFile -Force -ErrorAction SilentlyContinue
-        SLog "supervisor exit"
-        $mutex.ReleaseMutex()
+        if ($handedOver) { SLog "supervisor exit (handed over to the updated app)" }
+        else {
+            if ($userStop -and $p.hookDown) { [void](Send-Webhook $sec.webhook ("Server stopped: **{0}**" -f (Remove-ColorCodes $p.hostname))) }
+            $state.state = "stopped"; $state.serverPid = 0; $state.players = 0; $state.playerList = @(); Save-State
+            Remove-Item -LiteralPath $stopFile -Force -ErrorAction SilentlyContinue
+            SLog "supervisor exit"
+            try { $mutex.ReleaseMutex() } catch {}
+        }
     }
 }
 
@@ -1281,6 +1361,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                 <WrapPanel>
                   <CheckBox x:Name="cbHookUp" Content="Server up   "/><CheckBox x:Name="cbHookDown" Content="Server down / crash   "/>
                   <CheckBox x:Name="cbHookJoin" Content="Player joined   "/><CheckBox x:Name="cbHookLeave" Content="Player left   "/>
+                  <CheckBox x:Name="cbHookLag" Content="Server falling badly behind (under 90 % speed, or a second late; at most every 10 min)   "/>
                   <Button x:Name="btnHookTest" Content="Send a test message"/>
                 </WrapPanel>
               </StackPanel></GroupBox>
@@ -1302,6 +1383,17 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
             <TextBlock x:Name="txtRunState" Margin="10,0,0,0" FontWeight="SemiBold"/>
           </StackPanel>
           <DockPanel Grid.Row="1" Margin="0,8,0,4">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,6">
+              <TextBlock Text="Server speed  " VerticalAlignment="Center"/>
+              <Border BorderBrush="{StaticResource Edge}" BorderThickness="1" Background="#FF14150F" Width="240" Height="36">
+                <Canvas x:Name="cvTps" ClipToBounds="True"/>
+              </Border>
+              <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock x:Name="txtTps"/>
+                <TextBlock x:Name="txtBehind" Foreground="#FFE0B050"/>
+              </StackPanel>
+              <Button x:Name="btnLagLog" Content="Open lag log" Margin="12,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
             <StackPanel DockPanel.Dock="Right" Margin="6,0,0,0">
               <Button x:Name="btnKick" Content="Kick"/>
               <Button x:Name="btnBan" Content="Ban IP"/>
@@ -1413,7 +1505,7 @@ function Load-ProfileToUi($p) {
     $ui.txtRecDir.Text = "The server writes its demos to $(Join-Path $script:Inst.Maintt 'demos') (auto_<map>_<date>...)."
     $ui.tbBans.Text = (@($p.bans) -join "`r`n"); $ui.tbWhitelist.Text = (@($p.whitelist) -join "`r`n"); $ui.cbWhitelist.IsChecked = [bool]$p.whitelistOn
     $ui.pwWebhook.Password = $script:Sec.webhook
-    $ui.cbHookUp.IsChecked = [bool]$p.hookUp; $ui.cbHookDown.IsChecked = [bool]$p.hookDown; $ui.cbHookJoin.IsChecked = [bool]$p.hookJoin; $ui.cbHookLeave.IsChecked = [bool]$p.hookLeave
+    $ui.cbHookUp.IsChecked = [bool]$p.hookUp; $ui.cbHookDown.IsChecked = [bool]$p.hookDown; $ui.cbHookJoin.IsChecked = [bool]$p.hookJoin; $ui.cbHookLeave.IsChecked = [bool]$p.hookLeave; $ui.cbHookLag.IsChecked = [bool]$p.hookLag
     Update-Preview; Set-ModeHelp; Set-MissionHelp; Update-PortHint
     Build-Affinity; Build-Tuning
     $script:Built = @{}; Build-Gameplay
@@ -1450,7 +1542,7 @@ function Read-UiToProfile {
     $p.bans = @($ui.tbBans.Text -split "[`r`n]+" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^[0-9./]+$' })
     $p.whitelist = @($ui.tbWhitelist.Text -split "[`r`n]+" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^[0-9./]+$' })
     $p.whitelistOn = [bool]$ui.cbWhitelist.IsChecked
-    $p.hookUp = [bool]$ui.cbHookUp.IsChecked; $p.hookDown = [bool]$ui.cbHookDown.IsChecked; $p.hookJoin = [bool]$ui.cbHookJoin.IsChecked; $p.hookLeave = [bool]$ui.cbHookLeave.IsChecked
+    $p.hookUp = [bool]$ui.cbHookUp.IsChecked; $p.hookDown = [bool]$ui.cbHookDown.IsChecked; $p.hookJoin = [bool]$ui.cbHookJoin.IsChecked; $p.hookLeave = [bool]$ui.cbHookLeave.IsChecked; $p.hookLag = [bool]$ui.cbHookLag.IsChecked
     $script:Sec.password = $ui.pwJoin.Password; $script:Sec.rcon = $ui.pwRcon.Password
     $wh = $ui.pwWebhook.Password.Trim()
     if ($wh -and -not (Test-WebhookUrl $wh)) { Set-Status "That is not a Discord webhook URL - it was not saved"; $wh = $script:Sec.webhook }
@@ -1721,6 +1813,35 @@ function Read-Tail([string]$f, [int]$maxBytes = 48KB) {
 }
 # the port friends must use: the one the running server really bound (state file), else the profile's
 function Get-SharePort($p) { $s = Get-State $p; if ($s -and (Test-Running $p) -and $s.boundPort) { [int]$s.boundPort } else { [int]$p.port } }
+# the Status tab's tick-rate row: the last 10 minutes of 10-second SVTPS samples, target as a dashed line
+function Show-Tps($s) {
+    $ui.cvTps.Children.Clear()
+    $hist = @($s.tpsHist | ForEach-Object { [double]$_ })
+    $target = [double]$s.tpsTarget
+    if (-not $s -or $target -le 0 -or -not $hist.Count) {
+        $ui.txtTps.Text = "measuring... (first sample after 10 s)"; $ui.txtBehind.Text = ""; return
+    }
+    $w = 238.0; $h = 34.0; $top = [math]::Max($target * 1.1, ($hist | Measure-Object -Maximum).Maximum)
+    $y = { param($v) $h - 2 - ($v / $top) * ($h - 4) }
+    $tl = New-Object Windows.Shapes.Line
+    $tl.X1 = 0; $tl.X2 = $w; $tl.Y1 = (& $y $target); $tl.Y2 = $tl.Y1
+    $tl.Stroke = [Windows.Media.Brushes]::DimGray; $dash = New-Object Windows.Media.DoubleCollection; $dash.Add(3.0); $dash.Add(3.0); $tl.StrokeDashArray = $dash
+    [void]$ui.cvTps.Children.Add($tl)
+    $pl = New-Object Windows.Shapes.Polyline
+    $pl.StrokeThickness = 1.6
+    $low = ($hist[-1] -lt 0.9 * $target)
+    $pl.Stroke = if ($low) { [Windows.Media.Brushes]::Orange } else { New-Object Windows.Media.SolidColorBrush ([Windows.Media.Color]::FromRgb(0x9C, 0xC5, 0x5A)) }
+    $step = if ($hist.Count -gt 1) { $w / 59.0 } else { 0 }
+    $x0 = $w - ($hist.Count - 1) * $step
+    for ($i = 0; $i -lt $hist.Count; $i++) { [void]$pl.Points.Add((New-Object Windows.Point ($x0 + $i * $step), (& $y $hist[$i]))) }
+    [void]$ui.cvTps.Children.Add($pl)
+    $ui.txtTps.Text = "{0:0.0} of {1:0} ticks a second  -  work per tick {2:0.00} ms avg, {3:0.0} ms max (budget {4:0} ms){5}" -f $hist[-1], $target, [double]$s.tpsAvgMs, [double]$s.tpsMaxMs, (1000.0 / $target), $(if ([int]$s.tpsDropped -gt 0) { "  -  $($s.tpsDropped) ticks lost" } else { "" })
+    $ui.txtBehind.Text = ""
+    if ($s.behindAt) {
+        $ago = ((Get-Date) - [datetime]$s.behindAt).TotalSeconds
+        if ($ago -lt 120) { $ui.txtBehind.Text = "Running behind: {0} ms / {1} ticks ({2:0} s ago)" -f $s.behindMs, $s.behindTicks, $ago }
+    }
+}
 function Update-StatusTab {
     $p = $script:P
     if (-not $p) { return }
@@ -1739,6 +1860,7 @@ function Update-StatusTab {
         if ($s.portNote) { $ui.txtRunState.Text += "`n" + $s.portNote }
         # the supervisor polls rcon status every 10 s; the window reads its state file instead of adding rcon traffic
         $ui.lvPlayers.ItemsSource = @($s.playerList | Where-Object { $_ })
+        Show-Tps $s
         $lg = Get-LatestLog $p
         if ($lg) {
             $t = Read-Tail $lg
@@ -1936,7 +2058,20 @@ $ui.txtIps.Text = "This PC on your network: $(Get-LocalIp)"
 
 $timer = New-Object Windows.Threading.DispatcherTimer
 $timer.Interval = [TimeSpan]::FromSeconds(2)
-$timer.Add_Tick({ if ($ui.tabs.SelectedIndex -eq 5) { Update-StatusTab } })
+$script:GuiStamp = (Get-Item -LiteralPath $script:GuiPath).LastWriteTimeUtc
+$timer.Add_Tick({
+    if ($ui.tabs.SelectedIndex -eq 5) { Update-StatusTab }
+    # an update (the updater, or a supervisor's update-on-start) replaced this app: this window still runs the old one
+    if (-not $script:AppUpdatedShown -and (Get-Item -LiteralPath $script:GuiPath -ErrorAction SilentlyContinue).LastWriteTimeUtc -ne $script:GuiStamp) {
+        $script:AppUpdatedShown = $true
+        Set-Status "The MOH Coop Server app was updated - close and reopen this window to use the new version (running servers already use it)."
+    }
+})
+$ui.btnLagLog.Add_Click({
+    $s = Get-State $script:P
+    if ($s -and $s.lagLog -and (Test-Path -LiteralPath $s.lagLog)) { Start-Process -FilePath "notepad.exe" -ArgumentList "`"$($s.lagLog)`"" }
+    else { Set-Status "No lag log yet: the first line is written 10 s after the server starts" }
+})
 $timer.Start()
 $win.Add_Closing({ $timer.Stop() })
 
