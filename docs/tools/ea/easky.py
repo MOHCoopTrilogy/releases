@@ -412,6 +412,14 @@ def build(L, spec, size=None):
                 sv = np.clip((-0.84 - pz[sk_sel]) / (30.9 - 0.84), 0.0, 1.0)
                 col[sk_sel] = _bilerp(sksrc, su, sv)[:, :3]
         col *= gain
+        sg = spec.get("sky_grade")
+        if sg and os.environ.get("EA_SKY_GRADE") != "0":
+            # [0.7.58] the original's night sky brightness and gradient by elevation, measured at the same spot (ea_levels
+            # sky_grade): only directions above the box's bottom edge; the skirt below the horizon stays as decoded
+            el_ = np.degrees(np.arctan2(dz, np.hypot(dx, dy)))
+            kk = np.interp(el_, sg["el"], sg["k"]).astype(np.float32)
+            k3 = kk[:, :, None] * np.asarray(sg.get("rgb", (1.0, 1.0, 1.0)), np.float32)[None, None, :]
+            col *= np.where(below[:, :, None], np.float32(1.0), k3)
         if spec.get("tint"):
             col *= np.asarray(spec["tint"], np.float32)    # [2026-11-15] the original's sky is darker and less blue (frames)
         gb = spec.get("glow_band")

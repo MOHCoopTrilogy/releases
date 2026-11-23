@@ -670,6 +670,13 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
                 kk, hits = eadefs.best_scale(hp, [d_[0] for d_ in _npc], list(eadefs.NPC_AXIS.values()))
                 lines.append(f'	level.ea_ar_hpk["{a}"] = {kk}')
                 log("eadefs: ally %s hp %d -> own scale %s, German NPC hits disc/ours %s" % (a, hp, kk, hits))
+    # [0.7.58, decode audit #20] what a dead soldier drops (eadefs.drop_tables: DropItemTableType Axis / Allied; outcome
+    # weights nothing / health / ammo for the player's weapon / own-weapon check / slot-1 item, and slot 1's weapon)
+    for _team, _t in eadefs.drop_tables(_dd).items():
+        for _k, _w in enumerate(_t["w"]):
+            lines.append(f'	level.ea_drop_w["{_team}_{_k}"] = {_w:g}')
+        lines.append(f'	level.ea_drop_item["{_team}"] = "{(_t["slots"][0][0] or "").lower()}"')
+        log("eadefs: drops %s weights %s slots %s" % (_team, _t["w"], _t["slots"]))
     for w in sorted({eavm.base(r.s(20)) for r in db.of("NPCSpawnPoint") if (r.s(20) or "").lower().endswith(".xdd")}):
         bd = eadefs.bullet_damage(_dd, w)
         if bd:

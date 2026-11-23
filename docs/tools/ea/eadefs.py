@@ -19,7 +19,8 @@ import re
 import struct
 import zlib
 
-CLASSES = ("ArchetypeType", "EnemyWeaponType", "PlayerWeaponType", "ProjectileBulletType", "ThrownBulletType")
+CLASSES = ("ArchetypeType", "EnemyWeaponType", "PlayerWeaponType", "ProjectileBulletType", "ThrownBulletType",
+           "DropItemTableType", "StaticObjectType")
 F = {k: zlib.crc32(k.encode()) & 0xffffffff for k in CLASSES}
 F_DMG, F_HEAD, F_BULLET = 0x1664515a, 0xc49152de, 0x40cfd4c1
 F_HP, F_TIER, F_REACT, F_RANGE = 0xc514d0a5, 0x080cf4ed, 0x6a3361d5, 0x6f3410f9
@@ -115,3 +116,45 @@ def best_scale(hp, disc_dmg, our_dmg):
         k = best[1]
     return k, [(w, math.ceil(hp * k / o_ - 1e-9)) for w, o_ in zip(want, our_dmg)]
 
+
+# [0.7.58, decode audit #20] DropItemTableType "Axis" / "Allied" (DEFAULT.XBE field handler 0x7c5e0, runtime table
+# 0x7c780 at [0x3c2e44]+0x2cc / +0x31c, death roll 0xf9b90 via 0x7c870): five item slots {StaticObjectType id, weight}
+# and four outcome weights. On a soldier's death the game rolls over [nothing, health, ammo for the player's current
+# weapon, the soldier's weapon check, an item] with the weights below (the item weight = the slots' weights summed);
+# "health" is skipped on the top difficulty; "item" always drops slot 1. The slot items are StaticObjectTypes whose
+# field 24fec0d9 names a PlayerWeaponType (the PPSh / Gewehr / MP40 ammo pickups, one shared mesh); the health drop
+# is StaticObjectType 15e448f4 with amount 25 (0x37653c x 100)
+DROP_TABLES = {0x253d29c4: "axis", 0x4da76091: "allies"}
+DROP_SLOTS = ((0x26e24565, 0xac7c4b7a), (0xbfeb14df, 0x35751ac0), (0xc8ec2449, 0x42722a56),
+              (0x5688b1ea, 0xdc16bff5), (0x218f817c, 0xab118f63))
+DROP_OUTCOMES = (0xef5ba3de, 0x67a2e9dc, 0x09f23cfd, 0xd9b33af4)   # nothing, health, player ammo, own-weapon check
+F_SO_WEAPON = 0x24fec0d9
+
+
+def _u32(v):
+    import struct as _s
+    if isinstance(v, (bytes, bytearray)) and len(v) >= 4:
+        return _s.unpack_from("<I", v)[0]
+    return v if isinstance(v, int) else None
+
+
+def drop_tables(defs):
+    """-> {"axis"|"allies": {"w": [nothing, health, ammo, own, item], "slots": [(weapon name or None, weight), ...]}}"""
+    wnames = {}
+    for i, w in defs.get("PlayerWeaponType", {}).items():
+        nm = w.get(0x795a6533)
+        if isinstance(nm, (bytes, bytearray)):
+            wnames[i] = nm.split(bytes(1))[0].decode("latin-1")
+    out = {}
+    for tid, team in DROP_TABLES.items():
+        t = defs.get("DropItemTableType", {}).get(tid)
+        if not t:
+            continue
+        slots = []
+        for fi, fw in DROP_SLOTS:
+            so = defs.get("StaticObjectType", {}).get(_u32(t.get(fi)))
+            wid = _u32(so.get(F_SO_WEAPON)) if so else None
+            slots.append((wnames.get(wid), float(t.get(fw, 0.0) or 0.0)))
+        w = [float(t.get(f, 0.0) or 0.0) for f in DROP_OUTCOMES] + [sum(x[1] for x in slots)]
+        out[team] = {"w": w, "slots": slots}
+    return out
