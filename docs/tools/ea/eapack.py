@@ -651,6 +651,25 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
                 kk, hits = eadefs.best_scale(hp, [d_[0] for d_ in _disc], list(eadefs.OUR_KIT.values()))
                 lines.append(f'	level.ea_ar_hpk["{a}"] = {kk}')
                 log("eadefs: %s hp %d -> own scale %s, hits disc/ours %s" % (a, hp, kk, hits))
+        # [0.7.57, C56] the allies' own K from the AI side of the disc: the hits a German's NPC Gewehr (30) / MP40 (16)
+        # need on them there against the hits our German G43 / MP40 (NPC_AXIS) need here; the named partisans' 1500 hp
+        # get 50 / 94 hits on the disc. An archetype the global K already fits keeps it (Allied_Squad 40 hp)
+        _npc = [eadefs.bullet_damage(_dd, w) for w in eadefs.NPC_AXIS]
+        if all(_npc):
+            _allies = {eavm.base(r.s(18)) for r in db.of("NPCSpawnPoint")
+                       if (r.s(18) or "").lower().endswith(".xdd") and eadb.team_of(r.npc()["character"]) == "allies"}
+            for a in sorted(_allies):
+                x = _dd["ArchetypeType"].get(eadefs.crc(a))
+                hp = int(x.get(eadefs.F_HP, 0)) if x else 0
+                if hp <= 0:
+                    continue
+                _ok = all(math.ceil(hp * _k / o_ - 1e-9) == math.ceil(hp / d_[0] - 1e-9)
+                          for d_, o_ in zip(_npc, eadefs.NPC_AXIS.values()))
+                if _ok:
+                    continue
+                kk, hits = eadefs.best_scale(hp, [d_[0] for d_ in _npc], list(eadefs.NPC_AXIS.values()))
+                lines.append(f'	level.ea_ar_hpk["{a}"] = {kk}')
+                log("eadefs: ally %s hp %d -> own scale %s, German NPC hits disc/ours %s" % (a, hp, kk, hits))
     for w in sorted({eavm.base(r.s(20)) for r in db.of("NPCSpawnPoint") if (r.s(20) or "").lower().endswith(".xdd")}):
         bd = eadefs.bullet_damage(_dd, w)
         if bd:
@@ -754,6 +773,13 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     if mohaa_base:
         import flpack      # stock aliases are map-filtered: re-declare the AA-campaign ones for coop_ea (Frontline recipe)
         _br = flpack.alias_bridge(mohaa_base, "coop_ea_" + level)
+        # [0.7.57, decode audit gap 11] the disc's own footsteps, landings, bullet impacts, whizzes and Panzer engine
+        # loops replace those stock pools (eadiscsfx.py); the bridge then leaves the replaced pools out
+        import eadiscsfx
+        _sfx = eadiscsfx.build(L, level, vgm, files, _br, log=log)
+        if _sfx:
+            _br = eadiscsfx.drop_pools(_br, _sfx)
+            vm["disc_sfx"] = sorted(_sfx)
         # The allied riflemen use the stock Soviet models, which carry no generic combat head lines, so the AI's
         # sighted / attack / spread shouts fall through to sound aliases no pak defines and the server log fills
         # with missing-alias errors. The install has no Russian generic lines and American ones would be wrong on

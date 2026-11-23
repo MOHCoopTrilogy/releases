@@ -20,6 +20,7 @@ at the horizon (the texture's bottom row, the fog colour 50 56 63) falling to 21
 dark band where the land ends from any raised spot. The skirt is now drawn from the decoded mesh itself.
 """
 import math
+import os
 import struct
 
 # face -> strip corners (x, y, z in metres from the eye, z up) and their uv (0..1023 = 0..1), in the original's order
@@ -153,7 +154,7 @@ def cloud_layers(stream, layers, cloud_height=512.0, world_radius=4096.0):
     """[0.7.52] the original's two cloud layers (Art_1 parts 0 / 1) with their decoded MatAnim0 tracks -> a copy of the
     ea_levels cloud_layers with "scroll" and "rgb" taken from the disc. Each layer's uv is a planar projection of its dome
     (uv = R . (x, y), fitted exactly on layer 0); a track translates uv by (last key - first key) per cycle. The cycle is
-    read as 1 / rate seconds (rate 0.005 -> 200 s; NOT verified against the emulator, FIDELITY C52). The pattern then
+    1 / (3 x rate) seconds (rate 0.005 -> 66.7 s; measured 67.0 s on the emulator, 0.7.57, FIDELITY C53). The pattern then
     moves -R^-1 . delta / T m/s on a dome whose top is ztop m above the eye; the engine's cloud stage (R_InitSkyTexCoords:
     s = acos(v.x) on a sphere of radius world_radius + cloud_height) moves world_radius + cloud_height world units per
     texture unit at cloud_height, so the same angular speed at the zenith is scroll = scale * cloud_height /
@@ -172,7 +173,10 @@ def cloud_layers(stream, layers, cloud_height=512.0, world_radius=4096.0):
         U = np.asarray(pt["uv"], np.float64)
         X = np.c_[P[:, 0], P[:, 1], np.ones(len(P))]
         R = np.array([np.linalg.lstsq(X, U[:, k], rcond=None)[0][:2] for k in (0, 1)])
-        T = 1.0 / a["rate"][0]
+        # [0.7.57] the cycle MEASURED on the emulator (ref_xemu sky/clouds_1123: the start view held still 80 s, the moving
+        # residual's autocorrelation peaks at 33.5 s (layer A, 2 repeats a cycle) and 67.0 s (both layers, 0.998)) =
+        # 1 / (3 x rate); the earlier reading 1 / rate (200 s) drifted 3x too slow. EA_CLOUD_CYCLE=<s> overrides
+        T = float(os.environ.get("EA_CLOUD_CYCLE") or 0) or 1.0 / (3.0 * a["rate"][0])
         dlt = np.array(a["keys"][-1][:2]) - np.array(a["keys"][0][:2])
         v = -np.linalg.solve(R, dlt) / T
         zt = float(P[:, 2].max())

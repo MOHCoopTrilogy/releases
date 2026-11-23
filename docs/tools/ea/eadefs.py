@@ -66,6 +66,9 @@ def read(stream, names=()):
 # the co-op kit's own per-hit damage (the mod's weapon tiks, "dm" bulletdamage, what a co-op server uses): the disc's
 # PlayerGewehr is our G43, its PlayerPPSH our PPSh. Not disc data: the other half of the shots-to-kill parity
 OUR_KIT = {"PlayerGewehr": 50.0, "PlayerPPSH": 24.0}
+# [0.7.57, C56 partisans] the German NPC guns as the mod fires them at other actors (gametype 2 = the tiks' "dm
+# bulletdamage": models/weapons/g43.tik 50 - the NPC Gewehr is the G43, 0.7.54 - and mp40.tik 24)
+NPC_AXIS = {"NpcWpn_Gewehr": 50.0, "NpcWpn_mp40": 24.0}
 
 
 def crc(name):
