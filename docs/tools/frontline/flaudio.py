@@ -211,14 +211,17 @@ def schl_at(data, off):
     return s[0] if s else None
 
 
-def som_sound(som, sound_set, sound_id):
-    """-> {first, last, code, volume (0..1), flags} of a sound set's PLAYSOUND id, or None"""
+def som_sound(som, sound_set, sound_id, sub=None):
+    """-> {first, last, code, volume (0..1), flags} of a sound set's PLAYSOUND id, or None.
+    [anvil 2026-11-23] A set can hold several rows for one id, told apart by the second key word = the record's
+    category-12 link (1_3 Alarm_ParentScript set 449 id 57: sub 786 -> an empty bank slot, sub 991 -> the alarm bell
+    the emulator plays). sub=None keeps the first row (the converter's behaviour so far)."""
     if som[:4] != b"SOMI":
         return None
     na, nb, oa, ob = struct.unpack_from("<4I", som, 0x10)
     for i in range(na):
         key, _sub, sid, bi = struct.unpack_from("<4H", som, oa + 8 * i)
-        if key == sound_set and sid == sound_id and bi < nb:
+        if key == sound_set and sid == sound_id and bi < nb and (sub is None or _sub == sub):
             lo, hi, code, _p0, _p1, vol, fl, _z = struct.unpack_from("<BBHHHHHH", som, ob + 14 * bi)
             return {"first": lo, "last": hi, "code": code, "volume": vol / 32767.0, "flags": fl}
     return None

@@ -599,7 +599,8 @@ def _prop_sounds(disc, L, level, files, lines, ali, tmp, d, vgm, psp, log):
             continue
         sets_ = [x & 0xFFFF for x in flscene.words(e)[13:] if x >> 16 == 11]
         som = L.files.get(ps["som"], b"")
-        row = flaudio.som_sound(som, sets_[0], ps["sound"]) if sets_ else None
+        subs_ = [x & 0xFFFF for x in flscene.words(e)[13:] if x >> 16 == 12] if ps.get("sub_link") else []
+        row = flaudio.som_sound(som, sets_[0], ps["sound"], subs_[0] if subs_ else None) if sets_ else None
         if not row:
             log("prop sound", ps["name"], "no row for set", sets_, "sound", ps["sound"])
             continue
