@@ -185,7 +185,7 @@ MP_OWNED_MENUS = {"mpoptions"}
 # ONLY this file: the MP-facing menus are left unlocked on purpose - the user approved coop edits to them
 # (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
 LOCKS = {
-    "ui/coop_loadout.urc": {"sha256_lf": "869f5fe3cbbd59331c67affc09679cf5c56f9c309f2be6d334c0de9069ca17a5", "sha256_crlf": "7575242b627ddc629079558f4c127b6983eb74339773822a78159d1593a70c2a", "lf_bytes": 190902, "blob": "6faf6eadeb57dc0c24364002bea380c45ba1169f", "eol": "crlf", "commit": "777d1367", "locked": "2026-11-09 v1.10.68 integration: finishes2 second chip row (fids 40-52, bug-10700) + the Customize bench CUSTOMIZE button (hzmcust open; pushmenu coop_custom, bug-10709), both from gen_armory_urc.py via gen_loadout build - deliberate coop change"},
+    "ui/coop_loadout.urc": {"sha256_lf": "2ffb0afae0f6fffe9ae5bb5b40cef8f03d69e2b8bd4db7c81872dc4b4954b408", "sha256_crlf": "deace567dd07dd6d2d37e45bd12325ea651a1b4411e2ac948ae7c5f26fe03ec9", "lf_bytes": 191791, "blob": "bc877d153b29c3683f0c54537641d1a0f5b6933c", "eol": "lf", "commit": "5c7bff94d", "locked": "2026-11-22 discguns ship: the disc variant chips FRONTLINE / EUR ASSAULT / EA M9 (ee0f225e, bug-11417) + every Armory change plays ui/coop_armory_snd.cfg (aa72ee21, bug-11395), all from gen_armory_urc.py via gen_loadout build - deliberate coop change (the lock was stale since ee0f225e)"},
 }
 
 # Clauses 4/5. Every saved coop cvar MP could plausibly touch [bug-2564]; each would follow the player into coop.

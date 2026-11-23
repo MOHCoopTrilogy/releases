@@ -32,7 +32,10 @@ GUN_SLOTS = (1, 2, 3)                      # the second row: guns only (slot 4 =
 # the hero (gen_armory_urc.py), shown only when the inspected gun HAS that variant (coop_loDiscV<F>, the gun's p<id>.cfg) AND this PC
 # converted the disc (ROM coop_byoGunsFl / coop_byoGunsEa, engine CL_ByoInit). Click = coop_loFgo<F> = fin<F>_s<n>.cfg, as for finishes2;
 # the server gate is loadoutpick.scr loadout_discOwned (no padlock: a player without the disc never sees the chip).
-DISC = [(60, "FRONTLINE", "coop_byoGunsFl"), (70, "EUROPEAN ASSAULT", "coop_byoGunsEa")]
+DISC = [(60, "FRONTLINE", "coop_byoGunsFl"), (70, "EUROPEAN ASSAULT", "coop_byoGunsEa"),
+        (71, "EUROPEAN ASSAULT M9", "coop_byoGunsEa")]     # [discguns ship 2026-11-22] the M9 bazooka: the bazooka's 2nd EA variant
+# the hero chip captions (68 u wide, verdana-12); the weapon rack names the same chip
+DISC_CHIP = {60: "FRONTLINE", 70: "EUR ASSAULT", 71: "EA M9"}
 DISC_FIDS = [d[0] for d in DISC]
 BLOCK_BEGIN = "// killchal: per-gun finish progress pointers (gen_finish_ui.py)"
 BLOCK2_BEGIN = "// finishes2: the second finish chip row (gen_finish_ui.py)"

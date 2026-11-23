@@ -375,10 +375,18 @@ def unlock_hovers(rows):
     rank = {}
     for r, tok in au.rank_grants(xp):
         rank[tok.lower()] = min(r, rank.get(tok.lower(), r))
+    # [discguns ship 2026-11-22] a NEW disc gun (loadoutdisc.scr coop_discGun, gen_disc_stubs.py): its unlock is the converted
+    # disc and nothing else (loadoutpick.scr loadout_isUnlocked)
+    disc_gun = {t.lower(): g for t, g in re.findall(r'coop_discGun\["([^"]+)"\]\s*=\s*"([^"]+)"', _script("loadoutdisc.scr"))}
+    disc_name = {"fl": "Frontline", "ea": "European Assault"}
     for w in rows:
         give = (w["give"] or w["tik"]).lower()
         if give in free:
             continue                            # no hover at all for a free starter
+        if give in disc_gun:
+            out["req%s.cfg" % w["id"]] = req(_fit("UNLOCK: your own %s disc" % disc_name[disc_gun[give]],
+                                                 "converted on this PC", clipped, w["id"]))
+            continue
         ways = []
         if give in rank:
             ways.append(("Rank: %s" % au.sanitise(rnames.get(rank[give], str(rank[give]))), ""))

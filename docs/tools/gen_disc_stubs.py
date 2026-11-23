@@ -313,6 +313,8 @@ def outputs():
 # second EA variant of the same base gun takes 71). A NEW gun (opts "body", e.g. the Sten Mk II(S)) is its own roster weapon,
 # not a variant, and is not in this table.
 DISC_GAMES = {"fl": (60, "Medal of Honor: Frontline", "FRONTLINE"), "ea": (70, "Medal of Honor: European Assault", "EUROPEAN ASSAULT")}
+# [discguns ship 2026-11-22] a second variant of the same base gun gets its own chip name (gen_finish_ui.DISC must agree)
+DISC_FIDNAME = {71: "EUROPEAN ASSAULT M9"}
 
 
 def disc_table():
@@ -324,11 +326,14 @@ def disc_table():
          "//player's own client draws the disc mesh. Run after loadoutskins.scr::skin_init (it owns level.coop_skinGive).",
          "disc_init:{",
          "\tif( level.coop_discN != NIL ){ end }"]
-    rows, used = [], {}
+    rows, used, new = [], {}, []
     for row in STUBS:
         stub, base = row[:2]
         opts = row[4] if len(row) > 4 else {}
         if opts.get("new"):
+            # [discguns ship 2026-11-22] a NEW disc gun is a roster weapon (loadoutroster.scr) whose UNLOCK is the disc:
+            # loadoutpick.scr loadout_isUnlocked grants it only to a player whose userinfo "byo" carries guns_<game>
+            new.append('\tlevel.coop_discGun["models/weapons/byo/%s.tik"] = "%s"' % (stub, stub.rsplit("_", 1)[1].rstrip("0123456789")))
             continue
         g = stub.rsplit("_", 1)[1].rstrip("0123456789")      # bazooka_ea2 -> ea
         fid0 = DISC_GAMES[g][0]
@@ -342,8 +347,8 @@ def disc_table():
         for f in range(fid0, fid0 + 10):
             if any(('][%d] =' % f) in r for r in rows):
                 L += ['\tlevel.coop_discGame[%d] = "%s"' % (f, g), '\tlevel.coop_discTitle[%d] = "%s"' % (f, title),
-                      '\tlevel.coop_skinFinName[%d] = "%s"' % (f, chip)]
-    L += rows + ["}end", ""]
+                      '\tlevel.coop_skinFinName[%d] = "%s"' % (f, DISC_FIDNAME.get(f, chip))]
+    L += rows + new + ["}end", ""]
     return "\r\n".join(L)
 
 

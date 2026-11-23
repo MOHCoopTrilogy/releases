@@ -285,7 +285,7 @@ def build_urc():
     # player without the disc never sees one. Click = the slot's coop_loFgo<F> (fin<F>_s<n>.cfg); the server re-checks ownership.
     import gen_finish_ui as GFU
     for q, (f, name, cv) in enumerate(GFU.DISC):
-        o.new("Button", "discBtn%d" % f, (404, HERO_Y + HERO_H - 52 - q * 17, 68, 14), fg=BLUE, bg=PANEL, title={60: "FRONTLINE", 70: "EUR ASSAULT"}.get(f, name),
+        o.new("Button", "discBtn%d" % f, (404, HERO_Y + HERO_H - 52 - q * 17, 68, 14), fg=BLUE, bg=PANEL, title=GFU.DISC_CHIP.get(f, name),
               font="verdana-12", align="center", sound=None, stuff=CHANGE + "vstr coop_loFgo%d" % f,
               enable="coop_loDiscV%d %s" % (f, cv), extra=[("hovershader", '"textures/mohmenu/hzm_theme/mpui_glow"')])
     # the finish caption + name (and a locked chip's "37 / 100 KAR98K kills") moved from under the first row to the hero's top right

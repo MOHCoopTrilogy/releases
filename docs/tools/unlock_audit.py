@@ -68,6 +68,11 @@ for m in re.finditer(r'level\.coop_xp_rankName\[(\d+)\]\s*=\s*"([^"]+)"', xp):
 lp = io.open(os.path.join(MOD, "coop_mod", "loadoutpick.scr"), encoding="latin-1").read()
 fb = re.search(r'^loadout_isUnlocked local\.player local\.tik:\{(.*?)\}end', lp, re.S | re.M).group(1)
 free = {m.group(1).lower() for m in re.finditer(r'local\.tik == "([^"]+)"', fb)}
+# ---- 5. [discguns ship 2026-11-22] disc guns: loadout_isUnlocked grants a give listed in loadoutdisc.scr coop_discGun only to a
+#         player whose userinfo "byo" carries guns_<game> (enforced only when isUnlocked actually consults that table)
+_dp = os.path.join(MOD, "coop_mod", "loadoutdisc.scr")
+disc_unlocks = {t.lower(): g for t, g in re.findall(r'coop_discGun\["([^"]+)"\]\s*=\s*"([^"]+)"',
+                io.open(_dp, encoding="latin-1").read())} if os.path.exists(_dp) and "coop_discGun[local.tik]" in fb else {}
 
 orphans, drift = [], []
 for g in roster:
@@ -80,6 +85,8 @@ for g in roster:
     if tik in rank_unlocks:
         r = min(rank_unlocks[tik])
         srcs.append("RANK:" + rank_names.get(r, str(r)))
+    if tik in disc_unlocks:
+        srcs.append("DISC:" + disc_unlocks[tik])
     if not srcs:
         orphans.append(g)
         continue

@@ -144,9 +144,11 @@ DISCTITLE = {int(f): t for f, t in re.findall(r'coop_discTitle\[(\d+)\]\s*=\s*"(
 DISCLABEL = {"fl": "Frontline", "ea": "European Assault"}
 DISCCVAR = {"fl": "coop_byoGunsFl", "ea": "coop_byoGunsEa"}
 # the Armory chips that exist (gen_finish_ui.py DISC): a disc fid without one (71, the M9 bazooka) cannot be picked there yet
-_fu = io.open(os.path.join(HERE, "gen_finish_ui.py"), encoding="utf-8").read()
-DISCCHIP = {int(f): n for f, n in re.findall(r'\((\d+), "([A-Z ]+)", "coop_byoGuns\w+"\)', _fu)}
+import gen_finish_ui as _GFU  # noqa: E402
+DISCCHIP = dict(_GFU.DISC_CHIP)
 assert DISCCHIP, "gen_finish_ui.py DISC not parsed"
+# a NEW disc gun is a whole roster gun (gen_disc_stubs.py "new": the Sten Mk II(S)): give -> game
+DISCGUN = {t.lower(): g for t, g in re.findall(r'coop_discGun\["([^"]+)"\]\s*=\s*"([^"]+)"', _disc)}
 DISCGIVE = {}
 for b, f, v in re.findall(r'coop_skinGive\["([^"]+)"\]\[(\d+)\]\s*=\s*"([^"]+)"', _disc):
     assert int(f) in DISCGAME, "loadoutdisc.scr: fid %s has no coop_discGame row" % f
@@ -279,6 +281,8 @@ def name_author(vname):
 
 
 def credits_for(gid, model, vstem, fid):
+    if fid == 0 and GIVE_OF[gid] in DISCGUN:
+        return [clean("Model, skins, sounds: your own %s disc," % DISCLABEL[DISCGUN[GIVE_OF[gid]]]), "converted on this PC."]
     if fid in DISCGAME and DISCGIVE.get(GIVE_OF[gid], {}).get(fid) == model:
         # nothing of the disc ships: the model, skins and sounds are converted from the player's own copy, on their PC
         return [clean("Model, skins, sounds: your own %s disc," % DISCLABEL[DISCGAME[fid]]), "converted on this PC."]
@@ -349,12 +353,14 @@ for i in sorted(RID, key=lambda i: (RTAB[i], i)):
             entries.append(e)
             continue
         if fid == 0:
-            vname = "STANDARD ISSUE"
+            vname = DISCLABEL[DISCGUN[give.lower()]].upper() if give.lower() in DISCGUN else "STANDARD ISSUE"
         elif is_finish(fid):
             vname = "%s FINISH" % FINNAME.get(fid, str(fid))
         else:
             vname = MVNAME.get((give.lower(), fid), stem.upper())
         e = {"g": g, "fid": fid, "tik": tik, "stem": stem, "vname": clean(vname)}
+        if give.lower() in DISCGUN:          # the whole gun is the disc's: every entry is owner-only
+            e["disc"] = DISCGUN[give.lower()]
         g["entries"].append(e)
         entries.append(e)
 for n, e in enumerate(entries):
@@ -378,6 +384,10 @@ def unlock(e):
     ('mv', sr_index, mastery sr_index or None) | ('text', words)"""
     g, fid = e["g"], e["fid"]
     give = g["give"].lower()
+    if fid == 0 and give in DISCGUN:
+        # loadoutpick.scr loadout_isUnlocked: the converted disc is the unlock, nothing else
+        return (["Convert your own %s disc: Field Settings, Own Discs." % DISCLABEL[DISCGUN[give]],
+                 "Then it is in the Armory's %s tab." % TABS[g["tab"]]], ("disc", DISCGUN[give]))
     if fid == 0:
         if give in FREE:
             return ["Free: in every soldier's kit from the start."], ("free",)
@@ -398,7 +408,7 @@ def unlock(e):
     if e.get("disc"):
         # loadoutpick.scr loadout_discOwned: no challenge, no mastery - owning the converted disc is the unlock
         return (["Convert your own %s disc: Field Settings, Own Discs." % DISCLABEL[e["disc"]],
-                 ("Then pick the gun's %s chip in the Armory." % {"fl": "FRONTLINE", "ea": "EUR ASSAULT"}[e["disc"]]) if fid in DISCCHIP
+                 ("Then pick the gun's %s chip in the Armory." % DISCCHIP[fid]) if fid in DISCCHIP
                  else "The Armory has no chip for it yet."],
                 ("disc", e["disc"]))
     wid = wid_of(give)
@@ -633,9 +643,20 @@ def chain(e, ents, own):
     """(prev, next, k, N) of e among the entries `ents` this ownership combination can see; an entry it cannot see (never shown
     to it) borrows its gun's base entry's neighbours"""
     vis = [x for x in ents if visible(x, own)]
+    if not vis:                    # a whole disc gun this combination cannot see: never reached, point at itself
+        return e, e, 0, len(ents)
     at = e if e in vis else vis[0]
     k = vis.index(at)
     return vis[k - 1], vis[(k + 1) % len(vis)], k, len(vis)
+
+
+def gun_step(gi, d, own):
+    """the first entry of the next (d=1) / previous (d=-1) gun this ownership combination can see"""
+    for k in range(1, len(guns) + 1):
+        g2 = guns[(gi + d * k) % len(guns)]
+        if visible(g2["entries"][0], own):
+            return g2["entries"][0]
+    raise SystemExit("no visible gun")
 
 
 clipped = []
@@ -646,7 +667,7 @@ for gi, g in enumerate(guns):
         hist = HISTORY[g["gid"]]
         note = HISTORY.get("mv:" + e["stem"]) or (HISTORY.get("fin:%d" % fid) if is_finish(fid) else None)
         if e.get("disc") and not note:
-            note = "The gun as %s drew it, converted from your own disc with its original sounds." % DISCTITLE.get(fid, DISCLABEL[e["disc"]])
+            note = "The gun as %s drew it, converted from your own disc with its original sounds." % DISCTITLE.get(fid, "Medal of Honor: " + DISCLABEL[e["disc"]])
         sent = re.split(r"(?<=\.)\s+", hist)
         while True:
             body = ((note + " ") if note else "") + " ".join(sent)
@@ -689,7 +710,7 @@ for gi, g in enumerate(guns):
             _, _, vk, vn = chain(e, ents, own)
             allv = [x for x in entries if visible(x, own)]
             L += ['set ui_wvVarN%s "%d / %d"' % (sfx, vk + 1, vn),
-                  'set ui_wvNum%s "%d of %d on the rack"' % (sfx, allv.index(e if e in allv else ents[0]) + 1, len(allv))]
+                  'set ui_wvNum%s "%d of %d on the rack"' % (sfx, (allv.index(e) if e in allv else 0) + 1, len(allv))]
         L += ['set ui_wvH%d "%s"' % (j + 1, lines[j] if j < len(lines) else "") for j in range(HIST_N)]
         L += ['set ui_wvC%d "%s"' % (j + 1, cl[j] if j < len(cl) else "") for j in range(N_CRED)]
         L += ['set ui_wvU%d "%s"' % (j + 1, ul[j] if j < len(ul) else "") for j in range(N_UNL)]
@@ -706,10 +727,14 @@ for gi, g in enumerate(guns):
             L += ['set ui_wvPrevV%s "%s"' % (sfx, ecfg(pv)), 'set ui_wvNextV%s "%s"' % (sfx, ecfg(nv))]
         L += [
               'set ui_wvPrevG "%s"' % ecfg(prev_g), 'set ui_wvNextG "%s"' % ecfg(next_g),
+              # [discguns] PREV / NEXT GUN per ownership combination: a whole disc gun is skipped by those without it
+              ] + ['set ui_wvPrevG%s "%s"' % (sfx, ecfg(gun_step(gi, -1, own))) for own, sfx in COMBOS if sfx] + \
+             ['set ui_wvNextG%s "%s"' % (sfx, ecfg(gun_step(gi, 1, own))) for own, sfx in COMBOS if sfx] + [
               'set ui_wvLast "%s"' % ecfg(e)]
         put("ui/wpnview/e%03d.cfg" % e["n"], L)
 for k in range(len(TABS)):
     first = [g for g in guns if g["tab"] == k][0]["entries"][0]
+    assert not first.get("disc"), "a tab must not open on an owner-only gun"
     put("ui/wpnview/t%d.cfg" % k, ["// GENERATED by docs/tools/gen_weapon_viewer.py - the %s tab" % TABS[k], ecfg(first)])
 ZOOMS = (1.0, 1.5, 2.2)
 for k, z in enumerate(ZOOMS):
@@ -763,7 +788,8 @@ for k in range(len(TABS)):
         r = (LIST[0], LIST[1] + j * LIST[3], LIST[2], LIST[3])
         U += W("Label", "gSel%s" % g["gid"], r, bg=SEL, enabledcvar="ui_wvTab==%d ui_wvG==%d" % (k, int(g["gid"])))
         U += W("Button", "g%s" % g["gid"], r, title=nm, fg=INK, bg=CLEAR, border="NONE", font="verdana-12", textalign="left",
-               hovershader=GLOW_P, clicksound="sound/menu/scroll.wav", stuffcommand=ecfg(g["entries"][0]), enabledcvar="ui_wvTab==%d" % k)
+               hovershader=GLOW_P, clicksound="sound/menu/scroll.wav", stuffcommand=ecfg(g["entries"][0]),
+               enabledcvar="ui_wvTab==%d" % k + ((" " + DISCCVAR[g["entries"][0]["disc"]]) if g["entries"][0].get("disc") else ""))
 # the viewer
 vx, vy, vw, vh = VIEW
 U += W("Label", "wvFelt", (vx, vy, vw, vh), bg=FELT, border="INDENT_BORDER")
@@ -793,6 +819,10 @@ cy = by + 24
 bw = (bw0 - 6) / 4.0
 for k, (nm, t, cmd) in enumerate((("gPrev", "PREV GUN", "vstr ui_wvPrevG"), ("gNext", "NEXT GUN", "vstr ui_wvNextG"),
                                   ("wvZoomB", "ZOOM", "vstr ui_wvZoomNext"), ("wvReset", "RESET VIEW", "set ui_wvSpin 0; set ui_wvTilt 0; exec ui/wpnview/z0.cfg"))):
+    if k < 2:              # [discguns] PREV / NEXT GUN: one copy per ownership combination
+        for own, sfx in COMBOS:
+            U += plate(nm + sfx, (bx0 + k * (bw + 2), cy, bw, 20), t, cmd + sfx, enabledcvar=combo_gate(own))
+        continue
     U += plate(nm, (bx0 + k * (bw + 2), cy, bw, 20), t, cmd)
 for own, sfx in COMBOS:
     U += cvl("wvNum" + sfx, (RIGHT[0], cy + 4, RIGHT[2], 14), "ui_wvNum" + sfx, "verdana-12", MUTED, enabledcvar=combo_gate(own))
