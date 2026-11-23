@@ -291,6 +291,20 @@ function New-ServerCfgText($p, $sec, $cat, [switch]$Listen, [switch]$LightGraphi
 }
 
 function Get-ProfileTag($p) { $p.name -replace '[^A-Za-z0-9_-]', '_' }
+# the address a friend types: the game adds 12203 (PORT_SERVER, NET_StringToAdr) when no port is given
+function Get-JoinAddress([string]$ip, [int]$port) { if ($port -eq 12203) { "$ip" } else { "${ip}:$port" } }
+# the UDP port the server really bound, from its console ("Opening IP socket: 0.0.0.0:12204" - one line per try, the
+# last one is the bind that held) and whether a strict bind found the port taken (NET_OpenIP, net_portStrict 1)
+function Get-BoundPort([string]$text) {
+    $r = [pscustomobject]@{ Port = 0; Busy = $false }
+    foreach ($m in [regex]::Matches($text, 'Opening IP socket: [^\s:]+:(\d+)')) { $r.Port = [int]$m.Groups[1].Value }
+    if ($text -match 'NETPORT busy port=\d+|net_portStrict: UDP port \d+ is already in use') { $r.Busy = $true; $r.Port = 0 }
+    $r
+}
+function Get-PortNote([int]$want, [int]$got) {
+    "UDP $want was busy (probably the game is open on this PC), so the server took $got. Friends must type :$got after " +
+    "the address, and firewall/router rules made for $want do not cover it. Close the game and restart the server to get $want back."
+}
 
 function Get-DedicatedArgs($p, $inst) {
     $tag = Get-ProfileTag $p
@@ -300,6 +314,9 @@ function Get-DedicatedArgs($p, $inst) {
       '+set', 'config', "hzm_server_$tag.cfg", '+set', 'logfile', '0',
       '+set', 'net_port', "$([int]$p.port)", '+set', 'net_gamespy_port', "$([int]$p.queryPort)",
       '+set', 'sv_maxclients', "$([int]$p.maxPlayers)", '+set', 'com_abnormalExit', '0',
+      # bind net_port exactly or stop (bug-11450): stock ioq3 silently moves to +1..+9 when the port is taken - the
+      # game's own client socket holds 12203 while it is open - and friends joining by IP alone then reach nothing
+      '+set', 'net_portStrict', '1',
       '+exec', "hzm_servergui/$tag.cfg")
 }
 
@@ -726,13 +743,14 @@ function Invoke-Supervisor([string]$name) {
     function SLog($m) { Write-Log $m $slog }
     $cat = Import-Catalogue
     $inst = Get-Install
-    $state = [ordered]@{ profile = $name; supervisorPid = $PID; serverPid = 0; state = "starting"; started = ""; restarts = 0; log = ""; map = ""; port = $p.port; players = 0; playerList = @() }
+    $state = [ordered]@{ profile = $name; supervisorPid = $PID; serverPid = 0; state = "starting"; started = ""; restarts = 0; log = ""; map = ""; port = $p.port; boundPort = 0; portNote = ""; players = 0; playerList = @() }
     function Save-State { $state | ConvertTo-Json | Set-Content -LiteralPath (Get-RunPath $p "state.json") -Encoding UTF8 }
     Save-State
     $stopFile = Get-RunPath $p "stop"; $cmdFile = Get-RunPath $p "cmd"
     Remove-Item -LiteralPath $cmdFile -Force -ErrorAction SilentlyContinue
     $lastDaily = ""
     $userStop = $false
+    $portBusySince = $null
     try {
         while ($true) {
             if (Test-Path -LiteralPath $stopFile) { $userStop = $true; break }
@@ -751,6 +769,9 @@ function Invoke-Supervisor([string]$name) {
             }
             $cfg = Write-ServerCfg $p $sec $cat $inst
             $log = Join-Path $logDir ("server_{0:yyyyMMdd_HHmmss}.log" -f (Get-Date))
+            # a hidden server must never wait on a modal error box (Sys_ErrorDialog): HZM_NO_DIALOGS=1 prints the error
+            # and exits, so a fatal error ends the process and the restart / port-busy logic below can act on it
+            $env:HZM_NO_DIALOGS = "1"
             $pr = Start-Process -FilePath $inst.Ded -WorkingDirectory $inst.Root -ArgumentList (Get-DedicatedArgs $p $inst) -PassThru -NoNewWindow `
                 -RedirectStandardError $log -RedirectStandardOutput "$log.out"
             Start-Sleep -Milliseconds 800
@@ -763,6 +784,8 @@ function Invoke-Supervisor([string]$name) {
             $state.serverPid = $pr.Id; $state.state = "booting"; $state.started = (Get-Date).ToString("s"); $state.log = $log; Save-State
             SLog "server pid $($pr.Id) port $($p.port) log $log"
             $pos = 0; $booted = $false; $known = @{}; $nextPoll = (Get-Date).AddSeconds(15); $nextMotd = $null
+            $sp = [int]$p.port; $logText = ""      # $sp = the port the server really bound (status, rcon); see Get-BoundPort
+            $state.port = $p.port; $state.boundPort = 0; $state.portNote = ""
             $rotIdx = 0; $rot = @($p.rotation | Where-Object { Test-MapSpec $_ }); $rotPending = $false; $rotCmd = $null
             $loaded = $false; $seenMap = ""; $nextStatus = Get-Date; $nextDemoSync = (Get-Date).AddSeconds(30)
             if ($p.motdRepeatMin -gt 0) { $nextMotd = (Get-Date).AddMinutes([int]$p.motdRepeatMin) }
@@ -776,7 +799,22 @@ function Invoke-Supervisor([string]$name) {
                     try {
                         if ($fs.Length -gt $pos) {
                             [void]$fs.Seek($pos, 'Begin'); $buf = New-Object byte[] ($fs.Length - $pos); $n = $fs.Read($buf, 0, $buf.Length); $pos += $n
-                            foreach ($ln in ([Text.Encoding]::GetEncoding(28591).GetString($buf, 0, $n) -split "`n")) {
+                            $chunk = [Text.Encoding]::GetEncoding(28591).GetString($buf, 0, $n)
+                            if (-not $booted -and $logText.Length -lt 256KB) {
+                                $logText += $chunk; $bp = Get-BoundPort $logText
+                                if ($bp.Busy) {
+                                    # strict bind failed: an engine without HZM_NO_DIALOGS support would sit on its error box
+                                    SLog "PORT: UDP $($p.port) is busy - stopping this attempt"
+                                    if (-not $pr.WaitForExit(3000)) { Stop-Process -Id $pr.Id -Force -ErrorAction SilentlyContinue }
+                                }
+                                elseif ($bp.Port -and $bp.Port -ne $state.boundPort) {
+                                    $sp = $bp.Port; $state.boundPort = $bp.Port
+                                    $state.portNote = if ($bp.Port -ne [int]$p.port) { Get-PortNote $p.port $bp.Port } else { "" }
+                                    if ($state.portNote) { SLog "PORT: $($state.portNote)" }
+                                    Save-State
+                                }
+                            }
+                            foreach ($ln in ($chunk -split "`n")) {
                                 if ($ln -match '^Server: (\S+)') {
                                     $state.map = $Matches[1]; $state.state = "loading"; $loaded = $false; Save-State
                                     Remove-Item -LiteralPath $cfg -Force -ErrorAction SilentlyContinue   # it held the passwords
@@ -787,7 +825,7 @@ function Invoke-Supervisor([string]$name) {
                 } catch {}
                 # --- getstatus: up, and which map (1 s while loading, else every 3 s) ---
                 if ((Get-Date) -ge $nextStatus) {
-                    $gs = Get-ServerStatus $p.port
+                    $gs = Get-ServerStatus $sp
                     $nextStatus = (Get-Date).AddSeconds($(if ($loaded) { 3 } else { 1 }))
                     if ($gs -and $gs.Info["mapname"]) {
                         $m = $gs.Info["mapname"]
@@ -796,7 +834,7 @@ function Invoke-Supervisor([string]$name) {
                             $booted = $true
                             Remove-Item -LiteralPath $cfg -Force -ErrorAction SilentlyContinue
                             SLog "booted on $m"
-                            if ($p.hookUp) { [void](Send-Webhook $sec.webhook ("Server up: **{0}** - {1} (port {2})" -f (Remove-ColorCodes $p.hostname), $m, $p.port)) }
+                            if ($p.hookUp) { [void](Send-Webhook $sec.webhook ("Server up: **{0}** - {1} (port {2})" -f (Remove-ColorCodes $p.hostname), $m, $sp)) }
                         }
                         if ($m -ne $seenMap) {
                             $seenMap = $m; $state.map = $m
@@ -816,15 +854,15 @@ function Invoke-Supervisor([string]$name) {
                         }
                         Save-State
                         if ($rotCmd) {
-                            foreach ($k in $rotCmd.Sets.Keys) { [void](Invoke-Rcon $p.port $sec.rcon "set $k $($rotCmd.Sets[$k])") }
-                            [void](Invoke-Rcon $p.port $sec.rcon "map $($rotCmd.Map)")
+                            foreach ($k in $rotCmd.Sets.Keys) { [void](Invoke-Rcon $sp $sec.rcon "set $k $($rotCmd.Sets[$k])") }
+                            [void](Invoke-Rcon $sp $sec.rcon "map $($rotCmd.Map)")
                             $rotCmd = $null; $loaded = $false; $nextStatus = (Get-Date).AddSeconds(2)
                         }
                     }
                 }
                 if (Test-Path -LiteralPath $stopFile) {
                     $userStop = $true
-                    [void](Invoke-Rcon $p.port $sec.rcon "quit")
+                    [void](Invoke-Rcon $sp $sec.rcon "quit")
                     if (-not $pr.WaitForExit(6000)) { Stop-Process -Id $pr.Id -Force -ErrorAction SilentlyContinue }
                     break
                 }
@@ -832,7 +870,7 @@ function Invoke-Supervisor([string]$name) {
                     $cmds = @(Get-Content -LiteralPath $cmdFile); Remove-Item -LiteralPath $cmdFile -Force -ErrorAction SilentlyContinue
                     if ($cmds -contains "restart") {
                         SLog "restart requested"
-                        [void](Invoke-Rcon $p.port $sec.rcon "quit")
+                        [void](Invoke-Rcon $sp $sec.rcon "quit")
                         if (-not $pr.WaitForExit(6000)) { Stop-Process -Id $pr.Id -Force -ErrorAction SilentlyContinue }
                         $state.restarts++; break
                     }
@@ -847,9 +885,9 @@ function Invoke-Supervisor([string]$name) {
                     if ($lastDaily -ne $today -and $now.Hour -eq [int]$Matches[1] -and $now.Minute -eq [int]$Matches[2]) {
                         $lastDaily = $today
                         SLog "scheduled daily restart"
-                        [void](Invoke-Rcon $p.port $sec.rcon "say Scheduled restart in 60 seconds")
+                        [void](Invoke-Rcon $sp $sec.rcon "say Scheduled restart in 60 seconds")
                         Start-Sleep -Seconds 60
-                        [void](Invoke-Rcon $p.port $sec.rcon "quit")
+                        [void](Invoke-Rcon $sp $sec.rcon "quit")
                         if (-not $pr.WaitForExit(6000)) { Stop-Process -Id $pr.Id -Force -ErrorAction SilentlyContinue }
                         $state.restarts++; break
                     }
@@ -858,13 +896,13 @@ function Invoke-Supervisor([string]$name) {
                 if ($booted -and (Get-Date) -ge $nextPoll) {
                     $nextPoll = (Get-Date).AddSeconds(10)
                     $now = @{}
-                    foreach ($pl in (Get-RconPlayers $p.port $sec.rcon)) { $now["$($pl.Num)|$($pl.Name)"] = $pl }
+                    foreach ($pl in (Get-RconPlayers $sp $sec.rcon)) { $now["$($pl.Num)|$($pl.Name)"] = $pl }
                     foreach ($k in $now.Keys) {
                         if (-not $known.ContainsKey($k)) {
                             $pn = Remove-ColorCodes $now[$k].Name
                             SLog "joined: $pn"
                             if ($p.hookJoin) { [void](Send-Webhook $sec.webhook ("**{0}** joined {1} ({2} online)" -f $pn, (Remove-ColorCodes $p.hostname), $now.Count)) }
-                            if ($p.motd) { [void](Invoke-Rcon $p.port $sec.rcon ("tell {0} {1}" -f $now[$k].Num, (Get-CleanValue $p.motd))) }
+                            if ($p.motd) { [void](Invoke-Rcon $sp $sec.rcon ("tell {0} {1}" -f $now[$k].Num, (Get-CleanValue $p.motd))) }
                         }
                     }
                     foreach ($k in @($known.Keys)) {
@@ -879,7 +917,7 @@ function Invoke-Supervisor([string]$name) {
                 }
                 if ($booted -and $nextMotd -and $p.motd -and (Get-Date) -ge $nextMotd) {
                     $nextMotd = (Get-Date).AddMinutes([int]$p.motdRepeatMin)
-                    if ($known.Count) { [void](Invoke-Rcon $p.port $sec.rcon ("say {0}" -f (Get-CleanValue $p.motd))) }
+                    if ($known.Count) { [void](Invoke-Rcon $sp $sec.rcon ("say {0}" -f (Get-CleanValue $p.motd))) }
                 }
             }
             Remove-Item -LiteralPath $cfg -Force -ErrorAction SilentlyContinue
@@ -887,6 +925,18 @@ function Invoke-Supervisor([string]$name) {
             $code = -1; try { $code = $pr.ExitCode } catch {}
             SLog "server exited (code $code)"
             if ($userStop) { break }
+            # strict bind found the port taken (bug-11450): wait for it instead of crash-restarting or moving
+            $whole = ""; foreach ($f in @($log, "$log.out")) { try { $whole += [IO.File]::ReadAllText($f, [Text.Encoding]::GetEncoding(28591)) } catch {} }
+            if (-not $booted -and (Get-BoundPort $whole).Busy) {
+                $state.state = "port busy"; $state.serverPid = 0; $state.boundPort = 0
+                $state.portNote = "UDP $($p.port) is in use by another program - usually the game, open on this PC (its own network port is 12203 too). Close it and the server starts by itself, or give this profile another port (Server tab)."
+                Save-State
+                if (-not $portBusySince) { $portBusySince = Get-Date; SLog "PORT: $($state.portNote)" }
+                Remove-Item -LiteralPath $log, "$log.out" -Force -ErrorAction SilentlyContinue   # one log per retry is noise
+                for ($i = 0; $i -lt 15; $i++) { if (Test-Path -LiteralPath $stopFile) { break }; Start-Sleep -Seconds 1 }
+                continue
+            }
+            if ($portBusySince) { SLog "PORT: $($p.port) is free again"; $portBusySince = $null }
             $crashed = ($code -ne 0)
             if ($p.hookDown) { [void](Send-Webhook $sec.webhook ("Server {0}: **{1}** (exit code {2})" -f $(if ($crashed) { "crashed" } else { "stopped" }), (Remove-ColorCodes $p.hostname), $code)) }
             if (-not $p.autoRestart) { break }
@@ -1656,6 +1706,8 @@ function Read-Tail([string]$f, [int]$maxBytes = 48KB) {
         } finally { $fs.Close() }
     } catch { "" }
 }
+# the port friends must use: the one the running server really bound (state file), else the profile's
+function Get-SharePort($p) { $s = Get-State $p; if ($s -and (Test-Running $p) -and $s.boundPort) { [int]$s.boundPort } else { [int]$p.port } }
 function Update-StatusTab {
     $p = $script:P
     if (-not $p) { return }
@@ -1669,6 +1721,9 @@ function Update-StatusTab {
     }
     if ($running -and $s) {
         $ui.txtRunState.Text = "{0} - map {1} - {2} player(s) - restarts {3} - server pid {4}" -f $s.state, $s.map, $s.players, $s.restarts, $s.serverPid
+        $port = if ($s.boundPort) { [int]$s.boundPort } else { [int]$p.port }
+        if ($s.state -ne "port busy") { $ui.txtRunState.Text += "`nFriends on your network join: $(Get-JoinAddress (Get-LocalIp) $port)" }
+        if ($s.portNote) { $ui.txtRunState.Text += "`n" + $s.portNote }
         # the supervisor polls rcon status every 10 s; the window reads its state file instead of adding rcon traffic
         $ui.lvPlayers.ItemsSource = @($s.playerList | Where-Object { $_ })
         $lg = Get-LatestLog $p
@@ -1732,7 +1787,7 @@ $ui.btnSpeed.Add_Click({
     Show-Specs })
 $ui.btnAffRecommend.Add_Click({ $r = Get-RecommendedThread $script:Specs; if ($r) { $script:P.affinity = @($r.Thread); Build-Affinity } })
 $ui.btnAffAll.Add_Click({ $script:P.affinity = @(); Build-Affinity })
-$ui.btnPublicIp.Add_Click({ $ip = Get-PublicIp; $ui.txtIps.Text = "This PC on your network: $(Get-LocalIp)`nYour public IP: $(if ($ip) { $ip } else { 'could not be fetched' })   - players outside your network join $ip`:$($script:P.port)" })
+$ui.btnPublicIp.Add_Click({ $ip = Get-PublicIp; $ui.txtIps.Text = "This PC on your network: $(Get-LocalIp)`nYour public IP: $(if ($ip) { $ip } else { 'could not be fetched' })   - players outside your network join $(Get-JoinAddress $ip $(Get-SharePort $script:P))" })
 $ui.btnFirewall.Add_Click({
     Read-UiToProfile
     $cmd = Get-FirewallCommand $script:P $script:Inst
@@ -1765,7 +1820,7 @@ foreach ($b in @($ui.btnStart, $ui.btnStart2)) { $b.Add_Click({ Start-Current })
 foreach ($b in @($ui.btnStop, $ui.btnStop2)) { $b.Add_Click({ Stop-Current }) }
 function Invoke-RecordCmd([string]$c) {
     if ($script:P.mode -ne "dedicated" -and -not (Get-ServerStatus $script:P.port)) { Set-Status "Not running"; return }
-    $r = Invoke-Rcon $script:P.port $script:Sec.rcon $c
+    $r = Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon $c
     $ui.tbConsole.AppendText("`n] $c`n$r"); $ui.tbConsole.ScrollToEnd(); Set-Status (($r -split "`n" | Where-Object { $_.Trim() } | Select-Object -First 1))
 }
 $ui.btnRecStart.Add_Click({ Invoke-RecordCmd "sv_record" })
@@ -1780,16 +1835,16 @@ $ui.btnRecBrowse.Add_Click({
 $ui.btnRestart.Add_Click({ if (Test-Running $script:P) { Send-SupervisorCommand $script:P "restart"; Set-Status "Restarting..." } })
 $ui.btnRcon.Add_Click({
     $c = $ui.tbRcon.Text.Trim(); if (-not $c) { return }
-    $r = Invoke-Rcon $script:P.port $script:Sec.rcon $c
+    $r = Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon $c
     $ui.tbConsole.AppendText("`n] $c`n$r"); $ui.tbConsole.ScrollToEnd(); $ui.tbRcon.Text = "" })
 $ui.tbRcon.Add_KeyDown({ param($s, $e) if ($e.Key -eq "Return") { $ui.btnRcon.RaiseEvent((New-Object Windows.RoutedEventArgs ([Windows.Controls.Button]::ClickEvent))) } })
-$ui.btnKick.Add_Click({ $pl = $ui.lvPlayers.SelectedItem; if ($pl -and $pl.Num -ne "" -and (Ask "Kick $(Remove-ColorCodes $pl.Name)?")) { Set-Status (Invoke-Rcon $script:P.port $script:Sec.rcon "kicknum $($pl.Num)") } })
+$ui.btnKick.Add_Click({ $pl = $ui.lvPlayers.SelectedItem; if ($pl -and $pl.Num -ne "" -and (Ask "Kick $(Remove-ColorCodes $pl.Name)?")) { Set-Status (Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon "kicknum $($pl.Num)") } })
 $ui.btnBan.Add_Click({
     $pl = $ui.lvPlayers.SelectedItem
     if (-not $pl -or -not $pl.Address -or $pl.Address -notmatch '^(\d+\.\d+\.\d+\.\d+)') { return }
     $ip = $Matches[1]
     if (-not (Ask "Ban $(Remove-ColorCodes $pl.Name) ($ip)? The address is added to this profile's ban list.")) { return }
-    [void](Invoke-Rcon $script:P.port $script:Sec.rcon "banaddr $ip"); [void](Invoke-Rcon $script:P.port $script:Sec.rcon "kicknum $($pl.Num)")
+    [void](Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon "banaddr $ip"); [void](Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon "kicknum $($pl.Num)")
     $ui.tbBans.Text = ($ui.tbBans.Text.TrimEnd() + "`r`n$ip").Trim(); Read-UiToProfile; Save-Profile $script:P })
 
 function Select-Profile([string]$n) { Load-ProfileToUi (Read-Profile $n) }
