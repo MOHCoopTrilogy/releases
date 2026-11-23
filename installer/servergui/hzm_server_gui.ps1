@@ -155,6 +155,8 @@ function New-Profile([string]$name, [int]$port = 12203) {
         motd = ""; motdRepeatMin = 0; hookUp = $true; hookDown = $true; hookJoin = $true; hookLeave = $true
         logKeepDays = 14; bans = @(); whitelist = @(); whitelistOn = $false; updateOnStart = $false
         hookLag = $false          # Discord: the server fell badly behind (off by default)
+        # mission playlists: named rotations [{ name; maps = @(spec...); shuffle; loop }], and how the rotation runs
+        playlists = @(); rotationShuffle = $false; rotationLoop = $true
         lightGraphics = "auto"; upnp = $false
         # match recording: the engine's server recorder (sv_demo.c) - sv_autoRecord = one demo per map, every player
         # and AI on it; the engine keeps sv_autoRecordMax files / sv_autoRecordMaxMB in <home>\maintt\demos
@@ -181,6 +183,8 @@ function Read-Profile([string]$name) {
             $p.settings = $h
             $p.rotation = @($j.rotation | Where-Object { $_ }); $p.affinity = @($j.affinity | ForEach-Object { [int]$_ })
             $p.bans = @($j.bans | Where-Object { $_ }); $p.whitelist = @($j.whitelist | Where-Object { $_ })
+            $p.playlists = @($j.playlists | Where-Object { $_ -and $_.name } | ForEach-Object {
+                [pscustomobject]@{ name = "$($_.name)"; maps = @($_.maps | Where-Object { $_ }); shuffle = [bool]$_.shuffle; loop = ($null -eq $_.loop -or [bool]$_.loop) } })
         } catch { Write-Log "profile $name unreadable: $_" }
     }
     $p
@@ -326,8 +330,10 @@ function Get-BoundPort([string]$text) {
 # the engine's tick-rate lines (sv_main.c SV_TpsLog_Frame, bug-11486)
 function Read-TpsLine([string]$ln) {
     if ($ln -match '\^~\^~\^ SVTPS target=([\d.]+) actual=([\d.]+) avg=([\d.]+) max=([\d.]+) gap=(\d+) late=(\d+) dropped=(\d+)') {
-        return [pscustomobject]@{ Kind = "tps"; Target = [double]$Matches[1]; Actual = [double]$Matches[2]; AvgMs = [double]$Matches[3]
-            MaxMs = [double]$Matches[4]; GapMs = [int]$Matches[5]; Late = [int]$Matches[6]; Dropped = [int]$Matches[7] }
+        $r = [pscustomobject]@{ Kind = "tps"; Target = [double]$Matches[1]; Actual = [double]$Matches[2]; AvgMs = [double]$Matches[3]
+            MaxMs = [double]$Matches[4]; GapMs = [int]$Matches[5]; Late = [int]$Matches[6]; Dropped = [int]$Matches[7]; InKB = -1.0; OutKB = -1.0 }
+        if ($ln -match ' in=([\d.]+) out=([\d.]+)') { $r.InKB = [double]$Matches[1]; $r.OutKB = [double]$Matches[2] }   # engine 1.10.91+
+        return $r
     }
     if ($ln -match '\^~\^~\^ SVBEHIND behind=(\d+) ticks=(\d+) frame=(\d+)') {
         return [pscustomobject]@{ Kind = "behind"; BehindMs = [int]$Matches[1]; Ticks = [int]$Matches[2]; FrameMs = [int]$Matches[3] }
@@ -342,6 +348,200 @@ function Test-BadLag($t) {
     if ($t.Kind -eq "behind") { return ($t.BehindMs -ge 1000) }
     if ($t.Kind -eq "hitch") { return ($t.Ms -ge 1000) }
     $false
+}
+# a chat line in the dedicated console: Player::EventDMMessage -> G_PrintfClient -> "{#0 | ip:port} Name says @all: text"
+function Read-ChatLine([string]$ln) {
+    if ($ln -match '^\{#(\d+) \| [^}]*\} (.+?) (says|shouts) (@all|@team|@#\d+)(?: \(filtered out\))?: (.*)$') {
+        return [pscustomobject]@{ Num = [int]$Matches[1]; Name = $Matches[2]; Kind = $Matches[3]; To = $Matches[4]; Text = $Matches[5].TrimEnd() }
+    }
+    $null
+}
+# session history: one JSON object per line in logs\<profile>\history.jsonl (join / leave / map), kept logKeepDays
+function Get-HistoryPath($p) { Join-Path $DataDir ("logs" + [IO.Path]::DirectorySeparatorChar + (Get-ProfileTag $p) + [IO.Path]::DirectorySeparatorChar + "history.jsonl") }
+function Add-History($p, [hashtable]$e) {
+    $e["t"] = (Get-Date).ToString("s")
+    $f = Get-HistoryPath $p
+    $d = Split-Path -Parent $f
+    if (-not (Test-Path -LiteralPath $d)) { New-Item -ItemType Directory -Force -Path $d | Out-Null }
+    try { Add-Content -LiteralPath $f -Value (([pscustomobject]$e) | ConvertTo-Json -Compress) -Encoding UTF8 } catch {}
+}
+function Get-History($p) {
+    $f = Get-HistoryPath $p
+    if (-not (Test-Path -LiteralPath $f)) { return , @() }
+    , @(Get-Content -LiteralPath $f -Encoding UTF8 | Where-Object { $_.Trim() } | ForEach-Object { try { $_ | ConvertFrom-Json } catch {} } | Where-Object { $_ })
+}
+function Limit-History($p) {
+    $f = Get-HistoryPath $p
+    if (-not (Test-Path -LiteralPath $f)) { return }
+    $cut = (Get-Date).AddDays(-[math]::Max(1, [int]$p.logKeepDays))
+    $keep = @(Get-Content -LiteralPath $f -Encoding UTF8 | Where-Object { try { [datetime]($_ | ConvertFrom-Json).t -ge $cut } catch { $false } })
+    Set-Content -LiteralPath $f -Value $keep -Encoding UTF8
+}
+function Get-Shuffled($list) { @($list | Sort-Object { Get-Random }) }
+function Format-Duration([double]$sec) {
+    $t = [TimeSpan]::FromSeconds([math]::Max(0, $sec))
+    if ($t.TotalHours -ge 1) { "{0}h {1:00}m" -f [int][math]::Floor($t.TotalHours), $t.Minutes } else { "{0}m {1:00}s" -f $t.Minutes, $t.Seconds }
+}
+# ---- one-click crash report (bug-11492): dumps, logs and the profile in one zip; secrets never leave this PC ----------
+function Get-ReportSecrets($p) {
+    $sec = Read-Secrets $p.name
+    @(@($sec.password, $sec.rcon, $sec.webhook) | Where-Object { $_ -and $_.Length -ge 3 })
+}
+function Protect-ReportText([string]$t, [string[]]$secrets) {
+    foreach ($w in $secrets) { $t = $t.Replace($w, "<removed>") }
+    # anything that still looks like one: a password / rcon cvar value, a Discord webhook URL
+    $t = [regex]::Replace($t, '(?im)\b(set[as]?\s+)?(rconPassword|password|sv_privatePassword|g_password)(\s+|\\)("[^"\r\n]*"|\S+)', '$1$2$3<removed>')
+    [regex]::Replace($t, 'https://(\w+\.)?discord(app)?\.com/api/webhooks/\S+', '<removed webhook>')
+}
+function Clear-SecretsInFile([string]$path, [string[]]$secrets) {
+    # a full-memory dump can hold the rcon password (the cvar lives in the process): overwrite every ASCII / UTF-16
+    # copy of each secret with X before it is zipped
+    if (-not $secrets.Count) { return 0 }
+    if (-not ("HzmScrub" -as [type])) {
+        Add-Type -TypeDefinition @"
+public static class HzmScrub {
+    public static int Wipe(byte[] buf, byte[] pat) {
+        int n = 0;
+        if (pat.Length == 0) return 0;
+        for (int i = 0; i + pat.Length <= buf.Length; i++) {
+            int j = 0;
+            while (j < pat.Length && buf[i + j] == pat[j]) j++;
+            if (j == pat.Length) { for (int k = 0; k < pat.Length; k++) buf[i + k] = (byte)'X'; n++; i += pat.Length - 1; }
+        }
+        return n;
+    }
+}
+"@
+    }
+    $b = [IO.File]::ReadAllBytes($path); $n = 0
+    foreach ($w in $secrets) {
+        $n += [HzmScrub]::Wipe($b, [Text.Encoding]::ASCII.GetBytes($w))
+        $n += [HzmScrub]::Wipe($b, [Text.Encoding]::Unicode.GetBytes($w))
+    }
+    if ($n) { [IO.File]::WriteAllBytes($path, $b) }
+    $n
+}
+function Export-CrashReport($p, $inst, [string]$outDir = [Environment]::GetFolderPath("MyDocuments")) {
+    $tag = Get-ProfileTag $p
+    $stamp = Get-Date -Format "yyyy-MM-dd_HHmm"
+    $work = Join-Path $env:TEMP "mohcoop_report_$tag_$stamp"
+    Remove-Item -LiteralPath $work -Recurse -Force -ErrorAction SilentlyContinue
+    New-Item -ItemType Directory -Force -Path $work | Out-Null
+    $secrets = Get-ReportSecrets $p
+    $notes = New-Object System.Collections.Generic.List[string]
+    $notes.Add("MOH Coop Server crash report - profile '$($p.name)' - $(Get-Date -Format s)")
+    $notes.Add("Passwords, the rcon password and the Discord webhook were removed from every file (logs, profile, dumps).")
+    # the newest crash dumps of the game and of the server (Windows Error Reporting), last 7 days, two of each
+    $dd = Join-Path $env:LOCALAPPDATA "CrashDumps"
+    foreach ($exe in @("openmohaa.exe", "omohaaded.exe")) {
+        foreach ($f in @(Get-ChildItem -LiteralPath $dd -Filter "$exe.*.dmp" -File -ErrorAction SilentlyContinue |
+                Where-Object { $_.LastWriteTime -gt (Get-Date).AddDays(-7) } | Sort-Object LastWriteTime -Descending | Select-Object -First 2)) {
+            $dst = Join-Path $work ("dumps_" + $f.Name)
+            Copy-Item -LiteralPath $f.FullName -Destination $dst
+            $w = Clear-SecretsInFile $dst $secrets
+            $notes.Add("dump $($f.Name) ($([math]::Round($f.Length / 1MB)) MB, $($f.LastWriteTime))$(if ($w) { " - $w secret copies overwritten" })")
+        }
+    }
+    $texts = New-Object System.Collections.Generic.List[object]
+    foreach ($f in @((Join-Path $inst.Root "hzm_fatal.log"), (Join-Path $inst.Maintt "qconsole.log"), (Join-Path $inst.Root "updater.log"))) {
+        if (Test-Path -LiteralPath $f) { $texts.Add([pscustomobject]@{ Src = $f; Name = (Split-Path -Leaf $f) }) }
+    }
+    $ld = Join-Path $DataDir "logs\$tag"
+    foreach ($f in @(Get-ChildItem -LiteralPath $ld -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -match '^(supervisor\.log|history\.jsonl)$' })) { $texts.Add([pscustomobject]@{ Src = $f.FullName; Name = "server_" + $f.Name }) }
+    foreach ($f in @(Get-ChildItem -LiteralPath $ld -Filter "server_*.log*" -File -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 4)) { $texts.Add([pscustomobject]@{ Src = $f.FullName; Name = "server_" + $f.Name }) }
+    foreach ($f in @(Get-ChildItem -LiteralPath $ld -Filter "lag_*.log" -File -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 2)) { $texts.Add([pscustomobject]@{ Src = $f.FullName; Name = "server_" + $f.Name }) }
+    $pf = Join-Path $DataDir "profiles\$($p.name).json"
+    if (Test-Path -LiteralPath $pf) { $texts.Add([pscustomobject]@{ Src = $pf; Name = "profile_$tag.json" }) }      # never the .secret file
+    foreach ($t in $texts) {
+        try {
+            $raw = [IO.File]::ReadAllText($t.Src, [Text.Encoding]::GetEncoding(28591))
+            if ($raw.Length -gt 8MB) { $raw = $raw.Substring($raw.Length - 8MB) }
+            [IO.File]::WriteAllText((Join-Path $work $t.Name), (Protect-ReportText $raw $secrets), [Text.Encoding]::GetEncoding(28591))
+            $notes.Add("file $($t.Name)")
+        } catch { $notes.Add("skipped $($t.Name): $_") }
+    }
+    [IO.File]::WriteAllLines((Join-Path $work "README.txt"), [string[]]$notes)
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $zip = Join-Path $outDir ("MOH Coop crash report - {0} - {1}.zip" -f $tag, $stamp)
+    Remove-Item -LiteralPath $zip -Force -ErrorAction SilentlyContinue
+    [IO.Compression.ZipFile]::CreateFromDirectory($work, $zip, [IO.Compression.CompressionLevel]::Optimal, $false)
+    Remove-Item -LiteralPath $work -Recurse -Force -ErrorAction SilentlyContinue
+    $zip
+}
+
+# ---- "can my friends reach me?" (bug-11493): what can honestly be told from this PC alone ---------------------------
+function Test-Reach([int]$port, [string]$publicIp, [bool]$firewallRule) {
+    $r = [ordered]@{ Verdict = ""; Detail = ""; Share = "" }
+    $local = Send-Oob "getinfo reach" $port "127.0.0.1" 1500
+    if (-not $local) { $r.Verdict = "Can't tell"; $r.Detail = "The server is not answering on this PC (port $port). Start it first."; return [pscustomobject]$r }
+    if (-not $publicIp) { $r.Verdict = "Can't tell"; $r.Detail = "Your public IP could not be fetched (no internet, or api.ipify.org blocked)."; return [pscustomobject]$r }
+    $r.Share = Get-JoinAddress $publicIp $port
+    $pub = Send-Oob "getinfo reach" $port $publicIp 2500
+    if ($pub) {
+        $r.Verdict = "Open"
+        $r.Detail = "Your router answered for $($r.Share) and passed the query to this server, so friends can join at $($r.Share)."
+    } else {
+        $r.Verdict = "Can't tell"
+        $why = "Asking your own public address from inside your network only works when the router supports it (NAT loopback), and many do not - so no answer does not prove it is closed."
+        if (-not $firewallRule) { $why += " Windows Firewall has no rule for this server yet: add one (above) - that alone blocks friends." }
+        $why += " To be sure, ask a friend to join $($r.Share). If that fails, forward UDP $port (and $($port + 97) for the server list) on your router to this PC, or use UPnP above."
+        $r.Detail = $why
+    }
+    [pscustomobject]$r
+}
+
+# ---- demo library (bug-11494) -------------------------------------------------------------------------------------
+function Read-DemoInfo([string]$dmi) {
+    $kv = @{}
+    try { $f = ([IO.File]::ReadAllText($dmi)).Split('\'); for ($i = 1; $i + 1 -lt $f.Count; $i += 2) { $kv[$f[$i]] = $f[$i + 1] } } catch {}
+    $kv
+}
+function Get-DemoList($p, $inst) {
+    $out = New-Object System.Collections.Generic.List[object]
+    $dirs = @([pscustomobject]@{ Dir = (Join-Path $inst.Maintt "demos"); Where = "server" })
+    if ($p.recordFolder) { $dirs += [pscustomobject]@{ Dir = $p.recordFolder; Where = "copy folder" } }
+    foreach ($d in $dirs) {
+        foreach ($f in @(Get-ChildItem -LiteralPath $d.Dir -Filter "*.dm_*" -File -ErrorAction SilentlyContinue)) {
+            $base = [IO.Path]::GetFileNameWithoutExtension($f.Name)
+            $kv = Read-DemoInfo (Join-Path $d.Dir "$base.dmi")
+            $len = 0; [void][int]::TryParse("$($kv['length'])", [ref]$len)
+            $out.Add([pscustomobject]@{
+                Map = if ($kv['maps']) { $kv['maps'] } else { ($base -replace '^(auto|replay|server)_\d{4}-\d\d-\d\d_\d\d-\d\d-\d\d_', '') }
+                Date = $f.LastWriteTime.ToString("yyyy-MM-dd HH:mm"); Length = $(if ($len) { Format-Duration $len } else { "" })
+                Size = "{0:0.0} MB" -f ($f.Length / 1MB); Players = "$($kv['players'])"; Where = $d.Where
+                Path = $f.FullName; Base = $base; Folder = $d.Dir })
+        }
+    }
+    , @($out | Sort-Object Date -Descending)
+}
+function Get-DemoFiles([string]$path) {
+    # a demo and the files that belong to it: .dmi info, .animtab, .jpg thumbnail
+    $dir = Split-Path -Parent $path; $base = [IO.Path]::GetFileNameWithoutExtension($path)
+    @(Get-ChildItem -LiteralPath $dir -File -ErrorAction SilentlyContinue | Where-Object { [IO.Path]::GetFileNameWithoutExtension($_.Name) -eq $base } | ForEach-Object { $_.FullName })
+}
+
+# ---- start-list groups (bug-11489): chapters, a game's whole campaign, the Chronological Campaign -------------------
+# all from the generated catalogue: boards = the mod's own campaign menus (ui/coop_start), games / chrono = its
+# campaign_games overlay and coop_mod/chrono.scr::nextMission. A disc board shows only when this PC converted the disc.
+function Get-StartGroups($cat, $byo) {
+    $boards = @{}; $groups = New-Object System.Collections.Generic.List[object]
+    foreach ($b in $cat["missions"]) {
+        $maps = @($b["maps"] | Where-Object { -not $_["byo"] -or $byo.ContainsKey($_["map"]) } | ForEach-Object { $_["spec"] })
+        if (-not $maps.Count) { continue }
+        $boards[$b["board"]] = $maps
+        $groups.Add([pscustomobject]@{ Name = "Chapter: " + $b["title"]; Maps = $maps })
+    }
+    foreach ($g in @($cat["campaign"]["games"])) {
+        if (-not $g) { continue }
+        $m = @($g["boards"] | Where-Object { $boards.ContainsKey($_) } | ForEach-Object { $boards[$_] })
+        if ($m.Count) { $groups.Add([pscustomobject]@{ Name = "Entire campaign: " + $g["name"]; Maps = $m }) }
+    }
+    $ch = @($cat["campaign"]["chrono"])
+    if ($ch.Count) {
+        $m = @($ch | Where-Object { $boards.ContainsKey($_) } | ForEach-Object { $boards[$_] })
+        if ($m.Count) { $groups.Add([pscustomobject]@{ Name = "Chronological order (all three games, the mod's Chronological Campaign)"; Maps = $m }) }
+    }
+    , $groups.ToArray()
 }
 function Get-PortNote([int]$want, [int]$got) {
     "UDP $want was busy (probably the game is open on this PC), so the server took $got. Friends must type :$got after " +
@@ -712,10 +912,17 @@ function Get-State($p) {
     $null
 }
 function Test-Running($p) {
-    $s = Get-State $p
-    if (-not $s -or -not $s.supervisorPid) { return $false }
-    $pr = Get-Process -Id $s.supervisorPid -ErrorAction SilentlyContinue
-    [bool]($pr -and $pr.ProcessName -match 'powershell')
+    # bug-11491: a supervisor holds "Local\MOHCoopServer_<tag>" for its whole life, so the mutex IS the answer. The old
+    # test (state.json's supervisorPid is alive and named powershell) stayed true when Windows reused that PID for
+    # another PowerShell - this window's own one included - and Start never came back without a restart of the UI.
+    $m = $null
+    try {
+        $m = New-Object Threading.Mutex($false, "Local\MOHCoopServer_$(Get-ProfileTag $p)")
+        $got = $false
+        try { $got = $m.WaitOne(0) } catch [Threading.AbandonedMutexException] { $got = $true }   # holder died without releasing
+        if ($got) { $m.ReleaseMutex(); return $false }
+        return $true
+    } catch { return $false } finally { if ($m) { $m.Dispose() } }
 }
 function Start-Supervisor($p, [switch]$SkipUpdate) {
     Remove-Item -LiteralPath (Get-RunPath $p "stop") -Force -ErrorAction SilentlyContinue
@@ -734,6 +941,7 @@ function Stop-Supervisor($p) { Set-Content -LiteralPath (Get-RunPath $p "stop") 
 function Send-SupervisorCommand($p, [string]$c) { Add-Content -LiteralPath (Get-RunPath $p "cmd") -Value $c -Encoding ascii }
 
 function Remove-OldLogs($p) {
+    try { Limit-History $p } catch {}
     $dir = Join-Path $DataDir ("logs\" + (Get-ProfileTag $p))
     $keep = [math]::Max(1, [int]$p.logKeepDays)
     Get-ChildItem -LiteralPath $dir -File -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -lt (Get-Date).AddDays(-$keep) } |
@@ -783,16 +991,32 @@ function Invoke-Supervisor([string]$name) {
     $tag = Get-ProfileTag $p
     $mutex = New-Object Threading.Mutex($false, "Local\MOHCoopServer_$tag")
     # a supervisor that relaunched itself after an update releases the mutex just before it exits: wait for it
-    if (-not $mutex.WaitOne($(if ($SkipUpdateOnce) { 15000 } else { 0 }))) { Write-Log "supervisor '$name' already running - exit"; return }
+    # 2 s: the window probes this mutex for a moment every 2 s (Test-Running) - never mistake that for a second supervisor
+    $gotMutex = $false
+    try { $gotMutex = $mutex.WaitOne($(if ($SkipUpdateOnce) { 15000 } else { 2000 })) } catch [Threading.AbandonedMutexException] { $gotMutex = $true }
+    if (-not $gotMutex) { Write-Log "supervisor '$name' already running - exit"; return }
     $logDir = Join-Path $DataDir "logs\$tag"
     if (-not (Test-Path -LiteralPath $logDir)) { New-Item -ItemType Directory -Force -Path $logDir | Out-Null }
     $slog = Join-Path $logDir "supervisor.log"
     function SLog($m) { Write-Log $m $slog }
     $cat = Import-Catalogue
     $inst = Get-Install
+    # bug-11491: a server left behind by a supervisor that was killed (Task Manager, a crash) still holds the port, and
+    # the strict bind would then wait on "port busy" for ever. It is ours when its PID is in the old state file, it is
+    # omohaaded.exe and its command line carries this profile's config name.
+    $old = Get-State $p
+    if ($old -and $old.serverPid) {
+        $orph = Get-CimInstance Win32_Process -Filter "ProcessId=$([int]$old.serverPid)" -ErrorAction SilentlyContinue
+        if ($orph -and $orph.Name -eq "omohaaded.exe" -and "$($orph.CommandLine)" -match [regex]::Escape("hzm_server_$tag.cfg")) {
+            SLog "stopping the server a previous supervisor left running (pid $($old.serverPid))"
+            Stop-Process -Id $old.serverPid -Force -ErrorAction SilentlyContinue
+            Start-Sleep -Milliseconds 500
+        }
+    }
     $state = [ordered]@{ profile = $name; supervisorPid = $PID; serverPid = 0; state = "starting"; started = ""; restarts = 0; log = ""; map = ""; port = $p.port; boundPort = 0; portNote = ""; players = 0; playerList = @()
         tps = 0.0; tpsTarget = 0.0; tpsAvgMs = 0.0; tpsMaxMs = 0.0; tpsDropped = 0; tpsHist = @(); behindMs = 0; behindTicks = 0
-        behindAt = ""; lagLog = ""; appUpdated = "" }
+        behindAt = ""; lagLog = ""; appUpdated = ""; chat = @(); netIn = -1.0; netOut = -1.0
+        supervisorStarted = (Get-Date).ToString("s") }
     function Save-State { $state | ConvertTo-Json | Set-Content -LiteralPath (Get-RunPath $p "state.json") -Encoding UTF8 }
     Save-State
     $stopFile = Get-RunPath $p "stop"; $cmdFile = Get-RunPath $p "cmd"
@@ -858,6 +1082,8 @@ function Invoke-Supervisor([string]$name) {
             $sp = [int]$p.port; $logText = ""      # $sp = the port the server really bound (status, rcon); see Get-BoundPort
             $state.port = $p.port; $state.boundPort = 0; $state.portNote = ""
             $rotIdx = 0; $rot = @($p.rotation | Where-Object { Test-MapSpec $_ }); $rotPending = $false; $rotCmd = $null
+            if ($p.rotationShuffle -and $rot.Count -gt 1) { $rot = Get-Shuffled $rot; SLog "rotation shuffled: $($rot -join ', ')" }
+            $rotDone = $false; $since = @{}; $lastMap = ""; $mapSince = Get-Date; $ordered = 
             $loaded = $false; $seenMap = ""; $nextStatus = Get-Date; $nextDemoSync = (Get-Date).AddSeconds(30)
             if ($p.motdRepeatMin -gt 0) { $nextMotd = (Get-Date).AddMinutes([int]$p.motdRepeatMin) }
             while (-not $pr.HasExited) {
@@ -897,6 +1123,7 @@ function Invoke-Supervisor([string]$name) {
                                             $state.tps = $tl.Actual; $state.tpsTarget = $tl.Target; $state.tpsAvgMs = $tl.AvgMs
                                             $state.tpsMaxMs = $tl.MaxMs; $state.tpsDropped = $tl.Dropped
                                             $state.tpsHist = @(@($state.tpsHist) + $tl.Actual | Select-Object -Last 60)
+                                            $state.netIn = $tl.InKB; $state.netOut = $tl.OutKB
                                             $lagLine = "{0:HH:mm:ss}  {1:0.0} of {2:0} ticks/s   work per tick avg {3:0.00} ms, max {4:0.0} ms   longest gap {5} ms   late frames {6}   lost ticks {7}" -f $now, $tl.Actual, $tl.Target, $tl.AvgMs, $tl.MaxMs, $tl.GapMs, $tl.Late, $tl.Dropped
                                         }
                                         "behind" {
@@ -911,6 +1138,11 @@ function Invoke-Supervisor([string]$name) {
                                         $lastLagHook = $now
                                         [void](Send-Webhook $sec.webhook ("Server falling behind: **{0}** - {1}" -f (Remove-ColorCodes $p.hostname), ($lagLine -replace '^\S+\s+', '')))
                                     }
+                                }
+                                $cl = Read-ChatLine $ln
+                                if ($cl) {
+                                    $state.chat = @(@($state.chat) + ("{0:HH:mm:ss}  {1}{2}: {3}" -f (Get-Date), (Remove-ColorCodes $cl.Name), $(if ($cl.To -ne "@all") { " ($($cl.To))" } else { "" }), $cl.Text) | Select-Object -Last 80)
+                                    Save-State
                                 }
                                 if ($ln -match '^Server: (\S+)') {
                                     $state.map = $Matches[1]; $state.state = "loading"; $loaded = $false; Save-State
@@ -936,7 +1168,20 @@ function Invoke-Supervisor([string]$name) {
                         if ($m -ne $seenMap) {
                             $seenMap = $m; $state.map = $m
                             SLog "map: $m"
-                            if ($p.missionMode -eq "rotation" -and $rot.Count) {
+                            # session history: the map that ran, how long, and how it ended
+                            if ($lastMap) {
+                                $how = if ($m -eq $lastMap) { "restarted" } elseif ($ordered -and $m -eq $ordered) { "rotation" } else { "moved on (mission completed, or a vote / admin change)" }
+                                Add-History $p @{ kind = "map"; map = $lastMap; dur = [int]((Get-Date) - $mapSince).TotalSeconds; how = $how; next = $m }
+                            }
+                            $lastMap = $m; $mapSince = Get-Date; $ordered = ""
+                            if ($p.missionMode -eq "rotation" -and $rot.Count -and -not $rotDone -and -not $rotPending -and $m -ne (Split-MapSpec $rot[$rotIdx]).Map -and ($rotIdx + 1) -ge $rot.Count -and -not $p.rotationLoop) {
+                                $rotDone = $true; SLog "rotation finished (loop off): the server now stays on what the story loads"
+                            }
+                            if ($p.missionMode -eq "rotation" -and $rot.Count -and -not $rotDone) {
+                                if (($rotIdx + 1) -ge $rot.Count -and $p.rotationShuffle -and $rot.Count -gt 1 -and $m -ne (Split-MapSpec $rot[$rotIdx]).Map) {
+                                    $last = $rot[$rotIdx]; $rot = @($rot[$rotIdx]) + @(Get-Shuffled @($rot | Where-Object { $_ -ne $last })); $rotIdx = 0
+                                    SLog "rotation reshuffled: $($rot -join ', ')"
+                                }
                                 # only the current entry (a restart of it) or the next one may run; anything else is the
                                 # story's own next mission (missioncomplete), replaced by the next rotation entry
                                 $cur = Split-MapSpec $rot[$rotIdx]; $nextIdx = ($rotIdx + 1) % $rot.Count; $nxt = Split-MapSpec $rot[$nextIdx]
@@ -952,7 +1197,7 @@ function Invoke-Supervisor([string]$name) {
                         Save-State
                         if ($rotCmd) {
                             foreach ($k in $rotCmd.Sets.Keys) { [void](Invoke-Rcon $sp $sec.rcon "set $k $($rotCmd.Sets[$k])") }
-                            [void](Invoke-Rcon $sp $sec.rcon "map $($rotCmd.Map)")
+                            [void](Invoke-Rcon $sp $sec.rcon "map $($rotCmd.Map)"); $ordered = $rotCmd.Map
                             $rotCmd = $null; $loaded = $false; $nextStatus = (Get-Date).AddSeconds(2)
                         }
                     }
@@ -997,6 +1242,8 @@ function Invoke-Supervisor([string]$name) {
                     foreach ($k in $now.Keys) {
                         if (-not $known.ContainsKey($k)) {
                             $pn = Remove-ColorCodes $now[$k].Name
+                            $since[$k] = Get-Date
+                            Add-History $p @{ kind = "join"; name = $pn; address = ($now[$k].Address -replace ':\d+$', ''); map = $state.map }
                             SLog "joined: $pn"
                             if ($p.hookJoin) { [void](Send-Webhook $sec.webhook ("**{0}** joined {1} ({2} online)" -f $pn, (Remove-ColorCodes $p.hostname), $now.Count)) }
                             if ($p.motd) { [void](Invoke-Rcon $sp $sec.rcon ("tell {0} {1}" -f $now[$k].Num, (Get-CleanValue $p.motd))) }
@@ -1005,12 +1252,18 @@ function Invoke-Supervisor([string]$name) {
                     foreach ($k in @($known.Keys)) {
                         if (-not $now.ContainsKey($k)) {
                             $pn = Remove-ColorCodes $known[$k].Name
+                            $dur = if ($since.ContainsKey($k)) { [int]((Get-Date) - $since[$k]).TotalSeconds } else { 0 }
+                            $since.Remove($k)
+                            Add-History $p @{ kind = "leave"; name = $pn; dur = $dur; map = $state.map }
                             SLog "left: $pn"
                             if ($p.hookLeave) { [void](Send-Webhook $sec.webhook ("**{0}** left {1} ({2} online)" -f $pn, (Remove-ColorCodes $p.hostname), $now.Count)) }
                         }
                     }
                     $known = $now; $state.players = $now.Count
-                    $state.playerList = @($now.Values | Sort-Object { [int]$_.Num } | Select-Object Num, Name, Score, Ping, Address); Save-State
+                    $state.playerList = @($now.GetEnumerator() | Sort-Object { [int]$_.Value.Num } | ForEach-Object {
+                        $t = if ($since.ContainsKey($_.Key)) { Format-Duration ((Get-Date) - $since[$_.Key]).TotalSeconds } else { "" }
+                        [pscustomobject]@{ Num = $_.Value.Num; Name = $_.Value.Name; Score = $_.Value.Score; Ping = $_.Value.Ping; Address = $_.Value.Address; Time = $t } })
+                    Save-State
                 }
                 if ($booted -and $nextMotd -and $p.motd -and (Get-Date) -ge $nextMotd) {
                     $nextMotd = (Get-Date).AddMinutes([int]$p.motdRepeatMin)
@@ -1159,6 +1412,13 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
     <Border DockPanel.Dock="Bottom" Background="{StaticResource Panel}" BorderBrush="{StaticResource Edge}" BorderThickness="0,1,0,0" Padding="12,4">
       <TextBlock x:Name="txtStatusBar" Text="Ready" Foreground="{StaticResource Muted}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
     </Border>
+    <Border x:Name="bdConfirm" DockPanel.Dock="Bottom" Background="#FF3A2E1A" BorderBrush="#FFE0B050" BorderThickness="0,1,0,0" Padding="12,6" Visibility="Collapsed">
+      <DockPanel>
+        <Button x:Name="btnConfirmNo" Content="Cancel" DockPanel.Dock="Right"/>
+        <Button x:Name="btnConfirmYes" Content="Yes" DockPanel.Dock="Right" Background="#FF7A3A2A"/>
+        <TextBlock x:Name="txtConfirm" VerticalAlignment="Center" TextWrapping="Wrap"/>
+      </DockPanel>
+    </Border>
     <TabControl x:Name="tabs" Background="#FF1E1F1A" BorderBrush="{StaticResource Edge}" Margin="8">
 
       <TabItem Header="Server">
@@ -1211,7 +1471,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
 
       <TabItem Header="Missions">
         <Grid Margin="10">
-          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
           <StackPanel>
             <StackPanel Orientation="Horizontal">
               <RadioButton x:Name="rbCampaign" Content="Full campaign" GroupName="mm"/>
@@ -1219,6 +1479,25 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
               <RadioButton x:Name="rbRotation" Content="Map rotation" GroupName="mm"/>
             </StackPanel>
             <TextBlock x:Name="txtMissionHelp" Foreground="{StaticResource Muted}" Margin="0,2,0,8"/>
+          </StackPanel>
+          <StackPanel Grid.Row="2" Margin="0,8,0,0">
+            <WrapPanel>
+              <TextBlock Text="Add a whole group  " VerticalAlignment="Center"/>
+              <ComboBox x:Name="cbAddGroup" Width="420"/>
+              <Button x:Name="btnAddGroup" Content="Add to the list" Margin="6,2"/>
+              <CheckBox x:Name="cbSkipDupes" Content="skip missions already in the list" IsChecked="True" VerticalAlignment="Center"/>
+            </WrapPanel>
+            <WrapPanel Margin="0,4,0,0">
+              <TextBlock Text="Playlist  " VerticalAlignment="Center"/>
+              <ComboBox x:Name="cbPlaylist" Width="220"/>
+              <Button x:Name="btnPlLoad" Content="Load"/>
+              <Button x:Name="btnPlSave" Content="Save list as..."/>
+              <Button x:Name="btnPlDelete" Content="Delete"/>
+              <CheckBox x:Name="cbShuffle" Content="Shuffle" Margin="12,0,0,0" VerticalAlignment="Center"/>
+              <CheckBox x:Name="cbLoop" Content="Loop" Margin="8,0,0,0" VerticalAlignment="Center"/>
+              <Button x:Name="btnPlStart" Content="Start playlist" Background="#FF4B5A2A" Margin="12,2,6,2"/>
+            </WrapPanel>
+            <TextBlock Foreground="{StaticResource Muted}" TextWrapping="Wrap" Text="Drag missions in the list to reorder them. A next-mission vote at the end of a mission is not offered: the mod has no such vote (players can still use the game's own callvote where it is allowed)."/>
           </StackPanel>
           <Grid Grid.Row="1">
             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
@@ -1234,7 +1513,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
             </StackPanel>
             <DockPanel Grid.Column="2">
               <TextBlock x:Name="txtRightTitle" DockPanel.Dock="Top" Text="Rotation" Foreground="{StaticResource Accent}" Margin="0,0,0,4"/>
-              <ListBox x:Name="lbRotation"/>
+              <ListBox x:Name="lbRotation" AllowDrop="True"/>
             </DockPanel>
           </Grid>
         </Grid>
@@ -1306,6 +1585,14 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                   <TextBlock x:Name="txtUpnp" Foreground="{StaticResource Muted}"/>
                 </StackPanel>
               </StackPanel></GroupBox>
+              <GroupBox Header="Can my friends reach me?"><StackPanel>
+                <StackPanel Orientation="Horizontal">
+                  <Button x:Name="btnReach" Content="Test from this PC"/>
+                  <TextBlock x:Name="txtReachVerdict" FontWeight="SemiBold" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                </StackPanel>
+                <TextBlock x:Name="txtReach" Foreground="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,4,0,0"
+                           Text="Queries the running server through your public IP. Without an outside helper this can only prove 'open'; a friend joining is the real test."/>
+              </StackPanel></GroupBox>
               <GroupBox Header="Server browser"><StackPanel>
                 <CheckBox x:Name="cbMaster" Content="List this server on the master server (same as Public on the Server tab)"/>
               </StackPanel></GroupBox>
@@ -1372,50 +1659,116 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
 
       <TabItem Header="Status">
         <Grid Margin="10">
-          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="2*"/><RowDefinition Height="3*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="2*"/><RowDefinition Height="3*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
           <StackPanel Orientation="Horizontal">
             <Button x:Name="btnStart2" Content="Start" Background="#FF4B5A2A"/>
             <Button x:Name="btnStop2" Content="Stop"/>
             <Button x:Name="btnRestart" Content="Restart"/>
+            <Button x:Name="btnForceStop" Content="Force stop" Visibility="Collapsed" Background="#FF7A3A2A"/>
             <Button x:Name="btnRecStart" Content="Record now" Margin="18,2,6,2"/>
             <Button x:Name="btnRecStop" Content="Stop recording"/>
             <Button x:Name="btnRecStatus" Content="Recording?"/>
-            <TextBlock x:Name="txtRunState" Margin="10,0,0,0" FontWeight="SemiBold"/>
+            <Button x:Name="btnCrashReport" Content="Crash report..." Margin="18,2,6,2"/>
+            <TextBlock x:Name="txtRunState" Margin="10,0,0,0" FontWeight="SemiBold" TextWrapping="Wrap" MaxWidth="420"/>
           </StackPanel>
-          <DockPanel Grid.Row="1" Margin="0,8,0,4">
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,6">
-              <TextBlock Text="Server speed  " VerticalAlignment="Center"/>
-              <Border BorderBrush="{StaticResource Edge}" BorderThickness="1" Background="#FF14150F" Width="240" Height="36">
-                <Canvas x:Name="cvTps" ClipToBounds="True"/>
-              </Border>
-              <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
-                <TextBlock x:Name="txtTps"/>
-                <TextBlock x:Name="txtBehind" Foreground="#FFE0B050"/>
-              </StackPanel>
-              <Button x:Name="btnLagLog" Content="Open lag log" Margin="12,0,0,0" VerticalAlignment="Center"/>
+          <WrapPanel Grid.Row="1" Margin="0,8,0,0">
+            <TextBlock Text="Server speed  " VerticalAlignment="Center"/>
+            <Border BorderBrush="{StaticResource Edge}" BorderThickness="1" Background="#FF14150F" Width="200" Height="36">
+              <Canvas x:Name="cvTps" ClipToBounds="True"/>
+            </Border>
+            <StackPanel Margin="8,0,14,0" VerticalAlignment="Center" Width="300">
+              <TextBlock x:Name="txtTps" TextTrimming="CharacterEllipsis"/>
+              <TextBlock x:Name="txtBehind" Foreground="#FFE0B050" TextTrimming="CharacterEllipsis"/>
             </StackPanel>
+            <TextBlock Text="CPU  " VerticalAlignment="Center"/>
+            <Border BorderBrush="{StaticResource Edge}" BorderThickness="1" Background="#FF14150F" Width="90" Height="36"><Canvas x:Name="cvCpu" ClipToBounds="True"/></Border>
+            <TextBlock Text="  RAM  " VerticalAlignment="Center"/>
+            <Border BorderBrush="{StaticResource Edge}" BorderThickness="1" Background="#FF14150F" Width="90" Height="36"><Canvas x:Name="cvRam" ClipToBounds="True"/></Border>
+            <StackPanel Margin="8,0,0,0" VerticalAlignment="Center">
+              <TextBlock x:Name="txtRes"/>
+              <TextBlock x:Name="txtNet" Foreground="{StaticResource Muted}"/>
+            </StackPanel>
+            <Button x:Name="btnLagLog" Content="Open lag log" Margin="12,0,0,0" VerticalAlignment="Center"/>
+          </WrapPanel>
+          <DockPanel Grid.Row="2" Margin="0,8,0,4">
             <StackPanel DockPanel.Dock="Right" Margin="6,0,0,0">
               <Button x:Name="btnKick" Content="Kick"/>
               <Button x:Name="btnBan" Content="Ban IP"/>
+              <Button x:Name="btnMute" Content="Mute" IsEnabled="False" ToolTipService.ShowOnDisabled="True"
+                      ToolTip="The game engine has no per-player mute yet. Kick, or turn off text chat for everyone (g_textmsg_allowed 0 on the Gameplay tab)."/>
             </StackPanel>
             <ListView x:Name="lvPlayers" Background="#FF14150F" Foreground="#FFE8E2D0" BorderBrush="{StaticResource Edge}">
               <ListView.View><GridView>
                 <GridViewColumn Header="#" Width="40" DisplayMemberBinding="{Binding Num}"/>
-                <GridViewColumn Header="Player" Width="260" DisplayMemberBinding="{Binding Name}"/>
-                <GridViewColumn Header="Score" Width="70" DisplayMemberBinding="{Binding Score}"/>
-                <GridViewColumn Header="Ping" Width="70" DisplayMemberBinding="{Binding Ping}"/>
-                <GridViewColumn Header="Address" Width="180" DisplayMemberBinding="{Binding Address}"/>
+                <GridViewColumn Header="Player" Width="240" DisplayMemberBinding="{Binding Name}"/>
+                <GridViewColumn Header="Score" Width="60" DisplayMemberBinding="{Binding Score}"/>
+                <GridViewColumn Header="Ping" Width="60" DisplayMemberBinding="{Binding Ping}"/>
+                <GridViewColumn Header="Connected" Width="90" DisplayMemberBinding="{Binding Time}"/>
+                <GridViewColumn Header="Address" Width="170" DisplayMemberBinding="{Binding Address}"/>
               </GridView></ListView.View>
             </ListView>
           </DockPanel>
-          <TextBox x:Name="tbConsole" Grid.Row="2" IsReadOnly="True" FontFamily="Consolas" FontSize="12" TextWrapping="NoWrap"
-                   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0,4"/>
-          <DockPanel Grid.Row="3">
+          <Grid Grid.Row="3" Margin="0,4">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="3*"/><ColumnDefinition Width="2*"/></Grid.ColumnDefinitions>
+            <TextBox x:Name="tbConsole" IsReadOnly="True" FontFamily="Consolas" FontSize="12" TextWrapping="NoWrap"
+                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+            <DockPanel Grid.Column="1" Margin="6,0,0,0">
+              <TextBlock DockPanel.Dock="Top" Text="Chat" Foreground="{StaticResource Accent}" Margin="0,0,0,2"/>
+              <DockPanel DockPanel.Dock="Bottom" Margin="0,4,0,0">
+                <Button x:Name="btnSay" Content="Say" DockPanel.Dock="Right" Margin="6,0,0,0"/>
+                <TextBox x:Name="tbSay" ToolTip="Sent to every player as the server (rcon say)"/>
+              </DockPanel>
+              <TextBox x:Name="tbChat" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" FontSize="12"/>
+            </DockPanel>
+          </Grid>
+          <DockPanel Grid.Row="4">
             <Button x:Name="btnRcon" Content="Send" DockPanel.Dock="Right" Margin="6,2,0,2"/>
             <TextBlock Text="Console command (rcon)  " DockPanel.Dock="Left"/>
             <TextBox x:Name="tbRcon"/>
           </DockPanel>
         </Grid>
+      </TabItem>
+      <TabItem Header="Demos">
+        <DockPanel Margin="10">
+          <WrapPanel DockPanel.Dock="Top">
+            <Button x:Name="btnDemoRefresh" Content="Refresh"/>
+            <Button x:Name="btnDemoPlay" Content="Play" Background="#FF4B5A2A"/>
+            <Button x:Name="btnDemoDelete" Content="Delete..."/>
+            <Button x:Name="btnDemoFolder" Content="Open folder"/>
+            <Button x:Name="btnDemoCopy" Content="Copy path"/>
+            <TextBlock x:Name="txtDemoInfo" Foreground="{StaticResource Muted}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+          </WrapPanel>
+          <ListView x:Name="lvDemos" Margin="0,8,0,0" Background="#FF14150F" Foreground="#FFE8E2D0" BorderBrush="{StaticResource Edge}">
+            <ListView.View><GridView>
+              <GridViewColumn Header="Map" Width="200" DisplayMemberBinding="{Binding Map}"/>
+              <GridViewColumn Header="Recorded" Width="130" DisplayMemberBinding="{Binding Date}"/>
+              <GridViewColumn Header="Length" Width="80" DisplayMemberBinding="{Binding Length}"/>
+              <GridViewColumn Header="Size" Width="80" DisplayMemberBinding="{Binding Size}"/>
+              <GridViewColumn Header="Players" Width="220" DisplayMemberBinding="{Binding Players}"/>
+              <GridViewColumn Header="Where" Width="100" DisplayMemberBinding="{Binding Where}"/>
+            </GridView></ListView.View>
+          </ListView>
+        </DockPanel>
+      </TabItem>
+      <TabItem Header="History">
+        <DockPanel Margin="10">
+          <WrapPanel DockPanel.Dock="Top">
+            <TextBlock Text="Search  " VerticalAlignment="Center"/><TextBox x:Name="tbHistFilter" Width="180"/>
+            <TextBlock Text="   Show  " VerticalAlignment="Center"/><ComboBox x:Name="cbHistKind" Width="160"/>
+            <TextBlock Text="   from the last  " VerticalAlignment="Center"/><ComboBox x:Name="cbHistDays" Width="90"/>
+            <Button x:Name="btnHistRefresh" Content="Refresh" Margin="10,2,6,2"/>
+            <TextBlock x:Name="txtHistInfo" Foreground="{StaticResource Muted}" VerticalAlignment="Center"/>
+          </WrapPanel>
+          <ListView x:Name="lvHistory" Margin="0,8,0,0" Background="#FF14150F" Foreground="#FFE8E2D0" BorderBrush="{StaticResource Edge}">
+            <ListView.View><GridView>
+              <GridViewColumn Header="Time" Width="140" DisplayMemberBinding="{Binding Time}"/>
+              <GridViewColumn Header="Event" Width="80" DisplayMemberBinding="{Binding Event}"/>
+              <GridViewColumn Header="Player / mission" Width="220" DisplayMemberBinding="{Binding Who}"/>
+              <GridViewColumn Header="Duration" Width="90" DisplayMemberBinding="{Binding Dur}"/>
+              <GridViewColumn Header="Details" Width="380" DisplayMemberBinding="{Binding Detail}"/>
+            </GridView></ListView.View>
+          </ListView>
+        </DockPanel>
       </TabItem>
     </TabControl>
   </DockPanel>
@@ -1506,6 +1859,7 @@ function Load-ProfileToUi($p) {
     $ui.tbBans.Text = (@($p.bans) -join "`r`n"); $ui.tbWhitelist.Text = (@($p.whitelist) -join "`r`n"); $ui.cbWhitelist.IsChecked = [bool]$p.whitelistOn
     $ui.pwWebhook.Password = $script:Sec.webhook
     $ui.cbHookUp.IsChecked = [bool]$p.hookUp; $ui.cbHookDown.IsChecked = [bool]$p.hookDown; $ui.cbHookJoin.IsChecked = [bool]$p.hookJoin; $ui.cbHookLeave.IsChecked = [bool]$p.hookLeave; $ui.cbHookLag.IsChecked = [bool]$p.hookLag
+    $ui.cbShuffle.IsChecked = [bool]$p.rotationShuffle; $ui.cbLoop.IsChecked = [bool]$p.rotationLoop; Fill-Playlists
     Update-Preview; Set-ModeHelp; Set-MissionHelp; Update-PortHint
     Build-Affinity; Build-Tuning
     $script:Built = @{}; Build-Gameplay
@@ -1543,6 +1897,7 @@ function Read-UiToProfile {
     $p.whitelist = @($ui.tbWhitelist.Text -split "[`r`n]+" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^[0-9./]+$' })
     $p.whitelistOn = [bool]$ui.cbWhitelist.IsChecked
     $p.hookUp = [bool]$ui.cbHookUp.IsChecked; $p.hookDown = [bool]$ui.cbHookDown.IsChecked; $p.hookJoin = [bool]$ui.cbHookJoin.IsChecked; $p.hookLeave = [bool]$ui.cbHookLeave.IsChecked; $p.hookLag = [bool]$ui.cbHookLag.IsChecked
+    $p.rotationShuffle = [bool]$ui.cbShuffle.IsChecked; $p.rotationLoop = [bool]$ui.cbLoop.IsChecked
     $script:Sec.password = $ui.pwJoin.Password; $script:Sec.rcon = $ui.pwRcon.Password
     $wh = $ui.pwWebhook.Password.Trim()
     if ($wh -and -not (Test-WebhookUrl $wh)) { Set-Status "That is not a Discord webhook URL - it was not saved"; $wh = $script:Sec.webhook }
@@ -1635,9 +1990,13 @@ function New-SettingRow($e) {
     $g.Margin = "0,1,0,1"
     foreach ($w in @(300, 200, 170, 70)) { $cd = New-Object Windows.Controls.ColumnDefinition; $cd.Width = New-Object Windows.GridLength $w; [void]$g.ColumnDefinitions.Add($cd) }
     $cd = New-Object Windows.Controls.ColumnDefinition; $cd.Width = New-Object Windows.GridLength(1, "Star"); [void]$g.ColumnDefinitions.Add($cd)
-    $lab = New-Object Windows.Controls.TextBlock
+    # bug-11490: the plain label (overlay "labels"), with the cvar name small beneath it for admins
+    $lab = New-Object Windows.Controls.StackPanel
     $label = if ($e.ContainsKey("label") -and $e["label"]) { $e["label"] } else { $e["name"] }
-    $lab.Text = $label; $lab.TextTrimming = "CharacterEllipsis"; $lab.TextWrapping = "NoWrap"
+    $l1 = New-Object Windows.Controls.TextBlock; $l1.Text = $label; $l1.TextTrimming = "CharacterEllipsis"; $l1.TextWrapping = "NoWrap"
+    $l2 = New-Object Windows.Controls.TextBlock; $l2.Text = $e["name"]; $l2.FontSize = 10.5; $l2.Foreground = $ui.txtStatusBar.Foreground
+    $l2.TextTrimming = "CharacterEllipsis"; $l2.TextWrapping = "NoWrap"
+    [void]$lab.Children.Add($l1); [void]$lab.Children.Add($l2)
     $tip = $e["name"]; if ($e["description"]) { $tip += "`n" + $e["description"] }
     if ($e["unseeded"]) { $tip += "`n(no shipped default: when left empty the script decides)" }
     $lab.ToolTip = $tip
@@ -1717,7 +2076,7 @@ function Build-Gameplay {
 function Fill-Expander($ex) {
     if ($ex.Content) { return }
     $inner = New-Object Windows.Controls.StackPanel; $inner.Margin = "18,2,0,6"
-    foreach ($e in @(Get-GameplayEntries | Where-Object { $_["category"] -eq $ex.Tag } | Sort-Object { if ($_.ContainsKey("label")) { 0 } else { 1 } }, { $_["name"] })) {
+    foreach ($e in @(Get-GameplayEntries | Where-Object { $_["category"] -eq $ex.Tag } | Sort-Object { "$($_["label"])" }, { $_["name"] })) {
         [void]$inner.Children.Add((New-SettingRow $e))
     }
     $ex.Content = $inner
@@ -1728,7 +2087,7 @@ function Build-Tuning {
     $h.Text = "How fast the server runs and how much it may send. The shipped values are what the public coop servers use; change them only for a reason. Memory: maxentities is the entity pool every map shares."
     $h.Foreground = $ui.txtStatusBar.Foreground; $h.Margin = "0,0,0,8"
     [void]$sp.Children.Add($h)
-    foreach ($e in @($script:Cat["settings"] | Where-Object { $_["page"] -eq "tuning" } | Sort-Object { $_["name"] })) { [void]$sp.Children.Add((New-SettingRow $e)) }
+    foreach ($e in @($script:Cat["settings"] | Where-Object { $_["page"] -eq "tuning" } | Sort-Object { "$($_["label"])" })) { [void]$sp.Children.Add((New-SettingRow $e)) }
 }
 
 # ---------------------------------------------------------------------------------------------------- CPU / specs
@@ -1842,35 +2201,53 @@ function Show-Tps($s) {
         if ($ago -lt 120) { $ui.txtBehind.Text = "Running behind: {0} ms / {1} ticks ({2:0} s ago)" -f $s.behindMs, $s.behindTicks, $ago }
     }
 }
+# the LAN address changes rarely and Get-NetRoute / Get-NetIPAddress are slow CIM calls: once a minute, not every tick
+function Get-LocalIpCached {
+    if (-not $script:LocalIpAt -or ((Get-Date) - $script:LocalIpAt).TotalSeconds -gt 60) { $script:LocalIp = Get-LocalIp; $script:LocalIpAt = Get-Date }
+    $script:LocalIp
+}
 function Update-StatusTab {
     $p = $script:P
     if (-not $p) { return }
-    $running = Test-Running $p
-    $s = Get-State $p
     if ($p.mode -eq "listen") {
-        $st = Get-ServerStatus $p.port
-        $ui.txtRunState.Text = if ($st) { "Host and play: up on port $($p.port), map $($st.Info['mapname'])" } else { "Host and play: not running" }
-        if ($st) { $ui.lvPlayers.ItemsSource = @($st.Players) }
+        # host-and-play: the getstatus query runs off the UI thread (a game that is not hosting answers nothing for 1.5 s)
+        if (-not $script:ListenPoll) {
+            $script:ListenPoll = Invoke-Async { param($port) Get-ServerStatus $port } @([int]$p.port) {
+                param($st)
+                $script:ListenPoll = $null
+                $ui.txtRunState.Text = if ($st) { "Host and play: up on port $($script:P.port), map $($st.Info['mapname'])" } else { "Host and play: not running" }
+                $ui.lvPlayers.ItemsSource = if ($st) { @($st.Players) } else { $null }
+            }
+        }
         return
     }
+    $running = Test-Running $p
+    $s = Get-State $p
     if ($running -and $s) {
-        $ui.txtRunState.Text = "{0} - map {1} - {2} player(s) - restarts {3} - server pid {4}" -f $s.state, $s.map, $s.players, $s.restarts, $s.serverPid
-        $port = if ($s.boundPort) { [int]$s.boundPort } else { [int]$p.port }
-        if ($s.state -ne "port busy") { $ui.txtRunState.Text += "`nFriends on your network join: $(Get-JoinAddress (Get-LocalIp) $port)" }
-        if ($s.portNote) { $ui.txtRunState.Text += "`n" + $s.portNote }
+        if (-not $script:StopAsked) {
+            $ui.txtRunState.Text = "{0} - map {1} - {2} player(s) - restarts {3}" -f $s.state, $s.map, $s.players, $s.restarts
+            $port = if ($s.boundPort) { [int]$s.boundPort } else { [int]$p.port }
+            if ($s.state -ne "port busy") { $ui.txtRunState.Text += "`nFriends on your network join: $(Get-JoinAddress (Get-LocalIpCached) $port)" }
+            if ($s.portNote) { $ui.txtRunState.Text += "`n" + $s.portNote }
+        }
         # the supervisor polls rcon status every 10 s; the window reads its state file instead of adding rcon traffic
+        $sel = if ($ui.lvPlayers.SelectedItem) { $ui.lvPlayers.SelectedItem.Num } else { $null }
         $ui.lvPlayers.ItemsSource = @($s.playerList | Where-Object { $_ })
+        if ($null -ne $sel) { foreach ($it in $ui.lvPlayers.Items) { if ($it.Num -eq $sel) { $ui.lvPlayers.SelectedItem = $it } } }
         Show-Tps $s
+        Show-Resources $s
+        $chat = (@($s.chat) + @($script:SaidLines) | Where-Object { $_ } | Sort-Object) -join "`n"
+        if ($chat -ne $ui.tbChat.Text) { $ui.tbChat.Text = $chat; $ui.tbChat.ScrollToEnd() }
         $lg = Get-LatestLog $p
         if ($lg) {
             $t = Read-Tail $lg
             if ($t.Length -ne $ui.tbConsole.Text.Length) { $ui.tbConsole.Text = $t; $ui.tbConsole.ScrollToEnd() }
         }
-    } else {
+    } elseif (-not $running) {
         $ui.txtRunState.Text = "Stopped"
         $ui.lvPlayers.ItemsSource = $null
+        $ui.txtRes.Text = ""; $ui.txtNet.Text = ""
     }
-    $ui.btnStart.IsEnabled = -not $running; $ui.btnStart2.IsEnabled = -not $running
 }
 
 function Start-Current {
@@ -1900,10 +2277,40 @@ function Start-Current {
 function Stop-Current {
     $p = $script:P
     if ($p.mode -eq "listen") {
-        if (Get-ServerStatus $p.port) { [void](Invoke-Rcon $p.port $script:Sec.rcon "killserver"); Set-Status "Asked the game to stop hosting" }
+        # one UDP rcon, no status poll first: a game that is not hosting simply does not answer (bug-11491: the old
+        # getstatus waited up to 1.5 s on the UI thread)
+        [void](Invoke-Rcon $p.port $script:Sec.rcon "killserver"); Set-Status "Asked the game to stop hosting"
         return
     }
-    if (Test-Running $p) { Stop-Supervisor $p; Set-Status "Stopping '$($p.name)'..." } else { Set-Status "Not running" }
+    if (Test-Running $p) {
+        Stop-Supervisor $p
+        $script:StopAsked = Get-Date
+        Set-Status "Stopping '$($p.name)'..."
+        Update-RunButtons
+    } else { Set-Status "Not running" }
+}
+# Start / Stop / Force stop follow the supervisor itself (its mutex), on every tab, every 2 s (bug-11491: the buttons
+# were only refreshed while the Status tab was showing, so a Stop from the Server tab left Start greyed out for good)
+function Update-RunButtons {
+    $p = $script:P
+    if (-not $p) { return }
+    $running = if ($p.mode -eq "listen") { $false } else { Test-Running $p }
+    $stopping = $running -and $script:StopAsked
+    foreach ($b in @($ui.btnStart, $ui.btnStart2)) { $b.IsEnabled = -not $running }
+    foreach ($b in @($ui.btnStop, $ui.btnStop2)) { $b.IsEnabled = $running -and -not $stopping -or $p.mode -eq "listen" }
+    $ui.btnForceStop.Visibility = if ($stopping -and ((Get-Date) - $script:StopAsked).TotalSeconds -gt 20) { "Visible" } else { "Collapsed" }
+    if (-not $running -and $script:StopAsked) { $script:StopAsked = $null; Set-Status "Stopped '$($p.name)'" }
+    if ($stopping) { $ui.txtRunState.Text = "Stopping... ($([int]((Get-Date) - $script:StopAsked).TotalSeconds) s)" }
+}
+function Stop-Force($p) {
+    # only this profile's own supervisor and server (PIDs from its state file, checked by name)
+    $s = Get-State $p
+    foreach ($id in @($s.serverPid, $s.supervisorPid)) {
+        if (-not $id) { continue }
+        $pr = Get-Process -Id $id -ErrorAction SilentlyContinue
+        if ($pr -and $pr.ProcessName -match '^(omohaaded|powershell)$') { Stop-Process -Id $id -Force -ErrorAction SilentlyContinue }
+    }
+    Remove-Item -LiteralPath (Get-RunPath $p "stop") -Force -ErrorAction SilentlyContinue
 }
 
 # ---------------------------------------------------------------------------------------------------- wiring
@@ -1994,16 +2401,8 @@ $ui.btnRcon.Add_Click({
     $r = Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon $c
     $ui.tbConsole.AppendText("`n] $c`n$r"); $ui.tbConsole.ScrollToEnd(); $ui.tbRcon.Text = "" })
 $ui.tbRcon.Add_KeyDown({ param($s, $e) if ($e.Key -eq "Return") { $ui.btnRcon.RaiseEvent((New-Object Windows.RoutedEventArgs ([Windows.Controls.Button]::ClickEvent))) } })
-$ui.btnKick.Add_Click({ $pl = $ui.lvPlayers.SelectedItem; if ($pl -and $pl.Num -ne "" -and (Ask "Kick $(Remove-ColorCodes $pl.Name)?")) { Set-Status (Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon "kicknum $($pl.Num)") } })
-$ui.btnBan.Add_Click({
-    $pl = $ui.lvPlayers.SelectedItem
-    if (-not $pl -or -not $pl.Address -or $pl.Address -notmatch '^(\d+\.\d+\.\d+\.\d+)') { return }
-    $ip = $Matches[1]
-    if (-not (Ask "Ban $(Remove-ColorCodes $pl.Name) ($ip)? The address is added to this profile's ban list.")) { return }
-    [void](Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon "banaddr $ip"); [void](Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon "kicknum $($pl.Num)")
-    $ui.tbBans.Text = ($ui.tbBans.Text.TrimEnd() + "`r`n$ip").Trim(); Read-UiToProfile; Save-Profile $script:P })
 
-function Select-Profile([string]$n) { Load-ProfileToUi (Read-Profile $n) }
+function Select-Profile([string]$n) { Load-ProfileToUi (Read-Profile $n); $script:StopAsked = $null; Update-RunButtons }
 $ui.cbProfile.Add_SelectionChanged({ if (-not $script:Loading -and $ui.cbProfile.SelectedItem) { Select-Profile "$($ui.cbProfile.SelectedItem)" } })
 function Refresh-ProfileList([string]$sel) {
     $script:Loading = $true
@@ -2032,6 +2431,288 @@ $ui.btnDelProfile.Add_Click({
     Remove-Item -LiteralPath (Join-Path $DataDir "profiles\$($p.name).json"), (Join-Path $DataDir "profiles\$($p.name).secret") -Force -ErrorAction SilentlyContinue
     $n = @(Get-ProfileNames)[0]; Refresh-ProfileList $n; Select-Profile $n })
 
+# ---------------------------------------------------------------------------------------------------- async work
+# bug-11491: nothing that can wait on the network, a process or WMI runs on the UI thread. Invoke-Async runs a script
+# block in a runspace that has this app's own helper functions, and calls $done back on the UI thread with its result.
+$script:AsyncJobs = New-Object System.Collections.Generic.List[object]
+function Invoke-Async([scriptblock]$work, [object[]]$argList, [scriptblock]$done) {
+    $iss = [Management.Automation.Runspaces.InitialSessionState]::CreateDefault()
+    foreach ($fn in @("Send-Oob", "Get-ServerStatus", "Invoke-Rcon", "Get-JoinAddress", "Get-PublicIp", "Test-Reach", "Write-Log")) {
+        $c = Get-Command $fn -CommandType Function -ErrorAction SilentlyContinue
+        if ($c) { $iss.Commands.Add((New-Object Management.Automation.Runspaces.SessionStateFunctionEntry($fn, $c.Definition))) }
+    }
+    $iss.Variables.Add((New-Object Management.Automation.Runspaces.SessionStateVariableEntry("PublicIpUrl", $PublicIpUrl, "")))
+    $iss.Variables.Add((New-Object Management.Automation.Runspaces.SessionStateVariableEntry("GuiLog", $script:GuiLog, "")))
+    $ps = [PowerShell]::Create($iss)
+    [void]$ps.AddScript($work.ToString())
+    foreach ($a in @($argList)) { [void]$ps.AddArgument($a) }
+    $job = [pscustomobject]@{ PS = $ps; Handle = $ps.BeginInvoke(); Done = $done }
+    $script:AsyncJobs.Add($job)
+    $job
+}
+function Complete-AsyncJobs {
+    foreach ($j in $script:AsyncJobs.ToArray()) {
+        if (-not $j.Handle.IsCompleted) { continue }
+        [void]$script:AsyncJobs.Remove($j)
+        $r = $null
+        try { $r = $j.PS.EndInvoke($j.Handle); if ($r -and $r.Count -eq 1) { $r = $r[0] } } catch { Write-Log "async: $_" }
+        $j.PS.Dispose()
+        try { & $j.Done $r } catch { Write-Log "async done: $_" }
+    }
+}
+$script:AsyncTimer = New-Object Windows.Threading.DispatcherTimer
+$script:AsyncTimer.Interval = [TimeSpan]::FromMilliseconds(150)
+$script:AsyncTimer.Add_Tick({ Complete-AsyncJobs })
+$script:AsyncTimer.Start()
+
+# ---------------------------------------------------------------------------------------------------- in-page confirm
+# kick / ban / delete ask in the window's own strip above the status bar, never in a modal dialog
+function Confirm-InPage([string]$text, [scriptblock]$onYes, [string]$yes = "Yes") {
+    $script:ConfirmAction = $onYes
+    $ui.txtConfirm.Text = $text; $ui.btnConfirmYes.Content = $yes
+    $ui.bdConfirm.Visibility = "Visible"
+}
+$ui.btnConfirmYes.Add_Click({ $ui.bdConfirm.Visibility = "Collapsed"; $a = $script:ConfirmAction; $script:ConfirmAction = $null; if ($a) { & $a } })
+$ui.btnConfirmNo.Add_Click({ $ui.bdConfirm.Visibility = "Collapsed"; $script:ConfirmAction = $null; Set-Status "Cancelled" })
+
+# ---------------------------------------------------------------------------------------------------- resources
+# the server process's CPU and RAM every 2 s (Get-Process on one PID), network from the engine's SVTPS line (10 s)
+$script:CpuHist = New-Object System.Collections.Generic.List[double]
+$script:RamHist = New-Object System.Collections.Generic.List[double]
+function Draw-Spark($cv, $vals, [double]$top, $brush) {
+    $cv.Children.Clear()
+    $v = @($vals); if (-not $v.Count) { return }
+    $w = $cv.ActualWidth; $h = $cv.ActualHeight; if ($w -le 0) { $w = 88 }; if ($h -le 0) { $h = 34 }
+    if ($top -le 0) { $top = 1 }
+    $pl = New-Object Windows.Shapes.Polyline; $pl.StrokeThickness = 1.4; $pl.Stroke = $brush
+    $step = if ($v.Count -gt 1) { ($w - 2) / 59.0 } else { 0 }
+    $x0 = ($w - 1) - ($v.Count - 1) * $step
+    for ($k = 0; $k -lt $v.Count; $k++) { [void]$pl.Points.Add((New-Object Windows.Point ($x0 + $k * $step), ($h - 2 - [math]::Min(1.0, $v[$k] / $top) * ($h - 4)))) }
+    [void]$cv.Children.Add($pl)
+}
+function Show-Resources($s) {
+    $pr = if ($s.serverPid) { Get-Process -Id $s.serverPid -ErrorAction SilentlyContinue } else { $null }
+    if (-not $pr -or $pr.ProcessName -ne "omohaaded") { $ui.txtRes.Text = ""; $script:CpuPrev = $null; return }
+    $now = Get-Date; $cpu = $pr.TotalProcessorTime.TotalMilliseconds
+    if ($script:CpuPrev -and $script:CpuPrev.Pid -eq $pr.Id) {
+        $pct = 100.0 * ($cpu - $script:CpuPrev.Cpu) / ((($now - $script:CpuPrev.At).TotalMilliseconds) * [Environment]::ProcessorCount)
+        $script:CpuHist.Add([math]::Max(0, $pct)); while ($script:CpuHist.Count -gt 60) { $script:CpuHist.RemoveAt(0) }
+    }
+    $script:CpuPrev = [pscustomobject]@{ Pid = $pr.Id; Cpu = $cpu; At = $now }
+    $mb = $pr.WorkingSet64 / 1MB
+    $script:RamHist.Add($mb); while ($script:RamHist.Count -gt 60) { $script:RamHist.RemoveAt(0) }
+    $green = New-Object Windows.Media.SolidColorBrush ([Windows.Media.Color]::FromRgb(0x9C, 0xC5, 0x5A))
+    $topCpu = [math]::Max(10, ($script:CpuHist | Measure-Object -Maximum).Maximum * 1.2)
+    Draw-Spark $ui.cvCpu $script:CpuHist $topCpu $green
+    Draw-Spark $ui.cvRam $script:RamHist ([math]::Max(256, ($script:RamHist | Measure-Object -Maximum).Maximum * 1.2)) $green
+    $c = if ($script:CpuHist.Count) { $script:CpuHist[$script:CpuHist.Count - 1] } else { 0 }
+    $ui.txtRes.Text = "CPU {0:0.0} % of this PC   RAM {1:0} MB" -f $c, $mb
+    $ui.txtNet.Text = if ([double]$s.netIn -ge 0 -and $null -ne $s.netIn) { "Network in {0:0.0} KB/s, out {1:0.0} KB/s (10 s)" -f [double]$s.netIn, [double]$s.netOut } else { "Network: needs the 1.10.91 server" }
+}
+
+# ---------------------------------------------------------------------------------------------------- chat / say
+$script:SaidLines = New-Object System.Collections.Generic.List[string]
+function Send-Say {
+    $t = Get-CleanValue $ui.tbSay.Text
+    if (-not $t) { return }
+    if (-not (Test-Running $script:P)) { Set-Status "The server is not running"; return }
+    [void](Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon "say $t")
+    $script:SaidLines.Add(("{0:HH:mm:ss}  (server): {1}" -f (Get-Date), $t)); while ($script:SaidLines.Count -gt 40) { $script:SaidLines.RemoveAt(0) }
+    $ui.tbSay.Text = ""; Update-StatusTab
+}
+$ui.btnSay.Add_Click({ Send-Say })
+$ui.tbSay.Add_KeyDown({ param($s, $e) if ($e.Key -eq "Return") { Send-Say } })
+
+# ---------------------------------------------------------------------------------------------------- crash report
+$ui.btnCrashReport.Add_Click({
+    Set-Status "Collecting the crash report (crash dumps can take a few seconds)..."
+    $win.Cursor = [Windows.Input.Cursors]::Wait
+    try {
+        $zip = Export-CrashReport $script:P $script:Inst
+        Set-Status "Saved $zip - attach it to your report. Passwords, rcon and webhook were removed."
+        Start-Process -FilePath "explorer.exe" -ArgumentList "/select,`"$zip`""
+    } catch { Set-Status "Crash report failed: $_" } finally { $win.Cursor = $null }
+})
+$ui.btnForceStop.Add_Click({
+    Confirm-InPage "Force stop '$($script:P.name)'? Its server and supervisor are ended at once (no clean shutdown)." { Stop-Force $script:P; Set-Status "Force-stopped '$($script:P.name)'"; Update-RunButtons } "Force stop"
+})
+
+# ---------------------------------------------------------------------------------------------------- reach test
+$ui.btnReach.Add_Click({
+    $p = $script:P
+    if (-not (Test-Running $p) -and $p.mode -ne "listen") { $ui.txtReachVerdict.Text = "Can't tell"; $ui.txtReach.Text = "Start the server first: the test asks the running server."; return }
+    $ui.btnReach.IsEnabled = $false; $ui.txtReachVerdict.Text = "testing..."; $ui.txtReach.Text = ""
+    [void](Invoke-Async { param($port, $fw) Test-Reach $port (Get-PublicIp) $fw } @((Get-SharePort $p), (Test-FirewallRule $p)) {
+        param($r)
+        $ui.btnReach.IsEnabled = $true
+        if (-not $r) { $ui.txtReachVerdict.Text = "Can't tell"; $ui.txtReach.Text = "The test did not finish."; return }
+        $ui.txtReachVerdict.Text = $r.Verdict + $(if ($r.Share) { "  -  share: $($r.Share)" } else { "" })
+        $ui.txtReach.Text = $r.Detail
+    })
+})
+
+# ---------------------------------------------------------------------------------------------------- kick / ban (in-page)
+function Get-SelectedPlayer { $pl = $ui.lvPlayers.SelectedItem; if ($pl -and "$($pl.Num)" -ne "") { $pl } else { Set-Status "Select a player first"; $null } }
+$ui.btnKick.Add_Click({
+    $pl = Get-SelectedPlayer; if (-not $pl) { return }
+    $script:PendingPlayer = $pl
+    Confirm-InPage "Kick $(Remove-ColorCodes $pl.Name)?" { $q = $script:PendingPlayer; Set-Status (Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon "kicknum $($q.Num)") } "Kick"
+})
+$ui.btnBan.Add_Click({
+    $pl = Get-SelectedPlayer; if (-not $pl) { return }
+    if (-not $pl.Address -or $pl.Address -notmatch '^(\d+\.\d+\.\d+\.\d+)') { Set-Status "No address for that player"; return }
+    $script:PendingPlayer = $pl; $script:PendingIp = $Matches[1]
+    Confirm-InPage "Ban $(Remove-ColorCodes $pl.Name) ($($script:PendingIp))? The address is added to this profile's ban list (Advanced > Admin)." {
+        $q = $script:PendingPlayer; $ip = $script:PendingIp
+        [void](Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon "banaddr $ip"); [void](Invoke-Rcon (Get-SharePort $script:P) $script:Sec.rcon "kicknum $($q.Num)")
+        $ui.tbBans.Text = ($ui.tbBans.Text.TrimEnd() + "`r`n$ip").Trim(); Read-UiToProfile; Save-Profile $script:P
+        Set-Status "Banned $ip"
+    } "Ban"
+})
+
+# ---------------------------------------------------------------------------------------------------- demos
+function Fill-Demos {
+    $list = Get-DemoList $script:P $script:Inst
+    $ui.lvDemos.ItemsSource = $list
+    $ui.txtDemoInfo.Text = "$(@($list).Count) demo(s) - server folder $(Join-Path $script:Inst.Maintt 'demos')$(if ($script:P.recordFolder) { " and $($script:P.recordFolder)" })"
+}
+function Get-SelectedDemo { $d = $ui.lvDemos.SelectedItem; if (-not $d) { Set-Status "Select a demo first" }; $d }
+$ui.btnDemoRefresh.Add_Click({ Fill-Demos })
+$ui.btnDemoPlay.Add_Click({
+    $d = Get-SelectedDemo; if (-not $d) { return }
+    if (Get-Process openmohaa -ErrorAction SilentlyContinue) { Set-Status "The game is already running - close it first, or play the demo from its Film Room"; return }
+    $demos = Join-Path $script:Inst.Maintt "demos"
+    if ($d.Folder -ne $demos) {
+        # a copy-folder demo plays from the game's own demos folder: copy it (and its side files) in first
+        if (-not (Test-Path -LiteralPath $demos)) { New-Item -ItemType Directory -Force -Path $demos | Out-Null }
+        foreach ($f in (Get-DemoFiles $d.Path)) { Copy-Item -LiteralPath $f -Destination $demos -Force }
+    }
+    $a = $script:Inst.LaunchArgs
+    if (-not $a) { $a = "+set fs_basepath `"$($script:Inst.Base)`" +set fs_homepath `"$($script:Inst.Home)`" +set com_target_game 2" }
+    if ($a -notmatch 'cl_renderer') { $a += " +set cl_renderer opengl2" }
+    Start-Process -FilePath $script:Inst.Client -ArgumentList ($a + " +demo `"$($d.Base)`"") -WorkingDirectory $script:Inst.Root
+    Set-Status "The game is starting with $($d.Base)"
+})
+$ui.btnDemoDelete.Add_Click({
+    $d = Get-SelectedDemo; if (-not $d) { return }
+    $script:PendingDemo = $d
+    Confirm-InPage "Move $($d.Map) ($($d.Date), $($d.Size)) to the Recycle Bin?" {
+        Add-Type -AssemblyName Microsoft.VisualBasic
+        foreach ($f in (Get-DemoFiles $script:PendingDemo.Path)) { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile($f, 'OnlyErrorDialogs', 'SendToRecycleBin') }
+        Fill-Demos; Set-Status "Moved to the Recycle Bin"
+    } "Delete"
+})
+$ui.btnDemoFolder.Add_Click({ $d = $ui.lvDemos.SelectedItem; $f = if ($d) { $d.Folder } else { Join-Path $script:Inst.Maintt "demos" }; if (Test-Path -LiteralPath $f) { Start-Process -FilePath "explorer.exe" -ArgumentList "`"$f`"" } })
+$ui.btnDemoCopy.Add_Click({ $d = Get-SelectedDemo; if ($d) { [Windows.Clipboard]::SetText($d.Path); Set-Status "Copied $($d.Path)" } })
+
+# ---------------------------------------------------------------------------------------------------- history
+foreach ($k in @("Everything", "Joins and leaves", "Missions")) { [void]$ui.cbHistKind.Items.Add($k) }; $ui.cbHistKind.SelectedIndex = 0
+foreach ($k in @("1 day", "7 days", "30 days", "all kept")) { [void]$ui.cbHistDays.Items.Add($k) }; $ui.cbHistDays.SelectedIndex = 1
+function Fill-History {
+    $all = Get-History $script:P
+    $days = switch ($ui.cbHistDays.SelectedIndex) { 0 { 1 } 1 { 7 } 2 { 30 } default { 100000 } }
+    $cut = (Get-Date).AddDays(-$days); $q = $ui.tbHistFilter.Text.Trim(); $kind = $ui.cbHistKind.SelectedIndex
+    $rows = foreach ($e in $all) {
+        $t = [datetime]$e.t
+        if ($t -lt $cut) { continue }
+        if ($kind -eq 1 -and $e.kind -notin @("join", "leave")) { continue }
+        if ($kind -eq 2 -and $e.kind -ne "map") { continue }
+        $r = switch ($e.kind) {
+            "join"  { [pscustomobject]@{ Time = $t.ToString("yyyy-MM-dd HH:mm"); Event = "joined"; Who = $e.name; Dur = ""; Detail = "on $($e.map)" } }
+            "leave" { [pscustomobject]@{ Time = $t.ToString("yyyy-MM-dd HH:mm"); Event = "left"; Who = $e.name; Dur = (Format-Duration $e.dur); Detail = "from $($e.map)" } }
+            "map"   { [pscustomobject]@{ Time = $t.ToString("yyyy-MM-dd HH:mm"); Event = "mission"; Who = (Get-MapLabel $e.map); Dur = (Format-Duration $e.dur); Detail = "$($e.how) -> $($e.next)" } }
+        }
+        if ($r -and (-not $q -or "$($r.Who) $($r.Detail)" -like "*$q*")) { $r }
+    }
+    $rows = @($rows | Sort-Object Time -Descending)
+    $ui.lvHistory.ItemsSource = $rows
+    $ui.txtHistInfo.Text = "$($rows.Count) event(s); kept for $([math]::Max(1, [int]$script:P.logKeepDays)) days (Advanced > Reliability)"
+}
+$ui.btnHistRefresh.Add_Click({ Fill-History })
+$ui.tbHistFilter.Add_TextChanged({ Fill-History })
+$ui.cbHistKind.Add_SelectionChanged({ if ($script:P) { Fill-History } })
+$ui.cbHistDays.Add_SelectionChanged({ if ($script:P) { Fill-History } })
+$ui.tabs.Add_SelectionChanged({ param($s, $e)
+    if ($e.Source -ne $ui.tabs) { return }
+    if ($ui.tabs.SelectedIndex -eq 6) { Fill-Demos } elseif ($ui.tabs.SelectedIndex -eq 7) { Fill-History } })
+
+# ---------------------------------------------------------------------------------------------------- start-list groups
+function Fill-Groups {
+    $script:Groups = Get-StartGroups $script:Cat (Get-ByoMaps $script:Inst)
+    $ui.cbAddGroup.Items.Clear()
+    foreach ($g in $script:Groups) { [void]$ui.cbAddGroup.Items.Add("$($g.Name)  ($($g.Maps.Count))") }
+    if ($ui.cbAddGroup.Items.Count) { $ui.cbAddGroup.SelectedIndex = 0 }
+}
+$ui.btnAddGroup.Add_Click({
+    $i = $ui.cbAddGroup.SelectedIndex; if ($i -lt 0) { return }
+    $g = $script:Groups[$i]
+    if (-not $ui.rbRotation.IsChecked) { $ui.rbRotation.IsChecked = $true }     # a group is a list: rotation mode
+    $have = @($ui.lbRotation.Items | ForEach-Object { $_.Tag })
+    $added = 0; $skipped = 0
+    foreach ($m in $g.Maps) {
+        if ($ui.cbSkipDupes.IsChecked -and ($have -contains $m)) { $skipped++; continue }
+        [void]$ui.lbRotation.Items.Add((New-MapItem $m)); $have += $m; $added++
+    }
+    Set-Status "Added $added mission(s) from $($g.Name)$(if ($skipped) { "; $skipped already in the list were skipped" })"
+})
+
+# ---------------------------------------------------------------------------------------------------- playlists
+function Fill-Playlists {
+    $ui.cbPlaylist.Items.Clear()
+    foreach ($pl in @($script:P.playlists)) { [void]$ui.cbPlaylist.Items.Add($pl.name) }
+    if ($ui.cbPlaylist.Items.Count) { $ui.cbPlaylist.SelectedIndex = 0 }
+}
+function Get-Playlist([string]$n) { @($script:P.playlists | Where-Object { $_.name -eq $n })[0] }
+function Load-Playlist($pl) {
+    $ui.rbRotation.IsChecked = $true
+    $ui.lbRotation.Items.Clear()
+    foreach ($m in @($pl.maps)) { if (Test-MapSpec $m) { [void]$ui.lbRotation.Items.Add((New-MapItem $m)) } }
+    $ui.cbShuffle.IsChecked = [bool]$pl.shuffle; $ui.cbLoop.IsChecked = [bool]$pl.loop
+}
+$ui.btnPlLoad.Add_Click({ $pl = Get-Playlist "$($ui.cbPlaylist.SelectedItem)"; if ($pl) { Load-Playlist $pl; Set-Status "Loaded playlist '$($pl.name)' - Save or Start to use it" } })
+$ui.btnPlSave.Add_Click({
+    if (-not $ui.lbRotation.Items.Count -or -not $ui.rbRotation.IsChecked) { Set-Status "Put missions in the rotation list first"; return }
+    Add-Type -AssemblyName Microsoft.VisualBasic
+    $n = [Microsoft.VisualBasic.Interaction]::InputBox("Playlist name:", "MOH Coop Server", "$(if ($ui.cbPlaylist.SelectedItem) { $ui.cbPlaylist.SelectedItem } else { 'My playlist' })")
+    $n = Get-CleanValue $n
+    if (-not $n) { return }
+    $new = [pscustomobject]@{ name = $n; maps = @($ui.lbRotation.Items | ForEach-Object { $_.Tag }); shuffle = [bool]$ui.cbShuffle.IsChecked; loop = [bool]$ui.cbLoop.IsChecked }
+    $script:P.playlists = @(@($script:P.playlists | Where-Object { $_.name -ne $n }) + $new)
+    Save-Profile $script:P; Fill-Playlists; $ui.cbPlaylist.SelectedItem = $n
+    Set-Status "Saved playlist '$n' ($($new.maps.Count) missions)"
+})
+$ui.btnPlDelete.Add_Click({
+    $n = "$($ui.cbPlaylist.SelectedItem)"; if (-not $n) { return }
+    $script:PendingPl = $n
+    Confirm-InPage "Delete playlist '$n'? (The missions themselves are not touched.)" {
+        $script:P.playlists = @($script:P.playlists | Where-Object { $_.name -ne $script:PendingPl }); Save-Profile $script:P; Fill-Playlists; Set-Status "Deleted playlist"
+    } "Delete"
+})
+$ui.btnPlStart.Add_Click({
+    $pl = Get-Playlist "$($ui.cbPlaylist.SelectedItem)"
+    if ($pl) { Load-Playlist $pl }
+    if (-not $ui.lbRotation.Items.Count) { Set-Status "The list is empty"; return }
+    if (Test-Running $script:P) { Set-Status "Stop the server first, then Start playlist"; return }
+    Start-Current
+})
+# drag to reorder the start list
+$ui.lbRotation.Add_PreviewMouseLeftButtonDown({ param($s, $e) $script:DragStart = $e.GetPosition($null); $script:DragItem = $null
+    $src = $e.OriginalSource; while ($src -and -not ($src -is [Windows.Controls.ListBoxItem])) { $src = [Windows.Media.VisualTreeHelper]::GetParent($src) }
+    $script:DragItem = $src })
+$ui.lbRotation.Add_PreviewMouseMove({ param($s, $e)
+    if ($e.LeftButton -ne "Pressed" -or -not $script:DragItem) { return }
+    $d = $e.GetPosition($null) - $script:DragStart
+    if ([math]::Abs($d.Y) -lt 6) { return }
+    $it = $script:DragItem; $script:DragItem = $null
+    [void][Windows.DragDrop]::DoDragDrop($ui.lbRotation, $it, "Move") })
+$ui.lbRotation.Add_Drop({ param($s, $e)
+    $it = $e.Data.GetData([Windows.Controls.ListBoxItem]); if (-not $it) { return }
+    $src = $e.OriginalSource; while ($src -and -not ($src -is [Windows.Controls.ListBoxItem])) { $src = [Windows.Media.VisualTreeHelper]::GetParent($src) }
+    $to = if ($src) { $ui.lbRotation.Items.IndexOf($src) } else { $ui.lbRotation.Items.Count - 1 }
+    $from = $ui.lbRotation.Items.IndexOf($it)
+    if ($from -lt 0 -or $to -lt 0 -or $from -eq $to) { return }
+    $ui.lbRotation.Items.RemoveAt($from); $ui.lbRotation.Items.Insert($to, $it); $ui.lbRotation.SelectedIndex = $to })
+
 # ---------------------------------------------------------------------------------------------------- start up
 if (-not @(Get-ProfileNames).Count) { Save-Profile (New-Profile "Default") }
 # a generated cfg left behind (a crash before the supervisor or the timer removed it) still holds passwords
@@ -2053,6 +2734,8 @@ $ui.txtInstall.Text = "Game files: $($script:Inst.Root)`nGame data (base): $($sc
 Refresh-ProfileList $first
 Load-ProfileToUi (Read-Profile $first)
 Fill-Missions
+Fill-Groups
+Update-RunButtons
 Show-Specs
 $ui.txtIps.Text = "This PC on your network: $(Get-LocalIp)"
 
@@ -2060,7 +2743,8 @@ $timer = New-Object Windows.Threading.DispatcherTimer
 $timer.Interval = [TimeSpan]::FromSeconds(2)
 $script:GuiStamp = (Get-Item -LiteralPath $script:GuiPath).LastWriteTimeUtc
 $timer.Add_Tick({
-    if ($ui.tabs.SelectedIndex -eq 5) { Update-StatusTab }
+    try { Update-RunButtons } catch { Write-Log "run buttons: $_" }
+    if ($ui.tabs.SelectedIndex -eq 5) { try { Update-StatusTab } catch { Write-Log "status tab: $_" } }
     # an update (the updater, or a supervisor's update-on-start) replaced this app: this window still runs the old one
     if (-not $script:AppUpdatedShown -and (Get-Item -LiteralPath $script:GuiPath -ErrorAction SilentlyContinue).LastWriteTimeUtc -ne $script:GuiStamp) {
         $script:AppUpdatedShown = $true
@@ -2111,8 +2795,8 @@ if ($Snapshot) {
         $before = $report.Count; Get-Clipped $root
         for ($i = $before; $i -lt $report.Count; $i++) { $report[$i] = "$name : " + $report[$i] }
     }
-    $names = @("1_server", "2_missions", "3_gameplay", "4_pcspecs", "5_advanced", "6_status")
-    for ($t = 0; $t -lt 6; $t++) {
+    $names = @("1_server", "2_missions", "3_gameplay", "4_pcspecs", "5_advanced", "6_status", "7_demos", "8_history")
+    for ($t = 0; $t -lt 8; $t++) {
         $ui.tabs.SelectedIndex = $t
         if ($t -eq 1) { foreach ($it in $ui.tvMissions.Items) { $it.IsExpanded = ($ui.tvMissions.Items.IndexOf($it) -lt 2) } }
         if ($t -eq 5) { $ui.tbConsole.Text = (Read-Tail ((Get-ChildItem -LiteralPath (Join-Path $DataDir "logs") -Recurse -Filter "server_*.log" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime | Select-Object -Last 1).FullName) 6KB); Update-StatusTab }

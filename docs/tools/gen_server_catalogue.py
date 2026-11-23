@@ -85,6 +85,7 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
     server_tab = {n.lower() for n in ov["server_tab"]}
     tuning_tab = {n.lower() for n in ov["tuning_tab"]}
     overrides = {k.lower(): v for k, v in ov["overrides"].items()}
+    labels = {k.lower(): v for k, v in ov.get("labels", {}).items()}
 
     cfg_lines = {}
 
@@ -228,6 +229,9 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
             "seeds": seed_rows,
             "ui": bool(ui_ref.get(name)),
         }
+        lab = labels.get(key)
+        if lab:
+            e["label"] = lab          # the plain name shown in the app (bug-11490); "overrides" below can still change it
         o = overrides.get(key)
         if o:
             for k2, v2 in o.items():
@@ -286,6 +290,38 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
     except OSError:
         pass
 
+    # the start-list groups (bug-11489): a whole game's campaign in story order, and the mod's own Chronological
+    # Campaign - read from coop_mod/chrono.scr::nextMission ("last map of a chapter -> the next chapter's briefing"),
+    # never a hand list. The chain starts at the chapter no edge leads into.
+    games = []
+    for g in ov.get("campaign_games", []):
+        ids = [b["board"] for b in boards if re.match(r"[a-z]+", b["board"]).group(0) == g["prefix"]
+               and b["board"] not in g.get("skip", [])]
+        if ids:
+            games.append({"name": g["name"], "boards": ids})
+    chrono = []
+    try:
+        ct = read_text(os.path.join(root, mod, "coop_mod", "chrono.scr"))
+        mm = re.search(r"^nextMission\b.*?^\}end", ct, re.M | re.S)    # only the chronological chain itself
+        ct = mm.group(0) if mm else ""
+        edges = re.findall(r'local\.m\s*==\s*"([A-Za-z0-9_/]+)"\s*\)\s*\{\s*local\.r\s*=\s*"(briefing/[A-Za-z0-9_]+)"', ct)
+        board_of_map = {}
+        for b in boards:
+            for x in b["maps"]:
+                board_of_map.setdefault(x["map"], b["board"])
+        nxt = {}
+        for src, brief in edges:
+            if src in board_of_map and brief in board_of_map:
+                nxt[board_of_map[src]] = board_of_map[brief]
+        starts = [k for k in nxt if k not in nxt.values()]
+        if len(starts) == 1:
+            cur = starts[0]
+            while cur and cur not in chrono:
+                chrono.append(cur)
+                cur = nxt.get(cur)
+    except OSError:
+        pass
+
     cat_order = ov["category_order"]
     present = sorted({e["category"] for e in out}, key=lambda c: (cat_order.index(c) if c in cat_order else 99, c))
     doc = {
@@ -295,7 +331,7 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
         "categories": present,
         "counts": dict(sorted(counts.items())),
         "overlay_unknown": unknown_overlay,
-        "campaign": {"lobby_map": lobby},
+        "campaign": {"lobby_map": lobby, "games": games, "chrono": chrono},
         "missions": boards,
         "settings": out,
         "client_only": client_only,
