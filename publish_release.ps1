@@ -610,6 +610,14 @@ try {
     )
     $n = 0
     foreach ($s in $srcs) {
+        # bug-11455: the release recipe copied only the binaries into .cmake, so v1.10.89 archived October PDB/MAPs
+        # that resolve a dump to the wrong function. A symbol file must be as new as its binary (the linker writes both).
+        $bin = if (Test-Path "$s.dll") { "$s.dll" } else { "$s.exe" }
+        foreach ($ext in @(".pdb", ".map")) {
+            if ((Test-Path $bin) -and (Test-Path "$s$ext") -and ((Get-Item $bin).LastWriteTime - (Get-Item "$s$ext").LastWriteTime).TotalMinutes -gt 10) {
+                Write-Host "WARNING: $(Split-Path "$s$ext" -Leaf) is older than its binary - copy the matching symbols from the engine build folder" -ForegroundColor Yellow
+            }
+        }
         foreach ($ext in @(".pdb", ".map")) {
             if (Test-Path "$s$ext") { Copy-Item "$s$ext" (Join-Path $symDir (Split-Path "$s$ext" -Leaf)) -Force; $n++ }
         }

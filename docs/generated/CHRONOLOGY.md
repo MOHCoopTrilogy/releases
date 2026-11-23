@@ -13,19 +13,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `52d482d4 2026-11-22 hzmconv 1.10.89.2: disc guns data files found in the frozen build (they live in _MEIPASS, not its parent)` |
-| commits | 1,600 |
+| HEAD | `edc5a4a4 2026-11-23 EA converter 0.7.56: narrow navmesh crossings get a straight node chain the engine's body fits (gap 2 follow-up)` |
+| commits | 1,619 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **5209 modified, 2225 untracked** |
-| unstaged diff | 5209 files changed, 20419 insertions(+), 1492570 deletions(-) |
+| **uncommitted** | **5206 modified, 2226 untracked** |
+| unstaged diff | 5206 files changed, 20310 insertions(+), 1492558 deletions(-) |
 
-> Working tree is dirty. Everything in those 7434 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 7432 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-11 | 848 |
+| 2026-11 | 867 |
 | 2026-10 | 421 |
 | 2026-09 | 120 |
 | 2026-08 | 157 |
@@ -33,10 +33,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1600)
+### Commits since 2026-01-01 (1619)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `edc5a4a4` | 2026-11-23 | joncurry94-tech | EA converter 0.7.56: narrow navmesh crossings get a straight node chain the engine's body fits (gap 2 follow-up) |
+| `930eb3be` | 2026-11-23 | joncurry94-tech | FIDELITY C55: the Panzer muzzle hook (unverified: no Panzer fired in the tests) |
+| `2f3a53c8` | 2026-11-23 | joncurry94-tech | grade_profiles: coop_fl_1_3 0.55 (live-engine check against the xemu frames) |
+| `8422b345` | 2026-11-23 | joncurry94-tech | EA 1_11 navmesh (gap 2): FIDELITY C57 (navigation and cover), C37 evidence, OPEN items |
+| `a46f1c48` | 2026-11-23 | joncurry94-tech | grade_profiles: coop_fl_1_3 measured 0.45 against the xemu reference stills |
+| `97b30314` | 2026-11-23 | joncurry94-tech | MOH Coop Server window: new profiles get the standard port 12203 (bug-11454) |
+| `2a2bf7ef` | 2026-11-23 | joncurry94-tech | EA converter 0.7.55: AI path nodes from the original's own navmesh and cover rigs (decode audit gap 2) |
+| `835a9a5b` | 2026-11-23 | joncurry94-tech | MOH Coop Server window: the server's real port, never a silent move (bugs 11450, 11451) |
+| `96a35487` | 2026-11-23 | joncurry94-tech | EA converter 0.7.54: the Germans carry the disc's Gewehr 43; the Nemesis gets his own health factor (closest single factor to the… |
+| `c93e88fd` | 2026-11-23 | joncurry94-tech | MOH Coop Server window: 0 = keep all demos, start-with-Windows can open the window, clearer sv_timeout (bugs 11444-11446) |
+| `aa8d9543` | 2026-11-23 | joncurry94-tech | EA converter 0.7.53: soldier archetypes and weapon damage from the disc's definition blocks (decode audit gap 4) |
+| `f4f852ce` | 2026-11-23 | joncurry94-tech | EA converter 0.7.52: the sky chunk decoded (skirt from its own mesh, cloud scroll from its tracks), cemetery weather zones, the u… |
+| `97f8703d` | 2026-11-22 | joncurry94-tech | EA converter 0.7.51: the original's decoded fog is the default; church interior world light x1.35 |
+| `98fc27ea` | 2026-11-22 | joncurry94-tech | OPEN: Sealed Orders open items after the decode audit (undecoded / not-converted lists, scene clips awaiting a look) |
+| `27b2577b` | 2026-11-22 | joncurry94-tech | EA converter 0.7.50 (decode audit, EA half): fire damage, Panzer sheet, pickups by skill, flicker light, fog decoded |
+| `278ebad2` | 2026-11-22 | joncurry94-tech | TRAPS: prune T23/T24 back under the 70 KB ceiling |
+| `6de75f8b` | 2026-11-22 | joncurry94-tech | v1.10.89 shipped: README What's new, converter ship record 1.10.89.2, bug-11427 + frozen-path trap |
+| `d090b29b` | 2026-11-22 | joncurry94-tech | manifest 1.10.89 |
+| `ca24836b` | 2026-11-22 | joncurry94-tech | docgen: regenerate for v1.10.89 (server_settings catalogue) |
 | `52d482d4` | 2026-11-22 | joncurry94-tech | hzmconv 1.10.89.2: disc guns data files found in the frozen build (they live in _MEIPASS, not its parent) |
 | `ece21751` | 2026-11-22 | joncurry94-tech | gfx flip gate: register the v1.10.89 renderer 6bce0e19 (dawn sky fades, vertex limit) |
 | `990104c1` | 2026-11-22 | joncurry94-tech | hzmconv 1.10.89.1: disc guns hook applied (FL + EA guns paks), dawn on (renderer ships in v1.10.89) |
@@ -1642,9 +1661,9 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | | |
 |---|---|
-| branch | `hotfix-1.10.53` |
-| HEAD | `6a3cd0014 2026-11-22 v1.10.89 version + What's New card (Own Your Arsenal)` |
-| commits | 3,114 |
+| branch | `hotfix-1.10.90` |
+| HEAD | `4795da8b5 2026-11-23 v1.10.90 hotfix: version + What's New card (menu-join crash, server app fixes)` |
+| commits | 3,115 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -1652,7 +1671,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-11 | 680 |
+| 2026-11 | 681 |
 | 2026-10 | 727 |
 | 2026-09 | 116 |
 | 2026-08 | 198 |
@@ -1695,10 +1714,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1765)
+### Commits since 2026-01-01 (1766)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `4795da8b5` | 2026-11-23 | joncurry94 | v1.10.90 hotfix: version + What's New card (menu-join crash, server app fixes) |
 | `6a3cd0014` | 2026-11-22 | joncurry94 | v1.10.89 version + What's New card (Own Your Arsenal) |
 | `5c7bff94d` | 2026-11-22 | joncurry94 | discguns: M9 Bazooka gets its own Armory chip (EA M9, fid 71); Sten Mk II(S) is roster gun 85 (SMGS, owners only) |
 | `590faeb2e` | 2026-11-22 | joncurry94 | coop_fl_1_3 ANCHOR & ANVIL: the disc's breakable crates (39) and exploding barrels (18) on Sealed Orders' recipes (fl_crate / fl_… |

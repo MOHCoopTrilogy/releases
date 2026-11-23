@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 1,134,613 |
-| bytes | 120.4 GB |
-| files in project scope (indexed per-file) | 114,759 |
-| source files (per-file rows with line counts) | 26,264 |
+| files in the workspace | 1,134,632 |
+| bytes | 120.5 GB |
+| files in project scope (indexed per-file) | 114,778 |
+| source files (per-file rows with line counts) | 26,267 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `docs` | 73,435 | 42244.1 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 73,438 | 42244.2 MB | **yes** | this documentation set (authored + generated) |
 | `hzm-mohaa-coop-mod` | 27,043 | 15444.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `hzm-mod-attic` | 17,780 | 502.1 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
 | `hzm-mod-benchfix` | 17,754 | 423.0 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
@@ -183,16 +183,16 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm-hudfeed` | 2,613 | 60.5 MB | no - reference | scratch working copy of the engine (per-feature worktree); the bare openmohaa-hzm stays indexed |
 | `openmohaa-hzm-gore` | 2,577 | 60.7 MB | no - reference | scratch working copy of the engine (per-feature worktree); the bare openmohaa-hzm stays indexed |
 | `.harness_queue` | 2,009 | 0.2 MB | **yes** |  |
-| `symbols` | 1,289 | 5727.4 MB | **yes** |  |
+| `symbols` | 1,301 | 5786.3 MB | **yes** |  |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
 | `scratchpad` | 346 | 67.4 MB | **yes** |  |
 | `player1_home` | 291 | 2.1 MB | no - reference | test client profile dir |
 | `_hd_sky` | 237 | 1512.5 MB | **yes** |  |
 | `_research` | 175 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
-| `manifests` | 167 | 3.1 MB | **yes** | release manifests consumed by the auto-updater |
+| `manifests` | 168 | 3.1 MB | **yes** | release manifests consumed by the auto-updater |
+| `<root>` | 149 | 161.9 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `_gl2test_home` | 149 | 26.4 MB | **yes** |  |
-| `<root>` | 148 | 161.9 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `_hd_m3l1a` | 145 | 305.8 MB | **yes** |  |
 | `_hd_discstock` | 115 | 132.1 MB | **yes** |  |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
@@ -203,7 +203,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `server_home_ttnav_sliv2` | 93 | 152.1 MB | no - reference | soak / A-B harness server homepath |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
-| `public_servers` | 78 | 7.8 MB | **yes** |  |
+| `public_servers` | 80 | 3.4 MB | **yes** |  |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `server_home` | 63 | 14.8 MB | **yes** |  |
 | `_tools` | 61 | 153.0 MB | no - reference | downloaded third-party binaries |
@@ -1636,7 +1636,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.jpg` | 61,343 |
 | `.cpp` | 41,195 |
 | `.txt` | 17,357 |
-| `.md` | 13,279 |
+| `.md` | 13,280 |
 | `.urc` | 12,902 |
 | `.obj` | 11,402 |
 | `.tga` | 10,643 |
@@ -1644,13 +1644,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.png` | 5,316 |
 | `.glsl` | 5,066 |
 | `.wav` | 4,782 |
-| `.py` | 4,672 |
+| `.py` | 4,675 |
 | `.dat` | 4,547 |
 | `(none)` | 4,096 |
 | `.log` | 3,888 |
 | `.skc` | 3,425 |
 | `.tlog` | 3,270 |
-| `.json` | 2,454 |
+| `.json` | 2,455 |
 | `.vcxproj` | 2,452 |
 | `.filters` | 2,452 |
 | `.lod` | 2,208 |
@@ -1661,7 +1661,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.skd` | 1,370 |
 | `.dds` | 1,161 |
 | `.slg` | 1,104 |
-| `.pdb` | 1,037 |
+| `.pdb` | 1,043 |
 | `.in` | 946 |
 | `.rc` | 946 |
 | `.js` | 941 |
@@ -1672,7 +1672,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | directory | files | size | top extensions |
 |---|---:|---:|---|
 | `--help` | 25 | 6.55 MB | .tga×25 |
-| `.` | 148 | 161.92 MB | .md×57, .log×24, .txt×16, .ps1×15 |
+| `.` | 149 | 161.92 MB | .md×58, .log×24, .txt×16, .ps1×15 |
 | `.harness_queue` | 2,009 | 0.23 MB | .done×2007, .json×2 |
 | `_backups` | 1 | 0.02 MB | .bak×1 |
 | `_backups/cmake_stash` | 27 | 64.09 MB | .dll×12, .pdb×12, .map×3 |
@@ -2480,7 +2480,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/duststorm_2026-09-28/sim` | 6 | 0.02 MB | .py×4, .json×1, .txt×1 |
 | `docs/proposals/duststorm_2026-09-28/staged` | 7 | 0.12 MB | .scr×3, .shader×2, .tik×2 |
 | `docs/proposals/duststorm_2026-09-28/staged/textures/coop_dust` | 30 | 1.97 MB | .tga×30 |
-| `docs/proposals/eapolish_2026-11-10` | 2 | 0.09 MB | .md×2 |
+| `docs/proposals/eapolish_2026-11-10` | 2 | 0.10 MB | .md×2 |
 | `docs/proposals/emotes_2026-11-03` | 4 | 0.93 MB | .jpg×3, .png×1 |
 | `docs/proposals/emotes_2026-11-03/over/coop_mod` | 1 | 0.00 MB | .scr×1 |
 | `docs/proposals/emotes_2026-11-03/tools` | 1 | 0.02 MB | .py×1 |
@@ -3963,8 +3963,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/tools/assets/wpnfix/textures/models/weapons/coop_bren` | 2 | 0.85 MB | .jpg×2 |
 | `docs/tools/assets/wpnfix/textures/models/weapons/coop_fg42hd` | 1 | 0.56 MB | .jpg×1 |
 | `docs/tools/assets/wpnfix/textures/models/weapons/coop_panzerfaust` | 1 | 0.86 MB | .jpg×1 |
-| `docs/tools/byoaudit` | 8 | 0.08 MB | .py×7, .md×1 |
-| `docs/tools/ea` | 81 | 0.98 MB | .py×71, .json×9, .md×1 |
+| `docs/tools/byoaudit` | 9 | 0.09 MB | .py×8, .md×1 |
+| `docs/tools/ea` | 83 | 1.04 MB | .py×73, .json×9, .md×1 |
 | `docs/tools/ea/hd` | 10 | 4.04 MB | .jpg×9, .txt×1 |
 | `docs/tools/engrave` | 11 | 0.10 MB | .py×11 |
 | `docs/tools/engrave/qa` | 7 | 0.04 MB | .py×4, .json×3 |
@@ -4878,7 +4878,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 136 | 0.17 MB | .cfg×136 |
 | `hzm-mohaa-coop-mod/ui/proto` | 11 | 0.14 MB | .urc×6, .cfg×3, .inc×2 |
 | `hzm-mohaa-coop-mod/ui/wpnview` | 1,667 | 3.67 MB | .cfg×1667 |
-| `manifests` | 167 | 3.10 MB | .json×167 |
+| `manifests` | 168 | 3.13 MB | .json×168 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `mohaa-coop-dev_soak` | 25 | 30.64 MB | .log×24, .json×1 |
 | `mohaa-coop-dev_soak_val` | 1 | 0.40 MB | .log×1 |
@@ -5321,17 +5321,17 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `public_servers/_superseded_lobby_patch/srv1` | 1 | 0.06 MB | .scr×1 |
 | `public_servers/_superseded_lobby_patch/srv1_hudtest` | 1 | 0.06 MB | .scr×1 |
 | `public_servers/_superseded_lobby_patch/srv2` | 1 | 0.06 MB | .scr×1 |
-| `public_servers/srv1/maintt` | 3 | 2.15 MB | .log×2, .cfg×1 |
+| `public_servers/srv1/maintt` | 4 | 0.64 MB | .log×2, .pid×1, .cfg×1 |
 | `public_servers/srv1/maintt/coop_freeze` | 3 | 0.01 MB | .txt×3 |
 | `public_servers/srv1/maintt/coop_mod/save` | 20 | 0.01 MB | .dat×20 |
 | `public_servers/srv1/maintt/maps` | 4 | 0.58 MB | .pth×2, .scr×2 |
 | `public_servers/srv1/maintt/maps/e3l4` | 1 | 0.02 MB | .scr×1 |
-| `public_servers/srv2/maintt` | 3 | 2.07 MB | .log×2, .cfg×1 |
+| `public_servers/srv2/maintt` | 4 | 0.64 MB | .log×2, .pid×1, .cfg×1 |
 | `public_servers/srv2/maintt/coop_freeze` | 3 | 0.01 MB | .txt×3 |
 | `public_servers/srv2/maintt/coop_mod/save` | 11 | 0.01 MB | .dat×11 |
 | `public_servers/srv2/maintt/maps` | 3 | 0.26 MB | .scr×2, .pth×1 |
 | `public_servers/srv2/maintt/maps/e3l4` | 1 | 0.02 MB | .scr×1 |
-| `public_servers/srv3/maintt` | 5 | 2.08 MB | .log×2, .pid×1, .cfg×1, .trilogy_bak×1 |
+| `public_servers/srv3/maintt` | 5 | 0.64 MB | .log×2, .pid×1, .cfg×1, .trilogy_bak×1 |
 | `public_servers/srv3/maintt/coop_freeze` | 2 | 0.01 MB | .txt×2 |
 | `public_servers/srv3/maintt/maps` | 3 | 0.31 MB | .scr×2, .pth×1 |
 | `public_servers/srv3/maintt/maps/e3l4` | 1 | 0.02 MB | .scr×1 |
@@ -5498,6 +5498,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `symbols/1.10.86` | 12 | 58.78 MB | .map×6, .pdb×6 |
 | `symbols/1.10.87` | 12 | 58.83 MB | .map×6, .pdb×6 |
 | `symbols/1.10.88` | 12 | 58.83 MB | .map×6, .pdb×6 |
+| `symbols/1.10.89` | 12 | 58.83 MB | .map×6, .pdb×6 |
 | `symbols/1.10.9` | 12 | 50.66 MB | .map×6, .pdb×6 |
 | `symbols/1.7.2` | 2 | 8.45 MB | .pdb×2 |
 | `symbols/1.7.3` | 2 | 8.45 MB | .pdb×2 |
@@ -5542,7 +5543,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `maptest_monitor.ps1` | 22 | 0.9 KB |  |
 | `maptest_watchdog.ps1` | 323 | 12.7 KB | Launches the game via launch_openmohaa_breakthrough.exe. |
 | `new_generic_human_extracted.tik` | 2,241 | 73.9 KB |  |
-| `publish_release.ps1` | 621 | 41.3 KB | Design: _research/auto_update.md section 6. |
+| `publish_release.ps1` | 629 | 42.0 KB | Design: _research/auto_update.md section 6. |
 | `resume_publish.ps1` | 157 | 8.5 KB | MOH Coop Trilogy - resume an interrupted publish (draft release with partial assets) |
 | `spawn_clicker.ps1` | 163 | 7.1 KB | Watches qconsole.log for ^~^~^ MAPTEST_LOADED, then left-clicks the center of |
 | `spawn_clicker_2player.ps1` | 283 | 11.6 KB | spawn_clicker_2player.ps1 |
@@ -11189,7 +11190,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gfx_live_audit.py` | 1,066 | 50.8 KB | !/usr/bin/env python |
 | `glsl_glslang.py` | 96 | 4.4 KB | !/usr/bin/env python |
 | `glsl_variant_lint.py` | 1,224 | 60.9 KB | !/usr/bin/env python |
-| `harness_guard.py` | 425 | 33.2 KB | !/usr/bin/env python3 |
+| `harness_guard.py` | 429 | 33.6 KB | !/usr/bin/env python3 |
 | `harness_turn.py` | 94 | 3.5 KB |  |
 | `harness_window.py` | 1,166 | 57.3 KB | !/usr/bin/env python3 |
 | `heat_compare.py` | 111 | 4.6 KB | !/usr/bin/env python3 |
@@ -12066,7 +12067,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_newguns.shader` | 43 | 1.5 KB |  |
 | `coop_wpnfix.shader` | 23 | 0.9 KB |  |
 
-### `docs/tools/byoaudit/` — 7 source files
+### `docs/tools/byoaudit/` — 8 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -12074,11 +12075,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `byoclient.py` | 262 | 12.2 KB | !/usr/bin/env python3 |
 | `geoaudit.py` | 423 | 20.9 KB | !/usr/bin/env python3 |
 | `mapgeo.py` | 401 | 17.0 KB | !/usr/bin/env python3 |
+| `perchcheck.py` | 197 | 9.2 KB | !/usr/bin/env python3 |
 | `progwalk.py` | 223 | 10.6 KB | !/usr/bin/env python3 |
 | `visaudit.py` | 133 | 5.6 KB | !/usr/bin/env python3 |
 | `walkshots.py` | 113 | 5.3 KB | !/usr/bin/env python3 |
 
-### `docs/tools/ea/` — 71 source files
+### `docs/tools/ea/` — 73 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -12102,31 +12104,33 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `eacpt.py` | 147 | 6.5 KB | !/usr/bin/env python3 |
 | `eadawn_sky.py` | 159 | 8.3 KB |  |
 | `eadb.py` | 180 | 7.7 KB | !/usr/bin/env python3 |
+| `eadefs.py` | 114 | 5.1 KB |  |
 | `eaelf.py` | 88 | 3.4 KB | !/usr/bin/env python3 |
 | `eaents.py` | 97 | 4.0 KB | !/usr/bin/env python3 |
 | `eafidelity.py` | 136 | 7.3 KB | !/usr/bin/env python3 |
-| `eafx.py` | 626 | 30.5 KB |  |
+| `eafx.py` | 630 | 30.7 KB |  |
 | `eaguns.py` | 672 | 43.1 KB |  |
 | `eairrad.py` | 89 | 4.1 KB | !/usr/bin/env python3 |
 | `eamovies.py` | 86 | 4.4 KB | !/usr/bin/env python3 |
 | `eamusic.py` | 115 | 5.0 KB | !/usr/bin/env python3 |
-| `eapack.py` | 670 | 33.0 KB | !/usr/bin/env python3 |
+| `eanav.py` | 573 | 27.1 KB | !/usr/bin/env python3 |
+| `eapack.py` | 769 | 39.6 KB | !/usr/bin/env python3 |
 | `eaprops.py` | 788 | 38.9 KB | !/usr/bin/env python3 |
 | `eapropsup.py` | 153 | 6.8 KB | !/usr/bin/env python3 |
 | `eartc.py` | 99 | 4.6 KB | !/usr/bin/env python3 |
 | `easettle.py` | 328 | 13.1 KB | !/usr/bin/env python3 |
 | `easkin.py` | 134 | 7.4 KB | !/usr/bin/env python3 |
-| `easky.py` | 287 | 15.3 KB | face -> strip corners (x, y, z in metres from the eye, z up) and their uv (0..1023 = 0..1), in the original's… |
+| `easky.py` | 505 | 26.0 KB |  |
 | `easob.py` | 292 | 14.5 KB | !/usr/bin/env python3 |
 | `eastrings.py` | 43 | 1.5 KB | !/usr/bin/env python3 |
-| `eavm.py` | 1,008 | 50.8 KB | !/usr/bin/env python3 |
+| `eavm.py` | 1,030 | 52.3 KB | !/usr/bin/env python3 |
 | `eavoice.py` | 56 | 2.1 KB | !/usr/bin/env python3 |
 | `eazones.py` | 223 | 11.3 KB | !/usr/bin/env python3 |
 | `fl_gates.py` | 136 | 5.0 KB | !/usr/bin/env python3 |
 | `flaudio.py` | 96 | 3.6 KB | !/usr/bin/env python3 |
 | `flbsp.py` | 538 | 28.5 KB | !/usr/bin/env python3 |
 | `flcliff.py` | 97 | 4.5 KB | !/usr/bin/env python3 |
-| `flconvert.py` | 2,538 | 161.1 KB | !/usr/bin/env python3 |
+| `flconvert.py` | 2,593 | 167.1 KB | !/usr/bin/env python3 |
 | `flcoop2.py` | 190 | 9.7 KB | !/usr/bin/env python3 |
 | `flcore.py` | 190 | 8.2 KB | !/usr/bin/env python3 |
 | `flgeom.py` | 117 | 4.7 KB | !/usr/bin/env python3 |
@@ -15641,7 +15645,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `mg42_idle.scr` | 80 | 3.5 KB | [dbfix 2026-11-15] a Their Dying Breath gunner in the disc's own model plays the disc's own MG crew animations |
 | `mg42_shoot.scr` | 32 | 1.3 KB | [dbfix 2026-11-15] a Their Dying Breath gunner in the disc's own model: the disc's fire beat of the aim cell… |
 | `motionblend.scr` | 254 | 7.0 KB | [HZM 2026-11-17] a dog never takes the human blend: runto_inopen / runto_casual send a dog (type_idle dog_idl… |
-| `overattack.scr` | 161 | 4.9 KB | HZM coop [2026-07-23]: extracted from main/Pak0.pk3 to add NULL-self guards. The over-cover attack loop |
+| `overattack.scr` | 161 | 5.0 KB | HZM coop [2026-07-23]: extracted from main/Pak0.pk3 to add NULL-self guards. The over-cover attack loop |
 | `pain.scr` | 529 | 11.6 KB | PainStand |
 | `reload.scr` | 502 | 16.8 KB | Reload.scr |
 | `runto_casual.scr` | 100 | 2.7 KB | HZM coop [2026-08-06] extracted from maintt/pak1.pk3 (bug-1490), same fix as anim/runto_inopen.scr: |
@@ -15733,7 +15737,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `devprobe.scr` | 147 | 7.1 KB | DEV PROBE - "who is that actor, right now?" |
 | `director.scr` | 228 | 10.6 KB | [user 2026-07-17] REACTIVE DIFFICULTY DIRECTOR - Phase 1 (plan: _research/director_dda_plan.md). |
 | `discallies.scr` | 34 | 2.1 KB | HZM coop - allied soldier balance for the converted disc missions (Frontline / Rising Sun / European Assault). |
-| `discbot.scr` | 1,382 | 56.1 KB | HZM coop - discbot: DEV-ONLY playthrough bot for the bring-your-own-disc missions |
+| `discbot.scr` | 1,382 | 57.5 KB | HZM coop - discbot: DEV-ONLY playthrough bot for the bring-your-own-disc missions |
 | `discscale.scr` | 694 | 28.1 KB | HZM coop - player-count enemy scaling for the converted disc missions (Sealed Orders coop_fl_1_1, Their |
 | `duststorm.scr` | 855 | 41.9 KB | HZM coop - DUST STORM ROLL-IN [user 2026-09-26, bug-2963] |
 | `e1l4alarm.scr` | 76 | 3.3 KB | coop_mod/e1l4alarm.scr |
@@ -16156,7 +16160,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `squad.scr` | 282 | 7.9 KB | squad.scr |
 | `stickybomb.scr` | 178 | 5.5 KB | [user 08-02] SHIPPED BY THE COOP MOD ON PURPOSE - do not delete. |
 | `turret.scr` | 780 | 21.8 KB | [204] chrissstrahl |
-| `vehicles_thinkers.scr` | 1,980 | 62.2 KB | chrissstrahl - this shitt is here to correct the false offset that is happening in mp after first use or if n… |
+| `vehicles_thinkers.scr` | 1,980 | 64.2 KB | chrissstrahl - this shitt is here to correct the false offset that is happening in mp after first use or if n… |
 | `weapon.scr` | 393 | 11.3 KB | [200] Smithy - this script is called by the engine whenever a weapon is given to an actor |
 | `weather.scr` | 701 | 20.4 KB | local.weatherroof local.weatherwindow local.weatherin local.weatherout local.weatherflash local.weathertreewi… |
 | `welder.scr` | 110 | 2.5 KB |  |
@@ -16206,7 +16210,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_ea_1_11_head.scr` | 14 | 0.7 KB | [2026-11-17] the per-actor head-look reach (game.dll event headlooklimit <yaw> <notorso>, engine dbhead-eng)… |
 | `coop_ea_1_11_seat.scr` | 15 | 0.8 KB | [dbfix 2026-11-15] the per-actor turret seat (game.dll event turretseat <back> <down>, engine 9f5b0846) kept… |
 | `coop_fl_1_1.scr` | 6,508 | 313.0 KB | HZM coop - Frontline pilot: "coop_fl_1_1" (MOH Frontline level 1_1, St. Mathieu, 17 Aug 1944). |
-| `coop_fl_1_3.scr` | 1,877 | 78.8 KB | HZM coop - Frontline: "coop_fl_1_3" ANCHOR & ANVIL (MOH Frontline level 1_3, Lorient, 18 Aug 1944, 0500 hrs). |
+| `coop_fl_1_3.scr` | 1,877 | 80.6 KB | HZM coop - Frontline: "coop_fl_1_3" ANCHOR & ANVIL (MOH Frontline level 1_3, Lorient, 18 Aug 1944, 0500 hrs). |
 | `e1l1.scr` | 755 | 23.9 KB | This stuff in hacks.scr now |
 | `e1l1_precache.scr` | 95 | 4.0 KB | Stripped 92 global-duplicate cache lines (2026-06-23) |
 | `e1l2.scr` | 401 | 16.2 KB | chrissstrahl - relevant stuff |

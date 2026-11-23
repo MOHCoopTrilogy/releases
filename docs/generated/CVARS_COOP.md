@@ -3687,7 +3687,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mgnestPitch` |  |  |  | DEFAULT `60` @ `coop_defaults.cfg:439` | `coop_mod/bunker.scr:576` |  |
 | `coop_mgStay` | `1` | `0` | `fgame/actor_machinegunner.cpp:41` (+1) | DEFAULT `1` @ `coop_defaults.cfg:437` |  |  |
 | `coop_missionItemDebug` |  |  |  | FORCED `0` @ `autoexec.cfg:25` | `coop_mod/itemhandler.scr:2163` (+2) |  |
-| `coop_modVersion` |  | `0` | `client/cl_ui.cpp:2000` | other `v1.10.89` @ `ui/coop_version.cfg:4` |  | `ui/main.urc` |
+| `coop_modVersion` |  | `0` | `client/cl_ui.cpp:2000` | other `v1.10.90` @ `ui/coop_version.cfg:4` |  | `ui/main.urc` |
 | `coop_moraleEnable` |  |  |  | FORCED `1` @ `autoexec.cfg:734` | `coop_mod/main.scr:350` (+1) |  |
 | `coop_moraleFrac` |  |  |  |  | `coop_mod/morale.scr:31` |  |
 | `coop_mortar` |  |  |  |  | `coop_mod/mortar.scr:61` |  |
