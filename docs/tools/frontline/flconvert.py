@@ -1046,7 +1046,9 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         cards_ = [(X(m["verts"][a]), X(m["verts"][b]), X(m["verts"][c])) for m in meshes
                   if m["tex"] and m["tex"].split("@")[-1] in cov_ and m["tris"] and (m["cell"], m["draw"]) not in hidden
                   for a, b, c in m["tris"]]
-        gp_, stats["glass"] = flglass.panes(coll, X, cards_)
+        # [anvil data13] "mat": the pane material (1_1: 13; 1_3's panes are material 12 + the special bit - the
+        # emulator's GPU frame at the 1_3 start drew its window quads exactly on those collision vertices). Absent = 13
+        gp_, stats["glass"] = flglass.panes(coll, X, cards_, mat=int(gl_.get("mat", 13)))
         gname_ = tdir + "hzm_glass"
         if gl_.get("pane_tex"):
             gimg_ = tdir + gl_["pane_tex"] + ".tga"
@@ -1059,6 +1061,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         s0_, t0_, s1_, t1_ = gl_.get("pane_st", [0.0, 0.0, 1.0, 1.0])
         for tris_ in gp_:
             v_, i_ = flglass.surface(tris_, med_light)
+            if gl_.get("pane_tile_m"):
+                # [anvil data13] 1_3: the game maps its window texture once per pane_tile_m of pane width (a 1.5 m pane
+                # took half the texture in s, a 3.1 m pane all of it; t always 0..1 over the pane height - GPU frame
+                # trace\gpu_fl13g, 28 pane quads). Which half a narrow pane takes is not decoded: the left one
+                pw_ = math.hypot(max(p_[0] for p_, _s, _n, _c in v_) - min(p_[0] for p_, _s, _n, _c in v_),
+                                 max(p_[1] for p_, _s, _n, _c in v_) - min(p_[1] for p_, _s, _n, _c in v_))
+                sp_ = max(0.5, round(2.0 * pw_ / (float(gl_["pane_tile_m"]) * scale)) / 2.0)
+                s1_ = s0_ + sp_
             v_ = [(p_, (s0_ + st_[0] * (s1_ - s0_), t0_ + st_[1] * (t1_ - t0_)), n_, c_) for p_, st_, n_, c_ in v_]
             B.add_soup(gsh_, v_, i_)
     # headroom: crawl holes / doorways sized for Frontline's smaller player get MOHAA crouch / stand clearance

@@ -108,6 +108,12 @@ SCENES = {
     775: True, 774: False, 767: True, 764: False, 765: False, 773: False,
 }
 
+# [anvil fx13 2026-11-23] per-level additions, converted only for that level (1_1 output unchanged): 1_3 SoldierA_Roamer
+# b1 state 757 / 758 PLAYANIMATION(560, 27, 0) on message 147 (trigger 50) / 168 / 198 - emt_1_3 anim 560 = clip 107,
+# 37 poses x 4 ticks (2.4 s), root motion: a 2 m run-up, take-off at tick 36, apex +0.77 m, landing 5.4 m on (a running
+# leap across a gap)
+SCENES_LEVEL = {"1_3": {560: False}}
+
 
 def _mm(a, b):
     return [[sum(a[i][k] * b[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
@@ -227,7 +233,7 @@ def build(emt_bytes, level, skl, B, skd_bytes, files, label, log=print, foley=()
     emt = flanim.Emt(emt_bytes)
     bones = mohskel.read_skd_bones(skd_bytes)
     rows = []
-    for aid, loop in SCENES.items():
+    for aid, loop in list(SCENES.items()) + list(SCENES_LEVEL.get(level, {}).items()):
         a = emt.anims.get(aid)
         if not a:
             continue
