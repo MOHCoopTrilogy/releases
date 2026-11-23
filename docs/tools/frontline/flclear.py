@@ -327,7 +327,7 @@ def visible_ceiling(cells, render_tris, o):
     return keep
 
 
-def lift_lintels(tris, tags, o):
+def lift_lintels(tris, tags, o, rest_on=None, cut_out=None):
     """[flfix2 round 16] HANGING walls over a walkway: a lintel, an arch's soffit or chamfer, the wall over a gap -
     any non-floor collision triangle whose lowest point hangs `lintel_min`..`lintel_to` above a floor that continues
     on both sides of it (a passage, not a window sill) - is clipped so nothing of it is below floor+`lintel_to`.
@@ -361,6 +361,10 @@ def lift_lintels(tris, tags, o):
     def floor_at(x, y, z):
         return G.ground(x, y, z + o["lintel_flush"], z - o["lintel_flush"])
     out, otags, n = [], [], 0
+    # [flfix2 bug-11462] rest_on: only triangles whose lowest point rests on a piece an earlier pass cut away (the next
+    # row of the same lintel); cut_out collects the boxes of the pieces this pass cuts away
+    RB = flgeom.TriGrid([((lo[0], lo[1], lo[2]), (hi[0], lo[1], lo[2]), (hi[0], hi[1], hi[2])) for lo, hi in rest_on],
+                        cell=64.0) if rest_on else None
     for t, tg in zip(tris, tags):
         nv = _unit(t)
         soffit = None
@@ -380,6 +384,14 @@ def lift_lintels(tris, tags, o):
             continue
         zlow = min(p[2] for p in t)
         low = [p for p in t if p[2] <= zlow + 1.0]
+        # ...and only an upright sheet (a wall row, |nz| <= 0.15) or a soffit: the rows of a sloped bank rest on each
+        # other too, and lifting them opened the dock embankment at (-6750, 4900) to the crouch walk (void falls 2 -> 153)
+        if rest_on is not None and (soffit is None and abs(nv[2]) > 0.15 or not (RB and any(
+                all(rest_on[j][0][k] - 1.5 <= q[k] <= rest_on[j][1][k] + 1.5 for k in range(3))
+                for q in low for j in RB.near(q[0], q[1], 2.0)))):
+            out.append(t)
+            otags.append(tg)
+            continue
         cx, cy = sum(p[0] for p in low) / len(low), sum(p[1] for p in low) / len(low)
         fz = G.ground(cx, cy, zlow - lo_h, zlow - to_h)
         ok = False
@@ -409,6 +421,8 @@ def lift_lintels(tris, tags, o):
             otags.append(tg)
             continue
         keep, _cut = _split([tuple(p) for p in t], (0.0, 0.0, -1.0), -(fz + to_h))
+        if cut_out is not None and _cut:
+            cut_out.append((tuple(min(p[k] for p in _cut) for k in range(3)), tuple(max(p[k] for p in _cut) for k in range(3))))
         n += 1
         if keep is None or _area(keep) < 0.5:
             continue
@@ -481,7 +495,22 @@ def normalise(tris, opts=None, tags=None, render_tris=None):
             for i in range(1, len(p) - 1):
                 out.append((p[0], p[i], p[i + 1]))
                 otags.append(tg)
-    out, otags, n_lift = lift_lintels(out, otags, o)
+    cut_ = []
+    out, otags, n_lift = lift_lintels(out, otags, o, cut_out=cut_)
+    # [flfix2 2026-11-23 bug-11462] lintels in STACKED ROWS: lift_lintels' "open under" test sees the row below, so the
+    # first pass lifts only the bottom sliver and the triangle above it (its lower edge the same door top) stays as a
+    # header 115-130u over the floor. The engine takes the capsule step's height (38u) where the player stands, outside
+    # the door, then slides on into that header: the door's 4-6u threshold lip was a wall, "have to jump through"
+    # (doorsweep 2026-11-23: the doors at (2230, -1650) and (-896, 2556) on 1_1's route). Further passes take only
+    # upright rows (|nz| <= 0.15) and soffits whose lowest point RESTS on a piece the pass before cut away; a free
+    # re-run also took the rows of the sloped dock embankment and opened it (geoaudit void falls 2 -> 153).
+    # fl_levels "headroom" "lintel_passes" (absent = 1 = unchanged)
+    for _ in range(max(0, int(o.get("lintel_passes", 1)) - 1)):
+        prev_, cut_ = cut_, []
+        out, otags, n_more = lift_lintels(out, otags, o, rest_on=prev_, cut_out=cut_)
+        n_lift += n_more
+        if not n_more:
+            break
     caps = [((b["lo"][0], b["lo"][1], b["hi"][2]), (b["hi"][0], b["hi"][1], b["hi"][2] + 4.0)) for b in boxes]
     rep = {"lintels_lifted": n_lift,"low_cells": n_low, "drawn_ceiling_cells": n_vis, "passage_cells": len(cells), "crawl_cells": sum(1 for v in cells.values() if v[2] == "crawl"),
            "door_cells": sum(1 for v in cells.values() if v[2] == "door"), "boxes": len(boxes),
