@@ -86,6 +86,9 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
     tuning_tab = {n.lower() for n in ov["tuning_tab"]}
     overrides = {k.lower(): v for k, v in ov["overrides"].items()}
     labels = {k.lower(): v for k, v in ov.get("labels", {}).items()}
+    recat = {k.lower(): v for k, v in ov.get("categories", {}).items() if not k.startswith("_")}
+    # hand-picked dev/test/dead/internal-state cvars the app must not show (name -> the code evidence)
+    hide = {k.lower() for k in ov.get("hide_names", {}) if not k.startswith("_")}
 
     cfg_lines = {}
 
@@ -138,7 +141,7 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
 
     out = []
     client_only = []
-    unknown_overlay = sorted(k for k in overrides if k not in canon)
+    unknown_overlay = sorted(k for k in set(overrides) | hide if k not in canon)
     counts = defaultdict(int)
     for key in sorted(canon):
         name = canon[key]
@@ -155,6 +158,9 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
             flags = " ".join(r.flags for r in regs)
             if any(f in flags for f in ov["engine_exclude_flags"]) and key not in server_tab:
                 continue
+        if key in hide:
+            counts["excluded_hidden"] += 1
+            continue
         if any(p.search(name) for p in ex_name):
             counts["excluded_name"] += 1
             continue
@@ -210,8 +216,8 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
             cat = category_for(name, reads) or ("Engine coop features" if regs else "Other")
         else:
             cat = "Engine game rules" if any(r.file.startswith("fgame/") for r in regs) else "Engine server"
-        if unseeded and server and page == "gameplay":
-            cat = "No shipped default"
+        # an unseeded setting keeps its functional category: "no shipped default" is a property (the "unseeded"
+        # field, shown in the app's tooltip), not a group an admin would look in
 
         e = {
             "name": name,
@@ -232,6 +238,9 @@ def build(root, mod, engine_regs, script_use, cfg_seed, ui_ref, read_text):
         lab = labels.get(key)
         if lab:
             e["label"] = lab          # the plain name shown in the app (bug-11498); "overrides" below can still change it
+        c2 = recat.get(key)
+        if c2:
+            e["category"] = c2    # hand placement where the file-of-use vote picks the wrong group
         o = overrides.get(key)
         if o:
             for k2, v2 in o.items():
