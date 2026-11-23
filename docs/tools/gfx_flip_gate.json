@@ -33,7 +33,8 @@
     "b67269bb4fe511491f28badd43f80d8de158fe28ca8ad9b551953dff0aac317f",
     "544cdcc86ba7e8e0cebbdf2f2baefea67f2f168199f45e857b1717cefc7af94d",
     "bba498e26da73261d03070eddde0c80045b7e4db0f959281c28c42a6310a3d64",
-    "40b1833054ba9fd318900296ef778a333e84e55603373a835d6799cbb43786eb"
+    "40b1833054ba9fd318900296ef778a333e84e55603373a835d6799cbb43786eb",
+    "6bce0e19b7c05f5b289f90e490141f802275f402a4d930ef87597fee7f262d26"
   ],
   "notes": {
     "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb": "v1.10.13 main-tree build of engine 68bb8881 (renderer source == bc2c3072, the flip that passed G1/G5/P6.3 boots+equal with A2C off on 2026-10-04); this exact DLL boot-smoked on m2l1+m5l3: MSAA path=new n=8, 0 script errors",
@@ -67,6 +68,7 @@
     "b67269bb4fe511491f28badd43f80d8de158fe28ca8ad9b551953dff0aac317f": "eng-hotfix13661 rel-1.10.38-engine build of 9af44e9b renderergl2 (= 806d2a9a renderer + the merged-water-batch mirror height taken at the vertex nearest the eye, bug-11289; Omaha returns before it). Built 2026-11-16 build_159 for v1.10.84. Smoked: look agent bridge before/after (Sealed Orders), coordinator v1.10.84 smoke (menu + m1l1). Flip defaults unchanged.",
     "544cdcc86ba7e8e0cebbdf2f2baefea67f2f168199f45e857b1717cefc7af94d": "eng-hotfix13661 rel-1.10.38-engine build of 13b8cab3 renderergl2 for v1.10.86 (= b67269bb renderer + 4e404dd7 far water keeps off a floored map's ground and island gaps, bug-11344 + 3298f485 low mist up to four boxes hzm_mist..4, bug-11346). Built 2026-11-17 build_1086. Smoke: coordinator v1.10.86 release smoke. Flip defaults unchanged.",
     "bba498e26da73261d03070eddde0c80045b7e4db0f959281c28c42a6310a3d64": "bloommix-eng ee985e8f build (off rel-1.10.38-engine b36434cf) renderergl2 + cgame df00ab7d: the European Assault per-zone bloom mix (RB_HZMZoneMix, r_ppZoneMix from the 4th coop_zoneFx field; code decode F4: the original adds k blur(S), ours renormalised mix(S, blur, k/(1+k)), 0.443 indoor / 0.318 outdoor on Dying Breath). 0 = off: stock maps and the player r_pp sliders unchanged. Smoked 2026-11-22 on the 1920x1080 screen, muted: menu + m1l1 spawned (ZONEFX mix 0.000, r_ppZoneMix 0), 0 GL errors, 0 Couldn't compile, 0 script errors; coop_ea_1_11 discbot runs mix on/off (cellarlight/mix2, nomix): 0 GL / script errors. Flip defaults unchanged.",
-    "40b1833054ba9fd318900296ef778a333e84e55603373a835d6799cbb43786eb": "eng-hotfix13661 rel-1.10.38-engine build of a8ca2e5f renderergl2 for v1.10.88 (= 544cdcc8 renderer + bloommix-eng RB_HZMZoneMix, opt-in per-zone bloom mix, zero weight = no-op; capsule-eng touches no renderer). Built 2026-11-22 build_1088. Smoke: coordinator v1.10.88 release smoke. Flip defaults unchanged."
+    "40b1833054ba9fd318900296ef778a333e84e55603373a835d6799cbb43786eb": "eng-hotfix13661 rel-1.10.38-engine build of a8ca2e5f renderergl2 for v1.10.88 (= 544cdcc8 renderer + bloommix-eng RB_HZMZoneMix, opt-in per-zone bloom mix, zero weight = no-op; capsule-eng touches no renderer). Built 2026-11-22 build_1088. Smoke: coordinator v1.10.88 release smoke. Flip defaults unchanged.",
+    "6bce0e19b7c05f5b289f90e490141f802275f402a4d930ef87597fee7f262d26": "eng-hotfix13661 rel-1.10.38-engine build for v1.10.89 (= 40b18330 renderer + dawn-eng: alphaGen skyAlpha / oneMinusSkyAlpha + fade window, hzm_mist_dawn, SHADER_MAX_VERTEXES 8192 with stream buffers held, sky dome filled once + overflow guard; jcinstant touches no renderer). Built 2026-11-22 build_1089. Stock m1l1 / m5l1a / m3l1a boots by the dawn agent (0 errors). Smoke: coordinator v1.10.89 release smoke. Flip defaults unchanged."
   }
 }
