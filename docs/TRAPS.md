@@ -25,7 +25,7 @@ clamped to 0.1-0.25 s, and seed the member in the constructor (player memory is 
 **Tell:** a feature silently does nothing, with **no error at the failure site**; every `::` call into
 the file logs `Script was not properly loaded`. The compiler is all-or-nothing: one syntax error
 kills the entire file and the map runs with no script at all.
-**An engine-new command fails the WHOLE file on an older game.dll** (bug-3423): isolate it in a helper `.scr` (`dbno_bleed.scr`).
+**A duplicate label fails it too** (`Duplicate label`; grep the new name first). **An engine-new command fails the WHOLE file on an older game.dll** (bug-3423): isolate it in a helper `.scr` (`dbno_bleed.scr`).
 
 > **An assignment with no value is a parse killer and the error points at the WRONG line** (bug-1908):
 > the parser takes the *next* statement as the value and dies on **that** statement's `=`. A bare

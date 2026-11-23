@@ -302,7 +302,13 @@ def sounddefs(L, level, db, vgm, files, lines, log=print):
     import subprocess
     import tempfile
     hashes = sorted(set("%08x" % r.u(30) for r in db.of("SoundDefTrigger")
-                        if "GERMANPA" not in r.name.upper() and len(r.w) > 30 and r.u(30)))
+                        if "GERMANPA" not in r.name.upper() and len(r.w) > 30 and r.u(30))
+                    # [0.7.52, gap 3] the effects packages' own PlaySound steps (word 16 = the owning package's name,
+                    # word 20 = the sound definition)
+                    | set("%08x" % r.u(20) for r in db.of("Action_PlaySound")
+                          if (r.s(16) or "").lower().replace("ru1s_", "rus1_") in
+                          {(a.s(16) or "").replace("\\", "/").split("/")[-1].rsplit(".", 1)[0].lower().replace("ru1s_", "rus1_")
+                           for a in db.of("Action_CreateParticle")} and len(r.w) > 20 and r.u(20)))
     if not hashes:
         return 0
     d = f"DATA/{level.split('_')[0]}/{level}/SOUND/"
@@ -634,8 +640,61 @@ def build(L, level, X, files, spec, grid, zrange, log=print, mohaa_base=None, vg
     for r in db.recs:
         if r.cls.startswith(("SX_", "S_X")) and (r.s(18) or "").lower().endswith(".xpd"):
             fxused.setdefault(eavm.base(r.s(18)), 0)
+    # [0.7.52, gap 9] the weather triggers' particle system (WeatherExteriorTrigger word 22): one package of its own name
+    wxextra = {}
+    for r in db.of("WeatherExteriorTrigger"):
+        if (r.s(22) or "").lower().endswith(".xdd"):
+            wxextra[eavm.base(r.s(22))] = [eavm.base(r.s(22))]
+            fxused[eavm.base(r.s(22))] = 1
+    # [0.7.52, gap 3] the packages no placement names (the tank's muzzle / smoke / exhaust / death, the weapon impacts,
+    # the grenade blast): built too, played by the map script at its own events (level.ea_fx_ev)
+    _pkname = {}
+    for r in db.of("Action_CreateParticle"):
+        if r.s(16):
+            _pkname.setdefault(eafx._base(r.s(16)).replace("ru1s_", "rus1_"), eavm.base(r.s(16)))
+    _have = {k.lower() for k in fxused}
+    for low, nm in sorted(_pkname.items()):
+        if low not in _have:
+            fxused[nm] = 0
+    for ev, low in (("tank_explode", "tankexplode"), ("tank_exhaust", "tank_exhaust_01"), ("tank_smoke", "glb_tanksmoke_01"),
+                    ("tank_muzzle", "glb_nighttank_muzzle"), ("tank_hit", "glb_tankbullet_01"),
+                    ("bazooka_hit", "glb_bazookabullet_01"), ("grenade", "rus_grenade_02")):
+        if low in _pkname:
+            lines.append(f'\tlevel.ea_fx_ev["{ev}"] = "{_pkname[low]}"')
     vm["fx"] = eafx.build(L.stream, db, X, level, files, lines, used=dict(fxused), log=log,
-                          far_gain=float(spec.get("far_fx_gain", 1.0)))
+                          far_gain=float(spec.get("far_fx_gain", 1.0)), extra=wxextra)
+    # [0.7.52, gap 3] the packages' non-particle steps in their order: Wait (s), Explosion (word 18 radius m, word 19
+    # damage), CameraShake (word 18 = its time, as the gags read it; words 17 / 19 not decoded), PlaySound (word 20 =
+    # the sound definition, level.ea_sd_alias). The particle parts keep their own on-times (eafx)
+    # (an Action record's word 16 names its owner: a gag or an effects package, by name without extension)
+    _sname = {k.lower(): k for k in fxused}
+    _steps = {}
+    for r in db.recs:
+        if r.cls in ("Action_Wait", "Action_Explosion", "Action_CameraShake", "Action_PlaySound"):
+            _low = eafx._base(r.s(16) or "").replace("ru1s_", "rus1_")
+            if _low in _pkname and _low in _sname:
+                _steps.setdefault(_sname[_low], []).append(r)
+    _ns = 0
+    for pkg, rs in sorted(_steps.items()):
+        rs = sorted(rs, key=lambda a: a.u(15) or 0)
+        if not any(a.cls != "Action_Wait" for a in rs):
+            continue
+        _ns += 1
+        lines.append(f'\tlevel.ea_fxs_n["{pkg}"] = {len(rs)}')
+        for k, a in enumerate(rs, 1):
+            key = f'"{pkg}_{k}"'
+            act = a.cls[7:]
+            lines.append(f"\tlevel.ea_fxs_k[{key}] = \"{act}\"")
+            if act == "Wait":
+                lines.append(f"\tlevel.ea_fxs_a[{key}] = {a.u(17) if (a.u(17) or 0) < 600 else round(a.f(17), 3)}")
+            elif act == "Explosion":
+                lines.append(f"\tlevel.ea_fxs_a[{key}] = {abs(a.f(18) or 0.0) * 48:.0f}")
+                lines.append(f"\tlevel.ea_fxs_b[{key}] = {abs(a.f(19) or 0.0):.1f}")
+            elif act == "CameraShake":
+                lines.append(f"\tlevel.ea_fxs_a[{key}] = {round(a.f(18) or 0.5, 2)}")
+            elif act == "PlaySound":
+                lines.append(f'\tlevel.ea_fxs_a[{key}] = "%08x"' % (a.u(20) or 0))
+    log("eapack: %d effects packages carry explosion / shake / sound steps" % _ns)
     # [0.7.23] the level's own character models (eachar.py: the partisan woman so far), into this pak only
     import eachar
     eachar.build(L.stream, level, mohaa_base, files, lines, log=log)

@@ -551,11 +551,15 @@ animations
 """
 
 
-def build(stream, db, X, level, files, lines, used=None, log=print, budget=2600, far_gain=1.0):
+def build(stream, db, X, level, files, lines, used=None, log=print, budget=2600, far_gain=1.0, extra=None):
     """Write the emitters of every effects package into `files`; append the script table to `lines`.
-    used: {package name as the script knows it: number of always-on placements} (None = every package once)"""
+    used: {package name as the script knows it: number of always-on placements} (None = every package once)
+    extra: {package name: [def name, ...]} systems named outside the effects packages (0.7.52: the weather triggers'
+    .xdd, a package of its own name)"""
     defs, tex = parse(stream)
     pk = packages(db)
+    for k_, v_ in (extra or {}).items():
+        pk.setdefault(k_.lower(), [x.lower() for x in v_])
     sprites = Sprites(stream, tex, level, files)
     want = {n.lower(): (n, c) for n, c in (used or {k: 1 for k in pk}).items()}
     # live particles of everything that burns all the time, to hold the client's particle budget

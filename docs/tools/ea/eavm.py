@@ -818,6 +818,24 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f"\tlevel.ea_dd_name[{n}] = {S(r.name)}")
         log("  direct damage %s: %.1f /s in %s %.0fu" % (r.name, dps, "sphere" if k == 1 else "box", rad))
     L(f"\tlevel.ea_dd_n = {n}")
+    # ---- [0.7.52] WeatherExteriorTrigger (AUDIT gap 9): a box whose word 22 names a weather particle system (.xdd) turns
+    # that weather ON for a player who enters it, a box with word 22 "" turns it OFF; word 24 = TransitionTime (s).
+    # 1_11: BL_cimWeather_ON over the cemetery (STN_weather01, a St Nazaire prefab: low dark mist sheets) and four
+    # BL_cimWeather_off boxes ringing it. The map script (ea_weather) runs the system while any player's state is on ----
+    n = 0
+    for r in db.of("WeatherExteriorTrigger"):
+        if len(r.w) < 25 or r.pos == (0.0, 0.0, 0.0):
+            continue
+        n += 1
+        k, rad, hx, hy, hz = shape(r, X)
+        fx = base(r.s(22)) if (r.s(22) or "").lower().endswith(".xdd") else ""
+        L(f"\tlevel.ea_wx_pos[{n}] = {P(X(r.pos))}")
+        L(f"\tlevel.ea_wx_half[{n}] = ( {hx:.0f} {hy:.0f} {hz:.0f} )")
+        L(f"\tlevel.ea_wx_fx[{n}] = {S(fx)}")
+        L(f"\tlevel.ea_wx_trans[{n}] = {(r.f(24) or 0.0):.2f}")
+        L(f"\tlevel.ea_wx_name[{n}] = {S(r.name)}")
+        log("  weather %s: %s, half %.0f %.0f %.0f" % (r.name, fx or "off", hx, hy, hz))
+    L(f"\tlevel.ea_wx_n = {n}")
     # [0.7.50] a trigger with no target, no listen group and no members is inert on the disc too: log it, never drop
     # it silently (1_11: BasicTrigger04, a 10 x 2 m box by the start, all lists empty)
     for r in db.recs:

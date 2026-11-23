@@ -8,8 +8,19 @@ numbers. Not reproduced: the skirt mesh below the horizon (filled with the sides
 original paints in the fog colour) and the two alpha cloud layers.
 
 build(level_obj, spec) -> {"rt": (w, h, rgba), ...} for the six faces, or None when a texture is missing.
+
+0.7.52 (decode audit gap 22): the sky's own meshes are read from the level stream (chunk type 0x9a5872d8, disc_parts):
+two ELF objects, 1_11_Skybox_Art_0 (top, four sides, the skirt) and Art_1 (two cloud layers, the moon), each part a
+Moh3_Msh_Texture1 mesh of int16 positions centred on the eye (short + 16383.5), uv / 1024, BGRA vertex colour, a
+triangle strip, and one MOHMatrix MatAnim0 per part; Art_1 carries two texture-matrix tracks (disc_anims). The box,
+the moon and the layers' extents equal the GPU trace. The SKIRT does not: it is a ring (box sides from 0.67 m to 30.9 m
+below the eye) AND a floor closing the whole bottom at 30.9 m, mapped POLAR - u = azimuth round the full circle, v = 1022
+at the horizon (the texture's bottom row, the fog colour 50 56 63) falling to 212 at the nadir (its dark centre). The
+0.7.17-0.7.51 skirt was read from the trace without uv and ran v the other way (dark at the horizon), which drew the
+dark band where the land ends from any raised spot. The skirt is now drawn from the decoded mesh itself.
 """
 import math
+import struct
 
 # face -> strip corners (x, y, z in metres from the eye, z up) and their uv (0..1023 = 0..1), in the original's order
 FACES = {
@@ -33,6 +44,202 @@ FACES = {
 # (edge_report() measures them).
 SIZE = 2048
 PRE = 4            # source pre-enlargement before sampling
+
+
+SKY_CHUNK = 0x9a5872d8
+
+
+def _sky_chunk(stream):
+    n = struct.unpack_from("<I", stream, 0x14)[0]
+    p = 0x18 + 8 * n
+    while p + 16 <= len(stream):
+        _cid, typ, sz, _x = struct.unpack_from("<4I", stream, p)
+        if sz < 16:
+            break
+        if typ == SKY_CHUNK:
+            return stream[p:p + sz]
+        p += sz
+    return None
+
+
+def _strip_tris(idx):
+    for i in range(len(idx) - 2):
+        a, b, c = idx[i], idx[i + 1], idx[i + 2]
+        if a == b or b == c or a == c:
+            continue
+        yield (a, b, c) if i % 2 == 0 else (b, a, c)
+
+
+def disc_parts(stream):
+    """the level's sky meshes (chunk 0x9a5872d8) -> [{"obj", "part", "name", "pos" (eye-centred, short units), "uv" (0..1),
+    "col" (u32 ARGB), "tris"}], in file order; [] when the chunk is absent. Our own reading of the user's disc."""
+    import re
+    d = _sky_chunk(stream)
+    if d is None:
+        return []
+    elfs = [m.start() for m in re.finditer(b"\x7fELF", d)]
+    ident = struct.pack("<16f", 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+    out = []
+    for k, e in enumerate(elfs):
+        pb, hi = e + 0x40, (elfs[k + 1] if k + 1 < len(elfs) else len(d))
+        st = []
+        for o in range(e, hi - 20, 4):
+            _a, size, typ, one, b = struct.unpack_from("<5I", d, o)
+            if one == 1 and typ in (4, 6) and b + pb == o + 20 and 0 < size < 0x100000:
+                st.append((o + 20, size, typ))
+        names = [m.group(1).decode() for m in re.finditer(rb"(\w+_RM) = Moh3_", d[e:hi])]
+        prev = e
+        for i, (q, size, typ) in enumerate(st):
+            if typ != 6:
+                continue
+            nv = size // 6
+            att = [a for a, s2, t2 in st[i + 1:i + 4] if t2 == 4 and s2 // 4 == nv]
+            if len(att) < 2:
+                continue
+            # the part's draw block: index count at X, the strip at X + 0x20, then the identity model matrix
+            m = d.rfind(ident, prev, q)
+            idx = None
+            if m > 0:
+                for x in range((m - 0x22) & ~3, max(prev, m - 0x20 - 2 * 65536), -4):
+                    c = struct.unpack_from("<I", d, x)[0]
+                    if 3 <= c < 65536 and m - 0x30 <= x + 0x20 + 2 * c <= m:
+                        cand = struct.unpack_from("<%dH" % c, d, x + 0x20)
+                        if max(cand) < nv:
+                            idx = cand
+                            break
+            if idx is None:
+                idx = tuple(range(nv))
+            pos = [tuple(v + 16383.5 for v in struct.unpack_from("<3h", d, q + 6 * j)) for j in range(nv)]
+            uv = [tuple(v / 1024.0 for v in struct.unpack_from("<2h", d, att[0] + 4 * j)) for j in range(nv)]
+            col = list(struct.unpack_from("<%dI" % nv, d, att[1]))
+            kk = len([o for o in out if o["obj"] == k])
+            out.append({"obj": k, "part": kk, "name": names[kk] if kk < len(names) else "",
+                        "pos": pos, "uv": uv, "col": col, "tris": list(_strip_tris(idx))})
+            prev = att[-1]
+    return out
+
+
+def disc_anims(stream):
+    """the texture-matrix tracks in the sky chunk (the cloud layers' MatAnim0) -> [{"rate": (r0, r1), "keys": [(tu, tv,
+    su, sv), ...]}]. Layout read on 1_11: a track = f32 r0, f32 r1, u32 1, u32 1, ..., u32 nkeys at +0x28, then nkeys x
+    7 f32 from +0x2c (translate u, v; scale u, v; three zero words). Two tracks on 1_11: 11 keys each, (0, 0) -> (-2, -2)
+    and (0, 0) -> (-1, -1), rate 0.005."""
+    d = _sky_chunk(stream)
+    out = []
+    if d is None:
+        return out
+    o = 0
+    while True:
+        o = d.find(struct.pack("<II", 1, 1), o + 4)
+        if o < 8:
+            break
+        if o % 4:
+            continue
+        h = o - 8
+        r0, r1 = struct.unpack_from("<2f", d, h)
+        if not (0.0 < r0 < 1.0 and 0.0 < r1 < 1.0):
+            continue
+        nk = struct.unpack_from("<I", d, h + 0x28)[0]
+        if not 2 <= nk <= 256 or h + 0x2c + 28 * nk > len(d):
+            continue
+        ks = [struct.unpack_from("<7f", d, h + 0x2c + 28 * j) for j in range(nk)]
+        if any(abs(k_[2] - 1.0) > 1e-3 or abs(k_[3] - 1.0) > 1e-3 for k_ in ks):
+            continue
+        out.append({"rate": (r0, r1), "keys": [(k_[0], k_[1], k_[2], k_[3]) for k_ in ks]})
+    return out
+
+
+def cloud_layers(stream, layers, cloud_height=512.0, world_radius=4096.0):
+    """[0.7.52] the original's two cloud layers (Art_1 parts 0 / 1) with their decoded MatAnim0 tracks -> a copy of the
+    ea_levels cloud_layers with "scroll" and "rgb" taken from the disc. Each layer's uv is a planar projection of its dome
+    (uv = R . (x, y), fitted exactly on layer 0); a track translates uv by (last key - first key) per cycle. The cycle is
+    read as 1 / rate seconds (rate 0.005 -> 200 s; NOT verified against the emulator, FIDELITY C52). The pattern then
+    moves -R^-1 . delta / T m/s on a dome whose top is ztop m above the eye; the engine's cloud stage (R_InitSkyTexCoords:
+    s = acos(v.x) on a sphere of radius world_radius + cloud_height) moves world_radius + cloud_height world units per
+    texture unit at cloud_height, so the same angular speed at the zenith is scroll = scale * cloud_height /
+    (world_radius + cloud_height) * v / ztop. rgb = the layer's vertex colour weighted by its vertex alpha. The layer's
+    SIZE (scale) is kept (deviation, FIDELITY C52). Returns layers unchanged when the chunk or the tracks are missing."""
+    import numpy as np
+    parts = [pt for pt in disc_parts(stream) if pt["obj"] == 1]
+    an = disc_anims(stream)
+    out = [dict(c) for c in layers]
+    for i, c in enumerate(out):
+        if i >= len(an) or i >= len(parts) or len(parts[i]["pos"]) < 4:
+            continue
+        pt, a = parts[i], an[i]
+        P = np.asarray(pt["pos"], np.float64)
+        P = P * (100.0 / np.abs(P[:, :2]).max())
+        U = np.asarray(pt["uv"], np.float64)
+        X = np.c_[P[:, 0], P[:, 1], np.ones(len(P))]
+        R = np.array([np.linalg.lstsq(X, U[:, k], rcond=None)[0][:2] for k in (0, 1)])
+        T = 1.0 / a["rate"][0]
+        dlt = np.array(a["keys"][-1][:2]) - np.array(a["keys"][0][:2])
+        v = -np.linalg.solve(R, dlt) / T
+        zt = float(P[:, 2].max())
+        sc = float(c.get("scale", 1.0))
+        sig = sc * cloud_height / (world_radius + cloud_height) * v / zt
+        c["scroll"] = [round(float(sig[0]), 5), round(float(sig[1]), 5)]
+        w = np.array([q >> 24 for q in pt["col"]], np.float64)
+        rgb = np.array([[(q >> 16) & 255, (q >> 8) & 255, q & 255] for q in pt["col"]], np.float64) / 255.0
+        if w.sum() > 0:
+            c["rgb"] = [round(float(x), 3) for x in (rgb * w[:, None]).sum(0) / w.sum()]
+        c["_disc"] = {"part": pt["name"], "cycle_s": T, "delta_uv": [float(x) for x in dlt], "m_per_s": [round(float(x), 3) for x in v], "ztop_m": round(zt, 1)}
+    return out
+
+
+def skirt_part(parts):
+    """the skirt: the first-object part that lies wholly below the eye (more than a quad)"""
+    for pt in parts:
+        if pt["obj"] == 0 and len(pt["pos"]) > 4 and max(q[2] for q in pt["pos"]) < 0:
+            return pt
+    return None
+
+
+def _skirt_uv(part, px, py, pz):
+    """each direction's hit on the decoded skirt mesh -> (u, v, hit mask). Ray / triangle plane per triangle, tested only on
+    the directions inside the triangle's direction-space box."""
+    import numpy as np
+    P = np.asarray(part["pos"], np.float64)
+    P = P * (100.0 / np.abs(P[:, :2]).max())           # metres (a uniform scale: only directions matter)
+    UV = np.asarray(part["uv"], np.float64)
+    nrm = np.sqrt(px * px + py * py + pz * pz)
+    D = np.stack([px / nrm, py / nrm, pz / nrm], -1).reshape(-1, 3).astype(np.float64)
+    u = np.zeros(len(D)); v = np.zeros(len(D)); best = np.full(len(D), np.inf)
+    for a, b, c in part["tris"]:
+        A, B, C = P[a], P[b], P[c]
+        e1, e2 = B - A, C - A
+        n_ = np.cross(e1, e2)
+        if np.linalg.norm(n_) < 1e-9:
+            continue
+        # the direction-space box from points spread over the triangle (a big triangle's interior directions leave the
+        # box of its three corners: the first build left crescent holes in the floor)
+        g = np.linspace(0.0, 1.0, 9)
+        wa, wb = np.meshgrid(g, g)
+        k_ = (wa + wb) <= 1.0
+        T = A + wa[k_][:, None] * e1 + wb[k_][:, None] * e2
+        Tn = T / np.linalg.norm(T, axis=1)[:, None]
+        lo = Tn.min(0) - 0.02; hi = Tn.max(0) + 0.02
+        cand = np.nonzero(np.all((D >= lo) & (D <= hi), 1))[0]
+        if not len(cand):
+            continue
+        dd = D[cand]
+        den = dd @ n_
+        ok = np.abs(den) > 1e-12
+        t = np.where(ok, (A @ n_) / np.where(ok, den, 1.0), np.inf)
+        w = dd * t[:, None] - A
+        d00, d01, d11 = e1 @ e1, e1 @ e2, e2 @ e2
+        d20, d21 = w @ e1, w @ e2
+        dn = d00 * d11 - d01 * d01
+        bb = (d11 * d20 - d01 * d21) / dn
+        bc = (d00 * d21 - d01 * d20) / dn
+        ba = 1.0 - bb - bc
+        inside = ok & (t > 0) & (ba >= -1e-6) & (bb >= -1e-6) & (bc >= -1e-6) & (t < best[cand])
+        ci = cand[inside]
+        best[ci] = t[inside]
+        u[ci] = ba[inside] * UV[a, 0] + bb[inside] * UV[b, 0] + bc[inside] * UV[c, 0]
+        v[ci] = ba[inside] * UV[a, 1] + bb[inside] * UV[b, 1] + bc[inside] * UV[c, 1]
+    sh = px.shape
+    return u.reshape(sh), v.reshape(sh), np.isfinite(best).reshape(sh)
 
 
 def _arr(t, sharp):
@@ -165,6 +372,11 @@ def build(L, spec, size=None):
     sksrc = _arr(sk, False) if sk is not None and sk.get("rgba") is not None else None
     if sksrc is not None:
         low = sksrc[-2:, :, :3].reshape(-1, 3).mean(0)
+    # 0.7.52: the decoded skirt mesh (ring + floor, polar uv); EA_SKIRT_TRACE=1 = the 0.7.17-0.7.51 trace skirt
+    import os
+    skp = None
+    if sksrc is not None and os.environ.get("EA_SKIRT_TRACE") != "1" and getattr(L, "stream", None) is not None:
+        skp = skirt_part(disc_parts(L.stream))
     out = {}
     for suf in ("rt", "bk", "lf", "ft", "up", "dn"):
         dx, dy, dz = _dirs(suf, n)
@@ -181,7 +393,13 @@ def build(L, spec, size=None):
             if sel.any():
                 u, v = _uv_np(f, px[sel], py[sel], pz[sel])
                 col[sel] = _bilerp(src[f], u, v)[:, :3]
-        if sksrc is not None:
+        if skp is not None:
+            if below.any():
+                su, sv, hit = _skirt_uv(skp, px[below], py[below], pz[below])
+                cb = col[below]
+                cb[hit] = _bilerp(sksrc, su[hit], sv[hit])[:, :3]
+                col[below] = cb
+        elif sksrc is not None:
             sk_sel = below & (pz >= -30.9)
             if sk_sel.any():
                 ax = np.abs(px[sk_sel]) >= np.abs(py[sk_sel])
