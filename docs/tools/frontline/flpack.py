@@ -736,6 +736,13 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
     # ---- [flfix2 round 20] one-shot banks: the areas' combat barks and pain sounds ----
     if sp.get("oneshots"):
         _oneshots(disc, L, level, X, vgm, files, lines, ali, tmp, d, sp["oneshots"], log)
+    # ---- [decodeaudit 2026-11-22, gap 3] particle systems on the disc's own sprites (flpfx) ----
+    if sp.get("pfx_bytype"):
+        try:
+            import flpfx
+            flpfx.build(L, X, files, level, sp["pfx_bytype"], lines, log)
+        except Exception as e_:         # never fail the conversion: the stock stand-ins stay
+            log("flpfx: skipped (%s)" % e_)
     # ---- [decodeaudit 2026-11-22] the locked doors (RemoteFakeDoorTrigger) ----
     if sp.get("fakedoors"):
         _fakedoors(disc, L, level, X, vgm, files, lines, ali, tmp, d, sp["fakedoors"], log)
