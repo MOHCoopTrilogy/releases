@@ -180,6 +180,22 @@ def build(db, X, spot, ground, text, lines, log=print):
         L(f'\tlevel.ea_sp_wpn[{n}] = "{GUNS.get(base(npc["weapon"]).lower(), "mp40" if team == "axis" else "ppsh")}"')
         L(f'\tlevel.ea_sp_chr[{n}] = {S(base(npc["character"]))}')
         L(f'\tlevel.ea_sp_arch[{n}] = {S(base(npc["archetype"] or ""))}')      # [0.7.53, gap 4] level.ea_ar_*
+        # [0.7.59, EA decode 2026-11-23] up to three soldier TYPES per point, 6 words each from word 18: archetype,
+        # character, weapon, grenade and two empty strings (18 of 1_11's 90 points carry a second or third type: an mp40
+        # man and a Gewehr man, an Elite_Close officer among riflemen). Not per difficulty: the types differ in weapon
+        # and character, and the record's difficulty-named fields (Green / Veteran / Elite / Hero CRC lookups) belong
+        # to the pickups. 0.7.58 spawned only the first type. The map cycles the men through them (ea_mk_actor)
+        _slots = 1
+        for _k, _w0 in ((2, 24), (3, 30)):
+            _sa, _sc, _sw = r.s(_w0), r.s(_w0 + 1), r.s(_w0 + 2)
+            if not ((_sa or "").lower().endswith(".xdd") and (_sc or "").lower().endswith(".xdd")):
+                break
+            _slots = _k
+            L(f'\tlevel.ea_sp_sarch["{n}_{_k}"] = {S(base(_sa))}')
+            L(f'\tlevel.ea_sp_schr["{n}_{_k}"] = {S(base(_sc))}')
+            L(f'\tlevel.ea_sp_swpn["{n}_{_k}"] = "{GUNS.get(base(_sw or "").lower(), "mp40" if team == "axis" else "ppsh")}"')
+        if _slots > 1:
+            L(f"\tlevel.ea_sp_slots[{n}] = {_slots}")
         # [dbfix] a named squadmate: the archetype's own name string (PartisanVasileva -> "Vasileva"), for the
         # original's "<name> has died!" (PlayerSquadNPCDeath)
         _an = base(npc["archetype"] or "")

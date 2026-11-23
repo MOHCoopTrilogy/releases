@@ -140,9 +140,11 @@ def cloud_dawn_stages(game, level, cloud_layers, cfg=None):
     lo, hi = cfg.get("cloud_window", (0.30, 0.85))
     st = ""
     for cl in cloud_layers:
+        # [0.7.59] the layer's elevation fade (easky.cloud_fade) as its last tcMod, like the night layer
+        fd = ("\t\ttcMod hzmSkyFade %s\n" % " ".join("%g %g" % k_ for k_ in cl["fade"])) if cl.get("fade") else ""
         st += ("\t{\n\t\tmap textures/%s/%s/sky_clouds.tga\n\t\tblendFunc blend\n\t\ttcMod scale %g %g\n"
-               "\t\ttcMod scroll %g %g\n\t\trgbGen const %g %g %g\n\t\talphaGen oneMinusSkyAlpha %.3f %.3f\n\t\tnofog\n\t}\n"
-               % (game, level, cl["scale"], cl["scale"], cl["scroll"][0], cl["scroll"][1], rgb[0], rgb[1], rgb[2], lo, hi))
+               "\t\ttcMod scroll %g %g\n%s\t\trgbGen const %g %g %g\n\t\talphaGen oneMinusSkyAlpha %.3f %.3f\n\t\tnofog\n\t}\n"
+               % (game, level, cl["scale"], cl["scale"], cl["scroll"][0], cl["scroll"][1], fd, rgb[0], rgb[1], rgb[2], lo, hi))
     return st
 
 

@@ -10,10 +10,21 @@ from the values across the 12 archetypes / 8 weapons and are marked [PROV] where
     bullet 1664515a  Damage per hit (the M1 rocket's ThrownBulletType carries 550 = the known rocket damage; the
                      grenade 150, the tank shell 100) - read as damage for the hitscan bullets too [PROV, strong]
     bullet c49152de  2.0 / 3.0: the head multiplier [PROV]
-    arch   c514d0a5  hit points: Germans 50, Allied_Squad 40, Nemesis 800, named partisans 1500 [PROV, strong]
-    arch   080cf4ed  skill tier: Green 5, Veteran 7, Elite 8, Nemesis 8, partisans 6 [PROV]
-    arch   6a3361d5  reaction time s: Green 2.0, Veteran 1.5, Elite 1.0, Nemesis 0.5, Allied 2.5 [PROV]
-    arch   6f3410f9  preferred fighting distance m: Close 25-35, Far 45-50, Sniper 70-80, partisans 20 [PROV]
+    arch   c514d0a5  HitPoints (name recovered, see below): Germans 50, Allied_Squad 40, Nemesis 800, partisans 1500
+    arch   080cf4ed  skill tier: Green 5, Veteran 7, Elite 8, Nemesis 8, partisans 6 [PROV, name not recovered]
+    arch   6a3361d5  Accuracy (name recovered; 0.7.53-0.7.58 read it as a reaction time): Green 2.0, Veteran 1.5, Elite 1.0,
+                     Nemesis 0.5, Allied 2.5 - lower is better; AccuracyGreen 1.0 / AccuracyElite 0.1 / AccuracyHero 0.0
+                     sit beside it in the record (struct +0x28 / +0x30 / +0x34 around Accuracy +0x2c, handler 0x15d00),
+                     the same on all 13 archetypes
+    arch   6f3410f9  preferred fighting distance m: Close 25-35, Far 45-50, Sniper 70-80, partisans 20 [PROV, by the
+                     archetype names Close / Far / Sniper; name not recovered]
+[0.7.59, EA decode 2026-11-23] field NAMES recovered by CRC32 of candidate names (single words and two-word compounds
+from the XBE / level vocabulary; a name is taken only when it is a plain word or a family that matches the field
+layout, since ~1e9 candidates give ~90 chance hits over 256 field CRCs): ArchetypeType HitPoints, Accuracy,
+AccuracyGreen / Elite / Hero, IsNemesis (bc3435e0, 1 on the Nemesis only), TacticList (6af953f6); bullets Damage,
+BlastRadius (d28ac85f), VFXScript (b2666347: the detonation package, a ref = CRC32 of its name: both stick grenades
+RUS_grenade_02, the tank shell GLB_tankBullet_01, the M1 rocket GLB_bazookaBullet_01), Gravity, Friction, Spin, Mesh,
+DrawDelay; weapons FireRate, MuzzleSpeed, WeaponClass, WeaponScript, MuzzleParticle, AccuracyKick, AccuracyBest
 """
 import re
 import struct

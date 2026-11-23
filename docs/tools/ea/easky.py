@@ -150,6 +150,87 @@ def disc_anims(stream):
     return out
 
 
+# [0.7.59, EA decode 2026-11-23] the engine's cloud dome for the disc's layers. R_InitSkyTexCoords puts the texture on a
+# sphere of radius world_radius + h whose top is h above the eye; the original's layers are a planar uv over a flat dome
+# (layer A 125 -> 4350 short units high, rim r 7600). How fast the pattern sweeps through each elevation relative to the
+# zenith (scratch drift.py): original 0.05 / 0.11 / 0.16 / 0.23 / 0.35 / 0.58 / 0.80 at 5 / 10 / 15 / 20 / 30 / 45 / 60
+# deg; the engine at h 512 (0.7.17-0.7.58) 0.14 / 0.17 / 0.21 / 0.26 / 0.38 / 0.59 / 0.81 (too fast and too coarse low
+# down), at h 256 0.08 / 0.11 / 0.15 / 0.20 / 0.32 / 0.56 / 0.79 - the closest single h. The texture scale is raised by
+# the zenith texcoord ratio so the pattern keeps its size overhead, and the scroll formula keeps the zenith speed.
+# EA_CLOUD_HEIGHT=<h> overrides (512 = the 0.7.58 dome)
+CLOUD_HEIGHT = 256.0
+# [0.7.59] the scroll DIRECTION and SPEED checked on the emulator against ours at the same views (scratch xc.py: FFT
+# cross-correlation of the moving residual, shifts up to 90 px, 1 s apart; original ref_xemu sky/clouds_1123 level2 =
+# the start view, fast = looking up; ours stills_cloud59 at yaw 257 pitch 0 / -80). Direction: near the zenith ours moves
+# toward azimuth ~259 deg, the decode's -R^-1 . dlt gives 261 - the 0.7.52 sign is right (a 0.7.59 draft flipped it from
+# a capture taken at another yaw; CLOUD_SIGN stays +1). Speed: the original moved ~40 px/s overhead and ~18 px/s in the
+# start view's sky, ours 15 / 3 px/s - its texture repeat passed a fixed pixel every ~92 s against the original's 33.5 s
+# (layer A). The zenith-speed formula below is kept for the direction only; the magnitude is set so the texture moves
+# |dlt| / T texture units a second, as the original's uv does (A 0.042, B 0.021): the same pattern size on screen then
+# gives the same speed. EA_CLOUD_SIGN / EA_CLOUD_SPEED=formula = the 0.7.58 values
+CLOUD_SIGN = 1.0
+
+
+def cloud_fade(stream, max_knots=8):
+    """[0.7.59] each cloud layer's vertex alpha by ELEVATION above the eye, sampled along rays through the decoded dome
+    (barycentric alpha of the nearest hit triangle, averaged over 72 azimuths), normalised to 1 at its top and thinned to
+    at most max_knots (deg, alpha) knots for 'tcMod hzmSkyFade' (engine: tr_shader.c R_HzmSkyFadeAt). The original's
+    layers fade to 0 at the horizon. -> [[(deg, a), ...] per layer] in file order; [] when the chunk is absent"""
+    import numpy as np
+    out = []
+    for pt in [p_ for p_ in disc_parts(stream) if p_["obj"] == 1][:2]:
+        P = np.asarray(pt["pos"], np.float64)
+        A = np.array([q >> 24 for q in pt["col"]], np.float64) / 255.0
+        T = np.array([t for t in pt["tris"] if len(set(t)) == 3], np.int64)
+        if len(P) < 4 or not len(T) or A.max() <= 0:
+            out.append([])
+            continue
+        v0, v1, v2 = P[T[:, 0]], P[T[:, 1]], P[T[:, 2]]
+        e1, e2 = v1 - v0, v2 - v0
+        s_ = -v0
+        q_ = np.cross(s_, e1)
+        prof = []
+        for el in range(0, 91):
+            vals = []
+            for az in range(0, 360, 5):
+                ce, se = math.cos(math.radians(el)), math.sin(math.radians(el))
+                d = np.array([ce * math.cos(math.radians(az)), ce * math.sin(math.radians(az)), se])
+                h = np.cross(d, e2)
+                a_ = (e1 * h).sum(1)
+                ok = np.abs(a_) > 1e-9
+                f = np.where(ok, 1.0 / np.where(ok, a_, 1.0), 0.0)
+                u = f * (s_ * h).sum(1)
+                v = f * (q_ @ d)
+                t = f * (q_ * e2).sum(1)
+                hit = ok & (u >= 0) & (v >= 0) & (u + v <= 1) & (t > 0)
+                if hit.any():
+                    i = np.where(hit)[0][np.argmin(t[hit])]
+                    vals.append((1 - u[i] - v[i]) * A[T[i, 0]] + u[i] * A[T[i, 1]] + v[i] * A[T[i, 2]])
+            if vals:
+                prof.append((el, float(np.mean(vals))))
+        if not prof:
+            out.append([])
+            continue
+        top = max(a for _e, a in prof) or 1.0
+        prof = [(e, a / top) for e, a in prof]
+        # thin: greedy, the largest deviation from the piecewise-linear fit first; both ends always kept
+        keep = [0, len(prof) - 1]
+        while len(keep) < max_knots:
+            keep.sort()
+            worst, wi = 0.0, None
+            for k0, k1 in zip(keep, keep[1:]):
+                (x0, y0), (x1, y1) = prof[k0], prof[k1]
+                for j in range(k0 + 1, k1):
+                    dv = abs(prof[j][1] - (y0 + (prof[j][0] - x0) / (x1 - x0) * (y1 - y0)))
+                    if dv > worst:
+                        worst, wi = dv, j
+            if wi is None or worst < 0.01:
+                break
+            keep.append(wi)
+        out.append([(prof[k][0], round(prof[k][1], 3)) for k in sorted(keep)])
+    return out
+
+
 def cloud_layers(stream, layers, cloud_height=512.0, world_radius=4096.0):
     """[0.7.52] the original's two cloud layers (Art_1 parts 0 / 1) with their decoded MatAnim0 tracks -> a copy of the
     ea_levels cloud_layers with "scroll" and "rgb" taken from the disc. Each layer's uv is a planar projection of its dome
@@ -181,7 +262,15 @@ def cloud_layers(stream, layers, cloud_height=512.0, world_radius=4096.0):
         v = -np.linalg.solve(R, dlt) / T
         zt = float(P[:, 2].max())
         sc = float(c.get("scale", 1.0))
-        sig = sc * cloud_height / (world_radius + cloud_height) * v / zt
+        # [0.7.59] the scale was set for the 512 dome: keep the pattern's size overhead on another dome (zenith texcoord
+        # per radian = h / (R + h)); the scroll below scales with it, so the zenith speed is unchanged
+        if abs(cloud_height - 512.0) > 1e-3:
+            sc = sc * (512.0 / (world_radius + 512.0)) / (cloud_height / (world_radius + cloud_height))
+            c["scale"] = round(sc, 4)
+        sgn = float(os.environ.get("EA_CLOUD_SIGN") or CLOUD_SIGN)
+        sig = sgn * sc * cloud_height / (world_radius + cloud_height) * v / zt
+        if os.environ.get("EA_CLOUD_SPEED") != "formula" and float(np.hypot(*sig)) > 0:
+            sig = sig / float(np.hypot(*sig)) * float(np.hypot(*dlt)) / T
         c["scroll"] = [round(float(sig[0]), 5), round(float(sig[1]), 5)]
         w = np.array([q >> 24 for q in pt["col"]], np.float64)
         rgb = np.array([[(q >> 16) & 255, (q >> 8) & 255, q & 255] for q in pt["col"]], np.float64) / 255.0
