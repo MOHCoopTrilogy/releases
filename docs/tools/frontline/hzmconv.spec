@@ -6,11 +6,14 @@ import os
 HERE = os.path.abspath(".")
 mods = ["flconvert", "flcore", "flbsp", "flpack", "flseam", "flgeom", "flvis", "flaudio", "shpx", "xdvdfs", "viv",
         "flmovies", "flupscale", "flhd", "flchar", "flcharup", "flcover", "flanim", "flanimconv", "mohskel"]
+# [discguns] the disc guns stage (flguns.py and its helpers) + pickle (flgunskc14's Huffman tree cache)
+mods += ["flguns", "flgunfit", "flgunsight", "flgunup", "flgunvfs", "flgungeo", "flgunskd", "flgunskc14", "pickle"]
 # [v1.10.69] stdlib the European Assault modules (docs/tools/ea, shipped as source in _internal/ea) use beyond Frontline's
 mods += ["bisect", "statistics", "wave", "fnmatch", "tempfile", "subprocess", "shutil", "importlib", "importlib.machinery",
          "glob", "argparse", "zlib", "collections", "socket", "hashlib", "json"]
 a = Analysis(["hzmconv.py"], pathex=[HERE], hiddenimports=mods,
-             datas=[("fl_levels.json", "."), ("fl_texmap.json", "."), ("fl_modelmap.json", "."), ("fl_charprotect.json", "."), ("hd", "hd")],
+             datas=[("fl_levels.json", "."), ("fl_texmap.json", "."), ("fl_modelmap.json", "."), ("fl_charprotect.json", "."), ("hd", "hd"),
+                    ("discguns_sights.json", "."), ("discguns_baserows.json", "."), ("flgun_msg_hdata.txt", ".")],
              excludes=["tkinter", "matplotlib", "scipy", "pandas", "IPython"], noarchive=False)
 pyz = PYZ(a.pure)
 exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name="hzmconv", console=True, upx=False)

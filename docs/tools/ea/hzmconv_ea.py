@@ -44,6 +44,23 @@ def levels():
     return list(LEVELS)
 
 
+def convert_guns(image, out_dir, mohaa, progress, opts):
+    """[discguns] the disc's first-person guns as cosmetic variants (eaguns.py), with their own disc sounds (decoded
+    from the player's banks at convert time) and upscaled skins: ONE pak of its own, never touching the level paks.
+    Optional like the films: a failure never fails the conversion."""
+    try:
+        import eaguns
+        progress(step="guns", game="ea")
+        vgm = os.path.join(TOOLS, "vgmstream", "vgmstream-cli.exe")
+        up = os.path.join(TOOLS, "upscaler", "realesrgan-ncnn-vulkan.exe")
+        return eaguns.convert(image, out_dir, mohaa, progress,
+                              {"upscale": opts.get("upscale", True), "vgm": vgm if os.path.exists(vgm) else None,
+                               "esrgan": up if os.path.exists(up) else None})
+    except Exception as e:
+        progress(step="guns", game="ea", skipped=str(e))
+        return []
+
+
 def convert(image, level, out_dir, mohaa, progress, opts):
     import flconvert
     out = os.path.join(out_dir, "zzzz_coop_ea_%s.pk3" % level)
