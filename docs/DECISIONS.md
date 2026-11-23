@@ -473,47 +473,21 @@ actually used, and none were caught by any static check:
 
 ## Two Tier-1 performance items REJECTED after reading the code (2026-08-10)
 
-`docs/proposals/server_topology_and_limits.md` T1.4/T1.5 REJECTED. Both were argued from a premise
-that did not survive inspection. Recorded so they are not re-proposed.
-
-**T1.5 - debounce challenge disk writes.** The plan called `challenges.scr` completion writes "a
-kill-driven event". They are not. The write sits in `chal_grant`, which fires only when a challenge
-COMPLETES - a rare, once-ever-per-challenge event - not on every `chal_bump`. Debouncing it to the
-30 s flush would trade real durability (losing an unlock to a crash) for effectively no CPU saving.
-
-**T1.4 medkit scan - replace the 2048-entity scan with the cached list.** The plan said the cache
-exists "for this exact purpose". It does not match the same thing. `coop_scan_health_entities`
-(`medkit.scr:522`) is built ONCE at map init (`main.scr:164`) and matches **four hard-coded model
-names**; the live scan matches **`classname == "Health"`**. So the cache misses (a) any health entity
-spawned after init and (b) any whose model is outside those four. Swapping them would silently stop a
-downed player picking up a pack that works today - a gameplay regression to buy CPU on a server that
-measures 25 ms mean against a 25 ms budget with 1-2 frames/sec over. If it is ever revisited, the
-shape is a periodically REBUILT cache (bounded staleness), not the existing one.
-
-**The general lesson:** the topology plan was strong on engine facts and repeatedly wrong about mod
-script intent. Verify a script claim against the script before acting on it - three of its items
-(these two plus the buildmode diff-gate, which was already implemented) needed no work at all.
+`server_topology_and_limits.md` T1.4/T1.5, recorded so they are not re-proposed. **T1.5** (debounce
+challenge disk writes): the write is in `chal_grant`, once per COMPLETED challenge, not per kill -
+debouncing trades unlock durability for no CPU. **T1.4** (medkit scan -> the init cache): the cache
+(`coop_scan_health_entities`) is built once and matches four model names; the live scan matches
+`classname == "Health"`, so the swap would miss late-spawned and other-model packs. If revisited: a
+periodically rebuilt cache. Lesson: that plan was right on engine facts and wrong on script intent -
+verify a script claim against the script.
 
 ## Blueprints are not placed on vehicle maps (user, 2026-08-14)
 
-Collectible blueprints are being placed map by map across the trilogy. **Driving/riding maps are
-deliberately skipped** — starting with the m5l2a/m5l2b King Tiger pair, and the same reasoning
-covers the jeep maps (m1l3a, m1l3b) and any other on-rails stretch.
-
-The reason is that a blueprint is a *search* collectible: you wander, look behind things, and
-find it. On a map where the player is driving or riding a vehicle they cannot stop, dismount or
-backtrack, a hidden pickup is not a discovery — it is a thing that slides past the window. Worse,
-`collectible.scr` persists the found-set per player and a found blueprint never respawns, so a
-missed one on a vehicle map is missed *permanently*, with no way to go back for it.
-
-**So an empty vehicle map is correct, not an oversight.** Do not "complete the set" by adding
-blueprints to them later — check this entry first. The trilogy total is therefore always lower
-than "every coop map × N", and `check_challenges.py` counts what is actually placed rather than
-assuming full coverage, so the bp_* ladder stays honest either way.
-
-Rejected alternative: place them at the vehicle's start/end points so they are grabbable while
-stationary. That puts the collectible somewhere the player is already funnelled through, which
-makes it free rather than hidden — the opposite of what the collectible is for.
+Driving/riding maps (m5l2a/b King Tiger, the m1l3a/b jeep, any on-rails stretch) get **no blueprints, on
+purpose**. A blueprint is a search collectible; on a ride you cannot stop or backtrack, and the found-set
+persists with no respawn, so a missed one would be lost for good. Do not "complete the set" later;
+`check_challenges.py` counts what is placed. Rejected: placing them at the ride's start/end - that is
+where the player is funnelled anyway, so it would be free, not hidden.
 
 ## Cross-source invariants are enforced by build gates, not audits-on-request (2026-08-18)
 
@@ -565,6 +539,24 @@ is cover-frame (A/D along, S steps away; bugs 10387/10388) and the exe steers th
 wait for the real barrel tag to clear the edge / top (bug-10406). Rejected: face-the-cover, camera behind.
 
 ---
+
+## Movement weight: inertia on the flat, grip on hills (2026-08-21, slope rule 2026-11-23)
+
+**Decision.** The "weight" of moving is shared-pmove constants (never cvars - the client predictor
+and the server must agree): `pm_accelerate` 5.5 / `pm_friction` 4.5 (stock 8 / 6) for a ~190 ms
+ramp; a stop floor that scales with the stance cap (bug-2103); one L1-blended direction multiplier
+(bug-2149); weapon class scales `ps.speed` once upstream (`coop_weaponMoveByClass`), never again in
+pmove. **On walkable, non-slick ground the walk carries no gravity** (`StepSlideMove(qfalse)`,
+Quake 3's recipe, as cover v3 already did) and a stopped player keeps no vz; climbing pays an
+explicit cost instead, at most 10% straight up the steepest walkable grade. Steep (nz < 0.7) and
+slick ground keep the stock slide. bug-11464: with gravity in the walk, the lowered friction could
+not hold anything past ~18 deg - players slid 110-230 u after stopping, and crouched/prone climbs
+stalled at 4-24 u/s.
+
+**Rejected:** (1) restoring stock 8/6 friction - fixes the slide but throws away the inertia the
+user asked for; (2) raising the stop floor only on slopes - still a fight between friction and a
+gravity term that should not be there, and prone would still stall uphill; (3) per-slope speed
+cvars - pmove must stay bit-identical on both sides.
 
 ## Hiding the player during a scripted ride also hides their weapon and arms — INTENDED
 

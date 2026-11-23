@@ -550,13 +550,7 @@ timed in frames fired 45 `screenshot`s in one frame and kept one file (bug-10727
 pattern matches everything** (`grep -c $'\r'` = the line count, "proving" LF files CRLF): **count bytes.** *(c)* **A pass that cannot fail**: `x | head -5 && echo OK`
 is always OK (`head` exits 0); a `.ps1`'s `exit 1` is no error to a `&` caller, so a failed build
 published (bug-2579) - check `$LASTEXITCODE`. **Gate on the tool's exit code, not a pipe.**
-*(d)* **`check_map_compiles.py` is flaky against a LIVE server and only proves the map INITS** (bug-2530).
-*(e)* **The preprocessor dropped it**: the menu-theme picker passed build, audit and deploy from
-`snd_main_new.cpp`, never compiled here (bug-2572). **After an engine
-change, `grep -a -c` one of its string literals in the built binary.** *(g)* **GLSL lint + glslang never
-see C**: staged `tr_hzm_wet.c` used file-static `s_worldData` and passed both (bug-3150) -
-under a no-build rule, `cl /Zs` the touched files.
-*(f)* **PowerShell 5.1 re-splits embedded double quotes to a native exe** (rcon `stufftext "..."` split): use python.
+*(d)-(h)*: [archive](archive/traps-pruned-2026-11-23.md).
 **Absence of a marker is not absence of behaviour** (`playsound` prints nothing): every new beat gets a `^~^~^`
 marker or a census reads it as missing.
 *(h)* **A rubric gates only what it measures**: water/wet passed every sparkle/seam gate; users saw ruled
@@ -815,6 +809,8 @@ grep the consumer, not the setter.** Full write-up:
   turret rows are dead), and an action row is picked once, on entry. (bug-309, 3658)
 - **Player recoil has 3 channels** - aim kick (`CoopApplyAuthoredKick`), gun punch (`s_recoil`), camera `viewkick`;
   cut all 3 (bug-10416). The camera is AIM: the server fires along `cg.refdefViewAngles`.
+- **A player mounts only if the 64u use trace ends within 16u of the gun AND his view yaw is within `maxuseangle` (80)
+  of its CURRENT yaw.** Fix: `maxuseangle 180` + a use-key `doUse` that first `face`s him along the gun (bug-11467). A respawned `mg42_active` gunner must not share `<gun>_gunner` with the last one's body (bug-11469).
 - **`damage` event's LAST arg = hit LOCATION; 0 = HEAD = x4** (`ArmorDamage`). A floor needs the amount
   clamped AND location 3 (torso x1.0) (m3l3 church, mortars: bug-4032).
 
@@ -948,12 +944,16 @@ Wire-state neighbours (weapon-command enum, `surfaces[]` bit 6): `archive/traps-
 every `startsolid` candidate discarded all sixteen. Skip the trace while embedded; let the capped DESTINATION test carry safety.
 
 <a name="t24"></a>
-## T25 - Converted (BYO) stairs: MOHAA steps only with room over the 94u box
+## T25 - BYO stairs and doors: MOHAA steps only with room over the box
 
-`PM_StepSlideMove` steps up only if the box fits 18u higher (else 9u): a stair under a 104u header stops the player
-one step up though every riser is 12u, and a step that lands on a face steeper than normal z 0.7 is taken back.
-Prove walkability with the engine's own step code on the pak's brushes (dbfix `tools/pmsim.py`), never with a floor
-profile (bug-11144, 11146).
+`PM_StepSlideMove` tests the lift (18u/9u; BYO 38u + capsule) where the player stands, then slides on: a stair under a
+104u header stops a step up; a door header under floor+136 makes a 4u sill a wall (lift every lintel row, bug-11462);
+a step onto a >0.7 slope is undone. Prove it with the engine step code (dbfix `tools/pmsim.py`, doorsweep `engsim.py`).
+
+## T26 - BYO placement: collision is not what is drawn
+
+Roof collision and drawn roofs part by up to 40u; cut-out tree/wire cards carry collision (`fl_coll_drawn`). A
+collision-only picker put snipers in tree crowns (bug-11466): use `docs/tools/byoaudit/perchcheck.py` + a still.
 
 ## T24 - A text fix applied per call site never holds: route the channel, then check the sink
 
