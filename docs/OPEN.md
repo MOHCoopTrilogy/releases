@@ -610,3 +610,8 @@ Ring art is git-ignored: bake with `gen_wheel_art.py <mod> --only 8,9` at merge.
 - **Emotes 5 more** (branch emotes-seek, mod f61a0de9, engine 0e4a028e): merge.
 - **Snow impacts**: seen and retuned 2026-11-04 (coop_finSnowFx test, stills docs/proposals/snowfx_2026-11-04). Open: every scripted grenade blast there is followed by a low dark-grey billow that is NOT from grenexp_snow (a column-only variant still had it, snowfx163h); source unknown (vss_draw 0 from the harness did not remove it; the hd_fx grenexp tiks are not loaded).
 - **v1.10.62 Discord post** went out without notes; follow-up post awaits the user's OK.
+
+## Sealed Orders (coop_fl_1_1) open items (decode audit 2026-11-22)
+- Undecoded, with agents: AI tuning (accuracy / health / weapon / reaction, soldier*.cls, weapbul), the .bpd sec4 particle templates + CREATEEXPLOSION, kind-0 / sec2/5/6 / .psp / cdb bits 11-21 (codedecode: CODE_FINDINGS_fl_1_1_audit.md); bark clip choice (ref_xemu TRACE_barks_fl.md).
+- Decoded, not converted: 11VehBnk / 11ImpBnk / 11VocBnk / 11GunBnk samples (which is which needs the AEMS graph); in-clip sounds c806 / c80f (1_1animSnd.som bank unresolved).
+- Disc scene clips on (jeep ride / thrown, talkers, shout): need the user's look in a client; seat offsets on the jeep unverified. Progress: H:\hzm_work\decodeaudit\FL_PROGRESS.md.
