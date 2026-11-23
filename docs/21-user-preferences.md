@@ -176,28 +176,21 @@ Row-by-row evidence and the four rules for writing a probe:
 
 ## A setting is a promise
 
-- **"If we removed settings for a bug reason that setting needs to be removed."** (08-21) A
-  control still toggleable after its feature was disabled is worse than none - the player toggles it,
-  nothing happens, and the whole options screen reads as fake. Both directions: pull a feature, pull
-  its control; force a cvar mitigation for a bug, clear it when that bug closes. Check with
-  `docs/tools/audit_menu_cvars.py` (resolves each cvar to its cached pointer and counts real
-  dereferences), never by eye - a cvar name appears only at its registration. **Verify its findings
-  against source before deleting anything:** its first run called 8 live controls dead, all blind
-  spots in the tool.
+- **"If we removed settings for a bug reason that setting needs to be removed."** (08-21) A control
+  that does nothing makes the whole options screen read as fake: pull a feature, pull its control.
+  Check with `docs/tools/audit_menu_cvars.py`, and verify its findings against source before deleting
+  (its first run called 8 live controls dead).
+- **Disc-mission fidelity calls are the user's** (11-23): every deviation is offered as a choice with
+  its mechanism (e.g. the U-boat sinking arms on opening the case; the officer's planned per-map policy
+  - both approved). Audio picks are made by ear: put candidates on a page or send the files.
 
 
 ## Offer the MECHANISM, not just the outcome — the user picks the smaller one (08-24)
 
-Asked how to stop a recruited enemy softlocking a kill-them-all objective, I offered two options:
-model conversion as death-and-replace, or refuse to convert the last enemy. The user answered with a
-third that was better than both — *"can we not just make it so if the last enemy left on the counter
-is in a converted state that counts"* — which became a one-line `Unregister(STRING_DEATH)`: fire the
-death NOTIFICATION and kill nothing. No corpse, no gore, no score, no replacement actor to lose state.
-
-The pattern repeats (`notarget` as a setter not a toggle; `coop_vmAntiPop` rejected because smoothing
-a 45-unit step is worse than the step). **When presenting options, describe the MECHANISM each one
-uses, not only what it achieves** — the user reads mechanisms and routinely spots the minimal one.
-Framing a choice purely in outcomes hides exactly the information they decide on.
+Offered two ways to stop a recruited enemy softlocking a kill-them-all count, the user found a smaller
+third (*"if the last enemy left on the counter is in a converted state that counts"*: one
+`Unregister(STRING_DEATH)`). **When presenting options, describe the MECHANISM each one uses, not only
+the outcome** - the user reads mechanisms and routinely spots the minimal one.
 
 **And when a LOOK is rejected as unreal, research the real phenomenon before touching a
 parameter** (09-07: *"research how waves actually work, how currents actually work"*) -
