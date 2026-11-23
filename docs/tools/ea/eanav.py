@@ -434,7 +434,70 @@ def repair_portals(stream, X, grid, nodes, max_pairs=8):
                 st["repaired"] += 1
             else:
                 st["unrepaired"].append((round(mx), round(my), round(mz)))
+                st.setdefault("unrepaired_pairs", []).append((i, j))
     return added, st
+
+
+def chain_repair(stream, X, grid, pairs, margin=1.0, step=16.0, spacing=64.0):
+    """a narrow crossing (a cellar stair a body passes with ~1u to spare): for each uncrossed portal (i, j), a straight
+    chain from the far portal of i or j, across this portal, 64u on - shifted sideways (to 48u) to where every 16u a
+    floor follows (17u up / 30u down) and the ENGINE's body fits: margin 1 = MOHAA's +-15 actor against the 2u
+    collision slabs (repair_portals and flconvert test at 2). A node every `spacing` along it. -> (nodes, stats)"""
+    N = navmesh(stream)
+    V = [X(v) for v in N["verts"]]
+    P = N["polys"]
+
+    def mid(p, a, b):
+        A, B = V[p["idx"][a % len(p["idx"])]], V[p["idx"][b % len(p["idx"])]]
+        return ((A[0] + B[0]) / 2, (A[1] + B[1]) / 2, (A[2] + B[2]) / 2)
+
+    out, st = [], {"chains": 0, "failed": []}
+    for i, j in pairs:
+        pi = P[i]
+        m = next(mid(pi, a, b) for (jj, a, b, _f) in pi["links"] if jj == j)
+        done = False
+        for near_, far_ in ((i, j), (j, i)):
+            for (k, a, b, _f) in P[far_]["links"]:
+                if k == near_:
+                    continue
+                F = mid(P[far_], a, b)
+                dx, dy = m[0] - F[0], m[1] - F[1]
+                L = math.hypot(dx, dy)
+                if L < 8:
+                    continue
+                ux, uy = dx / L, dy / L
+                E = (m[0] + ux * 64.0, m[1] + uy * 64.0)
+                tot = L + 64.0
+                for o in [0.0] + [s_ * d for d in range(2, 49, 2) for s_ in (1, -1)]:
+                    ox, oy = -uy * o, ux * o
+                    z = F[2]
+                    pts = []
+                    ok = True
+                    n = int(tot // step) + 1
+                    for q in range(n + 1):
+                        x = F[0] + ox + (E[0] - F[0]) * q / n
+                        y = F[1] + oy + (E[1] - F[1]) * q / n
+                        g = grid.ground(x, y, z + (40.0 if q == 0 else 17.0), z - (56.0 if q == 0 else 30.0))
+                        if g is None or not grid.box_free(x, y, g, lift=18.0, margin=margin):
+                            ok = False
+                            break
+                        z = g
+                        pts.append((round(x), round(y), round(g, 1)))
+                    if not ok:
+                        continue
+                    every = max(1, int(spacing // (tot / n)))
+                    out += pts[::every] + [pts[-1]]
+                    done = True
+                    break
+                if done:
+                    break
+            if done:
+                break
+        if done:
+            st["chains"] += 1
+        else:
+            st["failed"].append((i, j))
+    return out, st
 
 
 def on_mesh(stream, X, pts, tol=32.0, dz=64.0):
