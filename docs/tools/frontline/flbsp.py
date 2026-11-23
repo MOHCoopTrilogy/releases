@@ -14,7 +14,7 @@ What it emits:
     visibility lump (CM and the renderer treat that as "everything visible")
   * model 0 = the world, plus optional inline brush models (*1, *2 ...)
   * the entity string
-Light grid / terrain / static models / sphere lights are left empty.
+Terrain / static models / sphere lights are left empty; the light grid is written only when `light_grid` is set.
 Everything is written in a fixed order so the output is byte-deterministic.
 """
 import math
@@ -61,6 +61,9 @@ class BSP:
         self.models = []           # extra inline models: dict(surfaces[ids], brushes[ids])
         self.entities = []         # list of ordered (key, value) lists
         self.light_gain = 1.0      # every drawvert colour is multiplied by this when written (see flconvert)
+        # [r100 glass_r100] model light grid: None = none written (the renderer lights models at a flat 150), else
+        # dict(default=(r, g, b), boxes=[((lo xyz), (hi xyz), (r, g, b)), ...]) in map units / grid bytes (_light_grid)
+        self.light_grid = None
         self.vis_cell = 0          # >0: leafs no wider than this, clustered on a 2D grid of this size
         self.vis_radius = 0        # cluster sees cluster when their cell centres are within this distance
 
@@ -221,6 +224,85 @@ class BSP:
         return nodes, leafs, leafsurfs, leafbrushes, (lo, hi)
 
     # ---------- write ----------
+    def _light_grid(self, wlo, whi):
+        """[r100 glass_r100] MOHAA light grid lumps (palette 16, offsets 17, data 18) from self.light_grid: every 32u
+        cell takes the colour of the first box holding its centre, else the default. The MOHAA grid stores ONE colour per
+        cell (renderergl1 tr_light.c R_GetLightingGridValue; renderergl2 R_GetLightingGridValueSingle feeds the model's
+        sphere lighting), so a disc light set (ambient + directional) is folded into one colour by the caller.
+        Layout = the engine's reader: offsets[x] (high byte << 8) + offsets[bx + y + by * x]; per column a run list,
+        byte c >= 0 = c + 2 cells of the next byte's palette index, c < 0 = -c literal indexes (ported from
+        ea/flbsp.py _light_grid, which writes one colour per whole column)."""
+        def f32(x):
+            return struct.unpack("<f", struct.pack("<f", x))[0]
+        G = 32.0
+        org, bnd = [], []
+        for k in range(3):
+            o = G * math.ceil(f32(wlo[k]) / G)
+            m = G * math.floor(f32(whi[k]) / G)
+            org.append(o)
+            bnd.append(int((m - o) / G + 1))
+        bx, by, bz = bnd
+        if bx < 2 or by < 2 or bz < 2 or bx * by > 6000000:
+            return None
+        cols = [tuple(int(max(1, min(255, round(c)))) for c in self.light_grid["default"])]
+        boxes = []
+        for lo, hi, rgb in self.light_grid.get("boxes", []):
+            rgb = tuple(int(max(1, min(255, round(c)))) for c in rgb)
+            if rgb not in cols:
+                cols.append(rgb)
+            boxes.append((lo, hi, cols.index(rgb) + 1))
+        if len(cols) > 255:
+            return None
+        pal = bytearray(768)                     # index 0 = "no light here" to the renderer, never used
+        for i, c in enumerate(cols, 1):
+            pal[i * 3:i * 3 + 3] = bytes(c)
+        def enc(cells):
+            out = bytearray()
+            cells = list(cells) + [cells[-1]] * 2       # the reader looks one cell past the top
+            i = 0
+            while i < len(cells):
+                j = i
+                while j < len(cells) and cells[j] == cells[i] and j - i < 129:
+                    j += 1
+                if j - i >= 2:
+                    out += bytes([j - i - 2, cells[i]])
+                else:
+                    out += bytes([255, cells[i]])        # -1: one literal cell
+                i = j
+            return bytes(out + bytes([127, cells[-1]]))
+        data, block = bytearray(), {}
+        offs = [0] * (bx + bx * by)
+        zc = [org[2] + G * z for z in range(bz)]
+        for x in range(bx):
+            cx = org[0] + G * x
+            inx = [b for b in boxes if b[0][0] <= cx <= b[1][0]]
+            row = []
+            for y in range(by):
+                cy = org[1] + G * y
+                bb = [b for b in inx if b[0][1] <= cy <= b[1][1]]
+                cells = []
+                for z in zc:
+                    ix = 1
+                    for lo, hi, k in bb:
+                        if lo[2] <= z <= hi[2]:
+                            ix = k
+                            break
+                    cells.append(ix)
+                e = enc(cells)
+                if e not in block:
+                    block[e] = len(data)
+                    data += e
+                row.append(block[e])
+            base = min(row) >> 8
+            if max(row) - (base << 8) > 65535:
+                return None
+            for y, o in enumerate(row):
+                offs[bx + y + by * x] = o - (base << 8)
+            offs[x] = base
+        if max(offs[:bx]) > 65535:
+            return None
+        return bytes(pal), struct.pack("<%dH" % len(offs), *offs), bytes(data)
+
     def write(self, path):
         world_s = [i for i in range(len(self.surfaces)) if not any(i in m["surfaces"] for m in self.models)]
         world_b = [i for i in range(len(self.brushes)) if not any(i in m["brushes"] for m in self.models)]
@@ -347,6 +429,10 @@ class BSP:
             mods.append(struct.pack("<3f3f4i", *lo, *hi, so, len(m["surfaces"]), bo, len(m["brushes"])))
             so += len(m["surfaces"]); bo += len(m["brushes"])
         lumps[L_MODELS] = b"".join(mods)
+        if self.light_grid:
+            _g = self._light_grid(wlo, whi)
+            if _g:
+                lumps[16], lumps[17], lumps[18] = _g
 
         ent = ""
         for kv in self.entities:

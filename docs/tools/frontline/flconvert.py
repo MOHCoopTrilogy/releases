@@ -228,6 +228,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     shader_lines = []
     tex_names = {}
     stats = {"tris": 0, "tris_textured": 0, "textures": 0, "alpha_textures": 0}
+    # [r100 glass_r100] model light grid (flglass.light_grid): the disc's 17 lighting volumes (<level>_P.bpd section 6) and
+    # its default rig (fl_levels.json "model_light", read from RAM) -> BSP light grid; absent = no grid (flat 150, as before)
+    B.light_grid = flglass.light_grid(L, X, flpack.spec(level).get("model_light"))
+    if B.light_grid:
+        stats["model_light"] = {"default": [round(c) for c in B.light_grid["default"]], "volumes": B.light_grid["volumes"],
+                                "boxes": sorted({tuple(round(c) for c in b[2]) for b in B.light_grid["boxes"]})}
 
     texmap = {}
     tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fl_texmap.json")
@@ -1041,7 +1047,11 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # ("pane_tex", st rect "pane_st"), the way the level's own broken-pane cards (1c0900) map one cell of the broken one.
     # fl_levels.json "glass" per level (absent / enabled false = unchanged). Static: the original's panes do not break.
     gl_ = flpack.spec(level).get("glass") or {}
-    if gl_.get("enabled"):
+    if gl_.get("enabled") and gl_.get("source") == "art":
+        # [r100 glass_r100] the disc's own pane objects (cell art header words 11/12): each pane's quad, uvs, vertex
+        # colours and frame textures; one script_object per pane so the map can step it on a blast (flglass.emit)
+        stats["glass"] = flglass.emit(L, B, X, tdir, files, shader_lines, tga_bytes, flbsp.SURF_NOLIGHTMAP, gl_)
+    elif gl_.get("enabled"):
         cov_ = set(gl_.get("cover_tex", []))
         cards_ = [(X(m["verts"][a]), X(m["verts"][b]), X(m["verts"][c])) for m in meshes
                   if m["tex"] and m["tex"].split("@")[-1] in cov_ and m["tris"] and (m["cell"], m["draw"]) not in hidden
