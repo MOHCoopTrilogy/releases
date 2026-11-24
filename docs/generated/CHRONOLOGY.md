@@ -13,11 +13,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `a5bb502a 2026-11-23 server app: hide the two 1_3 effects test switches; regenerate` |
-| commits | 1,673 |
+| HEAD | `75b5511d 2026-11-23 server app: labels for the v1.10.91 disc settings, hide their test switches (overlay formatting restored)` |
+| commits | 1,674 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **5206 modified, 2226 untracked** |
-| unstaged diff | 5206 files changed, 21927 insertions(+), 1494423 deletions(-) |
+| unstaged diff | 5206 files changed, 20307 insertions(+), 1492566 deletions(-) |
 
 > Working tree is dirty. Everything in those 7432 files exists only here - a `git checkout` destroys it with no restore point.
 
@@ -25,7 +25,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-11 | 921 |
+| 2026-11 | 922 |
 | 2026-10 | 421 |
 | 2026-09 | 120 |
 | 2026-08 | 157 |
@@ -33,10 +33,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1673)
+### Commits since 2026-01-01 (1674)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `75b5511d` | 2026-11-23 | joncurry94-tech | server app: labels for the v1.10.91 disc settings, hide their test switches (overlay formatting restored) |
 | `a5bb502a` | 2026-11-23 | joncurry94-tech | server app: hide the two 1_3 effects test switches; regenerate |
 | `15c22fd7` | 2026-11-23 | joncurry94-tech | server app: hide the coop_fx13test test switch; regenerate |
 | `b82964e6` | 2026-11-23 | joncurry94-tech | docgen: regenerate for v1.10.91 (server settings catalogue with labels) |

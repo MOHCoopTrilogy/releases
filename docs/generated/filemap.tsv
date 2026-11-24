@@ -76643,7 +76643,7 @@ docs/tools/sec2_filter_selftest/trace_newcg.txt	44995	.txt	436	docs
 docs/tools/sec2_filter_selftest/trace_oldcg.txt	44995	.txt	436	docs
 docs/tools/sec2_filter_selftest/trace_oldcg153.txt	44980	.txt	436	docs
 docs/tools/sec2_guardlist.py	23410	.py	584	docs
-docs/tools/servergui_overlay.json	93243	.json	1634	docs
+docs/tools/servergui_overlay.json	93125	.json	1634	docs
 docs/tools/skc_flip.py	7745	.py	152	docs
 docs/tools/skc_rootpose.py	3410	.py	89	docs
 docs/tools/sky_envelope.tsv	9301	.tsv	0	docs

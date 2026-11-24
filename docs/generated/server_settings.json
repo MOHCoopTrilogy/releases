@@ -11839,9 +11839,7 @@
    "description": "",
    "engine_anchor": "",
    "flags": "",
-   "label": {
-    "label": "Disc missions: safe respawn checkpoints"
-   },
+   "label": "Disc missions: safe respawn checkpoints",
    "name": "coop_discCheckpoints",
    "page": "gameplay",
    "script_anchor": "coop_mod/disccheckpoint.scr:25",
@@ -12096,9 +12094,7 @@
    "description": "",
    "engine_anchor": "",
    "flags": "",
-   "label": {
-    "label": "Dying Breath: enemy accuracy from disc"
-   },
+   "label": "Dying Breath: enemy accuracy from disc",
    "name": "coop_eaArchAcc",
    "page": "gameplay",
    "script_anchor": "maps/coop_ea_1_11.scr:2692",
@@ -12132,9 +12128,7 @@
    "description": "",
    "engine_anchor": "",
    "flags": "",
-   "label": {
-    "label": "Dying Breath: enemy fight range from disc"
-   },
+   "label": "Dying Breath: disc enemy fight range",
    "name": "coop_eaArchRange",
    "page": "gameplay",
    "script_anchor": "maps/coop_ea_1_11.scr:2708",
@@ -12525,9 +12519,7 @@
    "description": "",
    "engine_anchor": "",
    "flags": "",
-   "label": {
-    "label": "Dying Breath: Nemesis takes crypt route"
-   },
+   "label": "Dying Breath: Nemesis takes crypt route",
    "name": "coop_eaNemesisPocket",
    "page": "gameplay",
    "script_anchor": "maps/coop_ea_1_11.scr:5168",
@@ -12612,9 +12604,7 @@
    "description": "",
    "engine_anchor": "",
    "flags": "",
-   "label": {
-    "label": "Dying Breath: original blast effects"
-   },
+   "label": "Dying Breath: original blast effects",
    "name": "coop_eaProjFx",
    "page": "gameplay",
    "script_anchor": "maps/coop_ea_1_11.scr:6065",
@@ -12631,9 +12621,7 @@
    "description": "",
    "engine_anchor": "",
    "flags": "",
-   "label": {
-    "label": "Dying Breath: also show stock explosions"
-   },
+   "label": "Dying Breath: also show stock explosions",
    "name": "coop_eaProjFxStock",
    "page": "gameplay",
    "script_anchor": "maps/coop_ea_1_11.scr:6127",
@@ -12650,9 +12638,7 @@
    "description": "",
    "engine_anchor": "",
    "flags": "",
-   "label": {
-    "label": "Dying Breath: clear left-behind squads"
-   },
+   "label": "Dying Breath: clear left-behind squads",
    "name": "coop_eaRemoveMsg",
    "page": "gameplay",
    "script_anchor": "maps/coop_ea_1_11.scr:566",
@@ -12686,9 +12672,7 @@
    "description": "",
    "engine_anchor": "",
    "flags": "",
-   "label": {
-    "label": "Dying Breath: mixed soldier types per spawn"
-   },
+   "label": "Dying Breath: mixed soldier spawns",
    "name": "coop_eaSpawnSlots",
    "page": "gameplay",
    "script_anchor": "maps/coop_ea_1_11.scr:2727",
