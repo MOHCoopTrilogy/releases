@@ -41,17 +41,17 @@ init
 
 		originemitter cloud
 		(
-			spawnrate 3.5
+			spawnrate 4.5
 			model cfx2_billow.spr
 			color 1.0 0.86 0.22
-			alpha 0.55
-			life 11.0 3.0
-			scale 0.62
-			scalerate 0.42
+			alpha 0.72
+			life 12.0 4.0
+			scale 0.5
+			scalerate 0.5
 			offset crandom 10 crandom 10 range 4 10
-			randvel crandom 16 crandom 16 range 14 30
-			accel crandom 6 crandom 6 7
-			friction 0.35
+			randvel crandom 12 crandom 12 range 34 62
+			accel crandom 5 crandom 5 12
+			friction 0.25
 			angles 0 0 random 360
 			avelocity 0 0 crandom 10
 			randomroll
