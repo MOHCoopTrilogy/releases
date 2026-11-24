@@ -38,7 +38,7 @@
   "4a675acb1f36ed5030dc501815e70bd848e38dfef5884a81e95b2246cd65b2bc",
   "90f8c1ba35f72e066a91f8ef4d8bb3289b9d313327e26679d1479248f35c89f8",
   "a10f2cc0cc15d6ed2b2d1e37a9315060d51ccd9c4027dcb8c0d25b3c23e209a8",
-  "[exited with code 0]"
+  "bf3f4b1e3c39a376ba6c8ba78601da0a2431bc52f7921011857a251acccb90c1"
  ],
  "notes": {
   "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb": "v1.10.13 main-tree build of engine 68bb8881 (renderer source == bc2c3072, the flip that passed G1/G5/P6.3 boots+equal with A2C off on 2026-10-04); this exact DLL boot-smoked on m2l1+m5l3: MSAA path=new n=8, 0 script errors",
@@ -77,6 +77,6 @@
   "4a675acb1f36ed5030dc501815e70bd848e38dfef5884a81e95b2246cd65b2bc": "eng-hotfix13661 rel-1.10.38-engine build for v1.10.90 hotfix (= 6bce0e19 renderer + d87fc4cd: the cubemap-bake depth-pass skip test never reads a static model index or a stale menu refentity - the menu-join crash, bug-11456). Built 2026-11-23. Smoke: coordinator menujoin m1l1 + m5l2b on OpenGL2, both joined, no dumps (4/4 crash before). Flip defaults unchanged.",
   "90f8c1ba35f72e066a91f8ef4d8bb3289b9d313327e26679d1479248f35c89f8": "eng-hotfix13661 rel-1.10.38-engine build for v1.10.91 (= 4a675acb renderer + 972bdc2c far water drawn with the world depth range, bug-11468). Built 2026-11-23 build_10891. Water fix verified by the snipfix agent at the Sealed Orders dock; stock maps via release smoke. Flip defaults unchanged.",
   "a10f2cc0cc15d6ed2b2d1e37a9315060d51ccd9c4027dcb8c0d25b3c23e209a8": "eng-hotfix13661 rel-1.10.38-engine 402fee29 build for v1.10.91 (= 90f8c1ba + 34eda88a tcMod hzmSkyFade, the sky-stage elevation fade, used only by the converted Dying Breath sky). Built 2026-11-23 build_10891b. Fade verified by the EA decode agent (stills_cloud57/59); stock maps via release smoke. Flip defaults unchanged.",
-  "[exited with code 0]": "eng-hotfix13661 rel-1.10.38-engine e0291d8e build for v1.10.91 (= a10f2cc0 + a00cc156 gl2 tcMod offset (fixed/fromEntity, ported from gl1) for the Sealed Orders breakable panes). Built 2026-11-23 build_10891c. Glass verified by the FL decode agent run fl_god_d12; stock maps via release smoke. Flip defaults unchanged."
+  "bf3f4b1e3c39a376ba6c8ba78601da0a2431bc52f7921011857a251acccb90c1": "eng-hotfix13661 rel-1.10.38-engine e0291d8e build for v1.10.91 (= a10f2cc0 + a00cc156 gl2 tcMod offset (fixed/fromEntity, ported from gl1) for the Sealed Orders breakable panes). Built 2026-11-23 build_10891c. Glass verified by the FL decode agent run fl_god_d12; stock maps via release smoke. Flip defaults unchanged."
  }
 }
