@@ -84,6 +84,8 @@ fx:
 	local.os = getcvar "sf_fx" + " " + getcvar "sf_fy" + " " + getcvar "sf_fz"
 	if(local.k == "expl"){
 		local.e = spawn local.m "origin" local.os
+		local.cg = getcvar "sf_cgm"
+		if(local.cg != "" && local.cg != "-"){ local.e explosioneffect local.cg }
 	}
 	if(local.k == "sm"){
 		local.e = spawn script_model "model" local.m "origin" local.os
@@ -155,6 +157,8 @@ def script(variant):
             c("set %s %.1f" % (nm, v))
         if first:
             c("testthread global/sf_run.scr cam"); first = False
+        for s_ in sh.get("sets", []):
+            c(s_)
         w(sh.get("settle", 1500))
         c("echo ^~^~^ SFRUN %s %s start" % (variant, sh["name"]))
         k += 1
@@ -168,6 +172,7 @@ def script(variant):
             for nm, v in (("sf_fx", x + d[0]), ("sf_fy", y + d[1]), ("sf_fz", z + d[2])):
                 c("set %s %.1f" % (nm, v))
             c("set sf_model %s" % fx["model"]); c("set sf_kind %s" % fx.get("kind", "sm")); c("set sf_life %s" % fx.get("life", 0))
+            c("set sf_cgm %s" % fx.get("cgm", "-"))
             c("testthread global/sf_run.scr fx")
         t = 0
         bu = sh.get("burst")

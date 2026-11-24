@@ -17,7 +17,7 @@ for v in (va, vb):
             F.setdefault((int(m.group(2)), m.group(3)), {}).setdefault(int(m.group(4)), {})[v] = os.path.join(d, fn)
 
 
-def pair(a, b, label, w=640):
+def pair(a, b, label, w=int(os.environ.get("SF_W", "640"))):
     A, B = Image.open(a).convert("RGB"), Image.open(b).convert("RGB")
     h = int(A.height * w / A.width)
     A, B = A.resize((w, h)), B.resize((w, h))

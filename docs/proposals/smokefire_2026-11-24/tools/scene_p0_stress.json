@@ -1,0 +1,614 @@
+{
+ "_doc": "D9 stress: 12 grenades at once with dlight shadows on; SPRSTAT shows shadow views and their sprites, skip 0 (old) vs 1 (new) live in one session",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "B": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll"
+   },
+   "sets": [
+    "set r_hzmSpriteStats 1",
+    "set r_hzmDlightShadows 1"
+   ]
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "stress_skip0",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 700,
+    "h": 160,
+    "look_h": 40
+   },
+   "sets": [
+    "set r_hzmShadowSpriteSkip 0"
+   ],
+   "fx": [
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      150,
+      0
+     ]
+    }
+   ],
+   "times": [
+    300,
+    700,
+    1200,
+    2000,
+    3000
+   ],
+   "settle": 1500,
+   "clear": 6000
+  },
+  {
+   "name": "stress_skip1",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 700,
+    "h": 160,
+    "look_h": 40
+   },
+   "sets": [
+    "set r_hzmShadowSpriteSkip 1"
+   ],
+   "fx": [
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      150,
+      0
+     ]
+    }
+   ],
+   "times": [
+    300,
+    700,
+    1200,
+    2000,
+    3000
+   ],
+   "settle": 1500,
+   "clear": 6000
+  },
+  {
+   "name": "stress_skip0b",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 700,
+    "h": 160,
+    "look_h": 40
+   },
+   "sets": [
+    "set r_hzmShadowSpriteSkip 0"
+   ],
+   "fx": [
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      150,
+      0
+     ]
+    }
+   ],
+   "times": [
+    300,
+    700,
+    1200,
+    2000,
+    3000
+   ],
+   "settle": 1500,
+   "clear": 6000
+  },
+  {
+   "name": "stress_skip1b",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 700,
+    "h": 160,
+    "look_h": 40
+   },
+   "sets": [
+    "set r_hzmShadowSpriteSkip 1"
+   ],
+   "fx": [
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -240,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -80,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      80,
+      150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      -150,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      240,
+      150,
+      0
+     ]
+    }
+   ],
+   "times": [
+    300,
+    700,
+    1200,
+    2000,
+    3000
+   ],
+   "settle": 1500,
+   "clear": 6000
+  }
+ ]
+}
