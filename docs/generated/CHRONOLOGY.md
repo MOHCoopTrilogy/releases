@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `fd15e0f3 2026-11-23 Merge branch 'flfix2'` |
-| commits | 1,670 |
+| HEAD | `b82964e6 2026-11-23 docgen: regenerate for v1.10.91 (server settings catalogue with labels)` |
+| commits | 1,671 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **5205 modified, 2226 untracked** |
 | unstaged diff | 5205 files changed, 20299 insertions(+), 1492558 deletions(-) |
@@ -25,7 +25,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-11 | 918 |
+| 2026-11 | 919 |
 | 2026-10 | 421 |
 | 2026-09 | 120 |
 | 2026-08 | 157 |
@@ -33,10 +33,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1670)
+### Commits since 2026-01-01 (1671)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `b82964e6` | 2026-11-23 | joncurry94-tech | docgen: regenerate for v1.10.91 (server settings catalogue with labels) |
 | `fd15e0f3` | 2026-11-23 | joncurry94-tech | Merge branch 'flfix2' |
 | `3eb86d3d` | 2026-11-23 | joncurry94-tech | fl_levels 1_3 (anvil round 7b, data13): character light (model_light rig + the level's 491 lighting volumes as the light grid) an… |
 | `eef615dc` | 2026-11-23 | joncurry94-tech | gfx flip gate: register the v1.10.91 renderer (tcMod offset for glass) |
