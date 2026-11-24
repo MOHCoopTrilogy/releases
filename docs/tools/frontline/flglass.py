@@ -280,7 +280,8 @@ def emit(L, B, X, tdir, files, shader_lines, tga_bytes, surf_flags, spec):
         rep["frames"][k] = rep["frames"].get(k, 0) + 1
         if ents:
             B.models.append({"surfaces": [sid], "brushes": []})
-            B.entity([("classname", "script_object"), ("model", "*%d" % len(B.models)),
-                      ("targetname", "fl_pane_f%d" % len(fr))])
+            # [hotfix 1.10.91] last in the entity lump (flbsp.late_entity): ahead of the set pieces they hid the jeep
+            B.late_entity([("classname", "script_object"), ("model", "*%d" % len(B.models)),
+                           ("targetname", "fl_pane_f%d" % len(fr))])
             rep["entities"] += 1
     return rep

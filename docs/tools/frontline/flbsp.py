@@ -60,6 +60,7 @@ class BSP:
         self.brushes = []          # dict(shader, sides[(plane, shader)], bounds)
         self.models = []           # extra inline models: dict(surfaces[ids], brushes[ids])
         self.entities = []         # list of ordered (key, value) lists
+        self.late_entities = []    # [hotfix 1.10.91] written after every other entity (the glass panes), see late_entity
         self.light_gain = 1.0      # every drawvert colour is multiplied by this when written (see flconvert)
         # [r100 glass_r100] model light grid: None = none written (the renderer lights models at a flat 150), else
         # dict(default=(r, g, b), boxes=[((lo xyz), (hi xyz), (r, g, b)), ...]) in map units / grid bytes (_light_grid)
@@ -153,6 +154,13 @@ class BSP:
 
     def entity(self, kv):
         self.entities.append(kv)
+
+    def late_entity(self, kv):
+        """[hotfix 1.10.91, sohotfix] an entity spawned after every other one. The 191 glass panes (flglass.emit) were added
+        ahead of the set-piece meshes, so every later entity spawned ~191 numbers higher, and on the live engine the jeep
+        body / wheels / .30 cal (script_object entnum 204-228) stopped drawing (only their shadow showed); written last,
+        the pre-glass entity numbers come back and the jeep draws. Inline model numbers are not the cause (measured)."""
+        self.late_entities.append(kv)
 
     # ---------- tree ----------
     def _build_tree(self, surf_ids, brush_ids, max_items=24, max_depth=28):
@@ -435,7 +443,7 @@ class BSP:
                 lumps[16], lumps[17], lumps[18] = _g
 
         ent = ""
-        for kv in self.entities:
+        for kv in self.entities + self.late_entities:
             ent += "{\n" + "".join(f'"{k}" "{v}"\n' for k, v in kv) + "}\n"
         lumps[L_ENTITIES] = ent.encode("latin-1") + b"\0"
 
