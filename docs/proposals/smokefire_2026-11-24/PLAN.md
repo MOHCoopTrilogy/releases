@@ -3,7 +3,7 @@
 Brief (user): *"Make our next update centered around smoke and fire. Beef up all existing fire and smoke animations that
 the game uses, to make it more realistic, dramatic and modern."* Scope additions: the same for the bring-your-own-disc
 missions (Frontline: Sealed Orders `coop_fl_1_1`, Anchor & Anvil `coop_fl_1_3`; Euro Assault: Their Dying Breath
-`coop_ea_1_11`), fidelity first; and **Hell Let Loose as the look target** for base-game explosions, vehicle deaths and fire.
+`coop_ea_1_11`) - first fidelity-first, then (user 2026-11-24, "Yes modern") the same modern look on the original's events, section 6; and **Hell Let Loose as the look target** for base-game explosions, vehicle deaths and fire.
 
 Status: nothing built, nothing committed, no deploy. Baselines read: mod `5778458cf`, engine `H:\hzm_work\eng-hotfix13661`
 (`rel-1.10.38-engine` 402fee29). Research scripts and caches (not project files): the session scratchpad `fx2\`
@@ -128,7 +128,7 @@ in openmohaa.exe - **prefer cvar, console-command and shader-keyword designs**, 
 
 ---
 
-## 3. The Hell Let Loose look (base game AA/SH/BT only)
+## 3. The Hell Let Loose look (base game AA/SH/BT; disc missions too since 2026-11-24, on their original events - section 6)
 
 Studied from the brief's description of the look only - no HLL asset, texture, code or capture is used or shipped.
 Each trait mapped to what our engine can do. Effort in days of agent work; risk per section 2.
@@ -146,7 +146,7 @@ Each trait mapped to what our engine can do. Effort in days of agent work; risk 
 | camera shake by distance | own cgame view offset (not `viewkick` - that is recoil), fed by explosion messages and a new tik command; amplitude by size class and distance (0 at ~1500u), reduced in ADS, suppressed during a server earthquake; `coop_blastShake` **default 0** until the user picks a strength | yes (small) | 0.7 | low-med | none |
 | heat shimmer over fire | exists (`hazespot`); depth-test the spots so soldiers in front are not warped (5th spot component, cgame + gl2 together) | depth test | 0.5 | low-med | - |
 
-The HLL style is **not** applied to the disc missions (section 6) unless the user later opts in.
+The disc missions get the same modern look on their original events (user 2026-11-24, section 6).
 
 ---
 
@@ -216,7 +216,7 @@ gl2 only; gl1 must not crash (one boot + one map check).
 3. **Sort fix** (med-high) - one back-to-front order with batching only in equal-depth runs, so fire reads inside its smoke.
 Deferred (high risk, not proposed now): 6-way lightmap smoke, raising `MAX_DLIGHTS`, GPU instancing, OIT.
 
-### Phase 4 - disc missions (section 6) - ~3 days, after Phase 0-1 engine pieces exist
+### Phase 4 - disc missions: modern visuals on the original's events (section 6) - ~4 days, after the Phase 2 toolkit
 
 ### Order rationale
 Phase 0 fixes things players already pay for (VRAM, tiks) but do not see. Phase 1 is one texture set reaching the whole
@@ -267,58 +267,66 @@ in-game captures; public servers block deploys - schedule the release window.
 
 ---
 
-## 6. Disc missions (Frontline, Euro Assault) - fidelity first
+## 6. Disc missions (Frontline, Euro Assault) - modern visuals on the original's events
 
-Rule: the converted missions must match the original (`disc-missions-fidelity-first`); every deviation is listed for the
-user, never settled silently. **Nothing from the disc ships**: any improved sprite is produced on the player's PC by the
-converter from their own disc (as `flupscale`/`eaupscale` already do), or is our own CC0/own-render asset layered on top.
-The HLL look is **not** applied here; offered later only as an opt-in layer.
+**User decision 2026-11-24 ("Yes modern") - an approved EXCEPTION to disc fidelity-first, for smoke and fire only.**
+Sealed Orders (`coop_fl_1_1`), Anchor & Anvil (`coop_fl_1_3`) and Their Dying Breath (`coop_ea_1_11`) get the SAME modern
+(Hell Let Loose-style) smoke, fire and explosion visuals as the base games. Everything else in those missions stays
+fidelity-first, and this exception is recorded as one row in each mission's FIDELITY list (not one row per effect).
 
-Two rules from history that bound everything below: (1) the user approved a **neutral display chain** for the disc
-missions (no mod post-processing), so emissive/bloom/haze gains do not apply, and **soft particles and lit smoke are
-deviation rows** in the FIDELITY list, not automatic "fidelity gains" - each is offered, A/B'd against the xemu reference,
-and kept only on a yes; (2) every converter change bumps `HZMCONV_VERSION` (`conv_guard`) and the user's own paks are
-re-converted on the live install with their OK. The base-game Phase 1-2 retargets must not leak into these missions
-(they pull stock tiks, e.g. `linger_smoke` in `coop_ea_1_11.scr`).
+| keep from the original (decoded, per effect) | swap for ours |
+|---|---|
+| placement: where a fire burns, which objects smoke, where a blast or the jeep mine goes off | the sprites, flipbooks, shaders and emitter look |
+| trigger and timing: the script / event that starts it, its delay, its emit duration | the particle motion, colour and lighting (our modern look) |
+| roughly its scale (footprint, column height) and duration (how long it burns / hangs) | flash dlights, firelight, scorch, shake per the base-game rules (section 3) |
 
-### 6a. Frontline - Sealed Orders (`coop_fl_1_1`), Anchor & Anvil (`coop_fl_1_3`)
-Today: `docs/tools/frontline/flpfx.py` decodes the disc's kind-9 particle records (.bpd section 3 placed, section 4
-templates, 78 SHPX sprites of section 2) into stock emitter tiks + `scripts/fl_<level>_pfx.shader` (blend and `_add`
-pairs, `parallel_oriented`), one colour per system as the time mean, linear alpha fade. Converted particles skip the leaf
-cull and ignore `cg_effectdetail` (bug-eap-fxleafcull).
-"Original, higher fidelity" upgrades, each A/B'd against the current conversion and against the xemu reference
-(`H:\hzm_work\ref_xemu`):
-1. **Sprites through the protected upscaler**: run the 78 pfx sprites through the soft-alpha pass (`upscale_blended` /
-   edge padding as in `ea/flupscale.py:169-303`) and re-emit `spritescale x old_w/new_w` so sizes do not change (bug-11244).
-   Verify first whether `flupscale.py` already covers `textures/fl/<level>/pfx`.
-2. **Colour over life**: the disc has start A/B -> end A/B colours and an alpha curve; MOHAA holds one colour. Use the
-   engine `convfx` command (already in the engine for EA) for FL too, so colour and alpha follow the original instead
-   of the time mean. *This is a fidelity gain, not a deviation.*
-3. **Soft particles** (deviation row) with per-shader distance sized to the disc's particle sizes - the original's PS2/Xbox
-   sprites clip hard into geometry, so this is the clearest "same effect, modern rendering" offer; lit smoke (D7 gate,
-   deviation row) for alpha systems only, additive left unlit (the original's fire is self-lit).
-4. **Firelight** on systems the original marks as fire (additive, warm colour) only where the original lit the scene
-   (check xemu frames); else none - listed as a deviation if added.
-5. Distance and density: keep the original's rate, life and size exactly; `cg_effectdetail` stays ignored for converted maps.
+**Assets:** nothing from the disc ships. The modern art is our own work (Blender / procedural renders, CC0-compatible,
+section 7). The disc's own sprites stay only in the player's converted pak, used by the "old" side of the A/B.
 
-### 6b. Euro Assault - Their Dying Breath (`coop_ea_1_11`)
-Today: `docs/tools/ea/eafx.py` turns ProcParticleType bags + sprite sheets into emitter tiks, shader and images; the
-`convfx` engine command carries colour/alpha curves, velocity/accel end ratios, distance and height fades, preroll, bursts.
-Not carried: separate end width/height scale, DepthBias, noise diffusion, trails, FogMultiplier. Village fire light
-already added (0.7.50 "flicker light"), fire-light cards fixed additive (bug-10677). EA sprites already take the
-`ea/flupscale.py` soft-alpha pass.
-Upgrades:
-1. **Sheet animation smoothness**: EA sheets are cut into `animMap` frames; with Phase 3 atlas + crossfade they can
-   play the original's sheet as a sheet with interpolation - same frames, smoother.
-2. **The not-carried fields**: DepthBias -> per-shader soft distance; FogMultiplier -> per-shader fog scale (small
-   engine); noise diffusion -> tik `randvel` jitter; trails -> leave (list as a known gap).
-3. Soft particles and lit smoke as 6a.3; `noshadow` on village firelights if their shadows pulse.
-4. Upscaled sprites: already done; re-check the four oversized-sprite class (D2) against EA shaders.
+**Hotfix in flight (not ours):** the Sealed Orders agent is hotfixing the current over-dense disc smoke (jeep mine, crate
+breaks) back to the original's density now. This modern pass REPLACES those visuals later; it must take its scale and
+duration targets from the hotfixed (original-density) numbers, not from the over-dense ones.
 
-### 6c. A/B and proof for the disc missions
-Per change: converter flag (`FL_FX2=0/1`, `EA_FX2=0/1`) + re-convert the user's own disc paks on the live install
-(memory: re-convert G:\mohaa-gl2 BYO paks on every converter change); side-by-side with the xemu reference at the same
-moment; the deviation list updated (`FIDELITY` rows). User signs off against the original, not against "looks modern".
+### 6a. How: a mapping layer in the converters, not new placements
+Both converters already decode every effect to an event + a placement + numbers. The modern pass maps each decoded
+effect to a class of our toolkit and emits a tik that uses OUR art with the ORIGINAL's footprint and timing:
+
+| decoded effect class (by blend, colour, size, life, rate) | our modern tik family (base-game toolkit, sections 3-4) |
+|---|---|
+| additive warm, persistent | map fire `coop2_fire_s/m/l` (flame flipbook, embers, smoke column, firelight) scaled to the original footprint |
+| additive burst, short life | blast `coop2_blast_s/m/l/xl` by the original's radius; flash dlight; scorch only where the original left a mark |
+| alpha dark, rising, persistent | smoke column `coop2_smokecol` (lingering, wind-drifted) at the original's height and duration |
+| alpha light / grey, burst | dust / debris puff `coop2_dust` (crate breaks, impacts) |
+| alpha light, ground-hugging | mist / steam `coop2_mist` (EA creek mist keeps its own mist pass, `eafx.mist_key`, untouched) |
+| sparks, embers | `coop2_sparks` |
+| anything the classifier cannot place | stays on the disc's own conversion and is listed (never guessed silently) |
+
+- **Frontline:** `docs/tools/frontline/flpfx.py` decodes kind-9 records (placed: .bpd section 3; by-type templates: section 4,
+  incl. the scripts' CREATEPARTICLESYSTEMBYTYPE blasts, `fl_levels.json pfx_bytype`). Add `flpfx.modern(f)` -> class +
+  scale/duration, emitted as a second tik per system (`fl_<level>_m_<id>.tik`) next to the disc one. The mission script
+  already switches on `coop_flDiscFx` (`maps/coop_fl_1_1.scr:74`, `level.fl_fxDisc`): extend it to three states -
+  **2 = modern (default after sign-off)**, 1 = the disc's own systems (today), 0 = the old stock stand-ins.
+- **Euro Assault:** `docs/tools/ea/eafx.py` builds one tik per effects package (Action_CreateParticle, EffectsPackage
+  placements). Same mapping at package level; new cvar **`coop_eaDiscFx`** (2 modern / 1 disc / 0 stock; there is no EA
+  equivalent today - `coop_eaProjFx` is the projectile effect only) read by `maps/coop_ea_1_11.scr` where packages spawn.
+- **Footprint match:** scale = original emit-box extent and peak particle size; duration = original emit duration +
+  particle life; delay = the original's script timing, untouched. A converter self-check lists every effect with its
+  original vs modern footprint and fails on a >1.5x size or duration mismatch (the over-dense-smoke class).
+- **Converter rules:** bump `HZMCONV_VERSION` (`conv_guard`); re-convert the user's own disc paks on the live install
+  only with their OK; `cg_effectdetail` stays ignored for converted maps (bug-eap-fxleafcull) for the disc side, but the
+  modern side follows the base-game quality presets.
+- **Display chain:** the disc missions keep the neutral display chain the user approved (no mod post-processing) unless
+  the user says otherwise; the modern effects carry their own light (dlights, firelight, emissive) rather than relying on
+  bloom / haze. Heat shimmer and camera shake are base-game features - offer them here as their own A/B, default off.
+
+### 6b. A/B and proof
+- One key per mission family: `coop_flDiscFx 2|1` and `coop_eaDiscFx 2|1` (latched per map start; a bind + map restart, the
+  honest "content" tier of section 5). The 5-minute test per mission walks the decoded effect list in order (jeep mine,
+  crate breaks, burning car and smoke column, street flames, bombed house for Sealed Orders; the U-4902 sinking and the
+  barrels for Anchor & Anvil; the village fires, blasts and distant fires for Dying Breath).
+- Proof: same moment, three columns - xemu reference (`H:\hzm_work\ref_xemu`), disc conversion (1), modern (2) - so the
+  user judges "same place, same time, same size, modern look". The user signs off per mission.
+- Order: after the base-game Phase 2 toolkit exists (the modern art is shared), so this is Phase 4.
 
 ---
 
@@ -350,7 +358,7 @@ moment; the deviation list updated (`FIDELITY` rows). User signs off against the
 | overdraw / fill rate on mid GPUs | wreck columns, smoke banks | caps, LOD, soft fade near camera, test at high resolution |
 | VRAM / first-use hitch | 512 px 64-frame sets | DXT5 precompressed, precache spawns, 256 LOD set |
 | capacity family | sprites, haze | raise nothing; if ever raised, build break in the same commit (T4) |
-| disc fidelity drift | FL/EA | xemu side-by-side, deviation list, converter flags |
+| disc footprint drift (modern effect bigger / longer than the original) | FL/EA | converter self-check (>1.5x fails), three-column proof vs xemu, `coop_flDiscFx` / `coop_eaDiscFx` A/B |
 | parallel sessions | shared engine/mod trees | check mtimes, buglog ids, branch per phase; worktree sessions cannot edit mod/engine/buglog - stage fixers in `docs/proposals` |
 | public servers block deploys | release | coordinate the release window |
 | release strip deletes fx sources again (D0) | `split_tex.py`, release commits | exclude fx tiks from the strip; winner check in the release gate |
@@ -369,7 +377,7 @@ moment; the deviation list updated (`FIDELITY` rows). User signs off against the
 3. Retail tiks that say `spritegridlighting` will become lit (D7) - OK after an A/B?
 4. Camera shake by distance: wanted, and how strong (HLL is strong)?
 5. Wreck columns lingering minutes: cap 3 full columns on high - enough?
-6. Disc missions: approve "colour over life via convfx" for Frontline as a fidelity gain?
+6. ~~Disc missions: colour over life~~ - superseded 2026-11-24: modern visuals on the original's events (section 6).
 7. A mid-range test machine available, or accept the high-resolution fill-rate proxy?
 
 ---
