@@ -1,0 +1,106 @@
+{
+ "_doc": "gl1 boot + Phase 0/1 effects must not crash (gl1 gets no new features)",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "G1": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl1.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl1/Release/renderer_opengl1.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set cg_hzmSmokeGridLight 1"
+   ]
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "gl1_grenade",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 300,
+    "h": 120,
+    "look_h": 60
+   },
+   "sets": [],
+   "fx": [
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade"
+    }
+   ],
+   "times": [
+    300,
+    1500
+   ],
+   "settle": 1500,
+   "clear": 6000
+  },
+  {
+   "name": "gl1_fire",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 520,
+    "h": 120,
+    "look_h": 120
+   },
+   "sets": [],
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 5
+    }
+   ],
+   "times": [
+    2000
+   ],
+   "settle": 1500,
+   "clear": 6000
+  },
+  {
+   "name": "gl1_m18",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 520,
+    "h": 120,
+    "look_h": 120
+   },
+   "sets": [],
+   "fx": [
+    {
+     "model": "models/fx/m18_smoke_grenadeexplosion.tik",
+     "kind": "anim",
+     "anim": "idle",
+     "life": 30
+    }
+   ],
+   "times": [
+    3000,
+    8000
+   ],
+   "settle": 1500,
+   "clear": 4000
+  }
+ ]
+}

@@ -1,0 +1,115 @@
+init
+{
+	server
+	{
+		classname SmokeGrenade
+		notsolid
+		life 30
+//		angles 0 0 0
+		alwaysdraw
+		toss
+		gravity .8
+		setsize "-2 -2 -2" "2 2 2"
+
+		//
+		// !!! these values should mimic those of the client-side effect below !!!
+		// NOTE: no other values currently exist that can be set on the server, and no ranges are allowed
+		//
+
+		spawnrate 0
+		bouncefactor 0.8
+		spawnlife 10
+		scalerate 0.6
+		velocity 24 0 4
+		spin 0.133
+		offset 0 0 30
+		scale 51.2			// 0.4 * 128, where 128 is the size of the texture and 0.4 is the max scale
+		fadedelay 7
+		fadein 1
+		maxalpha .9
+	}
+
+	client
+	{
+		//
+		// !!! these values should be mimicked by the server-side simulation above !!!
+		// HZM coop: recolored to YELLOW signal smoke for the paradrop marker.
+		// [smoke&fire Phase 1, user 2026-11-24 "the M18 gets a real coloured smoke cloud"] the canister now pours a dense
+		// yellow cloud that rolls out low, thickens for ~20 s and drifts with the wind (our own cfx_puff art, no disc or
+		// third-party asset). The tall marker column is still paradrop.scr's planesmokeplumeyellow (unchanged). Server
+		// spawnrate stays 0: the signal smoke does not blind the AI (no gameplay change). Old look = the release pak.
+
+		originemitter cloud
+		(
+			spawnrate 5
+			model cfx_puff.spr
+			color 1.0 0.80 0.16
+			alpha 0.85
+			life 11.0 3.0
+			scale 0.52
+			scalerate 0.42
+			offset crandom 10 crandom 10 range 4 10
+			randvel crandom 16 crandom 16 range 14 30
+			accel crandom 6 crandom 6 7
+			friction 0.35
+			angles 0 0 random 360
+			avelocity 0 0 crandom 10
+			fadein 0.7
+			fadedelay 6.5
+			spritegridlighting
+			wind
+		)
+
+		originemitter spout
+		(
+			spawnrate 9
+			model cfx_puff.spr
+			color 1.0 0.86 0.30
+			alpha 0.7
+			life 1.6 0.6
+			scale 0.16
+			scalerate 1.6
+			offset 0 0 4
+			randvel crandom 22 crandom 22 range 40 70
+			fadein 0.1
+			fadedelay 0.6
+			spritegridlighting
+		)
+
+		originemitter initial
+		(
+			spawnrate 0
+			model steam
+			color 1 0.85 0.2
+			alpha 1
+			collision
+			bouncefactor 0.8
+			life 10
+			scalerate 0.7
+			velocity 30
+			randvelaxis crandom 4 crandom 4 4
+			spin 0.133
+			offset crandom 10 crandom 10 range 20 20
+			angles 0 0 random 360
+			avelocity 0 0 crandom 20
+			scalemin 0.2
+			scalemax 0.4
+			fadedelay 5
+			fadein 0.5
+		)
+	}
+}
+
+animations
+{
+	$path models/projectiles/M18_smoke_grenade
+	idle M18_smoke_grenade.skc
+	{
+		client
+		{
+			entry sound smokegrenade_exp_start
+			entry loopsound smokegrenade_exp_loop
+			entry commanddelay 29.9 sound smokegrenade_exp_end
+		}
+	}
+}

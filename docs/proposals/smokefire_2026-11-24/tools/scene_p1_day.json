@@ -1,0 +1,157 @@
+{
+ "_doc": "Phase 1 A/B on m5l2b: P0 = approved Phase 0 pak + release cgame + smokefire gl2; P1 = + Phase 1 layer (M18 cloud) + new cgame/renderer (D7 cg_hzmSmokeGridLight, off then on). Same camera, same time stamps.",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "P0": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll"
+   }
+  },
+  "P1": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   }
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "m18",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 520,
+    "h": 120,
+    "look_h": 120
+   },
+   "sets": [
+    "set cg_hzmSmokeGridLight 0"
+   ],
+   "fx": [
+    {
+     "model": "models/fx/m18_smoke_grenadeexplosion.tik",
+     "kind": "anim",
+     "anim": "idle",
+     "life": 30
+    }
+   ],
+   "times": [
+    500,
+    1500,
+    3000,
+    6000,
+    10000,
+    16000,
+    24000
+   ],
+   "settle": 1500,
+   "clear": 12000
+  },
+  {
+   "name": "smokecol_grid0",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 520,
+    "h": 120,
+    "look_h": 120
+   },
+   "sets": [
+    "set cg_hzmSmokeGridLight 0"
+   ],
+   "fx": [
+    {
+     "model": "models/emitters/coop_smokecol.tik",
+     "kind": "em",
+     "life": 14
+    }
+   ],
+   "times": [
+    2000,
+    5000,
+    9000
+   ],
+   "settle": 1500,
+   "clear": 6000
+  },
+  {
+   "name": "smokecol_grid1",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 520,
+    "h": 120,
+    "look_h": 120
+   },
+   "sets": [
+    "set cg_hzmSmokeGridLight 1"
+   ],
+   "fx": [
+    {
+     "model": "models/emitters/coop_smokecol.tik",
+     "kind": "em",
+     "life": 14
+    }
+   ],
+   "times": [
+    2000,
+    5000,
+    9000
+   ],
+   "settle": 1500,
+   "clear": 6000
+  },
+  {
+   "name": "m18_grid1",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 520,
+    "h": 120,
+    "look_h": 120
+   },
+   "sets": [
+    "set cg_hzmSmokeGridLight 1"
+   ],
+   "fx": [
+    {
+     "model": "models/fx/m18_smoke_grenadeexplosion.tik",
+     "kind": "anim",
+     "anim": "idle",
+     "life": 30
+    }
+   ],
+   "times": [
+    3000,
+    10000,
+    16000
+   ],
+   "settle": 1500,
+   "clear": 12000
+  }
+ ]
+}

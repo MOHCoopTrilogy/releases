@@ -35,6 +35,13 @@ PAK = os.path.join(MOD, "zzzzzzzzzzzzz_coop_fx.pk3")
 # writes the STAGING copy, the mod tree keeps the v1.10.91 release pak, and build.ps1 does not run this check yet.
 # Sign-off: set STAGE = None, `build`, wire `check` into build.ps1, flip the 3 D1 rules in fx_coverage.json.
 STAGE = r"H:/hzm_work/smokefire/paks/zzzzzzzzzzzzz_coop_fx.pk3"
+# [2026-11-24] LAYERS: assets/fx/pak = the approved content (Phase 0, approved as staged). Later phases sit in their own
+# folder (assets/fx/pak_p1, ...) and are built ONLY with `--layer p1` into a separate staging copy, so unapproved art can
+# never ride along when the approved pak goes into the mod tree. Sign-off of a phase = move its folder's files into pak/.
+LAYERS = [a.split("=", 1)[1] if a.startswith("--layer=") else None for a in sys.argv]
+LAYERS = [x for x in LAYERS if x] + [sys.argv[i + 1] for i, a in enumerate(sys.argv) if a == "--layer"]
+if LAYERS:
+    STAGE = r"H:/hzm_work/smokefire/paks/%s/zzzzzzzzzzzzz_coop_fx.pk3" % "_".join(LAYERS)
 if STAGE:
     PAK = STAGE
 STAMP = (2026, 11, 24, 0, 0, 0)
@@ -56,13 +63,18 @@ def members():
                 out[n] = z.read(n)
     lower = {k.lower(): k for k in out}
     overlay = set()
-    for dp, _dn, fn in os.walk(SRC):
-        for f in fn:
-            rel = os.path.relpath(os.path.join(dp, f), SRC).replace(os.sep, "/")
-            if rel.lower() in lower:
-                del out[lower[rel.lower()]]
-            out[rel] = open(os.path.join(dp, f), "rb").read()
-            overlay.add(rel)
+    for src in [SRC] + [os.path.join(HERE, "assets", "fx", "pak_" + l) for l in LAYERS]:
+        if not os.path.isdir(src):
+            fails.append("layer folder %s missing" % src)
+            continue
+        for dp, _dn, fn in os.walk(src):
+            for f in fn:
+                rel = os.path.relpath(os.path.join(dp, f), src).replace(os.sep, "/")
+                lower = {k.lower(): k for k in out}
+                if rel.lower() in lower:
+                    del out[lower[rel.lower()]]
+                out[rel] = open(os.path.join(dp, f), "rb").read()
+                overlay.add(rel)
     return out, fails, overlay
 
 
@@ -211,6 +223,7 @@ def main(argv):
         if fails:
             print("gen_fx_pak: NOT built:\n  " + "\n  ".join(fails))
             return 1
+        os.makedirs(os.path.dirname(PAK), exist_ok=True)
         open(PAK, "wb").write(data)
         print("gen_fx_pak: wrote %s (%d members, %d bytes, sha256 %s)" % (PAK, len(mem), len(data), sha(data)))
         return 0

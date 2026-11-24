@@ -92,6 +92,11 @@ fx:
 		local.e notsolid
 		local.e anim start
 	}
+	if(local.k == "anim"){
+		local.e = spawn local.m "origin" local.os
+		local.e notsolid
+		local.e anim (getcvar "sf_anim")
+	}
 	if(local.k == "em"){
 		local.e = spawn local.m "origin" local.os
 		local.e notsolid
@@ -172,7 +177,7 @@ def script(variant):
             for nm, v in (("sf_fx", x + d[0]), ("sf_fy", y + d[1]), ("sf_fz", z + d[2])):
                 c("set %s %.1f" % (nm, v))
             c("set sf_model %s" % fx["model"]); c("set sf_kind %s" % fx.get("kind", "sm")); c("set sf_life %s" % fx.get("life", 0))
-            c("set sf_cgm %s" % fx.get("cgm", "-"))
+            c("set sf_cgm %s" % fx.get("cgm", "-")); c("set sf_anim %s" % fx.get("anim", "idle"))
             c("testthread global/sf_run.scr fx")
         t = 0
         bu = sh.get("burst")

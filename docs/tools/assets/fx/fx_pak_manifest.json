@@ -3,6 +3,10 @@
     "from": "mod tree (same text as e61c056de, CRLF)",
     "shadow_md5": "713a57dffaa6538ed01e69b07c1462b9"
   },
+  "models/fx/M18_Smoke_GrenadeExplosion_base.txt": {
+    "from": "mod tree 4fa27cd13 (yellow recolour, spawnrate 0) + Phase 1 coloured cloud (layer p1)",
+    "shadow_md5": "849f1ca28f499e5e6cecca5417f5f54a"
+  },
   "models/fx/grenexp_snow.tik": {
     "from": "mod tree at hotfix-1.10.53 06bbddab4 (916cb7108 lineage)",
     "shadow_md5": "911dd4585f6f229b3021900062f9ac9f"
