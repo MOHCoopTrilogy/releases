@@ -27,9 +27,9 @@ BL = {
     "blender_preview": [("billow", "--res 64 --px 256 --samples 12 --step 4 --scol 0.82"),
                         ("soot", "--res 64 --px 256 --samples 12 --step 4 --scol 0.14"),
                         ("dust", "--res 64 --px 256 --samples 12 --step 4 --scol 0.55")],
-    "blender_full": [("billow", "--res 128 --px 512 --samples 40 --step 2 --scol 0.82"),
-                     ("soot", "--res 128 --px 512 --samples 40 --step 2 --scol 0.14"),
-                     ("dust", "--res 112 --px 512 --samples 32 --step 2 --scol 0.55")],
+    "blender_full": [("billow", "--res 128 --px 512 --samples 40 --step 1 --scol 0.82"),
+                     ("soot", "--res 128 --px 512 --samples 40 --step 1 --scol 0.14"),
+                     ],   # dust: production after its preview is signed off; wreck columns are volumetric (VOLUMETRIC.md)
 }
 
 
