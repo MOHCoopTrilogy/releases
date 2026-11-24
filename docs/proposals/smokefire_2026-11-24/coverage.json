@@ -8274,7 +8274,7 @@
 "health": [],
 "id": "disc:fl:flpfx",
 "kind": "disc converter",
-"reason": "fidelity-first pass, PLAN Phase 4 / section 6 (built on the player's PC)",
+"reason": "modern visuals on the original's events (user 2026-11-24 'Yes modern'), PLAN Phase 4 / section 6; A/B coop_flDiscFx / coop_eaDiscFx",
 "status": "todo",
 "winkind": "disc",
 "winner": "(player's converted pak)"
@@ -8286,7 +8286,7 @@
 "health": [],
 "id": "disc:ea:eafx",
 "kind": "disc converter",
-"reason": "fidelity-first pass, PLAN Phase 4 / section 6 (built on the player's PC)",
+"reason": "modern visuals on the original's events (user 2026-11-24 'Yes modern'), PLAN Phase 4 / section 6; A/B coop_flDiscFx / coop_eaDiscFx",
 "status": "todo",
 "winkind": "disc",
 "winner": "(player's converted pak)"
