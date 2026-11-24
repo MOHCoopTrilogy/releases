@@ -5339,13 +5339,13 @@
  ],
  "counts": {
   "client_only": 5270,
-  "excluded_hidden": 467,
+  "excluded_hidden": 469,
   "excluded_name": 283,
   "excluded_test_only": 41,
-  "page_gameplay": 971,
+  "page_gameplay": 969,
   "page_server": 18,
   "page_tuning": 16,
-  "server": 1005
+  "server": 1003
  },
  "missions": [
   {
@@ -13797,38 +13797,6 @@
    "page": "gameplay",
    "script_anchor": "maps/coop_fl_1_1.scr:812",
    "script_reads": 1,
-   "seeds": [],
-   "server": true,
-   "type": "string",
-   "ui": false,
-   "unseeded": true
-  },
-  {
-   "category": "Own-disc missions",
-   "default": "",
-   "description": "",
-   "engine_anchor": "",
-   "flags": "",
-   "name": "coop_fx13go",
-   "page": "gameplay",
-   "script_anchor": "maps/coop_fl_1_3.scr:679",
-   "script_reads": 1,
-   "seeds": [],
-   "server": true,
-   "type": "string",
-   "ui": false,
-   "unseeded": true
-  },
-  {
-   "category": "Own-disc missions",
-   "default": "",
-   "description": "",
-   "engine_anchor": "",
-   "flags": "",
-   "name": "coop_fx13test",
-   "page": "gameplay",
-   "script_anchor": "maps/coop_fl_1_3.scr:652",
-   "script_reads": 2,
    "seeds": [],
    "server": true,
    "type": "string",

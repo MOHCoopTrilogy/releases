@@ -13,19 +13,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `b82964e6 2026-11-23 docgen: regenerate for v1.10.91 (server settings catalogue with labels)` |
-| commits | 1,671 |
+| HEAD | `15c22fd7 2026-11-23 server app: hide the coop_fx13test test switch; regenerate` |
+| commits | 1,672 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **5205 modified, 2226 untracked** |
-| unstaged diff | 5205 files changed, 20299 insertions(+), 1492558 deletions(-) |
+| **uncommitted** | **5206 modified, 2226 untracked** |
+| unstaged diff | 5206 files changed, 22164 insertions(+), 1494174 deletions(-) |
 
-> Working tree is dirty. Everything in those 7431 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 7432 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-11 | 919 |
+| 2026-11 | 920 |
 | 2026-10 | 421 |
 | 2026-09 | 120 |
 | 2026-08 | 157 |
@@ -33,10 +33,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1671)
+### Commits since 2026-01-01 (1672)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `15c22fd7` | 2026-11-23 | joncurry94-tech | server app: hide the coop_fx13test test switch; regenerate |
 | `b82964e6` | 2026-11-23 | joncurry94-tech | docgen: regenerate for v1.10.91 (server settings catalogue with labels) |
 | `fd15e0f3` | 2026-11-23 | joncurry94-tech | Merge branch 'flfix2' |
 | `3eb86d3d` | 2026-11-23 | joncurry94-tech | fl_levels 1_3 (anvil round 7b, data13): character light (model_light rig + the level's 491 lighting volumes as the light grid) an… |
