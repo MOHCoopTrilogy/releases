@@ -68,11 +68,14 @@ place:
 	local.x = int( getcvar "sf_cx" )
 	local.y = int( getcvar "sf_cy" )
 	local.z = int( getcvar "sf_cz" )
-	local.o = ( local.x local.y local.z )
+	local.gz = int( getcvar "sf_gz" )
+	local.g = trace ( local.x local.y ( local.gz + 600 ) ) ( local.x local.y ( local.gz - 1200 ) ) 1
+	local.o = ( local.x local.y ( local.g[2] + local.z - local.gz ) )
 	local.lx = int( getcvar "sf_lx" )
 	local.ly = int( getcvar "sf_ly" )
 	local.lz = int( getcvar "sf_lz" )
-	level.sf_lk.origin = ( local.lx local.ly local.lz )
+	local.g2 = trace ( local.lx local.ly ( local.gz + 600 ) ) ( local.lx local.ly ( local.gz - 1200 ) ) 1
+	level.sf_lk.origin = ( local.lx local.ly ( local.g2[2] + local.lz - local.gz ) )
 	level.sf_cam movetopos local.o
 	level.sf_cam watch level.sf_lk 0
 	level.sf_cam cut
@@ -81,7 +84,12 @@ end
 fx:
 	local.m = getcvar "sf_model"
 	local.k = getcvar "sf_kind"
-	local.os = getcvar "sf_fx" + " " + getcvar "sf_fy" + " " + getcvar "sf_fz"
+	local.fx = int( getcvar "sf_fx" )
+	local.fy = int( getcvar "sf_fy" )
+	local.fz = int( getcvar "sf_fz" )
+	local.fd = int( getcvar "sf_fdz" )
+	local.g = trace ( local.fx local.fy ( local.fz + 600 ) ) ( local.fx local.fy ( local.fz - 1200 ) ) 1
+	local.os = local.fx + " " + local.fy + " " + ( local.g[2] + local.fd )
 	if(local.k == "expl"){
 		local.e = spawn local.m "origin" local.os
 		local.cg = getcvar "sf_cgm"
@@ -157,7 +165,7 @@ def script(variant):
         cm = sh["cam"]
         yaw = math.radians(cm.get("yaw", 0))
         cx, cy = x - cm.get("dist", 300) * math.cos(yaw), y - cm.get("dist", 300) * math.sin(yaw)
-        for nm, v in (("sf_cx", cx), ("sf_cy", cy), ("sf_cz", z + cm.get("h", 40)), ("sf_lx", x), ("sf_ly", y),
+        for nm, v in (("sf_gz", z), ("sf_cx", cx), ("sf_cy", cy), ("sf_cz", z + cm.get("h", 40)), ("sf_lx", x), ("sf_ly", y),
                       ("sf_lz", z + cm.get("look_h", 60))):
             c("set %s %.1f" % (nm, v))
         if first:
@@ -167,14 +175,14 @@ def script(variant):
         w(sh.get("settle", 1500))
         c("echo ^~^~^ SFRUN %s %s start" % (variant, sh["name"]))
         k += 1
-        c("screenshotJPEG %s_%s_%02d_%s_0000" % (tag, variant, k, sh["name"]))
         w(300)
+        c("screenshotJPEG %s_%s_%02d_%s_0000" % (tag, variant, k, sh["name"]))
         for fx in sh["fx"]:
             d = fx.get("d", [0, 0, 0])
             if fx.get("kind") == "fire":
                 c("+attackprimary"); w(fx.get("ms", 600)); c("-attackprimary")
                 continue
-            for nm, v in (("sf_fx", x + d[0]), ("sf_fy", y + d[1]), ("sf_fz", z + d[2])):
+            for nm, v in (("sf_fx", x + d[0]), ("sf_fy", y + d[1]), ("sf_fz", z), ("sf_fdz", d[2])):
                 c("set %s %.1f" % (nm, v))
             c("set sf_model %s" % fx["model"]); c("set sf_kind %s" % fx.get("kind", "sm")); c("set sf_life %s" % fx.get("life", 0))
             c("set sf_cgm %s" % fx.get("cgm", "-")); c("set sf_anim %s" % fx.get("anim", "idle"))
@@ -192,8 +200,8 @@ def script(variant):
 
 def run(variant):
     V = cfg["variants"].get(variant, {})
-    if [r for r in hg.classify() if r["cls"] == "USER" and os.path.normcase(r.get("path") or "").startswith(os.path.normcase(r"G:\mohaa-gl2"))]:
-        raise SystemExit("the user's game is running: not launching a test client")
+    # [coordinator 2026-11-24, user "don't stop testing for me"] no refusal while the user plays: the caller holds a
+    # screen_slot grant, and the client is background-only (secondary screen, muted, never focused, harness_window)
     os.makedirs(os.path.join(MAINTT, "configs"), exist_ok=True)
     os.makedirs(os.path.join(MAINTT, "global"), exist_ok=True)
     for fn in ("OpenAL64.dll", "SDL2.dll", "libcurl.dll"):

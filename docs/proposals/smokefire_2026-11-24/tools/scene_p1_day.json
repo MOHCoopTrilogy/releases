@@ -1,5 +1,5 @@
 {
- "_doc": "Phase 1 A/B on m5l2b: P0 = approved Phase 0 pak + release cgame + smokefire gl2; P1 = + Phase 1 layer (M18 cloud) + new cgame/renderer (D7 cg_hzmSmokeGridLight, off then on). Same camera, same time stamps.",
+ "_doc": "Phase 1 media: P0 = approved Phase 0 + release cgame, P1 = + Phase 1 layer (M18 cloud) + D7 grid lighting on (new cgame/gl2). P1 also: scorch variants (cg_hzmScorchVar 1).",
  "loadwait": 90,
  "postload": 8,
  "variants": {
@@ -18,7 +18,11 @@
    "bins": {
     "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
     "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
-   }
+   },
+   "sets": [
+    "set cg_hzmSmokeGridLight 1",
+    "set cg_hzmScorchVar 1"
+   ]
   }
  },
  "pre": [],
@@ -27,18 +31,15 @@
    "name": "m18",
    "at": [
     2711,
-    -5700,
+    -1650,
     -71
    ],
    "cam": {
     "yaw": 270,
-    "dist": 520,
-    "h": 120,
-    "look_h": 120
+    "dist": 300,
+    "h": 60,
+    "look_h": 70
    },
-   "sets": [
-    "set cg_hzmSmokeGridLight 0"
-   ],
    "fx": [
     {
      "model": "models/fx/m18_smoke_grenadeexplosion.tik",
@@ -56,25 +57,22 @@
     16000,
     24000
    ],
-   "settle": 1500,
-   "clear": 12000
+   "settle": 2000,
+   "clear": 10000
   },
   {
-   "name": "smokecol_grid0",
+   "name": "smokecol",
    "at": [
     2711,
-    -5700,
+    -1200,
     -71
    ],
    "cam": {
     "yaw": 270,
-    "dist": 520,
-    "h": 120,
-    "look_h": 120
+    "dist": 420,
+    "h": 90,
+    "look_h": 160
    },
-   "sets": [
-    "set cg_hzmSmokeGridLight 0"
-   ],
    "fx": [
     {
      "model": "models/emitters/coop_smokecol.tik",
@@ -85,73 +83,56 @@
    "times": [
     2000,
     5000,
-    9000
+    9000,
+    12000
    ],
-   "settle": 1500,
-   "clear": 6000
+   "settle": 2000,
+   "clear": 4000
   },
   {
-   "name": "smokecol_grid1",
+   "name": "scorch",
    "at": [
     2711,
-    -5700,
+    -750,
     -71
    ],
    "cam": {
     "yaw": 270,
-    "dist": 520,
-    "h": 120,
-    "look_h": 120
+    "dist": 230,
+    "h": 210,
+    "look_h": 0
    },
-   "sets": [
-    "set cg_hzmSmokeGridLight 1"
-   ],
    "fx": [
     {
-     "model": "models/emitters/coop_smokecol.tik",
-     "kind": "em",
-     "life": 14
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade",
+     "d": [
+      -90,
+      0,
+      0
+     ]
+    },
+    {
+     "model": "models/fx/explosionpzb41shell.tik",
+     "kind": "expl",
+     "cgm": "heavyshell",
+     "d": [
+      110,
+      -40,
+      0
+     ]
     }
    ],
    "times": [
-    2000,
-    5000,
-    9000
+    300,
+    1500,
+    6000,
+    9000,
+    12000
    ],
-   "settle": 1500,
-   "clear": 6000
-  },
-  {
-   "name": "m18_grid1",
-   "at": [
-    2711,
-    -5700,
-    -71
-   ],
-   "cam": {
-    "yaw": 270,
-    "dist": 520,
-    "h": 120,
-    "look_h": 120
-   },
-   "sets": [
-    "set cg_hzmSmokeGridLight 1"
-   ],
-   "fx": [
-    {
-     "model": "models/fx/m18_smoke_grenadeexplosion.tik",
-     "kind": "anim",
-     "anim": "idle",
-     "life": 30
-    }
-   ],
-   "times": [
-    3000,
-    10000,
-    16000
-   ],
-   "settle": 1500,
-   "clear": 12000
+   "settle": 2000,
+   "clear": 3000
   }
  ]
 }

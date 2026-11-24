@@ -18,6 +18,8 @@ JOBS = {
     "img_t2l4": (["img_t2l4", "t2l4", "scene_img_t2l4.json", "A", "B"], {}),
     "gl1": (["gl1", "m5l2b", "scene_gl1.json", "G1"], {"SF_RENDERER": "opengl1"}),
     "p1": (["p1day", "m5l2b", "scene_p1_day.json", "P0", "P1"], {}),
+    "soft": (["soft", "m5l2b", "scene_soft.json", "S0", "S1"], {}),
+    "p0v2": (["p0v2", "m5l2b", "scene_p0v2.json", "A", "B"], {}),
 }
 # preview = low res / few samples to judge the motion before the long render; full = 512 px production frames
 BL = {
@@ -38,6 +40,9 @@ def log(s):
 
 
 def wait_free():
+    # [coordinator 2026-11-24] the user said "don't stop testing for me": screen_slot already grants one test at a
+    # time on the secondary screen while they play, so there is no wait here any more (kept as a no-op hook)
+    return
     n = 0
     while hg.user_game_running():
         if n % 60 == 0:
@@ -50,7 +55,7 @@ for job in (sys.argv[1:] or list(JOBS) + ["blender_preview"]):
     wait_free()
     if job in JOBS:
         args, env = JOBS[job]
-        r = subprocess.run([sys.executable, "-I", SLOT, "acquire", "smokefire", "15", "smoke&fire %s (1 client, muted)" % job])
+        r = subprocess.run([sys.executable, "-I", SLOT, "acquire", "smokefire", "8", "smoke&fire %s (1 client, muted)" % job])
         if r.returncode:
             log("%s: no screen slot (%d)" % (job, r.returncode)); continue
         try:

@@ -1,0 +1,127 @@
+{
+ "_doc": "Soft particles at ground contact (user: 'perfectly lined on the ground'): S0 = r_softParticleDistance 1 (hard cut), S1 = 40u fade. Same pak (Phase 1) and binaries; low camera at the contact line.",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "S0": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set r_softParticleDistance 1"
+   ]
+  },
+  "S1": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set r_softParticleDistance 40"
+   ]
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "grenade_contact",
+   "at": [
+    2711,
+    -3000,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 28,
+    "look_h": 30
+   },
+   "fx": [
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade"
+    }
+   ],
+   "times": [
+    2500,
+    3500
+   ],
+   "settle": 2000,
+   "clear": 6000,
+   "burst": {
+    "every": 100,
+    "n": 20
+   }
+  },
+  {
+   "name": "fire_contact",
+   "at": [
+    2711,
+    -2550,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 25,
+    "look_h": 35
+   },
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    2500,
+    4000,
+    6000
+   ],
+   "settle": 2000,
+   "clear": 4000,
+   "burst": {
+    "every": 100,
+    "n": 20
+   }
+  },
+  {
+   "name": "m18_contact",
+   "at": [
+    2711,
+    -2100,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 240,
+    "h": 25,
+    "look_h": 40
+   },
+   "fx": [
+    {
+     "model": "models/fx/m18_smoke_grenadeexplosion.tik",
+     "kind": "anim",
+     "anim": "idle",
+     "life": 30
+    }
+   ],
+   "times": [
+    3000,
+    6000,
+    10000,
+    16000
+   ],
+   "settle": 2000,
+   "clear": 10000
+  }
+ ]
+}

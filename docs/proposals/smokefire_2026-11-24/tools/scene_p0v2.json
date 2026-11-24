@@ -1,0 +1,212 @@
+{
+ "_doc": "Phase 0 media v2 (user: 'mostly black marks on the ground'): every shot on its own clean spot (450u apart, ground traced), camera closer, 100 ms burst over the first 2 s. A = v1.10.91, B = Phase 0.",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "A": {
+   "paks": []
+  },
+  "B": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll"
+   }
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "grenade",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 240,
+    "h": 60,
+    "look_h": 50
+   },
+   "fx": [
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade"
+    }
+   ],
+   "times": [
+    2500,
+    3500,
+    5000
+   ],
+   "settle": 2000,
+   "clear": 6000,
+   "burst": {
+    "every": 100,
+    "n": 20
+   }
+  },
+  {
+   "name": "bazooka",
+   "at": [
+    2711,
+    -5250,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 300,
+    "h": 70,
+    "look_h": 70
+   },
+   "fx": [
+    {
+     "model": "models/fx/bazookaexplosion.tik",
+     "kind": "expl",
+     "cgm": "bazooka"
+    }
+   ],
+   "times": [
+    2500,
+    3500,
+    5000
+   ],
+   "settle": 2000,
+   "clear": 6000,
+   "burst": {
+    "every": 100,
+    "n": 20
+   }
+  },
+  {
+   "name": "heavyshell",
+   "at": [
+    2711,
+    -4800,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 340,
+    "h": 80,
+    "look_h": 90
+   },
+   "fx": [
+    {
+     "model": "models/fx/explosionpzb41shell.tik",
+     "kind": "expl",
+     "cgm": "heavyshell"
+    }
+   ],
+   "times": [
+    2500,
+    3500,
+    5000
+   ],
+   "settle": 2000,
+   "clear": 6000,
+   "burst": {
+    "every": 100,
+    "n": 20
+   }
+  },
+  {
+   "name": "fire",
+   "at": [
+    2711,
+    -4350,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 220,
+    "h": 55,
+    "look_h": 55
+   },
+   "fx": [
+    {
+     "model": "models/emitters/fire.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    2500,
+    4000,
+    6000
+   ],
+   "settle": 2000,
+   "clear": 4000,
+   "burst": {
+    "every": 100,
+    "n": 20
+   }
+  },
+  {
+   "name": "firegood",
+   "at": [
+    2711,
+    -3900,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 260,
+    "h": 70,
+    "look_h": 70
+   },
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    2500,
+    4000,
+    6000
+   ],
+   "settle": 2000,
+   "clear": 4000,
+   "burst": {
+    "every": 100,
+    "n": 20
+   }
+  },
+  {
+   "name": "barracks",
+   "at": [
+    2711,
+    -3450,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 620,
+    "h": 110,
+    "look_h": 220
+   },
+   "fx": [
+    {
+     "model": "models/emitters/barracks_explosion.tik",
+     "kind": "em",
+     "life": 7
+    }
+   ],
+   "times": [
+    300,
+    800,
+    1500,
+    2500,
+    4000,
+    6000
+   ],
+   "settle": 2000,
+   "clear": 3000
+  }
+ ]
+}
