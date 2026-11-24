@@ -1155,6 +1155,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
             lines.append(f'\tlevel.fl_ally_grp[{nl}] = {grp_}')
             lines.append(f'\tlevel.fl_ally_state[{nl}] = "{flscene.state(e)}"')
             lines.append(f'\tlevel.fl_ally_yaw[{nl}] = {yaw_:.0f}')
+            lines.append(f'\tlevel.fl_ally_rec[{nl}] = {e["i"]}')  # [soaudit 2026-11-23] the disc record (counts, area deaths)
             lines += _actor_ai(e, "ally", nl)
         elif cls in AMMO:
             n_ammo += 1
@@ -1576,6 +1577,12 @@ def _actor_ai(e, side, n):
     elif dh:
         out.append('\t//[r100 guns] death drop %08x x%d: not mapped' % (dh, r[0x71]))
     out.append('\tlevel.fl_%s_aim[%d] = %d' % (side, n, r[0x73]))
+    # [soaudit 2026-11-23] how many men the spawner makes, one after another, each the instant the previous dies
+    # (StartByIdObject.lst L0043 / L0136 -> L00dc): attr 20 = byte 0x34 bit 1 (the count flag), attr 21 = s16 at 0x3c,
+    # m3 = flag ? clamp(attr 21, 1..15) : 1. The respawn-delay flag (attr 18, bit 0) is 0 on every 1_1 actor
+    cnt_ = min(15, max(1, struct.unpack_from("<h", r, 0x3c)[0])) if (r[0x34] >> 1) & 1 else 1
+    if cnt_ > 1:
+        out.append('\tlevel.fl_%s_cnt[%d] = %d' % (side, n, cnt_))
     for m, (ro, fo) in (("idle", (0x7e, 0x76)), ("curious", (0x86, 0x7b)), ("alert", (0x88, 0x7c))):
         out.append('\tlevel.fl_%s_sight[%d]["%s"] = %.1f' % (side, n, m, s16(ro) / 16.0))
         out.append('\tlevel.fl_%s_fov[%d]["%s"] = %d' % (side, n, m, r[fo]))
