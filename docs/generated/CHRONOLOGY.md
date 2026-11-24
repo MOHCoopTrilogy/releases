@@ -13,19 +13,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `75b5511d 2026-11-23 server app: labels for the v1.10.91 disc settings, hide their test switches (overlay formatting restored)` |
-| commits | 1,674 |
+| HEAD | `42dc83ee 2026-11-24 hzmconv 1.10.92.1 (v1.10.92 hotfix)` |
+| commits | 1,701 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **5206 modified, 2226 untracked** |
-| unstaged diff | 5206 files changed, 20307 insertions(+), 1492566 deletions(-) |
+| **uncommitted** | **5207 modified, 2226 untracked** |
+| unstaged diff | 5207 files changed, 20427 insertions(+), 1492558 deletions(-) |
 
-> Working tree is dirty. Everything in those 7432 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 7433 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-11 | 922 |
+| 2026-11 | 949 |
 | 2026-10 | 421 |
 | 2026-09 | 120 |
 | 2026-08 | 157 |
@@ -33,10 +33,37 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1674)
+### Commits since 2026-01-01 (1701)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `42dc83ee` | 2026-11-24 | joncurry94-tech | hzmconv 1.10.92.1 (v1.10.92 hotfix) |
+| `cfc0cc23` | 2026-11-24 | joncurry94-tech | Merge branch 'flfix2' |
+| `409b44b4` | 2026-11-24 | joncurry94-tech | smoke&fire Phase 1: grenade banks on the volumetric one-marker interface (originspawn count 1, build-up 8 s), denser/taller banks… |
+| `9341c765` | 2026-11-24 | joncurry94-tech | flpack (soaudit): a named-path point the disc left without a height takes its floor from the nearest grounded point of the same p… |
+| `af4aab83` | 2026-11-24 | joncurry94-tech | smoke&fire remap: skip the first 10 (compact sphere) frames in the size-matched copies |
+| `86d5e3fe` | 2026-11-24 | joncurry94-tech | smoke&fire Phase 1: smoke grenades (M18/Nebel/RDG-1) on layered billow sprites + volumetric bank markers (gen_smokegren.py); cgam… |
+| `8616bf69` | 2026-11-24 | joncurry94-tech | smoke&fire Phase 1: M18 cloud tuned into a rising, drifting bank (alpha 0.72, upward randvel, longer life) |
+| `5618f556` | 2026-11-24 | joncurry94-tech | smoke&fire Phase 1: own 512 px billow + soot flipbooks (cfx2_*, PNG), M18 cloud on the billow, scope split with the volumetric pr… |
+| `ee9d5423` | 2026-11-24 | joncurry94-tech | Anchor & Anvil HOTFIX (flconvert + fl_levels 1_3): the fire-escape stairs climb standing; bullets pass over railings and low wall… |
+| `a5bc366e` | 2026-11-24 | joncurry94-tech | Sealed Orders HOTFIX (v1.10.91): the jeep draws again; the small-mine and crate smoke as light as the original |
+| `df0594a3` | 2026-11-24 | joncurry94-tech | smoke&fire flipbooks: preview round 4 presets (no box edges, no floor cut); full render = billow + soot, 40 frames at 512 |
+| `502978a3` | 2026-11-24 | joncurry94-tech | flpack (soaudit): emit each actor spawner's man count (fl_axis_cnt / fl_ally_cnt) and the allies' disc record (fl_ally_rec) |
+| `a344a305` | 2026-11-24 | joncurry94-tech | smoke&fire: soft A/B scene (per-sprite fade), Blender key light + slower bloom |
+| `cd53bedd` | 2026-11-24 | joncurry94-tech | smoke&fire Phase 1: per-sprite soft-edge shader generation (layer p1), Blender presets without floor cut, debug/sweep scenes |
+| `56067bbc` | 2026-11-23 | joncurry94-tech | Anchor & Anvil (FL 1_3) texture HD: 12 CC0 swaps, text protection for the upscale |
+| `848ab583` | 2026-11-23 | joncurry94-tech | Sealed Orders r100 guns: the AI's disc gun fire (AI-only tik copies + GunBnk body / tail) and the disc's death drops (attr 23 x 2… |
+| `844e19c9` | 2026-11-23 | joncurry94-tech | smoke&fire Phase 1: scorch variants (gen_scorch.py), media v2 (clean spots, ground trace, hero stills, slow-mo GIFs), soft-partic… |
+| `be3b0fdb` | 2026-11-23 | joncurry94-tech | smoke&fire Phase 1 start: layered fx pak (pak_p1 never ships until signed off), M18 coloured cloud, Blender smoke baker, test que… |
+| `6955b9e0` | 2026-11-23 | joncurry94-tech | fx_coverage: disc rows follow the 'Yes modern' decision |
+| `4c2e7fa0` | 2026-11-23 | joncurry94-tech | smoke&fire PLAN: disc missions get modern visuals on the original's events (user 2026-11-24 'Yes modern', exception to fidelity-f… |
+| `0bf6d228` | 2026-11-23 | joncurry94-tech | smoke&fire test kit: tour sends the real explosion effect; coverage report refreshed |
+| `5ab6104d` | 2026-11-23 | joncurry94-tech | smoke&fire harness: coop start with cheats, explicit explosioneffect, per-shot cvars, D9 stress + IMAGECAP probe scenes, smaller… |
+| `a55b172f` | 2026-11-23 | joncurry94-tech | Smoke & fire Phase 0 (staged): coverage gate, fx pak generator, restored fx_1025 sources, repairs |
+| `ee69d9d0` | 2026-11-23 | joncurry94-tech | v1.10.91 shipped: README What's new, converter ship record 1.10.91.2 |
+| `485b3703` | 2026-11-23 | joncurry94-tech | manifest 1.10.91 |
+| `5fd38261` | 2026-11-23 | joncurry94-tech | gfx flip gate: register the real v1.10.91 renderer hash bf3f4b1e (an earlier commit stored the shell's exit text) |
+| `213042eb` | 2026-11-23 | joncurry94-tech | server app: v1.10.91 disc setting labels as plain text, shortened; regenerate |
 | `75b5511d` | 2026-11-23 | joncurry94-tech | server app: labels for the v1.10.91 disc settings, hide their test switches (overlay formatting restored) |
 | `a5bb502a` | 2026-11-23 | joncurry94-tech | server app: hide the two 1_3 effects test switches; regenerate |
 | `15c22fd7` | 2026-11-23 | joncurry94-tech | server app: hide the coop_fx13test test switch; regenerate |
@@ -1717,8 +1744,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hotfix-1.10.53` |
-| HEAD | `06bbddab4 2026-11-23 coop_fl_1_3 (anvil round 7b): death ambushes made on the first death in their area, the roster walk-in (decoded), the disc's window panes, self-test placement under the raised garage door` |
-| commits | 3,153 |
+| HEAD | `60501772c 2026-11-24 v1.10.92 version + What's New card (Anchor and Anvil fixes)` |
+| commits | 3,161 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -1726,7 +1753,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-11 | 719 |
+| 2026-11 | 727 |
 | 2026-10 | 727 |
 | 2026-09 | 116 |
 | 2026-08 | 198 |
@@ -1769,10 +1796,18 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1804)
+### Commits since 2026-01-01 (1812)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `60501772c` | 2026-11-24 | joncurry94 | v1.10.92 version + What's New card (Anchor and Anvil fixes) |
+| `1092fd136` | 2026-11-24 | joncurry94 | Sealed Orders spawn audit: the disc's spawner rules - held starts deferred, clean-up only of men made, counted spawners, death am… |
+| `09819f110` | 2026-11-24 | joncurry94 | HOTFIX v1.10.91 anim/stand.scr: officer attack dogs no longer fall into the human idle (unarmed_stand_nervous_b Script Error on c… |
+| `cbe08fcbc` | 2026-11-24 | joncurry94 | coop_fl_1_3 HOTFIX: a cascadable barrel blown by a direct hit logged a NIL cascade count (3 Script Errors per barrel) |
+| `0fc01734c` | 2026-11-23 | joncurry94 | Disc checkpoints: a map hold pins the respawn point (Dying Breath church), no hot-fallback churn (spawn audit) |
+| `05433706a` | 2026-11-23 | joncurry94 | Sealed Orders r100 guns: converted soldiers fire with the disc's own GunBnk sound and drop the disc's death drop instead of their… |
+| `18f046b4d` | 2026-11-23 | joncurry94 | coop_fl_1_3 HOTFIX: missing / late enemies - StartOnInitialize men from the load, clean-up no longer closes an unstarted group, p… |
+| `407b311a5` | 2026-11-23 | joncurry94 | discscale.scr: Frontline hooks through a map indirection (dsc_fl_seen / dsc_fl_mk / dsc_fl_voice / dsc_fl_grpstart) so Anchor & A… |
 | `06bbddab4` | 2026-11-23 | joncurry94 | coop_fl_1_3 (anvil round 7b): death ambushes made on the first death in their area, the roster walk-in (decoded), the disc's wind… |
 | `7996c539e` | 2026-11-23 | joncurry94 | Disc missions: solid, safe checkpoint respawns that follow the mission (bug-11541) |
 | `154b970c5` | 2026-11-23 | joncurry94 | Sealed Orders: the disc's window panes break on blasts (r100 glass) |

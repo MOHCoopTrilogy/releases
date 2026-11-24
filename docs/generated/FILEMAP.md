@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 1,134,653 |
-| bytes | 120.6 GB |
-| files in project scope (indexed per-file) | 114,799 |
-| source files (per-file rows with line counts) | 26,274 |
+| files in the workspace | 1,134,897 |
+| bytes | 120.7 GB |
+| files in project scope (indexed per-file) | 115,043 |
+| source files (per-file rows with line counts) | 26,367 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,8 +24,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `docs` | 73,446 | 42244.5 MB | **yes** | this documentation set (authored + generated) |
-| `hzm-mohaa-coop-mod` | 27,045 | 15475.1 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `docs` | 73,676 | 42277.3 MB | **yes** | this documentation set (authored + generated) |
+| `hzm-mohaa-coop-mod` | 27,045 | 15475.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `hzm-mod-attic` | 17,780 | 502.1 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
 | `hzm-mod-benchfix` | 17,754 | 423.0 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
 | `hzm-mod-engrave` | 15,476 | 420.2 MB | no - reference | scratch working copy of the mod (per-feature worktree) |
@@ -183,15 +183,15 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm-hudfeed` | 2,613 | 60.5 MB | no - reference | scratch working copy of the engine (per-feature worktree); the bare openmohaa-hzm stays indexed |
 | `openmohaa-hzm-gore` | 2,577 | 60.7 MB | no - reference | scratch working copy of the engine (per-feature worktree); the bare openmohaa-hzm stays indexed |
 | `.harness_queue` | 2,009 | 0.2 MB | **yes** |  |
-| `symbols` | 1,313 | 5847.2 MB | **yes** |  |
+| `symbols` | 1,325 | 5908.1 MB | **yes** |  |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
 | `scratchpad` | 346 | 67.4 MB | **yes** |  |
 | `player1_home` | 291 | 2.1 MB | no - reference | test client profile dir |
 | `_hd_sky` | 237 | 1512.5 MB | **yes** |  |
 | `_research` | 175 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
-| `manifests` | 169 | 3.2 MB | **yes** | release manifests consumed by the auto-updater |
-| `<root>` | 150 | 161.9 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
+| `manifests` | 170 | 3.2 MB | **yes** | release manifests consumed by the auto-updater |
+| `<root>` | 151 | 161.9 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `_gl2test_home` | 149 | 26.4 MB | **yes** |  |
 | `_hd_m3l1a` | 145 | 305.8 MB | **yes** |  |
 | `_hd_discstock` | 115 | 132.1 MB | **yes** |  |
@@ -203,7 +203,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `server_home_ttnav_sliv2` | 93 | 152.1 MB | no - reference | soak / A-B harness server homepath |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
-| `public_servers` | 77 | 6.3 MB | **yes** |  |
+| `public_servers` | 77 | 13.6 MB | **yes** |  |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `server_home` | 63 | 14.8 MB | **yes** |  |
 | `_tools` | 61 | 153.0 MB | no - reference | downloaded third-party binaries |
@@ -1627,30 +1627,30 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Extension census (whole workspace)
 | ext | files |
 |---|---:|
-| `.cfg` | 462,383 |
-| `.tik` | 112,325 |
+| `.cfg` | 462,384 |
+| `.tik` | 112,394 |
 | `.pre_upscale_nobuild` | 86,388 |
 | `.h` | 83,725 |
 | `.c` | 64,742 |
-| `.scr` | 63,015 |
-| `.jpg` | 61,343 |
+| `.scr` | 63,017 |
+| `.jpg` | 61,349 |
 | `.cpp` | 41,195 |
-| `.txt` | 17,357 |
-| `.md` | 13,284 |
+| `.txt` | 17,361 |
+| `.md` | 13,287 |
 | `.urc` | 12,902 |
 | `.obj` | 11,402 |
-| `.tga` | 10,643 |
-| `.shader` | 8,200 |
-| `.png` | 5,316 |
+| `.tga` | 10,647 |
+| `.shader` | 8,206 |
+| `.png` | 5,396 |
 | `.glsl` | 5,066 |
 | `.wav` | 4,782 |
-| `.py` | 4,680 |
+| `.py` | 4,693 |
 | `.dat` | 4,547 |
 | `(none)` | 4,096 |
 | `.log` | 3,888 |
 | `.skc` | 3,425 |
 | `.tlog` | 3,270 |
-| `.json` | 2,456 |
+| `.json` | 2,496 |
 | `.vcxproj` | 2,452 |
 | `.filters` | 2,452 |
 | `.lod` | 2,208 |
@@ -1661,7 +1661,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.skd` | 1,370 |
 | `.dds` | 1,161 |
 | `.slg` | 1,104 |
-| `.pdb` | 1,049 |
+| `.pdb` | 1,055 |
 | `.in` | 946 |
 | `.rc` | 946 |
 | `.js` | 941 |
@@ -1672,7 +1672,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | directory | files | size | top extensions |
 |---|---:|---:|---|
 | `--help` | 25 | 6.55 MB | .tga×25 |
-| `.` | 150 | 161.92 MB | .md×59, .log×24, .txt×16, .ps1×15 |
+| `.` | 151 | 161.93 MB | .md×60, .log×24, .txt×16, .ps1×15 |
 | `.harness_queue` | 2,009 | 0.23 MB | .done×2007, .json×2 |
 | `_backups` | 1 | 0.02 MB | .bak×1 |
 | `_backups/cmake_stash` | 27 | 64.09 MB | .dll×12, .pdb×12, .map×3 |
@@ -3715,7 +3715,14 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/smoke_consume_2026-10-18/tools/runs/sm_old1` | 2 | 0.42 MB | .json×1, .log×1 |
 | `docs/proposals/smoke_consume_2026-10-18/tools/runs/sm_old2` | 2 | 0.41 MB | .json×1, .log×1 |
 | `docs/proposals/smoke_consume_2026-10-18/tools/runs/sm_s1` | 2 | 0.42 MB | .json×1, .log×1 |
-| `docs/proposals/smokefire_2026-11-24` | 1 | 0.04 MB | .md×1 |
+| `docs/proposals/smokefire_2026-11-24` | 4 | 0.37 MB | .md×3, .json×1 |
+| `docs/proposals/smokefire_2026-11-24/test` | 1 | 0.00 MB | .cfg×1 |
+| `docs/proposals/smokefire_2026-11-24/test/global` | 1 | 0.00 MB | .scr×1 |
+| `docs/proposals/smokefire_2026-11-24/tools` | 26 | 0.11 MB | .json×17, .py×9 |
+| `docs/proposals/smokefire_2026-11-24/volsmoke` | 1 | 0.00 MB | .patch×1 |
+| `docs/proposals/smokefire_2026-11-24/volsmoke/pak_src/models/emitters` | 4 | 0.01 MB | .tik×4 |
+| `docs/proposals/smokefire_2026-11-24/volsmoke/pak_src/scripts` | 1 | 0.00 MB | .shader×1 |
+| `docs/proposals/smokefire_2026-11-24/volsmoke/tools` | 24 | 0.05 MB | .json×19, .py×2, .sh×2, .scr×1 |
 | `docs/proposals/snowfx_2026-11-04` | 4 | 0.26 MB | .jpg×4 |
 | `docs/proposals/snowfx_2026-11-04/billow` | 9 | 0.92 MB | .jpg×9 |
 | `docs/proposals/sp3camp_2026-11-08` | 8 | 0.12 MB | .py×7, .json×1 |
@@ -3821,7 +3828,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/public/fixes` | 11 | 1.53 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
 | `docs/screenshots` | 110 | 111.39 MB | .jpg×79, .gif×31 |
-| `docs/tools` | 305 | 6.95 MB | .py×234, .json×25, .tsv×25, .txt×11 |
+| `docs/tools` | 307 | 6.99 MB | .py×236, .json×25, .tsv×25, .txt×11 |
 | `docs/tools/assets` | 4 | 0.10 MB | .urc×1, .json×1, .txt×1, .png×1 |
 | `docs/tools/assets/finish_src` | 8 | 2.79 MB | .png×4, .npy×3, .json×1 |
 | `docs/tools/assets/fixes` | 1 | 0.10 MB | .json×1 |
@@ -3904,6 +3911,14 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/tools/assets/fixes_base/models/weapons` | 221 | 2.21 MB | .tik×221 |
 | `docs/tools/assets/fixes_base/textures/coop_c96trench` | 1 | 0.07 MB | .jpg×1 |
 | `docs/tools/assets/fixes_base/textures/coop_mp18` | 5 | 0.40 MB | .jpg×5 |
+| `docs/tools/assets/fx` | 2 | 0.01 MB | .json×2 |
+| `docs/tools/assets/fx/base` | 1 | 9.78 MB | .pk3×1 |
+| `docs/tools/assets/fx/pak/models/emitters` | 39 | 0.06 MB | .tik×39 |
+| `docs/tools/assets/fx/pak/models/fx` | 26 | 0.05 MB | .tik×26 |
+| `docs/tools/assets/fx/pak/scripts` | 1 | 0.01 MB | .shader×1 |
+| `docs/tools/assets/fx/pak_p1/models/fx` | 3 | 0.01 MB | .txt×3 |
+| `docs/tools/assets/fx/pak_p1/scripts` | 5 | 0.01 MB | .shader×4, .txt×1 |
+| `docs/tools/assets/fx/pak_p1/textures/coop_fx/fx` | 84 | 18.10 MB | .png×80, .tga×4 |
 | `docs/tools/assets/loadart` | 7 | 3.48 MB | .jpg×7 |
 | `docs/tools/assets/tileart` | 272 | 20.05 MB | .jpg×272 |
 | `docs/tools/assets/weapon_detail_src` | 9 | 10.53 MB | .jpg×8, .json×1 |
@@ -3969,8 +3984,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/tools/ea/hd` | 10 | 4.04 MB | .jpg×9, .txt×1 |
 | `docs/tools/engrave` | 11 | 0.10 MB | .py×11 |
 | `docs/tools/engrave/qa` | 7 | 0.04 MB | .py×4, .json×3 |
-| `docs/tools/frontline` | 62 | 0.98 MB | .py×52, .json×7, .sh×1, .txt×1 |
-| `docs/tools/frontline/hd` | 10 | 6.24 MB | .jpg×8, .txt×1, .json×1 |
+| `docs/tools/frontline` | 62 | 1.00 MB | .py×52, .json×7, .sh×1, .txt×1 |
+| `docs/tools/frontline/hd` | 16 | 10.46 MB | .jpg×14, .txt×1, .json×1 |
 | `docs/tools/harness_cbt` | 1 | 0.00 MB | .c×1 |
 | `docs/tools/hzm_lodfog_selftest` | 3 | 0.01 MB | .bat×1, .c×1, .py×1 |
 | `docs/tools/hzm_spot_selftest` | 3 | 0.03 MB | .bat×1, .c×1, .py×1 |
@@ -4246,7 +4261,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-eng-snipers2/misc/cmake` | 1 | 0.01 MB | .cmake×1 |
 | `hzm-eng-snipers2/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `hzm-eng-snipers2/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
-| `hzm-mohaa-coop-mod` | 73 | 9771.64 MB | .pk3×34, .txt×12, .jpg×10, .cfg×5 |
+| `hzm-mohaa-coop-mod` | 73 | 9771.73 MB | .pk3×34, .txt×12, .jpg×10, .cfg×5 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -4320,7 +4335,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/htr` | 12 | 0.10 MB | .scr×12 |
 | `hzm-mohaa-coop-mod/hzm_preload` | 1 | 0.00 MB | .txt×1 |
 | `hzm-mohaa-coop-mod/maintt` | 1 | 0.00 MB | .cfg×1 |
-| `hzm-mohaa-coop-mod/maps` | 138 | 100.15 MB | .scr×127, .bsp×9, .pth×2 |
+| `hzm-mohaa-coop-mod/maps` | 138 | 100.18 MB | .scr×127, .bsp×9, .pth×2 |
 | `hzm-mohaa-coop-mod/maps/briefing` | 14 | 0.09 MB | .scr×14 |
 | `hzm-mohaa-coop-mod/maps/cov` | 220 | 0.97 MB | .scr×220 |
 | `hzm-mohaa-coop-mod/maps/dm` | 9 | 0.01 MB | .scr×9 |
@@ -4879,7 +4894,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 136 | 0.17 MB | .cfg×136 |
 | `hzm-mohaa-coop-mod/ui/proto` | 11 | 0.14 MB | .urc×6, .cfg×3, .inc×2 |
 | `hzm-mohaa-coop-mod/ui/wpnview` | 1,667 | 3.67 MB | .cfg×1667 |
-| `manifests` | 169 | 3.15 MB | .json×169 |
+| `manifests` | 170 | 3.18 MB | .json×170 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `mohaa-coop-dev_soak` | 25 | 30.64 MB | .log×24, .json×1 |
 | `mohaa-coop-dev_soak_val` | 1 | 0.40 MB | .log×1 |
@@ -5322,17 +5337,17 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `public_servers/_superseded_lobby_patch/srv1` | 1 | 0.06 MB | .scr×1 |
 | `public_servers/_superseded_lobby_patch/srv1_hudtest` | 1 | 0.06 MB | .scr×1 |
 | `public_servers/_superseded_lobby_patch/srv2` | 1 | 0.06 MB | .scr×1 |
-| `public_servers/srv1/maintt` | 4 | 1.62 MB | .log×2, .pid×1, .cfg×1 |
+| `public_servers/srv1/maintt` | 4 | 4.06 MB | .log×2, .pid×1, .cfg×1 |
 | `public_servers/srv1/maintt/coop_freeze` | 3 | 0.01 MB | .txt×3 |
 | `public_servers/srv1/maintt/coop_mod/save` | 20 | 0.01 MB | .dat×20 |
 | `public_servers/srv1/maintt/maps` | 4 | 0.58 MB | .pth×2, .scr×2 |
 | `public_servers/srv1/maintt/maps/e3l4` | 1 | 0.02 MB | .scr×1 |
-| `public_servers/srv2/maintt` | 4 | 1.63 MB | .log×2, .pid×1, .cfg×1 |
+| `public_servers/srv2/maintt` | 4 | 4.07 MB | .log×2, .pid×1, .cfg×1 |
 | `public_servers/srv2/maintt/coop_freeze` | 3 | 0.01 MB | .txt×3 |
 | `public_servers/srv2/maintt/coop_mod/save` | 11 | 0.01 MB | .dat×11 |
 | `public_servers/srv2/maintt/maps` | 3 | 0.26 MB | .scr×2, .pth×1 |
 | `public_servers/srv2/maintt/maps/e3l4` | 1 | 0.02 MB | .scr×1 |
-| `public_servers/srv3/maintt` | 5 | 1.62 MB | .log×2, .pid×1, .cfg×1, .trilogy_bak×1 |
+| `public_servers/srv3/maintt` | 5 | 4.07 MB | .log×2, .pid×1, .cfg×1, .trilogy_bak×1 |
 | `public_servers/srv3/maintt/coop_freeze` | 2 | 0.01 MB | .txt×2 |
 | `public_servers/srv3/maintt/maps` | 3 | 0.31 MB | .scr×2, .pth×1 |
 | `public_servers/srv3/maintt/maps/e3l4` | 1 | 0.02 MB | .scr×1 |
@@ -5502,6 +5517,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `symbols/1.10.89` | 12 | 58.83 MB | .map×6, .pdb×6 |
 | `symbols/1.10.9` | 12 | 50.66 MB | .map×6, .pdb×6 |
 | `symbols/1.10.90` | 12 | 60.91 MB | .map×6, .pdb×6 |
+| `symbols/1.10.91` | 12 | 60.93 MB | .map×6, .pdb×6 |
 | `symbols/1.7.2` | 2 | 8.45 MB | .pdb×2 |
 | `symbols/1.7.3` | 2 | 8.45 MB | .pdb×2 |
 | `symbols/1.7.4` | 12 | 48.59 MB | .map×6, .pdb×6 |
@@ -5536,7 +5552,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `ai_ab_test.ps1` | 78 | 3.9 KB | ai_ab_test.ps1 - controlled A/B for the dynamic-AI layer. |
 | `autotest_rcon.py` | 79 | 2.7 KB | !/usr/bin/env python3 |
-| `build.ps1` | 733 | 58.0 KB | (every player re-downloads it). Same as $env:HZM_ALLOW_TEX_PAK_CHANGE = '1', which also works through |
+| `build.ps1` | 738 | 58.6 KB | (every player re-downloads it). Same as $env:HZM_ALLOW_TEX_PAK_CHANGE = '1', which also works through |
 | `flconvert.py` | 0 | 0.0 KB |  |
 | `launch_2player_m2l2a.ps1` | 216 | 11.1 KB | MOH Coop Trilogy - 2-player STEALTH test launcher (m2l2a) |
 | `launch_2player_test.ps1` | 78 | 3.7 KB | MOH Coop Trilogy - 2-player local test launcher |
@@ -10636,6 +10652,57 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `sm_sess.py` | 162 | 5.5 KB |  |
 | `smlib.py` | 40 | 2.0 KB | test-only: server_rules.cfg zeroes the latched bot cap on every coop start; let ONE engine bot join as a seco… |
 
+### `docs/proposals/smokefire_2026-11-24/test/` — 1 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `fxab_tour.cfg` | 16 | 1.2 KB | Smoke & fire Phase 0 - 5-minute test (TEST KIT ONLY - never shipped). |
+
+### `docs/proposals/smokefire_2026-11-24/test/global/` — 1 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `fxab_tour.scr` | 57 | 2.2 KB | Smoke & fire A/B tour (TEST KIT ONLY - never shipped). Spawns each Phase 0 effect 420 units in front of the |
+
+### `docs/proposals/smokefire_2026-11-24/tools/` — 9 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `fb_to_layer.py` | 37 | 2.8 KB |  |
+| `flipbook.py` | 114 | 6.5 KB |  |
+| `gen_remap.py` | 43 | 3.2 KB | new shader: (frames set, world size u, play fps, replaces) |
+| `gen_scorch.py` | 83 | 4.0 KB |  |
+| `gen_smokegren.py` | 162 | 6.9 KB |  |
+| `mk_smoke.py` | 280 | 14.4 KB |  |
+| `sf_compare.py` | 83 | 4.0 KB |  |
+| `sf_queue.py` | 84 | 4.2 KB |  |
+| `sf_run.py` | 276 | 14.0 KB |  |
+
+### `docs/proposals/smokefire_2026-11-24/volsmoke/pak_src/models/emitters/` — 4 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `hzm_volbank.tik` | 53 | 0.6 KB |  |
+| `hzm_volfire.tik` | 127 | 2.2 KB |  |
+| `hzm_volm18.tik` | 40 | 0.6 KB |  |
+| `hzm_volwreck.tik` | 118 | 1.9 KB |  |
+
+### `docs/proposals/smokefire_2026-11-24/volsmoke/pak_src/scripts/` — 1 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `hzm_volsmoke_test.shader` | 65 | 2.1 KB |  |
+
+### `docs/proposals/smokefire_2026-11-24/volsmoke/tools/` — 5 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `vs_cam.scr` | 47 | 2.1 KB | vs_run.py test overlay (private client only) - camera + emitter spawner driven by cvars (from sf_run.py's ove… |
+| `vs_compose.py` | 84 | 3.5 KB |  |
+| `vs_run.py` | 211 | 10.1 KB |  |
+| `vs_slot.sh` | 30 | 1.5 KB | !/bin/sh |
+| `vs_slot2.sh` | 30 | 1.5 KB | !/bin/sh |
+
 ### `docs/proposals/sp3camp_2026-11-08/` — 7 source files
 
 | file | lines | size | summary |
@@ -11010,7 +11077,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `contact.py` | 27 | 1.5 KB |  |
 | `wpnview_run.py` | 300 | 14.6 KB | [2026-11-08] the user: test on the 34" ULTRAWIDE (3440x1440). Picked by RESOLUTION, never by name or the prim… |
 
-### `docs/tools/` — 239 source files
+### `docs/tools/` — 241 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -11074,6 +11141,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `fix_dds_shadowing.py` | 189 | 7.2 KB | coding: utf-8 |
 | `fix_skin_case.py` | 69 | 3.6 KB |  |
 | `fix_vo_pools.py` | 440 | 20.4 KB | !/usr/bin/env python |
+| `fx_coverage.py` | 365 | 18.8 KB | !/usr/bin/env python3 |
 | `gen_admin_menu.py` | 96 | 4.3 KB | !/usr/bin/env python3 |
 | `gen_aircraft_envelope.py` | 101 | 4.3 KB | !/usr/bin/env python3 |
 | `gen_alarm_points.py` | 178 | 6.9 KB | !/usr/bin/env python |
@@ -11121,6 +11189,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_flvo_pools.py` | 146 | 7.2 KB | !/usr/bin/env python |
 | `gen_fog_profiles.py` | 140 | 5.0 KB | !/usr/bin/env python3 |
 | `gen_fueltank_clip.py` | 208 | 9.8 KB |  |
+| `gen_fx_pak.py` | 286 | 15.1 KB | !/usr/bin/env python3 |
 | `gen_glove_ui.py` | 182 | 7.3 KB | !/usr/bin/env python3 |
 | `gen_glove_views.py` | 192 | 7.0 KB | !/usr/bin/env python3 |
 | `gen_gloves.py` | 235 | 10.5 KB | !/usr/bin/env python3 |
@@ -11797,6 +11866,96 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `welrod_chrome.tik` | 254 | 7.5 KB |  |
 | `welrod_gold.tik` | 254 | 7.5 KB |  |
 
+### `docs/tools/assets/fx/pak/models/emitters/` — 39 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `coop_fire_l.tik` | 103 | 1.5 KB |  |
+| `coop_fire_m.tik` | 103 | 1.5 KB |  |
+| `coop_fire_s.tik` | 103 | 1.5 KB |  |
+| `coop_smokecol.tik` | 55 | 0.6 KB |  |
+| `coop_wreck.tik` | 103 | 1.5 KB |  |
+| `coop_wreck_lo.tik` | 77 | 1.0 KB |  |
+| `coop_wreck_pops.tik` | 127 | 2.0 KB |  |
+| `debris_smoke.tik` | 60 | 0.7 KB |  |
+| `explosion_bombdirt.tik` | 147 | 2.2 KB |  |
+| `explosion_bombmetalwall.tik` | 125 | 1.8 KB |  |
+| `explosion_bombwall.tik` | 125 | 1.8 KB |  |
+| `explosion_bridge.tik` | 127 | 1.8 KB |  |
+| `explosion_mine.tik` | 133 | 1.9 KB |  |
+| `explosion_tank.tik` | 134 | 2.0 KB |  |
+| `explosion_tank2.tik` | 136 | 2.0 KB |  |
+| `fancyfire.tik` | 107 | 1.6 KB |  |
+| `fire.tik` | 106 | 1.5 KB |  |
+| `fireandsmoke.tik` | 108 | 1.6 KB |  |
+| `firefill.tik` | 107 | 1.6 KB |  |
+| `firegood.tik` | 107 | 1.6 KB |  |
+| `firesmoke.tik` | 59 | 0.7 KB |  |
+| `gren_exp.tik` | 127 | 1.8 KB |  |
+| `inferno.tik` | 107 | 1.6 KB |  |
+| `mortar_concrete.tik` | 182 | 2.9 KB |  |
+| `mortar_dirt.tik` | 146 | 2.1 KB |  |
+| `mortar_higgins.tik` | 149 | 2.2 KB |  |
+| `mortar_snow.tik` | 145 | 2.1 KB |  |
+| `mortar_tree.tik` | 171 | 2.7 KB |  |
+| `norbigstacksmoke.tik` | 60 | 0.7 KB |  |
+| `residual_fire.tik` | 107 | 1.6 KB |  |
+| `t2l4_fire.tik` | 101 | 1.5 KB |  |
+| `tehao_Fire.tik` | 108 | 1.6 KB |  |
+| `tehao_bridgeExplosion.tik` | 145 | 2.2 KB |  |
+| `tehao_cheapFire.tik` | 106 | 1.5 KB |  |
+| `tehao_explosionWall.tik` | 121 | 1.8 KB |  |
+| `tehao_fireSmoke.tik` | 59 | 0.7 KB |  |
+| `tehao_fireSmoke_long.tik` | 59 | 0.7 KB |  |
+| `tehao_fireSmoke_superlong.tik` | 59 | 0.7 KB |  |
+| `tehao_thickSmoke.tik` | 59 | 0.7 KB |  |
+
+### `docs/tools/assets/fx/pak/models/fx/` — 26 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `bazookaexp_base.tik` | 109 | 1.6 KB |  |
+| `coop_blast_air.tik` | 109 | 1.6 KB |  |
+| `coop_blast_l.tik` | 124 | 1.8 KB |  |
+| `coop_blast_m.tik` | 124 | 1.8 KB |  |
+| `coop_blast_s.tik` | 124 | 1.8 KB |  |
+| `coop_blast_xl.tik` | 124 | 1.8 KB |  |
+| `exp_Truck.tik` | 108 | 1.6 KB |  |
+| `exp_dynamic1.tik` | 115 | 1.7 KB |  |
+| `exp_dynamic2.tik` | 115 | 1.7 KB |  |
+| `exp_flak88.tik` | 93 | 1.4 KB |  |
+| `exp_flak_far.tik` | 82 | 1.2 KB |  |
+| `exp_flak_near.tik` | 99 | 1.4 KB |  |
+| `exp_general.tik` | 108 | 1.6 KB |  |
+| `exp_tank_gen.tik` | 108 | 1.6 KB |  |
+| `fx_bike_explosion.tik` | 157 | 2.5 KB |  |
+| `fx_explosion.tik` | 131 | 2.0 KB |  |
+| `fx_flak88_explosion.tik` | 130 | 1.9 KB |  |
+| `fx_stuka_explosion.tik` | 149 | 2.3 KB |  |
+| `fx_tank_explosion.tik` | 150 | 2.3 KB |  |
+| `fx_truck_explosion.tik` | 155 | 2.6 KB |  |
+| `grenexp_base.tik` | 109 | 1.6 KB |  |
+| `grenexp_snow.tik` | 138 | 3.4 KB |  |
+| `heavyshellexp_base.tik` | 108 | 1.6 KB |  |
+| `sustainedFire.tik` | 101 | 1.5 KB |  |
+| `t2l4_fire.tik` | 101 | 1.5 KB |  |
+| `tankexp_base.tik` | 108 | 1.6 KB |  |
+
+### `docs/tools/assets/fx/pak/scripts/` — 1 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `coop_fx.shader` | 106 | 8.5 KB |  |
+
+### `docs/tools/assets/fx/pak_p1/scripts/` — 4 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `coop_fx_p1.shader` | 46 | 0.7 KB |  |
+| `coop_fx_p1_flip.shader` | 29 | 3.0 KB |  |
+| `coop_fx_p1_grenades.shader` | 41 | 2.3 KB |  |
+| `coop_fx_p1_remap.shader` | 72 | 5.8 KB |  |
+
 ### `docs/tools/assets/wpnfix/models/projectiles/` — 2 source files
 
 | file | lines | size | summary |
@@ -12200,12 +12359,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `flanim.py` | 182 | 10.3 KB | !/usr/bin/env python3 |
 | `flanimconv.py` | 278 | 15.0 KB | !/usr/bin/env python3 |
 | `flaudio.py` | 524 | 24.0 KB | !/usr/bin/env python3 |
-| `flbsp.py` | 456 | 22.5 KB | !/usr/bin/env python3 |
+| `flbsp.py` | 464 | 23.2 KB | !/usr/bin/env python3 |
 | `flchar.py` | 830 | 41.5 KB | !/usr/bin/env python3 |
 | `flcharup.py` | 149 | 7.5 KB | !/usr/bin/env python3 |
 | `flclear.py` | 585 | 29.4 KB | !/usr/bin/env python3 |
 | `flcliff.py` | 145 | 7.0 KB | !/usr/bin/env python3 |
-| `flconvert.py` | 1,564 | 94.9 KB | !/usr/bin/env python3 |
+| `flconvert.py` | 1,640 | 100.2 KB | !/usr/bin/env python3 |
 | `flcoop2.py` | 131 | 6.7 KB | !/usr/bin/env python3 |
 | `flcore.py` | 255 | 11.9 KB | !/usr/bin/env python3 |
 | `flcover.py` | 231 | 12.2 KB | !/usr/bin/env python3 |
@@ -12213,7 +12372,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `flfit.py` | 95 | 4.6 KB | !/usr/bin/env python3 |
 | `flgeom.py` | 117 | 4.7 KB | !/usr/bin/env python3 |
 | `flgif.py` | 89 | 4.8 KB | !/usr/bin/env python3 |
-| `flglass.py` | 286 | 14.2 KB | !/usr/bin/env python3 |
+| `flglass.py` | 287 | 14.3 KB | !/usr/bin/env python3 |
 | `flgunfit.py` | 669 | 35.9 KB |  |
 | `flgungeo.py` | 171 | 7.5 KB |  |
 | `flgunrows.py` | 39 | 1.7 KB |  |
@@ -12224,10 +12383,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `flgunup.py` | 133 | 7.6 KB | texture (lower-case file name) -> [(x0, y0, x1, y1)] fractions: stamped legends, selector markings |
 | `flgunvfs.py` | 73 | 2.5 KB |  |
 | `flharness.py` | 290 | 13.7 KB | !/usr/bin/env python3 |
-| `flhd.py` | 185 | 8.9 KB | !/usr/bin/env python3 |
+| `flhd.py` | 219 | 10.9 KB | !/usr/bin/env python3 |
 | `flmovies.py` | 93 | 4.7 KB | !/usr/bin/env python3 |
-| `flpack.py` | 1,470 | 83.2 KB | !/usr/bin/env python3 |
-| `flpfx.py` | 260 | 14.0 KB | !/usr/bin/env python3 |
+| `flpack.py` | 1,606 | 91.7 KB | !/usr/bin/env python3 |
+| `flpfx.py` | 268 | 14.9 KB | !/usr/bin/env python3 |
 | `flpit.py` | 164 | 7.9 KB |  |
 | `flprops.py` | 483 | 25.6 KB | !/usr/bin/env python3 |
 | `flpropsup.py` | 128 | 6.3 KB | !/usr/bin/env python3 |
@@ -12239,7 +12398,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `fltexmatch.py` | 117 | 5.3 KB | !/usr/bin/env python3 |
 | `flupscale.py` | 490 | 26.3 KB | !/usr/bin/env python3 |
 | `flvis.py` | 77 | 3.7 KB | !/usr/bin/env python3 |
-| `hzmconv.py` | 375 | 23.7 KB | !/usr/bin/env python3 |
+| `hzmconv.py` | 375 | 24.1 KB | !/usr/bin/env python3 |
 | `mkoverlay.py` | 15 | 0.7 KB | !/usr/bin/env python3 |
 | `mohskel.py` | 181 | 8.1 KB | !/usr/bin/env python3 |
 | `poc_render.py` | 65 | 3.2 KB | !/usr/bin/env python3 |
@@ -15658,7 +15817,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `runto_casual.scr` | 100 | 2.7 KB | HZM coop [2026-08-06] extracted from maintt/pak1.pk3 (bug-1490), same fix as anim/runto_inopen.scr: |
 | `runto_inopen.scr` | 122 | 3.9 KB | HZM coop [2026-08-06] extracted from maintt/pak1.pk3 (bug-1490) to add a dog branch. Retail's own |
 | `shoot.scr` | 270 | 7.2 KB | Shoot |
-| `stand.scr` | 437 | 10.1 KB | HZM coop [2026-11-23] extracted from maintt/pak1.pk3 (bug-11461) to add a dog branch, as runto_inopen.scr (bu… |
+| `stand.scr` | 441 | 10.6 KB | HZM coop [2026-11-23] extracted from maintt/pak1.pk3 (bug-11461) to add a dog branch, as runto_inopen.scr (bu… |
 
 ### `hzm-mohaa-coop-mod/coop_mod/` — 274 source files
 
@@ -15671,7 +15830,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `aiaudit.scr` | 77 | 3.4 KB | HZM coop - AI AUDIT (dev only, cvar coop_aiaudit 1). Logs every audited actor's state every 2 s as one |
 | `aibehav.scr` | 242 | 11.7 KB | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 5.0 KB | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 2,229 | 127.0 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aihandler.scr` | 2,232 | 127.3 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 293 | 16.8 KB | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aircraft.scr` | 1,567 | 65.1 KB | coop_mod/aircraft.scr |
 | `aircraft_envelope.scr` | 603 | 13.2 KB | GENERATED by docs/tools/gen_aircraft_envelope.py from the retail BSPs + docs/tools/fog_profiles.tsv. |
@@ -15746,8 +15905,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `director.scr` | 228 | 10.6 KB | [user 2026-07-17] REACTIVE DIFFICULTY DIRECTOR - Phase 1 (plan: _research/director_dda_plan.md). |
 | `discallies.scr` | 34 | 2.1 KB | HZM coop - allied soldier balance for the converted disc missions (Frontline / Rising Sun / European Assault). |
 | `discbot.scr` | 1,383 | 58.0 KB | HZM coop - discbot: DEV-ONLY playthrough bot for the bring-your-own-disc missions |
-| `disccheckpoint.scr` | 703 | 27.8 KB | HZM coop - DISC CHECKPOINTS: solid, safe respawn points that follow the mission for the bring-your-own-disc |
-| `discscale.scr` | 694 | 28.1 KB | HZM coop - player-count enemy scaling for the converted disc missions (Sealed Orders coop_fl_1_1, Their |
+| `disccheckpoint.scr` | 717 | 28.6 KB | HZM coop - DISC CHECKPOINTS: solid, safe respawn points that follow the mission for the bring-your-own-disc |
+| `discscale.scr` | 740 | 30.1 KB | HZM coop - player-count enemy scaling for the converted disc missions (Sealed Orders coop_fl_1_1, Their |
 | `duststorm.scr` | 855 | 41.9 KB | HZM coop - DUST STORM ROLL-IN [user 2026-09-26, bug-2963] |
 | `e1l4alarm.scr` | 76 | 3.3 KB | coop_mod/e1l4alarm.scr |
 | `eadawn.scr` | 272 | 12.2 KB | HZM coop - NIGHT TO DAWN for the converted European Assault night level Their Dying Breath (coop_ea_1_11). |
@@ -16215,11 +16374,11 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `co_lobby6.scr` | 64 | 2.7 KB | LEVEL: co_lobby6.bsp (a copy of m2l1.bsp, axis AI stripped - same geometry as co_lobby5) |
 | `co_lobby7.scr` | 54 | 2.6 KB | LEVEL: co_lobby7.bsp (a copy of m2l2c.bsp) |
 | `co_lobby8.scr` | 246 | 9.3 KB | LEVEL: co_lobby8.bsp (a copy of e1l4.bsp - Breakthrough "Bizerte Harbor") |
-| `coop_ea_1_11.scr` | 7,692 | 371.5 KB | HZM coop - European Assault: "coop_ea_1_11" THEIR DYING BREATH (MOH European Assault RUS1, Gorodishche near |
+| `coop_ea_1_11.scr` | 7,717 | 372.3 KB | HZM coop - European Assault: "coop_ea_1_11" THEIR DYING BREATH (MOH European Assault RUS1, Gorodishche near |
 | `coop_ea_1_11_head.scr` | 14 | 0.7 KB | [2026-11-17] the per-actor head-look reach (game.dll event headlooklimit <yaw> <notorso>, engine dbhead-eng)… |
 | `coop_ea_1_11_seat.scr` | 15 | 0.8 KB | [dbfix 2026-11-15] the per-actor turret seat (game.dll event turretseat <back> <down>, engine 9f5b0846) kept… |
-| `coop_fl_1_1.scr` | 7,279 | 346.0 KB | HZM coop - Frontline pilot: "coop_fl_1_1" (MOH Frontline level 1_1, St. Mathieu, 17 Aug 1944). |
-| `coop_fl_1_3.scr` | 3,974 | 177.7 KB | HZM coop - Frontline: "coop_fl_1_3" ANCHOR & ANVIL (MOH Frontline level 1_3, Lorient, 18 Aug 1944, 0500 hrs). |
+| `coop_fl_1_1.scr` | 7,699 | 367.6 KB | HZM coop - Frontline pilot: "coop_fl_1_1" (MOH Frontline level 1_1, St. Mathieu, 17 Aug 1944). |
+| `coop_fl_1_3.scr` | 4,044 | 182.9 KB | HZM coop - Frontline: "coop_fl_1_3" ANCHOR & ANVIL (MOH Frontline level 1_3, Lorient, 18 Aug 1944, 0500 hrs). |
 | `e1l1.scr` | 755 | 23.9 KB | This stuff in hacks.scr now |
 | `e1l1_precache.scr` | 95 | 4.0 KB | Stripped 92 global-duplicate cache lines (2026-06-23) |
 | `e1l2.scr` | 401 | 16.2 KB | chrissstrahl - relevant stuff |

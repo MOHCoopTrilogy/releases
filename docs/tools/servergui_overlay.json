@@ -70,6 +70,9 @@
 
   "_labels_note": "labels: the short plain name the MOH Coop Server app shows for each setting (bug-11498). The cvar name stays visible beside it. An overrides label wins. docs/tools/check_servergui_labels.py fails on a visible setting without one.",
   "labels": {
+    "coop_flSpawnFid": "Sealed Orders: original enemy spawns",
+    "coop_flDiscGuns": "Sealed Orders: enemies use disc guns",
+    "coop_flDiscDrops": "Sealed Orders: enemy drops from disc",
     "coop_discCheckpoints": "Disc missions: safe respawn checkpoints",
     "coop_eaArchAcc": "Dying Breath: enemy accuracy from disc",
     "coop_eaArchRange": "Dying Breath: disc enemy fight range",
