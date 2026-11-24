@@ -84,5 +84,141 @@
    "mortar": 0.3,
    "_doc": "[user 2026-11-15 'Online'] the muddy brick wall -> Poly Haven CC0 dark_brick_wall, two repeats per disc tile, tinted to the disc mean with its smoke stains laid over; mortar toned down (0.3) toward the disc's dark joints"
   }
+ },
+ "1_3": {
+  "_doc": "[anvil 1_3 HD, v1.10.92] Anchor & Anvil: CC0 Poly Haven swaps for the big homogeneous materials (quay slabs, ground, asphalt, brick and stained concrete walls), repeats chosen so the pattern keeps real-world scale against the disc's texel size; blur 0.012-0.02 keeps the disc's own stains / drips / lichen patches; 'lines' keeps the disc's straight joints (slab joints, string courses); 'out' caps texture memory. Everything else takes the careful upscale (fl_texmap.json 1_3). Corrugated sheets (3ef00 roofs, 1e400 pen roof) were tried with corrugated_iron_02 and withdrawn after the in-game stills: the CC0 ribs are finer than the disc's and wash out to a flat grey at play distance, losing the sheet look - they keep the upscale. Review sheets: H:/hzm_work/anvil/tex13 (local).",
+  "e5880": {
+   "asset": "concrete_floor_worn_001",
+   "tile": 128,
+   "repeat": [
+    1,
+    1
+   ],
+   "overlay": 1.0,
+   "lines": 0.8,
+   "blur": 0.02
+  },
+  "71a80": {
+   "asset": "concrete_floor_worn_001",
+   "tile": 128,
+   "repeat": [
+    1,
+    1
+   ],
+   "overlay": 1.0,
+   "lines": 0.8,
+   "blur": 0.02
+  },
+  "c7_50300": {
+   "asset": "concrete_floor_worn_001",
+   "tile": 128,
+   "repeat": [
+    1,
+    1
+   ],
+   "overlay": 1.0,
+   "lines": 0.8,
+   "blur": 0.02
+  },
+  "f7800": {
+   "asset": "mud_forest",
+   "tile": 128,
+   "repeat": [
+    4,
+    4
+   ],
+   "overlay": 1.0,
+   "out": 2048
+  },
+  "7d400": {
+   "asset": "brown_mud_dry",
+   "tile": 128,
+   "repeat": [
+    4,
+    4
+   ],
+   "overlay": 1.0,
+   "out": 2048
+  },
+  "6d980": {
+   "asset": "tarred_gravel",
+   "tile": 128,
+   "repeat": [
+    2,
+    2
+   ],
+   "overlay": 1.0,
+   "blur": 0.02,
+   "out": 2048
+  },
+  "eaf00": {
+   "asset": "asphalt_04",
+   "tile": 128,
+   "repeat": [
+    2,
+    2
+   ],
+   "overlay": 1.0,
+   "blur": 0.02,
+   "out": 2048
+  },
+  "101f00": {
+   "asset": "dark_brick_wall",
+   "tile": 128,
+   "repeat": [
+    3,
+    3
+   ],
+   "overlay": 1.0,
+   "mortar": 0.3,
+   "blur": 0.015,
+   "out": 1024
+  },
+  "18700": {
+   "asset": "red_brick",
+   "tile": 64,
+   "repeat": [
+    3,
+    3
+   ],
+   "overlay": 1.0,
+   "blur": 0.015,
+   "out": 1024
+  },
+  "ef000": {
+   "asset": "red_brick",
+   "tile": 64,
+   "repeat": [
+    2,
+    2
+   ],
+   "overlay": 1.0,
+   "blur": 0.015,
+   "out": 1024
+  },
+  "b1800": {
+   "asset": "concrete_wall_006",
+   "tile": 128,
+   "repeat": [
+    2,
+    2
+   ],
+   "overlay": 1.0,
+   "lines": 0.7,
+   "blur": 0.012,
+   "out": 1024
+  },
+  "97780": {
+   "asset": "concrete_wall_006",
+   "tile": 128,
+   "repeat": [
+    2,
+    2
+   ],
+   "overlay": 1.0,
+   "lines": 0.7,
+   "blur": 0.012,
+   "out": 1024
+  }
  }
 }
