@@ -50,6 +50,12 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.92 - Anchor & Anvil (fixes)
+
+- **Anchor & Anvil:** enemies and the opening conversation are there from the start, the fire escape climbs standing, you can shoot over railings and low walls, sharper textures with readable signs.
+- **Sealed Orders:** the jeep is back, lighter smoke, every enemy the original has, the bridge hold keeps you at the bridge.
+- **Their Dying Breath:** the church defence no longer stalls when players die.
+
 ### v1.10.91 - Anchor & Anvil
 
 - **New bring-your-own-disc mission: Anchor & Anvil** (Frontline): the Lorient harbour, the trucks, the walkway ramp, the U-boat sinking, alarms with the original's bell.
