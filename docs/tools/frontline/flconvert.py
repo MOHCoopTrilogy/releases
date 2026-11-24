@@ -139,6 +139,12 @@ def sky_faces(src_dir, prefix, flip_y):
     return out
 
 
+def _cross3(a, b, c):
+    u = [b[k] - a[k] for k in range(3)]
+    v = [c[k] - a[k] for k in range(3)]
+    return (u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0])
+
+
 def tga_bytes(w, h, rgba):
     """Uncompressed 32-bit TGA, bottom-up rows (origin lower-left)."""
     hdr = struct.pack("<BBBHHBHHHHBB", 0, 0, 2, 0, 0, 0, 0, 0, w, h, 32, 8)
@@ -1223,13 +1229,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                 B.add_soup(lsh, [(pp, st, (0.0, 0.0, 1.0), lcol) for pp, st in q], [0, 1, 2, 0, 2, 3])
     # [flpolish] each collision brush carries its SOURCE in its (nodraw) shader name, so the walk audit can tell an
     # original player-clip boundary from a wall, a fitted column, a headroom cap or our edge-of-world clip
-    NOSHOT_ = bool(flpack.spec(level).get("clip_noshot"))
+    NOSHOT_ = flpack.spec(level).get("clip_noshot")
+    NOSHOT_ = NOSHOT_ if NOSHOT_ == "all" else bool(NOSHOT_)
     # [audio13 7b] "glass" (SURF_GLASS, surfaceflags.h): 1_3's window panes (material 12, ImpBnk surface 3), so a bullet
     # on them plays the disc's glass impact through snd_bh_glass (fl_levels "impacts"); 1_1 uses none
     STEPS_ = {int(k_): {"rock": 0x10000, "gravel": 0x800000, "metal": 0x8000, "wood": 0x4000, "dirt": 0x20000,
                         "glass": 0x400000}[v_]
               for k_, v_ in (flpack.spec(level).get("footsteps") or {}).items()}
-    def clip_for(tag):
+    def clip_for(tag, floor=False):
         if tag == TAG_CLIFF:
             nm = "cliff"
         elif tag == TAG_RAMP:
@@ -1249,11 +1256,55 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
             sf_ |= STEPS_.get(tag & 0x7FF, 0)
         # [flfix2 2026-11-16] fl_levels "clip_noshot": the invisible clips (kept wrap sheets: Frontline's player-only
         # material; our edge-of-world walls) stop players and AI but not bullets (0x10000 player clip | 0x20000 monster clip)
-        if NOSHOT_ and (tag == TAG_CLIFF or ((tag & 0x7FF) == WRAP_MAT and (tag & COLL_SPECIAL) and tag < TAG_CLIFF)):
+        # [anvil data13 hotfix] "clip_noshot": "all" - also the wrap sheets whose flag word has its top byte set (1_3: 347
+        # of 1359, e.g. 0xc2bff800, which `tag < TAG_CLIFF` read as one of our own tags and left solid). true = as before
+        _ours = (tag & 0x7FFFF000) == 0x7FFFF000 if NOSHOT_ == "all" else tag >= TAG_CLIFF
+        # "all" leaves floor-like wrap sheets (|nz| > 0.7: 241 of 1359 on 1_3) solid, so traces, dropped items and grenades
+        # still land on them; only walls / railings / slopes become bullet-through clips
+        if NOSHOT_ == "all" and floor and tag != TAG_CLIFF:
+            _ours = True
+        if NOSHOT_ and (tag == TAG_CLIFF or ((tag & 0x7FF) == WRAP_MAT and (tag & COLL_SPECIAL) and not _ours)):
             return B.shader("textures/common/fl_coll_" + nm + "_clip", flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP | sf_, 0x30000)
         return B.shader("textures/common/fl_coll_" + nm, flbsp.SURF_NODRAW | flbsp.SURF_NOLIGHTMAP | sf_, flbsp.CONTENTS_SOLID)
+    # [anvil data13 hotfix] fl_levels "clip_cut": [[lo, hi], ...] map-unit boxes in which ALL collision is removed (floors
+    # too, unlike headroom carve_extra). 1_3: the stacked fire-escape flights to the cache roof - each landing's edge
+    # hangs 94u over the first steps of the flight below, so MOHAA's 94u standing box (+ its step lift) could not climb
+    # them standing ("have to crouch", v1.10.91 playtest); Frontline's ~86u player fitted. Collision only, absent = none.
+    CUT_ = [(tuple(lo_), tuple(hi_)) for lo_, hi_ in (flpack.spec(level).get("clip_cut") or [])]
+    if CUT_:
+        nw_, nt_, ncut_ = [], [], 0
+        for (a2, b2, c2), tg in zip(wound, wtags):
+            lo_ = [min(a2[k], b2[k], c2[k]) for k in range(3)]
+            hi_ = [max(a2[k], b2[k], c2[k]) for k in range(3)]
+            hit_ = [bx for bx in CUT_ if all(lo_[k] < bx[1][k] and hi_[k] > bx[0][k] for k in range(3))]
+            if not hit_:
+                nw_.append((a2, b2, c2)); nt_.append(tg)
+                continue
+            ncut_ += 1
+            polys_ = [[tuple(a2), tuple(b2), tuple(c2)]]
+            for blo_, bhi_ in hit_:
+                polys_ = [q_ for p_ in polys_ for q_ in flclear.subtract_box(p_, blo_, bhi_)]
+            for p_ in polys_:
+                if flclear._area(p_) < 0.5:
+                    continue
+                for i_ in range(1, len(p_) - 1):
+                    nw_.append((p_[0], p_[i_], p_[i_ + 1])); nt_.append(tg)
+        wound, wtags = nw_, nt_
+        stats["clip_cut"] = ncut_
+    # [anvil data13 hotfix] fl_levels "clip_ramps": [[x0, y0, z0, x1, y1, z1], ...] a collision ramp rising along x from
+    # (x0, z0) to (x1, z1) across y0..y1 (map units; solid, nodraw, tag "ramp"). 1_3: each fire-escape flight's steps
+    # (cut by clip_cut) become one slope - the flights are stacked ~119u apart, and their saw-tooth step collision left
+    # less than MOHAA's 94u stand box + its step lift (the engine sim stalled standing even with the capsule rule)
+    for x0_, y0_, z0_, x1_, y1_, z1_ in (flpack.spec(level).get("clip_ramps") or []):
+        wound += [((x0_, y0_, z0_), (x1_, y0_, z1_), (x1_, y1_, z1_)), ((x0_, y0_, z0_), (x1_, y1_, z1_), (x0_, y1_, z0_))]
+        wtags += [TAG_RAMP, TAG_RAMP]
     for (a2, b2, c2), tg in zip(wound, wtags):
-        if B.add_prism(clip_for(tg), a2, b2, c2, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
+        _fl = False
+        if NOSHOT_ == "all":
+            _n = _cross3(a2, b2, c2)
+            _ln = math.sqrt(sum(x * x for x in _n)) or 1.0
+            _fl = abs(_n[2]) / _ln > 0.7
+        if B.add_prism(clip_for(tg, _fl), a2, b2, c2, thickness=float(os.environ.get("FL_THICK", "4")), centered=True) is None:
             rejected += 1
         else:
             nb += 1
@@ -1333,6 +1384,21 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         om_specs.append((spc["name"], spc, recs_.get(spc.get("object"))))
     nom = 0
     MESH_LIGHT_ = float(flpack.spec(level).get("mesh_light", 2.0))
+    # [anvil data13 round 7c] fl_levels "model_lit_meshes": object meshes the original draws with its LIT model program
+    # (vertex program slot 21: oD0.rgb = ambient + directional x max(N.L, 0), the vertex colour's rgb unused) instead of
+    # the world program (oD0 = vertex colour). Emulator GPU frames ref_xemu trace/gpu_d13case0, 1 (the 1_3 case on the
+    # roof): the case lid / open / empty draws run slot 21 with c10 = the lfc ambient x 0.77 and c7 = the directional x
+    # 0.88 (the lid's own colours are all 0xff000000, so ours drew it black). Baked here from "model_light" default_rig
+    # at the rest pose (the original relights the lid as it swings). Absent = unchanged (1_1).
+    LIT_MESHES_ = set(flpack.spec(level).get("model_lit_meshes", []))
+    LIT_AMB_, LIT_DIRC_, LIT_DIR_ = (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 1.0)
+    for li_ in (flpack.spec(level).get("model_light") or {}).get("default_rig", []):
+        if int(li_["type"]) == 1:
+            LIT_AMB_ = tuple(c_ * float(li_["scale"]) for c_ in li_["rgb"])
+        elif int(li_["type"]) == 2:
+            LIT_DIRC_ = tuple(c_ * float(li_["scale"]) for c_ in li_["rgb"])
+            dl_ = math.sqrt(sum(x * x for x in li_.get("dir", [0, 0, 1]))) or 1.0
+            LIT_DIR_ = tuple(x / dl_ for x in li_.get("dir", [0, 0, 1]))
     for tag_, spc, rec_ in om_specs:
         draws = L.mesh(spc["mesh"])
         if not draws:
@@ -1355,9 +1421,19 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
                     for i in (a, b, c):
                         acc[i][0] += n[0]; acc[i][1] += n[1]; acc[i][2] += n[2]
             verts = []
+            lit_ = spc["mesh"] in LIT_MESHES_
+            sg_ = 1.0
+            if lit_:
+                # outward normals: flip the accumulated ones when they point into the mesh on the whole
+                ctr_ = [sum(q_[k] for q_ in P) / len(P) for k in range(3)]
+                out_ = sum(sum(acc[i][k] * (P[i][k] - ctr_[k]) for k in range(3)) for i in range(len(P)))
+                sg_ = -1.0 if out_ < 0 else 1.0
             for i, p_ in enumerate(P):
                 l_ = math.sqrt(sum(x * x for x in acc[i])) or 1.0
                 r_, g_, b_, a_ = m["cols"][i]
+                if lit_:
+                    nd_ = max(0.0, sg_ * sum(acc[i][k] * LIT_DIR_[k] for k in range(3)) / l_)
+                    r_, g_, b_ = (min(255, int(255.0 * (LIT_AMB_[k] + LIT_DIRC_[k] * nd_) / MESH_LIGHT_ + 0.5)) for k in range(3))
                 # object meshes carry PS2-range vertex colour (0x80 = full): doubled, or they render near black
                 # [anvil] fl_levels "mesh_light" (default 2.0 = the doubling above, 1_1 unchanged). 1_3 at night: raw
                 # object colours average about the raw world's (cargo 97 vs world 77), so doubled they read 2-2.5x brighter
