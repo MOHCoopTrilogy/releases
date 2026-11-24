@@ -1,0 +1,121 @@
+TIKI
+setup
+{
+	scale 1.0
+	path models/miscobj/CampFire
+	skelmodel cube_CampFire.skd
+	surface cube_CampFire shader Transparency
+}
+
+init
+{
+
+	server
+	{
+		classname effectentity
+		notsolid
+		rendereffects +dontdraw
+	}
+	client
+	{
+		cache cfx_fire_fb.spr
+		cache cfx_smoke_fb.spr
+		cache cfx_puff.spr
+		cache cfx_ember.spr
+	}
+}
+
+animations
+{
+	idle cube_CampFire.skc
+	start cube_CampFire.skc
+	{
+		client
+		{
+		enter blockdlight 732 0.16
+		(
+			color 1.0 0.88 0.65
+			colorvelocity -6 -6 -6
+			scalerate -1.0
+			offset 0 0 56
+		)
+		enter blockdlight 471 1.90
+		(
+			color 1.0 0.5 0.2
+			colorvelocity -0.7 -0.45 -0.2
+			scalerate -0.5
+			offset 0 0 70
+		)
+		enter originspawn
+		(
+			model cfx_fire_fb.spr
+			alpha 1.0
+			life 1.0
+			scale 1.050
+			offset 0 0 67
+		)
+		enter commanddelay 0.45 originspawn
+		(
+			model cfx_smoke_fb.spr
+			alpha 0.92
+			life 4.0
+			scale 1.330
+			offset 0 0 75
+			randvel 0 0 30
+			accel 0 0 14
+			fadein 0.4
+			fadedelay 2.6
+			color 0.58 0.56 0.54
+			spritegridlighting 
+		)
+		enter commanddelay 0.35 originspawn
+		(
+			model cfx_puff.spr
+			count 5
+			alpha 0.5
+			color 0.58 0.56 0.54
+			life 8 2
+			scale 0.770
+			scalerate 0.2
+			offset 0 0 70
+			randvel crandom 14 crandom 14 range 62 118
+			accel 0 0 6
+			fadein 0.6
+			fadedelay 3.5
+			spritegridlighting 
+		)
+		enter originspawn
+		(
+			model cfx_ember.spr
+			count 47
+			offset 0 0 42
+			randvel crandom 672 crandom 672 range 196 979
+			accel 0 0 -1400
+			life 0.9 0.5
+			scalemin 0.045
+			scalemax 0.11
+			color 1 0.78 0.4
+			alpha 1
+			fade 
+			collision 
+			bouncefactor 0.25
+		)
+		enter originspawn
+		(
+			model bh_dirt_piece.spr
+			count 1
+			offset 0 0 24
+			velocity 0 0 -600
+			life 0.3
+			alpha 0.8
+			fadein 0.3
+			collision 
+			bouncedecal 1 0
+			decalshader coop_scorch
+			decalradius 105
+			dietouch 
+		)
+		enter commanddelay 0.10 hazeburst 210 0.90 2.6
+		}
+	}
+}

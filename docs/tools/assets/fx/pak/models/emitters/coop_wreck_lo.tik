@@ -1,0 +1,77 @@
+TIKI
+setup
+{
+	scale 1.0
+	path models/fx/dummy
+	skelmodel dummy3.skd
+}
+
+init
+{
+	server
+	{
+		classname effectentity
+		notsolid
+		rendereffects +dontdraw
+	}
+	client
+	{
+originemitter flame
+		(
+			spawnrate 5.7
+			model cfx_flame.spr
+			fadein 0.12
+			fadedelay 0.64
+			alpha 1
+			life 1.07
+			scale 1.510
+			scalemin 0.9
+			scalemax 1.15
+			offset crandom 8 crandom 8 2
+			randvel crandom 3 crandom 3 range 0 10
+		)
+originemitter hz
+		(
+			hazespot 171 0.70
+		)
+originemitter col
+		(
+			spawnrate 3.7
+			model cfx_puff.spr
+			color 0.22 0.21 0.20
+			alpha 0.7
+			life 9.0 2.7
+			scale 0.605
+			scalerate 0.4
+			offset crandom 12 crandom 12 33
+			randvel crandom 10 crandom 10 range 49 99
+			accel crandom 8 crandom 8 16
+			fadein 0.8
+			fadedelay 5.4
+			spritegridlighting 
+		)
+	}
+}
+
+animations
+{
+	idle dummy3.skc
+	start dummy3.skc
+	{
+		client
+		{
+			enter emitteron flame
+			enter emitteron hz
+			enter emitteron col
+		}
+	}
+	stop dummy3.skc
+	{
+		client
+		{
+			enter emitteroff flame
+			enter emitteroff hz
+			enter emitteroff col
+		}
+	}
+}

@@ -1,0 +1,107 @@
+TIKI
+setup
+{
+	scale 1.0
+	path models/fx/dummy
+	skelmodel dummy3.skd
+}
+
+init
+{
+
+	server
+	{
+		classname effectentity
+		notsolid
+		rendereffects +dontdraw
+	}
+	client
+	{
+		cache cfx_flame.spr
+		cache cfx_puff.spr
+		cache cfx_ember.spr
+originemitter flame
+		(
+			spawnrate 3.6
+			model cfx_flame.spr
+			fadein 0.12
+			fadedelay 0.64
+			alpha 1
+			life 1.07
+			scale 0.880
+			scalemin 0.9
+			scalemax 1.15
+			offset crandom 4 crandom 4 2
+			randvel crandom 3 crandom 3 range 0 10
+		)
+originemitter embers
+		(
+			spawnrate 8.5
+			model cfx_ember.spr
+			color 1 0.62 0.22
+			alpha 1
+			life 2.2 1.2
+			scale 0.011
+			scalemin 0.7
+			scalemax 1.6
+			offset crandom 5 crandom 5 10
+			randvel crandom 28 crandom 28 range 40 120
+			accel crandom 14 crandom 14 36
+			friction 0.35
+			fadedelay 1.2
+			fade 
+		)
+originemitter smoke
+		(
+			spawnrate 1.8
+			model cfx_puff.spr
+			color 0.30 0.28 0.27
+			alpha 0.5
+			life 5.5 1.5
+			scale 0.595
+			scalerate 0.3
+			offset crandom 6 crandom 6 81
+			randvel crandom 8 crandom 8 range 28 48
+			accel crandom 10 crandom 10 14
+			fadein 0.6
+			fadedelay 3
+			spritegridlighting 
+		)
+originemitter lt
+		(
+			firelight 1.0 0.5 0.18 470 0.22
+			offset 0 0 38
+		)
+originemitter hz
+		(
+			hazespot 104 0.80
+		)
+	}
+}
+
+animations
+{
+	idle dummy3.skc
+	start dummy3.skc
+	{
+		client
+		{
+			enter emitteron flame
+			enter emitteron embers
+			enter emitteron smoke
+			enter emitteron lt
+			enter emitteron hz
+		}
+	}
+	stop dummy3.skc
+	{
+		client
+		{
+			enter emitteroff flame
+			enter emitteroff embers
+			enter emitteroff smoke
+			enter emitteroff lt
+			enter emitteroff hz
+		}
+	}
+}

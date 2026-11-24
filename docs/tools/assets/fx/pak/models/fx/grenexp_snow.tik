@@ -1,0 +1,138 @@
+TIKI
+// HZM coop [v1.10.62] user 2026-11-03: explosions on snow should lift more snow. Stock mainta grenexp_snow with a taller
+// spray, twice the clumps thrown higher, a fuller cloud, and a powder column that hangs.
+// [v1.10.63] the cloud is white powder (it was vsssource_new, a grey smoke puff, lit darker still by spritegridlighting) and fades out instead of popping;
+// No dirt card (stock mortar_dirtHit: a dark billow over the snow and brown flecks); the snow card is unlit white (grid lighting made its big scrolling
+// card a dark billow in the station's shade) and fades instead of popping. The clumps likewise: grid-lit, they lay on the snow for
+// 1.5 s as dark grey blobs and then popped; now unlit white, 1.2 s, fading.
+// the powder uses coop_snowPlume (scripts/coop_snowfx.shader): the stock plume shader darkened to a black smudge as it faded.
+setup
+{
+	scale 1.0
+	path models/fx/dummy
+	skelmodel dummy2.skd
+}
+ 
+init
+{
+	client
+	{
+		cache mortar_snowHit.spr
+		cache snowclump.spr
+		cache coop_snowPlume.spr
+		cache gren_boom.spr
+
+		sfx sound grenade_explode
+
+	//[v1.10.64] the blast itself. On snow the engine (cg_parsemsg.cpp, coop_snowBlastSoot 0) no longer plays the HD base blast
+	//(grenexp_base: its 32 dark grid-lit soot puffs faded in ~1 s later as a grey billow over the snow), so the flash, the fireball
+	//and the two lights it carried are here - and the white powder below is the smoke.
+		delayedsfx 0.1 blockdlight 300 0.25
+		(
+			color 0.7 0.7 0.7
+			colorvelocity -2.2 -2.2 -2.2
+			scalerate -1.0
+		)
+		sfx blockdlight 250 0.65
+		(
+			color 0.89 0.9 0.8039
+			colorvelocity -0.5 -0.5 -0.5
+			scalerate -0.6
+		)
+		sfx originspawn
+		(
+			model gren_boom.spr
+			randvel 0 0 20
+			alpha 1.0
+			life 0.35
+			scale .5
+			fadedelay 0.5
+		)
+
+	//Large card with scrolling texture -SNOW-
+		sfx originspawn
+		(
+			model mortar_snowHit.spr
+			color 0.95 0.95 0.97
+			count 1
+			life 1.8
+			scale .1
+			scalerate 8
+			randvel 0 0 330
+			accel 0 0 -1500
+			offset 0 0 48
+			fadedelay .8
+			fade
+			physicsrate every
+		)
+
+
+	//  Cloudy material
+		sfx originspawn
+		(
+			count 14
+			model coop_snowPlume.spr
+			color 0.95 0.95 0.97
+			alpha .4
+			offset crandom 8 crandom 8 range -9 48
+			angles crandomr 45 crandom 45 crandom 360
+			randvel crandom 40 crandom 40 range 90 30
+			clampvel -75 75 -75 75 -200 99999
+			avelocity 0 0 crandom 180
+			accel 0 0 -300
+			life 3 .8
+			scalemin .3
+			scalemax .55
+			scalerate 2.5
+			fadedelay 1.2
+			fade
+		)
+
+
+	//Separate chunks of snow		
+		sfx originspawn
+		(
+			spawnrange 750
+			model snowclump.spr
+			color 0.9 0.9 0.92
+			count 22
+			alpha 0.85
+			scale 0.15
+			life 1.2
+			randvel crandom 140 crandom 140 range 180 480
+			accel 0 0 -2000
+			offset crandom 10 crandom 10 random 20
+			angles 10 10 10
+			avelocity crandom 400 crandom 400 crandom 300
+			scalemin 0.25
+			scalemax 0.5
+			fadedelay .6
+			fade
+		)
+
+	//[v1.10.62] the powder column that hangs over the blast
+		sfx originspawn
+		(
+			model coop_snowPlume.spr
+			count 8
+			life 2.6
+			alpha .55
+			scalerate 2.2
+			offset crandom 16 crandom 16 range 0 24
+			randvel crandom 35 crandom 35 range 120 220
+			accel 0 0 -180
+			friction 1.2
+			angles 0 0 crandom 90
+			avelocity 0 0 crandom 40
+			scalemin .35
+			scalemax .6
+			fadedelay .6
+			fade
+		)
+	}
+}
+
+animations
+{
+	idle dummy2.skc
+}

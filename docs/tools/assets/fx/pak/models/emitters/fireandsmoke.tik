@@ -1,0 +1,108 @@
+TIKI
+setup
+{
+	scale 1
+	path models/fx/fire
+	skelmodel fire.skd
+	surface front shader fire_front
+	surface middle shader fire_middle
+	surface back shader fire_back
+}
+
+init
+{
+
+	server
+	{
+			classname effectentity
+	}
+	client
+	{
+		cache cfx_puff.spr
+		cache cfx_flame.spr
+		cache cfx_ember.spr
+originemitter flame
+		(
+			spawnrate 3.3
+			model cfx_flame.spr
+			fadein 0.12
+			fadedelay 0.64
+			alpha 1
+			life 1.07
+			scale 0.790
+			scalemin 0.9
+			scalemax 1.15
+			offset crandom 4 crandom 4 2
+			randvel crandom 3 crandom 3 range 0 10
+		)
+originemitter embers
+		(
+			spawnrate 8.0
+			model cfx_ember.spr
+			color 1 0.62 0.22
+			alpha 1
+			life 2.2 1.2
+			scale 0.011
+			scalemin 0.7
+			scalemax 1.6
+			offset crandom 4 crandom 4 10
+			randvel crandom 28 crandom 28 range 40 120
+			accel crandom 14 crandom 14 36
+			friction 0.35
+			fadedelay 1.2
+			fade 
+		)
+originemitter lt
+		(
+			firelight 1.0 0.5 0.18 318 0.20
+			offset 0 0 34
+		)
+originemitter hz
+		(
+			hazespot 86 0.60
+		)
+originemitter col
+		(
+			spawnrate 3.5
+			model cfx_puff.spr
+			color 0.30 0.29 0.28
+			alpha 0.8
+			life 7.0 2.1
+			scale 0.550
+			scalerate 0.4
+			offset crandom 12 crandom 12 30
+			randvel crandom 10 crandom 10 range 45 90
+			accel crandom 8 crandom 8 16
+			fadein 0.8
+			fadedelay 4.2
+			spritegridlighting 
+		)
+	}
+}
+
+animations
+{
+	idle fire.skc
+	start fire.skc
+	{
+		client
+		{
+			enter emitteron flame
+			enter emitteron embers
+			enter emitteron lt
+			enter emitteron hz
+			enter emitteron col
+		}
+	}
+	stop fire.skc
+	{
+		client
+		{
+			enter emitteroff flame
+			enter emitteroff embers
+			enter emitteroff lt
+			enter emitteroff hz
+			enter emitteroff col
+		}
+	}
+}

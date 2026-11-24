@@ -1,0 +1,36 @@
+{
+  "_doc": "Phase 0 A/B on m5l2b (day, the fx_1025 road spot): A = shipped v1.10.91, B = + the staged Phase 0 fx pak + the smokefire-eng gl2 renderer. Real cgame explosion path for the grenade / bazooka / heavy shell (server Explosion -> CG_MakeExplosionEffect -> models/fx/<kind>exp_<surface>).",
+  "loadwait": 90, "postload": 8,
+  "variants": {
+    "A": {"paks": [], "sets": ["set r_hzmSpriteStats 1"]},
+    "B": {"paks": ["H:/hzm_work/smokefire/paks/zzzzzzzzzzzzz_coop_fx.pk3"],
+          "bins": {"renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll"},
+          "sets": ["set r_hzmSpriteStats 1"]}
+  },
+  "pre": [],
+  "shots": [
+    {"name": "warm", "at": [2711, -5700, -71], "cam": {"yaw": 270, "dist": 300, "h": 25, "look_h": 60},
+     "fx": [{"model": "models/fx/f1grenadeexplosion.tik", "kind": "expl"}], "times": [400], "settle": 1500, "clear": 4000},
+    {"name": "grenade", "at": [2711, -5700, -71], "cam": {"yaw": 270, "dist": 300, "h": 25, "look_h": 60},
+     "fx": [{"model": "models/fx/f1grenadeexplosion.tik", "kind": "expl"}],
+     "times": [3000, 5000], "burst": {"every": 100, "n": 25}, "settle": 1500, "clear": 5000},
+    {"name": "bazooka", "at": [2711, -5700, -71], "cam": {"yaw": 270, "dist": 330, "h": 25, "look_h": 70},
+     "fx": [{"model": "models/fx/bazookaexplosion.tik", "kind": "expl"}],
+     "times": [3000, 5000], "burst": {"every": 100, "n": 25}, "settle": 1500, "clear": 5000},
+    {"name": "heavyshell", "at": [2711, -5700, -71], "cam": {"yaw": 270, "dist": 380, "h": 25, "look_h": 80},
+     "fx": [{"model": "models/fx/explosionpzb41shell.tik", "kind": "expl"}],
+     "times": [3000, 5000], "burst": {"every": 150, "n": 20}, "settle": 1500, "clear": 5000},
+    {"name": "stoneblast", "at": [2711, -5700, -71], "cam": {"yaw": 270, "dist": 380, "h": 25, "look_h": 80},
+     "fx": [{"model": "models/fx/heavyshellexp_stone.tik", "kind": "sm", "life": 6}],
+     "times": [300, 800, 1500, 3000], "settle": 1500, "clear": 4000},
+    {"name": "fire", "at": [2711, -5700, -71], "cam": {"yaw": 270, "dist": 380, "h": 135, "look_h": 40},
+     "fx": [{"model": "models/emitters/fire.tik", "kind": "em", "life": 9}],
+     "times": [2500], "burst": {"every": 100, "n": 30}, "settle": 1500, "clear": 9000},
+    {"name": "firegood", "at": [2711, -5700, -71], "cam": {"yaw": 270, "dist": 380, "h": 135, "look_h": 40},
+     "fx": [{"model": "models/emitters/firegood.tik", "kind": "em", "life": 9}],
+     "times": [2500], "burst": {"every": 100, "n": 30}, "settle": 1500, "clear": 9000},
+    {"name": "barracks", "at": [2711, -5700, -71], "cam": {"yaw": 270, "dist": 700, "h": 60, "look_h": 200},
+     "fx": [{"model": "models/emitters/barracks_explosion.tik", "kind": "em", "life": 7}],
+     "times": [300, 800, 1500, 2500, 4000, 6000], "settle": 1500, "clear": 4000}
+  ]
+}

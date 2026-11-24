@@ -1,0 +1,108 @@
+TIKI
+setup
+{
+	scale 1.0
+	path models/fx/dummy
+	skelmodel dummy2.skd
+}
+
+init
+{
+
+	client
+	{
+		cache cfx_fire_tk.spr
+		cache cfx_smoke_tk.spr
+		cache cfx_puff.spr
+		cache cfx_ember.spr
+		sfx blockdlight 753 0.16
+		(
+			color 1.0 0.88 0.65
+			colorvelocity -6 -6 -6
+			scalerate -1.0
+			offset 0 0 58
+		)
+		sfx blockdlight 484 1.92
+		(
+			color 1.0 0.5 0.2
+			colorvelocity -0.7 -0.45 -0.2
+			scalerate -0.5
+			offset 0 0 72
+		)
+		sfx originspawn
+		(
+			model cfx_fire_tk.spr
+			alpha 1.0
+			life 1.6
+			scale 0.899
+			offset 0 0 69
+		)
+		delayedsfx 0.50 originspawn
+		(
+			model cfx_smoke_tk.spr
+			alpha 0.92
+			life 7.0
+			scale 1.740
+			offset 0 0 78
+			randvel 0 0 31
+			accel 0 0 14
+			fadein 0.4
+			fadedelay 5.0
+			color 0.55 0.52 0.50
+			spritegridlighting 
+		)
+		delayedsfx 0.35 originspawn
+		(
+			model cfx_puff.spr
+			count 5
+			alpha 0.5
+			color 0.55 0.52 0.50
+			life 8 2
+			scale 0.797
+			scalerate 0.2
+			offset 0 0 72
+			randvel crandom 14 crandom 14 range 65 123
+			accel 0 0 6
+			fadein 0.6
+			fadedelay 3.5
+			spritegridlighting 
+		)
+		sfx originspawn
+		(
+			model cfx_ember.spr
+			count 49
+			offset 0 0 43
+			randvel crandom 696 crandom 696 range 203 1015
+			accel 0 0 -1400
+			life 0.9 0.5
+			scalemin 0.045
+			scalemax 0.11
+			color 1 0.78 0.4
+			alpha 1
+			fade 
+			collision 
+			bouncefactor 0.25
+		)
+		sfx originspawn
+		(
+			model bh_dirt_piece.spr
+			count 1
+			offset 0 0 24
+			velocity 0 0 -600
+			life 0.3
+			alpha 0.8
+			fadein 0.3
+			collision 
+			bouncedecal 1 0
+			decalshader coop_scorch
+			decalradius 108
+			dietouch 
+		)
+		delayedsfx 0.10 hazeburst 217 0.90 2.7
+	}
+}
+
+animations
+{
+	idle dummy2.skc
+}

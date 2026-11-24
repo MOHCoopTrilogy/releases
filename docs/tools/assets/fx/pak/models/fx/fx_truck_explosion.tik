@@ -1,0 +1,155 @@
+TIKI
+setup
+{
+	scale 1.00
+	path models/fx/dummy
+	skelmodel dummy2.skd
+}
+
+init
+{
+
+	client
+	{
+		cache cfx_fire_tk.spr
+		cache cfx_smoke_tk.spr
+		cache cfx_puff.spr
+		cache cfx_ember.spr
+	}
+}
+
+animations
+{
+	aaaa dummy2.skc
+	idle dummy2.skc
+	{
+		client
+		{
+enter commanddelay .2 originspawn
+			(
+				model models/fx/bp_debris1.tik
+				count 8
+				varycolor
+				life 2.5
+				scalerate .3
+				radius 3
+				radialvelocity 50 0 20
+				randvel crandom 5 crandom 5 range 10 30
+				accel 0 0 -850
+				offset crandom 10 crandom 10 random 10
+				angles crandom 180 crandom 180 crandom 180
+				avelocity crandom 50 crandom 50 crandom 70
+				scalemin .1
+				scalemax .6
+				)
+enter commanddelay .5 originspawn
+			(
+				model models/fx/heavy_pipe.tik
+				count 6
+				varycolor
+				life 2
+				randvel crandom 60 crandom 60 range 100 200
+				accel 0 0 -500
+				offset crandom 20 crandom 20 random 20
+				angles crandom 180 crandom 180 crandom 180
+				avelocity crandom 300 crandom 60 range 60 90
+				scalemin .08
+				scalemax .2
+				sphere
+				randomroll
+				)
+enter commanddelay .5 originspawn
+			(
+				model models/fx/gas_mushroom_cloud.tik
+				randvel 0 0 200
+				offset 0 0 40
+				life 2
+				fadein 2
+			)
+		enter blockdlight 815 0.16
+		(
+			color 1.0 0.88 0.65
+			colorvelocity -6 -6 -6
+			scalerate -1.0
+			offset 0 0 64
+		)
+		enter blockdlight 524 2.00
+		(
+			color 1.0 0.5 0.2
+			colorvelocity -0.7 -0.45 -0.2
+			scalerate -0.5
+			offset 0 0 80
+		)
+		enter originspawn
+		(
+			model cfx_fire_tk.spr
+			alpha 1.0
+			life 1.6
+			scale 0.992
+			offset 0 0 76
+		)
+		enter commanddelay 0.50 originspawn
+		(
+			model cfx_smoke_tk.spr
+			alpha 0.92
+			life 7.0
+			scale 1.920
+			offset 0 0 86
+			randvel 0 0 35
+			accel 0 0 14
+			fadein 0.4
+			fadedelay 5.0
+			color 0.50 0.48 0.47
+			spritegridlighting 
+		)
+		enter commanddelay 0.35 originspawn
+		(
+			model cfx_puff.spr
+			count 6
+			alpha 0.5
+			color 0.50 0.48 0.47
+			life 8 2
+			scale 0.880
+			scalerate 0.2
+			offset 0 0 80
+			randvel crandom 14 crandom 14 range 72 136
+			accel 0 0 6
+			fadein 0.6
+			fadedelay 3.5
+			spritegridlighting 
+		)
+		enter originspawn
+		(
+			model cfx_ember.spr
+			count 54
+			offset 0 0 48
+			randvel crandom 768 crandom 768 range 224 1120
+			accel 0 0 -1400
+			life 0.9 0.5
+			scalemin 0.045
+			scalemax 0.11
+			color 1 0.78 0.4
+			alpha 1
+			fade 
+			collision 
+			bouncefactor 0.25
+		)
+		enter originspawn
+		(
+			model bh_dirt_piece.spr
+			count 1
+			offset 0 0 24
+			velocity 0 0 -600
+			life 0.3
+			alpha 0.8
+			fadein 0.3
+			collision 
+			bouncedecal 1 0
+			decalshader coop_scorch
+			decalradius 119
+			dietouch 
+		)
+		enter commanddelay 0.10 hazeburst 240 0.90 2.8
+		}
+	}
+}

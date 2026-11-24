@@ -1,0 +1,8294 @@
+[
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites corona_reg,vsssource; spawns bh_metal_fastpiece.tik",
+"family": "sparks",
+"health": [],
+"id": "tik:models/emitters/adamspark.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites air_explosion,vsssource2; spawns ibeam_piece.tik,metal_section.tik",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/aircraft_explosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites air_explosion,vsssource,vsssource2; spawns metal_section.tik",
+"family": "set-piece blast",
+"health": [
+"parens +2"
+],
+"id": "tik:models/emitters/barracks_explosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites corona_util,vsssource; spawns bh_metal_fastpiece.tik",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/blowtorch_cutter.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/breath_emitter.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/breath_steam_emitter.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites dustdrop",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/bunker_dust.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; spawns c47_particle.tik",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/c47_fleet.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehao_candellight_02; surfaces candle_standing_t",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/candle_standing_fire.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites mortar_dirthit,mortar_snowhit,snowclump,vsssource_new; lights 3",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/ces3_concrete.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites mortar_dirthit,snowclump,vsssource_new; spawns mortar_dirt_dustcloud.tik; lights 3",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/ces3_dirt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites mortar_dirthit,mortar_snowhit,snowclump,vsssource_new; lights 5",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/ces3_snow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites smokegrenade; lights 1",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/cheapsmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehaodebris_01,textures/effects/woodsplinters,vsssource",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/cinematics_bigdust.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,burst,puffystuff_light,thrownstone2; lights 1",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/cinematics_camexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites grndblst1,tehaosmoke_light,thrownstone2; spawns cinematics_smoketrail.tik",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/cinematics_explosion01.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites cinematicexplosion_02",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/cinematics_explosion02.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehaosmoke_light",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/cinematics_falling.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites cinematic_sparks,vsssource; surfaces smoketrail_fire",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/cinematics_firetrail.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,grndblst1,mortar_dirthit,vsssource; lights 1",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/cinematics_foregroundexplosion01.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,grndblst1,mortar_dirthit,vsssource; lights 1",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/cinematics_foregroundexplosion02.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,grndblst1,mortar_dirthit,puffystuff_light...; lights 1",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/cinematics_foregroundexplosion03.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,cinematic_sparks,gren_explosion",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/cinematics_groundexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/cinematics_groundsmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; spawns cinematics_firetrail.tik,cinematics_smoketrail.tik",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/cinematics_shootsmoke.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites shootsparks; spawns cinematics_smoketrail.tik",
+"family": "sparks",
+"health": [],
+"id": "tik:models/emitters/cinematics_shootsparks.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehaodebris_01,vsssource",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/cinematics_sidedust.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites smoketrail_fire,vsssource; surfaces smoketrail_fire",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/cinematics_smoketrail.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource; spawns concrete1.tik,concrete2.tik",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/concjibs_1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites sandstorm01,sandstorm02,sandstorm_gust; surfaces coop_dustveil_day",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/coop_dustveil_day.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites sandstorm01,sandstorm02,sandstorm_gust; surfaces coop_dustveil_night",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/coop_dustveil_night.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites ; surfaces coop_dustveil_rain",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/coop_dustveil_rain.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites ; surfaces coop_dustveil_rainnight",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/coop_dustveil_rainnight.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites ; surfaces coop_dustveil_snow",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/coop_dustveil_snow.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites ; surfaces coop_dustveil_snownight",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/coop_dustveil_snownight.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_fin_flame,cfx_fin_flame_b,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/coop_fin_fire_big.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_fin_flame,cfx_fin_flame_b,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/coop_fin_fire_m.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_fin_flame,cfx_fin_flame_b,cfx_puff; lights 1",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/coop_fin_fire_s.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/coop_fire_l.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/coop_fire_m.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/coop_fire_s.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,vsssource; lights 1",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/coop_fl_mine.tik",
+"kind": "tik",
+"reason": "Frontline mission effect - fidelity path (converter)",
+"status": "excluded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites campfire_01,tehaosmoke_dark,tehaosmoke_light",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/coop_planesmoke_trail.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_puff; lights 1",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/coop_smokecol.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites vsssource; lights 1",
+"family": "smoke grenade",
+"health": [],
+"id": "tik:models/emitters/coop_smokescreen.tik",
+"kind": "tik",
+"reason": "Omaha only (m3l1a smoke barrage) - user 2026-11-24: Omaha stays excluded",
+"status": "excluded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/coop_wreck.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_flame,cfx_puff; lights 1",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/coop_wreck_lo.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_fire_fb; lights 3",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/coop_wreck_pops.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/ddaysmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/ddaysmoke2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_puff; lights 1",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/debris_smoke.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites electric",
+"family": "sparks",
+"health": [],
+"id": "tik:models/emitters/electric_arc.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites corona_reg,corona_util,vsssource; spawns bh_metal_fastpiece.tik",
+"family": "sparks",
+"health": [],
+"id": "tik:models/emitters/electric_panelmelt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites corona_util,vsssource; spawns bh_metal_fastpiece.tik",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/electrical_fire.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_dust,cfx_ember,cfx_fire_fb...; spawns explosion_bombdirt_shockwave.tik; lights 5",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/explosion_bombdirt.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/explosion_bombmetalwall.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/explosion_bombwall.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/explosion_bridge.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites explosed2,vsssource",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/explosion_conflagration.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; spawns explosion_mine_shockwave.tik; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/explosion_mine.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3"
+],
+"detail": "sprites dirtcloud,vsssource",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/explosion_mine_shockwave.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; spawns explosion_tank_sideplume.tik; lights 4",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/explosion_tank.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; spawns higgins_mushroom.tik; lights 4",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/explosion_tank2.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,campfire_01,campfire_03,tehaosmoke_dark",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/explosion_tank_sideplume.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/fancyfire.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/fire.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; surfaces fire_back,fire_front,fire_middle; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/fireandsmoke.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites fireball_pj",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/fireball_matrix.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/firefill.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites firefly",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/fireflies.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/firegood.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites fire_ring",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/firescreen.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_puff; lights 1",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/firesmoke.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites bh_dirt_piece,grndblst1,mortar_dirthit,vsssource; spawns explosion_mine_shockwave.tik; lights 2",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/fx_explosion_mine.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,puffystuff_light,thrownstone2; spawns fx_smoketrail_concrete.tik",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/generalblast_concrete.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,puffystuff_dark,thrownstone1; spawns fx_smoketrail_dirt.tik",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/generalblast_dirt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3"
+],
+"detail": "sprites corona_white; spawns bh_metal_fastpiece.tik",
+"family": "sparks",
+"health": [],
+"id": "tik:models/emitters/generic_spark.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites corona_white; spawns bh_metal_fastpiece.tik",
+"family": "sparks",
+"health": [],
+"id": "tik:models/emitters/generic_spark_big_pulse.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites corona_util; spawns bh_metal_fastpiece.tik",
+"family": "sparks",
+"health": [],
+"id": "tik:models/emitters/generic_spark_small.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; lights 4",
+"family": "grenade",
+"health": [],
+"id": "tik:models/emitters/gren_exp.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_dirt_piece,mortar_dirthit,tehaosmoke_light,vsssource; spawns groundexplosion_shockwave.tik; lights 1",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/groundexplosion_e1l1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites dirtcloud,vsssource",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/groundexplosion_shockwave.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss fire",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/hexsmoke01.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/higgins_mushroom.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/inferno.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites willys_dust",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/js_dust_puff.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites willys_dirt,willys_dust",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/js_wheel_dirt_plume.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites willys_dust",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/js_wheel_dust_plume.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites corona_reg; spawns bh_metal_fastpiece.tik",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/lanternflame.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/linger_smoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/linger_smoke02.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss smokegrenade",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/m1dust1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss smokegrenade",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/m1dust2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss smokegrenade",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/m1dust3.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites snowplume_01",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/maltasmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; spawns heavy_pipe.tik,ibeam_piece.tik",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/metaljibs_1.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; spawns heavy_pipe.tik,ibeam_piece.tik",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/metaljibs_2.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_dust,cfx_ember,cfx_fire_fb...; spawns chunkcrete.tik,concrete2.tik,rebarblock.tik; lights 5",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_concrete.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_dust,cfx_ember,cfx_fire_fb...; lights 5",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_dirt.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites bh_dirt_piece,vsssource; lights 1",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_dirt_dustcloud.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3"
+],
+"detail": "sprites dirtplume,mortar_dirthit,mortar_dirthit2; spawns mortar_dirt_dustcloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_dirt_nebelwerfer.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,snowclump,vsssource_new; spawns mortar_dirt_dustcloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_dirt_nodamage.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3"
+],
+"detail": "sprites dirtplume,mortar_dirthit,mortar_dirthit2; vss mist; spawns mortar_dirt_dustcloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_dirt_nosound.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,vsssource; spawns bh_wood_piece.tik,wood_flap.tik,woodbeams.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_hay.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_dust,cfx_ember,cfx_fire_fb...; spawns higgins_mushroom.tik; lights 5",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_higgins.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_dust,cfx_ember,cfx_fire_fb...; lights 5",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snow.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snow_cloud.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_snowhit; spawns mortar_dirt_dustcloud.tik,mortar_snow_cloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snow_combo.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_snowhit; spawns mortar_dirt_dustcloud.tik,mortar_snow_cloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snow_old1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,mortar_snowhit,snowclump...; spawns mortar_dirt_dustcloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snow_old2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites snowclump",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snow_playereffect.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,mortar_snowhit,snowclump...; spawns mortar_dirt_dustcloud.tik; lights 2",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snow_t2l2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,mortar_snowhit,snowclump...; spawns mortar_dirt_dustcloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snow_triggerable.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,mortar_snowhit,vsssource_new; spawns mortar_dirt_dustcloud.tik; lights 7",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snowdeadly.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_snowhit; spawns mortar_dirt_dustcloud.tik,mortar_snow_cloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snowdeadly2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_snowhit; spawns mortar_dirt_dustcloud.tik,mortar_snow_cloud.tik,mortar_snow_playereffect.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snowdeadly_mark.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_dirt_piece,dustdrop,snowclump,vsssource; spawns mortar_snow.tik; lights 1",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snowhit.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_dirt_piece,dustdrop,snowclump,vsssource; spawns mortar_snow.tik; lights 1",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snowhitnodamage.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,mortar_snowhit,snowclump...; spawns mortar_dirt_dustcloud.tik; lights 9",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_snownodamage.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_dust,cfx_ember,cfx_fire_fb...; spawns bh_wood_piece.tik,woodbeams.tik; lights 5",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_tree.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites gren_boom,vsssource; spawns bh_wood_piece.tik,wood_flap.tik,woodbeams.tik; lights 3",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/mortar_tree_t2l2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,mortar_snowhit,snowclump...; spawns mortar_dirt_dustcloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/nebel_snowexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites dirtplume,mortar_dirthit,mortar_dirthit2; vss mist; spawns mortar_dirt_dustcloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/nebelwerfer_death.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_puff; lights 1",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/norbigstacksmoke.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/pipe_steam.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/plane_smoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss greasefire",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/planesmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss greasefire",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/planesmokefly.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss steam",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/planesmokeplume.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss steam",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/planesmokeplumered.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss steam",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/planesmokeplumeyellow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/residual_fire.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites fire_ring2,vsssource",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/emitters/rocketgood.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; spawns roof_popper2.tik,wood_brace.tik,wood_latice.tik",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/roof_popper.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource; spawns stickblock.tik",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/roof_popper2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource; spawns wood_brace.tik,wood_latice.tik,woodbeams.tik",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/rooflift_pj.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss greasefire",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/senn_smokey.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/sennsfence.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/shermansmoke.tik",
+"kind": "tik",
+"reason": "Omaha only (m3l1a coopified + precache) - user 2026-11-24: Omaha stays excluded",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss greasefire",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/short_grey_fat_trans.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; surfaces sm_explosion_01,sm_explosion_02,sm_explosion_03",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/sm_explosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "artillery",
+"health": [],
+"id": "tik:models/emitters/smoke_airstrike_crater.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/smoke_smallfry.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss fire",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/smokestack1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/t2l4_fire.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss steam",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/emitters/tankdust.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss greasefire",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/tanksmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; spawns fx_smoketrail_concrete.tik; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/tehao_bridgeexplosion.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehao_candellight_02; surfaces candleholder",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/tehao_candleholder_withfire.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehao_candellight_02,vsssource; surfaces corona_spiky",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/tehao_candlelight.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/tehao_cheapfire.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites grndblst1,sandstorm01,tehaodebris_01,tehaosmoke_light...",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/tehao_e1l2_bigexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites sandstorm01,tehaodebris_01,tehaosmoke_light,vsssource; surfaces transparency",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/tehao_explosiondust.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; surfaces transparency; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/tehao_explosionwall.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites feather_01,feather_02,vsssource",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/tehao_feathers.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; surfaces transparency; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/tehao_fire.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_puff; lights 1",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/tehao_firesmoke.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehaosmoke_dark",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/tehao_firesmoke_collide.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_puff; lights 1",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/tehao_firesmoke_long.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_puff; lights 1",
+"family": "map fire",
+"health": [],
+"id": "tik:models/emitters/tehao_firesmoke_superlong.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites dirtcloud,mortar_dirthit,vsssource",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/tehao_minesweeperfx.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehaosmoke_light,thrownstone2,vsssource",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/tehao_pilarexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,vsssource; spawns sm_explosion.tik",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/tehao_skyexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/tehao_steampipe.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/tehao_steamysmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,campfire_01,grndblst1,tehaosmoke_light...; spawns bp_debris1.tik",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/emitters/tehao_tankcrashwall.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_puff; lights 1",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/tehao_thicksmoke.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_dirt_piece,grndblst1,mortar_dirthit,tehaosmoke_light...; lights 2",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/emitters/tehao_vineyardexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehaoripple,tehaoripple_sub; surfaces waterpuddle",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/tehao_waterpuddle.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehaoripple,tehaoripple_sub; surfaces waterpuddle",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/tehao_waterpuddle_big.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites tehaosmoke_dark",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/emitters/tehaosmoke_e1l1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss greasefire",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/thin_black_short.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss greasefire",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/thin_long_grey.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource2; spawns blockcrete.tik,concrete1.tik,shard_piece.tik",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/wallsplitter.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites corona_util,vsssource; spawns bh_metal_fastpiece.tik",
+"family": "sparks",
+"health": [],
+"id": "tik:models/emitters/welding_spark.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss greasefire",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/wide_dark_trans_tall.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss greasefire",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/emitters/wider_black_tall.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites muzzleblast_01,muzzlecharge,snowplume_01,trainspark_01",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/88_flakcanon.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites air_explosion,explosed,explosed2,vsssource; spawns bp_debris3.tik",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/barrel_gas_destroyed.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites gren_boom,vsssource; lights 3",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/bazookaexp_base.tik",
+"kind": "tik",
+"reason": "PLAN D1: our copy loses to zzzzzzzz_hd_fxfix since v1.10.37; the fix is staged (gen_fx_pak.py -> H:/hzm_work/smokefire/paks), awaiting the user's look sign-off - then flip to upgraded/expect coop_fx",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,snowclump,vsssource_new; spawns mortar_dirt_dustcloud.tik",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/bazookaexp_dirt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,mortar_snowhit,snowclump...",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/bazookaexp_snow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,puffystuff_light,thrownstone2; spawns fx_smoketrail_concrete.tik,fx_smoketrail_concrete_big.tik",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/bazookaexp_stone.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz-HRRTM_Pak4_Weapons.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites ; explosioneffect bazooka",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/bazookaexplosion.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites ; explosioneffect bazooka",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/bazookaexplosion_dm.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss bulletimpact; spawns bh_wood_piece.tik,bh_wood_puff.tik",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_carpet_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; spawns bh_wood_piece.tik,bh_wood_puff.tik",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_carpet_lite.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_dirt_piece,dustdrop; lights 1",
+"family": "impacts",
+"health": [
+"parens +1"
+],
+"id": "tik:models/fx/bh_dirt_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_dirt_piece,dustdrop; lights 1",
+"family": "impacts",
+"health": [
+"parens +1"
+],
+"id": "tik:models/fx/bh_dirt_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; spawns bh_foliage_leaf.tik",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_foliage_hard.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces bh_foliage_leaf",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_foliage_leaf.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; spawns bh_foliage_leaf.tik",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_foliage_lite.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites glass_small; spawns bh_stone_puff.tik",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_glass_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites glass_small; spawns bh_stone_puff.tik",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_glass_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_dirt_piece,dustdrop; spawns bh_grass_piece.tik; lights 2",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_grass_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_dirt_piece,dustdrop; spawns bh_grass_piece.tik; lights 2",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_grass_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces bh_grass_piece",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_grass_piece.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzzz-HRRTM_Blood_effects_Addon.pk3"
+],
+"detail": "sprites bodyhitpuff; spawns blood_long.tik",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_human_uniform_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzz-HRRTM_Blood_effects_Addon.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzzz-HRRTM_Blood_effects_Addon.pk3"
+],
+"detail": "sprites bodyhitpuff; spawns blood_long.tik",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_human_uniform_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzz-HRRTM_Blood_effects_Addon.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces bh_metal_fastpiece",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_metal_fastpiece.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_metal_spark,corona_util,vsssource; vss bulletimpact; spawns bh_metal_fastpiece.tik; lights 2",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_metal_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_metal_spark,corona_util,vsssource; vss bulletimpact; spawns bh_metal_fastpiece.tik; lights 2",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_metal_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_dirt_piece,dustdrop; lights 1",
+"family": "impacts",
+"health": [
+"parens +1"
+],
+"id": "tik:models/fx/bh_mud_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_dirt_piece,dustdrop; lights 1",
+"family": "impacts",
+"health": [
+"parens +1"
+],
+"id": "tik:models/fx/bh_mud_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites cardboard_light; vss bulletimpact; spawns bh_wood_puff.tik",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_paper_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_paper_lite.tik",
+"kind": "tik",
+"reason": "no sprite, no volumetric smoke, spawns nothing (solid debris / model only)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bh_sand,vsssource; lights 2",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_sand_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bh_sand,vsssource; lights 2",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_sand_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites coop_snowplume,snowclump,strafe_snowhit2",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_snow_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites coop_snowplume,snowclump",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_snow_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces bh_stone_fastpiece",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_stone_fastpiece.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_snow_puff1,bh_stone_piece,stonechip,vsssource; lights 3",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_stone_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_snow_puff1,bh_stone_piece,stonechip,vsssource; lights 3",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_stone_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites ; surfaces bh_stone_puff",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_stone_puff.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_water_ring,vsssource2,waterplume; lights 5",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_water_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_water_ring,vsssource2,waterplume; lights 5",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_water_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites smokegrenade; spawns bh_wood_piece.tik,bh_wood_puff.tik; lights 1",
+"family": "impacts",
+"health": [
+"parens +1"
+],
+"id": "tik:models/fx/bh_wood_hard.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites smokegrenade; spawns bh_wood_piece.tik,bh_wood_puff.tik; lights 1",
+"family": "impacts",
+"health": [
+"parens +1"
+],
+"id": "tik:models/fx/bh_wood_lite.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces bh_wood_piece",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_wood_piece.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces bh_wood_puff",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_wood_puff.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites ; surfaces bh_wood_puff_simple",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/bh_wood_puff_simple.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites snowclump,snowplume_01",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/bikewheel_dirt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces blockcrete",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/blockcrete.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites smokegrenade; surfaces m18_smoke_gren; lights 1",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/bombabredaexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,bombblast_bigdirt,vsssource,vsssource_new; spawns fx_bombblast_rock.tik,fx_bombblast_rockblack.tik",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/bombblast_snow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces bp_debris1",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/bp_debris1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource; surfaces bp_debris2",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/bp_debris2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces bp_debris2g",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/bp_debris2g.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces bp_debris3",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/bp_debris3.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces bp_debris3g",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/bp_debris3g.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bigsplash,waterblast01",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/bridge_splash01.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bigsplash,waterblast01",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/bridge_splash02.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites snowplume_01",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/bridgedust.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,c47skytrain_burst1",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/c47_collision_fire.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites c47skytrain_burst1,c47skytrain_fiery",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/c47_collision_firespare.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites c47skytrain_smoke2,c47skytrain_smoke3",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/c47_collision_smoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/cannonsmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces concrete2",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/chunkcrete.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces concrete1",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/concrete1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces concrete2",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/concrete2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites vsssource; lights 1",
+"family": "muzzle",
+"health": [],
+"id": "tik:models/fx/coop_barrelsmoke.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_fire_fb,cfx_puff,cfx_smoke_fb; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/coop_blast_air.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/coop_blast_l.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/coop_blast_m.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/coop_blast_s.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/coop_blast_xl.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites coop_blood_drop,coop_bloodcloud",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/coop_bloodcloud.tik",
+"kind": "tik",
+"reason": "blood / gore, not smoke or fire",
+"status": "excluded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites vsssource; lights 2",
+"family": "muzzle",
+"health": [],
+"id": "tik:models/fx/coop_gunsmoke.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites ; spawns bh_metal_fastpiece.tik",
+"family": "sparks",
+"health": [],
+"id": "tik:models/fx/coop_hullspark.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"zzzzzzzzzz_coop_fixes.pk3",
+"zzzzzzzzzzzz_coop_fixes2.pk3"
+],
+"detail": "sprites vsssource; surfaces m18_smoke_gren; lights 1",
+"family": "smoke grenade",
+"health": [],
+"id": "tik:models/fx/coop_screensmoke.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzzzzzzzz_coop_fixes2.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites air_explosion,explosed,vsssource; spawns ibeam_piece.tik",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/coop_tank_explosion.tik",
+"kind": "tik",
+"reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; surfaces corona_brokenlight01",
+"family": "sparks",
+"health": [],
+"id": "tik:models/fx/corona_brokenlight01.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces crate-jibs",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/crates/crate-jib-chunk.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces crate-jibs",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/crates/crate-jib-plank.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces crate-jibs",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/crates/crate-jib-smallchunk.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces crate-jibs",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/crates/crate-jib-smallplank.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces crate-jibs",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/crates/crate-jib-splinter.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; spawns crate-jib-chunk.tik,crate-jib-plank.tik,crate-jib-smallchunk.tik",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/crates/debris_0.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; spawns crate-jib-chunk.tik,crate-jib-plank.tik,crate-jib-smallchunk.tik",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/crates/debris_1.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites cardboard_light; lights 1",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/crates/debris_2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+],
+"detail": "sprites ; spawns crate-jib-chunk.tik,crate-jib-plank.tik,crate-jib-smallchunk.tik",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/crates/debris_255.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3"
+],
+"detail": "sprites cardboard_light",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/crates/debris_3.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; explosioneffect grenade",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/deadlygrenadeexplosion.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,snowplume_01,trainspark_01",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/democharge_bridge.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites grenadefire,puffystuff_dark,trainspark_01",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/demodamage_flak88.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites generalfireball_01,generalspark_01,snowplume_01",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/dudimpact.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; spawns mortar_snow.tik; explosioneffect bazooka",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/exp_artshell_snowa.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; lights 4",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/exp_dynamic1.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; lights 4",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/exp_dynamic2.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_fire_fb,cfx_puff,cfx_smoke_fb; lights 4",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak88.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_fire_fb,cfx_puff,cfx_smoke_fb; lights 4",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_far.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_far1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_far2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_far3.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_fire_fb,cfx_puff,cfx_smoke_fb; lights 4",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_near.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,vsssource",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_near01.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,vsssource",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_near02.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,vsssource",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_near03.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites c47skytrain_fiery1,c47skytrain_fiery2,flak_cloud01,flak_cloud03...",
+"family": "flak",
+"health": [
+"parens -1"
+],
+"id": "tik:models/fx/exp_flak_near_moving.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites c47skytrain_fiery1,c47skytrain_fiery2,flak_cloud01,flak_cloud03...",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_near_v2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites c47skytrain_fiery1,c47skytrain_fiery2,flak_cloud01,flak_cloud03...",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_near_v3.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites flakflash_skybox,flaksmoke_skybox",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/exp_flak_skybox.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; lights 4",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/exp_general.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/exp_grenade_gen.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/exp_grenade_snow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/exp_nebelwerfer.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; lights 4",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/exp_tank_gen.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites explosed2,fire_ring,textures/effects/woodsplinters,vsssource; lights 2",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/exp_treeexplode.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; lights 4",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/exp_truck.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites ; spawns mortar_snow.tik; explosioneffect bazooka",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/explosionartilleryshell.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,puffystuff_light,thrownstone2; spawns fx_smoketrail_concrete.tik",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/explosionberlinbomb.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; spawns bh_foliage_leaf.tik",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/explosionfoliage.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"zzzzzz-HRRTM_Pak4_Weapons.pk3"
+],
+"detail": "sprites ; explosioneffect bazooka",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/explosionkingtigershell.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "3rd-party",
+"winner": "zzzzzz-HRRTM_Pak4_Weapons.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz-HRRTM_Pak4_Weapons.pk3"
+],
+"detail": "sprites ; explosioneffect bazooka",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/explosionpanzerivshell.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "3rd-party",
+"winner": "zzzzzz-HRRTM_Pak4_Weapons.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; explosioneffect bazooka",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/explosionpiatshell.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; explosioneffect heavyshell",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/explosionpzb41shell.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites ; explosioneffect heavyshell",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/explosionstukaround.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz-HRRTM_Pak4_Weapons.pk3"
+],
+"detail": "sprites ; explosioneffect bazooka",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/explosiontigershell.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "3rd-party",
+"winner": "zzzzzz-HRRTM_Pak4_Weapons.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites ; explosioneffect grenade",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/f1grenadeexplosion.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites fallingdirt",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/fallingdirt_narrow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites fallingdirt",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/fallingdirt_wide.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites bh_dirt_piece,dustdrop; lights 1",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/fs_dirt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; spawns bh_grass_piece.tik",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/fs_grass.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites dustdrop",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/fs_heavy_dust.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites dustdrop",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/fs_light_dust.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites bh_dirt_piece; lights 1",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/fs_mud.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites bh_water_ring; spawns water_splash_drop.tik; lights 5",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/fs_puddle.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss bulletdirtimpact",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/fs_sand.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites bh_snow_puff; lights 4",
+"family": "impacts",
+"health": [],
+"id": "tik:models/fx/fs_snow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; spawns bp_debris1.tik,ibeam_piece.tik; lights 4",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/fx_bike_explosion.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites vsssource; surfaces dirtdebris_01; lights 1",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/fx_bombblast_rock.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites snowplume_01; surfaces dirtdebris_01; lights 1",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/fx_bombblast_rockblack.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss bulletimpact",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/fx_cannonsmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites smokegrenade_german",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/fx_edsmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_fb,cfx_puff...; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/fx_explosion.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites ; vss fire",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/fx_fattysmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_fire_fb,cfx_puff,cfx_smoke_fb; spawns bp_debris1.tik,gas_mushroom_cloud.tik; lights 4",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/fx_flak88_explosion.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites air_explosion,explosed2,fire_ring,vsssource",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/fx_flying_stuka_explosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites explosion1,explshock,explsmoke; spawns explrock.tik,fx_spark.tik",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/fx_grenade_explosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; vss heavy",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/fx_lowsmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; surfaces miniaa",
+"family": "flak",
+"health": [],
+"id": "tik:models/fx/fx_miniaa.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource; surfaces bazookashell; spawns bazookaexplosion.tik; lights 1",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/fx_nebelwerfer.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; spawns pe8_particle.tik",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/fx_pe8_fleet.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/fx_smokeexample.tik",
+"kind": "tik",
+"reason": "no sprite, no volumetric smoke, spawns nothing (solid debris / model only)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites puffystuff_light; surfaces thrownstone3; lights 1",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/fx_smoketrail_concrete.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites puffystuff_light; surfaces concretedebris_01; lights 1",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/fx_smoketrail_concrete_big.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites puffystuff_dark; surfaces deathsod_01; lights 1",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/fx_smoketrail_dirt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; spawns bp_debris1.tik,exp_dynamic2.tik; lights 4",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/fx_stuka_explosion.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; spawns ibeam_piece.tik; lights 4",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/fx_tank_explosion.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/fx_trainsmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; spawns bp_debris1.tik,gas_mushroom_cloud.tik,heavy_pipe.tik; lights 4",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/fx_truck_explosion.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites explosed,oceanspray,water_g,waterplume; lights 4",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/fx_waterexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites vsssource; lights 3",
+"family": "muzzle",
+"health": [],
+"id": "tik:models/fx/garandsmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/gas_mushroom_cloud.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/gas_mushroom_column.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites ; explosioneffect bazooka",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/granatwerferexplosion.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; explosioneffect bazooka",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/granatwerferexplosion_far.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites snowplume_01; surfaces metaldebris_01",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/grenadetrail.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites gren_boom,vsssource; lights 3",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_base.tik",
+"kind": "tik",
+"reason": "PLAN D1: our copy loses to zzzzzzzz_hd_fxfix since v1.10.37; the fix is staged (gen_fx_pak.py -> H:/hzm_work/smokefire/paks), awaiting the user's look sign-off - then flip to upgraded/expect coop_fx",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites dirtplume,explosed,mortar_dirthit,mortar_dirthit2; vss mist; spawns bh_metal_fastpiece.tik; lights 1",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_carpet.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites dirtplume,explosed,mortar_dirthit,mortar_dirthit2; vss mist; spawns bh_metal_fastpiece.tik; lights 1",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_dirt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites explosed2,fire_ring,vsssource",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_fireball.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites dirtplume,explosed,mortar_dirthit,mortar_dirthit2; vss mist; spawns bh_metal_fastpiece.tik; lights 1",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_foliage.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites dirtplume,explosed,mortar_dirthit,mortar_dirthit2; vss mist; spawns bh_metal_fastpiece.tik; lights 1",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_grass.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites dirtplume,mortar_dirthit,mortar_dirthit2,stonechip; vss mist; spawns bh_metal_fastpiece.tik; lights 1",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_gravel.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites dirtplume,explosed; vss mist; spawns bh_metal_fastpiece.tik; lights 1",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_metal.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites dirtplume,explosed,mortar_dirthit,mortar_dirthit2; vss mist; spawns bh_metal_fastpiece.tik; lights 1",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_mud.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites explosed; vss mist; spawns bh_metal_fastpiece.tik; lights 1",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_paper.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites dirtplume,explosed,mortar_dirthit,mortar_dirthit2; vss mist; spawns bh_metal_fastpiece.tik; lights 1",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_sand.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3",
+"zzzzzz_hd_fx.pk3",
+"zzzzzzzz_hd_fxfix.pk3"
+],
+"detail": "sprites dirtplume,explosed,mortar_dirthit,mortar_dirthit2; vss mist; spawns bh_metal_fastpiece.tik; lights 1",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_snow.tik",
+"kind": "tik",
+"reason": "PLAN D1: our copy loses to zzzzzzzz_hd_fxfix since v1.10.37; the fix is staged (gen_fx_pak.py -> H:/hzm_work/smokefire/paks), awaiting the user's look sign-off - then flip to upgraded/expect coop_fx",
+"status": "todo",
+"winkind": "3rd-party",
+"winner": "zzzzzzzz_hd_fxfix.pk3"
+},
+{
+"chain": [
+"Pak0.pk3",
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites mortar_dirthit,mortar_snowhit,snowclump,vsssource_new; lights 3",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_stone.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites explosed,oceanspray,water_g,waterplume; lights 4",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_water.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; spawns bh_wood_piece.tik,wood_flap.tik,woodbeams.tik",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/grenexp_wood.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites air_explosion,gren_explosion",
+"family": "map fire",
+"health": [],
+"id": "tik:models/fx/hallfire2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; lights 4",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/heavyshellexp_base.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,snowclump,vsssource_new; spawns mortar_dirt_dustcloud.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/heavyshellexp_dirt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites snowclump,snowplume_02,strafe_snowhit2; lights 3",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/heavyshellexp_snow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,puffystuff_light,thrownstone2; spawns fx_smoketrail_concrete.tik,fx_smoketrail_concrete_big.tik",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/heavyshellexp_stone.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/hs_airplane_bullet_snow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/hs_airplane_strafe_snow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/hs_artillery_concrete.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/hs_artillery_dirt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/hs_artillery_snow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/hs_artillery_structure.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/hs_artillery_vehicle.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces lampflame",
+"family": "map fire",
+"health": [],
+"id": "tik:models/fx/lanternflame.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites ; surfaces m18_smoke_gren",
+"family": "smoke grenade",
+"health": [],
+"id": "tik:models/fx/m18_smoke_grenadeexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; explosioneffect grenade",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/m2fgrenadeexplosion.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites grenadefire,snowplume_01; spawns grenadetrail.tik; explosioneffect grenade",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/maingrenade.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites ; explosioneffect grenade",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/millsgrenadeexplosion.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,snowplume_01,splinter1,splinter2...; lights 3",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/mortarburst_tree.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces mortarhit",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/mortarhit.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites smokegrenade_german; surfaces germ_smoke_gren; lights 1",
+"family": "smoke grenade",
+"health": [],
+"id": "tik:models/fx/nebelhandgranateexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites puffystuff_dark,trainspark_01",
+"family": "artillery",
+"health": [],
+"id": "tik:models/fx/nebelwerfer_exhaust.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites smokegrenade_soviet; surfaces rdg-1_grenade; lights 1",
+"family": "smoke grenade",
+"health": [],
+"id": "tik:models/fx/rdg-1_smoke_grenadeexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak3.pk3",
+"pak1.pk3"
+],
+"detail": "sprites ; explosioneffect grenade",
+"family": "grenade",
+"health": [],
+"id": "tik:models/fx/riflegrenadeexplosion.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites bh_dirt_piece,grndblst1,mortar_dirthit,vsssource; spawns explosion_mine_shockwave.tik; lights 1",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/roof_banger.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; explosioneffect bazooka",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/scriptbazookaexplosion.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,emberblast,grenadefire,puffystuff_dark...",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/shelldamage_tank.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites smokegrenade_german; lights 1",
+"family": "smoke grenade",
+"health": [],
+"id": "tik:models/fx/signalsmoketrail.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites ; surfaces m2fraggrenade",
+"family": "smoke grenade",
+"health": [
+"missing $include models/fx/SmokeGrenadeExplosion_base.txt"
+],
+"id": "tik:models/fx/smokegrenadeexplosion.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites vsssource; lights 3",
+"family": "muzzle",
+"health": [],
+"id": "tik:models/fx/snipesmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites oceanspray",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/steamworks.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites snowclump,snowplume_02,strafe_snowhit2",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/strafe_snow1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites snowclump,snowplume_02,strafe_snowhit2",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/strafe_snow2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites snowclump,snowplume_02",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/strafe_snow3.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites enginesmoke_01,snowplume_01",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/supplytruck_dmg.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/fx/sustainedfire.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites cfx_ember,cfx_flame,cfx_puff; lights 2",
+"family": "map fire",
+"health": [],
+"id": "tik:models/fx/t2l4_fire.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge",
+"family": "muzzle",
+"health": [],
+"id": "tik:models/fx/tankcanon.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites muzzleblast_01,muzzlecharge,snowplume_01,trainspark_01",
+"family": "muzzle",
+"health": [],
+"id": "tik:models/fx/tankcanon2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites muzzleblast_01,muzzlecharge_02,snowplume_01",
+"family": "muzzle",
+"health": [],
+"id": "tik:models/fx/tankcanon_pov.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3",
+"zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+],
+"detail": "sprites bh_dirt_piece,cfx_ember,cfx_fire_tk,cfx_puff...; lights 4",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/tankexp_base.tik",
+"kind": "tik",
+"reason": "fx_1025 (v1.10.37)",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_assets_tey.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_dirthit,snowclump,vsssource_new",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/tankexp_dirt.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bh_snow_puff,mortar_snowhit; spawns mortar_snow_cloud.tik",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/tankexp_snow.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3",
+"pak1.pk3"
+],
+"detail": "sprites bridgecharge,puffystuff_light,thrownstone2; spawns fx_smoketrail_concrete.tik,fx_smoketrail_concrete_big.tik",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/tankexp_stone.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; explosioneffect bazooka",
+"family": "rocket/shell",
+"health": [],
+"id": "tik:models/fx/tankshellexplosion.tik",
+"kind": "tik",
+"reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/trainsmoke.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites trainspark_01",
+"family": "sparks",
+"health": [],
+"id": "tik:models/fx/trainsparks.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites trainspark_01",
+"family": "sparks",
+"health": [],
+"id": "tik:models/fx/trainsparks_collision.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites vsssource",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/trainsteam_collision.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites enginesmoke_01,trainspark_01",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/truckslide_drag.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites enginesmoke_01",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/truckslide_push.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites snowplume_01; lights 1",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/truckslide_push2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites puffystuff_dark,snowplume_01",
+"family": "smoke/steam",
+"health": [],
+"id": "tik:models/fx/trucksteam.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"pak1.pk3"
+],
+"detail": "sprites gren_explosion,vsssource; spawns gas_mushroom_cloud.tik",
+"family": "vehicle/aircraft",
+"health": [],
+"id": "tik:models/fx/veltro_explode2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites air_explosion,bh_stone_piece,fire_ring; spawns crate-jib-chunk.tik",
+"family": "set-piece blast",
+"health": [],
+"id": "tik:models/fx/wall_exploder.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites explosed,oceanspray,water_drop1,water_g",
+"family": "other smoke/fire (by content)",
+"health": [],
+"id": "tik:models/fx/waterhelper.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites glass_small",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/windows/debris_0.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites glass_small",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/windows/debris_1.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites glass_small",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/windows/debris_2.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites glass_small",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/windows/debris_3.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces wplumelarge",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/wplumelarge.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [
+"Pak0.pk3"
+],
+"detail": "sprites ; surfaces wplumesmall",
+"family": "dust/debris",
+"health": [],
+"id": "tik:models/fx/wplumesmall.tik",
+"kind": "tik",
+"reason": "retail look",
+"status": "todo",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [],
+"detail": "1 weapon tiks, e.g. it_w_k5des.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:campfire_01",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "1 weapon tiks, e.g. it_w_k5des.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:campfire_02",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "1 weapon tiks, e.g. it_w_k5des.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:campfire_03",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "1 weapon tiks, e.g. it_w_k5des.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:explosion_burst",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "2 weapon tiks, e.g. it_w_k5fx_02.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:gren_explosion",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "1 weapon tiks, e.g. it_w_k5des.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:puffystuff_dark",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "1 weapon tiks, e.g. it_w_k5des.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:puffystuff_light",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "8 weapon tiks, e.g. kar98_mortar.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:snowplume_01",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "1 weapon tiks, e.g. it_w_k5.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:snowplume_k5",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "1214 weapon tiks, e.g. 30calportable.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:vsssource",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "74 weapon tiks, e.g. ppsh_smg_ea.tik",
+"family": "muzzle",
+"health": [],
+"id": "weaponsmoke:vsssource2",
+"kind": "weapon smoke",
+"reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "renders VSSSource.spr / VSSSource2.spr (cg_volumetricsmoke.cpp:1167)",
+"family": "volumetric smoke",
+"health": [],
+"id": "vss:mist",
+"kind": "vss type",
+"reason": "volumetric smoke type - PLAN Phase 1.2",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "renders VSSSource.spr / VSSSource2.spr (cg_volumetricsmoke.cpp:1167)",
+"family": "volumetric smoke",
+"health": [],
+"id": "vss:greasefire",
+"kind": "vss type",
+"reason": "volumetric smoke type - PLAN Phase 1.2",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "renders VSSSource.spr / VSSSource2.spr (cg_volumetricsmoke.cpp:1167)",
+"family": "volumetric smoke",
+"health": [],
+"id": "vss:steam",
+"kind": "vss type",
+"reason": "volumetric smoke type - PLAN Phase 1.2",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "renders VSSSource.spr / VSSSource2.spr (cg_volumetricsmoke.cpp:1167)",
+"family": "volumetric smoke",
+"health": [],
+"id": "vss:heavy",
+"kind": "vss type",
+"reason": "volumetric smoke type - PLAN Phase 1.2",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "renders VSSSource.spr / VSSSource2.spr (cg_volumetricsmoke.cpp:1167)",
+"family": "volumetric smoke",
+"health": [],
+"id": "vss:bulletimpact",
+"kind": "vss type",
+"reason": "volumetric smoke type - PLAN Phase 1.2",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "renders VSSSource.spr / VSSSource2.spr (cg_volumetricsmoke.cpp:1167)",
+"family": "volumetric smoke",
+"health": [],
+"id": "vss:fire",
+"kind": "vss type",
+"reason": "volumetric smoke type - PLAN Phase 1.2",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "map fire/other smoke/fire (by content)/set-piece blast/vehicle/aircraft; 256 px, 10 fr, add; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:air_explosion",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/grenade/impacts/other smoke/fire (by content)/rocket/shell/set-piece blast/vehicle/aircraft; 8 px, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bh_dirt_piece",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 128 px x0.125, 1 fr, gl_one gl_one; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bh_metal_spark",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 128 px x0.5, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bh_sand",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/flak/impacts/rocket/shell/set-piece blast; 128 px x0.25, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bh_snow_puff",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 128 px, 1 fr, gl_src_alpha gl_one_minus_src_alpha; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bh_snow_puff1",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "impacts/set-piece blast; 8 px, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bh_stone_piece",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 32 px, 1 fr, gl_src_alpha gl_one; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bh_water_ring",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 256 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bigsplash",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 256 px x0.125, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bodyhitpuff",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast; 256 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bombblast_bigdirt",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/muzzle/other smoke/fire (by content)/rocket/shell/set-piece blast/vehicle/aircraft; 512 px x0.25, 1 fr, alphaadd; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:bridgecharge",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast; 128 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:burst",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "vehicle/aircraft; 32 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:c47skytrain_burst1",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "vehicle/aircraft; 256 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:c47skytrain_fiery",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "flak; ? px, 1 fr, -; img MISSING",
+"family": "sprites",
+"health": [
+"missing shader and image"
+],
+"id": "sprite:c47skytrain_fiery1",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "flak; ? px, 1 fr, -; img MISSING",
+"family": "sprites",
+"health": [
+"missing shader and image"
+],
+"id": "sprite:c47skytrain_fiery2",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "vehicle/aircraft; 128 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:c47skytrain_smoke2",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "vehicle/aircraft; 128 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:c47skytrain_smoke3",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "muzzle/vehicle/aircraft; 512 px x0.25, 1 fr, alphaadd; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:campfire_01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "muzzle; 128 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:campfire_02",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "muzzle/vehicle/aircraft; 512 px x0.25, 1 fr, alphaadd; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:campfire_03",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris/impacts; 64 px, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cardboard_light",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/set-piece blast; 256 px, 24 fr, blend; img zzzzzzzzzzzzz_coop_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cfx_dust",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/flak/grenade/map fire/other smoke/fire (by content)/rocket/shell/set-piece blast/vehicle/aircraft; 32 px, 1 fr, add; img zzzzzzzzzzzzz_coop_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cfx_ember",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 256 px, 26 fr, gl_src_alpha gl_one; img zzzzzzzzzzzzz_coop_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cfx_fin_flame",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 256 px, 26 fr, gl_src_alpha gl_one; img zzzzzzzzzzzzz_coop_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cfx_fin_flame_b",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/flak/grenade/other smoke/fire (by content)/set-piece blast/vehicle/aircraft; 512 px, 36 fr, add; img zzzzzzzzzzzzz_coop_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cfx_fire_fb",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/rocket/shell/set-piece blast/vehicle/aircraft; 512 px, 40 fr, add; img zzzzzzzzzzzzz_coop_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cfx_fire_tk",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "map fire/vehicle/aircraft; 256 px, 26 fr, add; img zzzzzzzzzzzzz_coop_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cfx_flame",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/flak/grenade/map fire/other smoke/fire (by content)/rocket/shell/set-piece blast/smoke/steam/vehicle/aircraft; 256 px, 16 fr, blend; img zzzzzzzzzzzzz_coop_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cfx_puff",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/flak/grenade/other smoke/fire (by content)/set-piece blast/vehicle/aircraft; 256 px, 40 fr, blend; img zzzzzzzzzzzzz_coop_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cfx_smoke_fb",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/rocket/shell/set-piece blast/vehicle/aircraft; 256 px, 32 fr, blend; img zzzzzzzzzzzzz_coop_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cfx_smoke_tk",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast/vehicle/aircraft; 64 px, 6 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cinematic_sparks",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast; 256 px, 19 fr, alphaadd; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:cinematicexplosion_02",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 32 px, 1 fr, gl_src_alpha gl_one_minus_src_alpha; img zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:coop_blood_drop",
+"kind": "sprite shader",
+"reason": "blood / gore, not smoke or fire",
+"status": "excluded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 32 px, 1 fr, gl_src_alpha gl_one_minus_src_alpha; img zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:coop_bloodcloud",
+"kind": "sprite shader",
+"reason": "blood / gore, not smoke or fire",
+"status": "excluded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 64 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:coop_snowplume",
+"kind": "sprite shader",
+"reason": "our own flipbook / sprite",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "map fire/sparks; 128 px, 1 fr, add; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:corona_reg",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts/map fire/sparks; 256 px, 1 fr, add; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [
+"draws 2.0x retail size"
+],
+"id": "sprite:corona_util",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "sparks; 64 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:corona_white",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content)/set-piece blast; 256 px x0.5, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:dirtcloud",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/grenade; 256 px x0.5, 1 fr, -; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:dirtplume",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/dust/debris/impacts; 256 px x0.5, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:dustdrop",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "sparks; 256 px, 3 fr, alphaadd; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:electric",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "rocket/shell; 256 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:emberblast",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content)/vehicle/aircraft; 64 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:enginesmoke_01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "grenade/other smoke/fire (by content)/set-piece blast/vehicle/aircraft; 64 px, 1 fr, alphaadd; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:explosed",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "grenade/other smoke/fire (by content)/set-piece blast/vehicle/aircraft; 256 px x0.25, 1 fr, alphaadd; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:explosed2",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "grenade; ? px, 1 fr, -; img MISSING",
+"family": "sprites",
+"health": [
+"missing shader and image"
+],
+"id": "sprite:explosion1",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "muzzle; 128 px, 8 fr, gl_one gl_one; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:explosion_burst",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "grenade; ? px, 1 fr, -; img MISSING",
+"family": "sprites",
+"health": [
+"missing shader and image"
+],
+"id": "sprite:explshock",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "grenade; ? px, 1 fr, -; img MISSING",
+"family": "sprites",
+"health": [
+"missing shader and image"
+],
+"id": "sprite:explsmoke",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "dust/debris; 16 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:fallingdirt",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 64 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:feather_01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 64 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:feather_02",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "grenade/map fire/other smoke/fire (by content)/set-piece blast/vehicle/aircraft; 576 px x0.25, 1 fr, alphaadd; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:fire_ring",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "rocket/shell; 576 px x0.25, 1 fr, alphaadd; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:fire_ring2",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 128 px x0.5, 15 fr, alphaadd; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:fireball_pj",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 16 px, 1 fr, add; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:firefly",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "flak; 128 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:flak_cloud01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "flak; 128 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:flak_cloud03",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "flak; 128 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:flak_cloud04",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "flak; 64 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:flakflash_skybox",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "flak; 64 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:flaksmoke_skybox",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 512 px, 1 fr, alphaadd; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [
+"draws 4.0x retail size"
+],
+"id": "sprite:generalfireball_01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 32 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:generalspark_01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris/impacts; 32 px, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:glass_small",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/grenade/rocket/shell; 256 px, 34 fr, add; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:gren_boom",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire/muzzle/set-piece blast/vehicle/aircraft; 128 px x0.5, 15 fr, add; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:gren_explosion",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "flak/grenade/rocket/shell; 128 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:grenadefire",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast/vehicle/aircraft; 64 px, 1 fr, gl_src_alpha gl_one; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:grndblst1",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/dust/debris/grenade/other smoke/fire (by content)/rocket/shell/set-piece blast; 1024 px x0.25, 1 fr, -; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:mortar_dirthit",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/grenade; 1024 px x0.25, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:mortar_dirthit2",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/dust/debris/grenade/other smoke/fire (by content)/rocket/shell; 1024 px x0.25, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:mortar_snowhit",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "flak/muzzle; 128 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:muzzleblast_01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "flak/muzzle; 512 px x0.25, 1 fr, alphaadd; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:muzzlecharge",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "muzzle; 128 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:muzzlecharge_02",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "grenade/other smoke/fire (by content)/set-piece blast/smoke/steam; 64 px, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:oceanspray",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/flak/muzzle/rocket/shell/set-piece blast/smoke/steam/vehicle/aircraft; 512 px x0.25, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:puffystuff_dark",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/muzzle/rocket/shell/set-piece blast/vehicle/aircraft; 512 px, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [
+"draws 4.0x retail size"
+],
+"id": "sprite:puffystuff_light",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris/set-piece blast; 256 px x0.25, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:sandstorm01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 256 px, 1 fr, gl_src_alpha gl_one_minus_src_alpha; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [
+"draws 4.0x retail size"
+],
+"id": "sprite:sandstorm02",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 64 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:sandstorm_gust",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "sparks; 32 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:shootsparks",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts/set-piece blast/smoke/steam; 128 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:smokegrenade",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "smoke grenade/smoke/steam; 128 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:smokegrenade_german",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "smoke grenade; 128 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:smokegrenade_soviet",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "vehicle/aircraft; 128 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:smoketrail_fire",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/dust/debris/grenade/impacts/other smoke/fire (by content)/rocket/shell; 16 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:snowclump",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/dust/debris/flak/grenade/muzzle/other smoke/fire (by content)/set-piece blast/smoke/steam/vehicle/aircraft; 256 px x0.25, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:snowplume_01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/other smoke/fire (by content); 64 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:snowplume_02",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "muzzle; 256 px, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [
+"draws 4.0x retail size"
+],
+"id": "sprite:snowplume_k5",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery; 32 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:splinter1",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery; 32 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:splinter2",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "grenade/impacts; 16 px, 1 fr, -; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:stonechip",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/impacts/other smoke/fire (by content); 64 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:strafe_snowhit2",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 32 px, 64 fr, alphaadd; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:tehao_candellight_02",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris/set-piece blast; 128 px x1, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:tehaodebris_01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 64 px, 1 fr, gl_src_alpha gl_one; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:tehaoripple",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 64 px, 1 fr, gl_src_alpha gl_one; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:tehaoripple_sub",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire/smoke/steam/vehicle/aircraft; 512 px x0.25, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:tehaosmoke_dark",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content)/set-piece blast/vehicle/aircraft; 512 px x0.25, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:tehaosmoke_light",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris/other smoke/fire (by content); 128 px, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:textures/effects/woodsplinters",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast; 64 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:thrownstone1",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/rocket/shell/set-piece blast/vehicle/aircraft; 64 px, 1 fr, blend; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:thrownstone2",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/flak/muzzle/other smoke/fire (by content)/rocket/shell/sparks; 128 px x0.25, 1 fr, alphaadd; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:trainspark_01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/dust/debris/flak/grenade/impacts/map fire/muzzle/other smoke/fire (by content)/rocket/shell/set-piece blast/smoke grenade/smoke/steam/sparks/vehicle/aircraft/volumetric smoke; 128 px x0.25, 1 fr, gl_src_alpha gl_one_minus_src_alpha; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:vsssource",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "impacts/muzzle/other smoke/fire (by content)/set-piece blast/vehicle/aircraft/volumetric smoke; 128 px x0.25, 1 fr, gl_src_alpha gl_one_minus_src_alpha; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:vsssource2",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "artillery/dust/debris/grenade/other smoke/fire (by content)/rocket/shell/set-piece blast; 128 px x0.25, 1 fr, gl_src_alpha gl_one_minus_src_alpha; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:vsssource_new",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 16 px, 1 fr, add; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:water_drop1",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "grenade/other smoke/fire (by content)/set-piece blast; 64 px, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:water_g",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 256 px x0.5, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:waterblast01",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "grenade/impacts/set-piece blast; 256 px x0.5, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:waterplume",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 256 px, 1 fr, gl_src_alpha gl_one_minus_src_alpha; img pak1.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:willys_dirt",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 512 px x0.25, 1 fr, gl_src_alpha gl_one_minus_src_alpha; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "sprites",
+"health": [],
+"id": "sprite:willys_dust",
+"kind": "sprite shader",
+"reason": "retail sprite (an HD upscale alone is still todo)",
+"status": "todo",
+"winkind": "ours",
+"winner": "zzzzzzzzzz_coop_hd_discstock.pk3"
+},
+{
+"chain": [],
+"detail": "artillery; 2048 px, 1 fr, -; img zzzzzzzzzz_coop_hd_m3l1a.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bazookashell",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "3rd-party",
+"winner": "zzzzzz-HRRTM_Pak4_Weapons.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 32 px, 1 fr, blend; img Pak0.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bh_foliage_leaf",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 8 px, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bh_grass_piece",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 8 px, 1 fr, add; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bh_metal_fastpiece",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; ? px, 1 fr, -; img MISSING",
+"family": "surfaces",
+"health": [
+"missing shader and image"
+],
+"id": "surface:bh_stone_fastpiece",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "",
+"winner": ""
+},
+{
+"chain": [],
+"detail": "impacts; 64 px, 7 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bh_stone_puff",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 8 px, 1 fr, blend; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bh_wood_piece",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 16 px, 7 fr, blend; img Pak2.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bh_wood_puff",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "impacts; 16 px, 1 fr, blend; img Pak2.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bh_wood_puff_simple",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 256 px, 1 fr, -; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:blockcrete",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 64 px, 1 fr, -; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bp_debris1",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 64 px, 1 fr, -; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bp_debris2",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 64 px, 1 fr, -; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bp_debris2g",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 64 px, 1 fr, -; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bp_debris3",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 64 px, 1 fr, -; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:bp_debris3g",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 512 px, 1 fr, add; img zzzzzzz_dds_hdmem.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:candle_standing_t",
+"kind": "surface shader",
+"reason": "model skin (smoke-grenade body, candle holder / candle wax), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 512 px, 1 fr, add; img zzzzzzz_dds_hdmem.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:candleholder",
+"kind": "surface shader",
+"reason": "model skin (smoke-grenade body, candle holder / candle wax), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 128 px, 1 fr, -; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:concrete1",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 128 px, 1 fr, -; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:concrete2",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "vehicle/aircraft; 64 px, 1 fr, blend; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:concretedebris_01",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 128 px, 30 fr, blend; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:coop_dustveil_day",
+"kind": "surface shader",
+"reason": "our own effect surface",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 128 px, 30 fr, blend; img zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:coop_dustveil_night",
+"kind": "surface shader",
+"reason": "our own effect surface",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 128 px, 30 fr, blend; img zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:coop_dustveil_rain",
+"kind": "surface shader",
+"reason": "our own effect surface",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 128 px, 30 fr, blend; img zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:coop_dustveil_rainnight",
+"kind": "surface shader",
+"reason": "our own effect surface",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 128 px, 30 fr, blend; img zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:coop_dustveil_snow",
+"kind": "surface shader",
+"reason": "our own effect surface",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 128 px, 30 fr, blend; img zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:coop_dustveil_snownight",
+"kind": "surface shader",
+"reason": "our own effect surface",
+"status": "upgraded",
+"winkind": "ours",
+"winner": "zzzzzz_co-op_hzm_mod_code.pk3"
+},
+{
+"chain": [],
+"detail": "sparks; 16 px, 63 fr, add; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:corona_brokenlight01",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 64 px, 1 fr, alphaadd; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:corona_spiky",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 256 px, 1 fr, blend; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:crate-jibs",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [],
+"detail": "vehicle/aircraft; 64 px, 1 fr, blend; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:deathsod_01",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast; 64 px, 1 fr, blend; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:dirtdebris_01",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 512 px, 32 fr, add; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:fire_back",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 512 px, 32 fr, add; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:fire_front",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 512 px, 32 fr, add; img zzzzzzzzzz_coop_hd_discstock.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:fire_middle",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "smoke grenade; 1024 px, 1 fr, -; img zzzzzzz_dds_override.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:germ_smoke_gren",
+"kind": "surface shader",
+"reason": "model skin (smoke-grenade body, candle holder / candle wax), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire; 64 px, 7 fr, add; img zzzzzz_hd_fx.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:lampflame",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast/smoke grenade; 2048 px, 1 fr, -; img zzzzzzzzzz_coop_hd_wpn_1low.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:m18_smoke_gren",
+"kind": "surface shader",
+"reason": "model skin (smoke-grenade body, candle holder / candle wax), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "smoke grenade; 1024 px, 1 fr, -; img zzzzzzz_dds_override.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:m2fraggrenade",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "Pak0.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 32 px, 1 fr, blend; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:metaldebris_01",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "flak; 32 px, 1 fr, blend; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:miniaa",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "artillery; ? px, 1 fr, blend; img MISSING",
+"family": "surfaces",
+"health": [],
+"id": "surface:mortarhit",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "smoke grenade; 1024 px, 1 fr, -; img zzzzzzz_dds_override.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:rdg-1_grenade",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast; 128 px, 27 fr, alphaadd; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:sm_explosion_01",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast; 128 px, 27 fr, alphaadd; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:sm_explosion_02",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "set-piece blast; 128 px, 27 fr, alphaadd; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:sm_explosion_03",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "vehicle/aircraft; 64 px, 1 fr, blend; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:thrownstone3",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "map fire/set-piece blast; 32 px, 1 fr, blend; img zzzzzzzzzz_coop_hd_m3l1a.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:transparency",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "other smoke/fire (by content); 128 px, 1 fr, blend; img pak1.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:waterpuddle",
+"kind": "surface shader",
+"reason": "model skin (grenade body, holder, debris), not an effect surface",
+"status": "excluded",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 128 px, 1 fr, blend; img Pak2.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:wplumelarge",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "dust/debris; 128 px, 1 fr, blend; img Pak2.pk3",
+"family": "surfaces",
+"health": [],
+"id": "surface:wplumesmall",
+"kind": "surface shader",
+"reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)",
+"status": "todo",
+"winkind": "retail",
+"winner": "pak1.pk3"
+},
+{
+"chain": [],
+"detail": "Frontline particle systems (docs/tools/frontline/flpfx.py) - built on the player's PC",
+"family": "disc missions",
+"health": [],
+"id": "disc:fl:flpfx",
+"kind": "disc converter",
+"reason": "fidelity-first pass, PLAN Phase 4 / section 6 (built on the player's PC)",
+"status": "todo",
+"winkind": "disc",
+"winner": "(player's converted pak)"
+},
+{
+"chain": [],
+"detail": "Euro Assault effect packages (docs/tools/ea/eafx.py) - built on the player's PC",
+"family": "disc missions",
+"health": [],
+"id": "disc:ea:eafx",
+"kind": "disc converter",
+"reason": "fidelity-first pass, PLAN Phase 4 / section 6 (built on the player's PC)",
+"status": "todo",
+"winkind": "disc",
+"winner": "(player's converted pak)"
+}
+]

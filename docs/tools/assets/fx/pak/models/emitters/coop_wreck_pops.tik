@@ -1,0 +1,127 @@
+TIKI
+setup
+{
+	scale 1.0
+	path models/fx/dummy
+	skelmodel dummy2.skd
+}
+
+init
+{
+	server
+	{
+		classname Animate
+		notsolid
+		rendereffects +dontdraw
+		life 0
+	}
+	client
+	{
+		cache cfx_fire_fb.spr
+		cache cfx_smoke_fb.spr
+		cache cfx_puff.spr
+		cache cfx_ember.spr
+	}
+}
+
+animations
+{
+	idle dummy2.skc
+	start dummy2.skc
+	{
+		server
+		{
+			last commanddelay 1 anim idle
+		}
+		client
+		{
+		enter commanddelay 5.50 originspawn
+		(
+			model cfx_fire_fb.spr
+			alpha 1
+			life 1.0
+			scale 0.5
+			offset 30 10 70
+		)
+		enter commanddelay 5.50 blockdlight 380 0.50
+		(
+			color 1.0 0.7 0.35
+			colorvelocity -2.2 -2.2 -2.2
+			scalerate -1.0
+			offset 0 0 70
+		)
+		enter commanddelay 5.50 originspawn
+		(
+			model cfx_ember.spr
+			count 26
+			offset 30 10 60
+			randvel crandom 380 crandom 380 range 120 520
+			accel 0 0 -1300
+			life 0.8 0.5
+			scalemin 0.045
+			scalemax 0.1
+			color 1 0.78 0.4
+			fade 
+		)
+		enter commanddelay 5.50 hazeburst 120 0.8 1.2
+		enter commanddelay 11.00 originspawn
+		(
+			model cfx_fire_fb.spr
+			alpha 1
+			life 1.0
+			scale 0.5
+			offset -40 -12 70
+		)
+		enter commanddelay 11.00 blockdlight 380 0.50
+		(
+			color 1.0 0.7 0.35
+			colorvelocity -2.2 -2.2 -2.2
+			scalerate -1.0
+			offset 0 0 70
+		)
+		enter commanddelay 11.00 originspawn
+		(
+			model cfx_ember.spr
+			count 26
+			offset -40 -12 60
+			randvel crandom 380 crandom 380 range 120 520
+			accel 0 0 -1300
+			life 0.8 0.5
+			scalemin 0.045
+			scalemax 0.1
+			color 1 0.78 0.4
+			fade 
+		)
+		enter commanddelay 11.00 hazeburst 120 0.8 1.2
+		enter commanddelay 17.50 originspawn
+		(
+			model cfx_fire_fb.spr
+			alpha 1
+			life 1.0
+			scale 0.5
+			offset 10 24 70
+		)
+		enter commanddelay 17.50 blockdlight 380 0.50
+		(
+			color 1.0 0.7 0.35
+			colorvelocity -2.2 -2.2 -2.2
+			scalerate -1.0
+			offset 0 0 70
+		)
+		enter commanddelay 17.50 originspawn
+		(
+			model cfx_ember.spr
+			count 26
+			offset 10 24 60
+			randvel crandom 380 crandom 380 range 120 520
+			accel 0 0 -1300
+			life 0.8 0.5
+			scalemin 0.045
+			scalemax 0.1
+			color 1 0.78 0.4
+			fade 
+		)
+		enter commanddelay 17.50 hazeburst 120 0.8 1.2
+		}
+	}
+}

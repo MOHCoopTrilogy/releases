@@ -1,0 +1,57 @@
+// Smoke & fire A/B tour (TEST KIT ONLY - never shipped). Spawns each Phase 0 effect 420 units in front of the
+// player, one every few seconds, so the same sequence can be watched with and without the Phase 0 pak.
+// Start: spdevmap m5l2b, wait for the map, then F9 (bound by fxab_tour.cfg). F10 = engine sprite A/B toggle.
+main:
+	local.p = $player
+	if(local.p == NULL){ local.p = $player[1] }
+	local.f = angles_toforward ( 0 local.p.viewangles[1] 0 )
+	local.at = local.p.origin + ( vector_scale local.f 420 )
+	iprintlnbold "FX tour: grenade"
+	waitthread one "models/fx/f1grenadeexplosion.tik" "expl" local.at 0
+	wait 6
+	iprintlnbold "FX tour: bazooka"
+	waitthread one "models/fx/bazookaexplosion.tik" "expl" local.at 0
+	wait 6
+	iprintlnbold "FX tour: heavy shell"
+	waitthread one "models/fx/explosionpzb41shell.tik" "expl" local.at 0
+	wait 6
+	iprintlnbold "FX tour: stone shell blast (sprite size)"
+	waitthread one "models/fx/heavyshellexp_stone.tik" "sm" local.at 6
+	wait 7
+	iprintlnbold "FX tour: fire (watch the flame tips fade)"
+	waitthread one "models/emitters/fire.tik" "em" local.at 12
+	wait 13
+	iprintlnbold "FX tour: big fire"
+	waitthread one "models/emitters/firegood.tik" "em" local.at 12
+	wait 13
+	iprintlnbold "FX tour: barracks blast (mushroom cloud)"
+	waitthread one "models/emitters/barracks_explosion.tik" "em" ( local.at + ( vector_scale local.f 300 ) ) 8
+	wait 9
+	iprintlnbold "FX tour: done - F9 to repeat"
+end
+
+one local.m local.k local.o local.life:
+	if(local.k == "expl"){
+		local.e = spawn local.m "origin" ( local.o[0] + " " + local.o[1] + " " + local.o[2] )
+	}
+	if(local.k == "sm"){
+		local.e = spawn script_model "model" local.m "origin" ( local.o[0] + " " + local.o[1] + " " + local.o[2] )
+		local.e notsolid
+		local.e anim start
+	}
+	if(local.k == "em"){
+		local.e = spawn local.m "origin" ( local.o[0] + " " + local.o[1] + " " + local.o[2] )
+		local.e notsolid
+		local.e anim start
+	}
+	if(local.life > 0){
+		thread reap local.e local.life
+	}
+end
+
+reap local.e local.life:
+	wait local.life
+	if(local.e != NULL){ local.e anim stop }
+	wait 1
+	if(local.e != NULL){ local.e remove }
+end

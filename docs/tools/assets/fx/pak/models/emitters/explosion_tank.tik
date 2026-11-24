@@ -1,0 +1,134 @@
+TIKI
+setup
+{
+	scale 1.0
+	path models/fx/dummy
+	skelmodel dummy3.skd
+}
+
+init
+{
+
+	server
+	{
+		classname effectentity
+		notsolid
+		rendereffects +dontdraw
+		angles 270 0 0
+	}
+	client
+	{
+		cache cfx_fire_tk.spr
+		cache cfx_smoke_tk.spr
+		cache cfx_puff.spr
+		cache cfx_ember.spr
+	}
+}
+
+animations
+{
+	idle dummy3.skc
+	start dummy3.skc
+	{
+
+		server
+		{
+			last commanddelay 1 anim idle
+		}
+		client
+		{
+enter sound explode_gastank
+enter originspawn
+			(
+				model models/emitters/explosion_tank_sideplume.tik
+				count 3
+				angles 0 random 360 0
+				life .3
+			)
+		enter blockdlight 896 0.16
+		(
+			color 1.0 0.88 0.65
+			colorvelocity -6 -6 -6
+			scalerate -1.0
+			offset 0 0 72
+		)
+		enter blockdlight 576 2.10
+		(
+			color 1.0 0.5 0.2
+			colorvelocity -0.7 -0.45 -0.2
+			scalerate -0.5
+			offset 0 0 90
+		)
+		enter originspawn
+		(
+			model cfx_fire_tk.spr
+			alpha 1.0
+			life 1.6
+			scale 1.116
+			offset 0 0 86
+		)
+		enter commanddelay 0.50 originspawn
+		(
+			model cfx_smoke_tk.spr
+			alpha 0.92
+			life 7.0
+			scale 2.160
+			offset 0 0 97
+			randvel 0 0 39
+			accel 0 0 14
+			fadein 0.4
+			fadedelay 5.0
+			color 0.50 0.48 0.47
+			spritegridlighting 
+		)
+		enter commanddelay 0.35 originspawn
+		(
+			model cfx_puff.spr
+			count 6
+			alpha 0.5
+			color 0.50 0.48 0.47
+			life 9 2
+			scale 0.990
+			scalerate 0.2
+			offset 0 0 90
+			randvel crandom 14 crandom 14 range 81 153
+			accel 0 0 6
+			fadein 0.6
+			fadedelay 3.5
+			spritegridlighting 
+		)
+		enter originspawn
+		(
+			model cfx_ember.spr
+			count 61
+			offset 0 0 54
+			randvel crandom 864 crandom 864 range 252 1260
+			accel 0 0 -1400
+			life 0.9 0.5
+			scalemin 0.045
+			scalemax 0.11
+			color 1 0.78 0.4
+			alpha 1
+			fade 
+			collision 
+			bouncefactor 0.25
+		)
+		enter originspawn
+		(
+			model bh_dirt_piece.spr
+			count 1
+			offset 0 0 24
+			velocity 0 0 -600
+			life 0.3
+			alpha 0.8
+			fadein 0.3
+			collision 
+			bouncedecal 1 0
+			decalshader coop_scorch
+			decalradius 132
+			dietouch 
+		)
+		enter commanddelay 0.10 hazeburst 270 0.90 2.9
+		}
+	}
+}

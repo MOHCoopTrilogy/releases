@@ -1,0 +1,14 @@
+{
+  "models/emitters/explosion_tank2.tik": {
+    "from": "mod tree (same text as e61c056de, CRLF)",
+    "shadow_md5": "713a57dffaa6538ed01e69b07c1462b9"
+  },
+  "models/fx/grenexp_snow.tik": {
+    "from": "mod tree at hotfix-1.10.53 06bbddab4 (916cb7108 lineage)",
+    "shadow_md5": "911dd4585f6f229b3021900062f9ac9f"
+  },
+  "scripts/coop_fx.shader": {
+    "from": "mod tree hotfix-1.10.53 06bbddab4 + PLAN D6 (additive stages fade + take tik colour)",
+    "shadow_md5": "d4f556a03bc779c24968239264c6b441"
+  }
+}

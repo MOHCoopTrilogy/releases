@@ -1,0 +1,146 @@
+TIKI
+setup
+{
+	scale 1.0
+	path models/fx/dummy
+	skelmodel dummy3.skd
+}
+
+init
+{
+
+	server  
+	{
+		classname Explosion
+		rendereffects +dontdraw
+		notsolid
+		radiusdamage 300
+		radius 512
+		knockback 200
+		meansofdeath explosion
+
+		life 0.1
+	}
+	client
+	{
+		cache cfx_fire_fb.spr
+		cache cfx_smoke_fb.spr
+		cache cfx_puff.spr
+		cache cfx_ember.spr
+	}
+}
+
+animations
+{
+	idle dummy3.skc
+	start dummy3.skc
+	{
+
+		server
+		{
+			last commanddelay 1 anim idle
+		}
+		client
+		{
+enter sound arty_exp_sand
+		enter blockdlight 491 0.16
+		(
+			color 1.0 0.88 0.65
+			colorvelocity -6 -6 -6
+			scalerate -1.0
+			offset 0 0 34
+		)
+		enter blockdlight 316 1.62
+		(
+			color 1.0 0.5 0.2
+			colorvelocity -0.7 -0.45 -0.2
+			scalerate -0.5
+			offset 0 0 42
+		)
+		enter originspawn
+		(
+			model cfx_fire_fb.spr
+			alpha 1.0
+			life 1.0
+			scale 0.351
+			offset 0 0 40
+		)
+		enter commanddelay 0.45 originspawn
+		(
+			model cfx_smoke_fb.spr
+			alpha 0.92
+			life 4.0
+			scale 0.807
+			offset 0 0 45
+			randvel 0 0 18
+			accel 0 0 14
+			fadein 0.4
+			fadedelay 2.6
+			color 0.55 0.52 0.50
+			spritegridlighting 
+		)
+		enter commanddelay 0.35 originspawn
+		(
+			model cfx_puff.spr
+			count 4
+			alpha 0.5
+			color 0.55 0.52 0.50
+			life 7 2
+			scale 0.468
+			scalerate 0.2
+			offset 0 0 42
+			randvel crandom 14 crandom 14 range 38 72
+			accel 0 0 6
+			fadein 0.6
+			fadedelay 3.5
+			spritegridlighting 
+		)
+		enter commanddelay 0.15 originspawn
+		(
+			model cfx_dust.spr
+			alpha 0.85
+			life 3.4
+			scale 0.765
+			offset 0 0 34
+			randvel 0 0 34
+			accel 0 0 10
+			fadein 0.2
+			fadedelay 1.9
+			color 0.62 0.50 0.36
+			spritegridlighting 
+		)
+		enter originspawn
+		(
+			model cfx_ember.spr
+			count 17
+			offset 0 0 25
+			randvel crandom 408 crandom 408 range 119 595
+			accel 0 0 -1400
+			life 0.9 0.5
+			scalemin 0.045
+			scalemax 0.11
+			color 1 0.78 0.4
+			alpha 1
+			fade 
+			collision 
+			bouncefactor 0.25
+		)
+		enter originspawn
+		(
+			model bh_dirt_piece.spr
+			count 1
+			offset 0 0 24
+			velocity 0 0 -600
+			life 0.3
+			alpha 0.8
+			fadein 0.3
+			collision 
+			bouncedecal 1 0
+			decalshader coop_scorch
+			decalradius 67
+			dietouch 
+		)
+		enter commanddelay 0.10 hazeburst 127 0.90 2.3
+		}
+	}
+}

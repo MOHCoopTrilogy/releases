@@ -1,0 +1,107 @@
+{
+  "_doc": "Status rules for docs/tools/fx_coverage.py (smoke & fire update, docs/proposals/smokefire_2026-11-24/PLAN.md). Ordered; first match wins. match = regex on the asset id (tik:<path>, sprite:<shader>, weaponsmoke:<shader>, vss:<type>, disc:<converter>); optional family / detail = regex on those fields. status: upgraded (our new art or behaviour wins in game - verified by expect, a regex on the WINNING pak), excluded (left alone on purpose - reason required), todo (still the retail look; an HD upscale alone is todo). A rule that matches nothing fails the check. Map-level exclusions (Omaha m3l1a/m3l1b keeps retail-name effects; disc missions keep the converter's own) are enforced where effects are retargeted, not here.",
+  "rules": [
+    {
+      "match": "^disc:",
+      "status": "todo",
+      "reason": "fidelity-first pass, PLAN Phase 4 / section 6 (built on the player's PC)"
+    },
+    {
+      "match": "^tik:models/emitters/coop_smokescreen\\.tik$",
+      "status": "excluded",
+      "reason": "Omaha only (m3l1a smoke barrage) - user 2026-11-24: Omaha stays excluded"
+    },
+    {
+      "match": "^tik:models/emitters/shermansmoke\\.tik$",
+      "status": "excluded",
+      "reason": "Omaha only (m3l1a coopified + precache) - user 2026-11-24: Omaha stays excluded"
+    },
+    {
+      "match": "blood|gore|gib|wound|artery",
+      "status": "excluded",
+      "reason": "blood / gore, not smoke or fire"
+    },
+    {
+      "match": "^tik:models/fx/(grenexp_base|bazookaexp_base|grenexp_snow)\\.tik$",
+      "status": "todo",
+      "reason": "PLAN D1: our copy loses to zzzzzzzz_hd_fxfix since v1.10.37; the fix is staged (gen_fx_pak.py -> H:/hzm_work/smokefire/paks), awaiting the user's look sign-off - then flip to upgraded/expect coop_fx"
+    },
+    {
+      "match": "^tik:models/(emitters/(coop_fire_[lms]|coop_smokecol|coop_wreck|coop_wreck_lo|coop_wreck_pops|debris_smoke|explosion_bombdirt|explosion_bombmetalwall|explosion_bombwall|explosion_bridge|explosion_mine|explosion_tank|explosion_tank2|fancyfire|fire|fireandsmoke|firefill|firegood|firesmoke|gren_exp|inferno|mortar_concrete|mortar_dirt|mortar_higgins|mortar_snow|mortar_tree|norbigstacksmoke|residual_fire|t2l4_fire|tehao_fire|tehao_bridgeexplosion|tehao_cheapfire|tehao_explosionwall|tehao_firesmoke|tehao_firesmoke_long|tehao_firesmoke_superlong|tehao_thicksmoke)|fx/(bazookaexp_base|coop_blast_air|coop_blast_l|coop_blast_m|coop_blast_s|coop_blast_xl|exp_truck|exp_dynamic1|exp_dynamic2|exp_flak88|exp_flak_far|exp_flak_near|exp_general|exp_tank_gen|fx_bike_explosion|fx_explosion|fx_flak88_explosion|fx_stuka_explosion|fx_tank_explosion|fx_truck_explosion|grenexp_base|heavyshellexp_base|sustainedfire|t2l4_fire|tankexp_base))\\.tik$",
+      "status": "upgraded",
+      "reason": "fx_1025 (v1.10.37)",
+      "expect": "coop|hzm"
+    },
+    {
+      "match": "^tik:models/(fx/coop_(gunsmoke|barrelsmoke|screensmoke|hullspark|tank_explosion)|emitters/(coop_planesmoke_trail|coop_fin_fire_\\w+|rocketgood|coop_dustveil_\\w+))\\.tik$",
+      "status": "upgraded",
+      "reason": "mod's own effect (gun smoke, screens, finale fires, plane trail, dust veils)",
+      "expect": "coop|hzm"
+    },
+    {
+      "match": "^tik:models/emitters/coop_fl_mine\\.tik$",
+      "status": "excluded",
+      "reason": "Frontline mission effect - fidelity path (converter)"
+    },
+    {
+      "match": "^tik:",
+      "detail": "^sprites (; lights \\d+)?$",
+      "status": "excluded",
+      "reason": "no sprite, no volumetric smoke, spawns nothing (solid debris / model only)"
+    },
+    {
+      "match": "^tik:",
+      "detail": "^sprites (; (spawns|explosioneffect|lights)[^;]*)+$",
+      "status": "excluded",
+      "reason": "wrapper - its look is the tiks / explosion effect it spawns (each listed on its own row)"
+    },
+    {
+      "match": "^tik:",
+      "family": "^(impacts|muzzle|grenade|smoke grenade|artillery|rocket/shell|vehicle/aircraft|flak|set-piece blast|map fire|smoke/steam|sparks|dust/debris|other smoke/fire \\(by content\\))$",
+      "status": "todo",
+      "reason": "retail look"
+    },
+    {
+      "match": "^sprite:(cfx_|coop_(snowplume|fx))",
+      "status": "upgraded",
+      "reason": "our own flipbook / sprite",
+      "expect": "coop|hzm"
+    },
+    {
+      "match": "^sprite:",
+      "status": "todo",
+      "reason": "retail sprite (an HD upscale alone is still todo)"
+    },
+    {
+      "match": "^surface:(cfx_|coop_)",
+      "status": "upgraded",
+      "reason": "our own effect surface",
+      "expect": "coop|hzm"
+    },
+    {
+      "match": "^surface:(m18_smoke_gren|germ_smoke_gren|candleholder|candle_standing_t)$",
+      "status": "excluded",
+      "reason": "model skin (smoke-grenade body, candle holder / candle wax), not an effect surface"
+    },
+    {
+      "match": "^surface:.*(smoke|fire|flame|expl|boom|blast|spark|ember|soot|dust|steam|flak|puff|candl|candel|mist|plume|cloud|haze|beam|corona|glow|burn)",
+      "status": "todo",
+      "reason": "effect surface on a model-based effect (unitsquare / spritebeam / fire planes)"
+    },
+    {
+      "match": "^surface:",
+      "status": "excluded",
+      "reason": "model skin (grenade body, holder, debris), not an effect surface"
+    },
+    {
+      "match": "^weaponsmoke:",
+      "status": "todo",
+      "reason": "muzzle smoke inside weapon tiks - PLAN Phase 1.2 (same intensity, new art)"
+    },
+    {
+      "match": "^vss:",
+      "status": "todo",
+      "reason": "volumetric smoke type - PLAN Phase 1.2"
+    }
+  ]
+}

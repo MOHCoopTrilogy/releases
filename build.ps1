@@ -155,6 +155,11 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_weapon_hd_pak check 
 python "C:\mohaa-coop-dev\docs\tools\gen_fixes_pak.py" check
 if ($LASTEXITCODE -ne 0 -and $env:HZM_SKIP_LOADOUT_CHECK -eq '1') { Write-Host "WARNING: gen_fixes_pak check failed - SKIPPED by HZM_SKIP_LOADOUT_CHECK=1 (generator ahead of the shipped files)" -ForegroundColor Yellow; $global:LASTEXITCODE = 0 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_fixes_pak check - see its message (build / restore)" -ForegroundColor Red; exit 1 }
+# [smoke & fire 2026-11-24] SMOKE/FIRE COVERAGE GATE: every smoke and fire asset the shipped set can load is classified
+# upgraded / excluded (with a reason) / todo in docs/tools/assets/fx/fx_coverage.json, and every "upgraded" one must WIN
+# on pak order (fx_1025's grenade lost to hd_fxfix for nine releases unseen). Report: `fx_coverage.py report`.
+python "C:\mohaa-coop-dev\docs\tools\fx_coverage.py" check
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by fx_coverage check - classify the new asset in docs/tools/assets/fx/fx_coverage.json, or fix the pak order" -ForegroundColor Red; exit 1 }
 # [user 2026-08-18] WIRING GATE: every exec resolves to a real file (exact case), every vstr
 # in our namespaces is assigned somewhere, every bus token is registered AND dispatched.
 python "C:\mohaa-coop-dev\docs\tools\ui_wiring_audit.py"

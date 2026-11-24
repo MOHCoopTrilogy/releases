@@ -1,0 +1,130 @@
+TIKI
+setup
+{
+	scale 1.00
+	path models/fx/dummy
+	skelmodel dummy2.skd
+}
+
+init
+{
+
+	server
+	{
+		classname Animate
+	}
+	client
+	{
+		cache cfx_fire_fb.spr
+		cache cfx_smoke_fb.spr
+		cache cfx_puff.spr
+		cache cfx_ember.spr
+	}
+}
+
+animations
+{
+	aaaa dummy2.skc
+	idle dummy2.skc
+	{
+		client
+		{
+enter originspawn
+			(
+				model models/fx/bp_debris1.tik
+				count 2
+				color 1.00 1.00 1.00
+				scale 0.50
+				life 1.00
+				velocity 300.00
+				angles crandom -40 0 360
+				avelocity 20 70 500
+				fade
+				sphere
+			)
+enter originspawn
+			(
+				model models/fx/gas_mushroom_cloud.tik
+				count 2
+				color 1.00 1.00 1.00
+				life 1.00
+				scalerate 0.50
+				velocity 300.00
+				accel 0.00 0.00 600.00
+				scalemin 0.60
+				scalemax 1.00
+				fade
+				inwardsphere
+			)
+		enter blockdlight 560 0.16
+		(
+			color 1.0 0.88 0.65
+			colorvelocity -6 -6 -6
+			scalerate -1.0
+			offset 0 0 40
+		)
+		enter blockdlight 360 1.70
+		(
+			color 1.0 0.5 0.2
+			colorvelocity -0.7 -0.45 -0.2
+			scalerate -0.5
+			offset 0 0 50
+		)
+		enter originspawn
+		(
+			model cfx_fire_fb.spr
+			alpha 1.0
+			life 1.0
+			scale 0.750
+			offset 0 0 48
+		)
+		enter commanddelay 0.45 originspawn
+		(
+			model cfx_smoke_fb.spr
+			alpha 0.92
+			life 4.0
+			scale 0.950
+			offset 0 0 54
+			randvel 0 0 22
+			accel 0 0 14
+			fadein 0.4
+			fadedelay 2.6
+			color 0.55 0.53 0.52
+			spritegridlighting 
+		)
+		enter commanddelay 0.35 originspawn
+		(
+			model cfx_puff.spr
+			count 5
+			alpha 0.5
+			color 0.55 0.53 0.52
+			life 7 2
+			scale 0.550
+			scalerate 0.2
+			offset 0 0 50
+			randvel crandom 14 crandom 14 range 45 85
+			accel 0 0 6
+			fadein 0.6
+			fadedelay 3.5
+			spritegridlighting 
+		)
+		enter originspawn
+		(
+			model cfx_ember.spr
+			count 34
+			offset 0 0 30
+			randvel crandom 480 crandom 480 range 140 700
+			accel 0 0 -1400
+			life 0.9 0.5
+			scalemin 0.045
+			scalemax 0.11
+			color 1 0.78 0.4
+			alpha 1
+			fade 
+			collision 
+			bouncefactor 0.25
+		)
+		enter commanddelay 0.10 hazeburst 150 0.90 2.4
+		}
+	}
+}

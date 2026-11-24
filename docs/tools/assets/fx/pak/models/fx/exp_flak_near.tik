@@ -1,0 +1,99 @@
+TIKI
+setup
+{
+	scale 1.0
+	path models/fx/dummy
+	skelmodel dummy2.skd
+}
+
+init
+{
+
+	client
+	{
+		cache cfx_fire_fb.spr
+		cache cfx_smoke_fb.spr
+		cache cfx_puff.spr
+		cache cfx_ember.spr
+	}
+}
+
+animations
+{
+	idle dummy2.skc
+	{
+		client
+		{
+enter sound arty_exp_sand
+		enter blockdlight 468 0.16
+		(
+			color 1.0 0.88 0.65
+			colorvelocity -6 -6 -6
+			scalerate -1.0
+			offset 0 0 32
+		)
+		enter blockdlight 301 1.60
+		(
+			color 1.0 0.5 0.2
+			colorvelocity -0.7 -0.45 -0.2
+			scalerate -0.5
+			offset 0 0 40
+		)
+		enter originspawn
+		(
+			model cfx_fire_fb.spr
+			alpha 1.0
+			life 1.0
+			scale 0.600
+			offset 0 0 38
+		)
+		enter commanddelay 0.45 originspawn
+		(
+			model cfx_smoke_fb.spr
+			alpha 0.92
+			life 4.0
+			scale 0.760
+			offset 0 0 43
+			randvel 0 0 17
+			accel 0 0 14
+			fadein 0.4
+			fadedelay 2.6
+			color 0.55 0.53 0.52
+			spritegridlighting 
+		)
+		enter commanddelay 0.35 originspawn
+		(
+			model cfx_puff.spr
+			count 4
+			alpha 0.5
+			color 0.55 0.53 0.52
+			life 7 2
+			scale 0.440
+			scalerate 0.2
+			offset 0 0 40
+			randvel crandom 14 crandom 14 range 36 68
+			accel 0 0 6
+			fadein 0.6
+			fadedelay 3.5
+			spritegridlighting 
+		)
+		enter originspawn
+		(
+			model cfx_ember.spr
+			count 13
+			offset 0 0 24
+			randvel crandom 384 crandom 384 range 112 560
+			accel 0 0 -1400
+			life 0.9 0.5
+			scalemin 0.045
+			scalemax 0.11
+			color 1 0.78 0.4
+			alpha 1
+			fade 
+			collision 
+			bouncefactor 0.25
+		)
+		enter commanddelay 0.10 hazeburst 120 0.90 2.3
+		}
+	}
+}
