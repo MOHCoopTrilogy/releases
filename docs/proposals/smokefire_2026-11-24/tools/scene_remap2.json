@@ -1,0 +1,110 @@
+{
+ "_doc": "sprite remap: R0 = retail / fx_1025 smoke sprites, R1 = cg_hzmSprRemap 1 (our billow / soot, size-matched). Same Phase 1 pak and binaries.",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "R0": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set r_hzmSpriteSoftPer 1",
+    "set cg_hzmSmokeGridLight 1",
+    "set cg_hzmSprRemap 0"
+   ]
+  },
+  "R1": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set r_hzmSpriteSoftPer 1",
+    "set cg_hzmSmokeGridLight 1",
+    "set cg_hzmSprRemap 1"
+   ]
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "grenade",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 260,
+    "h": 70,
+    "look_h": 110
+   },
+   "fx": [
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade"
+    }
+   ],
+   "times": [
+    2500,
+    3500,
+    5000
+   ],
+   "settle": 7000,
+   "clear": 6000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ],
+   "burst": {
+    "every": 200,
+    "n": 10
+   }
+  },
+  {
+   "name": "linger_smoke",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 360,
+    "h": 80,
+    "look_h": 150
+   },
+   "fx": [
+    {
+     "model": "models/emitters/linger_smoke.tik",
+     "kind": "em",
+     "life": 10
+    }
+   ],
+   "times": [
+    3000,
+    6000,
+    9000
+   ],
+   "settle": 7000,
+   "clear": 6000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  }
+ ]
+}

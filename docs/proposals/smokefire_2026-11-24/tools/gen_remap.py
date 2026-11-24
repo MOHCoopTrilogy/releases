@@ -26,7 +26,9 @@ tab = ["// [smoke&fire Phase 1] cgame sprite remap (cg_hzmSprRemap 1). Generated
        "// 'exclude <map prefix>' keeps those maps on the retail sprites; '<from.spr> <to.spr>' remaps everywhere else."]
 tab += ["exclude %s" % e for e in EXCLUDE]
 for name, fset, world, fps, froms in R:
-    frames = sorted(glob.glob(os.path.join(TEX, fset + "[0-9][0-9][0-9].png")))
+    # skip the first 10 frames: the simulation starts as a small, crisp-edged sphere, which read as a hard dark
+    # ball inside the grenade fireball (remap capture 2026-11-24); a remapped puff starts already billowed
+    frames = sorted(glob.glob(os.path.join(TEX, fset + "[0-9][0-9][0-9].png")))[10:]
     if not frames:
         raise SystemExit("no frames for " + fset)
     px = 512
