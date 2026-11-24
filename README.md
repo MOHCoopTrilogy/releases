@@ -50,6 +50,14 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 
 ## What's new
 
+### v1.10.91 - Anchor & Anvil
+
+- **New bring-your-own-disc mission: Anchor & Anvil** (Frontline): the Lorient harbour, the trucks, the walkway ramp, the U-boat sinking, alarms with the original's bell.
+- **Their Dying Breath:** the original's AI routes and cover, enemy toughness and drops, Panzers that fire, the original's sky, clouds and sounds.
+- **Sealed Orders:** the original's explosions, barks and vehicle sounds; snipers and the church tower MG fixed; breaking window glass.
+- **Everyone:** no more sliding down hills, tanks fire on the Spearhead maps, disc guns stay picked on EQUIP, safe respawn checkpoints on the disc missions.
+- **MOH Coop Server app:** TPS and lag log, crash report, reachability test, player admin, demo library, playlists (whole chapters and campaigns), session history, resource monitor, plain setting names.
+
 ### v1.10.90 - Own Your Arsenal (hotfix)
 
 - **No more crash when joining a server from the main menu** on the default OpenGL 2 renderer.
