@@ -45,11 +45,11 @@ P = {
     # M18 cloud): rendered NEUTRAL light grey so one set serves white / grey / coloured signal smoke via the tik colour
     # (preview 1 had the source on the domain floor: a flat-cut bottom - the very "lined on the ground" look - and
     # the cloud filled the box by the end: square edges. Source now mid-domain, export stops before the walls.)
-    "billow": dict(dom=(4.6, 4.6, 4.6), cen_z=2.1, nframes=96, fuel=0.0, burst=6, vel=1.6, rad=0.5, buoy_a=0.15, buoy_b=0.0,
-                   flame_vort=0.0, vort=1.4, burn=0.0, dissolve=0, smoke_amt=2.6, flame_smoke=0.0, steady=False, export=(8, 79)),
+    "billow": dict(dom=(4.6, 4.6, 4.6), cen_z=2.1, nframes=96, fuel=0.0, burst=6, vel=0.9, rad=0.5, buoy_a=0.12, buoy_b=0.0,
+                   flame_vort=0.0, vort=1.4, burn=0.0, dissolve=0, smoke_amt=2.6, flame_smoke=0.0, steady=False, export=(6, 53)),
     # dark soot billow (wreck columns, burning buildings): same motion, dense and dark (scol set by the caller)
-    "soot": dict(dom=(4.6, 4.6, 5.6), cen_z=1.7, nframes=96, fuel=0.0, burst=6, vel=1.4, rad=0.5, buoy_a=0.4, buoy_b=0.0,
-                 flame_vort=0.0, vort=1.2, burn=0.0, dissolve=0, smoke_amt=3.0, flame_smoke=0.0, steady=False, export=(8, 79)),
+    "soot": dict(dom=(4.6, 4.6, 5.6), cen_z=1.7, nframes=96, fuel=0.0, burst=6, vel=0.8, rad=0.5, buoy_a=0.35, buoy_b=0.0,
+                 flame_vort=0.0, vort=1.2, burn=0.0, dissolve=0, smoke_amt=3.0, flame_smoke=0.0, steady=False, export=(6, 53)),
     # low dust skirt (blast dust, crate breaks): wide, flat, fast out then settling
     "dust": dict(dom=(5.4, 5.4, 3.0), cen_z=1.1, nframes=80, fuel=0.0, burst=3, vel=3.4, rad=0.4, buoy_a=0.05, buoy_b=0.0,
                  flame_vort=0.0, vort=1.0, burn=0.0, dissolve=0, smoke_amt=2.0, flame_smoke=0.0, steady=False, export=(4, 69)),
@@ -222,6 +222,14 @@ w.use_nodes = True
 bgn = w.node_tree.nodes["Background"]
 bgn.inputs["Color"].default_value = (0.55, 0.62, 0.72, 1.0)
 bgn.inputs["Strength"].default_value = 0.7
+# [smoke&fire Phase 1, preview round 2: the billows read as flat fuzz] a top-front key light gives them form
+# (self-shadowed tops, darker undersides) so the sprite still reads as volume when the game lights it flat
+if SMOKE_ONLY:
+    bpy.ops.object.light_add(type="SUN", location=(0, -3, 6))
+    sun = bpy.context.object
+    sun.data.energy = float(opt.get("sun", 4.0))
+    sun.rotation_euler = (math.radians(35), 0, math.radians(15))
+    sun.data.angle = math.radians(8)
 
 def set_pass(layer):
     for ob in list(dom.data.materials):
