@@ -1026,13 +1026,30 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
     npaths = L.named_paths()
     for pid in sorted(npaths):
         pts_ = []
+        ok_ = []
         for q in npaths[pid]:
             g = X(q)
+            hit_ = False
             if grid is not None:
                 gz = grid.ground(g[0], g[1], g[2] + 64, g[2] - 128)
                 if gz is not None:
                     g = (g[0], g[1], gz + 2.0)
+                    hit_ = True
             pts_.append(g)
+            ok_.append(hit_)
+        # [soaudit 2026-11-23] the disc leaves some path points with no height (z 0: 26 of 1_1's 79, 133 of 1_3's 260),
+        # so the +64 / -128 window misses a street at -165 and the patrol man is sent into the air ("Path not found",
+        # he stands at his spot). Such a point takes its floor from the nearest grounded point of the same path
+        # (+96 / -160 around it: never a roof above the street)
+        if grid is not None and any(ok_):
+            for k_ in range(len(pts_)):
+                if ok_[k_]:
+                    continue
+                ref_ = min((j_ for j_ in range(len(pts_)) if ok_[j_]), key=lambda j_: abs(j_ - k_))
+                rz_ = pts_[ref_][2]
+                gz = grid.ground(pts_[k_][0], pts_[k_][1], rz_ + 96, rz_ - 160)
+                if gz is not None:
+                    pts_[k_] = (pts_[k_][0], pts_[k_][1], gz + 2.0)
         for k, g in enumerate(pts_, 1):
             lines.append(f'\tlevel.fl_npath[{pid}][{k}] = ( {g[0]:.0f} {g[1]:.0f} {g[2]:.0f} )')
         lines.append(f'\tlevel.fl_npath_n[{pid}] = {len(pts_)}')
@@ -1155,6 +1172,7 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
             lines.append(f'\tlevel.fl_ally_grp[{nl}] = {grp_}')
             lines.append(f'\tlevel.fl_ally_state[{nl}] = "{flscene.state(e)}"')
             lines.append(f'\tlevel.fl_ally_yaw[{nl}] = {yaw_:.0f}')
+            lines.append(f'\tlevel.fl_ally_rec[{nl}] = {e["i"]}')  # [soaudit 2026-11-23] the disc record (counts, area deaths)
             lines += _actor_ai(e, "ally", nl)
         elif cls in AMMO:
             n_ammo += 1
@@ -1415,6 +1433,13 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
     _projgens(L, X, lines, log, grid)
     _areas(L, X, lines, log)
     _pathfinders(L, X, lines, log)
+    # [decodeaudit r100 guns] the disc's gun fire for the guns this level's soldiers carry (AI_GUNS), the death drops
+    carried = set(re.findall(r'level\.fl_(?:axis|ally)_gkey\[\d+\] = "([^"]+)"', "\n".join(lines)))
+    gali = _ai_guns(disc, level, files, lines, tmp, d, vgm, carried, mohaa_base, log)
+    if gali:
+        files[f"ubersound/fl_{level}.scr"] += ("\n".join(gali) + "\n").encode()
+    if any("_drop[" in q for q in lines):
+        lines.append("\tlevel.fl_drop_ok = 1")
     lines.append(f"\tlevel.fl_ammo_n = {n_ammo}")
     lines += [f"\tlevel.fl_mg_n = {nm}", f"\tlevel.fl_axis_n = {na}", f"\tlevel.fl_ally_n = {nl}", f"\tlevel.fl_health_n = {nh}",
               "\tlevel.fl_conv = %d" % CONV_BUILD, "\tlevel.fl_data_ok = 1"]
@@ -1442,6 +1467,103 @@ WEAPBUL_GUN = {0x5760e46d: "Mauser KAR 98K", 0x8efb8e12: "Mauser KAR 98K", 0x104
                0xe058ce20: "BAR", 0x9d0e7c6c: "BAR", 0x92ba0807: "Springfield '03 Sniper",
                0x6e584c98: "Springfield '03 Sniper"}
 
+# [decodeaudit r100 guns] a soldier's death drop (CODE_FINDINGS_fl_1_1_audit.md part 1): actor attr 23 (weapbul hash, u32
+# at 0x90) x attr 24 (count, u8 at 0x71), made at the body when his death clip ends (bi_88 0x238f0, kind-3 branch 0x23990
+# -> 0x31c70(pos, hash, count); death state 28 on event 31, anim end). Nobody drops his own gun. Hash -> the stock MOHAA
+# pickup that feeds the players' guns of that class (models/items/item_<kind>_ammobox.tik; "health" = item_25_healthbox,
+# the stock canteen model)
+DEATH_DROP = {0x8efb8e12: "rifle",     # W14, ammo type 7: the player's M1 Garand clip
+              0xc186ca3c: "pistol",    # W6, ammo type 2: the player's Colt .45
+              0x598e4105: "health"}    # CRC32("MedicinalCanteen"): one of the four health-pickup hashes (0x31ded / 0x5c2e7)
+
+# [decodeaudit r100 guns, senders 1 / 3c] GunBnk module 1, the AI's gun fire: body = the bank stream of the gun's ammo
+# type (table 0x721), the near tail from set 0xa59 (table 0xad4 + random 0..2: the Garand 21-23 at random, MP40 /
+# Thompson 24 once in three - the other two picks are empty slots, here the bank's own silent stream 14). The body falls
+# off along table 0x5ff: 0.73 at 1 m, about linear to 0 at 63 m (48 u/m). The far layer (tables 0x2233 / 0x628: 0 at the
+# gun, a peak at ~26 m, 0 at 66 m) cannot be an alias (MOHAA only falls off with distance) and is left out. Each gun
+# becomes an AI-only copy of the stock tik the player's install loads (same name, so the reload / fire anims key; only
+# the fire alias changes): models/weapons/coop_fl<l>_<key>.tik, level.fl_gun_tik["<stock name, lower case>"]
+AI_GUNS = {"1_1": {"bank": "11GunBnk.abk", "volume": 0.75, "min": 48, "max": 3024, "guns": {
+    "mauser kar 98k": {"key": "kar98", "tik": "models/weapons/kar98.tik", "alias": "kar98_snd_fire", "body": [4]},
+    "walther p38": {"key": "p38", "tik": "models/weapons/p38.tik", "alias": "p38_snd_fire", "body": [2]},
+    "mp40": {"key": "mp40", "tik": "models/weapons/mp40.tik", "alias": "mp40_snd_fire", "body": [5], "tail": [24, 14, 14]},
+    "m1 garand": {"key": "m1", "tik": "models/weapons/m1_garand.tik", "alias": "m1_snd_fire", "body": [3],
+                  "tail": [21, 22, 23]},
+    "thompson": {"key": "thompson", "tik": "models/weapons/thompsonsmg.tik", "alias": "thompson_snd_fire", "body": [6],
+                 "tail": [24, 14, 14]}}}}
+
+
+def _ai_guns(disc, level, files, lines, tmp, d, vgm, carried, mohaa_base, log):
+    """[decodeaudit r100 guns] AI_GUNS for the guns the level's soldiers carry (carried: stock names, lower case): the
+    disc's GunBnk samples as fl<l>_<key>_fire1 / _tail<n> (maps "coop_fl"), the AI-only tik copies, and
+    level.fl_gun_tik. -> the alias lines"""
+    spec = AI_GUNS.get(level)
+    if not spec or not mohaa_base or not carried:
+        return []
+    import re as _re
+    import sys
+    for _p in (os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "ea"),
+               os.path.join(os.path.dirname(os.path.abspath(__file__)), "ea")):
+        if os.path.isdir(_p) and _p not in sys.path:
+            sys.path.append(_p)
+    import eaprops
+    abk = disc.read(d + spec["bank"])
+    live = set(flaudio.bnk_live_streams(abk).values())
+    bnk_path = os.path.join(tmp, "gun.bnk")
+    with open(bnk_path, "wb") as f:
+        f.write(abk[abk.find(b"BNKl"):])
+    pre = f"fl{level.replace('_', '')}"
+    done, ali = {}, []
+
+    def sample(st):
+        if st not in done:
+            done[st] = None
+            dst = os.path.join(tmp, f"gun{st}.wav")
+            if st in live and flaudio.vgm_decode(vgm, bnk_path, dst, st):
+                rel = f"sound/fl/{level}/gun/gun{st:02d}.wav"
+                files[rel] = flaudio.wav_mono(dst)
+                done[st] = rel
+            else:
+                log("ai guns: GunBnk stream", st, "not decoded")
+        return done[st]
+
+    parms = f'soundparms {spec["volume"]} 0.0 1.0 0.0 {spec["min"]} {spec["max"]}'
+    for name, g in sorted(spec["guns"].items()):
+        if name not in carried:
+            continue
+        tik = eaprops.effective_file(mohaa_base, g["tik"])
+        if not tik:
+            log("ai guns:", g["tik"], "not in this install;", name, "keeps the stock fire")
+            continue
+        body = [r for r in (sample(st) for st in g["body"]) if r]
+        if not body:
+            continue
+        fire, tail = f"{pre}_{g['key']}_fire", f"{pre}_{g['key']}_tail"
+        for k, rel in enumerate(body, 1):
+            ali.append(f'aliascache {fire}{k} {rel} {parms} weapon loaded maps "coop_fl"')
+        tails = [r for r in (sample(st) for st in g.get("tail", [])) if r]
+        for k, rel in enumerate(tails, 1):
+            ali.append(f'aliascache {tail}{k} {rel} {parms} auto loaded maps "coop_fl"')
+        t = tik.decode("latin-1")
+        rx = _re.compile(r"(?im)^([ \t]*)entry[ \t]+(stopaliaschannel|sound)[ \t]+" + _re.escape(g["alias"]) + r"[ \t]*$")
+
+        def rep(m):
+            out = f"{m.group(1)}entry {m.group(2)} {fire}"
+            if m.group(2).lower() == "sound" and tails:
+                out += f"\n{m.group(1)}entry sound {tail}"
+            return out
+        t2, nsub = rx.subn(rep, t.replace("\r\n", "\n"))
+        if not nsub:
+            log("ai guns:", g["tik"], "has no", g["alias"], "line;", name, "keeps the stock fire")
+            continue
+        rel = f"models/weapons/coop_{pre}_{g['key']}.tik"
+        hd, nl_, rest = t2.partition("\n")      # the TIKI header stays the first line
+        files[rel] = (hd + nl_ + "// GENERATED on this PC by the Frontline converter: an AI-only copy of " + g["tik"] +
+                      " (this install's own), the fire alias is the disc's\n" + rest).encode("latin-1")
+        lines.append(f'\tlevel.fl_gun_tik["{name}"] = "{rel}"')
+        log("ai guns:", name, "->", rel, "lines", nsub, "body", g["body"], "tail", g.get("tail", []))
+    return ali
+
 def _actor_ai(e, side, n):
     """[codedecode 2026-11-15, CODE_FINDINGS_fl_1_1.md items 1 and 5] an actor record's own AI fields (kind 3 getter
     0x2b600): path id = attr 42 (s16 at byte 0x84), direction = attr 43 (byte 0x7a: 0 / 2 forward, 1 reverse); sight
@@ -1463,7 +1585,21 @@ def _actor_ai(e, side, n):
     wh = struct.unpack_from("<I", r, 0x98)[0] or 0x5760e46d
     if wh in WEAPBUL_GUN:
         out.append('\tlevel.fl_%s_gun[%d] = "%s"' % (side, n, WEAPBUL_GUN[wh]))
+        out.append('\tlevel.fl_%s_gkey[%d] = "%s"' % (side, n, WEAPBUL_GUN[wh].lower()))   # [r100 guns] fl_gun_tik key
+    # [decodeaudit r100 guns] his death drop: attr 23 (weapbul hash at 0x90) x attr 24 (u8 at 0x71); none -> nothing
+    dh = struct.unpack_from("<I", r, 0x90)[0]
+    if dh in DEATH_DROP:
+        out.append('\tlevel.fl_%s_drop[%d] = "%s"' % (side, n, DEATH_DROP[dh]))
+        out.append('\tlevel.fl_%s_dropn[%d] = %d' % (side, n, r[0x71]))
+    elif dh:
+        out.append('\t//[r100 guns] death drop %08x x%d: not mapped' % (dh, r[0x71]))
     out.append('\tlevel.fl_%s_aim[%d] = %d' % (side, n, r[0x73]))
+    # [soaudit 2026-11-23] how many men the spawner makes, one after another, each the instant the previous dies
+    # (StartByIdObject.lst L0043 / L0136 -> L00dc): attr 20 = byte 0x34 bit 1 (the count flag), attr 21 = s16 at 0x3c,
+    # m3 = flag ? clamp(attr 21, 1..15) : 1. The respawn-delay flag (attr 18, bit 0) is 0 on every 1_1 actor
+    cnt_ = min(15, max(1, struct.unpack_from("<h", r, 0x3c)[0])) if (r[0x34] >> 1) & 1 else 1
+    if cnt_ > 1:
+        out.append('\tlevel.fl_%s_cnt[%d] = %d' % (side, n, cnt_))
     for m, (ro, fo) in (("idle", (0x7e, 0x76)), ("curious", (0x86, 0x7b)), ("alert", (0x88, 0x7c))):
         out.append('\tlevel.fl_%s_sight[%d]["%s"] = %.1f' % (side, n, m, s16(ro) / 16.0))
         out.append('\tlevel.fl_%s_fov[%d]["%s"] = %d' % (side, n, m, r[fo]))

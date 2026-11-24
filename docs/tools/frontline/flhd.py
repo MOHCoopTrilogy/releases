@@ -78,6 +78,36 @@ def _wrap_blur(im, sigma):
     return big.filter(ImageFilter.GaussianBlur(sigma)).crop((w, h, 2 * w, 2 * h))
 
 
+def _profile(p, n, soft):
+    """a periodic 1-D darkening profile (1 = none) resampled to n samples: nearest, then a short wrapped box so
+    the joint keeps a hard edge without stair steps"""
+    x = ((np.arange(n) + 0.5) * len(p) / n).astype(int) % len(p)
+    q = p[x]
+    r = max(1, int(round(soft * n / len(p))))
+    k = np.ones(2 * r + 1) / (2 * r + 1)
+    return np.convolve(np.concatenate([q[-r:], q, q[:r]]), k, "valid")
+
+
+def lay_lines(out, o, k):
+    """[anvil 1_3 HD] the disc texture's straight joints (slab joints, formwork seams, sheet laps, string courses)
+    laid over a swap: rows and columns whose MEDIAN texel is darker than its neighbourhood are joints, the rest is
+    noise and is left alone (rows / columns lighter than their neighbourhood - sheet laps, ridges - likewise kept).
+    Only full-length straight lines, so nothing of the disc's 128 px
+    blockiness comes back - the joints stay exactly where the level's geometry expects them."""
+    lum = np.asarray(o.convert("L"), np.float64)
+    bl = np.asarray(_wrap_blur(o, 2.0).convert("L"), np.float64)
+    hp = lum / np.maximum(bl, 1.0)
+
+    def coherent(p):
+        # dark joints AND bright laps / ridges (corrugated sheet seams read as a light line, QA 2026-11-23)
+        return np.where((p < 0.95) | (p > 1.05), p, 1.0)
+    W, H = out.size
+    r = _profile(coherent(np.median(hp, axis=1)), H, 0.15)[:, None]
+    c = _profile(coherent(np.median(hp, axis=0)), W, 0.15)[None, :]
+    f = (1.0 + k * (np.clip(r, 0.35, 1.8) - 1.0)) * (1.0 + k * (np.clip(c, 0.35, 1.8) - 1.0))
+    return Image.fromarray(np.clip(np.asarray(out, np.float64) * f[:, :, None], 0, 255).astype(np.uint8), "RGB")
+
+
 def bake(orig, tile, sw):
     """One repeat of the DISC texture, redrawn with the CC0 material: the new tile is repeated `repeat` times inside
     it (so the surfaces' texture coordinates stay the disc's), laid in `rows` offset courses when the original is
@@ -99,6 +129,8 @@ def bake(orig, tile, sw):
         tile = Image.fromarray(np.clip(ta * k[:, :, None], 0, 255).astype(np.uint8), "RGB")
     t = tint(tile, mean)
     px = min(1024, max(256, 4096 // max(rx, ry)))
+    if "out" in sw:                                  # [anvil 1_3 HD] long-side cap of the baked texture (texture memory)
+        px = max(128, min(px, int(sw["out"]) // max(rx, ry)))
     t = t.resize((px, px), Image.LANCZOS)
     W, H = px * rx, px * ry
     out = Image.new("RGB", (W, H))
@@ -122,6 +154,8 @@ def bake(orig, tile, sw):
         ratio = np.asarray(lo, np.float64) / np.maximum(mean, 1.0)
         ratio = 1.0 + k * (np.clip(ratio, 0.45, 1.8) - 1.0)
         out = Image.fromarray(np.clip(np.asarray(out, np.float64) * ratio, 0, 255).astype(np.uint8), "RGB")
+    if float(sw.get("lines", 0)) > 0:
+        out = lay_lines(out, o, float(sw["lines"]))
     if W > 4096 or H > 4096:
         out = out.resize((min(W, 4096), min(H, 4096)), Image.LANCZOS)
     return out

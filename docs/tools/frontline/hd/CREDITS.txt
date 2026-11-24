@@ -9,3 +9,11 @@ worn_mossy_plasterwall.jpg  page https://polyhaven.com/a/worn_mossy_plasterwall 
 weathered_planks.jpg  page https://polyhaven.com/a/weathered_planks  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/weathered_planks/weathered_planks_diff_1k.jpg  CC0
 worn_corrugated_iron.jpg  page https://polyhaven.com/a/worn_corrugated_iron  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/worn_corrugated_iron/worn_corrugated_iron_diff_1k.jpg  CC0
 dark_brick_wall.jpg  page https://polyhaven.com/a/dark_brick_wall  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/dark_brick_wall/dark_brick_wall_diff_1k.jpg  CC0  (user-approved 2026-11-15 'Online': Sealed Orders brick wall 4aa80, two repeats, mortar toned down)
+
+concrete_floor_worn_001.jpg  page https://polyhaven.com/a/concrete_floor_worn_001  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_floor_worn_001/concrete_floor_worn_001_diff_1k.jpg  CC0  (v1.10.92: Anchor & Anvil quay / pen slabs e5880 71a80 c7_50300, disc joints kept)
+mud_forest.jpg  page https://polyhaven.com/a/mud_forest  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mud_forest/mud_forest_diff_1k.jpg  CC0  (v1.10.92: Anchor & Anvil ground f7800)
+tarred_gravel.jpg  page https://polyhaven.com/a/tarred_gravel  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/tarred_gravel/tarred_gravel_diff_1k.jpg  CC0  (v1.10.92: Anchor & Anvil gravel asphalt 6d980)
+asphalt_04.jpg  page https://polyhaven.com/a/asphalt_04  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_04/asphalt_04_diff_1k.jpg  CC0  (v1.10.92: Anchor & Anvil worn asphalt eaf00)
+red_brick.jpg  page https://polyhaven.com/a/red_brick  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick/red_brick_diff_1k.jpg  CC0  (v1.10.92: Anchor & Anvil warehouse brick 18700 ef000)
+concrete_wall_006.jpg  page https://polyhaven.com/a/concrete_wall_006  file https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_wall_006/concrete_wall_006_diff_1k.jpg  CC0  (v1.10.92: Anchor & Anvil stained concrete walls b1800 97780)
+dark_brick_wall.jpg / brown_mud_dry.jpg (above) are also used by Anchor & Anvil: 101f00 and 7d400.

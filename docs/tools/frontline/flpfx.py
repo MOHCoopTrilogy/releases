@@ -109,6 +109,14 @@ def _rv(lo, hi, s):
 # references only so), rate = the code's per emission x0.7 / x0.4 x 60 / period (no frame tells the scaled from the
 # raw count; the scaling is read from the native code). The other values exist so a camera pass can compare them
 READING = {"col": "avg255", "alp": "trans", "rate": "scaled", "size": 2.0}
+# [hotfix 1.10.91, sohotfix] per-template exceptions to READING, each with its evidence. The small-mine set
+# (LandMineTriggerParent, also the crate break's smoke): at the emulator's real-speed frames of the jeep ambush
+# (ref_xemu clips/jeep e_sheet / w_sheet / k_sheet: the double blast at the wreck seen through the arch +4..+92 ticks
+# after it, the bump mine east) the original draws no dirt burst and no smoke wall - the wreck stays clear - while
+# the "trans" reading drew both at full opacity (52 sprites of ~2.4 m for 4.9 s: a grey wall over the arch for ~3 s;
+# hotfix s_rel/mine_sheet.jpg). Their alpha bytes are 0..8; read as opacity (0x80 = 1.0) they are near invisible,
+# which is what the frames show. The shrapnel specks (alpha 107 / 172) keep the default reading.
+TEMPLATE_READING = {"ExpSmDirt_Fire1": {"alp": "opac128"}, "ExpSmDirt_Smoke1": {"alp": "opac128"}}
 BURST_MAX_S = 0.4      # a system that emits for at most this long is one burst (anim enter originspawn), not an emitter
 
 
@@ -226,7 +234,7 @@ def build(L, X, files, level, spec, lines, log=print):
             made[h] = None
             return None
         rel = "models/emitters/fl_%s_pt_%08x.tik" % (level, h)
-        files[rel] = emitter_tik(f, spr[f["sprite"]], X, name).encode("latin-1")
+        files[rel] = emitter_tik(f, spr[f["sprite"]], X, name, TEMPLATE_READING.get(name)).encode("latin-1")
         made[h] = (rel, f)
         return made[h]
     for cls, rows in sorted(spec.items()):
