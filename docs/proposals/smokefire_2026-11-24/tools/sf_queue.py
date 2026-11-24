@@ -24,6 +24,7 @@ JOBS = {
     "m18": (["m18", "m5l2b", "scene_m18.json", "P0", "P1"], {}),
     "sgren": (["sgren", "m5l2b", "scene_sgren.json", "P0", "SPR", "VOL"], {}),
     "remap": (["remap", "m5l2b", "scene_remap.json", "R0", "R1"], {}),
+    "muzzle": (["muzzle", "m5l2b", "scene_muzzle.json", "R0", "R1"], {}),
 }
 # preview = low res / few samples to judge the motion before the long render; full = 512 px production frames
 BL = {

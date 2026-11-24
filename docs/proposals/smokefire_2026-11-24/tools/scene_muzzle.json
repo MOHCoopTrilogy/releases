@@ -1,0 +1,112 @@
+{
+ "_doc": "sprite remap: R0 = retail / fx_1025 smoke sprites, R1 = cg_hzmSprRemap 1 (our billow / soot, size-matched). Same Phase 1 pak and binaries.",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "R0": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set r_hzmSpriteSoftPer 1",
+    "set cg_hzmSmokeGridLight 1",
+    "set cg_hzmSprRemap 0"
+   ]
+  },
+  "R1": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set r_hzmSpriteSoftPer 1",
+    "set cg_hzmSmokeGridLight 1",
+    "set cg_hzmSprRemap 1"
+   ]
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "muzzle",
+   "at": [
+    2711,
+    -5760,
+    -71
+   ],
+   "cam": {
+    "yaw": 180,
+    "dist": 110,
+    "h": 60,
+    "look_h": 55
+   },
+   "sets": [
+    "tele 2711 -5760 -40",
+    "face 0 270 0",
+    "give models/weapons/kar98.tik",
+    "use models/weapons/kar98.tik"
+   ],
+   "fx": [
+    {
+     "kind": "fire",
+     "ms": 200
+    }
+   ],
+   "times": [
+    100,
+    200,
+    300,
+    500,
+    800,
+    1200,
+    1800
+   ],
+   "settle": 4000,
+   "clear": 3000
+  },
+  {
+   "name": "muzzle2",
+   "at": [
+    2711,
+    -5760,
+    -71
+   ],
+   "cam": {
+    "yaw": 180,
+    "dist": 110,
+    "h": 60,
+    "look_h": 55
+   },
+   "sets": [
+    "tele 2711 -5760 -40",
+    "face 0 270 0",
+    "give models/weapons/kar98.tik",
+    "use models/weapons/kar98.tik"
+   ],
+   "fx": [
+    {
+     "kind": "fire",
+     "ms": 200
+    }
+   ],
+   "times": [
+    100,
+    200,
+    300,
+    500,
+    800,
+    1200,
+    1800
+   ],
+   "settle": 4000,
+   "clear": 3000
+  }
+ ]
+}

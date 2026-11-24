@@ -5,7 +5,7 @@
 
 hzm_volsmoke_m18
 {
-	qer_hzmVolSmoke 1 300 380 0.022 14
+	qer_hzmVolSmoke 1 360 460 0.045 12 8
 	cull none
 	spriteGen parallel_oriented
 	{
@@ -16,7 +16,7 @@ hzm_volsmoke_m18
 
 hzm_volsmoke_sgren
 {
-	qer_hzmVolSmoke 1 320 300 0.026 8
+	qer_hzmVolSmoke 1 380 380 0.045 8 8
 	cull none
 	spriteGen parallel_oriented
 	{
