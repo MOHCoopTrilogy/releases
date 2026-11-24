@@ -1224,7 +1224,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # [flpolish] each collision brush carries its SOURCE in its (nodraw) shader name, so the walk audit can tell an
     # original player-clip boundary from a wall, a fitted column, a headroom cap or our edge-of-world clip
     NOSHOT_ = bool(flpack.spec(level).get("clip_noshot"))
-    STEPS_ = {int(k_): {"rock": 0x10000, "gravel": 0x800000, "metal": 0x8000, "wood": 0x4000, "dirt": 0x20000}[v_]
+    # [audio13 7b] "glass" (SURF_GLASS, surfaceflags.h): 1_3's window panes (material 12, ImpBnk surface 3), so a bullet
+    # on them plays the disc's glass impact through snd_bh_glass (fl_levels "impacts"); 1_1 uses none
+    STEPS_ = {int(k_): {"rock": 0x10000, "gravel": 0x800000, "metal": 0x8000, "wood": 0x4000, "dirt": 0x20000,
+                        "glass": 0x400000}[v_]
               for k_, v_ in (flpack.spec(level).get("footsteps") or {}).items()}
     def clip_for(tag):
         if tag == TAG_CLIFF:

@@ -112,7 +112,9 @@ SCENES = {
 # b1 state 757 / 758 PLAYANIMATION(560, 27, 0) on message 147 (trigger 50) / 168 / 198 - emt_1_3 anim 560 = clip 107,
 # 37 poses x 4 ticks (2.4 s), root motion: a 2 m run-up, take-off at tick 36, apex +0.77 m, landing 5.4 m on (a running
 # leap across a gap)
-SCENES_LEVEL = {"1_3": {560: False}}
+# [fx13 r2] + the alarm user's clips: b1 state 960 (GETRANDOMINTEGER(0, 99) < 49 -> 962) plays 14109 (clip 1249, ring
+# marker 0xc804 at tick 36), else 963 plays 14105 (clip 867, marker at tick 28), once each
+SCENES_LEVEL = {"1_3": {560: False, 14109: False, 14105: False}}
 
 
 def _mm(a, b):
