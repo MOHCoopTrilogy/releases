@@ -2,6 +2,7 @@
 
 cfx2_billow
 {
+	qer_hzmSoftEdge 96
 	cull none
 	spriteGen parallel_oriented
 	spritescale 0.5
@@ -15,6 +16,7 @@ cfx2_billow
 
 cfx2_soot
 {
+	qer_hzmSoftEdge 96
 	cull none
 	spriteGen parallel_oriented
 	spritescale 0.5

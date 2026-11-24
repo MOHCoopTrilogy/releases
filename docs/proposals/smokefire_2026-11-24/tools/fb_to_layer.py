@@ -27,7 +27,8 @@ for f in frames:
     Image.open(f).save(os.path.join(TEX, os.path.basename(f)[:-4] + ".png"), optimize=True)
 paths = " ".join("textures/coop_fx/fx/%s%03d.png" % (name, k + 1) for k in range(len(frames)))
 # spritescale 256/px: a 512 px set keeps the world size a 256 px fx_1025 puff had at the same tik `scale`
-block = ("cfx2_%s\n{\n\tcull none\n\tspriteGen parallel_oriented\n\tspritescale %g\n\t{\n\t\tanimMapOnce %g %s\n"
+# qer_hzmSoftEdge 96: a big puff fades over ~96u into the ground / walls (r_hzmSpriteSoftPer 1; gl1 skips qer_*)
+block = ("cfx2_%s\n{\n\tqer_hzmSoftEdge 96\n\tcull none\n\tspriteGen parallel_oriented\n\tspritescale %g\n\t{\n\t\tanimMapOnce %g %s\n"
          "\t\tblendfunc blend\n\t\trgbGen vertex\n\t\talphaGen vertex\n\t}\n}\n" % (name, 256.0 / px, fps, paths))
 txt = open(SH, encoding="latin-1").read() if os.path.isfile(SH) else (
     "// [smoke&fire Phase 1] our own smoke flipbooks (mk_smoke.py -> fb_to_layer.py). Generated - do not edit by hand.\n\n")

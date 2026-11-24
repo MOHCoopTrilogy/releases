@@ -1,0 +1,154 @@
+{
+ "_doc": "smoke grenades: P0 = Phase 0 (retail grenade smoke, no M18 cloud); SPR = Phase 1 sprite fallback (3 sizes/tones, own billow, per-sprite soft fade); VOL = volsmoke-eng renderer + cgame, r_hzmVolSmoke 2 (bank volume, sprites hidden where it ran)",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "P0": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll"
+   }
+  },
+  "SPR": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set cg_hzmSmokeGridLight 1",
+    "set r_hzmSpriteSoftPer 1"
+   ]
+  },
+  "VOL": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/volsmoke_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/volsmoke_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set r_hzmVolSmoke 2"
+   ]
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "m18",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 520,
+    "h": 100,
+    "look_h": 170
+   },
+   "fx": [
+    {
+     "model": "models/fx/m18_smoke_grenadeexplosion.tik",
+     "kind": "anim",
+     "anim": "idle",
+     "life": 30
+    }
+   ],
+   "times": [
+    2000,
+    5000,
+    9000,
+    14000,
+    20000
+   ],
+   "settle": 7000,
+   "clear": 14000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  },
+  {
+   "name": "nebel",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 520,
+    "h": 100,
+    "look_h": 170
+   },
+   "fx": [
+    {
+     "model": "models/fx/nebelhandgranateexplosion.tik",
+     "kind": "anim",
+     "anim": "idle",
+     "life": 30
+    }
+   ],
+   "times": [
+    2000,
+    5000,
+    9000,
+    14000,
+    20000
+   ],
+   "settle": 7000,
+   "clear": 14000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  },
+  {
+   "name": "rdg1",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 520,
+    "h": 100,
+    "look_h": 170
+   },
+   "fx": [
+    {
+     "model": "models/fx/rdg-1_smoke_grenadeexplosion.tik",
+     "kind": "anim",
+     "anim": "idle",
+     "life": 30
+    }
+   ],
+   "times": [
+    2000,
+    5000,
+    9000,
+    14000,
+    20000
+   ],
+   "settle": 7000,
+   "clear": 14000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  }
+ ]
+}
