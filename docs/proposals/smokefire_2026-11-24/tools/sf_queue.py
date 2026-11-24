@@ -21,6 +21,7 @@ JOBS = {
     "soft": (["soft", "m5l2b", "scene_soft.json", "S0", "S1"], {}),
     "softdbg": (["softdbg", "m5l2b", "scene_softdbg.json", "DBG"], {}),
     "p0v2": (["p0v2", "m5l2b", "scene_p0v2.json", "A", "B"], {}),
+    "m18": (["m18", "m5l2b", "scene_m18.json", "P0", "P1"], {}),
 }
 # preview = low res / few samples to judge the motion before the long render; full = 512 px production frames
 BL = {

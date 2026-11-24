@@ -62,7 +62,7 @@
       "reason": "retail look"
     },
     {
-      "match": "^sprite:(cfx_|coop_(snowplume|fx))",
+      "match": "^sprite:(cfx2?_|coop_(snowplume|fx))",
       "status": "upgraded",
       "reason": "our own flipbook / sprite",
       "expect": "coop|hzm"

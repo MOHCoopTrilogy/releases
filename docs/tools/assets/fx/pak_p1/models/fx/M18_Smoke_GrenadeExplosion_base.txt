@@ -41,12 +41,12 @@ init
 
 		originemitter cloud
 		(
-			spawnrate 5
-			model cfx_puff.spr
-			color 1.0 0.80 0.16
-			alpha 0.85
+			spawnrate 3.5
+			model cfx2_billow.spr
+			color 1.0 0.86 0.22
+			alpha 0.55
 			life 11.0 3.0
-			scale 0.52
+			scale 0.62
 			scalerate 0.42
 			offset crandom 10 crandom 10 range 4 10
 			randvel crandom 16 crandom 16 range 14 30
@@ -54,6 +54,7 @@ init
 			friction 0.35
 			angles 0 0 random 360
 			avelocity 0 0 crandom 10
+			randomroll
 			fadein 0.7
 			fadedelay 6.5
 			spritegridlighting
@@ -63,8 +64,8 @@ init
 		originemitter spout
 		(
 			spawnrate 9
-			model cfx_puff.spr
-			color 1.0 0.86 0.30
+			model cfx2_billow.spr
+			color 1.0 0.90 0.36
 			alpha 0.7
 			life 1.6 0.6
 			scale 0.16

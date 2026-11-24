@@ -179,6 +179,15 @@ gl2 only; gl1 must not crash (one boot + one map check).
    FEATURES/HISTORY, correct bug-fx1025-1's status, update the "Lingering gun smoke" entry (0.35 -> 0.15/0.1, bug-1200).
 
 ### Phase 1 - one new texture set, broadest reach (content) - ~3 days
+**Scope split with the volumetric prototype (2026-11-24, coordinator):** burning-wreck columns (and later barrage banks)
+become true 3D volumes on engine branch `volsmoke-eng` (`VOLUMETRIC.md`); the flipbooks here cover everything else -
+muzzle smoke, grenade / shell smoke, smoke grenades incl. the M18, chimneys / stacks / steam. No work on wreck-column
+sprites. Integration points: `coop_wreck.tik` and the `cfx_*` shaders ship from the fx pak overlay
+(`docs/tools/assets/fx/pak/`, built by `gen_fx_pak.py`) - the mod-tree copies are pinned shadows that do not ship, so the
+volumetric `vol` emitter and `qer_hzmVolSmokeAlt` keyword must go into the overlay copies; the Phase 1 soft-edge generator
+re-emits shader bodies from the overlay as they are, so a `qer_hzmVolSmoke*` keyword there is preserved.
+Done so far: soft particles per sprite (`r_hzmSpriteSoftPer`), D7 grid lighting (`cg_hzmSmokeGridLight`), scorch variants
+(`cg_hzmScorchVar`), M18 coloured cloud, our own `cfx2_billow` (512 px, 40 fr) - all in layer `pak_p1`, all default off.
 1. **Smoke master set** (own Blender renders, see section 7): 512 px, 48-64 frames, rolling billows - dark soot, grey
    battle smoke, white smoke-grenade, light dust - plus a 256 px LOD set. DXT5 `.dds` precompressed.
 2. **VSS + muzzle**: new art under **new shader names**, retargeted tik by tik (muzzle blocks, VSS types), at the same world

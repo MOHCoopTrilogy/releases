@@ -94,6 +94,8 @@ d = m.domain_settings
 d.domain_type = "GAS"
 d.resolution_max = RES
 d.cache_type = "ALL"
+# [smoke&fire] bake only what is exported (the default cache range 1..250 cost the first 512 bake ~20 min for nothing)
+d.cache_frame_start, d.cache_frame_end = 1, P["export"][1] + 1
 d.cache_directory = cache
 d.use_noise = "noise" in opt   # 5.1: a noise bake renders NOTHING from the cache (verified 2026-10-26) - use base resolution instead
 d.noise_scale = 2

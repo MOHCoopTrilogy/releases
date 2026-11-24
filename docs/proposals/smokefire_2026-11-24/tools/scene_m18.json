@@ -1,0 +1,69 @@
+{
+ "_doc": "M18 coloured cloud on our own billow flipbook (cfx2_billow): P0 = approved Phase 0, P1 = Phase 1 layer + grid lighting + per-sprite soft fade",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "P0": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll"
+   }
+  },
+  "P1": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set cg_hzmSmokeGridLight 1",
+    "set cg_hzmScorchVar 1",
+    "set r_hzmSpriteSoftPer 1"
+   ]
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "m18",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 720,
+    "h": 150,
+    "look_h": 110
+   },
+   "fx": [
+    {
+     "model": "models/fx/m18_smoke_grenadeexplosion.tik",
+     "kind": "anim",
+     "anim": "idle",
+     "life": 30
+    }
+   ],
+   "times": [
+    2000,
+    5000,
+    9000,
+    14000,
+    20000
+   ],
+   "settle": 7000,
+   "clear": 10000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  }
+ ]
+}
