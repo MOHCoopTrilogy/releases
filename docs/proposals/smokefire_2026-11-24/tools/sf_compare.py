@@ -62,6 +62,8 @@ for (k, name), times in sorted(F.items()):
     t0 = both[0]
     score = {t: change(times[t0][va], times[t][va]) + change(times[t0][vb], times[t][vb]) for t in both[1:]}
     hero = max(score, key=score.get)
+    if "scorch" in name:      # the subject is what is LEFT on the ground: the last moment, smoke gone
+        hero = both[-1]
     lab = lambda t: "%s  +%.1f s" % (name, t / 1000.0)   # noqa: E731
     pair(times[hero][va], times[hero][vb], lab(hero), w=900).save(os.path.join(out, "%02d_%s_HERO.jpg" % (k, name)), quality=90)
     seq = [t for t in both if t <= 6000]

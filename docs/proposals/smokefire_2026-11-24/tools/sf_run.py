@@ -173,6 +173,8 @@ def script(variant):
         for s_ in sh.get("sets", []):
             c(s_)
         w(sh.get("settle", 1500))
+        for s_ in sh.get("fxsets", []):
+            c(s_)
         c("echo ^~^~^ SFRUN %s %s start" % (variant, sh["name"]))
         k += 1
         w(300)
@@ -237,6 +239,8 @@ def run(variant):
             "+set", "in_joystick", "0", "+set", "in_mouse", "0", "+set", "in_nograb", "1", "+set", "s_volume", "0",
             "+set", "s_musicvolume", "0", "+set", "coop_tinnitusBaseVol", "0", "+set", "net_port", os.environ.get("SF_PORT", "12987"),
             "+exec", "sf_run.cfg"]
+    for k_, v_ in V.get("launch", {}).items():     # latched cvars a variant needs at launch (e.g. r_msaa 0)
+        args[-2:-2] = ["+set", k_, str(v_)]
     wd = hw.sdl_display_index(mon[0]) if hw.supports_window_cvars(CLIENT) else None
     args, late = hw.apply_policy(args, width=W, height=H, display=mon[0], window_display=wd)
     boot = ["set in_joystick 0", "set in_gamepad 0", "set in_mouse 0", "set in_nograb 1", "set s_volume 0", "set s_musicvolume 0",

@@ -1,5 +1,5 @@
 {
- "_doc": "Phase 0 media v2 (user: 'mostly black marks on the ground'): every shot on its own clean spot (450u apart, ground traced), camera closer, 100 ms burst over the first 2 s. A = v1.10.91, B = Phase 0.",
+ "_doc": "Phase 0 media v2 (user: 'mostly black marks on the ground'): the fx_1025 road spot for every shot; the previous scorch is cleared before each blast (coop_scorchTime 5 for the settle, back to 90 for the shot), camera closer, 100 ms burst over the first 2 s. A = v1.10.91, B = Phase 0.",
  "loadwait": 90,
  "postload": 8,
  "variants": {
@@ -42,18 +42,24 @@
     3500,
     5000
    ],
-   "settle": 2000,
+   "settle": 7000,
    "clear": 6000,
    "burst": {
     "every": 100,
     "n": 20
-   }
+   },
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   },
   {
    "name": "bazooka",
    "at": [
     2711,
-    -5250,
+    -5700,
     -71
    ],
    "cam": {
@@ -74,18 +80,24 @@
     3500,
     5000
    ],
-   "settle": 2000,
+   "settle": 7000,
    "clear": 6000,
    "burst": {
     "every": 100,
     "n": 20
-   }
+   },
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   },
   {
    "name": "heavyshell",
    "at": [
     2711,
-    -4800,
+    -5700,
     -71
    ],
    "cam": {
@@ -106,18 +118,24 @@
     3500,
     5000
    ],
-   "settle": 2000,
+   "settle": 7000,
    "clear": 6000,
    "burst": {
     "every": 100,
     "n": 20
-   }
+   },
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   },
   {
    "name": "fire",
    "at": [
     2711,
-    -4350,
+    -5700,
     -71
    ],
    "cam": {
@@ -138,18 +156,24 @@
     4000,
     6000
    ],
-   "settle": 2000,
+   "settle": 7000,
    "clear": 4000,
    "burst": {
     "every": 100,
     "n": 20
-   }
+   },
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   },
   {
    "name": "firegood",
    "at": [
     2711,
-    -3900,
+    -5700,
     -71
    ],
    "cam": {
@@ -170,18 +194,24 @@
     4000,
     6000
    ],
-   "settle": 2000,
+   "settle": 7000,
    "clear": 4000,
    "burst": {
     "every": 100,
     "n": 20
-   }
+   },
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   },
   {
    "name": "barracks",
    "at": [
     2711,
-    -3450,
+    -5700,
     -71
    ],
    "cam": {
@@ -205,8 +235,14 @@
     4000,
     6000
    ],
-   "settle": 2000,
-   "clear": 3000
+   "settle": 7000,
+   "clear": 3000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   }
  ]
 }

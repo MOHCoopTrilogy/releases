@@ -1,0 +1,228 @@
+{
+ "_doc": "soft distance sweep at ground contact (MSAA on, as players run it)",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "SD": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set r_softParticleDistance 40"
+   ]
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "fire_d001",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 25,
+    "look_h": 35
+   },
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    3000,
+    4500
+   ],
+   "settle": 7000,
+   "clear": 4000,
+   "sets": [
+    "set coop_scorchTime 5",
+    "set r_softParticleDistance 1"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  },
+  {
+   "name": "fire_d040",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 25,
+    "look_h": 35
+   },
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    3000,
+    4500
+   ],
+   "settle": 7000,
+   "clear": 4000,
+   "sets": [
+    "set coop_scorchTime 5",
+    "set r_softParticleDistance 40"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  },
+  {
+   "name": "fire_d128",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 25,
+    "look_h": 35
+   },
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    3000,
+    4500
+   ],
+   "settle": 7000,
+   "clear": 4000,
+   "sets": [
+    "set coop_scorchTime 5",
+    "set r_softParticleDistance 128"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  },
+  {
+   "name": "fire_d256",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 25,
+    "look_h": 35
+   },
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    3000,
+    4500
+   ],
+   "settle": 7000,
+   "clear": 4000,
+   "sets": [
+    "set coop_scorchTime 5",
+    "set r_softParticleDistance 256"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  },
+  {
+   "name": "gren_d001",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 28,
+    "look_h": 30
+   },
+   "fx": [
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade"
+    }
+   ],
+   "times": [
+    300,
+    700,
+    1200
+   ],
+   "settle": 7000,
+   "clear": 6000,
+   "sets": [
+    "set coop_scorchTime 5",
+    "set r_softParticleDistance 1"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  },
+  {
+   "name": "gren_d128",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 28,
+    "look_h": 30
+   },
+   "fx": [
+    {
+     "model": "models/fx/f1grenadeexplosion.tik",
+     "kind": "expl",
+     "cgm": "grenade"
+    }
+   ],
+   "times": [
+    300,
+    700,
+    1200
+   ],
+   "settle": 7000,
+   "clear": 6000,
+   "sets": [
+    "set coop_scorchTime 5",
+    "set r_softParticleDistance 128"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  }
+ ]
+}

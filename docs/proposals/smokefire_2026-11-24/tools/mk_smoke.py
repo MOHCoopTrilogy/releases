@@ -43,14 +43,16 @@ P = {
                      flame_vort=0.0, vort=0.9, burn=0.0, dissolve=0, smoke_amt=2.2, flame_smoke=0.0, steady=True, export=(60, 91)),
     # [smoke&fire Phase 1] one rolling billow that blooms, swells and thins (a smoke-grenade bank, a column puff, the
     # M18 cloud): rendered NEUTRAL light grey so one set serves white / grey / coloured signal smoke via the tik colour
-    "billow": dict(dom=(3.4, 3.4, 3.4), cen_z=0.35, nframes=110, fuel=0.0, burst=6, vel=2.4, rad=0.55, buoy_a=0.35, buoy_b=0.0,
-                   flame_vort=0.0, vort=1.4, burn=0.0, dissolve=0, smoke_amt=2.6, flame_smoke=0.0, steady=False, export=(14, 109)),
+    # (preview 1 had the source on the domain floor: a flat-cut bottom - the very "lined on the ground" look - and
+    # the cloud filled the box by the end: square edges. Source now mid-domain, export stops before the walls.)
+    "billow": dict(dom=(4.6, 4.6, 4.6), cen_z=2.1, nframes=96, fuel=0.0, burst=6, vel=1.6, rad=0.5, buoy_a=0.15, buoy_b=0.0,
+                   flame_vort=0.0, vort=1.4, burn=0.0, dissolve=0, smoke_amt=2.6, flame_smoke=0.0, steady=False, export=(8, 79)),
     # dark soot billow (wreck columns, burning buildings): same motion, dense and dark (scol set by the caller)
-    "soot": dict(dom=(3.4, 3.4, 3.8), cen_z=0.35, nframes=110, fuel=0.0, burst=6, vel=2.0, rad=0.55, buoy_a=0.6, buoy_b=0.0,
-                 flame_vort=0.0, vort=1.2, burn=0.0, dissolve=0, smoke_amt=3.0, flame_smoke=0.0, steady=False, export=(14, 109)),
+    "soot": dict(dom=(4.6, 4.6, 5.6), cen_z=1.7, nframes=96, fuel=0.0, burst=6, vel=1.4, rad=0.5, buoy_a=0.4, buoy_b=0.0,
+                 flame_vort=0.0, vort=1.2, burn=0.0, dissolve=0, smoke_amt=3.0, flame_smoke=0.0, steady=False, export=(8, 79)),
     # low dust skirt (blast dust, crate breaks): wide, flat, fast out then settling
-    "dust": dict(dom=(4.4, 4.4, 2.0), cen_z=0.2, nframes=90, fuel=0.0, burst=3, vel=4.5, rad=0.45, buoy_a=0.08, buoy_b=0.0,
-                 flame_vort=0.0, vort=1.0, burn=0.0, dissolve=0, smoke_amt=2.0, flame_smoke=0.0, steady=False, export=(4, 89)),
+    "dust": dict(dom=(5.4, 5.4, 3.0), cen_z=1.1, nframes=80, fuel=0.0, burst=3, vel=3.4, rad=0.4, buoy_a=0.05, buoy_b=0.0,
+                 flame_vort=0.0, vort=1.0, burn=0.0, dissolve=0, smoke_amt=2.0, flame_smoke=0.0, steady=False, export=(4, 69)),
 }[preset]
 SMOKE_ONLY = preset in ("smokecol", "billow", "soot", "dust")
 for _k in list(P.keys()):

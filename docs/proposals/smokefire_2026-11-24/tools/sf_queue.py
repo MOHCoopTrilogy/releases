@@ -19,6 +19,7 @@ JOBS = {
     "gl1": (["gl1", "m5l2b", "scene_gl1.json", "G1"], {"SF_RENDERER": "opengl1"}),
     "p1": (["p1day", "m5l2b", "scene_p1_day.json", "P0", "P1"], {}),
     "soft": (["soft", "m5l2b", "scene_soft.json", "S0", "S1"], {}),
+    "softdbg": (["softdbg", "m5l2b", "scene_softdbg.json", "DBG"], {}),
     "p0v2": (["p0v2", "m5l2b", "scene_p0v2.json", "A", "B"], {}),
 }
 # preview = low res / few samples to judge the motion before the long render; full = 512 px production frames

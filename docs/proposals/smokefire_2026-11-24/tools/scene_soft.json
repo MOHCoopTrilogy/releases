@@ -1,5 +1,5 @@
 {
- "_doc": "Soft particles at ground contact (user: 'perfectly lined on the ground'): S0 = r_softParticleDistance 1 (hard cut), S1 = 40u fade. Same pak (Phase 1) and binaries; low camera at the contact line.",
+ "_doc": "Soft particles at ground contact (user: 'perfectly lined on the ground'): S0 = today (global 24u fade), S1 = per-sprite fade (qer_hzmSoftEdge 16..128u by sprite size, r_hzmSpriteSoftPer 1). Same Phase 1 pak + binaries, low camera at the contact line.",
  "loadwait": 90,
  "postload": 8,
  "variants": {
@@ -12,7 +12,8 @@
     "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
    },
    "sets": [
-    "set r_softParticleDistance 1"
+    "set r_softParticleDistance 24",
+    "set r_hzmSpriteSoftPer 0"
    ]
   },
   "S1": {
@@ -24,7 +25,8 @@
     "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
    },
    "sets": [
-    "set r_softParticleDistance 40"
+    "set r_softParticleDistance 24",
+    "set r_hzmSpriteSoftPer 1"
    ]
   }
  },
@@ -34,7 +36,7 @@
    "name": "grenade_contact",
    "at": [
     2711,
-    -3000,
+    -5700,
     -71
    ],
    "cam": {
@@ -54,18 +56,24 @@
     2500,
     3500
    ],
-   "settle": 2000,
+   "settle": 7000,
    "clear": 6000,
    "burst": {
     "every": 100,
     "n": 20
-   }
+   },
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   },
   {
    "name": "fire_contact",
    "at": [
     2711,
-    -2550,
+    -5700,
     -71
    ],
    "cam": {
@@ -86,18 +94,24 @@
     4000,
     6000
    ],
-   "settle": 2000,
+   "settle": 7000,
    "clear": 4000,
    "burst": {
     "every": 100,
     "n": 20
-   }
+   },
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   },
   {
    "name": "m18_contact",
    "at": [
     2711,
-    -2100,
+    -5700,
     -71
    ],
    "cam": {
@@ -120,8 +134,14 @@
     10000,
     16000
    ],
-   "settle": 2000,
-   "clear": 10000
+   "settle": 7000,
+   "clear": 10000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   }
  ]
 }

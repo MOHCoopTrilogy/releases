@@ -31,7 +31,7 @@
    "name": "m18",
    "at": [
     2711,
-    -1650,
+    -5700,
     -71
    ],
    "cam": {
@@ -57,14 +57,20 @@
     16000,
     24000
    ],
-   "settle": 2000,
-   "clear": 10000
+   "settle": 7000,
+   "clear": 10000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   },
   {
    "name": "smokecol",
    "at": [
     2711,
-    -1200,
+    -5700,
     -71
    ],
    "cam": {
@@ -86,14 +92,20 @@
     9000,
     12000
    ],
-   "settle": 2000,
-   "clear": 4000
+   "settle": 7000,
+   "clear": 4000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   },
   {
    "name": "scorch",
    "at": [
     2711,
-    -750,
+    -5700,
     -71
    ],
    "cam": {
@@ -131,8 +143,14 @@
     9000,
     12000
    ],
-   "settle": 2000,
-   "clear": 3000
+   "settle": 7000,
+   "clear": 3000,
+   "sets": [
+    "set coop_scorchTime 5"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
   }
  ]
 }

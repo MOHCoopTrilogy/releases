@@ -1,0 +1,161 @@
+{
+ "_doc": "soft particle DEBUG (r_softParticlesDebug 1 = mode 4: draws the fade factor) on the fire at ground contact",
+ "loadwait": 90,
+ "postload": 8,
+ "variants": {
+  "DBG": {
+   "paks": [
+    "H:/hzm_work/smokefire/paks/p1/zzzzzzzzzzzzz_coop_fx.pk3"
+   ],
+   "bins": {
+    "renderer_opengl2.dll": "H:/hzm_work/smokefire_build/code/renderercommon/renderergl2/Release/renderer_opengl2.dll",
+    "cgame.dll": "H:/hzm_work/smokefire_build/code/client/cgame/Release/cgame.dll"
+   },
+   "sets": [
+    "set r_softParticleDistance 40",
+    "set r_softParticlesDebug 1"
+   ]
+  }
+ },
+ "pre": [],
+ "shots": [
+  {
+   "name": "dbg_msaa",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 25,
+    "look_h": 35
+   },
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    2000,
+    4000
+   ],
+   "settle": 7000,
+   "clear": 4000,
+   "sets": [
+    "set coop_scorchTime 5",
+    "set r_msaaBypass 0"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  },
+  {
+   "name": "dbg_bypass",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 25,
+    "look_h": 35
+   },
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    2000,
+    4000
+   ],
+   "settle": 7000,
+   "clear": 4000,
+   "sets": [
+    "set coop_scorchTime 5",
+    "set r_msaaBypass 1"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  },
+  {
+   "name": "look_bypass",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 25,
+    "look_h": 35
+   },
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    2000,
+    4000
+   ],
+   "settle": 7000,
+   "clear": 4000,
+   "sets": [
+    "set coop_scorchTime 5",
+    "set r_msaaBypass 1",
+    "set r_softParticlesDebug 0"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  },
+  {
+   "name": "look_msaa",
+   "at": [
+    2711,
+    -5700,
+    -71
+   ],
+   "cam": {
+    "yaw": 270,
+    "dist": 200,
+    "h": 25,
+    "look_h": 35
+   },
+   "fx": [
+    {
+     "model": "models/emitters/firegood.tik",
+     "kind": "em",
+     "life": 8
+    }
+   ],
+   "times": [
+    2000,
+    4000
+   ],
+   "settle": 7000,
+   "clear": 4000,
+   "sets": [
+    "set coop_scorchTime 5",
+    "set r_msaaBypass 0",
+    "set r_softParticlesDebug 0"
+   ],
+   "fxsets": [
+    "set coop_scorchTime 90"
+   ]
+  }
+ ]
+}
