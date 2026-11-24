@@ -131,8 +131,15 @@ def music_map(mpf):
     return {"order": walks[0][0], "loop": walks[0][1], "alt": [w[0] for w in walks[1:]]}
 
 
-def vgm_decode(vgm, src, dst, stream=None):
+def vgm_decode(vgm, src, dst, stream=None, loop_body=True):
+    """[decodeaudit r100, aems] loop_body: a loop-flagged sample comes out as exactly its loop (vgmstream -l 1 -f 0:
+    played to the loop end once, no fade). vgmstream's default is 2 loops + a 10 s fade-out, which baked a dip to
+    silence into every looped bank sample the converter takes (the tank's 2.03 s / 3.07 s engine loops came out
+    14.05 / 16.13 s, the turret's 1.42 s loop, the fire loop): looped in MOHAA they faded out every cycle. A stream with
+    no loop flag decodes as before. The music segments keep the old call (loop_body=False)"""
     args = [vgm, "-o", dst]
+    if loop_body:
+        args += ["-l", "1", "-f", "0"]
     if stream:
         args += ["-s", str(stream)]
     args.append(src)
@@ -223,7 +230,7 @@ def som_sound(som, sound_set, sound_id, sub=None):
         key, _sub, sid, bi = struct.unpack_from("<4H", som, oa + 8 * i)
         if key == sound_set and sid == sound_id and bi < nb and (sub is None or _sub == sub):
             lo, hi, code, _p0, _p1, vol, fl, _z = struct.unpack_from("<BBHHHHHH", som, ob + 14 * bi)
-            return {"first": lo, "last": hi, "code": code, "volume": vol / 32767.0, "flags": fl}
+            return {"first": lo, "last": hi, "code": code, "volume": vol / 32767.0, "flags": fl, "pitch": (_p0, _p1)}
     return None
 
 
@@ -427,3 +434,91 @@ def vehicle_loops(abk, vtype, module=16, speed_param=0x12E2, type_param=0x1CB9):
         if kind:
             out[kind] = slot if slot in live else None
     return out
+
+
+# ---- [decodeaudit r100, aems / senders] the AEMS lookup, the engine's running parameters, the in-clip sound map ----
+
+def aems_lookup(abk, node, x):
+    """a 1e.01 table node's output for input x, as the runtime computes it (handler 0xbba80):
+    tbl[(clamp(x) - min) * n / (max - min + 1)]"""
+    H = abk[:abk.find(b"BNKl")]
+    to, n, lo, hi, es = node["inl"][:5]
+    vals = list(H[to:to + n]) if es == 1 else list(struct.unpack_from("<%dh" % n, H, to))
+    x = min(max(int(x), lo), hi)
+    return vals[min(n - 1, (x - lo) * n // (hi - lo + 1))]
+
+
+def vehicle_params(abk, vtype, level, dist_m, module=16, speed_param=0x12E2, dist_param=0x12E3, vol_param=0x12E5,
+                   vol_arg=32000):
+    """[decodeaudit r100, aems] what the engine loops of vehicle_loops play at, with the module's arguments frozen at
+    begin (HierobjVehicle sends AEMSEVENT(1) once and never updates it: measured, bp_tank.log, level 8 at 49.1 m).
+    -> {"idle"/"drive": {"on": bool, "pitch": rate (0x1000 = 1.0), "volume": linear}}
+    pitch: port 0 of the set, through the pause switch (09.03, input 1) = a 1e.01 table on the running level or a
+    14.00 constant (0 / unwired = paused).
+    on: the set's port-7 gate table at that level. volume: vol_arg / 32767 x the distance table on 0x12e3 (distance
+    x 256) / 32767; the 0x12f3 global gain is taken as 1.0 (GUESS, aems)"""
+    g = aems_graph(abk, module)
+    if not g:
+        return {}
+    feeds = {}
+    for k, nd in g.items():
+        for outs in nd["out"]:
+            for port, dst in outs:
+                feeds.setdefault((dst, port), []).append(k)
+    pid = {nd["id"]: k for k, nd in g.items() if nd["type"] == (1, 0)}
+    vol = vol_arg / 32767.0
+    dtab = [k for k, nd in g.items() if nd["type"] == (0x1E, 1) and (pid.get(dist_param), 0) in
+            [(s, 0) for s in feeds.get((k, 0), [])]]
+    if dtab:
+        vol *= aems_lookup(abk, g[dtab[0]], dist_m * 256) / 32767.0
+    out = {}
+    for sk, nd in g.items():
+        if nd["type"] != (4, 0x0B):
+            continue
+        gate = [s for s in feeds.get((sk, 7), []) if g[s]["type"] == (0x1E, 1) and pid.get(speed_param) in feeds.get((s, 0), [])]
+        if not gate:
+            continue
+        gt = aems_table(abk, g[gate[0]])
+        kind = "idle" if gt.get(0) and not gt.get(255) else ("drive" if gt.get(255) and not gt.get(0) else None)
+        if not kind:
+            continue
+        def pitch_of(n, depth=0):
+            # 09.0N switch: the 1-based selector is 1 while the game runs (pause pokes it to 2 = pitch 0): input 1
+            if depth > 4:
+                return 0
+            nt = g[n]["type"]
+            if nt == (0x1E, 1) and pid.get(speed_param) in feeds.get((n, 0), []):
+                return aems_lookup(abk, g[n], level)
+            if nt[0] == 0x14:
+                return g[n]["inl"][0] if g[n]["inl"] else 0
+            if nt[0] == 0x09:
+                src = feeds.get((n, 1), [])
+                return pitch_of(src[0], depth + 1) if src else 0
+            return 0
+        src0 = feeds.get((sk, 0), [])
+        p = pitch_of(src0[0]) if src0 else 0
+        out[kind] = {"on": bool(aems_lookup(abk, g[gate[0]], level)), "pitch": p / 4096.0, "volume": vol}
+    return out
+
+
+def soma_rows(som):
+    """[decodeaudit r100, senders] <l>animSnd.som ('SOMA'): the sounds the clips' c80f n opcode plays.
+    Header u32 count at 0x10, u32 row offset at 0x14; rows 16 bytes {u16 id, u8 first, u8 last, u16 bank code, u16 pitch lo, u16 pitch hi, u16 volume,
+    u16 distance scale (0x100 = 1.0; 0x80 = carries twice as far), u16 0}. Code: module 14 if & 0x80 else 7 (the script
+    bank), low nibble = the bank's ref run, & 0x10 = positional. -> {id: row like som_sound}"""
+    if som[:4] != b"SOMA":
+        return {}
+    n, o = struct.unpack_from("<II", som, 0x10)
+    out = {}
+    for k in range(n):
+        if o + 16 * k + 16 > len(som):
+            break
+        sid, lo, hi, code, p0, p1, vol, fl, _z = struct.unpack_from("<HBBHHHHHH", som, o + 16 * k)
+        out[sid] = {"first": lo, "last": hi, "code": code, "volume": vol / 32767.0, "flags": fl, "pitch": (p0, p1)}
+    return out
+
+
+def som_set_sound(som, sound_set, sound_id):
+    """som_sound for a sound set no placed record links (a class's own set, e.g. 1_1 set 454 = the jeep gunner's
+    PLAYSOUND 82 grunt)"""
+    return som_sound(som, sound_set, sound_id)

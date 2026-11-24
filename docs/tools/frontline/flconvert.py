@@ -228,6 +228,12 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     shader_lines = []
     tex_names = {}
     stats = {"tris": 0, "tris_textured": 0, "textures": 0, "alpha_textures": 0}
+    # [r100 glass_r100] model light grid (flglass.light_grid): the disc's 17 lighting volumes (<level>_P.bpd section 6) and
+    # its default rig (fl_levels.json "model_light", read from RAM) -> BSP light grid; absent = no grid (flat 150, as before)
+    B.light_grid = flglass.light_grid(L, X, flpack.spec(level).get("model_light"))
+    if B.light_grid:
+        stats["model_light"] = {"default": [round(c) for c in B.light_grid["default"]], "volumes": B.light_grid["volumes"],
+                                "boxes": sorted({tuple(round(c) for c in b[2]) for b in B.light_grid["boxes"]})}
 
     texmap = {}
     tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fl_texmap.json")
@@ -1041,12 +1047,18 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # ("pane_tex", st rect "pane_st"), the way the level's own broken-pane cards (1c0900) map one cell of the broken one.
     # fl_levels.json "glass" per level (absent / enabled false = unchanged). Static: the original's panes do not break.
     gl_ = flpack.spec(level).get("glass") or {}
-    if gl_.get("enabled"):
+    if gl_.get("enabled") and gl_.get("source") == "art":
+        # [r100 glass_r100] the disc's own pane objects (cell art header words 11/12): each pane's quad, uvs, vertex
+        # colours and frame textures; one script_object per pane so the map can step it on a blast (flglass.emit)
+        stats["glass"] = flglass.emit(L, B, X, tdir, files, shader_lines, tga_bytes, flbsp.SURF_NOLIGHTMAP, gl_)
+    elif gl_.get("enabled"):
         cov_ = set(gl_.get("cover_tex", []))
         cards_ = [(X(m["verts"][a]), X(m["verts"][b]), X(m["verts"][c])) for m in meshes
                   if m["tex"] and m["tex"].split("@")[-1] in cov_ and m["tris"] and (m["cell"], m["draw"]) not in hidden
                   for a, b, c in m["tris"]]
-        gp_, stats["glass"] = flglass.panes(coll, X, cards_)
+        # [anvil data13] "mat": the pane material (1_1: 13; 1_3's panes are material 12 + the special bit - the
+        # emulator's GPU frame at the 1_3 start drew its window quads exactly on those collision vertices). Absent = 13
+        gp_, stats["glass"] = flglass.panes(coll, X, cards_, mat=int(gl_.get("mat", 13)))
         gname_ = tdir + "hzm_glass"
         if gl_.get("pane_tex"):
             gimg_ = tdir + gl_["pane_tex"] + ".tga"
@@ -1059,6 +1071,14 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
         s0_, t0_, s1_, t1_ = gl_.get("pane_st", [0.0, 0.0, 1.0, 1.0])
         for tris_ in gp_:
             v_, i_ = flglass.surface(tris_, med_light)
+            if gl_.get("pane_tile_m"):
+                # [anvil data13] 1_3: the game maps its window texture once per pane_tile_m of pane width (a 1.5 m pane
+                # took half the texture in s, a 3.1 m pane all of it; t always 0..1 over the pane height - GPU frame
+                # trace\gpu_fl13g, 28 pane quads). Which half a narrow pane takes is not decoded: the left one
+                pw_ = math.hypot(max(p_[0] for p_, _s, _n, _c in v_) - min(p_[0] for p_, _s, _n, _c in v_),
+                                 max(p_[1] for p_, _s, _n, _c in v_) - min(p_[1] for p_, _s, _n, _c in v_))
+                sp_ = max(0.5, round(2.0 * pw_ / (float(gl_["pane_tile_m"]) * scale)) / 2.0)
+                s1_ = s0_ + sp_
             v_ = [(p_, (s0_ + st_[0] * (s1_ - s0_), t0_ + st_[1] * (t1_ - t0_)), n_, c_) for p_, st_, n_, c_ in v_]
             B.add_soup(gsh_, v_, i_)
     # headroom: crawl holes / doorways sized for Frontline's smaller player get MOHAA crouch / stand clearance
@@ -1204,7 +1224,10 @@ def convert(img, level, out_pk3, scale=48.0, mirror=False, flip_render=None, fli
     # [flpolish] each collision brush carries its SOURCE in its (nodraw) shader name, so the walk audit can tell an
     # original player-clip boundary from a wall, a fitted column, a headroom cap or our edge-of-world clip
     NOSHOT_ = bool(flpack.spec(level).get("clip_noshot"))
-    STEPS_ = {int(k_): {"rock": 0x10000, "gravel": 0x800000, "metal": 0x8000, "wood": 0x4000, "dirt": 0x20000}[v_]
+    # [audio13 7b] "glass" (SURF_GLASS, surfaceflags.h): 1_3's window panes (material 12, ImpBnk surface 3), so a bullet
+    # on them plays the disc's glass impact through snd_bh_glass (fl_levels "impacts"); 1_1 uses none
+    STEPS_ = {int(k_): {"rock": 0x10000, "gravel": 0x800000, "metal": 0x8000, "wood": 0x4000, "dirt": 0x20000,
+                        "glass": 0x400000}[v_]
               for k_, v_ in (flpack.spec(level).get("footsteps") or {}).items()}
     def clip_for(tag):
         if tag == TAG_CLIFF:

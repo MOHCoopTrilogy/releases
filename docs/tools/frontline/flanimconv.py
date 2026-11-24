@@ -50,6 +50,34 @@ def step_cmd(op, arg):
         return "bodyfall 1.0"
     return None
 
+# [decodeaudit r100, senders 2] a clip's sound opcodes: c80f n = row n of <l>animSnd.som (the PLAYSOUND player; flpack
+# _anim_sounds writes the alias fl<l>_anim<n>); c806 n = AEMS module 6 of GunBnk (event n + 0x65 -> BNK slot 66 + n, the
+# soldiers' weapon-handling foley) - written only for the n in foley (the caller's live slots), since an empty slot
+# plays nothing on the disc. On 1_1 the converted clips carry one: 6507 frame 0 c80f 2 (the gunner's line)
+def snd_cmd(level, op, n, foley=()):
+    pre = "fl%s" % level.replace("_", "")
+    if op == 0xc80f:
+        return "sound %s_anim%d" % (pre, n)
+    if op == 0xc806 and n in foley:
+        return "sound %s_foley%d" % (pre, n)
+    return None
+
+
+def anim_sound_ops(emt_bytes, level):
+    """{(op, n)} of the c806 / c80f opcodes in the clips build() converts for this level"""
+    emt = flanim.Emt(emt_bytes)
+    out = set()
+    for aid in list(SCENES) + list(globals().get("SCENES_LEVEL", {}).get(level, {})):    # SCENES_LEVEL: per-level additions
+        a = emt.anims.get(aid)
+        if not a:
+            continue
+        for ci, _w, _p in a["variants"]:
+            for kind_, v_, _t in emt.events(ci):
+                if kind_ == "op" and v_[0] in (0xc806, 0xc80f) and not isinstance(v_[1], tuple):
+                    out.add((v_[0], v_[1]))
+    return out
+
+
 # stock bone <- the disc joint whose motion it carries (flchar.FL_TO_BIP's primary joint per stock bone)
 PRIMARY = {"Bip01 Pelvis": "Hip", "Bip01 Spine": "spine1", "Bip01 Spine1": "spine2", "Bip01 Spine2": "chest",
            "Bip01 Neck": "neck1", "Bip01 Head": "head"}
@@ -79,6 +107,14 @@ SCENES = {
     784: True, 826: True, 776: False, 777: False, 769: False, 770: True, 771: False, 778: False, 779: False,
     775: True, 774: False, 767: True, 764: False, 765: False, 773: False,
 }
+
+# [anvil fx13 2026-11-23] per-level additions, converted only for that level (1_1 output unchanged): 1_3 SoldierA_Roamer
+# b1 state 757 / 758 PLAYANIMATION(560, 27, 0) on message 147 (trigger 50) / 168 / 198 - emt_1_3 anim 560 = clip 107,
+# 37 poses x 4 ticks (2.4 s), root motion: a 2 m run-up, take-off at tick 36, apex +0.77 m, landing 5.4 m on (a running
+# leap across a gap)
+# [fx13 r2] + the alarm user's clips: b1 state 960 (GETRANDOMINTEGER(0, 99) < 49 -> 962) plays 14109 (clip 1249, ring
+# marker 0xc804 at tick 36), else 963 plays 14105 (clip 867, marker at tick 28), once each
+SCENES_LEVEL = {"1_3": {560: False, 14109: False, 14105: False}}
 
 
 def _mm(a, b):
@@ -192,14 +228,14 @@ def convert_clip(emt, ci, skl, B, bones, keep_root=True, yaw=0.0):
     return mohskel.write_skc(ft, chans, frames), frames
 
 
-def build(emt_bytes, level, skl, B, skd_bytes, files, label, log=print):
+def build(emt_bytes, level, skl, B, skd_bytes, files, label, log=print, foley=()):
     """write the scene clips for one disc BODY (label = its .dmf name, lower case, e.g. bm22: the retarget depends
     only on the body's bind pose, so the men who share a body share the files) as models/human/fl_<level>/anim/
     <label>/fl_a<id>[_<n>].skc; returns the tik 'animations' block text ("" when nothing was written)"""
     emt = flanim.Emt(emt_bytes)
     bones = mohskel.read_skd_bones(skd_bytes)
     rows = []
-    for aid, loop in SCENES.items():
+    for aid, loop in list(SCENES.items()) + list(SCENES_LEVEL.get(level, {}).items()):
         a = emt.anims.get(aid)
         if not a:
             continue
@@ -226,6 +262,8 @@ def build(emt_bytes, level, skl, B, skd_bytes, files, label, log=print):
             for kind_, v_, t_ in emt.events(ci):
                 if kind_ == "op":
                     c_ = step_cmd(v_[0], v_[1] if not isinstance(v_[1], tuple) else None)
+                    if not c_ and v_[0] in (0xc806, 0xc80f) and not isinstance(v_[1], tuple):
+                        c_ = snd_cmd(level, v_[0], v_[1], foley)
                     if c_:
                         fr = min(nframes - 1, int(round(t_ / emt.clip_info(ci)["frame_time"])))
                         cmds.append("\t\t\t%d %s" % (fr, c_))
