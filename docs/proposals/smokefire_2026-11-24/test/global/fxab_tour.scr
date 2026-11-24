@@ -7,17 +7,14 @@ main:
 	local.f = angles_toforward ( 0 local.p.viewangles[1] 0 )
 	local.at = local.p.origin + ( vector_scale local.f 420 )
 	iprintlnbold "FX tour: grenade"
-	waitthread one "models/fx/f1grenadeexplosion.tik" "expl" local.at 0
+	waitthread one "models/fx/f1grenadeexplosion.tik" "grenade" local.at 0
 	wait 6
 	iprintlnbold "FX tour: bazooka"
-	waitthread one "models/fx/bazookaexplosion.tik" "expl" local.at 0
+	waitthread one "models/fx/bazookaexplosion.tik" "bazooka" local.at 0
 	wait 6
 	iprintlnbold "FX tour: heavy shell"
-	waitthread one "models/fx/explosionpzb41shell.tik" "expl" local.at 0
+	waitthread one "models/fx/explosionpzb41shell.tik" "heavyshell" local.at 0
 	wait 6
-	iprintlnbold "FX tour: stone shell blast (sprite size)"
-	waitthread one "models/fx/heavyshellexp_stone.tik" "sm" local.at 6
-	wait 7
 	iprintlnbold "FX tour: fire (watch the flame tips fade)"
 	waitthread one "models/emitters/fire.tik" "em" local.at 12
 	wait 13
@@ -31,8 +28,11 @@ main:
 end
 
 one local.m local.k local.o local.life:
-	if(local.k == "expl"){
+	if(local.k == "grenade" || local.k == "bazooka" || local.k == "heavyshell"){
+		// the real cgame explosion path (CG_MakeExplosionEffect -> models/fx/<kind>exp_<surface>): a script-spawned
+		// Explosion does not run its anim frame command, so send the effect explicitly
 		local.e = spawn local.m "origin" ( local.o[0] + " " + local.o[1] + " " + local.o[2] )
+		local.e explosioneffect local.k
 	}
 	if(local.k == "sm"){
 		local.e = spawn script_model "model" local.m "origin" ( local.o[0] + " " + local.o[1] + " " + local.o[2] )
