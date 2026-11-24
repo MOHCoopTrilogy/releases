@@ -1026,13 +1026,30 @@ def build(disc, L, level, X, vgm, files, log=print, mohaa_base=None, grid=None, 
     npaths = L.named_paths()
     for pid in sorted(npaths):
         pts_ = []
+        ok_ = []
         for q in npaths[pid]:
             g = X(q)
+            hit_ = False
             if grid is not None:
                 gz = grid.ground(g[0], g[1], g[2] + 64, g[2] - 128)
                 if gz is not None:
                     g = (g[0], g[1], gz + 2.0)
+                    hit_ = True
             pts_.append(g)
+            ok_.append(hit_)
+        # [soaudit 2026-11-23] the disc leaves some path points with no height (z 0: 26 of 1_1's 79, 133 of 1_3's 260),
+        # so the +64 / -128 window misses a street at -165 and the patrol man is sent into the air ("Path not found",
+        # he stands at his spot). Such a point takes its floor from the nearest grounded point of the same path
+        # (+96 / -160 around it: never a roof above the street)
+        if grid is not None and any(ok_):
+            for k_ in range(len(pts_)):
+                if ok_[k_]:
+                    continue
+                ref_ = min((j_ for j_ in range(len(pts_)) if ok_[j_]), key=lambda j_: abs(j_ - k_))
+                rz_ = pts_[ref_][2]
+                gz = grid.ground(pts_[k_][0], pts_[k_][1], rz_ + 96, rz_ - 160)
+                if gz is not None:
+                    pts_[k_] = (pts_[k_][0], pts_[k_][1], gz + 2.0)
         for k, g in enumerate(pts_, 1):
             lines.append(f'\tlevel.fl_npath[{pid}][{k}] = ( {g[0]:.0f} {g[1]:.0f} {g[2]:.0f} )')
         lines.append(f'\tlevel.fl_npath_n[{pid}] = {len(pts_)}')
