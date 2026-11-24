@@ -13,19 +13,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `edc5a4a4 2026-11-23 EA converter 0.7.56: narrow navmesh crossings get a straight node chain the engine's body fits (gap 2 follow-up)` |
-| commits | 1,619 |
+| HEAD | `fd15e0f3 2026-11-23 Merge branch 'flfix2'` |
+| commits | 1,670 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **5206 modified, 2226 untracked** |
-| unstaged diff | 5206 files changed, 20310 insertions(+), 1492558 deletions(-) |
+| **uncommitted** | **5205 modified, 2226 untracked** |
+| unstaged diff | 5205 files changed, 20299 insertions(+), 1492558 deletions(-) |
 
-> Working tree is dirty. Everything in those 7432 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 7431 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-11 | 867 |
+| 2026-11 | 918 |
 | 2026-10 | 421 |
 | 2026-09 | 120 |
 | 2026-08 | 157 |
@@ -33,13 +33,59 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1619)
+### Commits since 2026-01-01 (1670)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `fd15e0f3` | 2026-11-23 | joncurry94-tech | Merge branch 'flfix2' |
+| `3eb86d3d` | 2026-11-23 | joncurry94-tech | fl_levels 1_3 (anvil round 7b, data13): character light (model_light rig + the level's 491 lighting volumes as the light grid) an… |
+| `eef615dc` | 2026-11-23 | joncurry94-tech | gfx flip gate: register the v1.10.91 renderer (tcMod offset for glass) |
+| `fd74b60b` | 2026-11-23 | joncurry94-tech | fl_levels 1_3 / flanimconv / flconvert (anvil round 7b): disc impacts + fly-bys, bark events 1-8, per-object blast / hit / charge… |
+| `05937e64` | 2026-11-23 | joncurry94-tech | gfx flip gate: register the v1.10.91 renderer a10f2cc0 (sky fade) |
+| `ecfb77f0` | 2026-11-23 | joncurry94-tech | EA converter 0.7.60: the crypt ramp out of the Nemesis pocket opened (user-approved 2026-11-23, FIDELITY C69) |
+| `88bd4f11` | 2026-11-23 | joncurry94-tech | Sealed Orders r100 glass / model light: the disc's 191 pane objects with their own textures, breakable on blasts; the lighting vo… |
+| `37f75f63` | 2026-11-23 | joncurry94-tech | FIDELITY r100 audio: rows 17 / 4 / 11a / 11d / 5 / 3b and the Panzer deviations (turret ticks, not a cannon) with the run evidence |
+| `7ced83ef` | 2026-11-23 | joncurry94-tech | OPEN: Anchor & Anvil refused-join text fixed in the engine (rel-1.10.38-engine 402fee29, bug-11523) |
+| `64a4c30c` | 2026-11-23 | joncurry94-tech | v1.10.91: Anchor & Anvil (Frontline 1_3) is a listed own-disc level - converter, menus, campaign routing, loading clip |
+| `284eae9f` | 2026-11-23 | joncurry94-tech | EA 0.7.59 follow-up: night-sky band re-measured (within 3 %), blast package filmed, C69 clip stairs built but disabled (94u actor… |
+| `77283778` | 2026-11-23 | joncurry94-tech | fl_levels 1_3 / flanimconv / flconvert (anvil round 7): barks, footsteps, SOMI variants, fog, glass, anim 560, blast and barrel e… |
+| `042b01bc` | 2026-11-23 | joncurry94-tech | OPEN: Dying Breath 0.7.59 - eadecode-eng awaits merge + build, sky re-grade to re-measure |
+| `22c52ae1` | 2026-11-23 | joncurry94-tech | EA converter 0.7.59: cloud speed / dome / per-layer elevation fade, soldier types per spawn point, decode closure (FIDELITY C62-C… |
+| `6421efb4` | 2026-11-23 | joncurry94-tech | Sealed Orders r100 audio: loop bodies, the tank's frozen engine pair + turret loop, every SOMI entry, disc hit / death barks, dis… |
+| `c7fc1360` | 2026-11-23 | joncurry94-tech | servergui: setting labels say what they do (592 rewritten from the code), 467 dev/test/internal settings hidden |
+| `df6f45e0` | 2026-11-23 | joncurry94-tech | Merge branch 'flfix2' |
+| `7ab19cf4` | 2026-11-23 | joncurry94-tech | gfx flip gate: register the v1.10.91 renderer (far-water depth fix) |
+| `e48b69c9` | 2026-11-23 | joncurry94-tech | FIDELITY: the Panzer's hit and death sets ran through the map's own hit poll on a dedicated server; death filmed |
+| `6b40e313` | 2026-11-23 | joncurry94-tech | servergui: bug ids in comments moved to 11496-11503 (11488-11491 were taken by a parallel session) |
+| `7b0105b2` | 2026-11-23 | joncurry94-tech | MOH Coop Server window v1.10.91: player admin, chat, history, demos, playlists, resources, reach test, crash report, plain settin… |
+| `1b615fee` | 2026-11-23 | joncurry94-tech | EA converter 0.7.58: dead soldiers' drop tables read (eadefs.drop_tables, C60); night sky graded to the original by elevation at… |
+| `8ae9eb1d` | 2026-11-23 | joncurry94-tech | MOH Coop Server window: server speed (tick rate) on Status, lag log, update-on-start relaunches on the new app (bugs 11486, 11487) |
+| `72be4554` | 2026-11-23 | joncurry94-tech | FIDELITY: rec 4 smoke and the tank-hit set seen on camera (decode audit d9) |
+| `01cd6742` | 2026-11-23 | joncurry94-tech | EA converter 0.7.57: disc footsteps/impacts/whiz/Panzer loops (eadiscsfx, gap 11), cloud cycle measured 66.7 s (C53), partisan he… |
+| `881c6ed2` | 2026-11-23 | joncurry94-tech | docs: OPEN.md and user preferences back under their size ceilings (stale playtest list archived) |
+| `dc55f2d3` | 2026-11-23 | joncurry94-tech | Sealed Orders decode audit: barks by the original's events, tank engine, plane / jeep / tank-hit sounds, rec 4 smoke lift |
+| `53faa8c1` | 2026-11-23 | joncurry94-tech | gen_loadout / wire_mv2: Armory pending chip pick survives EQUIP (bug-11472); TRAPS T20 two "current guns" |
+| `861c64ce` | 2026-11-23 | joncurry94-tech | flaudio som_sound: match a sound set's row by the record's cat-12 link (opt-in); 1_3 alarm bell (anvil patch 15) |
+| `50a5606b` | 2026-11-23 | joncurry94-tech | fl_levels 1_3 (anvil patch 14): pfx_bytype for the U-4902 sinking - the disc's own systems (flpfx) |
+| `7839de0d` | 2026-11-23 | joncurry94-tech | FEATURES: officer spawn policy user-approved 2026-11-23 (Planned route) |
+| `a329d5e1` | 2026-11-23 | joncurry94-tech | exec_audit.py (the exec-return rule, scanner) and TRAPS T17: x = exec label returns the value only if the label runs no wait / wa… |
+| `f0ab7ce8` | 2026-11-23 | joncurry94-tech | FIDELITY C55: the Panzers fire again (tracker fix), muzzle package seen |
+| `94abfb38` | 2026-11-23 | joncurry94-tech | hzmconv 1.10.91.1: Armory change sound = Frontline ShellBnk stream 36, the pistol slide rack, alone (bug-11463) |
+| `2e689e23` | 2026-11-23 | joncurry94-tech | Sealed Orders perch checker; TRAPS T26 + turret note (T14 part archived); DECISIONS: movement weight - inertia on the flat, grip… |
+| `284a22bc` | 2026-11-23 | joncurry94-tech | EA 1_11: the partisan leader staying in the cellar matches the disc (FIDELITY C57, OPEN closed) |
+| `024aed66` | 2026-11-23 | joncurry94-tech | EA 1_11 gap 2 follow-up: FIDELITY C57 / OPEN - cover-anim guards (mod 5cc59e324), cellar stair chained (0.7.56) |
+| `60e9b703` | 2026-11-23 | joncurry94-tech | hzmconv 1.10.91.1: Armory change sound = Frontline main-menu select (ShellBnk streams 2 + 30 mixed 1:1), not the pause-menu click… |
+| `330c5f1e` | 2026-11-23 | joncurry94-tech | README: v1.10.90 hotfix What's new |
+| `bd7ea020` | 2026-11-23 | joncurry94-tech | manifest 1.10.90 |
+| `0d620bc5` | 2026-11-23 | joncurry94-tech | flclear (bug-11462): lift the stacked rows of a door's lintel too - 1_1 doors no longer need a jump |
+| `93832e98` | 2026-11-23 | joncurry94-tech | gfx flip gate: register the v1.10.90 renderer 4a675acb (menu-join crash fix) |
+| `9c4bde69` | 2026-11-23 | joncurry94-tech | conv_guard: re-shipping the byte-identical hzmconv.zip passes (stamp records zip_sha256); 1.10.89.2 zip recorded |
+| `250cdf77` | 2026-11-23 | joncurry94-tech | v1.10.90 hotfix prep: release notes, regenerated docs, publish warns on stale PDB/MAP symbols (bug-11455) |
 | `edc5a4a4` | 2026-11-23 | joncurry94-tech | EA converter 0.7.56: narrow navmesh crossings get a straight node chain the engine's body fits (gap 2 follow-up) |
+| `8c143310` | 2026-11-23 | joncurry94-tech | fl_levels 1_3 (anvil patch 13): the two crane hoist loads as set pieces on their own 1_3_wooden_cargo_rotate.mvd, hoist sound |
 | `930eb3be` | 2026-11-23 | joncurry94-tech | FIDELITY C55: the Panzer muzzle hook (unverified: no Panzer fired in the tests) |
 | `2f3a53c8` | 2026-11-23 | joncurry94-tech | grade_profiles: coop_fl_1_3 0.55 (live-engine check against the xemu frames) |
+| `1b6da1b8` | 2026-11-23 | joncurry94-tech | fl_levels 1_3 (anvil patch 12): U-4902 sinking set piece, sub-explosion and alarm-clank sounds |
 | `8422b345` | 2026-11-23 | joncurry94-tech | EA 1_11 navmesh (gap 2): FIDELITY C57 (navigation and cover), C37 evidence, OPEN items |
 | `a46f1c48` | 2026-11-23 | joncurry94-tech | grade_profiles: coop_fl_1_3 measured 0.45 against the xemu reference stills |
 | `97b30314` | 2026-11-23 | joncurry94-tech | MOH Coop Server window: new profiles get the standard port 12203 (bug-11454) |
@@ -48,10 +94,15 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | `96a35487` | 2026-11-23 | joncurry94-tech | EA converter 0.7.54: the Germans carry the disc's Gewehr 43; the Nemesis gets his own health factor (closest single factor to the… |
 | `c93e88fd` | 2026-11-23 | joncurry94-tech | MOH Coop Server window: 0 = keep all demos, start-with-Windows can open the window, clearer sv_timeout (bugs 11444-11446) |
 | `aa8d9543` | 2026-11-23 | joncurry94-tech | EA converter 0.7.53: soldier archetypes and weapon damage from the disc's definition blocks (decode audit gap 4) |
+| `3b5e8e35` | 2026-11-23 | joncurry94-tech | fl_levels 1_3 (anvil patch 11): crane crate meshes, conversations + loudspeaker cues, warehouse/garage door sounds |
 | `f4f852ce` | 2026-11-23 | joncurry94-tech | EA converter 0.7.52: the sky chunk decoded (skirt from its own mesh, cloud scroll from its tracks), cemetery weather zones, the u… |
+| `10071a95` | 2026-11-22 | joncurry94-tech | flpfx (decode audit gap 3): Sealed Orders blasts, fires and smoke on the disc's own particle systems and sprites |
 | `97f8703d` | 2026-11-22 | joncurry94-tech | EA converter 0.7.51: the original's decoded fog is the default; church interior world light x1.35 |
+| `5173ba78` | 2026-11-22 | joncurry94-tech | flpack prop_sounds (anvil patch 10) + fl_levels 1_3: the falling walkway's own PLAYSOUND(227) (sound set -> 1_3propSnd.som -> 13S… |
 | `98fc27ea` | 2026-11-22 | joncurry94-tech | OPEN: Sealed Orders open items after the decode audit (undecoded / not-converted lists, scene clips awaiting a look) |
+| `639e59cf` | 2026-11-22 | joncurry94-tech | Frontline decode audit (Sealed Orders): trigger volumes /16 m with shapes, fake doors, tank record path, disc scene clips on, cli… |
 | `27b2577b` | 2026-11-22 | joncurry94-tech | EA converter 0.7.50 (decode audit, EA half): fire damage, Panzer sheet, pickups by skill, flicker light, fog decoded |
+| `a760edc2` | 2026-11-22 | joncurry94-tech | flconvert om_specs clip_tris (anvil patch 9) + fl_levels 1_3 v10: the falling-walkway ramp set piece (Truck_Bridge_1_3 on object… |
 | `278ebad2` | 2026-11-22 | joncurry94-tech | TRAPS: prune T23/T24 back under the 70 KB ceiling |
 | `6de75f8b` | 2026-11-22 | joncurry94-tech | v1.10.89 shipped: README What's new, converter ship record 1.10.89.2, bug-11427 + frozen-path trap |
 | `d090b29b` | 2026-11-22 | joncurry94-tech | manifest 1.10.89 |
@@ -1661,9 +1712,9 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | | |
 |---|---|
-| branch | `hotfix-1.10.90` |
-| HEAD | `4795da8b5 2026-11-23 v1.10.90 hotfix: version + What's New card (menu-join crash, server app fixes)` |
-| commits | 3,115 |
+| branch | `hotfix-1.10.53` |
+| HEAD | `06bbddab4 2026-11-23 coop_fl_1_3 (anvil round 7b): death ambushes made on the first death in their area, the roster walk-in (decoded), the disc's window panes, self-test placement under the raised garage door` |
+| commits | 3,153 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -1671,7 +1722,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-11 | 681 |
+| 2026-11 | 719 |
 | 2026-10 | 727 |
 | 2026-09 | 116 |
 | 2026-08 | 198 |
@@ -1714,11 +1765,49 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (1766)
+### Commits since 2026-01-01 (1804)
 
 | sha | date | author | subject |
 |---|---|---|---|
-| `4795da8b5` | 2026-11-23 | joncurry94 | v1.10.90 hotfix: version + What's New card (menu-join crash, server app fixes) |
+| `06bbddab4` | 2026-11-23 | joncurry94 | coop_fl_1_3 (anvil round 7b): death ambushes made on the first death in their area, the roster walk-in (decoded), the disc's wind… |
+| `7996c539e` | 2026-11-23 | joncurry94 | Disc missions: solid, safe checkpoint respawns that follow the mission (bug-11541) |
+| `154b970c5` | 2026-11-23 | joncurry94 | Sealed Orders: the disc's window panes break on blasts (r100 glass) |
+| `5e7889a88` | 2026-11-23 | joncurry94 | coop_fl_1_3 (anvil round 7b): r100 bark port (events 1-8), disc object sounds, alarm use clips / damage / destroyed mesh, MG gunn… |
+| `5778458cf` | 2026-11-23 | joncurry94 | Sealed Orders r100 audio: barks on the original's own triggers, the Panzer's frozen engine pair + turret-traverse loop, the gunne… |
+| `8fe31e438` | 2026-11-23 | joncurry94 | coop_fl_1_3 (anvil round 7): disc barks + footsteps, anim 560 leap, case lid, truck 4 blast, phantom explosions, LgFire / fire zo… |
+| `04999f566` | 2026-11-23 | joncurry94 | Sealed Orders title card: "FRONTLINE - MISSION 2" (Seaside Stowaway is a level of Mission 2, "A Storm in the Port", with Eye of t… |
+| `85dbd3ee3` | 2026-11-23 | joncurry94 | EA 1_11: the pocket Nemesis keeps his own point when the pak carries the crypt-ramp clip stairs (level.ea_clipStairs; off in 1_11… |
+| `f1ea55f2e` | 2026-11-23 | joncurry94 | Anchor & Anvil (coop_fl_1_3) hooked in for v1.10.91, the way Sealed Orders is |
+| `de2c3dce4` | 2026-11-23 | joncurry94 | EA 1_11 (converter 0.7.59): the original's detonation packages, REMOVE message, soldier types, Accuracy and fighting distance |
+| `0e04c29bd` | 2026-11-23 | joncurry94 | v1.10.91 version + What's New card (Anchor and Anvil) |
+| `040b496b4` | 2026-11-23 | joncurry94 | coop_fl_1_3: alarm runners go to a floor spot by the alarm, out of combat; self-test rings and silences an alarm |
+| `7e096cf16` | 2026-11-23 | joncurry94 | EA 1_11: the original's death drops (ea_drop: disc weights for nothing / health / player ammo / item; coop_eaDrops 0 = off; FIDEL… |
+| `8d82dfc82` | 2026-11-23 | joncurry94 | Sealed Orders: the disc's tank engine (drive / idle / off at death), plane and jeep one-shots, tank-hit particles + sound |
+| `bc2923805` | 2026-11-23 | joncurry94 | EA 1_11: the original's kill message (hbd5a5da6, XBE handler 0x250a0) kills the target group's living actors and gunners (decode… |
+| `2761ea504` | 2026-11-23 | joncurry94 | coop_fl_1_3: the alarms ring with the original's own bell; dev coop_flAlarmTest |
+| `1246dc122` | 2026-11-23 | joncurry94 | Armory: a disc / finish / variant chip picked on an inspected gun survives EQUIP (bug-11472) |
+| `070cf3c96` | 2026-11-23 | joncurry94 | coop_fl_1_3: the U-4902 sinking on the disc's own particle systems (flpfx), dev coop_flUboatTest |
+| `a269485ba` | 2026-11-23 | joncurry94 | exec audit: every 'x = exec f::label' now gets the label's value |
+| `4c1401287` | 2026-11-23 | joncurry94 | coop_fl_1_3: U-4902 sinking timed to the emulator (blasts at trigger 52 + 0.6 .. 6.6 s) |
+| `73259bcd4` | 2026-11-23 | joncurry94 | Tanks fire again: coop_trackTankTarget takes its player with waitthread (exec handed back a non-entity, so the target was 0 every… |
+| `b05a7854f` | 2026-11-23 | joncurry94 | Sealed Orders: every replacement tower gunner mounts the MG42 (bug-11469) |
+| `ad55f724c` | 2026-11-23 | joncurry94 | Sealed Orders: bridge snipers re-perched; tower MG42 easy to take; far-bank wave from halfway up the ladder, out of sight (bug-11… |
+| `5cc59e324` | 2026-11-23 | joncurry94 | AI cover anims: no crate / nervous-stand anims for unarmed men and dogs (bug-11461) |
+| `15d7e9942` | 2026-11-23 | joncurry94 | coop_fl_1_3: the two crane hoists run their own rotate motion (rec 150 from the load, rec 86 with group 93) [PROV look] |
+| `7730b4af2` | 2026-11-23 | joncurry94 | Tank shot hook: opt-in per-map callback coop_tankFired after the scripted tank gun fires (vehicles_thinkers); Dying Breath plays… |
+| `1a2d09ff4` | 2026-11-23 | joncurry94 | coop_fl_1_3: the U-4902 sinking, alarm clank, grade 0.55 from the live engine |
+| `c92193f34` | 2026-11-23 | joncurry94 | coop_fl_1_3: garage slide and crane-crate break timed from the emulator; measured night grade 0.45 |
+| `caeb82b4c` | 2026-11-23 | joncurry94 | AI reload: G43 case (g 43 / g43: 10 rounds, the rifle rig's m1garand_reload) - G43 carriers never reloaded; Dying Breath: the Nem… |
+| `af24a284b` | 2026-11-23 | joncurry94 | coop_fl_1_3: code 129 not set off by the squad's own men; dev coop_flCueCalm for test walks |
+| `6da573ea8` | 2026-11-23 | joncurry94 | Dying Breath (converter 0.7.53): soldiers take their disc archetype's hit points (shots-to-kill parity), accuracy tier and reacti… |
+| `1617424f9` | 2026-11-23 | joncurry94 | coop_fl_1_3 ANCHOR & ANVIL: emulator reference + gaps 6-8 (conversations, loudspeaker, code 129, warehouse/garage doors, HQ pages) |
+| `b83d2e1a8` | 2026-11-23 | joncurry94 | Dying Breath (converter 0.7.52): cemetery weather zones, the Panzer's own death / exhaust / damage-smoke packages, package explos… |
+| `34f6ea20e` | 2026-11-22 | joncurry94 | Sealed Orders: blasts, fires and smoke from the disc's own particle systems (coop_flDiscFx, default 1) |
+| `045cab740` | 2026-11-22 | joncurry94 | coop_fl_1_3 ANCHOR & ANVIL: the walkway comes with group 53, its own fall sound, crane crates scripted |
+| `92cc3b481` | 2026-11-22 | joncurry94 | Sealed Orders decode audit: trigger volumes as the disc tests them, locked doors, disc scene clips, record weapons/HP, no play-de… |
+| `c328c6bc9` | 2026-11-22 | joncurry94 | coop_fl_1_3 ANCHOR & ANVIL: the ramp set piece, alarms, /16 trigger radii, cylinder volumes |
+| `48c9efb54` | 2026-11-22 | joncurry94 | Dying Breath decode audit (converter 0.7.50): village fire damage, Panzer sheet speed, pickups by skill, flicker light |
+| `78ba7e8bc` | 2026-11-22 | joncurry94 | coop_mod/discbot.scr: SO leg triggers by distance from the route - projected onto the a->b leg (0..1 with slack) and within 1200u… |
 | `6a3cd0014` | 2026-11-22 | joncurry94 | v1.10.89 version + What's New card (Own Your Arsenal) |
 | `5c7bff94d` | 2026-11-22 | joncurry94 | discguns: M9 Bazooka gets its own Armory chip (EA M9, fid 71); Sten Mk II(S) is roster gun 85 (SMGS, owners only) |
 | `590faeb2e` | 2026-11-22 | joncurry94 | coop_fl_1_3 ANCHOR & ANVIL: the disc's breakable crates (39) and exploding barrels (18) on Sealed Orders' recipes (fl_crate / fl_… |
